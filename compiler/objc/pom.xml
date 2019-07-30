@@ -20,26 +20,43 @@
     </license>
   </licenses>
 
-  <dependencies>
-    <dependency>
-      <groupId>com.mobidevelop.robovm</groupId>
-      <artifactId>robovm-rt</artifactId>
-      <version>${project.version}</version>
-      <scope>provided</scope>
-    </dependency>
-  </dependencies>
+    <dependencies>
+        <dependency>
+            <groupId>com.mobidevelop.robovm</groupId>
+            <artifactId>robovm-rt</artifactId>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
 
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-source-plugin</artifactId>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-javadoc-plugin</artifactId>
-      </plugin>
-    </plugins>
-  </build>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <!-- provide empty bootclass as one from robovm.rt to be used -->
+                <configuration combine.self="override">
+                    <compilerArguments>
+                        <target>1.8</target>
+                        <source>1.8</source>
+                        <bootclasspath>""</bootclasspath>
+                    </compilerArguments>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <configuration combine.self="override">
+                    <maxmemory>2g</maxmemory>
+                    <!-- docs for RT: no lint, no bootclass and api 8 -->
+                    <doclint>none</doclint>
+                    <source>8</source>
+                    <bootclasspath>""</bootclasspath>
+                    <detectJavaApiLink>false</detectJavaApiLink>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
