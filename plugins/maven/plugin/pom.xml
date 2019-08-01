@@ -2,42 +2,42 @@
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
-  <modelVersion>4.0.0</modelVersion>
+    <modelVersion>4.0.0</modelVersion>
 
-  <parent>
-    <groupId>com.mobidevelop.robovm</groupId>
-    <artifactId>robovm-maven-parent</artifactId>
-    <version>2.3.8-SNAPSHOT</version>
-  </parent>
+    <parent>
+        <groupId>com.mobidevelop.robovm</groupId>
+        <artifactId>robovm-maven-parent</artifactId>
+        <version>2.3.8-SNAPSHOT</version>
+    </parent>
 
-  <artifactId>robovm-maven-plugin</artifactId>
+    <artifactId>robovm-maven-plugin</artifactId>
 
-  <packaging>maven-plugin</packaging>
+    <packaging>maven-plugin</packaging>
 
-  <name>RoboVM Maven Plugin</name>
-  <url>https://github.com/MobiVM/robovm</url>
-  <description>
-    The RoboVM Maven Plugin provides a way to build RoboVM based distribution bundles.
-  </description>
-  <inceptionYear>2013</inceptionYear>
+    <name>RoboVM Maven Plugin</name>
+    <url>https://github.com/MobiVM/robovm</url>
+    <description>
+        The RoboVM Maven Plugin provides a way to build RoboVM based distribution bundles.
+    </description>
+    <inceptionYear>2013</inceptionYear>
 
-  <properties>
-    <robovm.version>${project.version}</robovm.version>
-  </properties>
+    <properties>
+        <robovm.version>${project.version}</robovm.version>
+    </properties>
 
-  <repositories>
-    <repository>
-      <id>mojo-executor-repository</id>
-      <name>Mojo Executor Repository for Maven</name>
-      <url>http://twdata-m2-repository.googlecode.com/svn/</url>
-    </repository>
-  </repositories>
+    <repositories>
+        <repository>
+            <id>mojo-executor-repository</id>
+            <name>Mojo Executor Repository for Maven</name>
+            <url>http://twdata-m2-repository.googlecode.com/svn/</url>
+        </repository>
+    </repositories>
 
-  <dependencies>
-    <dependency>
-      <groupId>com.mobidevelop.robovm</groupId>
-      <artifactId>robovm-dist-compiler</artifactId>
-    </dependency>
+    <dependencies>
+        <dependency>
+            <groupId>com.mobidevelop.robovm</groupId>
+            <artifactId>robovm-dist-compiler</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>org.apache.maven</groupId>
@@ -70,11 +70,11 @@
             <scope>compile</scope>
         </dependency>
 
-    <dependency>
-        <groupId>com.mobidevelop.robovm</groupId>
-        <artifactId>robovm-debugger</artifactId>
-    </dependency>
-  </dependencies>
+        <dependency>
+            <groupId>com.mobidevelop.robovm</groupId>
+            <artifactId>robovm-debugger</artifactId>
+        </dependency>
+    </dependencies>
 
     <build>
         <plugins>
