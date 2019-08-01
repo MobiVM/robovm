@@ -1,16 +1,16 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
-  <modelVersion>4.0.0</modelVersion>
+    <modelVersion>4.0.0</modelVersion>
 
-  <parent>
-    <groupId>com.mobidevelop.robovm</groupId>
-    <artifactId>org.robovm.eclipse.parent</artifactId>
-    <version>2.3.8-SNAPSHOT</version>
-  </parent>
+    <parent>
+        <groupId>com.mobidevelop.robovm</groupId>
+        <artifactId>org.robovm.eclipse.parent</artifactId>
+        <version>2.3.8-SNAPSHOT</version>
+    </parent>
 
-  <artifactId>org.robovm.eclipse.ui</artifactId>
-  <name>RoboVM for Eclipse Core and UI</name>
-  <packaging>eclipse-plugin</packaging>
+    <artifactId>org.robovm.eclipse.ui</artifactId>
+    <name>RoboVM for Eclipse Core and UI</name>
+    <packaging>eclipse-plugin</packaging>
 
     <build>
         <resources>

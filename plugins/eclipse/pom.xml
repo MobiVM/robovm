@@ -1,10 +1,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
-  <modelVersion>4.0.0</modelVersion>
+    <modelVersion>4.0.0</modelVersion>
 
-  <prerequisites>
-    <maven>3.0</maven>
-  </prerequisites>
+    <prerequisites>
+        <maven>3.0</maven>
+    </prerequisites>
 
     <parent>
         <groupId>com.mobidevelop.robovm</groupId>
@@ -19,24 +19,24 @@
     <name>RoboVM for Eclipse</name>
     <packaging>pom</packaging>
 
-  <scm>
-    <url>https://github.com/MobiVM/robovm</url>
-    <connection>scm:git:git://github.com/MobiVM/robovm.git</connection>
-    <developerConnection>scm:git:git@github.com:mobidevelop/robovm.git</developerConnection>
-  </scm>
+    <scm>
+        <url>https://github.com/MobiVM/robovm</url>
+        <connection>scm:git:git://github.com/MobiVM/robovm.git</connection>
+        <developerConnection>scm:git:git@github.com:mobidevelop/robovm.git</developerConnection>
+    </scm>
 
-  <issueManagement>
-    <system>GitHub</system>
-    <url>https://github.com/MobiVM/robovm/issues</url>
-  </issueManagement>
+    <issueManagement>
+        <system>GitHub</system>
+        <url>https://github.com/MobiVM/robovm/issues</url>
+    </issueManagement>
 
-  <licenses>
-    <license>
-      <name>GNU General Public License, version 2</name>
-      <url>http://www.gnu.org/licenses/gpl-2.0.html</url>
-      <distribution>repo</distribution>
-    </license>
-  </licenses>
+    <licenses>
+        <license>
+            <name>GNU General Public License, version 2</name>
+            <url>http://www.gnu.org/licenses/gpl-2.0.html</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
 
     <properties>
         <tycho.version>1.4.0</tycho.version>
