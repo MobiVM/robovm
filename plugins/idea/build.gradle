@@ -10,9 +10,6 @@ ext {
 group 'com.mobidevelop.robovm'
 version "${roboVMVersion}"
 
-
-sourceCompatibility = 1.8
-
 repositories {
     mavenLocal()
     mavenCentral()
@@ -63,6 +60,9 @@ task copyRoboVmDist(type: Copy) {
 }
 
 
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 compileJava {
+    options.compilerArgs.addAll(['--release', '8'])
     dependsOn copyRoboVmDist
 }
