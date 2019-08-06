@@ -32,8 +32,7 @@
 
 
     <properties>
-        <sonatypeOssDistMgmtSnapshotsUrl>https://oss.sonatype.org/content/repositories/snapshots/
-        </sonatypeOssDistMgmtSnapshotsUrl>
+        <sonatypeOssDistMgmtSnapshotsUrl>https://oss.sonatype.org/content/repositories/snapshots/</sonatypeOssDistMgmtSnapshotsUrl>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -70,6 +69,11 @@
                                 </goals>
                             </execution>
                         </executions>
+                        <configuration>
+                            <doclint>none</doclint>
+                            <release>8</release>
+                            <detectJavaApiLink>false</detectJavaApiLink>
+                        </configuration>
                     </plugin>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
@@ -176,6 +180,42 @@
                 <artifactId>gson</artifactId>
                 <version>2.8.5</version>
             </dependency>
+            <dependency>
+                <groupId>org.zeroturnaround</groupId>
+                <artifactId>zt-zip</artifactId>
+                <version>1.7</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>slf4j-api</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.simpleframework</groupId>
+                <artifactId>simple-xml</artifactId>
+                <version>2.7</version>
+            </dependency>
+            <dependency>
+                <groupId>org.bouncycastle</groupId>
+                <artifactId>bcpkix-jdk15on</artifactId>
+                <version>1.49</version>
+            </dependency>
+            <dependency>
+                <groupId>com.googlecode.json-simple</groupId>
+                <artifactId>json-simple</artifactId>
+                <version>1.1.1</version>
+            </dependency>
+            <dependency>
+                <groupId>org.ow2.asm</groupId>
+                <artifactId>asm-debug-all</artifactId>
+                <version>5.0.3</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.bcel</groupId>
+                <artifactId>bcel</artifactId>
+                <version>6.3.1</version>
+            </dependency>
 
             <!-- own artifacts -->
             <dependency>
@@ -236,6 +276,32 @@
                 <groupId>com.mobidevelop.robovm</groupId>
                 <artifactId>robovm-cacerts-full</artifactId>
                 <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.mobidevelop.robovm</groupId>
+                <artifactId>robovm-llvm</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.mobidevelop.robovm</groupId>
+                <artifactId>robovm-libimobiledevice</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.mobidevelop.robovm</groupId>
+                <artifactId>robovm-maven-resolver</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.mobidevelop.robovm</groupId>
+                <artifactId>robovm-maven-resolver</artifactId>
+                <version>${project.version}</version>
+                <classifier>nodep</classifier>
+            </dependency>
+            <dependency>
+                <groupId>com.mobidevelop.robovm</groupId>
+                <artifactId>robovm-soot</artifactId>
+                <version>2.5.0-7</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -381,6 +447,41 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-dependency-plugin</artifactId>
                     <version>3.1.1</version>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-antrun-plugin</artifactId>
+                    <version>1.8</version>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-archetype-plugin</artifactId>
+                    <version>3.1.1</version>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-assembly-plugin</artifactId>
+                    <version>3.1.1</version>
+                    <configuration>
+                        <!-- FIXME: this one is to fix "single failed: group id 'SOME BIG ID' is too big" when mac is in NT domain -->
+                        <!-- FIXME: this adds PaxHeaders.X in this case, check if it will be adding it for normal user -->
+                        <!-- <tarLongFileMode>posix</tarLongFileMode> -->
+                    </configuration>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>build-helper-maven-plugin</artifactId>
+                    <version>3.0.0</version>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>exec-maven-plugin</artifactId>
+                    <version>1.6.0</version>
                 </plugin>
             </plugins>
         </pluginManagement>
