@@ -1,7 +1,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.mobidevelop.robovm</groupId>
+    <parent>
+        <groupId>com.mobidevelop.robovm</groupId>
+        <artifactId>robovm-parent</artifactId>
+        <version>2.3.8-SNAPSHOT</version>
+        <relativePath>../../</relativePath>
+    </parent>
+
     <artifactId>org.robovm.idea</artifactId>
     <name>RoboVM plugin for Intellij IDEA</name>
     <version>2.3.8-SNAPSHOT</version>
@@ -9,302 +15,40 @@
 
     <properties>
         <ij.plugin>true</ij.plugin>
-        <idea.home>/Applications/IntelliJ IDEA CE.app/Contents/</idea.home>
+        <ij.pluginDescriptor>src/main/resources/META-INF/plugin.xml</ij.pluginDescriptor>
     </properties>
 
     <scm>
         <connection>scm:git:git://github.com/MobiVM/robovm.git</connection>
         <developerConnection>scm:git:git@github.com:mobidevelop/robovm.git</developerConnection>
         <url>https://github.com/MobiVM/robovm.git</url>
-      <tag>HEAD</tag>
-  </scm>
-
-    <profiles>
-        <profile>
-            <id>development</id>
-            <dependencies>
-                <dependency>
-                    <groupId>com.mobidevelop.robovm</groupId>
-                    <artifactId>robovm-compiler</artifactId>
-                    <version>${project.version}</version>
-                </dependency>
-            </dependencies>
-        </profile>
-
-        <profile>
-            <id>deployment</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-antrun-plugin</artifactId>
-                        <version>1.7</version>
-                        <executions>
-                            <execution>
-                                <id>compile-forms</id>
-                                <phase>process-classes</phase>
-                                <goals>
-                                    <goal>run</goal>
-                                </goals>
-                                <configuration>
-                                    <target>
-                                        <path id="maven.plugin.complete.classpath">
-                                            <path refid="maven.plugin.classpath" />
-                                            <fileset dir="${idea.home}">
-                                                <include name="**/*.jar" />
-                                            </fileset>
-                                        </path>
-                                        <taskdef classname="com.intellij.ant.InstrumentIdeaExtensions" classpathref="maven.plugin.complete.classpath" name="instrumentIdeaExtensions" />
-                                        <path id="sourcepath">
-                                            <dirset dir="${project.basedir}">
-                                                <include name="src/main/java" />
-                                                <include name="src/main/resources" />
-                                            </dirset>
-                                        </path>
-                                        <instrumentIdeaExtensions destdir="${project.build.outputDirectory}" extdirs="${idea.home}/lib">
-                                            <classpath refid="maven.compile.classpath" />
-                                            <src refid="sourcepath" />
-                                        </instrumentIdeaExtensions>
-                                    </target>
-                                </configuration>
-                            </execution>
-                        </executions>
-                        <dependencies>
-                            <dependency>
-                                <groupId>com.sun</groupId>
-                                <artifactId>tools</artifactId>
-                                <version>1.7.0</version>
-                                <scope>system</scope>
-                                <systemPath>${env.JAVA_HOME}/lib/tools.jar</systemPath>
-                            </dependency>
-                        </dependencies>
-                    </plugin>
-                </plugins>
-            </build>
-            <dependencies>
-                <dependency>
-                    <groupId>com.mobidevelop.robovm</groupId>
-                    <artifactId>robovm-dist-compiler</artifactId>
-                    <version>${project.version}</version>
-                    <exclusions>
-                        <exclusion>
-                            <groupId>com.mobidevelop.robovm</groupId>
-                            <artifactId>robovm-rt</artifactId>
-                        </exclusion>
-                        <exclusion>
-                            <groupId>com.mobidevelop.robovm</groupId>
-                            <artifactId>robovm-objc</artifactId>
-                        </exclusion>
-                        <exclusion>
-                            <groupId>com.mobidevelop.robovm</groupId>
-                            <artifactId>robovm-cocoatouch</artifactId>
-                        </exclusion>
-                        <exclusion>
-                            <groupId>com.mobidevelop.robovm</groupId>
-                            <artifactId>robovm-cacerts-full</artifactId>
-                        </exclusion>
-                    </exclusions>
-                </dependency>
-                <dependency>
-                    <groupId>org.zeroturnaround</groupId>
-                    <artifactId>zt-zip</artifactId>
-                    <version>1.7</version>
-                    <exclusions>
-                        <exclusion>
-                            <groupId>org.slf4j</groupId>
-                            <artifactId>slf4j-api</artifactId>
-                        </exclusion>
-                    </exclusions>
-                </dependency>
-                <dependency>
-                    <groupId>org.jetbrains.plugin</groupId>
-                    <artifactId>gradle</artifactId>
-                    <version>1.0.0</version>
-                    <scope>system</scope>
-                    <systemPath>${idea.home}/plugins/gradle/lib/gradle.jar</systemPath>
-                </dependency>
-                <dependency>
-                    <groupId>org.jetbrains.plugin</groupId>
-                    <artifactId>gradle-common</artifactId>
-                    <version>1.0.0</version>
-                    <scope>system</scope>
-                    <systemPath>${idea.home}/plugins/gradle/lib/gradle-common.jar</systemPath>
-                </dependency>
-                <dependency>
-                    <groupId>org.jetbrains.plugin</groupId>
-                    <artifactId>gradle-java</artifactId>
-                    <version>1.0.0</version>
-                    <scope>system</scope>
-                    <systemPath>${idea.home}/plugins/gradle/lib/gradle-java.jar</systemPath>
-                </dependency>
-                <dependency>
-                    <groupId>org.jetbrains.plugin</groupId>
-                    <artifactId>maven</artifactId>
-                    <version>1.0.0</version>
-                    <scope>system</scope>
-                    <systemPath>${idea.home}/plugins/maven/lib/maven.jar</systemPath>
-                </dependency>
-                <dependency>
-                    <groupId>org.jetbrains.plugin</groupId>
-                    <artifactId>ant</artifactId>
-                    <version>1.0.0</version>
-                    <scope>system</scope>
-                    <systemPath>${idea.home}/lib/ant/lib/ant.jar</systemPath>
-                </dependency>
-                <dependency>
-                    <groupId>org.jetbrains.plugin</groupId>
-                    <artifactId>slf4j-idea-api</artifactId>
-                    <version>1.0.0</version>
-                    <scope>system</scope>
-                    <systemPath>${idea.home}/lib/slf4j-api-1.7.25.jar</systemPath>
-                </dependency>
-                <dependency>
-                    <groupId>org.jetbrains.plugin</groupId>
-                    <artifactId>slf4j-idea-log4j12</artifactId>
-                    <version>1.0.0</version>
-                    <scope>system</scope>
-                    <systemPath>${idea.home}/lib/slf4j-log4j12-1.7.25.jar</systemPath>
-                </dependency>
-            </dependencies>
-        </profile>
-    </profiles>
+        <tag>HEAD</tag>
+    </scm>
 
     <dependencies>
         <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-compress</artifactId>
-            <version>1.18</version>
-        </dependency>
-        <dependency>
             <groupId>com.mobidevelop.robovm</groupId>
-            <artifactId>robovm-dist</artifactId>
-            <version>${project.version}</version>
-            <classifier>nocompiler</classifier>
-            <type>tar.gz</type>
-            <scope>provided</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.mobidevelop.robovm</groupId>
-                    <artifactId>robovm-dist-compiler</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>com.mobidevelop.robovm</groupId>
-                    <artifactId>robovm-rt</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>com.mobidevelop.robovm</groupId>
-                    <artifactId>robovm-objc</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>com.mobidevelop.robovm</groupId>
-                    <artifactId>robovm-cocoatouch</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>com.mobidevelop.robovm</groupId>
-                    <artifactId>robovm-cacerts-full</artifactId>
-                </exclusion>
-            </exclusions>
+            <artifactId>robovm-compiler</artifactId>
         </dependency>
         <dependency>
             <groupId>com.mobidevelop.robovm</groupId>
             <artifactId>robovm-templater</artifactId>
-            <version>${project.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.mobidevelop.robovm</groupId>
-                    <artifactId>robovm-dist-compiler</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <dependency>
             <groupId>com.mobidevelop.robovm</groupId>
             <artifactId>robovm-ibxcode</artifactId>
-            <version>${project.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.mobidevelop.robovm</groupId>
-                    <artifactId>robovm-compiler</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <dependency>
             <groupId>com.mobidevelop.robovm</groupId>
             <artifactId>robovm-debugger</artifactId>
-            <version>${project.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.mobidevelop.robovm</groupId>
-                    <artifactId>robovm-compiler</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <!-- Test -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.11</version>
-            <scope>test</scope>
         </dependency>
     </dependencies>
 
     <build>
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <filtering>true</filtering>
-                <includes>
-                    <include>**/plugin.xml</include>
-                </includes>
-            </resource>
-            <resource>
-                <directory>src/main/resources</directory>
-                <filtering>false</filtering>
-                <excludes>
-                    <exclude>**/plugin.xml</exclude>
-                </excludes>
-            </resource>
-        </resources>
-
         <plugins>
-            <plugin>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <configuration>
-                    <descriptors>
-                        <descriptor>src/main/assembly/plugin-assembly.xml</descriptor>
-                    </descriptors>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>make-assembly</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.5.1</version>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                    <debug>true</debug>
-                    <optimize>true</optimize>
-                    <encoding>UTF-8</encoding>
-                    <compilerArguments>
-                        <extdirs>${idea.home}/lib</extdirs>
-                    </compilerArguments>
-                </configuration>
-            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
-                <version>2.8</version>
                 <configuration>
                     <stripVersion>true</stripVersion>
                     <stripClassifier>true</stripClassifier>
@@ -323,7 +67,7 @@
                 </configuration>
                 <executions>
                     <execution>
-                        <id>copy</id>
+                        <id>copy-robovm-dist</id>
                         <phase>initialize</phase>
                         <goals>
                             <goal>copy</goal>
@@ -334,57 +78,10 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-deploy-plugin</artifactId>
-                <version>2.8.2</version>
                 <configuration>
                     <skip>true</skip>
                 </configuration>
             </plugin>
         </plugins>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.eclipse.m2e</groupId>
-                    <artifactId>lifecycle-mapping</artifactId>
-                    <version>1.0.0</version>
-                    <configuration>
-                        <lifecycleMappingMetadata>
-                            <pluginExecutions>
-                                <pluginExecution>
-                                    <pluginExecutionFilter>
-                                        <groupId>org.apache.maven.plugins</groupId>
-                                        <artifactId>maven-dependency-plugin</artifactId>
-                                        <versionRange>[2.0,)</versionRange>
-                                        <goals>
-                                            <goal>copy</goal>
-                                        </goals>
-                                    </pluginExecutionFilter>
-                                    <action>
-                                        <ignore />
-                                    </action>
-                                </pluginExecution>
-                            </pluginExecutions>
-                        </lifecycleMappingMetadata>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </pluginManagement>
     </build>
-    <repositories>
-        <repository>
-            <id>sonatype-snapshots</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
-    <pluginRepositories>
-        <pluginRepository>
-            <id>sonatype-plugin-snapshots</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </pluginRepository>
-    </pluginRepositories>
 </project>
