@@ -21,41 +21,40 @@ import java.io.File;
 import javax.swing.*;
 
 import org.jdom.Element;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import com.intellij.pom.java.LanguageLevel;
 import org.robovm.compiler.Version;
 import org.robovm.idea.RoboVmIcons;
 import org.robovm.idea.RoboVmPlugin;
 
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.projectRoots.*;
-import com.intellij.openapi.projectRoots.impl.JavaDependentSdkType;
 import com.intellij.openapi.roots.OrderRootType;
 import com.intellij.openapi.vfs.JarFileSystem;
 import com.intellij.openapi.vfs.VirtualFile;
 
-public class RoboVmSdkType extends JavaDependentSdkType implements JavaSdkType {
-    public static final String SDK_NAME = "RoboVM SDK";
+public class RoboVmSdkType extends SdkType implements JavaSdkType {
+    private static final String SDK_NAME = "RoboVM SDK";
+    public static final LanguageLevel REQUIRED_JAVA_LANGUAGE_LEVEL = LanguageLevel.JDK_1_8;
 
     public RoboVmSdkType() {
         super(SDK_NAME);
     }
 
     @Override
-    public String getBinPath(Sdk sdk) {
-        Sdk jdk = findBestJdk();
-        return ((JavaSdk)jdk.getSdkType()).getBinPath(jdk);
+    public String getBinPath(@NotNull Sdk sdk) {
+        return null;
     }
 
     @Override
-    public String getToolsPath(Sdk sdk) {
-        Sdk jdk = findBestJdk();
-        return ((JavaSdk)jdk.getSdkType()).getToolsPath(jdk);
+    public String getToolsPath(@NotNull Sdk sdk) {
+        return null;
     }
 
     @Override
-    public String getVMExecutablePath(Sdk sdk) {
-        Sdk jdk = findBestJdk();
-        return ((JavaSdk)jdk.getSdkType()).getVMExecutablePath(jdk);
+    public String getVMExecutablePath(@NotNull Sdk sdk) {
+        return null;
     }
 
     @Nullable
@@ -69,6 +68,7 @@ public class RoboVmSdkType extends JavaDependentSdkType implements JavaSdkType {
         return RoboVmPlugin.getSdkHome().equals(new File(path));
     }
 
+    @NotNull
     @Override
     public String suggestSdkName(String currentSdkName, String sdkHome) {
         return SDK_NAME + " " + Version.getVersion();
@@ -76,10 +76,11 @@ public class RoboVmSdkType extends JavaDependentSdkType implements JavaSdkType {
 
     @Nullable
     @Override
-    public AdditionalDataConfigurable createAdditionalDataConfigurable(SdkModel sdkModel, SdkModificator sdkModificator) {
+    public AdditionalDataConfigurable createAdditionalDataConfigurable(@NotNull SdkModel sdkModel, @NotNull SdkModificator sdkModificator) {
         return null;
     }
 
+    @NotNull
     @Override
     public String getPresentableName() {
         return SDK_NAME;
@@ -90,23 +91,23 @@ public class RoboVmSdkType extends JavaDependentSdkType implements JavaSdkType {
         return RoboVmIcons.ROBOVM_SMALL;
     }
 
+    @NotNull
     @Override
     public Icon getIconForAddAction() {
         return RoboVmIcons.ROBOVM_SMALL;
     }
 
     @Override
-    public void saveAdditionalData(SdkAdditionalData additionalData, Element additional) {
+    public void saveAdditionalData(@NotNull SdkAdditionalData additionalData, @NotNull Element additional) {
     }
 
     @Override
-    public boolean setupSdkPaths(final Sdk sdk, final SdkModel sdkModel) {
-        Sdk jdk = findBestJdk();
-        setupSdkRoots(sdk, jdk);
+    public boolean setupSdkPaths(@NotNull final Sdk sdk, @NotNull final SdkModel sdkModel) {
+        setupSdkRoots(sdk);
         return true;
     }
 
-    public void setupSdkRoots(Sdk sdk, Sdk jdk) {
+    private void setupSdkRoots(Sdk sdk) {
         SdkModificator sdkModificator = sdk.getSdkModificator();
         sdkModificator.removeAllRoots();
 
@@ -115,10 +116,6 @@ public class RoboVmSdkType extends JavaDependentSdkType implements JavaSdkType {
             VirtualFile virtualFile = JarFileSystem.getInstance().findLocalVirtualFileByPath(file.getAbsolutePath());
             sdkModificator.addRoot(virtualFile, file.getName().endsWith("-sources.jar")?  OrderRootType.SOURCES: OrderRootType.CLASSES);
         }
-
-        // set the JDK version as the version string, otherwise
-        // IDEA gets angry
-        sdkModificator.setVersionString(jdk.getVersionString());
 
         // set the home path, we check this in createSdkIfNotExists
         sdkModificator.setHomePath(RoboVmPlugin.getSdkHome().getAbsolutePath());
@@ -138,7 +135,7 @@ public class RoboVmSdkType extends JavaDependentSdkType implements JavaSdkType {
             public void run() {
                 RoboVmSdkType sdkType = new RoboVmSdkType();
                 Sdk sdk = ProjectJdkTable.getInstance().createSdk(sdkType.suggestSdkName(null, null), sdkType);
-                sdkType.setupSdkRoots(sdk, findBestJdk());
+                sdkType.setupSdkRoots(sdk);
                 ProjectJdkTable.getInstance().addJdk(sdk);
                 RoboVmPlugin.logInfo(null, "Added new SDK " + sdk.getName());
             }
