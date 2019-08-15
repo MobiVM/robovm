@@ -47,13 +47,19 @@ import org.robovm.compiler.target.ios.SigningIdentity;
 import org.robovm.idea.RoboVmPlugin;
 import org.robovm.idea.actions.CreateFrameworkAction;
 import org.robovm.idea.actions.CreateIpaAction;
-import org.robovm.idea.running.RoboVmRunConfiguration;
 import org.robovm.idea.running.RoboVmIOSRunConfigurationSettingsEditor;
+import org.robovm.idea.running.RoboVmRunConfiguration;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.ServerSocket;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Registered by {@link org.robovm.idea.RoboVmPlugin} on startup. Responsible
@@ -91,20 +97,21 @@ public class RoboVmCompileTask implements CompileTask {
     }
 
     private boolean compileForIpa(CompileContext context, final CreateIpaAction.IpaConfig ipaConfig) {
+        ProgressIndicator progress = context.getProgressIndicator();
+        Project project = context.getProject();
         try {
-            ProgressIndicator progress = context.getProgressIndicator();
-            context.getProgressIndicator().pushState();
-            RoboVmPlugin.focusToolWindow(context.getProject());
+            progress.pushState();
+            RoboVmPlugin.focusToolWindow(project);
             progress.setText("Creating IPA");
 
-            RoboVmPlugin.logInfo(context.getProject(), "Creating package in " + ipaConfig.getDestinationDir().getAbsolutePath() + " ...");
+            RoboVmPlugin.logInfo(project, "Creating package in " + ipaConfig.getDestinationDir().getAbsolutePath() + " ...");
 
             Config.Builder builder = new Config.Builder();
-            builder.logger(RoboVmPlugin.getLogger(context.getProject()));
+            builder.logger(RoboVmPlugin.getLogger(project));
             File moduleBaseDir = RoboVmPlugin.getModuleBaseDir(ipaConfig.getModule());
 
             // load the robovm.xml file
-            loadConfig(context.getProject(), builder, moduleBaseDir, false);
+            loadConfig(project, builder, moduleBaseDir, false);
             builder.os(OS.ios);
             builder.archs(ipaConfig.getArchs());
 
@@ -113,7 +120,7 @@ public class RoboVmCompileTask implements CompileTask {
             if (ipaConfig.getProvisioningProfile() != null) {
                 builder.iosProvisioningProfile(ProvisioningProfile.find(ProvisioningProfile.list(), ipaConfig.getProvisioningProfile()));
             }
-            configureClassAndSourcepaths(context, builder, ipaConfig.getModule());
+            configureClassAndSourcepaths(project, context, builder, ipaConfig.getModule());
             builder.home(RoboVmPlugin.getRoboVmHome());
             Config config = builder.build();
 
@@ -129,39 +136,40 @@ public class RoboVmCompileTask implements CompileTask {
             thread.compile();
 
             if(progress.isCanceled()) {
-                RoboVmPlugin.logInfo(context.getProject(), "Build canceled");
+                RoboVmPlugin.logInfo(project, "Build canceled");
                 return false;
             }
 
             progress.setFraction(1);
-            RoboVmPlugin.logInfo(context.getProject(), "Package successfully created in " + ipaConfig.getDestinationDir().getAbsolutePath());
+            RoboVmPlugin.logInfo(project, "Package successfully created in " + ipaConfig.getDestinationDir().getAbsolutePath());
         } catch(Throwable t) {
-            RoboVmPlugin.logErrorThrowable(context.getProject(), "Couldn't create IPA", t, false);
+            RoboVmPlugin.logErrorThrowable(project, "Couldn't create IPA", t, false);
             return false;
         } finally {
-            context.getProgressIndicator().popState();
+            progress.popState();
         }
         return true;
     }
 
     private boolean compileForFramework(CompileContext context, final CreateFrameworkAction.FrameworkConfig frameworkConfig) {
+        ProgressIndicator progress = context.getProgressIndicator();
+        Project project = context.getProject();
         try {
-            ProgressIndicator progress = context.getProgressIndicator();
-            context.getProgressIndicator().pushState();
-            RoboVmPlugin.focusToolWindow(context.getProject());
+            progress.pushState();
+            RoboVmPlugin.focusToolWindow(project);
             progress.setText("Creating Framework");
 
-            RoboVmPlugin.logInfo(context.getProject(), "Creating package in " + frameworkConfig.getDestinationDir().getAbsolutePath() + " ...");
+            RoboVmPlugin.logInfo(project, "Creating package in " + frameworkConfig.getDestinationDir().getAbsolutePath() + " ...");
 
             Config.Builder builder = new Config.Builder();
-            builder.logger(RoboVmPlugin.getLogger(context.getProject()));
+            builder.logger(RoboVmPlugin.getLogger(project));
             File moduleBaseDir = RoboVmPlugin.getModuleBaseDir(frameworkConfig.getModule());
 
             // load the robovm.xml file
-            loadConfig(context.getProject(), builder, moduleBaseDir, false);
+            loadConfig(project, builder, moduleBaseDir, false);
             builder.os(OS.ios);
             builder.installDir(frameworkConfig.getDestinationDir());
-            configureClassAndSourcepaths(context, builder, frameworkConfig.getModule());
+            configureClassAndSourcepaths(project, context, builder, frameworkConfig.getModule());
 
             // Set the Home to be used, create the Config and AppCompiler
             Config.Home home = RoboVmPlugin.getRoboVmHome();
@@ -186,30 +194,33 @@ public class RoboVmCompileTask implements CompileTask {
             thread.compile();
 
             if(progress.isCanceled()) {
-                RoboVmPlugin.logInfo(context.getProject(), "Build canceled");
+                RoboVmPlugin.logInfo(project, "Build canceled");
                 return false;
             }
 
             progress.setFraction(1);
-            RoboVmPlugin.logInfo(context.getProject(), "Framework successfully created in " + frameworkConfig.getDestinationDir().getAbsolutePath());
+            RoboVmPlugin.logInfo(project, "Framework successfully created in " + frameworkConfig.getDestinationDir().getAbsolutePath());
         } catch(Throwable t) {
-            RoboVmPlugin.logErrorThrowable(context.getProject(), "Couldn't create Framework", t, false);
+            RoboVmPlugin.logErrorThrowable(project, "Couldn't create Framework", t, false);
             return false;
         } finally {
-            context.getProgressIndicator().popState();
+            progress.popState();
         }
         return true;
     }
 
     private boolean compileForRunConfiguration(CompileContext context, final RoboVmRunConfiguration runConfig) {
+        return compileForRunConfiguration(context.getProject(), context, context.getProgressIndicator(), runConfig);
+    }
+
+    public static boolean compileForRunConfiguration(Project project, CompileContext context, ProgressIndicator progress, final RoboVmRunConfiguration runConfig) {
         try {
-            ProgressIndicator progress = context.getProgressIndicator();
-            context.getProgressIndicator().pushState();
-            RoboVmPlugin.focusToolWindow(context.getProject());
+            progress.pushState();
+            RoboVmPlugin.focusToolWindow(project);
             progress.setText("Compiling RoboVM app");
 
             Config.Builder builder = new Config.Builder();
-            builder.logger(RoboVmPlugin.getLogger(context.getProject()));
+            builder.logger(RoboVmPlugin.getLogger(project));
 
             // get the module we are about to compile
             ModuleManager moduleManager = ModuleManager.getInstance(runConfig.getProject());
@@ -220,13 +231,13 @@ public class RoboVmCompileTask implements CompileTask {
                 }
             });
             if(module == null) {
-                RoboVmPlugin.logBalloon(context.getProject(), MessageType.ERROR, "Couldn't find Module '" + runConfig.getModuleName() + "'");
+                RoboVmPlugin.logBalloon(project, MessageType.ERROR, "Couldn't find Module '" + runConfig.getModuleName() + "'");
                 return false;
             }
             File moduleBaseDir = RoboVmPlugin.getModuleBaseDir(module);
 
             // load the robovm.xml file
-            loadConfig(context.getProject(), builder, moduleBaseDir, false);
+            loadConfig(project, builder, moduleBaseDir, false);
 
             // set OS and arch
             OS os = null;
@@ -254,12 +265,12 @@ public class RoboVmCompileTask implements CompileTask {
             File buildDir = RoboVmPlugin.getModuleBuildDir(module, runConfig.getName(), os, arch);
             builder.tmpDir(buildDir);
             builder.skipInstall(true);
-            RoboVmPlugin.logInfo(context.getProject(), "Building executable in %s", buildDir.getAbsolutePath());
-            RoboVmPlugin.logInfo(context.getProject(), "Installation of app in %s", buildDir.getAbsolutePath());
+            RoboVmPlugin.logInfo(project, "Building executable in %s", buildDir.getAbsolutePath());
+            RoboVmPlugin.logInfo(project, "Installation of app in %s", buildDir.getAbsolutePath());
 
             // setup classpath entries, debug build parameters and target
             // parameters, e.g. signing identity etc.
-            configureClassAndSourcepaths(context, builder, module);
+            configureClassAndSourcepaths(project, context, builder, module);
             configureDebugging(builder, runConfig, module);
             configureTarget(builder, runConfig);
 
@@ -281,14 +292,14 @@ public class RoboVmCompileTask implements CompileTask {
 
             // clean build dir if smartSkipRebuild is disabled
             if(!config.isSmartSkipRebuild()){
-                RoboVmPlugin.logInfo(context.getProject(), "Cleaning output dir " + buildDir.getAbsolutePath());
+                RoboVmPlugin.logInfo(project, "Cleaning output dir " + buildDir.getAbsolutePath());
                 FileUtils.deleteDirectory(buildDir);
                 buildDir.mkdirs();
             }
 
             AppCompiler compiler = new AppCompiler(config);
             if(progress.isCanceled()) {
-                RoboVmPlugin.logInfo(context.getProject(), "Build canceled");
+                RoboVmPlugin.logInfo(project, "Build canceled");
                 return false;
             }
             progress.setFraction(0.5);
@@ -298,21 +309,23 @@ public class RoboVmCompileTask implements CompileTask {
             RoboVmCompilerThread thread = new RoboVmCompilerThread(compiler, progress) {
                 protected void doCompile() throws Exception {
                     compiler.build();
-                    // perform prepare for launch here, as doing this in lauch task will block UI due bad design
-                    if (config.getTarget().canLaunch()) {
-                        long start = System.currentTimeMillis();
-                        config.getTarget().prepareLaunch();
-                        long duration = System.currentTimeMillis() - start;
-                        config.getLogger().info("Prepared for launch in %.2f seconds", duration / 1000.0);
+                    if (!progress.isCanceled()) {
+                        // perform prepare for launch here, as doing this in lauch task will block UI due bad design
+                        if (config.getTarget().canLaunch()) {
+                            long start = System.currentTimeMillis();
+                            config.getTarget().prepareLaunch();
+                            long duration = System.currentTimeMillis() - start;
+                            config.getLogger().info("Prepared for launch in %.2f seconds", duration / 1000.0);
+                        }
                     }
                 }
             };
             thread.compile();
-            if(progress.isCanceled()) {
-                RoboVmPlugin.logInfo(context.getProject(), "Build canceled");
+            if(progress.isCanceled() || Thread.currentThread().isInterrupted()) {
+                RoboVmPlugin.logInfo(project, "Build canceled");
                 return false;
             }
-            RoboVmPlugin.logInfo(context.getProject(), "Build done");
+            RoboVmPlugin.logInfo(project, "Build done");
 
             // set the config and compiler on the run configuration so
             // it knows where to find things.
@@ -320,15 +333,15 @@ public class RoboVmCompileTask implements CompileTask {
             runConfig.setCompiler(compiler);
             runConfig.setProgramArguments(args);
         } catch(Throwable t) {
-            RoboVmPlugin.logErrorThrowable(context.getProject(), "Couldn't compile app", t, false);
+            RoboVmPlugin.logErrorThrowable(project, "Couldn't compile app", t, false);
             return false;
         } finally {
-            context.getProgressIndicator().popState();
+            progress.popState();
         }
         return true;
     }
 
-    private void addClassPath(String path, Set<File> classPaths) {
+    private static void addClassPath(String path, Set<File> classPaths) {
         File f = new File(path);
         if(f.exists())
             classPaths.add(f);
@@ -343,7 +356,7 @@ public class RoboVmCompileTask implements CompileTask {
         }
     }
 
-    private void configureClassAndSourcepaths(CompileContext context, Config.Builder builder, Module module) {
+    private static void configureClassAndSourcepaths(Project project, CompileContext context, Config.Builder builder, Module module) {
         // gather the boot and user classpaths. RoboVM RT libs may be
         // specified in a Maven/Gradle build file, in which case they'll
         // turn up as order entries. We filter them out here.
@@ -362,23 +375,25 @@ public class RoboVmCompileTask implements CompileTask {
         // of a module an order entry after the first compile
         // so we add the path twice. Fixed by using a set.
         // FIXME junit needs to include test output directories
-        for(Module mod: context.getCompileScope().getAffectedModules()) {
-            String path = CompilerPaths.getModuleOutputPath(mod, false);
-            if(path != null && !path.isEmpty()) {
-                addClassPath(path, classPaths);
-            } else {
-                RoboVmPlugin.logWarn(context.getProject(), "Output path of module %s not defined", mod.getName());
+        if (context != null) {
+            for (Module mod : context.getCompileScope().getAffectedModules()) {
+                String path = CompilerPaths.getModuleOutputPath(mod, false);
+                if (path != null && !path.isEmpty()) {
+                    addClassPath(path, classPaths);
+                } else {
+                    RoboVmPlugin.logWarn(project, "Output path of module %s not defined", mod.getName());
+                }
             }
         }
 
         // set the user classpath entries
         for(File path: classPaths) {
-            RoboVmPlugin.logInfo(context.getProject(), "classpath entry: %s", path.getAbsolutePath());
+            RoboVmPlugin.logInfo(project, "classpath entry: %s", path.getAbsolutePath());
             builder.addClasspathEntry(path);
         }
 
         // Use the RT from the SDK
-        RoboVmPlugin.logInfo(context.getProject(), "Using SDK boot classpath");
+        RoboVmPlugin.logInfo(project, "Using SDK boot classpath");
         for(File path: RoboVmPlugin.getSdkLibrariesWithoutSources()) {
             if(RoboVmPlugin.isBootClasspathLibrary(path)) {
                 builder.addBootClasspathEntry(path);
@@ -388,7 +403,7 @@ public class RoboVmCompileTask implements CompileTask {
         }
     }
 
-    private void configureDebugging(Config.Builder builder, RoboVmRunConfiguration runConfig, Module module) {
+    private static void configureDebugging(Config.Builder builder, RoboVmRunConfiguration runConfig, Module module) {
         // setup debug configuration if necessary
         if(runConfig.isDebug()) {
             Set<String> sourcesPaths = new HashSet<String>();
@@ -422,7 +437,7 @@ public class RoboVmCompileTask implements CompileTask {
         }
     }
 
-    private void configureTarget(Config.Builder builder, RoboVmRunConfiguration runConfig) {
+    private static void configureTarget(Config.Builder builder, RoboVmRunConfiguration runConfig) {
         if(runConfig.getTargetType() == RoboVmRunConfiguration.TargetType.Device) {
             // configure device build
             builder.targetType(IOSTarget.TYPE);
@@ -463,7 +478,7 @@ public class RoboVmCompileTask implements CompileTask {
         return configBuilder;
     }
 
-    public int findFreePort()
+    public static int findFreePort()
     {
         ServerSocket socket = null;
         try {
