@@ -43,6 +43,7 @@ import com.intellij.openapi.wm.ToolWindow;
 import com.intellij.openapi.wm.ToolWindowAnchor;
 import com.intellij.openapi.wm.ToolWindowManager;
 import com.intellij.ui.content.Content;
+import com.intellij.util.PlatformUtils;
 import com.intellij.util.ui.UIUtil;
 import org.apache.commons.compress.archivers.ArchiveEntry;
 import org.apache.commons.compress.archivers.tar.TarArchiveInputStream;
@@ -102,7 +103,7 @@ public class RoboVmPlugin {
     static volatile Map<Project, ConsoleView> consoleViews = new ConcurrentHashMap<>();
     static volatile Map<Project, ToolWindow> toolWindows = new ConcurrentHashMap<>();
     static volatile Map<Project, VirtualFileListener> fileListeners = new ConcurrentHashMap<>();
-    static final List<UnprintedMessage> unprintedMessages = new ArrayList<UnprintedMessage>();
+    static final List<UnprintedMessage> unprintedMessages = new ArrayList<>();
 
     /**
      * Formatter for the time stamp printed by the logger
@@ -111,97 +112,6 @@ public class RoboVmPlugin {
 
     public static OS getOs() {
         return os;
-    }
-
-    public static String getBestAndroidSdkVersion() {
-        int androidSdkVersion = 0;
-        File androidSdkDir = getBestAndroidSdkDir();
-        if(androidSdkDir == null) {
-            return "23";
-        }
-        File platformsDir = new File(androidSdkDir, "platforms");
-        for(File file: platformsDir.listFiles()) {
-            String[] tokens = file.getName().split("-");
-            if(tokens.length == 2) {
-                try {
-                    int version = Integer.parseInt(tokens[1]);
-                    if(version > androidSdkVersion) {
-                        androidSdkVersion = version;
-                    }
-                } catch(NumberFormatException e) {
-                    // nothing we can do
-                }
-            }
-        }
-        if(androidSdkVersion == 0) {
-            return "23";
-        } else {
-            return Integer.toString(androidSdkVersion);
-        }
-    }
-
-    public static String getBestAndroidBuildToolsVersion() {
-        int androidBuildToolsVersion = 0;
-        String androidBuildToolsVersionString = "";
-        File androidSdkDir = getBestAndroidSdkDir();
-        if(androidSdkDir == null) {
-            return "23.0.1";
-        }
-        File platformsDir = new File(androidSdkDir, "build-tools");
-        for(File file: platformsDir.listFiles()) {
-            String[] tokens = file.getName().split("\\.");
-            if(tokens.length == 3) {
-                try {
-                    int version = Integer.parseInt(tokens[0]) * 1000 * 1000 +
-                                  Integer.parseInt(tokens[1]) * 1000 +
-                                  Integer.parseInt(tokens[2]);
-                    if(version > androidBuildToolsVersion) {
-                        androidBuildToolsVersion = version;
-                        androidBuildToolsVersionString = file.getName();
-                    }
-                } catch(NumberFormatException e) {
-                    // nothing we can do
-                }
-            }
-        }
-        if(androidBuildToolsVersion == 0) {
-            return "23.0.1";
-        } else {
-            return androidBuildToolsVersionString;
-        }
-    }
-
-    public static File getBestAndroidSdkDir() {
-        Sdk bestSdk = null;
-        for (Sdk sdk : ProjectJdkTable.getInstance().getAllJdks()) {
-            if (sdk.getSdkType().getName().equals("Android SDK")) {
-                if(sdk.getHomePath().contains("/Library/RoboVM/")) {
-                    return new File(sdk.getHomePath());
-                } else {
-                    bestSdk = sdk;
-                }
-            }
-        }
-        return new File(bestSdk.getHomePath());
-    }
-
-
-    public static boolean isAndroidSdkInstalled(String sdkDir) {
-        File sdk = new File(sdkDir, os == OS.Windows? "tools/android.bat": "tools/android");
-        return sdk.exists();
-    }
-
-    public static boolean isAndroidSdkSetup() {
-        for (Sdk sdk : ProjectJdkTable.getInstance().getAllJdks()) {
-            if (sdk.getSdkType().getName().equals("Android SDK")) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public static boolean areAndroidComponentsInstalled(String sdkDir) {
-        return new File(sdkDir, "platforms").list().length > 0;
     }
 
     static class UnprintedMessage {
@@ -487,7 +397,7 @@ public class RoboVmPlugin {
      * @return all sdk runtime libraries and their source jars
      */
     public static List<File> getSdkLibraries() {
-        List<File> libs = new ArrayList<File>();
+        List<File> libs = new ArrayList<>();
 
         Config.Home home = getRoboVmHome();
         if (home.isDev()) {
@@ -520,13 +430,7 @@ public class RoboVmPlugin {
      */
     public static List<File> getSdkLibrariesWithoutSources() {
         List<File> libs = getSdkLibraries();
-        Iterator<File> iter = libs.iterator();
-        while(iter.hasNext()) {
-            File file = iter.next();
-            if(file.getName().endsWith("-sources.jar") || file.getName().endsWith("-javadoc.jar")) {
-                iter.remove();
-            }
-        }
+        libs.removeIf(file -> file.getName().endsWith("-sources.jar") || file.getName().endsWith("-javadoc.jar"));
         return libs;
     }
 
@@ -535,13 +439,7 @@ public class RoboVmPlugin {
      */
     public static List<File> getSdkLibrarySources() {
         List<File> libs = getSdkLibraries();
-        Iterator<File> iter = libs.iterator();
-        while(iter.hasNext()) {
-            File file = iter.next();
-            if(!file.getName().endsWith("-sources.jar")) {
-                iter.remove();
-            }
-        }
+        libs.removeIf(file -> !file.getName().endsWith("-sources.jar"));
         return libs;
     }
 
@@ -558,7 +456,7 @@ public class RoboVmPlugin {
     }
 
     public static List<Module> getRoboVmModules(Project project, String targetType) {
-        List<Module> validModules = new ArrayList<Module>();
+        List<Module> validModules = new ArrayList<>();
         for (Module module : ModuleManager.getInstance(project).getModules()) {
             if (!isRoboVmModule(module))
                 continue;
@@ -723,5 +621,12 @@ public class RoboVmPlugin {
 
     public static boolean isBootClasspathLibrary(File path) {
         return path.getName().startsWith("robovm-rt");
+    }
+
+    /**
+     * finds out if plugin is running in android studio
+     */
+    public static boolean isAndroidStudio() {
+        return "AndroidStudio".equals(PlatformUtils.getPlatformPrefix());
     }
 }

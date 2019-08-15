@@ -42,7 +42,7 @@ import java.util.Collection;
 import java.util.List;
 
 public class RoboVmRunConfiguration extends ModuleBasedConfiguration<RoboVmRunConfigurationSettings, Element> implements RunConfigurationWithSuppressedDefaultDebugAction, RunConfigurationWithSuppressedDefaultRunAction, RunProfileWithCompileBeforeLaunchOption {
-    public static enum TargetType {
+    public enum TargetType {
         Simulator,
         Device,
         Console
