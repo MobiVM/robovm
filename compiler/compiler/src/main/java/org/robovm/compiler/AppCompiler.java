@@ -494,8 +494,10 @@ public class AppCompiler {
             throw new CompilerException(listenerWrapper.t);
         }
 
-        long duration = System.currentTimeMillis() - start;
-        config.getLogger().info("Compiled %d classes in %.2f seconds", compiledCount, duration / 1000.0);
+        if (!Thread.currentThread().isInterrupted()) {
+            long duration = System.currentTimeMillis() - start;
+            config.getLogger().info("Compiled %d classes in %.2f seconds", compiledCount, duration / 1000.0);
+        }
 
         return linkClasses;
     }
