@@ -17,25 +17,12 @@
  */
 package org.robovm.compiler.target.ios;
 
-import java.io.File;
-import java.io.FileFilter;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.nio.file.Files;
-import java.nio.file.StandardCopyOption;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.NoSuchElementException;
-
+import com.dd.plist.NSArray;
+import com.dd.plist.NSDictionary;
+import com.dd.plist.NSNumber;
+import com.dd.plist.NSObject;
+import com.dd.plist.NSString;
+import com.dd.plist.PropertyListParser;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
@@ -64,12 +51,23 @@ import org.robovm.libimobiledevice.InstallationProxyClient.StatusCallback;
 import org.robovm.libimobiledevice.util.AppLauncher;
 import org.robovm.libimobiledevice.util.AppLauncherCallback;
 
-import com.dd.plist.NSArray;
-import com.dd.plist.NSDictionary;
-import com.dd.plist.NSNumber;
-import com.dd.plist.NSObject;
-import com.dd.plist.NSString;
-import com.dd.plist.PropertyListParser;
+import java.io.File;
+import java.io.FileFilter;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.NoSuchElementException;
 
 /**
  * @author niklas
@@ -173,46 +171,7 @@ public class IOSTarget extends AbstractTarget {
     }
 
     private Launcher createIOSSimLauncher(LaunchParameters launchParameters) throws IOException {
-        File dir = getAppDir();
-
-        String iosSimPath = new File(config.getHome().getBinDir(), "simlauncher").getAbsolutePath();;
-
-        IOSSimulatorLaunchParameters simulatorLaunchParameters = (IOSSimulatorLaunchParameters) launchParameters;
-        
-        List<Object> args = new ArrayList<Object>();
-        args.add("-a=" + dir);
-        args.add("-u=" + simulatorLaunchParameters.getDeviceType().getUdid());
-        
-        if (launchParameters.getEnvironment() != null) {
-            for (Entry<String, String> entry : launchParameters.getEnvironment().entrySet()) {
-                args.add("-e="+ entry.getKey() + "=" + entry.getValue() + "");
-            }
-        }
-
-        if (!launchParameters.getArguments().isEmpty()) {
-        	for (String entry : launchParameters.getArguments()) {
-                args.add("-x=" + entry);
-            }        
-        }
-
-        File xcodePath = new File(ToolchainUtil.findXcodePath());
-        Map<String, String> env = Collections.singletonMap("DEVELOPER_DIR", xcodePath.getAbsolutePath());
-        
-        OutputStream out = System.out;
-        OutputStream err = System.err;
-        if (launchParameters.getStdoutFifo() != null) {
-            out = new OpenOnWriteFileOutputStream(launchParameters.getStdoutFifo());
-        }
-        if (launchParameters.getStderrFifo() != null) {
-            err = new OpenOnWriteFileOutputStream(launchParameters.getStderrFifo());
-        }
-        
-        return new Executor(config.getLogger(), iosSimPath)
-                .args(args)
-                .wd(launchParameters.getWorkingDirectory())
-                .out(out).err(err).closeOutputStreams(true)
-                .inheritEnv(false)
-                .env(env);
+        return new SimLauncherProcess(config.getLogger(), getAppDir(), getBundleId(), (IOSSimulatorLaunchParameters) launchParameters);
     }
 
     private Launcher createIOSDevLauncher(LaunchParameters launchParameters)
@@ -557,7 +516,7 @@ public class IOSTarget extends AbstractTarget {
     }
 
     private void codesign(SigningIdentity identity, File entitlementsPList, boolean preserveMetadata, boolean verbose, boolean allocate, File target) throws IOException {
-        List<Object> args = new ArrayList<Object>();
+        List<Object> args = new ArrayList<>();
         args.add("-f");
         args.add("-s");
         args.add(identity.getFingerprint());
@@ -583,7 +542,7 @@ public class IOSTarget extends AbstractTarget {
     private void ldid(File entitlementsPList, File appDir) throws IOException {
         File executableFile = new File(appDir, getExecutable());
         config.getLogger().info("Pseudo-signing %s", executableFile.getAbsolutePath());
-        List<Object> args = new ArrayList<Object>();
+        List<Object> args = new ArrayList<>();
         if (entitlementsPList != null) {
             args.add("-S" + entitlementsPList.getAbsolutePath());
         } else {
