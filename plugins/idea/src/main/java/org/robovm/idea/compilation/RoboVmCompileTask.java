@@ -18,10 +18,13 @@
 package org.robovm.idea.compilation;
 
 import com.intellij.compiler.options.CompileStepBeforeRun;
+import com.intellij.execution.configurations.ModuleRunProfile;
 import com.intellij.execution.configurations.RunConfiguration;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.compiler.CompileContext;
+import com.intellij.openapi.compiler.CompileScope;
 import com.intellij.openapi.compiler.CompileTask;
+import com.intellij.openapi.compiler.CompilerManager;
 import com.intellij.openapi.compiler.CompilerMessageCategory;
 import com.intellij.openapi.compiler.CompilerPaths;
 import com.intellij.openapi.module.Module;
@@ -224,12 +227,8 @@ public class RoboVmCompileTask implements CompileTask {
 
             // get the module we are about to compile
             ModuleManager moduleManager = ModuleManager.getInstance(runConfig.getProject());
-            Module module = ApplicationManager.getApplication().runReadAction(new Computable<Module>() {
-                @Override
-                public Module compute() {
-                    return ModuleManager.getInstance(runConfig.getProject()).findModuleByName(runConfig.getModuleName());
-                }
-            });
+            Module module = ApplicationManager.getApplication().runReadAction((Computable<Module>) () ->
+                ModuleManager.getInstance(runConfig.getProject()).findModuleByName(runConfig.getModuleName()));
             if(module == null) {
                 RoboVmPlugin.logBalloon(project, MessageType.ERROR, "Couldn't find Module '" + runConfig.getModuleName() + "'");
                 return false;
@@ -270,7 +269,7 @@ public class RoboVmCompileTask implements CompileTask {
 
             // setup classpath entries, debug build parameters and target
             // parameters, e.g. signing identity etc.
-            configureClassAndSourcepaths(project, context, builder, module);
+            configureClassAndSourcepaths(project, context, runConfig, builder, module);
             configureDebugging(builder, runConfig, module);
             configureTarget(builder, runConfig);
 
@@ -357,6 +356,10 @@ public class RoboVmCompileTask implements CompileTask {
     }
 
     private static void configureClassAndSourcepaths(Project project, CompileContext context, Config.Builder builder, Module module) {
+        configureClassAndSourcepaths(project, context, null, builder, module);
+    }
+
+    private static void configureClassAndSourcepaths(Project project, CompileContext context, RoboVmRunConfiguration runConfig, Config.Builder builder, Module module) {
         // gather the boot and user classpaths. RoboVM RT libs may be
         // specified in a Maven/Gradle build file, in which case they'll
         // turn up as order entries. We filter them out here.
@@ -370,13 +373,25 @@ public class RoboVmCompileTask implements CompileTask {
             }
         }
 
+        // if there is no compile context, build it from run configuration
+        Module[] affectedModules = null;
+        if (context != null) {
+            affectedModules = context.getCompileScope().getAffectedModules();
+        } else if (runConfig != null) {
+            // create scope to get affected modules
+            affectedModules = ((ModuleRunProfile) runConfig).getModules();
+            CompilerManager compilerManager = CompilerManager.getInstance(project);
+            CompileScope scope = compilerManager.createModulesCompileScope(affectedModules, true, true);
+            affectedModules = scope.getAffectedModules();
+        }
+
         // add the output dirs of all affected modules to the
         // classpath. IDEA will make the output directory
         // of a module an order entry after the first compile
         // so we add the path twice. Fixed by using a set.
         // FIXME junit needs to include test output directories
-        if (context != null) {
-            for (Module mod : context.getCompileScope().getAffectedModules()) {
+        if (affectedModules != null) {
+            for (Module mod : affectedModules) {
                 String path = CompilerPaths.getModuleOutputPath(mod, false);
                 if (path != null && !path.isEmpty()) {
                     addClassPath(path, classPaths);
