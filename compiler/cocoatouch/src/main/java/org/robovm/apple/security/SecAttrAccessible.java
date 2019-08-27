@@ -98,7 +98,9 @@ import org.robovm.apple.dispatch.*;
     public static final SecAttrAccessible AfterFirstUnlock = new SecAttrAccessible("AfterFirstUnlock");
     /**
      * @since Available in iOS 4.0 and later.
+     * @deprecated Deprecated in iOS 12.0.
      */
+    @Deprecated
     public static final SecAttrAccessible Always = new SecAttrAccessible("Always");
     /**
      * @since Available in iOS 8.0 and later.
@@ -114,7 +116,9 @@ import org.robovm.apple.dispatch.*;
     public static final SecAttrAccessible AfterFirstUnlockThisDeviceOnly = new SecAttrAccessible("AfterFirstUnlockThisDeviceOnly");
     /**
      * @since Available in iOS 4.0 and later.
+     * @deprecated Deprecated in iOS 12.0.
      */
+    @Deprecated
     public static final SecAttrAccessible AlwaysThisDeviceOnly = new SecAttrAccessible("AlwaysThisDeviceOnly");
     /*</constants>*/
     
@@ -153,7 +157,9 @@ import org.robovm.apple.dispatch.*;
         public static native CFType AfterFirstUnlock();
         /**
          * @since Available in iOS 4.0 and later.
+         * @deprecated Deprecated in iOS 12.0.
          */
+        @Deprecated
         @GlobalValue(symbol="kSecAttrAccessibleAlways", optional=true)
         public static native CFType Always();
         /**
@@ -173,7 +179,9 @@ import org.robovm.apple.dispatch.*;
         public static native CFType AfterFirstUnlockThisDeviceOnly();
         /**
          * @since Available in iOS 4.0 and later.
+         * @deprecated Deprecated in iOS 12.0.
          */
+        @Deprecated
         @GlobalValue(symbol="kSecAttrAccessibleAlwaysThisDeviceOnly", optional=true)
         public static native CFType AlwaysThisDeviceOnly();
         /*</values>*/

@@ -38,15 +38,65 @@ import org.robovm.apple.dispatch.*;
 /*<annotations>*//*</annotations>*/
 public enum /*<name>*/SSLSessionOption/*</name>*/ implements ValuedEnum {
     /*<values>*/
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
     BreakOnServerAuth(0L),
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
     BreakOnCertRequested(1L),
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
     BreakOnClientAuth(2L),
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
     FalseStart(3L),
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
     SendOneByteRecord(4L),
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
     AllowServerIdentityChange(5L),
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
     Fallback(6L),
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
     BreakOnClientHello(7L),
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
     AllowRenegotiation(8L),
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
     EnableSessionTickets(9L);
     /*</values>*/
 

@@ -38,17 +38,83 @@ import org.robovm.apple.dispatch.*;
 /*<annotations>*//*</annotations>*/
 public enum /*<name>*/SSLProtocol/*</name>*/ implements ValuedEnum {
     /*<values>*/
+    /**
+     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
     SSLProtocolUnknown(0L),
-    SSLProtocol3(2L),
+    /**
+     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
     TLSProtocol1(4L),
+    /**
+     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
     TLSProtocol11(7L),
+    /**
+     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
     TLSProtocol12(8L),
+    /**
+     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
     DTLSProtocol1(9L),
+    /**
+     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
     TLSProtocol13(10L),
+    /**
+     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
+    DTLSProtocol12(11L),
+    /**
+     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
     TLSProtocolMaxSupported(999L),
+    /**
+     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
     SSLProtocol2(1L),
+    /**
+     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
+    SSLProtocol3(2L),
+    /**
+     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
     SSLProtocol3Only(3L),
+    /**
+     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
     TLSProtocol1Only(5L),
+    /**
+     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
     SSLProtocolAll(6L);
     /*</values>*/
 

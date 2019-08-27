@@ -840,6 +840,27 @@ import org.robovm.apple.dispatch.*;
         return this;
     }
     /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 12.0. Not implemented on this platform
+     */
+    @Deprecated
+    public List<CFType> getItemList() {
+        if (has(Keys.UseItemList())) {
+            CFArray val = get(Keys.UseItemList(), CFArray.class);
+            return val.toList(CFType.class);
+        }
+        return null;
+    }
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 12.0. Not implemented on this platform
+     */
+    @Deprecated
+    public SecAttributes setItemList(List<CFType> itemList) {
+        set(Keys.UseItemList(), CFArray.create(itemList));
+        return this;
+    }
+    /**
      * @since Available in iOS 8.0 and later.
      */
     public String getOperationPrompt() {
@@ -1163,6 +1184,13 @@ import org.robovm.apple.dispatch.*;
         @GlobalValue(symbol="kSecAttrPersistentReference", optional=true)
         public static native CFType PersistentReference();
         /**
+         * @since Available in iOS 2.0 and later.
+         * @deprecated Deprecated in iOS 12.0. Not implemented on this platform
+         */
+        @Deprecated
+        @GlobalValue(symbol="kSecUseItemList", optional=true)
+        public static native CFType UseItemList();
+        /**
          * @since Available in iOS 8.0 and later.
          */
         @GlobalValue(symbol="kSecUseOperationPrompt", optional=true)
@@ -1184,6 +1212,11 @@ import org.robovm.apple.dispatch.*;
          */
         @GlobalValue(symbol="kSecUseAuthenticationContext", optional=true)
         public static native CFType UseAuthenticationContext();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="kSecUseDataProtectionKeychain", optional=true)
+        public static native CFType UseDataProtectionKeychain();
         /**
          * @since Available in iOS 9.0 and later.
          */

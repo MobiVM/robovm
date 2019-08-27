@@ -38,7 +38,17 @@ import org.robovm.apple.dispatch.*;
 /*<annotations>*//*</annotations>*/
 public enum /*<name>*/SSLProtocolSide/*</name>*/ implements ValuedEnum {
     /*<values>*/
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
     Server(0L),
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
     Client(1L);
     /*</values>*/
 
