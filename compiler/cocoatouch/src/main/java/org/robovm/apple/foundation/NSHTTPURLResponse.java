@@ -74,6 +74,11 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "initWithURL:statusCode:HTTPVersion:headerFields:")
     protected native @Pointer long init(NSURL url, @MachineSizedSInt long statusCode, String HTTPVersion, @org.robovm.rt.bro.annotation.Marshaler(NSDictionary.AsStringStringMapMarshaler.class) Map<String, String> headerFields);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "valueForHTTPHeaderField:")
+    public native String valueForHTTPHeaderField(String field);
     @Method(selector = "localizedStringForStatusCode:")
     public static native String getLocalizedStatusCode(@MachineSizedSInt long statusCode);
     /*</methods>*/

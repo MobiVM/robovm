@@ -56,7 +56,7 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "initWithIndex:")
     public NSIndexPath(@MachineSizedUInt long index) { super((SkipInit) null); initObject(init(index)); }
     @Method(selector = "initWithCoder:")
-    public NSIndexPath(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public NSIndexPath(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     
     public NSIndexPath(long[] indexes) {
@@ -140,11 +140,15 @@ import org.robovm.apple.dispatch.*;
     private native void getIndexes(MachineSizedUIntPtr indexes, @ByVal NSRange positionRange);
     @Method(selector = "compare:")
     public native NSComparisonResult compare(NSIndexPath otherObject);
+    /**
+     * @since Available in iOS 2.0 and later.
+     */
+    @Deprecated
     @Method(selector = "getIndexes:")
     private native void getIndexes(MachineSizedUIntPtr indexes);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

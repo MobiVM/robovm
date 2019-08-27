@@ -62,7 +62,7 @@ import org.robovm.apple.dispatch.*;
      */
     public NSPredicate(@Block Block2<NSObject, NSDictionary<NSString, ?>, Boolean> block) { super((Handle) null, create(block)); retain(getHandle()); }
     @Method(selector = "initWithCoder:")
-    public NSPredicate(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public NSPredicate(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     public NSPredicate(String predicateFormat, Object... arguments) {
         super(create(predicateFormat, arguments));
@@ -141,6 +141,6 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

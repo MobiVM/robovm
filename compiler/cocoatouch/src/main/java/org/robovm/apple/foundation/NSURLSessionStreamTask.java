@@ -73,6 +73,11 @@ import org.robovm.apple.dispatch.*;
     public native void closeRead();
     @Method(selector = "startSecureConnection")
     public native void startSecureConnection();
+    /**
+     * @since Available in iOS 7.0 and later.
+     * @deprecated Deprecated in iOS 13.0. TLS cannot be disabled once it is enabled
+     */
+    @Deprecated
     @Method(selector = "stopSecureConnection")
     public native void stopSecureConnection();
     /*</methods>*/

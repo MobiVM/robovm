@@ -165,7 +165,7 @@ import org.robovm.apple.dispatch.*;
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "tagsInRange:unit:scheme:options:tokenRanges:")
-    public native NSArray<?> tagsInRange(@ByVal NSRange range, NSLinguisticTaggerUnit unit, String scheme, NSLinguisticTaggerOptions options, NSArray.NSArrayPtr<?> tokenRanges);
+    public native NSArray<NSString> tagsInRange(@ByVal NSRange range, NSLinguisticTaggerUnit unit, String scheme, NSLinguisticTaggerOptions options, NSArray.NSArrayPtr<?> tokenRanges);
     /**
      * @since Available in iOS 5.0 and later.
      */
@@ -190,7 +190,7 @@ import org.robovm.apple.dispatch.*;
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "availableTagSchemesForUnit:language:")
-    public static native NSArray<?> availableTagSchemesForUnit(NSLinguisticTaggerUnit unit, String language);
+    public static native NSArray<NSString> availableTagSchemesForUnit(NSLinguisticTaggerUnit unit, String language);
     /**
      * @since Available in iOS 5.0 and later.
      */
@@ -210,7 +210,7 @@ import org.robovm.apple.dispatch.*;
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "tagsForString:range:unit:scheme:options:orthography:tokenRanges:")
-    public static native NSArray<?> tagsForString(String string, @ByVal NSRange range, NSLinguisticTaggerUnit unit, String scheme, NSLinguisticTaggerOptions options, NSOrthography orthography, NSArray.NSArrayPtr<?> tokenRanges);
+    public static native NSArray<NSString> tagsForString(String string, @ByVal NSRange range, NSLinguisticTaggerUnit unit, String scheme, NSLinguisticTaggerOptions options, NSOrthography orthography, NSArray.NSArrayPtr<?> tokenRanges);
     /**
      * @since Available in iOS 11.0 and later.
      */

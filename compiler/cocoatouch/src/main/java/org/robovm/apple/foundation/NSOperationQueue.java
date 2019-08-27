@@ -46,7 +46,7 @@ import org.robovm.apple.dispatch.*;
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSOperationQueue/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSProgressReporting/*</implements>*/ {
 
     /*<ptr>*/public static class NSOperationQueuePtr extends Ptr<NSOperationQueue, NSOperationQueuePtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NSOperationQueue.class); }/*</bind>*/
@@ -59,13 +59,11 @@ import org.robovm.apple.dispatch.*;
     protected NSOperationQueue(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "operations")
-    public native NSArray<NSOperation> getOperations();
     /**
-     * @since Available in iOS 4.0 and later.
+     * @since Available in iOS 13.0 and later.
      */
-    @Property(selector = "operationCount")
-    public native @MachineSizedUInt long getOperationCount();
+    @Property(selector = "progress")
+    public native NSProgress getProgress();
     @Property(selector = "maxConcurrentOperationCount")
     public native @MachineSizedSInt long getMaxConcurrentOperationCount();
     @Property(selector = "setMaxConcurrentOperationCount:")
@@ -116,6 +114,18 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "mainQueue")
     public static native NSOperationQueue getMainQueue();
+    /**
+     * @since Available in iOS 2.0 and later.
+     */
+    @Deprecated
+    @Property(selector = "operations")
+    public native NSArray<NSOperation> getOperations();
+    /**
+     * @since Available in iOS 4.0 and later.
+     */
+    @Deprecated
+    @Property(selector = "operationCount")
+    public native @MachineSizedUInt long getOperationCount();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -131,6 +141,11 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "addOperationWithBlock:")
     public native void addOperation(@Block Runnable block);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "addBarrierBlock:")
+    public native void addBarrierBlock(@Block Runnable barrier);
     @Method(selector = "cancelAllOperations")
     public native void cancelAllOperations();
     @Method(selector = "waitUntilAllOperationsAreFinished")

@@ -261,7 +261,9 @@ import org.robovm.apple.dispatch.*;
     public static final NSURLFileSystemProperty FileResourceType = new NSURLFileSystemProperty("FileResourceType");
     /**
      * @since Available in iOS 8.0 and later.
+     * @deprecated Use the QuickLookThumbnailing framework and extension point instead
      */
+    @Deprecated
     public static final NSURLFileSystemProperty ThumbnailDictionary = new NSURLFileSystemProperty("ThumbnailDictionary");
     /**
      * @since Available in iOS 9.0 and later.
@@ -499,7 +501,9 @@ import org.robovm.apple.dispatch.*;
         public static native NSString FileResourceType();
         /**
          * @since Available in iOS 8.0 and later.
+         * @deprecated Use the QuickLookThumbnailing framework and extension point instead
          */
+        @Deprecated
         @GlobalValue(symbol="NSURLThumbnailDictionaryKey", optional=true)
         public static native NSString ThumbnailDictionary();
         /**

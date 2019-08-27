@@ -280,7 +280,23 @@ public enum /*<name>*/NSCocoaErrorCode/*</name>*/ implements NSErrorCode {
     /**
      * @since Available in iOS 10.0 and later.
      */
-    CloudSharingErrorMaximum(5375L);
+    CloudSharingErrorMaximum(5375L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    CompressionFailed(5376L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    DecompressionFailed(5377L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    CompressionErrorMinimum(5376L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    CompressionErrorMaximum(5503L);
     /*</values>*/
 
     /*<bind>*/

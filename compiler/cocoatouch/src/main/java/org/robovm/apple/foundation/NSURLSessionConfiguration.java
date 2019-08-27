@@ -85,6 +85,26 @@ import org.robovm.apple.coreservices.CFProxy;
     @Property(selector = "setAllowsCellularAccess:")
     public native void setAllowsCellularAccess(boolean v);
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "allowsExpensiveNetworkAccess")
+    public native boolean allowsExpensiveNetworkAccess();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setAllowsExpensiveNetworkAccess:")
+    public native void setAllowsExpensiveNetworkAccess(boolean v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "allowsConstrainedNetworkAccess")
+    public native boolean allowsConstrainedNetworkAccess();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setAllowsConstrainedNetworkAccess:")
+    public native void setAllowsConstrainedNetworkAccess(boolean v);
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @Property(selector = "waitsForConnectivity")
@@ -128,18 +148,54 @@ import org.robovm.apple.coreservices.CFProxy;
     public native CFProxy getConnectionProxy();
     @Property(selector = "setConnectionProxyDictionary:")
     public native void setConnectionProxy(CFProxy v);
+    /**
+     * @since Available in iOS 7.0 and later.
+     */
+    @Deprecated
     @WeaklyLinked
     @Property(selector = "TLSMinimumSupportedProtocol")
     public native SSLProtocol getTLSMinimumSupportedProtocol();
+    /**
+     * @since Available in iOS 7.0 and later.
+     */
+    @Deprecated
     @WeaklyLinked
     @Property(selector = "setTLSMinimumSupportedProtocol:")
     public native void setTLSMinimumSupportedProtocol(SSLProtocol v);
+    /**
+     * @since Available in iOS 7.0 and later.
+     */
+    @Deprecated
     @WeaklyLinked
     @Property(selector = "TLSMaximumSupportedProtocol")
     public native SSLProtocol getTLSMaximumSupportedProtocol();
+    /**
+     * @since Available in iOS 7.0 and later.
+     */
+    @Deprecated
     @WeaklyLinked
     @Property(selector = "setTLSMaximumSupportedProtocol:")
     public native void setTLSMaximumSupportedProtocol(SSLProtocol v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "TLSMinimumSupportedProtocolVersion")
+    public native TlsProtocolVersion getTLSMinimumSupportedProtocolVersion();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setTLSMinimumSupportedProtocolVersion:")
+    public native void setTLSMinimumSupportedProtocolVersion(TlsProtocolVersion v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "TLSMaximumSupportedProtocolVersion")
+    public native TlsProtocolVersion getTLSMaximumSupportedProtocolVersion();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setTLSMaximumSupportedProtocolVersion:")
+    public native void setTLSMaximumSupportedProtocolVersion(TlsProtocolVersion v);
     @Property(selector = "HTTPShouldUsePipelining")
     public native boolean shouldUseHTTPPipelining();
     @Property(selector = "setHTTPShouldUsePipelining:")
@@ -206,7 +262,7 @@ import org.robovm.apple.coreservices.CFProxy;
     public static native NSURLSessionConfiguration getBackgroundSessionConfiguration(String identifier);
     /**
      * @since Available in iOS 7.0 and later.
-     * @deprecated Deprecated in iOS 8.0. Please use backgroundSessionConfigurationWithIdentifier: instead
+     * @deprecated Deprecated in iOS 8.0.
      */
     @Deprecated
     @Method(selector = "backgroundSessionConfiguration:")

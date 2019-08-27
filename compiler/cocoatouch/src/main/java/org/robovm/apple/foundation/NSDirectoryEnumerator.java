@@ -42,11 +42,11 @@ import org.robovm.apple.dispatch.*;
 
 /*</javadoc>*/
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/NSDirectoryEnumerator/*</name>*/ <T extends NSObject>
-    extends /*<extends>*/NSEnumerator/*</extends>*/ <T>
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/NSDirectoryEnumerator<T extends NSObject>/*</name>*/
+    extends /*<extends>*/NSEnumerator<T>/*</extends>*/
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class NSDirectoryEnumeratorPtr extends Ptr<NSDirectoryEnumerator, NSDirectoryEnumeratorPtr> {}/*</ptr>*/
+    /*<ptr>*/public static class NSDirectoryEnumeratorPtr<T extends NSObject> extends Ptr<NSDirectoryEnumerator<T>, NSDirectoryEnumeratorPtr<T>> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NSDirectoryEnumerator.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
@@ -58,6 +58,11 @@ import org.robovm.apple.dispatch.*;
     public native NSFileAttributes getFileAttributes();
     @Property(selector = "directoryAttributes")
     public native NSFileAttributes getDirectoryAttributes();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "isEnumeratingDirectoryPostOrder")
+    public native boolean isEnumeratingDirectoryPostOrder();
     /**
      * @since Available in iOS 4.0 and later.
      */

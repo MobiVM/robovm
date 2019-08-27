@@ -116,7 +116,9 @@ import org.robovm.apple.dispatch.*;
 
     /**
      * @since Available in iOS 8.0 and later.
+     * @deprecated Use the QuickLookThumbnailing framework and extension point instead
      */
+    @Deprecated
     @WeaklyLinked
     public UIImage getSize1024x1024() {
         if (has(Keys.Size1024x1024())) {
@@ -127,7 +129,9 @@ import org.robovm.apple.dispatch.*;
     }
     /**
      * @since Available in iOS 8.0 and later.
+     * @deprecated Use the QuickLookThumbnailing framework and extension point instead
      */
+    @Deprecated
     @WeaklyLinked
     public NSURLThumbnail setSize1024x1024(UIImage size1024x1024) {
         set(Keys.Size1024x1024(), size1024x1024);
@@ -141,7 +145,9 @@ import org.robovm.apple.dispatch.*;
         static { Bro.bind(Keys.class); }
         /**
          * @since Available in iOS 8.0 and later.
+         * @deprecated Use the QuickLookThumbnailing framework and extension point instead
          */
+        @Deprecated
         @GlobalValue(symbol="NSThumbnail1024x1024SizeKey", optional=true)
         public static native NSString Size1024x1024();
     }

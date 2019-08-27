@@ -122,6 +122,21 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "streamTaskWithNetService:")
     public native NSURLSessionStreamTask newStreamTask(NSNetService service);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "webSocketTaskWithURL:")
+    public native NSURLSessionWebSocketTask newWebSocket(NSURL url);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "webSocketTaskWithURL:protocols:")
+    public native NSURLSessionWebSocketTask newWebSocket(NSURL url, NSArray<NSString> protocols);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "webSocketTaskWithRequest:")
+    public native NSURLSessionWebSocketTask newWebSocket(NSURLRequest request);
     @Method(selector = "sessionWithConfiguration:")
     protected static native @Pointer long create(NSURLSessionConfiguration configuration);
     @Method(selector = "sessionWithConfiguration:delegate:delegateQueue:")

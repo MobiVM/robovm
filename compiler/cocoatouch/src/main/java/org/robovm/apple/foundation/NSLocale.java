@@ -69,7 +69,7 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "initWithLocaleIdentifier:")
     public NSLocale(String string) { super((SkipInit) null); initObject(init(string)); }
     @Method(selector = "initWithCoder:")
-    public NSLocale(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public NSLocale(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     
     public NSLocale(Locale locale) {
@@ -414,6 +414,6 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

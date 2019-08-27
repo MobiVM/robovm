@@ -121,6 +121,11 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "isLowPowerModeEnabled")
     public native boolean isLowPowerModeEnabled();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "isMacCatalystApp")
+    public native boolean isMacCatalystApp();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

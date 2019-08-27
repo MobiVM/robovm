@@ -42,7 +42,7 @@ import org.robovm.apple.dispatch.*;
 
 /*</javadoc>*/
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/NSArray/*</name>*/ <T extends NSObject>
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/NSArray<T extends NSObject>/*</name>*/
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*/implements NSFastEnumeration, NSPropertyList, List<T>/*</implements>*/ {
 
@@ -169,7 +169,7 @@ import org.robovm.apple.dispatch.*;
         @Override
         public boolean contains(Object o) {
             if (o instanceof NSObject) {
-                return array.containsObject((NSObject) o);
+                return array.containsObject((U) o);
             }
             return false;
         }
@@ -177,7 +177,7 @@ import org.robovm.apple.dispatch.*;
         @Override
         public int indexOf(Object o) {
             if (o instanceof NSObject) {
-                return (int) array.indexOfObject((NSObject) o);
+                return (int) array.indexOfObject((U) o);
             }
             return -1;
         }
@@ -557,19 +557,35 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "initWithObjects:count:")
     protected native @Pointer long init(@Pointer long objects, @MachineSizedUInt long cnt);
     @Method(selector = "containsObject:")
-    protected native boolean containsObject(NSObject anObject);
+    protected native boolean containsObject(T anObject);
     @Method(selector = "indexOfObject:")
-    protected native @MachineSizedUInt long indexOfObject(NSObject anObject);
+    protected native @MachineSizedUInt long indexOfObject(T anObject);
     @Method(selector = "subarrayWithRange:")
     protected native NSArray<T> getSubarray(@ByVal NSRange range);
     @Method(selector = "initWithArray:")
-    protected native @Pointer long init(NSArray<?> array);
+    protected native @Pointer long init(NSArray<T> array);
+    /**
+     * @since Available in iOS 2.0 and later.
+     */
+    @Deprecated
     @Method(selector = "writeToFile:atomically:")
     protected native boolean writeFile(String path, boolean atomically);
+    /**
+     * @since Available in iOS 2.0 and later.
+     */
+    @Deprecated
     @Method(selector = "writeToURL:atomically:")
     public native boolean write(NSURL url, boolean atomically);
+    /**
+     * @since Available in iOS 2.0 and later.
+     */
+    @Deprecated
     @Method(selector = "arrayWithContentsOfFile:")
     protected static native NSArray<?> readFile(String path);
+    /**
+     * @since Available in iOS 2.0 and later.
+     */
+    @Deprecated
     @Method(selector = "arrayWithContentsOfURL:")
     public static native NSArray<?> read(NSURL url);
     @Method(selector = "addObserver:toObjectsAtIndexes:forKeyPath:options:context:")

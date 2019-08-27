@@ -42,8 +42,8 @@ import org.robovm.apple.dispatch.*;
 
 /*</javadoc>*/
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/NSMutableArray/*</name>*/ <T extends NSObject>
-    extends /*<extends>*/NSArray/*</extends>*/ <T>
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/NSMutableArray<T extends NSObject>/*</name>*/
+    extends /*<extends>*/NSArray<T>/*</extends>*/
     /*<implements>*//*</implements>*/ {
 
     public static class NSMutableArrayPtr<T extends NSObject> extends Ptr<NSMutableArrayPtr<T>, NSMutableArrayPtr<T>> {}
@@ -158,14 +158,14 @@ import org.robovm.apple.dispatch.*;
             element = NSNull.getNull();
         }
 
-        insertObject((NSObject)element, index);
+        insertObject((T)element, index);
     }
 
     public Object set(int index, boolean element) {
         checkNull(Boolean.valueOf(element));
         checkIndex(index);
         Object old = getObjectAt(index);
-        replaceObject(index, NSNumber.valueOf(element));
+        replaceObject(index, (T) NSNumber.valueOf(element));
         if (old instanceof NSNumber) {
             old = Boolean.valueOf(((NSNumber)old).booleanValue());
         }
@@ -185,7 +185,7 @@ import org.robovm.apple.dispatch.*;
         checkNull(element);
         checkIndex(index);
         Object old = getObjectAt(index);
-        replaceObject(index, element);
+        replaceObject(index, (T) element);
         if(old instanceof NSString) {
             old = old.toString();
         } else if(old instanceof NSNumber) {
@@ -236,11 +236,11 @@ import org.robovm.apple.dispatch.*;
     
     /*<methods>*/
     @Method(selector = "insertObject:atIndex:")
-    protected native void insertObject(NSObject anObject, @MachineSizedUInt long index);
+    protected native void insertObject(T anObject, @MachineSizedUInt long index);
     @Method(selector = "removeObjectAtIndex:")
     protected native void removeObject(@MachineSizedUInt long index);
     @Method(selector = "replaceObjectAtIndex:withObject:")
-    protected native void replaceObject(@MachineSizedUInt long index, NSObject anObject);
+    protected native void replaceObject(@MachineSizedUInt long index, T anObject);
     @Method(selector = "initWithCapacity:")
     protected native @Pointer long init(@MachineSizedUInt long numItems);
     @Method(selector = "removeAllObjects")

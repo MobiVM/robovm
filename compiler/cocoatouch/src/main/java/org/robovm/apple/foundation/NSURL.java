@@ -86,7 +86,7 @@ import org.robovm.apple.foundation.NSError.NSErrorPtr;
        initObject(handle);
     }
     @Method(selector = "initWithCoder:")
-    public NSURL(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public NSURL(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /**
      * @since Available in iOS 9.0 and later.
@@ -141,6 +141,11 @@ import org.robovm.apple.foundation.NSError.NSErrorPtr;
     public native String getPath();
     @Property(selector = "fragment")
     public native String getFragment();
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
     @Property(selector = "parameterString")
     public native String getParameterString();
     @Property(selector = "query")
@@ -624,7 +629,7 @@ import org.robovm.apple.foundation.NSError.NSErrorPtr;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     public static NSURL createProviderDataObject(NSData data, String typeIdentifier) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        NSURL result = createProviderDataObject(data, typeIdentifier, ptr);

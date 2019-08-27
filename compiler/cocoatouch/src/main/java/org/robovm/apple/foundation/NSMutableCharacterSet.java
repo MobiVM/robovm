@@ -57,7 +57,7 @@ import org.robovm.apple.dispatch.*;
     public NSMutableCharacterSet(String aString) { super((Handle) null, create(aString)); retain(getHandle()); }
     public NSMutableCharacterSet(NSData data) { super((Handle) null, create(data)); retain(getHandle()); }
     @Method(selector = "initWithCoder:")
-    public NSMutableCharacterSet(NSCoder aDecoder) { super(aDecoder); }
+    public NSMutableCharacterSet(NSCoder coder) { super(coder); }
     /*</constructors>*/
     public NSMutableCharacterSet(File file) {
         super(createWithFile(file));

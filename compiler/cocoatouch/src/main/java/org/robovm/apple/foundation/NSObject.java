@@ -431,7 +431,7 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "mutableCopy")
     public native NSObject mutableCopy();
     @Method(selector = "performSelector:withObject:afterDelay:inModes:")
-    public final native void performSelector(Selector aSelector, NSObject anArgument, double delay, NSArray<?> modes);
+    public final native void performSelector(Selector aSelector, NSObject anArgument, double delay, NSArray<NSString> modes);
     @Method(selector = "performSelector:withObject:afterDelay:")
     public final native void performSelector(Selector aSelector, NSObject anArgument, double delay);
     @Method(selector = "addObserver:forKeyPath:options:context:")

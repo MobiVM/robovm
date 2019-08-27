@@ -61,12 +61,32 @@ import org.robovm.apple.dispatch.*;
     public NSUnitDuration(String symbol) { super(symbol); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "seconds")
-    public static native NSUnitDuration getSeconds();
-    @Property(selector = "minutes")
-    public static native NSUnitDuration getMinutes();
     @Property(selector = "hours")
     public static native NSUnitDuration getHours();
+    @Property(selector = "minutes")
+    public static native NSUnitDuration getMinutes();
+    @Property(selector = "seconds")
+    public static native NSUnitDuration getSeconds();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "milliseconds")
+    public static native NSUnitDuration getMilliseconds();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "microseconds")
+    public static native NSUnitDuration getMicroseconds();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "nanoseconds")
+    public static native NSUnitDuration getNanoseconds();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "picoseconds")
+    public static native NSUnitDuration getPicoseconds();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

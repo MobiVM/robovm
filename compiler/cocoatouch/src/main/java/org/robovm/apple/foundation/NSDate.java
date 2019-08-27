@@ -87,6 +87,11 @@ import org.robovm.apple.dispatch.*;
     public static native NSDate getDistantFuture();
     @Property(selector = "distantPast")
     public static native NSDate getDistantPast();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "now")
+    public static native NSDate getNow();
     /*</properties>*/
     /*<members>*//*</members>*/
     public Date toDate() {

@@ -104,7 +104,19 @@ import org.robovm.apple.dispatch.*;
     /*<methods>*/
     @Method(selector = "stringFromByteCount:")
     public native String format(long byteCount);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "stringFromMeasurement:")
+    public native String stringFromMeasurement(NSMeasurement<NSUnitInformationStorage> measurement);
+    @Method(selector = "stringForObjectValue:")
+    public native String stringForObjectValue(NSObject obj);
     @Method(selector = "stringFromByteCount:countStyle:")
     public static native String format(long byteCount, NSByteCountFormatterCountStyle countStyle);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "stringFromMeasurement:countStyle:")
+    public static native String format(NSMeasurement<NSUnitInformationStorage> measurement, NSByteCountFormatterCountStyle countStyle);
     /*</methods>*/
 }

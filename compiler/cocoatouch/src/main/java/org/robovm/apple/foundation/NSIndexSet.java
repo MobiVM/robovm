@@ -60,7 +60,7 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "initWithIndex:")
     public NSIndexSet(@MachineSizedUInt long value) { super((SkipInit) null); initObject(init(value)); }
     @Method(selector = "initWithCoder:")
-    public NSIndexSet(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public NSIndexSet(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "count")
@@ -205,6 +205,6 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

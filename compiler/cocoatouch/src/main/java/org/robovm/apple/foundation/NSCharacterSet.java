@@ -57,7 +57,7 @@ import org.robovm.apple.dispatch.*;
     protected NSCharacterSet(Handle h, long handle) { super(h, handle); }
     protected NSCharacterSet(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public NSCharacterSet(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public NSCharacterSet(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     public NSCharacterSet(@ByVal NSRange aRange) { super((Handle) null, create(aRange)); retain(getHandle()); }
     public NSCharacterSet(String aString) { super((Handle) null, create(aString)); retain(getHandle()); }
     public NSCharacterSet(NSData data) { super((Handle) null, create(data)); retain(getHandle()); }
@@ -145,7 +145,7 @@ import org.robovm.apple.dispatch.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
+    protected native @Pointer long init(NSCoder coder);
     @Method(selector = "characterIsMember:")
     public native boolean isMember(short aCharacter);
     @Method(selector = "longCharacterIsMember:")

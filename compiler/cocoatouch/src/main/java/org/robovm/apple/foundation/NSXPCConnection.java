@@ -111,5 +111,15 @@ import org.robovm.apple.dispatch.*;
     public native void suspend();
     @Method(selector = "invalidate")
     public native void invalidate();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "scheduleSendBarrierBlock:")
+    public native void scheduleSendBarrierBlock(@Block Runnable block);
+    /**
+     * @since Available in iOS 6.0 and later.
+     */
+    @Method(selector = "currentConnection")
+    public static native NSXPCConnection currentConnection();
     /*</methods>*/
 }

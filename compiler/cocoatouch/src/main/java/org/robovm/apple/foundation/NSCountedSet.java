@@ -42,8 +42,8 @@ import org.robovm.apple.dispatch.*;
 
 /*</javadoc>*/
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/NSCountedSet/*</name>*/ <T extends NSObject>
-    extends /*<extends>*/NSMutableSet/*</extends>*/ <T>
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/NSCountedSet<T extends NSObject>/*</name>*/
+    extends /*<extends>*/NSMutableSet<T>/*</extends>*/
     /*<implements>*//*</implements>*/ {
 
     public static class NSCountedSetPtr<T extends NSObject> extends Ptr<NSCountedSet<T>, NSCountedSetPtr<T>> {}
@@ -69,16 +69,16 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "initWithCapacity:")
     protected native @Pointer long init(@MachineSizedUInt long numItems);
     @Method(selector = "initWithArray:")
-    protected native @Pointer long init(NSArray<?> array);
+    protected native @Pointer long init(NSArray<T> array);
     @Method(selector = "initWithSet:")
-    protected native @Pointer long init(NSSet<?> set);
+    protected native @Pointer long init(NSSet<T> set);
     @Method(selector = "countForObject:")
-    protected native @MachineSizedUInt long countForObject(NSObject object);
+    protected native @MachineSizedUInt long countForObject(T object);
     @Method(selector = "objectEnumerator")
     protected native NSEnumerator<T> objectEnumerator();
     @Method(selector = "addObject:")
-    protected native void addObject(NSObject object);
+    protected native void addObject(T object);
     @Method(selector = "removeObject:")
-    protected native void removeObject(NSObject object);
+    protected native void removeObject(T object);
     /*</methods>*/
 }

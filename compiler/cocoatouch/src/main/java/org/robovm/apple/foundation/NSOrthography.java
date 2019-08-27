@@ -91,7 +91,7 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "initWithDominantScript:languageMap:")
     public NSOrthography(String script, @org.robovm.rt.bro.annotation.Marshaler(NSOrthography.LanguageMapMarshaler.class) Map<String, List<String>> map) { super((SkipInit) null); initObject(init(script, map)); }
     @Method(selector = "initWithCoder:")
-    public NSOrthography(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public NSOrthography(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "dominantScript")
@@ -124,7 +124,7 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "initWithDominantScript:languageMap:")
     protected native @Pointer long init(String script, @org.robovm.rt.bro.annotation.Marshaler(NSOrthography.LanguageMapMarshaler.class) Map<String, List<String>> map);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
+    protected native @Pointer long init(NSCoder coder);
     /**
      * @since Available in iOS 4.0 and later.
      */

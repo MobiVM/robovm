@@ -95,6 +95,26 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "setAllowsCellularAccess:")
     public native void setAllowsCellularAccess(boolean v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "allowsExpensiveNetworkAccess")
+    public native boolean allowsExpensiveNetworkAccess();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setAllowsExpensiveNetworkAccess:")
+    public native void setAllowsExpensiveNetworkAccess(boolean v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "allowsConstrainedNetworkAccess")
+    public native boolean allowsConstrainedNetworkAccess();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setAllowsConstrainedNetworkAccess:")
+    public native void setAllowsConstrainedNetworkAccess(boolean v);
     @Property(selector = "HTTPMethod")
     public native String getHTTPMethod();
     @Property(selector = "setHTTPMethod:")

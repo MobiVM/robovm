@@ -42,7 +42,7 @@ import org.robovm.apple.dispatch.*;
 
 /*</javadoc>*/
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/NSSet/*</name>*/ <T extends NSObject>
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/NSSet<T extends NSObject>/*</name>*/
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*/implements NSFastEnumeration, Set<T>/*</implements>*/ {
 
@@ -109,7 +109,7 @@ import org.robovm.apple.dispatch.*;
         @Override
         public boolean contains(Object o) {
             if (o instanceof NSObject) {
-                return set.isMember((NSObject) o) != null;
+                return set.isMember((U) o) != null;
             }
             return false;
         }
@@ -285,7 +285,7 @@ import org.robovm.apple.dispatch.*;
     
     /*<methods>*/
     @Method(selector = "member:")
-    protected native NSObject isMember(NSObject object);
+    protected native T isMember(T object);
     @Method(selector = "objectEnumerator")
     protected native NSEnumerator<T> objectEnumerator();
     @Method(selector = "initWithObjects:count:")
@@ -293,8 +293,8 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "anyObject")
     public native T any();
     @Method(selector = "initWithSet:")
-    protected native @Pointer long init(NSSet<?> set);
+    protected native @Pointer long init(NSSet<T> set);
     @Method(selector = "initWithArray:")
-    protected native @Pointer long init(NSArray<?> array);
+    protected native @Pointer long init(NSArray<T> array);
     /*</methods>*/
 }

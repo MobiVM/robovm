@@ -62,7 +62,7 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "initWithAttributedString:")
     public NSAttributedString(NSAttributedString attrStr) { super((SkipInit) null); initObject(init(attrStr)); }
     @Method(selector = "initWithCoder:")
-    public NSAttributedString(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public NSAttributedString(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     public NSAttributedString(String str, NSAttributedStringAttributes attrs) {
         super((SkipInit)null);
@@ -399,6 +399,6 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

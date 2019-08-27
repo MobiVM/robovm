@@ -58,7 +58,7 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "initWithName:value:")
     public NSURLQueryItem(String name, String value) { super((SkipInit) null); initObject(init(name, value)); }
     @Method(selector = "initWithCoder:")
-    public NSURLQueryItem(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public NSURLQueryItem(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "name")
@@ -75,6 +75,6 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

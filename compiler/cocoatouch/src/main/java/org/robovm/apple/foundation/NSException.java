@@ -40,7 +40,7 @@ import org.robovm.apple.security.*;
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSException/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NSCoding/*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class NSExceptionPtr extends Ptr<NSException, NSExceptionPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NSException.class); }/*</bind>*/
@@ -51,7 +51,7 @@ import org.robovm.apple.security.*;
     @Method(selector = "initWithName:reason:userInfo:")
     public NSException(String aName, String aReason, NSDictionary<?, ?> aUserInfo) { super((SkipInit) null); initObject(init(aName, aReason, aUserInfo)); }
     @Method(selector = "initWithCoder:")
-    public NSException(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public NSException(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "name")
@@ -70,6 +70,8 @@ import org.robovm.apple.security.*;
      */
     @Property(selector = "callStackSymbols")
     public native NSArray<NSString> getCallStackSymbols();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     
@@ -133,6 +135,6 @@ import org.robovm.apple.security.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }
