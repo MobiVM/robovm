@@ -43,7 +43,6 @@ public class RoboVMResolverTest {
         RoboVMResolver resolver = new RoboVMResolver();
         File dir = resolver.resolveAndUnpackRoboVMDistArtifact("2.3.3");
         assertEquals(distAlpha2Dir, dir);
-        assertTrue(new File(dir, "bin/simlauncher").canExecute());
         assertEquals(1508519672L, new File(dir, "lib/robovm-rt.jar").lastModified() / 1000L);
     }
 
