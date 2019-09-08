@@ -60,6 +60,16 @@ import org.robovm.apple.dispatch.*;
     void didFailToConnectPeripheral(CBCentralManager central, CBPeripheral peripheral, NSError error);
     @Method(selector = "centralManager:didDisconnectPeripheral:error:")
     void didDisconnectPeripheral(CBCentralManager central, CBPeripheral peripheral, NSError error);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "centralManager:connectionEventDidOccur:forPeripheral:")
+    void connectionEventDidOccur(CBCentralManager central, CBConnectionEvent event, CBPeripheral peripheral);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "centralManager:didUpdateANCSAuthorizationForPeripheral:")
+    void didUpdateANCSAuthorization(CBCentralManager central, CBPeripheral peripheral);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

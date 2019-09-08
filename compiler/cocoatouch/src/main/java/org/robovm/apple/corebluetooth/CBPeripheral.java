@@ -68,8 +68,16 @@ import org.robovm.apple.dispatch.*;
     public native CBPeripheralState getState();
     @Property(selector = "services")
     public native NSArray<CBService> getServices();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Property(selector = "canSendWriteWithoutResponse")
     public native boolean canSendWriteWithoutResponse();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "ancsAuthorized")
+    public native boolean isAncsAuthorized();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -34,17 +34,16 @@ import org.robovm.apple.dispatch.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 7.0 and later.
- * @deprecated Deprecated in iOS 13.0. Use CBManagerAuthorization instead
+ * @since Available in iOS 13.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Deprecated/*</annotations>*/
-public enum /*<name>*/CBPeripheralManagerAuthorizationStatus/*</name>*/ implements ValuedEnum {
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+public enum /*<name>*/CBManagerAuthorization/*</name>*/ implements ValuedEnum {
     /*<values>*/
     NotDetermined(0L),
     Restricted(1L),
     Denied(2L),
-    Authorized(3L);
+    AllowedAlways(3L);
     /*</values>*/
 
     /*<bind>*/
@@ -54,15 +53,15 @@ public enum /*<name>*/CBPeripheralManagerAuthorizationStatus/*</name>*/ implemen
 
     private final long n;
 
-    private /*<name>*/CBPeripheralManagerAuthorizationStatus/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/CBManagerAuthorization/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/CBPeripheralManagerAuthorizationStatus/*</name>*/ valueOf(long n) {
-        for (/*<name>*/CBPeripheralManagerAuthorizationStatus/*</name>*/ v : values()) {
+    public static /*<name>*/CBManagerAuthorization/*</name>*/ valueOf(long n) {
+        for (/*<name>*/CBManagerAuthorization/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/CBPeripheralManagerAuthorizationStatus/*</name>*/.class.getName());
+            + /*<name>*/CBManagerAuthorization/*</name>*/.class.getName());
     }
 }

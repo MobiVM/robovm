@@ -176,6 +176,16 @@ import org.robovm.apple.dispatch.*;
          */
         @GlobalValue(symbol="CBConnectPeripheralOptionStartDelayKey", optional=true)
         public static native NSString StartDelay();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="CBConnectPeripheralOptionEnableTransportBridgingKey", optional=true)
+        public static native NSString EnableTransportBridging();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="CBConnectPeripheralOptionRequiresANCS", optional=true)
+        public static native NSString RequiresANCS();
     }
     /*</keys>*/
 }

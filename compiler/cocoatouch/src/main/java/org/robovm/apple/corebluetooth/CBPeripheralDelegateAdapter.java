@@ -91,7 +91,7 @@ import org.robovm.apple.dispatch.*;
     @NotImplemented("peripheral:didWriteValueForDescriptor:error:")
     public void didWriteValue(CBPeripheral peripheral, CBDescriptor descriptor, NSError error) {}
     @NotImplemented("peripheralIsReadyToSendWriteWithoutResponse:")
-    public void peripheralIsReadyToSendWriteWithoutResponse(CBPeripheral peripheral) {}
+    public void peripheralIsReadyToSendWrite(CBPeripheral peripheral) {}
     @NotImplemented("peripheral:didOpenL2CAPChannel:error:")
     public void didOpenL2CAPChannel(CBPeripheral peripheral, CBL2CAPChannel channel, NSError error) {}
     /*</methods>*/

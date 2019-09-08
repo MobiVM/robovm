@@ -101,5 +101,15 @@ import org.robovm.apple.dispatch.*;
     public native void connectPeripheral(CBPeripheral peripheral, CBConnectPeripheralOptions options);
     @Method(selector = "cancelPeripheralConnection:")
     public native void cancelPeripheralConnection(CBPeripheral peripheral);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "registerForConnectionEventsWithOptions:")
+    public native void registerForConnectionEvents(CBConnectionEventMatchingOptions options);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "supportsFeatures:")
+    public static native boolean supportsFeatures(CBCentralManagerFeature features);
     /*</methods>*/
 }

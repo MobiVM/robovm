@@ -108,7 +108,9 @@ import org.robovm.apple.dispatch.*;
     public native void unpublishL2CAPChannel(short PSM);
     /**
      * @since Available in iOS 7.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use CBManagerAuthorization instead
      */
+    @Deprecated
     @Method(selector = "authorizationStatus")
     public static native CBPeripheralManagerAuthorizationStatus authorizationStatus();
     /*</methods>*/
