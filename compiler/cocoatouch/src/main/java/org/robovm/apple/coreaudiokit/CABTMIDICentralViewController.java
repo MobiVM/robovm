@@ -55,7 +55,7 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "initWithNibName:bundle:")
     public CABTMIDICentralViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
     @Method(selector = "initWithCoder:")
-    public CABTMIDICentralViewController(NSCoder decoder) { super(decoder); }
+    public CABTMIDICentralViewController(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     

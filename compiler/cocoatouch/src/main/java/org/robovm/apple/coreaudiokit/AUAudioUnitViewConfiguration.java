@@ -53,7 +53,7 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "initWithWidth:height:hostHasController:")
     public AUAudioUnitViewConfiguration(double width, double height, boolean hostHasController) { super((SkipInit) null); initObject(init(width, height, hostHasController)); }
     @Method(selector = "initWithCoder:")
-    public AUAudioUnitViewConfiguration(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public AUAudioUnitViewConfiguration(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "width")
@@ -72,6 +72,6 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }
