@@ -183,11 +183,5 @@ import org.robovm.apple.coretext.*;
     public native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CFURL getAuxiliaryExecutableURL(String executableName);
     @Bridge(symbol="CFBundleGetPlugIn", optional=true)
     public native CFPlugIn getPlugIn();
-    @Bridge(symbol="CFBundleOpenBundleResourceMap", optional=true)
-    public native int openBundleResourceMap();
-    @Bridge(symbol="CFBundleOpenBundleResourceFiles", optional=true)
-    public native int openBundleResourceFiles(IntPtr refNum, IntPtr localizedRefNum);
-    @Bridge(symbol="CFBundleCloseBundleResourceMap", optional=true)
-    public native void closeBundleResourceMap(int refNum);
     /*</methods>*/
 }

@@ -99,6 +99,11 @@ import org.robovm.apple.coretext.*;
     public native @org.robovm.rt.bro.annotation.Marshaler(CFString.AsStringNoRetainMarshaler.class) String getUserName();
     @Bridge(symbol="CFURLCopyPassword", optional=true)
     public native @org.robovm.rt.bro.annotation.Marshaler(CFString.AsStringNoRetainMarshaler.class) String getPassword();
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
     @Bridge(symbol="CFURLCopyParameterString", optional=true)
     public native @org.robovm.rt.bro.annotation.Marshaler(CFString.AsStringNoRetainMarshaler.class) String getParameterString(String charactersToLeaveEscaped);
     @Bridge(symbol="CFURLCopyQueryString", optional=true)
