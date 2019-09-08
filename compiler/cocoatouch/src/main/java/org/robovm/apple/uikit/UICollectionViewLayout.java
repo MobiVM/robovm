@@ -57,7 +57,7 @@ import org.robovm.apple.intents.*;
     protected UICollectionViewLayout(Handle h, long handle) { super(h, handle); }
     protected UICollectionViewLayout(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public UICollectionViewLayout(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public UICollectionViewLayout(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "collectionView")
@@ -79,7 +79,7 @@ import org.robovm.apple.intents.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     @Method(selector = "invalidateLayout")
     public native void invalidateLayout();
     /**

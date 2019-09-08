@@ -59,7 +59,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithFrame:")
     public UIStepper(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public UIStepper(NSCoder decoder) { super(decoder); }
+    public UIStepper(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "isContinuous")
@@ -90,16 +90,6 @@ import org.robovm.apple.intents.*;
     public native double getStepValue();
     @Property(selector = "setStepValue:")
     public native void setStepValue(double v);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
-    @Property(selector = "tintColor")
-    public native UIColor getTintColor();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
-    @Property(selector = "setTintColor:")
-    public native void setTintColor(UIColor v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

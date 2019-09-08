@@ -59,7 +59,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithFrame:")
     public UIDatePicker(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public UIDatePicker(NSCoder decoder) { super(decoder); }
+    public UIDatePicker(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "datePickerMode")

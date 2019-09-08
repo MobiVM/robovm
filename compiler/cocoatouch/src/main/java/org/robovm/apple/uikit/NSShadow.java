@@ -57,7 +57,7 @@ import org.robovm.apple.intents.*;
     protected NSShadow(Handle h, long handle) { super(h, handle); }
     protected NSShadow(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public NSShadow(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public NSShadow(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "shadowOffset")
@@ -78,7 +78,7 @@ import org.robovm.apple.intents.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
+    protected native @Pointer long init(NSCoder coder);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     /*</methods>*/

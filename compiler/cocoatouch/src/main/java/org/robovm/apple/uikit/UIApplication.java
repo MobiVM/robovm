@@ -236,28 +236,73 @@ import org.robovm.apple.intents.*;
     public native UIApplicationDelegate getDelegate();
     @Property(selector = "setDelegate:", strongRef = true)
     public native void setDelegate(UIApplicationDelegate v);
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use UIView's userInteractionEnabled property instead
+     */
+    @Deprecated
     @Property(selector = "isIgnoringInteractionEvents")
     public native boolean isIgnoringInteractionEvents();
     @Property(selector = "isIdleTimerDisabled")
     public native boolean isIdleTimerDisabled();
     @Property(selector = "setIdleTimerDisabled:")
     public native void setIdleTimerDisabled(boolean v);
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Should not be used for applications that support multiple scenes as it returns a key window across all connected scenes
+     */
+    @Deprecated
     @Property(selector = "keyWindow")
     public native UIWindow getKeyWindow();
     @Property(selector = "windows")
     public native NSArray<UIWindow> getWindows();
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Provide a custom network activity UI in your app if desired.
+     */
+    @Deprecated
     @Property(selector = "isNetworkActivityIndicatorVisible")
     public native boolean isNetworkActivityIndicatorVisible();
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Provide a custom network activity UI in your app if desired.
+     */
+    @Deprecated
     @Property(selector = "setNetworkActivityIndicatorVisible:")
     public native void setNetworkActivityIndicatorVisible(boolean v);
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use the statusBarManager property of the window scene instead.
+     */
+    @Deprecated
     @Property(selector = "statusBarStyle")
     public native UIStatusBarStyle getStatusBarStyle();
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use the statusBarManager property of the window scene instead.
+     */
+    @Deprecated
     @Property(selector = "isStatusBarHidden")
     public native boolean isStatusBarHidden();
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use the interfaceOrientation property of the window scene instead.
+     */
+    @Deprecated
     @Property(selector = "statusBarOrientation")
     public native UIInterfaceOrientation getStatusBarOrientation();
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use viewWillTransitionToSize:withTransitionCoordinator: instead.
+     */
+    @Deprecated
     @Property(selector = "statusBarOrientationAnimationDuration")
     public native double getStatusBarOrientationAnimationDuration();
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use the statusBarManager property of the window scene instead.
+     */
+    @Deprecated
     @Property(selector = "statusBarFrame")
     public native @ByVal CGRect getStatusBarFrame();
     @Property(selector = "applicationIconBadgeNumber")
@@ -304,6 +349,21 @@ import org.robovm.apple.intents.*;
      */
     @Property(selector = "preferredContentSizeCategory")
     public native String getPreferredContentSizeCategory();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "connectedScenes")
+    public native NSSet<UIScene> getConnectedScenes();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "openSessions")
+    public native NSSet<UISceneSession> getOpenSessions();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "supportsMultipleScenes")
+    public native boolean supportsMultipleScenes();
     /**
      * @since Available in iOS 8.0 and later.
      */
@@ -467,7 +527,9 @@ import org.robovm.apple.intents.*;
     public static native @MachineSizedUInt long getInvalidBackgroundTask();
     /**
      * @since Available in iOS 4.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Please use PushKit for VoIP applications.
      */
+    @Deprecated
     @GlobalValue(symbol="UIMinimumKeepAliveTimeout", optional=true)
     public static native double getMinimumKeepAliveTimeout();
     /**
@@ -502,16 +564,46 @@ import org.robovm.apple.intents.*;
     public static native NSString WillTerminateNotification();
     @GlobalValue(symbol="UIApplicationSignificantTimeChangeNotification", optional=true)
     public static native NSString SignificantTimeChangeNotification();
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use viewWillTransitionToSize:withTransitionCoordinator: instead.
+     */
+    @Deprecated
     @GlobalValue(symbol="UIApplicationWillChangeStatusBarOrientationNotification", optional=true)
     public static native NSString WillChangeStatusBarOrientationNotification();
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use viewWillTransitionToSize:withTransitionCoordinator: instead.
+     */
+    @Deprecated
     @GlobalValue(symbol="UIApplicationDidChangeStatusBarOrientationNotification", optional=true)
     public static native NSString DidChangeStatusBarOrientationNotification();
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use viewWillTransitionToSize:withTransitionCoordinator: instead.
+     */
+    @Deprecated
     @GlobalValue(symbol="UIApplicationStatusBarOrientationUserInfoKey", optional=true)
     protected static native NSString StatusBarOrientationUserInfoKey();
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use viewWillTransitionToSize:withTransitionCoordinator: instead.
+     */
+    @Deprecated
     @GlobalValue(symbol="UIApplicationWillChangeStatusBarFrameNotification", optional=true)
     public static native NSString WillChangeStatusBarFrameNotification();
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use viewWillTransitionToSize:withTransitionCoordinator: instead.
+     */
+    @Deprecated
     @GlobalValue(symbol="UIApplicationDidChangeStatusBarFrameNotification", optional=true)
     public static native NSString DidChangeStatusBarFrameNotification();
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use viewWillTransitionToSize:withTransitionCoordinator: instead.
+     */
+    @Deprecated
     @GlobalValue(symbol="UIApplicationStatusBarFrameUserInfoKey", optional=true)
     protected static native NSString StatusBarFrameUserInfoKey();
     /**
@@ -543,13 +635,23 @@ import org.robovm.apple.intents.*;
     @Bridge(symbol="UIApplicationMain", optional=true)
     protected static native int main(int argc, BytePtr.BytePtrPtr argv, String principalClassName, String delegateClassName);
     
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use UIView's userInteractionEnabled property instead
+     */
+    @Deprecated
     @Method(selector = "beginIgnoringInteractionEvents")
     public native void beginIgnoringInteractionEvents();
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use UIView's userInteractionEnabled property instead
+     */
+    @Deprecated
     @Method(selector = "endIgnoringInteractionEvents")
     public native void endIgnoringInteractionEvents();
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 10.0. Please use openURL:options:completionHandler: instead
+     * @deprecated Deprecated in iOS 10.0.
      */
     @Deprecated
     @Method(selector = "openURL:")
@@ -590,9 +692,26 @@ import org.robovm.apple.intents.*;
     public native void endBackgroundTask(@MachineSizedUInt long identifier);
     /**
      * @since Available in iOS 7.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use a BGAppRefreshTask in the BackgroundTasks framework instead
      */
+    @Deprecated
     @Method(selector = "setMinimumBackgroundFetchInterval:")
     public native void setMinimumBackgroundFetchInterval(double minimumBackgroundFetchInterval);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "requestSceneSessionActivation:userActivity:options:errorHandler:")
+    public native void requestSceneSessionActivation(UISceneSession sceneSession, NSUserActivity userActivity, UISceneActivationRequestOptions options, @Block VoidBlock1<NSError> errorHandler);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "requestSceneSessionDestruction:options:errorHandler:")
+    public native void requestSceneSessionDestruction(UISceneSession sceneSession, UISceneDestructionRequestOptions options, @Block VoidBlock1<NSError> errorHandler);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "requestSceneSessionRefresh:")
+    public native void requestSceneSessionRefresh(UISceneSession sceneSession);
     /**
      * @since Available in iOS 8.0 and later.
      */

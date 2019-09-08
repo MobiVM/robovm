@@ -59,7 +59,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithFrame:")
     public UIProgressView(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
     @Method(selector = "initWithCoder:")
-    public UIProgressView(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public UIProgressView(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     @Method(selector = "initWithProgressViewStyle:")
     public UIProgressView(UIProgressViewStyle style) { super((SkipInit) null); initObject(init(style)); }
     /*</constructors>*/
@@ -128,7 +128,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithFrame:")
     protected native @Pointer long init(@ByVal CGRect frame);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     @Method(selector = "initWithProgressViewStyle:")
     protected native @Pointer long init(UIProgressViewStyle style);
     /**

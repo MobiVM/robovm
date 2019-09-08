@@ -66,7 +66,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithFrame:")
     public UIImageView(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public UIImageView(NSCoder decoder) { super(decoder); }
+    public UIImageView(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "image")
@@ -83,6 +83,16 @@ import org.robovm.apple.intents.*;
      */
     @Property(selector = "setHighlightedImage:")
     public native void setHighlightedImage(UIImage v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "preferredSymbolConfiguration")
+    public native UIImageSymbolConfiguration getPreferredSymbolConfiguration();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setPreferredSymbolConfiguration:")
+    public native void setPreferredSymbolConfiguration(UIImageSymbolConfiguration v);
     @Property(selector = "isUserInteractionEnabled")
     public native boolean isUserInteractionEnabled();
     @Property(selector = "setUserInteractionEnabled:")

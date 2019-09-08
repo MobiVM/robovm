@@ -61,7 +61,7 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     @Method(selector = "initWithFrame:")
     public UISearchBar(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
     @Method(selector = "initWithCoder:")
-    public UISearchBar(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public UISearchBar(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "barStyle")
@@ -225,6 +225,8 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
      */
     @Property(selector = "setSearchTextPositionAdjustment:")
     public native void setSearchTextPositionAdjustment(@ByVal UIOffset v);
+    @Property(selector = "searchTextField")
+    public native UISearchTextField getSearchTextField();
     @Property(selector = "barPosition")
     public native UIBarPosition getBarPosition();
     @Property(selector = "autocapitalizationType")
@@ -379,12 +381,17 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     @Method(selector = "initWithFrame:")
     protected native @Pointer long init(@ByVal CGRect frame);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /**
      * @since Available in iOS 3.0 and later.
      */
     @Method(selector = "setShowsCancelButton:animated:")
     public native void setShowsCancelButton(boolean showsCancelButton, boolean animated);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "setShowsScopeBar:animated:")
+    public native void setShowsScopeBar(boolean show, boolean animate);
     /**
      * @since Available in iOS 7.0 and later.
      */

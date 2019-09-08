@@ -59,7 +59,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithFrame:")
     public UITabBar(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public UITabBar(NSCoder decoder) { super(decoder); }
+    public UITabBar(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "delegate")
@@ -108,14 +108,14 @@ import org.robovm.apple.intents.*;
     public native void setUnselectedItemTintColor(UIColor v);
     /**
      * @since Available in iOS 5.0 and later.
-     * @deprecated Deprecated in iOS 8.0. Use tintColor
+     * @deprecated Deprecated in iOS 8.0.
      */
     @Deprecated
     @Property(selector = "selectedImageTintColor")
     public native UIColor getSelectedImageTintColor();
     /**
      * @since Available in iOS 5.0 and later.
-     * @deprecated Deprecated in iOS 8.0. Use tintColor
+     * @deprecated Deprecated in iOS 8.0.
      */
     @Deprecated
     @Property(selector = "setSelectedImageTintColor:")
@@ -200,6 +200,16 @@ import org.robovm.apple.intents.*;
      */
     @Property(selector = "setTranslucent:")
     public native void setTranslucent(boolean v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "standardAppearance")
+    public native UITabBarAppearance getStandardAppearance();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setStandardAppearance:")
+    public native void setStandardAppearance(UITabBarAppearance v);
     /**
      * @since Available in iOS 11.0 and later.
      */

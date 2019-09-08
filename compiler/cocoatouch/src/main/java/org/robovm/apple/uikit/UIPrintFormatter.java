@@ -70,14 +70,14 @@ import org.robovm.apple.intents.*;
     public native void setMaximumContentWidth(@MachineSizedFloat double v);
     /**
      * @since Available in iOS 4.2 and later.
-     * @deprecated Deprecated in iOS 10.0. Use perPageContentInsets instead.
+     * @deprecated Deprecated in iOS 10.0.
      */
     @Deprecated
     @Property(selector = "contentInsets")
     public native @ByVal UIEdgeInsets getContentInsets();
     /**
      * @since Available in iOS 4.2 and later.
-     * @deprecated Deprecated in iOS 10.0. Use perPageContentInsets instead.
+     * @deprecated Deprecated in iOS 10.0.
      */
     @Deprecated
     @Property(selector = "setContentInsets:")

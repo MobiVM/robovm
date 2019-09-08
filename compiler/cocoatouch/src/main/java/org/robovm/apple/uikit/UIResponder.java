@@ -73,6 +73,11 @@ import org.robovm.apple.intents.*;
     @Property(selector = "undoManager")
     public native NSUndoManager getUndoManager();
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "editingInteractionConfiguration")
+    public native UIEditingInteractionConfiguration getEditingInteractionConfiguration();
+    /**
      * @since Available in iOS 7.0 and later.
      */
     @Property(selector = "keyCommands")
@@ -122,6 +127,16 @@ import org.robovm.apple.intents.*;
      */
     @Property(selector = "setUserActivity:")
     public native void setUserActivity(NSUserActivity v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "activityItemsConfiguration")
+    public native UIActivityItemsConfigurationReading getActivityItemsConfiguration();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setActivityItemsConfiguration:")
+    public native void setActivityItemsConfiguration(UIActivityItemsConfigurationReading v);
     @Property(selector = "isAccessibilityElement")
     public native boolean isAccessibilityElement();
     @Property(selector = "setIsAccessibilityElement:")
@@ -240,6 +255,46 @@ import org.robovm.apple.intents.*;
      */
     @Property(selector = "setAccessibilityNavigationStyle:")
     public native void setAccessibilityNavigationStyle(UIAccessibilityNavigationStyle v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "accessibilityRespondsToUserInteraction")
+    public native boolean isAccessibilityRespondsToUserInteraction();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setAccessibilityRespondsToUserInteraction:")
+    public native void setAccessibilityRespondsToUserInteraction(boolean v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "accessibilityUserInputLabels")
+    public native NSArray<NSString> getAccessibilityUserInputLabels();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setAccessibilityUserInputLabels:")
+    public native void setAccessibilityUserInputLabels(NSArray<NSString> v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "accessibilityAttributedUserInputLabels")
+    public native NSArray<NSAttributedString> getAccessibilityAttributedUserInputLabels();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setAccessibilityAttributedUserInputLabels:")
+    public native void setAccessibilityAttributedUserInputLabels(NSArray<NSAttributedString> v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "accessibilityTextualContext")
+    public native String getAccessibilityTextualContext();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setAccessibilityTextualContext:")
+    public native void setAccessibilityTextualContext(String v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -310,6 +365,10 @@ import org.robovm.apple.intents.*;
      */
     @Method(selector = "targetForAction:withSender:")
     public native NSObject getActionTarget(Selector action, NSObject sender);
+    @Method(selector = "buildMenuWithBuilder:")
+    public native void buildMenu(UIMenuBuilder builder);
+    @Method(selector = "validateCommand:")
+    public native void validateCommand(UICommand command);
     /**
      * @since Available in iOS 3.2 and later.
      */

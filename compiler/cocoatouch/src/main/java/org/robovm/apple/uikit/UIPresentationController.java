@@ -110,7 +110,7 @@ import org.robovm.apple.intents.*;
     public native UIFocusItemContainer getFocusItemContainer();
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Deprecated in iOS 10.0. Use -preferredFocusEnvironments instead.
+     * @deprecated Deprecated in iOS 10.0.
      */
     @Deprecated
     @Property(selector = "preferredFocusedView")

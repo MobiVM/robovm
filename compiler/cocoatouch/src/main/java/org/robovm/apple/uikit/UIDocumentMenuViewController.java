@@ -62,7 +62,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithURL:inMode:")
     public UIDocumentMenuViewController(NSURL url, UIDocumentPickerMode mode) { super((SkipInit) null); initObject(init(url, mode)); }
     @Method(selector = "initWithCoder:")
-    public UIDocumentMenuViewController(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public UIDocumentMenuViewController(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     @Method(selector = "initWithNibName:bundle:")
     public UIDocumentMenuViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
     /*</constructors>*/
@@ -79,7 +79,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithURL:inMode:")
     protected native @Pointer long init(NSURL url, UIDocumentPickerMode mode);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     @Method(selector = "addOptionWithTitle:image:order:handler:")
     public native void addOption(String title, UIImage image, UIDocumentMenuOrder order, @Block Runnable handler);
     /*</methods>*/

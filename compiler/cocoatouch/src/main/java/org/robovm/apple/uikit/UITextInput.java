@@ -104,9 +104,9 @@ import org.robovm.apple.intents.*;
     @Method(selector = "characterRangeByExtendingPosition:inDirection:")
     UITextRange getCharacterRange(UITextPosition position, UITextLayoutDirection direction);
     @Method(selector = "baseWritingDirectionForPosition:inDirection:")
-    UITextWritingDirection getBaseWritingDirection(UITextPosition position, UITextStorageDirection direction);
+    NSWritingDirection getBaseWritingDirection(UITextPosition position, UITextStorageDirection direction);
     @Method(selector = "setBaseWritingDirection:forRange:")
-    void setBaseWritingDirection(UITextWritingDirection writingDirection, UITextRange range);
+    void setBaseWritingDirection(NSWritingDirection writingDirection, UITextRange range);
     @Method(selector = "firstRectForRange:")
     @ByVal CGRect getFirstRect(UITextRange range);
     @Method(selector = "caretRectForPosition:")
@@ -143,6 +143,14 @@ import org.robovm.apple.intents.*;
     @ByVal CGRect getDictationResultPlaceholderFrame(NSObject placeholder);
     @Method(selector = "removeDictationResultPlaceholder:willInsertResult:")
     void removeDictationResultPlaceholder(NSObject placeholder, boolean willInsertResult);
+    @Method(selector = "insertText:alternatives:style:")
+    void insertText(String text, NSArray<NSString> alternatives, UITextAlternativeStyle style);
+    @Method(selector = "setAttributedMarkedText:selectedRange:")
+    void setAttributedMarkedText(NSAttributedString markedText, @ByVal NSRange selectedRange);
+    @Method(selector = "insertTextPlaceholderWithSize:")
+    UITextPlaceholder insertTextPlaceholder(@ByVal CGSize size);
+    @Method(selector = "removeTextPlaceholder:")
+    void removeTextPlaceholder(UITextPlaceholder textPlaceholder);
     /**
      * @since Available in iOS 9.0 and later.
      */

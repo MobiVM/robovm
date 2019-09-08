@@ -350,6 +350,46 @@ import org.robovm.apple.intents.*;
      */
     @Property(selector = "setAccessibilityNavigationStyle:")
     void setAccessibilityNavigationStyle(UIAccessibilityNavigationStyle v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "accessibilityRespondsToUserInteraction")
+    boolean isAccessibilityRespondsToUserInteraction();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setAccessibilityRespondsToUserInteraction:")
+    void setAccessibilityRespondsToUserInteraction(boolean v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "accessibilityUserInputLabels")
+    NSArray<NSString> getAccessibilityUserInputLabels();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setAccessibilityUserInputLabels:")
+    void setAccessibilityUserInputLabels(NSArray<NSString> v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "accessibilityAttributedUserInputLabels")
+    NSArray<NSAttributedString> getAccessibilityAttributedUserInputLabels();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setAccessibilityAttributedUserInputLabels:")
+    void setAccessibilityAttributedUserInputLabels(NSArray<NSAttributedString> v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "accessibilityTextualContext")
+    String getAccessibilityTextualContext();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setAccessibilityTextualContext:")
+    void setAccessibilityTextualContext(String v);
     /*</properties>*/
     /*<methods>*/
     

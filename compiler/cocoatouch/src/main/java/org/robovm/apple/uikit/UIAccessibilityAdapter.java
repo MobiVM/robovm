@@ -171,6 +171,46 @@ import org.robovm.apple.intents.*;
      */
     @NotImplemented("setAccessibilityNavigationStyle:")
     public void setAccessibilityNavigationStyle(UIAccessibilityNavigationStyle v) {}
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("accessibilityRespondsToUserInteraction")
+    public boolean isAccessibilityRespondsToUserInteraction() { return false; }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("setAccessibilityRespondsToUserInteraction:")
+    public void setAccessibilityRespondsToUserInteraction(boolean v) {}
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("accessibilityUserInputLabels")
+    public NSArray<NSString> getAccessibilityUserInputLabels() { return null; }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("setAccessibilityUserInputLabels:")
+    public void setAccessibilityUserInputLabels(NSArray<NSString> v) {}
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("accessibilityAttributedUserInputLabels")
+    public NSArray<NSAttributedString> getAccessibilityAttributedUserInputLabels() { return null; }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("setAccessibilityAttributedUserInputLabels:")
+    public void setAccessibilityAttributedUserInputLabels(NSArray<NSAttributedString> v) {}
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("accessibilityTextualContext")
+    public String getAccessibilityTextualContext() { return null; }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("setAccessibilityTextualContext:")
+    public void setAccessibilityTextualContext(String v) {}
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

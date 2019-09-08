@@ -59,7 +59,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithFrame:")
     public UIToolbar(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public UIToolbar(NSCoder decoder) { super(decoder); }
+    public UIToolbar(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "barStyle")
@@ -94,6 +94,26 @@ import org.robovm.apple.intents.*;
      */
     @Property(selector = "setBarTintColor:")
     public native void setBarTintColor(UIColor v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "standardAppearance")
+    public native UIToolbarAppearance getStandardAppearance();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setStandardAppearance:")
+    public native void setStandardAppearance(UIToolbarAppearance v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "compactAppearance")
+    public native UIToolbarAppearance getCompactAppearance();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setCompactAppearance:")
+    public native void setCompactAppearance(UIToolbarAppearance v);
     /**
      * @since Available in iOS 7.0 and later.
      */

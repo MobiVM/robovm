@@ -141,6 +141,11 @@ import org.robovm.apple.intents.*;
     @GlobalValue(symbol="UIAccessibilityReduceMotionStatusDidChangeNotification", optional=true)
     public static native NSString ReduceMotionStatusDidChangeNotification();
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @GlobalValue(symbol="UIAccessibilityVideoAutoplayStatusDidChangeNotification", optional=true)
+    public static native NSString VideoAutoplayStatusDidChangeNotification();
+    /**
      * @since Available in iOS 8.0 and later.
      */
     @GlobalValue(symbol="UIAccessibilityDarkerSystemColorsStatusDidChangeNotification", optional=true)
@@ -170,6 +175,16 @@ import org.robovm.apple.intents.*;
      */
     @GlobalValue(symbol="UIAccessibilityAssistiveTouchStatusDidChangeNotification", optional=true)
     public static native NSString AssistiveTouchStatusDidChangeNotification();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @GlobalValue(symbol="UIAccessibilityShouldDifferentiateWithoutColorDidChangeNotification", optional=true)
+    public static native NSString ShouldDifferentiateWithoutColorDidChangeNotification();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @GlobalValue(symbol="UIAccessibilityOnOffSwitchLabelsDidChangeNotification", optional=true)
+    public static native NSString OnOffSwitchLabelsDidChangeNotification();
     /**
      * @since Available in iOS 10.0 and later.
      */
@@ -249,6 +264,11 @@ import org.robovm.apple.intents.*;
     @Bridge(symbol="UIAccessibilityIsReduceMotionEnabled", optional=true)
     public static native boolean isReduceMotionEnabled();
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="UIAccessibilityIsVideoAutoplayEnabled", optional=true)
+    public static native boolean isVideoAutoplayEnabled();
+    /**
      * @since Available in iOS 8.0 and later.
      */
     @Bridge(symbol="UIAccessibilityDarkerSystemColorsEnabled", optional=true)
@@ -278,6 +298,16 @@ import org.robovm.apple.intents.*;
      */
     @Bridge(symbol="UIAccessibilityIsAssistiveTouchRunning", optional=true)
     public static native boolean isAssistiveTouchRunning();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="UIAccessibilityShouldDifferentiateWithoutColor", optional=true)
+    public static native boolean shouldDifferentiateWithoutColor();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="UIAccessibilityIsOnOffSwitchLabelsEnabled", optional=true)
+    public static native boolean isOnOffSwitchLabelsEnabled();
     /**
      * @since Available in iOS 7.0 and later.
      */

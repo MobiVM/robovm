@@ -59,8 +59,18 @@ import org.robovm.apple.intents.*;
     /*<methods>*/
     @NotImplemented("prepareForPopoverPresentation:")
     public void prepareForPopoverPresentation(UIPopoverPresentationController popoverPresentationController) {}
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
     @NotImplemented("popoverPresentationControllerShouldDismissPopover:")
     public boolean shouldDismissPopover(UIPopoverPresentationController popoverPresentationController) { return false; }
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
     @NotImplemented("popoverPresentationControllerDidDismissPopover:")
     public void didDismissPopover(UIPopoverPresentationController popoverPresentationController) {}
     @NotImplemented("popoverPresentationController:willRepositionPopoverToRect:inView:")

@@ -117,14 +117,18 @@ import org.robovm.apple.intents.*;
      */
     public static final NSAttributedStringAttribute SpeechIPANotation = new NSAttributedStringAttribute("SpeechIPANotation");
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final NSAttributedStringAttribute SpeechSpellOut = new NSAttributedStringAttribute("SpeechSpellOut");
+    /**
      * @since Available in iOS 5.0 and later.
-     * @deprecated Deprecated in iOS 7.0. Use NSFontAttributeName
+     * @deprecated Deprecated in iOS 7.0.
      */
     @Deprecated
     public static final NSAttributedStringAttribute TextFont = new NSAttributedStringAttribute("TextFont");
     /**
      * @since Available in iOS 5.0 and later.
-     * @deprecated Deprecated in iOS 7.0. Use NSForegroundColorAttributeName
+     * @deprecated Deprecated in iOS 7.0.
      */
     @Deprecated
     public static final NSAttributedStringAttribute TextColor = new NSAttributedStringAttribute("TextColor");
@@ -226,7 +230,7 @@ import org.robovm.apple.intents.*;
     public static final NSAttributedStringAttribute VerticalGlyphForm = new NSAttributedStringAttribute("VerticalGlyphForm");
     /*</constants>*/
     
-    private static /*<name>*/NSAttributedStringAttribute/*</name>*/[] values = new /*<name>*/NSAttributedStringAttribute/*</name>*/[] {/*<value_list>*/SpeechPunctuation, SpeechLanguage, SpeechPitch, SpeechQueueAnnouncement, SpeechIPANotation, TextFont, TextColor, TextShadowColor, TextShadowOffset, Font, ParagraphStyle, ForegroundColor, BackgroundColor, Ligature, Kern, StrikethroughStyle, UnderlineStyle, StrokeColor, StrokeWidth, Shadow, TextEffect, Attachment, Link, BaselineOffset, UnderlineColor, StrikethroughColor, Obliqueness, Expansion, WritingDirection, VerticalGlyphForm/*</value_list>*/};
+    private static /*<name>*/NSAttributedStringAttribute/*</name>*/[] values = new /*<name>*/NSAttributedStringAttribute/*</name>*/[] {/*<value_list>*/SpeechPunctuation, SpeechLanguage, SpeechPitch, SpeechQueueAnnouncement, SpeechIPANotation, SpeechSpellOut, TextFont, TextColor, TextShadowColor, TextShadowOffset, Font, ParagraphStyle, ForegroundColor, BackgroundColor, Ligature, Kern, StrikethroughStyle, UnderlineStyle, StrokeColor, StrokeWidth, Shadow, TextEffect, Attachment, Link, BaselineOffset, UnderlineColor, StrikethroughColor, Obliqueness, Expansion, WritingDirection, VerticalGlyphForm/*</value_list>*/};
     
     /*<name>*/NSAttributedStringAttribute/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -275,15 +279,20 @@ import org.robovm.apple.intents.*;
         @GlobalValue(symbol="UIAccessibilitySpeechAttributeIPANotation", optional=true)
         public static native NSString SpeechIPANotation();
         /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="UIAccessibilitySpeechAttributeSpellOut", optional=true)
+        public static native NSString SpeechSpellOut();
+        /**
          * @since Available in iOS 5.0 and later.
-         * @deprecated Deprecated in iOS 7.0. Use NSFontAttributeName
+         * @deprecated Deprecated in iOS 7.0.
          */
         @Deprecated
         @GlobalValue(symbol="UITextAttributeFont", optional=true)
         public static native NSString TextFont();
         /**
          * @since Available in iOS 5.0 and later.
-         * @deprecated Deprecated in iOS 7.0. Use NSForegroundColorAttributeName
+         * @deprecated Deprecated in iOS 7.0.
          */
         @Deprecated
         @GlobalValue(symbol="UITextAttributeTextColor", optional=true)

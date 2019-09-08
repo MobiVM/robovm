@@ -59,7 +59,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithFrame:")
     public UISwitch(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
     @Method(selector = "initWithCoder:")
-    public UISwitch(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public UISwitch(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     /**
@@ -72,16 +72,6 @@ import org.robovm.apple.intents.*;
      */
     @Property(selector = "setOnTintColor:")
     public native void setOnTintColor(UIColor v);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
-    @Property(selector = "tintColor")
-    public native UIColor getTintColor();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
-    @Property(selector = "setTintColor:")
-    public native void setTintColor(UIColor v);
     /**
      * @since Available in iOS 6.0 and later.
      */
@@ -122,7 +112,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithFrame:")
     protected native @Pointer long init(@ByVal CGRect frame);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     @Method(selector = "setOn:animated:")
     public native void setOn(boolean on, boolean animated);
     /*</methods>*/

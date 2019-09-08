@@ -76,7 +76,7 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
     @Method(selector = "initWithNibName:bundle:")
     public UIViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super((SkipInit) null); initObject(init(nibNameOrNil, nibBundleOrNil)); }
     @Method(selector = "initWithCoder:")
-    public UIViewController(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public UIViewController(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "view")
@@ -277,6 +277,16 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
     @Property(selector = "preferredStatusBarUpdateAnimation")
     public native UIStatusBarAnimation getPreferredStatusBarUpdateAnimation();
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "overrideUserInterfaceStyle")
+    public native UIUserInterfaceStyle getOverrideUserInterfaceStyle();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setOverrideUserInterfaceStyle:")
+    public native void setOverrideUserInterfaceStyle(UIUserInterfaceStyle v);
+    /**
      * @since Available in iOS 6.0 and later.
      */
     @Property(selector = "shouldAutorotate")
@@ -401,6 +411,11 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
     @Property(selector = "setViewRespectsSystemMinimumLayoutMargins:")
     public native void setViewRespectsSystemMinimumLayoutMargins(boolean v);
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "performsActionsWhilePresentingModally")
+    public native boolean performsActionsWhilePresentingModally();
+    /**
      * @since Available in iOS 8.0 and later.
      */
     @Property(selector = "extensionContext")
@@ -415,6 +430,16 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
      */
     @Property(selector = "popoverPresentationController")
     public native UIPopoverPresentationController getPopoverPresentationController();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "isModalInPresentation")
+    public native boolean isModalInPresentation();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setModalInPresentation:")
+    public native void setModalInPresentation(boolean v);
     /**
      * @since Available in iOS 11.0 and later.
      */
@@ -437,7 +462,9 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
     public native boolean prefersHomeIndicatorAutoHidden();
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 13.0. UIViewControllerPreviewing is deprecated. Please use UIContextMenuInteraction.
      */
+    @Deprecated
     @Property(selector = "previewActionItems")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsListMarshaler.class) List<UIPreviewActionItem> getPreviewActionItems();
     @Property(selector = "navigationItem")
@@ -460,24 +487,28 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
     public native void setToolbarItems(NSArray<UIBarButtonItem> v);
     /**
      * @since Available in iOS 3.2 and later.
+     * @deprecated Deprecated in iOS 13.0.
      */
+    @Deprecated
     @Property(selector = "isModalInPopover")
     public native boolean isModalInPopover();
     /**
      * @since Available in iOS 3.2 and later.
+     * @deprecated Deprecated in iOS 13.0.
      */
+    @Deprecated
     @Property(selector = "setModalInPopover:")
     public native void setModalInPopover(boolean v);
     /**
      * @since Available in iOS 3.2 and later.
-     * @deprecated Deprecated in iOS 7.0. Use UIViewController.preferredContentSize instead.
+     * @deprecated Deprecated in iOS 7.0.
      */
     @Deprecated
     @Property(selector = "contentSizeForViewInPopover")
     public native @ByVal CGSize getContentSizeForViewInPopover();
     /**
      * @since Available in iOS 3.2 and later.
-     * @deprecated Deprecated in iOS 7.0. Use UIViewController.preferredContentSize instead.
+     * @deprecated Deprecated in iOS 7.0.
      */
     @Deprecated
     @Property(selector = "setContentSizeForViewInPopover:")
@@ -514,7 +545,7 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
     public native UIFocusItemContainer getFocusItemContainer();
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Deprecated in iOS 10.0. Use -preferredFocusEnvironments instead.
+     * @deprecated Deprecated in iOS 10.0.
      */
     @Deprecated
     @Property(selector = "preferredFocusedView")
@@ -618,7 +649,7 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
     @Method(selector = "initWithNibName:bundle:")
     protected native @Pointer long init(String nibNameOrNil, NSBundle nibBundleOrNil);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     @Method(selector = "loadView")
     public native void loadView();
     /**
@@ -644,8 +675,15 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
     @Method(selector = "prepareForSegue:sender:")
     public native void prepareForSegue(UIStoryboardSegue segue, NSObject sender);
     /**
-     * @since Available in iOS 6.0 and later.
+     * @since Available in iOS 13.0 and later.
      */
+    @Method(selector = "canPerformUnwindSegueAction:fromViewController:sender:")
+    public native boolean canPerformUnwindSegueAction(Selector action, UIViewController fromViewController, NSObject sender);
+    /**
+     * @since Available in iOS 6.0 and later.
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
     @Method(selector = "canPerformUnwindSegueAction:fromViewController:withSender:")
     public native boolean canPerformUnwind(Selector action, UIViewController fromViewController, NSObject sender);
     /**
@@ -863,12 +901,16 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
     public native void removeKeyCommand(UIKeyCommand keyCommand);
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 13.0.
      */
+    @Deprecated
     @Method(selector = "registerForPreviewingWithDelegate:sourceView:")
     public native UIViewControllerPreviewing registerForPreviewing(UIViewControllerPreviewingDelegate delegate, UIView sourceView);
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 13.0.
      */
+    @Deprecated
     @Method(selector = "unregisterForPreviewingWithContext:")
     public native void unregisterForPreviewing(UIViewControllerPreviewing previewing);
     /**

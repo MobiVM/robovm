@@ -150,6 +150,36 @@ import org.robovm.apple.intents.*;
      */
     @Property(selector = "setHidesSearchBarWhenScrolling:")
     public native void setHidesSearchBarWhenScrolling(boolean v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "standardAppearance")
+    public native UINavigationBarAppearance getStandardAppearance();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setStandardAppearance:")
+    public native void setStandardAppearance(UINavigationBarAppearance v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "compactAppearance")
+    public native UINavigationBarAppearance getCompactAppearance();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setCompactAppearance:")
+    public native void setCompactAppearance(UINavigationBarAppearance v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "scrollEdgeAppearance")
+    public native UINavigationBarAppearance getScrollEdgeAppearance();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setScrollEdgeAppearance:")
+    public native void setScrollEdgeAppearance(UINavigationBarAppearance v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

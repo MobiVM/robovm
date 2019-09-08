@@ -60,7 +60,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithFrame:")
     public UIAlertView(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
     @Method(selector = "initWithCoder:")
-    public UIAlertView(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public UIAlertView(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     
     public UIAlertView(String title, String message, UIAlertViewDelegate delegate, String cancelButtonTitle, 
@@ -115,7 +115,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithFrame:")
     protected native @Pointer long init(@ByVal CGRect frame);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     @Method(selector = "addButtonWithTitle:")
     public native @MachineSizedSInt long addButton(String title);
     @Method(selector = "buttonTitleAtIndex:")

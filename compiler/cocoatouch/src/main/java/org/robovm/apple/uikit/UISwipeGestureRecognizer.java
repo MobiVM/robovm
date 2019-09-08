@@ -58,6 +58,8 @@ import org.robovm.apple.intents.*;
     protected UISwipeGestureRecognizer(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithTarget:action:")
     public UISwipeGestureRecognizer(NSObject target, Selector action) { super(target, action); }
+    @Method(selector = "initWithCoder:")
+    public UISwipeGestureRecognizer(NSCoder coder) { super(coder); }
     /*</constructors>*/
     
     public UISwipeGestureRecognizer(OnGestureListener listener) {

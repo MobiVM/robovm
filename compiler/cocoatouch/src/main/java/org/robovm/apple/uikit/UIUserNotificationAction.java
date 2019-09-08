@@ -58,7 +58,7 @@ import org.robovm.apple.intents.*;
     protected UIUserNotificationAction(Handle h, long handle) { super(h, handle); }
     protected UIUserNotificationAction(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public UIUserNotificationAction(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public UIUserNotificationAction(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "identifier")
@@ -114,7 +114,7 @@ import org.robovm.apple.intents.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     /*</methods>*/

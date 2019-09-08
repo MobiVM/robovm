@@ -179,10 +179,35 @@ import org.robovm.apple.intents.*;
     @GlobalValue(symbol="UIMenuControllerMenuFrameDidChangeNotification", optional=true)
     public static native NSString MenuFrameDidChangeNotification();
     
+    /**
+     * @since Available in iOS 3.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use showMenuFromView:rect: or hideMenuFromView: instead.
+     */
+    @Deprecated
     @Method(selector = "setMenuVisible:animated:")
     public native void setMenuVisible(boolean menuVisible, boolean animated);
+    /**
+     * @since Available in iOS 3.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use showMenuFromView:rect: instead.
+     */
+    @Deprecated
     @Method(selector = "setTargetRect:inView:")
     public native void setTargetRect(@ByVal CGRect targetRect, UIView targetView);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "showMenuFromView:rect:")
+    public native void showMenu(UIView targetView, @ByVal CGRect targetRect);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "hideMenuFromView:")
+    public native void hideMenuFromView(UIView targetView);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "hideMenu")
+    public native void hideMenu();
     @Method(selector = "update")
     public native void update();
     /*</methods>*/

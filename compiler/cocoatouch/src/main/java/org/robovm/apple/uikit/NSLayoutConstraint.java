@@ -56,6 +56,9 @@ import org.robovm.apple.intents.*;
     public NSLayoutConstraint() {}
     protected NSLayoutConstraint(Handle h, long handle) { super(h, handle); }
     protected NSLayoutConstraint(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 6.0 and later.
+     */
     public NSLayoutConstraint(NSObject view1, NSLayoutAttribute attr1, NSLayoutRelation relation, NSObject view2, NSLayoutAttribute attr2, @MachineSizedFloat double multiplier, @MachineSizedFloat double c) { super((Handle) null, create(view1, attr1, relation, view2, attr2, multiplier, c)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
@@ -69,10 +72,10 @@ import org.robovm.apple.intents.*;
     public native void setShouldBeArchived(boolean v);
     @Property(selector = "firstItem")
     public native NSObject getFirstItem();
-    @Property(selector = "firstAttribute")
-    public native NSLayoutAttribute getFirstAttribute();
     @Property(selector = "secondItem")
     public native NSObject getSecondItem();
+    @Property(selector = "firstAttribute")
+    public native NSLayoutAttribute getFirstAttribute();
     @Property(selector = "secondAttribute")
     public native NSLayoutAttribute getSecondAttribute();
     /**
@@ -116,8 +119,14 @@ import org.robovm.apple.intents.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 6.0 and later.
+     */
     @Method(selector = "constraintsWithVisualFormat:options:metrics:views:")
     public static native NSArray<NSLayoutConstraint> createConstraints(String format, NSLayoutFormatOptions opts, @org.robovm.rt.bro.annotation.Marshaler(NSDictionary.AsStringNumberMapMarshaler.class) Map<String, Number> metrics, @org.robovm.rt.bro.annotation.Marshaler(NSDictionary.AsStringMapMarshaler.class) Map<String, NSObjectProtocol> views);
+    /**
+     * @since Available in iOS 6.0 and later.
+     */
     @Method(selector = "constraintWithItem:attribute:relatedBy:toItem:attribute:multiplier:constant:")
     protected static native @Pointer long create(NSObject view1, NSLayoutAttribute attr1, NSLayoutRelation relation, NSObject view2, NSLayoutAttribute attr2, @MachineSizedFloat double multiplier, @MachineSizedFloat double c);
     /**

@@ -61,7 +61,7 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     @Method(selector = "initWithFrame:")
     public UINavigationBar(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public UINavigationBar(NSCoder decoder) { super(decoder); }
+    public UINavigationBar(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /**
      * @since Available in iOS 5.0 and later.
@@ -222,6 +222,36 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
      */
     @Property(selector = "setBackIndicatorTransitionMaskImage:")
     public native void setBackIndicatorTransitionMaskImage(UIImage v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "standardAppearance")
+    public native UINavigationBarAppearance getStandardAppearance();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setStandardAppearance:")
+    public native void setStandardAppearance(UINavigationBarAppearance v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "compactAppearance")
+    public native UINavigationBarAppearance getCompactAppearance();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setCompactAppearance:")
+    public native void setCompactAppearance(UINavigationBarAppearance v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "scrollEdgeAppearance")
+    public native UINavigationBarAppearance getScrollEdgeAppearance();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setScrollEdgeAppearance:")
+    public native void setScrollEdgeAppearance(UINavigationBarAppearance v);
     @Property(selector = "barPosition")
     public native UIBarPosition getBarPosition();
     /*</properties>*/

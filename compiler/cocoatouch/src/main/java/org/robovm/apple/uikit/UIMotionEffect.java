@@ -57,7 +57,7 @@ import org.robovm.apple.intents.*;
     protected UIMotionEffect(Handle h, long handle) { super(h, handle); }
     protected UIMotionEffect(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public UIMotionEffect(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public UIMotionEffect(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     
@@ -65,7 +65,7 @@ import org.robovm.apple.intents.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
+    protected native @Pointer long init(NSCoder coder);
     @Method(selector = "keyPathsAndRelativeValuesForViewerOffset:")
     public native UIMotionEffectViewerOffsetValues getKeyPathsAndRelativeValues(@ByVal UIOffset viewerOffset);
     @Method(selector = "encodeWithCoder:")

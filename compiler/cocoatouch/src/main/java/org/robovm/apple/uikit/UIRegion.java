@@ -61,7 +61,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithSize:")
     public UIRegion(@ByVal CGSize size) { super((SkipInit) null); initObject(init(size)); }
     @Method(selector = "initWithCoder:")
-    public UIRegion(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public UIRegion(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "infiniteRegion")
@@ -86,6 +86,6 @@ import org.robovm.apple.intents.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

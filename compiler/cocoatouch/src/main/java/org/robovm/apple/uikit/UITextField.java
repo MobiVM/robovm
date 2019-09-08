@@ -87,7 +87,7 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     @Method(selector = "initWithFrame:")
     public UITextField(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public UITextField(NSCoder decoder) { super(decoder); }
+    public UITextField(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /**
      * @since Available in iOS 7.0 and later.
@@ -550,9 +550,9 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     @Method(selector = "characterRangeByExtendingPosition:inDirection:")
     public native UITextRange getCharacterRange(UITextPosition position, UITextLayoutDirection direction);
     @Method(selector = "baseWritingDirectionForPosition:inDirection:")
-    public native UITextWritingDirection getBaseWritingDirection(UITextPosition position, UITextStorageDirection direction);
+    public native NSWritingDirection getBaseWritingDirection(UITextPosition position, UITextStorageDirection direction);
     @Method(selector = "setBaseWritingDirection:forRange:")
-    public native void setBaseWritingDirection(UITextWritingDirection writingDirection, UITextRange range);
+    public native void setBaseWritingDirection(NSWritingDirection writingDirection, UITextRange range);
     @Method(selector = "firstRectForRange:")
     public native @ByVal CGRect getFirstRect(UITextRange range);
     @Method(selector = "caretRectForPosition:")
@@ -589,6 +589,14 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     public native @ByVal CGRect getDictationResultPlaceholderFrame(NSObject placeholder);
     @Method(selector = "removeDictationResultPlaceholder:willInsertResult:")
     public native void removeDictationResultPlaceholder(NSObject placeholder, boolean willInsertResult);
+    @Method(selector = "insertText:alternatives:style:")
+    public native void insertText(String text, NSArray<NSString> alternatives, UITextAlternativeStyle style);
+    @Method(selector = "setAttributedMarkedText:selectedRange:")
+    public native void setAttributedMarkedText(NSAttributedString markedText, @ByVal NSRange selectedRange);
+    @Method(selector = "insertTextPlaceholderWithSize:")
+    public native UITextPlaceholder insertTextPlaceholder(@ByVal CGSize size);
+    @Method(selector = "removeTextPlaceholder:")
+    public native void removeTextPlaceholder(UITextPlaceholder textPlaceholder);
     /**
      * @since Available in iOS 9.0 and later.
      */

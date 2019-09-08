@@ -57,7 +57,7 @@ import org.robovm.apple.intents.*;
     protected UITabBarItem(Handle h, long handle) { super(h, handle); }
     protected UITabBarItem(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public UITabBarItem(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public UITabBarItem(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     @Method(selector = "initWithTitle:image:tag:")
     public UITabBarItem(String title, UIImage image, @MachineSizedSInt long tag) { super((SkipInit) null); initObject(init(title, image, tag)); }
     /**
@@ -104,6 +104,16 @@ import org.robovm.apple.intents.*;
     @Property(selector = "setBadgeColor:")
     public native void setBadgeColor(UIColor v);
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "standardAppearance")
+    public native UITabBarAppearance getStandardAppearance();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setStandardAppearance:")
+    public native void setStandardAppearance(UITabBarAppearance v);
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @Property(selector = "isSpringLoaded")
@@ -117,7 +127,7 @@ import org.robovm.apple.intents.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     @Method(selector = "initWithTitle:image:tag:")
     protected native @Pointer long init(String title, UIImage image, @MachineSizedSInt long tag);
     /**

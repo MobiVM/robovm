@@ -59,7 +59,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithFrame:")
     public UISlider(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public UISlider(NSCoder decoder) { super(decoder); }
+    public UISlider(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "value")

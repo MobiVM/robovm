@@ -68,5 +68,10 @@ import org.robovm.apple.intents.*;
     protected native @Pointer long init(UIImpactFeedbackStyle style);
     @Method(selector = "impactOccurred")
     public native void impactOccurred();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "impactOccurredWithIntensity:")
+    public native void impactOccurred(@MachineSizedFloat double intensity);
     /*</methods>*/
 }

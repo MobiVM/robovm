@@ -64,9 +64,9 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithRootViewController:")
     public UINavigationController(UIViewController rootViewController) { super((SkipInit) null); initObject(init(rootViewController)); }
     @Method(selector = "initWithNibName:bundle:")
-    public UINavigationController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
+    public UINavigationController(String nibNameOrNil, NSBundle nibBundleOrNil) { super((SkipInit) null); initObject(init(nibNameOrNil, nibBundleOrNil)); }
     @Method(selector = "initWithCoder:")
-    public UINavigationController(NSCoder decoder) { super(decoder); }
+    public UINavigationController(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "topViewController")
@@ -170,6 +170,10 @@ import org.robovm.apple.intents.*;
     protected native @Pointer long init(Class<? extends UINavigationBar> navigationBarClass, Class<? extends UIToolbar> toolbarClass);
     @Method(selector = "initWithRootViewController:")
     protected native @Pointer long init(UIViewController rootViewController);
+    @Method(selector = "initWithNibName:bundle:")
+    protected native @Pointer long init(String nibNameOrNil, NSBundle nibBundleOrNil);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     @Method(selector = "pushViewController:animated:")
     public native void pushViewController(UIViewController viewController, boolean animated);
     @Method(selector = "popViewControllerAnimated:")

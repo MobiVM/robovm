@@ -58,6 +58,8 @@ import org.robovm.apple.intents.*;
     protected UIPanGestureRecognizer(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithTarget:action:")
     public UIPanGestureRecognizer(NSObject target, Selector action) { super(target, action); }
+    @Method(selector = "initWithCoder:")
+    public UIPanGestureRecognizer(NSCoder coder) { super(coder); }
     /*</constructors>*/
     
     public UIPanGestureRecognizer(OnGestureListener listener) {

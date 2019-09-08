@@ -60,7 +60,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithFrame:")
     public UIButton(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public UIButton(NSCoder decoder) { super(decoder); }
+    public UIButton(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "contentEdgeInsets")
@@ -114,6 +114,11 @@ import org.robovm.apple.intents.*;
     @Property(selector = "currentBackgroundImage")
     public native UIImage getCurrentBackgroundImage();
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "currentPreferredSymbolConfiguration")
+    public native UIImageSymbolConfiguration getCurrentPreferredSymbolConfiguration();
+    /**
      * @since Available in iOS 6.0 and later.
      */
     @Property(selector = "currentAttributedTitle")
@@ -156,6 +161,11 @@ import org.robovm.apple.intents.*;
     @Method(selector = "setBackgroundImage:forState:")
     public native void setBackgroundImage(UIImage image, UIControlState state);
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "setPreferredSymbolConfiguration:forImageInState:")
+    public native void setPreferredSymbolConfiguration(UIImageSymbolConfiguration configuration, UIControlState state);
+    /**
      * @since Available in iOS 6.0 and later.
      */
     @Method(selector = "setAttributedTitle:forState:")
@@ -171,6 +181,11 @@ import org.robovm.apple.intents.*;
     @Method(selector = "backgroundImageForState:")
     public native UIImage getBackgroundImage(UIControlState state);
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "preferredSymbolConfigurationForImageInState:")
+    public native UIImageSymbolConfiguration preferredSymbolConfigurationForImageInState(UIControlState state);
+    /**
      * @since Available in iOS 6.0 and later.
      */
     @Method(selector = "attributedTitleForState:")
@@ -185,5 +200,10 @@ import org.robovm.apple.intents.*;
     public native @ByVal CGRect getImageRect(@ByVal CGRect contentRect);
     @Method(selector = "buttonWithType:")
     protected static native @Pointer long create0(UIButtonType buttonType);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "systemButtonWithImage:target:action:")
+    public static native UIButton getSystemButtonWithImage(UIImage image, NSObject target, Selector action);
     /*</methods>*/
 }

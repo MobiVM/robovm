@@ -47,7 +47,7 @@ import org.robovm.apple.intents.*;
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIView/*</name>*/ 
     extends /*<extends>*/UIResponder/*</extends>*/ 
-    /*<implements>*/implements NSCoding, UIAppearanceContainer, UIDynamicItem, UITraitEnvironment, UICoordinateSpace, UIFocusItem, UIFocusItemContainer, CALayerDelegate, UIAccessibilityIdentification/*</implements>*/ {
+    /*<implements>*/implements NSCoding, UIAppearanceContainer, UIDynamicItem, UITraitEnvironment, UICoordinateSpace, UIFocusItem, UIFocusItemContainer, CALayerDelegate, UIAccessibilityIdentification, UILargeContentViewerItem/*</implements>*/ {
 
     /*<ptr>*/public static class UIViewPtr extends Ptr<UIView, UIViewPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(UIView.class); }/*</bind>*/
@@ -60,7 +60,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithFrame:")
     public UIView(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
     @Method(selector = "initWithCoder:")
-    public UIView(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public UIView(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @WeaklyLinked
@@ -118,6 +118,16 @@ import org.robovm.apple.intents.*;
     public native @ByVal CGAffineTransform getTransform();
     @Property(selector = "setTransform:")
     public native void setTransform(@ByVal CGAffineTransform v);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "transform3D")
+    public native @ByVal CATransform3D getTransform3D();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "setTransform3D:")
+    public native void setTransform3D(@ByVal CATransform3D v);
     /**
      * @since Available in iOS 4.0 and later.
      */
@@ -416,6 +426,16 @@ import org.robovm.apple.intents.*;
     @Property(selector = "setRestorationIdentifier:")
     public native void setRestorationIdentifier(String v);
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "overrideUserInterfaceStyle")
+    public native UIUserInterfaceStyle getOverrideUserInterfaceStyle();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setOverrideUserInterfaceStyle:")
+    public native void setOverrideUserInterfaceStyle(UIUserInterfaceStyle v);
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @Property(selector = "accessibilityIgnoresInvertColors")
@@ -435,6 +455,56 @@ import org.robovm.apple.intents.*;
      */
     @Property(selector = "setInteractions:")
     public native void setInteractions(NSArray<?> v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "showsLargeContentViewer")
+    public native boolean showsLargeContentViewer();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setShowsLargeContentViewer:")
+    public native void setShowsLargeContentViewer(boolean v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "largeContentTitle")
+    public native String getLargeContentTitle();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setLargeContentTitle:")
+    public native void setLargeContentTitle(String v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "largeContentImage")
+    public native UIImage getLargeContentImage();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setLargeContentImage:")
+    public native void setLargeContentImage(UIImage v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "scalesLargeContentImage")
+    public native boolean isScalesLargeContentImage();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setScalesLargeContentImage:")
+    public native void setScalesLargeContentImage(boolean v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "largeContentImageInsets")
+    public native @ByVal UIEdgeInsets getLargeContentImageInsets();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setLargeContentImageInsets:")
+    public native void setLargeContentImageInsets(@ByVal UIEdgeInsets v);
     /**
      * @since Available in iOS 9.0 and later.
      */
@@ -464,7 +534,7 @@ import org.robovm.apple.intents.*;
     public native UIFocusItemContainer getFocusItemContainer();
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Deprecated in iOS 10.0. Use -preferredFocusEnvironments instead.
+     * @deprecated Deprecated in iOS 10.0.
      */
     @Deprecated
     @Property(selector = "preferredFocusedView")
@@ -493,7 +563,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithFrame:")
     protected native @Pointer long init(@ByVal CGRect frame);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /**
      * @since Available in iOS 9.0 and later.
      */
@@ -579,32 +649,6 @@ import org.robovm.apple.intents.*;
      */
     @Method(selector = "tintColorDidChange")
     public native void tintColorDidChange();
-    @Method(selector = "beginAnimations:context:")
-    public static native void beginAnimations(String animationID, VoidPtr context);
-    @Method(selector = "commitAnimations")
-    public static native void commitAnimations();
-    @Method(selector = "setAnimationDelegate:")
-    public static native void setAnimationDelegate(NSObject delegate);
-    @Method(selector = "setAnimationWillStartSelector:")
-    public static native void setAnimationWillStartSelector(Selector selector);
-    @Method(selector = "setAnimationDidStopSelector:")
-    public static native void setAnimationDidStopSelector(Selector selector);
-    @Method(selector = "setAnimationDuration:")
-    public static native void setAnimationDurationInSeconds(double duration);
-    @Method(selector = "setAnimationDelay:")
-    public static native void setAnimationDelay(double delay);
-    @Method(selector = "setAnimationStartDate:")
-    public static native void setAnimationStartDate(NSDate startDate);
-    @Method(selector = "setAnimationCurve:")
-    public static native void setAnimationCurve(UIViewAnimationCurve curve);
-    @Method(selector = "setAnimationRepeatCount:")
-    public static native void setAnimationRepeatCount(float repeatCount);
-    @Method(selector = "setAnimationRepeatAutoreverses:")
-    public static native void setAnimationRepeatAutoreverses(boolean repeatAutoreverses);
-    @Method(selector = "setAnimationBeginsFromCurrentState:")
-    public static native void setAnimationBeginsFromCurrentState(boolean fromCurrentState);
-    @Method(selector = "setAnimationTransition:forView:cache:")
-    public static native void setAnimationTransition(UIViewAnimationTransition transition, UIView view, boolean cache);
     @Method(selector = "setAnimationsEnabled:")
     public static native void setAnimationsEnabled(boolean enabled);
     /**
@@ -647,6 +691,11 @@ import org.robovm.apple.intents.*;
      */
     @Method(selector = "performSystemAnimation:onViews:options:animations:completion:")
     public static native void performSystemAnimation(UISystemAnimation animation, NSArray<UIView> views, UIViewAnimationOptions options, @Block Runnable parallelAnimations, @Block VoidBooleanBlock completion);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "modifyAnimationsWithRepeatCount:autoreverses:animations:")
+    public static native void modifyAnimations(@MachineSizedFloat double count, boolean autoreverses, @Block Runnable animations);
     /**
      * @since Available in iOS 7.0 and later.
      */
@@ -820,6 +869,97 @@ import org.robovm.apple.intents.*;
     @Method(selector = "drawViewHierarchyInRect:afterScreenUpdates:")
     public native boolean drawViewHierarchy(@ByVal CGRect rect, boolean afterUpdates);
     /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use the block-based animation API instead
+     */
+    @Deprecated
+    @Method(selector = "beginAnimations:context:")
+    public static native void beginAnimations(String animationID, VoidPtr context);
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use the block-based animation API instead
+     */
+    @Deprecated
+    @Method(selector = "commitAnimations")
+    public static native void commitAnimations();
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use the block-based animation API instead
+     */
+    @Deprecated
+    @Method(selector = "setAnimationDelegate:")
+    public static native void setAnimationDelegate(NSObject delegate);
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use the block-based animation API instead
+     */
+    @Deprecated
+    @Method(selector = "setAnimationWillStartSelector:")
+    public static native void setAnimationWillStartSelector(Selector selector);
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use the block-based animation API instead
+     */
+    @Deprecated
+    @Method(selector = "setAnimationDidStopSelector:")
+    public static native void setAnimationDidStopSelector(Selector selector);
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use the block-based animation API instead
+     */
+    @Deprecated
+    @Method(selector = "setAnimationDuration:")
+    public static native void setAnimationDurationInSeconds(double duration);
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use the block-based animation API instead
+     */
+    @Deprecated
+    @Method(selector = "setAnimationDelay:")
+    public static native void setAnimationDelay(double delay);
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use the block-based animation API instead
+     */
+    @Deprecated
+    @Method(selector = "setAnimationStartDate:")
+    public static native void setAnimationStartDate(NSDate startDate);
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use the block-based animation API instead
+     */
+    @Deprecated
+    @Method(selector = "setAnimationCurve:")
+    public static native void setAnimationCurve(UIViewAnimationCurve curve);
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use the block-based animation API instead
+     */
+    @Deprecated
+    @Method(selector = "setAnimationRepeatCount:")
+    public static native void setAnimationRepeatCount(float repeatCount);
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use the block-based animation API instead
+     */
+    @Deprecated
+    @Method(selector = "setAnimationRepeatAutoreverses:")
+    public static native void setAnimationRepeatAutoreverses(boolean repeatAutoreverses);
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use the block-based animation API instead
+     */
+    @Deprecated
+    @Method(selector = "setAnimationBeginsFromCurrentState:")
+    public static native void setAnimationBeginsFromCurrentState(boolean fromCurrentState);
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use the block-based animation API instead
+     */
+    @Deprecated
+    @Method(selector = "setAnimationTransition:forView:cache:")
+    public static native void setAnimationTransition(UIViewAnimationTransition transition, UIView view, boolean cache);
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "addInteraction:")
@@ -862,6 +1002,9 @@ import org.robovm.apple.intents.*;
      */
     @Method(selector = "convertRect:fromCoordinateSpace:")
     public native @ByVal CGRect convertRectFromCoordinateSpace(@ByVal CGRect rect, UICoordinateSpace coordinateSpace);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
     @Method(selector = "didHintFocusMovement:")
     public native void didHintFocusMovement(UIFocusMovementHint hint);
     @Method(selector = "setNeedsFocusUpdate")

@@ -59,7 +59,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithFrame:")
     public UILabel(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public UILabel(NSCoder decoder) { super(decoder); }
+    public UILabel(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "text")

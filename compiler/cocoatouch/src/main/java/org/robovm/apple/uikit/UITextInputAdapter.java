@@ -107,9 +107,9 @@ import org.robovm.apple.intents.*;
     @NotImplemented("characterRangeByExtendingPosition:inDirection:")
     public UITextRange getCharacterRange(UITextPosition position, UITextLayoutDirection direction) { return null; }
     @NotImplemented("baseWritingDirectionForPosition:inDirection:")
-    public UITextWritingDirection getBaseWritingDirection(UITextPosition position, UITextStorageDirection direction) { return null; }
+    public NSWritingDirection getBaseWritingDirection(UITextPosition position, UITextStorageDirection direction) { return null; }
     @NotImplemented("setBaseWritingDirection:forRange:")
-    public void setBaseWritingDirection(UITextWritingDirection writingDirection, UITextRange range) {}
+    public void setBaseWritingDirection(NSWritingDirection writingDirection, UITextRange range) {}
     @NotImplemented("firstRectForRange:")
     public @ByVal CGRect getFirstRect(UITextRange range) { return null; }
     @NotImplemented("caretRectForPosition:")
@@ -146,6 +146,14 @@ import org.robovm.apple.intents.*;
     public @ByVal CGRect getDictationResultPlaceholderFrame(NSObject placeholder) { return null; }
     @NotImplemented("removeDictationResultPlaceholder:willInsertResult:")
     public void removeDictationResultPlaceholder(NSObject placeholder, boolean willInsertResult) {}
+    @NotImplemented("insertText:alternatives:style:")
+    public void insertText(String text, NSArray<NSString> alternatives, UITextAlternativeStyle style) {}
+    @NotImplemented("setAttributedMarkedText:selectedRange:")
+    public void setAttributedMarkedText(NSAttributedString markedText, @ByVal NSRange selectedRange) {}
+    @NotImplemented("insertTextPlaceholderWithSize:")
+    public UITextPlaceholder insertTextPlaceholder(@ByVal CGSize size) { return null; }
+    @NotImplemented("removeTextPlaceholder:")
+    public void removeTextPlaceholder(UITextPlaceholder textPlaceholder) {}
     /**
      * @since Available in iOS 9.0 and later.
      */

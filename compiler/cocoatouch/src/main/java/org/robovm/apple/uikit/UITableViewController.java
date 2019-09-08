@@ -61,7 +61,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithNibName:bundle:")
     public UITableViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super((SkipInit) null); initObject(init(nibNameOrNil, nibBundleOrNil)); }
     @Method(selector = "initWithCoder:")
-    public UITableViewController(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public UITableViewController(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "tableView")
@@ -96,7 +96,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithNibName:bundle:")
     protected native @Pointer long init(String nibNameOrNil, NSBundle nibBundleOrNil);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     @Method(selector = "tableView:willDisplayCell:forRowAtIndexPath:")
     public native void willDisplayCell(UITableView tableView, UITableViewCell cell, NSIndexPath indexPath);
     /**
@@ -189,7 +189,9 @@ import org.robovm.apple.intents.*;
     public native String getTitleForDeleteConfirmationButton(UITableView tableView, NSIndexPath indexPath);
     /**
      * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 13.0.
      */
+    @Deprecated
     @Method(selector = "tableView:editActionsForRowAtIndexPath:")
     public native NSArray<UITableViewRowAction> getEditActionsForRow(UITableView tableView, NSIndexPath indexPath);
     /**
@@ -214,17 +216,23 @@ import org.robovm.apple.intents.*;
     public native @MachineSizedSInt long getIndentationLevelForRow(UITableView tableView, NSIndexPath indexPath);
     /**
      * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 13.0.
      */
+    @Deprecated
     @Method(selector = "tableView:shouldShowMenuForRowAtIndexPath:")
     public native boolean shouldShowMenuForRow(UITableView tableView, NSIndexPath indexPath);
     /**
      * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 13.0.
      */
+    @Deprecated
     @Method(selector = "tableView:canPerformAction:forRowAtIndexPath:withSender:")
     public native boolean canPerformAction(UITableView tableView, Selector action, NSIndexPath indexPath, NSObject sender);
     /**
      * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 13.0.
      */
+    @Deprecated
     @Method(selector = "tableView:performAction:forRowAtIndexPath:withSender:")
     public native void performActionForRow(UITableView tableView, Selector action, NSIndexPath indexPath, NSObject sender);
     /**
@@ -252,6 +260,46 @@ import org.robovm.apple.intents.*;
      */
     @Method(selector = "tableView:shouldSpringLoadRowAtIndexPath:withContext:")
     public native boolean shouldSpringLoadRow(UITableView tableView, NSIndexPath indexPath, UISpringLoadedInteractionContext context);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "tableView:shouldBeginMultipleSelectionInteractionAtIndexPath:")
+    public native boolean shouldBeginMultipleSelectionInteraction(UITableView tableView, NSIndexPath indexPath);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "tableView:didBeginMultipleSelectionInteractionAtIndexPath:")
+    public native void didBeginMultipleSelectionInteraction(UITableView tableView, NSIndexPath indexPath);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "tableViewDidEndMultipleSelectionInteraction:")
+    public native void tableViewDidEndMultipleSelectionInteraction(UITableView tableView);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "tableView:contextMenuConfigurationForRowAtIndexPath:point:")
+    public native UIContextMenuConfiguration getContextMenuConfiguration(UITableView tableView, NSIndexPath indexPath, @ByVal CGPoint point);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "tableView:previewForHighlightingContextMenuWithConfiguration:")
+    public native UITargetedPreview getPreviewForHighlightingContextMenu(UITableView tableView, UIContextMenuConfiguration configuration);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "tableView:previewForDismissingContextMenuWithConfiguration:")
+    public native UITargetedPreview getPreviewForDismissingContextMenu(UITableView tableView, UIContextMenuConfiguration configuration);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "tableView:willPerformPreviewActionForMenuWithConfiguration:animator:")
+    public native void willPerformPreviewAction(UITableView tableView, UIContextMenuConfiguration configuration, UIContextMenuInteractionCommitAnimating animator);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "tableView:willCommitMenuWithAnimator:")
+    public native void willCommitMenu(UITableView tableView, UIContextMenuInteractionCommitAnimating animator);
     @Method(selector = "scrollViewDidScroll:")
     public native void didScroll(UIScrollView scrollView);
     /**

@@ -59,7 +59,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithNibName:bundle:")
     public UISplitViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
     @Method(selector = "initWithCoder:")
-    public UISplitViewController(NSCoder decoder) { super(decoder); }
+    public UISplitViewController(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "viewControllers")
@@ -150,6 +150,16 @@ import org.robovm.apple.intents.*;
      */
     @Property(selector = "setPrimaryEdge:")
     public native void setPrimaryEdge(UISplitViewControllerPrimaryEdge v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "primaryBackgroundStyle")
+    public native UISplitViewControllerBackgroundStyle getPrimaryBackgroundStyle();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setPrimaryBackgroundStyle:")
+    public native void setPrimaryBackgroundStyle(UISplitViewControllerBackgroundStyle v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

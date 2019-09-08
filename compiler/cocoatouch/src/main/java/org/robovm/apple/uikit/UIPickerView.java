@@ -59,7 +59,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithFrame:")
     public UIPickerView(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public UIPickerView(NSCoder decoder) { super(decoder); }
+    public UIPickerView(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "dataSource")
@@ -70,8 +70,18 @@ import org.robovm.apple.intents.*;
     public native UIPickerViewDelegate getDelegate();
     @Property(selector = "setDelegate:", strongRef = true)
     public native void setDelegate(UIPickerViewDelegate v);
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 13.0. This property has no effect on iOS 7 and later.
+     */
+    @Deprecated
     @Property(selector = "showsSelectionIndicator")
     public native boolean showsSelectionIndicator();
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 13.0. This property has no effect on iOS 7 and later.
+     */
+    @Deprecated
     @Property(selector = "setShowsSelectionIndicator:")
     public native void setShowsSelectionIndicator(boolean v);
     @Property(selector = "numberOfComponents")

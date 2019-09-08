@@ -105,14 +105,14 @@ import org.robovm.apple.intents.*;
     public void willResignActive(UIApplication application) {}
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0. Please use application:openURL:options:
+     * @deprecated Deprecated in iOS 9.0.
      */
     @Deprecated
     @NotImplemented("application:handleOpenURL:")
     public boolean handleOpenURL(UIApplication application, NSURL url) { return false; }
     /**
      * @since Available in iOS 4.2 and later.
-     * @deprecated Deprecated in iOS 9.0. Please use application:openURL:options:
+     * @deprecated Deprecated in iOS 9.0.
      */
     @Deprecated
     @NotImplemented("application:openURL:sourceApplication:annotation:")
@@ -126,12 +126,32 @@ import org.robovm.apple.intents.*;
     public void willTerminate(UIApplication application) {}
     @NotImplemented("applicationSignificantTimeChange:")
     public void significantTimeChange(UIApplication application) {}
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use viewWillTransitionToSize:withTransitionCoordinator: instead.
+     */
+    @Deprecated
     @NotImplemented("application:willChangeStatusBarOrientation:duration:")
     public void willChangeStatusBarOrientation(UIApplication application, UIInterfaceOrientation newStatusBarOrientation, double duration) {}
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use viewWillTransitionToSize:withTransitionCoordinator: instead.
+     */
+    @Deprecated
     @NotImplemented("application:didChangeStatusBarOrientation:")
     public void didChangStatusBarOrientation(UIApplication application, UIInterfaceOrientation oldStatusBarOrientation) {}
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use viewWillTransitionToSize:withTransitionCoordinator: instead.
+     */
+    @Deprecated
     @NotImplemented("application:willChangeStatusBarFrame:")
     public void willChangeStatusBarFrame(UIApplication application, @ByVal CGRect newStatusBarFrame) {}
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use viewWillTransitionToSize:withTransitionCoordinator: instead.
+     */
+    @Deprecated
     @NotImplemented("application:didChangeStatusBarFrame:")
     public void didChangStatusBarFrame(UIApplication application, @ByVal CGRect oldStatusBarFrame) {}
     /**
@@ -200,7 +220,9 @@ import org.robovm.apple.intents.*;
     public void didReceiveRemoteNotification(UIApplication application, UIRemoteNotification userInfo, @Block VoidBlock1<UIBackgroundFetchResult> completionHandler) {}
     /**
      * @since Available in iOS 7.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use a BGAppRefreshTask in the BackgroundTasks framework instead
      */
+    @Deprecated
     @NotImplemented("application:performFetchWithCompletionHandler:")
     public void performFetch(UIApplication application, @Block VoidBlock1<UIBackgroundFetchResult> completionHandler) {}
     /**
@@ -308,5 +330,15 @@ import org.robovm.apple.intents.*;
      */
     @NotImplemented("application:userDidAcceptCloudKitShareWithMetadata:")
     public void didAcceptCloudKitShare(UIApplication application, CKShareMetadata cloudKitShareMetadata) {}
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("application:configurationForConnectingSceneSession:options:")
+    public UISceneConfiguration getConfigurationForConnectingSceneSession(UIApplication application, UISceneSession connectingSceneSession, UISceneConnectionOptions options) { return null; }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("application:didDiscardSceneSessions:")
+    public void didDiscardSceneSessions(UIApplication application, NSSet<UISceneSession> sceneSessions) {}
     /*</methods>*/
 }

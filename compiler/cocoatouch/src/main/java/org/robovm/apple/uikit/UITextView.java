@@ -90,7 +90,7 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     @Method(selector = "initWithFrame:textContainer:")
     public UITextView(@ByVal CGRect frame, NSTextContainer textContainer) { super((SkipInit) null); initObject(init(frame, textContainer)); }
     @Method(selector = "initWithCoder:")
-    public UITextView(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public UITextView(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     @Method(selector = "initWithFrame:")
     public UITextView(@ByVal CGRect frame) { super(frame); }
     /*</constructors>*/
@@ -345,6 +345,16 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
      */
     @Property(selector = "setLinkTextAttributes:")
     public native void setLinkTextAttributesDictionary(NSDictionary<NSString, ?> v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "usesStandardTextScaling")
+    public native boolean usesStandardTextScaling();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setUsesStandardTextScaling:")
+    public native void setUsesStandardTextScaling(boolean v);
     @Property(selector = "selectedTextRange")
     public native UITextRange getSelectedTextRange();
     @Property(selector = "setSelectedTextRange:")
@@ -513,7 +523,7 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     @Method(selector = "initWithFrame:textContainer:")
     protected native @Pointer long init(@ByVal CGRect frame, NSTextContainer textContainer);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     @Method(selector = "textInRange:")
     public native String getText(UITextRange range);
     @Method(selector = "replaceRange:withText:")
@@ -537,9 +547,9 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     @Method(selector = "characterRangeByExtendingPosition:inDirection:")
     public native UITextRange getCharacterRange(UITextPosition position, UITextLayoutDirection direction);
     @Method(selector = "baseWritingDirectionForPosition:inDirection:")
-    public native UITextWritingDirection getBaseWritingDirection(UITextPosition position, UITextStorageDirection direction);
+    public native NSWritingDirection getBaseWritingDirection(UITextPosition position, UITextStorageDirection direction);
     @Method(selector = "setBaseWritingDirection:forRange:")
-    public native void setBaseWritingDirection(UITextWritingDirection writingDirection, UITextRange range);
+    public native void setBaseWritingDirection(NSWritingDirection writingDirection, UITextRange range);
     @Method(selector = "firstRectForRange:")
     public native @ByVal CGRect getFirstRect(UITextRange range);
     @Method(selector = "caretRectForPosition:")
@@ -576,6 +586,14 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     public native @ByVal CGRect getDictationResultPlaceholderFrame(NSObject placeholder);
     @Method(selector = "removeDictationResultPlaceholder:willInsertResult:")
     public native void removeDictationResultPlaceholder(NSObject placeholder, boolean willInsertResult);
+    @Method(selector = "insertText:alternatives:style:")
+    public native void insertText(String text, NSArray<NSString> alternatives, UITextAlternativeStyle style);
+    @Method(selector = "setAttributedMarkedText:selectedRange:")
+    public native void setAttributedMarkedText(NSAttributedString markedText, @ByVal NSRange selectedRange);
+    @Method(selector = "insertTextPlaceholderWithSize:")
+    public native UITextPlaceholder insertTextPlaceholder(@ByVal CGSize size);
+    @Method(selector = "removeTextPlaceholder:")
+    public native void removeTextPlaceholder(UITextPlaceholder textPlaceholder);
     /**
      * @since Available in iOS 9.0 and later.
      */

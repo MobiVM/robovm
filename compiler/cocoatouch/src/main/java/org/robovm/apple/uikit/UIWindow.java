@@ -144,12 +144,31 @@ import org.robovm.apple.intents.*;
     public UIWindow() {}
     protected UIWindow(Handle h, long handle) { super(h, handle); }
     protected UIWindow(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "initWithWindowScene:")
+    public UIWindow(UIWindowScene windowScene) { super((SkipInit) null); initObject(init(windowScene)); }
     @Method(selector = "initWithFrame:")
     public UIWindow(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public UIWindow(NSCoder decoder) { super(decoder); }
+    public UIWindow(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "windowScene")
+    public native UIWindowScene getWindowScene();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setWindowScene:", strongRef = true)
+    public native void setWindowScene(UIWindowScene v);
+    @Property(selector = "canResizeToFitContent")
+    public native boolean canResizeToFitContent();
+    @Property(selector = "setCanResizeToFitContent:")
+    public native void setCanResizeToFitContent(boolean v);
     /**
      * @since Available in iOS 3.2 and later.
      */
@@ -206,6 +225,11 @@ import org.robovm.apple.intents.*;
     @GlobalValue(symbol="UIKeyboardDidChangeFrameNotification", optional=true)
     public static native NSString KeyboardDidChangeFrameNotification();
     
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "initWithWindowScene:")
+    protected native @Pointer long init(UIWindowScene windowScene);
     @Method(selector = "becomeKeyWindow")
     public native void becomeKeyWindow();
     @Method(selector = "resignKeyWindow")

@@ -65,7 +65,7 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     @Method(selector = "initWithFrame:")
     public UISegmentedControl(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public UISegmentedControl(NSCoder decoder) { super(decoder); }
+    public UISegmentedControl(NSCoder coder) { super(coder); }
     /*</constructors>*/
     public UISegmentedControl(String... items) {
         super((SkipInit) null);
@@ -110,10 +110,16 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     public native @MachineSizedSInt long getSelectedSegment();
     @Property(selector = "setSelectedSegmentIndex:")
     public native void setSelectedSegment(@MachineSizedSInt long v);
-    @Property(selector = "tintColor")
-    public native UIColor getTintColor();
-    @Property(selector = "setTintColor:")
-    public native void setTintColor(UIColor v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "selectedSegmentTintColor")
+    public native UIColor getSelectedSegmentTintColor();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setSelectedSegmentTintColor:")
+    public native void setSelectedSegmentTintColor(UIColor v);
     /**
      * @since Available in iOS 11.0 and later.
      */

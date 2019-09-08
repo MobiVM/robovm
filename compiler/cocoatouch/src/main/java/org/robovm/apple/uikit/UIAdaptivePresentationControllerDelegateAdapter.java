@@ -71,5 +71,25 @@ import org.robovm.apple.intents.*;
      */
     @NotImplemented("presentationController:willPresentWithAdaptiveStyle:transitionCoordinator:")
     public void willPresent(UIPresentationController presentationController, UIModalPresentationStyle style, UIViewControllerTransitionCoordinator transitionCoordinator) {}
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("presentationControllerShouldDismiss:")
+    public boolean presentationControllerShouldDismiss(UIPresentationController presentationController) { return false; }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("presentationControllerWillDismiss:")
+    public void presentationControllerWillDismiss(UIPresentationController presentationController) {}
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("presentationControllerDidDismiss:")
+    public void presentationControllerDidDismiss(UIPresentationController presentationController) {}
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("presentationControllerDidAttemptToDismiss:")
+    public void presentationControllerDidAttemptToDismiss(UIPresentationController presentationController) {}
     /*</methods>*/
 }

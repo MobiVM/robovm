@@ -123,14 +123,14 @@ import org.robovm.apple.intents.*;
     public void willShowViewController(UISplitViewController svc, UIViewController aViewController, UIBarButtonItem barButtonItem) {}
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 8.0. Use splitViewController:willChangeToDisplayMode: instead
+     * @deprecated Deprecated in iOS 8.0.
      */
     @Deprecated
     @NotImplemented("splitViewController:popoverController:willPresentViewController:")
     public void willPresentViewController(UISplitViewController svc, UIPopoverController pc, UIViewController aViewController) {}
     /**
      * @since Available in iOS 5.0 and later.
-     * @deprecated Deprecated in iOS 8.0. Use preferredDisplayMode instead
+     * @deprecated Deprecated in iOS 8.0.
      */
     @Deprecated
     @NotImplemented("splitViewController:shouldHideViewController:inOrientation:")

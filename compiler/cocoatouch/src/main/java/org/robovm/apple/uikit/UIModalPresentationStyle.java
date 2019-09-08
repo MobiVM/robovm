@@ -77,7 +77,11 @@ public enum /*<name>*/UIModalPresentationStyle/*</name>*/ implements ValuedEnum 
     /**
      * @since Available in iOS 7.0 and later.
      */
-    None(-1L);
+    None(-1L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    Automatic(-2L);
     /*</values>*/
 
     private final long n;

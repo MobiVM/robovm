@@ -46,7 +46,7 @@ import org.robovm.apple.intents.*;
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIAccessibilityElement/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
+    extends /*<extends>*/UIResponder/*</extends>*/ 
     /*<implements>*/implements UIAccessibilityIdentification/*</implements>*/ {
 
     /*<ptr>*/public static class UIAccessibilityElementPtr extends Ptr<UIAccessibilityElement, UIAccessibilityElementPtr> {}/*</ptr>*/

@@ -57,7 +57,7 @@ import org.robovm.apple.intents.*;
     protected UIPrintInfo(Handle h, long handle) { super(h, handle); }
     protected UIPrintInfo(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public UIPrintInfo(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public UIPrintInfo(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     public UIPrintInfo(NSDictionary<?, ?> dictionary) { super((Handle) null, create(dictionary)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
@@ -87,7 +87,7 @@ import org.robovm.apple.intents.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
+    protected native @Pointer long init(NSCoder coder);
     @Method(selector = "printInfoWithDictionary:")
     protected static native @Pointer long create(NSDictionary<?, ?> dictionary);
     @Method(selector = "encodeWithCoder:")

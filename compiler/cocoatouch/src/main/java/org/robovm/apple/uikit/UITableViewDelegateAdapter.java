@@ -149,7 +149,9 @@ import org.robovm.apple.intents.*;
     public String getTitleForDeleteConfirmationButton(UITableView tableView, NSIndexPath indexPath) { return null; }
     /**
      * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 13.0.
      */
+    @Deprecated
     @NotImplemented("tableView:editActionsForRowAtIndexPath:")
     public NSArray<UITableViewRowAction> getEditActionsForRow(UITableView tableView, NSIndexPath indexPath) { return null; }
     /**
@@ -174,17 +176,23 @@ import org.robovm.apple.intents.*;
     public @MachineSizedSInt long getIndentationLevelForRow(UITableView tableView, NSIndexPath indexPath) { return 0; }
     /**
      * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 13.0.
      */
+    @Deprecated
     @NotImplemented("tableView:shouldShowMenuForRowAtIndexPath:")
     public boolean shouldShowMenuForRow(UITableView tableView, NSIndexPath indexPath) { return false; }
     /**
      * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 13.0.
      */
+    @Deprecated
     @NotImplemented("tableView:canPerformAction:forRowAtIndexPath:withSender:")
     public boolean canPerformAction(UITableView tableView, Selector action, NSIndexPath indexPath, NSObject sender) { return false; }
     /**
      * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 13.0.
      */
+    @Deprecated
     @NotImplemented("tableView:performAction:forRowAtIndexPath:withSender:")
     public void performActionForRow(UITableView tableView, Selector action, NSIndexPath indexPath, NSObject sender) {}
     /**
@@ -212,5 +220,45 @@ import org.robovm.apple.intents.*;
      */
     @NotImplemented("tableView:shouldSpringLoadRowAtIndexPath:withContext:")
     public boolean shouldSpringLoadRow(UITableView tableView, NSIndexPath indexPath, UISpringLoadedInteractionContext context) { return false; }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("tableView:shouldBeginMultipleSelectionInteractionAtIndexPath:")
+    public boolean shouldBeginMultipleSelectionInteraction(UITableView tableView, NSIndexPath indexPath) { return false; }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("tableView:didBeginMultipleSelectionInteractionAtIndexPath:")
+    public void didBeginMultipleSelectionInteraction(UITableView tableView, NSIndexPath indexPath) {}
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("tableViewDidEndMultipleSelectionInteraction:")
+    public void tableViewDidEndMultipleSelectionInteraction(UITableView tableView) {}
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("tableView:contextMenuConfigurationForRowAtIndexPath:point:")
+    public UIContextMenuConfiguration getContextMenuConfiguration(UITableView tableView, NSIndexPath indexPath, @ByVal CGPoint point) { return null; }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("tableView:previewForHighlightingContextMenuWithConfiguration:")
+    public UITargetedPreview getPreviewForHighlightingContextMenu(UITableView tableView, UIContextMenuConfiguration configuration) { return null; }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("tableView:previewForDismissingContextMenuWithConfiguration:")
+    public UITargetedPreview getPreviewForDismissingContextMenu(UITableView tableView, UIContextMenuConfiguration configuration) { return null; }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("tableView:willPerformPreviewActionForMenuWithConfiguration:animator:")
+    public void willPerformPreviewAction(UITableView tableView, UIContextMenuConfiguration configuration, UIContextMenuInteractionCommitAnimating animator) {}
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("tableView:willCommitMenuWithAnimator:")
+    public void willCommitMenu(UITableView tableView, UIContextMenuInteractionCommitAnimating animator) {}
     /*</methods>*/
 }

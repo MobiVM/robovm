@@ -120,6 +120,11 @@ import org.robovm.apple.intents.*;
      */
     @Method(selector = "decreaseSize:")
     void decreaseSize(NSObject sender);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "updateTextAttributesWithConversionHandler:")
+    void updateTextAttributes(@Block Block1<NSDictionary<NSString, ?>, NSDictionary<NSString, ?>> conversionHandler);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

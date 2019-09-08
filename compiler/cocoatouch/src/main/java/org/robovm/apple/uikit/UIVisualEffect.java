@@ -58,7 +58,7 @@ import org.robovm.apple.intents.*;
     protected UIVisualEffect(Handle h, long handle) { super(h, handle); }
     protected UIVisualEffect(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public UIVisualEffect(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public UIVisualEffect(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "supportsSecureCoding")
@@ -69,6 +69,6 @@ import org.robovm.apple.intents.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

@@ -149,7 +149,13 @@ import org.robovm.apple.intents.*;
             + /*<name>*/UIFontWeight/*</name>*/.class.getName());
     }
     
-    /*<methods>*//*</methods>*/
+    /*<methods>*/
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="UIImageSymbolWeightForFontWeight", optional=true)
+    public static native UIImageSymbolWeight toImageSymbolWeight(@MachineSizedFloat double fontWeight);
+    /*</methods>*/
     
     /*<annotations>*/@Library("UIKit") @StronglyLinked/*</annotations>*/
     public static class Values {

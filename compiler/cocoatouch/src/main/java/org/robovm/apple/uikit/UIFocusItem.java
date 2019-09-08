@@ -63,6 +63,9 @@ import org.robovm.apple.intents.*;
     @ByVal CGRect getFrame();
     /*</properties>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
     @Method(selector = "didHintFocusMovement:")
     void didHintFocusMovement(UIFocusMovementHint hint);
     /*</methods>*/

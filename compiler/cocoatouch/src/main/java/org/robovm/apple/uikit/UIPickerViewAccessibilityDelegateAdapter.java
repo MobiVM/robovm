@@ -62,6 +62,11 @@ import org.robovm.apple.intents.*;
     @NotImplemented("pickerView:accessibilityHintForComponent:")
     public String getAccessibilityHint(UIPickerView pickerView, @MachineSizedSInt long component) { return null; }
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("pickerView:accessibilityUserInputLabelsForComponent:")
+    public NSArray<NSString> getAccessibilityUserInputLabels(UIPickerView pickerView, @MachineSizedSInt long component) { return null; }
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @NotImplemented("pickerView:accessibilityAttributedLabelForComponent:")
@@ -71,5 +76,10 @@ import org.robovm.apple.intents.*;
      */
     @NotImplemented("pickerView:accessibilityAttributedHintForComponent:")
     public NSAttributedString getAccessibilityAttributedHint(UIPickerView pickerView, @MachineSizedSInt long component) { return null; }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("pickerView:accessibilityAttributedUserInputLabelsForComponent:")
+    public NSArray<NSAttributedString> getAccessibilityAttributedUserInputLabels(UIPickerView pickerView, @MachineSizedSInt long component) { return null; }
     /*</methods>*/
 }

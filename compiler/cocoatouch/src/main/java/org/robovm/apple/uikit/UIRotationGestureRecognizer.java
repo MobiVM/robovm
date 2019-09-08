@@ -58,6 +58,8 @@ import org.robovm.apple.intents.*;
     protected UIRotationGestureRecognizer(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithTarget:action:")
     public UIRotationGestureRecognizer(NSObject target, Selector action) { super(target, action); }
+    @Method(selector = "initWithCoder:")
+    public UIRotationGestureRecognizer(NSCoder coder) { super(coder); }
     /*</constructors>*/
     
     public UIRotationGestureRecognizer(OnGestureListener listener) {

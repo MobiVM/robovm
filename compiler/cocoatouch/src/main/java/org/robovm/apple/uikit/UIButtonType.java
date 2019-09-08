@@ -54,6 +54,10 @@ public enum /*<name>*/UIButtonType/*</name>*/ implements ValuedEnum {
     InfoLight(3L),
     InfoDark(4L),
     ContactAdd(5L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    Close(7L),
     RoundedRect(1L);
     /*</values>*/
 

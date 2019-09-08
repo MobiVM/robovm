@@ -209,6 +209,11 @@ import org.robovm.apple.intents.*;
     @Property(selector = "maximumFramesPerSecond")
     public native @MachineSizedSInt long getMaximumFramesPerSecond();
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "calibratedLatency")
+    public native double getCalibratedLatency();
+    /**
      * @since Available in iOS 10.0 and later.
      */
     @Property(selector = "focusedItem")
@@ -225,7 +230,7 @@ import org.robovm.apple.intents.*;
     public native boolean supportsFocus();
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0. Use -[UIScreen bounds]
+     * @deprecated Deprecated in iOS 9.0.
      */
     @Deprecated
     @Property(selector = "applicationFrame")

@@ -136,6 +136,11 @@ import org.robovm.apple.intents.*;
     @Method(selector = "monospacedDigitSystemFontOfSize:weight:")
     public static native UIFont getMonospacedDigitSystemFont(@MachineSizedFloat double fontSize, @MachineSizedFloat double weight);
     /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "monospacedSystemFontOfSize:weight:")
+    public static native UIFont getMonospacedSystemFont(@MachineSizedFloat double fontSize, @MachineSizedFloat double weight);
+    /**
      * @since Available in iOS 7.0 and later.
      */
     @Method(selector = "fontWithDescriptor:size:")

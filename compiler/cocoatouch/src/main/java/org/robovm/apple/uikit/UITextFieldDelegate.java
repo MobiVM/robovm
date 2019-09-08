@@ -70,6 +70,11 @@ import org.robovm.apple.intents.*;
     void didEndEditing(UITextField textField, UITextFieldDidEndEditingReason reason);
     @Method(selector = "textField:shouldChangeCharactersInRange:replacementString:")
     boolean shouldChangeCharacters(UITextField textField, @ByVal NSRange range, String string);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "textFieldDidChangeSelection:")
+    void textFieldDidChangeSelection(UITextField textField);
     @Method(selector = "textFieldShouldClear:")
     boolean shouldClear(UITextField textField);
     @Method(selector = "textFieldShouldReturn:")

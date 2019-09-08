@@ -71,6 +71,8 @@ import org.robovm.apple.intents.*;
     public native UIApplicationShortcutIcon getIcon();
     @Property(selector = "userInfo")
     public native NSDictionary<?, ?> getUserInfo();
+    @Property(selector = "targetContentIdentifier")
+    public native NSObject getTargetContentIdentifier();
     /*</properties>*/
     public void setType(String v) {
         throw new UnsupportedOperationException("UIApplicationShortcutItem is immutable");

@@ -47,7 +47,15 @@ public enum /*<name>*/UIImpactFeedbackStyle/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Light(0L),
     Medium(1L),
-    Heavy(2L);
+    Heavy(2L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    Soft(3L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    Rigid(4L);
     /*</values>*/
 
     /*<bind>*/

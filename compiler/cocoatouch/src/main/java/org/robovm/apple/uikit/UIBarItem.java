@@ -59,7 +59,7 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     protected UIBarItem(Handle h, long handle) { super(h, handle); }
     protected UIBarItem(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public UIBarItem(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public UIBarItem(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "isEnabled")
@@ -184,7 +184,7 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     }
     /*<methods>*/
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /**
      * @since Available in iOS 5.0 and later.
      */

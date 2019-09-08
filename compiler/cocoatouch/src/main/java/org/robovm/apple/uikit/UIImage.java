@@ -130,6 +130,11 @@ import org.robovm.apple.intents.*;
     @Property(selector = "scale")
     public native @MachineSizedFloat double getScale();
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "isSymbolImage")
+    public native boolean isSymbolImage();
+    /**
      * @since Available in iOS 5.0 and later.
      */
     @Property(selector = "images")
@@ -179,6 +184,51 @@ import org.robovm.apple.intents.*;
      */
     @Property(selector = "flipsForRightToLeftLayoutDirection")
     public native boolean flipsHorizontally();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "baselineOffsetFromBottom")
+    public native @MachineSizedFloat double getBaselineOffsetFromBottom();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "hasBaseline")
+    public native boolean hasBaseline();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "configuration")
+    public native UIImageConfiguration getConfiguration();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "symbolConfiguration")
+    public native UIImageSymbolConfiguration getSymbolConfiguration();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "actionsImage")
+    public static native UIImage getActionsImage();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "addImage")
+    public static native UIImage getAddImage();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "removeImage")
+    public static native UIImage getRemoveImage();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "checkmarkImage")
+    public static native UIImage getCheckmarkImage();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "strokedCheckmarkImage")
+    public static native UIImage getStrokedCheckmarkImage();
     @Property(selector = "leftCapWidth")
     public native @MachineSizedSInt long getLeftCapWidth();
     @Property(selector = "topCapHeight")
@@ -302,6 +352,46 @@ import org.robovm.apple.intents.*;
     @Property(selector = "setAccessibilityNavigationStyle:")
     public native void setAccessibilityNavigationStyle(UIAccessibilityNavigationStyle v);
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "accessibilityRespondsToUserInteraction")
+    public native boolean isAccessibilityRespondsToUserInteraction();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setAccessibilityRespondsToUserInteraction:")
+    public native void setAccessibilityRespondsToUserInteraction(boolean v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "accessibilityUserInputLabels")
+    public native NSArray<NSString> getAccessibilityUserInputLabels();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setAccessibilityUserInputLabels:")
+    public native void setAccessibilityUserInputLabels(NSArray<NSString> v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "accessibilityAttributedUserInputLabels")
+    public native NSArray<NSAttributedString> getAccessibilityAttributedUserInputLabels();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setAccessibilityAttributedUserInputLabels:")
+    public native void setAccessibilityAttributedUserInputLabels(NSArray<NSAttributedString> v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "accessibilityTextualContext")
+    public native String getAccessibilityTextualContext();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setAccessibilityTextualContext:")
+    public native void setAccessibilityTextualContext(String v);
+    /**
      * @since Available in iOS 5.0 and later.
      */
     @Property(selector = "accessibilityIdentifier")
@@ -402,8 +492,58 @@ import org.robovm.apple.intents.*;
      */
     @Method(selector = "imageWithHorizontallyFlippedOrientation")
     public native UIImage imageWithHorizontallyFlippedOrientation();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "imageWithBaselineOffsetFromBottom:")
+    public native UIImage imageWithBaselineOffsetFromBottom(@MachineSizedFloat double baselineOffset);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "imageWithoutBaseline")
+    public native UIImage imageWithoutBaseline();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "imageWithConfiguration:")
+    public native UIImage imageWithConfiguration(UIImageConfiguration configuration);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "imageByApplyingSymbolConfiguration:")
+    public native UIImage imageByApplyingSymbolConfiguration(UIImageSymbolConfiguration configuration);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "imageWithTintColor:")
+    public native UIImage imageWithTintColor(UIColor color);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "imageWithTintColor:renderingMode:")
+    public native UIImage imageWithTintColor(UIColor color, UIImageRenderingMode renderingMode);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "systemImageNamed:")
+    public static native UIImage systemImageNamed(String name);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "systemImageNamed:withConfiguration:")
+    public static native UIImage getSystemImage(String name, UIImageConfiguration configuration);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "systemImageNamed:compatibleWithTraitCollection:")
+    public static native UIImage getSystemImage(String name, UITraitCollection traitCollection);
     @Method(selector = "imageNamed:")
     public static native UIImage getImage(String name);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "imageNamed:inBundle:withConfiguration:")
+    public static native UIImage getImage(String name, NSBundle bundle, UIImageConfiguration configuration);
     /**
      * @since Available in iOS 8.0 and later.
      */

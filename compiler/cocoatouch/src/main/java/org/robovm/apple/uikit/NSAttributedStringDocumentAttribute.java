@@ -148,9 +148,21 @@ import org.robovm.apple.intents.*;
      * @since Available in iOS 7.0 and later.
      */
     public static final NSAttributedStringDocumentAttribute TextLayoutSections = new NSAttributedStringDocumentAttribute("TextLayoutSections");
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final NSAttributedStringDocumentAttribute TextScaling = new NSAttributedStringDocumentAttribute("TextScaling");
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final NSAttributedStringDocumentAttribute SourceTextScaling = new NSAttributedStringDocumentAttribute("SourceTextScaling");
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final NSAttributedStringDocumentAttribute CocoaVersion = new NSAttributedStringDocumentAttribute("CocoaVersion");
     /*</constants>*/
     
-    private static /*<name>*/NSAttributedStringDocumentAttribute/*</name>*/[] values = new /*<name>*/NSAttributedStringDocumentAttribute/*</name>*/[] {/*<value_list>*/DocumentType, CharacterEncoding, DefaultAttributes, PaperSize, PaperMargin, ViewSize, ViewZoom, ViewMode, ReadOnly, BackgroundColor, HyphenationFactor, DefaultTabInterval, TextLayoutSections/*</value_list>*/};
+    private static /*<name>*/NSAttributedStringDocumentAttribute/*</name>*/[] values = new /*<name>*/NSAttributedStringDocumentAttribute/*</name>*/[] {/*<value_list>*/DocumentType, CharacterEncoding, DefaultAttributes, PaperSize, PaperMargin, ViewSize, ViewZoom, ViewMode, ReadOnly, BackgroundColor, HyphenationFactor, DefaultTabInterval, TextLayoutSections, TextScaling, SourceTextScaling, CocoaVersion/*</value_list>*/};
     
     /*<name>*/NSAttributedStringDocumentAttribute/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -238,6 +250,21 @@ import org.robovm.apple.intents.*;
          */
         @GlobalValue(symbol="NSTextLayoutSectionsAttribute", optional=true)
         public static native NSString TextLayoutSections();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="NSTextScalingDocumentAttribute", optional=true)
+        public static native NSString TextScaling();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="NSSourceTextScalingDocumentAttribute", optional=true)
+        public static native NSString SourceTextScaling();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="NSCocoaVersionDocumentAttribute", optional=true)
+        public static native NSString CocoaVersion();
         /*</values>*/
     }
 }

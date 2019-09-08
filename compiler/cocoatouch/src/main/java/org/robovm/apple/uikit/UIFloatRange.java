@@ -85,14 +85,5 @@ import org.robovm.apple.intents.*;
      */
     @Bridge(symbol="UIFloatRangeIsInfinite", optional=true)
     private static native boolean isInfinite(@ByVal UIFloatRange range);
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
-    public boolean equalsTo(UIFloatRange otherRange) { return equalsTo(this, otherRange); }
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
-    @Bridge(symbol="UIFloatRangeIsEqualToRange", optional=true)
-    private static native boolean equalsTo(@ByVal UIFloatRange range, @ByVal UIFloatRange otherRange);
     /*</methods>*/
 }

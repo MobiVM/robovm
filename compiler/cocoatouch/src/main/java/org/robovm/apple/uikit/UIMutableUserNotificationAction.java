@@ -58,7 +58,7 @@ import org.robovm.apple.intents.*;
     protected UIMutableUserNotificationAction(Handle h, long handle) { super(h, handle); }
     protected UIMutableUserNotificationAction(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public UIMutableUserNotificationAction(NSCoder decoder) { super(decoder); }
+    public UIMutableUserNotificationAction(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "identifier")

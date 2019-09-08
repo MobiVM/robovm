@@ -58,6 +58,10 @@ import org.robovm.rt.annotation.WeaklyLinked;
     protected UIVibrancyEffect(Handle h, long handle) { super(h, handle); }
     protected UIVibrancyEffect(SkipInit skipInit) { super(skipInit); }
     public UIVibrancyEffect(UIBlurEffect blurEffect) { super((Handle) null, create(blurEffect)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public UIVibrancyEffect(UIBlurEffect blurEffect, UIVibrancyEffectStyle style) { super((Handle) null, create(blurEffect, style)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     
@@ -73,5 +77,10 @@ import org.robovm.rt.annotation.WeaklyLinked;
     /*<methods>*/
     @Method(selector = "effectForBlurEffect:")
     protected static native @Pointer long create(UIBlurEffect blurEffect);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "effectForBlurEffect:style:")
+    protected static native @Pointer long create(UIBlurEffect blurEffect, UIVibrancyEffectStyle style);
     /*</methods>*/
 }

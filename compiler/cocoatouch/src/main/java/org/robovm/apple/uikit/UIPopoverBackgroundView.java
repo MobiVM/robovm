@@ -59,7 +59,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithFrame:")
     public UIPopoverBackgroundView(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public UIPopoverBackgroundView(NSCoder decoder) { super(decoder); }
+    public UIPopoverBackgroundView(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "arrowOffset")
@@ -72,7 +72,9 @@ import org.robovm.apple.intents.*;
     public native void setArrowDirection(UIPopoverArrowDirection v);
     /**
      * @since Available in iOS 6.0 and later.
+     * @deprecated Deprecated in iOS 13.0. No longer supported
      */
+    @Deprecated
     @Property(selector = "wantsDefaultContentAppearance")
     public static native boolean wantsDefaultContentAppearance();
     /*</properties>*/

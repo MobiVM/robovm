@@ -46,8 +46,8 @@ import org.robovm.apple.intents.*;
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIKeyCommand/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
+    extends /*<extends>*/UICommand/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class UIKeyCommandPtr extends Ptr<UIKeyCommand, UIKeyCommandPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(UIKeyCommand.class); }/*</bind>*/
@@ -57,18 +57,38 @@ import org.robovm.apple.intents.*;
     protected UIKeyCommand(Handle h, long handle) { super(h, handle); }
     protected UIKeyCommand(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public UIKeyCommand(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public UIKeyCommand(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
+    public UIKeyCommand(String title, UIImage image, Selector action, String input, UIKeyModifierFlags modifierFlags, NSObject propertyList) { super((Handle) null, create(title, image, action, input, modifierFlags, propertyList)); retain(getHandle()); }
+    public UIKeyCommand(String title, UIImage image, Selector action, String input, UIKeyModifierFlags modifierFlags, NSObject propertyList, NSArray<UICommandAlternate> alternates) { super((Handle) null, create(title, image, action, input, modifierFlags, propertyList, alternates)); retain(getHandle()); }
     public UIKeyCommand(String input, UIKeyModifierFlags modifierFlags, Selector action) { super((Handle) null, create(input, modifierFlags, action)); retain(getHandle()); }
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 13.0.
      */
+    @Deprecated
     public UIKeyCommand(String input, UIKeyModifierFlags modifierFlags, Selector action, String discoverabilityTitle) { super((Handle) null, create(input, modifierFlags, action, discoverabilityTitle)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "input")
-    public native String getInput();
-    @Property(selector = "modifierFlags")
-    public native UIKeyModifierFlags getModifierFlags();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "title")
+    public native String getTitle();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setTitle:")
+    public native void setTitle(String v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "image")
+    public native UIImage getImage();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setImage:")
+    public native void setImage(UIImage v);
     /**
      * @since Available in iOS 9.0 and later.
      */
@@ -79,8 +99,42 @@ import org.robovm.apple.intents.*;
      */
     @Property(selector = "setDiscoverabilityTitle:")
     public native void setDiscoverabilityTitle(String v);
-    @Property(selector = "supportsSecureCoding")
-    public static native boolean supportsSecureCoding();
+    @Property(selector = "action")
+    public native Selector getAction();
+    @Property(selector = "input")
+    public native String getInput();
+    @Property(selector = "modifierFlags")
+    public native UIKeyModifierFlags getModifierFlags();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "propertyList")
+    public native NSObject getPropertyList();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "attributes")
+    public native UIMenuElementAttributes getAttributes();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setAttributes:")
+    public native void setAttributes(UIMenuElementAttributes v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "state")
+    public native UIMenuElementState getState();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setState:")
+    public native void setState(UIMenuElementState v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "alternates")
+    public native NSArray<UICommandAlternate> getAlternates();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -111,15 +165,19 @@ import org.robovm.apple.intents.*;
     public static native String Escape();
     
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
+    protected native @Pointer long init(NSCoder coder);
+    @Method(selector = "commandWithTitle:image:action:input:modifierFlags:propertyList:")
+    protected static native @Pointer long create(String title, UIImage image, Selector action, String input, UIKeyModifierFlags modifierFlags, NSObject propertyList);
+    @Method(selector = "commandWithTitle:image:action:input:modifierFlags:propertyList:alternates:")
+    protected static native @Pointer long create(String title, UIImage image, Selector action, String input, UIKeyModifierFlags modifierFlags, NSObject propertyList, NSArray<UICommandAlternate> alternates);
     @Method(selector = "keyCommandWithInput:modifierFlags:action:")
     protected static native @Pointer long create(String input, UIKeyModifierFlags modifierFlags, Selector action);
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 13.0.
      */
+    @Deprecated
     @Method(selector = "keyCommandWithInput:modifierFlags:action:discoverabilityTitle:")
     protected static native @Pointer long create(String input, UIKeyModifierFlags modifierFlags, Selector action, String discoverabilityTitle);
-    @Method(selector = "encodeWithCoder:")
-    public native void encode(NSCoder coder);
     /*</methods>*/
 }

@@ -46,7 +46,11 @@ import org.robovm.apple.intents.*;
 public enum /*<name>*/UITableViewStyle/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Plain(0L),
-    Grouped(1L);
+    Grouped(1L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    InsetGrouped(2L);
     /*</values>*/
 
     private final long n;

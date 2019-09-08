@@ -80,14 +80,14 @@ import org.robovm.apple.intents.*;
     /*<properties>*/
     /**
      * @since Available in iOS 6.0 and later.
-     * @deprecated Deprecated in iOS 8.0. Use completionWithItemsHandler instead.
+     * @deprecated Deprecated in iOS 8.0.
      */
     @Deprecated
     @Property(selector = "completionHandler")
     public native @Block VoidBlock2<String, Boolean> getCompletionHandler();
     /**
      * @since Available in iOS 6.0 and later.
-     * @deprecated Deprecated in iOS 8.0. Use completionWithItemsHandler instead.
+     * @deprecated Deprecated in iOS 8.0.
      */
     @Deprecated
     @Property(selector = "setCompletionHandler:")

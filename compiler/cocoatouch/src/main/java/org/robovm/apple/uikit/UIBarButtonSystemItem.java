@@ -79,7 +79,11 @@ public enum /*<name>*/UIBarButtonSystemItem/*</name>*/ implements ValuedEnum {
      * @deprecated Deprecated in iOS 11.0.
      */
     @Deprecated
-    PageCurl(23L);
+    PageCurl(23L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    Close(24L);
     /*</values>*/
 
     private final long n;

@@ -47,7 +47,7 @@ import org.robovm.apple.intents.*;
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSTextContainer/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NSCoding, NSTextLayoutOrientationProvider/*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding, NSTextLayoutOrientationProvider/*</implements>*/ {
 
     /*<ptr>*/public static class NSTextContainerPtr extends Ptr<NSTextContainer, NSTextContainerPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NSTextContainer.class); }/*</bind>*/
@@ -126,6 +126,8 @@ import org.robovm.apple.intents.*;
     public native boolean heightTracksTextView();
     @Property(selector = "setHeightTracksTextView:")
     public native void setHeightTracksTextView(boolean v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /**
      * @since Available in iOS 7.0 and later.
      */

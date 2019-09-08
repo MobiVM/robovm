@@ -47,7 +47,7 @@ import org.robovm.apple.intents.*;
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSLayoutManager/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NSCoding/*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class NSLayoutManagerPtr extends Ptr<NSLayoutManager, NSLayoutManagerPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NSLayoutManager.class); }/*</bind>*/
@@ -78,10 +78,6 @@ import org.robovm.apple.intents.*;
     public native boolean showsControlCharacters();
     @Property(selector = "setShowsControlCharacters:")
     public native void setShowsControlCharacters(boolean v);
-    @Property(selector = "hyphenationFactor")
-    public native @MachineSizedFloat double getHyphenationFactor();
-    @Property(selector = "setHyphenationFactor:")
-    public native void setHyphenationFactor(@MachineSizedFloat double v);
     @Property(selector = "usesFontLeading")
     public native boolean usesFontLeading();
     @Property(selector = "setUsesFontLeading:")
@@ -111,6 +107,16 @@ import org.robovm.apple.intents.*;
      */
     @Property(selector = "setLimitsLayoutForSuspiciousContents:")
     public native void setLimitsLayoutForSuspiciousContents(boolean v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "usesDefaultHyphenation")
+    public native boolean usesDefaultHyphenation();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setUsesDefaultHyphenation:")
+    public native void setUsesDefaultHyphenation(boolean v);
     @Property(selector = "numberOfGlyphs")
     public native @MachineSizedUInt long getNumberOfGlyphs();
     @Property(selector = "extraLineFragmentRect")
@@ -119,6 +125,22 @@ import org.robovm.apple.intents.*;
     public native @ByVal CGRect getExtraLineFragmentUsedRect();
     @Property(selector = "extraLineFragmentTextContainer")
     public native NSTextContainer getExtraLineFragmentTextContainer();
+    /**
+     * @since Available in iOS 7.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Please use usesDefaultHyphenation or -[NSParagraphStyle hyphenationFactor] instead.
+     */
+    @Deprecated
+    @Property(selector = "hyphenationFactor")
+    public native @MachineSizedFloat double getHyphenationFactor();
+    /**
+     * @since Available in iOS 7.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Please use usesDefaultHyphenation or -[NSParagraphStyle hyphenationFactor] instead.
+     */
+    @Deprecated
+    @Property(selector = "setHyphenationFactor:")
+    public native void setHyphenationFactor(@MachineSizedFloat double v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     
@@ -305,10 +327,10 @@ import org.robovm.apple.intents.*;
     @Method(selector = "drawGlyphsForGlyphRange:atPoint:")
     public native void drawGlyphs(@ByVal NSRange glyphsToShow, @ByVal CGPoint origin);
     /**
-     * @since Available in iOS 7.0 and later.
+     * @since Available in iOS 13.0 and later.
      */
-    @Method(selector = "showCGGlyphs:positions:count:font:matrix:attributes:inContext:")
-    protected native void showCGGlyphs(@Pointer long glyphs, CGPoint positions, @MachineSizedUInt long glyphCount, UIFont font, @ByVal CGAffineTransform textMatrix, NSDictionary<NSString, ?> attributes, CGContext graphicsContext);
+    @Method(selector = "showCGGlyphs:positions:count:font:textMatrix:attributes:inContext:")
+    public native void showCGGlyphs(ShortPtr glyphs, CGPoint positions, @MachineSizedSInt long glyphCount, UIFont font, @ByVal CGAffineTransform textMatrix, NSDictionary<NSString, ?> attributes, CGContext CGContext);
     /**
      * @since Available in iOS 7.0 and later.
      */
@@ -326,6 +348,13 @@ import org.robovm.apple.intents.*;
     public native short getGlyph(@MachineSizedUInt long glyphIndex, BooleanPtr isValidIndex);
     @Method(selector = "glyphAtIndex:")
     public native short getGlyph(@MachineSizedUInt long glyphIndex);
+    /**
+     * @since Available in iOS 7.0 and later.
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
+    @Method(selector = "showCGGlyphs:positions:count:font:matrix:attributes:inContext:")
+    protected native void showCGGlyphs(@Pointer long glyphs, CGPoint positions, @MachineSizedUInt long glyphCount, UIFont font, @ByVal CGAffineTransform textMatrix, NSDictionary<NSString, ?> attributes, CGContext graphicsContext);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     /*</methods>*/

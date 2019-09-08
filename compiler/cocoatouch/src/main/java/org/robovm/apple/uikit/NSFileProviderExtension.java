@@ -75,10 +75,6 @@ import org.robovm.apple.intents.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "URLForItemWithPersistentIdentifier:")
-    public native NSURL getURLForItem(NSString identifier);
-    @Method(selector = "persistentIdentifierForItemAtURL:")
-    public native NSString getPersistentIdentifierForItem(NSURL url);
     /**
      * @since Available in iOS 11.0 and later.
      */
@@ -93,12 +89,36 @@ import org.robovm.apple.intents.*;
      */
     @Method(selector = "itemForIdentifier:error:")
     private native NSFileProviderItem itemForIdentifier(NSString identifier, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 13.0. No longer called
+     */
+    @Deprecated
+    @Method(selector = "URLForItemWithPersistentIdentifier:")
+    public native NSURL getURLForItem(NSString identifier);
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
+    @Method(selector = "persistentIdentifierForItemAtURL:")
+    public native NSString getPersistentIdentifierForItem(NSURL url);
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Method(selector = "providePlaceholderAtURL:completionHandler:")
     public native void providePlaceholder(NSURL url, @Block VoidBlock1<NSError> completionHandler);
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Method(selector = "startProvidingItemAtURL:completionHandler:")
     public native void startProvidingItem(NSURL url, @Block VoidBlock1<NSError> completionHandler);
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Method(selector = "stopProvidingItemAtURL:")
     public native void stopProvidingItem(NSURL url);
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Method(selector = "itemChangedAtURL:")
     public native void itemChanged(NSURL url);
     /**

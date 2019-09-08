@@ -50,7 +50,11 @@ public enum /*<name>*/UIAccessibilityContainerType/*</name>*/ implements ValuedE
     None(0L),
     DataTable(1L),
     List(2L),
-    Landmark(3L);
+    Landmark(3L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    SemanticGroup(4L);
     /*</values>*/
 
     /*<bind>*/

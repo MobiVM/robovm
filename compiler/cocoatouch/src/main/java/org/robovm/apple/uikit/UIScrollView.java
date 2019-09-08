@@ -59,7 +59,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithFrame:")
     public UIScrollView(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public UIScrollView(NSCoder decoder) { super(decoder); }
+    public UIScrollView(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "contentOffset")
@@ -89,6 +89,16 @@ import org.robovm.apple.intents.*;
      */
     @Property(selector = "setContentInsetAdjustmentBehavior:")
     public native void setContentInsetAdjustmentBehavior(UIScrollViewContentInsetAdjustmentBehavior v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "automaticallyAdjustsScrollIndicatorInsets")
+    public native boolean automaticallyAdjustsScrollIndicatorInsets();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setAutomaticallyAdjustsScrollIndicatorInsets:")
+    public native void setAutomaticallyAdjustsScrollIndicatorInsets(boolean v);
     /**
      * @since Available in iOS 11.0 and later.
      */
@@ -127,22 +137,42 @@ import org.robovm.apple.intents.*;
     public native boolean isScrollEnabled();
     @Property(selector = "setScrollEnabled:")
     public native void setScrollEnabled(boolean v);
-    @Property(selector = "showsHorizontalScrollIndicator")
-    public native boolean showsHorizontalScrollIndicator();
-    @Property(selector = "setShowsHorizontalScrollIndicator:")
-    public native void setShowsHorizontalScrollIndicator(boolean v);
     @Property(selector = "showsVerticalScrollIndicator")
     public native boolean showsVerticalScrollIndicator();
     @Property(selector = "setShowsVerticalScrollIndicator:")
     public native void setShowsVerticalScrollIndicator(boolean v);
-    @Property(selector = "scrollIndicatorInsets")
-    public native @ByVal UIEdgeInsets getScrollIndicatorInsets();
-    @Property(selector = "setScrollIndicatorInsets:")
-    public native void setScrollIndicatorInsets(@ByVal UIEdgeInsets v);
+    @Property(selector = "showsHorizontalScrollIndicator")
+    public native boolean showsHorizontalScrollIndicator();
+    @Property(selector = "setShowsHorizontalScrollIndicator:")
+    public native void setShowsHorizontalScrollIndicator(boolean v);
     @Property(selector = "indicatorStyle")
     public native UIScrollViewIndicatorStyle getIndicatorStyle();
     @Property(selector = "setIndicatorStyle:")
     public native void setIndicatorStyle(UIScrollViewIndicatorStyle v);
+    /**
+     * @since Available in iOS 11.1 and later.
+     */
+    @Property(selector = "verticalScrollIndicatorInsets")
+    public native @ByVal UIEdgeInsets getVerticalScrollIndicatorInsets();
+    /**
+     * @since Available in iOS 11.1 and later.
+     */
+    @Property(selector = "setVerticalScrollIndicatorInsets:")
+    public native void setVerticalScrollIndicatorInsets(@ByVal UIEdgeInsets v);
+    /**
+     * @since Available in iOS 11.1 and later.
+     */
+    @Property(selector = "horizontalScrollIndicatorInsets")
+    public native @ByVal UIEdgeInsets getHorizontalScrollIndicatorInsets();
+    /**
+     * @since Available in iOS 11.1 and later.
+     */
+    @Property(selector = "setHorizontalScrollIndicatorInsets:")
+    public native void setHorizontalScrollIndicatorInsets(@ByVal UIEdgeInsets v);
+    @Property(selector = "scrollIndicatorInsets")
+    public native @ByVal UIEdgeInsets getScrollIndicatorInsets();
+    @Property(selector = "setScrollIndicatorInsets:")
+    public native void setScrollIndicatorInsets(@ByVal UIEdgeInsets v);
     /**
      * @since Available in iOS 3.0 and later.
      */

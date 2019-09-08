@@ -47,7 +47,7 @@ import org.robovm.apple.intents.*;
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSTextAttachment/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NSTextAttachmentContainer, NSCoding, UIAccessibilityContentSizeCategoryImageAdjusting/*</implements>*/ {
+    /*<implements>*/implements NSTextAttachmentContainer, NSSecureCoding, UIAccessibilityContentSizeCategoryImageAdjusting/*</implements>*/ {
 
     /*<ptr>*/public static class NSTextAttachmentPtr extends Ptr<NSTextAttachment, NSTextAttachmentPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NSTextAttachment.class); }/*</bind>*/
@@ -63,8 +63,12 @@ import org.robovm.apple.intents.*;
      */
     @Method(selector = "initWithData:ofType:")
     public NSTextAttachment(NSData contentData, String uti) { super((SkipInit) null); initObject(init(contentData, uti)); }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public NSTextAttachment(UIImage image) { super((Handle) null, create(image)); retain(getHandle()); }
     @Method(selector = "initWithCoder:")
-    public NSTextAttachment(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public NSTextAttachment(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     /**
@@ -111,6 +115,8 @@ import org.robovm.apple.intents.*;
     public native NSFileWrapper getFileWrapper();
     @Property(selector = "setFileWrapper:")
     public native void setFileWrapper(NSFileWrapper v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     @Property(selector = "adjustsImageSizeForAccessibilityContentSizeCategory")
     public native boolean adjustsImageSizeForAccessibilityContentSizeCategory();
     @Property(selector = "setAdjustsImageSizeForAccessibilityContentSizeCategory:")
@@ -124,6 +130,11 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithData:ofType:")
     protected native @Pointer long init(NSData contentData, String uti);
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "textAttachmentWithImage:")
+    protected static native @Pointer long create(UIImage image);
+    /**
      * @since Available in iOS 7.0 and later.
      */
     @Method(selector = "imageForBounds:textContainer:characterIndex:")
@@ -136,6 +147,6 @@ import org.robovm.apple.intents.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

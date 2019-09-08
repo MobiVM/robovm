@@ -54,27 +54,37 @@ import org.robovm.apple.intents.*;
     /*<properties>*/
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 13.0.
      */
+    @Deprecated
     @Property(selector = "previewingGestureRecognizerForFailureRelationship")
     UIGestureRecognizer getPreviewingGestureRecognizerForFailureRelationship();
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 13.0.
      */
+    @Deprecated
     @Property(selector = "delegate")
     UIViewControllerPreviewingDelegate getDelegate();
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 13.0.
      */
+    @Deprecated
     @Property(selector = "sourceView")
     UIView getSourceView();
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 13.0.
      */
+    @Deprecated
     @Property(selector = "sourceRect")
     @ByVal CGRect getSourceRect();
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 13.0.
      */
+    @Deprecated
     @Property(selector = "setSourceRect:")
     void setSourceRect(@ByVal CGRect v);
     /*</properties>*/

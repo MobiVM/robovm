@@ -59,7 +59,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithTextAlignment:location:options:")
     public NSTextTab(NSTextAlignment alignment, @MachineSizedFloat double loc, NSTextTabOptions options) { super((SkipInit) null); initObject(init(alignment, loc, options)); }
     @Method(selector = "initWithCoder:")
-    public NSTextTab(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public NSTextTab(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "alignment")
@@ -83,6 +83,6 @@ import org.robovm.apple.intents.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

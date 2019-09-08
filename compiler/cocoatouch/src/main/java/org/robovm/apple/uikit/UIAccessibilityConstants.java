@@ -55,6 +55,41 @@ import org.robovm.apple.intents.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @GlobalValue(symbol="UIAccessibilityTextualContextWordProcessing", optional=true)
+    public static native String TextualContextWordProcessing();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @GlobalValue(symbol="UIAccessibilityTextualContextNarrative", optional=true)
+    public static native String TextualContextNarrative();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @GlobalValue(symbol="UIAccessibilityTextualContextMessaging", optional=true)
+    public static native String TextualContextMessaging();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @GlobalValue(symbol="UIAccessibilityTextualContextSpreadsheet", optional=true)
+    public static native String TextualContextSpreadsheet();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @GlobalValue(symbol="UIAccessibilityTextualContextFileSystem", optional=true)
+    public static native String TextualContextFileSystem();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @GlobalValue(symbol="UIAccessibilityTextualContextSourceCode", optional=true)
+    public static native String TextualContextSourceCode();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @GlobalValue(symbol="UIAccessibilityTextualContextConsole", optional=true)
+    public static native String TextualContextConsole();
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @GlobalValue(symbol="UIAccessibilityTextAttributeHeadingLevel", optional=true)
@@ -64,5 +99,10 @@ import org.robovm.apple.intents.*;
      */
     @GlobalValue(symbol="UIAccessibilityTextAttributeCustom", optional=true)
     public static native NSString TextAttributeCustom();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @GlobalValue(symbol="UIAccessibilityTextAttributeContext", optional=true)
+    public static native NSString TextAttributeContext();
     /*</methods>*/
 }

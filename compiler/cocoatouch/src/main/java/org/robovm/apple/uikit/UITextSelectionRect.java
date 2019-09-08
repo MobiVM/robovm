@@ -61,7 +61,7 @@ import org.robovm.apple.intents.*;
     @Property(selector = "rect")
     public native @ByVal CGRect getRect();
     @Property(selector = "writingDirection")
-    public native UITextWritingDirection getWritingDirection();
+    public native NSWritingDirection getWritingDirection();
     @Property(selector = "containsStart")
     public native boolean containsStart();
     @Property(selector = "containsEnd")

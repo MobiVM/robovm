@@ -62,7 +62,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithStyle:reuseIdentifier:")
     public UITableViewCell(UITableViewCellStyle style, String reuseIdentifier) { super((SkipInit) null); initObject(init(style, reuseIdentifier)); }
     @Method(selector = "initWithCoder:")
-    public UITableViewCell(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public UITableViewCell(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     @Method(selector = "initWithFrame:")
     public UITableViewCell(@ByVal CGRect frame) { super(frame); }
     /*</constructors>*/
@@ -195,7 +195,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithStyle:reuseIdentifier:")
     protected native @Pointer long init(UITableViewCellStyle style, String reuseIdentifier);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     @Method(selector = "prepareForReuse")
     public native void prepareForReuse();
     @Method(selector = "setSelected:animated:")

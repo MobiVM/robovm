@@ -122,5 +122,10 @@ import org.robovm.apple.intents.*;
      */
     @NotImplemented("decreaseSize:")
     public void decreaseSize(NSObject sender) {}
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("updateTextAttributesWithConversionHandler:")
+    public void updateTextAttributes(@Block Block1<NSDictionary<NSString, ?>, NSDictionary<NSString, ?>> conversionHandler) {}
     /*</methods>*/
 }

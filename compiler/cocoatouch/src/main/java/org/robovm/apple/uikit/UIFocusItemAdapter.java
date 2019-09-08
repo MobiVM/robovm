@@ -63,6 +63,9 @@ import org.robovm.apple.intents.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
     @NotImplemented("didHintFocusMovement:")
     public void didHintFocusMovement(UIFocusMovementHint hint) {}
     /*</methods>*/

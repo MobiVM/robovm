@@ -104,42 +104,42 @@ import org.robovm.apple.intents.*;
     protected static native @Pointer long create(NSURL url);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 8.3.
+     * @deprecated Deprecated in iOS 8.3. Use UIAlertController instead.
      */
     @Deprecated
     @Method(selector = "actionSheet:clickedButtonAtIndex:")
     public native void clicked(UIActionSheet actionSheet, @MachineSizedSInt long buttonIndex);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 8.3.
+     * @deprecated Deprecated in iOS 8.3. Use UIAlertController instead.
      */
     @Deprecated
     @Method(selector = "actionSheetCancel:")
     public native void cancel(UIActionSheet actionSheet);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 8.3.
+     * @deprecated Deprecated in iOS 8.3. Use UIAlertController instead.
      */
     @Deprecated
     @Method(selector = "willPresentActionSheet:")
     public native void willPresent(UIActionSheet actionSheet);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 8.3.
+     * @deprecated Deprecated in iOS 8.3. Use UIAlertController instead.
      */
     @Deprecated
     @Method(selector = "didPresentActionSheet:")
     public native void didPresent(UIActionSheet actionSheet);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 8.3.
+     * @deprecated Deprecated in iOS 8.3. Use UIAlertController instead.
      */
     @Deprecated
     @Method(selector = "actionSheet:willDismissWithButtonIndex:")
     public native void willDismiss(UIActionSheet actionSheet, @MachineSizedSInt long buttonIndex);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 8.3.
+     * @deprecated Deprecated in iOS 8.3. Use UIAlertController instead.
      */
     @Deprecated
     @Method(selector = "actionSheet:didDismissWithButtonIndex:")

@@ -61,7 +61,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithNibName:bundle:")
     public UICollectionViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super((SkipInit) null); initObject(init(nibNameOrNil, nibBundleOrNil)); }
     @Method(selector = "initWithCoder:")
-    public UICollectionViewController(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public UICollectionViewController(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "collectionView")
@@ -105,7 +105,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithNibName:bundle:")
     protected native @Pointer long init(String nibNameOrNil, NSBundle nibBundleOrNil);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     @Method(selector = "collectionView:shouldHighlightItemAtIndexPath:")
     public native boolean shouldHighlightItem(UICollectionView collectionView, NSIndexPath indexPath);
     @Method(selector = "collectionView:didHighlightItemAtIndexPath:")
@@ -134,10 +134,25 @@ import org.robovm.apple.intents.*;
     public native void didEndDisplayingCell(UICollectionView collectionView, UICollectionViewCell cell, NSIndexPath indexPath);
     @Method(selector = "collectionView:didEndDisplayingSupplementaryView:forElementOfKind:atIndexPath:")
     public native void didEndDisplayingSupplementaryView(UICollectionView collectionView, UICollectionReusableView view, String elementKind, NSIndexPath indexPath);
+    /**
+     * @since Available in iOS 6.0 and later.
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
     @Method(selector = "collectionView:shouldShowMenuForItemAtIndexPath:")
     public native boolean shouldShowMenuForItem(UICollectionView collectionView, NSIndexPath indexPath);
+    /**
+     * @since Available in iOS 6.0 and later.
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
     @Method(selector = "collectionView:canPerformAction:forItemAtIndexPath:withSender:")
     public native boolean canPerformAction(UICollectionView collectionView, Selector action, NSIndexPath indexPath, NSObject sender);
+    /**
+     * @since Available in iOS 6.0 and later.
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
     @Method(selector = "collectionView:performAction:forItemAtIndexPath:withSender:")
     public native void performAction(UICollectionView collectionView, Selector action, NSIndexPath indexPath, NSObject sender);
     @Method(selector = "collectionView:transitionLayoutForOldLayout:newLayout:")
@@ -177,6 +192,46 @@ import org.robovm.apple.intents.*;
      */
     @Method(selector = "collectionView:shouldSpringLoadItemAtIndexPath:withContext:")
     public native boolean shouldSpringLoadItem(UICollectionView collectionView, NSIndexPath indexPath, UISpringLoadedInteractionContext context);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "collectionView:shouldBeginMultipleSelectionInteractionAtIndexPath:")
+    public native boolean shouldBeginMultipleSelectionInteraction(UICollectionView collectionView, NSIndexPath indexPath);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "collectionView:didBeginMultipleSelectionInteractionAtIndexPath:")
+    public native void didBeginMultipleSelectionInteraction(UICollectionView collectionView, NSIndexPath indexPath);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "collectionViewDidEndMultipleSelectionInteraction:")
+    public native void collectionViewDidEndMultipleSelectionInteraction(UICollectionView collectionView);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "collectionView:contextMenuConfigurationForItemAtIndexPath:point:")
+    public native UIContextMenuConfiguration getContextMenuConfiguration(UICollectionView collectionView, NSIndexPath indexPath, @ByVal CGPoint point);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "collectionView:previewForHighlightingContextMenuWithConfiguration:")
+    public native UITargetedPreview getPreviewForHighlightingContextMenu(UICollectionView collectionView, UIContextMenuConfiguration configuration);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "collectionView:previewForDismissingContextMenuWithConfiguration:")
+    public native UITargetedPreview getPreviewForDismissingContextMenu(UICollectionView collectionView, UIContextMenuConfiguration configuration);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "collectionView:willPerformPreviewActionForMenuWithConfiguration:animator:")
+    public native void willPerformPreviewAction(UICollectionView collectionView, UIContextMenuConfiguration configuration, UIContextMenuInteractionCommitAnimating animator);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "collectionView:willCommitMenuWithAnimator:")
+    public native void willCommitMenu(UICollectionView collectionView, UIContextMenuInteractionCommitAnimating animator);
     @Method(selector = "scrollViewDidScroll:")
     public native void didScroll(UIScrollView scrollView);
     /**
