@@ -10,8 +10,8 @@ include:
     - cloudkit
     - fileprovider
     - intents
-#    - usernotifications
-#    - linkpresentation
+    - usernotifications
+    - linkpresentation
 library: UIKit
 framework: UIKit
 clang_args: ['-x', 'objective-c']

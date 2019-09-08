@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 import org.robovm.apple.iad.ADInterstitialPresentationPolicy;
 import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
