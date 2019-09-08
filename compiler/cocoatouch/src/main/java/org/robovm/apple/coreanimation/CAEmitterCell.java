@@ -53,7 +53,7 @@ import org.robovm.apple.metal.*;
     protected CAEmitterCell(Handle h, long handle) { super(h, handle); }
     protected CAEmitterCell(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public CAEmitterCell(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public CAEmitterCell(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "name")
@@ -240,6 +240,6 @@ import org.robovm.apple.metal.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

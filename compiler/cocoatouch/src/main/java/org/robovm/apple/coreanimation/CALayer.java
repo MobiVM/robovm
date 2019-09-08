@@ -56,7 +56,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithLayer:")
     public CALayer(CALayer layer) { super((SkipInit) null); initObject(init(layer)); }
     @Method(selector = "initWithCoder:")
-    public CALayer(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public CALayer(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "bounds")
@@ -215,6 +215,16 @@ import org.robovm.apple.metal.*;
      */
     @Property(selector = "setMaskedCorners:")
     public native void setMaskedCorners(CACornerMask v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "cornerCurve")
+    public native String getCornerCurve();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setCornerCurve:")
+    public native void setCornerCurve(String v);
     @Property(selector = "borderWidth")
     public native @MachineSizedFloat double getBorderWidth();
     @Property(selector = "setBorderWidth:")
@@ -420,6 +430,11 @@ import org.robovm.apple.metal.*;
     public static native NSObject getDefaultValue(String key);
     @Method(selector = "needsDisplayForKey:")
     public static native boolean needsDisplay(String key);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "cornerCurveExpansionFactor:")
+    public static native @MachineSizedFloat double cornerCurveExpansionFactor(String curve);
     @Method(selector = "defaultActionForKey:")
     public static native CAAction getDefaultAction(String event);
     @Method(selector = "scrollPoint:")
@@ -429,6 +444,6 @@ import org.robovm.apple.metal.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

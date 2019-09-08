@@ -53,7 +53,7 @@ import org.robovm.apple.metal.*;
     protected CAValueFunction(SkipInit skipInit) { super(skipInit); }
     public CAValueFunction(CAValueFunctionName name) { super((Handle) null, create(name)); retain(getHandle()); }
     @Method(selector = "initWithCoder:")
-    public CAValueFunction(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public CAValueFunction(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "name")
@@ -68,6 +68,6 @@ import org.robovm.apple.metal.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

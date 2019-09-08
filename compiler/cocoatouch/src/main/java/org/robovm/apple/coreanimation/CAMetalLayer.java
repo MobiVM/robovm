@@ -62,6 +62,11 @@ import org.robovm.apple.metal.*;
     @WeaklyLinked
     @Property(selector = "setDevice:")
     public native void setDevice(MTLDevice v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "preferredDevice")
+    public native MTLDevice getPreferredDevice();
     @WeaklyLinked
     @Property(selector = "pixelFormat")
     public native MTLPixelFormat getPixelFormat();
@@ -90,6 +95,10 @@ import org.robovm.apple.metal.*;
     public native boolean presentsWithTransaction();
     @Property(selector = "setPresentsWithTransaction:")
     public native void setPresentsWithTransaction(boolean v);
+    @Property(selector = "colorspace")
+    public native CGColorSpace getColorspace();
+    @Property(selector = "setColorspace:")
+    public native void setColorspace(CGColorSpace v);
     /**
      * @since Available in iOS 11.0 and later.
      */
