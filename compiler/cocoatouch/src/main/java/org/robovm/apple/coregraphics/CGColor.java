@@ -122,6 +122,16 @@ import org.robovm.apple.uikit.*;
     @Bridge(symbol="CGColorCreate", optional=true)
     private static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGColor create(CGColorSpace space, @Pointer long components);
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="CGColorCreateGenericGrayGamma2_2", optional=true)
+    public static native CGColor createGenericGrayGamma2_2(@MachineSizedFloat double gray, @MachineSizedFloat double alpha);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="CGColorCreateSRGB", optional=true)
+    public static native CGColor createSRGB(@MachineSizedFloat double red, @MachineSizedFloat double green, @MachineSizedFloat double blue, @MachineSizedFloat double alpha);
+    /**
      * @since Available in iOS 2.0 and later.
      */
     @Bridge(symbol="CGColorCreateWithPattern", optional=true)

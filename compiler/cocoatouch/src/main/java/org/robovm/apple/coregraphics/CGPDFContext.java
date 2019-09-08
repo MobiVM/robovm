@@ -97,5 +97,15 @@ import org.robovm.apple.uikit.*;
      */
     @Bridge(symbol="CGPDFContextSetOutline", optional=true)
     public native void setOutline(NSDictionary outline);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="CGPDFContextBeginTag", optional=true)
+    public native void beginTag(CGPDFTagType tagType, NSDictionary tagProperties);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="CGPDFContextEndTag", optional=true)
+    public native void endTag();
     /*</methods>*/
 }

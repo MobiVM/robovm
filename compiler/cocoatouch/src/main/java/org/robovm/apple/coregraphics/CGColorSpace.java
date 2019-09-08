@@ -326,6 +326,36 @@ import org.robovm.apple.uikit.*;
     @GlobalValue(symbol="kCGColorSpaceDCIP3", optional=true)
     public static native String DCIP3();
     /**
+     * @since Available in iOS 12.3 and later.
+     */
+    @GlobalValue(symbol="kCGColorSpaceExtendedLinearITUR_2020", optional=true)
+    public static native String ExtendedLinearITUR_2020();
+    /**
+     * @since Available in iOS 12.3 and later.
+     */
+    @GlobalValue(symbol="kCGColorSpaceExtendedLinearDisplayP3", optional=true)
+    public static native String ExtendedLinearDisplayP3();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @GlobalValue(symbol="kCGColorSpaceITUR_2020_PQ_EOTF", optional=true)
+    public static native String ITUR_2020_PQ_EOTF();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @GlobalValue(symbol="kCGColorSpaceDisplayP3_PQ_EOTF", optional=true)
+    public static native String DisplayP3_PQ_EOTF();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @GlobalValue(symbol="kCGColorSpaceDisplayP3_HLG", optional=true)
+    public static native String DisplayP3_HLG();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @GlobalValue(symbol="kCGColorSpaceITUR_2020_HLG", optional=true)
+    public static native String ITUR_2020_HLG();
+    /**
      * @since Available in iOS 10.0 and later.
      */
     @GlobalValue(symbol="kCGColorSpaceExtendedSRGB", optional=true)
@@ -461,6 +491,11 @@ import org.robovm.apple.uikit.*;
      */
     @Bridge(symbol="CGColorSpaceIsWideGamutRGB", optional=true)
     public native boolean isWideGamutRGB();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="CGColorSpaceIsHDR", optional=true)
+    public native boolean isHDR();
     /**
      * @since Available in iOS 10.0 and later.
      */
