@@ -147,12 +147,12 @@ import org.robovm.apple.metal.*;
      * @since Available in iOS 10.0 and later.
      */
     @Property(selector = "contentsFormat")
-    public native String getContentsFormat();
+    public native CALayerContentsFormat getContentsFormat();
     /**
      * @since Available in iOS 10.0 and later.
      */
     @Property(selector = "setContentsFormat:")
-    public native void setContentsFormat(String v);
+    public native void setContentsFormat(CALayerContentsFormat v);
     @Property(selector = "minificationFilter")
     public native CAFilter getMinificationFilter();
     @Property(selector = "setMinificationFilter:")
@@ -219,12 +219,12 @@ import org.robovm.apple.metal.*;
      * @since Available in iOS 13.0 and later.
      */
     @Property(selector = "cornerCurve")
-    public native String getCornerCurve();
+    public native CALayerCornerCurve getCornerCurve();
     /**
      * @since Available in iOS 13.0 and later.
      */
     @Property(selector = "setCornerCurve:")
-    public native void setCornerCurve(String v);
+    public native void setCornerCurve(CALayerCornerCurve v);
     @Property(selector = "borderWidth")
     public native @MachineSizedFloat double getBorderWidth();
     @Property(selector = "setBorderWidth:")
@@ -434,7 +434,7 @@ import org.robovm.apple.metal.*;
      * @since Available in iOS 13.0 and later.
      */
     @Method(selector = "cornerCurveExpansionFactor:")
-    public static native @MachineSizedFloat double cornerCurveExpansionFactor(String curve);
+    public static native @MachineSizedFloat double cornerCurveExpansionFactor(CALayerCornerCurve curve);
     @Method(selector = "defaultActionForKey:")
     public static native CAAction getDefaultAction(String event);
     @Method(selector = "scrollPoint:")

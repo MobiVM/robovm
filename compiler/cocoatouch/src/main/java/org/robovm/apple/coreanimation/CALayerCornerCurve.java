@@ -38,25 +38,25 @@ import org.robovm.apple.metal.*;
 /*<javadoc>*/
 /*</javadoc>*/
 /*<annotations>*/@Library("QuartzCore") @StronglyLinked/*</annotations>*/
-@Marshaler(/*<name>*/CALayerContentsFormat/*</name>*/.Marshaler.class)
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/CALayerContentsFormat/*</name>*/ 
+@Marshaler(/*<name>*/CALayerCornerCurve/*</name>*/.Marshaler.class)
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/CALayerCornerCurve/*</name>*/ 
     extends /*<extends>*/GlobalValueEnumeration<NSString>/*</extends>*/
     /*<implements>*//*</implements>*/ {
 
-    static { Bro.bind(/*<name>*/CALayerContentsFormat/*</name>*/.class); }
+    static { Bro.bind(/*<name>*/CALayerCornerCurve/*</name>*/.class); }
 
     /*<marshalers>*/
     public static class Marshaler {
         @MarshalsPointer
-        public static CALayerContentsFormat toObject(Class<CALayerContentsFormat> cls, long handle, long flags) {
+        public static CALayerCornerCurve toObject(Class<CALayerCornerCurve> cls, long handle, long flags) {
             NSString o = (NSString) NSObject.Marshaler.toObject(NSString.class, handle, flags);
             if (o == null) {
                 return null;
             }
-            return CALayerContentsFormat.valueOf(o);
+            return CALayerCornerCurve.valueOf(o);
         }
         @MarshalsPointer
-        public static long toNative(CALayerContentsFormat o, long flags) {
+        public static long toNative(CALayerCornerCurve o, long flags) {
             if (o == null) {
                 return 0L;
             }
@@ -66,24 +66,24 @@ import org.robovm.apple.metal.*;
     public static class AsListMarshaler {
         @SuppressWarnings("unchecked")
         @MarshalsPointer
-        public static List<CALayerContentsFormat> toObject(Class<? extends NSObject> cls, long handle, long flags) {
+        public static List<CALayerCornerCurve> toObject(Class<? extends NSObject> cls, long handle, long flags) {
             NSArray<NSString> o = (NSArray<NSString>) NSObject.Marshaler.toObject(NSArray.class, handle, flags);
             if (o == null) {
                 return null;
             }
-            List<CALayerContentsFormat> list = new ArrayList<>();
+            List<CALayerCornerCurve> list = new ArrayList<>();
             for (int i = 0; i < o.size(); i++) {
-                list.add(CALayerContentsFormat.valueOf(o.get(i)));
+                list.add(CALayerCornerCurve.valueOf(o.get(i)));
             }
             return list;
         }
         @MarshalsPointer
-        public static long toNative(List<CALayerContentsFormat> l, long flags) {
+        public static long toNative(List<CALayerCornerCurve> l, long flags) {
             if (l == null) {
                 return 0L;
             }
             NSArray<NSString> array = new NSMutableArray<>();
-            for (CALayerContentsFormat o : l) {
+            for (CALayerCornerCurve o : l) {
                 array.add(o.value());
             }
             return NSObject.Marshaler.toNative(array, flags);
@@ -93,33 +93,29 @@ import org.robovm.apple.metal.*;
 
     /*<constants>*/
     /**
-     * @since Available in iOS 10.0 and later.
+     * @since Available in iOS 13.0 and later.
      */
-    public static final CALayerContentsFormat RGBA8Uint = new CALayerContentsFormat("RGBA8Uint");
+    public static final CALayerCornerCurve Circular = new CALayerCornerCurve("Circular");
     /**
-     * @since Available in iOS 10.0 and later.
+     * @since Available in iOS 13.0 and later.
      */
-    public static final CALayerContentsFormat RGBA16Float = new CALayerContentsFormat("RGBA16Float");
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
-    public static final CALayerContentsFormat Gray8Uint = new CALayerContentsFormat("Gray8Uint");
+    public static final CALayerCornerCurve Continuous = new CALayerCornerCurve("Continuous");
     /*</constants>*/
     
-    private static /*<name>*/CALayerContentsFormat/*</name>*/[] values = new /*<name>*/CALayerContentsFormat/*</name>*/[] {/*<value_list>*/RGBA8Uint, RGBA16Float, Gray8Uint/*</value_list>*/};
+    private static /*<name>*/CALayerCornerCurve/*</name>*/[] values = new /*<name>*/CALayerCornerCurve/*</name>*/[] {/*<value_list>*/Circular, Continuous/*</value_list>*/};
     
-    /*<name>*/CALayerContentsFormat/*</name>*/ (String getterName) {
+    /*<name>*/CALayerCornerCurve/*</name>*/ (String getterName) {
         super(Values.class, getterName);
     }
     
-    public static /*<name>*/CALayerContentsFormat/*</name>*/ valueOf(/*<type>*/NSString/*</type>*/ value) {
-        for (/*<name>*/CALayerContentsFormat/*</name>*/ v : values) {
+    public static /*<name>*/CALayerCornerCurve/*</name>*/ valueOf(/*<type>*/NSString/*</type>*/ value) {
+        for (/*<name>*/CALayerCornerCurve/*</name>*/ v : values) {
             if (v.value().equals(value)) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + value + " found in " 
-            + /*<name>*/CALayerContentsFormat/*</name>*/.class.getName());
+            + /*<name>*/CALayerCornerCurve/*</name>*/.class.getName());
     }
     
     /*<methods>*//*</methods>*/
@@ -130,20 +126,15 @@ import org.robovm.apple.metal.*;
 
         /*<values>*/
         /**
-         * @since Available in iOS 10.0 and later.
+         * @since Available in iOS 13.0 and later.
          */
-        @GlobalValue(symbol="kCAContentsFormatRGBA8Uint", optional=true)
-        public static native NSString RGBA8Uint();
+        @GlobalValue(symbol="kCACornerCurveCircular", optional=true)
+        public static native NSString Circular();
         /**
-         * @since Available in iOS 10.0 and later.
+         * @since Available in iOS 13.0 and later.
          */
-        @GlobalValue(symbol="kCAContentsFormatRGBA16Float", optional=true)
-        public static native NSString RGBA16Float();
-        /**
-         * @since Available in iOS 10.0 and later.
-         */
-        @GlobalValue(symbol="kCAContentsFormatGray8Uint", optional=true)
-        public static native NSString Gray8Uint();
+        @GlobalValue(symbol="kCACornerCurveContinuous", optional=true)
+        public static native NSString Continuous();
         /*</values>*/
     }
 }
