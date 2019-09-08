@@ -29,6 +29,8 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corespotlight.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -51,7 +53,7 @@ import org.robovm.apple.corespotlight.*;
     @Method(selector = "initWithName:elements:")
     public NSFetchIndexDescription(String name, NSArray<NSFetchIndexElementDescription> elements) { super((SkipInit) null); initObject(init(name, elements)); }
     @Method(selector = "initWithCoder:")
-    public NSFetchIndexDescription(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public NSFetchIndexDescription(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "name")
@@ -76,6 +78,6 @@ import org.robovm.apple.corespotlight.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

@@ -29,6 +29,8 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corespotlight.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -39,6 +41,10 @@ public enum /*<name>*/NSPersistentStoreRequestType/*</name>*/ implements ValuedE
     /*<values>*/
     Fetch(1L),
     Save(2L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    BatchInsert(5L),
     /**
      * @since Available in iOS 8.0 and later.
      */

@@ -29,6 +29,8 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corespotlight.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -37,11 +39,11 @@ import org.robovm.apple.corespotlight.*;
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreData") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/NSAsynchronousFetchResult/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/NSAsynchronousFetchResult<ResultType extends NSObject & NSFetchRequestResult>/*</name>*/ 
     extends /*<extends>*/NSPersistentStoreAsynchronousResult/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class NSAsynchronousFetchResultPtr extends Ptr<NSAsynchronousFetchResult, NSAsynchronousFetchResultPtr> {}/*</ptr>*/
+    /*<ptr>*/public static class NSAsynchronousFetchResultPtr<ResultType extends NSObject & NSFetchRequestResult> extends Ptr<NSAsynchronousFetchResult<ResultType>, NSAsynchronousFetchResultPtr<ResultType>> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NSAsynchronousFetchResult.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
@@ -51,7 +53,7 @@ import org.robovm.apple.corespotlight.*;
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "fetchRequest")
-    public native NSAsynchronousFetchRequest getFetchRequest();
+    public native NSAsynchronousFetchRequest<ResultType> getFetchRequest();
     @Property(selector = "finalResult")
     public native NSArray<NSManagedObject> getFinalResult();
     /*</properties>*/

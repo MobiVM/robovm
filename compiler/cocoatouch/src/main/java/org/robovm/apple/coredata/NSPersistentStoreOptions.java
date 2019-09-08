@@ -29,6 +29,8 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corespotlight.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -479,6 +481,21 @@ import org.robovm.apple.corespotlight.*;
          */
         @GlobalValue(symbol="NSBinaryStoreInsecureDecodingCompatibilityOption", optional=true)
         public static native String InsecureDecodingCompatibilityOption();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="NSPersistentStoreRemoteChangeNotificationPostOptionKey", optional=true)
+        public static native NSString RemoteChangeNotificationPostOption();
+        /**
+         * @since Available in iOS 12.0 and later.
+         */
+        @GlobalValue(symbol="NSPersistentStoreURLKey", optional=true)
+        public static native NSString URL();
+        /**
+         * @since Available in iOS 12.0 and later.
+         */
+        @GlobalValue(symbol="NSPersistentHistoryTokenKey", optional=true)
+        public static native NSString HistoryTokenKey();
         /**
          * @since Available in iOS 5.0 and later.
          * @deprecated Deprecated in iOS 10.0. Please see the release notes and Core Data documentation.

@@ -29,6 +29,8 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corespotlight.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -51,7 +53,7 @@ import org.robovm.apple.corespotlight.*;
     @Method(selector = "initWithContentsOfURL:")
     public NSManagedObjectModel(NSURL url) { super((SkipInit) null); initObject(init(url)); }
     @Method(selector = "initWithCoder:")
-    public NSManagedObjectModel(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public NSManagedObjectModel(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "entitiesByName")
@@ -123,6 +125,6 @@ import org.robovm.apple.corespotlight.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

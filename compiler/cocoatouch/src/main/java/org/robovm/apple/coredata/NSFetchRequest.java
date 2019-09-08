@@ -29,6 +29,8 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corespotlight.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -37,11 +39,11 @@ import org.robovm.apple.corespotlight.*;
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreData") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/NSFetchRequest/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/NSFetchRequest<ResultType extends NSObject & NSFetchRequestResult>/*</name>*/
     extends /*<extends>*/NSPersistentStoreRequest/*</extends>*/ 
     /*<implements>*/implements NSCoding/*</implements>*/ {
 
-    /*<ptr>*/public static class NSFetchRequestPtr extends Ptr<NSFetchRequest, NSFetchRequestPtr> {}/*</ptr>*/
+    /*<ptr>*/public static class NSFetchRequestPtr<ResultType extends NSObject & NSFetchRequestResult> extends Ptr<NSFetchRequest<ResultType>, NSFetchRequestPtr<ResultType>> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NSFetchRequest.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
@@ -54,7 +56,7 @@ import org.robovm.apple.corespotlight.*;
     @Method(selector = "initWithEntityName:")
     public NSFetchRequest(String entityName) { super((SkipInit) null); initObject(init(entityName)); }
     @Method(selector = "initWithCoder:")
-    public NSFetchRequest(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public NSFetchRequest(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "entity")
@@ -223,9 +225,9 @@ import org.robovm.apple.corespotlight.*;
     /**
      * @since Available in iOS 10.0 and later.
      */
-    public NSArray<?> execute() throws NSErrorException {
+    public NSArray<ResultType> execute() throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
-       NSArray<?> result = execute(ptr);
+       NSArray<ResultType> result = execute(ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        return result;
     }
@@ -233,10 +235,10 @@ import org.robovm.apple.corespotlight.*;
      * @since Available in iOS 10.0 and later.
      */
     @Method(selector = "execute:")
-    private native NSArray<?> execute(NSError.NSErrorPtr error);
+    private native NSArray<ResultType> execute(NSError.NSErrorPtr error);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

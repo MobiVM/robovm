@@ -29,6 +29,8 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corespotlight.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -101,7 +103,7 @@ import org.robovm.apple.corespotlight.*;
     @Method(selector = "initWithConcurrencyType:")
     public NSManagedObjectContext(NSManagedObjectContextConcurrencyType ct) { super((SkipInit) null); initObject(init(ct)); }
     @Method(selector = "initWithCoder:")
-    public NSManagedObjectContext(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public NSManagedObjectContext(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "persistentStoreCoordinator")
@@ -402,6 +404,6 @@ import org.robovm.apple.corespotlight.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

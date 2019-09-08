@@ -29,6 +29,8 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corespotlight.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -87,6 +89,16 @@ import org.robovm.apple.corespotlight.*;
      */
     @Property(selector = "setAllowsExternalBinaryDataStorage:")
     public native void setAllowsExternalBinaryDataStorage(boolean v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "preservesValueInHistoryOnDeletion")
+    public native boolean preservesValueInHistoryOnDeletion();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setPreservesValueInHistoryOnDeletion:")
+    public native void setPreservesValueInHistoryOnDeletion(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

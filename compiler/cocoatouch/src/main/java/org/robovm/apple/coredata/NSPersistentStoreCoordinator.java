@@ -29,6 +29,8 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corespotlight.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -46,7 +48,7 @@ import org.robovm.apple.corespotlight.*;
          * @since Available in iOS 7.0 and later.
          */
         public static NSObject observeStoresWillChange(NSPersistentStoreCoordinator object, final VoidBlock2<NSPersistentStoreCoordinator, NSPersistentStoreCoordinatorChangeNotification> block) {
-            return NSNotificationCenter.getDefaultCenter().addObserver(StoresWillChangeNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
+            return NSNotificationCenter.getDefaultCenter().addObserver(NotificationKeys.CoordinatorStoresWillChange(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
                     NSDictionary<?, ?> userInfo = a.getUserInfo();
@@ -62,7 +64,7 @@ import org.robovm.apple.corespotlight.*;
          * @since Available in iOS 3.0 and later.
          */
         public static NSObject observeStoresDidChange(NSPersistentStoreCoordinator object, final VoidBlock2<NSPersistentStoreCoordinator, NSPersistentStoreCoordinatorChangeNotification> block) {
-            return NSNotificationCenter.getDefaultCenter().addObserver(StoresDidChangeNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
+            return NSNotificationCenter.getDefaultCenter().addObserver(NotificationKeys.CoordinatorStoresDidChange(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
                     NSDictionary<?, ?> userInfo = a.getUserInfo();
@@ -78,7 +80,7 @@ import org.robovm.apple.corespotlight.*;
          * @since Available in iOS 3.0 and later.
          */
         public static NSObject observeWillRemoveStore(NSPersistentStoreCoordinator object, final VoidBlock1<NSPersistentStoreCoordinator> block) {
-            return NSNotificationCenter.getDefaultCenter().addObserver(WillRemoveStoreNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
+            return NSNotificationCenter.getDefaultCenter().addObserver(NotificationKeys.CoordinatorWillRemoveStore(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
                     block.invoke((NSPersistentStoreCoordinator)a.getObject());
@@ -89,7 +91,7 @@ import org.robovm.apple.corespotlight.*;
          * @since Available in iOS 5.0 and later.
          */
         public static NSObject observeDidImportUbiquitousContentChanges(NSPersistentStoreCoordinator object, final VoidBlock2<NSPersistentStoreCoordinator, NSNotification> block) {
-            return NSNotificationCenter.getDefaultCenter().addObserver(WillRemoveStoreNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
+            return NSNotificationCenter.getDefaultCenter().addObserver(NotificationKeys.DidImportUbiquitousContentChanges(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
                     block.invoke((NSPersistentStoreCoordinator)a.getObject(), a);
@@ -188,32 +190,42 @@ import org.robovm.apple.corespotlight.*;
     }
     /*<methods>*/
     /**
-     * @since Available in iOS 7.0 and later.
-     */
-    @GlobalValue(symbol="NSPersistentStoreCoordinatorStoresWillChangeNotification", optional=true)
-    public static native NSString StoresWillChangeNotification();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
-    @GlobalValue(symbol="NSPersistentStoreCoordinatorStoresDidChangeNotification", optional=true)
-    public static native NSString StoresDidChangeNotification();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
-    @GlobalValue(symbol="NSPersistentStoreCoordinatorWillRemoveStoreNotification", optional=true)
-    public static native NSString WillRemoveStoreNotification();
-    /**
      * @since Available in iOS 11.0 and later.
      */
     @GlobalValue(symbol="NSCoreDataCoreSpotlightExporter", optional=true)
     public static native String CoreSpotlightExporter();
-    /**
-     * @since Available in iOS 5.0 and later.
-     * @deprecated Deprecated in iOS 10.0. Please see the release notes and Core Data documentation.
-     */
-    @Deprecated
-    @GlobalValue(symbol="NSPersistentStoreDidImportUbiquitousContentChangesNotification", optional=true)
-    public static native NSString DidImportUbiquitousContentChangesNotification();
+    @Library("CoreData")
+    public static class NotificationKeys {
+        static { Bro.bind(NotificationKeys.class); }
+
+        /**
+         * @since Available in iOS 7.0 and later.
+         */
+        @GlobalValue(symbol="NSPersistentStoreCoordinatorStoresWillChangeNotification", optional=true)
+        public static native NSString CoordinatorStoresWillChange();
+        /**
+         * @since Available in iOS 3.0 and later.
+         */
+        @GlobalValue(symbol="NSPersistentStoreCoordinatorStoresDidChangeNotification", optional=true)
+        public static native NSString CoordinatorStoresDidChange();
+        /**
+         * @since Available in iOS 3.0 and later.
+         */
+        @GlobalValue(symbol="NSPersistentStoreCoordinatorWillRemoveStoreNotification", optional=true)
+        public static native NSString CoordinatorWillRemoveStore();
+        /**
+         * @since Available in iOS 12.0 and later.
+         */
+        @GlobalValue(symbol="NSPersistentStoreRemoteChangeNotification", optional=true)
+        public static native NSString RemoteChange();
+        /**
+         * @since Available in iOS 5.0 and later.
+         * @deprecated Deprecated in iOS 10.0. Please see the release notes and Core Data documentation.
+         */
+        @Deprecated
+        @GlobalValue(symbol="NSPersistentStoreDidImportUbiquitousContentChangesNotification", optional=true)
+        public static native NSString DidImportUbiquitousContentChanges();
+    }
     
     @Method(selector = "initWithManagedObjectModel:")
     protected native @Pointer long init(NSManagedObjectModel model);
@@ -313,6 +325,11 @@ import org.robovm.apple.corespotlight.*;
      */
     @Method(selector = "performBlockAndWait:")
     public native void performBlockAndWait(@Block Runnable block);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "currentPersistentHistoryTokenFromStores:")
+    public native NSPersistentHistoryToken currentPersistentHistoryTokenFromStores(NSArray<?> stores);
     /**
      * @since Available in iOS 3.0 and later.
      * @deprecated Deprecated in iOS 8.0. Use -performBlockAndWait: instead

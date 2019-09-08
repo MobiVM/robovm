@@ -29,6 +29,8 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corespotlight.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -50,6 +52,16 @@ import org.robovm.apple.corespotlight.*;
     protected NSPersistentHistoryTransaction(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "entityDescription")
+    public static native NSEntityDescription getEntityDescription();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "fetchRequest")
+    public static native NSFetchRequest getFetchRequest();
     @Property(selector = "timestamp")
     public native NSDate getTimestamp();
     @Property(selector = "changes")
@@ -73,5 +85,10 @@ import org.robovm.apple.corespotlight.*;
     /*<methods>*/
     @Method(selector = "objectIDNotification")
     public native NSNotification objectIDNotification();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "entityDescriptionWithContext:")
+    public static native NSEntityDescription getEntityDescription(NSManagedObjectContext context);
     /*</methods>*/
 }
