@@ -66,6 +66,7 @@ public enum /*<name>*/AudioFormat/*</name>*/ implements ValuedEnum {
     MPEG4AAC_ELD_V2(1633772391L),
     MPEG4AAC_HE_V2(1633772400L),
     MPEG4AAC_Spatial(1633772403L),
+    MPEGD_USAC(1970495843L),
     AMR(1935764850L),
     AMR_WB(1935767394L),
     Audible(1096107074L),
