@@ -37,7 +37,9 @@ import org.robovm.apple.audiotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 6.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
 public enum /*<name>*/CMSyncErrorCode/*</name>*/ implements ValuedEnum {

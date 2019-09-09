@@ -37,7 +37,9 @@ import org.robovm.apple.audiotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 4.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
 public enum /*<name>*/CMVideoCodecType/*</name>*/ implements ValuedEnum {
@@ -52,6 +54,7 @@ public enum /*<name>*/CMVideoCodecType/*</name>*/ implements ValuedEnum {
     H263(1748121139L),
     H264(1635148593L),
     HEVC(1752589105L),
+    HEVCWithAlpha(1836415073L),
     MPEG4Video(1836070006L),
     MPEG2Video(1836069494L),
     MPEG1Video(1836069238L),

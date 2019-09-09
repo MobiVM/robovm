@@ -548,6 +548,21 @@ import org.robovm.apple.audiotoolbox.*;
          */
         @GlobalValue(symbol="kCMFormatDescriptionExtension_AlternativeTransferCharacteristics", optional=true)
         public static native CFString AlternativeTransferCharacteristics();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="kCMFormatDescriptionExtension_AuxiliaryTypeInfo", optional=true)
+        public static native CFString AuxiliaryTypeInfo();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="kCMFormatDescriptionExtension_AlphaChannelMode", optional=true)
+        public static native CFString AlphaChannelMode();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="kCMFormatDescriptionExtension_ContainsAlphaChannel", optional=true)
+        public static native CFString ContainsAlphaChannel();
     }
     /*</keys>*/
 }

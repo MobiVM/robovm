@@ -138,9 +138,13 @@ import org.robovm.apple.audiotoolbox.*;
      * @since Available in iOS 11.0 and later.
      */
     public static final CMSampleAttachmentKey HEVCSyncSampleNALUnitType = new CMSampleAttachmentKey("HEVCSyncSampleNALUnitType");
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final CMSampleAttachmentKey AudioIndependentSampleDecoderRefreshCount = new CMSampleAttachmentKey("AudioIndependentSampleDecoderRefreshCount");
     /*</constants>*/
     
-    private static /*<name>*/CMSampleAttachmentKey/*</name>*/[] values = new /*<name>*/CMSampleAttachmentKey/*</name>*/[] {/*<value_list>*/NotSync, PartialSync, HasRedundantCoding, IsDependedOnByOthers, DependsOnOthers, EarlierDisplayTimesAllowed, DisplayImmediately, DoNotDisplay, HEVCTemporalLevelInfo, HEVCTemporalSubLayerAccess, HEVCStepwiseTemporalSubLayerAccess, HEVCSyncSampleNALUnitType/*</value_list>*/};
+    private static /*<name>*/CMSampleAttachmentKey/*</name>*/[] values = new /*<name>*/CMSampleAttachmentKey/*</name>*/[] {/*<value_list>*/NotSync, PartialSync, HasRedundantCoding, IsDependedOnByOthers, DependsOnOthers, EarlierDisplayTimesAllowed, DisplayImmediately, DoNotDisplay, HEVCTemporalLevelInfo, HEVCTemporalSubLayerAccess, HEVCStepwiseTemporalSubLayerAccess, HEVCSyncSampleNALUnitType, AudioIndependentSampleDecoderRefreshCount/*</value_list>*/};
     
     /*<name>*/CMSampleAttachmentKey/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -223,6 +227,11 @@ import org.robovm.apple.audiotoolbox.*;
          */
         @GlobalValue(symbol="kCMSampleAttachmentKey_HEVCSyncSampleNALUnitType", optional=true)
         public static native CFString HEVCSyncSampleNALUnitType();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="kCMSampleAttachmentKey_AudioIndependentSampleDecoderRefreshCount", optional=true)
+        public static native CFString AudioIndependentSampleDecoderRefreshCount();
         /*</values>*/
     }
 }

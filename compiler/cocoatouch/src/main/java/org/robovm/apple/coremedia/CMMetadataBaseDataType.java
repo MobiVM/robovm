@@ -189,6 +189,10 @@ import org.robovm.apple.audiotoolbox.*;
      */
     public static final CMMetadataBaseDataType JSON = new CMMetadataBaseDataType("JSON");
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final CMMetadataBaseDataType PerspectiveTransformF64 = new CMMetadataBaseDataType("PerspectiveTransformF64");
+    /**
      * @since Available in iOS 8.0 and later.
      */
     public static final CMMetadataBaseDataType QuickTimeMetadataLocation_ISO6709 = new CMMetadataBaseDataType("QuickTimeMetadataLocation_ISO6709");
@@ -198,7 +202,7 @@ import org.robovm.apple.audiotoolbox.*;
     public static final CMMetadataBaseDataType QuickTimeMetadataDirection = new CMMetadataBaseDataType("QuickTimeMetadataDirection");
     /*</constants>*/
     
-    private static /*<name>*/CMMetadataBaseDataType/*</name>*/[] values = new /*<name>*/CMMetadataBaseDataType/*</name>*/[] {/*<value_list>*/RawData, UTF8, UTF16, GIF, JPEG, PNG, BMP, Float32, Float64, SInt8, SInt16, SInt32, SInt64, UInt8, UInt16, UInt32, UInt64, PointF32, DimensionsF32, RectF32, AffineTransformF64, PolygonF32, PolylineF32, JSON, QuickTimeMetadataLocation_ISO6709, QuickTimeMetadataDirection/*</value_list>*/};
+    private static /*<name>*/CMMetadataBaseDataType/*</name>*/[] values = new /*<name>*/CMMetadataBaseDataType/*</name>*/[] {/*<value_list>*/RawData, UTF8, UTF16, GIF, JPEG, PNG, BMP, Float32, Float64, SInt8, SInt16, SInt32, SInt64, UInt8, UInt16, UInt32, UInt64, PointF32, DimensionsF32, RectF32, AffineTransformF64, PolygonF32, PolylineF32, JSON, PerspectiveTransformF64, QuickTimeMetadataLocation_ISO6709, QuickTimeMetadataDirection/*</value_list>*/};
     
     /*<name>*/CMMetadataBaseDataType/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -341,6 +345,11 @@ import org.robovm.apple.audiotoolbox.*;
          */
         @GlobalValue(symbol="kCMMetadataBaseDataType_JSON", optional=true)
         public static native CFString JSON();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="kCMMetadataBaseDataType_PerspectiveTransformF64", optional=true)
+        public static native CFString PerspectiveTransformF64();
         /**
          * @since Available in iOS 8.0 and later.
          */

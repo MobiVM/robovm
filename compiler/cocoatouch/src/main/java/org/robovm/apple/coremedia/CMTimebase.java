@@ -301,6 +301,16 @@ import org.robovm.apple.audiotoolbox.*;
     /**
      * @since Available in iOS 6.0 and later.
      */
+    @Bridge(symbol="CMTimebaseSetMasterClock", optional=true)
+    protected native OSStatus setMasterClock0(CMClock newMasterClock);
+    /**
+     * @since Available in iOS 6.0 and later.
+     */
+    @Bridge(symbol="CMTimebaseSetMasterTimebase", optional=true)
+    protected native OSStatus setMasterTimebase0(CMTimebase newMasterTimebase);
+    /**
+     * @since Available in iOS 6.0 and later.
+     */
     @Bridge(symbol="CMTimebaseGetTime", optional=true)
     public native @ByVal CMTime getTime();
     /**

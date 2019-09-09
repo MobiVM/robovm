@@ -198,6 +198,11 @@ import org.robovm.apple.audiotoolbox.*;
     @GlobalValue(symbol="kCMFormatDescriptionTransferFunction_Linear", optional=true)
     public static native CFString TransferFunction_Linear();
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @GlobalValue(symbol="kCMFormatDescriptionTransferFunction_sRGB", optional=true)
+    public static native CFString TransferFunction_sRGB();
+    /**
      * @since Available in iOS 9.0 and later.
      */
     @GlobalValue(symbol="kCMFormatDescriptionYCbCrMatrix_ITU_R_709_2", optional=true)
@@ -252,6 +257,16 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @GlobalValue(symbol="kCMFormatDescriptionChromaLocation_DV420", optional=true)
     public static native CFString ChromaLocationDV420();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @GlobalValue(symbol="kCMFormatDescriptionAlphaChannelMode_StraightAlpha", optional=true)
+    public static native CFString AlphaChannelModeStraightAlpha();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @GlobalValue(symbol="kCMFormatDescriptionAlphaChannelMode_PremultipliedAlpha", optional=true)
+    public static native CFString AlphaChannelModePremultipliedAlpha();
     /**
      * @since Available in iOS 9.0 and later.
      */
