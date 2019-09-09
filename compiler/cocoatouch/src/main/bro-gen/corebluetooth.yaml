@@ -97,9 +97,6 @@ classes:
                 trim_after_first_colon: true
             '-registerForConnectionEventsWithOptions:':
                 name: registerForConnectionEvents
-                parameters:
-                    1:
-                        type: CBConnectionEventMatchingOptions
     CBCharacteristic: # DONE
         properties:
             'descriptors':
