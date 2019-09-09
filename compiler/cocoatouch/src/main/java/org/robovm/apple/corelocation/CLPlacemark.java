@@ -47,12 +47,13 @@ import org.robovm.apple.contacts.*;
     /*<bind>*/static { ObjCRuntime.bind(CLPlacemark.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
+    public CLPlacemark() {}
     protected CLPlacemark(Handle h, long handle) { super(h, handle); }
     protected CLPlacemark(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithPlacemark:")
     public CLPlacemark(CLPlacemark placemark) { super((SkipInit) null); initObject(init(placemark)); }
     @Method(selector = "initWithCoder:")
-    public CLPlacemark(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public CLPlacemark(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "location")
@@ -113,6 +114,6 @@ import org.robovm.apple.contacts.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

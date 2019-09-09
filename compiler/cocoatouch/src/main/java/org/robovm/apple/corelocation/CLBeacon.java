@@ -51,9 +51,24 @@ import org.robovm.apple.contacts.*;
     protected CLBeacon(Handle h, long handle) { super(h, handle); }
     protected CLBeacon(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public CLBeacon(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public CLBeacon(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "timestamp")
+    public native NSDate getTimestamp();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "UUID")
+    public native NSUUID getUUID();
+    /**
+     * @since Available in iOS 7.0 and later.
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
     @Property(selector = "proximityUUID")
     public native NSUUID getProximityUUID();
     @Property(selector = "major")
@@ -74,6 +89,6 @@ import org.robovm.apple.contacts.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

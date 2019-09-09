@@ -143,9 +143,16 @@ import org.robovm.apple.contacts.*;
     public native NSSet<CLRegion> getMonitoredRegions();
     /**
      * @since Available in iOS 7.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use -rangedBeaconConstraints
      */
+    @Deprecated
     @Property(selector = "rangedRegions")
     public native NSSet<CLBeaconRegion> getRangedRegions();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "rangedBeaconConstraints")
+    public native NSSet<CLBeaconIdentityConstraint> getRangedBeaconConstraints();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -220,22 +227,40 @@ import org.robovm.apple.contacts.*;
     public native void requestState(CLRegion region);
     /**
      * @since Available in iOS 7.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use -startRangingBeaconsSatisfyingConstraint:
      */
+    @Deprecated
     @Method(selector = "startRangingBeaconsInRegion:")
     public native void startRangingBeacons(CLBeaconRegion region);
     /**
      * @since Available in iOS 7.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use -stopRangingBeaconsSatisfyingConstraint:
      */
+    @Deprecated
     @Method(selector = "stopRangingBeaconsInRegion:")
     public native void stopRangingBeacons(CLBeaconRegion region);
     /**
-     * @since Available in iOS 6.0 and later.
+     * @since Available in iOS 13.0 and later.
      */
+    @Method(selector = "startRangingBeaconsSatisfyingConstraint:")
+    public native void startRangingBeaconsSatisfyingConstraint(CLBeaconIdentityConstraint constraint);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "stopRangingBeaconsSatisfyingConstraint:")
+    public native void stopRangingBeaconsSatisfyingConstraint(CLBeaconIdentityConstraint constraint);
+    /**
+     * @since Available in iOS 6.0 and later.
+     * @deprecated Deprecated in iOS 13.0. You can remove calls to this method
+     */
+    @Deprecated
     @Method(selector = "allowDeferredLocationUpdatesUntilTraveled:timeout:")
     public native void allowDeferredLocationUpdatesUntil(double distance, double timeout);
     /**
      * @since Available in iOS 6.0 and later.
+     * @deprecated Deprecated in iOS 13.0. You can remove calls to this method
      */
+    @Deprecated
     @Method(selector = "disallowDeferredLocationUpdates")
     public native void disallowDeferredLocationUpdates();
     /**
@@ -277,7 +302,9 @@ import org.robovm.apple.contacts.*;
     public static native CLAuthorizationStatus getAuthorizationStatus();
     /**
      * @since Available in iOS 6.0 and later.
+     * @deprecated Deprecated in iOS 13.0. You can remove calls to this method
      */
+    @Deprecated
     @Method(selector = "deferredLocationUpdatesAvailable")
     public static native boolean isDeferredLocationUpdatesAvailable();
     /**

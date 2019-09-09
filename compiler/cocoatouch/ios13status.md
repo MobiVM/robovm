@@ -1,4 +1,5 @@
 processed:
+- corelocation
 - coreimage
 - avfoundation
 - corebluetooth
@@ -25,7 +26,6 @@ classkit
 cloudkit
 contacts
 contactsui
-corelocation
 coremedia
 coremidi
 coreml

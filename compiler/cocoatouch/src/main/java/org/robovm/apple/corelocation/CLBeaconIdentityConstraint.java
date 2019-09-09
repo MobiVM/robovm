@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -35,32 +35,48 @@ import org.robovm.apple.contacts.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 8.0 and later.
+ * @since Available in iOS 13.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreLocation") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/CLFloor/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/CLBeaconIdentityConstraint/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
-    /*<ptr>*/public static class CLFloorPtr extends Ptr<CLFloor, CLFloorPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(CLFloor.class); }/*</bind>*/
+    /*<ptr>*/public static class CLBeaconIdentityConstraintPtr extends Ptr<CLBeaconIdentityConstraint, CLBeaconIdentityConstraintPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(CLBeaconIdentityConstraint.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public CLFloor() {}
-    protected CLFloor(Handle h, long handle) { super(h, handle); }
-    protected CLFloor(SkipInit skipInit) { super(skipInit); }
+    public CLBeaconIdentityConstraint() {}
+    protected CLBeaconIdentityConstraint(Handle h, long handle) { super(h, handle); }
+    protected CLBeaconIdentityConstraint(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithUUID:")
+    public CLBeaconIdentityConstraint(NSUUID uuid) { super((SkipInit) null); initObject(init(uuid)); }
+    @Method(selector = "initWithUUID:major:")
+    public CLBeaconIdentityConstraint(NSUUID uuid, short major) { super((SkipInit) null); initObject(init(uuid, major)); }
+    @Method(selector = "initWithUUID:major:minor:")
+    public CLBeaconIdentityConstraint(NSUUID uuid, short major, short minor) { super((SkipInit) null); initObject(init(uuid, major, minor)); }
     @Method(selector = "initWithCoder:")
-    public CLFloor(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
+    public CLBeaconIdentityConstraint(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "level")
-    public native @MachineSizedSInt long getLevel();
+    @Property(selector = "UUID")
+    public native NSUUID getUUID();
+    @Property(selector = "major")
+    public native NSNumber getMajor();
+    @Property(selector = "minor")
+    public native NSNumber getMinor();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    @Method(selector = "initWithUUID:")
+    protected native @Pointer long init(NSUUID uuid);
+    @Method(selector = "initWithUUID:major:")
+    protected native @Pointer long init(NSUUID uuid, short major);
+    @Method(selector = "initWithUUID:major:minor:")
+    protected native @Pointer long init(NSUUID uuid, short major, short minor);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
