@@ -65,7 +65,7 @@ import org.robovm.apple.audiotoolbox.*;
     @Method(selector = "initWithAttributedString:")
     public AVSpeechUtterance(NSAttributedString string) { super((SkipInit) null); initObject(init(string)); }
     @Method(selector = "initWithCoder:")
-    public AVSpeechUtterance(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public AVSpeechUtterance(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "voice")
@@ -130,6 +130,6 @@ import org.robovm.apple.audiotoolbox.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

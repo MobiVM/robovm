@@ -53,7 +53,11 @@ public enum /*<name>*/AVAudio3DMixingRenderingAlgorithm/*</name>*/ implements Va
     HRTF(2L),
     SoundField(3L),
     StereoPassThrough(5L),
-    HRTFHQ(6L);
+    HRTFHQ(6L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    Auto(7L);
     /*</values>*/
 
     public static class AsListMarshaler {

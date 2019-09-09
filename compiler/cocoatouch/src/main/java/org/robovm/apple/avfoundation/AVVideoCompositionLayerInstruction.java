@@ -58,7 +58,7 @@ import org.robovm.apple.audiotoolbox.*;
     protected AVVideoCompositionLayerInstruction(Handle h, long handle) { super(h, handle); }
     protected AVVideoCompositionLayerInstruction(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public AVVideoCompositionLayerInstruction(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public AVVideoCompositionLayerInstruction(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "trackID")
@@ -110,6 +110,6 @@ import org.robovm.apple.audiotoolbox.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

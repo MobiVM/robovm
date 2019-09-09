@@ -59,6 +59,16 @@ import org.robovm.apple.audiotoolbox.*;
     protected AVMutableCompositionTrack(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "isEnabled")
+    public native boolean isEnabled();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setEnabled:")
+    public native void setEnabled(boolean v);
     @Property(selector = "naturalTimeScale")
     public native int getNaturalTimeScale();
     @Property(selector = "setNaturalTimeScale:")
@@ -132,5 +142,10 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Method(selector = "removeTrackAssociationToTrack:type:")
     public native void removeTrackAssociation(AVCompositionTrack compositionTrack, String trackAssociationType);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "replaceFormatDescription:withFormatDescription:")
+    public native void replaceFormatDescription(CMFormatDescription originalFormatDescription, CMFormatDescription replacementFormatDescription);
     /*</methods>*/
 }

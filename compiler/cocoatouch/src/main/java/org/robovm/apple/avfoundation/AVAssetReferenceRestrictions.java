@@ -47,11 +47,13 @@ import org.robovm.apple.audiotoolbox.*;
 public final class /*<name>*/AVAssetReferenceRestrictions/*</name>*/ extends Bits</*<name>*/AVAssetReferenceRestrictions/*</name>*/> {
     /*<values>*/
     public static final AVAssetReferenceRestrictions None = new AVAssetReferenceRestrictions(0L);
-    public static final AVAssetReferenceRestrictions RemoteReferenceToLocal = new AVAssetReferenceRestrictions(1L);
-    public static final AVAssetReferenceRestrictions LocalReferenceToRemote = new AVAssetReferenceRestrictions(2L);
-    public static final AVAssetReferenceRestrictions CrossSiteReference = new AVAssetReferenceRestrictions(4L);
-    public static final AVAssetReferenceRestrictions LocalReferenceToLocal = new AVAssetReferenceRestrictions(8L);
-    public static final AVAssetReferenceRestrictions All = new AVAssetReferenceRestrictions(65535L);
+    public static final AVAssetReferenceRestrictions ForbidNone = new AVAssetReferenceRestrictions(0L);
+    public static final AVAssetReferenceRestrictions ForbidRemoteReferenceToLocal = new AVAssetReferenceRestrictions(1L);
+    public static final AVAssetReferenceRestrictions ForbidLocalReferenceToRemote = new AVAssetReferenceRestrictions(2L);
+    public static final AVAssetReferenceRestrictions ForbidCrossSiteReference = new AVAssetReferenceRestrictions(4L);
+    public static final AVAssetReferenceRestrictions ForbidLocalReferenceToLocal = new AVAssetReferenceRestrictions(8L);
+    public static final AVAssetReferenceRestrictions ForbidAll = new AVAssetReferenceRestrictions(65535L);
+    public static final AVAssetReferenceRestrictions DefaultPolicy = new AVAssetReferenceRestrictions(2L);
     /*</values>*/
 
     /*<bind>*/

@@ -97,6 +97,26 @@ import org.robovm.apple.audiotoolbox.*;
     public native boolean alwaysDiscardsLateVideoFrames();
     @Property(selector = "setAlwaysDiscardsLateVideoFrames:")
     public native void setAlwaysDiscardsLateVideoFrames(boolean v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "automaticallyConfiguresOutputBufferDimensions")
+    public native boolean automaticallyConfiguresOutputBufferDimensions();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setAutomaticallyConfiguresOutputBufferDimensions:")
+    public native void setAutomaticallyConfiguresOutputBufferDimensions(boolean v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "deliversPreviewSizedOutputBuffers")
+    public native boolean isDeliversPreviewSizedOutputBuffers();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setDeliversPreviewSizedOutputBuffers:")
+    public native void setDeliversPreviewSizedOutputBuffers(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /**

@@ -62,6 +62,26 @@ import org.robovm.apple.audiotoolbox.*;
     public AVAudio3DMixingRenderingAlgorithm getRenderingAlgorithm() { return null; }
     @NotImplemented("setRenderingAlgorithm:")
     public void setRenderingAlgorithm(AVAudio3DMixingRenderingAlgorithm v) {}
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("sourceMode")
+    public AVAudio3DMixingSourceMode getSourceMode() { return null; }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("setSourceMode:")
+    public void setSourceMode(AVAudio3DMixingSourceMode v) {}
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("pointSourceInHeadMode")
+    public AVAudio3DMixingPointSourceInHeadMode getPointSourceInHeadMode() { return null; }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("setPointSourceInHeadMode:")
+    public void setPointSourceInHeadMode(AVAudio3DMixingPointSourceInHeadMode v) {}
     @NotImplemented("rate")
     public float getRate() { return 0; }
     @NotImplemented("setRate:")

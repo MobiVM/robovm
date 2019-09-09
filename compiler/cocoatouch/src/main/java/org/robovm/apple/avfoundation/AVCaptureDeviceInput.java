@@ -79,10 +79,25 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "setUnifiedAutoExposureDefaultsEnabled:")
     public native void setUnifiedAutoExposureDefaultsEnabled(boolean v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "videoMinFrameDurationOverride")
+    public native @ByVal CMTime getVideoMinFrameDurationOverride();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setVideoMinFrameDurationOverride:")
+    public native void setVideoMinFrameDurationOverride(@ByVal CMTime v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithDevice:error:")
     private native @Pointer long init(AVCaptureDevice device, NSError.NSErrorPtr outError);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "portsWithMediaType:sourceDeviceType:sourceDevicePosition:")
+    public native NSArray<AVCaptureInputPort> getPorts(String mediaType, String sourceDeviceType, AVCaptureDevicePosition sourceDevicePosition);
     /*</methods>*/
 }

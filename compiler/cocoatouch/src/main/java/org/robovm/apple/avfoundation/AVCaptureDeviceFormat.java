@@ -101,6 +101,11 @@ import org.robovm.apple.audiotoolbox.*;
     @Property(selector = "maxISO")
     public native float getMaxISO();
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "isGlobalToneMappingSupported")
+    public native boolean isGlobalToneMappingSupported();
+    /**
      * @since Available in iOS 8.0 and later.
      */
     @Property(selector = "isVideoHDRSupported")
@@ -110,6 +115,11 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "highResolutionStillImageDimensions")
     public native @ByVal CMVideoDimensions getHighResolutionStillImageDimensions();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "isHighestPhotoQualitySupported")
+    public native boolean isHighestPhotoQualitySupported();
     /**
      * @since Available in iOS 8.0 and later.
      */
@@ -145,6 +155,11 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "isPortraitEffectsMatteStillImageDeliverySupported")
     public native boolean isPortraitEffectsMatteStillImageDeliverySupported();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "isMultiCamSupported")
+    public native boolean isMultiCamSupported();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

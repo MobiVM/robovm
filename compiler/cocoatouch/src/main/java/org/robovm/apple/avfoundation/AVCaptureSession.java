@@ -138,6 +138,11 @@ import org.robovm.apple.audiotoolbox.*;
     public native NSArray<AVCaptureInput> getInputs();
     @Property(selector = "outputs")
     public native NSArray<AVCaptureOutput> getOutputs();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "connections")
+    public native NSArray<AVCaptureConnection> getConnections();
     @Property(selector = "isRunning")
     public native boolean isRunning();
     /**

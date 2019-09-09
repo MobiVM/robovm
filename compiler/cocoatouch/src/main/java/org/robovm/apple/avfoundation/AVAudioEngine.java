@@ -101,6 +101,11 @@ import org.robovm.apple.audiotoolbox.*;
     @Property(selector = "setAutoShutdownEnabled:")
     public native void setAutoShutdownEnabled(boolean v);
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "attachedNodes")
+    public native NSSet<AVAudioNode> getAttachedNodes();
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @Property(selector = "manualRenderingBlock")

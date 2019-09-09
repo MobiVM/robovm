@@ -105,6 +105,11 @@ import org.robovm.apple.audiotoolbox.*;
     public native float getPreferredVolume();
     @Property(selector = "preferredTransform")
     public native @ByVal CGAffineTransform getPreferredTransform();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "minimumTimeOffsetFromLive")
+    public native @ByVal CMTime getMinimumTimeOffsetFromLive();
     @Property(selector = "providesPreciseDurationAndTiming")
     public native boolean providesPreciseDurationAndTiming();
     /**

@@ -150,6 +150,16 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "systemPressureState")
     public native AVCaptureSystemPressureState getSystemPressureState();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "isVirtualDevice")
+    public native boolean isVirtualDevice();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "constituentDevices")
+    public native NSArray<AVCaptureDevice> getConstituentDevices();
     @Property(selector = "hasFlash")
     public native boolean hasFlash();
     /**
@@ -308,6 +318,16 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "maxExposureTargetBias")
     public native float getMaxExposureTargetBias();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "isGlobalToneMappingEnabled")
+    public native boolean isGlobalToneMappingEnabled();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setGlobalToneMappingEnabled:")
+    public native void setGlobalToneMappingEnabled(boolean v);
     /**
      * @since Available in iOS 10.0 and later.
      */
@@ -619,5 +639,10 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Method(selector = "requestAccessForMediaType:completionHandler:")
     public static native void requestAccessForMediaType(AVMediaType mediaType, @Block VoidBooleanBlock handler);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "extrinsicMatrixFromDevice:toDevice:")
+    public static native NSData getExtrinsicMatrix(AVCaptureDevice fromDevice, AVCaptureDevice toDevice);
     /*</methods>*/
 }

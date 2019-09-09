@@ -193,6 +193,16 @@ import org.robovm.apple.audiotoolbox.*;
          */
         @GlobalValue(symbol="AVURLAssetAllowsCellularAccessKey", optional=true)
         public static native NSString AllowsCellularAccess();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="AVURLAssetAllowsExpensiveNetworkAccessKey", optional=true)
+        public static native NSString AllowsExpensiveNetworkAccess();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="AVURLAssetAllowsConstrainedNetworkAccessKey", optional=true)
+        public static native NSString AllowsConstrainedNetworkAccess();
     }
     /*</keys>*/
 }

@@ -137,7 +137,7 @@ import org.robovm.apple.audiotoolbox.*;
     private native NSData getPersistentContentKey(NSData keyVendorResponse, AVAssetResourceLoadingRequestOptions options, NSError.NSErrorPtr outError);
     /**
      * @since Available in iOS 6.0 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. No longer supported
      */
     @Deprecated
     @Method(selector = "finishLoadingWithResponse:data:redirect:")

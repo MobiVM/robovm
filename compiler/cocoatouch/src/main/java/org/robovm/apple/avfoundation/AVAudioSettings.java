@@ -150,6 +150,9 @@ import org.robovm.apple.audiotoolbox.*;
     }
     
 
+    /**
+     * @since Available in iOS 3.0 and later.
+     */
     @WeaklyLinked
     public AudioFormat getFormat() {
         if (has(Keys.FormatID())) {
@@ -158,11 +161,17 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return null;
     }
+    /**
+     * @since Available in iOS 3.0 and later.
+     */
     @WeaklyLinked
     public AVAudioSettings setFormat(AudioFormat format) {
         set(Keys.FormatID(), NSNumber.valueOf(format.value()));
         return this;
     }
+    /**
+     * @since Available in iOS 3.0 and later.
+     */
     public double getSampleRate() {
         if (has(Keys.SampleRate())) {
             NSNumber val = (NSNumber) get(Keys.SampleRate());
@@ -170,10 +179,16 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return 0;
     }
+    /**
+     * @since Available in iOS 3.0 and later.
+     */
     public AVAudioSettings setSampleRate(double sampleRate) {
         set(Keys.SampleRate(), NSNumber.valueOf(sampleRate));
         return this;
     }
+    /**
+     * @since Available in iOS 3.0 and later.
+     */
     public int getNumberOfChannels() {
         if (has(Keys.NumberOfChannels())) {
             NSNumber val = (NSNumber) get(Keys.NumberOfChannels());
@@ -181,6 +196,9 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return 0;
     }
+    /**
+     * @since Available in iOS 3.0 and later.
+     */
     public AVAudioSettings setNumberOfChannels(int numberOfChannels) {
         set(Keys.NumberOfChannels(), NSNumber.valueOf(numberOfChannels));
         return this;
@@ -227,16 +245,34 @@ import org.robovm.apple.audiotoolbox.*;
     @Library("AVFoundation")
     public static class Keys {
         static { Bro.bind(Keys.class); }
+        /**
+         * @since Available in iOS 3.0 and later.
+         */
         @GlobalValue(symbol="AVFormatIDKey", optional=true)
         public static native NSString FormatID();
+        /**
+         * @since Available in iOS 3.0 and later.
+         */
         @GlobalValue(symbol="AVSampleRateKey", optional=true)
         public static native NSString SampleRate();
+        /**
+         * @since Available in iOS 3.0 and later.
+         */
         @GlobalValue(symbol="AVNumberOfChannelsKey", optional=true)
         public static native NSString NumberOfChannels();
+        /**
+         * @since Available in iOS 3.0 and later.
+         */
         @GlobalValue(symbol="AVLinearPCMBitDepthKey", optional=true)
         public static native NSString BitDepthKey();
+        /**
+         * @since Available in iOS 3.0 and later.
+         */
         @GlobalValue(symbol="AVLinearPCMIsBigEndianKey", optional=true)
         public static native NSString IsBigEndianKey();
+        /**
+         * @since Available in iOS 3.0 and later.
+         */
         @GlobalValue(symbol="AVLinearPCMIsFloatKey", optional=true)
         public static native NSString IsFloatKey();
         /**

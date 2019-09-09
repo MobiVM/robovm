@@ -95,11 +95,13 @@ import org.robovm.apple.audiotoolbox.*;
     /**
      * @since Available in iOS 4.0 and later.
      */
+    @Deprecated
     @Property(selector = "maxDuration")
     public native @ByVal CMTime getMaxDuration();
     /**
      * @since Available in iOS 5.0 and later.
      */
+    @Deprecated
     @Property(selector = "estimatedOutputFileLength")
     public native long getEstimatedOutputFileLength();
     /**
@@ -192,5 +194,15 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Method(selector = "determineCompatibleFileTypesWithCompletionHandler:")
     public native void determineCompatibleFileTypes(@Block VoidBlock1<NSArray<NSString>> handler);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "estimateMaximumDurationWithCompletionHandler:")
+    public native void estimateMaximumDuration(@Block("(@ByVal,)") VoidBlock2<CMTime, NSError> handler);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "estimateOutputFileLengthWithCompletionHandler:")
+    public native void estimateOutputFileLength(@Block VoidBlock2<Long, NSError> handler);
     /*</methods>*/
 }

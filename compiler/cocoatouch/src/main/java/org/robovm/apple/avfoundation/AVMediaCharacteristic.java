@@ -118,6 +118,10 @@ import org.robovm.apple.audiotoolbox.*;
      */
     public static final AVMediaCharacteristic UsesWideGamutColorSpace = new AVMediaCharacteristic("UsesWideGamutColorSpace");
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final AVMediaCharacteristic ContainsAlphaChannel = new AVMediaCharacteristic("ContainsAlphaChannel");
+    /**
      * @since Available in iOS 5.0 and later.
      */
     public static final AVMediaCharacteristic IsMainProgramContent = new AVMediaCharacteristic("IsMainProgramContent");
@@ -125,6 +129,10 @@ import org.robovm.apple.audiotoolbox.*;
      * @since Available in iOS 5.0 and later.
      */
     public static final AVMediaCharacteristic IsAuxiliaryContent = new AVMediaCharacteristic("IsAuxiliaryContent");
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    public static final AVMediaCharacteristic IsOriginalContent = new AVMediaCharacteristic("IsOriginalContent");
     /**
      * @since Available in iOS 5.0 and later.
      */
@@ -159,7 +167,7 @@ import org.robovm.apple.audiotoolbox.*;
     public static final AVMediaCharacteristic VoiceOverTranslation = new AVMediaCharacteristic("VoiceOverTranslation");
     /*</constants>*/
     
-    private static /*<name>*/AVMediaCharacteristic/*</name>*/[] values = new /*<name>*/AVMediaCharacteristic/*</name>*/[] {/*<value_list>*/Visual, Audible, Legible, FrameBased, UsesWideGamutColorSpace, IsMainProgramContent, IsAuxiliaryContent, ContainsOnlyForcedSubtitles, TranscribesSpokenDialogForAccessibility, DescribesMusicAndSoundForAccessibility, EasyToRead, DescribesVideoForAccessibility, LanguageTranslation, DubbedTranslation, VoiceOverTranslation/*</value_list>*/};
+    private static /*<name>*/AVMediaCharacteristic/*</name>*/[] values = new /*<name>*/AVMediaCharacteristic/*</name>*/[] {/*<value_list>*/Visual, Audible, Legible, FrameBased, UsesWideGamutColorSpace, ContainsAlphaChannel, IsMainProgramContent, IsAuxiliaryContent, IsOriginalContent, ContainsOnlyForcedSubtitles, TranscribesSpokenDialogForAccessibility, DescribesMusicAndSoundForAccessibility, EasyToRead, DescribesVideoForAccessibility, LanguageTranslation, DubbedTranslation, VoiceOverTranslation/*</value_list>*/};
     
     /*<name>*/AVMediaCharacteristic/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -208,6 +216,11 @@ import org.robovm.apple.audiotoolbox.*;
         @GlobalValue(symbol="AVMediaCharacteristicUsesWideGamutColorSpace", optional=true)
         public static native NSString UsesWideGamutColorSpace();
         /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="AVMediaCharacteristicContainsAlphaChannel", optional=true)
+        public static native NSString ContainsAlphaChannel();
+        /**
          * @since Available in iOS 5.0 and later.
          */
         @GlobalValue(symbol="AVMediaCharacteristicIsMainProgramContent", optional=true)
@@ -217,6 +230,11 @@ import org.robovm.apple.audiotoolbox.*;
          */
         @GlobalValue(symbol="AVMediaCharacteristicIsAuxiliaryContent", optional=true)
         public static native NSString IsAuxiliaryContent();
+        /**
+         * @since Available in iOS 12.0 and later.
+         */
+        @GlobalValue(symbol="AVMediaCharacteristicIsOriginalContent", optional=true)
+        public static native NSString IsOriginalContent();
         /**
          * @since Available in iOS 5.0 and later.
          */

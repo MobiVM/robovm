@@ -169,7 +169,19 @@ public enum /*<name>*/AVErrorCode/*</name>*/ implements NSErrorCode {
     /**
      * @since Available in iOS 12.0 and later.
      */
-    ExternalPlaybackNotSupportedForAsset(-11870L);
+    ExternalPlaybackNotSupportedForAsset(-11870L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    OperationNotSupportedForPreset(-11871L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    SessionHardwareCostOverage(-11872L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    UnsupportedDeviceActiveFormat(-11873L);
     /*</values>*/
 
     /*<bind>*/

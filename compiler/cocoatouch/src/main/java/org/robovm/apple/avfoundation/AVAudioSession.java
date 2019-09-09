@@ -195,10 +195,15 @@ import org.robovm.apple.audiotoolbox.*;
     @Property(selector = "availableInputs")
     public native NSArray<AVAudioSessionPortDescription> getAvailableInputs();
     /**
-     * @since Available in iOS 12.2 and later.
+     * @since Available in iOS 13.0 and later.
      */
     @Property(selector = "promptStyle")
     public native AVAudioSessionPromptStyle getPromptStyle();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "allowHapticsAndSystemSoundsDuringRecording")
+    public native boolean isAllowHapticsAndSystemSoundsDuringRecording();
     /**
      * @since Available in iOS 6.0 and later.
      */
@@ -464,6 +469,20 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Method(selector = "setPreferredInput:error:")
     private native boolean setPreferredInput(AVAudioSessionPortDescription inPort, NSError.NSErrorPtr outError);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public boolean setAllowHapticsAndSystemSoundsDuringRecording(boolean inValue) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       boolean result = setAllowHapticsAndSystemSoundsDuringRecording(inValue, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "setAllowHapticsAndSystemSoundsDuringRecording:error:")
+    private native boolean setAllowHapticsAndSystemSoundsDuringRecording(boolean inValue, NSError.NSErrorPtr outError);
     /**
      * @since Available in iOS 3.0 and later.
      */

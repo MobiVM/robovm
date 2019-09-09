@@ -91,6 +91,11 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "isRedEyeReductionEnabled")
     public native boolean isRedEyeReductionEnabled();
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
     @Property(selector = "isStillImageStabilizationEnabled")
     public native boolean isStillImageStabilizationEnabled();
     /**
@@ -103,9 +108,18 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "expectedPhotoCount")
     public native @MachineSizedUInt long getExpectedPhotoCount();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "photoProcessingTimeRange")
+    public native @ByVal CMTimeRange getPhotoProcessingTimeRange();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "dimensionsForSemanticSegmentationMatteOfType:")
+    public native @ByVal CMVideoDimensions dimensionsForSemanticSegmentationMatteOfType(AVSemanticSegmentationMatteType semanticSegmentationMatteType);
     /*</methods>*/
 }

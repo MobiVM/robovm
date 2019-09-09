@@ -54,7 +54,7 @@ import org.robovm.apple.audiotoolbox.*;
     /*<bind>*/static { ObjCRuntime.bind(AVCaptureConnection.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public AVCaptureConnection() {}
+    protected AVCaptureConnection() {}
     protected AVCaptureConnection(Handle h, long handle) { super(h, handle); }
     protected AVCaptureConnection(SkipInit skipInit) { super(skipInit); }
     /**

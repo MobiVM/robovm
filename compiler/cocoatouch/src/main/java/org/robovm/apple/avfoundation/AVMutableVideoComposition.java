@@ -62,6 +62,10 @@ import org.robovm.apple.audiotoolbox.*;
      */
     public AVMutableVideoComposition(AVAsset asset) { super((Handle) null, create(asset)); retain(getHandle()); }
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public AVMutableVideoComposition(AVAsset asset, AVVideoCompositionInstruction prototypeInstruction) { super((Handle) null, create(asset, prototypeInstruction)); retain(getHandle()); }
+    /**
      * @since Available in iOS 9.0 and later.
      */
     public AVMutableVideoComposition(AVAsset asset, @Block VoidBlock1<AVAsynchronousCIImageFilteringRequest> ciFiltersApplier) { super((Handle) null, create(asset, ciFiltersApplier)); retain(getHandle()); }
@@ -151,6 +155,11 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Method(selector = "videoCompositionWithPropertiesOfAsset:")
     protected static native @Pointer long create(AVAsset asset);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "videoCompositionWithPropertiesOfAsset:prototypeInstruction:")
+    protected static native @Pointer long create(AVAsset asset, AVVideoCompositionInstruction prototypeInstruction);
     /**
      * @since Available in iOS 9.0 and later.
      */

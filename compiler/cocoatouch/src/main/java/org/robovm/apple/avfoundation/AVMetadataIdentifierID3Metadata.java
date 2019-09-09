@@ -119,7 +119,7 @@ import org.robovm.apple.audiotoolbox.*;
     public static final AVMetadataIdentifierID3Metadata Commercial = new AVMetadataIdentifierID3Metadata("Commercial");
     /**
      * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. No longer supported
      */
     @Deprecated
     public static final AVMetadataIdentifierID3Metadata Commerical = new AVMetadataIdentifierID3Metadata("Commerical");
@@ -523,7 +523,7 @@ import org.robovm.apple.audiotoolbox.*;
         public static native NSString Commercial();
         /**
          * @since Available in iOS 8.0 and later.
-         * @deprecated Deprecated in iOS 9.0.
+         * @deprecated Deprecated in iOS 9.0. No longer supported
          */
         @Deprecated
         @GlobalValue(symbol="AVMetadataIdentifierID3MetadataCommerical", optional=true)

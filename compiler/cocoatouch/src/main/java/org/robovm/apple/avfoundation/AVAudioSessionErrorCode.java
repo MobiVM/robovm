@@ -58,7 +58,9 @@ public enum /*<name>*/AVAudioSessionErrorCode/*</name>*/ implements NSErrorCode 
     BadParam(-50L),
     InsufficientPriority(561017449L),
     ResourceNotAvailable(561145203L),
-    Unspecified(2003329396L);
+    Unspecified(2003329396L),
+    ExpiredSession(561210739L),
+    SessionNotActive(1768841571L);
     /*</values>*/
 
     /*<bind>*/

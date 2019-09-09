@@ -158,6 +158,11 @@ import org.robovm.apple.audiotoolbox.*;
     public native @ByVal CMTime getDuration();
     @Property(selector = "presentationSize")
     public native @ByVal CGSize getPresentationSize();
+    /**
+     * @since Available in iOS 4.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use AVPlayerItemMetadataOutput to obtain timed metadata
+     */
+    @Deprecated
     @Property(selector = "timedMetadata")
     public native NSArray<AVMetadataItem> getTimedMetadata();
     /**
@@ -200,6 +205,31 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "canStepBackward")
     public native boolean canStepBackward();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "configuredTimeOffsetFromLive")
+    public native @ByVal CMTime getConfiguredTimeOffsetFromLive();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setConfiguredTimeOffsetFromLive:")
+    public native void setConfiguredTimeOffsetFromLive(@ByVal CMTime v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "recommendedTimeOffsetFromLive")
+    public native @ByVal CMTime getRecommendedTimeOffsetFromLive();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "automaticallyPreservesTimeOffsetFromLive")
+    public native boolean automaticallyPreservesTimeOffsetFromLive();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setAutomaticallyPreservesTimeOffsetFromLive:")
+    public native void setAutomaticallyPreservesTimeOffsetFromLive(boolean v);
     @Property(selector = "forwardPlaybackEndTime")
     public native @ByVal CMTime getForwardPlaybackEndTime();
     @Property(selector = "setForwardPlaybackEndTime:")
@@ -215,8 +245,14 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "timebase")
     public native CMTimebase getTimebase();
+    /**
+     * @since Available in iOS 4.0 and later.
+     */
     @Property(selector = "videoComposition")
     public native AVVideoComposition getVideoComposition();
+    /**
+     * @since Available in iOS 4.0 and later.
+     */
     @Property(selector = "setVideoComposition:")
     public native void setVideoComposition(AVVideoComposition v);
     /**
@@ -264,6 +300,16 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "setAudioTimePitchAlgorithm:")
     public native void setAudioTimePitchAlgorithm(String v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "isAudioSpatializationAllowed")
+    public native boolean isAudioSpatializationAllowed();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setAudioSpatializationAllowed:")
+    public native void setAudioSpatializationAllowed(boolean v);
     @Property(selector = "audioMix")
     public native AVAudioMix getAudioMix();
     @Property(selector = "setAudioMix:")
@@ -364,6 +410,16 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @GlobalValue(symbol="AVPlayerItemNewErrorLogEntryNotification", optional=true)
     public static native NSString NewErrorLogEntryNotification();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @GlobalValue(symbol="AVPlayerItemRecommendedTimeOffsetFromLiveDidChangeNotification", optional=true)
+    public static native NSString RecommendedTimeOffsetFromLiveDidChangeNotification();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @GlobalValue(symbol="AVPlayerItemMediaSelectionDidChangeNotification", optional=true)
+    public static native NSString MediaSelectionDidChangeNotification();
     /**
      * @since Available in iOS 4.3 and later.
      */

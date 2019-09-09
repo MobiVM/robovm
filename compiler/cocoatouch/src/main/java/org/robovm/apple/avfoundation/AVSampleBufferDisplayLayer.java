@@ -100,6 +100,26 @@ import org.robovm.apple.audiotoolbox.*;
     public native NSError getError();
     @Property(selector = "isReadyForMoreMediaData")
     public native boolean isReadyForMoreMediaData();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "preventsCapture")
+    public native boolean isPreventsCapture();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setPreventsCapture:")
+    public native void setPreventsCapture(boolean v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "preventsDisplaySleepDuringVideoPlayback")
+    public native boolean isPreventsDisplaySleepDuringVideoPlayback();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setPreventsDisplaySleepDuringVideoPlayback:")
+    public native void setPreventsDisplaySleepDuringVideoPlayback(boolean v);
     @Property(selector = "timebase")
     public native CMTimebase getTimebase();
     /*</properties>*/

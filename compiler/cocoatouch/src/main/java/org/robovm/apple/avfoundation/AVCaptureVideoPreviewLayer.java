@@ -83,6 +83,11 @@ import org.robovm.apple.audiotoolbox.*;
     public native AVLayerVideoGravity getVideoGravity();
     @Property(selector = "setVideoGravity:")
     public native void setVideoGravity(AVLayerVideoGravity v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "isPreviewing")
+    public native boolean isPreviewing();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

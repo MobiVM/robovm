@@ -88,6 +88,16 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "clock")
     public native CMClock getClock();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "sourceDeviceType")
+    public native String getSourceDeviceType();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "sourceDevicePosition")
+    public native AVCaptureDevicePosition getSourceDevicePosition();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

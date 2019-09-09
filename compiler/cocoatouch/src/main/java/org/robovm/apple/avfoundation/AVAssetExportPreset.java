@@ -114,6 +114,10 @@ import org.robovm.apple.audiotoolbox.*;
      */
     public static final AVAssetExportPreset HEVCHighestQuality = new AVAssetExportPreset("HEVCHighestQuality");
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final AVAssetExportPreset HEVCHighestQualityWithAlpha = new AVAssetExportPreset("HEVCHighestQualityWithAlpha");
+    /**
      * @since Available in iOS 4.0 and later.
      */
     public static final AVAssetExportPreset Size640x480 = new AVAssetExportPreset("Size640x480");
@@ -138,9 +142,17 @@ import org.robovm.apple.audiotoolbox.*;
      */
     public static final AVAssetExportPreset HEVC1920x1080 = new AVAssetExportPreset("HEVC1920x1080");
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final AVAssetExportPreset HEVC1920x1080WithAlpha = new AVAssetExportPreset("HEVC1920x1080WithAlpha");
+    /**
      * @since Available in iOS 11.0 and later.
      */
     public static final AVAssetExportPreset HEVC3840x2160 = new AVAssetExportPreset("HEVC3840x2160");
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final AVAssetExportPreset HEVC3840x2160WithAlpha = new AVAssetExportPreset("HEVC3840x2160WithAlpha");
     /**
      * @since Available in iOS 4.0 and later.
      */
@@ -151,7 +163,7 @@ import org.robovm.apple.audiotoolbox.*;
     public static final AVAssetExportPreset Passthrough = new AVAssetExportPreset("Passthrough");
     /*</constants>*/
     
-    private static /*<name>*/AVAssetExportPreset/*</name>*/[] values = new /*<name>*/AVAssetExportPreset/*</name>*/[] {/*<value_list>*/LowQuality, MediumQuality, HighestQuality, HEVCHighestQuality, Size640x480, Size960x540, Size1280x720, Size1920x1080, Size3840x2160, HEVC1920x1080, HEVC3840x2160, AppleM4A, Passthrough/*</value_list>*/};
+    private static /*<name>*/AVAssetExportPreset/*</name>*/[] values = new /*<name>*/AVAssetExportPreset/*</name>*/[] {/*<value_list>*/LowQuality, MediumQuality, HighestQuality, HEVCHighestQuality, HEVCHighestQualityWithAlpha, Size640x480, Size960x540, Size1280x720, Size1920x1080, Size3840x2160, HEVC1920x1080, HEVC1920x1080WithAlpha, HEVC3840x2160, HEVC3840x2160WithAlpha, AppleM4A, Passthrough/*</value_list>*/};
     
     /*<name>*/AVAssetExportPreset/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -195,6 +207,11 @@ import org.robovm.apple.audiotoolbox.*;
         @GlobalValue(symbol="AVAssetExportPresetHEVCHighestQuality", optional=true)
         public static native NSString HEVCHighestQuality();
         /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="AVAssetExportPresetHEVCHighestQualityWithAlpha", optional=true)
+        public static native NSString HEVCHighestQualityWithAlpha();
+        /**
          * @since Available in iOS 4.0 and later.
          */
         @GlobalValue(symbol="AVAssetExportPreset640x480", optional=true)
@@ -225,10 +242,20 @@ import org.robovm.apple.audiotoolbox.*;
         @GlobalValue(symbol="AVAssetExportPresetHEVC1920x1080", optional=true)
         public static native NSString HEVC1920x1080();
         /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="AVAssetExportPresetHEVC1920x1080WithAlpha", optional=true)
+        public static native NSString HEVC1920x1080WithAlpha();
+        /**
          * @since Available in iOS 11.0 and later.
          */
         @GlobalValue(symbol="AVAssetExportPresetHEVC3840x2160", optional=true)
         public static native NSString HEVC3840x2160();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="AVAssetExportPresetHEVC3840x2160WithAlpha", optional=true)
+        public static native NSString HEVC3840x2160WithAlpha();
         /**
          * @since Available in iOS 4.0 and later.
          */

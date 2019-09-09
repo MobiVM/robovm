@@ -61,7 +61,7 @@ import org.robovm.apple.audiotoolbox.*;
     /*<properties>*/
     /**
      * @since Available in iOS 4.3 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. No longer supported
      */
     @Deprecated
     @Property(selector = "numberOfSegmentsDownloaded")

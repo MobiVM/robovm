@@ -77,8 +77,28 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "availableRawPhotoFileTypes")
     public native NSArray<NSString> getAvailableRawPhotoFileTypes();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "maxPhotoQualityPrioritization")
+    public native AVCapturePhotoQualityPrioritization getMaxPhotoQualityPrioritization();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setMaxPhotoQualityPrioritization:")
+    public native void setMaxPhotoQualityPrioritization(AVCapturePhotoQualityPrioritization v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
     @Property(selector = "isStillImageStabilizationSupported")
     public native boolean isStillImageStabilizationSupported();
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
     @Property(selector = "isStillImageStabilizationScene")
     public native boolean isStillImageStabilizationScene();
     /**
@@ -176,6 +196,21 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "setPortraitEffectsMatteDeliveryEnabled:")
     public native void setPortraitEffectsMatteDeliveryEnabled(boolean v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "availableSemanticSegmentationMatteTypes")
+    public native NSArray<NSString> getAvailableSemanticSegmentationMatteTypes();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "enabledSemanticSegmentationMatteTypes")
+    public native NSArray<NSString> getEnabledSemanticSegmentationMatteTypes();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setEnabledSemanticSegmentationMatteTypes:")
+    public native void setEnabledSemanticSegmentationMatteTypes(NSArray<NSString> v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -202,14 +237,14 @@ import org.robovm.apple.audiotoolbox.*;
     protected static native @Pointer long create();
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0. Use -[AVCapturePhoto fileDataRepresentation] instead.
+     * @deprecated Deprecated in iOS 11.0.
      */
     @Deprecated
     @Method(selector = "JPEGPhotoDataRepresentationForJPEGSampleBuffer:previewPhotoSampleBuffer:")
     public static native NSData JPEGPhotoDataRepresentationForJPEGSampleBuffer(CMSampleBuffer JPEGSampleBuffer, CMSampleBuffer previewPhotoSampleBuffer);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0. Use -[AVCapturePhoto fileDataRepresentation] instead.
+     * @deprecated Deprecated in iOS 11.0.
      */
     @Deprecated
     @Method(selector = "DNGPhotoDataRepresentationForRawSampleBuffer:previewPhotoSampleBuffer:")
