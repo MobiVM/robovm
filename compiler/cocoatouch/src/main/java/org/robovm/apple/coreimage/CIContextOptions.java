@@ -36,6 +36,7 @@ import org.robovm.apple.imageio.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.metal.*;
 import org.robovm.apple.iosurface.*;
+import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -218,6 +219,11 @@ import org.robovm.apple.iosurface.*;
          */
         @GlobalValue(symbol="kCIContextPriorityRequestLow", optional=true)
         public static native NSString PriorityRequestLow();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="kCIContextAllowLowPower", optional=true)
+        public static native NSString AllowLowPower();
     }
     /*</keys>*/
 }

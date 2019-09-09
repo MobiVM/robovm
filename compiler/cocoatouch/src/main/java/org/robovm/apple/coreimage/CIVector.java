@@ -36,6 +36,7 @@ import org.robovm.apple.imageio.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.metal.*;
 import org.robovm.apple.iosurface.*;
+import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -81,7 +82,7 @@ import org.robovm.apple.iosurface.*;
     @Method(selector = "initWithString:")
     public CIVector(String representation) { super((SkipInit) null); initObject(init(representation)); }
     @Method(selector = "initWithCoder:")
-    public CIVector(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public CIVector(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
 
     public CIVector(double[] values) {
@@ -169,6 +170,6 @@ import org.robovm.apple.iosurface.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

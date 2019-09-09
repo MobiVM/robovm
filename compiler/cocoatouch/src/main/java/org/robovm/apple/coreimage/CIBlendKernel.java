@@ -36,6 +36,7 @@ import org.robovm.apple.imageio.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.metal.*;
 import org.robovm.apple.iosurface.*;
+import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -144,6 +145,11 @@ import org.robovm.apple.iosurface.*;
     /*<methods>*/
     @Method(selector = "applyWithForeground:background:")
     public native CIImage apply(CIImage foreground, CIImage background);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "applyWithForeground:background:colorSpace:")
+    public native CIImage apply(CIImage foreground, CIImage background, CGColorSpace colorSpace);
     /**
      * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 12.0. Core Image Kernel Language API deprecated. (Define CI_SILENCE_GL_DEPRECATION to silence these warnings)

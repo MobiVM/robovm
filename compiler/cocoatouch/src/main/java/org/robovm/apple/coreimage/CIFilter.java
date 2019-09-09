@@ -36,6 +36,7 @@ import org.robovm.apple.imageio.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.metal.*;
 import org.robovm.apple.iosurface.*;
+import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -72,7 +73,7 @@ import org.robovm.apple.iosurface.*;
      */
     public CIFilter(CVPixelBuffer pixelBuffer, NSDictionary<?, ?> properties, CIRAWFilterOptions options) { super((Handle) null, create(pixelBuffer, properties, options)); retain(getHandle()); }
     @Method(selector = "initWithCoder:")
-    public CIFilter(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public CIFilter(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     public CIFilter(String name, Object...inputParameters) {super((Handle) null, create(name, inputParameters)); retain(getHandle()); }
     /*<properties>*/
@@ -241,9 +242,14 @@ import org.robovm.apple.iosurface.*;
      */
     @Method(selector = "filterWithCVPixelBuffer:properties:options:")
     protected static native @Pointer long create(CVPixelBuffer pixelBuffer, NSDictionary<?, ?> properties, CIRAWFilterOptions options);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "supportedRawCameraModels")
+    public static native NSArray<NSString> supportedRawCameraModels();
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

@@ -36,6 +36,7 @@ import org.robovm.apple.imageio.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.metal.*;
 import org.robovm.apple.iosurface.*;
+import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -59,6 +60,11 @@ import org.robovm.apple.iosurface.*;
     public CIImage(CGImage image) { super((SkipInit) null); initObject(init(image)); }
     @Method(selector = "initWithCGImage:options:")
     public CIImage(CGImage image, CIImageOptions options) { super((SkipInit) null); initObject(init(image, options)); }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "initWithCGImageSource:index:options:")
+    public CIImage(CGImageSource source, @MachineSizedUInt long index, CIImageOptions dict) { super((SkipInit) null); initObject(init(source, index, dict)); }
     @Method(selector = "initWithData:")
     public CIImage(NSData data) { super((SkipInit) null); initObject(init(data)); }
     @Method(selector = "initWithData:options:")
@@ -136,14 +142,74 @@ import org.robovm.apple.iosurface.*;
     @Method(selector = "initWithPortaitEffectsMatte:")
     public CIImage(org.robovm.apple.avfoundation.AVPortraitEffectsMatte matte) { super((SkipInit) null); initObject(init(matte)); }
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "initWithSemanticSegmentationMatte:options:")
+    public CIImage(AVSemanticSegmentationMatte matte, CIImageOptions options) { super((SkipInit) null); initObject(init(matte, options)); }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "initWithSemanticSegmentationMatte:")
+    public CIImage(AVSemanticSegmentationMatte matte) { super((SkipInit) null); initObject(init(matte)); }
+    /**
      * @since Available in iOS 9.0 and later.
      */
     @Method(selector = "initWithImageProvider:size::format:colorSpace:options:")
-    public CIImage(NSObject p, @MachineSizedUInt long width, @MachineSizedUInt long height, int f, CGColorSpace cs, NSDictionary<NSString, ?> options) { super((SkipInit) null); initObject(init(p, width, height, f, cs, options)); }
+    public CIImage(NSObject p, @MachineSizedUInt long width, @MachineSizedUInt long height, int f, CGColorSpace cs, CIImageOptions options) { super((SkipInit) null); initObject(init(p, width, height, f, cs, options)); }
     @Method(selector = "initWithCoder:")
-    public CIImage(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public CIImage(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "blackImage")
+    public static native CIImage getBlackImage();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "whiteImage")
+    public static native CIImage getWhiteImage();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "grayImage")
+    public static native CIImage getGrayImage();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "redImage")
+    public static native CIImage getRedImage();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "greenImage")
+    public static native CIImage getGreenImage();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "blueImage")
+    public static native CIImage getBlueImage();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "cyanImage")
+    public static native CIImage getCyanImage();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "magentaImage")
+    public static native CIImage getMagentaImage();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "yellowImage")
+    public static native CIImage getYellowImage();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "clearImage")
+    public static native CIImage getClearImage();
     @Property(selector = "extent")
     public native @ByVal CGRect getExtent();
     /**
@@ -181,6 +247,11 @@ import org.robovm.apple.iosurface.*;
      */
     @Property(selector = "portraitEffectsMatte")
     public native org.robovm.apple.avfoundation.AVPortraitEffectsMatte getPortraitEffectsMatte();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "semanticSegmentationMatte")
+    public native AVSemanticSegmentationMatte getSemanticSegmentationMatte();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
@@ -202,21 +273,15 @@ import org.robovm.apple.iosurface.*;
         initObject(i.getHandle());
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
-    @GlobalValue(symbol="kCIImageProviderTileSize", optional=true)
-    public static native String getImageProviderTileSize();
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
-    @GlobalValue(symbol="kCIImageProviderUserInfo", optional=true)
-    public static native String getImageProviderUserInfo();
-    
     @Method(selector = "initWithCGImage:")
     protected native @Pointer long init(CGImage image);
     @Method(selector = "initWithCGImage:options:")
     protected native @Pointer long init(CGImage image, CIImageOptions options);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "initWithCGImageSource:index:options:")
+    protected native @Pointer long init(CGImageSource source, @MachineSizedUInt long index, CIImageOptions dict);
     @Method(selector = "initWithData:")
     protected native @Pointer long init(NSData data);
     @Method(selector = "initWithData:options:")
@@ -275,6 +340,11 @@ import org.robovm.apple.iosurface.*;
     protected native @Pointer long init(CIColor color);
     @Method(selector = "imageByApplyingTransform:")
     public native CIImage newImageByApplyingTransform(@ByVal CGAffineTransform matrix);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "imageByApplyingTransform:highQualityDownsample:")
+    public native CIImage newImageByApplyingTransform(@ByVal CGAffineTransform matrix, boolean highQualityDownsample);
     /**
      * @since Available in iOS 8.0 and later.
      */
@@ -417,13 +487,23 @@ import org.robovm.apple.iosurface.*;
     @Method(selector = "initWithPortaitEffectsMatte:")
     protected native @Pointer long init(org.robovm.apple.avfoundation.AVPortraitEffectsMatte matte);
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "initWithSemanticSegmentationMatte:options:")
+    protected native @Pointer long init(AVSemanticSegmentationMatte matte, CIImageOptions options);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "initWithSemanticSegmentationMatte:")
+    protected native @Pointer long init(AVSemanticSegmentationMatte matte);
+    /**
      * @since Available in iOS 9.0 and later.
      */
     @Method(selector = "initWithImageProvider:size::format:colorSpace:options:")
-    protected native @Pointer long init(NSObject p, @MachineSizedUInt long width, @MachineSizedUInt long height, int f, CGColorSpace cs, NSDictionary<NSString, ?> options);
+    protected native @Pointer long init(NSObject p, @MachineSizedUInt long width, @MachineSizedUInt long height, int f, CGColorSpace cs, CIImageOptions options);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

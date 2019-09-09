@@ -36,6 +36,7 @@ import org.robovm.apple.imageio.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.metal.*;
 import org.robovm.apple.iosurface.*;
+import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -182,6 +183,31 @@ import org.robovm.apple.iosurface.*;
          */
         @GlobalValue(symbol="kCIImageAuxiliaryPortraitEffectsMatte", optional=true)
         public static native CFString AuxiliaryPortraitEffectsMatte();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="kCIImageAuxiliarySemanticSegmentationSkinMatte", optional=true)
+        public static native CFString AuxiliarySemanticSegmentationSkinMatte();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="kCIImageAuxiliarySemanticSegmentationHairMatte", optional=true)
+        public static native CFString AuxiliarySemanticSegmentationHairMatte();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="kCIImageAuxiliarySemanticSegmentationTeethMatte", optional=true)
+        public static native CFString AuxiliarySemanticSegmentationTeethMatte();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="kCIImageProviderTileSize", optional=true)
+        public static native CFString ProviderTileSize();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="kCIImageProviderUserInfo", optional=true)
+        public static native CFString ProviderUserInfo();
     }
     /*</keys>*/
 }

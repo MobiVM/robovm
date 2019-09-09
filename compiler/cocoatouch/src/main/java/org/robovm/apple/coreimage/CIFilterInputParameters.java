@@ -36,6 +36,7 @@ import org.robovm.apple.imageio.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.metal.*;
 import org.robovm.apple.iosurface.*;
+import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -352,6 +353,11 @@ import org.robovm.apple.iosurface.*;
          */
         @GlobalValue(symbol="kCIInputVersionKey", optional=true)
         public static native NSString Version();
+        /**
+         * @since Available in iOS 12.0 and later.
+         */
+        @GlobalValue(symbol="kCIInputEnableEDRModeKey", optional=true)
+        public static native NSString EnableEDRMode();
     }
     /*</keys>*/
 }

@@ -36,6 +36,7 @@ import org.robovm.apple.imageio.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.metal.*;
 import org.robovm.apple.iosurface.*;
+import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -86,6 +87,14 @@ import org.robovm.apple.iosurface.*;
      * @since Available in iOS 9.0 and later.
      */
     public CIContext(MTLDevice device, CIContextOptions options) { super((Handle) null, create(device, options)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public CIContext(MTLCommandQueue commandQueue) { super((Handle) null, create(commandQueue)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public CIContext(MTLCommandQueue commandQueue, CIContextOptions options) { super((Handle) null, create(commandQueue, options)); retain(getHandle()); }
     /*</constructors>*/
     
     /*<properties>*/
@@ -104,18 +113,6 @@ import org.robovm.apple.iosurface.*;
     /*<methods>*/
     @Method(selector = "drawImage:inRect:fromRect:")
     public native void drawImage(CIImage image, @ByVal CGRect inRect, @ByVal CGRect fromRect);
-    @WeaklyLinked
-    @Method(selector = "createCGImage:fromRect:")
-    public native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGImage createCGImage(CIImage image, @ByVal CGRect fromRect);
-    @WeaklyLinked
-    @Method(selector = "createCGImage:fromRect:format:colorSpace:")
-    public native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGImage createCGImage(CIImage image, @ByVal CGRect fromRect, int format, CGColorSpace colorSpace);
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
-    @WeaklyLinked
-    @Method(selector = "createCGImage:fromRect:format:colorSpace:deferred:")
-    public native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGImage createCGImage(CIImage image, @ByVal CGRect fromRect, int format, CGColorSpace colorSpace, boolean deferred);
     @WeaklyLinked
     @Method(selector = "render:toBitmap:rowBytes:bounds:format:colorSpace:")
     public native void render(CIImage image, VoidPtr data, @MachineSizedSInt long rowBytes, @ByVal CGRect bounds, int format, CGColorSpace colorSpace);
@@ -198,6 +195,28 @@ import org.robovm.apple.iosurface.*;
     @Method(selector = "contextWithMTLDevice:options:")
     protected static native @Pointer long create(MTLDevice device, CIContextOptions options);
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "contextWithMTLCommandQueue:")
+    protected static native @Pointer long create(MTLCommandQueue commandQueue);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "contextWithMTLCommandQueue:options:")
+    protected static native @Pointer long create(MTLCommandQueue commandQueue, CIContextOptions options);
+    @WeaklyLinked
+    @Method(selector = "createCGImage:fromRect:")
+    public native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGImage createCGImage(CIImage image, @ByVal CGRect fromRect);
+    @WeaklyLinked
+    @Method(selector = "createCGImage:fromRect:format:colorSpace:")
+    public native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGImage createCGImage(CIImage image, @ByVal CGRect fromRect, int format, CGColorSpace colorSpace);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @WeaklyLinked
+    @Method(selector = "createCGImage:fromRect:format:colorSpace:deferred:")
+    public native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGImage createCGImage(CIImage image, @ByVal CGRect fromRect, int format, CGColorSpace colorSpace, boolean deferred);
+    /**
      * @since Available in iOS 10.0 and later.
      */
     @Method(selector = "TIFFRepresentationOfImage:format:colorSpace:options:")
@@ -252,6 +271,11 @@ import org.robovm.apple.iosurface.*;
      */
     @Method(selector = "depthBlurEffectFilterForImage:disparityImage:portraitEffectsMatte:orientation:options:")
     public native CIFilter depthBlurEffectFilter(CIImage image, CIImage disparityImage, CIImage portraitEffectsMatte, CGImagePropertyOrientation orientation, NSDictionary<?, ?> options);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "depthBlurEffectFilterForImage:disparityImage:portraitEffectsMatte:hairSemanticSegmentation:orientation:options:")
+    public native CIFilter depthBlurEffectFilter(CIImage image, CIImage disparityImage, CIImage portraitEffectsMatte, CIImage hairSemanticSegmentation, CGImagePropertyOrientation orientation, NSDictionary<?, ?> options);
     /**
      * @since Available in iOS 11.0 and later.
      */
