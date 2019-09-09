@@ -37,37 +37,30 @@ import org.robovm.apple.metal.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 12.0 and later.
+ * @since Available in iOS 13.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreML") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MLImageSize/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MLUpdateProgressHandlers/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
+    /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class MLImageSizePtr extends Ptr<MLImageSize, MLImageSizePtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(MLImageSize.class); }/*</bind>*/
+    /*<ptr>*/public static class MLUpdateProgressHandlersPtr extends Ptr<MLUpdateProgressHandlers, MLUpdateProgressHandlersPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(MLUpdateProgressHandlers.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MLImageSize() {}
-    protected MLImageSize(Handle h, long handle) { super(h, handle); }
-    protected MLImageSize(SkipInit skipInit) { super(skipInit); }
-    @Method(selector = "initWithCoder:")
-    public MLImageSize(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
+    protected MLUpdateProgressHandlers() {}
+    protected MLUpdateProgressHandlers(Handle h, long handle) { super(h, handle); }
+    protected MLUpdateProgressHandlers(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initForEvents:progressHandler:completionHandler:")
+    public MLUpdateProgressHandlers(MLUpdateProgressEvent interestedEvents, @Block VoidBlock1<MLUpdateContext> progressHandler, @Block VoidBlock1<MLUpdateContext> completionHandler) { super((SkipInit) null); initObject(init(interestedEvents, progressHandler, completionHandler)); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "pixelsWide")
-    public native @MachineSizedSInt long getPixelsWide();
-    @Property(selector = "pixelsHigh")
-    public native @MachineSizedSInt long getPixelsHigh();
-    @Property(selector = "supportsSecureCoding")
-    public static native boolean supportsSecureCoding();
+    
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "encodeWithCoder:")
-    public native void encode(NSCoder coder);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder coder);
+    @Method(selector = "initForEvents:progressHandler:completionHandler:")
+    protected native @Pointer long init(MLUpdateProgressEvent interestedEvents, @Block VoidBlock1<MLUpdateContext> progressHandler, @Block VoidBlock1<MLUpdateContext> completionHandler);
     /*</methods>*/
 }

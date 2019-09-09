@@ -36,34 +36,24 @@ import org.robovm.apple.metal.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 12.0 and later.
- */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/MLImageSizeConstraintType/*</name>*/ implements ValuedEnum {
-    /*<values>*/
-    Unspecified(0L),
-    Enumerated(2L),
-    Range(3L);
-    /*</values>*/
+/*<annotations>*//*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MLWritableAdapter/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
+    /*<implements>*/implements MLWritable/*</implements>*/ {
 
+    /*<ptr>*/
+    /*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<methods>*//*</methods>*/
-
-    private final long n;
-
-    private /*<name>*/MLImageSizeConstraintType/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/MLImageSizeConstraintType/*</name>*/ valueOf(long n) {
-        for (/*<name>*/MLImageSizeConstraintType/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/MLImageSizeConstraintType/*</name>*/.class.getName());
-    }
+    /*<constructors>*//*</constructors>*/
+    /*<properties>*/
+    
+    /*</properties>*/
+    /*<members>*//*</members>*/
+    /*<methods>*/
+    @NotImplemented("writeToURL:error:")
+    public boolean writeToURL(NSURL url, NSError.NSErrorPtr error) { return false; }
+    /*</methods>*/
 }

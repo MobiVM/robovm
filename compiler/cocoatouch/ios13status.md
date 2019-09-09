@@ -1,4 +1,5 @@
 processed:
+- coreml
 - coremidi
 - coremedia
 - corelocation
@@ -28,7 +29,6 @@ classkit
 cloudkit
 contacts
 contactsui
-coreml
 coremotion
 corenfc
 coreservices

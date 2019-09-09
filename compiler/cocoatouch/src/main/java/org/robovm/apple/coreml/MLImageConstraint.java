@@ -29,6 +29,10 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corevideo.*;
+import org.robovm.apple.coregraphics.*;
+import org.robovm.apple.imageio.*;
+import org.robovm.apple.vision.*;
+import org.robovm.apple.metal.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -39,15 +43,17 @@ import org.robovm.apple.corevideo.*;
 /*<annotations>*/@Library("CoreML") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MLImageConstraint/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class MLImageConstraintPtr extends Ptr<MLImageConstraint, MLImageConstraintPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(MLImageConstraint.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MLImageConstraint() {}
+    protected MLImageConstraint() {}
     protected MLImageConstraint(Handle h, long handle) { super(h, handle); }
     protected MLImageConstraint(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public MLImageConstraint(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "pixelsHigh")
@@ -61,9 +67,14 @@ import org.robovm.apple.corevideo.*;
      */
     @Property(selector = "sizeConstraint")
     public native MLImageSizeConstraint getSizeConstraint();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

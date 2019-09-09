@@ -1,5 +1,5 @@
 package: org.robovm.apple.coreml
-include: [foundation, corevideo]
+include: [foundation, corevideo, coregraphics, imageio, vision, metal]
 library: CoreML
 framework: CoreML
 clang_args: ['-x', 'objective-c']
@@ -16,7 +16,20 @@ enums:
     MLMultiArrayShapeConstraintType: {}
     MLImageSizeConstraintType: {} #since 12.0
     MLComputeUnits: {} #since 12.0
-
+    MLTaskState: {} #since 13.0
+    MLUpdateProgressEvent: {} #since 13.0
+typed_enums:
+    MLFeatureValueImageOption:
+        dictionary: MLFeatureValueImageOption
+        type: NSString
+        MLFeatureValueImageOption(.*):
+            name: '#{g[0]}'
+        methods:
+            CropRect:
+                type: CGRect
+            CropAndScale:
+                type: VNImageCropAndScaleOption
+                hint: Enum
 classes:
     MLDictionaryConstraint: {} #since 11.0
     MLDictionaryFeatureProvider: #since 11.0
@@ -52,6 +65,38 @@ classes:
             '+undefinedFeatureValueWithType:':
                 name: create
                 constructor: true
+            '+featureValueWithImageAtURL:pixelsWide:pixelsHigh:pixelFormatType:options:error:':
+                name: create
+                throws: NSErrorException
+                constructor: true
+            '+featureValueWithImageAtURL:constraint:options:error:':
+                name: create
+                throws: NSErrorException
+                constructor: true
+            '+featureValueWithCGImage:pixelsWide:pixelsHigh:pixelFormatType:options:error:':
+                name: create
+                throws: NSErrorException
+                constructor: true
+            '+featureValueWithCGImage:constraint:options:error:':
+                name: create
+                throws: NSErrorException
+                constructor: true
+            '+featureValueWithImageAtURL:orientation:pixelsWide:pixelsHigh:pixelFormatType:options:error:':
+                name: create
+                throws: NSErrorException
+                constructor: true
+            '+featureValueWithImageAtURL:orientation:constraint:options:error:':
+                name: create
+                throws: NSErrorException
+                constructor: true
+            '+featureValueWithCGImage:orientation:pixelsWide:pixelsHigh:pixelFormatType:options:error:':
+                name: create
+                throws: NSErrorException
+                constructor: true
+            '+featureValueWithCGImage:orientation:constraint:options:error:':
+                name: create
+                throws: NSErrorException
+                constructor: true
     MLImageConstraint: {} #since 11.0
     MLModel: #since 11.0
         methods:
@@ -73,6 +118,12 @@ classes:
                 constructor: true
             '-predictionsFromBatch:options:error:':
                 name: getPredictionsFromBatch
+                throws: NSErrorException
+            '-predictionsFromBatch:error:':
+                name: getPredictionsFromBatch
+                throws: NSErrorException
+            '-parameterValueForKey:error:':
+                name: getParameterValue
                 throws: NSErrorException
     MLModelDescription: {} #since 11.0
     MLMultiArray:  #since 11.0
@@ -111,6 +162,28 @@ classes:
             '+sequenceWithInt64Array:':
                 name: create
     MLSequenceConstraint: {} #since 12.0
+    #ios13
+    MLKey: {} #since 13.0
+    MLMetricKey: {} #since 13.0
+    MLNumericConstraint: {} #since 13.0
+    MLParameterDescription: {} #since 13.0
+    MLParameterKey: {} #since 13.0
+    MLTask: {} #since 13.0
+    MLUpdateContext: {} #since 13.0
+    MLUpdateProgressHandlers: #since 13.0
+        methods:
+            '-initForEvents:progressHandler:completionHandler:':
+                name: init
+    MLUpdateTask: #since 13.0
+        methods:
+            '-resumeWithParameters:':
+                name: resume
+            '+updateTaskForModelAtURL:trainingData:configuration:completionHandler:error:':
+                constructor: true
+                name: create
+            '+updateTaskForModelAtURL:trainingData:configuration:progressHandlers:error:':
+                constructor: true
+                name: create
 
 protocols:
     MLFeatureProvider: {} #since 11.0
@@ -119,31 +192,26 @@ protocols:
         methods:
             '-initWithParameterDictionary:error:':
                 name: init
-                throws: NSErrorException
             '-setWeightData:error:':
                 name: setWeightData
-                throws: NSErrorException
             '-outputShapesForInputShapes:error:':
                 name: getOutputShapes
-                throws: NSErrorException
             '-evaluateOnCPUWithInputs:outputs:error:':
                 name: evaluateOnCPU
-                throws: NSErrorException
             '-encodeToCommandBuffer:inputs:outputs:error:':
                 name: encodeToCommandBuffer
-                throws: NSErrorException
     MLCustomModel: #since 12.0
         methods:
             '-initWithModelDescription:parameterDictionary:error:':
                 name: init
-                throws: NSErrorException
             '-predictionFromFeatures:options:error:':
                 name: getPredictionFromFeatures
-                throws: NSErrorException
             '-predictionsFromBatch:options:error:':
                 name: getPredictionsFromBatch
-                throws: NSErrorException
-
+    MLWritable: #since 13.0
+        methods:
+            '-writeToURL:error:':
+                name: writeToURL
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (ML.*):

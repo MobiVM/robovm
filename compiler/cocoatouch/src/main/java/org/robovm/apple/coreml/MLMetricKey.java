@@ -37,33 +37,32 @@ import org.robovm.apple.metal.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 12.0 and later.
+ * @since Available in iOS 13.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/MLImageSizeConstraintType/*</name>*/ implements ValuedEnum {
-    /*<values>*/
-    Unspecified(0L),
-    Enumerated(2L),
-    Range(3L);
-    /*</values>*/
+/*<annotations>*/@Library("CoreML") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MLMetricKey/*</name>*/ 
+    extends /*<extends>*/MLKey/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
 
-    /*<bind>*/
-    /*</bind>*/
+    /*<ptr>*/public static class MLMetricKeyPtr extends Ptr<MLMetricKey, MLMetricKeyPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(MLMetricKey.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<methods>*//*</methods>*/
-
-    private final long n;
-
-    private /*<name>*/MLImageSizeConstraintType/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/MLImageSizeConstraintType/*</name>*/ valueOf(long n) {
-        for (/*<name>*/MLImageSizeConstraintType/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/MLImageSizeConstraintType/*</name>*/.class.getName());
-    }
+    /*<constructors>*/
+    protected MLMetricKey() {}
+    protected MLMetricKey(Handle h, long handle) { super(h, handle); }
+    protected MLMetricKey(SkipInit skipInit) { super(skipInit); }
+    /*</constructors>*/
+    /*<properties>*/
+    @Property(selector = "lossValue")
+    public static native MLMetricKey getLossValue();
+    @Property(selector = "epochIndex")
+    public static native MLMetricKey getEpochIndex();
+    @Property(selector = "miniBatchIndex")
+    public static native MLMetricKey getMiniBatchIndex();
+    /*</properties>*/
+    /*<members>*//*</members>*/
+    /*<methods>*/
+    
+    /*</methods>*/
 }

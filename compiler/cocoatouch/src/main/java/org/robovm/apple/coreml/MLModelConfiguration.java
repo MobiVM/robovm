@@ -29,6 +29,10 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corevideo.*;
+import org.robovm.apple.coregraphics.*;
+import org.robovm.apple.imageio.*;
+import org.robovm.apple.vision.*;
+import org.robovm.apple.metal.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -39,7 +43,7 @@ import org.robovm.apple.corevideo.*;
 /*<annotations>*/@Library("CoreML") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MLModelConfiguration/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class MLModelConfigurationPtr extends Ptr<MLModelConfiguration, MLModelConfigurationPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(MLModelConfiguration.class); }/*</bind>*/
@@ -48,15 +52,34 @@ import org.robovm.apple.corevideo.*;
     public MLModelConfiguration() {}
     protected MLModelConfiguration(Handle h, long handle) { super(h, handle); }
     protected MLModelConfiguration(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public MLModelConfiguration(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "computeUnits")
     public native MLComputeUnits getComputeUnits();
     @Property(selector = "setComputeUnits:")
     public native void setComputeUnits(MLComputeUnits v);
+    @Property(selector = "allowLowPrecisionAccumulationOnGPU")
+    public native boolean isAllowLowPrecisionAccumulationOnGPU();
+    @Property(selector = "setAllowLowPrecisionAccumulationOnGPU:")
+    public native void setAllowLowPrecisionAccumulationOnGPU(boolean v);
+    @Property(selector = "preferredMetalDevice")
+    public native MTLDevice getPreferredMetalDevice();
+    @Property(selector = "setPreferredMetalDevice:")
+    public native void setPreferredMetalDevice(MTLDevice v);
+    @Property(selector = "parameters")
+    public native NSDictionary<MLParameterKey, ?> getParameters();
+    @Property(selector = "setParameters:")
+    public native void setParameters(NSDictionary<MLParameterKey, ?> v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

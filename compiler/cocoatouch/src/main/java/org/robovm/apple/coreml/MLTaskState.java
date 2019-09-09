@@ -36,16 +36,16 @@ import org.robovm.apple.metal.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 12.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/MLImageSizeConstraintType/*</name>*/ implements ValuedEnum {
+public enum /*<name>*/MLTaskState/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    Unspecified(0L),
-    Enumerated(2L),
-    Range(3L);
+    Suspended(1L),
+    Running(2L),
+    Cancelling(3L),
+    Completed(4L),
+    Failed(5L);
     /*</values>*/
 
     /*<bind>*/
@@ -55,15 +55,15 @@ public enum /*<name>*/MLImageSizeConstraintType/*</name>*/ implements ValuedEnum
 
     private final long n;
 
-    private /*<name>*/MLImageSizeConstraintType/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/MLTaskState/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/MLImageSizeConstraintType/*</name>*/ valueOf(long n) {
-        for (/*<name>*/MLImageSizeConstraintType/*</name>*/ v : values()) {
+    public static /*<name>*/MLTaskState/*</name>*/ valueOf(long n) {
+        for (/*<name>*/MLTaskState/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/MLImageSizeConstraintType/*</name>*/.class.getName());
+            + /*<name>*/MLTaskState/*</name>*/.class.getName());
     }
 }

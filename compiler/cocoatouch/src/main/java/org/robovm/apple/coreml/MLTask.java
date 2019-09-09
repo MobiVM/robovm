@@ -37,33 +37,35 @@ import org.robovm.apple.metal.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 12.0 and later.
+ * @since Available in iOS 13.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/MLImageSizeConstraintType/*</name>*/ implements ValuedEnum {
-    /*<values>*/
-    Unspecified(0L),
-    Enumerated(2L),
-    Range(3L);
-    /*</values>*/
+/*<annotations>*/@Library("CoreML") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MLTask/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
 
-    /*<bind>*/
-    /*</bind>*/
+    /*<ptr>*/public static class MLTaskPtr extends Ptr<MLTask, MLTaskPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(MLTask.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<methods>*//*</methods>*/
-
-    private final long n;
-
-    private /*<name>*/MLImageSizeConstraintType/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/MLImageSizeConstraintType/*</name>*/ valueOf(long n) {
-        for (/*<name>*/MLImageSizeConstraintType/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/MLImageSizeConstraintType/*</name>*/.class.getName());
-    }
+    /*<constructors>*/
+    protected MLTask() {}
+    protected MLTask(Handle h, long handle) { super(h, handle); }
+    protected MLTask(SkipInit skipInit) { super(skipInit); }
+    /*</constructors>*/
+    /*<properties>*/
+    @Property(selector = "taskIdentifier")
+    public native String getTaskIdentifier();
+    @Property(selector = "state")
+    public native MLTaskState getState();
+    @Property(selector = "error")
+    public native NSError getError();
+    /*</properties>*/
+    /*<members>*//*</members>*/
+    /*<methods>*/
+    @Method(selector = "resume")
+    public native void resume();
+    @Method(selector = "cancel")
+    public native void cancel();
+    /*</methods>*/
 }

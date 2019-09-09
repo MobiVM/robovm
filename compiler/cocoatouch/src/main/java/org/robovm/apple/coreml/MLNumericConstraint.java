@@ -37,49 +37,36 @@ import org.robovm.apple.metal.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 11.0 and later.
+ * @since Available in iOS 13.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreML") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MLFeatureDescription/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MLNumericConstraint/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
-    /*<ptr>*/public static class MLFeatureDescriptionPtr extends Ptr<MLFeatureDescription, MLFeatureDescriptionPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(MLFeatureDescription.class); }/*</bind>*/
+    /*<ptr>*/public static class MLNumericConstraintPtr extends Ptr<MLNumericConstraint, MLNumericConstraintPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(MLNumericConstraint.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MLFeatureDescription() {}
-    protected MLFeatureDescription(Handle h, long handle) { super(h, handle); }
-    protected MLFeatureDescription(SkipInit skipInit) { super(skipInit); }
+    public MLNumericConstraint() {}
+    protected MLNumericConstraint(Handle h, long handle) { super(h, handle); }
+    protected MLNumericConstraint(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public MLFeatureDescription(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
+    public MLNumericConstraint(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "name")
-    public native String getName();
-    @Property(selector = "type")
-    public native MLFeatureType getType();
-    @Property(selector = "isOptional")
-    public native boolean isOptional();
-    @Property(selector = "multiArrayConstraint")
-    public native MLMultiArrayConstraint getMultiArrayConstraint();
-    @Property(selector = "imageConstraint")
-    public native MLImageConstraint getImageConstraint();
-    @Property(selector = "dictionaryConstraint")
-    public native MLDictionaryConstraint getDictionaryConstraint();
-    /**
-     * @since Available in iOS 12.0 and later.
-     */
-    @Property(selector = "sequenceConstraint")
-    public native MLSequenceConstraint getSequenceConstraint();
+    @Property(selector = "minNumber")
+    public native NSNumber getMinNumber();
+    @Property(selector = "maxNumber")
+    public native NSNumber getMaxNumber();
+    @Property(selector = "enumeratedNumbers")
+    public native NSSet<NSNumber> getEnumeratedNumbers();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "isAllowedValue:")
-    public native boolean isAllowedValue(MLFeatureValue value);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

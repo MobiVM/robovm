@@ -36,16 +36,15 @@ import org.robovm.apple.metal.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 12.0 and later.
- */
+
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/MLImageSizeConstraintType/*</name>*/ implements ValuedEnum {
+/*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
+public final class /*<name>*/MLUpdateProgressEvent/*</name>*/ extends Bits</*<name>*/MLUpdateProgressEvent/*</name>*/> {
     /*<values>*/
-    Unspecified(0L),
-    Enumerated(2L),
-    Range(3L);
+    public static final MLUpdateProgressEvent None = new MLUpdateProgressEvent(0L);
+    public static final MLUpdateProgressEvent TrainingBegin = new MLUpdateProgressEvent(1L);
+    public static final MLUpdateProgressEvent EpochEnd = new MLUpdateProgressEvent(2L);
+    public static final MLUpdateProgressEvent MiniBatchEnd = new MLUpdateProgressEvent(4L);
     /*</values>*/
 
     /*<bind>*/
@@ -53,17 +52,17 @@ public enum /*<name>*/MLImageSizeConstraintType/*</name>*/ implements ValuedEnum
     /*<constants>*//*</constants>*/
     /*<methods>*//*</methods>*/
 
-    private final long n;
+    private static final /*<name>*/MLUpdateProgressEvent/*</name>*/[] values = _values(/*<name>*/MLUpdateProgressEvent/*</name>*/.class);
 
-    private /*<name>*/MLImageSizeConstraintType/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/MLImageSizeConstraintType/*</name>*/ valueOf(long n) {
-        for (/*<name>*/MLImageSizeConstraintType/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/MLImageSizeConstraintType/*</name>*/.class.getName());
+    public /*<name>*/MLUpdateProgressEvent/*</name>*/(long value) { super(value); }
+    private /*<name>*/MLUpdateProgressEvent/*</name>*/(long value, long mask) { super(value, mask); }
+    protected /*<name>*/MLUpdateProgressEvent/*</name>*/ wrap(long value, long mask) {
+        return new /*<name>*/MLUpdateProgressEvent/*</name>*/(value, mask);
+    }
+    protected /*<name>*/MLUpdateProgressEvent/*</name>*/[] _values() {
+        return values;
+    }
+    public static /*<name>*/MLUpdateProgressEvent/*</name>*/[] values() {
+        return values.clone();
     }
 }
