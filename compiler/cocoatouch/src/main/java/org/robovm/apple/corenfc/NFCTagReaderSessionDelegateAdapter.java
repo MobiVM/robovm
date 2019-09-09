@@ -34,9 +34,9 @@ import org.robovm.apple.dispatch.*;
 /*<javadoc>*/
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/NFCISO15693TagAdapter/*</name>*/ 
-    extends /*<extends>*/NFCTagAdapter/*</extends>*/ 
-    /*<implements>*/implements NFCISO15693Tag/*</implements>*/ {
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/NFCTagReaderSessionDelegateAdapter/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
+    /*<implements>*/implements NFCTagReaderSessionDelegate/*</implements>*/ {
 
     /*<ptr>*/
     /*</ptr>*/
@@ -45,18 +45,24 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*//*</constructors>*/
     /*<properties>*/
-    @NotImplemented("identifier")
-    public NSData getIdentifier() { return null; }
-    @NotImplemented("icManufacturerCode")
-    public @MachineSizedUInt long getIcManufacturerCode() { return 0; }
-    @NotImplemented("icSerialNumber")
-    public NSData getIcSerialNumber() { return null; }
+    
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @NotImplemented("sendCustomCommandWithConfiguration:completionHandler:")
-    public void sendCustomCommand(NFCISO15693CustomCommandConfiguration commandConfiguration, @Block VoidBlock2<NSData, NSError> completionHandler) {}
-    @NotImplemented("readMultipleBlocksWithConfiguration:completionHandler:")
-    public void readMultipleBlocks(NFCISO15693ReadMultipleBlocksConfiguration readConfiguration, @Block VoidBlock2<NSData, NSError> completionHandler) {}
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("tagReaderSession:didInvalidateWithError:")
+    public void didInvalidate(NFCTagReaderSession session, NSError error) {}
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("tagReaderSessionDidBecomeActive:")
+    public void tagReaderSessionDidBecomeActive(NFCTagReaderSession session) {}
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("tagReaderSession:didDetectTags:")
+    public void didDetectTags(NFCTagReaderSession session, NSArray<?> tags) {}
     /*</methods>*/
 }

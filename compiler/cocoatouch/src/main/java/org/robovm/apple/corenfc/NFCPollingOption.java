@@ -34,22 +34,13 @@ import org.robovm.apple.dispatch.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/NFCTagType/*</name>*/ implements ValuedEnum {
+/*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
+public final class /*<name>*/NFCPollingOption/*</name>*/ extends Bits</*<name>*/NFCPollingOption/*</name>*/> {
     /*<values>*/
-    ISO15693(1L),
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    FeliCa(2L),
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    ISO7816Compatible(3L),
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    MiFare(4L);
+    public static final NFCPollingOption None = new NFCPollingOption(0L);
+    public static final NFCPollingOption ISO14443 = new NFCPollingOption(1L);
+    public static final NFCPollingOption ISO15693 = new NFCPollingOption(2L);
+    public static final NFCPollingOption ISO18092 = new NFCPollingOption(4L);
     /*</values>*/
 
     /*<bind>*/
@@ -57,17 +48,17 @@ public enum /*<name>*/NFCTagType/*</name>*/ implements ValuedEnum {
     /*<constants>*//*</constants>*/
     /*<methods>*//*</methods>*/
 
-    private final long n;
+    private static final /*<name>*/NFCPollingOption/*</name>*/[] values = _values(/*<name>*/NFCPollingOption/*</name>*/.class);
 
-    private /*<name>*/NFCTagType/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/NFCTagType/*</name>*/ valueOf(long n) {
-        for (/*<name>*/NFCTagType/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/NFCTagType/*</name>*/.class.getName());
+    public /*<name>*/NFCPollingOption/*</name>*/(long value) { super(value); }
+    private /*<name>*/NFCPollingOption/*</name>*/(long value, long mask) { super(value, mask); }
+    protected /*<name>*/NFCPollingOption/*</name>*/ wrap(long value, long mask) {
+        return new /*<name>*/NFCPollingOption/*</name>*/(value, mask);
+    }
+    protected /*<name>*/NFCPollingOption/*</name>*/[] _values() {
+        return values;
+    }
+    public static /*<name>*/NFCPollingOption/*</name>*/[] values() {
+        return values.clone();
     }
 }

@@ -33,26 +33,26 @@ import org.robovm.apple.dispatch.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 11.0 and later.
+ * @since Available in iOS 13.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreNFC") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/NFCNDEFReaderSession/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/NFCVASReaderSession/*</name>*/ 
     extends /*<extends>*/NFCReaderSession/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class NFCNDEFReaderSessionPtr extends Ptr<NFCNDEFReaderSession, NFCNDEFReaderSessionPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(NFCNDEFReaderSession.class); }/*</bind>*/
+    /*<ptr>*/public static class NFCVASReaderSessionPtr extends Ptr<NFCVASReaderSession, NFCVASReaderSessionPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(NFCVASReaderSession.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected NFCNDEFReaderSession() {}
-    protected NFCNDEFReaderSession(Handle h, long handle) { super(h, handle); }
-    protected NFCNDEFReaderSession(SkipInit skipInit) { super(skipInit); }
+    protected NFCVASReaderSession() {}
+    protected NFCVASReaderSession(Handle h, long handle) { super(h, handle); }
+    protected NFCVASReaderSession(SkipInit skipInit) { super(skipInit); }
     /**
-     * @since Available in iOS 11.0 and later.
+     * @since Available in iOS 13.0 and later.
      */
-    @Method(selector = "initWithDelegate:queue:invalidateAfterFirstRead:")
-    public NFCNDEFReaderSession(NFCNDEFReaderSessionDelegate delegate, DispatchQueue queue, boolean invalidateAfterFirstRead) { super((SkipInit) null); initObject(init(delegate, queue, invalidateAfterFirstRead)); }
+    @Method(selector = "initWithVASCommandConfigurations:delegate:queue:")
+    public NFCVASReaderSession(NSArray<NFCVASCommandConfiguration> commandConfigurations, NFCVASReaderSessionDelegate delegate, DispatchQueue queue) { super((SkipInit) null); initObject(init(commandConfigurations, delegate, queue)); }
     /*</constructors>*/
     /*<properties>*/
     
@@ -60,19 +60,9 @@ import org.robovm.apple.dispatch.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @since Available in iOS 11.0 and later.
-     */
-    @Method(selector = "initWithDelegate:queue:invalidateAfterFirstRead:")
-    protected native @Pointer long init(NFCNDEFReaderSessionDelegate delegate, DispatchQueue queue, boolean invalidateAfterFirstRead);
-    /**
      * @since Available in iOS 13.0 and later.
      */
-    @Method(selector = "restartPolling")
-    public native void restartPolling();
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @Method(selector = "connectToTag:completionHandler:")
-    public native void connectToTag(NFCNDEFTag tag, @Block VoidBlock1<NSError> completionHandler);
+    @Method(selector = "initWithVASCommandConfigurations:delegate:queue:")
+    protected native @Pointer long init(NSArray<NFCVASCommandConfiguration> commandConfigurations, NFCVASReaderSessionDelegate delegate, DispatchQueue queue);
     /*</methods>*/
 }

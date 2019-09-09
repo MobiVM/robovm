@@ -32,36 +32,39 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
+/**
+ * @since Available in iOS 13.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/NFCReaderSessionProtocolAdapter/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NFCReaderSessionProtocol/*</implements>*/ {
+/*<visibility>*/public/*</visibility>*/ interface /*<name>*/NFCTagReaderSessionDelegate/*</name>*/ 
+    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
 
     /*<ptr>*/
     /*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*//*</constructors>*/
     /*<properties>*/
-    @NotImplemented("isReady")
-    public boolean isReady() { return false; }
-    @NotImplemented("alertMessage")
-    public String getAlertMessage() { return null; }
-    @NotImplemented("setAlertMessage:")
-    public void setAlertMessage(String v) {}
+    
     /*</properties>*/
-    /*<members>*//*</members>*/
     /*<methods>*/
-    @NotImplemented("beginSession")
-    public void beginSession() {}
-    @NotImplemented("invalidateSession")
-    public void invalidateSession() {}
     /**
      * @since Available in iOS 13.0 and later.
      */
-    @NotImplemented("invalidateSessionWithErrorMessage:")
-    public void invalidateSession(String errorMessage) {}
+    @Method(selector = "tagReaderSession:didInvalidateWithError:")
+    void didInvalidate(NFCTagReaderSession session, NSError error);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "tagReaderSessionDidBecomeActive:")
+    void tagReaderSessionDidBecomeActive(NFCTagReaderSession session);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "tagReaderSession:didDetectTags:")
+    void didDetectTags(NFCTagReaderSession session, NSArray<?> tags);
     /*</methods>*/
+    /*<adapter>*/
+    /*</adapter>*/
 }

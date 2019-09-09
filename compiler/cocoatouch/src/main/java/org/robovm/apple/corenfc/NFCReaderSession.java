@@ -52,6 +52,8 @@ import org.robovm.apple.dispatch.*;
     /*<properties>*/
     @Property(selector = "delegate")
     public native NSObject getDelegate();
+    @Property(selector = "readingAvailable")
+    public static native boolean isReadingAvailable();
     @Property(selector = "sessionQueue")
     public native DispatchQueue getSessionQueue();
     @Property(selector = "isReady")
@@ -67,5 +69,10 @@ import org.robovm.apple.dispatch.*;
     public native void beginSession();
     @Method(selector = "invalidateSession")
     public native void invalidateSession();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "invalidateSessionWithErrorMessage:")
+    public native void invalidateSession(String errorMessage);
     /*</methods>*/
 }

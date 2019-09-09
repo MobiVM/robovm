@@ -33,37 +33,41 @@ import org.robovm.apple.dispatch.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 11.0 and later.
+ * @since Available in iOS 13.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreNFC") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/NFCNDEFReaderSession/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/NFCTagReaderSession/*</name>*/ 
     extends /*<extends>*/NFCReaderSession/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class NFCNDEFReaderSessionPtr extends Ptr<NFCNDEFReaderSession, NFCNDEFReaderSessionPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(NFCNDEFReaderSession.class); }/*</bind>*/
+    /*<ptr>*/public static class NFCTagReaderSessionPtr extends Ptr<NFCTagReaderSession, NFCTagReaderSessionPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(NFCTagReaderSession.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected NFCNDEFReaderSession() {}
-    protected NFCNDEFReaderSession(Handle h, long handle) { super(h, handle); }
-    protected NFCNDEFReaderSession(SkipInit skipInit) { super(skipInit); }
+    protected NFCTagReaderSession() {}
+    protected NFCTagReaderSession(Handle h, long handle) { super(h, handle); }
+    protected NFCTagReaderSession(SkipInit skipInit) { super(skipInit); }
     /**
-     * @since Available in iOS 11.0 and later.
+     * @since Available in iOS 13.0 and later.
      */
-    @Method(selector = "initWithDelegate:queue:invalidateAfterFirstRead:")
-    public NFCNDEFReaderSession(NFCNDEFReaderSessionDelegate delegate, DispatchQueue queue, boolean invalidateAfterFirstRead) { super((SkipInit) null); initObject(init(delegate, queue, invalidateAfterFirstRead)); }
+    @Method(selector = "initWithPollingOption:delegate:queue:")
+    public NFCTagReaderSession(NFCPollingOption pollingOption, NFCTagReaderSessionDelegate delegate, DispatchQueue queue) { super((SkipInit) null); initObject(init(pollingOption, delegate, queue)); }
     /*</constructors>*/
     /*<properties>*/
-    
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "connectedTag")
+    public native NFCTag getConnectedTag();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @since Available in iOS 11.0 and later.
+     * @since Available in iOS 13.0 and later.
      */
-    @Method(selector = "initWithDelegate:queue:invalidateAfterFirstRead:")
-    protected native @Pointer long init(NFCNDEFReaderSessionDelegate delegate, DispatchQueue queue, boolean invalidateAfterFirstRead);
+    @Method(selector = "initWithPollingOption:delegate:queue:")
+    protected native @Pointer long init(NFCPollingOption pollingOption, NFCTagReaderSessionDelegate delegate, DispatchQueue queue);
     /**
      * @since Available in iOS 13.0 and later.
      */
@@ -73,6 +77,6 @@ import org.robovm.apple.dispatch.*;
      * @since Available in iOS 13.0 and later.
      */
     @Method(selector = "connectToTag:completionHandler:")
-    public native void connectToTag(NFCNDEFTag tag, @Block VoidBlock1<NSError> completionHandler);
+    public native void connectToTag(NFCTag tag, @Block VoidBlock1<NSError> completionHandler);
     /*</methods>*/
 }

@@ -32,36 +32,41 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
+/**
+ * @since Available in iOS 13.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/NFCReaderSessionProtocolAdapter/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NFCReaderSessionProtocol/*</implements>*/ {
+/*<visibility>*/public/*</visibility>*/ interface /*<name>*/NFCISO7816Tag/*</name>*/ 
+    /*<implements>*/extends NFCTag, NFCNDEFTag/*</implements>*/ {
 
     /*<ptr>*/
     /*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*//*</constructors>*/
     /*<properties>*/
-    @NotImplemented("isReady")
-    public boolean isReady() { return false; }
-    @NotImplemented("alertMessage")
-    public String getAlertMessage() { return null; }
-    @NotImplemented("setAlertMessage:")
-    public void setAlertMessage(String v) {}
-    /*</properties>*/
-    /*<members>*//*</members>*/
-    /*<methods>*/
-    @NotImplemented("beginSession")
-    public void beginSession() {}
-    @NotImplemented("invalidateSession")
-    public void invalidateSession() {}
     /**
      * @since Available in iOS 13.0 and later.
      */
-    @NotImplemented("invalidateSessionWithErrorMessage:")
-    public void invalidateSession(String errorMessage) {}
+    @Property(selector = "initialSelectedAID")
+    String getInitialSelectedAID();
+    @Property(selector = "identifier")
+    NSData getIdentifier();
+    @Property(selector = "historicalBytes")
+    NSData getHistoricalBytes();
+    @Property(selector = "applicationData")
+    NSData getApplicationData();
+    @Property(selector = "proprietaryApplicationDataCoding")
+    boolean isProprietaryApplicationDataCoding();
+    /*</properties>*/
+    /*<methods>*/
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "sendCommandAPDU:completionHandler:")
+    void sendCommandAPDU(NFCISO7816APDU apdu, @Block VoidBlock4<NSData, Byte, Byte, NSError> completionHandler);
     /*</methods>*/
+    /*<adapter>*/
+    /*</adapter>*/
 }

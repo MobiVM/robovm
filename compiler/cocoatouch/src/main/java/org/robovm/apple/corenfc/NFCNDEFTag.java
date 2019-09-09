@@ -32,36 +32,45 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
+/**
+ * @since Available in iOS 13.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/NFCReaderSessionProtocolAdapter/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NFCReaderSessionProtocol/*</implements>*/ {
+/*<visibility>*/public/*</visibility>*/ interface /*<name>*/NFCNDEFTag/*</name>*/ 
+    /*<implements>*/extends NSObjectProtocol, NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/
     /*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*//*</constructors>*/
     /*<properties>*/
-    @NotImplemented("isReady")
-    public boolean isReady() { return false; }
-    @NotImplemented("alertMessage")
-    public String getAlertMessage() { return null; }
-    @NotImplemented("setAlertMessage:")
-    public void setAlertMessage(String v) {}
+    @Property(selector = "isAvailable")
+    boolean isAvailable();
     /*</properties>*/
-    /*<members>*//*</members>*/
     /*<methods>*/
-    @NotImplemented("beginSession")
-    public void beginSession() {}
-    @NotImplemented("invalidateSession")
-    public void invalidateSession() {}
     /**
      * @since Available in iOS 13.0 and later.
      */
-    @NotImplemented("invalidateSessionWithErrorMessage:")
-    public void invalidateSession(String errorMessage) {}
+    @Method(selector = "queryNDEFStatusWithCompletionHandler:")
+    void queryNDEFStatus(@Block("(,@MachineSizedUInt,)") VoidBlock3<NFCNDEFStatus, Long, NSError> completionHandler);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "readNDEFWithCompletionHandler:")
+    void readNDEF(@Block VoidBlock2<NFCNDEFMessage, NSError> completionHandler);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "writeNDEF:completionHandler:")
+    void writeNDEF(NFCNDEFMessage ndefMessage, @Block VoidBlock1<NSError> completionHandler);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "writeLockWithCompletionHandler:")
+    void writeLock(@Block VoidBlock1<NSError> completionHandler);
     /*</methods>*/
+    /*<adapter>*/
+    /*</adapter>*/
 }

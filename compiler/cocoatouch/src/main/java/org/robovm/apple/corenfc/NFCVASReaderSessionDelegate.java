@@ -32,36 +32,39 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
+/**
+ * @since Available in iOS 13.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/NFCReaderSessionProtocolAdapter/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NFCReaderSessionProtocol/*</implements>*/ {
+/*<visibility>*/public/*</visibility>*/ interface /*<name>*/NFCVASReaderSessionDelegate/*</name>*/ 
+    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
 
     /*<ptr>*/
     /*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*//*</constructors>*/
     /*<properties>*/
-    @NotImplemented("isReady")
-    public boolean isReady() { return false; }
-    @NotImplemented("alertMessage")
-    public String getAlertMessage() { return null; }
-    @NotImplemented("setAlertMessage:")
-    public void setAlertMessage(String v) {}
+    
     /*</properties>*/
-    /*<members>*//*</members>*/
     /*<methods>*/
-    @NotImplemented("beginSession")
-    public void beginSession() {}
-    @NotImplemented("invalidateSession")
-    public void invalidateSession() {}
     /**
      * @since Available in iOS 13.0 and later.
      */
-    @NotImplemented("invalidateSessionWithErrorMessage:")
-    public void invalidateSession(String errorMessage) {}
+    @Method(selector = "readerSessionDidBecomeActive:")
+    void readerSessionDidBecomeActive(NFCVASReaderSession session);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "readerSession:didInvalidateWithError:")
+    void didInvalidate(NFCVASReaderSession session, NSError error);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "readerSession:didReceiveVASResponses:")
+    void didReceiveVASResponses(NFCVASReaderSession session, NSArray<NFCVASResponse> responses);
     /*</methods>*/
+    /*<adapter>*/
+    /*</adapter>*/
 }

@@ -48,22 +48,52 @@ import org.robovm.apple.dispatch.*;
     protected NFCNDEFMessage() {}
     protected NFCNDEFMessage(Handle h, long handle) { super(h, handle); }
     protected NFCNDEFMessage(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "initWithNDEFRecords:")
+    public NFCNDEFMessage(NSArray<NFCNDEFPayload> records) { super((SkipInit) null); initObject(init(records)); }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public NFCNDEFMessage(NSData data) { super((Handle) null, create(data)); retain(getHandle()); }
     @Method(selector = "initWithCoder:")
-    public NFCNDEFMessage(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public NFCNDEFMessage(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Property(selector = "records")
     public native NSArray<NFCNDEFPayload> getRecords();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Property(selector = "setRecords:")
     public native void setRecords(NSArray<NFCNDEFPayload> v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "length")
+    public native @MachineSizedUInt long getLength();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "initWithNDEFRecords:")
+    protected native @Pointer long init(NSArray<NFCNDEFPayload> records);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "ndefMessageWithData:")
+    protected static native @Pointer long create(NSData data);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

@@ -32,36 +32,33 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
+/**
+ * @since Available in iOS 13.0 and later.
+ */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/NFCReaderSessionProtocolAdapter/*</name>*/ 
+/*<annotations>*/@Library("CoreNFC") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/NFCVASResponse/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NFCReaderSessionProtocol/*</implements>*/ {
+    /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/
-    /*</ptr>*/
-    /*<bind>*/
-    /*</bind>*/
+    /*<ptr>*/public static class NFCVASResponsePtr extends Ptr<NFCVASResponse, NFCVASResponsePtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(NFCVASResponse.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*//*</constructors>*/
+    /*<constructors>*/
+    public NFCVASResponse() {}
+    protected NFCVASResponse(Handle h, long handle) { super(h, handle); }
+    protected NFCVASResponse(SkipInit skipInit) { super(skipInit); }
+    /*</constructors>*/
     /*<properties>*/
-    @NotImplemented("isReady")
-    public boolean isReady() { return false; }
-    @NotImplemented("alertMessage")
-    public String getAlertMessage() { return null; }
-    @NotImplemented("setAlertMessage:")
-    public void setAlertMessage(String v) {}
+    @Property(selector = "status")
+    public native VASErrorCode getStatus();
+    @Property(selector = "vasData")
+    public native NSData getVasData();
+    @Property(selector = "mobileToken")
+    public native NSData getMobileToken();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @NotImplemented("beginSession")
-    public void beginSession() {}
-    @NotImplemented("invalidateSession")
-    public void invalidateSession() {}
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @NotImplemented("invalidateSessionWithErrorMessage:")
-    public void invalidateSession(String errorMessage) {}
+    
     /*</methods>*/
 }

@@ -34,9 +34,9 @@ import org.robovm.apple.dispatch.*;
 /*<javadoc>*/
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/NFCReaderSessionProtocolAdapter/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/NFCVASReaderSessionDelegateAdapter/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NFCReaderSessionProtocol/*</implements>*/ {
+    /*<implements>*/implements NFCVASReaderSessionDelegate/*</implements>*/ {
 
     /*<ptr>*/
     /*</ptr>*/
@@ -45,23 +45,24 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*//*</constructors>*/
     /*<properties>*/
-    @NotImplemented("isReady")
-    public boolean isReady() { return false; }
-    @NotImplemented("alertMessage")
-    public String getAlertMessage() { return null; }
-    @NotImplemented("setAlertMessage:")
-    public void setAlertMessage(String v) {}
+    
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @NotImplemented("beginSession")
-    public void beginSession() {}
-    @NotImplemented("invalidateSession")
-    public void invalidateSession() {}
     /**
      * @since Available in iOS 13.0 and later.
      */
-    @NotImplemented("invalidateSessionWithErrorMessage:")
-    public void invalidateSession(String errorMessage) {}
+    @NotImplemented("readerSessionDidBecomeActive:")
+    public void readerSessionDidBecomeActive(NFCVASReaderSession session) {}
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("readerSession:didInvalidateWithError:")
+    public void didInvalidate(NFCVASReaderSession session, NSError error) {}
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("readerSession:didReceiveVASResponses:")
+    public void didReceiveVASResponses(NFCVASReaderSession session, NSArray<NFCVASResponse> responses) {}
     /*</methods>*/
 }
