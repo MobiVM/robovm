@@ -70,6 +70,7 @@ import org.robovm.apple.uikit.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "setValueForXAxis:yAxis:")
+    public native void setValueForXYAxis(float xAxis, float yAxis);
     /*</methods>*/
 }

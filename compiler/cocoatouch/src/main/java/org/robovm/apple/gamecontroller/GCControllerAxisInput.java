@@ -33,9 +33,7 @@ import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 7.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("GameController") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GCControllerAxisInput/*</name>*/ 
@@ -57,6 +55,8 @@ import org.robovm.apple.uikit.*;
     public native void setValueChangedHandler(@Block VoidBlock2<GCControllerAxisInput, Float> v);
     @Property(selector = "value")
     public native float getValue();
+    @Property(selector = "setValue:")
+    public native void setValue(float v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

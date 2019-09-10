@@ -1,4 +1,5 @@
 processed:
+- gamecontroller
 - new: fileproviderui
 - fileprovider
 - externalaccessory
@@ -42,7 +43,6 @@ processed:
 to go:
 - contacts
 - contactsui
-- gamecontroller
 - gamekit
 - gameplaykit
 - glkit
