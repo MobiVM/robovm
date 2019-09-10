@@ -14,7 +14,7 @@ enums:
     ASWebAuthenticationSessionErrorCode: {} #since 12.0
     ASUserDetectionStatus: {}
     ASAuthorizationAppleIDProviderCredentialState: {prefix: ASAuthorizationAppleIDProviderCredential} #since 13.0
-    ASAuthorizationError: {ns_error: true} #since 13.0
+    ASAuthorizationError: {nserror: true} #since 13.0
     ASAuthorizationAppleIDButtonType: {} #since 13.0
     ASAuthorizationAppleIDButtonStyle: {} #since 13.0
 
