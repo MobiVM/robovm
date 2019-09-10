@@ -34,27 +34,39 @@ import org.robovm.apple.coregraphics.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 12.0 and later.
+ * @since Available in iOS 13.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("AuthenticationServices") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/ASCredentialIdentityStoreState/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/ASAuthorizationOpenIDRequest/*</name>*/ 
+    extends /*<extends>*/ASAuthorizationRequest/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class ASCredentialIdentityStoreStatePtr extends Ptr<ASCredentialIdentityStoreState, ASCredentialIdentityStoreStatePtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(ASCredentialIdentityStoreState.class); }/*</bind>*/
+    /*<ptr>*/public static class ASAuthorizationOpenIDRequestPtr extends Ptr<ASAuthorizationOpenIDRequest, ASAuthorizationOpenIDRequestPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(ASAuthorizationOpenIDRequest.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public ASCredentialIdentityStoreState() {}
-    protected ASCredentialIdentityStoreState(Handle h, long handle) { super(h, handle); }
-    protected ASCredentialIdentityStoreState(SkipInit skipInit) { super(skipInit); }
+    protected ASAuthorizationOpenIDRequest() {}
+    protected ASAuthorizationOpenIDRequest(Handle h, long handle) { super(h, handle); }
+    protected ASAuthorizationOpenIDRequest(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "isEnabled")
-    public native boolean isEnabled();
-    @Property(selector = "supportsIncrementalUpdates")
-    public native boolean supportsIncrementalUpdates();
+    @Property(selector = "requestedScopes")
+    public native NSArray<NSString> getRequestedScopes();
+    @Property(selector = "setRequestedScopes:")
+    public native void setRequestedScopes(NSArray<NSString> v);
+    @Property(selector = "state")
+    public native String getState();
+    @Property(selector = "setState:")
+    public native void setState(String v);
+    @Property(selector = "nonce")
+    public native String getNonce();
+    @Property(selector = "setNonce:")
+    public native void setNonce(String v);
+    @Property(selector = "requestedOperation")
+    public native String getRequestedOperation();
+    @Property(selector = "setRequestedOperation:")
+    public native void setRequestedOperation(String v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

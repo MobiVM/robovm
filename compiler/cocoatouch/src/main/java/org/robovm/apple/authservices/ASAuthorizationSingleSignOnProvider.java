@@ -34,30 +34,34 @@ import org.robovm.apple.coregraphics.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 12.0 and later.
+ * @since Available in iOS 13.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("AuthenticationServices") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/ASCredentialIdentityStoreState/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/ASAuthorizationSingleSignOnProvider/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements ASAuthorizationProvider/*</implements>*/ {
 
-    /*<ptr>*/public static class ASCredentialIdentityStoreStatePtr extends Ptr<ASCredentialIdentityStoreState, ASCredentialIdentityStoreStatePtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(ASCredentialIdentityStoreState.class); }/*</bind>*/
+    /*<ptr>*/public static class ASAuthorizationSingleSignOnProviderPtr extends Ptr<ASAuthorizationSingleSignOnProvider, ASAuthorizationSingleSignOnProviderPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(ASAuthorizationSingleSignOnProvider.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public ASCredentialIdentityStoreState() {}
-    protected ASCredentialIdentityStoreState(Handle h, long handle) { super(h, handle); }
-    protected ASCredentialIdentityStoreState(SkipInit skipInit) { super(skipInit); }
+    protected ASAuthorizationSingleSignOnProvider() {}
+    protected ASAuthorizationSingleSignOnProvider(Handle h, long handle) { super(h, handle); }
+    protected ASAuthorizationSingleSignOnProvider(SkipInit skipInit) { super(skipInit); }
+    public ASAuthorizationSingleSignOnProvider(NSURL url) { super((Handle) null, create(url)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "isEnabled")
-    public native boolean isEnabled();
-    @Property(selector = "supportsIncrementalUpdates")
-    public native boolean supportsIncrementalUpdates();
+    @Property(selector = "url")
+    public native NSURL getUrl();
+    @Property(selector = "canPerformAuthorization")
+    public native boolean canPerformAuthorization();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "createRequest")
+    public native ASAuthorizationSingleSignOnRequest createRequest();
+    @Method(selector = "authorizationProviderWithIdentityProviderURL:")
+    protected static native @Pointer long create(NSURL url);
     /*</methods>*/
 }

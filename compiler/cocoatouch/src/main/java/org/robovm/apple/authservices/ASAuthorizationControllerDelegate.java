@@ -34,32 +34,27 @@ import org.robovm.apple.coregraphics.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 12.0 and later.
+ * @since Available in iOS 13.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/ASCredentialServiceIdentifierType/*</name>*/ implements ValuedEnum {
-    /*<values>*/
-    Domain(0L),
-    URL(1L);
-    /*</values>*/
+/*<annotations>*//*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ interface /*<name>*/ASAuthorizationControllerDelegate/*</name>*/ 
+    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
 
+    /*<ptr>*/
+    /*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<methods>*//*</methods>*/
-
-    private final long n;
-
-    private /*<name>*/ASCredentialServiceIdentifierType/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/ASCredentialServiceIdentifierType/*</name>*/ valueOf(long n) {
-        for (/*<name>*/ASCredentialServiceIdentifierType/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/ASCredentialServiceIdentifierType/*</name>*/.class.getName());
-    }
+    /*<properties>*/
+    
+    /*</properties>*/
+    /*<methods>*/
+    @Method(selector = "authorizationController:didCompleteWithAuthorization:")
+    void didComplete(ASAuthorizationController controller, ASAuthorization authorization);
+    @Method(selector = "authorizationController:didCompleteWithError:")
+    void didComplete(ASAuthorizationController controller, NSError error);
+    /*</methods>*/
+    /*<adapter>*/
+    /*</adapter>*/
 }

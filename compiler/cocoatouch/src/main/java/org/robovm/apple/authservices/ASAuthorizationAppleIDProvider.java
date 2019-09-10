@@ -34,30 +34,30 @@ import org.robovm.apple.coregraphics.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 12.0 and later.
+ * @since Available in iOS 13.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("AuthenticationServices") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/ASCredentialIdentityStoreState/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/ASAuthorizationAppleIDProvider/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements ASAuthorizationProvider/*</implements>*/ {
 
-    /*<ptr>*/public static class ASCredentialIdentityStoreStatePtr extends Ptr<ASCredentialIdentityStoreState, ASCredentialIdentityStoreStatePtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(ASCredentialIdentityStoreState.class); }/*</bind>*/
+    /*<ptr>*/public static class ASAuthorizationAppleIDProviderPtr extends Ptr<ASAuthorizationAppleIDProvider, ASAuthorizationAppleIDProviderPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(ASAuthorizationAppleIDProvider.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public ASCredentialIdentityStoreState() {}
-    protected ASCredentialIdentityStoreState(Handle h, long handle) { super(h, handle); }
-    protected ASCredentialIdentityStoreState(SkipInit skipInit) { super(skipInit); }
+    public ASAuthorizationAppleIDProvider() {}
+    protected ASAuthorizationAppleIDProvider(Handle h, long handle) { super(h, handle); }
+    protected ASAuthorizationAppleIDProvider(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "isEnabled")
-    public native boolean isEnabled();
-    @Property(selector = "supportsIncrementalUpdates")
-    public native boolean supportsIncrementalUpdates();
+    
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "createRequest")
+    public native ASAuthorizationAppleIDRequest createRequest();
+    @Method(selector = "getCredentialStateForUserID:completion:")
+    public native void getCredentialState(String userID, @Block VoidBlock2<ASAuthorizationAppleIDProviderCredentialState, NSError> completion);
     /*</methods>*/
 }

@@ -34,32 +34,30 @@ import org.robovm.apple.coregraphics.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 12.0 and later.
+ * @since Available in iOS 13.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/ASCredentialServiceIdentifierType/*</name>*/ implements ValuedEnum {
-    /*<values>*/
-    Domain(0L),
-    URL(1L);
-    /*</values>*/
+/*<annotations>*/@Library("AuthenticationServices") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/ASAuthorizationAppleIDRequest/*</name>*/ 
+    extends /*<extends>*/ASAuthorizationOpenIDRequest/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
 
-    /*<bind>*/
-    /*</bind>*/
+    /*<ptr>*/public static class ASAuthorizationAppleIDRequestPtr extends Ptr<ASAuthorizationAppleIDRequest, ASAuthorizationAppleIDRequestPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(ASAuthorizationAppleIDRequest.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<methods>*//*</methods>*/
-
-    private final long n;
-
-    private /*<name>*/ASCredentialServiceIdentifierType/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/ASCredentialServiceIdentifierType/*</name>*/ valueOf(long n) {
-        for (/*<name>*/ASCredentialServiceIdentifierType/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/ASCredentialServiceIdentifierType/*</name>*/.class.getName());
-    }
+    /*<constructors>*/
+    protected ASAuthorizationAppleIDRequest() {}
+    protected ASAuthorizationAppleIDRequest(Handle h, long handle) { super(h, handle); }
+    protected ASAuthorizationAppleIDRequest(SkipInit skipInit) { super(skipInit); }
+    /*</constructors>*/
+    /*<properties>*/
+    @Property(selector = "user")
+    public native String getUser();
+    @Property(selector = "setUser:")
+    public native void setUser(String v);
+    /*</properties>*/
+    /*<members>*//*</members>*/
+    /*<methods>*/
+    
+    /*</methods>*/
 }

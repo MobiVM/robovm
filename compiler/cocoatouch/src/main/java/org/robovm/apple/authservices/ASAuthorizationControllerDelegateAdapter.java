@@ -33,33 +33,26 @@ import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 12.0 and later.
- */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/ASCredentialServiceIdentifierType/*</name>*/ implements ValuedEnum {
-    /*<values>*/
-    Domain(0L),
-    URL(1L);
-    /*</values>*/
+/*<annotations>*//*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/ASAuthorizationControllerDelegateAdapter/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
+    /*<implements>*/implements ASAuthorizationControllerDelegate/*</implements>*/ {
 
+    /*<ptr>*/
+    /*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<methods>*//*</methods>*/
-
-    private final long n;
-
-    private /*<name>*/ASCredentialServiceIdentifierType/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/ASCredentialServiceIdentifierType/*</name>*/ valueOf(long n) {
-        for (/*<name>*/ASCredentialServiceIdentifierType/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/ASCredentialServiceIdentifierType/*</name>*/.class.getName());
-    }
+    /*<constructors>*//*</constructors>*/
+    /*<properties>*/
+    
+    /*</properties>*/
+    /*<members>*//*</members>*/
+    /*<methods>*/
+    @NotImplemented("authorizationController:didCompleteWithAuthorization:")
+    public void didComplete(ASAuthorizationController controller, ASAuthorization authorization) {}
+    @NotImplemented("authorizationController:didCompleteWithError:")
+    public void didComplete(ASAuthorizationController controller, NSError error) {}
+    /*</methods>*/
 }

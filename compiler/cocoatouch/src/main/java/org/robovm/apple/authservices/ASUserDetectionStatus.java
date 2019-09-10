@@ -33,15 +33,14 @@ import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 12.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/ASCredentialServiceIdentifierType/*</name>*/ implements ValuedEnum {
+public enum /*<name>*/ASUserDetectionStatus/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    Domain(0L),
-    URL(1L);
+    Unsupported(0L),
+    Unknown(1L),
+    LikelyReal(2L);
     /*</values>*/
 
     /*<bind>*/
@@ -51,15 +50,15 @@ public enum /*<name>*/ASCredentialServiceIdentifierType/*</name>*/ implements Va
 
     private final long n;
 
-    private /*<name>*/ASCredentialServiceIdentifierType/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/ASUserDetectionStatus/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/ASCredentialServiceIdentifierType/*</name>*/ valueOf(long n) {
-        for (/*<name>*/ASCredentialServiceIdentifierType/*</name>*/ v : values()) {
+    public static /*<name>*/ASUserDetectionStatus/*</name>*/ valueOf(long n) {
+        for (/*<name>*/ASUserDetectionStatus/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/ASCredentialServiceIdentifierType/*</name>*/.class.getName());
+            + /*<name>*/ASUserDetectionStatus/*</name>*/.class.getName());
     }
 }

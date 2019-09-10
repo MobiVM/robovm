@@ -34,14 +34,15 @@ import org.robovm.apple.coregraphics.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 12.0 and later.
+ * @since Available in iOS 13.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/ASCredentialServiceIdentifierType/*</name>*/ implements ValuedEnum {
+public enum /*<name>*/ASAuthorizationAppleIDButtonType/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    Domain(0L),
-    URL(1L);
+    SignIn(0L),
+    Continue(1L),
+    Default(0L);
     /*</values>*/
 
     /*<bind>*/
@@ -51,15 +52,15 @@ public enum /*<name>*/ASCredentialServiceIdentifierType/*</name>*/ implements Va
 
     private final long n;
 
-    private /*<name>*/ASCredentialServiceIdentifierType/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/ASAuthorizationAppleIDButtonType/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/ASCredentialServiceIdentifierType/*</name>*/ valueOf(long n) {
-        for (/*<name>*/ASCredentialServiceIdentifierType/*</name>*/ v : values()) {
+    public static /*<name>*/ASAuthorizationAppleIDButtonType/*</name>*/ valueOf(long n) {
+        for (/*<name>*/ASAuthorizationAppleIDButtonType/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/ASCredentialServiceIdentifierType/*</name>*/.class.getName());
+            + /*<name>*/ASAuthorizationAppleIDButtonType/*</name>*/.class.getName());
     }
 }

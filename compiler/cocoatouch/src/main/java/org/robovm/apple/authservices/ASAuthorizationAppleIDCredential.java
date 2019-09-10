@@ -34,44 +34,46 @@ import org.robovm.apple.coregraphics.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 12.0 and later.
+ * @since Available in iOS 13.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("AuthenticationServices") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/ASPasswordCredentialIdentity/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/ASAuthorizationAppleIDCredential/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
+    /*<implements>*/implements ASAuthorizationCredential/*</implements>*/ {
 
-    /*<ptr>*/public static class ASPasswordCredentialIdentityPtr extends Ptr<ASPasswordCredentialIdentity, ASPasswordCredentialIdentityPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(ASPasswordCredentialIdentity.class); }/*</bind>*/
+    /*<ptr>*/public static class ASAuthorizationAppleIDCredentialPtr extends Ptr<ASAuthorizationAppleIDCredential, ASAuthorizationAppleIDCredentialPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(ASAuthorizationAppleIDCredential.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected ASPasswordCredentialIdentity() {}
-    protected ASPasswordCredentialIdentity(Handle h, long handle) { super(h, handle); }
-    protected ASPasswordCredentialIdentity(SkipInit skipInit) { super(skipInit); }
-    @Method(selector = "initWithServiceIdentifier:user:recordIdentifier:")
-    public ASPasswordCredentialIdentity(ASCredentialServiceIdentifier serviceIdentifier, String user, String recordIdentifier) { super((SkipInit) null); initObject(init(serviceIdentifier, user, recordIdentifier)); }
+    protected ASAuthorizationAppleIDCredential() {}
+    protected ASAuthorizationAppleIDCredential(Handle h, long handle) { super(h, handle); }
+    protected ASAuthorizationAppleIDCredential(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public ASPasswordCredentialIdentity(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
+    public ASAuthorizationAppleIDCredential(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "serviceIdentifier")
-    public native ASCredentialServiceIdentifier getServiceIdentifier();
     @Property(selector = "user")
     public native String getUser();
-    @Property(selector = "recordIdentifier")
-    public native String getRecordIdentifier();
-    @Property(selector = "rank")
-    public native @MachineSizedSInt long getRank();
-    @Property(selector = "setRank:")
-    public native void setRank(@MachineSizedSInt long v);
+    @Property(selector = "state")
+    public native String getState();
+    @Property(selector = "authorizedScopes")
+    public native NSArray<NSString> getAuthorizedScopes();
+    @Property(selector = "authorizationCode")
+    public native NSData getAuthorizationCode();
+    @Property(selector = "identityToken")
+    public native NSData getIdentityToken();
+    @Property(selector = "email")
+    public native String getEmail();
+    @Property(selector = "fullName")
+    public native NSPersonNameComponents getFullName();
+    @Property(selector = "realUserStatus")
+    public native ASUserDetectionStatus getRealUserStatus();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithServiceIdentifier:user:recordIdentifier:")
-    protected native @Pointer long init(ASCredentialServiceIdentifier serviceIdentifier, String user, String recordIdentifier);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

@@ -1,4 +1,5 @@
 processed:
+- authservices
 - audiotoolbox
 - assetslibrary
 - arkit
@@ -29,7 +30,6 @@ processed:
 - security
 
 to go:
-authservices
 avkit
 carplay
 classkit

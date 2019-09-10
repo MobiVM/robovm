@@ -34,32 +34,40 @@ import org.robovm.apple.coregraphics.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 12.0 and later.
+ * @since Available in iOS 13.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/ASCredentialServiceIdentifierType/*</name>*/ implements ValuedEnum {
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Library("AuthenticationServices")/*</annotations>*/
+public enum /*<name>*/ASAuthorizationError/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    Domain(0L),
-    URL(1L);
+    Unknown(1000L),
+    Canceled(1001L),
+    InvalidResponse(1002L),
+    NotHandled(1003L),
+    Failed(1004L);
     /*</values>*/
 
-    /*<bind>*/
-    /*</bind>*/
+    /*<bind>*/static { Bro.bind(ASAuthorizationError.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<methods>*//*</methods>*/
+    /*<methods>*/
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @GlobalValue(symbol="ASAuthorizationErrorDomain", optional=true)
+    public static native String getClassDomain();
+    /*</methods>*/
 
     private final long n;
 
-    private /*<name>*/ASCredentialServiceIdentifierType/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/ASAuthorizationError/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/ASCredentialServiceIdentifierType/*</name>*/ valueOf(long n) {
-        for (/*<name>*/ASCredentialServiceIdentifierType/*</name>*/ v : values()) {
+    public static /*<name>*/ASAuthorizationError/*</name>*/ valueOf(long n) {
+        for (/*<name>*/ASAuthorizationError/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/ASCredentialServiceIdentifierType/*</name>*/.class.getName());
+            + /*<name>*/ASAuthorizationError/*</name>*/.class.getName());
     }
 }

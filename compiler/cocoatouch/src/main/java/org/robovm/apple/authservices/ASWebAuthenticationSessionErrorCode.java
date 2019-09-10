@@ -29,6 +29,7 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -39,7 +40,15 @@ import org.robovm.apple.uikit.*;
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/ASWebAuthenticationSessionErrorCode/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    CanceledLogin(1L);
+    CanceledLogin(1L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    PresentationContextNotProvided(2L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    PresentationContextInvalid(3L);
     /*</values>*/
 
     /*<bind>*/

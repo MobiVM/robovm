@@ -34,27 +34,27 @@ import org.robovm.apple.coregraphics.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 12.0 and later.
+ * @since Available in iOS 13.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("AuthenticationServices") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/ASCredentialIdentityStoreState/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/ASAuthorizationSingleSignOnRequest/*</name>*/ 
+    extends /*<extends>*/ASAuthorizationOpenIDRequest/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class ASCredentialIdentityStoreStatePtr extends Ptr<ASCredentialIdentityStoreState, ASCredentialIdentityStoreStatePtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(ASCredentialIdentityStoreState.class); }/*</bind>*/
+    /*<ptr>*/public static class ASAuthorizationSingleSignOnRequestPtr extends Ptr<ASAuthorizationSingleSignOnRequest, ASAuthorizationSingleSignOnRequestPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(ASAuthorizationSingleSignOnRequest.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public ASCredentialIdentityStoreState() {}
-    protected ASCredentialIdentityStoreState(Handle h, long handle) { super(h, handle); }
-    protected ASCredentialIdentityStoreState(SkipInit skipInit) { super(skipInit); }
+    protected ASAuthorizationSingleSignOnRequest() {}
+    protected ASAuthorizationSingleSignOnRequest(Handle h, long handle) { super(h, handle); }
+    protected ASAuthorizationSingleSignOnRequest(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "isEnabled")
-    public native boolean isEnabled();
-    @Property(selector = "supportsIncrementalUpdates")
-    public native boolean supportsIncrementalUpdates();
+    @Property(selector = "authorizationOptions")
+    public native NSArray<NSURLQueryItem> getAuthorizationOptions();
+    @Property(selector = "setAuthorizationOptions:")
+    public native void setAuthorizationOptions(NSArray<NSURLQueryItem> v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
