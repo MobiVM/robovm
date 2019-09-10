@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -32,29 +32,13 @@ import org.robovm.apple.foundation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 8.0 and later.
+ * @since Available in iOS 13.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/HKMetricPrefix/*</name>*/ implements ValuedEnum {
+public enum /*<name>*/HKCategoryValueAudioExposureEvent/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    None(0L),
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    Femto(13L),
-    Pico(1L),
-    Nano(2L),
-    Micro(3L),
-    Milli(4L),
-    Centi(5L),
-    Deci(6L),
-    Deca(7L),
-    Hecto(8L),
-    Kilo(9L),
-    Mega(10L),
-    Giga(11L),
-    Tera(12L);
+    LoudEnvironment(1L);
     /*</values>*/
 
     /*<bind>*/
@@ -64,15 +48,15 @@ public enum /*<name>*/HKMetricPrefix/*</name>*/ implements ValuedEnum {
 
     private final long n;
 
-    private /*<name>*/HKMetricPrefix/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/HKCategoryValueAudioExposureEvent/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/HKMetricPrefix/*</name>*/ valueOf(long n) {
-        for (/*<name>*/HKMetricPrefix/*</name>*/ v : values()) {
+    public static /*<name>*/HKCategoryValueAudioExposureEvent/*</name>*/ valueOf(long n) {
+        for (/*<name>*/HKCategoryValueAudioExposureEvent/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/HKMetricPrefix/*</name>*/.class.getName());
+            + /*<name>*/HKCategoryValueAudioExposureEvent/*</name>*/.class.getName());
     }
 }

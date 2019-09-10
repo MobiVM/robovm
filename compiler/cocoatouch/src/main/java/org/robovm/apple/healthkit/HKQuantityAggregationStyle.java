@@ -39,7 +39,24 @@ import org.robovm.apple.foundation.*;
 public enum /*<name>*/HKQuantityAggregationStyle/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Cumulative(0L),
-    Discrete(1L);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    DiscreteArithmetic(1L),
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
+    Discrete(1L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    DiscreteTemporallyWeighted(2L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    DiscreteEquivalentContinuousLevel(3L);
     /*</values>*/
 
     /*<bind>*/

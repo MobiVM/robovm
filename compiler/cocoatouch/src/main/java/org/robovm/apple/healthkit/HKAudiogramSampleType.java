@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -32,31 +32,24 @@ import org.robovm.apple.foundation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 8.0 and later.
+ * @since Available in iOS 13.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("HealthKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/HKSampleType/*</name>*/ 
-    extends /*<extends>*/HKObjectType/*</extends>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/HKAudiogramSampleType/*</name>*/ 
+    extends /*<extends>*/HKSampleType/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class HKSampleTypePtr extends Ptr<HKSampleType, HKSampleTypePtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(HKSampleType.class); }/*</bind>*/
+    /*<ptr>*/public static class HKAudiogramSampleTypePtr extends Ptr<HKAudiogramSampleType, HKAudiogramSampleTypePtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(HKAudiogramSampleType.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected HKSampleType() {}
-    protected HKSampleType(Handle h, long handle) { super(h, handle); }
-    protected HKSampleType(SkipInit skipInit) { super(skipInit); }
+    protected HKAudiogramSampleType() {}
+    protected HKAudiogramSampleType(Handle h, long handle) { super(h, handle); }
+    protected HKAudiogramSampleType(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "isMaximumDurationRestricted")
-    public native boolean isMaximumDurationRestricted();
-    @Property(selector = "maximumAllowedDuration")
-    public native double getMaximumAllowedDuration();
-    @Property(selector = "isMinimumDurationRestricted")
-    public native boolean isMinimumDurationRestricted();
-    @Property(selector = "minimumAllowedDuration")
-    public native double getMinimumAllowedDuration();
+    
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

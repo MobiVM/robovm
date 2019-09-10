@@ -86,7 +86,7 @@ import org.robovm.apple.foundation.*;
      * @since Available in iOS 12.0 and later.
      */
     @Method(selector = "getRequestStatusForAuthorizationToShareTypes:readTypes:completion:")
-    public native void getRequestStatus(NSSet<HKSampleType> typesToShare, NSSet<?> typesToRead, @Block VoidBlock2<HKAuthorizationRequestStatus, NSError> completion);
+    public native void getRequestStatus(NSSet<HKSampleType> typesToShare, NSSet<HKObjectType> typesToRead, @Block VoidBlock2<HKAuthorizationRequestStatus, NSError> completion);
     /**
      * @since Available in iOS 9.0 and later.
      */

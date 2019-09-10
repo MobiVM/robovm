@@ -55,7 +55,7 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "initWithSource:version:")
     public HKSourceRevision(HKSource source, String version) { super((SkipInit) null); initObject(init(source, version)); }
     @Method(selector = "initWithCoder:")
-    public HKSourceRevision(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public HKSourceRevision(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "source")
@@ -103,6 +103,6 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

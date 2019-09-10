@@ -1,4 +1,6 @@
 processed:
+- healthkit
+- glkit
 - gameplaykit
 - gamekit
 - gamecontroller
@@ -45,8 +47,6 @@ processed:
 to go:
 - contacts
 - contactsui
-- glkit
-- healthkit
 - homekit
 - iad
 - identitylookup

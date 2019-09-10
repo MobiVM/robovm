@@ -62,8 +62,30 @@ import org.robovm.apple.foundation.*;
     /*<methods>*/
     @Method(selector = "initWithHealthStore:quantityType:startDate:device:")
     protected native @Pointer long init(HKHealthStore healthStore, HKQuantityType quantityType, NSDate startDate, HKDevice device);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public boolean insertQuantity(HKQuantity quantity, NSDateInterval dateInterval) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       boolean result = insertQuantity(quantity, dateInterval, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "insertQuantity:dateInterval:error:")
+    private native boolean insertQuantity(HKQuantity quantity, NSDateInterval dateInterval, NSError.NSErrorPtr error);
+    public boolean insertQuantity(HKQuantity quantity, NSDate date) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       boolean result = insertQuantity(quantity, date, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
     @Method(selector = "insertQuantity:date:error:")
-    public native boolean insertQuantity(HKQuantity quantity, NSDate date, NSError.NSErrorPtr error);
+    private native boolean insertQuantity(HKQuantity quantity, NSDate date, NSError.NSErrorPtr error);
+    @Method(selector = "finishSeriesWithMetadata:endDate:completion:")
+    public native void finishSeries(NSDictionary<NSString, ?> metadata, NSDate endDate, @Block VoidBlock2<NSArray<HKQuantitySample>, NSError> completion);
     @Method(selector = "finishSeriesWithMetadata:completion:")
     public native void finishSeries(NSDictionary<NSString, ?> metadata, @Block VoidBlock2<NSArray<HKQuantitySample>, NSError> completion);
     @Method(selector = "discard")
