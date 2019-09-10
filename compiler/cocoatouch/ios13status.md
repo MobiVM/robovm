@@ -1,4 +1,5 @@
 processed:
+- eventkit
 - dispatch
 - cloudkit
 - classkit
@@ -37,7 +38,6 @@ processed:
 to go:
 - contacts
 - contactsui
-- eventkit
 - eventkitui
 - externalaccessory
 - fileprovider

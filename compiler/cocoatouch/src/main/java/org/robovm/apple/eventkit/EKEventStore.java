@@ -69,6 +69,11 @@ import org.robovm.apple.mapkit.*;
     @Property(selector = "eventStoreIdentifier")
     public native String getEventStoreIdentifier();
     /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "delegateSources")
+    public native NSArray<EKSource> getDelegateSources();
+    /**
      * @since Available in iOS 5.0 and later.
      */
     @Property(selector = "sources")

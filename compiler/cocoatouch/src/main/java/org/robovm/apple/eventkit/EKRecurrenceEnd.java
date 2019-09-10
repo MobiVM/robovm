@@ -54,7 +54,7 @@ import org.robovm.apple.mapkit.*;
     public EKRecurrenceEnd(NSDate endDate) { super((Handle) null, create(endDate)); retain(getHandle()); }
     public EKRecurrenceEnd(@MachineSizedUInt long occurrenceCount) { super((Handle) null, create(occurrenceCount)); retain(getHandle()); }
     @Method(selector = "initWithCoder:")
-    public EKRecurrenceEnd(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public EKRecurrenceEnd(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "endDate")
@@ -73,6 +73,6 @@ import org.robovm.apple.mapkit.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }
