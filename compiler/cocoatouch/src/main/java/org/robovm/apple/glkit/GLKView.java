@@ -59,7 +59,7 @@ import org.robovm.apple.modelio.*;
     @Method(selector = "initWithFrame:")
     public GLKView(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public GLKView(NSCoder decoder) { super(decoder); }
+    public GLKView(NSCoder coder) { super(coder); }
     /*</constructors>*/
 
     /*<properties>*/

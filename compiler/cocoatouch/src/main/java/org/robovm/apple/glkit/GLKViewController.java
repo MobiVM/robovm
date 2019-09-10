@@ -57,7 +57,7 @@ import org.robovm.apple.modelio.*;
     @Method(selector = "initWithNibName:bundle:")
     public GLKViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
     @Method(selector = "initWithCoder:")
-    public GLKViewController(NSCoder decoder) { super(decoder); }
+    public GLKViewController(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "delegate")
