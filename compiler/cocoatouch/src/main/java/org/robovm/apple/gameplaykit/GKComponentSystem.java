@@ -39,11 +39,11 @@ import org.robovm.apple.uikit.*;
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("GameplayKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/GKComponentSystem/*</name>*/ <T extends GKComponent>
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/GKComponentSystem<T extends GKComponent>/*</name>*/
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*/implements NSFastEnumeration/*</implements>*/, Iterable<T> {
 
-    /*<ptr>*/public static class GKComponentSystemPtr extends Ptr<GKComponentSystem, GKComponentSystemPtr> {}/*</ptr>*/
+    /*<ptr>*/public static class GKComponentSystemPtr<T extends GKComponent> extends Ptr<GKComponentSystem<T>, GKComponentSystemPtr<T>> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(GKComponentSystem.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/

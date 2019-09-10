@@ -39,11 +39,11 @@ import org.robovm.apple.uikit.*;
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("GameplayKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/GKGridGraph/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/GKGridGraph<NodeType extends GKGridGraphNode>/*</name>*/ 
     extends /*<extends>*/GKGraph/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class GKGridGraphPtr extends Ptr<GKGridGraph, GKGridGraphPtr> {}/*</ptr>*/
+    /*<ptr>*/public static class GKGridGraphPtr<NodeType extends GKGridGraphNode> extends Ptr<GKGridGraph<NodeType>, GKGridGraphPtr<NodeType>> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(GKGridGraph.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
@@ -74,7 +74,7 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "initFromGridStartingAt:width:height:diagonalsAllowed:nodeClass:")
     protected native @Pointer long init(@ByVal VectorInt2 position, int width, int height, boolean diagonalsAllowed, Class<?> nodeClass);
     @Method(selector = "nodeAtGridPosition:")
-    public native GKGridGraphNode getNodeAtGridPosition(@ByVal VectorInt2 position);
+    public native NodeType getNodeAtGridPosition(@ByVal VectorInt2 position);
     @Method(selector = "connectNodeToAdjacentNodes:")
     public native void connectNodeToAdjacentNodes(GKGridGraphNode node);
     @Method(selector = "classForGenericArgumentAtIndex:")

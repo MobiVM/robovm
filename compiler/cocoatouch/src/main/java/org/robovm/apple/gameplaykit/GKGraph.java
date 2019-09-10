@@ -53,7 +53,7 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "initWithNodes:")
     public GKGraph(NSArray<GKGraphNode> nodes) { super((SkipInit) null); initObject(init(nodes)); }
     @Method(selector = "initWithCoder:")
-    public GKGraph(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public GKGraph(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "nodes")
@@ -76,6 +76,6 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

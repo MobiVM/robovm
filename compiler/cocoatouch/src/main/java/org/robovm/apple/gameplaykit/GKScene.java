@@ -53,7 +53,7 @@ import org.robovm.apple.uikit.*;
     public GKScene(String filename) { super((Handle) null, create(filename)); retain(getHandle()); }
     public GKScene(String filename, GKSceneRootNodeType rootNode) { super((Handle) null, create(filename, rootNode)); retain(getHandle()); }
     @Method(selector = "initWithCoder:")
-    public GKScene(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public GKScene(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "entities")
@@ -84,6 +84,6 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }
