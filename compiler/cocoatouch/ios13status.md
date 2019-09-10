@@ -1,4 +1,6 @@
 processed:
+- fileprovider
+- externalaccessory
 - eventkitui
 - eventkit
 - dispatch
@@ -39,8 +41,6 @@ processed:
 to go:
 - contacts
 - contactsui
-- externalaccessory
-- fileprovider
 - gamecontroller
 - gamekit
 - gameplaykit
