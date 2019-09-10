@@ -34,38 +34,30 @@ import org.robovm.apple.mapkit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 12.0 and later.
- */
 /*</javadoc>*/
-/*<annotations>*/@Library("CarPlay") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/CPTemplate/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
+/*<annotations>*//*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/CPTemplateApplicationSceneDelegateAdapter/*</name>*/ 
+    extends /*<extends>*/UISceneDelegateAdapter/*</extends>*/ 
+    /*<implements>*/implements CPTemplateApplicationSceneDelegate/*</implements>*/ {
 
-    /*<ptr>*/public static class CPTemplatePtr extends Ptr<CPTemplate, CPTemplatePtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(CPTemplate.class); }/*</bind>*/
+    /*<ptr>*/
+    /*</ptr>*/
+    /*<bind>*/
+    /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*/
-    public CPTemplate() {}
-    protected CPTemplate(Handle h, long handle) { super(h, handle); }
-    protected CPTemplate(SkipInit skipInit) { super(skipInit); }
-    @Method(selector = "initWithCoder:")
-    public CPTemplate(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
-    /*</constructors>*/
+    /*<constructors>*//*</constructors>*/
     /*<properties>*/
-    @Property(selector = "userInfo")
-    public native NSObject getUserInfo();
-    @Property(selector = "setUserInfo:")
-    public native void setUserInfo(NSObject v);
-    @Property(selector = "supportsSecureCoding")
-    public static native boolean supportsSecureCoding();
+    
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "encodeWithCoder:")
-    public native void encode(NSCoder coder);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder coder);
+    @NotImplemented("templateApplicationScene:didConnectInterfaceController:toWindow:")
+    public void didConnectInterfaceController(CPTemplateApplicationScene templateApplicationScene, CPInterfaceController interfaceController, CPWindow window) {}
+    @NotImplemented("templateApplicationScene:didDisconnectInterfaceController:fromWindow:")
+    public void didDisconnectInterfaceController(CPTemplateApplicationScene templateApplicationScene, CPInterfaceController interfaceController, CPWindow window) {}
+    @NotImplemented("templateApplicationScene:didSelectNavigationAlert:")
+    public void didSelectNavigationAlert(CPTemplateApplicationScene templateApplicationScene, CPNavigationAlert navigationAlert) {}
+    @NotImplemented("templateApplicationScene:didSelectManeuver:")
+    public void didSelectManeuver(CPTemplateApplicationScene templateApplicationScene, CPManeuver maneuver) {}
     /*</methods>*/
 }

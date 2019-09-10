@@ -53,7 +53,7 @@ import org.robovm.apple.mapkit.*;
     @Method(selector = "initWithSummaryVariants:additionalInformationVariants:selectionSummaryVariants:")
     public CPRouteChoice(NSArray<NSString> summaryVariants, NSArray<NSString> additionalInformationVariants, NSArray<NSString> selectionSummaryVariants) { super((SkipInit) null); initObject(init(summaryVariants, additionalInformationVariants, selectionSummaryVariants)); }
     @Method(selector = "initWithCoder:")
-    public CPRouteChoice(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public CPRouteChoice(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "summaryVariants")
@@ -76,6 +76,6 @@ import org.robovm.apple.mapkit.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

@@ -34,29 +34,32 @@ import org.robovm.apple.mapkit.*;
 /*</imports>*/
 
 /*<javadoc>*/
+/**
+ * @since Available in iOS 13.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/CPSessionConfigurationDelegateAdapter/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements CPSessionConfigurationDelegate/*</implements>*/ {
+/*<visibility>*/public/*</visibility>*/ interface /*<name>*/CPTemplateApplicationSceneDelegate/*</name>*/ 
+    /*<implements>*/extends UISceneDelegate/*</implements>*/ {
 
     /*<ptr>*/
     /*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*//*</constructors>*/
     /*<properties>*/
     
     /*</properties>*/
-    /*<members>*//*</members>*/
     /*<methods>*/
-    @NotImplemented("sessionConfiguration:limitedUserInterfacesChanged:")
-    public void limitedUserInterfacesChanged(CPSessionConfiguration sessionConfiguration, CPLimitableUserInterface limitedUserInterfaces) {}
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @NotImplemented("sessionConfiguration:contentStyleChanged:")
-    public void contentStyleChanged(CPSessionConfiguration sessionConfiguration, CPContentStyle contentStyle) {}
+    @Method(selector = "templateApplicationScene:didConnectInterfaceController:toWindow:")
+    void didConnectInterfaceController(CPTemplateApplicationScene templateApplicationScene, CPInterfaceController interfaceController, CPWindow window);
+    @Method(selector = "templateApplicationScene:didDisconnectInterfaceController:fromWindow:")
+    void didDisconnectInterfaceController(CPTemplateApplicationScene templateApplicationScene, CPInterfaceController interfaceController, CPWindow window);
+    @Method(selector = "templateApplicationScene:didSelectNavigationAlert:")
+    void didSelectNavigationAlert(CPTemplateApplicationScene templateApplicationScene, CPNavigationAlert navigationAlert);
+    @Method(selector = "templateApplicationScene:didSelectManeuver:")
+    void didSelectManeuver(CPTemplateApplicationScene templateApplicationScene, CPManeuver maneuver);
     /*</methods>*/
+    /*<adapter>*/
+    /*</adapter>*/
 }

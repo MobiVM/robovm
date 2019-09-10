@@ -35,40 +35,42 @@ import org.robovm.apple.mapkit.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 12.0 and later.
+ * @since Available in iOS 13.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("CarPlay") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/CPSessionConfiguration/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/CPTemplateApplicationScene/*</name>*/ 
+    extends /*<extends>*/UIScene/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class CPSessionConfigurationPtr extends Ptr<CPSessionConfiguration, CPSessionConfigurationPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(CPSessionConfiguration.class); }/*</bind>*/
+    /*<ptr>*/public static class CPTemplateApplicationScenePtr extends Ptr<CPTemplateApplicationScene, CPTemplateApplicationScenePtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(CPTemplateApplicationScene.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected CPSessionConfiguration() {}
-    protected CPSessionConfiguration(Handle h, long handle) { super(h, handle); }
-    protected CPSessionConfiguration(SkipInit skipInit) { super(skipInit); }
-    @Method(selector = "initWithDelegate:")
-    public CPSessionConfiguration(CPSessionConfigurationDelegate delegate) { super((SkipInit) null); initObject(init(delegate)); }
+    protected CPTemplateApplicationScene() {}
+    protected CPTemplateApplicationScene(Handle h, long handle) { super(h, handle); }
+    protected CPTemplateApplicationScene(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithSession:connectionOptions:")
+    public CPTemplateApplicationScene(UISceneSession session, UISceneConnectionOptions connectionOptions) { super(session, connectionOptions); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "limitedUserInterfaces")
-    public native CPLimitableUserInterface getLimitedUserInterfaces();
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @Property(selector = "contentStyle")
-    public native CPContentStyle getContentStyle();
     @Property(selector = "delegate")
-    public native CPSessionConfigurationDelegate getDelegate();
-    @Property(selector = "setDelegate:", strongRef = true)
-    public native void setDelegate(CPSessionConfigurationDelegate v);
+    public native CPTemplateApplicationSceneDelegate getDelegate();
+    @Property(selector = "setDelegate:")
+    public native void setDelegate(CPTemplateApplicationSceneDelegate v);
+    @Property(selector = "interfaceController")
+    public native CPInterfaceController getInterfaceController();
+    @Property(selector = "carWindow")
+    public native CPWindow getCarWindow();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithDelegate:")
-    protected native @Pointer long init(CPSessionConfigurationDelegate delegate);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @GlobalValue(symbol="CPTemplateApplicationSceneSessionRoleApplication", optional=true)
+    public static native UISceneSessionRole getSceneSessionRole();
+    
+    
     /*</methods>*/
 }

@@ -50,14 +50,23 @@ import org.robovm.apple.mapkit.*;
     public CPWindow() {}
     protected CPWindow(Handle h, long handle) { super(h, handle); }
     protected CPWindow(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "initWithWindowScene:")
+    public CPWindow(UIWindowScene windowScene) { super(windowScene); }
     @Method(selector = "initWithFrame:")
     public CPWindow(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public CPWindow(NSCoder decoder) { super(decoder); }
+    public CPWindow(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "mapButtonSafeAreaLayoutGuide")
     public native UILayoutGuide getMapButtonSafeAreaLayoutGuide();
+    @Property(selector = "templateApplicationScene")
+    public native CPTemplateApplicationScene getTemplateApplicationScene();
+    @Property(selector = "setTemplateApplicationScene:", strongRef = true)
+    public native void setTemplateApplicationScene(CPTemplateApplicationScene v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

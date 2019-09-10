@@ -34,29 +34,34 @@ import org.robovm.apple.mapkit.*;
 /*</imports>*/
 
 /*<javadoc>*/
+/**
+ * @since Available in iOS 13.0 and later.
+ */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/CPSessionConfigurationDelegateAdapter/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements CPSessionConfigurationDelegate/*</implements>*/ {
+/*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
+public final class /*<name>*/CPContentStyle/*</name>*/ extends Bits</*<name>*/CPContentStyle/*</name>*/> {
+    /*<values>*/
+    public static final CPContentStyle None = new CPContentStyle(0L);
+    public static final CPContentStyle Light = new CPContentStyle(1L);
+    public static final CPContentStyle Dark = new CPContentStyle(2L);
+    /*</values>*/
 
-    /*<ptr>*/
-    /*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*//*</constructors>*/
-    /*<properties>*/
-    
-    /*</properties>*/
-    /*<members>*//*</members>*/
-    /*<methods>*/
-    @NotImplemented("sessionConfiguration:limitedUserInterfacesChanged:")
-    public void limitedUserInterfacesChanged(CPSessionConfiguration sessionConfiguration, CPLimitableUserInterface limitedUserInterfaces) {}
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @NotImplemented("sessionConfiguration:contentStyleChanged:")
-    public void contentStyleChanged(CPSessionConfiguration sessionConfiguration, CPContentStyle contentStyle) {}
-    /*</methods>*/
+    /*<methods>*//*</methods>*/
+
+    private static final /*<name>*/CPContentStyle/*</name>*/[] values = _values(/*<name>*/CPContentStyle/*</name>*/.class);
+
+    public /*<name>*/CPContentStyle/*</name>*/(long value) { super(value); }
+    private /*<name>*/CPContentStyle/*</name>*/(long value, long mask) { super(value, mask); }
+    protected /*<name>*/CPContentStyle/*</name>*/ wrap(long value, long mask) {
+        return new /*<name>*/CPContentStyle/*</name>*/(value, mask);
+    }
+    protected /*<name>*/CPContentStyle/*</name>*/[] _values() {
+        return values;
+    }
+    public static /*<name>*/CPContentStyle/*</name>*/[] values() {
+        return values.clone();
+    }
 }

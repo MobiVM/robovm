@@ -53,7 +53,7 @@ import org.robovm.apple.mapkit.*;
     @Method(selector = "initWithLightContentImage:darkContentImage:")
     public CPImageSet(UIImage lightImage, UIImage darkImage) { super((SkipInit) null); initObject(init(lightImage, darkImage)); }
     @Method(selector = "initWithCoder:")
-    public CPImageSet(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public CPImageSet(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "lightContentImage")
@@ -70,6 +70,6 @@ import org.robovm.apple.mapkit.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }
