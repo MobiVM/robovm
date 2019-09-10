@@ -93,6 +93,16 @@ import org.robovm.rt.bro.ptr.*;
     @Bridge(symbol="dispatch_sync", optional=true)
     public native void sync(@Block Runnable block);
     /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Bridge(symbol="dispatch_async_and_wait", optional=true)
+    public native void asyncAndWait(@Block Runnable block);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Bridge(symbol="dispatch_async_and_wait_f", optional=true)
+    public native void asyncAndWaitF(VoidPtr context, FunctionPtr work);
+    /**
      * @since Available in iOS 4.0 and later.
      */
     @Bridge(symbol="dispatch_apply", optional=true)
@@ -142,5 +152,15 @@ import org.robovm.rt.bro.ptr.*;
      */
     @Bridge(symbol="dispatch_barrier_sync", optional=true)
     public native void barrierSync(@Block Runnable block);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Bridge(symbol="dispatch_barrier_async_and_wait", optional=true)
+    public native void barrierAsyncAndWait(@Block Runnable block);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Bridge(symbol="dispatch_barrier_async_and_wait_f", optional=true)
+    public native void barrierAsyncAndWaitF(VoidPtr context, FunctionPtr work);
     /*</methods>*/
 }

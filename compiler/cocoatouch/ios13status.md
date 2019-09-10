@@ -1,4 +1,5 @@
 processed:
+- dispatch
 - cloudkit
 - classkit
 - carplay
@@ -36,7 +37,6 @@ processed:
 to go:
 - contacts
 - contactsui
-- dispatch
 - eventkit
 - eventkitui
 - externalaccessory
