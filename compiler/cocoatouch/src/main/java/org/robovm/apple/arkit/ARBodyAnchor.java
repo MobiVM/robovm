@@ -42,43 +42,32 @@ import org.robovm.apple.imageio.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 11.0 and later.
+ * @since Available in iOS 13.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/ARSessionObserver/*</name>*/ 
-    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
+/*<annotations>*/@Library("ARKit") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/ARBodyAnchor/*</name>*/ 
+    extends /*<extends>*/ARAnchor/*</extends>*/ 
+    /*<implements>*/implements ARTrackable/*</implements>*/ {
 
-    /*<ptr>*/
-    /*</ptr>*/
-    /*<bind>*/
-    /*</bind>*/
+    /*<ptr>*/public static class ARBodyAnchorPtr extends Ptr<ARBodyAnchor, ARBodyAnchorPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(ARBodyAnchor.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
+    /*<constructors>*/
+    protected ARBodyAnchor() {}
+    protected ARBodyAnchor(Handle h, long handle) { super(h, handle); }
+    protected ARBodyAnchor(SkipInit skipInit) { super(skipInit); }
+    /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "skeleton")
+    public native ARSkeleton3D getSkeleton();
+    @Property(selector = "estimatedScaleFactor")
+    public native @MachineSizedFloat double getEstimatedScaleFactor();
+    @Property(selector = "isTracked")
+    public native boolean isTracked();
     /*</properties>*/
+    /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "session:didFailWithError:")
-    void didFailWithError(ARSession session, NSError error);
-    @Method(selector = "session:cameraDidChangeTrackingState:")
-    void cameraDidChangeTrackingState(ARSession session, ARCamera camera);
-    @Method(selector = "sessionWasInterrupted:")
-    void sessionWasInterrupted(ARSession session);
-    @Method(selector = "sessionInterruptionEnded:")
-    void sessionInterruptionEnded(ARSession session);
-    /**
-     * @since Available in iOS 11.3 and later.
-     */
-    @Method(selector = "sessionShouldAttemptRelocalization:")
-    boolean sessionShouldAttemptRelocalization(ARSession session);
-    @Method(selector = "session:didOutputAudioSampleBuffer:")
-    void didOutputAudioSampleBuffer(ARSession session, CMSampleBuffer audioSampleBuffer);
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @Method(selector = "session:didOutputCollaborationData:")
-    void didOutputCollaborationData(ARSession session, ARCollaborationData data);
+    
     /*</methods>*/
-    /*<adapter>*/
-    /*</adapter>*/
 }

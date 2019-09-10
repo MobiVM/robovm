@@ -42,43 +42,53 @@ import org.robovm.apple.imageio.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 11.0 and later.
+ * @since Available in iOS 13.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("ARKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/ARSKView/*</name>*/ 
-    extends /*<extends>*/SKView/*</extends>*/ 
-    /*<implements>*/implements ARSessionProviding/*</implements>*/ {
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/ARCoachingOverlayView/*</name>*/ 
+    extends /*<extends>*/UIView/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class ARSKViewPtr extends Ptr<ARSKView, ARSKViewPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(ARSKView.class); }/*</bind>*/
+    /*<ptr>*/public static class ARCoachingOverlayViewPtr extends Ptr<ARCoachingOverlayView, ARCoachingOverlayViewPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(ARCoachingOverlayView.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public ARSKView() {}
-    protected ARSKView(Handle h, long handle) { super(h, handle); }
-    protected ARSKView(SkipInit skipInit) { super(skipInit); }
+    public ARCoachingOverlayView() {}
+    protected ARCoachingOverlayView(Handle h, long handle) { super(h, handle); }
+    protected ARCoachingOverlayView(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithFrame:")
-    public ARSKView(@ByVal CGRect frame) { super(frame); }
+    public ARCoachingOverlayView(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public ARSKView(NSCoder coder) { super(coder); }
+    public ARCoachingOverlayView(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "delegate")
-    public native ARSKViewDelegate getDelegate();
+    public native ARCoachingOverlayViewDelegate getDelegate();
     @Property(selector = "setDelegate:", strongRef = true)
-    public native void setDelegate(ARSKViewDelegate v);
+    public native void setDelegate(ARCoachingOverlayViewDelegate v);
+    @Property(selector = "sessionProvider")
+    public native ARSessionProviding getSessionProvider();
+    @Property(selector = "setSessionProvider:", strongRef = true)
+    public native void setSessionProvider(ARSessionProviding v);
     @Property(selector = "session")
     public native ARSession getSession();
     @Property(selector = "setSession:")
     public native void setSession(ARSession v);
+    @Property(selector = "goal")
+    public native ARCoachingGoal getGoal();
+    @Property(selector = "setGoal:")
+    public native void setGoal(ARCoachingGoal v);
+    @Property(selector = "activatesAutomatically")
+    public native boolean isActivatesAutomatically();
+    @Property(selector = "setActivatesAutomatically:")
+    public native void setActivatesAutomatically(boolean v);
+    @Property(selector = "isActive")
+    public native boolean isActive();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "anchorForNode:")
-    public native ARAnchor anchorForNode(SKNode node);
-    @Method(selector = "nodeForAnchor:")
-    public native SKNode nodeForAnchor(ARAnchor anchor);
-    @Method(selector = "hitTest:types:")
-    public native NSArray<ARHitTestResult> hitTest(@ByVal CGPoint point, ARHitTestResultType types);
+    @Method(selector = "setActive:animated:")
+    public native void setActive(boolean active, boolean animated);
     /*</methods>*/
 }

@@ -61,6 +61,11 @@ import org.robovm.apple.imageio.*;
     /*<properties>*/
     @Property(selector = "referenceImage")
     public native ARReferenceImage getReferenceImage();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "estimatedScaleFactor")
+    public native @MachineSizedFloat double getEstimatedScaleFactor();
     @Property(selector = "isTracked")
     public native boolean isTracked();
     /*</properties>*/

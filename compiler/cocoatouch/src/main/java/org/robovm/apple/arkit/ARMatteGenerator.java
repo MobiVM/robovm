@@ -42,43 +42,34 @@ import org.robovm.apple.imageio.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 11.0 and later.
+ * @since Available in iOS 13.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/ARSessionObserver/*</name>*/ 
-    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
+/*<annotations>*/@Library("ARKit") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/ARMatteGenerator/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/
-    /*</ptr>*/
-    /*<bind>*/
-    /*</bind>*/
+    /*<ptr>*/public static class ARMatteGeneratorPtr extends Ptr<ARMatteGenerator, ARMatteGeneratorPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(ARMatteGenerator.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
+    /*<constructors>*/
+    protected ARMatteGenerator() {}
+    protected ARMatteGenerator(Handle h, long handle) { super(h, handle); }
+    protected ARMatteGenerator(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithDevice:matteResolution:")
+    public ARMatteGenerator(MTLDevice device, ARMatteResolution matteResolution) { super((SkipInit) null); initObject(init(device, matteResolution)); }
+    /*</constructors>*/
     /*<properties>*/
     
     /*</properties>*/
+    /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "session:didFailWithError:")
-    void didFailWithError(ARSession session, NSError error);
-    @Method(selector = "session:cameraDidChangeTrackingState:")
-    void cameraDidChangeTrackingState(ARSession session, ARCamera camera);
-    @Method(selector = "sessionWasInterrupted:")
-    void sessionWasInterrupted(ARSession session);
-    @Method(selector = "sessionInterruptionEnded:")
-    void sessionInterruptionEnded(ARSession session);
-    /**
-     * @since Available in iOS 11.3 and later.
-     */
-    @Method(selector = "sessionShouldAttemptRelocalization:")
-    boolean sessionShouldAttemptRelocalization(ARSession session);
-    @Method(selector = "session:didOutputAudioSampleBuffer:")
-    void didOutputAudioSampleBuffer(ARSession session, CMSampleBuffer audioSampleBuffer);
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @Method(selector = "session:didOutputCollaborationData:")
-    void didOutputCollaborationData(ARSession session, ARCollaborationData data);
+    @Method(selector = "initWithDevice:matteResolution:")
+    protected native @Pointer long init(MTLDevice device, ARMatteResolution matteResolution);
+    @Method(selector = "generateMatteFromFrame:commandBuffer:")
+    public native MTLTexture generateMatte(ARFrame frame, MTLCommandBuffer commandBuffer);
+    @Method(selector = "generateDilatedDepthFromFrame:commandBuffer:")
+    public native MTLTexture generateDilatedDepth(ARFrame frame, MTLCommandBuffer commandBuffer);
     /*</methods>*/
-    /*<adapter>*/
-    /*</adapter>*/
 }

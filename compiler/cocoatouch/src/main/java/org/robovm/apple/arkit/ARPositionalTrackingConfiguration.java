@@ -42,43 +42,34 @@ import org.robovm.apple.imageio.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 11.0 and later.
+ * @since Available in iOS 13.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/ARSessionObserver/*</name>*/ 
-    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
+/*<annotations>*/@Library("ARKit") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/ARPositionalTrackingConfiguration/*</name>*/ 
+    extends /*<extends>*/ARConfiguration/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/
-    /*</ptr>*/
-    /*<bind>*/
-    /*</bind>*/
+    /*<ptr>*/public static class ARPositionalTrackingConfigurationPtr extends Ptr<ARPositionalTrackingConfiguration, ARPositionalTrackingConfigurationPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(ARPositionalTrackingConfiguration.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
+    /*<constructors>*/
+    public ARPositionalTrackingConfiguration() {}
+    protected ARPositionalTrackingConfiguration(Handle h, long handle) { super(h, handle); }
+    protected ARPositionalTrackingConfiguration(SkipInit skipInit) { super(skipInit); }
+    /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "planeDetection")
+    public native ARPlaneDetection getPlaneDetection();
+    @Property(selector = "setPlaneDetection:")
+    public native void setPlaneDetection(ARPlaneDetection v);
+    @Property(selector = "initialWorldMap")
+    public native ARWorldMap getInitialWorldMap();
+    @Property(selector = "setInitialWorldMap:")
+    public native void setInitialWorldMap(ARWorldMap v);
     /*</properties>*/
+    /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "session:didFailWithError:")
-    void didFailWithError(ARSession session, NSError error);
-    @Method(selector = "session:cameraDidChangeTrackingState:")
-    void cameraDidChangeTrackingState(ARSession session, ARCamera camera);
-    @Method(selector = "sessionWasInterrupted:")
-    void sessionWasInterrupted(ARSession session);
-    @Method(selector = "sessionInterruptionEnded:")
-    void sessionInterruptionEnded(ARSession session);
-    /**
-     * @since Available in iOS 11.3 and later.
-     */
-    @Method(selector = "sessionShouldAttemptRelocalization:")
-    boolean sessionShouldAttemptRelocalization(ARSession session);
-    @Method(selector = "session:didOutputAudioSampleBuffer:")
-    void didOutputAudioSampleBuffer(ARSession session, CMSampleBuffer audioSampleBuffer);
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @Method(selector = "session:didOutputCollaborationData:")
-    void didOutputCollaborationData(ARSession session, ARCollaborationData data);
+    
     /*</methods>*/
-    /*<adapter>*/
-    /*</adapter>*/
 }

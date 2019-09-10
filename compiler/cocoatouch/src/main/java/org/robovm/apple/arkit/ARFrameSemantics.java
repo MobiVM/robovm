@@ -41,44 +41,33 @@ import org.robovm.apple.imageio.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 11.0 and later.
- */
-/*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/ARSessionObserver/*</name>*/ 
-    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
 
-    /*<ptr>*/
-    /*</ptr>*/
+/*</javadoc>*/
+/*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
+public final class /*<name>*/ARFrameSemantics/*</name>*/ extends Bits</*<name>*/ARFrameSemantics/*</name>*/> {
+    /*<values>*/
+    public static final ARFrameSemantics None = new ARFrameSemantics(0L);
+    public static final ARFrameSemantics PersonSegmentation = new ARFrameSemantics(1L);
+    public static final ARFrameSemantics PersonSegmentationWithDepth = new ARFrameSemantics(3L);
+    public static final ARFrameSemantics BodyDetection = new ARFrameSemantics(4L);
+    /*</values>*/
+
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<properties>*/
-    
-    /*</properties>*/
-    /*<methods>*/
-    @Method(selector = "session:didFailWithError:")
-    void didFailWithError(ARSession session, NSError error);
-    @Method(selector = "session:cameraDidChangeTrackingState:")
-    void cameraDidChangeTrackingState(ARSession session, ARCamera camera);
-    @Method(selector = "sessionWasInterrupted:")
-    void sessionWasInterrupted(ARSession session);
-    @Method(selector = "sessionInterruptionEnded:")
-    void sessionInterruptionEnded(ARSession session);
-    /**
-     * @since Available in iOS 11.3 and later.
-     */
-    @Method(selector = "sessionShouldAttemptRelocalization:")
-    boolean sessionShouldAttemptRelocalization(ARSession session);
-    @Method(selector = "session:didOutputAudioSampleBuffer:")
-    void didOutputAudioSampleBuffer(ARSession session, CMSampleBuffer audioSampleBuffer);
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @Method(selector = "session:didOutputCollaborationData:")
-    void didOutputCollaborationData(ARSession session, ARCollaborationData data);
-    /*</methods>*/
-    /*<adapter>*/
-    /*</adapter>*/
+    /*<methods>*//*</methods>*/
+
+    private static final /*<name>*/ARFrameSemantics/*</name>*/[] values = _values(/*<name>*/ARFrameSemantics/*</name>*/.class);
+
+    public /*<name>*/ARFrameSemantics/*</name>*/(long value) { super(value); }
+    private /*<name>*/ARFrameSemantics/*</name>*/(long value, long mask) { super(value, mask); }
+    protected /*<name>*/ARFrameSemantics/*</name>*/ wrap(long value, long mask) {
+        return new /*<name>*/ARFrameSemantics/*</name>*/(value, mask);
+    }
+    protected /*<name>*/ARFrameSemantics/*</name>*/[] _values() {
+        return values;
+    }
+    public static /*<name>*/ARFrameSemantics/*</name>*/[] values() {
+        return values.clone();
+    }
 }

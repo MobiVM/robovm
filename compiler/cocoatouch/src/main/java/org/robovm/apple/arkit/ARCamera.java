@@ -71,6 +71,16 @@ import org.robovm.apple.imageio.*;
     public native @ByVal MatrixFloat3x3 getIntrinsics();
     @Property(selector = "imageResolution")
     public native @ByVal CGSize getImageResolution();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "exposureDuration")
+    public native double getExposureDuration();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "exposureOffset")
+    public native float getExposureOffset();
     @Property(selector = "projectionMatrix")
     public native @ByVal MatrixFloat4x4 getProjectionMatrix();
     /*</properties>*/

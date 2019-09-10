@@ -42,46 +42,32 @@ import org.robovm.apple.imageio.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 11.0 and later.
+ * @since Available in iOS 13.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("ARKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/ARFaceGeometry/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/ARCollaborationData/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
-    /*<ptr>*/public static class ARFaceGeometryPtr extends Ptr<ARFaceGeometry, ARFaceGeometryPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(ARFaceGeometry.class); }/*</bind>*/
+    /*<ptr>*/public static class ARCollaborationDataPtr extends Ptr<ARCollaborationData, ARCollaborationDataPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(ARCollaborationData.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected ARFaceGeometry() {}
-    protected ARFaceGeometry(Handle h, long handle) { super(h, handle); }
-    protected ARFaceGeometry(SkipInit skipInit) { super(skipInit); }
-    @Method(selector = "initWithBlendShapes:")
-    public ARFaceGeometry(NSDictionary<NSString, NSNumber> blendShapes) { super((SkipInit) null); initObject(init(blendShapes)); }
+    protected ARCollaborationData() {}
+    protected ARCollaborationData(Handle h, long handle) { super(h, handle); }
+    protected ARCollaborationData(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public ARFaceGeometry(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
+    public ARCollaborationData(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "vertexCount")
-    public native @MachineSizedUInt long getVertexCount();
-    @Property(selector = "vertices")
-    public native VectorFloat3 getVertices();
-    @Property(selector = "textureCoordinateCount")
-    public native @MachineSizedUInt long getTextureCoordinateCount();
-    @Property(selector = "textureCoordinates")
-    public native VectorFloat2 getTextureCoordinates();
-    @Property(selector = "triangleCount")
-    public native @MachineSizedUInt long getTriangleCount();
-    @Property(selector = "triangleIndices")
-    public native ShortPtr getTriangleIndices();
+    @Property(selector = "priority")
+    public native ARCollaborationDataPriority getPriority();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithBlendShapes:")
-    protected native @Pointer long init(NSDictionary<NSString, NSNumber> blendShapes);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

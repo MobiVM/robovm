@@ -41,42 +41,38 @@ import org.robovm.apple.imageio.*;
 /*</imports>*/
 
 /*<javadoc>*/
+/**
+ * @since Available in iOS 13.0 and later.
+ */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/ARSessionObserverAdapter/*</name>*/ 
+/*<annotations>*/@Library("ARKit") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/ARRaycastQuery/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements ARSessionObserver/*</implements>*/ {
+    /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/
-    /*</ptr>*/
-    /*<bind>*/
-    /*</bind>*/
+    /*<ptr>*/public static class ARRaycastQueryPtr extends Ptr<ARRaycastQuery, ARRaycastQueryPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(ARRaycastQuery.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*//*</constructors>*/
+    /*<constructors>*/
+    protected ARRaycastQuery() {}
+    protected ARRaycastQuery(Handle h, long handle) { super(h, handle); }
+    protected ARRaycastQuery(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithOrigin:direction:allowingTarget:alignment:")
+    public ARRaycastQuery(@ByVal VectorFloat3 origin, @ByVal VectorFloat3 direction, ARRaycastTarget target, ARRaycastTargetAlignment alignment) { super((SkipInit) null); initObject(init(origin, direction, target, alignment)); }
+    /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "origin")
+    public native @ByVal VectorFloat3 getOrigin();
+    @Property(selector = "direction")
+    public native @ByVal VectorFloat3 getDirection();
+    @Property(selector = "target")
+    public native ARRaycastTarget getTarget();
+    @Property(selector = "targetAlignment")
+    public native ARRaycastTargetAlignment getTargetAlignment();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @NotImplemented("session:didFailWithError:")
-    public void didFailWithError(ARSession session, NSError error) {}
-    @NotImplemented("session:cameraDidChangeTrackingState:")
-    public void cameraDidChangeTrackingState(ARSession session, ARCamera camera) {}
-    @NotImplemented("sessionWasInterrupted:")
-    public void sessionWasInterrupted(ARSession session) {}
-    @NotImplemented("sessionInterruptionEnded:")
-    public void sessionInterruptionEnded(ARSession session) {}
-    /**
-     * @since Available in iOS 11.3 and later.
-     */
-    @NotImplemented("sessionShouldAttemptRelocalization:")
-    public boolean sessionShouldAttemptRelocalization(ARSession session) { return false; }
-    @NotImplemented("session:didOutputAudioSampleBuffer:")
-    public void didOutputAudioSampleBuffer(ARSession session, CMSampleBuffer audioSampleBuffer) {}
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @NotImplemented("session:didOutputCollaborationData:")
-    public void didOutputCollaborationData(ARSession session, ARCollaborationData data) {}
+    @Method(selector = "initWithOrigin:direction:allowingTarget:alignment:")
+    protected native @Pointer long init(@ByVal VectorFloat3 origin, @ByVal VectorFloat3 direction, ARRaycastTarget target, ARRaycastTargetAlignment alignment);
     /*</methods>*/
 }

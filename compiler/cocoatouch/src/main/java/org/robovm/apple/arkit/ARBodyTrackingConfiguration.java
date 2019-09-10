@@ -42,136 +42,62 @@ import org.robovm.apple.imageio.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 11.0 and later.
+ * @since Available in iOS 13.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("ARKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/ARWorldTrackingConfiguration/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/ARBodyTrackingConfiguration/*</name>*/ 
     extends /*<extends>*/ARConfiguration/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class ARWorldTrackingConfigurationPtr extends Ptr<ARWorldTrackingConfiguration, ARWorldTrackingConfigurationPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(ARWorldTrackingConfiguration.class); }/*</bind>*/
+    /*<ptr>*/public static class ARBodyTrackingConfigurationPtr extends Ptr<ARBodyTrackingConfiguration, ARBodyTrackingConfigurationPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(ARBodyTrackingConfiguration.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected ARWorldTrackingConfiguration(Handle h, long handle) { super(h, handle); }
-    protected ARWorldTrackingConfiguration(SkipInit skipInit) { super(skipInit); }
-    public ARWorldTrackingConfiguration() { super((Handle) null, create()); retain(getHandle()); }
+    public ARBodyTrackingConfiguration() {}
+    protected ARBodyTrackingConfiguration(Handle h, long handle) { super(h, handle); }
+    protected ARBodyTrackingConfiguration(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 11.3 and later.
-     */
     @Property(selector = "isAutoFocusEnabled")
     public native boolean isAutoFocusEnabled();
-    /**
-     * @since Available in iOS 11.3 and later.
-     */
     @Property(selector = "setAutoFocusEnabled:")
     public native void setAutoFocusEnabled(boolean v);
-    /**
-     * @since Available in iOS 12.0 and later.
-     */
+    @Property(selector = "initialWorldMap")
+    public native ARWorldMap getInitialWorldMap();
+    @Property(selector = "setInitialWorldMap:")
+    public native void setInitialWorldMap(ARWorldMap v);
     @Property(selector = "environmentTexturing")
     public native AREnvironmentTexturing getEnvironmentTexturing();
-    /**
-     * @since Available in iOS 12.0 and later.
-     */
     @Property(selector = "setEnvironmentTexturing:")
     public native void setEnvironmentTexturing(AREnvironmentTexturing v);
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
     @Property(selector = "wantsHDREnvironmentTextures")
     public native boolean wantsHDREnvironmentTextures();
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
     @Property(selector = "setWantsHDREnvironmentTextures:")
     public native void setWantsHDREnvironmentTextures(boolean v);
     @Property(selector = "planeDetection")
     public native ARPlaneDetection getPlaneDetection();
     @Property(selector = "setPlaneDetection:")
     public native void setPlaneDetection(ARPlaneDetection v);
-    /**
-     * @since Available in iOS 12.0 and later.
-     */
-    @Property(selector = "initialWorldMap")
-    public native ARWorldMap getInitialWorldMap();
-    /**
-     * @since Available in iOS 12.0 and later.
-     */
-    @Property(selector = "setInitialWorldMap:")
-    public native void setInitialWorldMap(ARWorldMap v);
-    /**
-     * @since Available in iOS 11.3 and later.
-     */
     @Property(selector = "detectionImages")
     public native NSSet<ARReferenceImage> getDetectionImages();
-    /**
-     * @since Available in iOS 11.3 and later.
-     */
     @Property(selector = "setDetectionImages:")
     public native void setDetectionImages(NSSet<ARReferenceImage> v);
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
     @Property(selector = "automaticImageScaleEstimationEnabled")
     public native boolean isAutomaticImageScaleEstimationEnabled();
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
     @Property(selector = "setAutomaticImageScaleEstimationEnabled:")
     public native void setAutomaticImageScaleEstimationEnabled(boolean v);
-    /**
-     * @since Available in iOS 12.0 and later.
-     */
+    @Property(selector = "automaticSkeletonScaleEstimationEnabled")
+    public native boolean isAutomaticSkeletonScaleEstimationEnabled();
+    @Property(selector = "setAutomaticSkeletonScaleEstimationEnabled:")
+    public native void setAutomaticSkeletonScaleEstimationEnabled(boolean v);
     @Property(selector = "maximumNumberOfTrackedImages")
     public native @MachineSizedSInt long getMaximumNumberOfTrackedImages();
-    /**
-     * @since Available in iOS 12.0 and later.
-     */
     @Property(selector = "setMaximumNumberOfTrackedImages:")
     public native void setMaximumNumberOfTrackedImages(@MachineSizedSInt long v);
-    /**
-     * @since Available in iOS 12.0 and later.
-     */
-    @Property(selector = "detectionObjects")
-    public native NSSet<ARReferenceObject> getDetectionObjects();
-    /**
-     * @since Available in iOS 12.0 and later.
-     */
-    @Property(selector = "setDetectionObjects:")
-    public native void setDetectionObjects(NSSet<ARReferenceObject> v);
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @Property(selector = "isCollaborationEnabled")
-    public native boolean isCollaborationEnabled();
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @Property(selector = "setCollaborationEnabled:")
-    public native void setCollaborationEnabled(boolean v);
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @Property(selector = "supportsUserFaceTracking")
-    public static native boolean supportsUserFaceTracking();
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @Property(selector = "userFaceTrackingEnabled")
-    public native boolean isUserFaceTrackingEnabled();
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @Property(selector = "setUserFaceTrackingEnabled:")
-    public native void setUserFaceTrackingEnabled(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "new")
-    protected static native @Pointer long create();
+    
     /*</methods>*/
 }

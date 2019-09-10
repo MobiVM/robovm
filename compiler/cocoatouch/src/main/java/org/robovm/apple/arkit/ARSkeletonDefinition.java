@@ -41,42 +41,40 @@ import org.robovm.apple.imageio.*;
 /*</imports>*/
 
 /*<javadoc>*/
+/**
+ * @since Available in iOS 13.0 and later.
+ */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/ARSessionObserverAdapter/*</name>*/ 
+/*<annotations>*/@Library("ARKit") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/ARSkeletonDefinition/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements ARSessionObserver/*</implements>*/ {
+    /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/
-    /*</ptr>*/
-    /*<bind>*/
-    /*</bind>*/
+    /*<ptr>*/public static class ARSkeletonDefinitionPtr extends Ptr<ARSkeletonDefinition, ARSkeletonDefinitionPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(ARSkeletonDefinition.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*//*</constructors>*/
+    /*<constructors>*/
+    protected ARSkeletonDefinition() {}
+    protected ARSkeletonDefinition(Handle h, long handle) { super(h, handle); }
+    protected ARSkeletonDefinition(SkipInit skipInit) { super(skipInit); }
+    /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "defaultBody3DSkeletonDefinition")
+    public static native ARSkeletonDefinition getDefaultBody3DSkeletonDefinition();
+    @Property(selector = "defaultBody2DSkeletonDefinition")
+    public static native ARSkeletonDefinition getDefaultBody2DSkeletonDefinition();
+    @Property(selector = "jointCount")
+    public native @MachineSizedUInt long getJointCount();
+    @Property(selector = "jointNames")
+    public native NSArray<NSString> getJointNames();
+    @Property(selector = "parentIndices")
+    public native NSArray<NSNumber> getParentIndices();
+    @Property(selector = "neutralBodySkeleton3D")
+    public native ARSkeleton3D getNeutralBodySkeleton3D();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @NotImplemented("session:didFailWithError:")
-    public void didFailWithError(ARSession session, NSError error) {}
-    @NotImplemented("session:cameraDidChangeTrackingState:")
-    public void cameraDidChangeTrackingState(ARSession session, ARCamera camera) {}
-    @NotImplemented("sessionWasInterrupted:")
-    public void sessionWasInterrupted(ARSession session) {}
-    @NotImplemented("sessionInterruptionEnded:")
-    public void sessionInterruptionEnded(ARSession session) {}
-    /**
-     * @since Available in iOS 11.3 and later.
-     */
-    @NotImplemented("sessionShouldAttemptRelocalization:")
-    public boolean sessionShouldAttemptRelocalization(ARSession session) { return false; }
-    @NotImplemented("session:didOutputAudioSampleBuffer:")
-    public void didOutputAudioSampleBuffer(ARSession session, CMSampleBuffer audioSampleBuffer) {}
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @NotImplemented("session:didOutputCollaborationData:")
-    public void didOutputCollaborationData(ARSession session, ARCollaborationData data) {}
+    @Method(selector = "indexForJointName:")
+    public native @MachineSizedUInt long indexForJointName(ARSkeletonJointName jointName);
     /*</methods>*/
 }

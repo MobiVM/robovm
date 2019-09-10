@@ -51,7 +51,9 @@ public enum /*<name>*/ARPlaneClassification/*</name>*/ implements ValuedEnum {
     Floor(2L),
     Ceiling(3L),
     Table(4L),
-    Seat(5L);
+    Seat(5L),
+    Window(6L),
+    Door(7L);
     /*</values>*/
 
     /*<bind>*/

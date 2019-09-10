@@ -41,44 +41,31 @@ import org.robovm.apple.imageio.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 11.0 and later.
- */
-/*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/ARSessionObserver/*</name>*/ 
-    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
 
-    /*<ptr>*/
-    /*</ptr>*/
+/*</javadoc>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+public enum /*<name>*/ARMatteResolution/*</name>*/ implements ValuedEnum {
+    /*<values>*/
+    Full(0L),
+    Half(1L);
+    /*</values>*/
+
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<properties>*/
-    
-    /*</properties>*/
-    /*<methods>*/
-    @Method(selector = "session:didFailWithError:")
-    void didFailWithError(ARSession session, NSError error);
-    @Method(selector = "session:cameraDidChangeTrackingState:")
-    void cameraDidChangeTrackingState(ARSession session, ARCamera camera);
-    @Method(selector = "sessionWasInterrupted:")
-    void sessionWasInterrupted(ARSession session);
-    @Method(selector = "sessionInterruptionEnded:")
-    void sessionInterruptionEnded(ARSession session);
-    /**
-     * @since Available in iOS 11.3 and later.
-     */
-    @Method(selector = "sessionShouldAttemptRelocalization:")
-    boolean sessionShouldAttemptRelocalization(ARSession session);
-    @Method(selector = "session:didOutputAudioSampleBuffer:")
-    void didOutputAudioSampleBuffer(ARSession session, CMSampleBuffer audioSampleBuffer);
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @Method(selector = "session:didOutputCollaborationData:")
-    void didOutputCollaborationData(ARSession session, ARCollaborationData data);
-    /*</methods>*/
-    /*<adapter>*/
-    /*</adapter>*/
+    /*<methods>*//*</methods>*/
+
+    private final long n;
+
+    private /*<name>*/ARMatteResolution/*</name>*/(long n) { this.n = n; }
+    public long value() { return n; }
+    public static /*<name>*/ARMatteResolution/*</name>*/ valueOf(long n) {
+        for (/*<name>*/ARMatteResolution/*</name>*/ v : values()) {
+            if (v.n == n) {
+                return v;
+            }
+        }
+        throw new IllegalArgumentException("No constant with value " + n + " found in " 
+            + /*<name>*/ARMatteResolution/*</name>*/.class.getName());
+    }
 }

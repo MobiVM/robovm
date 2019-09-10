@@ -42,11 +42,11 @@ import org.robovm.apple.imageio.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 11.0 and later.
+ * @since Available in iOS 13.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/ARSessionObserver/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ interface /*<name>*/ARCoachingOverlayViewDelegate/*</name>*/ 
     /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
 
     /*<ptr>*/
@@ -58,26 +58,12 @@ import org.robovm.apple.imageio.*;
     
     /*</properties>*/
     /*<methods>*/
-    @Method(selector = "session:didFailWithError:")
-    void didFailWithError(ARSession session, NSError error);
-    @Method(selector = "session:cameraDidChangeTrackingState:")
-    void cameraDidChangeTrackingState(ARSession session, ARCamera camera);
-    @Method(selector = "sessionWasInterrupted:")
-    void sessionWasInterrupted(ARSession session);
-    @Method(selector = "sessionInterruptionEnded:")
-    void sessionInterruptionEnded(ARSession session);
-    /**
-     * @since Available in iOS 11.3 and later.
-     */
-    @Method(selector = "sessionShouldAttemptRelocalization:")
-    boolean sessionShouldAttemptRelocalization(ARSession session);
-    @Method(selector = "session:didOutputAudioSampleBuffer:")
-    void didOutputAudioSampleBuffer(ARSession session, CMSampleBuffer audioSampleBuffer);
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @Method(selector = "session:didOutputCollaborationData:")
-    void didOutputCollaborationData(ARSession session, ARCollaborationData data);
+    @Method(selector = "coachingOverlayViewDidRequestSessionReset:")
+    void coachingOverlayViewDidRequestSessionReset(ARCoachingOverlayView coachingOverlayView);
+    @Method(selector = "coachingOverlayViewWillActivate:")
+    void coachingOverlayViewWillActivate(ARCoachingOverlayView coachingOverlayView);
+    @Method(selector = "coachingOverlayViewDidDeactivate:")
+    void coachingOverlayViewDidDeactivate(ARCoachingOverlayView coachingOverlayView);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

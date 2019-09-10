@@ -42,43 +42,33 @@ import org.robovm.apple.imageio.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 11.0 and later.
+ * @since Available in iOS 13.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/ARSessionObserver/*</name>*/ 
-    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
+/*<annotations>*/@Library("ARKit") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/ARSkeleton3D/*</name>*/ 
+    extends /*<extends>*/ARSkeleton/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/
-    /*</ptr>*/
-    /*<bind>*/
-    /*</bind>*/
+    /*<ptr>*/public static class ARSkeleton3DPtr extends Ptr<ARSkeleton3D, ARSkeleton3DPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(ARSkeleton3D.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
+    /*<constructors>*/
+    protected ARSkeleton3D() {}
+    protected ARSkeleton3D(Handle h, long handle) { super(h, handle); }
+    protected ARSkeleton3D(SkipInit skipInit) { super(skipInit); }
+    /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "jointModelTransforms")
+    public native MatrixFloat4x4 getJointModelTransforms();
+    @Property(selector = "jointLocalTransforms")
+    public native MatrixFloat4x4 getJointLocalTransforms();
     /*</properties>*/
+    /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "session:didFailWithError:")
-    void didFailWithError(ARSession session, NSError error);
-    @Method(selector = "session:cameraDidChangeTrackingState:")
-    void cameraDidChangeTrackingState(ARSession session, ARCamera camera);
-    @Method(selector = "sessionWasInterrupted:")
-    void sessionWasInterrupted(ARSession session);
-    @Method(selector = "sessionInterruptionEnded:")
-    void sessionInterruptionEnded(ARSession session);
-    /**
-     * @since Available in iOS 11.3 and later.
-     */
-    @Method(selector = "sessionShouldAttemptRelocalization:")
-    boolean sessionShouldAttemptRelocalization(ARSession session);
-    @Method(selector = "session:didOutputAudioSampleBuffer:")
-    void didOutputAudioSampleBuffer(ARSession session, CMSampleBuffer audioSampleBuffer);
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @Method(selector = "session:didOutputCollaborationData:")
-    void didOutputCollaborationData(ARSession session, ARCollaborationData data);
+    @Method(selector = "modelTransformForJointName:")
+    public native @ByVal MatrixFloat4x4 modelTransformForJointName(ARSkeletonJointName jointName);
+    @Method(selector = "localTransformForJointName:")
+    public native @ByVal MatrixFloat4x4 localTransformForJointName(ARSkeletonJointName jointName);
     /*</methods>*/
-    /*<adapter>*/
-    /*</adapter>*/
 }

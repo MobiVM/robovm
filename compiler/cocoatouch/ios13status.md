@@ -1,4 +1,6 @@
 processed:
+- arkit
+- adsupport
 - accounts
 - addressbook
 - addressbookui
@@ -25,8 +27,6 @@ processed:
 - security
 
 to go:
-adsupport
-arkit
 assetslibrary
 audiotoolbox
 authservices

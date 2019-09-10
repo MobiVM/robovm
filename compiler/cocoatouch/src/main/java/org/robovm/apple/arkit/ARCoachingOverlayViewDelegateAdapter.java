@@ -41,44 +41,28 @@ import org.robovm.apple.imageio.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 11.0 and later.
- */
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/ARSessionObserver/*</name>*/ 
-    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/ARCoachingOverlayViewDelegateAdapter/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
+    /*<implements>*/implements ARCoachingOverlayViewDelegate/*</implements>*/ {
 
     /*<ptr>*/
     /*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
+    /*<constructors>*//*</constructors>*/
     /*<properties>*/
     
     /*</properties>*/
+    /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "session:didFailWithError:")
-    void didFailWithError(ARSession session, NSError error);
-    @Method(selector = "session:cameraDidChangeTrackingState:")
-    void cameraDidChangeTrackingState(ARSession session, ARCamera camera);
-    @Method(selector = "sessionWasInterrupted:")
-    void sessionWasInterrupted(ARSession session);
-    @Method(selector = "sessionInterruptionEnded:")
-    void sessionInterruptionEnded(ARSession session);
-    /**
-     * @since Available in iOS 11.3 and later.
-     */
-    @Method(selector = "sessionShouldAttemptRelocalization:")
-    boolean sessionShouldAttemptRelocalization(ARSession session);
-    @Method(selector = "session:didOutputAudioSampleBuffer:")
-    void didOutputAudioSampleBuffer(ARSession session, CMSampleBuffer audioSampleBuffer);
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @Method(selector = "session:didOutputCollaborationData:")
-    void didOutputCollaborationData(ARSession session, ARCollaborationData data);
+    @NotImplemented("coachingOverlayViewDidRequestSessionReset:")
+    public void coachingOverlayViewDidRequestSessionReset(ARCoachingOverlayView coachingOverlayView) {}
+    @NotImplemented("coachingOverlayViewWillActivate:")
+    public void coachingOverlayViewWillActivate(ARCoachingOverlayView coachingOverlayView) {}
+    @NotImplemented("coachingOverlayViewDidDeactivate:")
+    public void coachingOverlayViewDidDeactivate(ARCoachingOverlayView coachingOverlayView) {}
     /*</methods>*/
-    /*<adapter>*/
-    /*</adapter>*/
 }
