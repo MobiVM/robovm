@@ -605,12 +605,16 @@ import org.robovm.apple.uikit.*;
     protected native OSStatus reset0(AUScope inScope, int inElement);
     /**
      * @since Available in iOS 7.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Inter-App Audio API is deprecated in favor of Audio Units
      */
+    @Deprecated
     @Bridge(symbol="AudioOutputUnitPublish", optional=true)
     protected static native OSStatus publishOutput0(AudioComponentDescription inDesc, String inName, int inVersion, AudioUnit inOutputUnit);
     /**
      * @since Available in iOS 7.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Inter-App Audio API is deprecated in favor of Audio Units
      */
+    @Deprecated
     @WeaklyLinked
     @Bridge(symbol="AudioOutputUnitGetHostIcon", optional=true)
     public native UIImage getOutputHostIcon(float desiredPointSize);

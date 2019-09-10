@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -39,17 +39,22 @@ import org.robovm.apple.uikit.*;
 
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-public enum /*<name>*/AudioQueuePitchAlgorithm/*</name>*/ implements ValuedEnum {
+public enum /*<name>*/AudioCodecGlobalProperty/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    Spectral(1936745827L),
-    TimeDomain(1953064047L),
-    Varispeed(1987276900L),
-    /**
-     * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 13.0. Low Quality Zero Latency algorithm is now Deprecated. Please choose from other available options
-     */
-    @Deprecated
-    LowQualityZeroLatency(1819376236L);
+    SupportedInputFormats(1768320291L),
+    SupportedOutputFormats(1868983587L),
+    AvailableInputSampleRates(1634300786L),
+    AvailableOutputSampleRates(1634694002L),
+    AvailableBitRateRange(1633841780L),
+    MinimumNumberInputPackets(1835952496L),
+    MinimumNumberOutputPackets(1835954032L),
+    AvailableNumberChannels(1668116067L),
+    DoesSampleRateConversion(1819112035L),
+    AvailableInputChannelLayoutTags(1634296684L),
+    AvailableOutputChannelLayoutTags(1634689900L),
+    InputFormatsForOutputFormat(1768305775L),
+    OutputFormatsForInputFormat(1868969065L),
+    FormatInfo(1633904233L);
     /*</values>*/
 
     /*<bind>*/
@@ -59,15 +64,15 @@ public enum /*<name>*/AudioQueuePitchAlgorithm/*</name>*/ implements ValuedEnum 
 
     private final long n;
 
-    private /*<name>*/AudioQueuePitchAlgorithm/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/AudioCodecGlobalProperty/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/AudioQueuePitchAlgorithm/*</name>*/ valueOf(long n) {
-        for (/*<name>*/AudioQueuePitchAlgorithm/*</name>*/ v : values()) {
+    public static /*<name>*/AudioCodecGlobalProperty/*</name>*/ valueOf(long n) {
+        for (/*<name>*/AudioCodecGlobalProperty/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/AudioQueuePitchAlgorithm/*</name>*/.class.getName());
+            + /*<name>*/AudioCodecGlobalProperty/*</name>*/.class.getName());
     }
 }

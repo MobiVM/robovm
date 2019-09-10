@@ -52,6 +52,7 @@ public enum /*<name>*/AudioFormatProperty/*</name>*/ implements ValuedEnum {
     FirstPlayableFormatFromList(1718642284L),
     FormatIsVBR(1719034482L),
     FormatIsExternallyFramed(1717925990L),
+    FormatEmploysDependentPackets(1717855600L),
     FormatIsEncrypted(1668446576L),
     Encoders(1635149166L),
     Decoders(1635148901L),

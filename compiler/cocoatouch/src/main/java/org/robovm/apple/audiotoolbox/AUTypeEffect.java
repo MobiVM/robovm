@@ -54,6 +54,11 @@ public enum /*<name>*/AUTypeEffect/*</name>*/ implements AUSubType {
     SampleDelay(1935961209L),
     NBandEQ(1851942257L),
     Reverb2(1920361010L),
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
     AUiPodEQ(1768973681L);
     /*</values>*/
 

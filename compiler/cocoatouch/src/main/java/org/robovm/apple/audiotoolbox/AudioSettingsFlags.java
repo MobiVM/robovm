@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -39,17 +39,13 @@ import org.robovm.apple.uikit.*;
 
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-public enum /*<name>*/AudioQueuePitchAlgorithm/*</name>*/ implements ValuedEnum {
+public final class /*<name>*/AudioSettingsFlags/*</name>*/ extends Bits</*<name>*/AudioSettingsFlags/*</name>*/> {
     /*<values>*/
-    Spectral(1936745827L),
-    TimeDomain(1953064047L),
-    Varispeed(1987276900L),
-    /**
-     * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 13.0. Low Quality Zero Latency algorithm is now Deprecated. Please choose from other available options
-     */
-    @Deprecated
-    LowQualityZeroLatency(1819376236L);
+    public static final AudioSettingsFlags None = new AudioSettingsFlags(0L);
+    public static final AudioSettingsFlags ExpertParameter = new AudioSettingsFlags(1L);
+    public static final AudioSettingsFlags InvisibleParameter = new AudioSettingsFlags(2L);
+    public static final AudioSettingsFlags MetaParameter = new AudioSettingsFlags(4L);
+    public static final AudioSettingsFlags UserInterfaceParameter = new AudioSettingsFlags(8L);
     /*</values>*/
 
     /*<bind>*/
@@ -57,17 +53,17 @@ public enum /*<name>*/AudioQueuePitchAlgorithm/*</name>*/ implements ValuedEnum 
     /*<constants>*//*</constants>*/
     /*<methods>*//*</methods>*/
 
-    private final long n;
+    private static final /*<name>*/AudioSettingsFlags/*</name>*/[] values = _values(/*<name>*/AudioSettingsFlags/*</name>*/.class);
 
-    private /*<name>*/AudioQueuePitchAlgorithm/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/AudioQueuePitchAlgorithm/*</name>*/ valueOf(long n) {
-        for (/*<name>*/AudioQueuePitchAlgorithm/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/AudioQueuePitchAlgorithm/*</name>*/.class.getName());
+    public /*<name>*/AudioSettingsFlags/*</name>*/(long value) { super(value); }
+    private /*<name>*/AudioSettingsFlags/*</name>*/(long value, long mask) { super(value, mask); }
+    protected /*<name>*/AudioSettingsFlags/*</name>*/ wrap(long value, long mask) {
+        return new /*<name>*/AudioSettingsFlags/*</name>*/(value, mask);
+    }
+    protected /*<name>*/AudioSettingsFlags/*</name>*/[] _values() {
+        return values;
+    }
+    public static /*<name>*/AudioSettingsFlags/*</name>*/[] values() {
+        return values.clone();
     }
 }

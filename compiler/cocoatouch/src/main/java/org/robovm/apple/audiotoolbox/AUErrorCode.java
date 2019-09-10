@@ -65,7 +65,9 @@ public enum /*<name>*/AUErrorCode/*</name>*/ implements NSErrorCode {
     InstanceInvalidated(-66749L),
     RenderTimeout(-66745L),
     ExtensionNotFound(-66744L),
-    InvalidParameterValue(-66743L);
+    InvalidParameterValue(-66743L),
+    InvalidFilePath(-66742L),
+    MissingKey(-66741L);
     /*</values>*/
 
     /*<bind>*/

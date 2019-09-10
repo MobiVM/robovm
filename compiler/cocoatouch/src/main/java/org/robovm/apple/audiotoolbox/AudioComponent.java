@@ -135,13 +135,17 @@ import org.robovm.apple.uikit.*;
     protected native OSStatus getVersion0(IntPtr outVersion);
     /**
      * @since Available in iOS 7.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Inter-App Audio API is deprecated in favor of Audio Units
      */
+    @Deprecated
     @WeaklyLinked
     @Bridge(symbol="AudioComponentGetIcon", optional=true)
     public native UIImage getIcon(float desiredPointSize);
     /**
      * @since Available in iOS 7.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Inter-App Audio API is deprecated in favor of Audio Units
      */
+    @Deprecated
     @Bridge(symbol="AudioComponentGetLastActiveTime", optional=true)
     public native double getLastActiveTime();
     /*</methods>*/
