@@ -418,6 +418,8 @@ values:
                 type: CVImageBufferChromaLocation
             ChromaSubsampling:
                 type: CVImageBufferChromaSubsampling
+            AlphaChannelMode:
+                type: CVImageBufferAlphaChannelMode
             AlphaChannelIsOpaque:
                 name: AlphaChannelOpaque
                 type: boolean
@@ -448,6 +450,10 @@ values:
         type: CFString
     kCVImageBufferChromaSubsampling_(.*):
         enum: CVImageBufferChromaSubsampling
+        name: '#{g[0]}'
+        type: CFString
+    kCVImageBufferAlphaChannelMode_(.*):
+        enum: CVImageBufferAlphaChannelMode
         name: '#{g[0]}'
         type: CFString
 
@@ -606,6 +612,9 @@ values:
     kCVMetalTextureUsage:
         class: CVMetalTexture
         name: textureUsage
+    kCVMetalTextureStorageMode:
+        class: CVMetalTexture
+        name: storageMode
 
     # Make sure we don't miss any values if new ones are introduced in a later version
     (k?CV.*):

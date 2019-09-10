@@ -66,6 +66,11 @@ import org.robovm.apple.iosurface.*;
      */
     @GlobalValue(symbol="kCVMetalTextureUsage", optional=true)
     public static native CFString textureUsage();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @GlobalValue(symbol="kCVMetalTextureStorageMode", optional=true)
+    public static native CFString storageMode();
     
     /**
      * @since Available in iOS 8.0 and later.

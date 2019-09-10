@@ -383,6 +383,23 @@ import org.robovm.apple.iosurface.*;
         set(CVImageBufferAttribute.AlphaChannelIsOpaque, CFBoolean.valueOf(alphaChannelOpaque));
         return this;
     }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public CVImageBufferAlphaChannelMode getAlphaChannelMode() {
+        if (has(CVImageBufferAttribute.AlphaChannelMode)) {
+            CFString val = get(CVImageBufferAttribute.AlphaChannelMode, CFString.class);
+            return CVImageBufferAlphaChannelMode.valueOf(val);
+        }
+        return null;
+    }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public CVImageBufferAttributes setAlphaChannelMode(CVImageBufferAlphaChannelMode alphaChannelMode) {
+        set(CVImageBufferAttribute.AlphaChannelMode, alphaChannelMode.value());
+        return this;
+    }
     /*</methods>*/
     
     /*<keys>*/

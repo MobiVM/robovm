@@ -1,4 +1,5 @@
 processed:
+- corevideo
 - coretext
 - coreservices
 - corespotlight
@@ -35,7 +36,6 @@ classkit
 cloudkit
 contacts
 contactsui
-corevideo
 dispatch
 eventkit
 eventkitui

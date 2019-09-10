@@ -156,6 +156,10 @@ import org.robovm.apple.iosurface.*;
      */
     public static final CVImageBufferAttribute AlphaChannelIsOpaque = new CVImageBufferAttribute("AlphaChannelIsOpaque");
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final CVImageBufferAttribute AlphaChannelMode = new CVImageBufferAttribute("AlphaChannelMode");
+    /**
      * @since Available in iOS 11.0 and later.
      */
     public static final CVImageBufferAttribute MasteringDisplayColorVolume = new CVImageBufferAttribute("MasteringDisplayColorVolume");
@@ -165,7 +169,7 @@ import org.robovm.apple.iosurface.*;
     public static final CVImageBufferAttribute ContentLightLevelInfo = new CVImageBufferAttribute("ContentLightLevelInfo");
     /*</constants>*/
     
-    private static /*<name>*/CVImageBufferAttribute/*</name>*/[] values = new /*<name>*/CVImageBufferAttribute/*</name>*/[] {/*<value_list>*/CGColorSpace, CleanAperture, PreferredCleanAperture, FieldCount, FieldDetail, PixelAspectRatio, DisplayDimensions, GammaLevel, ICCProfile, YCbCrMatrix, ColorPrimaries, TransferFunction, ChromaLocationTopField, ChromaLocationBottomField, ChromaSubsampling, AlphaChannelIsOpaque, MasteringDisplayColorVolume, ContentLightLevelInfo/*</value_list>*/};
+    private static /*<name>*/CVImageBufferAttribute/*</name>*/[] values = new /*<name>*/CVImageBufferAttribute/*</name>*/[] {/*<value_list>*/CGColorSpace, CleanAperture, PreferredCleanAperture, FieldCount, FieldDetail, PixelAspectRatio, DisplayDimensions, GammaLevel, ICCProfile, YCbCrMatrix, ColorPrimaries, TransferFunction, ChromaLocationTopField, ChromaLocationBottomField, ChromaSubsampling, AlphaChannelIsOpaque, AlphaChannelMode, MasteringDisplayColorVolume, ContentLightLevelInfo/*</value_list>*/};
     
     /*<name>*/CVImageBufferAttribute/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -271,6 +275,11 @@ import org.robovm.apple.iosurface.*;
          */
         @GlobalValue(symbol="kCVImageBufferAlphaChannelIsOpaque", optional=true)
         public static native CFString AlphaChannelIsOpaque();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="kCVImageBufferAlphaChannelModeKey", optional=true)
+        public static native CFString AlphaChannelMode();
         /**
          * @since Available in iOS 11.0 and later.
          */
