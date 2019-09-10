@@ -1,4 +1,5 @@
 processed:
+- new: fileproviderui
 - fileprovider
 - externalaccessory
 - eventkitui
