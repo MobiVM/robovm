@@ -35,7 +35,9 @@ import org.robovm.apple.iad.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 9.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ interface /*<name>*/AVPictureInPictureControllerDelegate/*</name>*/ 
