@@ -1,4 +1,7 @@
 processed:
+- accounts
+- addressbook
+- addressbookui
 - corevideo
 - coretext
 - coreservices
@@ -22,9 +25,6 @@ processed:
 - security
 
 to go:
-accounts
-addressbook
-addressbookui
 adsupport
 arkit
 assetslibrary

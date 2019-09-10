@@ -53,7 +53,7 @@ import org.robovm.apple.addressbook.*;
     @Method(selector = "initWithNibName:bundle:")
     public ABUnknownPersonViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
     @Method(selector = "initWithCoder:")
-    public ABUnknownPersonViewController(NSCoder decoder) { super(decoder); }
+    public ABUnknownPersonViewController(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "unknownPersonViewDelegate")
