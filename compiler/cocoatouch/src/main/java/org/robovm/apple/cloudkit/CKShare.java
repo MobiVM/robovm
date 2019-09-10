@@ -41,7 +41,7 @@ import org.robovm.apple.fileprovider.*;
 /*<annotations>*/@Library("CloudKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CKShare/*</name>*/ 
     extends /*<extends>*/CKRecord/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class CKSharePtr extends Ptr<CKShare, CKSharePtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(CKShare.class); }/*</bind>*/

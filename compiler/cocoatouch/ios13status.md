@@ -1,4 +1,6 @@
 processed:
+- cloudkit
+- classkit
 - carplay
 - avkit
 - authservices
@@ -32,8 +34,6 @@ processed:
 - security
 
 to go:
-- classkit
-- cloudkit
 - contacts
 - contactsui
 - dispatch

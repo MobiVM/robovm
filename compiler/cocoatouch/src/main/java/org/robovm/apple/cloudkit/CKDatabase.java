@@ -78,12 +78,24 @@ import org.robovm.apple.fileprovider.*;
     public native void saveRecordZone(CKRecordZone zone, @Block VoidBlock2<CKRecordZone, NSError> completionHandler);
     @Method(selector = "deleteRecordZoneWithID:completionHandler:")
     public native void deleteRecordZone(CKRecordZoneID zoneID, @Block VoidBlock2<CKRecordZoneID, NSError> completionHandler);
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Method(selector = "fetchSubscriptionWithID:completionHandler:")
     public native void fetchSubscription(String subscriptionID, @Block VoidBlock2<CKSubscription, NSError> completionHandler);
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Method(selector = "fetchAllSubscriptionsWithCompletionHandler:")
     public native void fetchAllSubscriptions(@Block VoidBlock2<NSArray<CKSubscription>, NSError> completionHandler);
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Method(selector = "saveSubscription:completionHandler:")
     public native void saveSubscription(CKSubscription subscription, @Block VoidBlock2<CKSubscription, NSError> completionHandler);
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Method(selector = "deleteSubscriptionWithID:completionHandler:")
     public native void deleteSubscription(String subscriptionID, @Block VoidBlock2<String, NSError> completionHandler);
     /*</methods>*/
