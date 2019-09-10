@@ -1,4 +1,5 @@
 processed:
+- eventkitui
 - eventkit
 - dispatch
 - cloudkit
@@ -38,7 +39,6 @@ processed:
 to go:
 - contacts
 - contactsui
-- eventkitui
 - externalaccessory
 - fileprovider
 - gamecontroller
