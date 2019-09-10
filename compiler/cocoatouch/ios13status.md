@@ -1,4 +1,7 @@
 processed:
+- coreservices
+- corespotlight
+- coretelephony
 - corenfc
 - coremotion
 - coreml
@@ -31,9 +34,6 @@ classkit
 cloudkit
 contacts
 contactsui
-coreservices
-corespotlight
-coretelephony
 coretext
 corevideo
 dispatch

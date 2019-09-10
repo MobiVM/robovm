@@ -108,6 +108,14 @@ import org.robovm.apple.corefoundation.*;
      */
     public static final CFStreamNetworkServiceType CallSignaling = new CFStreamNetworkServiceType("CallSignaling");
     /**
+     * @since Available in iOS 6.0 and later.
+     */
+    public static final CFStreamNetworkServiceType AVStreaming = new CFStreamNetworkServiceType("AVStreaming");
+    /**
+     * @since Available in iOS 6.0 and later.
+     */
+    public static final CFStreamNetworkServiceType ResponsiveAV = new CFStreamNetworkServiceType("ResponsiveAV");
+    /**
      * @since Available in iOS 4.0 and later.
      * @deprecated Deprecated in iOS 9.0. use PushKit for VoIP control purposes
      */
@@ -115,7 +123,7 @@ import org.robovm.apple.corefoundation.*;
     public static final CFStreamNetworkServiceType VoIP = new CFStreamNetworkServiceType("VoIP");
     /*</constants>*/
     
-    private static /*<name>*/CFStreamNetworkServiceType/*</name>*/[] values = new /*<name>*/CFStreamNetworkServiceType/*</name>*/[] {/*<value_list>*/Video, Voice, Background, ResponsiveData, CallSignaling, VoIP/*</value_list>*/};
+    private static /*<name>*/CFStreamNetworkServiceType/*</name>*/[] values = new /*<name>*/CFStreamNetworkServiceType/*</name>*/[] {/*<value_list>*/Video, Voice, Background, ResponsiveData, CallSignaling, AVStreaming, ResponsiveAV, VoIP/*</value_list>*/};
     
     /*<name>*/CFStreamNetworkServiceType/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -163,6 +171,16 @@ import org.robovm.apple.corefoundation.*;
          */
         @GlobalValue(symbol="kCFStreamNetworkServiceTypeCallSignaling", optional=true)
         public static native CFString CallSignaling();
+        /**
+         * @since Available in iOS 6.0 and later.
+         */
+        @GlobalValue(symbol="kCFStreamNetworkServiceTypeAVStreaming", optional=true)
+        public static native CFString AVStreaming();
+        /**
+         * @since Available in iOS 6.0 and later.
+         */
+        @GlobalValue(symbol="kCFStreamNetworkServiceTypeResponsiveAV", optional=true)
+        public static native CFString ResponsiveAV();
         /**
          * @since Available in iOS 4.0 and later.
          * @deprecated Deprecated in iOS 9.0. use PushKit for VoIP control purposes

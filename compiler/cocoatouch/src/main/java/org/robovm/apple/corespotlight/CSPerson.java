@@ -50,7 +50,7 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "initWithDisplayName:handles:handleIdentifier:")
     public CSPerson(String displayName, NSArray<NSString> handles, String handleIdentifier) { super((SkipInit) null); initObject(init(displayName, handles, handleIdentifier)); }
     @Method(selector = "initWithCoder:")
-    public CSPerson(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public CSPerson(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "displayName")
@@ -73,6 +73,6 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

@@ -112,6 +112,18 @@ import org.robovm.apple.corefoundation.*;
      */
     public static final CFSocketStreamProperty ConnectionIsCellular = new CFSocketStreamProperty("ConnectionIsCellular");
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final CFSocketStreamProperty AllowExpensiveNetworkAccess = new CFSocketStreamProperty("AllowExpensiveNetworkAccess");
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final CFSocketStreamProperty ConnectionIsExpensive = new CFSocketStreamProperty("ConnectionIsExpensive");
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final CFSocketStreamProperty AllowConstrainedNetworkAccess = new CFSocketStreamProperty("AllowConstrainedNetworkAccess");
+    /**
      * @since Available in iOS 2.0 and later.
      */
     public static final CFSocketStreamProperty ProxyLocalBypass = new CFSocketStreamProperty("ProxyLocalBypass");
@@ -195,7 +207,7 @@ import org.robovm.apple.corefoundation.*;
     public static final CFSocketStreamProperty HTTPRequestBytesWrittenCount = new CFSocketStreamProperty("HTTPRequestBytesWrittenCount");
     /*</constants>*/
     
-    private static /*<name>*/CFSocketStreamProperty/*</name>*/[] values = new /*<name>*/CFSocketStreamProperty/*</name>*/[] {/*<value_list>*/SSLContext, SSLPeerTrust, SSLSettings, NetworkServiceType, NoCellular, ConnectionIsCellular, ProxyLocalBypass, SocketRemoteHost, SocketRemoteNetService, SocketExtendedBackgroundIdleMode, HTTPResponseHeader, HTTPFinalURL, HTTPFinalRequest, HTTPProxy, HTTPProxyHost, HTTPProxyPort, HTTPSProxyHost, HTTPSProxyPort, HTTPShouldAutoredirect, HTTPAttemptPersistentConnection, HTTPRequestBytesWrittenCount/*</value_list>*/};
+    private static /*<name>*/CFSocketStreamProperty/*</name>*/[] values = new /*<name>*/CFSocketStreamProperty/*</name>*/[] {/*<value_list>*/SSLContext, SSLPeerTrust, SSLSettings, NetworkServiceType, NoCellular, ConnectionIsCellular, AllowExpensiveNetworkAccess, ConnectionIsExpensive, AllowConstrainedNetworkAccess, ProxyLocalBypass, SocketRemoteHost, SocketRemoteNetService, SocketExtendedBackgroundIdleMode, HTTPResponseHeader, HTTPFinalURL, HTTPFinalRequest, HTTPProxy, HTTPProxyHost, HTTPProxyPort, HTTPSProxyHost, HTTPSProxyPort, HTTPShouldAutoredirect, HTTPAttemptPersistentConnection, HTTPRequestBytesWrittenCount/*</value_list>*/};
     
     /*<name>*/CFSocketStreamProperty/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -248,6 +260,21 @@ import org.robovm.apple.corefoundation.*;
          */
         @GlobalValue(symbol="kCFStreamPropertyConnectionIsCellular", optional=true)
         public static native CFString ConnectionIsCellular();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="kCFStreamPropertyAllowExpensiveNetworkAccess", optional=true)
+        public static native CFString AllowExpensiveNetworkAccess();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="kCFStreamPropertyConnectionIsExpensive", optional=true)
+        public static native CFString ConnectionIsExpensive();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="kCFStreamPropertyAllowConstrainedNetworkAccess", optional=true)
+        public static native CFString AllowConstrainedNetworkAccess();
         /**
          * @since Available in iOS 2.0 and later.
          */

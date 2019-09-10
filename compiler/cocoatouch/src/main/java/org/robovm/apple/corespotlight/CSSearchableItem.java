@@ -50,7 +50,7 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "initWithUniqueIdentifier:domainIdentifier:attributeSet:")
     public CSSearchableItem(String uniqueIdentifier, String domainIdentifier, CSSearchableItemAttributeSet attributeSet) { super((SkipInit) null); initObject(init(uniqueIdentifier, domainIdentifier, attributeSet)); }
     @Method(selector = "initWithCoder:")
-    public CSSearchableItem(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public CSSearchableItem(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "uniqueIdentifier")
@@ -100,6 +100,6 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }
