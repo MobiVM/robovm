@@ -50,8 +50,16 @@ import org.robovm.apple.uikit.*;
     protected GKPlayer(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "playerID")
-    public native String getPlayerID();
+    /**
+     * @since Available in iOS 12.4 and later.
+     */
+    @Property(selector = "gamePlayerID")
+    public native String getGamePlayerID();
+    /**
+     * @since Available in iOS 12.4 and later.
+     */
+    @Property(selector = "teamPlayerID")
+    public native String getTeamPlayerID();
     /**
      * @since Available in iOS 6.0 and later.
      */
@@ -71,12 +79,24 @@ import org.robovm.apple.uikit.*;
     @Deprecated
     @Property(selector = "isFriend")
     public native boolean isFriend();
+    /**
+     * @since Available in iOS 4.1 and later.
+     * @deprecated Deprecated in iOS 13.0. use the teamPlayerID property to identify a player
+     */
+    @Deprecated
+    @Property(selector = "playerID")
+    public native String getPlayerID();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @GlobalValue(symbol="GKPlayerDidChangeNotificationName", optional=true)
     public static native NSString DidChangeNotification();
     
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "scopedIDsArePersistent")
+    public native boolean scopedIDsArePersistent();
     @Method(selector = "loadPlayersForIdentifiers:withCompletionHandler:")
     public static native void loadPlayers(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> identifiers, @Block VoidBlock2<NSArray<GKPlayer>, NSError> completionHandler);
     /**

@@ -1,4 +1,5 @@
 processed:
+- gamekit
 - gamecontroller
 - new: fileproviderui
 - fileprovider
@@ -43,7 +44,6 @@ processed:
 to go:
 - contacts
 - contactsui
-- gamekit
 - gameplaykit
 - glkit
 - healthkit

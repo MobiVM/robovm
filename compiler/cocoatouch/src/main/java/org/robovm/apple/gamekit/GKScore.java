@@ -63,7 +63,7 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "initWithLeaderboardIdentifier:forPlayer:")
     public GKScore(String identifier, String playerID) { super((SkipInit) null); initObject(init(identifier, playerID)); }
     @Method(selector = "initWithCoder:")
-    public GKScore(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public GKScore(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "value")
@@ -190,6 +190,6 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }
