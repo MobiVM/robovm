@@ -182,6 +182,11 @@ import org.robovm.apple.uikit.*;
     @Bridge(symbol="CTFontCreateForString", optional=true)
     public native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CTFont create(String string, @ByVal CFRange range);
     /**
+     * @since Available in iOS 7.0 and later.
+     */
+    @Bridge(symbol="CTFontCreateForStringWithLanguage", optional=true)
+    public native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CTFont create(String string, @ByVal CFRange range, String language);
+    /**
      * @since Available in iOS 3.2 and later.
      */
     @Bridge(symbol="CTFontCopyFontDescriptor", optional=true)

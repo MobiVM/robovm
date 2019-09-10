@@ -186,9 +186,13 @@ import org.robovm.apple.uikit.*;
      * @since Available in iOS 7.0 and later.
      */
     public static final CTFontAttribute Downloaded = new CTFontAttribute("Downloaded");
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final CTFontAttribute RegistrationUserInfo = new CTFontAttribute("RegistrationUserInfo");
     /*</constants>*/
     
-    private static /*<name>*/CTFontAttribute/*</name>*/[] values = new /*<name>*/CTFontAttribute/*</name>*/[] {/*<value_list>*/URL, Name, DisplayName, FamilyName, StyleName, Traits, Variation, Size, Matrix, CascadeList, CharacterSet, Languages, BaselineAdjust, MacintoshEncodings, Features, FeatureSettings, FixedAdvance, Orientation, Format, RegistrationScope, Priority, Enabled, Downloadable, Downloaded/*</value_list>*/};
+    private static /*<name>*/CTFontAttribute/*</name>*/[] values = new /*<name>*/CTFontAttribute/*</name>*/[] {/*<value_list>*/URL, Name, DisplayName, FamilyName, StyleName, Traits, Variation, Size, Matrix, CascadeList, CharacterSet, Languages, BaselineAdjust, MacintoshEncodings, Features, FeatureSettings, FixedAdvance, Orientation, Format, RegistrationScope, Priority, Enabled, Downloadable, Downloaded, RegistrationUserInfo/*</value_list>*/};
     
     /*<name>*/CTFontAttribute/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -331,6 +335,11 @@ import org.robovm.apple.uikit.*;
          */
         @GlobalValue(symbol="kCTFontDownloadedAttribute", optional=true)
         public static native CFString Downloaded();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="kCTFontRegistrationUserInfoAttribute", optional=true)
+        public static native CFString RegistrationUserInfo();
         /*</values>*/
     }
 }

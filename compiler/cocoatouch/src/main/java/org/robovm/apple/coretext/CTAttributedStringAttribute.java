@@ -111,6 +111,10 @@ import org.robovm.apple.uikit.*;
      */
     public static final CTAttributedStringAttribute Kern = new CTAttributedStringAttribute("Kern");
     /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final CTAttributedStringAttribute Tracking = new CTAttributedStringAttribute("Tracking");
+    /**
      * @since Available in iOS 3.2 and later.
      */
     public static final CTAttributedStringAttribute Ligature = new CTAttributedStringAttribute("Ligature");
@@ -198,7 +202,7 @@ import org.robovm.apple.uikit.*;
     public static final CTAttributedStringAttribute RubyAnnotation = new CTAttributedStringAttribute("RubyAnnotation");
     /*</constants>*/
     
-    private static /*<name>*/CTAttributedStringAttribute/*</name>*/[] values = new /*<name>*/CTAttributedStringAttribute/*</name>*/[] {/*<value_list>*/RubyAnnotationSizeFactor, RubyAnnotationScaleToFit, Font, ForegroundColorFromContext, Kern, Ligature, ForegroundColor, BackgroundColor, ParagraphStyle, StrokeWidth, StrokeColor, UnderlineStyle, Superscript, UnderlineColor, VerticalForms, HorizontalInVerticalForms, GlyphInfo, CharacterShape, Language, RunDelegate, BaselineClass, BaselineInfo, BaselineReferenceInfo, BaselineOffset, WritingDirection, RubyAnnotation/*</value_list>*/};
+    private static /*<name>*/CTAttributedStringAttribute/*</name>*/[] values = new /*<name>*/CTAttributedStringAttribute/*</name>*/[] {/*<value_list>*/RubyAnnotationSizeFactor, RubyAnnotationScaleToFit, Font, ForegroundColorFromContext, Kern, Tracking, Ligature, ForegroundColor, BackgroundColor, ParagraphStyle, StrokeWidth, StrokeColor, UnderlineStyle, Superscript, UnderlineColor, VerticalForms, HorizontalInVerticalForms, GlyphInfo, CharacterShape, Language, RunDelegate, BaselineClass, BaselineInfo, BaselineReferenceInfo, BaselineOffset, WritingDirection, RubyAnnotation/*</value_list>*/};
     
     /*<name>*/CTAttributedStringAttribute/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -246,6 +250,11 @@ import org.robovm.apple.uikit.*;
          */
         @GlobalValue(symbol="kCTKernAttributeName", optional=true)
         public static native CFString Kern();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="kCTTrackingAttributeName", optional=true)
+        public static native CFString Tracking();
         /**
          * @since Available in iOS 3.2 and later.
          */

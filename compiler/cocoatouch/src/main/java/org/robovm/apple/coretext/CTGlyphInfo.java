@@ -76,6 +76,11 @@ import org.robovm.apple.uikit.*;
     @Bridge(symbol="CTGlyphInfoGetGlyphName", optional=true)
     public native String getGlyphName();
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="CTGlyphInfoGetGlyph", optional=true)
+    public native short getGlyph();
+    /**
      * @since Available in iOS 3.2 and later.
      */
     @Bridge(symbol="CTGlyphInfoGetCharacterIdentifier", optional=true)

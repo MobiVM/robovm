@@ -114,6 +114,11 @@ import org.robovm.apple.uikit.*;
     @Bridge(symbol="CTFontManagerCreateFontDescriptorFromData", optional=true)
     public static native CTFontDescriptor createFontDescriptor(NSData data);
     /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Bridge(symbol="CTFontManagerCreateFontDescriptorsFromData", optional=true)
+    public static native CFArray createFontDescriptorsFromData(NSData data);
+    /**
      * @since Available in iOS 4.1 and later.
      */
     public static boolean registerFonts(NSURL fontURL, CTFontManagerScope scope) throws NSErrorException {
@@ -171,13 +176,52 @@ import org.robovm.apple.uikit.*;
     private static native boolean unregisterGraphicsFont(CGFont font, NSError.NSErrorPtr error);
     /**
      * @since Available in iOS 4.1 and later.
+     * @deprecated Deprecated in iOS 12.0.
      */
+    @Deprecated
     @Bridge(symbol="CTFontManagerRegisterFontsForURLs", optional=true)
     protected static native boolean registerFonts(NSArray<NSURL> fontURLs, CTFontManagerScope scope, NSArray.NSArrayPtr errors);
     /**
      * @since Available in iOS 4.1 and later.
+     * @deprecated Deprecated in iOS 12.0.
      */
+    @Deprecated
     @Bridge(symbol="CTFontManagerUnregisterFontsForURLs", optional=true)
     protected static native boolean unregisterFonts(NSArray<NSURL> fontURLs, CTFontManagerScope scope, NSArray.NSArrayPtr errors);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="CTFontManagerRegisterFontURLs", optional=true)
+    public static native void registerFontURLs(CFArray fontURLs, CTFontManagerScope scope, boolean enabled, @Block Block2<CFArray, Boolean, Boolean> registrationHandler);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="CTFontManagerUnregisterFontURLs", optional=true)
+    public static native void unregisterFontURLs(CFArray fontURLs, CTFontManagerScope scope, @Block Block2<CFArray, Boolean, Boolean> registrationHandler);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="CTFontManagerRegisterFontDescriptors", optional=true)
+    public static native void registerFontDescriptors(CFArray fontDescriptors, CTFontManagerScope scope, boolean enabled, @Block Block2<CFArray, Boolean, Boolean> registrationHandler);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="CTFontManagerUnregisterFontDescriptors", optional=true)
+    public static native void unregisterFontDescriptors(CFArray fontDescriptors, CTFontManagerScope scope, @Block Block2<CFArray, Boolean, Boolean> registrationHandler);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="CTFontManagerRegisterFontsWithAssetNames", optional=true)
+    public static native void registerFontsWithAssetNames(CFArray fontAssetNames, CFBundle bundle, CTFontManagerScope scope, boolean enabled, @Block Block2<CFArray, Boolean, Boolean> registrationHandler);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="CTFontManagerCopyRegisteredFontDescriptors", optional=true)
+    public static native CFArray copyRegisteredFontDescriptors(CTFontManagerScope scope, boolean enabled);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="CTFontManagerRequestFonts", optional=true)
+    public static native void requestFonts(CFArray fontDescriptors, @Block VoidBlock1<CFArray> completionHandler);
     /*</methods>*/
 }

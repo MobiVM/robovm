@@ -486,7 +486,6 @@ functions:
         return_marshaler: CFType.NoRetainMarshaler
     CTLineEnumerateCaretOffsets:
         class: CTLine
-        parameters:
         name: 'enumerateCaretOffsets'
         parameters:
             block:
@@ -635,7 +634,7 @@ values:
     kCTFontManagerErrorDomain:
         class: CTFontManagerError
         name: getClassDomain
-    kCTFontManagerError(FontURLs)Key:
+    kCTFontManagerError(.*)Key:
         enum: CTFontManagerErrorUserInfoKey
         name: '#{g[0]}'
         type: NSString
@@ -733,6 +732,10 @@ values:
     kCTFontOpenTypeFeatureTag: # TODO need SFNTTypes support
         exclude: true
     kCTFontOpenTypeFeatureValue: # TODO need SFNTTypes support
+        exclude: true
+    kCTFontFeatureSampleTextKey: # TODO need SFNTTypes support
+        exclude: true
+    kCTFontFeatureTooltipTextKey: # TODO need SFNTTypes support
         exclude: true
 
     # CTFontDescriptor

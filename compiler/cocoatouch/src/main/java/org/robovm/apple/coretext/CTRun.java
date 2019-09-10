@@ -215,6 +215,11 @@ import org.robovm.apple.uikit.*;
     @Bridge(symbol="CTRunGetTextMatrix", optional=true)
     public native @ByVal CGAffineTransform getTextMatrix();
     /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Bridge(symbol="CTRunGetBaseAdvancesAndOrigins", optional=true)
+    public native void getBaseAdvancesAndOrigins(@ByVal CFRange range, CGSize advancesBuffer, CGPoint originsBuffer);
+    /**
      * @since Available in iOS 3.2 and later.
      */
     @Bridge(symbol="CTRunDraw", optional=true)
