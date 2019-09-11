@@ -50,12 +50,22 @@ import org.robovm.apple.uikit.*;
     protected GKLocalPlayer(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "local")
+    public static native GKLocalPlayer getLocal();
     @Property(selector = "localPlayer")
     public static native GKLocalPlayer getLocalPlayer();
     @Property(selector = "isAuthenticated")
     public native boolean isAuthenticated();
     @Property(selector = "isUnderage")
     public native boolean isUnderage();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "isMultiplayerGamingRestricted")
+    public native boolean isMultiplayerGamingRestricted();
     /**
      * @since Available in iOS 6.0 and later.
      */
@@ -87,6 +97,8 @@ import org.robovm.apple.uikit.*;
      */
     @Method(selector = "loadRecentPlayersWithCompletionHandler:")
     public native void loadRecentPlayers(@Block VoidBlock2<NSArray<GKPlayer>, NSError> completionHandler);
+    @Method(selector = "loadChallengableFriendsWithCompletionHandler:")
+    public native void loadChallengableFriendsWithCompletionHandler(@Block VoidBlock2<NSArray<GKPlayer>, NSError> completionHandler);
     /**
      * @since Available in iOS 7.0 and later.
      */

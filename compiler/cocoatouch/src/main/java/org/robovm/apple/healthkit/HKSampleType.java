@@ -49,7 +49,14 @@ import org.robovm.apple.foundation.*;
     protected HKSampleType(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "isMaximumDurationRestricted")
+    public native boolean isMaximumDurationRestricted();
+    @Property(selector = "maximumAllowedDuration")
+    public native double getMaximumAllowedDuration();
+    @Property(selector = "isMinimumDurationRestricted")
+    public native boolean isMinimumDurationRestricted();
+    @Property(selector = "minimumAllowedDuration")
+    public native double getMinimumAllowedDuration();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

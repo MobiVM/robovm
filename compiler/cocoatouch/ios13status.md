@@ -1,6 +1,17 @@
 processed:
 - contactsui
 - contacts
+- healthkit
+- glkit
+- gameplaykit
+- gamekit
+- gamecontroller
+- new: fileproviderui
+- fileprovider
+- externalaccessory
+- eventkitui
+- eventkit
+- dispatch
 - cloudkit
 - classkit
 - carplay
@@ -36,16 +47,6 @@ processed:
 - security
 
 to go:
-- dispatch
-- eventkit
-- eventkitui
-- externalaccessory
-- fileprovider
-- gamecontroller
-- gamekit
-- gameplaykit
-- glkit
-- healthkit
 - homekit
 - iad
 - identitylookup

@@ -48,7 +48,7 @@ import org.robovm.apple.foundation.*;
     protected HKBloodTypeObject(Handle h, long handle) { super(h, handle); }
     protected HKBloodTypeObject(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public HKBloodTypeObject(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public HKBloodTypeObject(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "bloodType")
@@ -61,6 +61,6 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

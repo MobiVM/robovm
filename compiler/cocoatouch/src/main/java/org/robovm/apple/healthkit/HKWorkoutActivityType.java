@@ -173,6 +173,14 @@ public enum /*<name>*/HKWorkoutActivityType/*</name>*/ implements ValuedEnum {
      * @since Available in iOS 11.0 and later.
      */
     HandCycling(74L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    DiscSports(75L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    FitnessGaming(76L),
     Other(3000L);
     /*</values>*/
 

@@ -39,11 +39,11 @@ import org.robovm.apple.uikit.*;
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("GameplayKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/GKOctree/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/GKOctree<ElementType extends NSObject>/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class GKOctreePtr extends Ptr<GKOctree, GKOctreePtr> {}/*</ptr>*/
+    /*<ptr>*/public static class GKOctreePtr<ElementType extends NSObject> extends Ptr<GKOctree<ElementType>, GKOctreePtr<ElementType>> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(GKOctree.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
@@ -61,16 +61,16 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "initWithBoundingBox:minimumCellSize:")
     protected native @Pointer long init(@ByVal GKBox box, float minCellSize);
     @Method(selector = "addElement:withPoint:")
-    public native GKOctreeNode addElement(NSObject element, @ByVal VectorFloat3 point);
+    public native GKOctreeNode addElement(ElementType element, @ByVal VectorFloat3 point);
     @Method(selector = "addElement:withBox:")
-    public native GKOctreeNode addElement(NSObject element, @ByVal GKBox box);
+    public native GKOctreeNode addElement(ElementType element, @ByVal GKBox box);
     @Method(selector = "elementsAtPoint:")
-    public native NSArray<?> elementsAtPoint(@ByVal VectorFloat3 point);
+    public native NSArray<ElementType> elementsAtPoint(@ByVal VectorFloat3 point);
     @Method(selector = "elementsInBox:")
-    public native NSArray<?> elementsInBox(@ByVal GKBox box);
+    public native NSArray<ElementType> elementsInBox(@ByVal GKBox box);
     @Method(selector = "removeElement:")
-    public native boolean removeElement(NSObject element);
+    public native boolean removeElement(ElementType element);
     @Method(selector = "removeElement:withNode:")
-    public native boolean removeElement(NSObject element, GKOctreeNode node);
+    public native boolean removeElement(ElementType element, GKOctreeNode node);
     /*</methods>*/
 }

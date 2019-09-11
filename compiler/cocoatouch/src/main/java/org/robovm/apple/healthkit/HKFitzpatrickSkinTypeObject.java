@@ -48,7 +48,7 @@ import org.robovm.apple.foundation.*;
     protected HKFitzpatrickSkinTypeObject(Handle h, long handle) { super(h, handle); }
     protected HKFitzpatrickSkinTypeObject(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public HKFitzpatrickSkinTypeObject(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public HKFitzpatrickSkinTypeObject(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "skinType")
@@ -61,6 +61,6 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

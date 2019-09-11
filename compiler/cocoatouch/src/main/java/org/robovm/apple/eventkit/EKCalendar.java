@@ -84,9 +84,15 @@ import org.robovm.apple.mapkit.*;
      */
     @Property(selector = "isImmutable")
     public native boolean isImmutable();
+    /**
+     * @since Available in iOS 4.0 and later.
+     */
     @WeaklyLinked
     @Property(selector = "CGColor")
     public native CGColor getCGColor();
+    /**
+     * @since Available in iOS 4.0 and later.
+     */
     @WeaklyLinked
     @Property(selector = "setCGColor:")
     public native void setCGColor(CGColor v);

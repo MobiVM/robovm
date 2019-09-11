@@ -72,7 +72,12 @@ public enum /*<name>*/EKErrorCode/*</name>*/ implements NSErrorCode {
     ProcedureAlarmsNotMutable(28L),
     EventStoreNotAuthorized(29L),
     OSNotSupported(30L),
-    Last(31L);
+    InvalidInviteReplyCalendar(31L),
+    NotificationsCollectionFlagNotSet(32L),
+    SourceMismatch(33L),
+    NotificationCollectionMismatch(34L),
+    NotificationSavedWithoutCollection(35L),
+    Last(36L);
     /*</values>*/
 
     /*<bind>*/

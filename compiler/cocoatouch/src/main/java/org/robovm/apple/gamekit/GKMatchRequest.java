@@ -111,6 +111,16 @@ import org.robovm.apple.uikit.*;
     @Property(selector = "setDefaultNumberOfPlayers:")
     public native void setDefaultNumberOfPlayers(@MachineSizedUInt long v);
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "restrictToAutomatch")
+    public native boolean isRestrictToAutomatch();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setRestrictToAutomatch:")
+    public native void setRestrictToAutomatch(boolean v);
+    /**
      * @since Available in iOS 8.0 and later.
      */
     @Property(selector = "recipientResponseHandler")

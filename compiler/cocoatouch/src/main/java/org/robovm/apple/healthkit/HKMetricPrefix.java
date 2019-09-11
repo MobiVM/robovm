@@ -39,6 +39,10 @@ import org.robovm.apple.foundation.*;
 public enum /*<name>*/HKMetricPrefix/*</name>*/ implements ValuedEnum {
     /*<values>*/
     None(0L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    Femto(13L),
     Pico(1L),
     Nano(2L),
     Micro(3L),

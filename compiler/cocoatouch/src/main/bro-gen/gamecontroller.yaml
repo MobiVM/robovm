@@ -43,6 +43,9 @@ classes:
             'pressedChangedHandler':
                 type: '@Block VoidBlock3<GCControllerButtonInput, Float, Boolean>'
     GCControllerDirectionPad: # DONE
+        methods:
+            '-setValueForXAxis:yAxis:':
+                name: setValueForXYAxis
         properties:
             'valueChangedHandler':
                 type: '@Block VoidBlock3<GCControllerDirectionPad, Float, Float>'

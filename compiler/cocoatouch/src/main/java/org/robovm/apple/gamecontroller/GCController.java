@@ -69,8 +69,18 @@ import org.robovm.apple.uikit.*;
     protected GCController(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 7.0 and later.
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
     @Property(selector = "controllerPausedHandler")
     public native @Block VoidBlock1<GCController> getControllerPausedHandler();
+    /**
+     * @since Available in iOS 7.0 and later.
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
     @Property(selector = "setControllerPausedHandler:")
     public native void setControllerPausedHandler(@Block VoidBlock1<GCController> v);
     @Property(selector = "handlerQueue")
@@ -79,12 +89,27 @@ import org.robovm.apple.uikit.*;
     public native void setHandlerQueue(DispatchQueue v);
     @Property(selector = "vendorName")
     public native String getVendorName();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "productCategory")
+    public native String getProductCategory();
     @Property(selector = "isAttachedToDevice")
     public native boolean isAttachedToDevice();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "isSnapshot")
+    public native boolean isSnapshot();
     @Property(selector = "playerIndex")
     public native GCControllerPlayerIndex getPlayerIndex();
     @Property(selector = "setPlayerIndex:")
     public native void setPlayerIndex(GCControllerPlayerIndex v);
+    /**
+     * @since Available in iOS 7.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
     @Property(selector = "gamepad")
     public native GCGamepad getGamepad();
     @Property(selector = "microGamepad")
@@ -104,11 +129,26 @@ import org.robovm.apple.uikit.*;
     @GlobalValue(symbol="GCControllerDidDisconnectNotification", optional=true)
     public static native NSString DidDisconnectNotification();
     
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "capture")
+    public native GCController capture();
     @Method(selector = "controllers")
     public static native NSArray<GCController> getControllers();
     @Method(selector = "startWirelessControllerDiscoveryWithCompletionHandler:")
     public static native void startWirelessControllerDiscovery(@Block Runnable completionHandler);
     @Method(selector = "stopWirelessControllerDiscovery")
     public static native void stopWirelessControllerDiscovery();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "controllerWithMicroGamepad")
+    public static native GCController controllerWithMicroGamepad();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "controllerWithExtendedGamepad")
+    public static native GCController controllerWithExtendedGamepad();
     /*</methods>*/
 }

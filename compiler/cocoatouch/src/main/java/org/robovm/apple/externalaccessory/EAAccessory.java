@@ -94,8 +94,10 @@ import org.robovm.apple.uikit.*;
     @Property(selector = "hardwareRevision")
     public native String getHardwareRevision();
     /**
-     * @since Available in iOS 9.0 and later.
+     * @since Available in iOS 9.3 and later.
+     * @deprecated Deprecated in iOS 13.0. Not supported
      */
+    @Deprecated
     @Property(selector = "dockType")
     public native String getDockType();
     /**

@@ -67,6 +67,8 @@ import org.robovm.apple.uikit.*;
     public native void setPressedChangedHandler(@Block VoidBlock3<GCControllerButtonInput, Float, Boolean> v);
     @Property(selector = "value")
     public native float getValue();
+    @Property(selector = "setValue:")
+    public native void setValue(float v);
     @Property(selector = "isPressed")
     public native boolean isPressed();
     /*</properties>*/

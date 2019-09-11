@@ -38,7 +38,7 @@ import org.robovm.apple.coregraphics.*;
  */
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Library("AuthenticationServices")/*</annotations>*/
-public enum /*<name>*/ASAuthorizationError/*</name>*/ implements ValuedEnum {
+public enum /*<name>*/ASAuthorizationError/*</name>*/ implements NSErrorCode {
     /*<values>*/
     Unknown(1000L),
     Canceled(1001L),
@@ -49,6 +49,7 @@ public enum /*<name>*/ASAuthorizationError/*</name>*/ implements ValuedEnum {
 
     /*<bind>*/static { Bro.bind(ASAuthorizationError.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
+    /*<members>*//*</members>*/
     /*<methods>*/
     /**
      * @since Available in iOS 13.0 and later.
@@ -67,7 +68,27 @@ public enum /*<name>*/ASAuthorizationError/*</name>*/ implements ValuedEnum {
                 return v;
             }
         }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
+        throw new IllegalArgumentException("No constant with value " + n + " found in "
             + /*<name>*/ASAuthorizationError/*</name>*/.class.getName());
+    }
+
+    // bind wrap to include it in compilation as long as nserror enum is used 
+    static { Bro.bind(NSErrorWrap.class); }
+    @StronglyLinked
+    public static class NSErrorWrap extends NSError {
+        protected NSErrorWrap(SkipInit skipInit) {super(skipInit);}
+
+        @Override public NSErrorCode getErrorCode() {
+             try {
+                 return  /*<name>*/ASAuthorizationError/*</name>*/.valueOf(getCode());
+             } catch (IllegalArgumentException e) {
+                 return null;
+             }
+         }
+
+        public static String getClassDomain() {
+            /** must be incerted in value section */
+            return /*<name>*/ASAuthorizationError/*</name>*/.getClassDomain();
+        }
     }
 }
