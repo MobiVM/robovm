@@ -1,4 +1,5 @@
 processed:
+- contactsui
 - contacts
 - cloudkit
 - classkit
@@ -35,7 +36,6 @@ processed:
 - security
 
 to go:
-- contactsui
 - dispatch
 - eventkit
 - eventkitui
