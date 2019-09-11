@@ -60,7 +60,7 @@ import org.robovm.apple.avkit.*;
     @Method(selector = "initWithFrame:")
     public ADBannerView(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public ADBannerView(NSCoder decoder) { super(decoder); }
+    public ADBannerView(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     /**
@@ -83,6 +83,11 @@ import org.robovm.apple.avkit.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 12.0 and later.
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
     @Bridge(symbol="ADClampedBannerSize", optional=true)
     public static native @ByVal CGSize getClampedBannerSize(@ByVal CGSize size);
     

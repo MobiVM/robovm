@@ -77,7 +77,9 @@ import org.robovm.apple.avkit.*;
     public native void requestAttributionDetails(@Block VoidBlock2<NSDictionary<?, ?>, NSError> completionHandler);
     /**
      * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 13.0.
      */
+    @Deprecated
     @Method(selector = "addClientToSegments:replaceExisting:")
     public native void addClientToSegments(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> segmentIdentifiers, boolean replaceExisting);
     /**

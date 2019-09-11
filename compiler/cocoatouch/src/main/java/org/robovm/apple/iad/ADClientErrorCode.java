@@ -35,7 +35,9 @@ import org.robovm.apple.avkit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 7.1 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
 @ForceLinkClass(ADClientError.class)

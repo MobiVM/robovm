@@ -35,9 +35,12 @@ import org.robovm.apple.avkit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 12.0 and later.
+ * @deprecated Deprecated in iOS 13.0.
+ */
 /*</javadoc>*/
-/*<annotations>*/@Library("iAd") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("iAd") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/ADInterstitialAdPresentationViewController/*</name>*/ 
     extends /*<extends>*/UIViewController/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -54,7 +57,7 @@ import org.robovm.apple.avkit.*;
     @Method(selector = "initWithNibName:bundle:")
     public ADInterstitialAdPresentationViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
     @Method(selector = "initWithCoder:")
-    public ADInterstitialAdPresentationViewController(NSCoder decoder) { super(decoder); }
+    public ADInterstitialAdPresentationViewController(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     
