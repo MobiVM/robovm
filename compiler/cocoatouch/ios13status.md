@@ -1,4 +1,5 @@
 processed:
+- identitylookupui
 - identitylookup
 - iad
 - homekit
@@ -50,7 +51,6 @@ processed:
 - security
 
 to go:
-- identitylookupui
 - imageio
 - intents
 - intentsui
