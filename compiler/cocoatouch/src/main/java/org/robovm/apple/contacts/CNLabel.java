@@ -96,6 +96,10 @@ import org.robovm.apple.foundation.*;
      */
     public static final CNLabel Work = new CNLabel("Work");
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final CNLabel School = new CNLabel("School");
+    /**
      * @since Available in iOS 9.0 and later.
      */
     public static final CNLabel Other = new CNLabel("Other");
@@ -113,7 +117,7 @@ import org.robovm.apple.foundation.*;
     public static final CNLabel DateAnniversary = new CNLabel("DateAnniversary");
     /*</constants>*/
     
-    private static /*<name>*/CNLabel/*</name>*/[] values = new /*<name>*/CNLabel/*</name>*/[] {/*<value_list>*/Home, Work, Other, EmailiCloud, URLAddressHomePage, DateAnniversary/*</value_list>*/};
+    private static /*<name>*/CNLabel/*</name>*/[] values = new /*<name>*/CNLabel/*</name>*/[] {/*<value_list>*/Home, Work, School, Other, EmailiCloud, URLAddressHomePage, DateAnniversary/*</value_list>*/};
     
     /*<name>*/CNLabel/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -146,6 +150,11 @@ import org.robovm.apple.foundation.*;
          */
         @GlobalValue(symbol="CNLabelWork", optional=true)
         public static native NSString Work();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="CNLabelSchool", optional=true)
+        public static native NSString School();
         /**
          * @since Available in iOS 9.0 and later.
          */

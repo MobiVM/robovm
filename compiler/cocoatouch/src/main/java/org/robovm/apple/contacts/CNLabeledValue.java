@@ -36,11 +36,11 @@ import org.robovm.apple.foundation.*;
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("Contacts") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/CNLabeledValue/*</name>*/ <T>
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/CNLabeledValue<T>/*</name>*/
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
-    /*<ptr>*/public static class CNLabeledValuePtr extends Ptr<CNLabeledValue, CNLabeledValuePtr> {}/*</ptr>*/
+    /*<ptr>*/public static class CNLabeledValuePtr<T> extends Ptr<CNLabeledValue<T>, CNLabeledValuePtr<T>> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(CNLabeledValue.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
@@ -48,7 +48,7 @@ import org.robovm.apple.foundation.*;
     protected CNLabeledValue(Handle h, long handle) { super(h, handle); }
     protected CNLabeledValue(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public CNLabeledValue(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public CNLabeledValue(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     public CNLabeledValue(String label, T value) {
         super((SkipInit)null);
@@ -122,6 +122,6 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

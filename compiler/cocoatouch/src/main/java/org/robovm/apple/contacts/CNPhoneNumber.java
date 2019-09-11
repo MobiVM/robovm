@@ -55,7 +55,7 @@ import org.robovm.apple.foundation.*;
     @Deprecated
     public CNPhoneNumber() { super((Handle) null, create()); retain(getHandle()); }
     @Method(selector = "initWithCoder:")
-    public CNPhoneNumber(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public CNPhoneNumber(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "stringValue")
@@ -77,6 +77,6 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

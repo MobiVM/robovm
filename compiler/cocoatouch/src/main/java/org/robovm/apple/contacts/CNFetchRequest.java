@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -32,39 +32,27 @@ import org.robovm.apple.foundation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 9.0 and later.
+ * @since Available in iOS 13.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("Contacts") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/CNContactRelation/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/CNFetchRequest/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
+    /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class CNContactRelationPtr extends Ptr<CNContactRelation, CNContactRelationPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(CNContactRelation.class); }/*</bind>*/
+    /*<ptr>*/public static class CNFetchRequestPtr extends Ptr<CNFetchRequest, CNFetchRequestPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(CNFetchRequest.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public CNContactRelation() {}
-    protected CNContactRelation(Handle h, long handle) { super(h, handle); }
-    protected CNContactRelation(SkipInit skipInit) { super(skipInit); }
-    @Method(selector = "initWithName:")
-    public CNContactRelation(String name) { super((SkipInit) null); initObject(init(name)); }
-    @Method(selector = "initWithCoder:")
-    public CNContactRelation(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
+    public CNFetchRequest() {}
+    protected CNFetchRequest(Handle h, long handle) { super(h, handle); }
+    protected CNFetchRequest(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "name")
-    public native String getName();
-    @Property(selector = "supportsSecureCoding")
-    public static native boolean supportsSecureCoding();
+    
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithName:")
-    protected native @Pointer long init(String name);
-    @Method(selector = "encodeWithCoder:")
-    public native void encode(NSCoder coder);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder coder);
+    
     /*</methods>*/
 }

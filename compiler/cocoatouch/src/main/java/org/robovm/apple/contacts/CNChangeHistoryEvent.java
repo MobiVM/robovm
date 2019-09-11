@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -32,54 +32,32 @@ import org.robovm.apple.foundation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 9.0 and later.
+ * @since Available in iOS 13.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("Contacts") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/CNPostalAddress/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/CNChangeHistoryEvent/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
-    /*<ptr>*/public static class CNPostalAddressPtr extends Ptr<CNPostalAddress, CNPostalAddressPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(CNPostalAddress.class); }/*</bind>*/
+    /*<ptr>*/public static class CNChangeHistoryEventPtr extends Ptr<CNChangeHistoryEvent, CNChangeHistoryEventPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(CNChangeHistoryEvent.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public CNPostalAddress() {}
-    protected CNPostalAddress(Handle h, long handle) { super(h, handle); }
-    protected CNPostalAddress(SkipInit skipInit) { super(skipInit); }
+    public CNChangeHistoryEvent() {}
+    protected CNChangeHistoryEvent(Handle h, long handle) { super(h, handle); }
+    protected CNChangeHistoryEvent(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public CNPostalAddress(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
+    public CNChangeHistoryEvent(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "street")
-    public native String getStreet();
-    /**
-     * @since Available in iOS 10.3 and later.
-     */
-    @Property(selector = "subLocality")
-    public native String getSubLocality();
-    @Property(selector = "city")
-    public native String getCity();
-    /**
-     * @since Available in iOS 10.3 and later.
-     */
-    @Property(selector = "subAdministrativeArea")
-    public native String getSubAdministrativeArea();
-    @Property(selector = "state")
-    public native String getState();
-    @Property(selector = "postalCode")
-    public native String getPostalCode();
-    @Property(selector = "country")
-    public native String getCountry();
-    @Property(selector = "ISOCountryCode")
-    public native String getISOCountryCode();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "localizedStringForKey:")
-    public static native String getLocalizedProperty(CNPostalAddressPropertyKey key);
+    @Method(selector = "acceptEventVisitor:")
+    public native void acceptEventVisitor(CNChangeHistoryEventVisitor visitor);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

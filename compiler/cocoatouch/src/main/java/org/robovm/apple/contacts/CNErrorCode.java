@@ -46,12 +46,28 @@ public enum /*<name>*/CNErrorCode/*</name>*/ implements NSErrorCode {
      * @since Available in iOS 11.3 and later.
      */
     NoAccessableWritableContainers(101L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    UnauthorizedKeys(102L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    FeatureDisabledByUser(103L),
     RecordDoesNotExist(200L),
     InsertedRecordAlreadyExists(201L),
     ContainmentCycle(202L),
     ContainmentScope(203L),
     ParentRecordDoesNotExist(204L),
     RecordIdentifierInvalid(205L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    RecordNotWritable(206L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    ParentContainerNotWritable(207L),
     ValidationMultipleErrors(300L),
     ValidationTypeMismatch(301L),
     ValidationConfigurationError(302L),
@@ -59,6 +75,9 @@ public enum /*<name>*/CNErrorCode/*</name>*/ implements NSErrorCode {
     PolicyViolation(500L),
     ClientIdentifierInvalid(600L),
     ClientIdentifierDoesNotExist(601L),
+    ClientIdentifierCollision(602L),
+    ChangeHistoryExpired(603L),
+    ChangeHistoryInvalidAnchor(604L),
     /**
      * @since Available in iOS 11.0 and later.
      */

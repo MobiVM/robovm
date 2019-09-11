@@ -1,4 +1,5 @@
 processed:
+- contacts
 - cloudkit
 - classkit
 - carplay
@@ -34,7 +35,6 @@ processed:
 - security
 
 to go:
-- contacts
 - contactsui
 - dispatch
 - eventkit

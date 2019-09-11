@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -32,43 +32,30 @@ import org.robovm.apple.foundation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 9.0 and later.
+ * @since Available in iOS 13.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("Contacts") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/CNContactProperty/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/CNFetchResult<ValueType extends NSObject>/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
+    /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class CNContactPropertyPtr extends Ptr<CNContactProperty, CNContactPropertyPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(CNContactProperty.class); }/*</bind>*/
+    /*<ptr>*/public static class CNFetchResultPtr<ValueType extends NSObject> extends Ptr<CNFetchResult<ValueType>, CNFetchResultPtr<ValueType>> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(CNFetchResult.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public CNContactProperty() {}
-    protected CNContactProperty(Handle h, long handle) { super(h, handle); }
-    protected CNContactProperty(SkipInit skipInit) { super(skipInit); }
-    @Method(selector = "initWithCoder:")
-    public CNContactProperty(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
+    protected CNFetchResult() {}
+    protected CNFetchResult(Handle h, long handle) { super(h, handle); }
+    protected CNFetchResult(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "contact")
-    public native CNContact getContact();
-    @Property(selector = "key")
-    public native CNContactPropertyKey getKey();
     @Property(selector = "value")
     public native NSObject getValue();
-    @Property(selector = "identifier")
-    public native String getIdentifier();
-    @Property(selector = "label")
-    public native String getLabel();
-    @Property(selector = "supportsSecureCoding")
-    public static native boolean supportsSecureCoding();
+    @Property(selector = "currentHistoryToken")
+    public native NSData getCurrentHistoryToken();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "encodeWithCoder:")
-    public native void encode(NSCoder coder);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder coder);
+    
     /*</methods>*/
 }
