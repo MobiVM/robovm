@@ -51,7 +51,7 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "initWithClassificationAction:")
     public ILClassificationResponse(ILClassificationAction action) { super((SkipInit) null); initObject(init(action)); }
     @Method(selector = "initWithCoder:")
-    public ILClassificationResponse(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public ILClassificationResponse(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "action")
@@ -80,6 +80,6 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }
