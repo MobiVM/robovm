@@ -33,40 +33,39 @@ import org.robovm.apple.corelocation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 11.3 and later.
+ * @since Available in iOS 13.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("HomeKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/HMAccessorySetupPayload/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/HMAddAccessoryRequest/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class HMAccessorySetupPayloadPtr extends Ptr<HMAccessorySetupPayload, HMAccessorySetupPayloadPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(HMAccessorySetupPayload.class); }/*</bind>*/
+    /*<ptr>*/public static class HMAddAccessoryRequestPtr extends Ptr<HMAddAccessoryRequest, HMAddAccessoryRequestPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(HMAddAccessoryRequest.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected HMAccessorySetupPayload() {}
-    protected HMAccessorySetupPayload(Handle h, long handle) { super(h, handle); }
-    protected HMAccessorySetupPayload(SkipInit skipInit) { super(skipInit); }
-    @Method(selector = "initWithURL:")
-    public HMAccessorySetupPayload(NSURL setupPayloadURL) { super((SkipInit) null); initObject(init(setupPayloadURL)); }
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @Method(selector = "initWithURL:ownershipToken:")
-    public HMAccessorySetupPayload(NSURL setupPayloadURL, HMAccessoryOwnershipToken ownershipToken) { super((SkipInit) null); initObject(init(setupPayloadURL, ownershipToken)); }
+    public HMAddAccessoryRequest() {}
+    protected HMAddAccessoryRequest(Handle h, long handle) { super(h, handle); }
+    protected HMAddAccessoryRequest(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "home")
+    public native HMHome getHome();
+    @Property(selector = "accessoryName")
+    public native String getAccessoryName();
+    @Property(selector = "accessoryCategory")
+    public native HMAccessoryCategory getAccessoryCategory();
+    @Property(selector = "requiresSetupPayloadURL")
+    public native boolean requiresSetupPayloadURL();
+    @Property(selector = "requiresOwnershipToken")
+    public native boolean requiresOwnershipToken();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithURL:")
-    protected native @Pointer long init(NSURL setupPayloadURL);
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @Method(selector = "initWithURL:ownershipToken:")
-    protected native @Pointer long init(NSURL setupPayloadURL, HMAccessoryOwnershipToken ownershipToken);
+    @Method(selector = "payloadWithOwnershipToken:")
+    public native HMAccessorySetupPayload getPayload(HMAccessoryOwnershipToken ownershipToken);
+    @Method(selector = "payloadWithURL:ownershipToken:")
+    public native HMAccessorySetupPayload getPayload(NSURL setupPayloadURL, HMAccessoryOwnershipToken ownershipToken);
     /*</methods>*/
 }

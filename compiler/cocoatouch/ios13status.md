@@ -1,4 +1,5 @@
 processed:
+- homekit
 - contactsui
 - contacts
 - healthkit
@@ -47,7 +48,6 @@ processed:
 - security
 
 to go:
-- homekit
 - iad
 - identitylookup
 - identitylookupui

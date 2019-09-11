@@ -179,7 +179,19 @@ public enum /*<name>*/HMErrorCode/*</name>*/ implements NSErrorCode {
     /**
      * @since Available in iOS 12.0 and later.
      */
-    ObjectWithSimilarNameExists(95L);
+    ObjectWithSimilarNameExists(95L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    OwnershipFailure(96L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    MaximumAccessoriesOfTypeInHome(97L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    WiFiCredentialGenerationFailed(98L);
     /*</values>*/
 
     /*<bind>*/

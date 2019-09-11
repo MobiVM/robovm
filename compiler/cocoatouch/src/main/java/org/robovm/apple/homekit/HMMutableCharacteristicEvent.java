@@ -37,14 +37,15 @@ import org.robovm.apple.corelocation.*;
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("HomeKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/HMMutableCharacteristicEvent/*</name>*/ <T extends NSObject>
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/HMMutableCharacteristicEvent<T extends NSObject>/*</name>*/
     extends /*<extends>*/HMCharacteristicEvent/*</extends>*/<T>
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class HMMutableCharacteristicEventPtr extends Ptr<HMMutableCharacteristicEvent, HMMutableCharacteristicEventPtr> {}/*</ptr>*/
+    /*<ptr>*/public static class HMMutableCharacteristicEventPtr<T extends NSObject> extends Ptr<HMMutableCharacteristicEvent<T>, HMMutableCharacteristicEventPtr<T>> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(HMMutableCharacteristicEvent.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
+    protected HMMutableCharacteristicEvent() {}
     protected HMMutableCharacteristicEvent(Handle h, long handle) { super(h, handle); }
     protected HMMutableCharacteristicEvent(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCharacteristic:triggerValue:")

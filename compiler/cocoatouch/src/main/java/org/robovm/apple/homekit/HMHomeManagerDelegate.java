@@ -49,6 +49,11 @@ import org.robovm.apple.corelocation.*;
     
     /*</properties>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "homeManager:didUpdateAuthorizationStatus:")
+    void didUpdateAuthorizationStatus(HMHomeManager manager, HMHomeManagerAuthorizationStatus status);
     @Method(selector = "homeManagerDidUpdateHomes:")
     void didUpdateHomes(HMHomeManager manager);
     @Method(selector = "homeManagerDidUpdatePrimaryHome:")
@@ -57,6 +62,11 @@ import org.robovm.apple.corelocation.*;
     void didAddHome(HMHomeManager manager, HMHome home);
     @Method(selector = "homeManager:didRemoveHome:")
     void didRemoveHome(HMHomeManager manager, HMHome home);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "homeManager:didReceiveAddAccessoryRequest:")
+    void didReceiveAddAccessoryRequest(HMHomeManager manager, HMAddAccessoryRequest request);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/
