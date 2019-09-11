@@ -640,6 +640,11 @@ import org.robovm.apple.coregraphics.*;
         @GlobalValue(symbol="kCGImagePropertyJFIFDictionary", optional=true)
         public static native CFString JFIFDictionary();
         /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyHEICSDictionary", optional=true)
+        public static native CFString HEICSDictionary();
+        /**
          * @since Available in iOS 4.0 and later.
          */
         @GlobalValue(symbol="kCGImagePropertyExifDictionary", optional=true)
@@ -794,6 +799,36 @@ import org.robovm.apple.coregraphics.*;
          */
         @GlobalValue(symbol="kCGImagePropertyPrimaryImage", optional=true)
         public static native CFString PrimaryImage();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyHEICSLoopCount", optional=true)
+        public static native CFString HEICSLoopCount();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyHEICSDelayTime", optional=true)
+        public static native CFString HEICSDelayTime();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyHEICSUnclampedDelayTime", optional=true)
+        public static native CFString HEICSUnclampedDelayTime();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyHEICSCanvasPixelWidth", optional=true)
+        public static native CFString HEICSCanvasPixelWidth();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyHEICSCanvasPixelHeight", optional=true)
+        public static native CFString HEICSCanvasPixelHeight();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyHEICSFrameInfoArray", optional=true)
+        public static native CFString HEICSFrameInfoArray();
         /**
          * @since Available in iOS 11.0 and later.
          */

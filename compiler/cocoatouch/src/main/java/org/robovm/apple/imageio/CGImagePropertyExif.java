@@ -149,6 +149,18 @@ import org.robovm.apple.coregraphics.*;
      */
     public static final CGImagePropertyExif DateTimeDigitized = new CGImagePropertyExif("DateTimeDigitized");
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final CGImagePropertyExif OffsetTime = new CGImagePropertyExif("OffsetTime");
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final CGImagePropertyExif OffsetTimeOriginal = new CGImagePropertyExif("OffsetTimeOriginal");
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final CGImagePropertyExif OffsetTimeDigitized = new CGImagePropertyExif("OffsetTimeDigitized");
+    /**
      * @since Available in iOS 4.0 and later.
      */
     public static final CGImagePropertyExif ComponentsConfiguration = new CGImagePropertyExif("ComponentsConfiguration");
@@ -366,7 +378,7 @@ import org.robovm.apple.coregraphics.*;
     public static final CGImagePropertyExif Gamma = new CGImagePropertyExif("Gamma");
     /*</constants>*/
     
-    private static /*<name>*/CGImagePropertyExif/*</name>*/[] values = new /*<name>*/CGImagePropertyExif/*</name>*/[] {/*<value_list>*/ExposureTime, FNumber, ExposureProgram, SpectralSensitivity, ISOSpeedRatings, OECF, SensitivityType, StandardOutputSensitivity, RecommendedExposureIndex, ISOSpeed, ISOSpeedLatitudeyyy, ISOSpeedLatitudezzz, Version, DateTimeOriginal, DateTimeDigitized, ComponentsConfiguration, CompressedBitsPerPixel, ShutterSpeedValue, ApertureValue, BrightnessValue, ExposureBiasValue, MaxApertureValue, SubjectDistance, MeteringMode, LightSource, Flash, FocalLength, SubjectArea, MakerNote, UserComment, SubsecTime, SubsecTimeOriginal, SubsecTimeDigitized, FlashPixVersion, ColorSpace, PixelXDimension, PixelYDimension, RelatedSoundFile, FlashEnergy, SpatialFrequencyResponse, FocalPlaneXResolution, FocalPlaneYResolution, FocalPlaneResolutionUnit, SubjectLocation, ExposureIndex, SensingMethod, FileSource, SceneType, CFAPattern, CustomRendered, ExposureMode, WhiteBalance, DigitalZoomRatio, FocalLenIn35mmFilm, SceneCaptureType, GainControl, Contrast, Saturation, Sharpness, DeviceSettingDescription, SubjectDistRange, ImageUniqueID, CameraOwnerName, BodySerialNumber, LensSpecification, LensMake, LensModel, LensSerialNumber, Gamma/*</value_list>*/};
+    private static /*<name>*/CGImagePropertyExif/*</name>*/[] values = new /*<name>*/CGImagePropertyExif/*</name>*/[] {/*<value_list>*/ExposureTime, FNumber, ExposureProgram, SpectralSensitivity, ISOSpeedRatings, OECF, SensitivityType, StandardOutputSensitivity, RecommendedExposureIndex, ISOSpeed, ISOSpeedLatitudeyyy, ISOSpeedLatitudezzz, Version, DateTimeOriginal, DateTimeDigitized, OffsetTime, OffsetTimeOriginal, OffsetTimeDigitized, ComponentsConfiguration, CompressedBitsPerPixel, ShutterSpeedValue, ApertureValue, BrightnessValue, ExposureBiasValue, MaxApertureValue, SubjectDistance, MeteringMode, LightSource, Flash, FocalLength, SubjectArea, MakerNote, UserComment, SubsecTime, SubsecTimeOriginal, SubsecTimeDigitized, FlashPixVersion, ColorSpace, PixelXDimension, PixelYDimension, RelatedSoundFile, FlashEnergy, SpatialFrequencyResponse, FocalPlaneXResolution, FocalPlaneYResolution, FocalPlaneResolutionUnit, SubjectLocation, ExposureIndex, SensingMethod, FileSource, SceneType, CFAPattern, CustomRendered, ExposureMode, WhiteBalance, DigitalZoomRatio, FocalLenIn35mmFilm, SceneCaptureType, GainControl, Contrast, Saturation, Sharpness, DeviceSettingDescription, SubjectDistRange, ImageUniqueID, CameraOwnerName, BodySerialNumber, LensSpecification, LensMake, LensModel, LensSerialNumber, Gamma/*</value_list>*/};
     
     /*<name>*/CGImagePropertyExif/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -464,6 +476,21 @@ import org.robovm.apple.coregraphics.*;
          */
         @GlobalValue(symbol="kCGImagePropertyExifDateTimeDigitized", optional=true)
         public static native CFString DateTimeDigitized();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyExifOffsetTime", optional=true)
+        public static native CFString OffsetTime();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyExifOffsetTimeOriginal", optional=true)
+        public static native CFString OffsetTimeOriginal();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyExifOffsetTimeDigitized", optional=true)
+        public static native CFString OffsetTimeDigitized();
         /**
          * @since Available in iOS 4.0 and later.
          */

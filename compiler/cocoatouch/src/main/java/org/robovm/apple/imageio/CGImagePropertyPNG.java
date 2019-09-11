@@ -169,12 +169,24 @@ import org.robovm.apple.coregraphics.*;
      */
     public static final CGImagePropertyPNG UnclampedDelayTime = new CGImagePropertyPNG("UnclampedDelayTime");
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final CGImagePropertyPNG FrameInfoArray = new CGImagePropertyPNG("FrameInfoArray");
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final CGImagePropertyPNG CanvasPixelWidth = new CGImagePropertyPNG("CanvasPixelWidth");
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final CGImagePropertyPNG CanvasPixelHeight = new CGImagePropertyPNG("CanvasPixelHeight");
+    /**
      * @since Available in iOS 9.0 and later.
      */
     public static final CGImagePropertyPNG CompressionFilter = new CGImagePropertyPNG("CompressionFilter");
     /*</constants>*/
     
-    private static /*<name>*/CGImagePropertyPNG/*</name>*/[] values = new /*<name>*/CGImagePropertyPNG/*</name>*/[] {/*<value_list>*/Author, Chromaticities, Comment, Copyright, CreationTime, Description, Disclaimer, Gamma, InterlaceType, ModificationTime, Software, Source, sRGBIntent, Title, Warning, XPixelsPerMeter, YPixelsPerMeter, LoopCount, DelayTime, UnclampedDelayTime, CompressionFilter/*</value_list>*/};
+    private static /*<name>*/CGImagePropertyPNG/*</name>*/[] values = new /*<name>*/CGImagePropertyPNG/*</name>*/[] {/*<value_list>*/Author, Chromaticities, Comment, Copyright, CreationTime, Description, Disclaimer, Gamma, InterlaceType, ModificationTime, Software, Source, sRGBIntent, Title, Warning, XPixelsPerMeter, YPixelsPerMeter, LoopCount, DelayTime, UnclampedDelayTime, FrameInfoArray, CanvasPixelWidth, CanvasPixelHeight, CompressionFilter/*</value_list>*/};
     
     /*<name>*/CGImagePropertyPNG/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -297,6 +309,21 @@ import org.robovm.apple.coregraphics.*;
          */
         @GlobalValue(symbol="kCGImagePropertyAPNGUnclampedDelayTime", optional=true)
         public static native CFString UnclampedDelayTime();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyAPNGFrameInfoArray", optional=true)
+        public static native CFString FrameInfoArray();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyAPNGCanvasPixelWidth", optional=true)
+        public static native CFString CanvasPixelWidth();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyAPNGCanvasPixelHeight", optional=true)
+        public static native CFString CanvasPixelHeight();
         /**
          * @since Available in iOS 9.0 and later.
          */
