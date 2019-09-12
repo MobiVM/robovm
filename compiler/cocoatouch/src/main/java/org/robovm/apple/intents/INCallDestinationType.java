@@ -46,6 +46,10 @@ public enum /*<name>*/INCallDestinationType/*</name>*/ implements ValuedEnum {
     Voicemail(3L),
     Redial(4L),
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    CallBack(5L),
+    /**
      * @since Available in iOS 11.0 and later.
      * @deprecated Deprecated in iOS 11.0. Use INCallDestinationTypeNormal instead
      */

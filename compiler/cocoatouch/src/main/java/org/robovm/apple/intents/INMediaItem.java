@@ -49,10 +49,15 @@ import org.robovm.apple.corelocation.*;
     protected INMediaItem() {}
     protected INMediaItem(Handle h, long handle) { super(h, handle); }
     protected INMediaItem(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "initWithIdentifier:title:type:artwork:artist:")
+    public INMediaItem(String identifier, String title, INMediaItemType type, INImage artwork, String artist) { super((SkipInit) null); initObject(init(identifier, title, type, artwork, artist)); }
     @Method(selector = "initWithIdentifier:title:type:artwork:")
     public INMediaItem(String identifier, String title, INMediaItemType type, INImage artwork) { super((SkipInit) null); initObject(init(identifier, title, type, artwork)); }
     @Method(selector = "initWithCoder:")
-    public INMediaItem(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public INMediaItem(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "identifier")
@@ -63,16 +68,26 @@ import org.robovm.apple.corelocation.*;
     public native INMediaItemType getType();
     @Property(selector = "artwork")
     public native INImage getArtwork();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "artist")
+    public native String getArtist();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "initWithIdentifier:title:type:artwork:artist:")
+    protected native @Pointer long init(String identifier, String title, INMediaItemType type, INImage artwork, String artist);
     @Method(selector = "initWithIdentifier:title:type:artwork:")
     protected native @Pointer long init(String identifier, String title, INMediaItemType type, INImage artwork);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

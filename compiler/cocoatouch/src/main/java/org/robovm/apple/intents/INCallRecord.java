@@ -49,10 +49,15 @@ import org.robovm.apple.corelocation.*;
     protected INCallRecord() {}
     protected INCallRecord(Handle h, long handle) { super(h, handle); }
     protected INCallRecord(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "initWithIdentifier:dateCreated:caller:callRecordType:callCapability:callDuration:unseen:numberOfCalls:")
+    public INCallRecord(String identifier, NSDate dateCreated, INPerson caller, INCallRecordType callRecordType, INCallCapability callCapability, NSNumber callDuration, NSNumber unseen, NSNumber numberOfCalls) { super((SkipInit) null); initObject(init(identifier, dateCreated, caller, callRecordType, callCapability, callDuration, unseen, numberOfCalls)); }
     @Method(selector = "initWithIdentifier:dateCreated:caller:callRecordType:callCapability:callDuration:unseen:")
     public INCallRecord(String identifier, NSDate dateCreated, INPerson caller, INCallRecordType callRecordType, INCallCapability callCapability, NSNumber callDuration, NSNumber unseen) { super((SkipInit) null); initObject(init(identifier, dateCreated, caller, callRecordType, callCapability, callDuration, unseen)); }
     @Method(selector = "initWithCoder:")
-    public INCallRecord(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public INCallRecord(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "identifier")
@@ -69,16 +74,26 @@ import org.robovm.apple.corelocation.*;
     public native NSNumber getUnseen();
     @Property(selector = "callCapability")
     public native INCallCapability getCallCapability();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "numberOfCalls")
+    public native NSNumber getNumberOfCalls();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "initWithIdentifier:dateCreated:caller:callRecordType:callCapability:callDuration:unseen:numberOfCalls:")
+    protected native @Pointer long init(String identifier, NSDate dateCreated, INPerson caller, INCallRecordType callRecordType, INCallCapability callCapability, NSNumber callDuration, NSNumber unseen, NSNumber numberOfCalls);
     @Method(selector = "initWithIdentifier:dateCreated:caller:callRecordType:callCapability:callDuration:unseen:")
     protected native @Pointer long init(String identifier, NSDate dateCreated, INPerson caller, INCallRecordType callRecordType, INCallCapability callCapability, NSNumber callDuration, NSNumber unseen);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

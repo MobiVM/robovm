@@ -50,7 +50,7 @@ import org.robovm.apple.corelocation.*;
     protected INRestaurantOffer(Handle h, long handle) { super(h, handle); }
     protected INRestaurantOffer(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public INRestaurantOffer(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public INRestaurantOffer(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "offerTitleText")
@@ -73,6 +73,6 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

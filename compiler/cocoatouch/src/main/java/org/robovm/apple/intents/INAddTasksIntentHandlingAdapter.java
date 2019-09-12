@@ -54,13 +54,38 @@ import org.robovm.apple.corelocation.*;
     public void handleAddTasks(INAddTasksIntent intent, @Block VoidBlock1<INAddTasksIntentResponse> completion) {}
     @NotImplemented("confirmAddTasks:completion:")
     public void confirmAddTasks(INAddTasksIntent intent, @Block VoidBlock1<INAddTasksIntentResponse> completion) {}
+    /**
+     * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 13.0. resolveTargetTaskListForAddTasks:withCompletion: is deprecated. Use resolveTargetTaskListForAddTasks:completion: instead
+     */
+    @Deprecated
     @NotImplemented("resolveTargetTaskListForAddTasks:withCompletion:")
     public void resolveTargetTaskListForAddTasks(INAddTasksIntent intent, @Block VoidBlock1<INTaskListResolutionResult> completion) {}
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("resolveTargetTaskListForAddTasks:completion:")
+    public void resolveTargetTaskList(INAddTasksIntent intent, @Block VoidBlock1<INAddTasksTargetTaskListResolutionResult> completion) {}
     @NotImplemented("resolveTaskTitlesForAddTasks:withCompletion:")
     public void resolveTaskTitlesForAddTasks(INAddTasksIntent intent, @Block VoidBlock1<NSArray<INSpeakableStringResolutionResult>> completion) {}
     @NotImplemented("resolveSpatialEventTriggerForAddTasks:withCompletion:")
     public void resolveSpatialEventTriggerForAddTasks(INAddTasksIntent intent, @Block VoidBlock1<INSpatialEventTriggerResolutionResult> completion) {}
+    /**
+     * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 13.0. resolveTemporalEventTriggerForAddTasks:withCompletion: is deprecated. Use resolveTemporalEventTriggerForAddTasks:completion: instead
+     */
+    @Deprecated
     @NotImplemented("resolveTemporalEventTriggerForAddTasks:withCompletion:")
     public void resolveTemporalEventTriggerForAddTasks(INAddTasksIntent intent, @Block VoidBlock1<INTemporalEventTriggerResolutionResult> completion) {}
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("resolveTemporalEventTriggerForAddTasks:completion:")
+    public void resolveTemporalEventTrigger(INAddTasksIntent intent, @Block VoidBlock1<INAddTasksTemporalEventTriggerResolutionResult> completion) {}
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("resolvePriorityForAddTasks:withCompletion:")
+    public void resolvePriorityForAddTasks(INAddTasksIntent intent, @Block VoidBlock1<INTaskPriorityResolutionResult> completion) {}
     /*</methods>*/
 }

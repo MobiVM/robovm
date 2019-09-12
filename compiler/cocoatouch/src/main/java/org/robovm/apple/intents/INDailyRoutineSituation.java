@@ -45,7 +45,23 @@ public enum /*<name>*/INDailyRoutineSituation/*</name>*/ implements ValuedEnum {
     Home(2L),
     Work(3L),
     School(4L),
-    Gym(5L);
+    Gym(5L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    Commute(6L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    HeadphonesConnected(7L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    ActiveWorkout(8L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    PhysicalActivityIncomplete(9L);
     /*</values>*/
 
     /*<bind>*/

@@ -56,10 +56,10 @@ import org.robovm.apple.corelocation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "successWithResolvedDateComponents:")
-    public static native INDateComponentsResolutionResult successWithResolvedDateComponents(NSDateComponents resolvedDateComponents);
+    public static native INDateComponentsResolutionResult success(NSDateComponents resolvedDateComponents);
     @Method(selector = "disambiguationWithDateComponentsToDisambiguate:")
-    public static native INDateComponentsResolutionResult disambiguationWithDateComponentsToDisambiguate(NSArray<NSDateComponents> dateComponentsToDisambiguate);
+    public static native INDateComponentsResolutionResult disambiguation(NSArray<NSDateComponents> dateComponentsToDisambiguate);
     @Method(selector = "confirmationRequiredWithDateComponentsToConfirm:")
-    public static native INDateComponentsResolutionResult confirmationRequiredWithDateComponentsToConfirm(NSDateComponents dateComponentsToConfirm);
+    public static native INDateComponentsResolutionResult confirmationRequired(NSDateComponents dateComponentsToConfirm);
     /*</methods>*/
 }

@@ -57,7 +57,7 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "initWithValue:type:")
     public INPersonHandle(String value, INPersonHandleType type) { super((SkipInit) null); initObject(init(value, type)); }
     @Method(selector = "initWithCoder:")
-    public INPersonHandle(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public INPersonHandle(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "value")
@@ -84,6 +84,6 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

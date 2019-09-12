@@ -50,7 +50,7 @@ import org.robovm.apple.corelocation.*;
     protected INIntent(Handle h, long handle) { super(h, handle); }
     protected INIntent(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public INIntent(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public INIntent(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "identifier")
@@ -90,6 +90,6 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

@@ -65,7 +65,27 @@ public enum /*<name>*/INVocabularyStringType/*</name>*/ implements ValuedEnum {
     /**
      * @since Available in iOS 11.0 and later.
      */
-    NotebookItemGroupName(501L);
+    NotebookItemGroupName(501L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    MediaPlaylistTitle(700L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    MediaMusicArtistName(701L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    MediaAudiobookTitle(702L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    MediaAudiobookAuthorName(703L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    MediaShowTitle(704L);
     /*</values>*/
 
     /*<bind>*/

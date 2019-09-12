@@ -50,7 +50,7 @@ import org.robovm.apple.corelocation.*;
     protected INRelevanceProvider(Handle h, long handle) { super(h, handle); }
     protected INRelevanceProvider(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public INRelevanceProvider(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public INRelevanceProvider(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "supportsSecureCoding")
@@ -61,6 +61,6 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

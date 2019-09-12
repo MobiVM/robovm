@@ -52,7 +52,7 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "initWithBillType:paymentStatus:billPayee:amountDue:minimumDue:lateFee:dueDate:paymentDate:")
     public INBillDetails(INBillType billType, INPaymentStatus paymentStatus, INBillPayee billPayee, INCurrencyAmount amountDue, INCurrencyAmount minimumDue, INCurrencyAmount lateFee, NSDateComponents dueDate, NSDateComponents paymentDate) { super((SkipInit) null); initObject(init(billType, paymentStatus, billPayee, amountDue, minimumDue, lateFee, dueDate, paymentDate)); }
     @Method(selector = "initWithCoder:")
-    public INBillDetails(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public INBillDetails(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "billPayee")
@@ -97,6 +97,6 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

@@ -56,10 +56,10 @@ import org.robovm.apple.corelocation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "successWithResolvedTemperature:")
-    public static native INTemperatureResolutionResult successWithResolvedTemperature(NSMeasurement<NSUnitTemperature> resolvedTemperature);
+    public static native INTemperatureResolutionResult success(NSMeasurement<NSUnitTemperature> resolvedTemperature);
     @Method(selector = "disambiguationWithTemperaturesToDisambiguate:")
-    public static native INTemperatureResolutionResult disambiguationWithTemperaturesToDisambiguate(NSArray<?> temperaturesToDisambiguate);
+    public static native INTemperatureResolutionResult disambiguation(NSArray<?> temperaturesToDisambiguate);
     @Method(selector = "confirmationRequiredWithTemperatureToConfirm:")
-    public static native INTemperatureResolutionResult confirmationRequiredWithTemperatureToConfirm(NSMeasurement<NSUnitTemperature> temperatureToConfirm);
+    public static native INTemperatureResolutionResult confirmationRequired(NSMeasurement<NSUnitTemperature> temperatureToConfirm);
     /*</methods>*/
 }

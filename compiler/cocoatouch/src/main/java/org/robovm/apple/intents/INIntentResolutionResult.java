@@ -61,5 +61,15 @@ import org.robovm.apple.corelocation.*;
     public static native INIntentResolutionResult notRequired();
     @Method(selector = "unsupported")
     public static native INIntentResolutionResult unsupported();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "unsupportedWithReason:")
+    public static native INIntentResolutionResult unsupported(@MachineSizedSInt long reason);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "confirmationRequiredWithItemToConfirm:forReason:")
+    public static native INIntentResolutionResult confirmationRequired(NSObject itemToConfirm, @MachineSizedSInt long reason);
     /*</methods>*/
 }

@@ -50,10 +50,10 @@ import org.robovm.apple.corelocation.*;
     protected INSearchForNotebookItemsIntent(Handle h, long handle) { super(h, handle); }
     protected INSearchForNotebookItemsIntent(SkipInit skipInit) { super(skipInit); }
     /**
-     * @since Available in iOS 11.2 and later.
+     * @since Available in iOS 13.0 and later.
      */
-    @Method(selector = "initWithTitle:content:itemType:status:location:locationSearchType:dateTime:dateSearchType:notebookItemIdentifier:")
-    public INSearchForNotebookItemsIntent(INSpeakableString title, String content, INNotebookItemType itemType, INTaskStatus status, CLPlacemark location, INLocationSearchType locationSearchType, INDateComponentsRange dateTime, INDateSearchType dateSearchType, String notebookItemIdentifier) { super((SkipInit) null); initObject(init(title, content, itemType, status, location, locationSearchType, dateTime, dateSearchType, notebookItemIdentifier)); }
+    @Method(selector = "initWithTitle:content:itemType:status:location:locationSearchType:dateTime:dateSearchType:temporalEventTriggerTypes:taskPriority:notebookItemIdentifier:")
+    public INSearchForNotebookItemsIntent(INSpeakableString title, String content, INNotebookItemType itemType, INTaskStatus status, CLPlacemark location, INLocationSearchType locationSearchType, INDateComponentsRange dateTime, INDateSearchType dateSearchType, INTemporalEventTriggerTypeOptions temporalEventTriggerTypes, INTaskPriority taskPriority, String notebookItemIdentifier) { super((SkipInit) null); initObject(init(title, content, itemType, status, location, locationSearchType, dateTime, dateSearchType, temporalEventTriggerTypes, taskPriority, notebookItemIdentifier)); }
     /**
      * @since Available in iOS 11.0 and later.
      * @deprecated Deprecated in iOS 11.2. Use the designated initializer instead
@@ -61,6 +61,13 @@ import org.robovm.apple.corelocation.*;
     @Deprecated
     @Method(selector = "initWithTitle:content:itemType:status:location:locationSearchType:dateTime:dateSearchType:")
     public INSearchForNotebookItemsIntent(INSpeakableString title, String content, INNotebookItemType itemType, INTaskStatus status, CLPlacemark location, INLocationSearchType locationSearchType, INDateComponentsRange dateTime, INDateSearchType dateSearchType) { super((SkipInit) null); initObject(init(title, content, itemType, status, location, locationSearchType, dateTime, dateSearchType)); }
+    /**
+     * @since Available in iOS 11.2 and later.
+     * @deprecated Deprecated in iOS 13.0. Use the designated initializer instead
+     */
+    @Deprecated
+    @Method(selector = "initWithTitle:content:itemType:status:location:locationSearchType:dateTime:dateSearchType:notebookItemIdentifier:")
+    public INSearchForNotebookItemsIntent(INSpeakableString title, String content, INNotebookItemType itemType, INTaskStatus status, CLPlacemark location, INLocationSearchType locationSearchType, INDateComponentsRange dateTime, INDateSearchType dateSearchType, String notebookItemIdentifier) { super((SkipInit) null); initObject(init(title, content, itemType, status, location, locationSearchType, dateTime, dateSearchType, notebookItemIdentifier)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "title")
@@ -80,6 +87,16 @@ import org.robovm.apple.corelocation.*;
     @Property(selector = "dateSearchType")
     public native INDateSearchType getDateSearchType();
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "temporalEventTriggerTypes")
+    public native INTemporalEventTriggerTypeOptions getTemporalEventTriggerTypes();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "taskPriority")
+    public native INTaskPriority getTaskPriority();
+    /**
      * @since Available in iOS 11.2 and later.
      */
     @Property(selector = "notebookItemIdentifier")
@@ -88,10 +105,10 @@ import org.robovm.apple.corelocation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @since Available in iOS 11.2 and later.
+     * @since Available in iOS 13.0 and later.
      */
-    @Method(selector = "initWithTitle:content:itemType:status:location:locationSearchType:dateTime:dateSearchType:notebookItemIdentifier:")
-    protected native @Pointer long init(INSpeakableString title, String content, INNotebookItemType itemType, INTaskStatus status, CLPlacemark location, INLocationSearchType locationSearchType, INDateComponentsRange dateTime, INDateSearchType dateSearchType, String notebookItemIdentifier);
+    @Method(selector = "initWithTitle:content:itemType:status:location:locationSearchType:dateTime:dateSearchType:temporalEventTriggerTypes:taskPriority:notebookItemIdentifier:")
+    protected native @Pointer long init(INSpeakableString title, String content, INNotebookItemType itemType, INTaskStatus status, CLPlacemark location, INLocationSearchType locationSearchType, INDateComponentsRange dateTime, INDateSearchType dateSearchType, INTemporalEventTriggerTypeOptions temporalEventTriggerTypes, INTaskPriority taskPriority, String notebookItemIdentifier);
     /**
      * @since Available in iOS 11.0 and later.
      * @deprecated Deprecated in iOS 11.2. Use the designated initializer instead
@@ -99,5 +116,12 @@ import org.robovm.apple.corelocation.*;
     @Deprecated
     @Method(selector = "initWithTitle:content:itemType:status:location:locationSearchType:dateTime:dateSearchType:")
     protected native @Pointer long init(INSpeakableString title, String content, INNotebookItemType itemType, INTaskStatus status, CLPlacemark location, INLocationSearchType locationSearchType, INDateComponentsRange dateTime, INDateSearchType dateSearchType);
+    /**
+     * @since Available in iOS 11.2 and later.
+     * @deprecated Deprecated in iOS 13.0. Use the designated initializer instead
+     */
+    @Deprecated
+    @Method(selector = "initWithTitle:content:itemType:status:location:locationSearchType:dateTime:dateSearchType:notebookItemIdentifier:")
+    protected native @Pointer long init(INSpeakableString title, String content, INNotebookItemType itemType, INTaskStatus status, CLPlacemark location, INLocationSearchType locationSearchType, INDateComponentsRange dateTime, INDateSearchType dateSearchType, String notebookItemIdentifier);
     /*</methods>*/
 }

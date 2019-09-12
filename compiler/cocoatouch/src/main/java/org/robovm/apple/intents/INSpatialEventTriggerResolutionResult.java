@@ -56,10 +56,10 @@ import org.robovm.apple.corelocation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "successWithResolvedSpatialEventTrigger:")
-    public static native INSpatialEventTriggerResolutionResult successWithResolvedSpatialEventTrigger(INSpatialEventTrigger resolvedSpatialEventTrigger);
+    public static native INSpatialEventTriggerResolutionResult success(INSpatialEventTrigger resolvedSpatialEventTrigger);
     @Method(selector = "disambiguationWithSpatialEventTriggersToDisambiguate:")
-    public static native INSpatialEventTriggerResolutionResult disambiguationWithSpatialEventTriggersToDisambiguate(NSArray<INSpatialEventTrigger> spatialEventTriggersToDisambiguate);
+    public static native INSpatialEventTriggerResolutionResult disambiguation(NSArray<INSpatialEventTrigger> spatialEventTriggersToDisambiguate);
     @Method(selector = "confirmationRequiredWithSpatialEventTriggerToConfirm:")
-    public static native INSpatialEventTriggerResolutionResult confirmationRequiredWithSpatialEventTriggerToConfirm(INSpatialEventTrigger spatialEventTriggerToConfirm);
+    public static native INSpatialEventTriggerResolutionResult confirmationRequired(INSpatialEventTrigger spatialEventTriggerToConfirm);
     /*</methods>*/
 }
