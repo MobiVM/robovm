@@ -36,36 +36,33 @@ import org.robovm.apple.dispatch.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 11.0 and later.
+ * @since Available in iOS 13.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("MapKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MKUserTrackingButton/*</name>*/ 
-    extends /*<extends>*/UIView/*</extends>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MKMultiPolylineRenderer/*</name>*/ 
+    extends /*<extends>*/MKOverlayPathRenderer/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class MKUserTrackingButtonPtr extends Ptr<MKUserTrackingButton, MKUserTrackingButtonPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(MKUserTrackingButton.class); }/*</bind>*/
+    /*<ptr>*/public static class MKMultiPolylineRendererPtr extends Ptr<MKMultiPolylineRenderer, MKMultiPolylineRendererPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(MKMultiPolylineRenderer.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MKUserTrackingButton() {}
-    protected MKUserTrackingButton(Handle h, long handle) { super(h, handle); }
-    protected MKUserTrackingButton(SkipInit skipInit) { super(skipInit); }
-    public MKUserTrackingButton(MKMapView mapView) { super((Handle) null, create(mapView)); retain(getHandle()); }
-    @Method(selector = "initWithFrame:")
-    public MKUserTrackingButton(@ByVal CGRect frame) { super(frame); }
-    @Method(selector = "initWithCoder:")
-    public MKUserTrackingButton(NSCoder coder) { super(coder); }
+    public MKMultiPolylineRenderer() {}
+    protected MKMultiPolylineRenderer(Handle h, long handle) { super(h, handle); }
+    protected MKMultiPolylineRenderer(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithMultiPolyline:")
+    public MKMultiPolylineRenderer(MKMultiPolyline multiPolyline) { super((SkipInit) null); initObject(init(multiPolyline)); }
+    @Method(selector = "initWithOverlay:")
+    public MKMultiPolylineRenderer(MKOverlay overlay) { super(overlay); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "mapView")
-    public native MKMapView getMapView();
-    @Property(selector = "setMapView:", strongRef = true)
-    public native void setMapView(MKMapView v);
+    @Property(selector = "multiPolyline")
+    public native MKMultiPolyline getMultiPolyline();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "userTrackingButtonWithMapView:")
-    protected static native @Pointer long create(MKMapView mapView);
+    @Method(selector = "initWithMultiPolyline:")
+    protected native @Pointer long init(MKMultiPolyline multiPolyline);
     /*</methods>*/
 }

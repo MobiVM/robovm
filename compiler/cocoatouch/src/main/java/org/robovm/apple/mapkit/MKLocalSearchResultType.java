@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -36,25 +36,15 @@ import org.robovm.apple.dispatch.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 3.0 and later.
+ * @since Available in iOS 13.0 and later.
  */
 /*</javadoc>*/
-@ForceLinkClass(MKError.class)
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/MKErrorCode/*</name>*/ implements NSErrorCode {
+/*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
+public final class /*<name>*/MKLocalSearchResultType/*</name>*/ extends Bits</*<name>*/MKLocalSearchResultType/*</name>*/> {
     /*<values>*/
-    Unknown(1L),
-    ServerFailure(2L),
-    LoadingThrottled(3L),
-    PlacemarkNotFound(4L),
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
-    DirectionsNotFound(5L),
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    DecodingFailed(6L);
+    public static final MKLocalSearchResultType None = new MKLocalSearchResultType(0L);
+    public static final MKLocalSearchResultType Address = new MKLocalSearchResultType(1L);
+    public static final MKLocalSearchResultType PointOfInterest = new MKLocalSearchResultType(2L);
     /*</values>*/
 
     /*<bind>*/
@@ -62,17 +52,17 @@ public enum /*<name>*/MKErrorCode/*</name>*/ implements NSErrorCode {
     /*<constants>*//*</constants>*/
     /*<methods>*//*</methods>*/
 
-    private final long n;
+    private static final /*<name>*/MKLocalSearchResultType/*</name>*/[] values = _values(/*<name>*/MKLocalSearchResultType/*</name>*/.class);
 
-    private /*<name>*/MKErrorCode/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/MKErrorCode/*</name>*/ valueOf(long n) {
-        for (/*<name>*/MKErrorCode/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/MKErrorCode/*</name>*/.class.getName());
+    public /*<name>*/MKLocalSearchResultType/*</name>*/(long value) { super(value); }
+    private /*<name>*/MKLocalSearchResultType/*</name>*/(long value, long mask) { super(value, mask); }
+    protected /*<name>*/MKLocalSearchResultType/*</name>*/ wrap(long value, long mask) {
+        return new /*<name>*/MKLocalSearchResultType/*</name>*/(value, mask);
+    }
+    protected /*<name>*/MKLocalSearchResultType/*</name>*/[] _values() {
+        return values;
+    }
+    public static /*<name>*/MKLocalSearchResultType/*</name>*/[] values() {
+        return values.clone();
     }
 }

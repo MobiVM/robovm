@@ -55,6 +55,11 @@ import org.robovm.apple.dispatch.*;
     /*<properties>*/
     @Property(selector = "image")
     public native UIImage getImage();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "traitCollection")
+    public native UITraitCollection getTraitCollection();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

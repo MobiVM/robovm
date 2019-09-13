@@ -37,9 +37,10 @@ import org.robovm.apple.dispatch.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 4.0 and later.
+ * @deprecated Deprecated in iOS 13.0.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("MapKit") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MapKit") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MKOverlayView/*</name>*/ 
     extends /*<extends>*/UIView/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -61,7 +62,7 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "initWithFrame:")
     public MKOverlayView(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public MKOverlayView(NSCoder decoder) { super(decoder); }
+    public MKOverlayView(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     /**

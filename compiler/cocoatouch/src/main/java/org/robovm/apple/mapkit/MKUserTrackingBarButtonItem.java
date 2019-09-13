@@ -54,7 +54,7 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "initWithMapView:")
     public MKUserTrackingBarButtonItem(MKMapView mapView) { super((SkipInit) null); initObject(init(mapView)); }
     @Method(selector = "initWithCoder:")
-    public MKUserTrackingBarButtonItem(NSCoder decoder) { super(decoder); }
+    public MKUserTrackingBarButtonItem(NSCoder coder) { super(coder); }
     @Method(selector = "initWithImage:style:target:action:")
     public MKUserTrackingBarButtonItem(UIImage image, UIBarButtonItemStyle style, NSObject target, Selector action) { super(image, style, target, action); }
     /**

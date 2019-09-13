@@ -133,14 +133,14 @@ import org.robovm.apple.dispatch.*;
     void didAddOverlayRenderers(MKMapView mapView, NSArray<MKOverlayRenderer> renderers);
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 13.0.
      */
     @Deprecated
     @Method(selector = "mapView:viewForOverlay:")
     MKOverlayView getOverlayView(MKMapView mapView, MKOverlay overlay);
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 13.0.
      */
     @Deprecated
     @Method(selector = "mapView:didAddOverlayViews:")

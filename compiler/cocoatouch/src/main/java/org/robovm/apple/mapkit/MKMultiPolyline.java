@@ -36,36 +36,42 @@ import org.robovm.apple.dispatch.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 11.0 and later.
+ * @since Available in iOS 13.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("MapKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MKUserTrackingButton/*</name>*/ 
-    extends /*<extends>*/UIView/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MKMultiPolyline/*</name>*/ 
+    extends /*<extends>*/MKShape/*</extends>*/ 
+    /*<implements>*/implements MKOverlay, MKGeoJSONObject/*</implements>*/ {
 
-    /*<ptr>*/public static class MKUserTrackingButtonPtr extends Ptr<MKUserTrackingButton, MKUserTrackingButtonPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(MKUserTrackingButton.class); }/*</bind>*/
+    /*<ptr>*/public static class MKMultiPolylinePtr extends Ptr<MKMultiPolyline, MKMultiPolylinePtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(MKMultiPolyline.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MKUserTrackingButton() {}
-    protected MKUserTrackingButton(Handle h, long handle) { super(h, handle); }
-    protected MKUserTrackingButton(SkipInit skipInit) { super(skipInit); }
-    public MKUserTrackingButton(MKMapView mapView) { super((Handle) null, create(mapView)); retain(getHandle()); }
-    @Method(selector = "initWithFrame:")
-    public MKUserTrackingButton(@ByVal CGRect frame) { super(frame); }
-    @Method(selector = "initWithCoder:")
-    public MKUserTrackingButton(NSCoder coder) { super(coder); }
+    public MKMultiPolyline() {}
+    protected MKMultiPolyline(Handle h, long handle) { super(h, handle); }
+    protected MKMultiPolyline(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithPolylines:")
+    public MKMultiPolyline(NSArray<MKPolyline> polylines) { super((SkipInit) null); initObject(init(polylines)); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "mapView")
-    public native MKMapView getMapView();
-    @Property(selector = "setMapView:", strongRef = true)
-    public native void setMapView(MKMapView v);
+    @Property(selector = "polylines")
+    public native NSArray<MKPolyline> getPolylines();
+    @Property(selector = "coordinate")
+    public native @ByVal CLLocationCoordinate2D getCoordinate();
+    @Property(selector = "boundingMapRect")
+    public native @ByVal MKMapRect getBoundingMapRect();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "userTrackingButtonWithMapView:")
-    protected static native @Pointer long create(MKMapView mapView);
+    @Method(selector = "initWithPolylines:")
+    protected native @Pointer long init(NSArray<MKPolyline> polylines);
+    @Method(selector = "intersectsMapRect:")
+    public native boolean intersects(@ByVal MKMapRect mapRect);
+    /**
+     * @since Available in iOS 7.0 and later.
+     */
+    @Method(selector = "canReplaceMapContent")
+    public native boolean canReplaceMapContent();
     /*</methods>*/
 }

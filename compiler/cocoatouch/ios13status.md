@@ -1,4 +1,5 @@
 processed:
+- mapkit
 - localauthentication
 - iosurface
 - intentsui
@@ -56,7 +57,6 @@ processed:
 - security
 
 to go:
-- mapkit
 - mediaplayer
 - mediatoolbox
 - messages

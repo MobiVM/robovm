@@ -69,8 +69,28 @@ import org.robovm.apple.dispatch.*;
     public native MKMapType getMapType();
     @Property(selector = "setMapType:")
     public native void setMapType(MKMapType v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "pointOfInterestFilter")
+    public native MKPointOfInterestFilter getPointOfInterestFilter();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setPointOfInterestFilter:")
+    public native void setPointOfInterestFilter(MKPointOfInterestFilter v);
+    /**
+     * @since Available in iOS 7.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use pointOfInterestFilter
+     */
+    @Deprecated
     @Property(selector = "showsPointsOfInterest")
     public native boolean showsPointsOfInterest();
+    /**
+     * @since Available in iOS 7.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use pointOfInterestFilter
+     */
+    @Deprecated
     @Property(selector = "setShowsPointsOfInterest:")
     public native void setShowsPointsOfInterest(boolean v);
     @Property(selector = "showsBuildings")
@@ -81,10 +101,30 @@ import org.robovm.apple.dispatch.*;
     public native @ByVal CGSize getSize();
     @Property(selector = "setSize:")
     public native void setSize(@ByVal CGSize v);
+    /**
+     * @since Available in iOS 7.0 and later.
+     * @deprecated Use traitCollection.displayScale
+     */
+    @Deprecated
     @Property(selector = "scale")
     public native @MachineSizedFloat double getScale();
+    /**
+     * @since Available in iOS 7.0 and later.
+     * @deprecated Use traitCollection.displayScale
+     */
+    @Deprecated
     @Property(selector = "setScale:")
     public native void setScale(@MachineSizedFloat double v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "traitCollection")
+    public native UITraitCollection getTraitCollection();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setTraitCollection:")
+    public native void setTraitCollection(UITraitCollection v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

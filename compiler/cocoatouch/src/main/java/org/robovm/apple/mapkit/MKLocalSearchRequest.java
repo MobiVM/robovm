@@ -52,6 +52,16 @@ import org.robovm.apple.dispatch.*;
     protected MKLocalSearchRequest(Handle h, long handle) { super(h, handle); }
     protected MKLocalSearchRequest(SkipInit skipInit) { super(skipInit); }
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "initWithNaturalLanguageQuery:")
+    public MKLocalSearchRequest(String naturalLanguageQuery) { super((SkipInit) null); initObject(init(naturalLanguageQuery)); }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "initWithNaturalLanguageQuery:region:")
+    public MKLocalSearchRequest(String naturalLanguageQuery, @ByVal MKCoordinateRegion region) { super((SkipInit) null); initObject(init(naturalLanguageQuery, region)); }
+    /**
      * @since Available in iOS 9.3 and later.
      */
     @Method(selector = "initWithCompletion:")
@@ -66,9 +76,39 @@ import org.robovm.apple.dispatch.*;
     public native @ByVal MKCoordinateRegion getRegion();
     @Property(selector = "setRegion:")
     public native void setRegion(@ByVal MKCoordinateRegion v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "resultTypes")
+    public native MKLocalSearchResultType getResultTypes();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setResultTypes:")
+    public native void setResultTypes(MKLocalSearchResultType v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "pointOfInterestFilter")
+    public native MKPointOfInterestFilter getPointOfInterestFilter();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setPointOfInterestFilter:")
+    public native void setPointOfInterestFilter(MKPointOfInterestFilter v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "initWithNaturalLanguageQuery:")
+    protected native @Pointer long init(String naturalLanguageQuery);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "initWithNaturalLanguageQuery:region:")
+    protected native @Pointer long init(String naturalLanguageQuery, @ByVal MKCoordinateRegion region);
     /**
      * @since Available in iOS 9.3 and later.
      */

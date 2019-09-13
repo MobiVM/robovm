@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -36,43 +36,32 @@ import org.robovm.apple.dispatch.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 3.0 and later.
+ * @since Available in iOS 13.0 and later.
  */
 /*</javadoc>*/
-@ForceLinkClass(MKError.class)
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/MKErrorCode/*</name>*/ implements NSErrorCode {
-    /*<values>*/
-    Unknown(1L),
-    ServerFailure(2L),
-    LoadingThrottled(3L),
-    PlacemarkNotFound(4L),
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
-    DirectionsNotFound(5L),
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    DecodingFailed(6L);
-    /*</values>*/
+/*<annotations>*/@Library("MapKit") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MKGeoJSONFeature/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
+    /*<implements>*/implements MKGeoJSONObject/*</implements>*/ {
 
-    /*<bind>*/
-    /*</bind>*/
+    /*<ptr>*/public static class MKGeoJSONFeaturePtr extends Ptr<MKGeoJSONFeature, MKGeoJSONFeaturePtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(MKGeoJSONFeature.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<methods>*//*</methods>*/
-
-    private final long n;
-
-    private /*<name>*/MKErrorCode/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/MKErrorCode/*</name>*/ valueOf(long n) {
-        for (/*<name>*/MKErrorCode/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/MKErrorCode/*</name>*/.class.getName());
-    }
+    /*<constructors>*/
+    public MKGeoJSONFeature() {}
+    protected MKGeoJSONFeature(Handle h, long handle) { super(h, handle); }
+    protected MKGeoJSONFeature(SkipInit skipInit) { super(skipInit); }
+    /*</constructors>*/
+    /*<properties>*/
+    @Property(selector = "identifier")
+    public native String getIdentifier();
+    @Property(selector = "properties")
+    public native NSData getProperties();
+    @Property(selector = "geometry")
+    public native NSArray<?> getGeometry();
+    /*</properties>*/
+    /*<members>*//*</members>*/
+    /*<methods>*/
+    
+    /*</methods>*/
 }

@@ -42,7 +42,7 @@ import org.robovm.apple.dispatch.*;
 /*<annotations>*/@Library("MapKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MKMultiPoint/*</name>*/ 
     extends /*<extends>*/MKShape/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements MKGeoJSONObject/*</implements>*/ {
 
     /*<ptr>*/public static class MKMultiPointPtr extends Ptr<MKMultiPoint, MKMultiPointPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(MKMultiPoint.class); }/*</bind>*/

@@ -55,7 +55,7 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "initWithFrame:")
     public MKScaleView(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public MKScaleView(NSCoder decoder) { super(decoder); }
+    public MKScaleView(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "mapView")

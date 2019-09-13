@@ -42,7 +42,7 @@ import org.robovm.apple.dispatch.*;
 /*<annotations>*/@Library("MapKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MKPolyline/*</name>*/ 
     extends /*<extends>*/MKMultiPoint/*</extends>*/ 
-    /*<implements>*/implements MKOverlay/*</implements>*/ {
+    /*<implements>*/implements MKOverlay, MKGeoJSONObject/*</implements>*/ {
 
     /*<ptr>*/public static class MKPolylinePtr extends Ptr<MKPolyline, MKPolylinePtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(MKPolyline.class); }/*</bind>*/

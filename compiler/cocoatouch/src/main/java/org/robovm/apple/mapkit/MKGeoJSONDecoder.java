@@ -36,36 +36,34 @@ import org.robovm.apple.dispatch.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 11.0 and later.
+ * @since Available in iOS 13.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("MapKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MKUserTrackingButton/*</name>*/ 
-    extends /*<extends>*/UIView/*</extends>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MKGeoJSONDecoder/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class MKUserTrackingButtonPtr extends Ptr<MKUserTrackingButton, MKUserTrackingButtonPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(MKUserTrackingButton.class); }/*</bind>*/
+    /*<ptr>*/public static class MKGeoJSONDecoderPtr extends Ptr<MKGeoJSONDecoder, MKGeoJSONDecoderPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(MKGeoJSONDecoder.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MKUserTrackingButton() {}
-    protected MKUserTrackingButton(Handle h, long handle) { super(h, handle); }
-    protected MKUserTrackingButton(SkipInit skipInit) { super(skipInit); }
-    public MKUserTrackingButton(MKMapView mapView) { super((Handle) null, create(mapView)); retain(getHandle()); }
-    @Method(selector = "initWithFrame:")
-    public MKUserTrackingButton(@ByVal CGRect frame) { super(frame); }
-    @Method(selector = "initWithCoder:")
-    public MKUserTrackingButton(NSCoder coder) { super(coder); }
+    public MKGeoJSONDecoder() {}
+    protected MKGeoJSONDecoder(Handle h, long handle) { super(h, handle); }
+    protected MKGeoJSONDecoder(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "mapView")
-    public native MKMapView getMapView();
-    @Property(selector = "setMapView:", strongRef = true)
-    public native void setMapView(MKMapView v);
+    
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "userTrackingButtonWithMapView:")
-    protected static native @Pointer long create(MKMapView mapView);
+    public NSArray<?> geoJSONObjects(NSData data) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       NSArray<?> result = geoJSONObjects(data, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    @Method(selector = "geoJSONObjectsWithData:error:")
+    private native NSArray<?> geoJSONObjects(NSData data, NSError.NSErrorPtr errorPtr);
     /*</methods>*/
 }

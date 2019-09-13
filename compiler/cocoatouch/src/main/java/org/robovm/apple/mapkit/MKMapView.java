@@ -54,7 +54,7 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "initWithFrame:")
     public MKMapView(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public MKMapView(NSCoder decoder) { super(decoder); }
+    public MKMapView(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "delegate")
@@ -87,6 +87,26 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "setCamera:")
     public native void setCamera(MKMapCamera v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "cameraZoomRange")
+    public native MKMapCameraZoomRange getCameraZoomRange();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setCameraZoomRange:")
+    public native void setCameraZoomRange(MKMapCameraZoomRange v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "cameraBoundary")
+    public native MKMapCameraBoundary getCameraBoundary();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setCameraBoundary:")
+    public native void setCameraBoundary(MKMapCameraBoundary v);
     @Property(selector = "isZoomEnabled")
     public native boolean isZoomEnabled();
     @Property(selector = "setZoomEnabled:")
@@ -136,13 +156,27 @@ import org.robovm.apple.dispatch.*;
     @Property(selector = "setShowsScale:")
     public native void setShowsScale(boolean v);
     /**
-     * @since Available in iOS 7.0 and later.
+     * @since Available in iOS 13.0 and later.
      */
+    @Property(selector = "pointOfInterestFilter")
+    public native MKPointOfInterestFilter getPointOfInterestFilter();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setPointOfInterestFilter:")
+    public native void setPointOfInterestFilter(MKPointOfInterestFilter v);
+    /**
+     * @since Available in iOS 7.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use pointOfInterestFilter
+     */
+    @Deprecated
     @Property(selector = "showsPointsOfInterest")
     public native boolean showsPointsOfInterest();
     /**
      * @since Available in iOS 7.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use pointOfInterestFilter
      */
+    @Deprecated
     @Property(selector = "setShowsPointsOfInterest:")
     public native void setShowsPointsOfInterest(boolean v);
     /**
@@ -229,6 +263,16 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "setCamera:animated:")
     public native void setCamera(MKMapCamera camera, boolean animated);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "setCameraZoomRange:animated:")
+    public native void setCameraZoomRange(MKMapCameraZoomRange cameraZoomRange, boolean animated);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "setCameraBoundary:animated:")
+    public native void setCameraBoundary(MKMapCameraBoundary cameraBoundary, boolean animated);
     @Method(selector = "convertCoordinate:toPointToView:")
     public native @ByVal CGPoint convertCoordinateToPointToView(@ByVal CLLocationCoordinate2D coordinate, UIView view);
     @Method(selector = "convertPoint:toCoordinateFromView:")
@@ -330,7 +374,7 @@ import org.robovm.apple.dispatch.*;
     public native MKOverlayRenderer getOverlayRenderer(MKOverlay overlay);
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 13.0.
      */
     @Deprecated
     @Method(selector = "viewForOverlay:")

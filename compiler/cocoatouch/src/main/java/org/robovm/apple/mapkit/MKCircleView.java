@@ -37,9 +37,10 @@ import org.robovm.apple.dispatch.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 4.0 and later.
+ * @deprecated Deprecated in iOS 13.0.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("MapKit") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MapKit") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MKCircleView/*</name>*/ 
     extends /*<extends>*/MKOverlayPathView/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -68,7 +69,7 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "initWithFrame:")
     public MKCircleView(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public MKCircleView(NSCoder decoder) { super(decoder); }
+    public MKCircleView(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     /**

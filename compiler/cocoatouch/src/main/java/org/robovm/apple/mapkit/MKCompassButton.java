@@ -55,7 +55,7 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "initWithFrame:")
     public MKCompassButton(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public MKCompassButton(NSCoder decoder) { super(decoder); }
+    public MKCompassButton(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "mapView")
