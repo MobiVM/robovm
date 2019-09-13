@@ -1,4 +1,9 @@
 processed:
+- metal
+- messageui
+- messages
+- mediatoolbox
+- mediaplayer
 - mapkit
 - localauthentication
 - iosurface
@@ -57,11 +62,6 @@ processed:
 - security
 
 to go:
-- mediaplayer
-- mediatoolbox
-- messages
-- messageui
-- metal
 - metalkit
 - metalperformanceshaders
 - mobilecoreservices
