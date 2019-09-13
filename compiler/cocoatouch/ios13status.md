@@ -1,4 +1,5 @@
 processed:
+- intentsui
 - intents
 - imageio
 - identitylookupui
@@ -53,7 +54,6 @@ processed:
 - security
 
 to go:
-- intentsui
 - iosurface
 - localauthentication
 - mapkit
