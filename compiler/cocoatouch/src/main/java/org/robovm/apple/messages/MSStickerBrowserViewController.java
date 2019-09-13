@@ -54,7 +54,7 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "initWithNibName:bundle:")
     public MSStickerBrowserViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
     @Method(selector = "initWithCoder:")
-    public MSStickerBrowserViewController(NSCoder decoder) { super(decoder); }
+    public MSStickerBrowserViewController(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "stickerBrowserView")
