@@ -54,6 +54,16 @@ import org.robovm.apple.dispatch.*;
     public native MTLIndirectCommandType getCommandTypes();
     @Property(selector = "setCommandTypes:")
     public native void setCommandTypes(MTLIndirectCommandType v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "inheritPipelineState")
+    public native boolean isInheritPipelineState();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setInheritPipelineState:")
+    public native void setInheritPipelineState(boolean v);
     @Property(selector = "inheritBuffers")
     public native boolean isInheritBuffers();
     @Property(selector = "setInheritBuffers:")
@@ -66,6 +76,16 @@ import org.robovm.apple.dispatch.*;
     public native @MachineSizedUInt long getMaxFragmentBufferBindCount();
     @Property(selector = "setMaxFragmentBufferBindCount:")
     public native void setMaxFragmentBufferBindCount(@MachineSizedUInt long v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "maxKernelBufferBindCount")
+    public native @MachineSizedUInt long getMaxKernelBufferBindCount();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setMaxKernelBufferBindCount:")
+    public native void setMaxKernelBufferBindCount(@MachineSizedUInt long v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

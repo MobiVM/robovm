@@ -55,6 +55,16 @@ import org.robovm.apple.dispatch.*;
     public MTLStorageMode getStorageMode() { return null; }
     @NotImplemented("cpuCacheMode")
     public MTLCPUCacheMode getCpuCacheMode() { return null; }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("hazardTrackingMode")
+    public MTLHazardTrackingMode getHazardTrackingMode() { return null; }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("resourceOptions")
+    public MTLResourceOptions getResourceOptions() { return null; }
     @NotImplemented("size")
     public @MachineSizedUInt long getSize() { return 0; }
     @NotImplemented("usedSize")
@@ -64,6 +74,11 @@ import org.robovm.apple.dispatch.*;
      */
     @NotImplemented("currentAllocatedSize")
     public @MachineSizedUInt long getCurrentAllocatedSize() { return 0; }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("type")
+    public MTLHeapType getType() { return null; }
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -75,5 +90,15 @@ import org.robovm.apple.dispatch.*;
     public MTLTexture newTexture(MTLTextureDescriptor desc) { return null; }
     @NotImplemented("setPurgeableState:")
     public MTLPurgeableState setPurgeableState(MTLPurgeableState state) { return null; }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("newBufferWithLength:options:offset:")
+    public MTLBuffer newBuffer(@MachineSizedUInt long length, MTLResourceOptions options, @MachineSizedUInt long offset) { return null; }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("newTextureWithDescriptor:offset:")
+    public MTLTexture newTexture(MTLTextureDescriptor descriptor, @MachineSizedUInt long offset) { return null; }
     /*</methods>*/
 }

@@ -32,32 +32,31 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
+/**
+ * @since Available in iOS 13.0 and later.
+ */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MTLIndirectCommandBufferAdapter/*</name>*/ 
-    extends /*<extends>*/MTLResourceAdapter/*</extends>*/ 
-    /*<implements>*/implements MTLIndirectCommandBuffer/*</implements>*/ {
+/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MTLRasterizationRateLayerArray/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/
-    /*</ptr>*/
-    /*<bind>*/
-    /*</bind>*/
+    /*<ptr>*/public static class MTLRasterizationRateLayerArrayPtr extends Ptr<MTLRasterizationRateLayerArray, MTLRasterizationRateLayerArrayPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(MTLRasterizationRateLayerArray.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*//*</constructors>*/
+    /*<constructors>*/
+    public MTLRasterizationRateLayerArray() {}
+    protected MTLRasterizationRateLayerArray(Handle h, long handle) { super(h, handle); }
+    protected MTLRasterizationRateLayerArray(SkipInit skipInit) { super(skipInit); }
+    /*</constructors>*/
     /*<properties>*/
-    @NotImplemented("size")
-    public @MachineSizedUInt long getSize() { return 0; }
+    
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @NotImplemented("resetWithRange:")
-    public void reset(@ByVal NSRange range) {}
-    @NotImplemented("indirectRenderCommandAtIndex:")
-    public MTLIndirectRenderCommand indirectRenderCommandAtIndex(@MachineSizedUInt long commandIndex) { return null; }
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @NotImplemented("indirectComputeCommandAtIndex:")
-    public MTLIndirectComputeCommand indirectComputeCommandAtIndex(@MachineSizedUInt long commandIndex) { return null; }
+    @Method(selector = "objectAtIndexedSubscript:")
+    public native MTLRasterizationRateLayerDescriptor objectAtIndexedSubscript(@MachineSizedUInt long layerIndex);
+    @Method(selector = "setObject:atIndexedSubscript:")
+    public native void setObjec(MTLRasterizationRateLayerDescriptor layer, @MachineSizedUInt long layerIndex);
     /*</methods>*/
 }

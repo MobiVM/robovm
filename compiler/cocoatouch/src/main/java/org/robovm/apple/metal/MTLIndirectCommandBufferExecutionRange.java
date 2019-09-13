@@ -32,32 +32,30 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
+
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MTLIndirectCommandBufferAdapter/*</name>*/ 
-    extends /*<extends>*/MTLResourceAdapter/*</extends>*/ 
-    /*<implements>*/implements MTLIndirectCommandBuffer/*</implements>*/ {
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MTLIndirectCommandBufferExecutionRange/*</name>*/ 
+    extends /*<extends>*/Struct<MTLIndirectCommandBufferExecutionRange>/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/
-    /*</ptr>*/
+    /*<ptr>*/public static class MTLIndirectCommandBufferExecutionRangePtr extends Ptr<MTLIndirectCommandBufferExecutionRange, MTLIndirectCommandBufferExecutionRangePtr> {}/*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*//*</constructors>*/
-    /*<properties>*/
-    @NotImplemented("size")
-    public @MachineSizedUInt long getSize() { return 0; }
-    /*</properties>*/
-    /*<members>*//*</members>*/
-    /*<methods>*/
-    @NotImplemented("resetWithRange:")
-    public void reset(@ByVal NSRange range) {}
-    @NotImplemented("indirectRenderCommandAtIndex:")
-    public MTLIndirectRenderCommand indirectRenderCommandAtIndex(@MachineSizedUInt long commandIndex) { return null; }
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @NotImplemented("indirectComputeCommandAtIndex:")
-    public MTLIndirectComputeCommand indirectComputeCommandAtIndex(@MachineSizedUInt long commandIndex) { return null; }
-    /*</methods>*/
+    /*<constructors>*/
+    public MTLIndirectCommandBufferExecutionRange() {}
+    public MTLIndirectCommandBufferExecutionRange(int location, int length) {
+        this.setLocation(location);
+        this.setLength(length);
+    }
+    /*</constructors>*/
+    /*<properties>*//*</properties>*/
+    /*<members>*/
+    @StructMember(0) public native int getLocation();
+    @StructMember(0) public native MTLIndirectCommandBufferExecutionRange setLocation(int location);
+    @StructMember(1) public native int getLength();
+    @StructMember(1) public native MTLIndirectCommandBufferExecutionRange setLength(int length);
+    /*</members>*/
+    /*<methods>*//*</methods>*/
 }

@@ -144,6 +144,16 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "setRenderTargetHeight:")
     public native void setRenderTargetHeight(@MachineSizedUInt long v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "rasterizationRateMap")
+    public native MTLRasterizationRateMap getRasterizationRateMap();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setRasterizationRateMap:")
+    public native void setRasterizationRateMap(MTLRasterizationRateMap v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

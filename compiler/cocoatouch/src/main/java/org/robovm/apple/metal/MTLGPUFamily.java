@@ -32,32 +32,44 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
+/**
+ * @since Available in iOS 13.0 and later.
+ */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MTLIndirectCommandBufferAdapter/*</name>*/ 
-    extends /*<extends>*/MTLResourceAdapter/*</extends>*/ 
-    /*<implements>*/implements MTLIndirectCommandBuffer/*</implements>*/ {
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+public enum /*<name>*/MTLGPUFamily/*</name>*/ implements ValuedEnum {
+    /*<values>*/
+    Apple1(1001L),
+    Apple2(1002L),
+    Apple3(1003L),
+    Apple4(1004L),
+    Apple5(1005L),
+    Apple6(1006L),
+    Mac1(2001L),
+    Mac2(2002L),
+    Common1(3001L),
+    Common2(3002L),
+    Common3(3003L),
+    iOSMac1(4001L),
+    iOSMac2(4002L);
+    /*</values>*/
 
-    /*<ptr>*/
-    /*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*//*</constructors>*/
-    /*<properties>*/
-    @NotImplemented("size")
-    public @MachineSizedUInt long getSize() { return 0; }
-    /*</properties>*/
-    /*<members>*//*</members>*/
-    /*<methods>*/
-    @NotImplemented("resetWithRange:")
-    public void reset(@ByVal NSRange range) {}
-    @NotImplemented("indirectRenderCommandAtIndex:")
-    public MTLIndirectRenderCommand indirectRenderCommandAtIndex(@MachineSizedUInt long commandIndex) { return null; }
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @NotImplemented("indirectComputeCommandAtIndex:")
-    public MTLIndirectComputeCommand indirectComputeCommandAtIndex(@MachineSizedUInt long commandIndex) { return null; }
-    /*</methods>*/
+    /*<methods>*//*</methods>*/
+
+    private final long n;
+
+    private /*<name>*/MTLGPUFamily/*</name>*/(long n) { this.n = n; }
+    public long value() { return n; }
+    public static /*<name>*/MTLGPUFamily/*</name>*/ valueOf(long n) {
+        for (/*<name>*/MTLGPUFamily/*</name>*/ v : values()) {
+            if (v.n == n) {
+                return v;
+            }
+        }
+        throw new IllegalArgumentException("No constant with value " + n + " found in " 
+            + /*<name>*/MTLGPUFamily/*</name>*/.class.getName());
+    }
 }

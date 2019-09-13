@@ -32,32 +32,45 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
+/**
+ * @since Available in iOS 13.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MTLIndirectCommandBufferAdapter/*</name>*/ 
-    extends /*<extends>*/MTLResourceAdapter/*</extends>*/ 
-    /*<implements>*/implements MTLIndirectCommandBuffer/*</implements>*/ {
+/*<visibility>*/public/*</visibility>*/ interface /*<name>*/MTLIndirectComputeCommand/*</name>*/ 
+    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
 
     /*<ptr>*/
     /*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*//*</constructors>*/
     /*<properties>*/
-    @NotImplemented("size")
-    public @MachineSizedUInt long getSize() { return 0; }
+    
     /*</properties>*/
-    /*<members>*//*</members>*/
     /*<methods>*/
-    @NotImplemented("resetWithRange:")
-    public void reset(@ByVal NSRange range) {}
-    @NotImplemented("indirectRenderCommandAtIndex:")
-    public MTLIndirectRenderCommand indirectRenderCommandAtIndex(@MachineSizedUInt long commandIndex) { return null; }
     /**
      * @since Available in iOS 13.0 and later.
      */
-    @NotImplemented("indirectComputeCommandAtIndex:")
-    public MTLIndirectComputeCommand indirectComputeCommandAtIndex(@MachineSizedUInt long commandIndex) { return null; }
+    @Method(selector = "setComputePipelineState:")
+    void setComputePipelineState(MTLComputePipelineState pipelineState);
+    @Method(selector = "setKernelBuffer:offset:atIndex:")
+    void setKernelBuffer(MTLBuffer buffer, @MachineSizedUInt long offset, @MachineSizedUInt long index);
+    @Method(selector = "concurrentDispatchThreadgroups:threadsPerThreadgroup:")
+    void concurrentDispatchThreadgroups(@ByVal MTLSize threadgroupsPerGrid, @ByVal MTLSize threadsPerThreadgroup);
+    @Method(selector = "concurrentDispatchThreads:threadsPerThreadgroup:")
+    void concurrentDispatchThreads(@ByVal MTLSize threadsPerGrid, @ByVal MTLSize threadsPerThreadgroup);
+    @Method(selector = "setBarrier")
+    void setBarrier();
+    @Method(selector = "clearBarrier")
+    void clearBarrier();
+    @Method(selector = "reset")
+    void reset();
+    @Method(selector = "setThreadgroupMemoryLength:atIndex:")
+    void setThreadgroupMemoryLength(@MachineSizedUInt long length, @MachineSizedUInt long index);
+    @Method(selector = "setStageInRegion:")
+    void setStageInRegion(@ByVal MTLRegion region);
     /*</methods>*/
+    /*<adapter>*/
+    /*</adapter>*/
 }

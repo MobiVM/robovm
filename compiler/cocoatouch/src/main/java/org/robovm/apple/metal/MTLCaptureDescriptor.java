@@ -33,35 +33,38 @@ import org.robovm.apple.dispatch.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 12.0 and later.
+ * @since Available in iOS 13.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MTLSharedEventHandle/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MTLCaptureDescriptor/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
+    /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class MTLSharedEventHandlePtr extends Ptr<MTLSharedEventHandle, MTLSharedEventHandlePtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(MTLSharedEventHandle.class); }/*</bind>*/
+    /*<ptr>*/public static class MTLCaptureDescriptorPtr extends Ptr<MTLCaptureDescriptor, MTLCaptureDescriptorPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(MTLCaptureDescriptor.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MTLSharedEventHandle() {}
-    protected MTLSharedEventHandle(Handle h, long handle) { super(h, handle); }
-    protected MTLSharedEventHandle(SkipInit skipInit) { super(skipInit); }
-    @Method(selector = "initWithCoder:")
-    public MTLSharedEventHandle(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
+    public MTLCaptureDescriptor() {}
+    protected MTLCaptureDescriptor(Handle h, long handle) { super(h, handle); }
+    protected MTLCaptureDescriptor(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "label")
-    public native String getLabel();
-    @Property(selector = "supportsSecureCoding")
-    public static native boolean supportsSecureCoding();
+    @Property(selector = "captureObject")
+    public native NSObject getCaptureObject();
+    @Property(selector = "setCaptureObject:")
+    public native void setCaptureObject(NSObject v);
+    @Property(selector = "destination")
+    public native MTLCaptureDestination getDestination();
+    @Property(selector = "setDestination:")
+    public native void setDestination(MTLCaptureDestination v);
+    @Property(selector = "outputURL")
+    public native NSURL getOutputURL();
+    @Property(selector = "setOutputURL:")
+    public native void setOutputURL(NSURL v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "encodeWithCoder:")
-    public native void encode(NSCoder coder);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder coder);
+    
     /*</methods>*/
 }

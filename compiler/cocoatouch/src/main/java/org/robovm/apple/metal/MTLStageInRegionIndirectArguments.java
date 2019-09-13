@@ -32,32 +32,30 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
+
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MTLIndirectCommandBufferAdapter/*</name>*/ 
-    extends /*<extends>*/MTLResourceAdapter/*</extends>*/ 
-    /*<implements>*/implements MTLIndirectCommandBuffer/*</implements>*/ {
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MTLStageInRegionIndirectArguments/*</name>*/ 
+    extends /*<extends>*/Struct<MTLStageInRegionIndirectArguments>/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/
-    /*</ptr>*/
+    /*<ptr>*/public static class MTLStageInRegionIndirectArgumentsPtr extends Ptr<MTLStageInRegionIndirectArguments, MTLStageInRegionIndirectArgumentsPtr> {}/*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*//*</constructors>*/
-    /*<properties>*/
-    @NotImplemented("size")
-    public @MachineSizedUInt long getSize() { return 0; }
-    /*</properties>*/
-    /*<members>*//*</members>*/
-    /*<methods>*/
-    @NotImplemented("resetWithRange:")
-    public void reset(@ByVal NSRange range) {}
-    @NotImplemented("indirectRenderCommandAtIndex:")
-    public MTLIndirectRenderCommand indirectRenderCommandAtIndex(@MachineSizedUInt long commandIndex) { return null; }
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @NotImplemented("indirectComputeCommandAtIndex:")
-    public MTLIndirectComputeCommand indirectComputeCommandAtIndex(@MachineSizedUInt long commandIndex) { return null; }
-    /*</methods>*/
+    /*<constructors>*/
+    public MTLStageInRegionIndirectArguments() {}
+    public MTLStageInRegionIndirectArguments(IntBuffer stageInOrigin, IntBuffer stageInSize) {
+        this.setStageInOrigin(stageInOrigin);
+        this.setStageInSize(stageInSize);
+    }
+    /*</constructors>*/
+    /*<properties>*//*</properties>*/
+    /*<members>*/
+    @StructMember(0) public native @Array({3}) IntBuffer getStageInOrigin();
+    @StructMember(0) public native MTLStageInRegionIndirectArguments setStageInOrigin(@Array({3}) IntBuffer stageInOrigin);
+    @StructMember(1) public native @Array({3}) IntBuffer getStageInSize();
+    @StructMember(1) public native MTLStageInRegionIndirectArguments setStageInSize(@Array({3}) IntBuffer stageInSize);
+    /*</members>*/
+    /*<methods>*//*</methods>*/
 }

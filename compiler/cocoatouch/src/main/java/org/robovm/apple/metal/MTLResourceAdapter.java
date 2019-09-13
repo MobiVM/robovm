@@ -59,10 +59,25 @@ import org.robovm.apple.dispatch.*;
     @NotImplemented("storageMode")
     public MTLStorageMode getStorageMode() { return null; }
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("hazardTrackingMode")
+    public MTLHazardTrackingMode getHazardTrackingMode() { return null; }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("resourceOptions")
+    public MTLResourceOptions getResourceOptions() { return null; }
+    /**
      * @since Available in iOS 10.0 and later.
      */
     @NotImplemented("heap")
     public MTLHeap getHeap() { return null; }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("heapOffset")
+    public @MachineSizedUInt long getHeapOffset() { return 0; }
     /**
      * @since Available in iOS 11.0 and later.
      */

@@ -33,25 +33,27 @@ import org.robovm.apple.dispatch.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 12.0 and later.
+ * @since Available in iOS 13.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MTLSharedEventHandle/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MTLSharedTextureHandle/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
-    /*<ptr>*/public static class MTLSharedEventHandlePtr extends Ptr<MTLSharedEventHandle, MTLSharedEventHandlePtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(MTLSharedEventHandle.class); }/*</bind>*/
+    /*<ptr>*/public static class MTLSharedTextureHandlePtr extends Ptr<MTLSharedTextureHandle, MTLSharedTextureHandlePtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(MTLSharedTextureHandle.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MTLSharedEventHandle() {}
-    protected MTLSharedEventHandle(Handle h, long handle) { super(h, handle); }
-    protected MTLSharedEventHandle(SkipInit skipInit) { super(skipInit); }
+    public MTLSharedTextureHandle() {}
+    protected MTLSharedTextureHandle(Handle h, long handle) { super(h, handle); }
+    protected MTLSharedTextureHandle(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public MTLSharedEventHandle(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
+    public MTLSharedTextureHandle(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
+    @Property(selector = "device")
+    public native MTLDevice getDevice();
     @Property(selector = "label")
     public native String getLabel();
     @Property(selector = "supportsSecureCoding")

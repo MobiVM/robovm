@@ -32,32 +32,33 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
+/**
+ * @since Available in iOS 13.0 and later.
+ */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MTLIndirectCommandBufferAdapter/*</name>*/ 
-    extends /*<extends>*/MTLResourceAdapter/*</extends>*/ 
-    /*<implements>*/implements MTLIndirectCommandBuffer/*</implements>*/ {
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+public enum /*<name>*/MTLCaptureDestination/*</name>*/ implements ValuedEnum {
+    /*<values>*/
+    DeveloperTools(1L),
+    GPUTraceDocument(2L);
+    /*</values>*/
 
-    /*<ptr>*/
-    /*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*//*</constructors>*/
-    /*<properties>*/
-    @NotImplemented("size")
-    public @MachineSizedUInt long getSize() { return 0; }
-    /*</properties>*/
-    /*<members>*//*</members>*/
-    /*<methods>*/
-    @NotImplemented("resetWithRange:")
-    public void reset(@ByVal NSRange range) {}
-    @NotImplemented("indirectRenderCommandAtIndex:")
-    public MTLIndirectRenderCommand indirectRenderCommandAtIndex(@MachineSizedUInt long commandIndex) { return null; }
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @NotImplemented("indirectComputeCommandAtIndex:")
-    public MTLIndirectComputeCommand indirectComputeCommandAtIndex(@MachineSizedUInt long commandIndex) { return null; }
-    /*</methods>*/
+    /*<methods>*//*</methods>*/
+
+    private final long n;
+
+    private /*<name>*/MTLCaptureDestination/*</name>*/(long n) { this.n = n; }
+    public long value() { return n; }
+    public static /*<name>*/MTLCaptureDestination/*</name>*/ valueOf(long n) {
+        for (/*<name>*/MTLCaptureDestination/*</name>*/ v : values()) {
+            if (v.n == n) {
+                return v;
+            }
+        }
+        throw new IllegalArgumentException("No constant with value " + n + " found in " 
+            + /*<name>*/MTLCaptureDestination/*</name>*/.class.getName());
+    }
 }

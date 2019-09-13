@@ -64,10 +64,25 @@ import org.robovm.apple.dispatch.*;
     @Property(selector = "storageMode")
     public native MTLStorageMode getStorageMode();
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "hazardTrackingMode")
+    public native MTLHazardTrackingMode getHazardTrackingMode();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "resourceOptions")
+    public native MTLResourceOptions getResourceOptions();
+    /**
      * @since Available in iOS 10.0 and later.
      */
     @Property(selector = "heap")
     public native MTLHeap getHeap();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "heapOffset")
+    public native @MachineSizedUInt long getHeapOffset();
     /**
      * @since Available in iOS 11.0 and later.
      */

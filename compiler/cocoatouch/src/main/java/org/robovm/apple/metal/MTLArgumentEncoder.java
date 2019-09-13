@@ -77,6 +77,26 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "constantDataAtIndex:")
     VoidPtr constantDataAtIndex(@MachineSizedUInt long index);
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "setRenderPipelineState:atIndex:")
+    void setRenderPipelineState(MTLRenderPipelineState pipeline, @MachineSizedUInt long index);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "setRenderPipelineStates:withRange:")
+    void setRenderPipelineStates(MTLRenderPipelineState pipelines, @ByVal NSRange range);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "setComputePipelineState:atIndex:")
+    void setComputePipelineState(MTLComputePipelineState pipeline, @MachineSizedUInt long index);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "setComputePipelineStates:withRange:")
+    void setComputePipelineStates(MTLComputePipelineState pipelines, @ByVal NSRange range);
+    /**
      * @since Available in iOS 12.0 and later.
      */
     @Method(selector = "setIndirectCommandBuffer:atIndex:")
@@ -87,7 +107,7 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "setIndirectCommandBuffers:withRange:")
     void setIndirectCommandBuffers(MTLIndirectCommandBuffer buffers, @ByVal NSRange range);
     /**
-     * @since Available in iOS 10.0 and later.
+     * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "newArgumentEncoderForBufferAtIndex:")
     MTLArgumentEncoder newArgumentEncoderForBufferAtIndex(@MachineSizedUInt long index);

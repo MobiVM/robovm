@@ -173,6 +173,14 @@ public enum /*<name>*/MTLDataType/*</name>*/ implements ValuedEnum {
      */
     RGB9E5Float(77L),
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    RenderPipeline(78L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    ComputePipeline(79L),
+    /**
      * @since Available in iOS 12.0 and later.
      */
     IndirectCommandBuffer(80L);

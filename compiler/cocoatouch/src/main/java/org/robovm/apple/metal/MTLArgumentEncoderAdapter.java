@@ -77,6 +77,26 @@ import org.robovm.apple.dispatch.*;
     @NotImplemented("constantDataAtIndex:")
     public VoidPtr constantDataAtIndex(@MachineSizedUInt long index) { return null; }
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("setRenderPipelineState:atIndex:")
+    public void setRenderPipelineState(MTLRenderPipelineState pipeline, @MachineSizedUInt long index) {}
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("setRenderPipelineStates:withRange:")
+    public void setRenderPipelineStates(MTLRenderPipelineState pipelines, @ByVal NSRange range) {}
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("setComputePipelineState:atIndex:")
+    public void setComputePipelineState(MTLComputePipelineState pipeline, @MachineSizedUInt long index) {}
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("setComputePipelineStates:withRange:")
+    public void setComputePipelineStates(MTLComputePipelineState pipelines, @ByVal NSRange range) {}
+    /**
      * @since Available in iOS 12.0 and later.
      */
     @NotImplemented("setIndirectCommandBuffer:atIndex:")
@@ -87,7 +107,7 @@ import org.robovm.apple.dispatch.*;
     @NotImplemented("setIndirectCommandBuffers:withRange:")
     public void setIndirectCommandBuffers(MTLIndirectCommandBuffer buffers, @ByVal NSRange range) {}
     /**
-     * @since Available in iOS 10.0 and later.
+     * @since Available in iOS 11.0 and later.
      */
     @NotImplemented("newArgumentEncoderForBufferAtIndex:")
     public MTLArgumentEncoder newArgumentEncoderForBufferAtIndex(@MachineSizedUInt long index) { return null; }

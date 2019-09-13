@@ -34,9 +34,9 @@ import org.robovm.apple.dispatch.*;
 /*<javadoc>*/
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MTLIndirectCommandBufferAdapter/*</name>*/ 
-    extends /*<extends>*/MTLResourceAdapter/*</extends>*/ 
-    /*<implements>*/implements MTLIndirectCommandBuffer/*</implements>*/ {
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MTLIndirectComputeCommandAdapter/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
+    /*<implements>*/implements MTLIndirectComputeCommand/*</implements>*/ {
 
     /*<ptr>*/
     /*</ptr>*/
@@ -45,19 +45,30 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*//*</constructors>*/
     /*<properties>*/
-    @NotImplemented("size")
-    public @MachineSizedUInt long getSize() { return 0; }
+    
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @NotImplemented("resetWithRange:")
-    public void reset(@ByVal NSRange range) {}
-    @NotImplemented("indirectRenderCommandAtIndex:")
-    public MTLIndirectRenderCommand indirectRenderCommandAtIndex(@MachineSizedUInt long commandIndex) { return null; }
     /**
      * @since Available in iOS 13.0 and later.
      */
-    @NotImplemented("indirectComputeCommandAtIndex:")
-    public MTLIndirectComputeCommand indirectComputeCommandAtIndex(@MachineSizedUInt long commandIndex) { return null; }
+    @NotImplemented("setComputePipelineState:")
+    public void setComputePipelineState(MTLComputePipelineState pipelineState) {}
+    @NotImplemented("setKernelBuffer:offset:atIndex:")
+    public void setKernelBuffer(MTLBuffer buffer, @MachineSizedUInt long offset, @MachineSizedUInt long index) {}
+    @NotImplemented("concurrentDispatchThreadgroups:threadsPerThreadgroup:")
+    public void concurrentDispatchThreadgroups(@ByVal MTLSize threadgroupsPerGrid, @ByVal MTLSize threadsPerThreadgroup) {}
+    @NotImplemented("concurrentDispatchThreads:threadsPerThreadgroup:")
+    public void concurrentDispatchThreads(@ByVal MTLSize threadsPerGrid, @ByVal MTLSize threadsPerThreadgroup) {}
+    @NotImplemented("setBarrier")
+    public void setBarrier() {}
+    @NotImplemented("clearBarrier")
+    public void clearBarrier() {}
+    @NotImplemented("reset")
+    public void reset() {}
+    @NotImplemented("setThreadgroupMemoryLength:atIndex:")
+    public void setThreadgroupMemoryLength(@MachineSizedUInt long length, @MachineSizedUInt long index) {}
+    @NotImplemented("setStageInRegion:")
+    public void setStageInRegion(@ByVal MTLRegion region) {}
     /*</methods>*/
 }

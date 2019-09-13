@@ -312,8 +312,68 @@ public enum /*<name>*/MTLPixelFormat/*</name>*/ implements ValuedEnum {
      * @since Available in iOS 8.0 and later.
      */
     ASTC_12x12_LDR(218L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    ASTC_4x4_HDR(222L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    ASTC_5x4_HDR(223L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    ASTC_5x5_HDR(224L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    ASTC_6x5_HDR(225L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    ASTC_6x6_HDR(226L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    ASTC_8x5_HDR(228L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    ASTC_8x6_HDR(229L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    ASTC_8x8_HDR(230L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    ASTC_10x5_HDR(231L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    ASTC_10x6_HDR(232L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    ASTC_10x8_HDR(233L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    ASTC_10x10_HDR(234L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    ASTC_12x10_HDR(235L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    ASTC_12x12_HDR(236L),
     GBGR422(240L),
     BGRG422(241L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    Depth16Unorm(250L),
     Depth32Float(252L),
     Stencil8(253L),
     /**

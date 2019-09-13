@@ -49,6 +49,11 @@ import org.robovm.apple.dispatch.*;
     
     /*</properties>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "setRenderPipelineState:")
+    void setRenderPipelineState(MTLRenderPipelineState pipelineState);
     @Method(selector = "setVertexBuffer:offset:atIndex:")
     void setVertexBuffer(MTLBuffer buffer, @MachineSizedUInt long offset, @MachineSizedUInt long index);
     @Method(selector = "setFragmentBuffer:offset:atIndex:")

@@ -64,6 +64,11 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "staticThreadgroupMemoryLength")
     public native @MachineSizedUInt long getStaticThreadgroupMemoryLength();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "supportIndirectCommandBuffers")
+    public native boolean isSupportIndirectCommandBuffers();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
