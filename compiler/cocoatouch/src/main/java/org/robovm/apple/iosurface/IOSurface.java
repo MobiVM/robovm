@@ -44,7 +44,7 @@ import org.robovm.apple.corefoundation.*;
     /*<ptr>*/public static class IOSurfacePtr extends Ptr<IOSurface, IOSurfacePtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(IOSurface.class); }/*</bind>*/
     /*<constants>*/
-    public static final int Constants_kIOSurfaceSuccess = 0;
+    public static final int successCode = 0;
     /*</constants>*/
     /*<constructors>*/
     public IOSurface() {}
@@ -53,7 +53,7 @@ import org.robovm.apple.corefoundation.*;
     @Method(selector = "initWithProperties:")
     public IOSurface(NSDictionary<?, ?> properties) { super((SkipInit) null); initObject(init(properties)); }
     @Method(selector = "initWithCoder:")
-    public IOSurface(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public IOSurface(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "allocationSize")
@@ -376,6 +376,6 @@ import org.robovm.apple.corefoundation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }
