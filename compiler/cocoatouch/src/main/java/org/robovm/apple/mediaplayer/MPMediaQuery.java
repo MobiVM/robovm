@@ -51,7 +51,7 @@ import org.robovm.apple.coregraphics.*;
     @Method(selector = "initWithFilterPredicates:")
     public MPMediaQuery(NSSet<MPMediaPredicate> filterPredicates) { super((SkipInit) null); initObject(init(filterPredicates)); }
     @Method(selector = "initWithCoder:")
-    public MPMediaQuery(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public MPMediaQuery(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "filterPredicates")
@@ -108,6 +108,6 @@ import org.robovm.apple.coregraphics.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

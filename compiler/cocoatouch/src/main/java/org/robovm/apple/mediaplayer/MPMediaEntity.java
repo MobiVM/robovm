@@ -50,7 +50,7 @@ import org.robovm.apple.coregraphics.*;
     protected MPMediaEntity(Handle h, long handle) { super(h, handle); }
     protected MPMediaEntity(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public MPMediaEntity(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public MPMediaEntity(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     /**
@@ -101,6 +101,6 @@ import org.robovm.apple.coregraphics.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

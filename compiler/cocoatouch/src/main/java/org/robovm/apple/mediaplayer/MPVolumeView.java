@@ -77,7 +77,7 @@ import org.robovm.apple.coregraphics.*;
     @Method(selector = "initWithFrame:")
     public MPVolumeView(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public MPVolumeView(NSCoder decoder) { super(decoder); }
+    public MPVolumeView(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     /**
@@ -92,22 +92,30 @@ import org.robovm.apple.coregraphics.*;
     public native void setShowsVolumeSlider(boolean v);
     /**
      * @since Available in iOS 4.2 and later.
+     * @deprecated Deprecated in iOS 13.0. Use AVRoutePickerView instead.
      */
+    @Deprecated
     @Property(selector = "showsRouteButton")
     public native boolean showsRouteButton();
     /**
      * @since Available in iOS 4.2 and later.
+     * @deprecated Deprecated in iOS 13.0. Use AVRoutePickerView instead.
      */
+    @Deprecated
     @Property(selector = "setShowsRouteButton:")
     public native void setShowsRouteButton(boolean v);
     /**
      * @since Available in iOS 7.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use AVRouteDetector.multipleRoutesDetected instead.
      */
+    @Deprecated
     @Property(selector = "areWirelessRoutesAvailable")
     public native boolean areWirelessRoutesAvailable();
     /**
      * @since Available in iOS 7.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use AVPlayer.externalPlaybackActive instead.
      */
+    @Deprecated
     @Property(selector = "isWirelessRouteActive")
     public native boolean isWirelessRouteActive();
     /**
@@ -125,12 +133,16 @@ import org.robovm.apple.coregraphics.*;
     /*<methods>*/
     /**
      * @since Available in iOS 7.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use AVRouteDetectorMultipleRoutesDetectedDidChangeNotification instead.
      */
+    @Deprecated
     @GlobalValue(symbol="MPVolumeViewWirelessRoutesAvailableDidChangeNotification", optional=true)
     public static native NSString WirelessRoutesAvailableDidChangeNotification();
     /**
      * @since Available in iOS 7.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use AVPlayer.externalPlaybackActive KVO instead.
      */
+    @Deprecated
     @GlobalValue(symbol="MPVolumeViewWirelessRouteActiveDidChangeNotification", optional=true)
     public static native NSString WirelessRouteActiveDidChangeNotification();
     
@@ -176,17 +188,23 @@ import org.robovm.apple.coregraphics.*;
     public native @ByVal CGRect getVolumeThumbRect(@ByVal CGRect bounds, @ByVal CGRect rect, float value);
     /**
      * @since Available in iOS 6.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use AVRoutePickerView.routePickerButtonStyle instead.
      */
+    @Deprecated
     @Method(selector = "setRouteButtonImage:forState:")
     public native void setRouteButtonImage(UIImage image, UIControlState state);
     /**
      * @since Available in iOS 6.0 and later.
+     * @deprecated Deprecated in iOS 13.0. See AVRoutePickerView for possible replacements.
      */
+    @Deprecated
     @Method(selector = "routeButtonImageForState:")
     public native UIImage getRouteButtonImage(UIControlState state);
     /**
      * @since Available in iOS 6.0 and later.
+     * @deprecated Deprecated in iOS 13.0. See AVRoutePickerView for possible replacements.
      */
+    @Deprecated
     @Method(selector = "routeButtonRectForBounds:")
     public native @ByVal CGRect getRouteButtonRect(@ByVal CGRect bounds);
     /*</methods>*/

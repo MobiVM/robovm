@@ -61,7 +61,7 @@ import org.robovm.apple.coregraphics.*;
     protected MPMediaLibrary(Handle h, long handle) { super(h, handle); }
     protected MPMediaLibrary(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public MPMediaLibrary(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public MPMediaLibrary(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "lastModifiedDate")
@@ -103,6 +103,6 @@ import org.robovm.apple.coregraphics.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }
