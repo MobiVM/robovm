@@ -50,20 +50,16 @@ import org.robovm.apple.security.*;
     protected LAContext(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Property(selector = "localizedFallbackTitle")
     public native String getLocalizedFallbackTitle();
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Property(selector = "setLocalizedFallbackTitle:")
     public native void setLocalizedFallbackTitle(String v);
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
-    @Property(selector = "localizedCancelTitle")
-    public native String getLocalizedCancelTitle();
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
-    @Property(selector = "setLocalizedCancelTitle:")
-    public native void setLocalizedCancelTitle(String v);
     /**
      * @since Available in iOS 8.3 and later.
      * @deprecated Deprecated in iOS 9.0.
@@ -78,6 +74,16 @@ import org.robovm.apple.security.*;
     @Deprecated
     @Property(selector = "setMaxBiometryFailures:")
     public native void setMaxBiometryFailures(NSNumber v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "localizedCancelTitle")
+    public native String getLocalizedCancelTitle();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "setLocalizedCancelTitle:")
+    public native void setLocalizedCancelTitle(String v);
     /**
      * @since Available in iOS 9.0 and later.
      */
@@ -127,14 +133,23 @@ import org.robovm.apple.security.*;
     @GlobalValue(symbol="LATouchIDAuthenticationMaximumAllowableReuseDuration", optional=true)
     public static native double getMaximumAllowableReuseDuration();
     
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     public boolean canEvaluatePolicy(LAPolicy policy) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        boolean result = canEvaluatePolicy(policy, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        return result;
     }
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Method(selector = "canEvaluatePolicy:error:")
     private native boolean canEvaluatePolicy(LAPolicy policy, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Method(selector = "evaluatePolicy:localizedReason:reply:")
     public native void evaluatePolicy(LAPolicy policy, String localizedReason, @Block VoidBlock2<Boolean, NSError> reply);
     /**
