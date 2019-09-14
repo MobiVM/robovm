@@ -1,4 +1,5 @@
 processed:
+- metalkit
 - metal
 - messageui
 - messages
@@ -62,7 +63,6 @@ processed:
 - security
 
 to go:
-- metalkit
 - metalperformanceshaders
 - mobilecoreservices
 - modelio
