@@ -51,7 +51,7 @@ import org.robovm.apple.metal.*;
     protected MPSNNDefaultPadding(SkipInit skipInit) { super(skipInit); }
     public MPSNNDefaultPadding(MPSNNPaddingMethod method) { super((Handle) null, create(method)); retain(getHandle()); }
     @Method(selector = "initWithCoder:")
-    public MPSNNDefaultPadding(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public MPSNNDefaultPadding(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "supportsSecureCoding")
@@ -85,6 +85,6 @@ import org.robovm.apple.metal.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

@@ -74,12 +74,17 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithDevice:momentumScale:useNestrovMomentum:optimizerDescriptor:")
     protected native @Pointer long init(MTLDevice device, float momentumScale, boolean useNestrovMomentum, MPSNNOptimizerDescriptor optimizerDescriptor);
     @Method(selector = "encodeToCommandBuffer:inputGradientVector:inputValuesVector:inputMomentumVector:resultValuesVector:")
-    public native void encodeToCommandBuffer(MTLCommandBuffer commandBuffer, MPSVector inputGradientVector, MPSVector inputValuesVector, MPSVector inputMomentumVector, MPSVector resultValuesVector);
+    public native void encode(MTLCommandBuffer commandBuffer, MPSVector inputGradientVector, MPSVector inputValuesVector, MPSVector inputMomentumVector, MPSVector resultValuesVector);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "encodeToCommandBuffer:inputGradientMatrix:inputValuesMatrix:inputMomentumMatrix:resultValuesMatrix:")
+    public native void encode(MTLCommandBuffer commandBuffer, MPSMatrix inputGradientMatrix, MPSMatrix inputValuesMatrix, MPSMatrix inputMomentumMatrix, MPSMatrix resultValuesMatrix);
     @Method(selector = "encodeToCommandBuffer:convolutionGradientState:convolutionSourceState:inputMomentumVectors:resultState:")
-    public native void encodeToCommandBuffer(MTLCommandBuffer commandBuffer, MPSCNNConvolutionGradientState convolutionGradientState, MPSCNNConvolutionWeightsAndBiasesState convolutionSourceState, NSArray<MPSVector> inputMomentumVectors, MPSCNNConvolutionWeightsAndBiasesState resultState);
+    public native void encode(MTLCommandBuffer commandBuffer, MPSCNNConvolutionGradientState convolutionGradientState, MPSCNNConvolutionWeightsAndBiasesState convolutionSourceState, NSArray<MPSVector> inputMomentumVectors, MPSCNNConvolutionWeightsAndBiasesState resultState);
     @Method(selector = "encodeToCommandBuffer:batchNormalizationState:inputMomentumVectors:resultState:")
-    public native void encodeToCommandBuffer(MTLCommandBuffer commandBuffer, MPSCNNBatchNormalizationState batchNormalizationState, NSArray<MPSVector> inputMomentumVectors, MPSCNNNormalizationGammaAndBetaState resultState);
+    public native void encode(MTLCommandBuffer commandBuffer, MPSCNNBatchNormalizationState batchNormalizationState, NSArray<MPSVector> inputMomentumVectors, MPSCNNNormalizationGammaAndBetaState resultState);
     @Method(selector = "encodeToCommandBuffer:batchNormalizationGradientState:batchNormalizationSourceState:inputMomentumVectors:resultState:")
-    public native void encodeToCommandBuffer(MTLCommandBuffer commandBuffer, MPSCNNBatchNormalizationState batchNormalizationGradientState, MPSCNNBatchNormalizationState batchNormalizationSourceState, NSArray<MPSVector> inputMomentumVectors, MPSCNNNormalizationGammaAndBetaState resultState);
+    public native void encode(MTLCommandBuffer commandBuffer, MPSCNNBatchNormalizationState batchNormalizationGradientState, MPSCNNBatchNormalizationState batchNormalizationSourceState, NSArray<MPSVector> inputMomentumVectors, MPSCNNNormalizationGammaAndBetaState resultState);
     /*</methods>*/
 }

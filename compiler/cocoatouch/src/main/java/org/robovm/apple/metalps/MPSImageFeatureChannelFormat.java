@@ -59,9 +59,13 @@ public enum /*<name>*/MPSImageFeatureChannelFormat/*</name>*/ implements ValuedE
      */
     Float32(4L),
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    Reserved0(5L),
+    /**
      * @since Available in iOS 12.0 and later.
      */
-    Count(5L);
+    Count(6L);
     /*</values>*/
 
     /*<bind>*/

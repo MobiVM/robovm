@@ -40,7 +40,7 @@ import org.robovm.apple.metal.*;
 /*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSCNNBatchNormalizationNode/*</name>*/ 
     extends /*<extends>*/MPSNNFilterNode/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements MPSNNTrainableNode/*</implements>*/ {
 
     /*<ptr>*/public static class MPSCNNBatchNormalizationNodePtr extends Ptr<MPSCNNBatchNormalizationNode, MPSCNNBatchNormalizationNodePtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(MPSCNNBatchNormalizationNode.class); }/*</bind>*/
@@ -57,6 +57,16 @@ import org.robovm.apple.metal.*;
     public native MPSCNNBatchNormalizationFlags getFlags();
     @Property(selector = "setFlags:")
     public native void setFlags(MPSCNNBatchNormalizationFlags v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "trainingStyle")
+    public native MPSNNTrainingStyle getTrainingStyle();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setTrainingStyle:")
+    public native void setTrainingStyle(MPSNNTrainingStyle v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

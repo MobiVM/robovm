@@ -267,5 +267,15 @@ import org.robovm.apple.metal.*;
     public native boolean appendBatchBarrier();
     @Method(selector = "destinationImageDescriptorForSourceImages:sourceStates:")
     public native MPSImageDescriptor getDestinationImageDescriptor(NSArray<MPSImage> sourceImages, NSArray<MPSState> sourceStates);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "encodingStorageSizeForPrimaryImage:secondaryImage:sourceStates:destinationImage:")
+    public native @MachineSizedUInt long encodingStorageSize(MPSImage primaryImage, MPSImage secondaryImage, NSArray<MPSState> sourceStates, MPSImage destinationImage);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "batchEncodingStorageSizeForPrimaryImage:secondaryImage:sourceStates:destinationImage:")
+    public native @MachineSizedUInt long batchEncodingStorageSize(NSArray<MPSImage> primaryImage, NSArray<MPSImage> secondaryImage, NSArray<NSArray<? extends MPSState>> sourceStates, NSArray<MPSImage> destinationImage);
     /*</methods>*/
 }

@@ -83,7 +83,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     protected native @Pointer long init(NSCoder decoder, MTLDevice device);
     @Method(selector = "encodeToCommandBuffer:sourceTexture:minmaxTexture:histogram:histogramOffset:")
-    public native void encodeToCommandBuffer(MTLCommandBuffer commandBuffer, MTLTexture source, MTLTexture minmaxTexture, MTLBuffer histogram, @MachineSizedUInt long histogramOffset);
+    public native void encode(MTLCommandBuffer commandBuffer, MTLTexture source, MTLTexture minmaxTexture, MTLBuffer histogram, @MachineSizedUInt long histogramOffset);
     @Method(selector = "histogramSizeForSourceFormat:")
     public native @MachineSizedUInt long histogramSizeForSourceFormat(MTLPixelFormat sourceFormat);
     /*</methods>*/

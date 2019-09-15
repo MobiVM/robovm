@@ -52,6 +52,11 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithBuffer:descriptor:")
     public MPSVector(MTLBuffer buffer, MPSVectorDescriptor descriptor) { super((SkipInit) null); initObject(init(buffer, descriptor)); }
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "initWithBuffer:offset:descriptor:")
+    public MPSVector(MTLBuffer buffer, @MachineSizedUInt long offset, MPSVectorDescriptor descriptor) { super((SkipInit) null); initObject(init(buffer, offset, descriptor)); }
+    /**
      * @since Available in iOS 11.3 and later.
      */
     @Method(selector = "initWithDevice:descriptor:")
@@ -75,6 +80,11 @@ import org.robovm.apple.metal.*;
     /*<methods>*/
     @Method(selector = "initWithBuffer:descriptor:")
     protected native @Pointer long init(MTLBuffer buffer, MPSVectorDescriptor descriptor);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "initWithBuffer:offset:descriptor:")
+    protected native @Pointer long init(MTLBuffer buffer, @MachineSizedUInt long offset, MPSVectorDescriptor descriptor);
     /**
      * @since Available in iOS 11.3 and later.
      */

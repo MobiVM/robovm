@@ -70,5 +70,13 @@ import org.robovm.apple.metal.*;
     protected native @Pointer long init(NSCoder aDecoder, MTLDevice device);
     @Method(selector = "initWithDevice:keepProbability:seed:maskStrideInPixels:")
     protected native @Pointer long init(MTLDevice device, float keepProbability, @MachineSizedUInt long seed, @ByVal MTLSize maskStrideInPixels);
+    @Method(selector = "resultStateForSourceImage:sourceStates:destinationImage:")
+    public native MPSCNNDropoutGradientState getResultState(MPSImage sourceImage, NSArray<MPSState> sourceStates, MPSImage destinationImage);
+    @Method(selector = "resultStateBatchForSourceImage:sourceStates:destinationImage:")
+    public native MPSCNNDropoutGradientState getResultStateBatchEx(NSArray<MPSImage> sourceImage, NSArray<NSArray<? extends MPSState>> sourceStates, NSArray<MPSImage> destinationImage);
+    @Method(selector = "temporaryResultStateForCommandBuffer:sourceImage:sourceStates:destinationImage:")
+    public native MPSCNNDropoutGradientState getTemporaryResult(MTLCommandBuffer commandBuffer, MPSImage sourceImage, NSArray<MPSState> sourceStates, MPSImage destinationImage);
+    @Method(selector = "temporaryResultStateBatchForCommandBuffer:sourceImage:sourceStates:destinationImage:")
+    public native NSArray<MPSCNNDropoutGradientState> getTemporaryResultStateBatch(MTLCommandBuffer commandBuffer, NSArray<MPSImage> sourceImage, NSArray<NSArray<? extends MPSState>> sourceStates, NSArray<MPSImage> destinationImage);
     /*</methods>*/
 }

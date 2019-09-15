@@ -40,7 +40,7 @@ import org.robovm.apple.metal.*;
 /*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSNNNeuronDescriptor/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class MPSNNNeuronDescriptorPtr extends Ptr<MPSNNNeuronDescriptor, MPSNNNeuronDescriptorPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(MPSNNNeuronDescriptor.class); }/*</bind>*/
@@ -54,6 +54,8 @@ import org.robovm.apple.metal.*;
     public MPSNNNeuronDescriptor(MPSCNNNeuronType neuronType, float a, float b) { super((Handle) null, create(neuronType, a, b)); retain(getHandle()); }
     public MPSNNNeuronDescriptor(MPSCNNNeuronType neuronType, float a, float b, float c) { super((Handle) null, create(neuronType, a, b, c)); retain(getHandle()); }
     public MPSNNNeuronDescriptor(NSData data, boolean noCopy) { super((Handle) null, create(data, noCopy)); retain(getHandle()); }
+    @Method(selector = "initWithCoder:")
+    public MPSNNNeuronDescriptor(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "neuronType")
@@ -76,6 +78,8 @@ import org.robovm.apple.metal.*;
     public native NSData getData();
     @Property(selector = "setData:")
     public native void setData(NSData v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -89,5 +93,9 @@ import org.robovm.apple.metal.*;
     protected static native @Pointer long create(MPSCNNNeuronType neuronType, float a, float b, float c);
     @Method(selector = "cnnNeuronPReLUDescriptorWithData:noCopy:")
     protected static native @Pointer long create(NSData data, boolean noCopy);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }
