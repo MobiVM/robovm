@@ -373,9 +373,11 @@ protocols:
             '-addDebugMarker:range:':
                 trim_after_first_colon: true
     MTLCommandBuffer: # DONE
-        class: true
-        annotations: ['@NativeProtocolProxy']
-        visibility: 'public final'
+        skip_adapter: true
+        # dkimitsa: switched back to pure protocol as there other frameworks that implements it (like MPS)
+        # class: true
+        # annotations: ['@NativeProtocolProxy']
+        # visibility: 'public final'
         properties:
             'retainedReferences':
                 name: maintainsRetainedReferences
