@@ -59,22 +59,22 @@ import org.robovm.apple.coreml.*;
      * @since Available in iOS 12.0 and later.
      */
     @Property(selector = "languageHints")
-    public native NSDictionary<?, ?> getLanguageHints();
+    public native NSDictionary<NSString, NSNumber> getLanguageHints();
     /**
      * @since Available in iOS 12.0 and later.
      */
     @Property(selector = "setLanguageHints:")
-    public native void setLanguageHints(NSDictionary<?, ?> v);
+    public native void setLanguageHints(NSDictionary<NSString, NSNumber> v);
     /**
      * @since Available in iOS 12.0 and later.
      */
     @Property(selector = "languageConstraints")
-    public native NSArray<?> getLanguageConstraints();
+    public native NSArray<NSString> getLanguageConstraints();
     /**
      * @since Available in iOS 12.0 and later.
      */
     @Property(selector = "setLanguageConstraints:")
-    public native void setLanguageConstraints(NSArray<?> v);
+    public native void setLanguageConstraints(NSArray<NSString> v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -92,7 +92,7 @@ import org.robovm.apple.coreml.*;
      * @since Available in iOS 12.0 and later.
      */
     @Method(selector = "languageHypothesesWithMaximum:")
-    public native NSDictionary<?, ?> create(@MachineSizedUInt long maxHypotheses);
+    public native NSDictionary<NSString, NSNumber> create(@MachineSizedUInt long maxHypotheses);
     /**
      * @since Available in iOS 12.0 and later.
      */

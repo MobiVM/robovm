@@ -52,14 +52,14 @@ import org.robovm.apple.coreml.*;
      * @since Available in iOS 12.0 and later.
      */
     @Method(selector = "initWithTagSchemes:")
-    public NLTagger(NSArray<?> tagSchemes) { super((SkipInit) null); initObject(init(tagSchemes)); }
+    public NLTagger(NSArray<NSString> tagSchemes) { super((SkipInit) null); initObject(init(tagSchemes)); }
     /*</constructors>*/
     /*<properties>*/
     /**
      * @since Available in iOS 12.0 and later.
      */
     @Property(selector = "tagSchemes")
-    public native NSArray<?> getTagSchemes();
+    public native NSArray<NSString> getTagSchemes();
     /**
      * @since Available in iOS 12.0 and later.
      */
@@ -82,7 +82,7 @@ import org.robovm.apple.coreml.*;
      * @since Available in iOS 12.0 and later.
      */
     @Method(selector = "initWithTagSchemes:")
-    protected native @Pointer long init(NSArray<?> tagSchemes);
+    protected native @Pointer long init(NSArray<NSString> tagSchemes);
     /**
      * @since Available in iOS 12.0 and later.
      */
@@ -102,7 +102,7 @@ import org.robovm.apple.coreml.*;
      * @since Available in iOS 12.0 and later.
      */
     @Method(selector = "tagsInRange:unit:scheme:options:tokenRanges:")
-    public native NSArray<?> getTags(@ByVal NSRange range, NLTokenUnit unit, NLTagScheme scheme, NLTaggerOptions options, NSArray.NSArrayPtr<?> tokenRanges);
+    public native NSArray<NSString> getTags(@ByVal NSRange range, NLTokenUnit unit, NLTagScheme scheme, NLTaggerOptions options, NSArray.NSArrayPtr<?> tokenRanges);
     /**
      * @since Available in iOS 12.0 and later.
      */
@@ -113,14 +113,35 @@ import org.robovm.apple.coreml.*;
      */
     @Method(selector = "setOrthography:range:")
     public native void setOrthography(NSOrthography orthography, @ByVal NSRange range);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
     @Method(selector = "setModels:forTagScheme:")
     public native void setModels(NSArray<NLModel> models, NLTagScheme tagScheme);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
     @Method(selector = "modelsForTagScheme:")
     public native NSArray<NLModel> modelsForTagScheme(NLTagScheme tagScheme);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "setGazetteers:forTagScheme:")
+    public native void setGazetteers(NSArray<NLGazetteer> gazetteers, NLTagScheme tagScheme);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "gazetteersForTagScheme:")
+    public native NSArray<NLGazetteer> gazetteersForTagScheme(NLTagScheme tagScheme);
     /**
      * @since Available in iOS 12.0 and later.
      */
     @Method(selector = "availableTagSchemesForUnit:language:")
-    public static native NSArray<?> getAvailableTagSchemes(NLTokenUnit unit, NLLanguage language);
+    public static native NSArray<NSString> getAvailableTagSchemes(NLTokenUnit unit, NLLanguage language);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "requestAssetsForLanguage:tagScheme:completionHandler:")
+    public static native void requestAssets(NLLanguage language, NLTagScheme tagScheme, @Block VoidBlock2<NLTaggerAssetsResult, NSError> completionHandler);
     /*</methods>*/
 }

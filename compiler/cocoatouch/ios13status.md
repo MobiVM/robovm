@@ -1,4 +1,6 @@
 processed:
+- naturallanguage
+- multipeerconnectivity
 - modelio
 - mobilecoreservices
 - metalperformanceshaders
@@ -66,8 +68,6 @@ processed:
 - security
 
 to go:
-- multipeerconnectivity
-- naturallanguage
 - network
 - networkextension
 - newsstandkit
