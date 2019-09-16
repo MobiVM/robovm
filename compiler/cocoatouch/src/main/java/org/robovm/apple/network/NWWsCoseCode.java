@@ -36,13 +36,20 @@ import org.robovm.apple.security.*;
 
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-public enum /*<name>*/NWEndpointType/*</name>*/ implements ValuedEnum {
+public enum /*<name>*/NWWsCoseCode/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    invalid(0L),
-    address(1L),
-    host(2L),
-    bonjour_service(3L),
-    url(4L);
+    normal_closure(1000L),
+    going_away(1001L),
+    protocol_error(1002L),
+    unsupported_data(1003L),
+    no_status_received(1005L),
+    abnormal_closure(1006L),
+    invalid_frame_payload_data(1007L),
+    policy_violation(1008L),
+    message_too_big(1009L),
+    mandatory_extension(1010L),
+    internal_server_error(1011L),
+    tls_handshake(1015L);
     /*</values>*/
 
     /*<bind>*/
@@ -52,15 +59,15 @@ public enum /*<name>*/NWEndpointType/*</name>*/ implements ValuedEnum {
 
     private final long n;
 
-    private /*<name>*/NWEndpointType/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/NWWsCoseCode/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/NWEndpointType/*</name>*/ valueOf(long n) {
-        for (/*<name>*/NWEndpointType/*</name>*/ v : values()) {
+    public static /*<name>*/NWWsCoseCode/*</name>*/ valueOf(long n) {
+        for (/*<name>*/NWWsCoseCode/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/NWEndpointType/*</name>*/.class.getName());
+            + /*<name>*/NWWsCoseCode/*</name>*/.class.getName());
     }
 }

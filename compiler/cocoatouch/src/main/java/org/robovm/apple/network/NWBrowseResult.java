@@ -35,13 +35,13 @@ import org.robovm.apple.security.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*/@Library("Network") @NativeProtocolProxy("OS_nw_protocol_definition")/*</annotations>*/
-/*<visibility>*/public final/*</visibility>*/ class /*<name>*/NWProtocolDefinition/*</name>*/ 
+/*<annotations>*/@Library("Network") @NativeProtocolProxy("OS_nw_browse_result")/*</annotations>*/
+/*<visibility>*/public final/*</visibility>*/ class /*<name>*/NWBrowseResult/*</name>*/ 
     extends /*<extends>*/NWObject/*</extends>*/ 
     /*<implements>*/implements NSObjectProtocol/*</implements>*/ {
 
-    /*<ptr>*/public static class NWProtocolDefinitionPtr extends Ptr<NWProtocolDefinition, NWProtocolDefinitionPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(NWProtocolDefinition.class); }/*</bind>*/
+    /*<ptr>*/public static class NWBrowseResultPtr extends Ptr<NWBrowseResult, NWBrowseResultPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(NWBrowseResult.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     
@@ -52,35 +52,30 @@ import org.robovm.apple.security.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @since Available in iOS 12.0 and later.
+     * @since Available in iOS 13.0 and later.
      */
-    @Bridge(symbol="nw_protocol_definition_is_equal", optional=true)
-    public native boolean isEqual(NWProtocolDefinition definition2);
-    /**
-     * @since Available in iOS 12.0 and later.
-     */
-    @Bridge(symbol="nw_protocol_copy_ip_definition", optional=true)
-    public static native NWProtocolDefinition copyipDefinition();
-    /**
-     * @since Available in iOS 12.0 and later.
-     */
-    @Bridge(symbol="nw_protocol_copy_tcp_definition", optional=true)
-    public static native NWProtocolDefinition copytcpDefinition();
-    /**
-     * @since Available in iOS 12.0 and later.
-     */
-    @Bridge(symbol="nw_protocol_copy_tls_definition", optional=true)
-    public static native NWProtocolDefinition copytlsDefinition();
-    /**
-     * @since Available in iOS 12.0 and later.
-     */
-    @Bridge(symbol="nw_protocol_copy_udp_definition", optional=true)
-    public static native NWProtocolDefinition copyudpDefinition();
+    @Bridge(symbol="nw_browse_result_copy_endpoint", optional=true)
+    public native NWEndpoint copyEndpoint();
     /**
      * @since Available in iOS 13.0 and later.
      */
-    @Bridge(symbol="nw_protocol_copy_ws_definition", optional=true)
-    public static native NWProtocolDefinition copywsDefinition();
+    @Bridge(symbol="nw_browse_result_get_changes", optional=true)
+    public native NWBrowseResultChange getChanges(NWBrowseResult new_result);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="nw_browse_result_get_interfaces_count", optional=true)
+    public native @MachineSizedUInt long getInterfacesCount();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="nw_browse_result_copy_txt_record_object", optional=true)
+    public native NWTxtRecord copyTxtRecordObject();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="nw_browse_result_enumerate_interfaces", optional=true)
+    public native void enumerateInterfaces(@Block Block1<NWInterface, Boolean> enumerator);
     
     
     /*</methods>*/

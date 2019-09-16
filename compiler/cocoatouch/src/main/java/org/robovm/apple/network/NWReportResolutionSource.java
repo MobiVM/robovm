@@ -36,13 +36,11 @@ import org.robovm.apple.security.*;
 
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-public enum /*<name>*/NWEndpointType/*</name>*/ implements ValuedEnum {
+public enum /*<name>*/NWReportResolutionSource/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    invalid(0L),
-    address(1L),
-    host(2L),
-    bonjour_service(3L),
-    url(4L);
+    query(1L),
+    cache(2L),
+    expired_cache(3L);
     /*</values>*/
 
     /*<bind>*/
@@ -52,15 +50,15 @@ public enum /*<name>*/NWEndpointType/*</name>*/ implements ValuedEnum {
 
     private final long n;
 
-    private /*<name>*/NWEndpointType/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/NWReportResolutionSource/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/NWEndpointType/*</name>*/ valueOf(long n) {
-        for (/*<name>*/NWEndpointType/*</name>*/ v : values()) {
+    public static /*<name>*/NWReportResolutionSource/*</name>*/ valueOf(long n) {
+        for (/*<name>*/NWReportResolutionSource/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/NWEndpointType/*</name>*/.class.getName());
+            + /*<name>*/NWReportResolutionSource/*</name>*/.class.getName());
     }
 }

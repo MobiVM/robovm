@@ -1,4 +1,5 @@
 processed:
+- network
 - naturallanguage
 - multipeerconnectivity
 - modelio
@@ -68,7 +69,6 @@ processed:
 - security
 
 to go:
-- network
 - networkextension
 - newsstandkit
 - notificationcenter

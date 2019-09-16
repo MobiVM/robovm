@@ -57,6 +57,31 @@ import org.robovm.apple.security.*;
     @Bridge(symbol="nw_protocol_metadata_copy_definition", optional=true)
     public native NWProtocolDefinition copyDefinition();
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="nw_protocol_metadata_is_framer_message", optional=true)
+    public native boolean isFramerMessage();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="nw_framer_message_set_value", optional=true)
+    public native void framerMessageSetValue(@org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class) String key, VoidPtr value, @Block VoidBlock1<VoidPtr> dispose_value);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="nw_framer_message_access_value", optional=true)
+    public native boolean framerMessageAccessValue(@org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class) String key, @Block Block1<VoidPtr, Boolean> access_value);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="nw_framer_message_set_object_value", optional=true)
+    public native void framerMessageSetObjectValue(@org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class) String key, NSObject value);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="nw_framer_message_copy_object_value", optional=true)
+    public native NSObject framerMessageCopyObjectValue(@org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class) String key);
+    /**
      * @since Available in iOS 12.0 and later.
      */
     @Bridge(symbol="nw_ip_create_metadata", optional=true)
@@ -126,6 +151,41 @@ import org.robovm.apple.security.*;
      */
     @Bridge(symbol="nw_protocol_metadata_is_udp", optional=true)
     public native boolean isUdp();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="nw_protocol_metadata_is_ws", optional=true)
+    public native boolean isWs();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="nw_ws_create_metadata", optional=true)
+    public static native NWProtocolMetadata createWsMetadata(NWWsOpcode opcode);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="nw_ws_metadata_get_opcode", optional=true)
+    public native NWWsOpcode getOpcode();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="nw_ws_metadata_set_close_code", optional=true)
+    public native void setCloseCode(NWWsCoseCode close_code);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="nw_ws_metadata_get_close_code", optional=true)
+    public native NWWsCoseCode getCloseCode();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="nw_ws_metadata_set_pong_handler", optional=true)
+    public native void setPongHandler(DispatchQueue client_queue, @Block VoidBlock1<NWError> pong_handler);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="nw_ws_metadata_copy_server_response", optional=true)
+    public native NWWsResponse copyServerResponse();
     
     
     /*</methods>*/

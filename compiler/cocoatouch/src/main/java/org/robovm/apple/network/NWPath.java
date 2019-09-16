@@ -72,6 +72,11 @@ import org.robovm.apple.security.*;
     @Bridge(symbol="nw_path_is_expensive", optional=true)
     public native boolean isExpensive();
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="nw_path_is_constrained", optional=true)
+    public native boolean isConstrained();
+    /**
      * @since Available in iOS 12.0 and later.
      */
     @Bridge(symbol="nw_path_has_ipv4", optional=true)
@@ -101,6 +106,11 @@ import org.robovm.apple.security.*;
      */
     @Bridge(symbol="nw_path_copy_effective_remote_endpoint", optional=true)
     public native NWEndpoint copyEffectiveRemoteEndpoint();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="nw_path_enumerate_gateways", optional=true)
+    public native void enumerateGateways(@Block Block1<NWEndpoint, Boolean> enumerate_block);
     
     
     /*</methods>*/

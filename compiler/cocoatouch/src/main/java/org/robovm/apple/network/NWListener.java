@@ -84,6 +84,16 @@ import org.robovm.apple.security.*;
     /**
      * @since Available in iOS 12.0 and later.
      */
+    @Bridge(symbol="nw_listener_get_new_connection_limit", optional=true)
+    public native int getNewConnectionLimit();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Bridge(symbol="nw_listener_set_new_connection_limit", optional=true)
+    public native void setNewConnectionLimit(int new_connection_limit);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
     @Bridge(symbol="nw_listener_set_advertise_descriptor", optional=true)
     public native void setAdvertiseDescriptor(NWAdvertiseDescriptor advertise_descriptor);
     /**

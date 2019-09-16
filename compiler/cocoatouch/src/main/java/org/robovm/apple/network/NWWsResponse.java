@@ -35,13 +35,13 @@ import org.robovm.apple.security.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*/@Library("Network") @NativeProtocolProxy("OS_nw_advertise_descriptor")/*</annotations>*/
-/*<visibility>*/public final/*</visibility>*/ class /*<name>*/NWAdvertiseDescriptor/*</name>*/ 
+/*<annotations>*/@Library("Network") @NativeProtocolProxy("OS_nw_ws_response")/*</annotations>*/
+/*<visibility>*/public final/*</visibility>*/ class /*<name>*/NWWsResponse/*</name>*/ 
     extends /*<extends>*/NWObject/*</extends>*/ 
     /*<implements>*/implements NSObjectProtocol/*</implements>*/ {
 
-    /*<ptr>*/public static class NWAdvertiseDescriptorPtr extends Ptr<NWAdvertiseDescriptor, NWAdvertiseDescriptorPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(NWAdvertiseDescriptor.class); }/*</bind>*/
+    /*<ptr>*/public static class NWWsResponsePtr extends Ptr<NWWsResponse, NWWsResponsePtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(NWWsResponse.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     
@@ -52,35 +52,30 @@ import org.robovm.apple.security.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @since Available in iOS 12.0 and later.
+     * @since Available in iOS 13.0 and later.
      */
-    @Bridge(symbol="nw_advertise_descriptor_create_bonjour_service", optional=true)
-    public static native NWAdvertiseDescriptor createBonjourService(BytePtr name, BytePtr type, BytePtr domain);
-    /**
-     * @since Available in iOS 12.0 and later.
-     */
-    @Bridge(symbol="nw_advertise_descriptor_set_txt_record", optional=true)
-    public native void setTxtRecord(VoidPtr txt_record, @MachineSizedUInt long txt_length);
-    /**
-     * @since Available in iOS 12.0 and later.
-     */
-    @Bridge(symbol="nw_advertise_descriptor_set_no_auto_rename", optional=true)
-    public native void setNoAutoRename(boolean no_auto_rename);
-    /**
-     * @since Available in iOS 12.0 and later.
-     */
-    @Bridge(symbol="nw_advertise_descriptor_get_no_auto_rename", optional=true)
-    public native boolean getNoAutoRename();
+    @Bridge(symbol="nw_ws_response_create", optional=true)
+    public static native NWWsResponse create(NWWsResponseStatus status, @org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class) String selected_subprotocol);
     /**
      * @since Available in iOS 13.0 and later.
      */
-    @Bridge(symbol="nw_advertise_descriptor_set_txt_record_object", optional=true)
-    public native void setTxtRecordObject(NWTxtRecord txt_record);
+    @Bridge(symbol="nw_ws_response_get_status", optional=true)
+    public native NWWsResponseStatus getStatus();
     /**
      * @since Available in iOS 13.0 and later.
      */
-    @Bridge(symbol="nw_advertise_descriptor_copy_txt_record_object", optional=true)
-    public native NWTxtRecord copyTxtRecordObject();
+    @Bridge(symbol="nw_ws_response_get_selected_subprotocol", optional=true)
+    public native @org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class) String getSelectedSubprotocol();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="nw_ws_response_add_additional_header", optional=true)
+    public native void addAdditionalHeader(@org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class) String name, @org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class) String value);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="nw_ws_response_enumerate_additional_headers", optional=true)
+    public native boolean enumerateAdditionalHeaders(@Block Block2<BytePtr, BytePtr, Boolean> enumerator);
     
     
     /*</methods>*/

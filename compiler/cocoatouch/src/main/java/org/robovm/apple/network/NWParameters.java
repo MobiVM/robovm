@@ -143,6 +143,16 @@ import org.robovm.apple.security.*;
     @Bridge(symbol="nw_parameters_get_prohibit_expensive", optional=true)
     public native boolean getProhibitExpensive();
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="nw_parameters_set_prohibit_constrained", optional=true)
+    public native void setProhibitConstrained(boolean prohibit_constrained);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="nw_parameters_get_prohibit_constrained", optional=true)
+    public native boolean getProhibitConstrained();
+    /**
      * @since Available in iOS 12.0 and later.
      */
     @Bridge(symbol="nw_parameters_set_reuse_local_address", optional=true)
