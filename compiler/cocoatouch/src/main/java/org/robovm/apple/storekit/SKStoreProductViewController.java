@@ -51,7 +51,7 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "initWithNibName:bundle:")
     public SKStoreProductViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
     @Method(selector = "initWithCoder:")
-    public SKStoreProductViewController(NSCoder decoder) { super(decoder); }
+    public SKStoreProductViewController(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     /**

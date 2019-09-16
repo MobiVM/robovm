@@ -54,6 +54,9 @@ import org.robovm.apple.uikit.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 10.3 and later.
+     */
     @Method(selector = "requestReview")
     public static native void requestReview();
     /*</methods>*/

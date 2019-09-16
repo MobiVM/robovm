@@ -85,6 +85,8 @@ import org.robovm.apple.uikit.*;
      */
     @Property(selector = "downloadContentLengths")
     public native NSArray<NSNumber> getDownloadContentLengths();
+    @Property(selector = "contentVersion")
+    public native String getContentVersion();
     /**
      * @since Available in iOS 6.0 and later.
      */

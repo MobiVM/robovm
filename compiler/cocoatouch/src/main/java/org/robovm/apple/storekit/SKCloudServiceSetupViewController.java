@@ -51,16 +51,25 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "initWithNibName:bundle:")
     public SKCloudServiceSetupViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
     @Method(selector = "initWithCoder:")
-    public SKCloudServiceSetupViewController(NSCoder decoder) { super(decoder); }
+    public SKCloudServiceSetupViewController(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 10.1 and later.
+     */
     @Property(selector = "delegate")
     public native SKCloudServiceSetupViewControllerDelegate getDelegate();
+    /**
+     * @since Available in iOS 10.1 and later.
+     */
     @Property(selector = "setDelegate:", strongRef = true)
     public native void setDelegate(SKCloudServiceSetupViewControllerDelegate v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 10.1 and later.
+     */
     @Method(selector = "loadWithOptions:completionHandler:")
     public native void load(SKCloudServiceSetupOptions options, @Block VoidBlock2<Boolean, NSError> completionHandler);
     /*</methods>*/

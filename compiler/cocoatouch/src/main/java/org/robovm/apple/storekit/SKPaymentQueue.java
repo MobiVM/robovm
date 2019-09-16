@@ -51,6 +51,21 @@ import org.robovm.apple.uikit.*;
     /*</constructors>*/
     /*<properties>*/
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "delegate")
+    public native SKPaymentQueueDelegate getDelegate();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setDelegate:", strongRef = true)
+    public native void setDelegate(SKPaymentQueueDelegate v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "storefront")
+    public native SKStorefront getStorefront();
+    /**
      * @since Available in iOS 3.0 and later.
      */
     @Property(selector = "transactions")

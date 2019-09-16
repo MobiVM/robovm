@@ -32,37 +32,27 @@ import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 11.2 and later.
- */
-/*</javadoc>*/
-/*<annotations>*/@Library("StoreKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/SKProductSubscriptionPeriod/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class SKProductSubscriptionPeriodPtr extends Ptr<SKProductSubscriptionPeriod, SKProductSubscriptionPeriodPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(SKProductSubscriptionPeriod.class); }/*</bind>*/
+/*</javadoc>*/
+/*<annotations>*//*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ interface /*<name>*/SKPaymentQueueDelegate/*</name>*/ 
+    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
+
+    /*<ptr>*/
+    /*</ptr>*/
+    /*<bind>*/
+    /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*/
-    public SKProductSubscriptionPeriod() {}
-    protected SKProductSubscriptionPeriod(Handle h, long handle) { super(h, handle); }
-    protected SKProductSubscriptionPeriod(SkipInit skipInit) { super(skipInit); }
-    /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 11.2 and later.
-     */
-    @Property(selector = "numberOfUnits")
-    public native @MachineSizedUInt long getNumberOfUnits();
-    /**
-     * @since Available in iOS 11.2 and later.
-     */
-    @Property(selector = "unit")
-    public native SKProductPeriodUnit getUnit();
-    /*</properties>*/
-    /*<members>*//*</members>*/
-    /*<methods>*/
     
+    /*</properties>*/
+    /*<methods>*/
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "paymentQueue:shouldContinueTransaction:inStorefront:")
+    boolean shouldContinueTransaction(SKPaymentQueue paymentQueue, SKPaymentTransaction transaction, SKStorefront newStorefront);
     /*</methods>*/
+    /*<adapter>*/
+    /*</adapter>*/
 }

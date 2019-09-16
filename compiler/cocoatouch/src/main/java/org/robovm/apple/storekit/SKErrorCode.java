@@ -32,7 +32,9 @@ import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 3.0 and later.
+ */
 /*</javadoc>*/
 @ForceLinkClass(SKError.class)
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/

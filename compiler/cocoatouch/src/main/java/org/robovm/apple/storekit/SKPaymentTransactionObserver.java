@@ -77,6 +77,11 @@ import org.robovm.apple.uikit.*;
      */
     @Method(selector = "paymentQueue:shouldAddStorePayment:forProduct:")
     boolean shouldAddStorePayment(SKPaymentQueue queue, SKPayment payment, SKProduct product);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "paymentQueueDidChangeStorefront:")
+    void paymentQueueDidChangeStorefront(SKPaymentQueue queue);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

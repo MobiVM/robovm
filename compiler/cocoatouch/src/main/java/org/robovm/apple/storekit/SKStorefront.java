@@ -33,33 +33,33 @@ import org.robovm.apple.uikit.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 11.2 and later.
+ * @since Available in iOS 13.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("StoreKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/SKProductSubscriptionPeriod/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/SKStorefront/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class SKProductSubscriptionPeriodPtr extends Ptr<SKProductSubscriptionPeriod, SKProductSubscriptionPeriodPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(SKProductSubscriptionPeriod.class); }/*</bind>*/
+    /*<ptr>*/public static class SKStorefrontPtr extends Ptr<SKStorefront, SKStorefrontPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(SKStorefront.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public SKProductSubscriptionPeriod() {}
-    protected SKProductSubscriptionPeriod(Handle h, long handle) { super(h, handle); }
-    protected SKProductSubscriptionPeriod(SkipInit skipInit) { super(skipInit); }
+    public SKStorefront() {}
+    protected SKStorefront(Handle h, long handle) { super(h, handle); }
+    protected SKStorefront(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
     /**
-     * @since Available in iOS 11.2 and later.
+     * @since Available in iOS 13.0 and later.
      */
-    @Property(selector = "numberOfUnits")
-    public native @MachineSizedUInt long getNumberOfUnits();
+    @Property(selector = "countryCode")
+    public native String getCountryCode();
     /**
-     * @since Available in iOS 11.2 and later.
+     * @since Available in iOS 13.0 and later.
      */
-    @Property(selector = "unit")
-    public native SKProductPeriodUnit getUnit();
+    @Property(selector = "identifier")
+    public native String getIdentifier();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

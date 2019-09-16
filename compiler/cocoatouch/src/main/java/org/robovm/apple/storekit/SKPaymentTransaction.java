@@ -82,7 +82,7 @@ import org.robovm.apple.uikit.*;
     public native String getTransactionIdentifier();
     /**
      * @since Available in iOS 3.0 and later.
-     * @deprecated Deprecated in iOS 7.0. Use -[NSBundle appStoreReceiptURL]
+     * @deprecated Deprecated in iOS 7.0.
      */
     @Deprecated
     @Property(selector = "transactionReceipt")

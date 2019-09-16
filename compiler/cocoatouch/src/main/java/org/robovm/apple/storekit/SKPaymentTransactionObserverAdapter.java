@@ -79,5 +79,10 @@ import org.robovm.apple.uikit.*;
      */
     @NotImplemented("paymentQueue:shouldAddStorePayment:forProduct:")
     public boolean shouldAddStorePayment(SKPaymentQueue queue, SKPayment payment, SKProduct product) { return false; }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("paymentQueueDidChangeStorefront:")
+    public void paymentQueueDidChangeStorefront(SKPaymentQueue queue) {}
     /*</methods>*/
 }
