@@ -55,7 +55,7 @@ import org.robovm.apple.avfoundation.*;
     protected SCNNode(Handle h, long handle) { super(h, handle); }
     protected SCNNode(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public SCNNode(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public SCNNode(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "name")
@@ -400,7 +400,7 @@ import org.robovm.apple.avfoundation.*;
     public native UIFocusItemContainer getFocusItemContainer();
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Deprecated in iOS 10.0. Use -preferredFocusEnvironments instead.
+     * @deprecated Deprecated in iOS 10.0.
      */
     @Deprecated
     @Property(selector = "preferredFocusedView")
@@ -594,7 +594,7 @@ import org.robovm.apple.avfoundation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     @Method(selector = "addAnimation:forKey:")
     public native void addAnimation(SCNAnimation animation, String key);
     /**
@@ -678,6 +678,9 @@ import org.robovm.apple.avfoundation.*;
     public native void setBoundingBox(SCNVector3.SCNVector3Ptr min, SCNVector3.SCNVector3Ptr max);
     @Method(selector = "getBoundingSphereCenter:radius:")
     public native boolean getBoundingSphere(SCNVector3.SCNVector3Ptr center, MachineSizedFloatPtr radius);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
     @Method(selector = "didHintFocusMovement:")
     public native void didHintFocusMovement(UIFocusMovementHint hint);
     @Method(selector = "setNeedsFocusUpdate")

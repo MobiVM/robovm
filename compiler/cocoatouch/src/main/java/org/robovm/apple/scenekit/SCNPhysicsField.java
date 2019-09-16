@@ -55,7 +55,7 @@ import org.robovm.apple.avfoundation.*;
     protected SCNPhysicsField(Handle h, long handle) { super(h, handle); }
     protected SCNPhysicsField(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public SCNPhysicsField(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public SCNPhysicsField(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "strength")
@@ -130,6 +130,6 @@ import org.robovm.apple.avfoundation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

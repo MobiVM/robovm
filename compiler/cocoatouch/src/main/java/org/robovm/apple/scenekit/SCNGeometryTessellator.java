@@ -57,7 +57,7 @@ import org.robovm.apple.avfoundation.*;
     protected SCNGeometryTessellator(Handle h, long handle) { super(h, handle); }
     protected SCNGeometryTessellator(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public SCNGeometryTessellator(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public SCNGeometryTessellator(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "tessellationFactorScale")
@@ -100,6 +100,6 @@ import org.robovm.apple.avfoundation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

@@ -55,7 +55,7 @@ import org.robovm.apple.avfoundation.*;
     protected SCNCamera(Handle h, long handle) { super(h, handle); }
     protected SCNCamera(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public SCNCamera(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public SCNCamera(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "name")
@@ -337,6 +337,26 @@ import org.robovm.apple.avfoundation.*;
     @Property(selector = "setBloomThreshold:")
     public native void setBloomThreshold(@MachineSizedFloat double v);
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "bloomIterationCount")
+    public native @MachineSizedSInt long getBloomIterationCount();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setBloomIterationCount:")
+    public native void setBloomIterationCount(@MachineSizedSInt long v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "bloomIterationSpread")
+    public native @MachineSizedFloat double getBloomIterationSpread();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setBloomIterationSpread:")
+    public native void setBloomIterationSpread(@MachineSizedFloat double v);
+    /**
      * @since Available in iOS 10.0 and later.
      */
     @Property(selector = "bloomIntensity")
@@ -416,6 +436,56 @@ import org.robovm.apple.avfoundation.*;
      */
     @Property(selector = "setContrast:")
     public native void setContrast(@MachineSizedFloat double v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "grainIntensity")
+    public native @MachineSizedFloat double getGrainIntensity();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setGrainIntensity:")
+    public native void setGrainIntensity(@MachineSizedFloat double v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "grainScale")
+    public native @MachineSizedFloat double getGrainScale();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setGrainScale:")
+    public native void setGrainScale(@MachineSizedFloat double v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "grainIsColored")
+    public native boolean isGrainIsColored();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setGrainIsColored:")
+    public native void setGrainIsColored(boolean v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "whiteBalanceTemperature")
+    public native @MachineSizedFloat double getWhiteBalanceTemperature();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setWhiteBalanceTemperature:")
+    public native void setWhiteBalanceTemperature(@MachineSizedFloat double v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "whiteBalanceTint")
+    public native @MachineSizedFloat double getWhiteBalanceTint();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setWhiteBalanceTint:")
+    public native void setWhiteBalanceTint(@MachineSizedFloat double v);
     /**
      * @since Available in iOS 10.0 and later.
      */
@@ -520,6 +590,11 @@ import org.robovm.apple.avfoundation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "projectionTransformWithViewportSize:")
+    public native @ByVal SCNMatrix4 getProjectionTransform(@ByVal CGSize viewportSize);
     @Method(selector = "camera")
     public static native SCNCamera create();
     @Method(selector = "addAnimation:forKey:")
@@ -588,6 +663,6 @@ import org.robovm.apple.avfoundation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

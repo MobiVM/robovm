@@ -59,7 +59,7 @@ import org.robovm.apple.avfoundation.*;
     @Method(selector = "initWithFrame:")
     public SCNView(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public SCNView(NSCoder decoder) { super(decoder); }
+    public SCNView(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "scene")
@@ -88,8 +88,18 @@ import org.robovm.apple.avfoundation.*;
     public native @MachineSizedSInt long getPreferredFramesPerSecond();
     @Property(selector = "setPreferredFramesPerSecond:")
     public native void setPreferredFramesPerSecond(@MachineSizedSInt long v);
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 12.0.
+     */
+    @Deprecated
     @Property(selector = "eaglContext")
     public native EAGLContext getEaglContext();
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 12.0.
+     */
+    @Deprecated
     @Property(selector = "setEaglContext:")
     public native void setEaglContext(EAGLContext v);
     @Property(selector = "antialiasingMode")
@@ -124,6 +134,16 @@ import org.robovm.apple.avfoundation.*;
     public native boolean isJitteringEnabled();
     @Property(selector = "setJitteringEnabled:")
     public native void setJitteringEnabled(boolean v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "isTemporalAntialiasingEnabled")
+    public native boolean isTemporalAntialiasingEnabled();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setTemporalAntialiasingEnabled:")
+    public native void setTemporalAntialiasingEnabled(boolean v);
     @Property(selector = "showsStatistics")
     public native boolean showsStatistics();
     @Property(selector = "setShowsStatistics:")
@@ -202,6 +222,21 @@ import org.robovm.apple.avfoundation.*;
      */
     @Property(selector = "setAudioListener:")
     public native void setAudioListener(SCNNode v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "currentViewport")
+    public native @ByVal CGRect getCurrentViewport();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "usesReverseZ")
+    public native boolean usesReverseZ();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setUsesReverseZ:")
+    public native void setUsesReverseZ(boolean v);
     @Property(selector = "technique")
     public native SCNTechnique getTechnique();
     @Property(selector = "setTechnique:")

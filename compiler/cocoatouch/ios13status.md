@@ -1,6 +1,4 @@
 to go:
-- safariservices
-- scenekit
 - social
 - spritekit
 - storekit
@@ -15,6 +13,8 @@ to go:
 
 
 processed:
+- scenekit
+- safariservices
 - replaykit
 - quicklook
 - pushkit

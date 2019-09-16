@@ -55,7 +55,7 @@ import org.robovm.apple.avfoundation.*;
     protected SCNPhysicsWorld(Handle h, long handle) { super(h, handle); }
     protected SCNPhysicsWorld(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public SCNPhysicsWorld(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public SCNPhysicsWorld(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "gravity")
@@ -100,6 +100,6 @@ import org.robovm.apple.avfoundation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

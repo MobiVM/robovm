@@ -86,6 +86,16 @@ import org.robovm.apple.avfoundation.*;
     public boolean isJitteringEnabled() { return false; }
     @NotImplemented("setJitteringEnabled:")
     public void setJitteringEnabled(boolean v) {}
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("isTemporalAntialiasingEnabled")
+    public boolean isTemporalAntialiasingEnabled() { return false; }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("setTemporalAntialiasingEnabled:")
+    public void setTemporalAntialiasingEnabled(boolean v) {}
     @NotImplemented("showsStatistics")
     public boolean showsStatistics() { return false; }
     @NotImplemented("setShowsStatistics:")
@@ -164,6 +174,21 @@ import org.robovm.apple.avfoundation.*;
      */
     @NotImplemented("setAudioListener:")
     public void setAudioListener(SCNNode v) {}
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("currentViewport")
+    public @ByVal CGRect getCurrentViewport() { return null; }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("usesReverseZ")
+    public boolean usesReverseZ() { return false; }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("setUsesReverseZ:")
+    public void setUsesReverseZ(boolean v) {}
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -55,7 +55,7 @@ import org.robovm.apple.avfoundation.*;
     protected SCNMaterial(Handle h, long handle) { super(h, handle); }
     protected SCNMaterial(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public SCNMaterial(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public SCNMaterial(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "name")
@@ -103,6 +103,21 @@ import org.robovm.apple.avfoundation.*;
      */
     @Property(selector = "roughness")
     public native SCNMaterialProperty getRoughness();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "clearCoat")
+    public native SCNMaterialProperty getClearCoat();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "clearCoatRoughness")
+    public native SCNMaterialProperty getClearCoatRoughness();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "clearCoatNormal")
+    public native SCNMaterialProperty getClearCoatNormal();
     @Property(selector = "shininess")
     public native @MachineSizedFloat double getShininess();
     @Property(selector = "setShininess:")
@@ -264,6 +279,6 @@ import org.robovm.apple.avfoundation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

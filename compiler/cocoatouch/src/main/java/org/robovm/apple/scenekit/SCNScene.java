@@ -55,7 +55,7 @@ import org.robovm.apple.avfoundation.*;
     protected SCNScene(Handle h, long handle) { super(h, handle); }
     protected SCNScene(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public SCNScene(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public SCNScene(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "rootNode")
@@ -85,6 +85,46 @@ import org.robovm.apple.avfoundation.*;
     public native UIColor getFogColor();
     @Property(selector = "setFogColor:")
     public native void setFogColor(UIColor v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "wantsScreenSpaceReflection")
+    public native boolean wantsScreenSpaceReflection();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setWantsScreenSpaceReflection:")
+    public native void setWantsScreenSpaceReflection(boolean v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "screenSpaceReflectionSampleCount")
+    public native @MachineSizedSInt long getScreenSpaceReflectionSampleCount();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setScreenSpaceReflectionSampleCount:")
+    public native void setScreenSpaceReflectionSampleCount(@MachineSizedSInt long v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "screenSpaceReflectionMaximumDistance")
+    public native @MachineSizedFloat double getScreenSpaceReflectionMaximumDistance();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setScreenSpaceReflectionMaximumDistance:")
+    public native void setScreenSpaceReflectionMaximumDistance(@MachineSizedFloat double v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "screenSpaceReflectionStride")
+    public native @MachineSizedFloat double getScreenSpaceReflectionStride();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setScreenSpaceReflectionStride:")
+    public native void setScreenSpaceReflectionStride(@MachineSizedFloat double v);
     @Property(selector = "isPaused")
     public native boolean isPaused();
     @Property(selector = "setPaused:")
@@ -177,6 +217,6 @@ import org.robovm.apple.avfoundation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

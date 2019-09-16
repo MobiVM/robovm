@@ -55,7 +55,7 @@ import org.robovm.apple.avfoundation.*;
     protected SCNMaterialProperty(Handle h, long handle) { super(h, handle); }
     protected SCNMaterialProperty(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public SCNMaterialProperty(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public SCNMaterialProperty(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "contents")
@@ -90,20 +90,6 @@ import org.robovm.apple.avfoundation.*;
     public native SCNWrapMode getWrapT();
     @Property(selector = "setWrapT:")
     public native void setWrapT(SCNWrapMode v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 10.0. Deprecated
-     */
-    @Deprecated
-    @Property(selector = "borderColor")
-    public native NSObject getBorderColor();
-    /**
-     * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 10.0. Deprecated
-     */
-    @Deprecated
-    @Property(selector = "setBorderColor:")
-    public native void setBorderColor(NSObject v);
     @Property(selector = "mappingChannel")
     public native @MachineSizedSInt long getMappingChannel();
     @Property(selector = "setMappingChannel:")
@@ -122,6 +108,20 @@ import org.robovm.apple.avfoundation.*;
     public native @MachineSizedFloat double getMaxAnisotropy();
     @Property(selector = "setMaxAnisotropy:")
     public native void setMaxAnisotropy(@MachineSizedFloat double v);
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 10.0. Deprecated
+     */
+    @Deprecated
+    @Property(selector = "borderColor")
+    public native NSObject getBorderColor();
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 10.0. Deprecated
+     */
+    @Deprecated
+    @Property(selector = "setBorderColor:")
+    public native void setBorderColor(NSObject v);
     @Property(selector = "animationKeys")
     public native NSArray<NSString> getAnimationKeys();
     @Property(selector = "supportsSecureCoding")
@@ -197,6 +197,6 @@ import org.robovm.apple.avfoundation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

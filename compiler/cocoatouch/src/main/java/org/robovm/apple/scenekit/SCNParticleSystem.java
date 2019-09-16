@@ -55,7 +55,7 @@ import org.robovm.apple.avfoundation.*;
     protected SCNParticleSystem(Handle h, long handle) { super(h, handle); }
     protected SCNParticleSystem(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public SCNParticleSystem(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public SCNParticleSystem(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "emissionDuration")
@@ -352,7 +352,7 @@ import org.robovm.apple.avfoundation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     @Method(selector = "addAnimation:forKey:")
     public native void addAnimation(SCNAnimation animation, String key);
     /**
