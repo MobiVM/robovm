@@ -248,6 +248,11 @@ import org.robovm.apple.avfoundation.*;
          */
         @GlobalValue(symbol="SCNHitTestOptionSearchMode", optional=true)
         public static native NSString OptionSearchMode();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="SCNHitTestOptionIgnoreLightArea", optional=true)
+        public static native NSString OptionIgnoreLightArea();
         @GlobalValue(symbol="SCNHitTestFirstFoundOnlyKey", optional=true)
         public static native NSString FirstFoundOnly();
         @GlobalValue(symbol="SCNHitTestSortResultsKey", optional=true)

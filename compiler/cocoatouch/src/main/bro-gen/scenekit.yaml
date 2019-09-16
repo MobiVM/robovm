@@ -1117,13 +1117,9 @@ values:
         exclude: true
 
     # SCNSceneRenderer
-    SCNHitTestOptionCategoryBitMask:
+    SCNHitTestOption(CategoryBitMask|SearchMode|IgnoreLightArea):
         dictionary: SCNHitTestOptions
-        name: 'OptionCategoryBitMask'
-        type: NSString
-    SCNHitTestOptionSearchMode:
-        dictionary: SCNHitTestOptions
-        name: 'OptionSearchMode'
+        name: 'Option#{g[0]}'
         type: NSString
     SCNHitTest(.*)Key:
         dictionary: SCNHitTestOptions
@@ -1222,13 +1218,18 @@ values:
     # SCNView
     SCN(PreferredRenderingAPI|PreferredDevice|PreferLowPowerDevice)Key:
         class: SCNView
-   
+
     # Make sure we don't miss any values if new ones are introduced in a later version
     (k?SCN.*):
         class: SceneKit
         name: 'Value__#{g[0]}'
 
 constants:
+    SCN_ENABLE_METAL:
+        exclude: true
+    SCN_ENABLE_OPENGL:
+        exclude: true
+
     # Make sure we don't miss any constants if new ones are introduced in a later version
     (k?SCN.*):
         class: SceneKit
