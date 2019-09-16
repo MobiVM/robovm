@@ -57,7 +57,7 @@ import org.robovm.apple.foundation.*;
      */
     public UNNotificationCategory(String identifier, NSArray<UNNotificationAction> actions, NSArray<NSString> intentIdentifiers, String hiddenPreviewsBodyPlaceholder, String categorySummaryFormat, UNNotificationCategoryOptions options) { super((Handle) null, create(identifier, actions, intentIdentifiers, hiddenPreviewsBodyPlaceholder, categorySummaryFormat, options)); retain(getHandle()); }
     @Method(selector = "initWithCoder:")
-    public UNNotificationCategory(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public UNNotificationCategory(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "identifier")
@@ -98,6 +98,6 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

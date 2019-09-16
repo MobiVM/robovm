@@ -48,7 +48,7 @@ import org.robovm.apple.foundation.*;
     protected UNNotificationContent(Handle h, long handle) { super(h, handle); }
     protected UNNotificationContent(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public UNNotificationContent(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public UNNotificationContent(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "attachments")
@@ -81,6 +81,11 @@ import org.robovm.apple.foundation.*;
      */
     @Property(selector = "summaryArgumentCount")
     public native @MachineSizedUInt long getSummaryArgumentCount();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "targetContentIdentifier")
+    public native String getTargetContentIdentifier();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
@@ -89,6 +94,6 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }
