@@ -21,7 +21,9 @@ enums:
     SCNetworkReachabilityFlags: { bits: true }
     SCNetworkConnectionFlags: { bits: true, first: kSCNetworkFlagsTransientConnection, type: uint32_t}
     SCNetworkConnectionStatus: {}
-
+    SCPreferencesNotification: {exclude: true} # macos only
+    SCBondStatus: {first: kSCBondStatusOK, exclude: true} #Ethernet Bond Aggregation Status (kSCBondStatusDeviceAggregationStatus) not available on iOS
+    SCNetworkConnectionPPPStatus: {exclude: true} # as SCNetworkConnectionCopyExtendedStatus is only MacOs one
         
 classes:
     __SCNetworkReachability:

@@ -1,6 +1,4 @@
 to go:
-- storekit
-- systemconfiguration
 - twitter
 - usernotifications
 - usernotificationsui
@@ -11,6 +9,8 @@ to go:
 
 
 processed:
+- systemconfiguration
+- storekit
 - spritekit
 - social
 - scenekit
