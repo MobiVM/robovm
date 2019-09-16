@@ -109,7 +109,7 @@ structdefs:
     simd_float4: 'VectorFloat4'
     simd_quatf: 'VectorFloat4'
     vector_double4: 'VectorDouble4'
-    simd_quatd: 'VectorFloat4'
+    simd_quatd: 'VectorDouble4'
     matrix_float2x2: 'MatrixFloat2x4'
     matrix_float3x2: 'MatrixFloat3x4'
     matrix_float4x2: 'MatrixFloat4x4'
