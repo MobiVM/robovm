@@ -52,30 +52,60 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "initWithFrame:")
     public PHLivePhotoView(@ByVal org.robovm.apple.coregraphics.CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public PHLivePhotoView(NSCoder decoder) { super(decoder); }
+    public PHLivePhotoView(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 9.1 and later.
+     */
     @Property(selector = "delegate")
     public native PHLivePhotoViewDelegate getDelegate();
+    /**
+     * @since Available in iOS 9.1 and later.
+     */
     @Property(selector = "setDelegate:", strongRef = true)
     public native void setDelegate(PHLivePhotoViewDelegate v);
+    /**
+     * @since Available in iOS 9.1 and later.
+     */
     @Property(selector = "livePhoto")
     public native PHLivePhoto getLivePhoto();
+    /**
+     * @since Available in iOS 9.1 and later.
+     */
     @Property(selector = "setLivePhoto:")
     public native void setLivePhoto(PHLivePhoto v);
+    /**
+     * @since Available in iOS 9.1 and later.
+     */
     @Property(selector = "isMuted")
     public native boolean isMuted();
+    /**
+     * @since Available in iOS 9.1 and later.
+     */
     @Property(selector = "setMuted:")
     public native void setMuted(boolean v);
+    /**
+     * @since Available in iOS 9.1 and later.
+     */
     @Property(selector = "playbackGestureRecognizer")
     public native UIGestureRecognizer getPlaybackGestureRecognizer();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 9.1 and later.
+     */
     @Method(selector = "startPlaybackWithStyle:")
     public native void startPlayback(PHLivePhotoViewPlaybackStyle playbackStyle);
+    /**
+     * @since Available in iOS 9.1 and later.
+     */
     @Method(selector = "stopPlayback")
     public native void stopPlayback();
+    /**
+     * @since Available in iOS 9.1 and later.
+     */
     @Method(selector = "livePhotoBadgeImageWithOptions:")
     public static native UIImage createLivePhotoBadgeImage(PHLivePhotoBadgeOptions badgeOptions);
     /*</methods>*/

@@ -33,7 +33,9 @@ import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 8.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ interface /*<name>*/PHContentEditingController/*</name>*/ 
@@ -45,16 +47,31 @@ import org.robovm.apple.uikit.*;
     /*</bind>*/
     /*<constants>*//*</constants>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Property(selector = "shouldShowCancelConfirmation")
     boolean shouldShowCancelConfirmation();
     /*</properties>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Method(selector = "canHandleAdjustmentData:")
     boolean canHandleAdjustmentData(PHAdjustmentData adjustmentData);
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Method(selector = "startContentEditingWithInput:placeholderImage:")
     void startContentEditing(PHContentEditingInput contentEditingInput, UIImage placeholderImage);
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Method(selector = "finishContentEditingWithCompletionHandler:")
     void finishContentEditing(@Block VoidBlock1<PHContentEditingOutput> completionHandler);
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Method(selector = "cancelContentEditing")
     void cancelContentEditing();
     /*</methods>*/

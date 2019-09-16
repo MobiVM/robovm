@@ -41,7 +41,13 @@ import org.robovm.apple.uikit.*;
 public final class /*<name>*/PHLivePhotoBadgeOptions/*</name>*/ extends Bits</*<name>*/PHLivePhotoBadgeOptions/*</name>*/> {
     /*<values>*/
     public static final PHLivePhotoBadgeOptions None = new PHLivePhotoBadgeOptions(0L);
+    /**
+     * @since Available in iOS 9.1 and later.
+     */
     public static final PHLivePhotoBadgeOptions OverContent = new PHLivePhotoBadgeOptions(1L);
+    /**
+     * @since Available in iOS 9.1 and later.
+     */
     public static final PHLivePhotoBadgeOptions LiveOff = new PHLivePhotoBadgeOptions(2L);
     /*</values>*/
 

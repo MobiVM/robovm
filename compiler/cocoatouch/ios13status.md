@@ -1,5 +1,4 @@
 to go:
-- photosui
 - pushkit
 - quicklook
 - replaykit
@@ -19,6 +18,7 @@ to go:
 
 
 processed:
+- photosui
 - photos
 - passkit
 - opengles
