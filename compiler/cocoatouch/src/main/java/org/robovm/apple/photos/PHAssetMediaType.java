@@ -45,9 +45,21 @@ import org.robovm.apple.imageio.*;
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/PHAssetMediaType/*</name>*/ implements ValuedEnum {
     /*<values>*/
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     Unknown(0L),
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     Image(1L),
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     Video(2L),
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     Audio(3L);
     /*</values>*/
 

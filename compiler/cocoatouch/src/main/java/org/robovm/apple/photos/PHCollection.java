@@ -52,24 +52,41 @@ import org.robovm.apple.imageio.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public PHCollection() {}
-    @Deprecated protected PHCollection(long handle) { super(handle); }
     protected PHCollection(Handle h, long handle) { super(h, handle); }
     protected PHCollection(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Property(selector = "canContainAssets")
     public native boolean canContainAssets();
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Property(selector = "canContainCollections")
     public native boolean canContainCollections();
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Property(selector = "localizedTitle")
     public native String getLocalizedTitle();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Method(selector = "canPerformEditOperation:")
     public native boolean canPerformEditOperation(PHCollectionEditOperation anOperation);
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Method(selector = "fetchCollectionsInCollectionList:options:")
     public static native PHFetchResult<PHCollection> fetchCollectionsInCollectionList(PHCollectionList collectionList, PHFetchOptions options);
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Method(selector = "fetchTopLevelUserCollectionsWithOptions:")
     public static native PHFetchResult<PHCollection> fetchTopLevelUserCollections(PHFetchOptions options);
     /*</methods>*/

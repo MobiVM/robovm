@@ -54,42 +54,97 @@ import org.robovm.apple.imageio.*;
     public PHAssetCollection() {}
     protected PHAssetCollection(Handle h, long handle) { super(h, handle); }
     protected PHAssetCollection(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     public PHAssetCollection(NSArray<PHAsset> assets, String title) { super((Handle) null, createTransientAssetCollection(assets, title)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     public PHAssetCollection(PHFetchResult<PHAsset> fetchResult, String title) { super((Handle) null, createTransientAssetCollection(fetchResult, title)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Property(selector = "assetCollectionType")
     public native PHAssetCollectionType getAssetCollectionType();
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Property(selector = "assetCollectionSubtype")
     public native PHAssetCollectionSubtype getAssetCollectionSubtype();
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Property(selector = "estimatedAssetCount")
     public native @MachineSizedUInt long getEstimatedAssetCount();
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Property(selector = "startDate")
     public native NSDate getStartDate();
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Property(selector = "endDate")
     public native NSDate getEndDate();
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @WeaklyLinked
     @Property(selector = "approximateLocation")
     public native CLLocation getApproximateLocation();
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Property(selector = "localizedLocationNames")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getLocalizedLocationNames();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Method(selector = "fetchAssetCollectionsWithLocalIdentifiers:options:")
     public static native PHFetchResult<PHAssetCollection> fetchAssetCollectionsWithLocalIdentifiers(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> identifiers, PHFetchOptions options);
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Method(selector = "fetchAssetCollectionsWithType:subtype:options:")
     public static native PHFetchResult<PHAssetCollection> fetchAssetCollectionsWithType(PHAssetCollectionType type, PHAssetCollectionSubtype subtype, PHFetchOptions options);
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Method(selector = "fetchAssetCollectionsContainingAsset:withType:options:")
     public static native PHFetchResult<PHAssetCollection> fetchAssetCollectionsContainingAsset(PHAsset asset, PHAssetCollectionType type, PHFetchOptions options);
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Method(selector = "fetchAssetCollectionsWithALAssetGroupURLs:options:")
     public static native PHFetchResult<PHAssetCollection> fetchAssetCollectionsWithALAssetGroupURLs(NSArray<NSURL> assetGroupURLs, PHFetchOptions options);
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Will be removed in a future release
+     */
+    @Deprecated
     @Method(selector = "fetchMomentsInMomentList:options:")
     public static native PHFetchResult<PHAssetCollection> fetchMomentsInMomentList(PHCollectionList momentList, PHFetchOptions options);
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Will be removed in a future release
+     */
+    @Deprecated
     @Method(selector = "fetchMomentsWithOptions:")
     public static native PHFetchResult<PHAssetCollection> fetchMoments(PHFetchOptions options);
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Method(selector = "transientAssetCollectionWithAssets:title:")
     protected static native @Pointer long createTransientAssetCollection(NSArray<PHAsset> assets, String title);
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Method(selector = "transientAssetCollectionWithAssetFetchResult:title:")
     protected static native @Pointer long createTransientAssetCollection(PHFetchResult<PHAsset> fetchResult, String title);
     /*</methods>*/

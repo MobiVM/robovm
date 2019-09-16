@@ -60,9 +60,15 @@ import org.robovm.apple.imageio.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Method(selector = "changeDetailsForObject:")
-    public native <T extends PHObject> PHObjectChangeDetails<T> getChangeDetailsForObject(T object);
+    public native PHObjectChangeDetails getChangeDetailsForObject(PHObject object);
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Method(selector = "changeDetailsForFetchResult:")
-    public native <T extends PHObject> PHFetchResultChangeDetails<T> getChangeDetailsForFetchResult(PHFetchResult<T> object);
+    public native PHFetchResultChangeDetails getChangeDetailsForFetchResult(PHFetchResult object);
     /*</methods>*/
 }

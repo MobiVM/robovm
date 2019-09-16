@@ -45,8 +45,19 @@ import org.robovm.apple.imageio.*;
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/PHCollectionListType/*</name>*/ implements ValuedEnum {
     /*<values>*/
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Will be removed in a future release
+     */
+    @Deprecated
     MomentList(1L),
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     Folder(2L),
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     SmartFolder(3L);
     /*</values>*/
 

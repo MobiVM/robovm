@@ -61,31 +61,70 @@ import org.robovm.apple.imageio.*;
      */
     @Property(selector = "playbackStyle")
     public native PHAssetPlaybackStyle getPlaybackStyle();
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Property(selector = "mediaType")
     public native PHAssetMediaType getMediaType();
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Property(selector = "mediaSubtypes")
     public native PHAssetMediaSubtype getMediaSubtypes();
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Property(selector = "pixelWidth")
     public native @MachineSizedUInt long getPixelWidth();
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Property(selector = "pixelHeight")
     public native @MachineSizedUInt long getPixelHeight();
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Property(selector = "creationDate")
     public native NSDate getCreationDate();
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Property(selector = "modificationDate")
     public native NSDate getModificationDate();
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @WeaklyLinked
     @Property(selector = "location")
     public native CLLocation getLocation();
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Property(selector = "duration")
     public native double getDuration();
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Property(selector = "isHidden")
     public native boolean isHidden();
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Property(selector = "isFavorite")
     public native boolean isFavorite();
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Property(selector = "burstIdentifier")
     public native String getBurstIdentifier();
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Property(selector = "burstSelectionTypes")
     public native PHAssetBurstSelectionType getBurstSelectionTypes();
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Property(selector = "representsBurst")
     public native boolean representsBurst();
     /**
@@ -96,18 +135,39 @@ import org.robovm.apple.imageio.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Method(selector = "canPerformEditOperation:")
     public native boolean canPerformEditOperation(PHAssetEditOperation editOperation);
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Method(selector = "fetchAssetsInAssetCollection:options:")
     public static native PHFetchResult<PHAsset> fetchAssetsInAssetCollection(PHAssetCollection assetCollection, PHFetchOptions options);
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Method(selector = "fetchAssetsWithLocalIdentifiers:options:")
     public static native PHFetchResult<PHAsset> fetchAssetsWithLocalIdentifiers(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> identifiers, PHFetchOptions options);
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Method(selector = "fetchKeyAssetsInAssetCollection:options:")
     public static native PHFetchResult<PHAsset> fetchKeyAssetsInAssetCollection(PHAssetCollection assetCollection, PHFetchOptions options);
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Method(selector = "fetchAssetsWithBurstIdentifier:options:")
     public static native PHFetchResult<PHAsset> fetchAssetsWithBurstIdentifier(String burstIdentifier, PHFetchOptions options);
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Method(selector = "fetchAssetsWithOptions:")
     public static native PHFetchResult<PHAsset> fetchAssets(PHFetchOptions options);
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Method(selector = "fetchAssetsWithMediaType:options:")
     public static native PHFetchResult<PHAsset> fetchAssetsWithMediaType(PHAssetMediaType mediaType, PHFetchOptions options);
     /**

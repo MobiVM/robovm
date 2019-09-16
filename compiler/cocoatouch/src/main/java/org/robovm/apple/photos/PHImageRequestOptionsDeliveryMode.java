@@ -45,8 +45,17 @@ import org.robovm.apple.imageio.*;
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/PHImageRequestOptionsDeliveryMode/*</name>*/ implements ValuedEnum {
     /*<values>*/
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     Opportunistic(0L),
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     HighQualityFormat(1L),
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     FastFormat(2L);
     /*</values>*/
 

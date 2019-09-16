@@ -45,12 +45,33 @@ import org.robovm.apple.imageio.*;
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/PHCollectionEditOperation/*</name>*/ implements ValuedEnum {
     /*<values>*/
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     DeleteContent(1L),
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     RemoveContent(2L),
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     AddContent(3L),
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     CreateContent(4L),
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     RearrangeContent(5L),
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     Delete(6L),
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     Rename(7L);
     /*</values>*/
 

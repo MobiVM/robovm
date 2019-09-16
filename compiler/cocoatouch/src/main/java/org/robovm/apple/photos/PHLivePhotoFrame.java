@@ -38,7 +38,9 @@ import org.robovm.apple.imageio.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 10.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ interface /*<name>*/PHLivePhotoFrame/*</name>*/ 
@@ -50,12 +52,24 @@ import org.robovm.apple.imageio.*;
     /*</bind>*/
     /*<constants>*//*</constants>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
     @Property(selector = "image")
     CIImage getImage();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
     @Property(selector = "time")
     @ByVal CMTime getTime();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
     @Property(selector = "type")
     PHLivePhotoFrameType getType();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
     @Property(selector = "renderScale")
     @MachineSizedFloat double getRenderScale();
     /*</properties>*/

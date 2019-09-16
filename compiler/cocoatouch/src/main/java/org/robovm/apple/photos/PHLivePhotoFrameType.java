@@ -45,7 +45,13 @@ import org.robovm.apple.imageio.*;
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/PHLivePhotoFrameType/*</name>*/ implements ValuedEnum {
     /*<values>*/
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
     Photo(0L),
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
     Video(1L);
     /*</values>*/
 

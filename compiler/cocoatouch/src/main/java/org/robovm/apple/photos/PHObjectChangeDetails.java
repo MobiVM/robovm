@@ -43,11 +43,11 @@ import org.robovm.apple.imageio.*;
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("Photos") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/PHObjectChangeDetails/*</name>*/ <T extends PHObject> 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/PHObjectChangeDetails<T extends PHObject>/*</name>*/
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class PHObjectChangeDetailsPtr extends Ptr<PHObjectChangeDetails, PHObjectChangeDetailsPtr> {}/*</ptr>*/
+    /*<ptr>*/public static class PHObjectChangeDetailsPtr<T extends PHObject> extends Ptr<PHObjectChangeDetails<T>, PHObjectChangeDetailsPtr<T>> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(PHObjectChangeDetails.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
@@ -56,12 +56,24 @@ import org.robovm.apple.imageio.*;
     protected PHObjectChangeDetails(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Property(selector = "objectBeforeChanges")
     public native T getObjectBeforeChanges();
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Property(selector = "objectAfterChanges")
     public native T getObjectAfterChanges();
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Property(selector = "assetContentChanged")
     public native boolean assetContentChanged();
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Property(selector = "objectWasDeleted")
     public native boolean objectWasDeleted();
     /*</properties>*/

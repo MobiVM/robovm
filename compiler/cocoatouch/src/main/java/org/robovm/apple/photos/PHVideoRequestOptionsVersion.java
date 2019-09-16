@@ -45,7 +45,13 @@ import org.robovm.apple.imageio.*;
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/PHVideoRequestOptionsVersion/*</name>*/ implements ValuedEnum {
     /*<values>*/
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     Current(0L),
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     Original(1L);
     /*</values>*/
 

@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -39,11 +39,11 @@ import org.robovm.apple.imageio.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 8.0 and later.
+ * @since Available in iOS 13.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/PHPhotoLibraryChangeObserver/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ interface /*<name>*/PHPhotoLibraryAvailabilityObserver/*</name>*/ 
     /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
 
     /*<ptr>*/
@@ -56,10 +56,10 @@ import org.robovm.apple.imageio.*;
     /*</properties>*/
     /*<methods>*/
     /**
-     * @since Available in iOS 8.0 and later.
+     * @since Available in iOS 13.0 and later.
      */
-    @Method(selector = "photoLibraryDidChange:")
-    void didChange(PHChange changeInstance);
+    @Method(selector = "photoLibraryDidBecomeUnavailable:")
+    void didBecomeUnavailable(PHPhotoLibrary photoLibrary);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

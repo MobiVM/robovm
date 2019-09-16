@@ -45,11 +45,29 @@ import org.robovm.apple.imageio.*;
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/PHAssetPlaybackStyle/*</name>*/ implements ValuedEnum {
     /*<values>*/
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     Unsupported(0L),
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     Image(1L),
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     ImageAnimated(2L),
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     LivePhoto(3L),
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     Video(4L),
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     VideoLooping(5L);
     /*</values>*/
 

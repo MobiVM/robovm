@@ -56,15 +56,30 @@ import org.robovm.apple.imageio.*;
     protected PHContentEditingInput(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Property(selector = "mediaType")
     public native PHAssetMediaType getMediaType();
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Property(selector = "mediaSubtypes")
     public native PHAssetMediaSubtype getMediaSubtypes();
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Property(selector = "creationDate")
     public native NSDate getCreationDate();
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @WeaklyLinked
     @Property(selector = "location")
     public native CLLocation getLocation();
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Property(selector = "uniformTypeIdentifier")
     public native String getUniformTypeIdentifier();
     /**
@@ -72,13 +87,25 @@ import org.robovm.apple.imageio.*;
      */
     @Property(selector = "playbackStyle")
     public native PHAssetPlaybackStyle getPlaybackStyle();
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Property(selector = "adjustmentData")
     public native PHAdjustmentData getAdjustmentData();
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @WeaklyLinked
     @Property(selector = "displaySizeImage")
     public native UIImage getDisplaySizeImage();
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Property(selector = "fullSizeImageURL")
     public native NSURL getFullSizeImageURL();
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @WeaklyLinked
     @Property(selector = "fullSizeImageOrientation")
     public native org.robovm.apple.imageio.CGImagePropertyOrientation getFullSizeImageOrientation();

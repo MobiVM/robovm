@@ -52,11 +52,13 @@ import org.robovm.apple.imageio.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public PHObject() {}
-    @Deprecated protected PHObject(long handle) { super(handle); }
     protected PHObject(Handle h, long handle) { super(h, handle); }
     protected PHObject(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Property(selector = "localIdentifier")
     public native String getLocalIdentifier();
     /*</properties>*/

@@ -56,28 +56,66 @@ import org.robovm.apple.imageio.*;
     protected PHPhotoLibrary(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "unavailabilityReason")
+    public native NSError getUnavailabilityReason();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "registerAvailabilityObserver:")
+    public native void registerAvailabilityObserver(PHPhotoLibraryAvailabilityObserver observer);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "unregisterAvailabilityObserver:")
+    public native void unregisterAvailabilityObserver(PHPhotoLibraryAvailabilityObserver observer);
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Method(selector = "performChanges:completionHandler:")
     public native void performChanges(@Block Runnable changeBlock, @Block VoidBlock2<Boolean, NSError> completionHandler);
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     public boolean performChangesAndWait(@Block Runnable changeBlock) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        boolean result = performChangesAndWait(changeBlock, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        return result;
     }
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Method(selector = "performChangesAndWait:error:")
     private native boolean performChangesAndWait(@Block Runnable changeBlock, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Method(selector = "registerChangeObserver:")
     public native void registerChangeObserver(PHPhotoLibraryChangeObserver observer);
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Method(selector = "unregisterChangeObserver:")
     public native void unregisterChangeObserver(PHPhotoLibraryChangeObserver observer);
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Method(selector = "sharedPhotoLibrary")
     public static native PHPhotoLibrary getSharedPhotoLibrary();
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Method(selector = "authorizationStatus")
     public static native PHAuthorizationStatus getAuthorizationStatus();
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Method(selector = "requestAuthorization:")
     public static native void requestAuthorization(@Block VoidBlock1<PHAuthorizationStatus> handler);
     /*</methods>*/

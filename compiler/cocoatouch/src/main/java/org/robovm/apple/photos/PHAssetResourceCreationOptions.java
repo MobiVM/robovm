@@ -56,16 +56,34 @@ import org.robovm.apple.imageio.*;
     protected PHAssetResourceCreationOptions(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
     @Property(selector = "originalFilename")
     public native String getOriginalFilename();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
     @Property(selector = "setOriginalFilename:")
     public native void setOriginalFilename(String v);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
     @Property(selector = "uniformTypeIdentifier")
     public native String getUniformTypeIdentifier();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
     @Property(selector = "setUniformTypeIdentifier:")
     public native void setUniformTypeIdentifier(String v);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
     @Property(selector = "shouldMoveFile")
     public native boolean shouldMoveFile();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
     @Property(selector = "setShouldMoveFile:")
     public native void setShouldMoveFile(boolean v);
     /*</properties>*/

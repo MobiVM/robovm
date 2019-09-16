@@ -53,6 +53,9 @@ import org.robovm.apple.imageio.*;
     /*<constructors>*/
     protected PHAssetCreationRequest(Handle h, long handle) { super(h, handle); }
     protected PHAssetCreationRequest(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
     public PHAssetCreationRequest() { super((Handle) null, create()); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
@@ -60,12 +63,24 @@ import org.robovm.apple.imageio.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
     @Method(selector = "addResourceWithType:fileURL:options:")
     public native void addResource(PHAssetResourceType type, NSURL fileURL, PHAssetResourceCreationOptions options);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
     @Method(selector = "addResourceWithType:data:options:")
     public native void addResource(PHAssetResourceType type, NSData data, PHAssetResourceCreationOptions options);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
     @Method(selector = "creationRequestForAsset")
     protected static native @Pointer long create();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
     @Method(selector = "supportsAssetResourceTypes:")
     public static native boolean supportsAssetResourceTypes(@org.robovm.rt.bro.annotation.Marshaler(PHAssetResourceType.AsListMarshaler.class) List<PHAssetResourceType> types);
     /*</methods>*/

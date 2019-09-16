@@ -56,16 +56,34 @@ import org.robovm.apple.imageio.*;
     protected PHContentEditingInputRequestOptions(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Property(selector = "canHandleAdjustmentData")
     public native @Block Block1<PHAdjustmentData, Boolean> getCanHandleAdjustmentData();
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Property(selector = "setCanHandleAdjustmentData:")
     public native void setCanHandleAdjustmentData(@Block Block1<PHAdjustmentData, Boolean> v);
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Property(selector = "isNetworkAccessAllowed")
     public native boolean isNetworkAccessAllowed();
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Property(selector = "setNetworkAccessAllowed:")
     public native void setNetworkAccessAllowed(boolean v);
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Property(selector = "progressHandler")
     public native @Block VoidBlock2<Double, BooleanPtr> getProgressHandler();
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Property(selector = "setProgressHandler:")
     public native void setProgressHandler(@Block VoidBlock2<Double, BooleanPtr> v);
     /*</properties>*/

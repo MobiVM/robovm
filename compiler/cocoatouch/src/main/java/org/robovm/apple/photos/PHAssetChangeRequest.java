@@ -44,7 +44,7 @@ import org.robovm.apple.imageio.*;
 /*</javadoc>*/
 /*<annotations>*/@Library("Photos") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/PHAssetChangeRequest/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
+    extends /*<extends>*/PHChangeRequest/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class PHAssetChangeRequestPtr extends Ptr<PHAssetChangeRequest, PHAssetChangeRequestPtr> {}/*</ptr>*/
@@ -52,50 +52,103 @@ import org.robovm.apple.imageio.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public PHAssetChangeRequest() {}
-    @Deprecated protected PHAssetChangeRequest(long handle) { super(handle); }
     protected PHAssetChangeRequest(Handle h, long handle) { super(h, handle); }
     protected PHAssetChangeRequest(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     public PHAssetChangeRequest(PHAsset asset) { super((Handle) null, create(asset)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Property(selector = "placeholderForCreatedAsset")
     public native PHObjectPlaceholder getPlaceholderForCreatedAsset();
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Property(selector = "creationDate")
     public native NSDate getCreationDate();
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Property(selector = "setCreationDate:")
     public native void setCreationDate(NSDate v);
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @WeaklyLinked
     @Property(selector = "location")
     public native CLLocation getLocation();
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @WeaklyLinked
     @Property(selector = "setLocation:")
     public native void setLocation(CLLocation v);
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Property(selector = "isFavorite")
     public native boolean isFavorite();
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Property(selector = "setFavorite:")
     public native void setFavorite(boolean v);
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Property(selector = "isHidden")
     public native boolean isHidden();
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Property(selector = "setHidden:")
     public native void setHidden(boolean v);
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Property(selector = "contentEditingOutput")
     public native PHContentEditingOutput getContentEditingOutput();
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Property(selector = "setContentEditingOutput:")
     public native void setContentEditingOutput(PHContentEditingOutput v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Method(selector = "revertAssetContentToOriginal")
     public native void revertAssetContentToOriginal();
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @WeaklyLinked
     @Method(selector = "creationRequestForAssetFromImage:")
     public static native PHAssetChangeRequest createImageAssetCreationRequest(UIImage image);
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Method(selector = "creationRequestForAssetFromImageAtFileURL:")
     public static native PHAssetChangeRequest createImageAssetCreationRequest(NSURL fileURL);
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Method(selector = "creationRequestForAssetFromVideoAtFileURL:")
     public static native PHAssetChangeRequest createVideoAssetCreationRequest(NSURL fileURL);
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Method(selector = "deleteAssets:")
     public static native void deleteAssets(NSFastEnumeration assets);
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Method(selector = "changeRequestForAsset:")
     protected static native @Pointer long create(PHAsset asset);
     /*</methods>*/

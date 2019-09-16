@@ -62,12 +62,24 @@ import org.robovm.apple.imageio.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
     @Method(selector = "requestDataForAssetResource:options:dataReceivedHandler:completionHandler:")
     public native int requestData(PHAssetResource resource, PHAssetResourceRequestOptions options, @Block VoidBlock1<NSData> handler, @Block VoidBlock1<NSError> completionHandler);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
     @Method(selector = "writeDataForAssetResource:toFile:options:completionHandler:")
     public native void writeData(PHAssetResource resource, NSURL fileURL, PHAssetResourceRequestOptions options, @Block VoidBlock1<NSError> completionHandler);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
     @Method(selector = "cancelDataRequest:")
     public native void cancelDataRequest(int requestID);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
     @Method(selector = "defaultManager")
     public static native PHAssetResourceManager getDefaultManager();
     /*</methods>*/

@@ -45,8 +45,17 @@ import org.robovm.apple.imageio.*;
 /*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
 public final class /*<name>*/PHAssetMediaSubtype/*</name>*/ extends Bits</*<name>*/PHAssetMediaSubtype/*</name>*/> {
     /*<values>*/
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     public static final PHAssetMediaSubtype None = new PHAssetMediaSubtype(0L);
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     public static final PHAssetMediaSubtype PhotoPanorama = new PHAssetMediaSubtype(1L);
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     public static final PHAssetMediaSubtype PhotoHDR = new PHAssetMediaSubtype(2L);
     /**
      * @since Available in iOS 9.0 and later.
@@ -60,8 +69,17 @@ public final class /*<name>*/PHAssetMediaSubtype/*</name>*/ extends Bits</*<name
      * @since Available in iOS 10.2 and later.
      */
     public static final PHAssetMediaSubtype PhotoDepthEffect = new PHAssetMediaSubtype(16L);
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     public static final PHAssetMediaSubtype VideoStreamed = new PHAssetMediaSubtype(65536L);
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     public static final PHAssetMediaSubtype VideoHighFrameRate = new PHAssetMediaSubtype(131072L);
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     public static final PHAssetMediaSubtype VideoTimelapse = new PHAssetMediaSubtype(262144L);
     /*</values>*/
 

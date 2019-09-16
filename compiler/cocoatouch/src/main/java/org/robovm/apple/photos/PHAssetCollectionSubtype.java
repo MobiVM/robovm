@@ -45,22 +45,73 @@ import org.robovm.apple.imageio.*;
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/PHAssetCollectionSubtype/*</name>*/ implements ValuedEnum {
     /*<values>*/
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     AlbumRegular(2L),
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     AlbumSyncedEvent(3L),
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     AlbumSyncedFaces(4L),
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     AlbumSyncedAlbum(5L),
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     AlbumImported(6L),
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     AlbumMyPhotoStream(100L),
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     AlbumCloudShared(101L),
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     SmartAlbumGeneric(200L),
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     SmartAlbumPanoramas(201L),
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     SmartAlbumVideos(202L),
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     SmartAlbumFavorites(203L),
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     SmartAlbumTimelapses(204L),
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     SmartAlbumAllHidden(205L),
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     SmartAlbumRecentlyAdded(206L),
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     SmartAlbumBursts(207L),
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     SmartAlbumSlomoVideos(208L),
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     SmartAlbumUserLibrary(209L),
     /**
      * @since Available in iOS 9.0 and later.
@@ -86,6 +137,13 @@ public enum /*<name>*/PHAssetCollectionSubtype/*</name>*/ implements ValuedEnum 
      * @since Available in iOS 11.0 and later.
      */
     SmartAlbumLongExposures(215L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    SmartAlbumUnableToUpload(216L),
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     Any(Bro.IS_32BIT ? Integer.MAX_VALUE : Long.MAX_VALUE);
     /*</values>*/
 

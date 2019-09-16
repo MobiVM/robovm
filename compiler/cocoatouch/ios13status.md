@@ -1,5 +1,4 @@
 to go:
-- photos
 - photosui
 - pushkit
 - quicklook
@@ -20,6 +19,7 @@ to go:
 
 
 processed:
+- photos
 - passkit
 - opengles
 - notificationcenter
