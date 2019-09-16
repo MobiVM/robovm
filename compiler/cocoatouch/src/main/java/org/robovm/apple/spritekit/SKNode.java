@@ -184,7 +184,7 @@ import org.robovm.apple.metal.*;
     public native UIFocusItemContainer getFocusItemContainer();
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Deprecated in iOS 10.0. Use -preferredFocusEnvironments instead.
+     * @deprecated Deprecated in iOS 10.0.
      */
     @Deprecated
     @Property(selector = "preferredFocusedView")
@@ -275,6 +275,9 @@ import org.robovm.apple.metal.*;
     protected static native @Pointer long create(String filename, NSSet<?> classes, NSError.NSErrorPtr error);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
     @Method(selector = "didHintFocusMovement:")
     public native void didHintFocusMovement(UIFocusMovementHint hint);
     @Method(selector = "setNeedsFocusUpdate")

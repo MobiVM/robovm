@@ -62,7 +62,7 @@ import org.robovm.apple.metal.*;
     public SKTexture(NSData pixelData, @ByVal CGSize size, boolean flipped) { super((Handle) null, create(pixelData, size, flipped)); retain(getHandle()); }
     public SKTexture(NSData pixelData, @ByVal CGSize size, int rowLength, int alignment) { super((Handle) null, create(pixelData, size, rowLength, alignment)); retain(getHandle()); }
     @Method(selector = "initWithCoder:")
-    public SKTexture(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public SKTexture(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "filteringMode")
@@ -131,6 +131,6 @@ import org.robovm.apple.metal.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

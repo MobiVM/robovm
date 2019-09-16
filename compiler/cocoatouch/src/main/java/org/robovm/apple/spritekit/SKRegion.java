@@ -63,7 +63,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithPath:")
     public SKRegion(CGPath path) { super((SkipInit) null); initObject(init(path)); }
     @Method(selector = "initWithCoder:")
-    public SKRegion(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public SKRegion(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "path")
@@ -94,6 +94,6 @@ import org.robovm.apple.metal.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

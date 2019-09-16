@@ -61,7 +61,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithSource:uniforms:")
     public SKShader(String source, NSArray<SKUniform> uniforms) { super((SkipInit) null); initObject(init(source, uniforms)); }
     @Method(selector = "initWithCoder:")
-    public SKShader(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public SKShader(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     public SKShader(File file) {
         super(createWithFile(file.getAbsolutePath()));
@@ -105,6 +105,6 @@ import org.robovm.apple.metal.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

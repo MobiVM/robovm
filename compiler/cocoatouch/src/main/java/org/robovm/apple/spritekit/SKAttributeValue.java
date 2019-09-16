@@ -61,7 +61,7 @@ import org.robovm.apple.metal.*;
     public SKAttributeValue(@ByVal VectorFloat3 value) { super((Handle) null, create(value)); retain(getHandle()); }
     public SKAttributeValue(@ByVal VectorFloat4 value) { super((Handle) null, create(value)); retain(getHandle()); }
     @Method(selector = "initWithCoder:")
-    public SKAttributeValue(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public SKAttributeValue(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "floatValue")
@@ -96,6 +96,6 @@ import org.robovm.apple.metal.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

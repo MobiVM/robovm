@@ -135,7 +135,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithName:floatMatrix4:")
     public SKUniform(String name, @ByVal GLKMatrix4 value) { super((SkipInit) null); initObject(init(name, value)); }
     @Method(selector = "initWithCoder:")
-    public SKUniform(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public SKUniform(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "name")
@@ -380,6 +380,6 @@ import org.robovm.apple.metal.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

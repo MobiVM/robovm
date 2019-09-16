@@ -57,7 +57,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithFrame:")
     public SKView(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public SKView(NSCoder decoder) { super(decoder); }
+    public SKView(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "isPaused")

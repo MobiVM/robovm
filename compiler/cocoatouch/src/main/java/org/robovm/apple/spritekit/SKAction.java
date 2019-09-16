@@ -72,7 +72,7 @@ import org.robovm.apple.metal.*;
      */
     public SKAction(String name, NSURL url, double duration) { super((Handle) null, create(name, url, duration)); retain(getHandle()); }
     @Method(selector = "initWithCoder:")
-    public SKAction(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public SKAction(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "duration")
@@ -441,6 +441,6 @@ import org.robovm.apple.metal.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }
