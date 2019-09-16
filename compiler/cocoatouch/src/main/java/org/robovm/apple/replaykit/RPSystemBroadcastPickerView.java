@@ -52,7 +52,7 @@ import org.robovm.apple.coremedia.*;
     @Method(selector = "initWithFrame:")
     public RPSystemBroadcastPickerView(@ByVal org.robovm.apple.coregraphics.CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public RPSystemBroadcastPickerView(NSCoder decoder) { super(decoder); }
+    public RPSystemBroadcastPickerView(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "preferredExtension")
