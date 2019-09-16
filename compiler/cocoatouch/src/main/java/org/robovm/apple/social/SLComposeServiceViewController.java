@@ -53,7 +53,7 @@ import org.robovm.apple.accounts.*;
     @Method(selector = "initWithNibName:bundle:")
     public SLComposeServiceViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
     @Method(selector = "initWithCoder:")
-    public SLComposeServiceViewController(NSCoder decoder) { super(decoder); }
+    public SLComposeServiceViewController(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "textView")
@@ -123,14 +123,14 @@ import org.robovm.apple.accounts.*;
     public native boolean shouldInteractWithTextAttachment(UITextView textView, NSTextAttachment textAttachment, @ByVal NSRange characterRange, UITextItemInteraction interaction);
     /**
      * @since Available in iOS 7.0 and later.
-     * @deprecated Deprecated in iOS 10.0. Use textView:shouldInteractWithURL:inRange:forInteractionType: instead
+     * @deprecated Deprecated in iOS 10.0.
      */
     @Deprecated
     @Method(selector = "textView:shouldInteractWithURL:inRange:")
     public native boolean shouldInteractWithURL(UITextView textView, NSURL URL, @ByVal NSRange characterRange);
     /**
      * @since Available in iOS 7.0 and later.
-     * @deprecated Deprecated in iOS 10.0. Use textView:shouldInteractWithTextAttachment:inRange:forInteractionType: instead
+     * @deprecated Deprecated in iOS 10.0.
      */
     @Deprecated
     @Method(selector = "textView:shouldInteractWithTextAttachment:inRange:")

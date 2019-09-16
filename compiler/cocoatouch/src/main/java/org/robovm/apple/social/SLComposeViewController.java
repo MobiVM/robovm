@@ -54,7 +54,7 @@ import org.robovm.apple.accounts.*;
     @Method(selector = "initWithNibName:bundle:")
     public SLComposeViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
     @Method(selector = "initWithCoder:")
-    public SLComposeViewController(NSCoder decoder) { super(decoder); }
+    public SLComposeViewController(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "serviceType")

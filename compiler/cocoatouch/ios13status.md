@@ -1,5 +1,4 @@
 to go:
-- social
 - spritekit
 - storekit
 - systemconfiguration
@@ -13,6 +12,7 @@ to go:
 
 
 processed:
+- social
 - scenekit
 - safariservices
 - replaykit
