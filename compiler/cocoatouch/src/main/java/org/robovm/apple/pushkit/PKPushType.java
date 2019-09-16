@@ -47,13 +47,15 @@ import org.robovm.apple.dispatch.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @since Available in iOS 8.0 and later.
+     * @since Available in iOS 9.0 and later.
      */
     @GlobalValue(symbol="PKPushTypeVoIP", optional=true)
     public static native String VoIP();
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 13.0.
      */
+    @Deprecated
     @GlobalValue(symbol="PKPushTypeComplication", optional=true)
     public static native String Complication();
     /**
