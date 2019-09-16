@@ -50,7 +50,11 @@ public enum /*<name>*/NEVPNIKEv2DiffieHellmanGroup/*</name>*/ implements ValuedE
     _18(18L),
     _19(19L),
     _20(20L),
-    _21(21L);
+    _21(21L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    _31(31L);
     /*</values>*/
 
     /*<bind>*/

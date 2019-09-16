@@ -49,7 +49,7 @@ import org.robovm.apple.security.*;
     protected NEOnDemandRule(Handle h, long handle) { super(h, handle); }
     protected NEOnDemandRule(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public NEOnDemandRule(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public NEOnDemandRule(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     /**
@@ -115,6 +115,6 @@ import org.robovm.apple.security.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

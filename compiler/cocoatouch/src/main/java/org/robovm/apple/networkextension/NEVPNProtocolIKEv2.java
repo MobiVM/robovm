@@ -180,6 +180,16 @@ import org.robovm.apple.security.*;
      */
     @Property(selector = "setMaximumTLSVersion:")
     public native void setMaximumTLSVersion(NEVPNIKEv2TLSVersion v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "enableFallback")
+    public native boolean isEnableFallback();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setEnableFallback:")
+    public native void setEnableFallback(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

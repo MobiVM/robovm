@@ -88,10 +88,5 @@ import org.robovm.apple.security.*;
      */
     @Method(selector = "notifyRulesChanged")
     public native void notifyRulesChanged();
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
-    @Method(selector = "handleReport:")
-    public native void handleReport(NEFilterReport report);
     /*</methods>*/
 }

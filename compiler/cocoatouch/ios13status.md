@@ -1,4 +1,30 @@
+to go:
+- newsstandkit
+- notificationcenter
+- opengles
+- passkit
+- photos
+- photosui
+- pushkit
+- quicklook
+- replaykit
+- safariservices
+- scenekit
+- social
+- spritekit
+- storekit
+- systemconfiguration
+- twitter
+- usernotifications
+- usernotificationsui
+- vision
+- watchconnectivity
+- watchkit
+- webkit
+
+
 processed:
+- networkextension
 - network
 - naturallanguage
 - multipeerconnectivity
@@ -68,27 +94,4 @@ processed:
 - foundation
 - security
 
-to go:
-- networkextension
-- newsstandkit
-- notificationcenter
-- opengles
-- passkit
-- photos
-- photosui
-- pushkit
-- quicklook
-- replaykit
-- safariservices
-- scenekit
-- social
-- spritekit
-- storekit
-- systemconfiguration
-- twitter
-- usernotifications
-- usernotificationsui
-- vision
-- watchconnectivity
-- watchkit
-- webkit
+

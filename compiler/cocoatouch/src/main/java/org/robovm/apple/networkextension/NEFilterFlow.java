@@ -49,7 +49,7 @@ import org.robovm.apple.security.*;
     protected NEFilterFlow(Handle h, long handle) { super(h, handle); }
     protected NEFilterFlow(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public NEFilterFlow(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public NEFilterFlow(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     /**
@@ -72,6 +72,11 @@ import org.robovm.apple.security.*;
      */
     @Property(selector = "sourceAppVersion")
     public native String getSourceAppVersion();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "direction")
+    public native NETrafficDirection getDirection();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
@@ -80,6 +85,6 @@ import org.robovm.apple.security.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

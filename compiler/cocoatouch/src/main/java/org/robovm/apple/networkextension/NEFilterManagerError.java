@@ -42,7 +42,15 @@ public enum /*<name>*/NEFilterManagerError/*</name>*/ implements ValuedEnum {
     ConfigurationInvalid(1L),
     ConfigurationDisabled(2L),
     ConfigurationStale(3L),
-    ConfigurationCannotBeRemoved(4L);
+    ConfigurationCannotBeRemoved(4L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    ConfigurationPermissionDenied(5L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    ConfigurationInternalError(6L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(NEFilterManagerError.class); }/*</bind>*/

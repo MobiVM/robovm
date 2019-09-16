@@ -37,9 +37,11 @@ enums:
     NEHotspotConfigurationEAPType: {} #since 11.0
     NEHotspotConfigurationTTLSInnerAuthenticationType: {prefix: NEHotspotConfigurationEAPTTLSInnerAuthentication} #since 11.0
     NEHotspotConfigurationEAPTLSVersion: {prefix: NEHotspotConfigurationEAPTLS} #since 11.0
-    NEHotspotConfigurationError: {} #since 11.0 # TODO: this to be connected with NSERROR but currently domain is not known
+    NEHotspotConfigurationError: {nserror: true} #since 11.0
     NEVPNIKEv2TLSVersion: {} #since 11.0
 
+    NETrafficDirection: {} #since 13.0
+    NEFilterReportEvent: {} #since 13.0
 classes:
     NEProvider:
         methods:
@@ -233,6 +235,8 @@ classes:
                 name: stopProxy
             '-cancelProxyWithError:':
                 name: cancelProxy
+            '-handleNewUDPFlow:initialRemoteEndpoint:':
+                name: handleNewUDPFlow
     NEAppProxyProviderManager:
         methods:
             '+loadAllFromPreferencesWithCompletionHandler:':
@@ -329,12 +333,26 @@ classes:
                 name: stopProxy
             '-cancelProxyWithError:':
                 name: cancelProxy
+            '-handleNewUDPFlow:initialRemoteEndpoint:':
+                name: handleNewUDPFlow
     NEDNSProxyProviderProtocol: {} #since 11.0
     NEFilterReport: {} #since 11.0
     NEHotspotConfiguration: #since 11.0
         methods:
-            '-init.*':
+            '-initWithSSID:':
                 name: init
+            '-initWithSSID:passphrase:isWEP:':
+                name: init
+            '-initWithSSID:eapSettings:':
+                name: init
+            '-initWithHS20Settings:eapSettings:':
+                name: init
+            '-initWithSSIDPrefix:':
+                static_constructor_name: createUsingSSID
+                name: initUsingSSID
+            '-initWithSSIDPrefix:passphrase:isWEP:':
+                static_constructor_name: createUsingSSID
+                name: initUsingSSID
     NEHotspotConfigurationManager: #since 11.0
         methods:
             '-applyConfiguration:completionHandler:':
@@ -380,6 +398,10 @@ values:
 
     NEAppProxyErrorDomain:
         class: NEAppProxyFlowError
+        name: getClassDomain
+
+    NEHotspotConfigurationErrorDomain:
+        class: NEHotspotConfigurationError
         name: getClassDomain
 
     # NEFilterProvider
