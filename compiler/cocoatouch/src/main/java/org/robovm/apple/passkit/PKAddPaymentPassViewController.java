@@ -55,7 +55,7 @@ import org.robovm.apple.contacts.*;
     @Method(selector = "initWithNibName:bundle:")
     public PKAddPaymentPassViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
     @Method(selector = "initWithCoder:")
-    public PKAddPaymentPassViewController(NSCoder decoder) { super(decoder); }
+    public PKAddPaymentPassViewController(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "delegate")

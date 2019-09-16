@@ -60,7 +60,7 @@ import org.robovm.apple.contacts.*;
     @Method(selector = "initWithNibName:bundle:")
     public PKAddPassesViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
     @Method(selector = "initWithCoder:")
-    public PKAddPassesViewController(NSCoder decoder) { super(decoder); }
+    public PKAddPassesViewController(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "delegate")

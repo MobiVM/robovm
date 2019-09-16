@@ -1,8 +1,4 @@
 to go:
-- newsstandkit
-- notificationcenter
-- opengles
-- passkit
 - photos
 - photosui
 - pushkit
@@ -24,6 +20,10 @@ to go:
 
 
 processed:
+- passkit
+- opengles
+- notificationcenter
+- newsstandkit
 - networkextension
 - network
 - naturallanguage

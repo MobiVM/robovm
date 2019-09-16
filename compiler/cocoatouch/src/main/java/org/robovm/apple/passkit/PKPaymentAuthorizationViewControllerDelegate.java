@@ -98,14 +98,14 @@ import org.robovm.apple.contacts.*;
     @Method(selector = "paymentAuthorizationViewController:didSelectShippingAddress:completion:")
     void didSelectShippingAddress(PKPaymentAuthorizationViewController controller, ABRecord address, @Block VoidBlock3<PKPaymentAuthorizationStatus, NSArray<PKShippingMethod>, NSArray<PKPaymentSummaryItem>> completion);
     /**
-     * @since Available in iOS 8.0 and later.
+     * @since Available in iOS 9.0 and later.
      * @deprecated Deprecated in iOS 11.0. Use paymentAuthorizationViewController:didSelectShippingContact:handler: instead to provide more granular errors
      */
     @Deprecated
     @Method(selector = "paymentAuthorizationViewController:didSelectShippingContact:completion:")
     void didSelectShippingContact(PKPaymentAuthorizationViewController controller, PKContact contact, @Block VoidBlock3<PKPaymentAuthorizationStatus, NSArray<PKShippingMethod>, NSArray<PKPaymentSummaryItem>> completion);
     /**
-     * @since Available in iOS 8.0 and later.
+     * @since Available in iOS 9.0 and later.
      * @deprecated Deprecated in iOS 11.0. Use paymentAuthorizationViewController:didSelectPaymentMethod:handler: instead to provide more granular errors
      */
     @Deprecated
