@@ -7,7 +7,8 @@ headers:
     - /System/Library/Frameworks/QuickLook.framework/Headers/QuickLook.h
 typedefs: {}
     
-enums: {}
+enums:
+    QLPreviewItemEditingMode: {} #since 13.0
 
 categories:
     NSURL: # DONE
@@ -62,6 +63,12 @@ protocols:
                 name: getTransitionImage
             '-previewController:transitionViewForPreviewItem:':
                 name: getTransitionViewForPreviewItem
+            '-previewController:editingModeForPreviewItem:':
+                name: getEditingMode
+            '-previewController:didUpdateContentsOfPreviewItem:':
+                name: didUpdateContentsOfPreviewItem
+            '-previewController:didSaveEditedCopyOfPreviewItem:atURL:':
+                name: didSaveEditedCopyOfPreviewItem
     QLPreviewingController:
         methods:
             '-preparePreviewOfSearchableItemWithIdentifier:queryString:completionHandler:':

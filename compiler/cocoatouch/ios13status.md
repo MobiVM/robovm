@@ -1,6 +1,4 @@
 to go:
-- pushkit
-- quicklook
 - replaykit
 - safariservices
 - scenekit
@@ -18,6 +16,8 @@ to go:
 
 
 processed:
+- quicklook
+- pushkit
 - photosui
 - photos
 - passkit
