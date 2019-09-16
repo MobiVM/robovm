@@ -1,4 +1,7 @@
 processed:
+- modelio
+- mobilecoreservices
+- metalperformanceshaders
 - metalkit
 - metal
 - messageui
@@ -63,9 +66,6 @@ processed:
 - security
 
 to go:
-- metalperformanceshaders
-- mobilecoreservices
-- modelio
 - multipeerconnectivity
 - naturallanguage
 - network
