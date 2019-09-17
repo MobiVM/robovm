@@ -1,6 +1,4 @@
 to go - new frameworks:
-- CoreAudioTypes
-- CoreHaptics
 - CryptoTokenKit
 - ImageCaptureCore
 - MetricKit
@@ -10,6 +8,7 @@ to go - new frameworks:
 - VisionKit
 
 processed:
+- (new) CoreHaptics
 - (new) BackgroundTasks
 - webkit
 - watchkit

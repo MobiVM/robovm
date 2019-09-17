@@ -1,0 +1,156 @@
+package: org.robovm.apple.corehaptic
+include: [foundation, avfoundation]
+library: CoreHaptics
+framework: CoreHaptics
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/CoreHaptics.framework/Headers/CoreHaptics.h
+typedefs:
+
+enums:
+    CHHapticErrorCode: {nserror: true} #since 13.0
+    CHHapticEngineFinishedAction: {}
+    CHHapticEngineStoppedReason: {}
+
+typed_enums:
+    CHHapticPatternKey:
+        readonly: true # as declared without const
+        class: CHHapticPatternKey
+        type: NSString
+        prefix: CHHapticPatternKey
+    CHHapticEventType:
+        readonly: true # as declared without const
+        class: CHHapticEventType
+        type: NSString
+        prefix: CHHapticEventType
+    CHHapticEventParameterID:
+        readonly: true # as declared without const
+        class: CHHapticEventParameterID
+        type: NSString
+        prefix: CHHapticEventParameterID
+    CHHapticDynamicParameterID:
+        readonly: true # as declared without const
+        class: CHHapticDynamicParameterID
+        type: NSString
+        prefix: CHHapticDynamicParameterID
+
+classes:
+    CHHapticDynamicParameter: #since 13.0
+        methods:
+            '-initWithParameterID:value:relativeTime:':
+                name: init
+    CHHapticEngine: #since 13.0
+        methods:
+            '-initWithAudioSession:error:':
+                name: init
+            '-startWithCompletionHandler:':
+                name: start
+            '-stopWithCompletionHandler:':
+                name: stop
+            '-createPlayerWithPattern:error:':
+                name: createPlayer
+                throws: NSErrorException
+            '-createAdvancedPlayerWithPattern:error:':
+                name: createAdvancedPlayer
+                throws: NSErrorException
+            '-registerAudioResource:options:error:':
+                name: registerAudioResource
+                throws: NSErrorException
+            '-unregisterAudioResource:error:':
+                name: unregisterAudioResource
+                throws: NSErrorException
+            '-playPatternFromURL:error:':
+                name: playPattern
+                throws: NSErrorException
+            '-playPatternFromData:error:':
+                name: playPattern
+                throws: NSErrorException
+    CHHapticEvent: #since 13.0
+        methods:
+            '-initWithEventType:parameters:relativeTime:':
+                name: init
+            '-initWithEventType:parameters:relativeTime:duration:':
+                name: init
+            '-initWithAudioResourceID:parameters:relativeTime:':
+                name: init
+            '-initWithAudioResourceID:parameters:relativeTime:duration:':
+                name: init
+    CHHapticEventParameter: #since 13.0
+        methods:
+            '-initWithParameterID:value:':
+                name: init
+    CHHapticParameterCurve:
+        methods:
+            '-initWithParameterID:controlPoints:relativeTime:':
+                name: init
+    CHHapticParameterCurveControlPoint: #since 13.0
+        methods:
+            '-initWithRelativeTime:value:':
+                name: init
+    CHHapticPattern: #since 13.0
+        methods:
+            '-initWithEvents:parameters:error:':
+                static_constructor_name: createUsingParameters
+                name: initUsingParameters
+                throws: NSErrorException
+            '-initWithEvents:parameterCurves:error:':
+                name: init
+                throws: NSErrorException
+            '-initWithDictionary:error:':
+                name: init
+                throws: NSErrorException
+
+protocols:
+    CHHapticAdvancedPatternPlayer: #since 13.0
+        methods:
+            '-pauseAtTime:error:':
+                name: pause
+            '-resumeAtTime:error:':
+                name: resume
+            '-seekToOffset:error:':
+                name: seek
+    CHHapticDeviceCapability: #since 13.0
+        methods:
+            '-attributesForEventParameter:eventType:error:':
+                name: getAttributes
+            '-attributesForDynamicParameter:error:':
+                name: getAttributes
+    CHHapticParameterAttributes: {} #since 13.0
+    CHHapticPatternPlayer: #since 13.0
+        methods:
+            '-startAtTime:error:':
+                name: start
+            '-stopAtTime:error:':
+                name: stop
+            '-sendParameters:atTime:error:':
+                name: sendParameters
+            '-scheduleParameterCurve:atTime:error:':
+                name: scheduleParameterCurve
+
+functions:
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (k?CH.*):
+        class: !!!FixMe
+        name: 'Function__#{g[0]}'
+
+values:
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (k?CH.*):
+        class: !!!FixMe
+        name: 'Value__#{g[0]}'
+    (k?CoreHaptics.*):
+        class: !!!FixMe
+        name: 'Value__#{g[0]}'
+
+constants:
+    CoreHapticsErrorDomain:
+        class: CHHapticErrorCode
+        name: ClassDomain
+
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (k?CH.*):
+        class: !!!FixMe
+        name: 'Constant__#{g[0]}'
+    (k?CoreHaptics.*):
+        class: !!!FixMe
+        name: 'Constant__#{g[0]}'
