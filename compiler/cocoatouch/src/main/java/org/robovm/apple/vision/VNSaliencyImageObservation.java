@@ -38,30 +38,25 @@ import org.robovm.apple.imageio.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 11.0 and later.
+ * @since Available in iOS 13.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("Vision") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/VNCoreMLFeatureValueObservation/*</name>*/ 
-    extends /*<extends>*/VNObservation/*</extends>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/VNSaliencyImageObservation/*</name>*/ 
+    extends /*<extends>*/VNPixelBufferObservation/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class VNCoreMLFeatureValueObservationPtr extends Ptr<VNCoreMLFeatureValueObservation, VNCoreMLFeatureValueObservationPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(VNCoreMLFeatureValueObservation.class); }/*</bind>*/
+    /*<ptr>*/public static class VNSaliencyImageObservationPtr extends Ptr<VNSaliencyImageObservation, VNSaliencyImageObservationPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(VNSaliencyImageObservation.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public VNCoreMLFeatureValueObservation() {}
-    protected VNCoreMLFeatureValueObservation(Handle h, long handle) { super(h, handle); }
-    protected VNCoreMLFeatureValueObservation(SkipInit skipInit) { super(skipInit); }
+    public VNSaliencyImageObservation() {}
+    protected VNSaliencyImageObservation(Handle h, long handle) { super(h, handle); }
+    protected VNSaliencyImageObservation(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "featureValue")
-    public native MLFeatureValue getFeatureValue();
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @Property(selector = "featureName")
-    public native String getFeatureName();
+    @Property(selector = "salientObjects")
+    public native NSArray<VNRectangleObservation> getSalientObjects();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

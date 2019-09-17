@@ -37,34 +37,33 @@ import org.robovm.apple.imageio.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 11.0 and later.
- */
 /*</javadoc>*/
-/*<annotations>*/@Library("Vision") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/VNCoreMLFeatureValueObservation/*</name>*/ 
-    extends /*<extends>*/VNObservation/*</extends>*/ 
+/*<annotations>*/@Library("Vision")/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/VNAnimalDetector/*</name>*/ 
+    extends /*<extends>*/CocoaUtility/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class VNCoreMLFeatureValueObservationPtr extends Ptr<VNCoreMLFeatureValueObservation, VNCoreMLFeatureValueObservationPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(VNCoreMLFeatureValueObservation.class); }/*</bind>*/
+    /*<ptr>*/
+    /*</ptr>*/
+    /*<bind>*/static { Bro.bind(VNAnimalDetector.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*/
-    public VNCoreMLFeatureValueObservation() {}
-    protected VNCoreMLFeatureValueObservation(Handle h, long handle) { super(h, handle); }
-    protected VNCoreMLFeatureValueObservation(SkipInit skipInit) { super(skipInit); }
-    /*</constructors>*/
-    /*<properties>*/
-    @Property(selector = "featureValue")
-    public native MLFeatureValue getFeatureValue();
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @Property(selector = "featureName")
-    public native String getFeatureName();
-    /*</properties>*/
+    /*<constructors>*//*</constructors>*/
+    /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
+    @GlobalValue(symbol="VNAnimalDetectorDog", optional=true)
+    public static native NSString Dog();
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
+    @GlobalValue(symbol="VNAnimalDetectorCat", optional=true)
+    public static native NSString Cat();
     /*</methods>*/
 }

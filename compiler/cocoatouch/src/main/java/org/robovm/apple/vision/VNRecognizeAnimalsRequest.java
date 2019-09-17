@@ -38,33 +38,38 @@ import org.robovm.apple.imageio.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 11.0 and later.
+ * @since Available in iOS 13.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("Vision") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/VNCoreMLFeatureValueObservation/*</name>*/ 
-    extends /*<extends>*/VNObservation/*</extends>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/VNRecognizeAnimalsRequest/*</name>*/ 
+    extends /*<extends>*/VNImageBasedRequest/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class VNCoreMLFeatureValueObservationPtr extends Ptr<VNCoreMLFeatureValueObservation, VNCoreMLFeatureValueObservationPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(VNCoreMLFeatureValueObservation.class); }/*</bind>*/
-    /*<constants>*//*</constants>*/
+    /*<ptr>*/public static class VNRecognizeAnimalsRequestPtr extends Ptr<VNRecognizeAnimalsRequest, VNRecognizeAnimalsRequestPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(VNRecognizeAnimalsRequest.class); }/*</bind>*/
+    /*<constants>*/
+    public static final int Revision1 = 1;
+    /*</constants>*/
     /*<constructors>*/
-    public VNCoreMLFeatureValueObservation() {}
-    protected VNCoreMLFeatureValueObservation(Handle h, long handle) { super(h, handle); }
-    protected VNCoreMLFeatureValueObservation(SkipInit skipInit) { super(skipInit); }
+    public VNRecognizeAnimalsRequest() {}
+    protected VNRecognizeAnimalsRequest(Handle h, long handle) { super(h, handle); }
+    protected VNRecognizeAnimalsRequest(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCompletionHandler:")
+    public VNRecognizeAnimalsRequest(@Block VoidBlock2<VNRequest, NSError> completionHandler) { super(completionHandler); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "featureValue")
-    public native MLFeatureValue getFeatureValue();
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @Property(selector = "featureName")
-    public native String getFeatureName();
+    
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    public static NSArray<NSString> getKnownAnimalIdentifiersForRevision(@MachineSizedUInt long requestRevision) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       NSArray<NSString> result = getKnownAnimalIdentifiersForRevision(requestRevision, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    @Method(selector = "knownAnimalIdentifiersForRevision:error:")
+    private static native NSArray<NSString> getKnownAnimalIdentifiersForRevision(@MachineSizedUInt long requestRevision, NSError.NSErrorPtr error);
     /*</methods>*/
 }

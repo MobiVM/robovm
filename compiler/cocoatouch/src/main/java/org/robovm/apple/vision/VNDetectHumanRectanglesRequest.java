@@ -38,30 +38,28 @@ import org.robovm.apple.imageio.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 11.0 and later.
+ * @since Available in iOS 13.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("Vision") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/VNCoreMLFeatureValueObservation/*</name>*/ 
-    extends /*<extends>*/VNObservation/*</extends>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/VNDetectHumanRectanglesRequest/*</name>*/ 
+    extends /*<extends>*/VNImageBasedRequest/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class VNCoreMLFeatureValueObservationPtr extends Ptr<VNCoreMLFeatureValueObservation, VNCoreMLFeatureValueObservationPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(VNCoreMLFeatureValueObservation.class); }/*</bind>*/
-    /*<constants>*//*</constants>*/
+    /*<ptr>*/public static class VNDetectHumanRectanglesRequestPtr extends Ptr<VNDetectHumanRectanglesRequest, VNDetectHumanRectanglesRequestPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(VNDetectHumanRectanglesRequest.class); }/*</bind>*/
+    /*<constants>*/
+    public static final int Revision1 = 1;
+    /*</constants>*/
     /*<constructors>*/
-    public VNCoreMLFeatureValueObservation() {}
-    protected VNCoreMLFeatureValueObservation(Handle h, long handle) { super(h, handle); }
-    protected VNCoreMLFeatureValueObservation(SkipInit skipInit) { super(skipInit); }
+    public VNDetectHumanRectanglesRequest() {}
+    protected VNDetectHumanRectanglesRequest(Handle h, long handle) { super(h, handle); }
+    protected VNDetectHumanRectanglesRequest(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCompletionHandler:")
+    public VNDetectHumanRectanglesRequest(@Block VoidBlock2<VNRequest, NSError> completionHandler) { super(completionHandler); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "featureValue")
-    public native MLFeatureValue getFeatureValue();
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @Property(selector = "featureName")
-    public native String getFeatureName();
+    
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

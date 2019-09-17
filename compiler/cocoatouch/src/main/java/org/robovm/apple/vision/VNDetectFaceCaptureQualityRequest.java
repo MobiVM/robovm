@@ -38,30 +38,31 @@ import org.robovm.apple.imageio.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 11.0 and later.
+ * @since Available in iOS 13.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("Vision") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/VNCoreMLFeatureValueObservation/*</name>*/ 
-    extends /*<extends>*/VNObservation/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/VNDetectFaceCaptureQualityRequest/*</name>*/ 
+    extends /*<extends>*/VNImageBasedRequest/*</extends>*/ 
+    /*<implements>*/implements VNFaceObservationAccepting/*</implements>*/ {
 
-    /*<ptr>*/public static class VNCoreMLFeatureValueObservationPtr extends Ptr<VNCoreMLFeatureValueObservation, VNCoreMLFeatureValueObservationPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(VNCoreMLFeatureValueObservation.class); }/*</bind>*/
-    /*<constants>*//*</constants>*/
+    /*<ptr>*/public static class VNDetectFaceCaptureQualityRequestPtr extends Ptr<VNDetectFaceCaptureQualityRequest, VNDetectFaceCaptureQualityRequestPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(VNDetectFaceCaptureQualityRequest.class); }/*</bind>*/
+    /*<constants>*/
+    public static final int Revision1 = 1;
+    /*</constants>*/
     /*<constructors>*/
-    public VNCoreMLFeatureValueObservation() {}
-    protected VNCoreMLFeatureValueObservation(Handle h, long handle) { super(h, handle); }
-    protected VNCoreMLFeatureValueObservation(SkipInit skipInit) { super(skipInit); }
+    public VNDetectFaceCaptureQualityRequest() {}
+    protected VNDetectFaceCaptureQualityRequest(Handle h, long handle) { super(h, handle); }
+    protected VNDetectFaceCaptureQualityRequest(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCompletionHandler:")
+    public VNDetectFaceCaptureQualityRequest(@Block VoidBlock2<VNRequest, NSError> completionHandler) { super(completionHandler); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "featureValue")
-    public native MLFeatureValue getFeatureValue();
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @Property(selector = "featureName")
-    public native String getFeatureName();
+    @Property(selector = "inputFaceObservations")
+    public native NSArray<VNFaceObservation> getInputFaceObservations();
+    @Property(selector = "setInputFaceObservations:")
+    public native void setInputFaceObservations(NSArray<VNFaceObservation> v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

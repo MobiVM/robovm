@@ -48,7 +48,9 @@ import org.robovm.apple.imageio.*;
 
     /*<ptr>*/public static class VNRequestPtr extends Ptr<VNRequest, VNRequestPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(VNRequest.class); }/*</bind>*/
-    /*<constants>*//*</constants>*/
+    /*<constants>*/
+    public static final int RevisionUnspecified = 0;
+    /*</constants>*/
     /*<constructors>*/
     public VNRequest() {}
     protected VNRequest(Handle h, long handle) { super(h, handle); }
@@ -97,13 +99,12 @@ import org.robovm.apple.imageio.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 12.0 and later.
-     */
-    @GlobalValue(symbol="VNRequestRevisionUnspecified", optional=true)
-    public static native @MachineSizedUInt long RevisionUnspecified();
-    
     @Method(selector = "initWithCompletionHandler:")
     protected native @Pointer long init(@Block VoidBlock2<VNRequest, NSError> completionHandler);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "cancel")
+    public native void cancel();
     /*</methods>*/
 }

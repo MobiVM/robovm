@@ -57,6 +57,11 @@ import org.robovm.apple.imageio.*;
     /*<properties>*/
     @Property(selector = "pixelBuffer")
     public native CVPixelBuffer getPixelBuffer();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "featureName")
+    public native String getFeatureName();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

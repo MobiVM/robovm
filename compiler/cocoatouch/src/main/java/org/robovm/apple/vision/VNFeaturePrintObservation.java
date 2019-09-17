@@ -38,33 +38,39 @@ import org.robovm.apple.imageio.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 11.0 and later.
+ * @since Available in iOS 13.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("Vision") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/VNCoreMLFeatureValueObservation/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/VNFeaturePrintObservation/*</name>*/ 
     extends /*<extends>*/VNObservation/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class VNCoreMLFeatureValueObservationPtr extends Ptr<VNCoreMLFeatureValueObservation, VNCoreMLFeatureValueObservationPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(VNCoreMLFeatureValueObservation.class); }/*</bind>*/
+    /*<ptr>*/public static class VNFeaturePrintObservationPtr extends Ptr<VNFeaturePrintObservation, VNFeaturePrintObservationPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(VNFeaturePrintObservation.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public VNCoreMLFeatureValueObservation() {}
-    protected VNCoreMLFeatureValueObservation(Handle h, long handle) { super(h, handle); }
-    protected VNCoreMLFeatureValueObservation(SkipInit skipInit) { super(skipInit); }
+    public VNFeaturePrintObservation() {}
+    protected VNFeaturePrintObservation(Handle h, long handle) { super(h, handle); }
+    protected VNFeaturePrintObservation(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "featureValue")
-    public native MLFeatureValue getFeatureValue();
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @Property(selector = "featureName")
-    public native String getFeatureName();
+    @Property(selector = "elementType")
+    public native VNElementType getElementType();
+    @Property(selector = "elementCount")
+    public native @MachineSizedUInt long getElementCount();
+    @Property(selector = "data")
+    public native NSData getData();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    public boolean computeDistance(FloatPtr outDistance, VNFeaturePrintObservation featurePrint) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       boolean result = computeDistance(outDistance, featurePrint, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    @Method(selector = "computeDistance:toFeaturePrintObservation:error:")
+    private native boolean computeDistance(FloatPtr outDistance, VNFeaturePrintObservation featurePrint, NSError.NSErrorPtr error);
     /*</methods>*/
 }

@@ -38,36 +38,42 @@ import org.robovm.apple.imageio.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 11.0 and later.
+ * @since Available in iOS 13.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("Vision") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/VNObservation/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/VNRecognizedText/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NSSecureCoding, VNRequestRevisionProviding/*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
-    /*<ptr>*/public static class VNObservationPtr extends Ptr<VNObservation, VNObservationPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(VNObservation.class); }/*</bind>*/
+    /*<ptr>*/public static class VNRecognizedTextPtr extends Ptr<VNRecognizedText, VNRecognizedTextPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(VNRecognizedText.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public VNObservation() {}
-    protected VNObservation(Handle h, long handle) { super(h, handle); }
-    protected VNObservation(SkipInit skipInit) { super(skipInit); }
+    public VNRecognizedText() {}
+    protected VNRecognizedText(Handle h, long handle) { super(h, handle); }
+    protected VNRecognizedText(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public VNObservation(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
+    public VNRecognizedText(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "uuid")
-    public native NSUUID getUuid();
+    @Property(selector = "string")
+    public native String getString();
     @Property(selector = "confidence")
     public native float getConfidence();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
-    @Property(selector = "requestRevision")
-    public native @MachineSizedUInt long getRequestRevision();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    public VNRectangleObservation getBoundingBoxForRange(@ByVal NSRange range) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       VNRectangleObservation result = getBoundingBoxForRange(range, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    @Method(selector = "boundingBoxForRange:error:")
+    private native VNRectangleObservation getBoundingBoxForRange(@ByVal NSRange range, NSError.NSErrorPtr error);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
