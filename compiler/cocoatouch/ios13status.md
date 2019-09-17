@@ -1,7 +1,7 @@
-to go - new frameworks:
-- ImageCaptureCore
+to go - bonus pack
 
 processed:
+- (new) ImageCaptureCore
 - (new) VisionKit
 - (new) SoundAnalysis
 - (new) QuickLookThumbnailing
