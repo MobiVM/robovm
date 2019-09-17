@@ -1,6 +1,11 @@
-to go - bonus pack
+to go - something previously forgotten 
+- DeviceCheck
+- HealthKitUI
+- Speech
 
 processed:
+- (new from ios 10) CallKit
+- (new from ios 11.3) BusinessChat
 - (new) ImageCaptureCore
 - (new) VisionKit
 - (new) SoundAnalysis
