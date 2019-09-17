@@ -1,5 +1,4 @@
 to go - new frameworks:
-- BackgroundTasks
 - CoreAudioTypes
 - CoreHaptics
 - CryptoTokenKit
@@ -11,6 +10,7 @@ to go - new frameworks:
 - VisionKit
 
 processed:
+- (new) BackgroundTasks
 - webkit
 - watchkit
 - watchconnectivity
