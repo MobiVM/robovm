@@ -1,10 +1,10 @@
 to go - new frameworks:
 - ImageCaptureCore
-- QuickLookThumbnailing
 - SoundAnalysis
 - VisionKit
 
 processed:
+- (new) QuickLookThumbnailing
 - (new) PencilKit
 - (new) MetricKit
 - (new) CryptoTokenKit

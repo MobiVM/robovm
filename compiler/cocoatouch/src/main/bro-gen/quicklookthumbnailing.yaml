@@ -1,0 +1,73 @@
+package: org.robovm.apple.quicklookthumbnailing
+include: [foundation, coregraphics, uikit]
+library: QuickLookThumbnailing
+framework: QuickLookThumbnailing
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/QuickLookThumbnailing.framework/Headers/QuickLookThumbnailing.h
+
+private_typedefs:
+
+typedefs:
+
+enums:
+    QLThumbnailRepresentationType: {} #since 13.0
+    QLThumbnailGenerationRequestRepresentationTypes: {prefix: QLThumbnailGenerationRequestRepresentationType} #since 13.0
+    QLThumbnailError: {nserror: true} #since 13.0
+
+typed_enums:
+
+classes:
+    QLFileThumbnailRequest: {} #since 11.0
+    QLThumbnailGenerationRequest: #since 13.0
+        methods:
+            '-initWithFileAtURL:size:scale:representationTypes:':
+                name: init
+    QLThumbnailGenerator: #since 13.0
+        methods:
+            '-generateBestRepresentationForRequest:completionHandler:':
+                name: generateBestRepresentation
+            '-generateRepresentationsForRequest:updateHandler:':
+                name: generateRepresentations
+            '-saveBestRepresentationForRequest:toFileAtURL:withContentType:completionHandler:':
+                name: saveBestRepresentation
+    QLThumbnailProvider: #since 11.0
+        methods:
+            '-provideThumbnailForFileRequest:completionHandler:':
+                name: provideThumbnail
+    QLThumbnailReply: #since 11.0
+        methods:
+            '+replyWithContextSize:drawingBlock:':
+                constructor: true
+                name: create
+            '+replyWithContextSize:currentContextDrawingBlock:':
+                constructor: true
+                name: create
+            '+replyWithImageFileURL:':
+                constructor: true
+                name: create
+    QLThumbnailRepresentation: {} #since 13.0
+
+protocols:
+
+functions:
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (k?QL.*):
+        class: FixMe
+        name: 'Function__#{g[0]}'
+
+values:
+    QLThumbnailErrorDomain:
+        class: QLThumbnailError
+        name: getClassDomain
+
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (k?QL.*):
+        class: FixMe
+        name: 'Value__#{g[0]}'
+
+constants:
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (k?QL.*):
+        class: FixMe
+        name: 'Constant__#{g[0]}'
