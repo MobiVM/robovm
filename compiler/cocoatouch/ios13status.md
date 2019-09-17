@@ -1,8 +1,8 @@
 to go - something previously forgotten 
-- HealthKitUI
 - Speech
 
 processed:
+- (new from ios 9.3) HealthKitUI
 - (new from ios 11) DeviceCheck
 - (new from ios 10) CallKit
 - (new from ios 11.3) BusinessChat
