@@ -1,10 +1,19 @@
-to go:
-- watchconnectivity
-- watchkit
-- webkit
-
+to go - new frameworks:
+- BackgroundTasks
+- CoreAudioTypes
+- CoreHaptics
+- CryptoTokenKit
+- ImageCaptureCore
+- MetricKit
+- PencilKit
+- QuickLookThumbnailing
+- SoundAnalysis
+- VisionKit
 
 processed:
+- webkit
+- watchkit
+- watchconnectivity
 - vision
 - usernotificationsui
 - usernotifications

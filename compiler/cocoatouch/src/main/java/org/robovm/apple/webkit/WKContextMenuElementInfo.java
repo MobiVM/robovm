@@ -35,41 +35,25 @@ import org.robovm.apple.security.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 11.0 and later.
+ * @since Available in iOS 13.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("WebKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/WKSnapshotConfiguration/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/WKContextMenuElementInfo/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class WKSnapshotConfigurationPtr extends Ptr<WKSnapshotConfiguration, WKSnapshotConfigurationPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(WKSnapshotConfiguration.class); }/*</bind>*/
+    /*<ptr>*/public static class WKContextMenuElementInfoPtr extends Ptr<WKContextMenuElementInfo, WKContextMenuElementInfoPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(WKContextMenuElementInfo.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public WKSnapshotConfiguration() {}
-    protected WKSnapshotConfiguration(Handle h, long handle) { super(h, handle); }
-    protected WKSnapshotConfiguration(SkipInit skipInit) { super(skipInit); }
+    protected WKContextMenuElementInfo() {}
+    protected WKContextMenuElementInfo(Handle h, long handle) { super(h, handle); }
+    protected WKContextMenuElementInfo(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "rect")
-    public native @ByVal CGRect getRect();
-    @Property(selector = "setRect:")
-    public native void setRect(@ByVal CGRect v);
-    @Property(selector = "snapshotWidth")
-    public native NSNumber getSnapshotWidth();
-    @Property(selector = "setSnapshotWidth:")
-    public native void setSnapshotWidth(NSNumber v);
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @Property(selector = "afterScreenUpdates")
-    public native boolean isAfterScreenUpdates();
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @Property(selector = "setAfterScreenUpdates:")
-    public native void setAfterScreenUpdates(boolean v);
+    @Property(selector = "linkURL")
+    public native NSURL getLinkURL();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -52,7 +52,11 @@ import org.robovm.apple.security.*;
     protected WKNavigation(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "effectiveContentMode")
+    public native WKContentMode getEffectiveContentMode();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -65,7 +65,15 @@ public enum /*<name>*/WKErrorCode/*</name>*/ implements NSErrorCode {
     /**
      * @since Available in iOS 11.0 and later.
      */
-    ContentRuleListStoreVersionMismatch(9L);
+    ContentRuleListStoreVersionMismatch(9L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    AttributedStringContentFailedToLoad(10L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    AttributedStringContentLoadTimedOut(11L);
     /*</values>*/
 
     /*<bind>*/

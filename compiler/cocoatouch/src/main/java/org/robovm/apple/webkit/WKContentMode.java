@@ -35,26 +35,33 @@ import org.robovm.apple.security.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 10.0 and later.
- * @deprecated Deprecated in iOS 13.0. This API will be replaced
+ * @since Available in iOS 13.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Deprecated/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/WKPreviewActionItem/*</name>*/ 
-    /*<implements>*/extends UIPreviewActionItem/*</implements>*/ {
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+public enum /*<name>*/WKContentMode/*</name>*/ implements ValuedEnum {
+    /*<values>*/
+    Recommended(0L),
+    Mobile(1L),
+    Desktop(2L);
+    /*</values>*/
 
-    /*<ptr>*/
-    /*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<properties>*/
-    @Property(selector = "identifier")
-    String getIdentifier();
-    /*</properties>*/
-    /*<methods>*/
-    
-    /*</methods>*/
-    /*<adapter>*/
-    /*</adapter>*/
+    /*<methods>*//*</methods>*/
+
+    private final long n;
+
+    private /*<name>*/WKContentMode/*</name>*/(long n) { this.n = n; }
+    public long value() { return n; }
+    public static /*<name>*/WKContentMode/*</name>*/ valueOf(long n) {
+        for (/*<name>*/WKContentMode/*</name>*/ v : values()) {
+            if (v.n == n) {
+                return v;
+            }
+        }
+        throw new IllegalArgumentException("No constant with value " + n + " found in " 
+            + /*<name>*/WKContentMode/*</name>*/.class.getName());
+    }
 }

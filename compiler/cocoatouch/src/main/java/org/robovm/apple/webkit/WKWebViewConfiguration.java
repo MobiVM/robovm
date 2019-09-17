@@ -51,7 +51,7 @@ import org.robovm.apple.security.*;
     protected WKWebViewConfiguration(Handle h, long handle) { super(h, handle); }
     protected WKWebViewConfiguration(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public WKWebViewConfiguration(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public WKWebViewConfiguration(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "processPool")
@@ -110,6 +110,16 @@ import org.robovm.apple.security.*;
      */
     @Property(selector = "setMediaTypesRequiringUserActionForPlayback:")
     public native void setMediaTypesRequiringUserActionForPlayback(WKAudiovisualMediaTypes v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "defaultWebpagePreferences")
+    public native WKWebpagePreferences getDefaultWebpagePreferences();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setDefaultWebpagePreferences:")
+    public native void setDefaultWebpagePreferences(WKWebpagePreferences v);
     @Property(selector = "allowsInlineMediaPlayback")
     public native boolean allowsInlineMediaPlayback();
     @Property(selector = "setAllowsInlineMediaPlayback:")
@@ -208,6 +218,6 @@ import org.robovm.apple.security.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }
