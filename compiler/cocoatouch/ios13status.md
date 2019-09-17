@@ -1,9 +1,9 @@
 to go - new frameworks:
 - ImageCaptureCore
-- SoundAnalysis
 - VisionKit
 
 processed:
+- (new) SoundAnalysis
 - (new) QuickLookThumbnailing
 - (new) PencilKit
 - (new) MetricKit
