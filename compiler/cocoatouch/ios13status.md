@@ -1,9 +1,9 @@
 to go - something previously forgotten 
-- DeviceCheck
 - HealthKitUI
 - Speech
 
 processed:
+- (new from ios 11) DeviceCheck
 - (new from ios 10) CallKit
 - (new from ios 11.3) BusinessChat
 - (new) ImageCaptureCore
