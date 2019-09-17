@@ -1,7 +1,5 @@
-to go - something previously forgotten 
-- Speech
-
 processed:
+- (new from ios 10) Speech
 - (new from ios 9.3) HealthKitUI
 - (new from ios 11) DeviceCheck
 - (new from ios 10) CallKit
