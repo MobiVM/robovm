@@ -1,5 +1,4 @@
 to go - new frameworks:
-- CryptoTokenKit
 - ImageCaptureCore
 - MetricKit
 - PencilKit
@@ -8,6 +7,7 @@ to go - new frameworks:
 - VisionKit
 
 processed:
+- (new) CryptoTokenKit
 - (new) CoreHaptics
 - (new) BackgroundTasks
 - webkit

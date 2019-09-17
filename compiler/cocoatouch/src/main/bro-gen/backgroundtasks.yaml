@@ -26,7 +26,7 @@ classes:
             '-setTaskCompletedWithSuccess:':
                 name: setTaskCompleted
     BGTaskRequest: {} #since 13.0
-    BGTaskScheduler: #since 13.0ß
+    BGTaskScheduler: #since 13.0
         methods:
             '-registerForTaskWithIdentifier:usingQueue:launchHandler:':
                 name: registerForTask
