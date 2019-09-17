@@ -1,12 +1,12 @@
 to go - new frameworks:
 - ImageCaptureCore
-- MetricKit
 - PencilKit
 - QuickLookThumbnailing
 - SoundAnalysis
 - VisionKit
 
 processed:
+- (new) MetricKit
 - (new) CryptoTokenKit
 - (new) CoreHaptics
 - (new) BackgroundTasks
