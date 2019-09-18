@@ -122,23 +122,51 @@ import org.robovm.apple.audiotoolbox.*;
     @Property(selector = "setAutoStillImageStabilizationEnabled:")
     public native void setAutoStillImageStabilizationEnabled(boolean v);
     /**
-     * @since Available in iOS 10.2 and later.
+     * @since Available in iOS 13.0 and later.
      */
+    @Property(selector = "isAutoVirtualDeviceFusionEnabled")
+    public native boolean isAutoVirtualDeviceFusionEnabled();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setAutoVirtualDeviceFusionEnabled:")
+    public native void setAutoVirtualDeviceFusionEnabled(boolean v);
+    /**
+     * @since Available in iOS 10.2 and later.
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
     @Property(selector = "isAutoDualCameraFusionEnabled")
     public native boolean isAutoDualCameraFusionEnabled();
     /**
      * @since Available in iOS 10.2 and later.
+     * @deprecated Deprecated in iOS 13.0.
      */
+    @Deprecated
     @Property(selector = "setAutoDualCameraFusionEnabled:")
     public native void setAutoDualCameraFusionEnabled(boolean v);
     /**
-     * @since Available in iOS 11.0 and later.
+     * @since Available in iOS 13.0 and later.
      */
+    @Property(selector = "virtualDeviceConstituentPhotoDeliveryEnabledDevices")
+    public native NSArray<AVCaptureDevice> getVirtualDeviceConstituentPhotoDeliveryEnabledDevices();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setVirtualDeviceConstituentPhotoDeliveryEnabledDevices:")
+    public native void setVirtualDeviceConstituentPhotoDeliveryEnabledDevices(NSArray<AVCaptureDevice> v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
     @Property(selector = "isDualCameraDualPhotoDeliveryEnabled")
     public native boolean isDualCameraDualPhotoDeliveryEnabled();
     /**
      * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 13.0.
      */
+    @Deprecated
     @Property(selector = "setDualCameraDualPhotoDeliveryEnabled:")
     public native void setDualCameraDualPhotoDeliveryEnabled(boolean v);
     @Property(selector = "isHighResolutionPhotoEnabled")

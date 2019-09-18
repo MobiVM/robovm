@@ -98,6 +98,22 @@ import org.robovm.apple.audiotoolbox.*;
 
     /*<constants>*/
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final AVMetadataObjectType HumanBody = new AVMetadataObjectType("HumanBody");
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final AVMetadataObjectType CatBody = new AVMetadataObjectType("CatBody");
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final AVMetadataObjectType DogBody = new AVMetadataObjectType("DogBody");
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final AVMetadataObjectType SalientObject = new AVMetadataObjectType("SalientObject");
+    /**
      * @since Available in iOS 6.0 and later.
      */
     public static final AVMetadataObjectType Face = new AVMetadataObjectType("Face");
@@ -155,7 +171,7 @@ import org.robovm.apple.audiotoolbox.*;
     public static final AVMetadataObjectType DataMatrixCode = new AVMetadataObjectType("DataMatrixCode");
     /*</constants>*/
     
-    private static /*<name>*/AVMetadataObjectType/*</name>*/[] values = new /*<name>*/AVMetadataObjectType/*</name>*/[] {/*<value_list>*/Face, UPCECode, Code39Code, Code39Mod43Code, EAN13Code, EAN8Code, Code93Code, Code128Code, PDF417Code, QRCode, AztecCode, Interleaved2of5Code, ITF14Code, DataMatrixCode/*</value_list>*/};
+    private static /*<name>*/AVMetadataObjectType/*</name>*/[] values = new /*<name>*/AVMetadataObjectType/*</name>*/[] {/*<value_list>*/HumanBody, CatBody, DogBody, SalientObject, Face, UPCECode, Code39Code, Code39Mod43Code, EAN13Code, EAN8Code, Code93Code, Code128Code, PDF417Code, QRCode, AztecCode, Interleaved2of5Code, ITF14Code, DataMatrixCode/*</value_list>*/};
     
     /*<name>*/AVMetadataObjectType/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -178,6 +194,26 @@ import org.robovm.apple.audiotoolbox.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="AVMetadataObjectTypeHumanBody", optional=true)
+        public static native NSString HumanBody();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="AVMetadataObjectTypeCatBody", optional=true)
+        public static native NSString CatBody();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="AVMetadataObjectTypeDogBody", optional=true)
+        public static native NSString DogBody();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="AVMetadataObjectTypeSalientObject", optional=true)
+        public static native NSString SalientObject();
         /**
          * @since Available in iOS 6.0 and later.
          */

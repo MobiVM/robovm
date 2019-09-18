@@ -102,23 +102,51 @@ import org.robovm.apple.audiotoolbox.*;
     @Property(selector = "isStillImageStabilizationScene")
     public native boolean isStillImageStabilizationScene();
     /**
-     * @since Available in iOS 10.2 and later.
+     * @since Available in iOS 13.0 and later.
      */
+    @Property(selector = "isVirtualDeviceFusionSupported")
+    public native boolean isVirtualDeviceFusionSupported();
+    /**
+     * @since Available in iOS 10.2 and later.
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
     @Property(selector = "isDualCameraFusionSupported")
     public native boolean isDualCameraFusionSupported();
     /**
-     * @since Available in iOS 11.0 and later.
+     * @since Available in iOS 13.0 and later.
      */
+    @Property(selector = "isVirtualDeviceConstituentPhotoDeliverySupported")
+    public native boolean isVirtualDeviceConstituentPhotoDeliverySupported();
+    /**
+     * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
     @Property(selector = "isDualCameraDualPhotoDeliverySupported")
     public native boolean isDualCameraDualPhotoDeliverySupported();
     /**
-     * @since Available in iOS 11.0 and later.
+     * @since Available in iOS 13.0 and later.
      */
+    @Property(selector = "isVirtualDeviceConstituentPhotoDeliveryEnabled")
+    public native boolean isVirtualDeviceConstituentPhotoDeliveryEnabled();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setVirtualDeviceConstituentPhotoDeliveryEnabled:")
+    public native void setVirtualDeviceConstituentPhotoDeliveryEnabled(boolean v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
     @Property(selector = "isDualCameraDualPhotoDeliveryEnabled")
     public native boolean isDualCameraDualPhotoDeliveryEnabled();
     /**
      * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 13.0.
      */
+    @Deprecated
     @Property(selector = "setDualCameraDualPhotoDeliveryEnabled:")
     public native void setDualCameraDualPhotoDeliveryEnabled(boolean v);
     /**

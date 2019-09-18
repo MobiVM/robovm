@@ -71,10 +71,25 @@ import org.robovm.apple.audiotoolbox.*;
     @GlobalValue(symbol="AVCaptureDeviceTypeBuiltInTelephotoCamera", optional=true)
     public static native String BuiltInTelephotoCamera();
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @GlobalValue(symbol="AVCaptureDeviceTypeBuiltInUltraWideCamera", optional=true)
+    public static native String BuiltInUltraWideCamera();
+    /**
      * @since Available in iOS 10.2 and later.
      */
     @GlobalValue(symbol="AVCaptureDeviceTypeBuiltInDualCamera", optional=true)
     public static native String BuiltInDualCamera();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @GlobalValue(symbol="AVCaptureDeviceTypeBuiltInDualWideCamera", optional=true)
+    public static native String BuiltInDualWideCamera();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @GlobalValue(symbol="AVCaptureDeviceTypeBuiltInTripleCamera", optional=true)
+    public static native String BuiltInTripleCamera();
     /**
      * @since Available in iOS 11.1 and later.
      */

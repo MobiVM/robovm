@@ -266,6 +266,22 @@ import org.robovm.apple.audiotoolbox.*;
      */
     public static final AVMetadataIdentifierQuickTimeMetadata DetectedFace = new AVMetadataIdentifierQuickTimeMetadata("DetectedFace");
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final AVMetadataIdentifierQuickTimeMetadata DetectedHumanBody = new AVMetadataIdentifierQuickTimeMetadata("DetectedHumanBody");
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final AVMetadataIdentifierQuickTimeMetadata DetectedCatBody = new AVMetadataIdentifierQuickTimeMetadata("DetectedCatBody");
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final AVMetadataIdentifierQuickTimeMetadata DetectedDogBody = new AVMetadataIdentifierQuickTimeMetadata("DetectedDogBody");
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final AVMetadataIdentifierQuickTimeMetadata DetectedSalientObject = new AVMetadataIdentifierQuickTimeMetadata("DetectedSalientObject");
+    /**
      * @since Available in iOS 9.0 and later.
      */
     public static final AVMetadataIdentifierQuickTimeMetadata VideoOrientation = new AVMetadataIdentifierQuickTimeMetadata("VideoOrientation");
@@ -273,9 +289,29 @@ import org.robovm.apple.audiotoolbox.*;
      * @since Available in iOS 9.0 and later.
      */
     public static final AVMetadataIdentifierQuickTimeMetadata ContentIdentifier = new AVMetadataIdentifierQuickTimeMetadata("ContentIdentifier");
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final AVMetadataIdentifierQuickTimeMetadata AutoLivePhoto = new AVMetadataIdentifierQuickTimeMetadata("AutoLivePhoto");
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final AVMetadataIdentifierQuickTimeMetadata LivePhotoVitalityScore = new AVMetadataIdentifierQuickTimeMetadata("LivePhotoVitalityScore");
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final AVMetadataIdentifierQuickTimeMetadata LivePhotoVitalityScoringVersion = new AVMetadataIdentifierQuickTimeMetadata("LivePhotoVitalityScoringVersion");
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final AVMetadataIdentifierQuickTimeMetadata SpatialOverCaptureQualityScore = new AVMetadataIdentifierQuickTimeMetadata("SpatialOverCaptureQualityScore");
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final AVMetadataIdentifierQuickTimeMetadata SpatialOverCaptureQualityScoringVersion = new AVMetadataIdentifierQuickTimeMetadata("SpatialOverCaptureQualityScoringVersion");
     /*</constants>*/
     
-    private static /*<name>*/AVMetadataIdentifierQuickTimeMetadata/*</name>*/[] values = new /*<name>*/AVMetadataIdentifierQuickTimeMetadata/*</name>*/[] {/*<value_list>*/Author, Comment, Copyright, CreationDate, Director, DisplayName, Information, Keywords, Producer, Publisher, Album, Artist, Artwork, Description, Software, Year, Genre, iXML, LocationISO6709, Make, Model, Arranger, EncodedBy, OriginalArtist, Performer, Composer, Credits, PhonogramRights, CameraIdentifier, CameraFrameReadoutTime, Title, CollectionUser, RatingUser, LocationName, LocationBody, LocationNote, LocationRole, LocationDate, DirectionFacing, DirectionMotion, PreferredAffineTransform, DetectedFace, VideoOrientation, ContentIdentifier/*</value_list>*/};
+    private static /*<name>*/AVMetadataIdentifierQuickTimeMetadata/*</name>*/[] values = new /*<name>*/AVMetadataIdentifierQuickTimeMetadata/*</name>*/[] {/*<value_list>*/Author, Comment, Copyright, CreationDate, Director, DisplayName, Information, Keywords, Producer, Publisher, Album, Artist, Artwork, Description, Software, Year, Genre, iXML, LocationISO6709, Make, Model, Arranger, EncodedBy, OriginalArtist, Performer, Composer, Credits, PhonogramRights, CameraIdentifier, CameraFrameReadoutTime, Title, CollectionUser, RatingUser, LocationName, LocationBody, LocationNote, LocationRole, LocationDate, DirectionFacing, DirectionMotion, PreferredAffineTransform, DetectedFace, DetectedHumanBody, DetectedCatBody, DetectedDogBody, DetectedSalientObject, VideoOrientation, ContentIdentifier, AutoLivePhoto, LivePhotoVitalityScore, LivePhotoVitalityScoringVersion, SpatialOverCaptureQualityScore, SpatialOverCaptureQualityScoringVersion/*</value_list>*/};
     
     /*<name>*/AVMetadataIdentifierQuickTimeMetadata/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -509,6 +545,26 @@ import org.robovm.apple.audiotoolbox.*;
         @GlobalValue(symbol="AVMetadataIdentifierQuickTimeMetadataDetectedFace", optional=true)
         public static native NSString DetectedFace();
         /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="AVMetadataIdentifierQuickTimeMetadataDetectedHumanBody", optional=true)
+        public static native NSString DetectedHumanBody();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="AVMetadataIdentifierQuickTimeMetadataDetectedCatBody", optional=true)
+        public static native NSString DetectedCatBody();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="AVMetadataIdentifierQuickTimeMetadataDetectedDogBody", optional=true)
+        public static native NSString DetectedDogBody();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="AVMetadataIdentifierQuickTimeMetadataDetectedSalientObject", optional=true)
+        public static native NSString DetectedSalientObject();
+        /**
          * @since Available in iOS 9.0 and later.
          */
         @GlobalValue(symbol="AVMetadataIdentifierQuickTimeMetadataVideoOrientation", optional=true)
@@ -518,6 +574,31 @@ import org.robovm.apple.audiotoolbox.*;
          */
         @GlobalValue(symbol="AVMetadataIdentifierQuickTimeMetadataContentIdentifier", optional=true)
         public static native NSString ContentIdentifier();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="AVMetadataIdentifierQuickTimeMetadataAutoLivePhoto", optional=true)
+        public static native NSString AutoLivePhoto();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="AVMetadataIdentifierQuickTimeMetadataLivePhotoVitalityScore", optional=true)
+        public static native NSString LivePhotoVitalityScore();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="AVMetadataIdentifierQuickTimeMetadataLivePhotoVitalityScoringVersion", optional=true)
+        public static native NSString LivePhotoVitalityScoringVersion();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="AVMetadataIdentifierQuickTimeMetadataSpatialOverCaptureQualityScore", optional=true)
+        public static native NSString SpatialOverCaptureQualityScore();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="AVMetadataIdentifierQuickTimeMetadataSpatialOverCaptureQualityScoringVersion", optional=true)
+        public static native NSString SpatialOverCaptureQualityScoringVersion();
         /*</values>*/
     }
 }

@@ -99,8 +99,15 @@ import org.robovm.apple.audiotoolbox.*;
     @Property(selector = "isStillImageStabilizationEnabled")
     public native boolean isStillImageStabilizationEnabled();
     /**
-     * @since Available in iOS 10.2 and later.
+     * @since Available in iOS 13.0 and later.
      */
+    @Property(selector = "isVirtualDeviceFusionEnabled")
+    public native boolean isVirtualDeviceFusionEnabled();
+    /**
+     * @since Available in iOS 10.2 and later.
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
     @Property(selector = "isDualCameraFusionEnabled")
     public native boolean isDualCameraFusionEnabled();
     /**

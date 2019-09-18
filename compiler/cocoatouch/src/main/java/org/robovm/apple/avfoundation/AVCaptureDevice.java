@@ -160,6 +160,11 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "constituentDevices")
     public native NSArray<AVCaptureDevice> getConstituentDevices();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "virtualDeviceSwitchOverVideoZoomFactors")
+    public native NSArray<NSNumber> getVirtualDeviceSwitchOverVideoZoomFactors();
     @Property(selector = "hasFlash")
     public native boolean hasFlash();
     /**
@@ -401,7 +406,9 @@ import org.robovm.apple.audiotoolbox.*;
     public native boolean isRampingVideoZoom();
     /**
      * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 13.0.
      */
+    @Deprecated
     @Property(selector = "dualCameraSwitchOverVideoZoomFactor")
     public native @MachineSizedFloat double getDualCameraSwitchOverVideoZoomFactor();
     /**
@@ -464,6 +471,21 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "maxAvailableVideoZoomFactor")
     public native @MachineSizedFloat double getMaxAvailableVideoZoomFactor();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "isGeometricDistortionCorrectionSupported")
+    public native boolean isGeometricDistortionCorrectionSupported();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "isGeometricDistortionCorrectionEnabled")
+    public native boolean isGeometricDistortionCorrectionEnabled();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setGeometricDistortionCorrectionEnabled:")
+    public native void setGeometricDistortionCorrectionEnabled(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

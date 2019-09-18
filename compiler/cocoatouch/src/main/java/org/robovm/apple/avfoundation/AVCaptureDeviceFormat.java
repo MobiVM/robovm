@@ -160,6 +160,11 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "isMultiCamSupported")
     public native boolean isMultiCamSupported();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "geometricDistortionCorrectedVideoFieldOfView")
+    public native float getGeometricDistortionCorrectedVideoFieldOfView();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

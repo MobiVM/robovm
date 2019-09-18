@@ -2704,6 +2704,11 @@ classes:
             '+semanticSegmentationMatteFromImageSourceAuxiliaryDataType:dictionaryRepresentation:error:':
                 name: semanticSegmentationMatteFromImageSourceAuxiliaryDataType
     AVVideoCompositionRenderHint: {} #since 13.0
+    AVMetadataBodyObject: {} #since 13.0
+    AVMetadataCatBodyObject: {} #since 13.0
+    AVMetadataDogBodyObject: {} #since 13.0
+    AVMetadataHumanBodyObject: {} #since 13.0
+    AVMetadataSalientObject: {} #since 13.0
 
 protocols:
     AVCapturePhotoCaptureDelegate:
