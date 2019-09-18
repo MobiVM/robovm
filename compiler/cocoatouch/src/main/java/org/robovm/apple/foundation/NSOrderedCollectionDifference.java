@@ -90,6 +90,6 @@ import org.robovm.apple.dispatch.*;
      * @since Available in iOS 13.0 and later.
      */
     @Method(selector = "inverseDifference")
-    public native NSOrderedCollectionDifference inverseDifference();
+    public native NSOrderedCollectionDifference<T> inverseDifference();
     /*</methods>*/
 }
