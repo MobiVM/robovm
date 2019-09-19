@@ -52,7 +52,7 @@ import org.robovm.apple.foundation.*;
     @Property(selector = "type")
     public native HKWorkoutEventType getType();
     /**
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use dateInterval
      */
     @Deprecated
     @Property(selector = "date")
@@ -73,14 +73,14 @@ import org.robovm.apple.foundation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use workoutEventWithType:dateInterval:metadata:
      */
     @Deprecated
     @Method(selector = "workoutEventWithType:date:")
     public static native HKWorkoutEvent create(HKWorkoutEventType type, NSDate date);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use workoutEventWithType:dateInterval:metadata:
      */
     @Deprecated
     @Method(selector = "workoutEventWithType:date:metadata:")

@@ -79,7 +79,7 @@ import org.robovm.apple.linkpresentation.*;
     @GlobalValue(symbol="UIAccessibilityNotificationVoiceOverIdentifier", optional=true)
     public static native String VoiceOverIdentifier();
     /**
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use UIAccessibilityVoiceOverStatusDidChangeNotification
      */
     @Deprecated
     @GlobalValue(symbol="UIAccessibilityVoiceOverStatusChanged", optional=true)

@@ -79,13 +79,13 @@ import org.robovm.apple.linkpresentation.*;
     }
     /*<properties>*/
     /**
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. Use completionWithItemsHandler
      */
     @Deprecated
     @Property(selector = "completionHandler")
     public native @Block VoidBlock2<String, Boolean> getCompletionHandler();
     /**
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. Use completionWithItemsHandler
      */
     @Deprecated
     @Property(selector = "setCompletionHandler:")

@@ -57,35 +57,35 @@ import org.robovm.apple.linkpresentation.*;
     /*<properties>*/
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use UIContextMenuInteraction
      */
     @Deprecated
     @NotImplemented("previewingGestureRecognizerForFailureRelationship")
     public UIGestureRecognizer getPreviewingGestureRecognizerForFailureRelationship() { return null; }
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use UIContextMenuInteraction
      */
     @Deprecated
     @NotImplemented("delegate")
     public UIViewControllerPreviewingDelegate getDelegate() { return null; }
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use UIContextMenuInteraction
      */
     @Deprecated
     @NotImplemented("sourceView")
     public UIView getSourceView() { return null; }
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use UIContextMenuInteraction
      */
     @Deprecated
     @NotImplemented("sourceRect")
     public @ByVal CGRect getSourceRect() { return null; }
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use UIContextMenuInteraction
      */
     @Deprecated
     @NotImplemented("setSourceRect:")

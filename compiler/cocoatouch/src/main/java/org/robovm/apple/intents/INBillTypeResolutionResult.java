@@ -59,7 +59,7 @@ import org.robovm.apple.corelocation.*;
     public static native INBillTypeResolutionResult success(INBillType resolvedBillType);
     /**
      * @since Available in iOS 10.3 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use +successWithResolvedBillType:
      */
     @Deprecated
     @Method(selector = "successWithResolvedValue:")
@@ -68,7 +68,7 @@ import org.robovm.apple.corelocation.*;
     public static native INBillTypeResolutionResult confirmationRequired(INBillType billTypeToConfirm);
     /**
      * @since Available in iOS 10.3 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use +confirmationRequiredWithBillTypeToConfirm:
      */
     @Deprecated
     @Method(selector = "confirmationRequiredWithValueToConfirm:")

@@ -69,13 +69,13 @@ import org.robovm.apple.linkpresentation.*;
     @Property(selector = "setMaximumContentWidth:")
     public native void setMaximumContentWidth(@MachineSizedFloat double v);
     /**
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use perPageContentInsets
      */
     @Deprecated
     @Property(selector = "contentInsets")
     public native @ByVal UIEdgeInsets getContentInsets();
     /**
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use perPageContentInsets
      */
     @Deprecated
     @Property(selector = "setContentInsets:")

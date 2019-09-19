@@ -50,7 +50,7 @@ public enum /*<name>*/AVAudioSessionRouteSharingPolicy/*</name>*/ implements Val
     LongFormAudio(1L),
     /**
      * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use AVAudioSessionRouteSharingPolicyLongFormAudio
      */
     @Deprecated
     LongForm(1L),

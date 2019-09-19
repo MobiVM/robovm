@@ -92,7 +92,7 @@ import org.robovm.apple.uikit.*;
     public native void requestUserToken(String developerToken, @Block VoidBlock2<NSString, NSError> completionHandler);
     /**
      * @since Available in iOS 10.3 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use requestUserTokenForDeveloperToken:completionHandler:
      */
     @Deprecated
     @Method(selector = "requestPersonalizationTokenForClientToken:withCompletionHandler:")

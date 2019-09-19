@@ -170,7 +170,7 @@ public enum /*<name>*/HMErrorCode/*</name>*/ implements NSErrorCode {
     IncompatibleAccessory(93L),
     /**
      * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use HMErrorCodeNoCompatibleHomeHub
      */
     @Deprecated
     IncompatibleHomeHub(92L),

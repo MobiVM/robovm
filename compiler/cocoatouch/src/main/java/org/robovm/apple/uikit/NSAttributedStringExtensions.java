@@ -107,7 +107,7 @@ import org.robovm.apple.linkpresentation.*;
     @Method(selector = "containsAttachmentsInRange:")
     public static native boolean containsAttachments(NSAttributedString thiz, @ByVal NSRange range);
     /**
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use initWithURL:options:documentAttributes:error:
      */
     @Deprecated
     public static @Pointer long initWithFileURL(NSAttributedString thiz, NSURL url, NSAttributedStringDocumentAttributes options, NSDictionary.NSDictionaryPtr<?, ?> dict) throws NSErrorException {
@@ -117,7 +117,7 @@ import org.robovm.apple.linkpresentation.*;
        return result;
     }
     /**
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use initWithURL:options:documentAttributes:error:
      */
     @Deprecated
     @Method(selector = "initWithFileURL:options:documentAttributes:error:")

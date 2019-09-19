@@ -33,7 +33,7 @@ import org.robovm.apple.foundation.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 12.0 and later.
- * @deprecated Deprecated in iOS 13.0.
+ * @deprecated Deprecated in iOS 13.0. Use HKCumulativeQuantitySample
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("HealthKit") @NativeClass @Deprecated/*</annotations>*/

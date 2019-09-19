@@ -87,9 +87,15 @@ import org.robovm.apple.audiotoolbox.*;
     public native @ByVal CMTimeRange getTimeRange();
     @Property(selector = "setTimeRange:")
     public native void setTimeRange(@ByVal CMTimeRange v);
+    /**
+     * @deprecated Use estimateMaximumDurationWithCompletionHandler
+     */
     @Deprecated
     @Property(selector = "maxDuration")
     public native @ByVal CMTime getMaxDuration();
+    /**
+     * @deprecated Use estimateOutputFileLengthWithCompletionHandler
+     */
     @Deprecated
     @Property(selector = "estimatedOutputFileLength")
     public native long getEstimatedOutputFileLength();

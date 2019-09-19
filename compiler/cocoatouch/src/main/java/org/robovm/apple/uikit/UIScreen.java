@@ -178,7 +178,7 @@ import org.robovm.apple.linkpresentation.*;
     @Property(selector = "supportsFocus")
     public native boolean supportsFocus();
     /**
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use bounds
      */
     @Deprecated
     @Property(selector = "applicationFrame")

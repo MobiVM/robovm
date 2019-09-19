@@ -56,14 +56,14 @@ import org.robovm.apple.mapkit.*;
     /*<properties>*/
     /**
      * @since Available in iOS 12.0 and later.
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use symbolImage
      */
     @Deprecated
     @Property(selector = "symbolSet")
     public native CPImageSet getSymbolSet();
     /**
      * @since Available in iOS 12.0 and later.
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use symbolImage
      */
     @Deprecated
     @Property(selector = "setSymbolSet:")

@@ -108,7 +108,7 @@ import org.robovm.apple.linkpresentation.*;
     @NotImplemented("tableView:titleForDeleteConfirmationButtonForRowAtIndexPath:")
     public String getTitleForDeleteConfirmationButton(UITableView tableView, NSIndexPath indexPath) { return null; }
     /**
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use tableView:trailingSwipeActionsConfigurationForRowAtIndexPath:
      */
     @Deprecated
     @NotImplemented("tableView:editActionsForRowAtIndexPath:")
@@ -134,19 +134,19 @@ import org.robovm.apple.linkpresentation.*;
     @NotImplemented("tableView:indentationLevelForRowAtIndexPath:")
     public @MachineSizedSInt long getIndentationLevelForRow(UITableView tableView, NSIndexPath indexPath) { return 0; }
     /**
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use tableView:contextMenuConfigurationForRowAtIndexPath:point:
      */
     @Deprecated
     @NotImplemented("tableView:shouldShowMenuForRowAtIndexPath:")
     public boolean shouldShowMenuForRow(UITableView tableView, NSIndexPath indexPath) { return false; }
     /**
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use tableView:contextMenuConfigurationForRowAtIndexPath:point:
      */
     @Deprecated
     @NotImplemented("tableView:canPerformAction:forRowAtIndexPath:withSender:")
     public boolean canPerformAction(UITableView tableView, Selector action, NSIndexPath indexPath, NSObject sender) { return false; }
     /**
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use tableView:contextMenuConfigurationForRowAtIndexPath:
      */
     @Deprecated
     @NotImplemented("tableView:performAction:forRowAtIndexPath:withSender:")

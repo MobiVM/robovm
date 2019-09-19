@@ -145,7 +145,7 @@ import org.robovm.apple.linkpresentation.*;
     public native UIDocumentBrowserTransitionController transitionControllerForDocumentAtURL(NSURL documentURL);
     /**
      * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 12.0.
+     * @deprecated Deprecated in iOS 12.0. Use transitionControllerForDocumentAtURL:
      */
     @Deprecated
     @Method(selector = "transitionControllerForDocumentURL:")

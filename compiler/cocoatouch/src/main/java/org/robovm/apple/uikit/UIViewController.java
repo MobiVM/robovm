@@ -340,25 +340,25 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
     @Property(selector = "setToolbarItems:")
     public native void setToolbarItems(NSArray<UIBarButtonItem> v);
     /**
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use modalInPresentation
      */
     @Deprecated
     @Property(selector = "isModalInPopover")
     public native boolean isModalInPopover();
     /**
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use modalInPresentation
      */
     @Deprecated
     @Property(selector = "setModalInPopover:")
     public native void setModalInPopover(boolean v);
     /**
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. Use preferredContentSize.
      */
     @Deprecated
     @Property(selector = "contentSizeForViewInPopover")
     public native @ByVal CGSize getContentSizeForViewInPopover();
     /**
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. Use preferredContentSize.
      */
     @Deprecated
     @Property(selector = "setContentSizeForViewInPopover:")
@@ -389,7 +389,7 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
     public native UIFocusItemContainer getFocusItemContainer();
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use preferredFocusEnvironments
      */
     @Deprecated
     @Property(selector = "preferredFocusedView")
@@ -512,7 +512,7 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
     @Method(selector = "canPerformUnwindSegueAction:fromViewController:sender:")
     public native boolean canPerformUnwindSegueAction(Selector action, UIViewController fromViewController, NSObject sender);
     /**
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use canPerformUnwindSegueAction:fromViewController:sender:
      */
     @Deprecated
     @Method(selector = "canPerformUnwindSegueAction:fromViewController:withSender:")
@@ -658,14 +658,14 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
     public native void removeKeyCommand(UIKeyCommand keyCommand);
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use UIContextMenuInteraction
      */
     @Deprecated
     @Method(selector = "registerForPreviewingWithDelegate:sourceView:")
     public native UIViewControllerPreviewing registerForPreviewing(UIViewControllerPreviewingDelegate delegate, UIView sourceView);
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use UIContextMenuInteraction
      */
     @Deprecated
     @Method(selector = "unregisterForPreviewingWithContext:")

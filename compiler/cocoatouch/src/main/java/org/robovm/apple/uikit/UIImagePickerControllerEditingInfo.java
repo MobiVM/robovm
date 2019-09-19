@@ -173,7 +173,7 @@ import org.robovm.apple.linkpresentation.*;
         return this;
     }
     /**
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use UIImagePickerControllerPHAsset
      */
     @Deprecated
     public NSURL getReferenceURL() {
@@ -184,7 +184,7 @@ import org.robovm.apple.linkpresentation.*;
         return null;
     }
     /**
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use UIImagePickerControllerPHAsset
      */
     @Deprecated
     public UIImagePickerControllerEditingInfo setReferenceURL(NSURL referenceURL) {
@@ -219,7 +219,7 @@ import org.robovm.apple.linkpresentation.*;
         @GlobalValue(symbol="UIImagePickerControllerMediaURL", optional=true)
         public static native NSString MediaURL();
         /**
-         * @deprecated Deprecated in iOS 11.0.
+         * @deprecated Deprecated in iOS 11.0. Use UIImagePickerControllerPHAsset
          */
         @Deprecated
         @GlobalValue(symbol="UIImagePickerControllerReferenceURL", optional=true)

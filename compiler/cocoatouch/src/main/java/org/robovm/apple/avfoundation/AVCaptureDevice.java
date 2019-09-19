@@ -290,7 +290,7 @@ import org.robovm.apple.audiotoolbox.*;
     public native boolean isRampingVideoZoom();
     /**
      * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use virtualDeviceSwitchOverVideoZoomFactors
      */
     @Deprecated
     @Property(selector = "dualCameraSwitchOverVideoZoomFactor")

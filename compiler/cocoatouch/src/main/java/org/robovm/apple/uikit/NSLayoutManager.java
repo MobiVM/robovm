@@ -308,7 +308,7 @@ import org.robovm.apple.linkpresentation.*;
     @Method(selector = "glyphAtIndex:")
     public native short getGlyph(@MachineSizedUInt long glyphIndex);
     /**
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use showCGGlyphs:positions:count:font:textMatrix:attributes:inContext:
      */
     @Deprecated
     @Method(selector = "showCGGlyphs:positions:count:font:matrix:attributes:inContext:")

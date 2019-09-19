@@ -54,7 +54,7 @@ import org.robovm.apple.foundation.*;
     public HKQuantitySeriesSampleQuery(HKQuantityType quantityType, NSPredicate predicate, @Block VoidBlock6<HKQuantitySeriesSampleQuery, HKQuantity, NSDateInterval, HKQuantitySample, Boolean, NSError> quantityHandler) { super((SkipInit) null); initObject(init(quantityType, predicate, quantityHandler)); }
     /**
      * @since Available in iOS 12.0 and later.
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use initWithQuantityType:predicate:quantityHandler:
      */
     @Deprecated
     @Method(selector = "initWithSample:quantityHandler:")
@@ -91,7 +91,7 @@ import org.robovm.apple.foundation.*;
     protected native @Pointer long init(HKQuantityType quantityType, NSPredicate predicate, @Block VoidBlock6<HKQuantitySeriesSampleQuery, HKQuantity, NSDateInterval, HKQuantitySample, Boolean, NSError> quantityHandler);
     /**
      * @since Available in iOS 12.0 and later.
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use initWithQuantityType:predicate:quantityHandler:
      */
     @Deprecated
     @Method(selector = "initWithSample:quantityHandler:")

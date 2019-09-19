@@ -99,12 +99,12 @@ import org.robovm.apple.dispatch.*;
     public static final NSValueTransformerName IsNil = new NSValueTransformerName("IsNil");
     public static final NSValueTransformerName IsNotNil = new NSValueTransformerName("IsNotNil");
     /**
-     * @deprecated Deprecated in iOS 12.0.
+     * @deprecated Deprecated in iOS 12.0. Use NSSecureUnarchiveFromDataTransformerName
      */
     @Deprecated
     public static final NSValueTransformerName UnarchiveFromData = new NSValueTransformerName("UnarchiveFromData");
     /**
-     * @deprecated Deprecated in iOS 12.0.
+     * @deprecated Deprecated in iOS 12.0. Use NSSecureUnarchiveFromDataTransformerName
      */
     @Deprecated
     public static final NSValueTransformerName KeyedUnarchiveFromData = new NSValueTransformerName("KeyedUnarchiveFromData");
@@ -144,13 +144,13 @@ import org.robovm.apple.dispatch.*;
         @GlobalValue(symbol="NSIsNotNilTransformerName", optional=true)
         public static native NSString IsNotNil();
         /**
-         * @deprecated Deprecated in iOS 12.0.
+         * @deprecated Deprecated in iOS 12.0. Use NSSecureUnarchiveFromDataTransformerName
          */
         @Deprecated
         @GlobalValue(symbol="NSUnarchiveFromDataTransformerName", optional=true)
         public static native NSString UnarchiveFromData();
         /**
-         * @deprecated Deprecated in iOS 12.0.
+         * @deprecated Deprecated in iOS 12.0. Use NSSecureUnarchiveFromDataTransformerName
          */
         @Deprecated
         @GlobalValue(symbol="NSKeyedUnarchiveFromDataTransformerName", optional=true)

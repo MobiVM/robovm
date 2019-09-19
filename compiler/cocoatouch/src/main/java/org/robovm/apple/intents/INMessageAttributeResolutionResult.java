@@ -59,7 +59,7 @@ import org.robovm.apple.corelocation.*;
     public static native INMessageAttributeResolutionResult success(INMessageAttribute resolvedMessageAttribute);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use +successWithResolvedMessageAttribute:
      */
     @Deprecated
     @Method(selector = "successWithResolvedValue:")
@@ -68,7 +68,7 @@ import org.robovm.apple.corelocation.*;
     public static native INMessageAttributeResolutionResult confirmationRequired(INMessageAttribute messageAttributeToConfirm);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use +confirmationRequiredWithMessageAttributeToConfirm:
      */
     @Deprecated
     @Method(selector = "confirmationRequiredWithValueToConfirm:")

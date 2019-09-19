@@ -63,7 +63,7 @@ import org.robovm.apple.linkpresentation.*;
     public UIKeyCommand(String input, UIKeyModifierFlags modifierFlags, Selector action) { super((Handle) null, create(input, modifierFlags, action)); retain(getHandle()); }
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use keyCommandWithInput:modifierFlags:action:
      */
     @Deprecated
     public UIKeyCommand(String input, UIKeyModifierFlags modifierFlags, Selector action, String discoverabilityTitle) { super((Handle) null, create(input, modifierFlags, action, discoverabilityTitle)); retain(getHandle()); }
@@ -159,7 +159,7 @@ import org.robovm.apple.linkpresentation.*;
     protected static native @Pointer long create(String input, UIKeyModifierFlags modifierFlags, Selector action);
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use keyCommandWithInput:modifierFlags:action:
      */
     @Deprecated
     @Method(selector = "keyCommandWithInput:modifierFlags:action:discoverabilityTitle:")

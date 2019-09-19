@@ -59,7 +59,7 @@ import org.robovm.apple.corelocation.*;
     public static native INCarAirCirculationModeResolutionResult success(INCarAirCirculationMode resolvedCarAirCirculationMode);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use +successWithResolvedCarAirCirculationMode:
      */
     @Deprecated
     @Method(selector = "successWithResolvedValue:")
@@ -68,7 +68,7 @@ import org.robovm.apple.corelocation.*;
     public static native INCarAirCirculationModeResolutionResult confirmationRequired(INCarAirCirculationMode carAirCirculationModeToConfirm);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use +confirmationRequiredWithCarAirCirculationModeToConfirm:
      */
     @Deprecated
     @Method(selector = "confirmationRequiredWithValueToConfirm:")

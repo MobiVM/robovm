@@ -59,7 +59,7 @@ import org.robovm.apple.corelocation.*;
     public static native INPaymentStatusResolutionResult success(INPaymentStatus resolvedPaymentStatus);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use +successWithResolvedPaymentStatus:
      */
     @Deprecated
     @Method(selector = "successWithResolvedValue:")
@@ -68,7 +68,7 @@ import org.robovm.apple.corelocation.*;
     public static native INPaymentStatusResolutionResult confirmationRequired(INPaymentStatus paymentStatusToConfirm);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use +confirmationRequiredWithPaymentStatusToConfirm:
      */
     @Deprecated
     @Method(selector = "confirmationRequiredWithValueToConfirm:")

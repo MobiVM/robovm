@@ -119,13 +119,13 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "manageUsersWithCompletionHandler:")
     public native void manageUsers(@Block VoidBlock1<NSError> completion);
     /**
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use -manageUsersWithCompletionHandler:
      */
     @Deprecated
     @Method(selector = "addUserWithCompletionHandler:")
     public native void addUser(@Block VoidBlock2<HMUser, NSError> completion);
     /**
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use -manageUsersWithCompletionHandler:
      */
     @Deprecated
     @Method(selector = "removeUser:completionHandler:")

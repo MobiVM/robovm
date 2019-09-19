@@ -71,13 +71,13 @@ import org.robovm.apple.linkpresentation.*;
     @Method(selector = "applicationWillResignActive:")
     void willResignActive(UIApplication application);
     /**
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use application:openURL:options:
      */
     @Deprecated
     @Method(selector = "application:handleOpenURL:")
     boolean handleOpenURL(UIApplication application, NSURL url);
     /**
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use application:openURL:options:
      */
     @Deprecated
     @Method(selector = "application:openURL:sourceApplication:annotation:")

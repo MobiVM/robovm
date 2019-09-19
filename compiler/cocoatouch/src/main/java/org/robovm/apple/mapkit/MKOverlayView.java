@@ -36,7 +36,7 @@ import org.robovm.apple.dispatch.*;
 
 /*<javadoc>*/
 /**
- * @deprecated Deprecated in iOS 13.0.
+ * @deprecated Deprecated in iOS 13.0. Use MKOverlayRenderer
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("MapKit") @NativeClass @Deprecated/*</annotations>*/

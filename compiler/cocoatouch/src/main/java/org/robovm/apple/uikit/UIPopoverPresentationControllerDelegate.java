@@ -60,13 +60,13 @@ import org.robovm.apple.linkpresentation.*;
     @Method(selector = "prepareForPopoverPresentation:")
     void prepareForPopoverPresentation(UIPopoverPresentationController popoverPresentationController);
     /**
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use presentationControllerShouldDismiss:
      */
     @Deprecated
     @Method(selector = "popoverPresentationControllerShouldDismissPopover:")
     boolean shouldDismissPopover(UIPopoverPresentationController popoverPresentationController);
     /**
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use presentationControllerDidDismiss:
      */
     @Deprecated
     @Method(selector = "popoverPresentationControllerDidDismissPopover:")

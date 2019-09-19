@@ -62,7 +62,7 @@ import org.robovm.apple.linkpresentation.*;
     @Method(selector = "animateAlongsideTransitionInView:animation:completion:")
     boolean animateAlongsideTransition(UIView view, @Block VoidBlock1<UIViewControllerTransitionCoordinatorContext> animation, @Block VoidBlock1<UIViewControllerTransitionCoordinatorContext> completion);
     /**
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use notifyWhenInteractionChangesUsingBlock
      */
     @Deprecated
     @Method(selector = "notifyWhenInteractionEndsUsingBlock:")

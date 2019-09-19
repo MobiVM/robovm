@@ -251,7 +251,7 @@ import org.robovm.apple.linkpresentation.*;
     @Property(selector = "darkTextColor")
     public static native UIColor darkText();
     /**
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use systemGroupedBackgroundColor
      */
     @Deprecated
     @Property(selector = "groupTableViewBackgroundColor")

@@ -59,7 +59,7 @@ import org.robovm.apple.corelocation.*;
     public static native INRadioTypeResolutionResult success(INRadioType resolvedRadioType);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use +successWithResolvedRadioType:
      */
     @Deprecated
     @Method(selector = "successWithResolvedValue:")
@@ -68,7 +68,7 @@ import org.robovm.apple.corelocation.*;
     public static native INRadioTypeResolutionResult confirmationRequired(INRadioType radioTypeToConfirm);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use +confirmationRequiredWithRadioTypeToConfirm:
      */
     @Deprecated
     @Method(selector = "confirmationRequiredWithValueToConfirm:")

@@ -59,7 +59,7 @@ import org.robovm.apple.corelocation.*;
     public static native INCarAudioSourceResolutionResult success(INCarAudioSource resolvedCarAudioSource);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use +successWithResolvedCarAudioSource:
      */
     @Deprecated
     @Method(selector = "successWithResolvedValue:")
@@ -68,7 +68,7 @@ import org.robovm.apple.corelocation.*;
     public static native INCarAudioSourceResolutionResult confirmationRequired(INCarAudioSource carAudioSourceToConfirm);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use +confirmationRequiredWithCarAudioSourceToConfirm:
      */
     @Deprecated
     @Method(selector = "confirmationRequiredWithValueToConfirm:")

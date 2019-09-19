@@ -52,7 +52,7 @@ import org.robovm.apple.foundation.*;
     @Property(selector = "UUID")
     public native NSUUID getUUID();
     /**
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use sourceRevision
      */
     @Deprecated
     @Property(selector = "source")

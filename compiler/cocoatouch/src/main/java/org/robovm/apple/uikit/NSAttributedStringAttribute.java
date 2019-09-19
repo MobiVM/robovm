@@ -114,12 +114,12 @@ import org.robovm.apple.linkpresentation.*;
      */
     public static final NSAttributedStringAttribute SpeechSpellOut = new NSAttributedStringAttribute("SpeechSpellOut");
     /**
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. Use NSFontAttributeName
      */
     @Deprecated
     public static final NSAttributedStringAttribute TextFont = new NSAttributedStringAttribute("TextFont");
     /**
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. Use NSForegroundColorAttributeName
      */
     @Deprecated
     public static final NSAttributedStringAttribute TextColor = new NSAttributedStringAttribute("TextColor");
@@ -201,13 +201,13 @@ import org.robovm.apple.linkpresentation.*;
         @GlobalValue(symbol="UIAccessibilitySpeechAttributeSpellOut", optional=true)
         public static native NSString SpeechSpellOut();
         /**
-         * @deprecated Deprecated in iOS 7.0.
+         * @deprecated Deprecated in iOS 7.0. Use NSFontAttributeName
          */
         @Deprecated
         @GlobalValue(symbol="UITextAttributeFont", optional=true)
         public static native NSString TextFont();
         /**
-         * @deprecated Deprecated in iOS 7.0.
+         * @deprecated Deprecated in iOS 7.0. Use NSForegroundColorAttributeName
          */
         @Deprecated
         @GlobalValue(symbol="UITextAttributeTextColor", optional=true)

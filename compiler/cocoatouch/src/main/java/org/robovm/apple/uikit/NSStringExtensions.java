@@ -61,55 +61,55 @@ import org.robovm.apple.linkpresentation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. Use sizeWithAttributes:
      */
     @Deprecated
     @Method(selector = "sizeWithFont:")
     public static native @ByVal CGSize getSize(@Pointer long thiz, UIFont font);
     /**
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. Use boundingRectWithSize:options:attributes:context:
      */
     @Deprecated
     @Method(selector = "sizeWithFont:forWidth:lineBreakMode:")
     public static native @ByVal CGSize getSize(@Pointer long thiz, UIFont font, @MachineSizedFloat double width, NSLineBreakMode lineBreakMode);
     /**
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. Use drawAtPoint:withAttributes:
      */
     @Deprecated
     @Method(selector = "drawAtPoint:withFont:")
     public static native @ByVal CGSize draw(@Pointer long thiz, @ByVal CGPoint point, UIFont font);
     /**
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. Use drawInRect:withAttributes:
      */
     @Deprecated
     @Method(selector = "drawAtPoint:forWidth:withFont:lineBreakMode:")
     public static native @ByVal CGSize draw(@Pointer long thiz, @ByVal CGPoint point, @MachineSizedFloat double width, UIFont font, NSLineBreakMode lineBreakMode);
     /**
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. Use boundingRectWithSize:options:attributes:context:
      */
     @Deprecated
     @Method(selector = "sizeWithFont:constrainedToSize:")
     public static native @ByVal CGSize getSize(@Pointer long thiz, UIFont font, @ByVal CGSize size);
     /**
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. Use boundingRectWithSize:options:attributes:context:
      */
     @Deprecated
     @Method(selector = "sizeWithFont:constrainedToSize:lineBreakMode:")
     public static native @ByVal CGSize getSize(@Pointer long thiz, UIFont font, @ByVal CGSize size, NSLineBreakMode lineBreakMode);
     /**
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. Use drawInRect:withAttributes:
      */
     @Deprecated
     @Method(selector = "drawInRect:withFont:")
     public static native @ByVal CGSize draw(@Pointer long thiz, @ByVal CGRect rect, UIFont font);
     /**
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. Use drawInRect:withAttributes:
      */
     @Deprecated
     @Method(selector = "drawInRect:withFont:lineBreakMode:")
     public static native @ByVal CGSize draw(@Pointer long thiz, @ByVal CGRect rect, UIFont font, NSLineBreakMode lineBreakMode);
     /**
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. Use drawInRect:withAttributes:
      */
     @Deprecated
     @Method(selector = "drawInRect:withFont:lineBreakMode:alignment:")
@@ -121,13 +121,13 @@ import org.robovm.apple.linkpresentation.*;
     @Method(selector = "sizeWithFont:minFontSize:actualFontSize:forWidth:lineBreakMode:")
     public static native @ByVal CGSize getSize(@Pointer long thiz, UIFont font, @MachineSizedFloat double minFontSize, MachineSizedFloatPtr actualFontSize, @MachineSizedFloat double width, NSLineBreakMode lineBreakMode);
     /**
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. Use drawInRect:withAttributes:
      */
     @Deprecated
     @Method(selector = "drawAtPoint:forWidth:withFont:fontSize:lineBreakMode:baselineAdjustment:")
     public static native @ByVal CGSize draw(@Pointer long thiz, @ByVal CGPoint point, @MachineSizedFloat double width, UIFont font, @MachineSizedFloat double fontSize, NSLineBreakMode lineBreakMode, UIBaselineAdjustment baselineAdjustment);
     /**
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. Use drawInRect:withAttributes:
      */
     @Deprecated
     @Method(selector = "drawAtPoint:forWidth:withFont:minFontSize:actualFontSize:lineBreakMode:baselineAdjustment:")

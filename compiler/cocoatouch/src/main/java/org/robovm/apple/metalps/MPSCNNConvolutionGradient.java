@@ -73,14 +73,14 @@ import org.robovm.apple.metal.*;
     public native void setGradientOption(MPSCNNConvolutionGradientOption v);
     /**
      * @since Available in iOS 11.3 and later.
-     * @deprecated Deprecated in iOS 12.0.
+     * @deprecated Deprecated in iOS 12.0. Use This is deprecated and doesn't do anything. It is here for backward compatibility. MPSCNNConvolutionGradient doesn't serialize weights. It gets weight from state.convolution.dataSource on first use i.e. first encodeToCommandBuffer call
      */
     @Deprecated
     @Property(selector = "serializeWeightsAndBiases")
     public native boolean isSerializeWeightsAndBiases();
     /**
      * @since Available in iOS 11.3 and later.
-     * @deprecated Deprecated in iOS 12.0.
+     * @deprecated Deprecated in iOS 12.0. Use This is deprecated and doesn't do anything. It is here for backward compatibility. MPSCNNConvolutionGradient doesn't serialize weights. It gets weight from state.convolution.dataSource on first use i.e. first encodeToCommandBuffer call
      */
     @Deprecated
     @Property(selector = "setSerializeWeightsAndBiases:")

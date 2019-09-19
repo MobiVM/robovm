@@ -56,7 +56,7 @@ import org.robovm.apple.corelocation.*;
     public INSetClimateSettingsInCarIntent(NSNumber enableFan, NSNumber enableAirConditioner, NSNumber enableClimateControl, NSNumber enableAutoMode, INCarAirCirculationMode airCirculationMode, NSNumber fanSpeedIndex, NSNumber fanSpeedPercentage, INRelativeSetting relativeFanSpeedSetting, NSMeasurement<NSUnitTemperature> temperature, INRelativeSetting relativeTemperatureSetting, INCarSeat climateZone, INSpeakableString carName) { super((SkipInit) null); initObject(init(enableFan, enableAirConditioner, enableClimateControl, enableAutoMode, airCirculationMode, fanSpeedIndex, fanSpeedPercentage, relativeFanSpeedSetting, temperature, relativeTemperatureSetting, climateZone, carName)); }
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 12.0.
+     * @deprecated Deprecated in iOS 12.0. Use -initWithEnableFan:enableAirConditioner:enableClimateControl:enableAutoMode:airCirculationMode:fanSpeedIndex:fanSpeedPercentage:relativeFanSpeedSetting:temperature:relativeTemperatureSetting:
      */
     @Deprecated
     @Method(selector = "initWithEnableFan:enableAirConditioner:enableClimateControl:enableAutoMode:airCirculationMode:fanSpeedIndex:fanSpeedPercentage:relativeFanSpeedSetting:temperature:relativeTemperatureSetting:climateZone:")
@@ -100,7 +100,7 @@ import org.robovm.apple.corelocation.*;
     protected native @Pointer long init(NSNumber enableFan, NSNumber enableAirConditioner, NSNumber enableClimateControl, NSNumber enableAutoMode, INCarAirCirculationMode airCirculationMode, NSNumber fanSpeedIndex, NSNumber fanSpeedPercentage, INRelativeSetting relativeFanSpeedSetting, NSMeasurement<NSUnitTemperature> temperature, INRelativeSetting relativeTemperatureSetting, INCarSeat climateZone, INSpeakableString carName);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 12.0.
+     * @deprecated Deprecated in iOS 12.0. Use -initWithEnableFan:enableAirConditioner:enableClimateControl:enableAutoMode:airCirculationMode:fanSpeedIndex:fanSpeedPercentage:relativeFanSpeedSetting:temperature:relativeTemperatureSetting:
      */
     @Deprecated
     @Method(selector = "initWithEnableFan:enableAirConditioner:enableClimateControl:enableAutoMode:airCirculationMode:fanSpeedIndex:fanSpeedPercentage:relativeFanSpeedSetting:temperature:relativeTemperatureSetting:climateZone:")

@@ -67,7 +67,7 @@ import org.robovm.apple.imageio.*;
     @Method(selector = "requestImageForAsset:targetSize:contentMode:options:resultHandler:")
     public native int requestImageForAsset(PHAsset asset, @ByVal CGSize targetSize, PHImageContentMode contentMode, PHImageRequestOptions options, @Block VoidBlock2<UIImage, NSDictionary<?, ?>> resultHandler);
     /**
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use -requestImageDataAndOrientationForAsset:options:resultHandler:
      */
     @Deprecated
     @WeaklyLinked

@@ -563,7 +563,7 @@ import org.robovm.apple.linkpresentation.*;
     @Method(selector = "endIgnoringInteractionEvents")
     public native void endIgnoringInteractionEvents();
     /**
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use openURL:options:completionHandler:
      */
     @Deprecated
     @Method(selector = "openURL:")

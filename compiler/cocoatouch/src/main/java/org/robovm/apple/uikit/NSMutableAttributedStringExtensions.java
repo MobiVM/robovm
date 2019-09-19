@@ -91,7 +91,7 @@ import org.robovm.apple.linkpresentation.*;
     @Method(selector = "readFromData:options:documentAttributes:error:")
     private static native boolean read(NSMutableAttributedString thiz, NSData data, NSAttributedStringDocumentAttributes opts, NSDictionary.NSDictionaryPtr<?, ?> dict, NSError.NSErrorPtr error);
     /**
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use readFromURL:options:documentAttributes:error:
      */
     @Deprecated
     public static boolean readFromFileURL(NSMutableAttributedString thiz, NSURL url, NSAttributedStringDocumentAttributes opts, NSDictionary.NSDictionaryPtr<?, ?> dict) throws NSErrorException {
@@ -101,7 +101,7 @@ import org.robovm.apple.linkpresentation.*;
        return result;
     }
     /**
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use readFromURL:options:documentAttributes:error:
      */
     @Deprecated
     @Method(selector = "readFromFileURL:options:documentAttributes:error:")

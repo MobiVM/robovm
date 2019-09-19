@@ -86,7 +86,7 @@ import org.robovm.apple.corefoundation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @deprecated Deprecated in iOS 12.1.
+     * @deprecated Deprecated in iOS 12.1. Use -[CTSubscriberDelegate subscriberTokenRefreshed:]
      */
     @Deprecated
     @GlobalValue(symbol="CTSubscriberTokenRefreshed", optional=true)

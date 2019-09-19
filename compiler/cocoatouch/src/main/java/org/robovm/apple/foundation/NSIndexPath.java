@@ -137,6 +137,9 @@ import org.robovm.apple.dispatch.*;
     private native void getIndexes(MachineSizedUIntPtr indexes, @ByVal NSRange positionRange);
     @Method(selector = "compare:")
     public native NSComparisonResult compare(NSIndexPath otherObject);
+    /**
+     * @deprecated Use getIndexes:range:
+     */
     @Deprecated
     @Method(selector = "getIndexes:")
     private native void getIndexes(MachineSizedUIntPtr indexes);

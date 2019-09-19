@@ -109,14 +109,14 @@ import org.robovm.apple.audiotoolbox.*;
     public native void setPhotoQualityPrioritization(AVCapturePhotoQualityPrioritization v);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use photoQualityPrioritization
      */
     @Deprecated
     @Property(selector = "isAutoStillImageStabilizationEnabled")
     public native boolean isAutoStillImageStabilizationEnabled();
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use photoQualityPrioritization
      */
     @Deprecated
     @Property(selector = "setAutoStillImageStabilizationEnabled:")
@@ -133,14 +133,14 @@ import org.robovm.apple.audiotoolbox.*;
     public native void setAutoVirtualDeviceFusionEnabled(boolean v);
     /**
      * @since Available in iOS 10.2 and later.
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use autoVirtualDeviceFusionEnabled
      */
     @Deprecated
     @Property(selector = "isAutoDualCameraFusionEnabled")
     public native boolean isAutoDualCameraFusionEnabled();
     /**
      * @since Available in iOS 10.2 and later.
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use autoVirtualDeviceFusionEnabled
      */
     @Deprecated
     @Property(selector = "setAutoDualCameraFusionEnabled:")
@@ -157,14 +157,14 @@ import org.robovm.apple.audiotoolbox.*;
     public native void setVirtualDeviceConstituentPhotoDeliveryEnabledDevices(NSArray<AVCaptureDevice> v);
     /**
      * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use virtualDeviceConstituentPhotoDeliveryEnabledDevices
      */
     @Deprecated
     @Property(selector = "isDualCameraDualPhotoDeliveryEnabled")
     public native boolean isDualCameraDualPhotoDeliveryEnabled();
     /**
      * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use virtualDeviceConstituentPhotoDeliveryEnabledDevices
      */
     @Deprecated
     @Property(selector = "setDualCameraDualPhotoDeliveryEnabled:")

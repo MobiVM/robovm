@@ -49,13 +49,13 @@ import org.robovm.apple.coregraphics.*;
     /*</constructors>*/
     /*<properties>*/
     /**
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use NSFileProviderManager -providerIdentifier
      */
     @Deprecated
     @Property(selector = "providerIdentifier")
     public native String getProviderIdentifier();
     /**
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use NSFileProviderManager -documentStorageURL
      */
     @Deprecated
     @Property(selector = "documentStorageURL")
@@ -102,7 +102,7 @@ import org.robovm.apple.coregraphics.*;
     @Method(selector = "writePlaceholderAtURL:withMetadata:error:")
     public static native boolean writePlaceholder(NSURL placeholderURL, NSDictionary<NSString, ?> metadata, NSError.NSErrorPtr error);
     /**
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use NSFileProviderManager +placeholderURLForURL:
      */
     @Deprecated
     @Method(selector = "placeholderURLForURL:")

@@ -89,14 +89,14 @@ import org.robovm.apple.audiotoolbox.*;
     public native void setMaxPhotoQualityPrioritization(AVCapturePhotoQualityPrioritization v);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use maxPhotoQualityPrioritization
      */
     @Deprecated
     @Property(selector = "isStillImageStabilizationSupported")
     public native boolean isStillImageStabilizationSupported();
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use maxPhotoQualityPrioritization
      */
     @Deprecated
     @Property(selector = "isStillImageStabilizationScene")
@@ -108,7 +108,7 @@ import org.robovm.apple.audiotoolbox.*;
     public native boolean isVirtualDeviceFusionSupported();
     /**
      * @since Available in iOS 10.2 and later.
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use virtualDeviceFusionSupported
      */
     @Deprecated
     @Property(selector = "isDualCameraFusionSupported")
@@ -120,7 +120,7 @@ import org.robovm.apple.audiotoolbox.*;
     public native boolean isVirtualDeviceConstituentPhotoDeliverySupported();
     /**
      * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use virtualDeviceConstituentPhotoDeliverySupported
      */
     @Deprecated
     @Property(selector = "isDualCameraDualPhotoDeliverySupported")
@@ -137,14 +137,14 @@ import org.robovm.apple.audiotoolbox.*;
     public native void setVirtualDeviceConstituentPhotoDeliveryEnabled(boolean v);
     /**
      * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use virtualDeviceConstituentPhotoDeliveryEnabled
      */
     @Deprecated
     @Property(selector = "isDualCameraDualPhotoDeliveryEnabled")
     public native boolean isDualCameraDualPhotoDeliveryEnabled();
     /**
      * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use virtualDeviceConstituentPhotoDeliveryEnabled
      */
     @Deprecated
     @Property(selector = "setDualCameraDualPhotoDeliveryEnabled:")
@@ -265,14 +265,14 @@ import org.robovm.apple.audiotoolbox.*;
     protected static native @Pointer long create();
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use -[AVCapturePhoto fileDataRepresentation]
      */
     @Deprecated
     @Method(selector = "JPEGPhotoDataRepresentationForJPEGSampleBuffer:previewPhotoSampleBuffer:")
     public static native NSData JPEGPhotoDataRepresentationForJPEGSampleBuffer(CMSampleBuffer JPEGSampleBuffer, CMSampleBuffer previewPhotoSampleBuffer);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use -[AVCapturePhoto fileDataRepresentation]
      */
     @Deprecated
     @Method(selector = "DNGPhotoDataRepresentationForRawSampleBuffer:previewPhotoSampleBuffer:")

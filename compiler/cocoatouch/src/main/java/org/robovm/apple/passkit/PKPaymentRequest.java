@@ -85,13 +85,13 @@ import org.robovm.apple.contacts.*;
     @Property(selector = "setRequiredBillingContactFields:")
     public native void setRequiredBillingContactFields(NSSet<NSString> v);
     /**
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use requiredBillingContactFields
      */
     @Deprecated
     @Property(selector = "requiredBillingAddressFields")
     public native PKAddressField getRequiredBillingAddressFields();
     /**
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use requiredBillingContactFields
      */
     @Deprecated
     @Property(selector = "setRequiredBillingAddressFields:")
@@ -117,13 +117,13 @@ import org.robovm.apple.contacts.*;
     @Property(selector = "setRequiredShippingContactFields:")
     public native void setRequiredShippingContactFields(NSSet<NSString> v);
     /**
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use requiredShippingContactFields
      */
     @Deprecated
     @Property(selector = "requiredShippingAddressFields")
     public native PKAddressField getRequiredShippingAddressFields();
     /**
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use requiredShippingContactFields
      */
     @Deprecated
     @Property(selector = "setRequiredShippingAddressFields:")

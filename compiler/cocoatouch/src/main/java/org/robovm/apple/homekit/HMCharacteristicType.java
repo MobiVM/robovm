@@ -106,12 +106,12 @@ import org.robovm.apple.corelocation.*;
     public static final HMCharacteristicType ObstructionDetected = new HMCharacteristicType("ObstructionDetected");
     public static final HMCharacteristicType Name = new HMCharacteristicType("Name");
     /**
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use Use -[HMAccessory manufacturer] instead
      */
     @Deprecated
     public static final HMCharacteristicType Manufacturer = new HMCharacteristicType("Manufacturer");
     /**
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use Use -[HMAccessory model] instead
      */
     @Deprecated
     public static final HMCharacteristicType Model = new HMCharacteristicType("Model");
@@ -207,7 +207,7 @@ import org.robovm.apple.corelocation.*;
      */
     public static final HMCharacteristicType CurrentVerticalTilt = new HMCharacteristicType("CurrentVerticalTilt");
     /**
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use Use -[HMAccessory firmwareVersion] instead
      */
     @Deprecated
     public static final HMCharacteristicType FirmwareVersion = new HMCharacteristicType("FirmwareVersion");
@@ -539,13 +539,13 @@ import org.robovm.apple.corelocation.*;
         @GlobalValue(symbol="HMCharacteristicTypeName", optional=true)
         public static native NSString Name();
         /**
-         * @deprecated Deprecated in iOS 11.0.
+         * @deprecated Deprecated in iOS 11.0. Use Use -[HMAccessory manufacturer] instead
          */
         @Deprecated
         @GlobalValue(symbol="HMCharacteristicTypeManufacturer", optional=true)
         public static native NSString Manufacturer();
         /**
-         * @deprecated Deprecated in iOS 11.0.
+         * @deprecated Deprecated in iOS 11.0. Use Use -[HMAccessory model] instead
          */
         @Deprecated
         @GlobalValue(symbol="HMCharacteristicTypeModel", optional=true)
@@ -675,7 +675,7 @@ import org.robovm.apple.corelocation.*;
         @GlobalValue(symbol="HMCharacteristicTypeCurrentVerticalTilt", optional=true)
         public static native NSString CurrentVerticalTilt();
         /**
-         * @deprecated Deprecated in iOS 11.0.
+         * @deprecated Deprecated in iOS 11.0. Use Use -[HMAccessory firmwareVersion] instead
          */
         @Deprecated
         @GlobalValue(symbol="HMCharacteristicTypeFirmwareVersion", optional=true)

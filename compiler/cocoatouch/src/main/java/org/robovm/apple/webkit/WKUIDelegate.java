@@ -64,21 +64,21 @@ import org.robovm.apple.security.*;
     void runJavaScriptTextInputPanel(WKWebView webView, String prompt, String defaultText, WKFrameInfo frame, @Block VoidBlock1<NSString> completionHandler);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use webView:contextMenuConfigurationForElement:completionHandler:
      */
     @Deprecated
     @Method(selector = "webView:shouldPreviewElement:")
     boolean shouldPreviewElement(WKWebView webView, WKPreviewElementInfo elementInfo);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use webView:contextMenuConfigurationForElement:completionHandler:
      */
     @Deprecated
     @Method(selector = "webView:previewingViewControllerForElement:defaultActions:")
     UIViewController getPreviewingViewControllerForElement(WKWebView webView, WKPreviewElementInfo elementInfo, NSArray<?> previewActions);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use webView:contextMenuForElement:willCommitWithAnimator:
      */
     @Deprecated
     @Method(selector = "webView:commitPreviewingViewController:")

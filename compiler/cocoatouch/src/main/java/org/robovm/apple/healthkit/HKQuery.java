@@ -53,7 +53,7 @@ import org.robovm.apple.foundation.*;
     @Property(selector = "objectType")
     public native HKObjectType getObjectType();
     /**
-     * @deprecated Deprecated in iOS 9.3.
+     * @deprecated Deprecated in iOS 9.3. Use objectType
      */
     @Deprecated
     @Property(selector = "sampleType")

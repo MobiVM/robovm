@@ -142,13 +142,13 @@ import org.robovm.apple.uikit.*;
     @Bridge(symbol="CTFontManagerUnregisterGraphicsFont", optional=true)
     private static native boolean unregisterGraphicsFont(CGFont font, NSError.NSErrorPtr error);
     /**
-     * @deprecated Deprecated in iOS 12.0.
+     * @deprecated Deprecated in iOS 12.0. Use CTFontManagerRegisterFontURLs
      */
     @Deprecated
     @Bridge(symbol="CTFontManagerRegisterFontsForURLs", optional=true)
     protected static native boolean registerFonts(NSArray<NSURL> fontURLs, CTFontManagerScope scope, NSArray.NSArrayPtr errors);
     /**
-     * @deprecated Deprecated in iOS 12.0.
+     * @deprecated Deprecated in iOS 12.0. Use CTFontManagerUnregisterFontURLs
      */
     @Deprecated
     @Bridge(symbol="CTFontManagerUnregisterFontsForURLs", optional=true)

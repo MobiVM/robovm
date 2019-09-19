@@ -67,7 +67,7 @@ import org.robovm.apple.fileprovider.*;
     public native CKShareParticipantRole getParticipantRole();
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 12.0.
+     * @deprecated Deprecated in iOS 12.0. Use participantRole
      */
     @Deprecated
     @Property(selector = "participantType")

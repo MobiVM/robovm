@@ -83,7 +83,7 @@ import org.robovm.apple.dispatch.*;
     public native SecKey copyKey();
     /**
      * @since Available in iOS 10.3 and later.
-     * @deprecated Deprecated in iOS 12.0.
+     * @deprecated Deprecated in iOS 12.0. Use SecCertificateCopyKey
      */
     @Deprecated
     @Bridge(symbol="SecCertificateCopyPublicKey", optional=true)
@@ -95,7 +95,7 @@ import org.robovm.apple.dispatch.*;
     public native NSData copySerialNumberData(NSError error);
     /**
      * @since Available in iOS 10.3 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use SecCertificateCopySerialNumberData
      */
     @Deprecated
     @Bridge(symbol="SecCertificateCopySerialNumber", optional=true)

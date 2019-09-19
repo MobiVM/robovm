@@ -53,6 +53,9 @@ import org.robovm.apple.dispatch.*;
     public NSURLCache() {}
     protected NSURLCache(Handle h, long handle) { super(h, handle); }
     protected NSURLCache(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @deprecated Use initWithMemoryCapacity:diskCapacity:directoryURL:
+     */
     @Deprecated
     @Method(selector = "initWithMemoryCapacity:diskCapacity:diskPath:")
     public NSURLCache(@MachineSizedUInt long memoryCapacity, @MachineSizedUInt long diskCapacity, String path) { super((SkipInit) null); initObject(init(memoryCapacity, diskCapacity, path)); }
@@ -82,6 +85,9 @@ import org.robovm.apple.dispatch.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @deprecated Use initWithMemoryCapacity:diskCapacity:directoryURL:
+     */
     @Deprecated
     @Method(selector = "initWithMemoryCapacity:diskCapacity:diskPath:")
     protected native @Pointer long init(@MachineSizedUInt long memoryCapacity, @MachineSizedUInt long diskCapacity, String path);

@@ -35,7 +35,7 @@ import org.robovm.apple.fileprovider.*;
 
 /*<javadoc>*/
 /**
- * @deprecated Deprecated in iOS 10.0.
+ * @deprecated Deprecated in iOS 10.0. Use CKFetchRecordZoneChangesOperation
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("CloudKit") @NativeClass @Deprecated/*</annotations>*/

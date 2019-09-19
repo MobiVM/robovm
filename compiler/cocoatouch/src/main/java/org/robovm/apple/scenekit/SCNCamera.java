@@ -544,25 +544,25 @@ import org.robovm.apple.avfoundation.*;
     @Property(selector = "setAperture:")
     public native void setAperture(@MachineSizedFloat double v);
     /**
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use -focusDistance
      */
     @Deprecated
     @Property(selector = "focalSize")
     public native @MachineSizedFloat double getFocalSize();
     /**
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use -focusDistance
      */
     @Deprecated
     @Property(selector = "setFocalSize:")
     public native void setFocalSize(@MachineSizedFloat double v);
     /**
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use -focusDistance
      */
     @Deprecated
     @Property(selector = "focalDistance")
     public native @MachineSizedFloat double getFocalDistance();
     /**
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use -focusDistance
      */
     @Deprecated
     @Property(selector = "setFocalDistance:")
@@ -607,13 +607,13 @@ import org.robovm.apple.avfoundation.*;
     @Method(selector = "removeAnimationForKey:blendOutDuration:")
     public native void removeAnimationForKey(String key, @MachineSizedFloat double duration);
     /**
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use -removeAnimationForKey:blendOutDuration:
      */
     @Deprecated
     @Method(selector = "removeAnimationForKey:fadeOutDuration:")
     public native void removeAnimation(String key, @MachineSizedFloat double duration);
     /**
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use -animationPlayerForKey:
      */
     @Deprecated
     @Method(selector = "animationForKey:")

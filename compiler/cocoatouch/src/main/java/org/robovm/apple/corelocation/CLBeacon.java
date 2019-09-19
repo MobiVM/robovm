@@ -63,7 +63,7 @@ import org.robovm.apple.contacts.*;
     @Property(selector = "UUID")
     public native NSUUID getUUID();
     /**
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use -UUID
      */
     @Deprecated
     @Property(selector = "proximityUUID")

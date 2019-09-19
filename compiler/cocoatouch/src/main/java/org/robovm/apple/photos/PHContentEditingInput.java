@@ -81,7 +81,7 @@ import org.robovm.apple.imageio.*;
     @Property(selector = "fullSizeImageOrientation")
     public native org.robovm.apple.imageio.CGImagePropertyOrientation getFullSizeImageOrientation();
     /**
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use -audiovisualAsset
      */
     @Deprecated
     @WeaklyLinked

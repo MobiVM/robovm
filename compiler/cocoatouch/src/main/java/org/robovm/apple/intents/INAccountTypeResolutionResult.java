@@ -59,7 +59,7 @@ import org.robovm.apple.corelocation.*;
     public static native INAccountTypeResolutionResult success(INAccountType resolvedAccountType);
     /**
      * @since Available in iOS 10.3 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use +successWithResolvedAccountType:
      */
     @Deprecated
     @Method(selector = "successWithResolvedValue:")
@@ -68,7 +68,7 @@ import org.robovm.apple.corelocation.*;
     public static native INAccountTypeResolutionResult confirmationRequired(INAccountType accountTypeToConfirm);
     /**
      * @since Available in iOS 10.3 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use +confirmationRequiredWithAccountTypeToConfirm:
      */
     @Deprecated
     @Method(selector = "confirmationRequiredWithValueToConfirm:")

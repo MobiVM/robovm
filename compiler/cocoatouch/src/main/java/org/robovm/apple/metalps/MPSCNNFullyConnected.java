@@ -56,7 +56,7 @@ import org.robovm.apple.metal.*;
     public MPSCNNFullyConnected(MTLDevice device, MPSCNNConvolutionDataSource weights) { super((SkipInit) null); initObject(init(device, weights)); }
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use Please use  -initWithDevice:convolutionDescriptor:weights: instead.
      */
     @Deprecated
     @Method(selector = "initWithDevice:convolutionDescriptor:kernelWeights:biasTerms:flags:")
@@ -81,7 +81,7 @@ import org.robovm.apple.metal.*;
     protected native @Pointer long init(MTLDevice device, MPSCNNConvolutionDataSource weights);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use Please use  -initWithDevice:convolutionDescriptor:weights: instead.
      */
     @Deprecated
     @Method(selector = "initWithDevice:convolutionDescriptor:kernelWeights:biasTerms:flags:")

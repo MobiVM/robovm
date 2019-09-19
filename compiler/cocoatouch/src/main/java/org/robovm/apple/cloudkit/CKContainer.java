@@ -85,7 +85,7 @@ import org.robovm.apple.fileprovider.*;
     @GlobalValue(symbol="CKCurrentUserDefaultName", optional=true)
     public static native String getDefaultCurrentUserName();
     /**
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use CKCurrentUserDefaultName
      */
     @Deprecated
     @GlobalValue(symbol="CKOwnerDefaultName", optional=true)

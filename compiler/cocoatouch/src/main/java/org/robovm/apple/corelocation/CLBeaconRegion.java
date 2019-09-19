@@ -58,7 +58,7 @@ import org.robovm.apple.contacts.*;
        return res;
     }
     /**
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use -initWithUUID:identifier:
      */
     @Deprecated
     @Method(selector = "initWithProximityUUID:identifier:")
@@ -73,7 +73,7 @@ import org.robovm.apple.contacts.*;
        return res;
     }
     /**
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use -initWithUUID:major:identifier:
      */
     @Deprecated
     @Method(selector = "initWithProximityUUID:major:identifier:")
@@ -88,7 +88,7 @@ import org.robovm.apple.contacts.*;
        return res;
     }
     /**
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use -initWithUUID:major:identifier:
      */
     @Deprecated
     @Method(selector = "initWithProximityUUID:major:minor:identifier:")
@@ -117,7 +117,7 @@ import org.robovm.apple.contacts.*;
     @Property(selector = "UUID")
     public native NSUUID getUUID();
     /**
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use -UUID
      */
     @Deprecated
     @Property(selector = "proximityUUID")
@@ -139,7 +139,7 @@ import org.robovm.apple.contacts.*;
     @Method(selector = "initWithUUID:identifier:")
     protected native @Pointer long createUsingUUID0(NSUUID uuid, String identifier);
     /**
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use -initWithUUID:identifier:
      */
     @Deprecated
     @Method(selector = "initWithProximityUUID:identifier:")
@@ -150,7 +150,7 @@ import org.robovm.apple.contacts.*;
     @Method(selector = "initWithUUID:major:identifier:")
     protected native @Pointer long createUsingUUID0(NSUUID uuid, short major, String identifier);
     /**
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use -initWithUUID:major:identifier:
      */
     @Deprecated
     @Method(selector = "initWithProximityUUID:major:identifier:")
@@ -161,7 +161,7 @@ import org.robovm.apple.contacts.*;
     @Method(selector = "initWithUUID:major:minor:identifier:")
     protected native @Pointer long createUsingUUID0(NSUUID uuid, short major, short minor, String identifier);
     /**
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use -initWithUUID:major:identifier:
      */
     @Deprecated
     @Method(selector = "initWithProximityUUID:major:minor:identifier:")

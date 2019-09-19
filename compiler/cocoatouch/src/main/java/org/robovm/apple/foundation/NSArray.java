@@ -561,15 +561,27 @@ import org.robovm.apple.dispatch.*;
     protected native NSArray<T> getSubarray(@ByVal NSRange range);
     @Method(selector = "initWithArray:")
     protected native @Pointer long init(NSArray<T> array);
+    /**
+     * @deprecated Use writeToURL:error:
+     */
     @Deprecated
     @Method(selector = "writeToFile:atomically:")
     protected native boolean writeFile(String path, boolean atomically);
+    /**
+     * @deprecated Use writeToURL:error:
+     */
     @Deprecated
     @Method(selector = "writeToURL:atomically:")
     public native boolean write(NSURL url, boolean atomically);
+    /**
+     * @deprecated Use arrayWithContentsOfURL:error:
+     */
     @Deprecated
     @Method(selector = "arrayWithContentsOfFile:")
     protected static native NSArray<?> readFile(String path);
+    /**
+     * @deprecated Use arrayWithContentsOfURL:error:
+     */
     @Deprecated
     @Method(selector = "arrayWithContentsOfURL:")
     public static native NSArray<?> read(NSURL url);

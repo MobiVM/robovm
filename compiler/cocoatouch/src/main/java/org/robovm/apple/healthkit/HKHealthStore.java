@@ -123,7 +123,7 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "splitTotalEnergy:startDate:endDate:resultsHandler:")
     public native void splitTotalEnergy(HKQuantity totalEnergy, NSDate startDate, NSDate endDate, @Block VoidBlock3<HKQuantity, HKQuantity, NSError> resultsHandler);
     /**
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use dateOfBirthComponentsWithError:
      */
     @Deprecated
     public NSDate getDateOfBirth() throws NSErrorException {
@@ -133,7 +133,7 @@ import org.robovm.apple.foundation.*;
        return result;
     }
     /**
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use dateOfBirthComponentsWithError:
      */
     @Deprecated
     @Method(selector = "dateOfBirthWithError:")

@@ -64,7 +64,7 @@ import org.robovm.apple.linkpresentation.*;
     @NotImplemented("animateAlongsideTransitionInView:animation:completion:")
     public boolean animateAlongsideTransition(UIView view, @Block VoidBlock1<UIViewControllerTransitionCoordinatorContext> animation, @Block VoidBlock1<UIViewControllerTransitionCoordinatorContext> completion) { return false; }
     /**
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use notifyWhenInteractionChangesUsingBlock
      */
     @Deprecated
     @NotImplemented("notifyWhenInteractionEndsUsingBlock:")

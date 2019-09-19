@@ -95,13 +95,13 @@ import org.robovm.apple.linkpresentation.*;
     @Property(selector = "setUnselectedItemTintColor:")
     public native void setUnselectedItemTintColor(UIColor v);
     /**
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. Use tintColor
      */
     @Deprecated
     @Property(selector = "selectedImageTintColor")
     public native UIColor getSelectedImageTintColor();
     /**
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. Use tintColor
      */
     @Deprecated
     @Property(selector = "setSelectedImageTintColor:")

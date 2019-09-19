@@ -391,13 +391,13 @@ import org.robovm.apple.avfoundation.*;
     @Method(selector = "removeAnimationForKey:blendOutDuration:")
     public native void removeAnimationForKey(String key, @MachineSizedFloat double duration);
     /**
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use -removeAnimationForKey:blendOutDuration:
      */
     @Deprecated
     @Method(selector = "removeAnimationForKey:fadeOutDuration:")
     public native void removeAnimation(String key, @MachineSizedFloat double duration);
     /**
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use -animationPlayerForKey:
      */
     @Deprecated
     @Method(selector = "animationForKey:")

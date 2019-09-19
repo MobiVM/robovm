@@ -50,7 +50,7 @@ import org.robovm.apple.security.*;
     protected TKTokenWatcher(SkipInit skipInit) { super(skipInit); }
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use setInsertionHandler
      */
     @Deprecated
     @Method(selector = "initWithInsertionHandler:")
@@ -64,7 +64,7 @@ import org.robovm.apple.security.*;
     /*<methods>*/
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use setInsertionHandler
      */
     @Deprecated
     @Method(selector = "initWithInsertionHandler:")

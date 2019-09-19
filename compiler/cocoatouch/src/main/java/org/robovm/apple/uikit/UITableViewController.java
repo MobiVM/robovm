@@ -134,7 +134,7 @@ import org.robovm.apple.linkpresentation.*;
     @Method(selector = "tableView:titleForDeleteConfirmationButtonForRowAtIndexPath:")
     public native String getTitleForDeleteConfirmationButton(UITableView tableView, NSIndexPath indexPath);
     /**
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use tableView:trailingSwipeActionsConfigurationForRowAtIndexPath:
      */
     @Deprecated
     @Method(selector = "tableView:editActionsForRowAtIndexPath:")
@@ -160,19 +160,19 @@ import org.robovm.apple.linkpresentation.*;
     @Method(selector = "tableView:indentationLevelForRowAtIndexPath:")
     public native @MachineSizedSInt long getIndentationLevelForRow(UITableView tableView, NSIndexPath indexPath);
     /**
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use tableView:contextMenuConfigurationForRowAtIndexPath:point:
      */
     @Deprecated
     @Method(selector = "tableView:shouldShowMenuForRowAtIndexPath:")
     public native boolean shouldShowMenuForRow(UITableView tableView, NSIndexPath indexPath);
     /**
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use tableView:contextMenuConfigurationForRowAtIndexPath:point:
      */
     @Deprecated
     @Method(selector = "tableView:canPerformAction:forRowAtIndexPath:withSender:")
     public native boolean canPerformAction(UITableView tableView, Selector action, NSIndexPath indexPath, NSObject sender);
     /**
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use tableView:contextMenuConfigurationForRowAtIndexPath:
      */
     @Deprecated
     @Method(selector = "tableView:performAction:forRowAtIndexPath:withSender:")

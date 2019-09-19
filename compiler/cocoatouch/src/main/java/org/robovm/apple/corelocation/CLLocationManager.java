@@ -199,7 +199,7 @@ import org.robovm.apple.contacts.*;
     @Method(selector = "isMonitoringAvailableForClass:")
     public static native boolean isMonitoringAvailable(Class<? extends CLRegion> regionClass);
     /**
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. Use +isMonitoringAvailableForClass:
      */
     @Deprecated
     @Method(selector = "regionMonitoringAvailable")

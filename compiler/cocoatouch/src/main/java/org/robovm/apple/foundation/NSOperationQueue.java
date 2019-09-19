@@ -91,6 +91,9 @@ import org.robovm.apple.dispatch.*;
     @Deprecated
     @Property(selector = "operations")
     public native NSArray<NSOperation> getOperations();
+    /**
+     * @deprecated Use progress.completedUnitCount
+     */
     @Deprecated
     @Property(selector = "operationCount")
     public native @MachineSizedUInt long getOperationCount();

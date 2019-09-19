@@ -59,13 +59,13 @@ import org.robovm.apple.linkpresentation.*;
     /*</constructors>*/
     /*<properties>*/
     /**
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use NSFileProviderManager -providerIdentifier
      */
     @Deprecated
     @Property(selector = "providerIdentifier")
     public native String getProviderIdentifier();
     /**
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use NSFileProviderManager -documentStorageURL
      */
     @Deprecated
     @Property(selector = "documentStorageURL")
@@ -120,7 +120,7 @@ import org.robovm.apple.linkpresentation.*;
     @Method(selector = "writePlaceholderAtURL:withMetadata:error:")
     private static native boolean writePlaceholder(NSURL placeholderURL, NSURLProperties metadata, NSError.NSErrorPtr error);
     /**
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use NSFileProviderManager +placeholderURLForURL:
      */
     @Deprecated
     @Method(selector = "placeholderURLForURL:")

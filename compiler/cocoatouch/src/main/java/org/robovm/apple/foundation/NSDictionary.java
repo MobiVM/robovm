@@ -594,15 +594,27 @@ import org.robovm.apple.dispatch.*;
     protected native V getObject(K aKey);
     @Method(selector = "isEqualToDictionary:")
     protected native boolean equalsTo(NSDictionary<K, V> otherDictionary);
+    /**
+     * @deprecated Use writeToURL:error:
+     */
     @Deprecated
     @Method(selector = "writeToFile:atomically:")
     protected native boolean writeFile(String path, boolean atomically);
+    /**
+     * @deprecated Use writeToURL:error:
+     */
     @Deprecated
     @Method(selector = "writeToURL:atomically:")
     public native boolean write(NSURL url, boolean atomically);
+    /**
+     * @deprecated Use dictionaryWithContentsOfURL:error:
+     */
     @Deprecated
     @Method(selector = "dictionaryWithContentsOfFile:")
     protected static native NSDictionary<?, ?> read(String path);
+    /**
+     * @deprecated Use dictionaryWithContentsOfURL:error:
+     */
     @Deprecated
     @Method(selector = "dictionaryWithContentsOfURL:")
     public static native NSDictionary<?, ?> read(NSURL url);

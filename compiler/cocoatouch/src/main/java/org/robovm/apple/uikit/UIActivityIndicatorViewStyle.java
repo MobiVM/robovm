@@ -56,17 +56,17 @@ public enum /*<name>*/UIActivityIndicatorViewStyle/*</name>*/ implements ValuedE
      */
     Large(101L),
     /**
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use UIActivityIndicatorViewStyleLarge
      */
     @Deprecated
     WhiteLarge(0L),
     /**
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use UIActivityIndicatorViewStyleMedium
      */
     @Deprecated
     White(1L),
     /**
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use UIActivityIndicatorViewStyleMedium
      */
     @Deprecated
     Gray(2L);

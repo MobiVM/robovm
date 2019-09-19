@@ -125,7 +125,7 @@ import org.robovm.apple.coregraphics.*;
     @Property(selector = "indexOfNowPlayingItem")
     public native @MachineSizedUInt long getIndexOfNowPlayingItem();
     /**
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. Use systemMusicPlayer
      */
     @Deprecated
     @Property(selector = "iPodMusicPlayer")

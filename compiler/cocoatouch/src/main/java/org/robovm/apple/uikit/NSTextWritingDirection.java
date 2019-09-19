@@ -43,7 +43,7 @@ import org.robovm.apple.linkpresentation.*;
 
 /*<javadoc>*/
 /**
- * @deprecated Deprecated in iOS 9.0.
+ * @deprecated Deprecated in iOS 9.0. Use NSWritingDirectionFormatType
  */
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Deprecated/*</annotations>*/

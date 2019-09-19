@@ -131,6 +131,9 @@ import org.robovm.apple.dispatch.*;
     public native void setWriteabilityHandler(@Block VoidBlock1<NSFileHandle> v);
     @Property(selector = "fileDescriptor")
     public native int getFileDescriptor();
+    /**
+     * @deprecated Use getOffset:error:
+     */
     @Deprecated
     @Property(selector = "offsetInFile")
     public native long getOffsetInFile();
@@ -341,27 +344,51 @@ import org.robovm.apple.dispatch.*;
     public native void waitForDataInBackgroundAndNotify();
     @Method(selector = "initWithFileDescriptor:")
     protected native @Pointer long init(int fd);
+    /**
+     * @deprecated Use readDataToEndOfFileAndReturnError:
+     */
     @Deprecated
     @Method(selector = "readDataToEndOfFile")
     public native NSData readDataToEndOfFile();
+    /**
+     * @deprecated Use readDataUpToLength:error:
+     */
     @Deprecated
     @Method(selector = "readDataOfLength:")
     public native NSData readData(@MachineSizedUInt long length);
+    /**
+     * @deprecated Use writeData:error:
+     */
     @Deprecated
     @Method(selector = "writeData:")
     public native void writeData(NSData data);
+    /**
+     * @deprecated Use seekToEndReturningOffset:error:
+     */
     @Deprecated
     @Method(selector = "seekToEndOfFile")
     public native long seekToEndOfFile();
+    /**
+     * @deprecated Use seekToOffset:error:
+     */
     @Deprecated
     @Method(selector = "seekToFileOffset:")
     public native void seekToFileOffset(long offset);
+    /**
+     * @deprecated Use truncateAtOffset:error:
+     */
     @Deprecated
     @Method(selector = "truncateFileAtOffset:")
     public native void truncateFile(long offset);
+    /**
+     * @deprecated Use synchronizeAndReturnError:
+     */
     @Deprecated
     @Method(selector = "synchronizeFile")
     public native void synchronizeFile();
+    /**
+     * @deprecated Use closeAndReturnError:
+     */
     @Deprecated
     @Method(selector = "closeFile")
     public native void closeFile();

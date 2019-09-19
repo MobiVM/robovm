@@ -51,7 +51,7 @@ public enum /*<name>*/AUTypeConverter/*</name>*/ implements AUSubType {
     AUiPodTimeOther(1768977519L),
     RoundTripAAC(1918984547L),
     /**
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use kAudioUnitSubType_NewTimePitch
      */
     @Deprecated
     AUiPodTime(1768977517L);

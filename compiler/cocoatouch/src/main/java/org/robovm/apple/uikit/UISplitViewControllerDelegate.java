@@ -90,13 +90,13 @@ import org.robovm.apple.linkpresentation.*;
     @Method(selector = "splitViewController:willShowViewController:invalidatingBarButtonItem:")
     void willShowViewController(UISplitViewController svc, UIViewController aViewController, UIBarButtonItem barButtonItem);
     /**
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. Use splitViewController:willChangeToDisplayMode:
      */
     @Deprecated
     @Method(selector = "splitViewController:popoverController:willPresentViewController:")
     void willPresentViewController(UISplitViewController svc, UIPopoverController pc, UIViewController aViewController);
     /**
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. Use preferredDisplayMode
      */
     @Deprecated
     @Method(selector = "splitViewController:shouldHideViewController:inOrientation:")

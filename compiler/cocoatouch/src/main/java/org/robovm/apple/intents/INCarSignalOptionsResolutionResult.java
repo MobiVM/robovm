@@ -59,7 +59,7 @@ import org.robovm.apple.corelocation.*;
     public static native INCarSignalOptionsResolutionResult success(INCarSignalOptions resolvedCarSignalOptions);
     /**
      * @since Available in iOS 10.3 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use +successWithResolvedCarSignalOptions:
      */
     @Deprecated
     @Method(selector = "successWithResolvedValue:")
@@ -68,7 +68,7 @@ import org.robovm.apple.corelocation.*;
     public static native INCarSignalOptionsResolutionResult confirmationRequired(INCarSignalOptions carSignalOptionsToConfirm);
     /**
      * @since Available in iOS 10.3 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use +confirmationRequiredWithCarSignalOptionsToConfirm:
      */
     @Deprecated
     @Method(selector = "confirmationRequiredWithValueToConfirm:")

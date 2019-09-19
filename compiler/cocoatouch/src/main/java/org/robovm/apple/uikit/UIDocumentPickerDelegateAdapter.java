@@ -67,7 +67,7 @@ import org.robovm.apple.linkpresentation.*;
     @NotImplemented("documentPickerWasCancelled:")
     public void wasCancelled(UIDocumentPickerViewController controller) {}
     /**
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use documentPicker:didPickDocumentsAtURLs:
      */
     @Deprecated
     @NotImplemented("documentPicker:didPickDocumentAtURL:")

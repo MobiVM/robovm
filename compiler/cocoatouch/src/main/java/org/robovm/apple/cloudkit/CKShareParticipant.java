@@ -68,14 +68,14 @@ import org.robovm.apple.fileprovider.*;
     public native void setRole(CKShareParticipantRole v);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 12.0.
+     * @deprecated Deprecated in iOS 12.0. Use role
      */
     @Deprecated
     @Property(selector = "type")
     public native CKShareParticipantType getType();
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 12.0.
+     * @deprecated Deprecated in iOS 12.0. Use role
      */
     @Deprecated
     @Property(selector = "setType:")

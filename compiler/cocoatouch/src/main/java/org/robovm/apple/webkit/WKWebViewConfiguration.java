@@ -157,39 +157,39 @@ import org.robovm.apple.security.*;
     @Property(selector = "setIgnoresViewportScaleLimits:")
     public native void setIgnoresViewportScaleLimits(boolean v);
     /**
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use mediaTypesRequiringUserActionForPlayback
      */
     @Deprecated
     @Property(selector = "mediaPlaybackRequiresUserAction")
     public native boolean mediaPlaybackRequiresUserAction();
     /**
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use mediaTypesRequiringUserActionForPlayback
      */
     @Deprecated
     @Property(selector = "setMediaPlaybackRequiresUserAction:")
     public native void setMediaPlaybackRequiresUserAction(boolean v);
     /**
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use allowsAirPlayForMediaPlayback
      */
     @Deprecated
     @Property(selector = "mediaPlaybackAllowsAirPlay")
     public native boolean mediaPlaybackAllowsAirPlay();
     /**
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use allowsAirPlayForMediaPlayback
      */
     @Deprecated
     @Property(selector = "setMediaPlaybackAllowsAirPlay:")
     public native void setMediaPlaybackAllowsAirPlay(boolean v);
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use mediaTypesRequiringUserActionForPlayback
      */
     @Deprecated
     @Property(selector = "requiresUserActionForMediaPlayback")
     public native boolean requiresUserActionForMediaPlayback();
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use mediaTypesRequiringUserActionForPlayback
      */
     @Deprecated
     @Property(selector = "setRequiresUserActionForMediaPlayback:")

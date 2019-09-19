@@ -128,18 +128,30 @@ import org.robovm.apple.coreservices.CFProxy;
     public native CFProxy getConnectionProxy();
     @Property(selector = "setConnectionProxyDictionary:")
     public native void setConnectionProxy(CFProxy v);
+    /**
+     * @deprecated Use TLSMinimumSupportedProtocolVersion
+     */
     @Deprecated
     @WeaklyLinked
     @Property(selector = "TLSMinimumSupportedProtocol")
     public native SSLProtocol getTLSMinimumSupportedProtocol();
+    /**
+     * @deprecated Use TLSMinimumSupportedProtocolVersion
+     */
     @Deprecated
     @WeaklyLinked
     @Property(selector = "setTLSMinimumSupportedProtocol:")
     public native void setTLSMinimumSupportedProtocol(SSLProtocol v);
+    /**
+     * @deprecated Use TLSMaximumSupportedProtocolVersion
+     */
     @Deprecated
     @WeaklyLinked
     @Property(selector = "TLSMaximumSupportedProtocol")
     public native SSLProtocol getTLSMaximumSupportedProtocol();
+    /**
+     * @deprecated Use TLSMaximumSupportedProtocolVersion
+     */
     @Deprecated
     @WeaklyLinked
     @Property(selector = "setTLSMaximumSupportedProtocol:")
@@ -226,7 +238,7 @@ import org.robovm.apple.coreservices.CFProxy;
     @Method(selector = "backgroundSessionConfigurationWithIdentifier:")
     public static native NSURLSessionConfiguration getBackgroundSessionConfiguration(String identifier);
     /**
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. Use -backgroundSessionConfigurationWithIdentifier:
      */
     @Deprecated
     @Method(selector = "backgroundSessionConfiguration:")

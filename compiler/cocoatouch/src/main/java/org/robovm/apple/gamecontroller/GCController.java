@@ -102,7 +102,7 @@ import org.robovm.apple.uikit.*;
     @Property(selector = "setPlayerIndex:")
     public native void setPlayerIndex(GCControllerPlayerIndex v);
     /**
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use -extendedGamepad
      */
     @Deprecated
     @Property(selector = "gamepad")

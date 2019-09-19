@@ -62,13 +62,13 @@ import org.robovm.apple.linkpresentation.*;
     @NotImplemented("prepareForPopoverPresentation:")
     public void prepareForPopoverPresentation(UIPopoverPresentationController popoverPresentationController) {}
     /**
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use presentationControllerShouldDismiss:
      */
     @Deprecated
     @NotImplemented("popoverPresentationControllerShouldDismissPopover:")
     public boolean shouldDismissPopover(UIPopoverPresentationController popoverPresentationController) { return false; }
     /**
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use presentationControllerDidDismiss:
      */
     @Deprecated
     @NotImplemented("popoverPresentationControllerDidDismissPopover:")

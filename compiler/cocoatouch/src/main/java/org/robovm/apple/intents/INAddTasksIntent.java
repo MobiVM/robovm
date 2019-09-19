@@ -56,7 +56,7 @@ import org.robovm.apple.corelocation.*;
     public INAddTasksIntent(INTaskList targetTaskList, NSArray<INSpeakableString> taskTitles, INSpatialEventTrigger spatialEventTrigger, INTemporalEventTrigger temporalEventTrigger, INTaskPriority priority) { super((SkipInit) null); initObject(init(targetTaskList, taskTitles, spatialEventTrigger, temporalEventTrigger, priority)); }
     /**
      * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use -initWithTargetTaskList:taskTitles:spatialEventTrigger:temporalEventTrigger:priority:
      */
     @Deprecated
     @Method(selector = "initWithTargetTaskList:taskTitles:spatialEventTrigger:temporalEventTrigger:")
@@ -86,7 +86,7 @@ import org.robovm.apple.corelocation.*;
     protected native @Pointer long init(INTaskList targetTaskList, NSArray<INSpeakableString> taskTitles, INSpatialEventTrigger spatialEventTrigger, INTemporalEventTrigger temporalEventTrigger, INTaskPriority priority);
     /**
      * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use -initWithTargetTaskList:taskTitles:spatialEventTrigger:temporalEventTrigger:priority:
      */
     @Deprecated
     @Method(selector = "initWithTargetTaskList:taskTitles:spatialEventTrigger:temporalEventTrigger:")

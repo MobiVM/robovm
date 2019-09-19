@@ -93,7 +93,7 @@ import org.robovm.apple.audiotoolbox.*;
     public native boolean isRedEyeReductionEnabled();
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use photoProcessingTimeRange
      */
     @Deprecated
     @Property(selector = "isStillImageStabilizationEnabled")
@@ -105,7 +105,7 @@ import org.robovm.apple.audiotoolbox.*;
     public native boolean isVirtualDeviceFusionEnabled();
     /**
      * @since Available in iOS 10.2 and later.
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use virtualDeviceFusionEnabled
      */
     @Deprecated
     @Property(selector = "isDualCameraFusionEnabled")

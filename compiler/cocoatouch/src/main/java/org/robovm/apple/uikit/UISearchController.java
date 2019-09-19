@@ -77,13 +77,13 @@ import org.robovm.apple.linkpresentation.*;
     @Property(selector = "setDelegate:", strongRef = true)
     public native void setDelegate(UISearchControllerDelegate v);
     /**
-     * @deprecated Deprecated in iOS 12.0.
+     * @deprecated Deprecated in iOS 12.0. Use obscuresBackgroundDuringPresentation
      */
     @Deprecated
     @Property(selector = "dimsBackgroundDuringPresentation")
     public native boolean dimsBackgroundDuringPresentation();
     /**
-     * @deprecated Deprecated in iOS 12.0.
+     * @deprecated Deprecated in iOS 12.0. Use obscuresBackgroundDuringPresentation
      */
     @Deprecated
     @Property(selector = "setDimsBackgroundDuringPresentation:")

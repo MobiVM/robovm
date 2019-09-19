@@ -34,7 +34,7 @@ import org.robovm.apple.uikit.*;
 
 /*<javadoc>*/
 /**
- * @deprecated Deprecated in iOS 10.0.
+ * @deprecated Deprecated in iOS 10.0. Use GCExtendedGamepad
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("GameController") @NativeClass @Deprecated/*</annotations>*/

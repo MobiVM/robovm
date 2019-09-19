@@ -87,7 +87,7 @@ import org.robovm.apple.dispatch.*;
     public native void addTlsCiphersuiteGroup(SSLCiphersuiteGroup group);
     /**
      * @since Available in iOS 12.0 and later.
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use sec_protocol_options_set_min_tls_protocol_version
      */
     @Deprecated
     @Bridge(symbol="sec_protocol_options_set_tls_min_version", optional=true)
@@ -109,7 +109,7 @@ import org.robovm.apple.dispatch.*;
     public static native TlsProtocolVersion getDefaultMinDtlsProtocolVersion();
     /**
      * @since Available in iOS 12.0 and later.
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use sec_protocol_options_set_max_tls_protocol_version
      */
     @Deprecated
     @Bridge(symbol="sec_protocol_options_set_tls_max_version", optional=true)

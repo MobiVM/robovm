@@ -68,7 +68,7 @@ import org.robovm.apple.dispatch.*;
     public native TlsProtocolVersion getNegotiatedTlsProtocolVersion();
     /**
      * @since Available in iOS 12.0 and later.
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use sec_protocol_metadata_get_negotiated_tls_protocol_version
      */
     @Deprecated
     @Bridge(symbol="sec_protocol_metadata_get_negotiated_protocol_version", optional=true)
@@ -80,7 +80,7 @@ import org.robovm.apple.dispatch.*;
     public native TlsCiphersuite getNegotiatedTlsCiphersuite();
     /**
      * @since Available in iOS 12.0 and later.
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use sec_protocol_metadata_get_negotiated_tls_ciphersuite
      */
     @Deprecated
     @Bridge(symbol="sec_protocol_metadata_get_negotiated_ciphersuite", optional=true)

@@ -118,7 +118,7 @@ import org.robovm.apple.linkpresentation.*;
     
 
     /**
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. Use NSBackgroundColorAttributeName
      */
     @Deprecated
     public UIColor getBackgroundColor() {
@@ -129,7 +129,7 @@ import org.robovm.apple.linkpresentation.*;
         return null;
     }
     /**
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. Use NSBackgroundColorAttributeName
      */
     @Deprecated
     public UITextInputTextStyle setBackgroundColor(UIColor backgroundColor) {
@@ -137,7 +137,7 @@ import org.robovm.apple.linkpresentation.*;
         return this;
     }
     /**
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. Use NSForegroundColorAttributeName
      */
     @Deprecated
     public UIColor getTextColor() {
@@ -148,7 +148,7 @@ import org.robovm.apple.linkpresentation.*;
         return null;
     }
     /**
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. Use NSForegroundColorAttributeName
      */
     @Deprecated
     public UITextInputTextStyle setTextColor(UIColor textColor) {
@@ -156,7 +156,7 @@ import org.robovm.apple.linkpresentation.*;
         return this;
     }
     /**
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. Use NSFontAttributeName
      */
     @Deprecated
     public UIFont getFont() {
@@ -167,7 +167,7 @@ import org.robovm.apple.linkpresentation.*;
         return null;
     }
     /**
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. Use NSFontAttributeName
      */
     @Deprecated
     public UITextInputTextStyle setFont(UIFont font) {
@@ -181,19 +181,19 @@ import org.robovm.apple.linkpresentation.*;
     public static class Keys {
         static { Bro.bind(Keys.class); }
         /**
-         * @deprecated Deprecated in iOS 8.0.
+         * @deprecated Deprecated in iOS 8.0. Use NSBackgroundColorAttributeName
          */
         @Deprecated
         @GlobalValue(symbol="UITextInputTextBackgroundColorKey", optional=true)
         public static native NSString BackgroundColor();
         /**
-         * @deprecated Deprecated in iOS 8.0.
+         * @deprecated Deprecated in iOS 8.0. Use NSForegroundColorAttributeName
          */
         @Deprecated
         @GlobalValue(symbol="UITextInputTextColorKey", optional=true)
         public static native NSString Color();
         /**
-         * @deprecated Deprecated in iOS 8.0.
+         * @deprecated Deprecated in iOS 8.0. Use NSFontAttributeName
          */
         @Deprecated
         @GlobalValue(symbol="UITextInputTextFontKey", optional=true)

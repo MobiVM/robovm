@@ -48,19 +48,19 @@ public enum /*<name>*/TKErrorCode/*</name>*/ implements NSErrorCode {
     CodeAuthenticationNeeded(-9L),
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use TKErrorCodeAuthenticationFailed
      */
     @Deprecated
     AuthenticationFailed(-5L),
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use TKErrorCodeObjectNotFound
      */
     @Deprecated
     ObjectNotFound(-6L),
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use TKErrorCodeTokenNotFound
      */
     @Deprecated
     TokenNotFound(-7L);

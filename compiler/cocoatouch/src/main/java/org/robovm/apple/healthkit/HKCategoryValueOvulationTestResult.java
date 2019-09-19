@@ -45,7 +45,7 @@ public enum /*<name>*/HKCategoryValueOvulationTestResult/*</name>*/ implements V
     LuteinizingHormoneSurge(2L),
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use HKCategoryValueOvulationTestResultLuteinizingHormoneSurge
      */
     @Deprecated
     Positive(2L),

@@ -85,7 +85,7 @@ import org.robovm.apple.metal.*;
     public native void setLabel(String v);
     /**
      * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 12.0.
+     * @deprecated Deprecated in iOS 12.0. Use Please use -resourceAtIndex:allocateMemory: instead
      */
     @Deprecated
     @Property(selector = "resource")

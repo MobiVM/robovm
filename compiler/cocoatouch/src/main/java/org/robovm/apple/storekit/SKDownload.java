@@ -54,13 +54,13 @@ import org.robovm.apple.uikit.*;
     @Property(selector = "state")
     public native SKDownloadState getState();
     /**
-     * @deprecated Deprecated in iOS 12.0.
+     * @deprecated Deprecated in iOS 12.0. Use -[SKDownload state]
      */
     @Deprecated
     @Property(selector = "downloadState")
     public native SKDownloadState getDownloadState();
     /**
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use -[SKDownload expectedContentLength]
      */
     @Deprecated
     @Property(selector = "contentLength")

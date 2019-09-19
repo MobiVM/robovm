@@ -54,7 +54,7 @@ import org.robovm.apple.mapkit.*;
     protected CPNavigationAlert(SkipInit skipInit) { super(skipInit); }
     /**
      * @since Available in iOS 12.0 and later.
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use initWithTitleVariants:subtitleVariants:image:primaryAction:secondaryAction:duration
      */
     @Deprecated
     @Method(selector = "initWithTitleVariants:subtitleVariants:imageSet:primaryAction:secondaryAction:duration:")
@@ -86,7 +86,7 @@ import org.robovm.apple.mapkit.*;
     /*<methods>*/
     /**
      * @since Available in iOS 12.0 and later.
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use initWithTitleVariants:subtitleVariants:image:primaryAction:secondaryAction:duration
      */
     @Deprecated
     @Method(selector = "initWithTitleVariants:subtitleVariants:imageSet:primaryAction:secondaryAction:duration:")

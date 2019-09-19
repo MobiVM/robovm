@@ -53,14 +53,14 @@ import org.robovm.apple.imageio.*;
     /*<methods>*/
     /**
      * @since Available in iOS 13.0 and later.
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use Use VNRecognizeAnimalsRequest with VNAnimalIdentifierDog instead
      */
     @Deprecated
     @GlobalValue(symbol="VNAnimalDetectorDog", optional=true)
     public static native NSString Dog();
     /**
      * @since Available in iOS 13.0 and later.
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use Use VNRecognizeAnimalsRequest with VNAnimalIdentifierCat instead
      */
     @Deprecated
     @GlobalValue(symbol="VNAnimalDetectorCat", optional=true)

@@ -235,7 +235,7 @@ import org.robovm.apple.avfoundation.*;
     @Method(selector = "rendererWithDevice:options:")
     public static native SCNRenderer create(MTLDevice device, NSDictionary<?, ?> options);
     /**
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use -renderAtTime:withEncoder:pass:commandQueue:
      */
     @Deprecated
     @Method(selector = "render")

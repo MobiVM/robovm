@@ -61,14 +61,14 @@ import org.robovm.apple.linkpresentation.*;
     /*<methods>*/
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use UIContextMenuInteraction
      */
     @Deprecated
     @Method(selector = "previewingContext:viewControllerForLocation:")
     UIViewController getViewControllerForLocation(UIViewControllerPreviewing previewingContext, @ByVal CGPoint location);
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use UIContextMenuInteraction
      */
     @Deprecated
     @Method(selector = "previewingContext:commitViewController:")

@@ -115,7 +115,7 @@ import org.robovm.apple.security.*;
     public native UIScrollView getScrollView();
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use serverTrust
      */
     @Deprecated
     @Property(selector = "certificateChain")

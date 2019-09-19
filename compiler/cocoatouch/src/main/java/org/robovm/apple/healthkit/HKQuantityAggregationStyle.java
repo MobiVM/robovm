@@ -42,7 +42,7 @@ public enum /*<name>*/HKQuantityAggregationStyle/*</name>*/ implements ValuedEnu
      */
     DiscreteArithmetic(1L),
     /**
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use HKQuantityAggregationStyleDiscreteArithmetic
      */
     @Deprecated
     Discrete(1L),

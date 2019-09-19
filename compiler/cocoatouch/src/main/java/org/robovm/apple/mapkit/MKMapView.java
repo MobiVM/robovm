@@ -294,7 +294,7 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "rendererForOverlay:")
     public native MKOverlayRenderer getOverlayRenderer(MKOverlay overlay);
     /**
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use -rendererForOverlay:
      */
     @Deprecated
     @Method(selector = "viewForOverlay:")

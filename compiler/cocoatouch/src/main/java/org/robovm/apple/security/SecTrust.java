@@ -239,13 +239,13 @@ import org.robovm.apple.dispatch.*;
     @Bridge(symbol="SecTrustGetVerifyTime", optional=true)
     public native double getVerifyTime();
     /**
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use SecTrustEvaluateWithError
      */
     @Deprecated
     @Bridge(symbol="SecTrustEvaluate", optional=true)
     protected native OSStatus evaluate0(IntPtr result);
     /**
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use SecTrustEvaluateAsyncWithError
      */
     @Deprecated
     @WeaklyLinked

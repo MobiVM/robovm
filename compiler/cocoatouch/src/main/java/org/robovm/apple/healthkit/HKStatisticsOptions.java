@@ -48,7 +48,7 @@ public final class /*<name>*/HKStatisticsOptions/*</name>*/ extends Bits</*<name
     public static final HKStatisticsOptions MostRecent = new HKStatisticsOptions(32L);
     /**
      * @since Available in iOS 12.0 and later.
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. Use HKStatisticsOptionMostRecent
      */
     @Deprecated
     public static final HKStatisticsOptions DiscreteMostRecent = new HKStatisticsOptions(32L);

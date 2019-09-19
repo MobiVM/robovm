@@ -59,7 +59,7 @@ import org.robovm.apple.corelocation.*;
     public static native INWorkoutLocationTypeResolutionResult success(INWorkoutLocationType resolvedWorkoutLocationType);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use +successWithResolvedWorkoutLocationType:
      */
     @Deprecated
     @Method(selector = "successWithResolvedValue:")
@@ -68,7 +68,7 @@ import org.robovm.apple.corelocation.*;
     public static native INWorkoutLocationTypeResolutionResult confirmationRequired(INWorkoutLocationType workoutLocationTypeToConfirm);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use +confirmationRequiredWithWorkoutLocationTypeToConfirm:
      */
     @Deprecated
     @Method(selector = "confirmationRequiredWithValueToConfirm:")
