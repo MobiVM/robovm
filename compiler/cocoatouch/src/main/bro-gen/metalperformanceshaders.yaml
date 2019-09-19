@@ -1688,7 +1688,10 @@ classes:
                 exclude: true
     MPSCNNConvolutionTransposeGradientState: {} #since 13.0
     MPSCNNConvolutionTransposeGradientStateNode: {} #since 13.0
-    MPSCNNFullyConnectedGradientNode: {} #since 13.0
+    MPSCNNFullyConnectedGradientNode: #since 13.0
+        methods:
+            '+nodeWithSourceGradient:sourceImage:convolutionGradientState:weights:':
+                exclude: true
     MPSCNNGroupNormalization: #since 13.0
         methods:
             '-initWithDevice:dataSource:':

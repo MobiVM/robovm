@@ -59,7 +59,5 @@ import org.robovm.apple.metal.*;
     /*<methods>*/
     @Method(selector = "initWithSourceGradient:sourceImage:convolutionGradientState:weights:")
     protected native @Pointer long init(MPSNNImageNode sourceGradient, MPSNNImageNode sourceImage, MPSCNNConvolutionGradientStateNode gradientState, MPSCNNConvolutionDataSource weights);
-    @Method(selector = "nodeWithSourceGradient:sourceImage:convolutionGradientState:weights:")
-    public static native MPSCNNFullyConnectedGradientNode nodeWithSourceGradient$sourceImage$convolutionGradientState$weights$(MPSNNImageNode sourceGradient, MPSNNImageNode sourceImage, MPSCNNConvolutionGradientStateNode gradientState, MPSCNNConvolutionDataSource weights);
     /*</methods>*/
 }
