@@ -98,21 +98,9 @@ import org.robovm.apple.linkpresentation.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final NSDocumentType Plain = new NSDocumentType("Plain");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final NSDocumentType RTF = new NSDocumentType("RTF");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final NSDocumentType RTFD = new NSDocumentType("RTFD");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final NSDocumentType HTML = new NSDocumentType("HTML");
     /*</constants>*/
     
@@ -139,24 +127,12 @@ import org.robovm.apple.linkpresentation.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="NSPlainTextDocumentType", optional=true)
         public static native NSString Plain();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="NSRTFTextDocumentType", optional=true)
         public static native NSString RTF();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="NSRTFDTextDocumentType", optional=true)
         public static native NSString RTFD();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="NSHTMLTextDocumentType", optional=true)
         public static native NSString HTML();
         /*</values>*/

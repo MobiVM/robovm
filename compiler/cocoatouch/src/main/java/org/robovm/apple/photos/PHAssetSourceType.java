@@ -45,21 +45,9 @@ import org.robovm.apple.imageio.*;
 /*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
 public final class /*<name>*/PHAssetSourceType/*</name>*/ extends Bits</*<name>*/PHAssetSourceType/*</name>*/> {
     /*<values>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final PHAssetSourceType None = new PHAssetSourceType(0L);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final PHAssetSourceType UserLibrary = new PHAssetSourceType(1L);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final PHAssetSourceType CloudShared = new PHAssetSourceType(2L);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final PHAssetSourceType iTunesSynced = new PHAssetSourceType(4L);
     /*</values>*/
 

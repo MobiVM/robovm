@@ -42,9 +42,7 @@ import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 7.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSTextStorage/*</name>*/ 
@@ -101,14 +99,8 @@ import org.robovm.apple.linkpresentation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @GlobalValue(symbol="NSTextStorageWillProcessEditingNotification", optional=true)
     public static native NSString WillProcessEditingNotification();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @GlobalValue(symbol="NSTextStorageDidProcessEditingNotification", optional=true)
     public static native NSString DidProcessEditingNotification();
     

@@ -88,29 +88,11 @@ import org.robovm.apple.coregraphics.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyDNG Version = new CGImagePropertyDNG("Version");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyDNG BackwardVersion = new CGImagePropertyDNG("BackwardVersion");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyDNG UniqueCameraModel = new CGImagePropertyDNG("UniqueCameraModel");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyDNG LocalizedCameraModel = new CGImagePropertyDNG("LocalizedCameraModel");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyDNG CameraSerialNumber = new CGImagePropertyDNG("CameraSerialNumber");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyDNG LensInfo = new CGImagePropertyDNG("LensInfo");
     /**
      * @since Available in iOS 10.0 and later.
@@ -481,34 +463,16 @@ import org.robovm.apple.coregraphics.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyDNGVersion", optional=true)
         public static native CFString Version();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyDNGBackwardVersion", optional=true)
         public static native CFString BackwardVersion();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyDNGUniqueCameraModel", optional=true)
         public static native CFString UniqueCameraModel();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyDNGLocalizedCameraModel", optional=true)
         public static native CFString LocalizedCameraModel();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyDNGCameraSerialNumber", optional=true)
         public static native CFString CameraSerialNumber();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyDNGLensInfo", optional=true)
         public static native CFString LensInfo();
         /**

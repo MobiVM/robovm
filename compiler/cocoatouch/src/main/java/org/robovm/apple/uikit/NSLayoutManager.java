@@ -42,9 +42,7 @@ import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 7.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSLayoutManager/*</name>*/ 
@@ -84,19 +82,10 @@ import org.robovm.apple.linkpresentation.*;
     public native boolean usesFontLeading();
     @Property(selector = "setUsesFontLeading:")
     public native void setUsesFontLeading(boolean v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "allowsNonContiguousLayout")
     public native boolean allowsNonContiguousLayout();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setAllowsNonContiguousLayout:")
     public native void setAllowsNonContiguousLayout(boolean v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "hasNonContiguousLayout")
     public native boolean hasNonContiguousLayout();
     /**
@@ -128,14 +117,12 @@ import org.robovm.apple.linkpresentation.*;
     @Property(selector = "extraLineFragmentTextContainer")
     public native NSTextContainer getExtraLineFragmentTextContainer();
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 13.0. Please use usesDefaultHyphenation or -[NSParagraphStyle hyphenationFactor] instead.
      */
     @Deprecated
     @Property(selector = "hyphenationFactor")
     public native @MachineSizedFloat double getHyphenationFactor();
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 13.0. Please use usesDefaultHyphenation or -[NSParagraphStyle hyphenationFactor] instead.
      */
     @Deprecated
@@ -184,18 +171,12 @@ import org.robovm.apple.linkpresentation.*;
     public native void textContainerChangedGeometry(NSTextContainer container);
     @Method(selector = "invalidateGlyphsForCharacterRange:changeInLength:actualCharacterRange:")
     public native void invalidateGlyphs(@ByVal NSRange charRange, @MachineSizedSInt long delta, NSRange actualCharRange);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "invalidateLayoutForCharacterRange:actualCharacterRange:")
     public native void invalidateLayout(@ByVal NSRange charRange, NSRange actualCharRange);
     @Method(selector = "invalidateDisplayForCharacterRange:")
     public native void invalidateDisplayForCharacterRange(@ByVal NSRange charRange);
     @Method(selector = "invalidateDisplayForGlyphRange:")
     public native void invalidateDisplayForGlyphRange(@ByVal NSRange glyphRange);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "processEditingForTextStorage:edited:range:changeInLength:invalidatedRange:")
     public native void processEditing(NSTextStorage textStorage, NSTextStorageEditActions editMask, @ByVal NSRange newCharRange, @MachineSizedSInt long delta, @ByVal NSRange invalidatedCharRange);
     @Method(selector = "ensureGlyphsForCharacterRange:")
@@ -210,28 +191,16 @@ import org.robovm.apple.linkpresentation.*;
     public native void ensureLayoutForTextContainer(NSTextContainer container);
     @Method(selector = "ensureLayoutForBoundingRect:inTextContainer:")
     public native void ensureLayoutForBoundingRect(@ByVal CGRect bounds, NSTextContainer container);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "setGlyphs:properties:characterIndexes:font:forGlyphRange:")
     public native void setGlyphs(ShortPtr glyphs, MachineSizedSIntPtr props, MachineSizedUIntPtr charIndexes, UIFont aFont, @ByVal NSRange glyphRange);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "isValidGlyphIndex:")
     public native boolean isValidGlyphIndex(@MachineSizedUInt long glyphIndex);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "propertyForGlyphAtIndex:")
     public native NSGlyphProperty getPropertyForGlyph(@MachineSizedUInt long glyphIndex);
     @Method(selector = "characterIndexForGlyphAtIndex:")
     public native @MachineSizedUInt long getCharacterIndexForGlyph(@MachineSizedUInt long glyphIndex);
     @Method(selector = "glyphIndexForCharacterAtIndex:")
     public native @MachineSizedUInt long getGlyphIndexForCharacter(@MachineSizedUInt long charIndex);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "getGlyphsInRange:glyphs:properties:characterIndexes:bidiLevels:")
     public native @MachineSizedUInt long getGlyphs(@ByVal NSRange glyphRange, ShortPtr glyphBuffer, MachineSizedSIntPtr props, MachineSizedUIntPtr charIndexBuffer, BytePtr bidiLevelBuffer);
     @Method(selector = "setTextContainer:forGlyphRange:")
@@ -285,9 +254,6 @@ import org.robovm.apple.linkpresentation.*;
     public native boolean getDrawsOutsideLineFragment(@MachineSizedUInt long glyphIndex);
     @Method(selector = "attachmentSizeForGlyphAtIndex:")
     public native @ByVal CGSize getAttachmentSize(@MachineSizedUInt long glyphIndex);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "truncatedGlyphRangeInLineFragmentForGlyphAtIndex:")
     public native @ByVal NSRange getTruncatedGlyphRangeInLineFragment(@MachineSizedUInt long glyphIndex);
     @Method(selector = "glyphRangeForCharacterRange:actualCharacterRange:")
@@ -314,14 +280,8 @@ import org.robovm.apple.linkpresentation.*;
     public native @MachineSizedUInt long getCharacterIndexForPoint(@ByVal CGPoint point, NSTextContainer container, MachineSizedFloatPtr partialFraction);
     @Method(selector = "getLineFragmentInsertionPointsForCharacterAtIndex:alternatePositions:inDisplayOrder:positions:characterIndexes:")
     public native @MachineSizedUInt long getLineFragmentInsertionPoints(@MachineSizedUInt long charIndex, boolean aFlag, boolean dFlag, MachineSizedFloatPtr positions, MachineSizedUIntPtr charIndexes);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "enumerateLineFragmentsForGlyphRange:usingBlock:")
     public native void enumerateLineFragments(@ByVal NSRange glyphRange, @Block("(@ByVal,@ByVal,,@ByVal,)") VoidBlock5<CGRect, CGRect, NSTextContainer, NSRange, BooleanPtr> block);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "enumerateEnclosingRectsForGlyphRange:withinSelectedGlyphRange:inTextContainer:usingBlock:")
     public native void enumerateEnclosingRects(@ByVal NSRange glyphRange, @ByVal NSRange selectedRange, NSTextContainer textContainer, @Block("(@ByVal,)") VoidBlock2<CGRect, BooleanPtr> block);
     @Method(selector = "drawBackgroundForGlyphRange:atPoint:")
@@ -333,9 +293,6 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Method(selector = "showCGGlyphs:positions:count:font:textMatrix:attributes:inContext:")
     public native void showCGGlyphs(ShortPtr glyphs, CGPoint positions, @MachineSizedSInt long glyphCount, UIFont font, @ByVal CGAffineTransform textMatrix, NSDictionary<NSString, ?> attributes, CGContext CGContext);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "fillBackgroundRectArray:count:forCharacterRange:color:")
     protected native void fillBackground(CGRect rectArray, @MachineSizedUInt long rectCount, @ByVal NSRange charRange, UIColor color);
     @Method(selector = "drawUnderlineForGlyphRange:underlineType:baselineOffset:lineFragmentRect:lineFragmentGlyphRange:containerOrigin:")
@@ -351,7 +308,6 @@ import org.robovm.apple.linkpresentation.*;
     @Method(selector = "glyphAtIndex:")
     public native short getGlyph(@MachineSizedUInt long glyphIndex);
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 13.0.
      */
     @Deprecated

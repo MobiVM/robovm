@@ -54,36 +54,18 @@ import org.robovm.apple.linkpresentation.*;
     /*</bind>*/
     /*<constants>*//*</constants>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "preferredContentSize")
     @ByVal CGSize getPreferredContentSize();
     /*</properties>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "preferredContentSizeDidChangeForChildContentContainer:")
     void preferredContentSizeDidChangeForChildContentContainer(UIContentContainer container);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "systemLayoutFittingSizeDidChangeForChildContentContainer:")
     void systemLayoutFittingSizeDidChangeForChildContentContainer(UIContentContainer container);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "sizeForChildContentContainer:withParentContainerSize:")
     @ByVal CGSize sizeForChildContentContainer(UIContentContainer container, @ByVal CGSize parentSize);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "viewWillTransitionToSize:withTransitionCoordinator:")
     void viewWillTransitionToSize(@ByVal CGSize size, UIViewControllerTransitionCoordinator coordinator);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "willTransitionToTraitCollection:withTransitionCoordinator:")
     void willTransitionToTraitCollection(UITraitCollection newCollection, UIViewControllerTransitionCoordinator coordinator);
     /*</methods>*/

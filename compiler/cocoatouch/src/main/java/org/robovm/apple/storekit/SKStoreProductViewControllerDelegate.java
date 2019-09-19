@@ -47,9 +47,6 @@ import org.robovm.apple.uikit.*;
     
     /*</properties>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "productViewControllerDidFinish:")
     void didFinish(SKStoreProductViewController viewController);
     /*</methods>*/

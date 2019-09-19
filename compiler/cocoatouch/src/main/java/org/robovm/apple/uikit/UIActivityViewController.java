@@ -42,9 +42,7 @@ import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 6.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIActivityViewController/*</name>*/ 
@@ -81,27 +79,19 @@ import org.robovm.apple.linkpresentation.*;
     }
     /*<properties>*/
     /**
-     * @since Available in iOS 6.0 and later.
      * @deprecated Deprecated in iOS 8.0.
      */
     @Deprecated
     @Property(selector = "completionHandler")
     public native @Block VoidBlock2<String, Boolean> getCompletionHandler();
     /**
-     * @since Available in iOS 6.0 and later.
      * @deprecated Deprecated in iOS 8.0.
      */
     @Deprecated
     @Property(selector = "setCompletionHandler:")
     public native void setCompletionHandler(@Block VoidBlock2<String, Boolean> v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "completionWithItemsHandler")
     public native @Block VoidBlock4<String, Boolean, NSArray<NSObject>, NSError> getCompletionWithItemsHandler();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setCompletionWithItemsHandler:")
     public native void setCompletionWithItemsHandler(@Block VoidBlock4<String, Boolean, NSArray<NSObject>, NSError> v);
     @Property(selector = "excludedActivityTypes")

@@ -65,49 +65,22 @@ import org.robovm.apple.coretext.*;
         return ptr.get().toArray((int)length);
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Bridge(symbol="CFStringTokenizerCopyBestStringLanguage", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFString.AsStringNoRetainMarshaler.class) String getBestStringLanguage(String string, @ByVal CFRange range);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Bridge(symbol="CFStringTokenizerGetTypeID", optional=true)
     public static native @MachineSizedUInt long getClassTypeID();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Bridge(symbol="CFStringTokenizerCreate", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CFStringTokenizer create(CFAllocator alloc, String string, @ByVal CFRange range, CFStringTokenizerUnitOptions options, CFLocale locale);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Bridge(symbol="CFStringTokenizerSetString", optional=true)
     public native void setString(String string, @ByVal CFRange range);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Bridge(symbol="CFStringTokenizerGoToTokenAtIndex", optional=true)
     public native CFStringTokenizerTokenType goToToken(@MachineSizedSInt long index);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Bridge(symbol="CFStringTokenizerAdvanceToNextToken", optional=true)
     public native CFStringTokenizerTokenType advanceToNextToken();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Bridge(symbol="CFStringTokenizerGetCurrentTokenRange", optional=true)
     public native @ByVal CFRange getCurrentTokenRange();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Bridge(symbol="CFStringTokenizerCopyCurrentTokenAttribute", optional=true)
     public native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CFType getCurrentTokenAttribute(CFStringTokenizerUnitOptions attribute);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Bridge(symbol="CFStringTokenizerGetCurrentSubTokens", optional=true)
     protected native @MachineSizedSInt long getCurrentSubTokens(CFRange.CFRangePtr ranges, @MachineSizedSInt long maxRangeLength, @org.robovm.rt.bro.annotation.Marshaler(CFArray.AsStringListMarshaler.class) List<String> derivedSubTokens);
     /*</methods>*/

@@ -42,9 +42,7 @@ import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 6.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UICollectionViewFlowLayout/*</name>*/ 
@@ -74,14 +72,8 @@ import org.robovm.apple.linkpresentation.*;
     public native @ByVal CGSize getItemSize();
     @Property(selector = "setItemSize:")
     public native void setItemSize(@ByVal CGSize v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "estimatedItemSize")
     public native @ByVal CGSize getEstimatedItemSize();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setEstimatedItemSize:")
     public native void setEstimatedItemSize(@ByVal CGSize v);
     @Property(selector = "scrollDirection")

@@ -62,14 +62,8 @@ import org.robovm.apple.linkpresentation.*;
     UITextAutocorrectionType getAutocorrectionType();
     @Property(selector = "setAutocorrectionType:")
     void setAutocorrectionType(UITextAutocorrectionType v);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "spellCheckingType")
     UITextSpellCheckingType getSpellCheckingType();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setSpellCheckingType:")
     void setSpellCheckingType(UITextSpellCheckingType v);
     /**

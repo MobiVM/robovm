@@ -43,7 +43,6 @@ import org.robovm.apple.linkpresentation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 2.0 and later.
  * @deprecated Deprecated in iOS 9.0. UIAlertView is deprecated. Use UIAlertController with a preferredStyle of UIAlertControllerStyleAlert instead
  */
 /*</javadoc>*/
@@ -101,14 +100,8 @@ import org.robovm.apple.linkpresentation.*;
     public native @MachineSizedSInt long getFirstOtherButtonIndex();
     @Property(selector = "isVisible")
     public native boolean isVisible();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "alertViewStyle")
     public native UIAlertViewStyle getAlertViewStyle();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setAlertViewStyle:")
     public native void setAlertViewStyle(UIAlertViewStyle v);
     /*</properties>*/
@@ -126,9 +119,6 @@ import org.robovm.apple.linkpresentation.*;
     public native void show();
     @Method(selector = "dismissWithClickedButtonIndex:animated:")
     public native void dismiss(@MachineSizedSInt long buttonIndex, boolean animated);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "textFieldAtIndex:")
     public native UITextField getTextField(@MachineSizedSInt long textFieldIndex);
     /*</methods>*/

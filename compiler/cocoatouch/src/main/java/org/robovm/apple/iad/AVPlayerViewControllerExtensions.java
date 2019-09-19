@@ -53,19 +53,10 @@ import org.robovm.apple.avkit.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "playPrerollAdWithCompletionHandler:")
     public static native void playPrerollAd(AVPlayerViewController thiz, @Block VoidBlock1<NSError> completionHandler);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "cancelPreroll")
     public static native void cancelPreroll(AVPlayerViewController thiz);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "preparePrerollAds")
     protected static native void preparePrerollAds(ObjCClass clazz);
     public static void preparePrerollAds() { preparePrerollAds(ObjCClass.getByType(AVPlayerViewController.class)); }

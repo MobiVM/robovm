@@ -62,7 +62,6 @@ import org.robovm.apple.avkit.*;
     }
     /*<methods>*/
     /**
-     * @since Available in iOS 4.1 and later.
      * @deprecated Deprecated in iOS 13.0.
      */
     @Deprecated

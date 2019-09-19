@@ -112,9 +112,6 @@ import org.robovm.apple.audiotoolbox.*;
     }
     
 
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public NSDictionary<NSString, NSObject> getOriginalCompressionSettings() {
         if (has(Keys.OriginalCompressionSettings())) {
             NSDictionary<NSString, NSObject> val = get(Keys.OriginalCompressionSettings(), NSDictionary.class);
@@ -122,16 +119,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CMFormatDescriptionExtension setOriginalCompressionSettings(NSDictionary<NSString, NSObject> originalCompressionSettings) {
         set(Keys.OriginalCompressionSettings(), originalCompressionSettings);
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public NSDictionary<NSString, NSObject> getSampleDescriptionExtensionAtoms() {
         if (has(Keys.SampleDescriptionExtensionAtoms())) {
             NSDictionary<NSString, NSObject> val = get(Keys.SampleDescriptionExtensionAtoms(), NSDictionary.class);
@@ -139,16 +130,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CMFormatDescriptionExtension setSampleDescriptionExtensionAtoms(NSDictionary<NSString, NSObject> sampleDescriptionExtensionAtoms) {
         set(Keys.SampleDescriptionExtensionAtoms(), sampleDescriptionExtensionAtoms);
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public NSData getVerbatimSampleDescription() {
         if (has(Keys.VerbatimSampleDescription())) {
             NSData val = get(Keys.VerbatimSampleDescription(), NSData.class);
@@ -156,16 +141,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CMFormatDescriptionExtension setVerbatimSampleDescription(NSData verbatimSampleDescription) {
         set(Keys.VerbatimSampleDescription(), verbatimSampleDescription);
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public NSData getVerbatimISOSampleEntry() {
         if (has(Keys.VerbatimISOSampleEntry())) {
             NSData val = get(Keys.VerbatimISOSampleEntry(), NSData.class);
@@ -173,9 +152,6 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CMFormatDescriptionExtension setVerbatimISOSampleEntry(NSData verbatimISOSampleEntry) {
         set(Keys.VerbatimISOSampleEntry(), verbatimISOSampleEntry);
         return this;
@@ -186,24 +162,12 @@ import org.robovm.apple.audiotoolbox.*;
     @Library("CoreMedia")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCMFormatDescriptionExtension_OriginalCompressionSettings", optional=true)
         public static native CFString OriginalCompressionSettings();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCMFormatDescriptionExtension_SampleDescriptionExtensionAtoms", optional=true)
         public static native CFString SampleDescriptionExtensionAtoms();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCMFormatDescriptionExtension_VerbatimSampleDescription", optional=true)
         public static native CFString VerbatimSampleDescription();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCMFormatDescriptionExtension_VerbatimISOSampleEntry", optional=true)
         public static native CFString VerbatimISOSampleEntry();
     }

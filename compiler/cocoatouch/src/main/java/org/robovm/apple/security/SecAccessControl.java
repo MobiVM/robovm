@@ -54,23 +54,14 @@ import org.robovm.apple.dispatch.*;
         return create(null, protection, flags);
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Bridge(symbol="SecAccessControlGetTypeID", optional=true)
     public static native @MachineSizedUInt long getClassTypeID();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static SecAccessControl create(CFAllocator allocator, SecAttrAccessible protection, SecAccessControlCreateFlags flags) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        SecAccessControl result = create(allocator, protection, flags, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        return result;
     }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Bridge(symbol="SecAccessControlCreateWithFlags", optional=true)
     private static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) SecAccessControl create(CFAllocator allocator, SecAttrAccessible protection, SecAccessControlCreateFlags flags, NSError.NSErrorPtr error);
     /*</methods>*/

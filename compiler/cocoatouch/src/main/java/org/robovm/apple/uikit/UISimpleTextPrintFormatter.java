@@ -42,9 +42,7 @@ import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.2 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UISimpleTextPrintFormatter/*</name>*/ 
@@ -60,9 +58,6 @@ import org.robovm.apple.linkpresentation.*;
     protected UISimpleTextPrintFormatter(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithText:")
     public UISimpleTextPrintFormatter(String text) { super((SkipInit) null); initObject(init(text)); }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "initWithAttributedText:")
     public UISimpleTextPrintFormatter(NSAttributedString attributedText) { super((SkipInit) null); initObject(init(attributedText)); }
     /*</constructors>*/
@@ -71,14 +66,8 @@ import org.robovm.apple.linkpresentation.*;
     public native String getText();
     @Property(selector = "setText:")
     public native void setText(String v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "attributedText")
     public native NSAttributedString getAttributedText();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setAttributedText:")
     public native void setAttributedText(NSAttributedString v);
     @Property(selector = "font")
@@ -98,9 +87,6 @@ import org.robovm.apple.linkpresentation.*;
     /*<methods>*/
     @Method(selector = "initWithText:")
     protected native @Pointer long init(String text);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "initWithAttributedText:")
     protected native @Pointer long init(NSAttributedString attributedText);
     /*</methods>*/

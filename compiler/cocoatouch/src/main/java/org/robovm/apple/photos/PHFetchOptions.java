@@ -38,9 +38,7 @@ import org.robovm.apple.imageio.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("Photos") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/PHFetchOptions/*</name>*/ 
@@ -56,44 +54,20 @@ import org.robovm.apple.imageio.*;
     protected PHFetchOptions(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "predicate")
     public native NSPredicate getPredicate();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setPredicate:")
     public native void setPredicate(NSPredicate v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "sortDescriptors")
     public native NSArray<NSSortDescriptor> getSortDescriptors();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setSortDescriptors:")
     public native void setSortDescriptors(NSArray<NSSortDescriptor> v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "includeHiddenAssets")
     public native boolean includesHiddenAssets();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setIncludeHiddenAssets:")
     public native void setIncludesHiddenAssets(boolean v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "includeAllBurstAssets")
     public native boolean includesAllBurstAssets();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setIncludeAllBurstAssets:")
     public native void setIncludesAllBurstAssets(boolean v);
     /**
@@ -116,14 +90,8 @@ import org.robovm.apple.imageio.*;
      */
     @Property(selector = "setFetchLimit:")
     public native void setFetchLimit(@MachineSizedUInt long v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "wantsIncrementalChangeDetails")
     public native boolean wantsIncrementalChangeDetails();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setWantsIncrementalChangeDetails:")
     public native void setWantsIncrementalChangeDetails(boolean v);
     /*</properties>*/

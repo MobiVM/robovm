@@ -33,9 +33,7 @@ import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 7.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("GameController") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GCController/*</name>*/ 
@@ -70,14 +68,12 @@ import org.robovm.apple.uikit.*;
     /*</constructors>*/
     /*<properties>*/
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 13.0.
      */
     @Deprecated
     @Property(selector = "controllerPausedHandler")
     public native @Block VoidBlock1<GCController> getControllerPausedHandler();
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 13.0.
      */
     @Deprecated
@@ -106,7 +102,6 @@ import org.robovm.apple.uikit.*;
     @Property(selector = "setPlayerIndex:")
     public native void setPlayerIndex(GCControllerPlayerIndex v);
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 10.0.
      */
     @Deprecated
@@ -116,9 +111,6 @@ import org.robovm.apple.uikit.*;
     public native GCMicroGamepad getMicroGamepad();
     @Property(selector = "extendedGamepad")
     public native GCExtendedGamepad getExtendedGamepad();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "motion")
     public native GCMotion getMotion();
     /*</properties>*/

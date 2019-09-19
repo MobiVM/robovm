@@ -82,14 +82,12 @@ import org.robovm.apple.linkpresentation.*;
     @Method(selector = "textView:shouldInteractWithTextAttachment:inRange:interaction:")
     boolean shouldInteractWithTextAttachment(UITextView textView, NSTextAttachment textAttachment, @ByVal NSRange characterRange, UITextItemInteraction interaction);
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 10.0.
      */
     @Deprecated
     @Method(selector = "textView:shouldInteractWithURL:inRange:")
     boolean shouldInteractWithURL(UITextView textView, NSURL URL, @ByVal NSRange characterRange);
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 10.0.
      */
     @Deprecated

@@ -112,9 +112,6 @@ import org.robovm.apple.audiotoolbox.*;
     }
     
 
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public char getStartChar() {
         if (has(Keys.StartChar())) {
             CFNumber val = get(Keys.StartChar(), CFNumber.class);
@@ -122,16 +119,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CMTextFormatDescriptionStyle setStartChar(char startChar) {
         set(Keys.StartChar(), CFNumber.valueOf(startChar));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public int getFont() {
         if (has(Keys.Font())) {
             CFNumber val = get(Keys.Font(), CFNumber.class);
@@ -139,16 +130,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CMTextFormatDescriptionStyle setFont(int font) {
         set(Keys.Font(), CFNumber.valueOf(font));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public int getFontFace() {
         if (has(Keys.FontFace())) {
             CFNumber val = get(Keys.FontFace(), CFNumber.class);
@@ -156,16 +141,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CMTextFormatDescriptionStyle setFontFace(int fontFace) {
         set(Keys.FontFace(), CFNumber.valueOf(fontFace));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CMTextFormatDescriptionColor getForegroundColor() {
         if (has(Keys.ForegroundColor())) {
             CFDictionary val = get(Keys.ForegroundColor(), CFDictionary.class);
@@ -173,16 +152,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CMTextFormatDescriptionStyle setForegroundColor(CMTextFormatDescriptionColor foregroundColor) {
         set(Keys.ForegroundColor(), foregroundColor.getDictionary());
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public int getFontSize() {
         if (has(Keys.FontSize())) {
             CFNumber val = get(Keys.FontSize(), CFNumber.class);
@@ -190,16 +163,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CMTextFormatDescriptionStyle setFontSize(int fontSize) {
         set(Keys.FontSize(), CFNumber.valueOf(fontSize));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public char getEndChar() {
         if (has(Keys.EndChar())) {
             CFNumber val = get(Keys.EndChar(), CFNumber.class);
@@ -207,16 +174,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CMTextFormatDescriptionStyle setEndChar(char endChar) {
         set(Keys.EndChar(), CFNumber.valueOf(endChar));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public int getHeight() {
         if (has(Keys.Height())) {
             CFNumber val = get(Keys.Height(), CFNumber.class);
@@ -224,16 +185,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CMTextFormatDescriptionStyle setHeight(int height) {
         set(Keys.Height(), CFNumber.valueOf(height));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public int getAscent() {
         if (has(Keys.Ascent())) {
             CFNumber val = get(Keys.Ascent(), CFNumber.class);
@@ -241,9 +196,6 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CMTextFormatDescriptionStyle setAscent(int ascent) {
         set(Keys.Ascent(), CFNumber.valueOf(ascent));
         return this;
@@ -254,44 +206,20 @@ import org.robovm.apple.audiotoolbox.*;
     @Library("CoreMedia")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCMTextFormatDescriptionStyle_StartChar", optional=true)
         public static native CFString StartChar();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCMTextFormatDescriptionStyle_Font", optional=true)
         public static native CFString Font();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCMTextFormatDescriptionStyle_FontFace", optional=true)
         public static native CFString FontFace();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCMTextFormatDescriptionStyle_ForegroundColor", optional=true)
         public static native CFString ForegroundColor();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCMTextFormatDescriptionStyle_FontSize", optional=true)
         public static native CFString FontSize();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCMTextFormatDescriptionStyle_EndChar", optional=true)
         public static native CFString EndChar();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCMTextFormatDescriptionStyle_Height", optional=true)
         public static native CFString Height();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCMTextFormatDescriptionStyle_Ascent", optional=true)
         public static native CFString Ascent();
     }

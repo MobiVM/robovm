@@ -110,9 +110,6 @@ import org.robovm.apple.uikit.*;
     }
     
 
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public CTFont getFont() {
         if (has(CTAttributedStringAttribute.Font)) {
             CTFont val = get(CTAttributedStringAttribute.Font, CTFont.class);
@@ -120,16 +117,10 @@ import org.robovm.apple.uikit.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public CTAttributedStringAttributes setFont(CTFont font) {
         set(CTAttributedStringAttribute.Font, font);
         return this;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public boolean usesForegroundColorFromContext() {
         if (has(CTAttributedStringAttribute.ForegroundColorFromContext)) {
             CFBoolean val = get(CTAttributedStringAttribute.ForegroundColorFromContext, CFBoolean.class);
@@ -137,16 +128,10 @@ import org.robovm.apple.uikit.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public CTAttributedStringAttributes setUsesForegroundColorFromContext(boolean usesForegroundColorFromContext) {
         set(CTAttributedStringAttribute.ForegroundColorFromContext, CFBoolean.valueOf(usesForegroundColorFromContext));
         return this;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public float getKern() {
         if (has(CTAttributedStringAttribute.Kern)) {
             CFNumber val = get(CTAttributedStringAttribute.Kern, CFNumber.class);
@@ -154,16 +139,10 @@ import org.robovm.apple.uikit.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public CTAttributedStringAttributes setKern(float kern) {
         set(CTAttributedStringAttribute.Kern, CFNumber.valueOf(kern));
         return this;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public int getLigature() {
         if (has(CTAttributedStringAttribute.Ligature)) {
             CFNumber val = get(CTAttributedStringAttribute.Ligature, CFNumber.class);
@@ -171,16 +150,10 @@ import org.robovm.apple.uikit.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public CTAttributedStringAttributes setLigature(int ligature) {
         set(CTAttributedStringAttribute.Ligature, CFNumber.valueOf(ligature));
         return this;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public CGColor getForegroundColor() {
         if (has(CTAttributedStringAttribute.ForegroundColor)) {
             CGColor val = get(CTAttributedStringAttribute.ForegroundColor, CGColor.class);
@@ -188,16 +161,10 @@ import org.robovm.apple.uikit.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public CTAttributedStringAttributes setForegroundColor(CGColor foregroundColor) {
         set(CTAttributedStringAttribute.ForegroundColor, foregroundColor);
         return this;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public CTParagraphStyle getParagraphStyle() {
         if (has(CTAttributedStringAttribute.ParagraphStyle)) {
             CTParagraphStyle val = get(CTAttributedStringAttribute.ParagraphStyle, CTParagraphStyle.class);
@@ -205,16 +172,10 @@ import org.robovm.apple.uikit.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public CTAttributedStringAttributes setParagraphStyle(CTParagraphStyle paragraphStyle) {
         set(CTAttributedStringAttribute.ParagraphStyle, paragraphStyle);
         return this;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public double getStrokeWidth() {
         if (has(CTAttributedStringAttribute.StrokeWidth)) {
             CFNumber val = get(CTAttributedStringAttribute.StrokeWidth, CFNumber.class);
@@ -222,16 +183,10 @@ import org.robovm.apple.uikit.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public CTAttributedStringAttributes setStrokeWidth(double strokeWidth) {
         set(CTAttributedStringAttribute.StrokeWidth, CFNumber.valueOf(strokeWidth));
         return this;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public CGColor getStrokeColor() {
         if (has(CTAttributedStringAttribute.StrokeColor)) {
             CGColor val = get(CTAttributedStringAttribute.StrokeColor, CGColor.class);
@@ -239,16 +194,10 @@ import org.robovm.apple.uikit.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public CTAttributedStringAttributes setStrokeColor(CGColor strokeColor) {
         set(CTAttributedStringAttribute.StrokeColor, strokeColor);
         return this;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public CTUnderlineStyle getUnderlineStyle() {
         if (has(CTAttributedStringAttribute.UnderlineStyle)) {
             CFNumber val = get(CTAttributedStringAttribute.UnderlineStyle, CFNumber.class);
@@ -256,16 +205,10 @@ import org.robovm.apple.uikit.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public CTAttributedStringAttributes setUnderlineStyle(CTUnderlineStyle underlineStyle) {
         set(CTAttributedStringAttribute.UnderlineStyle, CFNumber.valueOf(underlineStyle.value()));
         return this;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public int getSuperscript() {
         if (has(CTAttributedStringAttribute.Superscript)) {
             CFNumber val = get(CTAttributedStringAttribute.Superscript, CFNumber.class);
@@ -273,16 +216,10 @@ import org.robovm.apple.uikit.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public CTAttributedStringAttributes setSuperscript(int superscript) {
         set(CTAttributedStringAttribute.Superscript, CFNumber.valueOf(superscript));
         return this;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public CGColor getUnderlineColor() {
         if (has(CTAttributedStringAttribute.UnderlineColor)) {
             CGColor val = get(CTAttributedStringAttribute.UnderlineColor, CGColor.class);
@@ -290,16 +227,10 @@ import org.robovm.apple.uikit.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public CTAttributedStringAttributes setUnderlineColor(CGColor underlineColor) {
         set(CTAttributedStringAttribute.UnderlineColor, underlineColor);
         return this;
     }
-    /**
-     * @since Available in iOS 4.3 and later.
-     */
     public boolean usesVerticalForms() {
         if (has(CTAttributedStringAttribute.VerticalForms)) {
             CFBoolean val = get(CTAttributedStringAttribute.VerticalForms, CFBoolean.class);
@@ -307,16 +238,10 @@ import org.robovm.apple.uikit.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 4.3 and later.
-     */
     public CTAttributedStringAttributes setUsesVerticalForms(boolean usesVerticalForms) {
         set(CTAttributedStringAttribute.VerticalForms, CFBoolean.valueOf(usesVerticalForms));
         return this;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public CTGlyphInfo getGlyphInfo() {
         if (has(CTAttributedStringAttribute.GlyphInfo)) {
             CTGlyphInfo val = get(CTAttributedStringAttribute.GlyphInfo, CTGlyphInfo.class);
@@ -324,16 +249,10 @@ import org.robovm.apple.uikit.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public CTAttributedStringAttributes setGlyphInfo(CTGlyphInfo glyphInfo) {
         set(CTAttributedStringAttribute.GlyphInfo, glyphInfo);
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public String getLanguage() {
         if (has(CTAttributedStringAttribute.Language)) {
             CFString val = get(CTAttributedStringAttribute.Language, CFString.class);
@@ -341,16 +260,10 @@ import org.robovm.apple.uikit.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public CTAttributedStringAttributes setLanguage(String language) {
         set(CTAttributedStringAttribute.Language, new CFString(language));
         return this;
     }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public CTBaselineClass getBaselineClass() {
         if (has(CTAttributedStringAttribute.BaselineClass)) {
             CFString val = get(CTAttributedStringAttribute.BaselineClass, CFString.class);
@@ -358,16 +271,10 @@ import org.robovm.apple.uikit.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public CTAttributedStringAttributes setBaselineClass(CTBaselineClass baselineClass) {
         set(CTAttributedStringAttribute.BaselineClass, baselineClass.value());
         return this;
     }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public CTRubyAnnotation getRubyAnnotation() {
         if (has(CTAttributedStringAttribute.RubyAnnotation)) {
             CTRubyAnnotation val = get(CTAttributedStringAttribute.RubyAnnotation, CTRubyAnnotation.class);
@@ -375,9 +282,6 @@ import org.robovm.apple.uikit.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public CTAttributedStringAttributes setRubyAnnotation(CTRubyAnnotation rubyAnnotation) {
         set(CTAttributedStringAttribute.RubyAnnotation, rubyAnnotation);
         return this;

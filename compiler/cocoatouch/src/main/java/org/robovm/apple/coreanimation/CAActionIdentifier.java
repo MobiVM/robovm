@@ -50,19 +50,10 @@ import org.robovm.apple.metal.*;
     /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @GlobalValue(symbol="kCAOnOrderIn", optional=true)
     public static native String OnOrderIn();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @GlobalValue(symbol="kCAOnOrderOut", optional=true)
     public static native String OnOrderOut();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @GlobalValue(symbol="kCATransition", optional=true)
     public static native String Transition();
     /*</methods>*/

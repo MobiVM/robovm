@@ -32,9 +32,7 @@ import org.robovm.apple.corefoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreTelephony") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CTTelephonyNetworkInfo/*</name>*/ 
@@ -81,7 +79,6 @@ import org.robovm.apple.corefoundation.*;
     @Property(selector = "serviceSubscriberCellularProviders")
     public native NSDictionary<NSString, CTCarrier> getServiceSubscriberCellularProviders();
     /**
-     * @since Available in iOS 4.0 and later.
      * @deprecated Deprecated in iOS 12.0. Replaced by serviceSubscriberCellularProviders
      */
     @Deprecated
@@ -98,14 +95,12 @@ import org.robovm.apple.corefoundation.*;
     @Property(selector = "setServiceSubscriberCellularProvidersDidUpdateNotifier:")
     public native void setServiceSubscriberCellularProvidersDidUpdateNotifier(@Block VoidBlock1<NSString> v);
     /**
-     * @since Available in iOS 4.0 and later.
      * @deprecated Deprecated in iOS 12.0.
      */
     @Deprecated
     @Property(selector = "subscriberCellularProviderDidUpdateNotifier")
     public native @Block VoidBlock1<CTCarrier> getSubscriberCellularProviderDidUpdateNotifier();
     /**
-     * @since Available in iOS 4.0 and later.
      * @deprecated Deprecated in iOS 12.0.
      */
     @Deprecated
@@ -117,7 +112,6 @@ import org.robovm.apple.corefoundation.*;
     @Property(selector = "serviceCurrentRadioAccessTechnology")
     public native NSDictionary<NSString, NSString> getServiceCurrentRadioAccessTechnology();
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 12.0.
      */
     @Deprecated
@@ -132,7 +126,6 @@ import org.robovm.apple.corefoundation.*;
     @GlobalValue(symbol="CTServiceRadioAccessTechnologyDidChangeNotification", optional=true)
     public static native NSString ServiceRadioAccessTechnologyDidChangeNotification();
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 12.0.
      */
     @Deprecated

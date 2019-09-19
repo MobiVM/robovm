@@ -40,9 +40,7 @@ import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreImage") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CIQRCodeFeature/*</name>*/ 

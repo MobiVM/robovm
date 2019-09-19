@@ -32,9 +32,7 @@ import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 7.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("GameKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GKLeaderboardSet/*</name>*/ 
@@ -65,14 +63,8 @@ import org.robovm.apple.uikit.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "loadLeaderboardsWithCompletionHandler:")
     public native void loadLeaderboards(@Block VoidBlock2<GKLeaderboard, NSError> completionHandler);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "loadLeaderboardSetsWithCompletionHandler:")
     public static native void loadLeaderboardSets(@Block VoidBlock2<GKLeaderboardSet, NSError> completionHandler);
     @Method(selector = "loadImageWithCompletionHandler:")

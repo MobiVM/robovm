@@ -55,9 +55,6 @@ import org.robovm.apple.dispatch.*;
     protected NSURLProtocol(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithRequest:cachedResponse:client:")
     public NSURLProtocol(NSURLRequest request, NSCachedURLResponse cachedResponse, NSURLProtocolClient client) { super((SkipInit) null); initObject(init(request, cachedResponse, client)); }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "initWithTask:cachedResponse:client:")
     public NSURLProtocol(NSURLSessionTask task, NSCachedURLResponse cachedResponse, NSURLProtocolClient client) { super((SkipInit) null); initObject(init(task, cachedResponse, client)); }
     /*</constructors>*/
@@ -68,9 +65,6 @@ import org.robovm.apple.dispatch.*;
     public native NSURLRequest getRequest();
     @Property(selector = "cachedResponse")
     public native NSCachedURLResponse getCachedResponse();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "task")
     public native NSURLSessionTask getTask();
     /*</properties>*/
@@ -101,14 +95,8 @@ import org.robovm.apple.dispatch.*;
     public static native boolean registerClass(Class<? extends NSURLProtocol> protocolClass);
     @Method(selector = "unregisterClass:")
     public static native void unregisterClass(Class<? extends NSURLProtocol> protocolClass);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "initWithTask:cachedResponse:client:")
     protected native @Pointer long init(NSURLSessionTask task, NSCachedURLResponse cachedResponse, NSURLProtocolClient client);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "canInitWithTask:")
     public static native boolean canInitWithTask(NSURLSessionTask task);
     /*</methods>*/

@@ -38,9 +38,7 @@ import org.robovm.apple.imageio.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("Photos") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/PHChange/*</name>*/ 
@@ -60,14 +58,8 @@ import org.robovm.apple.imageio.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "changeDetailsForObject:")
     public native PHObjectChangeDetails getChangeDetailsForObject(PHObject object);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "changeDetailsForFetchResult:")
     public native PHFetchResultChangeDetails getChangeDetailsForFetchResult(PHFetchResult object);
     /*</methods>*/

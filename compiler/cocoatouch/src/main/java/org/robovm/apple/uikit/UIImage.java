@@ -42,9 +42,7 @@ import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 2.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIImage/*</name>*/ 
@@ -84,27 +82,15 @@ import org.robovm.apple.linkpresentation.*;
     protected UIImage(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithData:")
     public UIImage(NSData data) { super((SkipInit) null); initObject(init(data)); }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "initWithData:scale:")
     public UIImage(NSData data, @MachineSizedFloat double scale) { super((SkipInit) null); initObject(init(data, scale)); }
     @Method(selector = "initWithCGImage:")
     public UIImage(CGImage cgImage) { super((SkipInit) null); initObject(init(cgImage)); }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "initWithCGImage:scale:orientation:")
     public UIImage(CGImage cgImage, @MachineSizedFloat double scale, UIImageOrientation orientation) { super((SkipInit) null); initObject(init(cgImage, scale, orientation)); }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @WeaklyLinked
     @Method(selector = "initWithCIImage:")
     public UIImage(CIImage ciImage) { super((SkipInit) null); initObject(init(ciImage)); }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @WeaklyLinked
     @Method(selector = "initWithCIImage:scale:orientation:")
     public UIImage(CIImage ciImage, @MachineSizedFloat double scale, UIImageOrientation orientation) { super((SkipInit) null); initObject(init(ciImage, scale, orientation)); }
@@ -118,17 +104,11 @@ import org.robovm.apple.linkpresentation.*;
     public native @ByVal CGSize getSize();
     @Property(selector = "CGImage")
     public native CGImage getCGImage();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @WeaklyLinked
     @Property(selector = "CIImage")
     public native CIImage getCIImage();
     @Property(selector = "imageOrientation")
     public native UIImageOrientation getOrientation();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "scale")
     public native @MachineSizedFloat double getScale();
     /**
@@ -136,34 +116,16 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Property(selector = "isSymbolImage")
     public native boolean isSymbolImage();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "images")
     public native NSArray<UIImage> getImages();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "duration")
     public native double getDuration();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "capInsets")
     public native @ByVal UIEdgeInsets getCapInsets();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "resizingMode")
     public native UIImageResizingMode getResizingMode();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "alignmentRectInsets")
     public native @ByVal UIEdgeInsets getAlignmentRectInsets();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "renderingMode")
     public native UIImageRenderingMode getRenderingMode();
     /**
@@ -171,14 +133,8 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Property(selector = "imageRendererFormat")
     public native UIGraphicsImageRendererFormat getImageRendererFormat();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "traitCollection")
     public native UITraitCollection getTraitCollection();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "imageAsset")
     public native UIImageAsset getImageAsset();
     /**
@@ -289,68 +245,32 @@ import org.robovm.apple.linkpresentation.*;
     public native @ByVal CGRect getAccessibilityFrame();
     @Property(selector = "setAccessibilityFrame:")
     public native void setAccessibilityFrame(@ByVal CGRect v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "accessibilityPath")
     public native UIBezierPath getAccessibilityPath();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setAccessibilityPath:")
     public native void setAccessibilityPath(UIBezierPath v);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "accessibilityActivationPoint")
     public native @ByVal CGPoint getAccessibilityActivationPoint();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setAccessibilityActivationPoint:")
     public native void setAccessibilityActivationPoint(@ByVal CGPoint v);
     @Property(selector = "accessibilityLanguage")
     public native String getAccessibilityLanguage();
     @Property(selector = "setAccessibilityLanguage:")
     public native void setAccessibilityLanguage(String v);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "accessibilityElementsHidden")
     public native boolean areAccessibilityElementsHidden();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setAccessibilityElementsHidden:")
     public native void setAccessibilityElementsHidden(boolean v);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "accessibilityViewIsModal")
     public native boolean isAccessibilityViewModal();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setAccessibilityViewIsModal:")
     public native void setAccessibilityViewModal(boolean v);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "shouldGroupAccessibilityChildren")
     public native boolean shouldGroupAccessibilityChildren();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "setShouldGroupAccessibilityChildren:")
     public native void setShouldGroupAccessibilityChildren(boolean v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "accessibilityNavigationStyle")
     public native UIAccessibilityNavigationStyle getAccessibilityNavigationStyle();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setAccessibilityNavigationStyle:")
     public native void setAccessibilityNavigationStyle(UIAccessibilityNavigationStyle v);
     /**
@@ -393,14 +313,8 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Property(selector = "setAccessibilityTextualContext:")
     public native void setAccessibilityTextualContext(String v);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "accessibilityIdentifier")
     public native String getAccessibilityIdentifier();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setAccessibilityIdentifier:")
     public native void setAccessibilityIdentifier(String v);
     /*</properties>*/
@@ -430,27 +344,15 @@ import org.robovm.apple.linkpresentation.*;
     protected native @Pointer long initWithFile(String path);
     @Method(selector = "initWithData:")
     protected native @Pointer long init(NSData data);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "initWithData:scale:")
     protected native @Pointer long init(NSData data, @MachineSizedFloat double scale);
     @Method(selector = "initWithCGImage:")
     protected native @Pointer long init(CGImage cgImage);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "initWithCGImage:scale:orientation:")
     protected native @Pointer long init(CGImage cgImage, @MachineSizedFloat double scale, UIImageOrientation orientation);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @WeaklyLinked
     @Method(selector = "initWithCIImage:")
     protected native @Pointer long init(CIImage ciImage);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @WeaklyLinked
     @Method(selector = "initWithCIImage:scale:orientation:")
     protected native @Pointer long init(CIImage ciImage, @MachineSizedFloat double scale, UIImageOrientation orientation);
@@ -464,24 +366,12 @@ import org.robovm.apple.linkpresentation.*;
     public native void draw(@ByVal CGRect rect, CGBlendMode blendMode, @MachineSizedFloat double alpha);
     @Method(selector = "drawAsPatternInRect:")
     public native void drawAsPattern(@ByVal CGRect rect);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "resizableImageWithCapInsets:")
     public native UIImage newResizableImage(@ByVal UIEdgeInsets capInsets);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "resizableImageWithCapInsets:resizingMode:")
     public native UIImage newResizableImage(@ByVal UIEdgeInsets capInsets, UIImageResizingMode resizingMode);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "imageWithAlignmentRectInsets:")
     public native UIImage newImage(@ByVal UIEdgeInsets alignmentInsets);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "imageWithRenderingMode:")
     public native UIImage newImage(UIImageRenderingMode renderingMode);
     /**
@@ -546,31 +436,16 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Method(selector = "imageNamed:inBundle:withConfiguration:")
     public static native UIImage getImage(String name, NSBundle bundle, UIImageConfiguration configuration);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "imageNamed:inBundle:compatibleWithTraitCollection:")
     public static native UIImage getImage(String name, NSBundle bundle, UITraitCollection traitCollection);
     @Method(selector = "imageWithContentsOfFile:")
     private static native UIImage getImageWithContentsOfFile(String path);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "animatedImageNamed:duration:")
     public static native UIImage getAnimatedImage(String name, double duration);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "animatedResizableImageNamed:capInsets:duration:")
     public static native UIImage getAnimatedResizableImage(String name, @ByVal UIEdgeInsets capInsets, double duration);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "animatedResizableImageNamed:capInsets:resizingMode:duration:")
     public static native UIImage getAnimatedResizableImage(String name, @ByVal UIEdgeInsets capInsets, UIImageResizingMode resizingMode, double duration);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "animatedImageWithImages:duration:")
     public static native UIImage getAnimatedImage(NSArray<UIImage> images, double duration);
     /*</methods>*/

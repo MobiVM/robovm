@@ -117,9 +117,6 @@ import org.robovm.apple.linkpresentation.*;
     }
     
 
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public Map<String, NSObject> getExternalObjects() {
         if (has(Keys.ExternalObjects())) {
             NSDictionary val = (NSDictionary) get(Keys.ExternalObjects());
@@ -127,9 +124,6 @@ import org.robovm.apple.linkpresentation.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public UINibLoadingOptions setExternalObjects(Map<String, NSObject> externalObjects) {
         set(Keys.ExternalObjects(), NSDictionary.fromStringMap(externalObjects));
         return this;
@@ -140,9 +134,6 @@ import org.robovm.apple.linkpresentation.*;
     @Library("UIKit")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 3.0 and later.
-         */
         @GlobalValue(symbol="UINibExternalObjects", optional=true)
         public static native NSString ExternalObjects();
     }

@@ -44,9 +44,7 @@ import org.robovm.apple.iad.ADInterstitialPresentationPolicy;
 import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 2.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIViewController/*</name>*/ 
@@ -90,18 +88,12 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
      */
     @Property(selector = "viewIfLoaded")
     public native UIView getViewIfLoaded();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "isViewLoaded")
     public native boolean isViewLoaded();
     @Property(selector = "nibName")
     public native String getNibName();
     @Property(selector = "nibBundle")
     public native NSBundle getNibBundle();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "storyboard")
     public native UIStoryboard getStoryboard();
     @Property(selector = "title")
@@ -110,34 +102,16 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
     public native void setTitle(String v);
     @Property(selector = "parentViewController")
     public native UIViewController getParentViewController();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "presentedViewController")
     public native UIViewController getPresentedViewController();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "presentingViewController")
     public native UIViewController getPresentingViewController();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "definesPresentationContext")
     public native boolean definesPresentationContext();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setDefinesPresentationContext:")
     public native void setDefinesPresentationContext(boolean v);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "providesPresentationContextTransitionStyle")
     public native boolean providesPresentationContextTransitionStyle();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setProvidesPresentationContextTransitionStyle:")
     public native void setProvidesPresentationContextTransitionStyle(boolean v);
     /**
@@ -150,132 +124,68 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
      */
     @Property(selector = "setRestoresFocusAfterTransition:")
     public native void setRestoresFocusAfterTransition(boolean v);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "isBeingPresented")
     public native boolean isBeingPresented();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "isBeingDismissed")
     public native boolean isBeingDismissed();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "isMovingToParentViewController")
     public native boolean isMovingToParentViewController();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "isMovingFromParentViewController")
     public native boolean isMovingFromParentViewController();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "modalTransitionStyle")
     public native UIModalTransitionStyle getModalTransitionStyle();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "setModalTransitionStyle:")
     public native void setModalTransitionStyle(UIModalTransitionStyle v);
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Property(selector = "modalPresentationStyle")
     public native UIModalPresentationStyle getModalPresentationStyle();
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Property(selector = "setModalPresentationStyle:")
     public native void setModalPresentationStyle(UIModalPresentationStyle v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "modalPresentationCapturesStatusBarAppearance")
     public native boolean modalPresentationCapturesStatusBarAppearance();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setModalPresentationCapturesStatusBarAppearance:")
     public native void setModalPresentationCapturesStatusBarAppearance(boolean v);
-    /**
-     * @since Available in iOS 4.3 and later.
-     */
     @Property(selector = "disablesAutomaticKeyboardDismissal")
     public native boolean disablesAutomaticKeyboardDismissal();
     /**
-     * @since Available in iOS 3.0 and later.
      * @deprecated Deprecated in iOS 7.0.
      */
     @Deprecated
     @Property(selector = "wantsFullScreenLayout")
     public native boolean wantsFullScreenLayout();
     /**
-     * @since Available in iOS 3.0 and later.
      * @deprecated Deprecated in iOS 7.0.
      */
     @Deprecated
     @Property(selector = "setWantsFullScreenLayout:")
     public native void setWantsFullScreenLayout(boolean v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "edgesForExtendedLayout")
     public native UIRectEdge getEdgesForExtendedLayout();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setEdgesForExtendedLayout:")
     public native void setEdgesForExtendedLayout(UIRectEdge v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "extendedLayoutIncludesOpaqueBars")
     public native boolean extendedLayoutIncludesOpaqueBars();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setExtendedLayoutIncludesOpaqueBars:")
     public native void setExtendedLayoutIncludesOpaqueBars(boolean v);
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 11.0. Use UIScrollView's contentInsetAdjustmentBehavior instead
      */
     @Deprecated
     @Property(selector = "automaticallyAdjustsScrollViewInsets")
     public native boolean automaticallyAdjustsScrollViewInsets();
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 11.0. Use UIScrollView's contentInsetAdjustmentBehavior instead
      */
     @Deprecated
     @Property(selector = "setAutomaticallyAdjustsScrollViewInsets:")
     public native void setAutomaticallyAdjustsScrollViewInsets(boolean v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "preferredContentSize")
     public native @ByVal CGSize getPreferredContentSize();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setPreferredContentSize:")
     public native void setPreferredContentSize(@ByVal CGSize v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "preferredStatusBarStyle")
     public native UIStatusBarStyle getPreferredStatusBarStyle();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "prefersStatusBarHidden")
     public native boolean prefersStatusBarHidden();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "preferredStatusBarUpdateAnimation")
     public native UIStatusBarAnimation getPreferredStatusBarUpdateAnimation();
     /**
@@ -288,23 +198,13 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
      */
     @Property(selector = "setOverrideUserInterfaceStyle:")
     public native void setOverrideUserInterfaceStyle(UIUserInterfaceStyle v);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "shouldAutorotate")
     public native boolean shouldAutorotate();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "supportedInterfaceOrientations")
     public native UIInterfaceOrientationMask getSupportedInterfaceOrientations();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "preferredInterfaceOrientationForPresentation")
     public native UIInterfaceOrientation getPreferredInterfaceOrientationForPresentation();
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 8.0.
      */
     @Deprecated
@@ -317,71 +217,38 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
     @Property(selector = "editButtonItem")
     public native UIBarButtonItem getEditButtonItem();
     /**
-     * @since Available in iOS 3.0 and later.
      * @deprecated Deprecated in iOS 8.0.
      */
     @Deprecated
     @Property(selector = "searchDisplayController")
     public native UISearchDisplayController getSearchDisplayController();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "childViewControllers")
     public native NSArray<UIViewController> getChildViewControllers();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "childViewControllerForStatusBarStyle")
     public native UIViewController getChildViewControllerForStatusBarStyle();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "childViewControllerForStatusBarHidden")
     public native UIViewController getChildViewControllerForStatusBarHidden();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "shouldAutomaticallyForwardAppearanceMethods")
     public native boolean shouldAutomaticallyForwardAppearanceMethods();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "restorationIdentifier")
     public native String getRestorationIdentifier();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "setRestorationIdentifier:")
     public native void setRestorationIdentifier(String v);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "restorationClass")
     public native ObjCClass getRestorationClass();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "setRestorationClass:", strongRef = true)
     public native void setRestorationClass(ObjCClass v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "transitioningDelegate")
     public native UIViewControllerTransitioningDelegate getTransitioningDelegate();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setTransitioningDelegate:", strongRef = true)
     public native void setTransitioningDelegate(UIViewControllerTransitioningDelegate v);
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 11.0. Use view.safeAreaLayoutGuide.topAnchor instead of topLayoutGuide.bottomAnchor
      */
     @Deprecated
     @Property(selector = "topLayoutGuide")
     public native UILayoutSupport getTopLayoutGuide();
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 11.0. Use view.safeAreaLayoutGuide.bottomAnchor instead of bottomLayoutGuide.topAnchor
      */
     @Deprecated
@@ -417,19 +284,10 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
      */
     @Property(selector = "performsActionsWhilePresentingModally")
     public native boolean performsActionsWhilePresentingModally();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "extensionContext")
     public native NSExtensionContext getExtensionContext();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "presentationController")
     public native UIPresentationController getPresentationController();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "popoverPresentationController")
     public native UIPopoverPresentationController getPopoverPresentationController();
     /**
@@ -477,47 +335,34 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
     public native void setHidesBottomBarWhenPushed(boolean v);
     @Property(selector = "navigationController")
     public native UINavigationController getNavigationController();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "toolbarItems")
     public native NSArray<UIBarButtonItem> getToolbarItems();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "setToolbarItems:")
     public native void setToolbarItems(NSArray<UIBarButtonItem> v);
     /**
-     * @since Available in iOS 3.2 and later.
      * @deprecated Deprecated in iOS 13.0.
      */
     @Deprecated
     @Property(selector = "isModalInPopover")
     public native boolean isModalInPopover();
     /**
-     * @since Available in iOS 3.2 and later.
      * @deprecated Deprecated in iOS 13.0.
      */
     @Deprecated
     @Property(selector = "setModalInPopover:")
     public native void setModalInPopover(boolean v);
     /**
-     * @since Available in iOS 3.2 and later.
      * @deprecated Deprecated in iOS 7.0.
      */
     @Deprecated
     @Property(selector = "contentSizeForViewInPopover")
     public native @ByVal CGSize getContentSizeForViewInPopover();
     /**
-     * @since Available in iOS 3.2 and later.
      * @deprecated Deprecated in iOS 7.0.
      */
     @Deprecated
     @Property(selector = "setContentSizeForViewInPopover:")
     public native void setContentSizeForViewInPopover(@ByVal CGSize v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "transitionCoordinator")
     public native UIViewControllerTransitionCoordinator getTransitionCoordinator();
     @Property(selector = "splitViewController")
@@ -528,9 +373,6 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
     public native void setTabBarItem(UITabBarItem v);
     @Property(selector = "tabBarController")
     public native UITabBarController getTabBarController();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "traitCollection")
     public native UITraitCollection getTraitCollection();
     @Property(selector = "preferredFocusEnvironments")
@@ -642,9 +484,6 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
     }
     
     /*<methods>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @GlobalValue(symbol="UIViewControllerShowDetailTargetDidChangeNotification", optional=true)
     public static native NSString ShowDetailTargetDidChangeNotification();
     
@@ -661,19 +500,10 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
     public native void loadViewIfNeeded();
     @Method(selector = "viewDidLoad")
     public native void viewDidLoad();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "performSegueWithIdentifier:sender:")
     public native void performSegue(String identifier, NSObject sender);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "shouldPerformSegueWithIdentifier:sender:")
     public native boolean shouldPerformSegue(String identifier, NSObject sender);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "prepareForSegue:sender:")
     public native void prepareForSegue(UIStoryboardSegue segue, NSObject sender);
     /**
@@ -682,7 +512,6 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
     @Method(selector = "canPerformUnwindSegueAction:fromViewController:sender:")
     public native boolean canPerformUnwindSegueAction(Selector action, UIViewController fromViewController, NSObject sender);
     /**
-     * @since Available in iOS 6.0 and later.
      * @deprecated Deprecated in iOS 13.0.
      */
     @Deprecated
@@ -699,7 +528,6 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
     @Method(selector = "childViewControllerContainingSegueSource:")
     public native UIViewController getChildViewControllerContainingSegueSource(UIStoryboardUnwindSegueSource source);
     /**
-     * @since Available in iOS 6.0 and later.
      * @deprecated Deprecated in iOS 9.0.
      */
     @Deprecated
@@ -711,7 +539,6 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
     @Method(selector = "unwindForSegue:towardsViewController:")
     public native void unwind(UIStoryboardSegue unwindSegue, UIViewController subsequentVC);
     /**
-     * @since Available in iOS 6.0 and later.
      * @deprecated Deprecated in iOS 9.0.
      */
     @Deprecated
@@ -725,160 +552,88 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
     public native void viewWillDisappear(boolean animated);
     @Method(selector = "viewDidDisappear:")
     public native void viewDidDisappear(boolean animated);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "viewWillLayoutSubviews")
     public native void viewWillLayoutSubviews();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "viewDidLayoutSubviews")
     public native void viewDidLayoutSubviews();
     @Method(selector = "didReceiveMemoryWarning")
     public native void didReceiveMemoryWarning();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "presentViewController:animated:completion:")
     public native void presentViewController(UIViewController viewControllerToPresent, boolean animated, @Block Runnable completion);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "dismissViewControllerAnimated:completion:")
     public native void dismissViewController(boolean animated, @Block Runnable completion);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "setNeedsStatusBarAppearanceUpdate")
     public native void setNeedsStatusBarAppearanceUpdate();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "targetViewControllerForAction:sender:")
     public native UIViewController getTargetViewControllerForAction(Selector action, NSObject sender);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "showViewController:sender:")
     public native void showViewController(UIViewController vc, NSObject sender);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "showDetailViewController:sender:")
     public native void showDetailViewController(UIViewController vc, NSObject sender);
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 8.0. Header views are animated along with the rest of the view hierarchy
      */
     @Deprecated
     @Method(selector = "rotatingHeaderView")
     public native UIView getRotatingHeaderView();
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 8.0. Footer views are animated along with the rest of the view hierarchy
      */
     @Deprecated
     @Method(selector = "rotatingFooterView")
     public native UIView getRotatingFooterView();
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 8.0. Implement viewWillTransitionToSize:withTransitionCoordinator: instead
      */
     @Deprecated
     @Method(selector = "willRotateToInterfaceOrientation:duration:")
     public native void willRotate(UIInterfaceOrientation toInterfaceOrientation, double duration);
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 8.0.
      */
     @Deprecated
     @Method(selector = "didRotateFromInterfaceOrientation:")
     public native void didRotate(UIInterfaceOrientation fromInterfaceOrientation);
     /**
-     * @since Available in iOS 3.0 and later.
      * @deprecated Deprecated in iOS 8.0. Implement viewWillTransitionToSize:withTransitionCoordinator: instead
      */
     @Deprecated
     @Method(selector = "willAnimateRotationToInterfaceOrientation:duration:")
     public native void willAnimateRotation(UIInterfaceOrientation toInterfaceOrientation, double duration);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "attemptRotationToDeviceOrientation")
     public static native void attemptRotationToDeviceOrientation();
     @Method(selector = "setEditing:animated:")
     public native void setEditing(boolean editing, boolean animated);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "addChildViewController:")
     public native void addChildViewController(UIViewController childController);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "removeFromParentViewController")
     public native void removeFromParentViewController();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "transitionFromViewController:toViewController:duration:options:animations:completion:")
     public native void transition(UIViewController fromViewController, UIViewController toViewController, double duration, UIViewAnimationOptions options, @Block Runnable animations, @Block VoidBooleanBlock completion);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "beginAppearanceTransition:animated:")
     public native void beginAppearanceTransition(boolean isAppearing, boolean animated);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "endAppearanceTransition")
     public native void endAppearanceTransition();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "setOverrideTraitCollection:forChildViewController:")
     public native void setOverrideTraitCollection(UITraitCollection collection, UIViewController childViewController);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "overrideTraitCollectionForChildViewController:")
     public native UITraitCollection getOverrideTraitCollection(UIViewController childViewController);
     /**
-     * @since Available in iOS 6.0 and later.
      * @deprecated Deprecated in iOS 8.0. Manually forward viewWillTransitionToSize:withTransitionCoordinator: if necessary
      */
     @Deprecated
     @Method(selector = "shouldAutomaticallyForwardRotationMethods")
     public native boolean shouldAutomaticallyForwardRotationMethods();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "willMoveToParentViewController:")
     public native void willMoveToParentViewController(UIViewController parent);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "didMoveToParentViewController:")
     public native void didMoveToParentViewController(UIViewController parent);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "encodeRestorableStateWithCoder:")
     public native void encodeRestorableState(NSCoder coder);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "decodeRestorableStateWithCoder:")
     public native void decodeRestorableState(NSCoder coder);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "applicationFinishedRestoringState")
     public native void applicationFinishedRestoringState();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "updateViewConstraints")
     public native void updateViewConstraints();
     /**
@@ -925,51 +680,24 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
      */
     @Method(selector = "setNeedsUpdateOfHomeIndicatorAutoHidden")
     public native void setNeedsUpdateOfHomeIndicatorAutoHidden();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "setToolbarItems:animated:")
     public native void setToolbarItems(NSArray<UIBarButtonItem> toolbarItems, boolean animated);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "collapseSecondaryViewController:forSplitViewController:")
     public native void collapseSecondaryViewController(UIViewController secondaryViewController, UISplitViewController splitViewController);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "separateSecondaryViewControllerForSplitViewController:")
     public native UIViewController separateSecondaryViewController(UISplitViewController splitViewController);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "traitCollectionDidChange:")
     public native void traitCollectionDidChange(UITraitCollection previousTraitCollection);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "preferredContentSizeDidChangeForChildContentContainer:")
     public native void preferredContentSizeDidChangeForChildContentContainer(UIContentContainer container);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "systemLayoutFittingSizeDidChangeForChildContentContainer:")
     public native void systemLayoutFittingSizeDidChangeForChildContentContainer(UIContentContainer container);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "sizeForChildContentContainer:withParentContainerSize:")
     public native @ByVal CGSize sizeForChildContentContainer(UIContentContainer container, @ByVal CGSize parentSize);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "viewWillTransitionToSize:withTransitionCoordinator:")
     public native void viewWillTransitionToSize(@ByVal CGSize size, UIViewControllerTransitionCoordinator coordinator);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "willTransitionToTraitCollection:withTransitionCoordinator:")
     public native void willTransitionToTraitCollection(UITraitCollection newCollection, UIViewControllerTransitionCoordinator coordinator);
     @Method(selector = "setNeedsFocusUpdate")

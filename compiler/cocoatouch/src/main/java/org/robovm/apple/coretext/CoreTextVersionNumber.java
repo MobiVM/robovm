@@ -64,9 +64,6 @@ import org.robovm.apple.uikit.*;
     /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Bridge(symbol="CTGetCoreTextVersion", optional=true)
     public static native int getVersion();
     /*</methods>*/

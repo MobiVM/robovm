@@ -73,9 +73,6 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Property(selector = "directionalEdgeInsetsValue")
     public static native @ByVal NSDirectionalEdgeInsets getDirectionalEdgeInsetsValue(NSValue thiz);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "UIOffsetValue")
     public static native @ByVal UIOffset getOffsetValue(NSValue thiz);
     /*</properties>*/
@@ -105,9 +102,6 @@ import org.robovm.apple.linkpresentation.*;
     @Method(selector = "valueWithDirectionalEdgeInsets:")
     protected static native NSValue create(ObjCClass clazz, @ByVal NSDirectionalEdgeInsets insets);
     public static NSValue create(@ByVal NSDirectionalEdgeInsets insets) { return create(ObjCClass.getByType(NSValue.class), insets); }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "valueWithUIOffset:")
     protected static native NSValue create(ObjCClass clazz, @ByVal UIOffset insets);
     public static NSValue create(@ByVal UIOffset insets) { return create(ObjCClass.getByType(NSValue.class), insets); }

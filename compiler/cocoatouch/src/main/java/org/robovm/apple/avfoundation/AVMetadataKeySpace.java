@@ -97,33 +97,12 @@ import org.robovm.apple.audiotoolbox.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMetadataKeySpace Common = new AVMetadataKeySpace("Common");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMetadataKeySpace QuickTimeUserData = new AVMetadataKeySpace("QuickTimeUserData");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final AVMetadataKeySpace ISOUserData = new AVMetadataKeySpace("ISOUserData");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMetadataKeySpace QuickTimeMetadata = new AVMetadataKeySpace("QuickTimeMetadata");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMetadataKeySpace iTunes = new AVMetadataKeySpace("iTunes");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMetadataKeySpace ID3 = new AVMetadataKeySpace("ID3");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataKeySpace Icy = new AVMetadataKeySpace("Icy");
     /**
      * @since Available in iOS 9.3 and later.
@@ -158,39 +137,18 @@ import org.robovm.apple.audiotoolbox.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataKeySpaceCommon", optional=true)
         public static native NSString Common();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataKeySpaceQuickTimeUserData", optional=true)
         public static native NSString QuickTimeUserData();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataKeySpaceISOUserData", optional=true)
         public static native NSString ISOUserData();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataKeySpaceQuickTimeMetadata", optional=true)
         public static native NSString QuickTimeMetadata();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataKeySpaceiTunes", optional=true)
         public static native NSString iTunes();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataKeySpaceID3", optional=true)
         public static native NSString ID3();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataKeySpaceIcy", optional=true)
         public static native NSString Icy();
         /**

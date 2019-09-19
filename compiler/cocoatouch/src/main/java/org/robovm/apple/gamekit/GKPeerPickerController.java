@@ -33,7 +33,6 @@ import org.robovm.apple.uikit.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 3.0 and later.
  * @deprecated Deprecated in iOS 7.0. Use MCBrowserViewController from the MultipeerConnectivity framework
  */
 /*</javadoc>*/
@@ -56,14 +55,12 @@ import org.robovm.apple.uikit.*;
     @Property(selector = "setConnectionTypesMask:")
     public native void setConnectionTypesMask(GKPeerPickerConnectionType v);
     /**
-     * @since Available in iOS 3.0 and later.
      * @deprecated Deprecated in iOS 7.0.
      */
     @Deprecated
     @Property(selector = "delegate")
     public native GKPeerPickerControllerDelegate getDelegate();
     /**
-     * @since Available in iOS 3.0 and later.
      * @deprecated Deprecated in iOS 7.0.
      */
     @Deprecated

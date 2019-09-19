@@ -113,9 +113,6 @@ import org.robovm.apple.dispatch.*;
     public static final NSFileAttribute OwnerAccountID = new NSFileAttribute("OwnerAccountID");
     public static final NSFileAttribute GroupOwnerAccountID = new NSFileAttribute("GroupOwnerAccountID");
     public static final NSFileAttribute Busy = new NSFileAttribute("Busy");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final NSFileAttribute ProtectionKey = new NSFileAttribute("ProtectionKey");
     /*</constants>*/
     
@@ -178,9 +175,6 @@ import org.robovm.apple.dispatch.*;
         public static native NSString GroupOwnerAccountID();
         @GlobalValue(symbol="NSFileBusy", optional=true)
         public static native NSString Busy();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="NSFileProtectionKey", optional=true)
         public static native NSString ProtectionKey();
         /*</values>*/

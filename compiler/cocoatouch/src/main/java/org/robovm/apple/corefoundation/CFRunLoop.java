@@ -123,9 +123,6 @@ import org.robovm.apple.coretext.*;
     public native void wakeUp();
     @Bridge(symbol="CFRunLoopStop", optional=true)
     public native void stop();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CFRunLoopPerformBlock", optional=true)
     private native void performBlock(CFType mode, @Block Runnable block);
     @Bridge(symbol="CFRunLoopContainsSource", optional=true)

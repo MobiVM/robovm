@@ -108,9 +108,6 @@ import org.robovm.apple.dispatch.*;
     }
     
 
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public boolean showsPowerAlert() {
         if (has(Keys.ShowPowerAlert())) {
             NSNumber val = (NSNumber) get(Keys.ShowPowerAlert());
@@ -118,16 +115,10 @@ import org.robovm.apple.dispatch.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public CBCentralManagerOptions setShowsPowerAlert(boolean showsPowerAlert) {
         set(Keys.ShowPowerAlert(), NSNumber.valueOf(showsPowerAlert));
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public String getRestoreIdentifier() {
         if (has(Keys.RestoreIdentifier())) {
             NSString val = (NSString) get(Keys.RestoreIdentifier());
@@ -135,9 +126,6 @@ import org.robovm.apple.dispatch.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public CBCentralManagerOptions setRestoreIdentifier(String restoreIdentifier) {
         set(Keys.RestoreIdentifier(), new NSString(restoreIdentifier));
         return this;
@@ -148,14 +136,8 @@ import org.robovm.apple.dispatch.*;
     @Library("CoreBluetooth")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="CBCentralManagerOptionShowPowerAlertKey", optional=true)
         public static native NSString ShowPowerAlert();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="CBCentralManagerOptionRestoreIdentifierKey", optional=true)
         public static native NSString RestoreIdentifier();
     }

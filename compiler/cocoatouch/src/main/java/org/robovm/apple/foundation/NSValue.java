@@ -255,9 +255,6 @@ import org.robovm.apple.scenekit.SCNVector4;
     public static native NSValue valueOf(NSObject anObject);
     @Method(selector = "valueWithPointer:")
     public static native NSValue valueOf(VoidPtr pointer);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Deprecated
     @Method(selector = "getValue:")
     protected native void getValue(VoidPtr value);

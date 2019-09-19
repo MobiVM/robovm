@@ -88,89 +88,26 @@ import org.robovm.apple.coregraphics.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyCIFF Description = new CGImagePropertyCIFF("Description");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyCIFF Firmware = new CGImagePropertyCIFF("Firmware");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyCIFF OwnerName = new CGImagePropertyCIFF("OwnerName");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyCIFF ImageName = new CGImagePropertyCIFF("ImageName");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyCIFF ImageFileName = new CGImagePropertyCIFF("ImageFileName");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyCIFF ReleaseMethod = new CGImagePropertyCIFF("ReleaseMethod");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyCIFF ReleaseTiming = new CGImagePropertyCIFF("ReleaseTiming");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyCIFF RecordID = new CGImagePropertyCIFF("RecordID");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyCIFF SelfTimingTime = new CGImagePropertyCIFF("SelfTimingTime");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyCIFF CameraSerialNumber = new CGImagePropertyCIFF("CameraSerialNumber");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyCIFF ImageSerialNumber = new CGImagePropertyCIFF("ImageSerialNumber");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyCIFF ContinuousDrive = new CGImagePropertyCIFF("ContinuousDrive");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyCIFF FocusMode = new CGImagePropertyCIFF("FocusMode");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyCIFF MeteringMode = new CGImagePropertyCIFF("MeteringMode");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyCIFF ShootingMode = new CGImagePropertyCIFF("ShootingMode");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyCIFF LensModel = new CGImagePropertyCIFF("LensModel");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyCIFF LensMaxMM = new CGImagePropertyCIFF("LensMaxMM");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyCIFF LensMinMM = new CGImagePropertyCIFF("LensMinMM");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyCIFF WhiteBalanceIndex = new CGImagePropertyCIFF("WhiteBalanceIndex");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyCIFF FlashExposureComp = new CGImagePropertyCIFF("FlashExposureComp");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyCIFF MeasuredEV = new CGImagePropertyCIFF("MeasuredEV");
     /*</constants>*/
     
@@ -197,109 +134,46 @@ import org.robovm.apple.coregraphics.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyCIFFDescription", optional=true)
         public static native CFString Description();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyCIFFFirmware", optional=true)
         public static native CFString Firmware();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyCIFFOwnerName", optional=true)
         public static native CFString OwnerName();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyCIFFImageName", optional=true)
         public static native CFString ImageName();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyCIFFImageFileName", optional=true)
         public static native CFString ImageFileName();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyCIFFReleaseMethod", optional=true)
         public static native CFString ReleaseMethod();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyCIFFReleaseTiming", optional=true)
         public static native CFString ReleaseTiming();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyCIFFRecordID", optional=true)
         public static native CFString RecordID();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyCIFFSelfTimingTime", optional=true)
         public static native CFString SelfTimingTime();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyCIFFCameraSerialNumber", optional=true)
         public static native CFString CameraSerialNumber();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyCIFFImageSerialNumber", optional=true)
         public static native CFString ImageSerialNumber();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyCIFFContinuousDrive", optional=true)
         public static native CFString ContinuousDrive();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyCIFFFocusMode", optional=true)
         public static native CFString FocusMode();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyCIFFMeteringMode", optional=true)
         public static native CFString MeteringMode();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyCIFFShootingMode", optional=true)
         public static native CFString ShootingMode();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyCIFFLensModel", optional=true)
         public static native CFString LensModel();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyCIFFLensMaxMM", optional=true)
         public static native CFString LensMaxMM();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyCIFFLensMinMM", optional=true)
         public static native CFString LensMinMM();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyCIFFWhiteBalanceIndex", optional=true)
         public static native CFString WhiteBalanceIndex();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyCIFFFlashExposureComp", optional=true)
         public static native CFString FlashExposureComp();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyCIFFMeasuredEV", optional=true)
         public static native CFString MeasuredEV();
         /*</values>*/

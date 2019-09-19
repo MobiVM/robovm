@@ -32,9 +32,7 @@ import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 3.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/SKPaymentTransactionState/*</name>*/ implements ValuedEnum {
@@ -43,9 +41,6 @@ public enum /*<name>*/SKPaymentTransactionState/*</name>*/ implements ValuedEnum
     Purchased(1L),
     Failed(2L),
     Restored(3L),
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     Deferred(4L);
     /*</values>*/
 

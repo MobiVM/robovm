@@ -34,9 +34,7 @@ import org.robovm.apple.security.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("WebKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/WKWebViewConfiguration/*</name>*/ 
@@ -159,28 +157,24 @@ import org.robovm.apple.security.*;
     @Property(selector = "setIgnoresViewportScaleLimits:")
     public native void setIgnoresViewportScaleLimits(boolean v);
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 9.0.
      */
     @Deprecated
     @Property(selector = "mediaPlaybackRequiresUserAction")
     public native boolean mediaPlaybackRequiresUserAction();
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 9.0.
      */
     @Deprecated
     @Property(selector = "setMediaPlaybackRequiresUserAction:")
     public native void setMediaPlaybackRequiresUserAction(boolean v);
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 9.0.
      */
     @Deprecated
     @Property(selector = "mediaPlaybackAllowsAirPlay")
     public native boolean mediaPlaybackAllowsAirPlay();
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 9.0.
      */
     @Deprecated

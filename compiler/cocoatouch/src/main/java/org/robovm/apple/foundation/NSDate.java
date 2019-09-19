@@ -98,17 +98,11 @@ import org.robovm.apple.dispatch.*;
         return new Date((long) (getTimeIntervalSince1970() * 1000.0));
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @GlobalValue(symbol="NSSystemClockDidChangeNotification", optional=true)
     public static native NSString SystemClockDidChangeNotification();
     
     @Method(selector = "timeIntervalSinceDate:")
     public native double getTimeIntervalSince(NSDate anotherDate);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Method(selector = "dateByAddingTimeInterval:")
     public native NSDate newDateByAddingTimeInterval(double ti);
     @Method(selector = "earlierDate:")

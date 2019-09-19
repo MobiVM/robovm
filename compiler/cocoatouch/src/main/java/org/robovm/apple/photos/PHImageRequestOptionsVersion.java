@@ -38,24 +38,13 @@ import org.robovm.apple.imageio.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/PHImageRequestOptionsVersion/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     Current(0L),
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     Unadjusted(1L),
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     Original(2L);
     /*</values>*/
 

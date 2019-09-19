@@ -92,13 +92,7 @@ import org.robovm.apple.metal.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public static final CAGradientType Axial = new CAGradientType("Axial");
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public static final CAGradientType Radial = new CAGradientType("Radial");
     /**
      * @since Available in iOS 12.0 and later.
@@ -129,14 +123,8 @@ import org.robovm.apple.metal.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 3.0 and later.
-         */
         @GlobalValue(symbol="kCAGradientLayerAxial", optional=true)
         public static native NSString Axial();
-        /**
-         * @since Available in iOS 3.2 and later.
-         */
         @GlobalValue(symbol="kCAGradientLayerRadial", optional=true)
         public static native NSString Radial();
         /**

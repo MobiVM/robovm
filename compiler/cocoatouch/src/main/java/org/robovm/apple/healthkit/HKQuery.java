@@ -31,9 +31,7 @@ import org.robovm.apple.foundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("HealthKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/HKQuery/*</name>*/ 
@@ -55,7 +53,6 @@ import org.robovm.apple.foundation.*;
     @Property(selector = "objectType")
     public native HKObjectType getObjectType();
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 9.3.
      */
     @Deprecated

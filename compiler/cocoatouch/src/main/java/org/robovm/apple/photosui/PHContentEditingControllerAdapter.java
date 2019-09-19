@@ -46,32 +46,17 @@ import org.robovm.apple.uikit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*//*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @NotImplemented("shouldShowCancelConfirmation")
     public boolean shouldShowCancelConfirmation() { return false; }
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @NotImplemented("canHandleAdjustmentData:")
     public boolean canHandleAdjustmentData(PHAdjustmentData adjustmentData) { return false; }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @NotImplemented("startContentEditingWithInput:placeholderImage:")
     public void startContentEditing(PHContentEditingInput contentEditingInput, UIImage placeholderImage) {}
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @NotImplemented("finishContentEditingWithCompletionHandler:")
     public void finishContentEditing(@Block VoidBlock1<PHContentEditingOutput> completionHandler) {}
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @NotImplemented("cancelContentEditing")
     public void cancelContentEditing() {}
     /*</methods>*/

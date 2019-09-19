@@ -32,9 +32,7 @@ import org.robovm.apple.security.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("NetworkExtension") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NEOnDemandRule/*</name>*/ 
@@ -52,59 +50,26 @@ import org.robovm.apple.security.*;
     public NEOnDemandRule(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "action")
     public native NEOnDemandRuleAction getAction();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "DNSSearchDomainMatch")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getDNSSearchDomainMatch();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setDNSSearchDomainMatch:")
     public native void setDNSSearchDomainMatch(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "DNSServerAddressMatch")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getDNSServerAddressMatch();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setDNSServerAddressMatch:")
     public native void setDNSServerAddressMatch(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "interfaceTypeMatch")
     public native NEOnDemandRuleInterfaceType getInterfaceTypeMatch();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setInterfaceTypeMatch:")
     public native void setInterfaceTypeMatch(NEOnDemandRuleInterfaceType v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "SSIDMatch")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getSSIDMatch();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setSSIDMatch:")
     public native void setSSIDMatch(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "probeURL")
     public native NSURL getProbeURL();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setProbeURL:")
     public native void setProbeURL(NSURL v);
     @Property(selector = "supportsSecureCoding")

@@ -69,9 +69,6 @@ import org.robovm.apple.uikit.*;
     public void willChangeContent(NSFetchedResultsController controller) {}
     @NotImplemented("controllerDidChangeContent:")
     public void didChangeContent(NSFetchedResultsController controller) {}
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @NotImplemented("controller:sectionIndexTitleForSectionName:")
     public String getSectionIndexTitle(NSFetchedResultsController controller, String sectionName) { return null; }
     /*</methods>*/

@@ -43,7 +43,6 @@ import org.robovm.apple.linkpresentation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 2.0 and later.
  * @deprecated Deprecated in iOS 8.3. UIActionSheet is deprecated. Use UIAlertController with a preferredStyle of UIAlertControllerStyleActionSheet instead
  */
 /*</javadoc>*/
@@ -115,14 +114,8 @@ import org.robovm.apple.linkpresentation.*;
     public native void showFrom(UIToolbar view);
     @Method(selector = "showFromTabBar:")
     public native void showFrom(UITabBar view);
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Method(selector = "showFromBarButtonItem:animated:")
     public native void showFrom(UIBarButtonItem item, boolean animated);
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Method(selector = "showFromRect:inView:animated:")
     public native void showFrom(@ByVal CGRect rect, UIView view, boolean animated);
     @Method(selector = "showInView:")

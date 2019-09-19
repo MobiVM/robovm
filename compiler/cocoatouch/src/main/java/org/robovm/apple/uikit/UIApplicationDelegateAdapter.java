@@ -91,14 +91,8 @@ import org.robovm.apple.linkpresentation.*;
     /*<methods>*/
     @NotImplemented("applicationDidFinishLaunching:")
     public void didFinishLaunching(UIApplication application) {}
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @NotImplemented("application:willFinishLaunchingWithOptions:")
     public boolean willFinishLaunching(UIApplication application, UIApplicationLaunchOptions launchOptions) { return false; }
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @NotImplemented("application:didFinishLaunchingWithOptions:")
     public boolean didFinishLaunching(UIApplication application, UIApplicationLaunchOptions launchOptions) { return false; }
     @NotImplemented("applicationDidBecomeActive:")
@@ -106,14 +100,12 @@ import org.robovm.apple.linkpresentation.*;
     @NotImplemented("applicationWillResignActive:")
     public void willResignActive(UIApplication application) {}
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 9.0.
      */
     @Deprecated
     @NotImplemented("application:handleOpenURL:")
     public boolean handleOpenURL(UIApplication application, NSURL url) { return false; }
     /**
-     * @since Available in iOS 4.2 and later.
      * @deprecated Deprecated in iOS 9.0.
      */
     @Deprecated
@@ -129,66 +121,52 @@ import org.robovm.apple.linkpresentation.*;
     @NotImplemented("applicationSignificantTimeChange:")
     public void significantTimeChange(UIApplication application) {}
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 13.0. Use viewWillTransitionToSize:withTransitionCoordinator: instead.
      */
     @Deprecated
     @NotImplemented("application:willChangeStatusBarOrientation:duration:")
     public void willChangeStatusBarOrientation(UIApplication application, UIInterfaceOrientation newStatusBarOrientation, double duration) {}
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 13.0. Use viewWillTransitionToSize:withTransitionCoordinator: instead.
      */
     @Deprecated
     @NotImplemented("application:didChangeStatusBarOrientation:")
     public void didChangStatusBarOrientation(UIApplication application, UIInterfaceOrientation oldStatusBarOrientation) {}
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 13.0. Use viewWillTransitionToSize:withTransitionCoordinator: instead.
      */
     @Deprecated
     @NotImplemented("application:willChangeStatusBarFrame:")
     public void willChangeStatusBarFrame(UIApplication application, @ByVal CGRect newStatusBarFrame) {}
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 13.0. Use viewWillTransitionToSize:withTransitionCoordinator: instead.
      */
     @Deprecated
     @NotImplemented("application:didChangeStatusBarFrame:")
     public void didChangStatusBarFrame(UIApplication application, @ByVal CGRect oldStatusBarFrame) {}
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 10.0. Use UserNotifications Framework's -[UNUserNotificationCenter requestAuthorizationWithOptions:completionHandler:]
      */
     @Deprecated
     @NotImplemented("application:didRegisterUserNotificationSettings:")
     public void didRegisterUserNotificationSettings(UIApplication application, UIUserNotificationSettings notificationSettings) {}
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @NotImplemented("application:didRegisterForRemoteNotificationsWithDeviceToken:")
     public void didRegisterForRemoteNotifications(UIApplication application, NSData deviceToken) {}
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @NotImplemented("application:didFailToRegisterForRemoteNotificationsWithError:")
     public void didFailToRegisterForRemoteNotifications(UIApplication application, NSError error) {}
     /**
-     * @since Available in iOS 3.0 and later.
      * @deprecated Deprecated in iOS 10.0. Use UserNotifications Framework's -[UNUserNotificationCenterDelegate willPresentNotification:withCompletionHandler:] or -[UNUserNotificationCenterDelegate didReceiveNotificationResponse:withCompletionHandler:] for user visible notifications and -[UIApplicationDelegate application:didReceiveRemoteNotification:fetchCompletionHandler:] for silent remote notifications
      */
     @Deprecated
     @NotImplemented("application:didReceiveRemoteNotification:")
     public void didReceiveRemoteNotification(UIApplication application, UIRemoteNotification userInfo) {}
     /**
-     * @since Available in iOS 4.0 and later.
      * @deprecated Deprecated in iOS 10.0. Use UserNotifications Framework's -[UNUserNotificationCenterDelegate willPresentNotification:withCompletionHandler:] or -[UNUserNotificationCenterDelegate didReceiveNotificationResponse:withCompletionHandler:]
      */
     @Deprecated
     @NotImplemented("application:didReceiveLocalNotification:")
     public void didReceiveLocalNotification(UIApplication application, UILocalNotification notification) {}
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 10.0. Use UserNotifications Framework's -[UNUserNotificationCenterDelegate didReceiveNotificationResponse:withCompletionHandler:]
      */
     @Deprecated
@@ -202,7 +180,6 @@ import org.robovm.apple.linkpresentation.*;
     @NotImplemented("application:handleActionWithIdentifier:forRemoteNotification:withResponseInfo:completionHandler:")
     public void handleRemoteNotificationAction(UIApplication application, String identifier, UIRemoteNotification userInfo, NSDictionary<?, ?> responseInfo, @Block Runnable completionHandler) {}
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 10.0. Use UserNotifications Framework's -[UNUserNotificationCenterDelegate didReceiveNotificationResponse:withCompletionHandler:]
      */
     @Deprecated
@@ -215,13 +192,9 @@ import org.robovm.apple.linkpresentation.*;
     @Deprecated
     @NotImplemented("application:handleActionWithIdentifier:forLocalNotification:withResponseInfo:completionHandler:")
     public void handleLocalNotificationAction(UIApplication application, String identifier, UILocalNotification notification, NSDictionary<?, ?> responseInfo, @Block Runnable completionHandler) {}
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @NotImplemented("application:didReceiveRemoteNotification:fetchCompletionHandler:")
     public void didReceiveRemoteNotification(UIApplication application, UIRemoteNotification userInfo, @Block VoidBlock1<UIBackgroundFetchResult> completionHandler) {}
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 13.0. Use a BGAppRefreshTask in the BackgroundTasks framework instead
      */
     @Deprecated
@@ -232,9 +205,6 @@ import org.robovm.apple.linkpresentation.*;
      */
     @NotImplemented("application:performActionForShortcutItem:completionHandler:")
     public void performAction(UIApplication application, UIApplicationShortcutItem shortcutItem, @Block VoidBooleanBlock completionHandler) {}
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @NotImplemented("application:handleEventsForBackgroundURLSession:completionHandler:")
     public void handleEventsForBackgroundURLSession(UIApplication application, String identifier, @Block Runnable completionHandler) {}
     /**
@@ -252,79 +222,34 @@ import org.robovm.apple.linkpresentation.*;
      */
     @NotImplemented("application:handleIntent:completionHandler:")
     public void handleIntent(UIApplication application, INIntent intent, @Block VoidBlock1<INIntentResponse> completionHandler) {}
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @NotImplemented("applicationDidEnterBackground:")
     public void didEnterBackground(UIApplication application) {}
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @NotImplemented("applicationWillEnterForeground:")
     public void willEnterForeground(UIApplication application) {}
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @NotImplemented("applicationProtectedDataWillBecomeUnavailable:")
     public void protectedDataWillBecomeUnavailable(UIApplication application) {}
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @NotImplemented("applicationProtectedDataDidBecomeAvailable:")
     public void protectedDataDidBecomeAvailable(UIApplication application) {}
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @NotImplemented("application:supportedInterfaceOrientationsForWindow:")
     public UIInterfaceOrientationMask getSupportedInterfaceOrientations(UIApplication application, UIWindow window) { return null; }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @NotImplemented("application:shouldAllowExtensionPointIdentifier:")
     public boolean shouldAllowExtensionPointIdentifier(UIApplication application, UIApplicationExtensionPointIdentifier extensionPointIdentifier) { return false; }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @NotImplemented("application:viewControllerWithRestorationIdentifierPath:coder:")
     public UIViewController getViewController(UIApplication application, @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> identifierComponents, NSCoder coder) { return null; }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @NotImplemented("application:shouldSaveApplicationState:")
     public boolean shouldSaveApplicationState(UIApplication application, NSCoder coder) { return false; }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @NotImplemented("application:shouldRestoreApplicationState:")
     public boolean shouldRestoreApplicationState(UIApplication application, NSCoder coder) { return false; }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @NotImplemented("application:willEncodeRestorableStateWithCoder:")
     public void willEncodeRestorableState(UIApplication application, NSCoder coder) {}
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @NotImplemented("application:didDecodeRestorableStateWithCoder:")
     public void didDecodeRestorableState(UIApplication application, NSCoder coder) {}
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @NotImplemented("application:willContinueUserActivityWithType:")
     public boolean willContinueUserActivity(UIApplication application, String userActivityType) { return false; }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @NotImplemented("application:continueUserActivity:restorationHandler:")
     public boolean continueUserActivity(UIApplication application, NSUserActivity userActivity, @Block VoidBlock1<NSArray<UIResponder>> restorationHandler) { return false; }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @NotImplemented("application:didFailToContinueUserActivityWithType:error:")
     public void didFailToContinueUserActivity(UIApplication application, String userActivityType, NSError error) {}
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @NotImplemented("application:didUpdateUserActivity:")
     public void didUpdateUserActivity(UIApplication application, NSUserActivity userActivity) {}
     /**

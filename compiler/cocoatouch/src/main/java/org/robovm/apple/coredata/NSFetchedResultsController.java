@@ -34,9 +34,7 @@ import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 3.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreData") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSFetchedResultsController<ResultType extends NSObject & NSFetchRequestResult>/*</name>*/ 

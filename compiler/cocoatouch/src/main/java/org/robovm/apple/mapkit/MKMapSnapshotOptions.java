@@ -35,9 +35,7 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 7.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("MapKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MKMapSnapshotOptions/*</name>*/ 
@@ -80,14 +78,12 @@ import org.robovm.apple.dispatch.*;
     @Property(selector = "setPointOfInterestFilter:")
     public native void setPointOfInterestFilter(MKPointOfInterestFilter v);
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 13.0. Use pointOfInterestFilter
      */
     @Deprecated
     @Property(selector = "showsPointsOfInterest")
     public native boolean showsPointsOfInterest();
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 13.0. Use pointOfInterestFilter
      */
     @Deprecated
@@ -102,14 +98,12 @@ import org.robovm.apple.dispatch.*;
     @Property(selector = "setSize:")
     public native void setSize(@ByVal CGSize v);
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Use traitCollection.displayScale
      */
     @Deprecated
     @Property(selector = "scale")
     public native @MachineSizedFloat double getScale();
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Use traitCollection.displayScale
      */
     @Deprecated

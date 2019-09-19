@@ -88,25 +88,10 @@ import org.robovm.apple.coregraphics.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyGIF LoopCount = new CGImagePropertyGIF("LoopCount");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyGIF DelayTime = new CGImagePropertyGIF("DelayTime");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyGIF ImageColorMap = new CGImagePropertyGIF("ImageColorMap");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyGIF HasGlobalColorMap = new CGImagePropertyGIF("HasGlobalColorMap");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyGIF UnclampedDelayTime = new CGImagePropertyGIF("UnclampedDelayTime");
     /**
      * @since Available in iOS 13.0 and later.
@@ -145,29 +130,14 @@ import org.robovm.apple.coregraphics.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyGIFLoopCount", optional=true)
         public static native CFString LoopCount();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyGIFDelayTime", optional=true)
         public static native CFString DelayTime();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyGIFImageColorMap", optional=true)
         public static native CFString ImageColorMap();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyGIFHasGlobalColorMap", optional=true)
         public static native CFString HasGlobalColorMap();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyGIFUnclampedDelayTime", optional=true)
         public static native CFString UnclampedDelayTime();
         /**

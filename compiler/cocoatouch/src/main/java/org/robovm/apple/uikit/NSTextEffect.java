@@ -98,9 +98,6 @@ import org.robovm.apple.linkpresentation.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final NSTextEffect LetterpressStyle = new NSTextEffect("LetterpressStyle");
     /*</constants>*/
     
@@ -127,9 +124,6 @@ import org.robovm.apple.linkpresentation.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="NSTextEffectLetterpressStyle", optional=true)
         public static native NSString LetterpressStyle();
         /*</values>*/

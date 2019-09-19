@@ -54,9 +54,6 @@ import org.robovm.apple.linkpresentation.*;
     /*</bind>*/
     /*<constants>*//*</constants>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "layoutOrientation")
     NSTextLayoutOrientation getLayoutOrientation();
     /*</properties>*/

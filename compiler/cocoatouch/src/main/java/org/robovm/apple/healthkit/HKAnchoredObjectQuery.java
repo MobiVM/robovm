@@ -31,9 +31,7 @@ import org.robovm.apple.foundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("HealthKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/HKAnchoredObjectQuery/*</name>*/ 
@@ -55,7 +53,6 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "initWithType:predicate:anchor:limit:resultsHandler:")
     public HKAnchoredObjectQuery(HKSampleType type, NSPredicate predicate, HKQueryAnchor anchor, @MachineSizedUInt long limit, @Block VoidBlock5<HKAnchoredObjectQuery, NSArray<HKSample>, NSArray<HKDeletedObject>, HKQueryAnchor, NSError> handler) { super((SkipInit) null); initObject(init(type, predicate, anchor, limit, handler)); }
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 9.0.
      */
     @Deprecated
@@ -82,7 +79,6 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "initWithType:predicate:anchor:limit:resultsHandler:")
     protected native @Pointer long init(HKSampleType type, NSPredicate predicate, HKQueryAnchor anchor, @MachineSizedUInt long limit, @Block VoidBlock5<HKAnchoredObjectQuery, NSArray<HKSample>, NSArray<HKDeletedObject>, HKQueryAnchor, NSError> handler);
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 9.0.
      */
     @Deprecated

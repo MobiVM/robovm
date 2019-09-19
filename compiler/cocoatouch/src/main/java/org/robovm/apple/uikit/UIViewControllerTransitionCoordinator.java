@@ -62,7 +62,6 @@ import org.robovm.apple.linkpresentation.*;
     @Method(selector = "animateAlongsideTransitionInView:animation:completion:")
     boolean animateAlongsideTransition(UIView view, @Block VoidBlock1<UIViewControllerTransitionCoordinatorContext> animation, @Block VoidBlock1<UIViewControllerTransitionCoordinatorContext> completion);
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 10.0.
      */
     @Deprecated

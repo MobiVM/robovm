@@ -100,14 +100,12 @@ import org.robovm.apple.corefoundation.*;
     }
     /*<methods>*/
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 9.0. use CNInstantMessageAddress.service
      */
     @Deprecated
     @GlobalValue(symbol="kABPersonInstantMessageServiceKey", optional=true)
     protected static native CFString ServiceKey();
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 9.0. use CNInstantMessageAddress.username
      */
     @Deprecated

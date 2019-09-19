@@ -95,17 +95,8 @@ import org.robovm.apple.dispatch.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final NSURLProtectionSpaceProtocol HTTP = new NSURLProtectionSpaceProtocol("HTTP");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final NSURLProtectionSpaceProtocol HTTPS = new NSURLProtectionSpaceProtocol("HTTPS");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final NSURLProtectionSpaceProtocol FTP = new NSURLProtectionSpaceProtocol("FTP");
     /*</constants>*/
     
@@ -132,19 +123,10 @@ import org.robovm.apple.dispatch.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="NSURLProtectionSpaceHTTP", optional=true)
         public static native NSString HTTP();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="NSURLProtectionSpaceHTTPS", optional=true)
         public static native NSString HTTPS();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="NSURLProtectionSpaceFTP", optional=true)
         public static native NSString FTP();
         /*</values>*/

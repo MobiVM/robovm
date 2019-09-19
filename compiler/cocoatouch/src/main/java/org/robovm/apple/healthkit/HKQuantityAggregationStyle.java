@@ -31,9 +31,7 @@ import org.robovm.apple.foundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/HKQuantityAggregationStyle/*</name>*/ implements ValuedEnum {
@@ -44,7 +42,6 @@ public enum /*<name>*/HKQuantityAggregationStyle/*</name>*/ implements ValuedEnu
      */
     DiscreteArithmetic(1L),
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 13.0.
      */
     @Deprecated

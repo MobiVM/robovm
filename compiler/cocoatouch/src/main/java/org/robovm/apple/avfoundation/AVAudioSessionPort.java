@@ -97,61 +97,19 @@ import org.robovm.apple.audiotoolbox.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public static final AVAudioSessionPort LineIn = new AVAudioSessionPort("LineIn");
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public static final AVAudioSessionPort BuiltInMic = new AVAudioSessionPort("BuiltInMic");
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public static final AVAudioSessionPort HeadsetMic = new AVAudioSessionPort("HeadsetMic");
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public static final AVAudioSessionPort LineOut = new AVAudioSessionPort("LineOut");
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public static final AVAudioSessionPort Headphones = new AVAudioSessionPort("Headphones");
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public static final AVAudioSessionPort BluetoothA2DP = new AVAudioSessionPort("BluetoothA2DP");
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public static final AVAudioSessionPort BuiltInReceiver = new AVAudioSessionPort("BuiltInReceiver");
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public static final AVAudioSessionPort BuiltInSpeaker = new AVAudioSessionPort("BuiltInSpeaker");
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public static final AVAudioSessionPort HDMI = new AVAudioSessionPort("HDMI");
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public static final AVAudioSessionPort AirPlay = new AVAudioSessionPort("AirPlay");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final AVAudioSessionPort BluetoothLE = new AVAudioSessionPort("BluetoothLE");
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public static final AVAudioSessionPort BluetoothHFP = new AVAudioSessionPort("BluetoothHFP");
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public static final AVAudioSessionPort USBAudio = new AVAudioSessionPort("USBAudio");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final AVAudioSessionPort CarAudio = new AVAudioSessionPort("CarAudio");
     /*</constants>*/
     
@@ -178,74 +136,32 @@ import org.robovm.apple.audiotoolbox.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 6.0 and later.
-         */
         @GlobalValue(symbol="AVAudioSessionPortLineIn", optional=true)
         public static native NSString LineIn();
-        /**
-         * @since Available in iOS 6.0 and later.
-         */
         @GlobalValue(symbol="AVAudioSessionPortBuiltInMic", optional=true)
         public static native NSString BuiltInMic();
-        /**
-         * @since Available in iOS 6.0 and later.
-         */
         @GlobalValue(symbol="AVAudioSessionPortHeadsetMic", optional=true)
         public static native NSString HeadsetMic();
-        /**
-         * @since Available in iOS 6.0 and later.
-         */
         @GlobalValue(symbol="AVAudioSessionPortLineOut", optional=true)
         public static native NSString LineOut();
-        /**
-         * @since Available in iOS 6.0 and later.
-         */
         @GlobalValue(symbol="AVAudioSessionPortHeadphones", optional=true)
         public static native NSString Headphones();
-        /**
-         * @since Available in iOS 6.0 and later.
-         */
         @GlobalValue(symbol="AVAudioSessionPortBluetoothA2DP", optional=true)
         public static native NSString BluetoothA2DP();
-        /**
-         * @since Available in iOS 6.0 and later.
-         */
         @GlobalValue(symbol="AVAudioSessionPortBuiltInReceiver", optional=true)
         public static native NSString BuiltInReceiver();
-        /**
-         * @since Available in iOS 6.0 and later.
-         */
         @GlobalValue(symbol="AVAudioSessionPortBuiltInSpeaker", optional=true)
         public static native NSString BuiltInSpeaker();
-        /**
-         * @since Available in iOS 6.0 and later.
-         */
         @GlobalValue(symbol="AVAudioSessionPortHDMI", optional=true)
         public static native NSString HDMI();
-        /**
-         * @since Available in iOS 6.0 and later.
-         */
         @GlobalValue(symbol="AVAudioSessionPortAirPlay", optional=true)
         public static native NSString AirPlay();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="AVAudioSessionPortBluetoothLE", optional=true)
         public static native NSString BluetoothLE();
-        /**
-         * @since Available in iOS 6.0 and later.
-         */
         @GlobalValue(symbol="AVAudioSessionPortBluetoothHFP", optional=true)
         public static native NSString BluetoothHFP();
-        /**
-         * @since Available in iOS 6.0 and later.
-         */
         @GlobalValue(symbol="AVAudioSessionPortUSBAudio", optional=true)
         public static native NSString USBAudio();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="AVAudioSessionPortCarAudio", optional=true)
         public static native NSString CarAudio();
         /*</values>*/

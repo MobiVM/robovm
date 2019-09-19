@@ -33,7 +33,6 @@ import org.robovm.apple.uikit.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 5.0 and later.
  * @deprecated Deprecated in iOS 7.0. Use registerListener on GKLocalPlayer with an object that implements the GKTurnBasedEventListener protocol
  */
 /*</javadoc>*/
@@ -52,14 +51,12 @@ import org.robovm.apple.uikit.*;
     /*</constructors>*/
     /*<properties>*/
     /**
-     * @since Available in iOS 5.0 and later.
      * @deprecated Deprecated in iOS 7.0.
      */
     @Deprecated
     @Property(selector = "delegate")
     public native GKTurnBasedEventHandlerDelegate getDelegate();
     /**
-     * @since Available in iOS 5.0 and later.
      * @deprecated Deprecated in iOS 7.0.
      */
     @Deprecated
@@ -69,7 +66,6 @@ import org.robovm.apple.uikit.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @since Available in iOS 5.0 and later.
      * @deprecated Deprecated in iOS 7.0.
      */
     @Deprecated

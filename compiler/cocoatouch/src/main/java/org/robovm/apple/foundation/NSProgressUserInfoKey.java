@@ -95,29 +95,11 @@ import org.robovm.apple.dispatch.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final NSProgressUserInfoKey EstimatedTimeRemaining = new NSProgressUserInfoKey("EstimatedTimeRemaining");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final NSProgressUserInfoKey Throughput = new NSProgressUserInfoKey("Throughput");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final NSProgressUserInfoKey FileOperationKind = new NSProgressUserInfoKey("FileOperationKind");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final NSProgressUserInfoKey FileURL = new NSProgressUserInfoKey("FileURL");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final NSProgressUserInfoKey FileTotalCount = new NSProgressUserInfoKey("FileTotalCount");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final NSProgressUserInfoKey FileCompletedCount = new NSProgressUserInfoKey("FileCompletedCount");
     /*</constants>*/
     
@@ -144,34 +126,16 @@ import org.robovm.apple.dispatch.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="NSProgressEstimatedTimeRemainingKey", optional=true)
         public static native NSString EstimatedTimeRemaining();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="NSProgressThroughputKey", optional=true)
         public static native NSString Throughput();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="NSProgressFileOperationKindKey", optional=true)
         public static native NSString FileOperationKind();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="NSProgressFileURLKey", optional=true)
         public static native NSString FileURL();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="NSProgressFileTotalCountKey", optional=true)
         public static native NSString FileTotalCount();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="NSProgressFileCompletedCountKey", optional=true)
         public static native NSString FileCompletedCount();
         /*</values>*/

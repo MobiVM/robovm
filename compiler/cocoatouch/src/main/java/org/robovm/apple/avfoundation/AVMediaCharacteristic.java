@@ -97,21 +97,9 @@ import org.robovm.apple.audiotoolbox.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMediaCharacteristic Visual = new AVMediaCharacteristic("Visual");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMediaCharacteristic Audible = new AVMediaCharacteristic("Audible");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMediaCharacteristic Legible = new AVMediaCharacteristic("Legible");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMediaCharacteristic FrameBased = new AVMediaCharacteristic("FrameBased");
     /**
      * @since Available in iOS 10.0 and later.
@@ -121,37 +109,16 @@ import org.robovm.apple.audiotoolbox.*;
      * @since Available in iOS 13.0 and later.
      */
     public static final AVMediaCharacteristic ContainsAlphaChannel = new AVMediaCharacteristic("ContainsAlphaChannel");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final AVMediaCharacteristic IsMainProgramContent = new AVMediaCharacteristic("IsMainProgramContent");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final AVMediaCharacteristic IsAuxiliaryContent = new AVMediaCharacteristic("IsAuxiliaryContent");
     /**
      * @since Available in iOS 12.0 and later.
      */
     public static final AVMediaCharacteristic IsOriginalContent = new AVMediaCharacteristic("IsOriginalContent");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final AVMediaCharacteristic ContainsOnlyForcedSubtitles = new AVMediaCharacteristic("ContainsOnlyForcedSubtitles");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final AVMediaCharacteristic TranscribesSpokenDialogForAccessibility = new AVMediaCharacteristic("TranscribesSpokenDialogForAccessibility");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final AVMediaCharacteristic DescribesMusicAndSoundForAccessibility = new AVMediaCharacteristic("DescribesMusicAndSoundForAccessibility");
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public static final AVMediaCharacteristic EasyToRead = new AVMediaCharacteristic("EasyToRead");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final AVMediaCharacteristic DescribesVideoForAccessibility = new AVMediaCharacteristic("DescribesVideoForAccessibility");
     /**
      * @since Available in iOS 9.0 and later.
@@ -190,24 +157,12 @@ import org.robovm.apple.audiotoolbox.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMediaCharacteristicVisual", optional=true)
         public static native NSString Visual();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMediaCharacteristicAudible", optional=true)
         public static native NSString Audible();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMediaCharacteristicLegible", optional=true)
         public static native NSString Legible();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMediaCharacteristicFrameBased", optional=true)
         public static native NSString FrameBased();
         /**
@@ -220,14 +175,8 @@ import org.robovm.apple.audiotoolbox.*;
          */
         @GlobalValue(symbol="AVMediaCharacteristicContainsAlphaChannel", optional=true)
         public static native NSString ContainsAlphaChannel();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="AVMediaCharacteristicIsMainProgramContent", optional=true)
         public static native NSString IsMainProgramContent();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="AVMediaCharacteristicIsAuxiliaryContent", optional=true)
         public static native NSString IsAuxiliaryContent();
         /**
@@ -235,29 +184,14 @@ import org.robovm.apple.audiotoolbox.*;
          */
         @GlobalValue(symbol="AVMediaCharacteristicIsOriginalContent", optional=true)
         public static native NSString IsOriginalContent();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="AVMediaCharacteristicContainsOnlyForcedSubtitles", optional=true)
         public static native NSString ContainsOnlyForcedSubtitles();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="AVMediaCharacteristicTranscribesSpokenDialogForAccessibility", optional=true)
         public static native NSString TranscribesSpokenDialogForAccessibility();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="AVMediaCharacteristicDescribesMusicAndSoundForAccessibility", optional=true)
         public static native NSString DescribesMusicAndSoundForAccessibility();
-        /**
-         * @since Available in iOS 6.0 and later.
-         */
         @GlobalValue(symbol="AVMediaCharacteristicEasyToRead", optional=true)
         public static native NSString EasyToRead();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="AVMediaCharacteristicDescribesVideoForAccessibility", optional=true)
         public static native NSString DescribesVideoForAccessibility();
         /**

@@ -37,9 +37,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsSignedByteMarshaler.class)/*</annotations>*/
 public enum /*<name>*/CMTextJustification/*</name>*/ implements ValuedEnum {

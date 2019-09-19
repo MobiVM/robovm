@@ -42,9 +42,7 @@ import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 6.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSParagraphStyle/*</name>*/ 
@@ -90,14 +88,8 @@ import org.robovm.apple.linkpresentation.*;
     public native @MachineSizedFloat double getParagraphSpacingBefore();
     @Property(selector = "hyphenationFactor")
     public native float getHyphenationFactor();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "tabStops")
     public native NSArray<NSTextTab> getTabStops();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "defaultTabInterval")
     public native @MachineSizedFloat double getDefaultTabInterval();
     /**

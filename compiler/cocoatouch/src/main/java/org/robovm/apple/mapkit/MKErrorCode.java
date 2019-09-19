@@ -35,9 +35,7 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 3.0 and later.
- */
+
 /*</javadoc>*/
 @ForceLinkClass(MKError.class)
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
@@ -47,9 +45,6 @@ public enum /*<name>*/MKErrorCode/*</name>*/ implements NSErrorCode {
     ServerFailure(2L),
     LoadingThrottled(3L),
     PlacemarkNotFound(4L),
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     DirectionsNotFound(5L),
     /**
      * @since Available in iOS 13.0 and later.

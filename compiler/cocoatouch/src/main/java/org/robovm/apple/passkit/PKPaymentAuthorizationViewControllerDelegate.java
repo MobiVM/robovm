@@ -77,21 +77,18 @@ import org.robovm.apple.contacts.*;
     @Method(selector = "paymentAuthorizationViewController:didSelectPaymentMethod:handler:")
     void didSelectPaymentMethod(PKPaymentAuthorizationViewController controller, PKPaymentMethod paymentMethod, @Block VoidBlock1<PKPaymentRequestPaymentMethodUpdate> completion);
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 11.0. Use paymentAuthorizationViewController:didAuthorizePayment:handler: instead to provide more granular errors
      */
     @Deprecated
     @Method(selector = "paymentAuthorizationViewController:didAuthorizePayment:completion:")
     void didAuthorizePaymentEx(PKPaymentAuthorizationViewController controller, PKPayment payment, @Block VoidBlock1<PKPaymentAuthorizationStatus> completion);
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 11.0. Use paymentAuthorizationViewController:didSelectShippingMethod:handler: instead to provide more granular errors
      */
     @Deprecated
     @Method(selector = "paymentAuthorizationViewController:didSelectShippingMethod:completion:")
     void didSelectShippingMethod(PKPaymentAuthorizationViewController controller, PKShippingMethod shippingMethod, @Block VoidBlock2<PKPaymentAuthorizationStatus, NSArray<PKPaymentSummaryItem>> completion);
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 9.0. ABRecordRef has been deprecated. Please migrate away from this delegate callback as soon as possible.
      */
     @Deprecated

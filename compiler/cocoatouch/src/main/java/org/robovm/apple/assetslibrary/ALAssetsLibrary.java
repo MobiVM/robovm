@@ -34,7 +34,6 @@ import org.robovm.apple.imageio.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 4.0 and later.
  * @deprecated Deprecated in iOS 9.0. Use PHPhotoLibrary from the Photos framework instead
  */
 /*</javadoc>*/
@@ -73,7 +72,6 @@ import org.robovm.apple.imageio.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @since Available in iOS 4.0 and later.
      * @deprecated Deprecated in iOS 9.0. Use photoLibraryDidChange: notification from the Photos framework instead
      */
     @Deprecated
@@ -81,35 +79,30 @@ import org.robovm.apple.imageio.*;
     public static native NSString ChangedNotification();
     
     /**
-     * @since Available in iOS 4.0 and later.
      * @deprecated Deprecated in iOS 9.0. Use the PHFetchResult returned by one of the fetch... methods on PHAssetCollection from the Photos framework to enumerate asset collections instead
      */
     @Deprecated
     @Method(selector = "enumerateGroupsWithTypes:usingBlock:failureBlock:")
     public native void enumerateGroups(ALAssetsGroupType types, @Block VoidBlock2<ALAssetsGroup, BooleanPtr> enumerationBlock, @Block VoidBlock1<NSError> failureBlock);
     /**
-     * @since Available in iOS 4.0 and later.
      * @deprecated Deprecated in iOS 9.0. Use fetchAssetsWithLocalIdentifiers:options: on PHAsset to fetch assets by local identifier (or to lookup PHAssets by a previously known ALAssetPropertyAssetURL use fetchAssetsWithALAssetURLs:options:) from the Photos framework instead
      */
     @Deprecated
     @Method(selector = "assetForURL:resultBlock:failureBlock:")
     public native void getAsset(NSURL assetURL, @Block VoidBlock1<ALAsset> resultBlock, @Block VoidBlock1<NSError> failureBlock);
     /**
-     * @since Available in iOS 5.0 and later.
      * @deprecated Deprecated in iOS 9.0. Use fetchAssetCollectionsWithLocalIdentifiers:options: on PHAssetCollection to fetch the asset collections by local identifier (or to lookup PHAssetCollections by a previously known ALAssetsGroupPropertyURL use fetchAssetCollectionsWithALAssetGroupURLs:options:) from the Photos framework instead
      */
     @Deprecated
     @Method(selector = "groupForURL:resultBlock:failureBlock:")
     public native void getGroup(NSURL groupURL, @Block VoidBlock1<ALAssetsGroup> resultBlock, @Block VoidBlock1<NSError> failureBlock);
     /**
-     * @since Available in iOS 5.0 and later.
      * @deprecated Deprecated in iOS 9.0. Use creationRequestForAssetCollectionWithTitle: on PHAssetCollectionChangeRequest from the Photos framework to create a new asset collection instead
      */
     @Deprecated
     @Method(selector = "addAssetsGroupAlbumWithName:resultBlock:failureBlock:")
     public native void addAssetsGroupAlbum(String name, @Block VoidBlock1<ALAssetsGroup> resultBlock, @Block VoidBlock1<NSError> failureBlock);
     /**
-     * @since Available in iOS 4.0 and later.
      * @deprecated Deprecated in iOS 9.0. Use creationRequestForAssetFromImage: on PHAssetChangeRequest from the Photos framework to create a new asset instead
      */
     @Deprecated
@@ -117,7 +110,6 @@ import org.robovm.apple.imageio.*;
     @Method(selector = "writeImageToSavedPhotosAlbum:orientation:completionBlock:")
     public native void writeImageToSavedPhotosAlbum(CGImage imageRef, ALAssetOrientation orientation, @Block VoidBlock2<NSURL, NSError> completionBlock);
     /**
-     * @since Available in iOS 4.1 and later.
      * @deprecated Deprecated in iOS 9.0. Use creationRequestForAssetFromImage: on PHAssetChangeRequest from the Photos framework to create a new asset instead
      */
     @Deprecated
@@ -125,7 +117,6 @@ import org.robovm.apple.imageio.*;
     @Method(selector = "writeImageToSavedPhotosAlbum:metadata:completionBlock:")
     public native void writeImageToSavedPhotosAlbum(CGImage imageRef, CGImageProperties metadata, @Block VoidBlock2<NSURL, NSError> completionBlock);
     /**
-     * @since Available in iOS 4.1 and later.
      * @deprecated Deprecated in iOS 9.0. Use creationRequestForAssetFromImageData: on PHAssetChangeRequest from the Photos framework to create a new asset instead
      */
     @Deprecated
@@ -133,28 +124,24 @@ import org.robovm.apple.imageio.*;
     @Method(selector = "writeImageDataToSavedPhotosAlbum:metadata:completionBlock:")
     public native void writeImageDataToSavedPhotosAlbum(NSData imageData, CGImageProperties metadata, @Block VoidBlock2<NSURL, NSError> completionBlock);
     /**
-     * @since Available in iOS 4.0 and later.
      * @deprecated Deprecated in iOS 9.0. Use creationRequestForAssetFromVideoAtFilePath: on PHAssetChangeRequest from the Photos framework to create a new asset instead
      */
     @Deprecated
     @Method(selector = "writeVideoAtPathToSavedPhotosAlbum:completionBlock:")
     public native void writeVideoToSavedPhotosAlbum(NSURL videoPathURL, @Block VoidBlock2<NSURL, NSError> completionBlock);
     /**
-     * @since Available in iOS 5.0 and later.
      * @deprecated Deprecated in iOS 9.0. Use isCompatibleWithSavedPhotosAlbum on AVAsset instead
      */
     @Deprecated
     @Method(selector = "videoAtPathIsCompatibleWithSavedPhotosAlbum:")
     public native boolean isVideoCompatibleWithSavedPhotosAlbum(NSURL videoPathURL);
     /**
-     * @since Available in iOS 6.0 and later.
      * @deprecated Deprecated in iOS 9.0. Use authorizationStatus on the shared PHPhotoLibrary from the Photos framework instead
      */
     @Deprecated
     @Method(selector = "authorizationStatus")
     public static native ALAuthorizationStatus getAuthorizationStatus();
     /**
-     * @since Available in iOS 6.0 and later.
      * @deprecated Deprecated in iOS 9.0. Use the Photos framework instead
      */
     @Deprecated

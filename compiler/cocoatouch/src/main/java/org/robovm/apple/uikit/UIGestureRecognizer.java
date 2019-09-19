@@ -42,9 +42,7 @@ import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 3.2 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIGestureRecognizer/*</name>*/ 
@@ -221,14 +219,8 @@ import org.robovm.apple.linkpresentation.*;
     public native boolean canPreventGestureRecognizer(UIGestureRecognizer preventedGestureRecognizer);
     @Method(selector = "canBePreventedByGestureRecognizer:")
     public native boolean canBePreventedByGestureRecognizer(UIGestureRecognizer preventingGestureRecognizer);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "shouldRequireFailureOfGestureRecognizer:")
     public native boolean shouldRequireFailureOfGestureRecognizer(UIGestureRecognizer otherGestureRecognizer);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "shouldBeRequiredToFailByGestureRecognizer:")
     public native boolean shouldBeRequiredToFailByGestureRecognizer(UIGestureRecognizer otherGestureRecognizer);
     @Method(selector = "touchesBegan:withEvent:")

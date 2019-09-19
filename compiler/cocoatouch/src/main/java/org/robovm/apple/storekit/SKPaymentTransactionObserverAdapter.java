@@ -49,29 +49,14 @@ import org.robovm.apple.uikit.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @NotImplemented("paymentQueue:updatedTransactions:")
     public void updatedTransactions(SKPaymentQueue queue, NSArray<SKPaymentTransaction> transactions) {}
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @NotImplemented("paymentQueue:removedTransactions:")
     public void removedTransactions(SKPaymentQueue queue, NSArray<SKPaymentTransaction> transactions) {}
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @NotImplemented("paymentQueue:restoreCompletedTransactionsFailedWithError:")
     public void restoreCompletedTransactionsFailed(SKPaymentQueue queue, NSError error) {}
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @NotImplemented("paymentQueueRestoreCompletedTransactionsFinished:")
     public void restoreCompletedTransactionsFinished(SKPaymentQueue queue) {}
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @NotImplemented("paymentQueue:updatedDownloads:")
     public void updatedDownloads(SKPaymentQueue queue, NSArray<SKDownload> downloads) {}
     /**

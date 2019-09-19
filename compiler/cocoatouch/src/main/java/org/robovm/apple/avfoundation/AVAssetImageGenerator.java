@@ -41,9 +41,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVAssetImageGenerator/*</name>*/ 
@@ -61,9 +59,6 @@ import org.robovm.apple.audiotoolbox.*;
     public AVAssetImageGenerator(AVAsset asset) { super((SkipInit) null); initObject(init(asset)); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "asset")
     public native AVAsset getAsset();
     @Property(selector = "appliesPreferredTrackTransform")
@@ -82,29 +77,14 @@ import org.robovm.apple.audiotoolbox.*;
     public native AVVideoComposition getVideoComposition();
     @Property(selector = "setVideoComposition:")
     public native void setVideoComposition(AVVideoComposition v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "customVideoCompositor")
     public native AVVideoCompositing getCustomVideoCompositor();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "requestedTimeToleranceBefore")
     public native @ByVal CMTime getRequestedTimeToleranceBefore();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setRequestedTimeToleranceBefore:")
     public native void setRequestedTimeToleranceBefore(@ByVal CMTime v);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "requestedTimeToleranceAfter")
     public native @ByVal CMTime getRequestedTimeToleranceAfter();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setRequestedTimeToleranceAfter:")
     public native void setRequestedTimeToleranceAfter(@ByVal CMTime v);
     /*</properties>*/

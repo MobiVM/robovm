@@ -57,14 +57,8 @@ import org.robovm.apple.metal.*;
     @WeaklyLinked
     @Method(selector = "initWithAVPlayer:")
     public SKVideoNode(AVPlayer player) { super((SkipInit) null); initObject(init(player)); }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "initWithFileNamed:")
     public SKVideoNode(String videoFile) { super((SkipInit) null); initObject(init(videoFile)); }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "initWithURL:")
     public SKVideoNode(NSURL url) { super((SkipInit) null); initObject(init(url)); }
     @Method(selector = "initWithCoder:")
@@ -85,14 +79,8 @@ import org.robovm.apple.metal.*;
     @WeaklyLinked
     @Method(selector = "initWithAVPlayer:")
     protected native @Pointer long init(AVPlayer player);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "initWithFileNamed:")
     protected native @Pointer long init(String videoFile);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "initWithURL:")
     protected native @Pointer long init(NSURL url);
     @Method(selector = "initWithCoder:")

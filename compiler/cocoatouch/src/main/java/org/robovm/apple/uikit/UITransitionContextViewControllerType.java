@@ -98,13 +98,7 @@ import org.robovm.apple.linkpresentation.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final UITransitionContextViewControllerType FromViewController = new UITransitionContextViewControllerType("FromViewController");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final UITransitionContextViewControllerType ToViewController = new UITransitionContextViewControllerType("ToViewController");
     /*</constants>*/
     
@@ -131,14 +125,8 @@ import org.robovm.apple.linkpresentation.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="UITransitionContextFromViewControllerKey", optional=true)
         public static native NSString FromViewController();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="UITransitionContextToViewControllerKey", optional=true)
         public static native NSString ToViewController();
         /*</values>*/

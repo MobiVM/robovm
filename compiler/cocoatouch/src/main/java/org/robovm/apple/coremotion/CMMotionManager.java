@@ -31,9 +31,7 @@ import org.robovm.apple.foundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreMotion") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CMMotionManager/*</name>*/ 
@@ -69,38 +67,20 @@ import org.robovm.apple.foundation.*;
     public native boolean isGyroActive();
     @Property(selector = "gyroData")
     public native CMGyroData getGyroData();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "magnetometerUpdateInterval")
     public native double getMagnetometerUpdateInterval();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setMagnetometerUpdateInterval:")
     public native void setMagnetometerUpdateInterval(double v);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "isMagnetometerAvailable")
     public native boolean isMagnetometerAvailable();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "isMagnetometerActive")
     public native boolean isMagnetometerActive();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "magnetometerData")
     public native CMMagnetometerData getMagnetometerData();
     @Property(selector = "deviceMotionUpdateInterval")
     public native double getDeviceMotionUpdateInterval();
     @Property(selector = "setDeviceMotionUpdateInterval:")
     public native void setDeviceMotionUpdateInterval(double v);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "attitudeReferenceFrame")
     public native CMAttitudeReferenceFrame getAttitudeReferenceFrame();
     @Property(selector = "isDeviceMotionAvailable")
@@ -109,14 +89,8 @@ import org.robovm.apple.foundation.*;
     public native boolean isDeviceMotionActive();
     @Property(selector = "deviceMotion")
     public native CMDeviceMotion getDeviceMotion();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "showsDeviceMovementDisplay")
     public native boolean showsDeviceMovementDisplay();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setShowsDeviceMovementDisplay:")
     public native void setShowsDeviceMovementDisplay(boolean v);
     /*</properties>*/
@@ -134,40 +108,22 @@ import org.robovm.apple.foundation.*;
     public native void startGyroUpdates(NSOperationQueue queue, @Block VoidBlock2<CMGyroData, NSError> handler);
     @Method(selector = "stopGyroUpdates")
     public native void stopGyroUpdates();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "startMagnetometerUpdates")
     public native void startMagnetometerUpdates();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "startMagnetometerUpdatesToQueue:withHandler:")
     public native void startMagnetometerUpdates(NSOperationQueue queue, @Block VoidBlock2<CMMagnetometerData, NSError> handler);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "stopMagnetometerUpdates")
     public native void stopMagnetometerUpdates();
     @Method(selector = "startDeviceMotionUpdates")
     public native void startDeviceMotionUpdates();
     @Method(selector = "startDeviceMotionUpdatesToQueue:withHandler:")
     public native void startDeviceMotionUpdates(NSOperationQueue queue, @Block VoidBlock2<CMDeviceMotion, NSError> handler);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "startDeviceMotionUpdatesUsingReferenceFrame:")
     public native void startDeviceMotionUpdates(CMAttitudeReferenceFrame referenceFrame);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "startDeviceMotionUpdatesUsingReferenceFrame:toQueue:withHandler:")
     public native void startDeviceMotionUpdates(CMAttitudeReferenceFrame referenceFrame, NSOperationQueue queue, @Block VoidBlock2<CMDeviceMotion, NSError> handler);
     @Method(selector = "stopDeviceMotionUpdates")
     public native void stopDeviceMotionUpdates();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "availableAttitudeReferenceFrames")
     public static native CMAttitudeReferenceFrame getAvailableAttitudeReferenceFrames();
     /*</methods>*/

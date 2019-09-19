@@ -87,9 +87,6 @@ import org.robovm.apple.foundation.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final HKWorkoutTypeIdentifier Workout = new HKWorkoutTypeIdentifier("Workout");
     /*</constants>*/
     
@@ -116,9 +113,6 @@ import org.robovm.apple.foundation.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="HKWorkoutTypeIdentifier", optional=true)
         public static native NSString Workout();
         /*</values>*/

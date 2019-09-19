@@ -91,13 +91,7 @@ import org.robovm.apple.coretext.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CFStreamSocketSOCKSVersion _4 = new CFStreamSocketSOCKSVersion("_4");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CFStreamSocketSOCKSVersion _5 = new CFStreamSocketSOCKSVersion("_5");
     /*</constants>*/
     
@@ -124,14 +118,8 @@ import org.robovm.apple.coretext.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCFStreamSocketSOCKSVersion4", optional=true)
         public static native CFString _4();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCFStreamSocketSOCKSVersion5", optional=true)
         public static native CFString _5();
         /*</values>*/

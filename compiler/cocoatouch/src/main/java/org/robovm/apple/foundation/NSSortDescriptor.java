@@ -68,9 +68,6 @@ import org.robovm.apple.dispatch.*;
     public NSSortDescriptor(String key, boolean ascending, Selector selector) { super((SkipInit) null); initObject(init(key, ascending, selector)); }
     @Method(selector = "initWithCoder:")
     public NSSortDescriptor(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "initWithKey:ascending:comparator:")
     public NSSortDescriptor(String key, boolean ascending, @Block Block2<NSObject, NSObject, NSComparisonResult> cmptr) { super((SkipInit) null); initObject(init(key, ascending, cmptr)); }
     /*</constructors>*/
@@ -81,9 +78,6 @@ import org.robovm.apple.dispatch.*;
     public native boolean isAscending();
     @Property(selector = "selector")
     public native Selector getSelector();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "comparator")
     public native @Block Block2<NSObject, NSObject, NSComparisonResult> getComparator();
     @Property(selector = "reversedSortDescriptor")
@@ -99,14 +93,8 @@ import org.robovm.apple.dispatch.*;
     protected native @Pointer long init(String key, boolean ascending, Selector selector);
     @Method(selector = "initWithCoder:")
     protected native @Pointer long init(NSCoder coder);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "allowEvaluation")
     public native void allowEvaluation();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "initWithKey:ascending:comparator:")
     protected native @Pointer long init(String key, boolean ascending, @Block Block2<NSObject, NSObject, NSComparisonResult> cmptr);
     @Method(selector = "compareObject:toObject:")

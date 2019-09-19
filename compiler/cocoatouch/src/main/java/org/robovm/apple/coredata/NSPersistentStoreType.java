@@ -90,17 +90,8 @@ import org.robovm.apple.uikit.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public static final NSPersistentStoreType SQLite = new NSPersistentStoreType("SQLite");
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public static final NSPersistentStoreType Binary = new NSPersistentStoreType("Binary");
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public static final NSPersistentStoreType InMemory = new NSPersistentStoreType("InMemory");
     /*</constants>*/
     
@@ -127,19 +118,10 @@ import org.robovm.apple.uikit.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 3.0 and later.
-         */
         @GlobalValue(symbol="NSSQLiteStoreType", optional=true)
         public static native NSString SQLite();
-        /**
-         * @since Available in iOS 3.0 and later.
-         */
         @GlobalValue(symbol="NSBinaryStoreType", optional=true)
         public static native NSString Binary();
-        /**
-         * @since Available in iOS 3.0 and later.
-         */
         @GlobalValue(symbol="NSInMemoryStoreType", optional=true)
         public static native NSString InMemory();
         /*</values>*/

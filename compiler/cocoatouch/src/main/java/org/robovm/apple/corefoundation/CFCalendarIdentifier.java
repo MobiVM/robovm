@@ -98,29 +98,11 @@ import org.robovm.apple.coretext.*;
     public static final CFCalendarIdentifier Islamic = new CFCalendarIdentifier("Islamic");
     public static final CFCalendarIdentifier IslamicCivil = new CFCalendarIdentifier("IslamicCivil");
     public static final CFCalendarIdentifier Japanese = new CFCalendarIdentifier("Japanese");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CFCalendarIdentifier RepublicOfChina = new CFCalendarIdentifier("RepublicOfChina");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CFCalendarIdentifier Persian = new CFCalendarIdentifier("Persian");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CFCalendarIdentifier Indian = new CFCalendarIdentifier("Indian");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CFCalendarIdentifier ISO8601 = new CFCalendarIdentifier("ISO8601");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final CFCalendarIdentifier IslamicTabular = new CFCalendarIdentifier("IslamicTabular");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final CFCalendarIdentifier IslamicUmmAlQura = new CFCalendarIdentifier("IslamicUmmAlQura");
     /*</constants>*/
     
@@ -161,34 +143,16 @@ import org.robovm.apple.coretext.*;
         public static native CFString IslamicCivil();
         @GlobalValue(symbol="kCFJapaneseCalendar", optional=true)
         public static native CFString Japanese();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCFRepublicOfChinaCalendar", optional=true)
         public static native CFString RepublicOfChina();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCFPersianCalendar", optional=true)
         public static native CFString Persian();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCFIndianCalendar", optional=true)
         public static native CFString Indian();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCFISO8601Calendar", optional=true)
         public static native CFString ISO8601();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="kCFIslamicTabularCalendar", optional=true)
         public static native CFString IslamicTabular();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="kCFIslamicUmmAlQuraCalendar", optional=true)
         public static native CFString IslamicUmmAlQura();
         /*</values>*/

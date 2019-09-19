@@ -174,14 +174,8 @@ import org.robovm.apple.uikit.*;
         setProperty(AudioServicesProperty.CompletePlaybackIfAppDies, ptr, new IntPtr(ui ? 1 : 0));
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioServicesCreateSystemSoundID", optional=true)
     protected static native OSStatus createSystemSoundID0(NSURL inFileURL, IntPtr outSystemSoundID);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioServicesDisposeSystemSoundID", optional=true)
     protected static native OSStatus disposeSystemSoundID0(int inSystemSoundID);
     /**
@@ -194,39 +188,18 @@ import org.robovm.apple.uikit.*;
      */
     @Bridge(symbol="AudioServicesPlaySystemSoundWithCompletion", optional=true)
     protected static native void playSystemSoundWithCompletion0(int inSystemSoundID, @Block Runnable inCompletionBlock);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioServicesGetPropertyInfo", optional=true)
     protected static native OSStatus getPropertyInfo0(AudioServicesProperty inPropertyID, int inSpecifierSize, VoidPtr inSpecifier, IntPtr outPropertyDataSize, BooleanPtr outWritable);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioServicesGetProperty", optional=true)
     protected static native OSStatus getProperty0(AudioServicesProperty inPropertyID, int inSpecifierSize, VoidPtr inSpecifier, IntPtr ioPropertyDataSize, VoidPtr outPropertyData);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioServicesSetProperty", optional=true)
     protected static native OSStatus setProperty0(AudioServicesProperty inPropertyID, int inSpecifierSize, VoidPtr inSpecifier, int inPropertyDataSize, VoidPtr inPropertyData);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioServicesPlayAlertSound", optional=true)
     public static native void playAlertSound(int systemSoundID);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioServicesPlaySystemSound", optional=true)
     public static native void playSystemSound(int systemSoundID);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioServicesAddSystemSoundCompletion", optional=true)
     protected static native OSStatus addSystemSoundCompletion0(int inSystemSoundID, NSRunLoop inRunLoop, String inRunLoopMode, FunctionPtr inCompletionRoutine, VoidPtr inClientData);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioServicesRemoveSystemSoundCompletion", optional=true)
     protected static native void removeSystemSoundCompletion0(int inSystemSoundID);
     /*</methods>*/

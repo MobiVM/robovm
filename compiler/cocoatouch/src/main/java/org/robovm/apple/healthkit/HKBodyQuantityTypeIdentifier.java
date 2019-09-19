@@ -87,25 +87,10 @@ import org.robovm.apple.foundation.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final HKBodyQuantityTypeIdentifier BodyMassIndex = new HKBodyQuantityTypeIdentifier("BodyMassIndex");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final HKBodyQuantityTypeIdentifier BodyFatPercentage = new HKBodyQuantityTypeIdentifier("BodyFatPercentage");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final HKBodyQuantityTypeIdentifier Height = new HKBodyQuantityTypeIdentifier("Height");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final HKBodyQuantityTypeIdentifier BodyMass = new HKBodyQuantityTypeIdentifier("BodyMass");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final HKBodyQuantityTypeIdentifier LeanBodyMass = new HKBodyQuantityTypeIdentifier("LeanBodyMass");
     /*</constants>*/
     
@@ -132,29 +117,14 @@ import org.robovm.apple.foundation.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="HKQuantityTypeIdentifierBodyMassIndex", optional=true)
         public static native NSString BodyMassIndex();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="HKQuantityTypeIdentifierBodyFatPercentage", optional=true)
         public static native NSString BodyFatPercentage();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="HKQuantityTypeIdentifierHeight", optional=true)
         public static native NSString Height();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="HKQuantityTypeIdentifierBodyMass", optional=true)
         public static native NSString BodyMass();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="HKQuantityTypeIdentifierLeanBodyMass", optional=true)
         public static native NSString LeanBodyMass();
         /*</values>*/

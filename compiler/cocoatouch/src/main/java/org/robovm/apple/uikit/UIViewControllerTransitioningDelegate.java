@@ -65,9 +65,6 @@ import org.robovm.apple.linkpresentation.*;
     UIViewControllerInteractiveTransitioning getInteractionControllerForPresentation(UIViewControllerAnimatedTransitioning animator);
     @Method(selector = "interactionControllerForDismissal:")
     UIViewControllerInteractiveTransitioning getInteractionControllerForDismissal(UIViewControllerAnimatedTransitioning animator);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "presentationControllerForPresentedViewController:presentingViewController:sourceViewController:")
     UIPresentationController getPresentationControllerForPresentedViewController(UIViewController presented, UIViewController presenting, UIViewController source);
     /*</methods>*/

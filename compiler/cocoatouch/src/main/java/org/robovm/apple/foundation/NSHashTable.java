@@ -41,9 +41,7 @@ import org.robovm.apple.foundation.NSSet.NSSetPtr;
 import org.robovm.apple.foundation.NSSet.SetAdapter;
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 6.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSHashTable<T extends NSObject>/*</name>*/

@@ -165,9 +165,6 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "alternateQuotationEndDelimiter")
     private native String getAlternateQuotationEndDelimiter0();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Property(selector = "autoupdatingCurrentLocale")
     public static native NSLocale getAutoupdatingCurrentLocale();
     @Property(selector = "currentLocale")
@@ -182,14 +179,8 @@ import org.robovm.apple.dispatch.*;
     public static native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getISOCountryCodes();
     @Property(selector = "ISOCurrencyCodes")
     public static native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getISOCurrencyCodes();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Property(selector = "commonISOCurrencyCodes")
     public static native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getCommonISOCurrencyCodes();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Property(selector = "preferredLanguages")
     public static native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getPreferredLanguages();
     @Property(selector = "supportsSecureCoding")
@@ -371,9 +362,6 @@ import org.robovm.apple.dispatch.*;
         }
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @GlobalValue(symbol="NSCurrentLocaleDidChangeNotification", optional=true)
     public static native NSString CurrentLocaleDidChangeNotification();
     
@@ -391,24 +379,12 @@ import org.robovm.apple.dispatch.*;
     public static native String getCanonicalLocaleIdentifier(String string);
     @Method(selector = "canonicalLanguageIdentifierFromString:")
     public static native String getCanonicalLanguageIdentifier(String string);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "localeIdentifierFromWindowsLocaleCode:")
     public static native String getLocaleIdentifierFromWindowsLocaleCode(int lcid);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "windowsLocaleCodeFromLocaleIdentifier:")
     public static native int getWindowsLocaleCodeFromLocaleIdentifier(String localeIdentifier);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "characterDirectionForLanguage:")
     public static native NSLocaleLanguageDirection getCharacterDirection(String isoLangCode);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "lineDirectionForLanguage:")
     public static native NSLocaleLanguageDirection getLineDirection(String isoLangCode);
     @Method(selector = "encodeWithCoder:")

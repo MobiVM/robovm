@@ -38,9 +38,7 @@ import org.robovm.apple.imageio.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("Photos") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/PHCollectionListChangeRequest/*</name>*/ 
@@ -54,82 +52,37 @@ import org.robovm.apple.imageio.*;
     public PHCollectionListChangeRequest() {}
     protected PHCollectionListChangeRequest(Handle h, long handle) { super(h, handle); }
     protected PHCollectionListChangeRequest(SkipInit skipInit) { super(skipInit); }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public PHCollectionListChangeRequest(PHCollectionList collectionList) { super((Handle) null, create(collectionList)); retain(getHandle()); }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public PHCollectionListChangeRequest(PHCollectionList collectionList, PHFetchResult<PHCollection> childCollections) { super((Handle) null, create(collectionList, childCollections)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "placeholderForCreatedCollectionList")
     public native PHObjectPlaceholder getPlaceholderForCreatedCollectionList();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "title")
     public native String getTitle();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setTitle:")
     public native void setTitle(String v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "addChildCollections:")
     public native void addChildCollections(NSFastEnumeration collections);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "insertChildCollections:atIndexes:")
     public native void insertChildCollections(NSFastEnumeration collections, NSIndexSet indexes);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "removeChildCollections:")
     public native void removeChildCollections(NSFastEnumeration collections);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "removeChildCollectionsAtIndexes:")
     public native void removeChildCollections(NSIndexSet indexes);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "replaceChildCollectionsAtIndexes:withChildCollections:")
     public native void replaceChildCollections(NSIndexSet indexes, NSFastEnumeration collections);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "moveChildCollectionsAtIndexes:toIndex:")
     public native void moveChildCollectionsTo(NSIndexSet indexes, @MachineSizedUInt long toIndex);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "creationRequestForCollectionListWithTitle:")
     public static native PHCollectionListChangeRequest createCollectionListCreationRequest(String title);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "deleteCollectionLists:")
     public static native void deleteCollectionLists(NSFastEnumeration collectionLists);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "changeRequestForCollectionList:")
     protected static native @Pointer long create(PHCollectionList collectionList);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "changeRequestForCollectionList:childCollections:")
     protected static native @Pointer long create(PHCollectionList collectionList, PHFetchResult<PHCollection> childCollections);
     /*</methods>*/

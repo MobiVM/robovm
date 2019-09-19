@@ -34,9 +34,7 @@ import org.robovm.apple.contacts.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 7.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreLocation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CLBeaconRegion/*</name>*/ 
@@ -60,7 +58,6 @@ import org.robovm.apple.contacts.*;
        return res;
     }
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 13.0.
      */
     @Deprecated
@@ -76,7 +73,6 @@ import org.robovm.apple.contacts.*;
        return res;
     }
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 13.0.
      */
     @Deprecated
@@ -92,7 +88,6 @@ import org.robovm.apple.contacts.*;
        return res;
     }
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 13.0.
      */
     @Deprecated
@@ -104,7 +99,6 @@ import org.robovm.apple.contacts.*;
     @Method(selector = "initWithBeaconIdentityConstraint:identifier:")
     public CLBeaconRegion(CLBeaconIdentityConstraint beaconIdentityConstraint, String identifier) { super((SkipInit) null); initObject(init(beaconIdentityConstraint, identifier)); }
     /**
-     * @since Available in iOS 4.0 and later.
      * @deprecated Deprecated in iOS 7.0. Please see CLCircularRegion
      */
     @Deprecated
@@ -123,7 +117,6 @@ import org.robovm.apple.contacts.*;
     @Property(selector = "UUID")
     public native NSUUID getUUID();
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 13.0.
      */
     @Deprecated
@@ -146,7 +139,6 @@ import org.robovm.apple.contacts.*;
     @Method(selector = "initWithUUID:identifier:")
     protected native @Pointer long createUsingUUID0(NSUUID uuid, String identifier);
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 13.0.
      */
     @Deprecated
@@ -158,7 +150,6 @@ import org.robovm.apple.contacts.*;
     @Method(selector = "initWithUUID:major:identifier:")
     protected native @Pointer long createUsingUUID0(NSUUID uuid, short major, String identifier);
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 13.0.
      */
     @Deprecated
@@ -170,7 +161,6 @@ import org.robovm.apple.contacts.*;
     @Method(selector = "initWithUUID:major:minor:identifier:")
     protected native @Pointer long createUsingUUID0(NSUUID uuid, short major, short minor, String identifier);
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 13.0.
      */
     @Deprecated

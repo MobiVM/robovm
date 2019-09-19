@@ -71,14 +71,8 @@ import org.robovm.apple.dispatch.*;
     public native double getTimeoutInterval();
     @Property(selector = "mainDocumentURL")
     public native NSURL getMainDocumentURL();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "networkServiceType")
     public native NSURLRequestNetworkServiceType getNetworkServiceType();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "allowsCellularAccess")
     public native boolean allowsCellularAccess();
     /**
@@ -101,9 +95,6 @@ import org.robovm.apple.dispatch.*;
     public native NSInputStream getHTTPBodyStream();
     @Property(selector = "HTTPShouldHandleCookies")
     public native boolean shouldHandleHTTPCookies();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "HTTPShouldUsePipelining")
     public native boolean shouldUseHTTPPipelining();
     /*</properties>*/

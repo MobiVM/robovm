@@ -108,9 +108,6 @@ import org.robovm.apple.dispatch.*;
     }
     
 
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public boolean shouldReturnData() {
         if (has(Keys.Data())) {
             CFBoolean val = get(Keys.Data(), CFBoolean.class);
@@ -118,16 +115,10 @@ import org.robovm.apple.dispatch.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public SecReturn setShouldReturnData(boolean shouldReturnData) {
         set(Keys.Data(), CFBoolean.valueOf(shouldReturnData));
         return this;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public boolean shouldReturnAttributes() {
         if (has(Keys.Attributes())) {
             CFBoolean val = get(Keys.Attributes(), CFBoolean.class);
@@ -135,16 +126,10 @@ import org.robovm.apple.dispatch.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public SecReturn setShouldReturnAttributes(boolean shouldReturnAttributes) {
         set(Keys.Attributes(), CFBoolean.valueOf(shouldReturnAttributes));
         return this;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public boolean shouldReturnReference() {
         if (has(Keys.Ref())) {
             CFBoolean val = get(Keys.Ref(), CFBoolean.class);
@@ -152,16 +137,10 @@ import org.robovm.apple.dispatch.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public SecReturn setShouldReturnReference(boolean shouldReturnReference) {
         set(Keys.Ref(), CFBoolean.valueOf(shouldReturnReference));
         return this;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public boolean shouldReturnPersistent() {
         if (has(Keys.PersistentRef())) {
             CFBoolean val = get(Keys.PersistentRef(), CFBoolean.class);
@@ -169,9 +148,6 @@ import org.robovm.apple.dispatch.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public SecReturn setShouldReturnPersistent(boolean shouldReturnPersistent) {
         set(Keys.PersistentRef(), CFBoolean.valueOf(shouldReturnPersistent));
         return this;
@@ -182,24 +158,12 @@ import org.robovm.apple.dispatch.*;
     @Library("Security")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kSecReturnData", optional=true)
         public static native CFType Data();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kSecReturnAttributes", optional=true)
         public static native CFType Attributes();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kSecReturnRef", optional=true)
         public static native CFType Ref();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kSecReturnPersistentRef", optional=true)
         public static native CFType PersistentRef();
     }

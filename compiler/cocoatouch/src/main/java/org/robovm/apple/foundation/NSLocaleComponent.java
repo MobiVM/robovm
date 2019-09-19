@@ -108,25 +108,10 @@ import org.robovm.apple.dispatch.*;
     public static final NSLocaleComponent GroupingSeparator = new NSLocaleComponent("GroupingSeparator");
     public static final NSLocaleComponent CurrencySymbol = new NSLocaleComponent("CurrencySymbol");
     public static final NSLocaleComponent CurrencyCode = new NSLocaleComponent("CurrencyCode");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final NSLocaleComponent CollatorIdentifier = new NSLocaleComponent("CollatorIdentifier");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final NSLocaleComponent QuotationBeginDelimiterKey = new NSLocaleComponent("QuotationBeginDelimiterKey");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final NSLocaleComponent QuotationEndDelimiterKey = new NSLocaleComponent("QuotationEndDelimiterKey");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final NSLocaleComponent AlternateQuotationBeginDelimiterKey = new NSLocaleComponent("AlternateQuotationBeginDelimiterKey");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final NSLocaleComponent AlternateQuotationEndDelimiterKey = new NSLocaleComponent("AlternateQuotationEndDelimiterKey");
     /*</constants>*/
     
@@ -179,29 +164,14 @@ import org.robovm.apple.dispatch.*;
         public static native NSString CurrencySymbol();
         @GlobalValue(symbol="NSLocaleCurrencyCode", optional=true)
         public static native NSString CurrencyCode();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="NSLocaleCollatorIdentifier", optional=true)
         public static native NSString CollatorIdentifier();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="NSLocaleQuotationBeginDelimiterKey", optional=true)
         public static native NSString QuotationBeginDelimiterKey();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="NSLocaleQuotationEndDelimiterKey", optional=true)
         public static native NSString QuotationEndDelimiterKey();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="NSLocaleAlternateQuotationBeginDelimiterKey", optional=true)
         public static native NSString AlternateQuotationBeginDelimiterKey();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="NSLocaleAlternateQuotationEndDelimiterKey", optional=true)
         public static native NSString AlternateQuotationEndDelimiterKey();
         /*</values>*/

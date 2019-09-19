@@ -39,9 +39,7 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 3.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSExpression/*</name>*/ 
@@ -60,9 +58,6 @@ import org.robovm.apple.dispatch.*;
     public NSExpression(NSExpressionType type) { super((SkipInit) null); initObject(init(type)); }
     @Method(selector = "initWithCoder:")
     public NSExpression(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public NSExpression(String expressionFormat, NSArray<?> arguments) { super((Handle) null, create(expressionFormat, arguments)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
@@ -80,24 +75,12 @@ import org.robovm.apple.dispatch.*;
     public native NSExpression getOperand();
     @Property(selector = "arguments")
     public native NSArray<NSExpression> getArguments();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "collection")
     public native NSObject getCollection();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "predicate")
     public native NSPredicate getPredicate();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "leftExpression")
     public native NSExpression getLeftExpression();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "rightExpression")
     public native NSExpression getRightExpression();
     /**
@@ -110,9 +93,6 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "falseExpression")
     public native NSExpression getFalseExpression();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "expressionBlock")
     public native @Block Block3<NSObject, NSArray<NSExpression>, NSMutableDictionary<?, ?>, NSObject> getExpressionBlock();
     @Property(selector = "supportsSecureCoding")
@@ -126,14 +106,8 @@ import org.robovm.apple.dispatch.*;
     protected native @Pointer long init(NSCoder coder);
     @Method(selector = "expressionValueWithObject:context:")
     public native NSObject evaluate(NSObject object, NSMutableDictionary<?, ?> context);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "allowEvaluation")
     public native void allowEvaluation();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "expressionWithFormat:argumentArray:")
     protected static native @Pointer long create(String expressionFormat, NSArray<?> arguments);
     @Method(selector = "expressionForConstantValue:")
@@ -146,44 +120,20 @@ import org.robovm.apple.dispatch.*;
     public static native NSExpression createForKeyPath(String keyPath);
     @Method(selector = "expressionForFunction:arguments:")
     public static native NSExpression createForFunction(String name, NSArray<?> parameters);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "expressionForAggregate:")
     public static native NSExpression createForAggregate(NSArray<NSExpression> subexpressions);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "expressionForUnionSet:with:")
     public static native NSExpression createForUnionSet(NSExpression left, NSExpression right);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "expressionForIntersectSet:with:")
     public static native NSExpression createForIntersectSet(NSExpression left, NSExpression right);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "expressionForMinusSet:with:")
     public static native NSExpression createForMinusSet(NSExpression left, NSExpression right);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "expressionForSubquery:usingIteratorVariable:predicate:")
     public static native NSExpression createForSubquery(NSExpression expression, String variable, NSPredicate predicate);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "expressionForFunction:selectorName:arguments:")
     public static native NSExpression createForFunction(NSExpression target, String name, NSArray<?> parameters);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "expressionForAnyKey")
     public static native NSExpression createForAnyKey();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "expressionForBlock:arguments:")
     public static native NSExpression createForBlock(@Block Block3<NSObject, NSArray<NSExpression>, NSMutableDictionary<?, ?>, NSObject> block, NSArray<NSExpression> arguments);
     /**

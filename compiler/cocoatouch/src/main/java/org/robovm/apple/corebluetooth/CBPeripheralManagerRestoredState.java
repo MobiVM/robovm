@@ -103,9 +103,6 @@ import org.robovm.apple.dispatch.*;
     }
     
 
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public NSArray<CBMutableService> getServices() {
         if (has(Keys.Services())) {
             NSArray<CBMutableService> val = (NSArray<CBMutableService>) get(Keys.Services());
@@ -113,9 +110,6 @@ import org.robovm.apple.dispatch.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public CBAdvertisementData getAdvertisementData() {
         if (has(Keys.AdvertisementData())) {
             NSDictionary val = (NSDictionary) get(Keys.AdvertisementData());
@@ -129,14 +123,8 @@ import org.robovm.apple.dispatch.*;
     @Library("CoreBluetooth")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="CBPeripheralManagerRestoredStateServicesKey", optional=true)
         public static native NSString Services();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="CBPeripheralManagerRestoredStateAdvertisementDataKey", optional=true)
         public static native NSString AdvertisementData();
     }

@@ -79,18 +79,12 @@ import org.robovm.apple.linkpresentation.*;
     UIViewAnimationCurve getCompletionCurve();
     @Property(selector = "containerView")
     UIView getContainerView();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "targetTransform")
     @ByVal CGAffineTransform getTargetTransform();
     /*</properties>*/
     /*<methods>*/
     @Method(selector = "viewControllerForKey:")
     UIViewController getViewController(String key);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "viewForKey:")
     UIView getView(String key);
     /*</methods>*/

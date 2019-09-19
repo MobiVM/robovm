@@ -107,9 +107,6 @@ import org.robovm.apple.uikit.*;
     }
     
 
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public long getITunesItemIdentifier() {
         if (has(Keys.ITunesItemIdentifier())) {
             NSNumber val = (NSNumber) get(Keys.ITunesItemIdentifier());
@@ -117,16 +114,10 @@ import org.robovm.apple.uikit.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public SKStoreProductParameters setITunesItemIdentifier(long iTunesItemIdentifier) {
         set(Keys.ITunesItemIdentifier(), NSNumber.valueOf(iTunesItemIdentifier));
         return this;
     }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public String getAffiliateToken() {
         if (has(Keys.AffiliateToken())) {
             NSString val = (NSString) get(Keys.AffiliateToken());
@@ -134,16 +125,10 @@ import org.robovm.apple.uikit.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public SKStoreProductParameters setAffiliateToken(String affiliateToken) {
         set(Keys.AffiliateToken(), new NSString(affiliateToken));
         return this;
     }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public String getCampaignToken() {
         if (has(Keys.CampaignToken())) {
             NSString val = (NSString) get(Keys.CampaignToken());
@@ -151,9 +136,6 @@ import org.robovm.apple.uikit.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public SKStoreProductParameters setCampaignToken(String campaignToken) {
         set(Keys.CampaignToken(), new NSString(campaignToken));
         return this;
@@ -206,9 +188,6 @@ import org.robovm.apple.uikit.*;
          */
         @GlobalValue(symbol="SKStoreProductParameterAdNetworkTimestamp", optional=true)
         public static native NSString AdNetworkTimestamp();
-        /**
-         * @since Available in iOS 6.0 and later.
-         */
         @GlobalValue(symbol="SKStoreProductParameterITunesItemIdentifier", optional=true)
         public static native NSString ITunesItemIdentifier();
         /**
@@ -216,14 +195,8 @@ import org.robovm.apple.uikit.*;
          */
         @GlobalValue(symbol="SKStoreProductParameterProductIdentifier", optional=true)
         public static native NSString ProductIdentifier();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="SKStoreProductParameterAffiliateToken", optional=true)
         public static native NSString AffiliateToken();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="SKStoreProductParameterCampaignToken", optional=true)
         public static native NSString CampaignToken();
         /**

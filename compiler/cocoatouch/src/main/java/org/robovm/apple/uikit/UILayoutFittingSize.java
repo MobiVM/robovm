@@ -72,13 +72,7 @@ import org.robovm.apple.linkpresentation.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public static final UILayoutFittingSize Compressed = new UILayoutFittingSize("Compressed");
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public static final UILayoutFittingSize Expanded = new UILayoutFittingSize("Expanded");
     /*</constants>*/
     
@@ -105,14 +99,8 @@ import org.robovm.apple.linkpresentation.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 6.0 and later.
-         */
         @GlobalValue(symbol="UILayoutFittingCompressedSize", optional=true)
         public static native @ByVal CGSize Compressed();
-        /**
-         * @since Available in iOS 6.0 and later.
-         */
         @GlobalValue(symbol="UILayoutFittingExpandedSize", optional=true)
         public static native @ByVal CGSize Expanded();
         /*</values>*/

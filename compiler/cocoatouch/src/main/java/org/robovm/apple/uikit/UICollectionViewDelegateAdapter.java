@@ -73,14 +73,8 @@ import org.robovm.apple.linkpresentation.*;
     public void didSelectItem(UICollectionView collectionView, NSIndexPath indexPath) {}
     @NotImplemented("collectionView:didDeselectItemAtIndexPath:")
     public void didDeselectItem(UICollectionView collectionView, NSIndexPath indexPath) {}
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @NotImplemented("collectionView:willDisplayCell:forItemAtIndexPath:")
     public void willDisplayCell(UICollectionView collectionView, UICollectionViewCell cell, NSIndexPath indexPath) {}
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @NotImplemented("collectionView:willDisplaySupplementaryView:forElementKind:atIndexPath:")
     public void willDisplaySupplementaryView(UICollectionView collectionView, UICollectionReusableView view, String elementKind, NSIndexPath indexPath) {}
     @NotImplemented("collectionView:didEndDisplayingCell:forItemAtIndexPath:")
@@ -88,21 +82,18 @@ import org.robovm.apple.linkpresentation.*;
     @NotImplemented("collectionView:didEndDisplayingSupplementaryView:forElementOfKind:atIndexPath:")
     public void didEndDisplayingSupplementaryView(UICollectionView collectionView, UICollectionReusableView view, String elementKind, NSIndexPath indexPath) {}
     /**
-     * @since Available in iOS 6.0 and later.
      * @deprecated Deprecated in iOS 13.0.
      */
     @Deprecated
     @NotImplemented("collectionView:shouldShowMenuForItemAtIndexPath:")
     public boolean shouldShowMenuForItem(UICollectionView collectionView, NSIndexPath indexPath) { return false; }
     /**
-     * @since Available in iOS 6.0 and later.
      * @deprecated Deprecated in iOS 13.0.
      */
     @Deprecated
     @NotImplemented("collectionView:canPerformAction:forItemAtIndexPath:withSender:")
     public boolean canPerformAction(UICollectionView collectionView, Selector action, NSIndexPath indexPath, NSObject sender) { return false; }
     /**
-     * @since Available in iOS 6.0 and later.
      * @deprecated Deprecated in iOS 13.0.
      */
     @Deprecated

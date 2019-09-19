@@ -57,9 +57,6 @@ import org.robovm.apple.contacts.*;
     public static final double Kilometer = KilometerValue();
     public static final double ThreeKilometers = ThreeKilometersValue();
     /*<methods>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @GlobalValue(symbol="kCLLocationAccuracyBestForNavigation", optional=true)
     protected static native double BestForNavigationValue();
     @GlobalValue(symbol="kCLLocationAccuracyBest", optional=true)

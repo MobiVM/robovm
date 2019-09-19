@@ -48,34 +48,16 @@ import org.robovm.apple.dispatch.*;
     /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="SecPolicyGetTypeID", optional=true)
     public static native @MachineSizedUInt long getClassTypeID();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Bridge(symbol="SecPolicyCopyProperties", optional=true)
     public native SecPolicyProperties getProperties();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="SecPolicyCreateBasicX509", optional=true)
     public static native SecPolicy createBasicX509();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="SecPolicyCreateSSL", optional=true)
     public static native SecPolicy createSSL(boolean server, String hostname);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Bridge(symbol="SecPolicyCreateRevocation", optional=true)
     public static native SecPolicy createRevocation(SecRevocationPolicyFlags revocationFlags);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Bridge(symbol="SecPolicyCreateWithProperties", optional=true)
     public static native SecPolicy create(SecPolicyIdentifier policyIdentifier, SecPolicyProperties properties);
     /*</methods>*/

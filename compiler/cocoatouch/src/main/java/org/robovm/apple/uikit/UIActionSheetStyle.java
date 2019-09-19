@@ -43,7 +43,6 @@ import org.robovm.apple.linkpresentation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 2.0 and later.
  * @deprecated Deprecated in iOS 13.0. UIActionSheet is deprecated. Use UIAlertController with a preferredStyle of UIAlertControllerStyleActionSheet instead.
  */
 /*</javadoc>*/

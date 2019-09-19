@@ -114,9 +114,6 @@ import org.robovm.apple.dispatch.*;
     }
     
 
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @WeaklyLinked
     public CGSize getPreferredImageSize() {
         if (has(Keys.PreferredImageSize())) {
@@ -125,9 +122,6 @@ import org.robovm.apple.dispatch.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @WeaklyLinked
     public NSItemProviderOptions setPreferredImageSize(CGSize preferredImageSize) {
         set(Keys.PreferredImageSize(), NSValue.valueOf(preferredImageSize));
@@ -139,9 +133,6 @@ import org.robovm.apple.dispatch.*;
     @Library("Foundation")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="NSItemProviderPreferredImageSizeKey", optional=true)
         public static native NSString PreferredImageSize();
     }

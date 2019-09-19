@@ -90,29 +90,11 @@ import org.robovm.apple.audiotoolbox.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final CMMetadataKeySpace QuickTimeUserData = new CMMetadataKeySpace("QuickTimeUserData");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final CMMetadataKeySpace ISOUserData = new CMMetadataKeySpace("ISOUserData");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final CMMetadataKeySpace QuickTimeMetadata = new CMMetadataKeySpace("QuickTimeMetadata");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final CMMetadataKeySpace iTunes = new CMMetadataKeySpace("iTunes");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final CMMetadataKeySpace ID3 = new CMMetadataKeySpace("ID3");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final CMMetadataKeySpace Icy = new CMMetadataKeySpace("Icy");
     /**
      * @since Available in iOS 9.3 and later.
@@ -143,34 +125,16 @@ import org.robovm.apple.audiotoolbox.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="kCMMetadataKeySpace_QuickTimeUserData", optional=true)
         public static native CFString QuickTimeUserData();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="kCMMetadataKeySpace_ISOUserData", optional=true)
         public static native CFString ISOUserData();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="kCMMetadataKeySpace_QuickTimeMetadata", optional=true)
         public static native CFString QuickTimeMetadata();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="kCMMetadataKeySpace_iTunes", optional=true)
         public static native CFString iTunes();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="kCMMetadataKeySpace_ID3", optional=true)
         public static native CFString ID3();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="kCMMetadataKeySpace_Icy", optional=true)
         public static native CFString Icy();
         /**

@@ -100,43 +100,22 @@ import org.robovm.apple.dispatch.*;
     public static native NSCharacterSet getCapitalizedLetterCharacterSet();
     @Property(selector = "symbolCharacterSet")
     public static native NSCharacterSet getSymbolCharacterSet();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Property(selector = "newlineCharacterSet")
     public static native NSCharacterSet getNewlineCharacterSet();
     @Property(selector = "bitmapRepresentation")
     public native NSData getBitmapRepresentation();
     @Property(selector = "invertedSet")
     public native NSCharacterSet getInvertedSet();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "URLUserAllowedCharacterSet")
     public static native NSCharacterSet getURLUserAllowedCharacterSet();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "URLPasswordAllowedCharacterSet")
     public static native NSCharacterSet getURLPasswordAllowedCharacterSet();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "URLHostAllowedCharacterSet")
     public static native NSCharacterSet getURLHostAllowedCharacterSet();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "URLPathAllowedCharacterSet")
     public static native NSCharacterSet getURLPathAllowedCharacterSet();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "URLQueryAllowedCharacterSet")
     public static native NSCharacterSet getURLQueryAllowedCharacterSet();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "URLFragmentAllowedCharacterSet")
     public static native NSCharacterSet getURLFragmentAllowedCharacterSet();
     @Property(selector = "supportsSecureCoding")

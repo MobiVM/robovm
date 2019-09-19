@@ -41,9 +41,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVMutableVideoCompositionLayerInstruction/*</name>*/ 
@@ -84,14 +82,8 @@ import org.robovm.apple.audiotoolbox.*;
     public native void setOpacityRamp(float startOpacity, float endOpacity, @ByVal CMTimeRange timeRange);
     @Method(selector = "setOpacity:atTime:")
     public native void setOpacity(float opacity, @ByVal CMTime time);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "setCropRectangleRampFromStartCropRectangle:toEndCropRectangle:timeRange:")
     public native void setCropRectangleRamp(@ByVal CGRect startCropRectangle, @ByVal CGRect endCropRectangle, @ByVal CMTimeRange timeRange);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "setCropRectangle:atTime:")
     public native void setCropRectangle(@ByVal CGRect cropRectangle, @ByVal CMTime time);
     @Method(selector = "videoCompositionLayerInstructionWithAssetTrack:")

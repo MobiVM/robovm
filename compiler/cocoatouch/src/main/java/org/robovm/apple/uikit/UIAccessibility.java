@@ -288,68 +288,32 @@ import org.robovm.apple.linkpresentation.*;
     @ByVal CGRect getAccessibilityFrame();
     @Property(selector = "setAccessibilityFrame:")
     void setAccessibilityFrame(@ByVal CGRect v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "accessibilityPath")
     UIBezierPath getAccessibilityPath();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setAccessibilityPath:")
     void setAccessibilityPath(UIBezierPath v);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "accessibilityActivationPoint")
     @ByVal CGPoint getAccessibilityActivationPoint();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setAccessibilityActivationPoint:")
     void setAccessibilityActivationPoint(@ByVal CGPoint v);
     @Property(selector = "accessibilityLanguage")
     String getAccessibilityLanguage();
     @Property(selector = "setAccessibilityLanguage:")
     void setAccessibilityLanguage(String v);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "accessibilityElementsHidden")
     boolean areAccessibilityElementsHidden();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setAccessibilityElementsHidden:")
     void setAccessibilityElementsHidden(boolean v);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "accessibilityViewIsModal")
     boolean isAccessibilityViewModal();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setAccessibilityViewIsModal:")
     void setAccessibilityViewModal(boolean v);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "shouldGroupAccessibilityChildren")
     boolean shouldGroupAccessibilityChildren();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "setShouldGroupAccessibilityChildren:")
     void setShouldGroupAccessibilityChildren(boolean v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "accessibilityNavigationStyle")
     UIAccessibilityNavigationStyle getAccessibilityNavigationStyle();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setAccessibilityNavigationStyle:")
     void setAccessibilityNavigationStyle(UIAccessibilityNavigationStyle v);
     /**

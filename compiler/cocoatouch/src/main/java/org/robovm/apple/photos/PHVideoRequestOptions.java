@@ -38,9 +38,7 @@ import org.robovm.apple.imageio.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("Photos") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/PHVideoRequestOptions/*</name>*/ 
@@ -56,44 +54,20 @@ import org.robovm.apple.imageio.*;
     protected PHVideoRequestOptions(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "isNetworkAccessAllowed")
     public native boolean isNetworkAccessAllowed();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setNetworkAccessAllowed:")
     public native void setNetworkAccessAllowed(boolean v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "version")
     public native PHVideoRequestOptionsVersion getVersion();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setVersion:")
     public native void setVersion(PHVideoRequestOptionsVersion v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "deliveryMode")
     public native PHVideoRequestOptionsDeliveryMode getDeliveryMode();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setDeliveryMode:")
     public native void setDeliveryMode(PHVideoRequestOptionsDeliveryMode v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "progressHandler")
     public native @Block VoidBlock4<Double, NSError, BooleanPtr, NSDictionary<?, ?>> getProgressHandler();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setProgressHandler:")
     public native void setProgressHandler(@Block VoidBlock4<Double, NSError, BooleanPtr, NSDictionary<?, ?>> v);
     /*</properties>*/

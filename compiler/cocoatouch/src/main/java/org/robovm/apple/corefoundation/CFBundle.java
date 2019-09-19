@@ -143,26 +143,14 @@ import org.robovm.apple.coretext.*;
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CFDictionary getInfoDictionaryForURL(CFURL url);
     @Bridge(symbol="CFBundleCopyLocalizationsForURL", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CFArray getLocalizationsForURL(CFURL url);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CFBundleCopyExecutableArchitecturesForURL", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CFArray getExecutableArchitecturesForURL(CFURL url);
     @Bridge(symbol="CFBundleCopyExecutableURL", optional=true)
     public native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CFURL getExecutableURL();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CFBundleCopyExecutableArchitectures", optional=true)
     public native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CFArray getExecutableArchitectures();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CFBundlePreflightExecutable", optional=true)
     public native boolean preflightExecutable(CFError.CFErrorPtr error);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CFBundleLoadExecutableAndReturnError", optional=true)
     public native boolean loadExecutableAndReturnError(CFError.CFErrorPtr error);
     @Bridge(symbol="CFBundleLoadExecutable", optional=true)

@@ -48,9 +48,6 @@ import org.robovm.apple.linkpresentation.*;
 public enum /*<name>*/UIButtonType/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Custom(0L),
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     System(1L),
     DetailDisclosure(2L),
     InfoLight(3L),

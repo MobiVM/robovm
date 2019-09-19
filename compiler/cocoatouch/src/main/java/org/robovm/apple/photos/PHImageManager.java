@@ -38,9 +38,7 @@ import org.robovm.apple.imageio.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("Photos") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/PHImageManager/*</name>*/ 
@@ -62,20 +60,13 @@ import org.robovm.apple.imageio.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @GlobalValue(symbol="PHImageManagerMaximumSize", optional=true)
     public static native @ByVal CGSize getMaximumSize();
     
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @WeaklyLinked
     @Method(selector = "requestImageForAsset:targetSize:contentMode:options:resultHandler:")
     public native int requestImageForAsset(PHAsset asset, @ByVal CGSize targetSize, PHImageContentMode contentMode, PHImageRequestOptions options, @Block VoidBlock2<UIImage, NSDictionary<?, ?>> resultHandler);
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 13.0.
      */
     @Deprecated
@@ -87,9 +78,6 @@ import org.robovm.apple.imageio.*;
      */
     @Method(selector = "requestImageDataAndOrientationForAsset:options:resultHandler:")
     public native int requestImageDataAndOrientationForAsset(PHAsset asset, PHImageRequestOptions options, @Block VoidBlock4<NSData, NSString, CGImagePropertyOrientation, NSDictionary<?, ?>> resultHandler);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "cancelImageRequest:")
     public native void cancelImageRequest(int requestID);
     /**
@@ -98,27 +86,15 @@ import org.robovm.apple.imageio.*;
     @WeaklyLinked
     @Method(selector = "requestLivePhotoForAsset:targetSize:contentMode:options:resultHandler:")
     public native int requestLivePhotoForAsset(PHAsset asset, @ByVal CGSize targetSize, PHImageContentMode contentMode, PHLivePhotoRequestOptions options, @Block VoidBlock2<PHLivePhoto, NSDictionary<?, ?>> resultHandler);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @WeaklyLinked
     @Method(selector = "requestPlayerItemForVideo:options:resultHandler:")
     public native int requestPlayerItemForVideo(PHAsset asset, PHVideoRequestOptions options, @Block VoidBlock2<AVPlayerItem, NSDictionary<?, ?>> resultHandler);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @WeaklyLinked
     @Method(selector = "requestExportSessionForVideo:options:exportPreset:resultHandler:")
     public native int requestExportSessionForVideo(PHAsset asset, PHVideoRequestOptions options, String exportPreset, @Block VoidBlock2<AVAssetExportSession, NSDictionary<?, ?>> resultHandler);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @WeaklyLinked
     @Method(selector = "requestAVAssetForVideo:options:resultHandler:")
     public native int requestAVAssetForVideo(PHAsset asset, PHVideoRequestOptions options, @Block VoidBlock3<AVAsset, AVAudioMix, NSDictionary<?, ?>> resultHandler);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "defaultManager")
     public static native PHImageManager getDefaultManager();
     /*</methods>*/

@@ -38,39 +38,17 @@ import org.robovm.apple.dispatch.*;
 /*<annotations>*//*</annotations>*/
 public enum /*<name>*/SecTrustResultType/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     Invalid(0L),
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     Proceed(1L),
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 7.0.
      */
     @Deprecated
     Confirm(2L),
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     Deny(3L),
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     Unspecified(4L),
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     RecoverableTrustFailure(5L),
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     FatalTrustFailure(6L),
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     OtherError(7L);
     /*</values>*/
 

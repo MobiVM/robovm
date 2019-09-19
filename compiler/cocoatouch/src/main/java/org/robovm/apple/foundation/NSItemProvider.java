@@ -39,9 +39,7 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSItemProvider/*</name>*/ 
@@ -78,27 +76,15 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "setSuggestedName:")
     public native void setSuggestedName(String v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "previewImageHandler")
     public native @Block("(@Block,,)") VoidBlock3<VoidBlock2<NSObject, NSError>, ObjCClass, NSDictionary<?, ?>> getPreviewImageHandler();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setPreviewImageHandler:")
     public native void setPreviewImageHandler(@Block("(@Block,,)") VoidBlock3<VoidBlock2<NSObject, NSError>, ObjCClass, NSDictionary<?, ?>> v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @GlobalValue(symbol="NSExtensionJavaScriptPreprocessingResultsKey", optional=true)
     public static native String JavaScriptPreprocessingResultsKey();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @GlobalValue(symbol="NSExtensionJavaScriptFinalizeArgumentKey", optional=true)
     public static native String JavaScriptFinalizeArgumentKey();
     
@@ -172,9 +158,6 @@ import org.robovm.apple.dispatch.*;
     public native void registerItemForTypeIdentifier(String typeIdentifier, @Block("(@Block,,)") VoidBlock3<VoidBlock2<NSObject, NSError>, ObjCClass, NSDictionary<?, ?>> loadHandler);
     @Method(selector = "loadItemForTypeIdentifier:options:completionHandler:")
     public native void loadItemForTypeIdentifier(String typeIdentifier, NSItemProviderOptions options, @Block VoidBlock2<NSObject, NSError> completionHandler);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "loadPreviewImageWithOptions:completionHandler:")
     public native void loadPreviewImage(NSItemProviderOptions options, @Block VoidBlock2<NSObject, NSError> completionHandler);
     /*</methods>*/

@@ -38,24 +38,13 @@ import org.robovm.apple.imageio.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/PHAssetEditOperation/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     Delete(1L),
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     Content(2L),
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     Properties(3L);
     /*</values>*/
 

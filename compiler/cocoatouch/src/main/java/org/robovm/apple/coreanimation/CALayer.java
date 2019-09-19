@@ -36,9 +36,7 @@ import org.robovm.apple.metal.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 2.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("QuartzCore") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CALayer/*</name>*/ 
@@ -129,14 +127,8 @@ import org.robovm.apple.metal.*;
     public native CAGravity getContentsGravity();
     @Property(selector = "setContentsGravity:")
     public native void setContentsGravity(CAGravity v);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "contentsScale")
     public native @MachineSizedFloat double getContentsScale();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "setContentsScale:")
     public native void setContentsScale(@MachineSizedFloat double v);
     @Property(selector = "contentsCenter")
@@ -173,28 +165,16 @@ import org.robovm.apple.metal.*;
     public native boolean needsDisplayOnBoundsChange();
     @Property(selector = "setNeedsDisplayOnBoundsChange:")
     public native void setNeedsDisplayOnBoundsChange(boolean v);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "drawsAsynchronously")
     public native boolean drawsAsynchronously();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "setDrawsAsynchronously:")
     public native void setDrawsAsynchronously(boolean v);
     @Property(selector = "edgeAntialiasingMask")
     public native CAEdgeAntialiasingMask getEdgeAntialiasingMask();
     @Property(selector = "setEdgeAntialiasingMask:")
     public native void setEdgeAntialiasingMask(CAEdgeAntialiasingMask v);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Property(selector = "allowsEdgeAntialiasing")
     public native boolean allowsEdgeAntialiasing();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Property(selector = "setAllowsEdgeAntialiasing:")
     public native void setAllowsEdgeAntialiasing(boolean v);
     @Property(selector = "backgroundColor")
@@ -237,14 +217,8 @@ import org.robovm.apple.metal.*;
     public native float getOpacity();
     @Property(selector = "setOpacity:")
     public native void setOpacity(float v);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Property(selector = "allowsGroupOpacity")
     public native boolean allowsGroupOpacity();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Property(selector = "setAllowsGroupOpacity:")
     public native void setAllowsGroupOpacity(boolean v);
     @WeaklyLinked

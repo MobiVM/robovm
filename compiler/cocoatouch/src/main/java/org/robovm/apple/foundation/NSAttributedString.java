@@ -39,9 +39,7 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 3.2 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("Foundation") @NativeClass @WeaklyLinked/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSAttributedString/*</name>*/ 
@@ -386,14 +384,8 @@ import org.robovm.apple.dispatch.*;
     protected native @Pointer long init(String str, NSDictionary<NSString, ?> attrs);
     @Method(selector = "initWithAttributedString:")
     protected native @Pointer long init(NSAttributedString attrStr);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "enumerateAttributesInRange:options:usingBlock:")
     public native void enumerateAttributes(@ByVal NSRange enumerationRange, NSAttributedStringEnumerationOptions opts, @Block("(,@ByVal,)") VoidBlock3<NSDictionary<NSString, ?>, NSRange, BooleanPtr> block);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "enumerateAttribute:inRange:options:usingBlock:")
     public native void enumerateAttribute(NSString attrName, @ByVal NSRange enumerationRange, NSAttributedStringEnumerationOptions opts, @Block("(,@ByVal,)") VoidBlock3<NSObject, NSRange, BooleanPtr> block);
     @Method(selector = "encodeWithCoder:")

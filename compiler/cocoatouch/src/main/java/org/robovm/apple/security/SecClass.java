@@ -88,25 +88,10 @@ import org.robovm.apple.dispatch.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final SecClass InternetPassword = new SecClass("InternetPassword");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final SecClass GenericPassword = new SecClass("GenericPassword");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final SecClass Certificate = new SecClass("Certificate");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final SecClass Key = new SecClass("Key");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final SecClass Identity = new SecClass("Identity");
     /*</constants>*/
     
@@ -133,29 +118,14 @@ import org.robovm.apple.dispatch.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kSecClassInternetPassword", optional=true)
         public static native CFType InternetPassword();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kSecClassGenericPassword", optional=true)
         public static native CFType GenericPassword();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kSecClassCertificate", optional=true)
         public static native CFType Certificate();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kSecClassKey", optional=true)
         public static native CFType Key();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kSecClassIdentity", optional=true)
         public static native CFType Identity();
         /*</values>*/

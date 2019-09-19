@@ -34,9 +34,7 @@ import org.robovm.apple.contacts.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 6.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("PassKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/PKAddPassesViewController/*</name>*/ 
@@ -52,9 +50,6 @@ import org.robovm.apple.contacts.*;
     protected PKAddPassesViewController(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithPass:")
     public PKAddPassesViewController(PKPass pass) { super((SkipInit) null); initObject(init(pass)); }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "initWithPasses:")
     public PKAddPassesViewController(NSArray<PKPass> passes) { super((SkipInit) null); initObject(init(passes)); }
     @Method(selector = "initWithNibName:bundle:")
@@ -72,14 +67,8 @@ import org.robovm.apple.contacts.*;
     /*<methods>*/
     @Method(selector = "initWithPass:")
     protected native @Pointer long init(PKPass pass);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "initWithPasses:")
     protected native @Pointer long init(NSArray<PKPass> passes);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "canAddPasses")
     public static native boolean canAddPasses();
     /*</methods>*/

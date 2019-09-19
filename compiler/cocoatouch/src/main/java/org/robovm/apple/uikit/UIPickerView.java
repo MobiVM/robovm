@@ -42,9 +42,7 @@ import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 2.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIPickerView/*</name>*/ 
@@ -73,14 +71,12 @@ import org.robovm.apple.linkpresentation.*;
     @Property(selector = "setDelegate:", strongRef = true)
     public native void setDelegate(UIPickerViewDelegate v);
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 13.0. This property has no effect on iOS 7 and later.
      */
     @Deprecated
     @Property(selector = "showsSelectionIndicator")
     public native boolean showsSelectionIndicator();
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 13.0. This property has no effect on iOS 7 and later.
      */
     @Deprecated

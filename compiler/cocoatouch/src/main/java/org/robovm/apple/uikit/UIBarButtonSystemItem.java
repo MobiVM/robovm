@@ -68,16 +68,9 @@ public enum /*<name>*/UIBarButtonSystemItem/*</name>*/ implements ValuedEnum {
     Pause(18L),
     Rewind(19L),
     FastForward(20L),
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     Undo(21L),
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     Redo(22L),
     /**
-     * @since Available in iOS 4.0 and later.
      * @deprecated Deprecated in iOS 11.0.
      */
     @Deprecated

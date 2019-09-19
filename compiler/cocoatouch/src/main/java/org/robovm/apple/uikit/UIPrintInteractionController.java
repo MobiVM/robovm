@@ -42,9 +42,7 @@ import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.2 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIPrintInteractionController/*</name>*/ 
@@ -75,37 +73,23 @@ import org.robovm.apple.linkpresentation.*;
     @Property(selector = "setDelegate:", strongRef = true)
     public native void setDelegate(UIPrintInteractionControllerDelegate v);
     /**
-     * @since Available in iOS 4.2 and later.
      * @deprecated Deprecated in iOS 10.0.
      */
     @Deprecated
     @Property(selector = "showsPageRange")
     public native boolean showsPageRange();
     /**
-     * @since Available in iOS 4.2 and later.
      * @deprecated Deprecated in iOS 10.0.
      */
     @Deprecated
     @Property(selector = "setShowsPageRange:")
     public native void setShowsPageRange(boolean v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "showsNumberOfCopies")
     public native boolean showsNumberOfCopies();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setShowsNumberOfCopies:")
     public native void setShowsNumberOfCopies(boolean v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "showsPaperSelectionForLoadedPapers")
     public native boolean showsPaperSelectionForLoadedPapers();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setShowsPaperSelectionForLoadedPapers:")
     public native void setShowsPaperSelectionForLoadedPapers(boolean v);
     @Property(selector = "printPaper")

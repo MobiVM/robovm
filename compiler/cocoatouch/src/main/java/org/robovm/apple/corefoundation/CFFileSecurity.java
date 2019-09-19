@@ -103,74 +103,32 @@ import org.robovm.apple.coretext.*;
         return ptr.get();
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="CFFileSecurityGetTypeID", optional=true)
     public static native @MachineSizedUInt long getClassTypeID();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="CFFileSecurityCreate", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CFFileSecurity create(CFAllocator allocator);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="CFFileSecurityCreateCopy", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CFFileSecurity createCopy(CFAllocator allocator, CFFileSecurity fileSec);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="CFFileSecurityCopyOwnerUUID", optional=true)
     private native boolean getOwnerUUID(CFUUID.CFUUIDPtr ownerUUID);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="CFFileSecuritySetOwnerUUID", optional=true)
     public native boolean setOwnerUUID(CFUUID ownerUUID);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="CFFileSecurityCopyGroupUUID", optional=true)
     private native boolean getGroupUUID(CFUUID.CFUUIDPtr groupUUID);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="CFFileSecuritySetGroupUUID", optional=true)
     public native boolean setGroupUUID(CFUUID groupUUID);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="CFFileSecurityGetOwner", optional=true)
     private native boolean getOwner(IntPtr owner);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="CFFileSecuritySetOwner", optional=true)
     public native boolean setOwner(int owner);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="CFFileSecurityGetGroup", optional=true)
     private native boolean getGroup(IntPtr group);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="CFFileSecuritySetGroup", optional=true)
     public native boolean setGroup(int group);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="CFFileSecurityGetMode", optional=true)
     private native boolean getMode(ShortPtr mode);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="CFFileSecuritySetMode", optional=true)
     public native boolean setMode(short mode);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Bridge(symbol="CFFileSecurityClearProperties", optional=true)
     public native boolean clearProperties(CFFileSecurityClearOptions clearPropertyMask);
     /*</methods>*/

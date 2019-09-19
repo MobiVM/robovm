@@ -35,9 +35,7 @@ import org.robovm.apple.mapkit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("EventKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/EKParticipant/*</name>*/ 
@@ -63,9 +61,6 @@ import org.robovm.apple.mapkit.*;
     public native EKParticipantRole getParticipantRole();
     @Property(selector = "participantType")
     public native EKParticipantType getParticipantType();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "isCurrentUser")
     public native boolean isCurrentUser();
     /**
@@ -77,7 +72,6 @@ import org.robovm.apple.mapkit.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @since Available in iOS 4.0 and later.
      * @deprecated Deprecated in iOS 9.0. Use contactPredicate instead
      */
     @Deprecated

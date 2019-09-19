@@ -39,9 +39,7 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 6.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSByteCountFormatter/*</name>*/ 
@@ -89,14 +87,8 @@ import org.robovm.apple.dispatch.*;
     public native boolean zeroPadsFractionDigits();
     @Property(selector = "setZeroPadsFractionDigits:")
     public native void setZeroPadsFractionDigits(boolean v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "formattingContext")
     public native NSFormattingContext getFormattingContext();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setFormattingContext:")
     public native void setFormattingContext(NSFormattingContext v);
     /*</properties>*/

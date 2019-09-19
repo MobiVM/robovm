@@ -91,9 +91,6 @@ import org.robovm.apple.uikit.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public static final CTFontManagerErrorUserInfoKey FontURLs = new CTFontManagerErrorUserInfoKey("FontURLs");
     /**
      * @since Available in iOS 13.0 and later.
@@ -128,9 +125,6 @@ import org.robovm.apple.uikit.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 3.2 and later.
-         */
         @GlobalValue(symbol="kCTFontManagerErrorFontURLsKey", optional=true)
         public static native NSString FontURLs();
         /**

@@ -31,9 +31,7 @@ import org.robovm.apple.foundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("HealthKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/HKUnit/*</name>*/ 
@@ -169,7 +167,6 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "largeCalorieUnit")
     public static native HKUnit largeCalorie();
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 11.0.
      */
     @Deprecated

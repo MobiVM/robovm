@@ -36,7 +36,6 @@ import org.robovm.apple.dispatch.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 4.0 and later.
  * @deprecated Deprecated in iOS 13.0.
  */
 /*</javadoc>*/
@@ -53,14 +52,12 @@ import org.robovm.apple.dispatch.*;
     protected MKPolylineView(Handle h, long handle) { super(h, handle); }
     protected MKPolylineView(SkipInit skipInit) { super(skipInit); }
     /**
-     * @since Available in iOS 4.0 and later.
      * @deprecated Deprecated in iOS 7.0.
      */
     @Deprecated
     @Method(selector = "initWithPolyline:")
     public MKPolylineView(MKPolyline polyline) { super((SkipInit) null); initObject(init(polyline)); }
     /**
-     * @since Available in iOS 4.0 and later.
      * @deprecated Deprecated in iOS 7.0.
      */
     @Deprecated
@@ -73,7 +70,6 @@ import org.robovm.apple.dispatch.*;
     /*</constructors>*/
     /*<properties>*/
     /**
-     * @since Available in iOS 4.0 and later.
      * @deprecated Deprecated in iOS 7.0.
      */
     @Deprecated
@@ -83,7 +79,6 @@ import org.robovm.apple.dispatch.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @since Available in iOS 4.0 and later.
      * @deprecated Deprecated in iOS 7.0.
      */
     @Deprecated

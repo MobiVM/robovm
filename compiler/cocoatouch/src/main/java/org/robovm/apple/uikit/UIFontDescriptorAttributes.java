@@ -117,9 +117,6 @@ import org.robovm.apple.linkpresentation.*;
     }
     
 
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public String getFamily() {
         if (has(UIFontDescriptorAttribute.Family)) {
             NSString val = (NSString) get(UIFontDescriptorAttribute.Family);
@@ -127,16 +124,10 @@ import org.robovm.apple.linkpresentation.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public UIFontDescriptorAttributes setFamily(String family) {
         set(UIFontDescriptorAttribute.Family, new NSString(family));
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public String getName() {
         if (has(UIFontDescriptorAttribute.Name)) {
             NSString val = (NSString) get(UIFontDescriptorAttribute.Name);
@@ -144,16 +135,10 @@ import org.robovm.apple.linkpresentation.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public UIFontDescriptorAttributes setName(String name) {
         set(UIFontDescriptorAttribute.Name, new NSString(name));
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public String getFace() {
         if (has(UIFontDescriptorAttribute.Face)) {
             NSString val = (NSString) get(UIFontDescriptorAttribute.Face);
@@ -161,16 +146,10 @@ import org.robovm.apple.linkpresentation.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public UIFontDescriptorAttributes setFace(String face) {
         set(UIFontDescriptorAttribute.Face, new NSString(face));
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public double getSize() {
         if (has(UIFontDescriptorAttribute.Size)) {
             NSNumber val = (NSNumber) get(UIFontDescriptorAttribute.Size);
@@ -178,16 +157,10 @@ import org.robovm.apple.linkpresentation.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public UIFontDescriptorAttributes setSize(double size) {
         set(UIFontDescriptorAttribute.Size, NSNumber.valueOf(size));
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public String getVisibleName() {
         if (has(UIFontDescriptorAttribute.VisibleName)) {
             NSString val = (NSString) get(UIFontDescriptorAttribute.VisibleName);
@@ -195,16 +168,10 @@ import org.robovm.apple.linkpresentation.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public UIFontDescriptorAttributes setVisibleName(String visibleName) {
         set(UIFontDescriptorAttribute.VisibleName, new NSString(visibleName));
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public CGAffineTransform getMatrix() {
         if (has(UIFontDescriptorAttribute.Matrix)) {
             NSValue val = (NSValue) get(UIFontDescriptorAttribute.Matrix);
@@ -212,16 +179,10 @@ import org.robovm.apple.linkpresentation.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public UIFontDescriptorAttributes setMatrix(CGAffineTransform matrix) {
         set(UIFontDescriptorAttribute.Matrix, NSValue.valueOf(matrix));
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public NSCharacterSet getCharacterSet() {
         if (has(UIFontDescriptorAttribute.CharacterSet)) {
             NSCharacterSet val = (NSCharacterSet) get(UIFontDescriptorAttribute.CharacterSet);
@@ -229,16 +190,10 @@ import org.robovm.apple.linkpresentation.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public UIFontDescriptorAttributes setCharacterSet(NSCharacterSet characterSet) {
         set(UIFontDescriptorAttribute.CharacterSet, characterSet);
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public NSArray<UIFontDescriptor> getCascadeList() {
         if (has(UIFontDescriptorAttribute.CascadeList)) {
             NSArray<UIFontDescriptor> val = (NSArray<UIFontDescriptor>) get(UIFontDescriptorAttribute.CascadeList);
@@ -246,16 +201,10 @@ import org.robovm.apple.linkpresentation.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public UIFontDescriptorAttributes setCascadeList(NSArray<UIFontDescriptor> cascadeList) {
         set(UIFontDescriptorAttribute.CascadeList, cascadeList);
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public UIFontDescriptorTraits getTraits() {
         if (has(UIFontDescriptorAttribute.Traits)) {
             NSDictionary val = (NSDictionary) get(UIFontDescriptorAttribute.Traits);
@@ -263,16 +212,10 @@ import org.robovm.apple.linkpresentation.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public UIFontDescriptorAttributes setTraits(UIFontDescriptorTraits traits) {
         set(UIFontDescriptorAttribute.Traits, traits.getDictionary());
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public double getFixedAdvance() {
         if (has(UIFontDescriptorAttribute.FixedAdvance)) {
             NSNumber val = (NSNumber) get(UIFontDescriptorAttribute.FixedAdvance);
@@ -280,16 +223,10 @@ import org.robovm.apple.linkpresentation.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public UIFontDescriptorAttributes setFixedAdvance(double fixedAdvance) {
         set(UIFontDescriptorAttribute.FixedAdvance, NSNumber.valueOf(fixedAdvance));
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public List<UIFontFeatureSetting> getFeatureSettings() {
         if (has(UIFontDescriptorAttribute.FeatureSettings)) {
             NSArray<?> val = (NSArray<?>) get(UIFontDescriptorAttribute.FeatureSettings);
@@ -302,9 +239,6 @@ import org.robovm.apple.linkpresentation.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public UIFontDescriptorAttributes setFeatureSettings(List<UIFontFeatureSetting> featureSettings) {
         NSArray<NSDictionary> val = new NSMutableArray<>();
         for (UIFontFeatureSetting e : featureSettings) {
@@ -313,9 +247,6 @@ import org.robovm.apple.linkpresentation.*;
         set(UIFontDescriptorAttribute.FeatureSettings, val);
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public UIFontTextStyle getTextStyle() {
         if (has(UIFontDescriptorAttribute.TextStyle)) {
             NSString val = (NSString) get(UIFontDescriptorAttribute.TextStyle);
@@ -323,9 +254,6 @@ import org.robovm.apple.linkpresentation.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public UIFontDescriptorAttributes setTextStyle(UIFontTextStyle textStyle) {
         set(UIFontDescriptorAttribute.TextStyle, textStyle.value());
         return this;

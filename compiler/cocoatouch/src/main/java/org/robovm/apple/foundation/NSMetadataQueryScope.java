@@ -95,17 +95,8 @@ import org.robovm.apple.dispatch.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final NSMetadataQueryScope UbiquitousDocuments = new NSMetadataQueryScope("UbiquitousDocuments");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final NSMetadataQueryScope UbiquitousData = new NSMetadataQueryScope("UbiquitousData");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final NSMetadataQueryScope AccessibleUbiquitousExternalDocuments = new NSMetadataQueryScope("AccessibleUbiquitousExternalDocuments");
     /*</constants>*/
     
@@ -132,19 +123,10 @@ import org.robovm.apple.dispatch.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="NSMetadataQueryUbiquitousDocumentsScope", optional=true)
         public static native NSString UbiquitousDocuments();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="NSMetadataQueryUbiquitousDataScope", optional=true)
         public static native NSString UbiquitousData();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="NSMetadataQueryAccessibleUbiquitousExternalDocumentsScope", optional=true)
         public static native NSString AccessibleUbiquitousExternalDocuments();
         /*</values>*/

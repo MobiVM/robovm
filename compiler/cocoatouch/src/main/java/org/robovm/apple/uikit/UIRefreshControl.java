@@ -42,9 +42,7 @@ import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 6.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIRefreshControl/*</name>*/ 
@@ -77,14 +75,8 @@ import org.robovm.apple.linkpresentation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "beginRefreshing")
     public native void beginRefreshing();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "endRefreshing")
     public native void endRefreshing();
     /*</methods>*/

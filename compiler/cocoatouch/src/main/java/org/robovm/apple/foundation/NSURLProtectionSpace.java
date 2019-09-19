@@ -73,14 +73,8 @@ import org.robovm.apple.dispatch.*;
     public native NSURLProtectionSpaceProtocol getProtocol();
     @Property(selector = "authenticationMethod")
     public native NSURLAuthenticationMethod getAuthenticationMethod();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "distinguishedNames")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getDistinguishedNames();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @WeaklyLinked
     @Property(selector = "serverTrust")
     public native SecTrust getServerTrust();

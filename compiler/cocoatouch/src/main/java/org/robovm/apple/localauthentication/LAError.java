@@ -32,9 +32,7 @@ import org.robovm.apple.security.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Library("LocalAuthentication")/*</annotations>*/
 public enum /*<name>*/LAError/*</name>*/ implements NSErrorCode {
@@ -45,13 +43,11 @@ public enum /*<name>*/LAError/*</name>*/ implements NSErrorCode {
     SystemCancel(-4L),
     PasscodeNotSet(-5L),
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 11.0. use LAErrorBiometryNotAvailable
      */
     @Deprecated
     TouchIDNotAvailable(-6L),
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 11.0. use LAErrorBiometryNotEnrolled
      */
     @Deprecated
@@ -82,9 +78,6 @@ public enum /*<name>*/LAError/*</name>*/ implements NSErrorCode {
      * @since Available in iOS 11.0 and later.
      */
     BiometryLockout(-8L),
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     NotInteractive(-1004L);
     /*</values>*/
 

@@ -68,9 +68,6 @@ import org.robovm.apple.linkpresentation.*;
         return thiz;
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "initWithColor:")
     protected static native @Pointer long init(CIColor thiz, UIColor color);
     /*</methods>*/

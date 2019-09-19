@@ -152,9 +152,6 @@ import org.robovm.apple.dispatch.*;
         set(Keys.ManufacturerData(), manufacturerData);
         return this;
     }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public NSArray<CBUUID> getOverflowServiceUUIDs() {
         if (has(Keys.OverflowServiceUUIDs())) {
             NSArray<CBUUID> val = (NSArray<CBUUID>) get(Keys.OverflowServiceUUIDs());
@@ -162,16 +159,10 @@ import org.robovm.apple.dispatch.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public CBAdvertisementData setOverflowServiceUUIDs(NSArray<CBUUID> overflowServiceUUIDs) {
         set(Keys.OverflowServiceUUIDs(), overflowServiceUUIDs);
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public boolean isConnectable() {
         if (has(Keys.IsConnectable())) {
             NSNumber val = (NSNumber) get(Keys.IsConnectable());
@@ -179,16 +170,10 @@ import org.robovm.apple.dispatch.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public CBAdvertisementData setIsConnectable(boolean isConnectable) {
         set(Keys.IsConnectable(), NSNumber.valueOf(isConnectable));
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public NSArray<CBUUID> getSolicitedServiceUUIDs() {
         if (has(Keys.SolicitedServiceUUIDs())) {
             NSArray<CBUUID> val = (NSArray<CBUUID>) get(Keys.SolicitedServiceUUIDs());
@@ -196,9 +181,6 @@ import org.robovm.apple.dispatch.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public CBAdvertisementData setSolicitedServiceUUIDs(NSArray<CBUUID> solicitedServiceUUIDs) {
         set(Keys.SolicitedServiceUUIDs(), solicitedServiceUUIDs);
         return this;
@@ -219,19 +201,10 @@ import org.robovm.apple.dispatch.*;
         public static native NSString ServiceData();
         @GlobalValue(symbol="CBAdvertisementDataManufacturerDataKey", optional=true)
         public static native NSString ManufacturerData();
-        /**
-         * @since Available in iOS 6.0 and later.
-         */
         @GlobalValue(symbol="CBAdvertisementDataOverflowServiceUUIDsKey", optional=true)
         public static native NSString OverflowServiceUUIDs();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="CBAdvertisementDataIsConnectable", optional=true)
         public static native NSString IsConnectable();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="CBAdvertisementDataSolicitedServiceUUIDsKey", optional=true)
         public static native NSString SolicitedServiceUUIDs();
     }

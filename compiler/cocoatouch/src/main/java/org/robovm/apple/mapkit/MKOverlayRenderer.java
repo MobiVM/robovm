@@ -35,9 +35,7 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 7.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("MapKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MKOverlayRenderer/*</name>*/ 
@@ -66,9 +64,6 @@ import org.robovm.apple.dispatch.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="MKRoadWidthAtZoomScale", optional=true)
     public static native @MachineSizedFloat double getRoadWidth(@MachineSizedFloat double zoomScale);
     

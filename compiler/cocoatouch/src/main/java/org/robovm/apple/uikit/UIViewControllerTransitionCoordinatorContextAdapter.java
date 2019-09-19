@@ -80,9 +80,6 @@ import org.robovm.apple.linkpresentation.*;
     public UIViewAnimationCurve getCompletionCurve() { return null; }
     @NotImplemented("containerView")
     public UIView getContainerView() { return null; }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @NotImplemented("targetTransform")
     public @ByVal CGAffineTransform getTargetTransform() { return null; }
     /*</properties>*/
@@ -90,9 +87,6 @@ import org.robovm.apple.linkpresentation.*;
     /*<methods>*/
     @NotImplemented("viewControllerForKey:")
     public UIViewController getViewController(String key) { return null; }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @NotImplemented("viewForKey:")
     public UIView getView(String key) { return null; }
     /*</methods>*/

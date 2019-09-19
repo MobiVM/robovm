@@ -55,17 +55,11 @@ import org.robovm.apple.linkpresentation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*//*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @NotImplemented("traitCollection")
     public UITraitCollection getTraitCollection() { return null; }
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @NotImplemented("traitCollectionDidChange:")
     public void traitCollectionDidChange(UITraitCollection previousTraitCollection) {}
     /*</methods>*/

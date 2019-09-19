@@ -33,9 +33,7 @@ import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("EventKitUI") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/EKEventViewController/*</name>*/ 
@@ -55,14 +53,8 @@ import org.robovm.apple.uikit.*;
     public EKEventViewController(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     @Property(selector = "delegate")
     public native EKEventViewDelegate getDelegate();
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     @Property(selector = "setDelegate:", strongRef = true)
     public native void setDelegate(EKEventViewDelegate v);
     @Property(selector = "event")

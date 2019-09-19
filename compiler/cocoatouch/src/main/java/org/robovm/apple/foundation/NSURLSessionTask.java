@@ -39,9 +39,7 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 7.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSURLSessionTask/*</name>*/ 
@@ -116,14 +114,8 @@ import org.robovm.apple.dispatch.*;
     public native NSURLSessionTaskState getState();
     @Property(selector = "error")
     public native NSError getError();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "priority")
     public native float getPriority();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setPriority:")
     public native void setPriority(float v);
     /*</properties>*/

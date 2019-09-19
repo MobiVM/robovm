@@ -63,14 +63,8 @@ import org.robovm.apple.linkpresentation.*;
     public boolean shouldBegin(UIGestureRecognizer gestureRecognizer) { return false; }
     @NotImplemented("gestureRecognizer:shouldRecognizeSimultaneouslyWithGestureRecognizer:")
     public boolean shouldRecognizeSimultaneously(UIGestureRecognizer gestureRecognizer, UIGestureRecognizer otherGestureRecognizer) { return false; }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @NotImplemented("gestureRecognizer:shouldRequireFailureOfGestureRecognizer:")
     public boolean shouldRequireFailure(UIGestureRecognizer gestureRecognizer, UIGestureRecognizer otherGestureRecognizer) { return false; }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @NotImplemented("gestureRecognizer:shouldBeRequiredToFailByGestureRecognizer:")
     public boolean shouldBeRequiredToFail(UIGestureRecognizer gestureRecognizer, UIGestureRecognizer otherGestureRecognizer) { return false; }
     @NotImplemented("gestureRecognizer:shouldReceiveTouch:")

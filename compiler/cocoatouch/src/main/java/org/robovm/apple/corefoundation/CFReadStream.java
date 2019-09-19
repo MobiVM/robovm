@@ -163,9 +163,6 @@ import org.robovm.apple.coretext.*;
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CFReadStream create(CFAllocator alloc, CFURL fileURL);
     @Bridge(symbol="CFReadStreamGetStatus", optional=true)
     public native CFStreamStatus getStatus();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CFReadStreamCopyError", optional=true)
     public native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CFError getError();
     @Bridge(symbol="CFReadStreamOpen", optional=true)
@@ -188,15 +185,9 @@ import org.robovm.apple.coretext.*;
     public native void scheduleInRunLoop(CFRunLoop runLoop, String runLoopMode);
     @Bridge(symbol="CFReadStreamUnscheduleFromRunLoop", optional=true)
     public native void unscheduleFromRunLoop(CFRunLoop runLoop, String runLoopMode);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @WeaklyLinked
     @Bridge(symbol="CFReadStreamSetDispatchQueue", optional=true)
     public native void setDispatchQueue(DispatchQueue q);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @WeaklyLinked
     @Bridge(symbol="CFReadStreamCopyDispatchQueue", optional=true)
     public native DispatchQueue getDispatchQueue();

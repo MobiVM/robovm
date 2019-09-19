@@ -37,9 +37,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 5.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
 public enum /*<name>*/CMSimpleQueueErrorCode/*</name>*/ implements ValuedEnum {

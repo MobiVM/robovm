@@ -43,7 +43,6 @@ import org.robovm.apple.linkpresentation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 3.0 and later.
  * @deprecated Deprecated in iOS 8.0. UISearchDisplayController has been replaced with UISearchController
  */
 /*</javadoc>*/
@@ -85,29 +84,14 @@ import org.robovm.apple.linkpresentation.*;
     public native UITableViewDelegate getSearchResultsDelegate();
     @Property(selector = "setSearchResultsDelegate:", strongRef = true)
     public native void setSearchResultsDelegate(UITableViewDelegate v);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "searchResultsTitle")
     public native String getSearchResultsTitle();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setSearchResultsTitle:")
     public native void setSearchResultsTitle(String v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "displaysSearchBarInNavigationBar")
     public native boolean displaysSearchBarInNavigationBar();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setDisplaysSearchBarInNavigationBar:")
     public native void setDisplaysSearchBarInNavigationBar(boolean v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "navigationItem")
     public native UINavigationItem getNavigationItem();
     /*</properties>*/

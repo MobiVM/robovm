@@ -96,17 +96,8 @@ import org.robovm.apple.avfoundation.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final CIDetectorType Face = new CIDetectorType("Face");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final CIDetectorType Rectangle = new CIDetectorType("Rectangle");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final CIDetectorType QRCode = new CIDetectorType("QRCode");
     /**
      * @since Available in iOS 9.0 and later.
@@ -137,19 +128,10 @@ import org.robovm.apple.avfoundation.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="CIDetectorTypeFace", optional=true)
         public static native NSString Face();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="CIDetectorTypeRectangle", optional=true)
         public static native NSString Rectangle();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="CIDetectorTypeQRCode", optional=true)
         public static native NSString QRCode();
         /**

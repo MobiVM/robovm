@@ -48,24 +48,12 @@ import org.robovm.apple.dispatch.*;
     /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="SecCertificateGetTypeID", optional=true)
     public static native @MachineSizedUInt long getClassTypeID();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="SecCertificateCreateWithData", optional=true)
     public static native SecCertificate create(CFAllocator allocator, NSData data);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="SecCertificateCopyData", optional=true)
     public native @org.robovm.rt.bro.annotation.Marshaler(NSObject.NoRetainMarshaler.class) NSData getData();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="SecCertificateCopySubjectSummary", optional=true)
     public native @org.robovm.rt.bro.annotation.Marshaler(CFString.AsStringNoRetainMarshaler.class) String getSubjectSummary();
     /**

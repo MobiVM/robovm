@@ -95,51 +95,20 @@ import org.robovm.apple.dispatch.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final NSURLUbiquitousItemProperty IsUbiquitousItem = new NSURLUbiquitousItemProperty("IsUbiquitousItem");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final NSURLUbiquitousItemProperty HasUnresolvedConflicts = new NSURLUbiquitousItemProperty("HasUnresolvedConflicts");
     /**
-     * @since Available in iOS 5.0 and later.
      * @deprecated Deprecated in iOS 7.0. Use NSURLUbiquitousItemDownloadingStatusKey instead
      */
     @Deprecated
     public static final NSURLUbiquitousItemProperty IsDownloaded = new NSURLUbiquitousItemProperty("IsDownloaded");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final NSURLUbiquitousItemProperty IsDownloading = new NSURLUbiquitousItemProperty("IsDownloading");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final NSURLUbiquitousItemProperty IsUploaded = new NSURLUbiquitousItemProperty("IsUploaded");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final NSURLUbiquitousItemProperty IsUploading = new NSURLUbiquitousItemProperty("IsUploading");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final NSURLUbiquitousItemProperty DownloadingStatus = new NSURLUbiquitousItemProperty("DownloadingStatus");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final NSURLUbiquitousItemProperty DownloadingError = new NSURLUbiquitousItemProperty("DownloadingError");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final NSURLUbiquitousItemProperty UploadingError = new NSURLUbiquitousItemProperty("UploadingError");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final NSURLUbiquitousItemProperty DownloadRequested = new NSURLUbiquitousItemProperty("DownloadRequested");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final NSURLUbiquitousItemProperty ContainerDisplayName = new NSURLUbiquitousItemProperty("ContainerDisplayName");
     /**
      * @since Available in iOS 10.0 and later.
@@ -170,61 +139,30 @@ import org.robovm.apple.dispatch.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="NSURLIsUbiquitousItemKey", optional=true)
         public static native NSString IsUbiquitousItem();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="NSURLUbiquitousItemHasUnresolvedConflictsKey", optional=true)
         public static native NSString HasUnresolvedConflicts();
         /**
-         * @since Available in iOS 5.0 and later.
          * @deprecated Deprecated in iOS 7.0. Use NSURLUbiquitousItemDownloadingStatusKey instead
          */
         @Deprecated
         @GlobalValue(symbol="NSURLUbiquitousItemIsDownloadedKey", optional=true)
         public static native NSString IsDownloaded();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="NSURLUbiquitousItemIsDownloadingKey", optional=true)
         public static native NSString IsDownloading();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="NSURLUbiquitousItemIsUploadedKey", optional=true)
         public static native NSString IsUploaded();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="NSURLUbiquitousItemIsUploadingKey", optional=true)
         public static native NSString IsUploading();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="NSURLUbiquitousItemDownloadingStatusKey", optional=true)
         public static native NSString DownloadingStatus();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="NSURLUbiquitousItemDownloadingErrorKey", optional=true)
         public static native NSString DownloadingError();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="NSURLUbiquitousItemUploadingErrorKey", optional=true)
         public static native NSString UploadingError();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="NSURLUbiquitousItemDownloadRequestedKey", optional=true)
         public static native NSString DownloadRequested();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="NSURLUbiquitousItemContainerDisplayNameKey", optional=true)
         public static native NSString ContainerDisplayName();
         /**

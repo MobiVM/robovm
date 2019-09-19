@@ -33,9 +33,7 @@ import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 3.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
 public final class /*<name>*/MPMediaPlaylistAttribute/*</name>*/ extends Bits</*<name>*/MPMediaPlaylistAttribute/*</name>*/> {

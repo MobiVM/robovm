@@ -49,29 +49,11 @@ public enum /*<name>*/NSExpressionType/*</name>*/ implements ValuedEnum {
     Variable(2L),
     KeyPath(3L),
     Function(4L),
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     UnionSet(5L),
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     IntersectSet(6L),
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     MinusSet(7L),
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     Subquery(13L),
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     Aggregate(14L),
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     AnyKey(15L),
     Block(19L),
     /**

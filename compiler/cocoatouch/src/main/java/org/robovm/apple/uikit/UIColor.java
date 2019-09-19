@@ -42,9 +42,7 @@ import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 2.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIColor/*</name>*/ 
@@ -62,9 +60,6 @@ import org.robovm.apple.linkpresentation.*;
     public UIColor(@MachineSizedFloat double red, @MachineSizedFloat double green, @MachineSizedFloat double blue, @MachineSizedFloat double alpha) { super((SkipInit) null); initObject(init(red, green, blue, alpha)); }
     @Method(selector = "initWithCGColor:")
     public UIColor(CGColor cgColor) { super((SkipInit) null); initObject(init(cgColor)); }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "initWithCIColor:")
     public UIColor(CIColor ciColor) { super((SkipInit) null); initObject(init(ciColor)); }
     /**
@@ -108,39 +103,18 @@ import org.robovm.apple.linkpresentation.*;
     public static native UIColor clear();
     @Property(selector = "CGColor")
     public native CGColor getCGColor();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "CIColor")
     public native CIColor getCIColor();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "systemRedColor")
     public static native UIColor systemRed();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "systemGreenColor")
     public static native UIColor systemGreen();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "systemBlueColor")
     public static native UIColor systemBlue();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "systemOrangeColor")
     public static native UIColor systemOrange();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "systemYellowColor")
     public static native UIColor systemYellow();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "systemPinkColor")
     public static native UIColor systemPink();
     /**
@@ -148,9 +122,6 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Property(selector = "systemPurpleColor")
     public static native UIColor systemPurple();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "systemTealColor")
     public static native UIColor systemTeal();
     /**
@@ -158,9 +129,6 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Property(selector = "systemIndigoColor")
     public static native UIColor systemIndigo();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "systemGrayColor")
     public static native UIColor systemGray();
     /**
@@ -283,28 +251,24 @@ import org.robovm.apple.linkpresentation.*;
     @Property(selector = "darkTextColor")
     public static native UIColor darkText();
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 13.0.
      */
     @Deprecated
     @Property(selector = "groupTableViewBackgroundColor")
     public static native UIColor groupTableViewBackground();
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 7.0.
      */
     @Deprecated
     @Property(selector = "viewFlipsideBackgroundColor")
     public static native UIColor viewFlipsideBackground();
     /**
-     * @since Available in iOS 3.2 and later.
      * @deprecated Deprecated in iOS 7.0.
      */
     @Deprecated
     @Property(selector = "scrollViewTexturedBackgroundColor")
     public static native UIColor scrollViewTexturedBackground();
     /**
-     * @since Available in iOS 5.0 and later.
      * @deprecated Deprecated in iOS 7.0.
      */
     @Deprecated
@@ -373,9 +337,6 @@ import org.robovm.apple.linkpresentation.*;
     protected native @Pointer long init(@MachineSizedFloat double red, @MachineSizedFloat double green, @MachineSizedFloat double blue, @MachineSizedFloat double alpha);
     @Method(selector = "initWithCGColor:")
     protected native @Pointer long init(CGColor cgColor);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "initWithCIColor:")
     protected native @Pointer long init(CIColor ciColor);
     @Method(selector = "set")
@@ -384,19 +345,10 @@ import org.robovm.apple.linkpresentation.*;
     public native void setFill();
     @Method(selector = "setStroke")
     public native void setStroke();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "getWhite:alpha:")
     protected native boolean getWhiteAlpha(MachineSizedFloatPtr white, MachineSizedFloatPtr alpha);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "getHue:saturation:brightness:alpha:")
     protected native boolean getHSBA(MachineSizedFloatPtr hue, MachineSizedFloatPtr saturation, MachineSizedFloatPtr brightness, MachineSizedFloatPtr alpha);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "getRed:green:blue:alpha:")
     protected native boolean getRGBA(MachineSizedFloatPtr red, MachineSizedFloatPtr green, MachineSizedFloatPtr blue, MachineSizedFloatPtr alpha);
     @Method(selector = "colorWithAlphaComponent:")
@@ -416,9 +368,6 @@ import org.robovm.apple.linkpresentation.*;
     public static native UIColor fromCGColor(CGColor cgColor);
     @Method(selector = "colorWithPatternImage:")
     public static native UIColor fromPatternImage(UIImage image);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "colorWithCIColor:")
     public static native UIColor fromCIColor(CIColor ciColor);
     /**

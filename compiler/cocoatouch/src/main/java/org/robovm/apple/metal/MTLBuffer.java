@@ -32,9 +32,7 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("Metal") @NativeProtocolProxy/*</annotations>*/
 /*<visibility>*/public final/*</visibility>*/ class /*<name>*/MTLBuffer/*</name>*/ 
@@ -96,9 +94,6 @@ import org.robovm.apple.dispatch.*;
     /*<methods>*/
     @Method(selector = "contents")
     protected native @Pointer long getContents0();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "newTextureWithDescriptor:offset:bytesPerRow:")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSObject.NoRetainMarshaler.class) MTLTexture newTexture(MTLTextureDescriptor descriptor, @MachineSizedUInt long offset, @MachineSizedUInt long bytesPerRow);
     /**

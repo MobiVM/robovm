@@ -41,19 +41,16 @@ import org.robovm.apple.uikit.*;
 public enum /*<name>*/CTFontOrientation/*</name>*/ implements ValuedEnum {
     /*<values>*/
     /**
-     * @since Available in iOS 3.2 and later.
      * @deprecated Deprecated in iOS 9.0. Deprecated
      */
     @Deprecated
     Default(0L),
     /**
-     * @since Available in iOS 3.2 and later.
      * @deprecated Deprecated in iOS 9.0. Deprecated
      */
     @Deprecated
     Horizontal(1L),
     /**
-     * @since Available in iOS 3.2 and later.
      * @deprecated Deprecated in iOS 9.0. Deprecated
      */
     @Deprecated

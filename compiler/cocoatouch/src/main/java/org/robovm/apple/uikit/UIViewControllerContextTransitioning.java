@@ -64,9 +64,6 @@ import org.robovm.apple.linkpresentation.*;
     boolean isTransitionWasCancelled();
     @Property(selector = "presentationStyle")
     UIModalPresentationStyle getPresentationStyle();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "targetTransform")
     @ByVal CGAffineTransform getTargetTransform();
     /*</properties>*/
@@ -86,9 +83,6 @@ import org.robovm.apple.linkpresentation.*;
     void completeTransition(boolean didComplete);
     @Method(selector = "viewControllerForKey:")
     UIViewController getViewController(UITransitionContextViewControllerType key);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "viewForKey:")
     UIView getView(UITransitionContextViewType key);
     @Method(selector = "initialFrameForViewController:")

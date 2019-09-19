@@ -42,9 +42,7 @@ import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UISearchController/*</name>*/ 
@@ -79,14 +77,12 @@ import org.robovm.apple.linkpresentation.*;
     @Property(selector = "setDelegate:", strongRef = true)
     public native void setDelegate(UISearchControllerDelegate v);
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 12.0.
      */
     @Deprecated
     @Property(selector = "dimsBackgroundDuringPresentation")
     public native boolean dimsBackgroundDuringPresentation();
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 12.0.
      */
     @Deprecated
@@ -167,9 +163,6 @@ import org.robovm.apple.linkpresentation.*;
     public native UIViewControllerInteractiveTransitioning getInteractionControllerForPresentation(UIViewControllerAnimatedTransitioning animator);
     @Method(selector = "interactionControllerForDismissal:")
     public native UIViewControllerInteractiveTransitioning getInteractionControllerForDismissal(UIViewControllerAnimatedTransitioning animator);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "presentationControllerForPresentedViewController:presentingViewController:sourceViewController:")
     public native UIPresentationController getPresentationControllerForPresentedViewController(UIViewController presented, UIViewController presenting, UIViewController source);
     @Method(selector = "transitionDuration:")

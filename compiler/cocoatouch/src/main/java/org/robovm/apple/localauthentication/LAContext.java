@@ -32,9 +32,7 @@ import org.robovm.apple.security.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("LocalAuthentication") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/LAContext/*</name>*/ 
@@ -50,14 +48,8 @@ import org.robovm.apple.security.*;
     protected LAContext(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "localizedFallbackTitle")
     public native String getLocalizedFallbackTitle();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setLocalizedFallbackTitle:")
     public native void setLocalizedFallbackTitle(String v);
     /**
@@ -133,23 +125,14 @@ import org.robovm.apple.security.*;
     @GlobalValue(symbol="LATouchIDAuthenticationMaximumAllowableReuseDuration", optional=true)
     public static native double getMaximumAllowableReuseDuration();
     
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public boolean canEvaluatePolicy(LAPolicy policy) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        boolean result = canEvaluatePolicy(policy, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        return result;
     }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "canEvaluatePolicy:error:")
     private native boolean canEvaluatePolicy(LAPolicy policy, NSError.NSErrorPtr error);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "evaluatePolicy:localizedReason:reply:")
     public native void evaluatePolicy(LAPolicy policy, String localizedReason, @Block VoidBlock2<Boolean, NSError> reply);
     /**

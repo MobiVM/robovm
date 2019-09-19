@@ -102,9 +102,6 @@ import org.robovm.apple.corefoundation.*;
     }
     
 
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public CFProxyType getType() {
         if (has(Keys.Type())) {
             CFString val = get(Keys.Type(), CFString.class);
@@ -112,9 +109,6 @@ import org.robovm.apple.corefoundation.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public String getHost() {
         if (has(Keys.HostName())) {
             CFString val = get(Keys.HostName(), CFString.class);
@@ -122,9 +116,6 @@ import org.robovm.apple.corefoundation.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public int getPort() {
         if (has(Keys.PortNumber())) {
             CFNumber val = get(Keys.PortNumber(), CFNumber.class);
@@ -132,9 +123,6 @@ import org.robovm.apple.corefoundation.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public NSURL getAutoConfigurationURL() {
         if (has(Keys.AutoConfigurationURL())) {
             NSURL val = get(Keys.AutoConfigurationURL(), NSURL.class);
@@ -142,9 +130,6 @@ import org.robovm.apple.corefoundation.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public String getAutoConfigurationJavaScript() {
         if (has(Keys.AutoConfigurationJavaScript())) {
             CFString val = get(Keys.AutoConfigurationJavaScript(), CFString.class);
@@ -152,9 +137,6 @@ import org.robovm.apple.corefoundation.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public String getUsername() {
         if (has(Keys.Username())) {
             CFString val = get(Keys.Username(), CFString.class);
@@ -162,9 +144,6 @@ import org.robovm.apple.corefoundation.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public String getPassword() {
         if (has(Keys.Password())) {
             CFString val = get(Keys.Password(), CFString.class);
@@ -172,9 +151,6 @@ import org.robovm.apple.corefoundation.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public CFHTTPMessage getAutoConfigurationHTTPResponse() {
         if (has(Keys.AutoConfigurationHTTPResponse())) {
             CFHTTPMessage val = get(Keys.AutoConfigurationHTTPResponse(), CFHTTPMessage.class);
@@ -188,44 +164,20 @@ import org.robovm.apple.corefoundation.*;
     @Library("CFNetwork")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCFProxyTypeKey", optional=true)
         public static native CFString Type();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCFProxyHostNameKey", optional=true)
         public static native CFString HostName();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCFProxyPortNumberKey", optional=true)
         public static native CFString PortNumber();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCFProxyAutoConfigurationURLKey", optional=true)
         public static native CFString AutoConfigurationURL();
-        /**
-         * @since Available in iOS 3.0 and later.
-         */
         @GlobalValue(symbol="kCFProxyAutoConfigurationJavaScriptKey", optional=true)
         public static native CFString AutoConfigurationJavaScript();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCFProxyUsernameKey", optional=true)
         public static native CFString Username();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCFProxyPasswordKey", optional=true)
         public static native CFString Password();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCFProxyAutoConfigurationHTTPResponseKey", optional=true)
         public static native CFString AutoConfigurationHTTPResponse();
     }

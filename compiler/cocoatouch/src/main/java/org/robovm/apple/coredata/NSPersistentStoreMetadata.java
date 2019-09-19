@@ -109,9 +109,6 @@ import org.robovm.apple.uikit.*;
     }
     
 
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public String getType() {
         if (has(Keys.Type())) {
             NSString val = (NSString) get(Keys.Type());
@@ -119,16 +116,10 @@ import org.robovm.apple.uikit.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public NSPersistentStoreMetadata setType(String type) {
         set(Keys.Type(), new NSString(type));
         return this;
     }
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public NSUUID getUUID() {
         if (has(Keys.UUID())) {
             NSUUID val = (NSUUID) get(Keys.UUID());
@@ -136,16 +127,10 @@ import org.robovm.apple.uikit.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public NSPersistentStoreMetadata setUUID(NSUUID uUID) {
         set(Keys.UUID(), uUID);
         return this;
     }
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public NSDictionary<?, ?> getModelVersionHashes() {
         if (has(Keys.ModelVersionHashes())) {
             NSDictionary<?, ?> val = (NSDictionary<?, ?>) get(Keys.ModelVersionHashes());
@@ -153,9 +138,6 @@ import org.robovm.apple.uikit.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public NSSet<?> getModelVersionIdentifiers() {
         if (has(Keys.ModelVersionIdentifiers())) {
             NSSet<?> val = (NSSet<?>) get(Keys.ModelVersionIdentifiers());
@@ -163,9 +145,6 @@ import org.robovm.apple.uikit.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public long getOSCompatibility() {
         if (has(Keys.OSCompatibility())) {
             NSNumber val = (NSNumber) get(Keys.OSCompatibility());
@@ -183,29 +162,14 @@ import org.robovm.apple.uikit.*;
     @Library("CoreData")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 3.0 and later.
-         */
         @GlobalValue(symbol="NSStoreTypeKey", optional=true)
         public static native NSString Type();
-        /**
-         * @since Available in iOS 3.0 and later.
-         */
         @GlobalValue(symbol="NSStoreUUIDKey", optional=true)
         public static native NSString UUID();
-        /**
-         * @since Available in iOS 3.0 and later.
-         */
         @GlobalValue(symbol="NSStoreModelVersionHashesKey", optional=true)
         public static native NSString ModelVersionHashes();
-        /**
-         * @since Available in iOS 3.0 and later.
-         */
         @GlobalValue(symbol="NSStoreModelVersionIdentifiersKey", optional=true)
         public static native NSString ModelVersionIdentifiers();
-        /**
-         * @since Available in iOS 3.0 and later.
-         */
         @GlobalValue(symbol="NSPersistentStoreOSCompatibility", optional=true)
         public static native NSString OSCompatibility();
     }

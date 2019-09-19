@@ -108,9 +108,6 @@ import org.robovm.apple.imageio.*;
     }
     
 
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public boolean isResultInCloud() {
         if (has(Keys.ResultIsInCloud())) {
             NSNumber val = (NSNumber) get(Keys.ResultIsInCloud());
@@ -118,9 +115,6 @@ import org.robovm.apple.imageio.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public boolean isCancelled() {
         if (has(Keys.Cancelled())) {
             NSNumber val = (NSNumber) get(Keys.Cancelled());
@@ -128,9 +122,6 @@ import org.robovm.apple.imageio.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public NSError getError() {
         if (has(Keys.Error())) {
             NSError val = (NSError) get(Keys.Error());
@@ -144,19 +135,10 @@ import org.robovm.apple.imageio.*;
     @Library("Photos")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="PHContentEditingInputResultIsInCloudKey", optional=true)
         public static native NSString ResultIsInCloud();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="PHContentEditingInputCancelledKey", optional=true)
         public static native NSString Cancelled();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="PHContentEditingInputErrorKey", optional=true)
         public static native NSString Error();
     }

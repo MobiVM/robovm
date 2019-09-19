@@ -45,9 +45,6 @@ public enum /*<name>*/NSPersistentStoreRequestType/*</name>*/ implements ValuedE
      * @since Available in iOS 13.0 and later.
      */
     BatchInsert(5L),
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     BatchUpdate(6L),
     /**
      * @since Available in iOS 9.0 and later.

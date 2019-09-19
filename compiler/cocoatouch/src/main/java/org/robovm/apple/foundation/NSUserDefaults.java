@@ -183,9 +183,6 @@ import org.robovm.apple.dispatch.*;
     public native double getDouble(String defaultName);
     @Method(selector = "boolForKey:")
     public native boolean getBoolean(String defaultName);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "URLForKey:")
     public native NSURL getURL(String defaultName);
     @Method(selector = "setInteger:forKey:")
@@ -196,9 +193,6 @@ import org.robovm.apple.dispatch.*;
     protected native void setDouble(double value, String defaultName);
     @Method(selector = "setBool:forKey:")
     protected native void setBool(boolean value, String defaultName);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "setURL:forKey:")
     protected native void setURL(NSURL url, String defaultName);
     @Method(selector = "registerDefaults:")
@@ -216,7 +210,6 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "removeVolatileDomainForName:")
     public native void removeVolatileDomain(String domainName);
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 7.0. Not recommended
      */
     @Deprecated

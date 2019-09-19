@@ -41,9 +41,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ interface /*<name>*/AVAudioStereoMixing/*</name>*/ 

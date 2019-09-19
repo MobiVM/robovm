@@ -108,9 +108,6 @@ import org.robovm.apple.coregraphics.*;
     }
     
 
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public CGImageMetadata getMetadata() {
         if (has(Keys.DestinationMetadata())) {
             CGImageMetadata val = get(Keys.DestinationMetadata(), CGImageMetadata.class);
@@ -118,16 +115,10 @@ import org.robovm.apple.coregraphics.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public CGImageDestinationCopySourceOptions setMetadata(CGImageMetadata metadata) {
         set(Keys.DestinationMetadata(), metadata);
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public boolean mergesMetadata() {
         if (has(Keys.DestinationMergeMetadata())) {
             CFBoolean val = get(Keys.DestinationMergeMetadata(), CFBoolean.class);
@@ -135,16 +126,10 @@ import org.robovm.apple.coregraphics.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public CGImageDestinationCopySourceOptions setMergesMetadata(boolean mergesMetadata) {
         set(Keys.DestinationMergeMetadata(), CFBoolean.valueOf(mergesMetadata));
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public boolean shouldExcludeXMP() {
         if (has(Keys.MetadataShouldExcludeXMP())) {
             CFBoolean val = get(Keys.MetadataShouldExcludeXMP(), CFBoolean.class);
@@ -152,16 +137,10 @@ import org.robovm.apple.coregraphics.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public CGImageDestinationCopySourceOptions setShouldExcludeXMP(boolean shouldExcludeXMP) {
         set(Keys.MetadataShouldExcludeXMP(), CFBoolean.valueOf(shouldExcludeXMP));
         return this;
     }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public boolean shouldExcludeGPS() {
         if (has(Keys.MetadataShouldExcludeGPS())) {
             CFBoolean val = get(Keys.MetadataShouldExcludeGPS(), CFBoolean.class);
@@ -169,16 +148,10 @@ import org.robovm.apple.coregraphics.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public CGImageDestinationCopySourceOptions setShouldExcludeGPS(boolean shouldExcludeGPS) {
         set(Keys.MetadataShouldExcludeGPS(), CFBoolean.valueOf(shouldExcludeGPS));
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public String getDateTime() {
         if (has(Keys.DestinationDateTime())) {
             CFString val = get(Keys.DestinationDateTime(), CFString.class);
@@ -186,16 +159,10 @@ import org.robovm.apple.coregraphics.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public CGImageDestinationCopySourceOptions setDateTime(String dateTime) {
         set(Keys.DestinationDateTime(), new CFString(dateTime));
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public CGImagePropertyOrientation getOrientation() {
         if (has(Keys.DestinationOrientation())) {
             CFNumber val = get(Keys.DestinationOrientation(), CFNumber.class);
@@ -203,9 +170,6 @@ import org.robovm.apple.coregraphics.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public CGImageDestinationCopySourceOptions setOrientation(CGImagePropertyOrientation orientation) {
         set(Keys.DestinationOrientation(), CFNumber.valueOf(orientation.value()));
         return this;
@@ -223,34 +187,16 @@ import org.robovm.apple.coregraphics.*;
     @Library("ImageIO")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kCGImageDestinationMetadata", optional=true)
         public static native CFString DestinationMetadata();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kCGImageDestinationMergeMetadata", optional=true)
         public static native CFString DestinationMergeMetadata();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kCGImageMetadataShouldExcludeXMP", optional=true)
         public static native CFString MetadataShouldExcludeXMP();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="kCGImageMetadataShouldExcludeGPS", optional=true)
         public static native CFString MetadataShouldExcludeGPS();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kCGImageDestinationDateTime", optional=true)
         public static native CFString DestinationDateTime();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kCGImageDestinationOrientation", optional=true)
         public static native CFString DestinationOrientation();
     }

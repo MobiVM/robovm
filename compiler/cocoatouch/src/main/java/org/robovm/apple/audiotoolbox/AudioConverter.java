@@ -177,54 +177,24 @@ import org.robovm.apple.uikit.*;
         OSStatusException.throwIfNecessary(status);
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioConverterNew", optional=true)
     protected static native OSStatus create0(AudioStreamBasicDescription inSourceFormat, AudioStreamBasicDescription inDestinationFormat, AudioConverter.AudioConverterPtr outAudioConverter);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioConverterNewSpecific", optional=true)
     protected static native OSStatus create0(AudioStreamBasicDescription inSourceFormat, AudioStreamBasicDescription inDestinationFormat, int inNumberClassDescriptions, AudioClassDescription inClassDescriptions, AudioConverter.AudioConverterPtr outAudioConverter);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioConverterDispose", optional=true)
     protected native OSStatus dispose0();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioConverterReset", optional=true)
     protected native OSStatus reset0();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioConverterGetPropertyInfo", optional=true)
     protected native OSStatus getPropertyInfo0(AudioConverterProperty inPropertyID, IntPtr outSize, BooleanPtr outWritable);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioConverterGetProperty", optional=true)
     protected native OSStatus getProperty0(AudioConverterProperty inPropertyID, IntPtr ioPropertyDataSize, VoidPtr outPropertyData);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioConverterSetProperty", optional=true)
     protected native OSStatus setProperty0(AudioConverterProperty inPropertyID, int inPropertyDataSize, VoidPtr inPropertyData);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioConverterConvertBuffer", optional=true)
     protected native OSStatus convertBuffer0(int inInputDataSize, @Pointer long inInputData, IntPtr ioOutputDataSize, BytePtr outOutputData);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioConverterFillComplexBuffer", optional=true)
     protected native OSStatus fillComplexBuffer0(FunctionPtr inInputDataProc, @Pointer long inInputDataProcUserData, IntPtr ioOutputDataPacketSize, AudioBufferList outOutputData, AudioStreamPacketDescription.AudioStreamPacketDescriptionPtr outPacketDescription);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="AudioConverterConvertComplexBuffer", optional=true)
     protected native OSStatus convertComplexBuffer0(int inNumberPCMFrames, AudioBufferList inInputData, AudioBufferList outOutputData);
     /*</methods>*/

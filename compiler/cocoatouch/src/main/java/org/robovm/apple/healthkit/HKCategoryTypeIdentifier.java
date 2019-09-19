@@ -87,9 +87,6 @@ import org.robovm.apple.foundation.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final HKCategoryTypeIdentifier SleepAnalysis = new HKCategoryTypeIdentifier("SleepAnalysis");
     /**
      * @since Available in iOS 9.0 and later.
@@ -164,9 +161,6 @@ import org.robovm.apple.foundation.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="HKCategoryTypeIdentifierSleepAnalysis", optional=true)
         public static native NSString SleepAnalysis();
         /**

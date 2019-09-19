@@ -55,9 +55,6 @@ import org.robovm.apple.dispatch.*;
     protected NSInputStream(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithData:")
     public NSInputStream(NSData data) { super((SkipInit) null); initObject(init(data)); }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "initWithURL:")
     public NSInputStream(NSURL url) { super((SkipInit) null); initObject(init(url)); }
     @Method(selector = "initWithFileAtPath:")
@@ -95,9 +92,6 @@ import org.robovm.apple.dispatch.*;
     protected native @MachineSizedSInt long read(@Pointer long buffer, @MachineSizedUInt long len);
     @Method(selector = "initWithData:")
     protected native @Pointer long init(NSData data);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "initWithURL:")
     protected native @Pointer long init(NSURL url);
     @Method(selector = "initWithFileAtPath:")

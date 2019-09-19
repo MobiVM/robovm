@@ -79,9 +79,6 @@ import org.robovm.apple.corelocation.*;
         return null;
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @GlobalValue(symbol="HMErrorDomain", optional=true)
     public static native String getClassDomain();
     /*</methods>*/

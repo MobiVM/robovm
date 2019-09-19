@@ -112,9 +112,6 @@ import org.robovm.apple.audiotoolbox.*;
     }
     
 
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public CFString getIdentifier() {
         if (has(Keys.Identifier())) {
             CFString val = get(Keys.Identifier(), CFString.class);
@@ -122,16 +119,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public CMMetadataFormatDescriptionMetadataSpecification setIdentifier(CFString identifier) {
         set(Keys.Identifier(), identifier);
         return this;
     }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public CFString getDataType() {
         if (has(Keys.DataType())) {
             CFString val = get(Keys.DataType(), CFString.class);
@@ -139,16 +130,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public CMMetadataFormatDescriptionMetadataSpecification setDataType(CFString dataType) {
         set(Keys.DataType(), dataType);
         return this;
     }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public CFString getExtendedLanguageTag() {
         if (has(Keys.ExtendedLanguageTag())) {
             CFString val = get(Keys.ExtendedLanguageTag(), CFString.class);
@@ -156,9 +141,6 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public CMMetadataFormatDescriptionMetadataSpecification setExtendedLanguageTag(CFString extendedLanguageTag) {
         set(Keys.ExtendedLanguageTag(), extendedLanguageTag);
         return this;
@@ -169,19 +151,10 @@ import org.robovm.apple.audiotoolbox.*;
     @Library("CoreMedia")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="kCMMetadataFormatDescriptionMetadataSpecificationKey_Identifier", optional=true)
         public static native CFString Identifier();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="kCMMetadataFormatDescriptionMetadataSpecificationKey_DataType", optional=true)
         public static native CFString DataType();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="kCMMetadataFormatDescriptionMetadataSpecificationKey_ExtendedLanguageTag", optional=true)
         public static native CFString ExtendedLanguageTag();
         /**

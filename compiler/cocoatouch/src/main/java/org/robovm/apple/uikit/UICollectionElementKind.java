@@ -98,13 +98,7 @@ import org.robovm.apple.linkpresentation.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public static final UICollectionElementKind SectionHeader = new UICollectionElementKind("SectionHeader");
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public static final UICollectionElementKind SectionFooter = new UICollectionElementKind("SectionFooter");
     /*</constants>*/
     
@@ -131,14 +125,8 @@ import org.robovm.apple.linkpresentation.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 6.0 and later.
-         */
         @GlobalValue(symbol="UICollectionElementKindSectionHeader", optional=true)
         public static native NSString SectionHeader();
-        /**
-         * @since Available in iOS 6.0 and later.
-         */
         @GlobalValue(symbol="UICollectionElementKindSectionFooter", optional=true)
         public static native NSString SectionFooter();
         /*</values>*/

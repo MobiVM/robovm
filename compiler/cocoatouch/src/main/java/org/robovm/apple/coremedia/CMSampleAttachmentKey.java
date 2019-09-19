@@ -90,37 +90,13 @@ import org.robovm.apple.audiotoolbox.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CMSampleAttachmentKey NotSync = new CMSampleAttachmentKey("NotSync");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CMSampleAttachmentKey PartialSync = new CMSampleAttachmentKey("PartialSync");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CMSampleAttachmentKey HasRedundantCoding = new CMSampleAttachmentKey("HasRedundantCoding");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CMSampleAttachmentKey IsDependedOnByOthers = new CMSampleAttachmentKey("IsDependedOnByOthers");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CMSampleAttachmentKey DependsOnOthers = new CMSampleAttachmentKey("DependsOnOthers");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CMSampleAttachmentKey EarlierDisplayTimesAllowed = new CMSampleAttachmentKey("EarlierDisplayTimesAllowed");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CMSampleAttachmentKey DisplayImmediately = new CMSampleAttachmentKey("DisplayImmediately");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CMSampleAttachmentKey DoNotDisplay = new CMSampleAttachmentKey("DoNotDisplay");
     /**
      * @since Available in iOS 11.0 and later.
@@ -167,44 +143,20 @@ import org.robovm.apple.audiotoolbox.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCMSampleAttachmentKey_NotSync", optional=true)
         public static native CFString NotSync();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCMSampleAttachmentKey_PartialSync", optional=true)
         public static native CFString PartialSync();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCMSampleAttachmentKey_HasRedundantCoding", optional=true)
         public static native CFString HasRedundantCoding();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCMSampleAttachmentKey_IsDependedOnByOthers", optional=true)
         public static native CFString IsDependedOnByOthers();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCMSampleAttachmentKey_DependsOnOthers", optional=true)
         public static native CFString DependsOnOthers();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCMSampleAttachmentKey_EarlierDisplayTimesAllowed", optional=true)
         public static native CFString EarlierDisplayTimesAllowed();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCMSampleAttachmentKey_DisplayImmediately", optional=true)
         public static native CFString DisplayImmediately();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCMSampleAttachmentKey_DoNotDisplay", optional=true)
         public static native CFString DoNotDisplay();
         /**

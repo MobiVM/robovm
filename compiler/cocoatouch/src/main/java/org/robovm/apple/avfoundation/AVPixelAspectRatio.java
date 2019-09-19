@@ -66,14 +66,8 @@ import org.robovm.apple.audiotoolbox.*;
     @StructMember(1) public native AVPixelAspectRatio setVerticalSpacing(@MachineSizedSInt long verticalSpacing);
     /*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @GlobalValue(symbol="AVVideoPixelAspectRatioHorizontalSpacingKey", optional=true)
     protected static native NSString HorizontalSpacing();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @GlobalValue(symbol="AVVideoPixelAspectRatioVerticalSpacingKey", optional=true)
     protected static native NSString VerticalSpacing();
     /*</methods>*/

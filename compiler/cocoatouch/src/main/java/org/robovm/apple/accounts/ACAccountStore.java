@@ -31,9 +31,7 @@ import org.robovm.apple.foundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 5.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("Accounts") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/ACAccountStore/*</name>*/ 
@@ -71,9 +69,6 @@ import org.robovm.apple.foundation.*;
         requestAccessToAccounts(accountType, options == null ? null : options.getDictionary(), completion);
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @GlobalValue(symbol="ACAccountStoreDidChangeNotification", optional=true)
     public static native NSString DidChangeNotification();
     

@@ -39,9 +39,7 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 3.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSUndoManager/*</name>*/ 
@@ -190,14 +188,8 @@ import org.robovm.apple.dispatch.*;
     public native boolean isUndoing();
     @Property(selector = "isRedoing")
     public native boolean isRedoing();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "undoActionIsDiscardable")
     public native boolean isUndoActionDiscardable();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "redoActionIsDiscardable")
     public native boolean isRedoActionDiscardable();
     @Property(selector = "undoActionName")
@@ -211,49 +203,22 @@ import org.robovm.apple.dispatch.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @GlobalValue(symbol="NSUndoManagerGroupIsDiscardableKey", optional=true)
     protected static native NSString GroupIsDiscardableKey();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @GlobalValue(symbol="NSUndoManagerCheckpointNotification", optional=true)
     public static native NSString CheckpointNotification();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @GlobalValue(symbol="NSUndoManagerWillUndoChangeNotification", optional=true)
     public static native NSString WillUndoChangeNotification();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @GlobalValue(symbol="NSUndoManagerWillRedoChangeNotification", optional=true)
     public static native NSString WillRedoChangeNotification();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @GlobalValue(symbol="NSUndoManagerDidUndoChangeNotification", optional=true)
     public static native NSString DidUndoChangeNotification();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @GlobalValue(symbol="NSUndoManagerDidRedoChangeNotification", optional=true)
     public static native NSString DidRedoChangeNotification();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @GlobalValue(symbol="NSUndoManagerDidOpenUndoGroupNotification", optional=true)
     public static native NSString DidOpenUndoGroupNotification();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @GlobalValue(symbol="NSUndoManagerWillCloseUndoGroupNotification", optional=true)
     public static native NSString WillCloseUndoGroupNotification();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @GlobalValue(symbol="NSUndoManagerDidCloseUndoGroupNotification", optional=true)
     public static native NSString DidCloseUndoGroupNotification();
     
@@ -284,9 +249,6 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "registerUndoWithTarget:handler:")
     public native void registerUndo(NSObject target, @Block VoidBlock1<NSObject> undoHandler);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "setActionIsDiscardable:")
     public native void setActionIsDiscardable(boolean discardable);
     @Method(selector = "setActionName:")

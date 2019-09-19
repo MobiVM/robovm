@@ -42,9 +42,7 @@ import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 3.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIMenuController/*</name>*/ 
@@ -128,24 +126,12 @@ import org.robovm.apple.linkpresentation.*;
     public native boolean isMenuVisible();
     @Property(selector = "setMenuVisible:")
     public native void setMenuVisible(boolean v);
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Property(selector = "arrowDirection")
     public native UIMenuControllerArrowDirection getArrowDirection();
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Property(selector = "setArrowDirection:")
     public native void setArrowDirection(UIMenuControllerArrowDirection v);
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Property(selector = "menuItems")
     private native NSArray<UIMenuItem> getMenuItems0();
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Property(selector = "setMenuItems:")
     private native void setMenuItems0(NSArray<UIMenuItem> v);
     @Property(selector = "menuFrame")
@@ -182,14 +168,12 @@ import org.robovm.apple.linkpresentation.*;
     public static native NSString MenuFrameDidChangeNotification();
     
     /**
-     * @since Available in iOS 3.0 and later.
      * @deprecated Deprecated in iOS 13.0. Use showMenuFromView:rect: or hideMenuFromView: instead.
      */
     @Deprecated
     @Method(selector = "setMenuVisible:animated:")
     public native void setMenuVisible(boolean menuVisible, boolean animated);
     /**
-     * @since Available in iOS 3.0 and later.
      * @deprecated Deprecated in iOS 13.0. Use showMenuFromView:rect: instead.
      */
     @Deprecated

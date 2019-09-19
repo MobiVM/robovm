@@ -57,9 +57,6 @@ import org.robovm.apple.foundation.*;
         return code;
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @GlobalValue(symbol="CMErrorDomain", optional=true)
     public static native String getClassDomain();
     /*</methods>*/

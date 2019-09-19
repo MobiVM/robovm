@@ -58,13 +58,7 @@ public enum /*<name>*/NSAttributeType/*</name>*/ implements ValuedEnum {
      * @since Available in iOS 11.0 and later.
      */
     URI(1200L),
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     Transformable(1800L),
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     ObjectID(2000L);
     /*</values>*/
 

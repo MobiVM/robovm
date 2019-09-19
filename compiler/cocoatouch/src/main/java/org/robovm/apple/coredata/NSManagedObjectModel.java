@@ -34,9 +34,7 @@ import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 3.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreData") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSManagedObjectModel/*</name>*/ 
@@ -68,24 +66,12 @@ import org.robovm.apple.uikit.*;
     public native NSDictionary<NSString, NSString> getLocalizationDictionary();
     @Property(selector = "setLocalizationDictionary:")
     public native void setLocalizationDictionary(NSDictionary<NSString, NSString> v);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "fetchRequestTemplatesByName")
     public native NSDictionary<NSString, NSFetchRequest> getFetchRequestTemplatesByName();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "versionIdentifiers")
     public native NSSet<?> getVersionIdentifiers();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "setVersionIdentifiers:")
     public native void setVersionIdentifiers(NSSet<?> v);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "entityVersionHashesByName")
     public native NSDictionary<NSString, NSData> getEntityVersionHashesByName();
     /*</properties>*/
@@ -103,23 +89,14 @@ import org.robovm.apple.uikit.*;
     public native NSFetchRequest getFetchRequestTemplate(String name);
     @Method(selector = "fetchRequestFromTemplateWithName:substitutionVariables:")
     public native NSFetchRequest getFetchRequestTemplate(String name, NSDictionary<NSString, ?> variables);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "isConfiguration:compatibleWithStoreMetadata:")
     public native boolean isConfigurationCompatibleWithStoreMetadata(String configuration, NSPersistentStoreMetadata metadata);
     @Method(selector = "mergedModelFromBundles:")
     public static native NSManagedObjectModel createFromBundles(NSArray<NSBundle> bundles);
     @Method(selector = "modelByMergingModels:")
     public static native NSManagedObjectModel createByMergingModels(NSArray<NSManagedObjectModel> models);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "mergedModelFromBundles:forStoreMetadata:")
     public static native NSManagedObjectModel createFromBundles(NSArray<NSBundle> bundles, NSPersistentStoreMetadata metadata);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "modelByMergingModels:forStoreMetadata:")
     public static native NSManagedObjectModel createByMergingModels(NSArray<NSManagedObjectModel> models, NSPersistentStoreMetadata metadata);
     @Method(selector = "encodeWithCoder:")

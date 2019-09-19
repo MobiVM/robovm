@@ -75,9 +75,6 @@ import org.robovm.apple.linkpresentation.*;
     public void willStartJob(UIPrintInteractionController printInteractionController) {}
     @NotImplemented("printInteractionControllerDidFinishJob:")
     public void didFinishJob(UIPrintInteractionController printInteractionController) {}
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @NotImplemented("printInteractionController:cutLengthForPaper:")
     public @MachineSizedFloat double getCutLength(UIPrintInteractionController printInteractionController, UIPrintPaper paper) { return 0; }
     /**

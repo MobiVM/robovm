@@ -43,7 +43,6 @@ import org.robovm.apple.linkpresentation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 7.0 and later.
  * @deprecated Deprecated in iOS 9.0.
  */
 /*</javadoc>*/

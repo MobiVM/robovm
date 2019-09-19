@@ -48,39 +48,18 @@ import org.robovm.apple.uikit.*;
     /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGPDFPageGetDocument", optional=true)
     public native CGPDFDocument getDocument();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGPDFPageGetPageNumber", optional=true)
     public native @MachineSizedUInt long getPageNumber();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGPDFPageGetBoxRect", optional=true)
     public native @ByVal CGRect getBoxRect(CGPDFBox box);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGPDFPageGetRotationAngle", optional=true)
     public native int getRotationAngle();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGPDFPageGetDrawingTransform", optional=true)
     public native @ByVal CGAffineTransform getDrawingTransform(CGPDFBox box, @ByVal CGRect rect, int rotate, boolean preserveAspectRatio);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGPDFPageGetDictionary", optional=true)
     public native CGPDFDictionary getDictionary();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGPDFPageGetTypeID", optional=true)
     public static native @MachineSizedUInt long getClassTypeID();
     /*</methods>*/

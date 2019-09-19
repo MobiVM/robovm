@@ -54,31 +54,16 @@ import org.robovm.apple.linkpresentation.*;
     /*</bind>*/
     /*<constants>*//*</constants>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "bounds")
     @ByVal CGRect getBounds();
     /*</properties>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "convertPoint:toCoordinateSpace:")
     @ByVal CGPoint convertPointToCoordinateSpace(@ByVal CGPoint point, UICoordinateSpace coordinateSpace);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "convertPoint:fromCoordinateSpace:")
     @ByVal CGPoint convertPointFromCoordinateSpace(@ByVal CGPoint point, UICoordinateSpace coordinateSpace);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "convertRect:toCoordinateSpace:")
     @ByVal CGRect convertRectToCoordinateSpace(@ByVal CGRect rect, UICoordinateSpace coordinateSpace);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "convertRect:fromCoordinateSpace:")
     @ByVal CGRect convertRectFromCoordinateSpace(@ByVal CGRect rect, UICoordinateSpace coordinateSpace);
     /*</methods>*/

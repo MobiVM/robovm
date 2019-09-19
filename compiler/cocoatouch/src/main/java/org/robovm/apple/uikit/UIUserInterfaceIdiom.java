@@ -48,13 +48,7 @@ import org.robovm.apple.linkpresentation.*;
 public enum /*<name>*/UIUserInterfaceIdiom/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Unspecified(-1L),
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     Phone(0L),
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     Pad(1L),
     /**
      * @since Available in iOS 9.0 and later.

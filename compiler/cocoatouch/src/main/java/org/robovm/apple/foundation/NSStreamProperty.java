@@ -95,25 +95,10 @@ import org.robovm.apple.dispatch.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final NSStreamProperty SocketSecurityLevel = new NSStreamProperty("SocketSecurityLevel");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final NSStreamProperty SOCKSProxyConfiguration = new NSStreamProperty("SOCKSProxyConfiguration");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final NSStreamProperty DataWrittenToMemoryStream = new NSStreamProperty("DataWrittenToMemoryStream");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final NSStreamProperty FileCurrentOffset = new NSStreamProperty("FileCurrentOffset");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final NSStreamProperty NetworkServiceType = new NSStreamProperty("NetworkServiceType");
     /*</constants>*/
     
@@ -140,29 +125,14 @@ import org.robovm.apple.dispatch.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="NSStreamSocketSecurityLevelKey", optional=true)
         public static native NSString SocketSecurityLevel();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="NSStreamSOCKSProxyConfigurationKey", optional=true)
         public static native NSString SOCKSProxyConfiguration();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="NSStreamDataWrittenToMemoryStreamKey", optional=true)
         public static native NSString DataWrittenToMemoryStream();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="NSStreamFileCurrentOffsetKey", optional=true)
         public static native NSString FileCurrentOffset();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="NSStreamNetworkServiceType", optional=true)
         public static native NSString NetworkServiceType();
         /*</values>*/

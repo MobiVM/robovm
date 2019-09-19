@@ -92,13 +92,7 @@ import org.robovm.apple.metal.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public static final CAShapeFillRule NonZero = new CAShapeFillRule("NonZero");
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public static final CAShapeFillRule EvenOdd = new CAShapeFillRule("EvenOdd");
     /*</constants>*/
     
@@ -125,14 +119,8 @@ import org.robovm.apple.metal.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 3.0 and later.
-         */
         @GlobalValue(symbol="kCAFillRuleNonZero", optional=true)
         public static native NSString NonZero();
-        /**
-         * @since Available in iOS 3.0 and later.
-         */
         @GlobalValue(symbol="kCAFillRuleEvenOdd", optional=true)
         public static native NSString EvenOdd();
         /*</values>*/

@@ -33,9 +33,7 @@ import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 3.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("MediaPlayer") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPMediaItem/*</name>*/ 
@@ -51,99 +49,42 @@ import org.robovm.apple.coregraphics.*;
     protected MPMediaItem(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "persistentID")
     public native long getPersistentID();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "mediaType")
     public native MPMediaType getMediaType();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "title")
     public native String getTitle();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "albumTitle")
     public native String getAlbumTitle();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "albumPersistentID")
     public native long getAlbumPersistentID();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "artist")
     public native String getArtist();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "artistPersistentID")
     public native long getArtistPersistentID();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "albumArtist")
     public native String getAlbumArtist();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "albumArtistPersistentID")
     public native long getAlbumArtistPersistentID();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "genre")
     public native String getGenre();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "genrePersistentID")
     public native long getGenrePersistentID();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "composer")
     public native String getComposer();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "composerPersistentID")
     public native long getComposerPersistentID();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "playbackDuration")
     public native double getPlaybackDuration();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "albumTrackNumber")
     public native @MachineSizedUInt long getAlbumTrackNumber();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "albumTrackCount")
     public native @MachineSizedUInt long getAlbumTrackCount();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "discNumber")
     public native @MachineSizedUInt long getDiscNumber();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "discCount")
     public native @MachineSizedUInt long getDiscCount();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "artwork")
     public native MPMediaItemArtwork getArtwork();
     /**
@@ -151,39 +92,18 @@ import org.robovm.apple.coregraphics.*;
      */
     @Property(selector = "isExplicitItem")
     public native boolean isExplicitItem();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "lyrics")
     public native String getLyrics();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "isCompilation")
     public native boolean isCompilation();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "releaseDate")
     public native NSDate getReleaseDate();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "beatsPerMinute")
     public native @MachineSizedUInt long getBeatsPerMinute();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "comments")
     public native String getComments();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "assetURL")
     public native NSURL getAssetURL();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "isCloudItem")
     public native boolean isCloudItem();
     /**
@@ -191,44 +111,20 @@ import org.robovm.apple.coregraphics.*;
      */
     @Property(selector = "hasProtectedAsset")
     public native boolean isProtectedAsset();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "podcastTitle")
     public native String getPodcastTitle();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "podcastPersistentID")
     public native long getPodcastPersistentID();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "playCount")
     public native @MachineSizedUInt long getPlayCount();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "skipCount")
     public native @MachineSizedUInt long getSkipCount();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "rating")
     public native @MachineSizedUInt long getRating();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "lastPlayedDate")
     public native NSDate getLastPlayedDate();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "userGrouping")
     public native String getUserGrouping();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "bookmarkTime")
     public native double getBookmarkTime();
     /**
@@ -522,14 +418,8 @@ import org.robovm.apple.coregraphics.*;
         return 0;
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     @Method(selector = "persistentIDPropertyForGroupingType:")
     public static native MPMediaEntityProperty getPersistentIDProperty(MPMediaGrouping groupingType);
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     @Method(selector = "titlePropertyForGroupingType:")
     public static native MPMediaEntityProperty getTitleProperty(MPMediaGrouping groupingType);
     /*</methods>*/

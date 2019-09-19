@@ -42,9 +42,7 @@ import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 2.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIWindow/*</name>*/ 
@@ -171,14 +169,8 @@ import org.robovm.apple.linkpresentation.*;
     public native boolean canResizeToFitContent();
     @Property(selector = "setCanResizeToFitContent:")
     public native void setCanResizeToFitContent(boolean v);
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Property(selector = "screen")
     public native UIScreen getScreen();
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Property(selector = "setScreen:")
     public native void setScreen(UIScreen v);
     @Property(selector = "windowLevel")
@@ -187,14 +179,8 @@ import org.robovm.apple.linkpresentation.*;
     public native void setWindowLevel(@MachineSizedFloat double v);
     @Property(selector = "isKeyWindow")
     public native boolean isKeyWindow();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "rootViewController")
     public native UIViewController getRootViewController();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "setRootViewController:")
     public native void setRootViewController(UIViewController v);
     /*</properties>*/
@@ -216,14 +202,8 @@ import org.robovm.apple.linkpresentation.*;
     public static native NSString KeyboardWillHideNotification();
     @GlobalValue(symbol="UIKeyboardDidHideNotification", optional=true)
     public static native NSString KeyboardDidHideNotification();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @GlobalValue(symbol="UIKeyboardWillChangeFrameNotification", optional=true)
     public static native NSString KeyboardWillChangeFrameNotification();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @GlobalValue(symbol="UIKeyboardDidChangeFrameNotification", optional=true)
     public static native NSString KeyboardDidChangeFrameNotification();
     

@@ -39,9 +39,7 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 2.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSOperation/*</name>*/ 
@@ -66,9 +64,6 @@ import org.robovm.apple.dispatch.*;
     public native boolean isFinished();
     @Property(selector = "isConcurrent")
     public native boolean isConcurrent();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "isAsynchronous")
     public native boolean isAsynchronous();
     @Property(selector = "isReady")
@@ -79,48 +74,28 @@ import org.robovm.apple.dispatch.*;
     public native NSOperationQueuePriority getQueuePriority();
     @Property(selector = "setQueuePriority:")
     public native void setQueuePriority(NSOperationQueuePriority v);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "completionBlock")
     public native @Block Runnable getCompletionBlock();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "setCompletionBlock:")
     public native void setCompletionBlock(@Block Runnable v);
     /**
-     * @since Available in iOS 4.0 and later.
      * @deprecated Deprecated in iOS 8.0. Not supported
      */
     @Deprecated
     @Property(selector = "threadPriority")
     public native double getThreadPriority();
     /**
-     * @since Available in iOS 4.0 and later.
      * @deprecated Deprecated in iOS 8.0. Not supported
      */
     @Deprecated
     @Property(selector = "setThreadPriority:")
     public native void setThreadPriority(double v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "qualityOfService")
     public native NSQualityOfService getQualityOfService();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setQualityOfService:")
     public native void setQualityOfService(NSQualityOfService v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "name")
     public native String getName();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setName:")
     public native void setName(String v);
     /*</properties>*/
@@ -136,9 +111,6 @@ import org.robovm.apple.dispatch.*;
     public native void addDependency(NSOperation op);
     @Method(selector = "removeDependency:")
     public native void removeDependency(NSOperation op);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "waitUntilFinished")
     public native void waitUntilFinished();
     /*</methods>*/

@@ -88,25 +88,10 @@ import org.robovm.apple.coregraphics.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyJFIF Version = new CGImagePropertyJFIF("Version");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyJFIF XDensity = new CGImagePropertyJFIF("XDensity");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyJFIF YDensity = new CGImagePropertyJFIF("YDensity");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyJFIF DensityUnit = new CGImagePropertyJFIF("DensityUnit");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyJFIF IsProgressive = new CGImagePropertyJFIF("IsProgressive");
     /*</constants>*/
     
@@ -133,29 +118,14 @@ import org.robovm.apple.coregraphics.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyJFIFVersion", optional=true)
         public static native CFString Version();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyJFIFXDensity", optional=true)
         public static native CFString XDensity();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyJFIFYDensity", optional=true)
         public static native CFString YDensity();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyJFIFDensityUnit", optional=true)
         public static native CFString DensityUnit();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyJFIFIsProgressive", optional=true)
         public static native CFString IsProgressive();
         /*</values>*/

@@ -111,9 +111,6 @@ import org.robovm.apple.iosurface.*;
     }
     
 
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public long getWidth() {
         if (has(Keys.Width())) {
             CFNumber val = get(Keys.Width(), CFNumber.class);
@@ -121,16 +118,10 @@ import org.robovm.apple.iosurface.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CVImageBufferCleanAperture setWidth(long width) {
         set(Keys.Width(), CFNumber.valueOf(width));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public long getHeight() {
         if (has(Keys.Height())) {
             CFNumber val = get(Keys.Height(), CFNumber.class);
@@ -138,16 +129,10 @@ import org.robovm.apple.iosurface.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CVImageBufferCleanAperture setHeight(long height) {
         set(Keys.Height(), CFNumber.valueOf(height));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public long getHorizontalOffset() {
         if (has(Keys.HorizontalOffset())) {
             CFNumber val = get(Keys.HorizontalOffset(), CFNumber.class);
@@ -155,16 +140,10 @@ import org.robovm.apple.iosurface.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CVImageBufferCleanAperture setHorizontalOffset(long horizontalOffset) {
         set(Keys.HorizontalOffset(), CFNumber.valueOf(horizontalOffset));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public long getVerticalOffset() {
         if (has(Keys.VerticalOffset())) {
             CFNumber val = get(Keys.VerticalOffset(), CFNumber.class);
@@ -172,9 +151,6 @@ import org.robovm.apple.iosurface.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CVImageBufferCleanAperture setVerticalOffset(long verticalOffset) {
         set(Keys.VerticalOffset(), CFNumber.valueOf(verticalOffset));
         return this;
@@ -185,24 +161,12 @@ import org.robovm.apple.iosurface.*;
     @Library("CoreVideo")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVImageBufferCleanApertureWidthKey", optional=true)
         public static native CFString Width();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVImageBufferCleanApertureHeightKey", optional=true)
         public static native CFString Height();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVImageBufferCleanApertureHorizontalOffsetKey", optional=true)
         public static native CFString HorizontalOffset();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVImageBufferCleanApertureVerticalOffsetKey", optional=true)
         public static native CFString VerticalOffset();
     }

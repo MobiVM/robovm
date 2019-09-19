@@ -107,7 +107,6 @@ import org.robovm.apple.foundation.*;
     
 
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 11.0. Use Tencent Weibo SDK instead
      */
     @Deprecated
@@ -119,7 +118,6 @@ import org.robovm.apple.foundation.*;
         return null;
     }
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 11.0. Use Tencent Weibo SDK instead
      */
     @Deprecated
@@ -134,7 +132,6 @@ import org.robovm.apple.foundation.*;
     public static class Keys {
         static { Bro.bind(Keys.class); }
         /**
-         * @since Available in iOS 7.0 and later.
          * @deprecated Deprecated in iOS 11.0. Use Tencent Weibo SDK instead
          */
         @Deprecated

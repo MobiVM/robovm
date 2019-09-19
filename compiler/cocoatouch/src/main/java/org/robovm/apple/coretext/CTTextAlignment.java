@@ -41,31 +41,26 @@ import org.robovm.apple.uikit.*;
 public enum /*<name>*/CTTextAlignment/*</name>*/ implements ValuedEnum {
     /*<values>*/
     /**
-     * @since Available in iOS 3.2 and later.
      * @deprecated Deprecated in iOS 9.0. Deprecated
      */
     @Deprecated
     Left(0L),
     /**
-     * @since Available in iOS 3.2 and later.
      * @deprecated Deprecated in iOS 9.0. Deprecated
      */
     @Deprecated
     Right(1L),
     /**
-     * @since Available in iOS 3.2 and later.
      * @deprecated Deprecated in iOS 9.0. Deprecated
      */
     @Deprecated
     Center(2L),
     /**
-     * @since Available in iOS 3.2 and later.
      * @deprecated Deprecated in iOS 9.0. Deprecated
      */
     @Deprecated
     Justified(3L),
     /**
-     * @since Available in iOS 3.2 and later.
      * @deprecated Deprecated in iOS 9.0. Deprecated
      */
     @Deprecated

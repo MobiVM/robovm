@@ -38,24 +38,13 @@ import org.robovm.apple.imageio.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
 public final class /*<name>*/PHAssetBurstSelectionType/*</name>*/ extends Bits</*<name>*/PHAssetBurstSelectionType/*</name>*/> {
     /*<values>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final PHAssetBurstSelectionType None = new PHAssetBurstSelectionType(0L);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final PHAssetBurstSelectionType AutoPick = new PHAssetBurstSelectionType(1L);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final PHAssetBurstSelectionType UserPick = new PHAssetBurstSelectionType(2L);
     /*</values>*/
 

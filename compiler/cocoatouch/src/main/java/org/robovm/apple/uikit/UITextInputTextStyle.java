@@ -118,7 +118,6 @@ import org.robovm.apple.linkpresentation.*;
     
 
     /**
-     * @since Available in iOS 3.2 and later.
      * @deprecated Deprecated in iOS 8.0.
      */
     @Deprecated
@@ -130,7 +129,6 @@ import org.robovm.apple.linkpresentation.*;
         return null;
     }
     /**
-     * @since Available in iOS 3.2 and later.
      * @deprecated Deprecated in iOS 8.0.
      */
     @Deprecated
@@ -139,7 +137,6 @@ import org.robovm.apple.linkpresentation.*;
         return this;
     }
     /**
-     * @since Available in iOS 3.2 and later.
      * @deprecated Deprecated in iOS 8.0.
      */
     @Deprecated
@@ -151,7 +148,6 @@ import org.robovm.apple.linkpresentation.*;
         return null;
     }
     /**
-     * @since Available in iOS 3.2 and later.
      * @deprecated Deprecated in iOS 8.0.
      */
     @Deprecated
@@ -160,7 +156,6 @@ import org.robovm.apple.linkpresentation.*;
         return this;
     }
     /**
-     * @since Available in iOS 3.2 and later.
      * @deprecated Deprecated in iOS 8.0.
      */
     @Deprecated
@@ -172,7 +167,6 @@ import org.robovm.apple.linkpresentation.*;
         return null;
     }
     /**
-     * @since Available in iOS 3.2 and later.
      * @deprecated Deprecated in iOS 8.0.
      */
     @Deprecated
@@ -187,21 +181,18 @@ import org.robovm.apple.linkpresentation.*;
     public static class Keys {
         static { Bro.bind(Keys.class); }
         /**
-         * @since Available in iOS 3.2 and later.
          * @deprecated Deprecated in iOS 8.0.
          */
         @Deprecated
         @GlobalValue(symbol="UITextInputTextBackgroundColorKey", optional=true)
         public static native NSString BackgroundColor();
         /**
-         * @since Available in iOS 3.2 and later.
          * @deprecated Deprecated in iOS 8.0.
          */
         @Deprecated
         @GlobalValue(symbol="UITextInputTextColorKey", optional=true)
         public static native NSString Color();
         /**
-         * @since Available in iOS 3.2 and later.
          * @deprecated Deprecated in iOS 8.0.
          */
         @Deprecated

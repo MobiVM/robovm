@@ -150,84 +150,36 @@ import org.robovm.apple.audiotoolbox.*;
         OSStatusException.throwIfNecessary(status);
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMBlockBufferCreateEmpty", optional=true)
     protected static native OSStatus create0(CFAllocator structureAllocator, int subBlockCapacity, CMBlockBufferFlags flags, CMBlockBuffer.CMBlockBufferPtr blockBufferOut);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMBlockBufferCreateWithMemoryBlock", optional=true)
     protected static native OSStatus create0(CFAllocator structureAllocator, VoidPtr memoryBlock, @MachineSizedUInt long blockLength, CFAllocator blockAllocator, CMBlockBufferCustomBlockSource customBlockSource, @MachineSizedUInt long offsetToData, @MachineSizedUInt long dataLength, CMBlockBufferFlags flags, CMBlockBuffer.CMBlockBufferPtr blockBufferOut);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMBlockBufferCreateWithBufferReference", optional=true)
     protected static native OSStatus create0(CFAllocator structureAllocator, CMBlockBuffer bufferReference, @MachineSizedUInt long offsetToData, @MachineSizedUInt long dataLength, CMBlockBufferFlags flags, CMBlockBuffer.CMBlockBufferPtr blockBufferOut);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMBlockBufferCreateContiguous", optional=true)
     protected static native OSStatus create0(CFAllocator structureAllocator, CMBlockBuffer sourceBuffer, CFAllocator blockAllocator, CMBlockBufferCustomBlockSource customBlockSource, @MachineSizedUInt long offsetToData, @MachineSizedUInt long dataLength, CMBlockBufferFlags flags, CMBlockBuffer.CMBlockBufferPtr blockBufferOut);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMBlockBufferGetTypeID", optional=true)
     public static native @MachineSizedUInt long getClassTypeID();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMBlockBufferAppendMemoryBlock", optional=true)
     protected native OSStatus appendMemoryBlock0(VoidPtr memoryBlock, @MachineSizedUInt long blockLength, CFAllocator blockAllocator, CMBlockBufferCustomBlockSource customBlockSource, @MachineSizedUInt long offsetToData, @MachineSizedUInt long dataLength, CMBlockBufferFlags flags);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMBlockBufferAppendBufferReference", optional=true)
     protected native OSStatus appendBufferReference0(CMBlockBuffer targetBBuf, @MachineSizedUInt long offsetToData, @MachineSizedUInt long dataLength, CMBlockBufferFlags flags);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMBlockBufferAssureBlockMemory", optional=true)
     protected native OSStatus assureBlockMemory0();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMBlockBufferAccessDataBytes", optional=true)
     protected static native OSStatus accessDataBytes0(CMBlockBuffer theBuffer, @MachineSizedUInt long offset, @MachineSizedUInt long length, VoidPtr temporaryBlock, BytePtr.BytePtrPtr returnedPointerOut);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMBlockBufferCopyDataBytes", optional=true)
     protected native OSStatus copyDataBytes0(@MachineSizedUInt long offsetToData, @MachineSizedUInt long dataLength, VoidPtr destination);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMBlockBufferReplaceDataBytes", optional=true)
     protected static native OSStatus replaceDataBytes0(VoidPtr sourceBytes, CMBlockBuffer destinationBuffer, @MachineSizedUInt long offsetIntoDestination, @MachineSizedUInt long dataLength);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMBlockBufferFillDataBytes", optional=true)
     protected static native OSStatus fillDataBytes0(byte fillByte, CMBlockBuffer destinationBuffer, @MachineSizedUInt long offsetIntoDestination, @MachineSizedUInt long dataLength);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMBlockBufferGetDataPointer", optional=true)
     protected native OSStatus getDataPointer0(@MachineSizedUInt long offset, MachineSizedUIntPtr lengthAtOffsetOut, MachineSizedUIntPtr totalLengthOut, BytePtr.BytePtrPtr dataPointerOut);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMBlockBufferGetDataLength", optional=true)
     public native @MachineSizedUInt long getDataLength();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMBlockBufferIsRangeContiguous", optional=true)
     public native boolean isRangeContiguous(@MachineSizedUInt long offset, @MachineSizedUInt long length);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMBlockBufferIsEmpty", optional=true)
     public native boolean isEmpty();
     /*</methods>*/

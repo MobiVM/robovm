@@ -31,9 +31,7 @@ import org.robovm.apple.foundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("HealthKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/HKObject/*</name>*/ 
@@ -54,7 +52,6 @@ import org.robovm.apple.foundation.*;
     @Property(selector = "UUID")
     public native NSUUID getUUID();
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 9.0.
      */
     @Deprecated

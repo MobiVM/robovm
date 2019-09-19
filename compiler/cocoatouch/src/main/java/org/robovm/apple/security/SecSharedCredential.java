@@ -67,19 +67,10 @@ import org.robovm.apple.dispatch.*;
     }
 
     /*<methods>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Bridge(symbol="SecAddSharedWebCredential", optional=true)
     public static native void addSharedWebCredential(String fqdn, String account, String password, @Block VoidBlock1<NSError> completionHandler);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Bridge(symbol="SecRequestSharedWebCredential", optional=true)
     protected static native void requestSharedWebCredential0(String fqdn, String account, @Block VoidBlock2<CFArray, NSError> completionHandler);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Bridge(symbol="SecCreateSharedWebCredentialPassword", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFString.AsStringNoRetainMarshaler.class) String createSharedWebCredentialPassword();
     /*</methods>*/

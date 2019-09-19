@@ -47,24 +47,12 @@ import org.robovm.apple.uikit.*;
     
     /*</properties>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "player:wantsToPlayChallenge:")
     void wantsToPlayChallenge(GKPlayer player, GKChallenge challenge);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "player:didReceiveChallenge:")
     void didReceiveChallenge(GKPlayer player, GKChallenge challenge);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "player:didCompleteChallenge:issuedByFriend:")
     void didCompleteChallenge(GKPlayer player, GKChallenge challenge, GKPlayer friendPlayer);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "player:issuedChallengeWasCompleted:byFriend:")
     void issuedChallengeWasCompleted(GKPlayer player, GKChallenge challenge, GKPlayer friendPlayer);
     /*</methods>*/

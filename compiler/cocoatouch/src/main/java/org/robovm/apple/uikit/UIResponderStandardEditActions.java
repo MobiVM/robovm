@@ -57,69 +57,30 @@ import org.robovm.apple.linkpresentation.*;
     
     /*</properties>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "cut:")
     void cut(NSObject sender);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "copy:")
     void copy(NSObject sender);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "paste:")
     void paste(NSObject sender);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "select:")
     void select(NSObject sender);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "selectAll:")
     void selectAll(NSObject sender);
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Method(selector = "delete:")
     void delete(NSObject sender);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "makeTextWritingDirectionLeftToRight:")
     void makeTextWritingDirectionLeftToRight(NSObject sender);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "makeTextWritingDirectionRightToLeft:")
     void makeTextWritingDirectionRightToLeft(NSObject sender);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "toggleBoldface:")
     void toggleBoldface(NSObject sender);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "toggleItalics:")
     void toggleItalics(NSObject sender);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "toggleUnderline:")
     void toggleUnderline(NSObject sender);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "increaseSize:")
     void increaseSize(NSObject sender);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "decreaseSize:")
     void decreaseSize(NSObject sender);
     /**

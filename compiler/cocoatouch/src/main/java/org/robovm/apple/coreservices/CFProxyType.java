@@ -87,33 +87,12 @@ import org.robovm.apple.corefoundation.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CFProxyType None = new CFProxyType("None");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CFProxyType HTTP = new CFProxyType("HTTP");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CFProxyType HTTPS = new CFProxyType("HTTPS");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CFProxyType SOCKS = new CFProxyType("SOCKS");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CFProxyType FTP = new CFProxyType("FTP");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CFProxyType AutoConfigurationURL = new CFProxyType("AutoConfigurationURL");
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public static final CFProxyType AutoConfigurationJavaScript = new CFProxyType("AutoConfigurationJavaScript");
     /*</constants>*/
     
@@ -140,39 +119,18 @@ import org.robovm.apple.corefoundation.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCFProxyTypeNone", optional=true)
         public static native CFString None();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCFProxyTypeHTTP", optional=true)
         public static native CFString HTTP();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCFProxyTypeHTTPS", optional=true)
         public static native CFString HTTPS();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCFProxyTypeSOCKS", optional=true)
         public static native CFString SOCKS();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCFProxyTypeFTP", optional=true)
         public static native CFString FTP();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCFProxyTypeAutoConfigurationURL", optional=true)
         public static native CFString AutoConfigurationURL();
-        /**
-         * @since Available in iOS 3.0 and later.
-         */
         @GlobalValue(symbol="kCFProxyTypeAutoConfigurationJavaScript", optional=true)
         public static native CFString AutoConfigurationJavaScript();
         /*</values>*/

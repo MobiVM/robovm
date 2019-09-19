@@ -100,44 +100,20 @@ import org.robovm.apple.metal.*;
     public native void setMiterLimit(@MachineSizedFloat double v);
     @Property(selector = "lineLength")
     public native @MachineSizedFloat double getLineLength();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "fillTexture")
     public native SKTexture getFillTexture();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setFillTexture:")
     public native void setFillTexture(SKTexture v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "fillShader")
     public native SKShader getFillShader();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setFillShader:")
     public native void setFillShader(SKShader v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "strokeTexture")
     public native SKTexture getStrokeTexture();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setStrokeTexture:")
     public native void setStrokeTexture(SKTexture v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "strokeShader")
     public native SKShader getStrokeShader();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setStrokeShader:")
     public native void setStrokeShader(SKShader v);
     /**
@@ -163,59 +139,26 @@ import org.robovm.apple.metal.*;
      */
     @Method(selector = "setValue:forAttributeNamed:")
     public native void setValue(SKAttributeValue value, String key);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "shapeNodeWithPath:")
     public static native SKShapeNode createPath(CGPath path);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "shapeNodeWithPath:centered:")
     public static native SKShapeNode createPath(CGPath path, boolean centered);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "shapeNodeWithRect:")
     public static native SKShapeNode createRect(@ByVal CGRect rect);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "shapeNodeWithRectOfSize:")
     public static native SKShapeNode createRect(@ByVal CGSize size);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "shapeNodeWithRect:cornerRadius:")
     public static native SKShapeNode createRect(@ByVal CGRect rect, @MachineSizedFloat double cornerRadius);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "shapeNodeWithRectOfSize:cornerRadius:")
     public static native SKShapeNode createRect(@ByVal CGSize size, @MachineSizedFloat double cornerRadius);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "shapeNodeWithCircleOfRadius:")
     public static native SKShapeNode createCircle(@MachineSizedFloat double radius);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "shapeNodeWithEllipseInRect:")
     public static native SKShapeNode createEllipse(@ByVal CGRect rect);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "shapeNodeWithEllipseOfSize:")
     public static native SKShapeNode createEllipse(@ByVal CGSize size);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "shapeNodeWithPoints:count:")
     public static native SKShapeNode createWithPoints(CGPoint points, @MachineSizedUInt long numPoints);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "shapeNodeWithSplinePoints:count:")
     public static native SKShapeNode createWithSplinePoints(CGPoint points, @MachineSizedUInt long numPoints);
     /*</methods>*/

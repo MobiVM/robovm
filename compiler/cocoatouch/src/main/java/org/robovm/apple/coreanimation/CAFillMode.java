@@ -92,21 +92,9 @@ import org.robovm.apple.metal.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CAFillMode Forwards = new CAFillMode("Forwards");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CAFillMode Backwards = new CAFillMode("Backwards");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CAFillMode Both = new CAFillMode("Both");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CAFillMode Removed = new CAFillMode("Removed");
     /*</constants>*/
     
@@ -133,24 +121,12 @@ import org.robovm.apple.metal.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCAFillModeForwards", optional=true)
         public static native NSString Forwards();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCAFillModeBackwards", optional=true)
         public static native NSString Backwards();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCAFillModeBoth", optional=true)
         public static native NSString Both();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCAFillModeRemoved", optional=true)
         public static native NSString Removed();
         /*</values>*/

@@ -116,9 +116,6 @@ import org.robovm.apple.audiotoolbox.*;
     }
     
 
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public AVAudioSessionRouteChangeReason getReason() {
         if (has(Keys.Reason())) {
             NSNumber val = (NSNumber) get(Keys.Reason());
@@ -126,16 +123,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public AVAudioSessionRouteChangeNotification setReason(AVAudioSessionRouteChangeReason reason) {
         set(Keys.Reason(), NSNumber.valueOf(reason.value()));
         return this;
     }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public AVAudioSessionRouteDescription getPreviousRoute() {
         if (has(Keys.PreviousRoute())) {
             AVAudioSessionRouteDescription val = (AVAudioSessionRouteDescription) get(Keys.PreviousRoute());
@@ -143,9 +134,6 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public AVAudioSessionRouteChangeNotification setPreviousRoute(AVAudioSessionRouteDescription previousRoute) {
         set(Keys.PreviousRoute(), previousRoute);
         return this;
@@ -156,14 +144,8 @@ import org.robovm.apple.audiotoolbox.*;
     @Library("AVFoundation")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 6.0 and later.
-         */
         @GlobalValue(symbol="AVAudioSessionRouteChangeReasonKey", optional=true)
         public static native NSString Reason();
-        /**
-         * @since Available in iOS 6.0 and later.
-         */
         @GlobalValue(symbol="AVAudioSessionRouteChangePreviousRouteKey", optional=true)
         public static native NSString PreviousRoute();
     }

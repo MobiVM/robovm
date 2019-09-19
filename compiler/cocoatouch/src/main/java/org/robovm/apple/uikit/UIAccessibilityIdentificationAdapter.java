@@ -55,14 +55,8 @@ import org.robovm.apple.linkpresentation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*//*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @NotImplemented("accessibilityIdentifier")
     public String getAccessibilityIdentifier() { return null; }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @NotImplemented("setAccessibilityIdentifier:")
     public void setAccessibilityIdentifier(String v) {}
     /*</properties>*/

@@ -41,9 +41,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ interface /*<name>*/AVCaptureVideoDataOutputSampleBufferDelegate/*</name>*/ 
@@ -60,9 +58,6 @@ import org.robovm.apple.audiotoolbox.*;
     /*<methods>*/
     @Method(selector = "captureOutput:didOutputSampleBuffer:fromConnection:")
     void didOutputSampleBuffer(AVCaptureOutput output, CMSampleBuffer sampleBuffer, AVCaptureConnection connection);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "captureOutput:didDropSampleBuffer:fromConnection:")
     void didDropSampleBuffer(AVCaptureOutput output, CMSampleBuffer sampleBuffer, AVCaptureConnection connection);
     /*</methods>*/

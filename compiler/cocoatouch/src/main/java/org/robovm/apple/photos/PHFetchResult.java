@@ -38,9 +38,7 @@ import org.robovm.apple.imageio.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("Photos") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/PHFetchResult<T extends NSObject>/*</name>*/
@@ -56,19 +54,10 @@ import org.robovm.apple.imageio.*;
     protected PHFetchResult(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "count")
     public native @MachineSizedUInt long size();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "firstObject")
     public native T first();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "lastObject")
     public native T last();
     /*</properties>*/
@@ -98,49 +87,22 @@ import org.robovm.apple.imageio.*;
         });
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "objectAtIndex:")
     public native T get(@MachineSizedUInt long index);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "containsObject:")
     public native boolean contains(T anObject);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "indexOfObject:")
     public native @MachineSizedUInt long indexOf(T anObject);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "indexOfObject:inRange:")
     public native @MachineSizedUInt long indexOf(T anObject, @ByVal NSRange range);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "objectsAtIndexes:")
     public native NSArray<T> getAll(NSIndexSet indexes);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "enumerateObjectsUsingBlock:")
     protected native void enumerateObjects0(@Block("(,@MachineSizedUInt,)") VoidBlock3<T, Long, BooleanPtr> block);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "enumerateObjectsWithOptions:usingBlock:")
     protected native void enumerateObjects0(NSEnumerationOptions opts, @Block("(,@MachineSizedUInt,)") VoidBlock3<T, Long, BooleanPtr> block);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "enumerateObjectsAtIndexes:options:usingBlock:")
     protected native void enumerateObjects0(NSIndexSet s, NSEnumerationOptions opts, @Block("(,@MachineSizedUInt,)") VoidBlock3<T, Long, BooleanPtr> block);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "countOfAssetsWithMediaType:")
     public native @MachineSizedUInt long getCountOfAssetsWithMediaType(PHAssetMediaType mediaType);
     /*</methods>*/

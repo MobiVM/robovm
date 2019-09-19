@@ -107,14 +107,8 @@ import org.robovm.apple.uikit.*;
         return null;
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGPDFObjectGetType", optional=true)
     public native CGPDFObjectType getType();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGPDFObjectGetValue", optional=true)
     private native boolean getValue(CGPDFObjectType type, VoidPtr value);
     /*</methods>*/

@@ -97,157 +97,43 @@ import org.robovm.apple.audiotoolbox.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifierQuickTimeUserData Album = new AVMetadataIdentifierQuickTimeUserData("Album");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifierQuickTimeUserData Arranger = new AVMetadataIdentifierQuickTimeUserData("Arranger");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifierQuickTimeUserData Artist = new AVMetadataIdentifierQuickTimeUserData("Artist");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifierQuickTimeUserData Author = new AVMetadataIdentifierQuickTimeUserData("Author");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifierQuickTimeUserData Chapter = new AVMetadataIdentifierQuickTimeUserData("Chapter");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifierQuickTimeUserData Comment = new AVMetadataIdentifierQuickTimeUserData("Comment");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifierQuickTimeUserData Composer = new AVMetadataIdentifierQuickTimeUserData("Composer");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifierQuickTimeUserData Copyright = new AVMetadataIdentifierQuickTimeUserData("Copyright");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifierQuickTimeUserData CreationDate = new AVMetadataIdentifierQuickTimeUserData("CreationDate");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifierQuickTimeUserData Description = new AVMetadataIdentifierQuickTimeUserData("Description");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifierQuickTimeUserData Director = new AVMetadataIdentifierQuickTimeUserData("Director");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifierQuickTimeUserData Disclaimer = new AVMetadataIdentifierQuickTimeUserData("Disclaimer");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifierQuickTimeUserData EncodedBy = new AVMetadataIdentifierQuickTimeUserData("EncodedBy");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifierQuickTimeUserData FullName = new AVMetadataIdentifierQuickTimeUserData("FullName");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifierQuickTimeUserData Genre = new AVMetadataIdentifierQuickTimeUserData("Genre");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifierQuickTimeUserData HostComputer = new AVMetadataIdentifierQuickTimeUserData("HostComputer");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifierQuickTimeUserData Information = new AVMetadataIdentifierQuickTimeUserData("Information");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifierQuickTimeUserData Keywords = new AVMetadataIdentifierQuickTimeUserData("Keywords");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifierQuickTimeUserData Make = new AVMetadataIdentifierQuickTimeUserData("Make");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifierQuickTimeUserData Model = new AVMetadataIdentifierQuickTimeUserData("Model");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifierQuickTimeUserData OriginalArtist = new AVMetadataIdentifierQuickTimeUserData("OriginalArtist");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifierQuickTimeUserData OriginalFormat = new AVMetadataIdentifierQuickTimeUserData("OriginalFormat");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifierQuickTimeUserData OriginalSource = new AVMetadataIdentifierQuickTimeUserData("OriginalSource");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifierQuickTimeUserData Performers = new AVMetadataIdentifierQuickTimeUserData("Performers");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifierQuickTimeUserData Producer = new AVMetadataIdentifierQuickTimeUserData("Producer");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifierQuickTimeUserData Publisher = new AVMetadataIdentifierQuickTimeUserData("Publisher");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifierQuickTimeUserData Product = new AVMetadataIdentifierQuickTimeUserData("Product");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifierQuickTimeUserData Software = new AVMetadataIdentifierQuickTimeUserData("Software");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifierQuickTimeUserData SpecialPlaybackRequirements = new AVMetadataIdentifierQuickTimeUserData("SpecialPlaybackRequirements");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifierQuickTimeUserData Track = new AVMetadataIdentifierQuickTimeUserData("Track");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifierQuickTimeUserData Warning = new AVMetadataIdentifierQuickTimeUserData("Warning");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifierQuickTimeUserData Writer = new AVMetadataIdentifierQuickTimeUserData("Writer");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifierQuickTimeUserData URLLink = new AVMetadataIdentifierQuickTimeUserData("URLLink");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifierQuickTimeUserData LocationISO6709 = new AVMetadataIdentifierQuickTimeUserData("LocationISO6709");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifierQuickTimeUserData TrackName = new AVMetadataIdentifierQuickTimeUserData("TrackName");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifierQuickTimeUserData Credits = new AVMetadataIdentifierQuickTimeUserData("Credits");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifierQuickTimeUserData PhonogramRights = new AVMetadataIdentifierQuickTimeUserData("PhonogramRights");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifierQuickTimeUserData TaggedCharacteristic = new AVMetadataIdentifierQuickTimeUserData("TaggedCharacteristic");
     /*</constants>*/
     
@@ -274,194 +160,80 @@ import org.robovm.apple.audiotoolbox.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifierQuickTimeUserDataAlbum", optional=true)
         public static native NSString Album();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifierQuickTimeUserDataArranger", optional=true)
         public static native NSString Arranger();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifierQuickTimeUserDataArtist", optional=true)
         public static native NSString Artist();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifierQuickTimeUserDataAuthor", optional=true)
         public static native NSString Author();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifierQuickTimeUserDataChapter", optional=true)
         public static native NSString Chapter();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifierQuickTimeUserDataComment", optional=true)
         public static native NSString Comment();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifierQuickTimeUserDataComposer", optional=true)
         public static native NSString Composer();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifierQuickTimeUserDataCopyright", optional=true)
         public static native NSString Copyright();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifierQuickTimeUserDataCreationDate", optional=true)
         public static native NSString CreationDate();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifierQuickTimeUserDataDescription", optional=true)
         public static native NSString Description();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifierQuickTimeUserDataDirector", optional=true)
         public static native NSString Director();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifierQuickTimeUserDataDisclaimer", optional=true)
         public static native NSString Disclaimer();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifierQuickTimeUserDataEncodedBy", optional=true)
         public static native NSString EncodedBy();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifierQuickTimeUserDataFullName", optional=true)
         public static native NSString FullName();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifierQuickTimeUserDataGenre", optional=true)
         public static native NSString Genre();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifierQuickTimeUserDataHostComputer", optional=true)
         public static native NSString HostComputer();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifierQuickTimeUserDataInformation", optional=true)
         public static native NSString Information();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifierQuickTimeUserDataKeywords", optional=true)
         public static native NSString Keywords();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifierQuickTimeUserDataMake", optional=true)
         public static native NSString Make();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifierQuickTimeUserDataModel", optional=true)
         public static native NSString Model();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifierQuickTimeUserDataOriginalArtist", optional=true)
         public static native NSString OriginalArtist();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifierQuickTimeUserDataOriginalFormat", optional=true)
         public static native NSString OriginalFormat();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifierQuickTimeUserDataOriginalSource", optional=true)
         public static native NSString OriginalSource();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifierQuickTimeUserDataPerformers", optional=true)
         public static native NSString Performers();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifierQuickTimeUserDataProducer", optional=true)
         public static native NSString Producer();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifierQuickTimeUserDataPublisher", optional=true)
         public static native NSString Publisher();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifierQuickTimeUserDataProduct", optional=true)
         public static native NSString Product();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifierQuickTimeUserDataSoftware", optional=true)
         public static native NSString Software();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifierQuickTimeUserDataSpecialPlaybackRequirements", optional=true)
         public static native NSString SpecialPlaybackRequirements();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifierQuickTimeUserDataTrack", optional=true)
         public static native NSString Track();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifierQuickTimeUserDataWarning", optional=true)
         public static native NSString Warning();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifierQuickTimeUserDataWriter", optional=true)
         public static native NSString Writer();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifierQuickTimeUserDataURLLink", optional=true)
         public static native NSString URLLink();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifierQuickTimeUserDataLocationISO6709", optional=true)
         public static native NSString LocationISO6709();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifierQuickTimeUserDataTrackName", optional=true)
         public static native NSString TrackName();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifierQuickTimeUserDataCredits", optional=true)
         public static native NSString Credits();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifierQuickTimeUserDataPhonogramRights", optional=true)
         public static native NSString PhonogramRights();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifierQuickTimeUserDataTaggedCharacteristic", optional=true)
         public static native NSString TaggedCharacteristic();
         /*</values>*/

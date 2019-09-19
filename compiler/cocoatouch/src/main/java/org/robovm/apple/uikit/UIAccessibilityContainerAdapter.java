@@ -55,14 +55,8 @@ import org.robovm.apple.linkpresentation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*//*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @NotImplemented("accessibilityElements")
     public NSArray<UIAccessibilityElement> getAccessibilityElements() { return null; }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @NotImplemented("setAccessibilityElements:")
     public void setAccessibilityElements(NSArray<UIAccessibilityElement> v) {}
     /**

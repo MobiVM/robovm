@@ -33,9 +33,7 @@ import org.robovm.apple.security.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 7.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("MultipeerConnectivity") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MCSession/*</name>*/ 
@@ -72,14 +70,8 @@ import org.robovm.apple.security.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @GlobalValue(symbol="kMCSessionMinimumNumberOfPeers", optional=true)
     public static native @MachineSizedUInt long getMinimumNumberOfPeers();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @GlobalValue(symbol="kMCSessionMaximumNumberOfPeers", optional=true)
     public static native @MachineSizedUInt long getMaximumNumberOfPeers();
     

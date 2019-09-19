@@ -49,18 +49,11 @@ import org.robovm.apple.uikit.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @NotImplemented("player:didAcceptInvite:")
     public void didAcceptInvite(GKPlayer player, GKInvite invite) {}
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @NotImplemented("player:didRequestMatchWithRecipients:")
     public void didRequestMatch(GKPlayer player, NSArray<GKPlayer> recipientPlayers) {}
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 8.0. use player:didRequestMatchWithRecipients:
      */
     @Deprecated

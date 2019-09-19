@@ -95,13 +95,7 @@ import org.robovm.apple.dispatch.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final NSStreamSOCKSProxyVersion Version4 = new NSStreamSOCKSProxyVersion("Version4");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final NSStreamSOCKSProxyVersion Version5 = new NSStreamSOCKSProxyVersion("Version5");
     /*</constants>*/
     
@@ -128,14 +122,8 @@ import org.robovm.apple.dispatch.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="NSStreamSOCKSProxyVersion4", optional=true)
         public static native NSString Version4();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="NSStreamSOCKSProxyVersion5", optional=true)
         public static native NSString Version5();
         /*</values>*/

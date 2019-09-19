@@ -42,9 +42,7 @@ import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 6.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UICollectionViewController/*</name>*/ 
@@ -74,19 +72,10 @@ import org.robovm.apple.linkpresentation.*;
     public native boolean clearsSelectionOnViewWillAppear();
     @Property(selector = "setClearsSelectionOnViewWillAppear:")
     public native void setClearsSelectionOnViewWillAppear(boolean v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "useLayoutToLayoutNavigationTransitions")
     public native boolean usesLayoutToLayoutNavigationTransitions();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setUseLayoutToLayoutNavigationTransitions:")
     public native void setUsesLayoutToLayoutNavigationTransitions(boolean v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "collectionViewLayout")
     public native UICollectionViewLayout getCollectionViewLayout();
     /**
@@ -122,14 +111,8 @@ import org.robovm.apple.linkpresentation.*;
     public native void didSelectItem(UICollectionView collectionView, NSIndexPath indexPath);
     @Method(selector = "collectionView:didDeselectItemAtIndexPath:")
     public native void didDeselectItem(UICollectionView collectionView, NSIndexPath indexPath);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "collectionView:willDisplayCell:forItemAtIndexPath:")
     public native void willDisplayCell(UICollectionView collectionView, UICollectionViewCell cell, NSIndexPath indexPath);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "collectionView:willDisplaySupplementaryView:forElementKind:atIndexPath:")
     public native void willDisplaySupplementaryView(UICollectionView collectionView, UICollectionReusableView view, String elementKind, NSIndexPath indexPath);
     @Method(selector = "collectionView:didEndDisplayingCell:forItemAtIndexPath:")
@@ -137,21 +120,18 @@ import org.robovm.apple.linkpresentation.*;
     @Method(selector = "collectionView:didEndDisplayingSupplementaryView:forElementOfKind:atIndexPath:")
     public native void didEndDisplayingSupplementaryView(UICollectionView collectionView, UICollectionReusableView view, String elementKind, NSIndexPath indexPath);
     /**
-     * @since Available in iOS 6.0 and later.
      * @deprecated Deprecated in iOS 13.0.
      */
     @Deprecated
     @Method(selector = "collectionView:shouldShowMenuForItemAtIndexPath:")
     public native boolean shouldShowMenuForItem(UICollectionView collectionView, NSIndexPath indexPath);
     /**
-     * @since Available in iOS 6.0 and later.
      * @deprecated Deprecated in iOS 13.0.
      */
     @Deprecated
     @Method(selector = "collectionView:canPerformAction:forItemAtIndexPath:withSender:")
     public native boolean canPerformAction(UICollectionView collectionView, Selector action, NSIndexPath indexPath, NSObject sender);
     /**
-     * @since Available in iOS 6.0 and later.
      * @deprecated Deprecated in iOS 13.0.
      */
     @Deprecated
@@ -236,16 +216,10 @@ import org.robovm.apple.linkpresentation.*;
     public native void willCommitMenu(UICollectionView collectionView, UIContextMenuInteractionCommitAnimating animator);
     @Method(selector = "scrollViewDidScroll:")
     public native void didScroll(UIScrollView scrollView);
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Method(selector = "scrollViewDidZoom:")
     public native void didZoom(UIScrollView scrollView);
     @Method(selector = "scrollViewWillBeginDragging:")
     public native void willBeginDragging(UIScrollView scrollView);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "scrollViewWillEndDragging:withVelocity:targetContentOffset:")
     public native void willEndDragging(UIScrollView scrollView, @ByVal CGPoint velocity, CGPoint targetContentOffset);
     @Method(selector = "scrollViewDidEndDragging:willDecelerate:")
@@ -258,9 +232,6 @@ import org.robovm.apple.linkpresentation.*;
     public native void didEndScrollingAnimation(UIScrollView scrollView);
     @Method(selector = "viewForZoomingInScrollView:")
     public native UIView getViewForZooming(UIScrollView scrollView);
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Method(selector = "scrollViewWillBeginZooming:withView:")
     public native void willBeginZooming(UIScrollView scrollView, UIView view);
     @Method(selector = "scrollViewDidEndZooming:withView:atScale:")

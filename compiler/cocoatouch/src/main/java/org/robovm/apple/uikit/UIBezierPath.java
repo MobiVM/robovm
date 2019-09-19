@@ -42,9 +42,7 @@ import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 3.2 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIBezierPath/*</name>*/ 
@@ -154,9 +152,6 @@ import org.robovm.apple.linkpresentation.*;
     public native void addCurve(@ByVal CGPoint endPoint, @ByVal CGPoint controlPoint1, @ByVal CGPoint controlPoint2);
     @Method(selector = "addQuadCurveToPoint:controlPoint:")
     public native void addQuadCurve(@ByVal CGPoint endPoint, @ByVal CGPoint controlPoint);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "addArcWithCenter:radius:startAngle:endAngle:clockwise:")
     public native void addArc(@ByVal CGPoint center, @MachineSizedFloat double radius, @MachineSizedFloat double startAngle, @MachineSizedFloat double endAngle, boolean clockwise);
     @Method(selector = "closePath")
@@ -165,9 +160,6 @@ import org.robovm.apple.linkpresentation.*;
     public native void removeAllPoints();
     @Method(selector = "appendPath:")
     public native void appendPath(UIBezierPath bezierPath);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "bezierPathByReversingPath")
     public native UIBezierPath reverse();
     @Method(selector = "applyTransform:")

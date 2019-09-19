@@ -33,9 +33,7 @@ import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 7.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("GameController") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GCExtendedGamepad/*</name>*/ 
@@ -103,7 +101,6 @@ import org.robovm.apple.uikit.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 13.0.
      */
     @Deprecated

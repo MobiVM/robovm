@@ -57,14 +57,8 @@ import org.robovm.apple.linkpresentation.*;
     
     /*</properties>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "textStorage:willProcessEditing:range:changeInLength:")
     void willProcessEditing(NSTextStorage textStorage, NSTextStorageEditActions editedMask, @ByVal NSRange editedRange, @MachineSizedSInt long delta);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "textStorage:didProcessEditing:range:changeInLength:")
     void didProcessEditing(NSTextStorage textStorage, NSTextStorageEditActions editedMask, @ByVal NSRange editedRange, @MachineSizedSInt long delta);
     /*</methods>*/

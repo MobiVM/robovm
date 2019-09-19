@@ -39,9 +39,7 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 2.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSOperationQueue/*</name>*/ 
@@ -72,57 +70,27 @@ import org.robovm.apple.dispatch.*;
     public native boolean isSuspended();
     @Property(selector = "setSuspended:")
     public native void setSuspended(boolean v);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "name")
     public native String getName();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "setName:")
     public native void setName(String v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "qualityOfService")
     public native NSQualityOfService getQualityOfService();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setQualityOfService:")
     public native void setQualityOfService(NSQualityOfService v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @WeaklyLinked
     @Property(selector = "underlyingQueue")
     public native DispatchQueue getUnderlyingQueue();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @WeaklyLinked
     @Property(selector = "setUnderlyingQueue:")
     public native void setUnderlyingQueue(DispatchQueue v);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "currentQueue")
     public static native NSOperationQueue getCurrentQueue();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "mainQueue")
     public static native NSOperationQueue getMainQueue();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Deprecated
     @Property(selector = "operations")
     public native NSArray<NSOperation> getOperations();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Deprecated
     @Property(selector = "operationCount")
     public native @MachineSizedUInt long getOperationCount();
@@ -131,14 +99,8 @@ import org.robovm.apple.dispatch.*;
     /*<methods>*/
     @Method(selector = "addOperation:")
     public native void addOperation(NSOperation op);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "addOperations:waitUntilFinished:")
     public native void addOperations(NSArray<NSOperation> ops, boolean wait);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "addOperationWithBlock:")
     public native void addOperation(@Block Runnable block);
     /**

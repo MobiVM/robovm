@@ -90,53 +90,17 @@ import org.robovm.apple.audiotoolbox.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final CMTextMarkupGenericFontName Default = new CMTextMarkupGenericFontName("Default");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final CMTextMarkupGenericFontName Serif = new CMTextMarkupGenericFontName("Serif");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final CMTextMarkupGenericFontName SansSerif = new CMTextMarkupGenericFontName("SansSerif");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final CMTextMarkupGenericFontName Monospace = new CMTextMarkupGenericFontName("Monospace");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final CMTextMarkupGenericFontName ProportionalSerif = new CMTextMarkupGenericFontName("ProportionalSerif");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final CMTextMarkupGenericFontName ProportionalSansSerif = new CMTextMarkupGenericFontName("ProportionalSansSerif");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final CMTextMarkupGenericFontName MonospaceSerif = new CMTextMarkupGenericFontName("MonospaceSerif");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final CMTextMarkupGenericFontName MonospaceSansSerif = new CMTextMarkupGenericFontName("MonospaceSansSerif");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final CMTextMarkupGenericFontName Casual = new CMTextMarkupGenericFontName("Casual");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final CMTextMarkupGenericFontName Cursive = new CMTextMarkupGenericFontName("Cursive");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final CMTextMarkupGenericFontName Fantasy = new CMTextMarkupGenericFontName("Fantasy");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final CMTextMarkupGenericFontName SmallCapital = new CMTextMarkupGenericFontName("SmallCapital");
     /*</constants>*/
     
@@ -163,64 +127,28 @@ import org.robovm.apple.audiotoolbox.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kCMTextMarkupGenericFontName_Default", optional=true)
         public static native CFString Default();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kCMTextMarkupGenericFontName_Serif", optional=true)
         public static native CFString Serif();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kCMTextMarkupGenericFontName_SansSerif", optional=true)
         public static native CFString SansSerif();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kCMTextMarkupGenericFontName_Monospace", optional=true)
         public static native CFString Monospace();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kCMTextMarkupGenericFontName_ProportionalSerif", optional=true)
         public static native CFString ProportionalSerif();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kCMTextMarkupGenericFontName_ProportionalSansSerif", optional=true)
         public static native CFString ProportionalSansSerif();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kCMTextMarkupGenericFontName_MonospaceSerif", optional=true)
         public static native CFString MonospaceSerif();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kCMTextMarkupGenericFontName_MonospaceSansSerif", optional=true)
         public static native CFString MonospaceSansSerif();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kCMTextMarkupGenericFontName_Casual", optional=true)
         public static native CFString Casual();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kCMTextMarkupGenericFontName_Cursive", optional=true)
         public static native CFString Cursive();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kCMTextMarkupGenericFontName_Fantasy", optional=true)
         public static native CFString Fantasy();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kCMTextMarkupGenericFontName_SmallCapital", optional=true)
         public static native CFString SmallCapital();
         /*</values>*/

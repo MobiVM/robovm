@@ -54,9 +54,6 @@ import org.robovm.apple.dispatch.*;
     protected NSOutputStream(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initToMemory")
     public NSOutputStream() { super((SkipInit) null); initObject(init()); }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "initWithURL:append:")
     public NSOutputStream(NSURL url, boolean shouldAppend) { super((SkipInit) null); initObject(init(url, shouldAppend)); }
     @Method(selector = "initToFileAtPath:append:")
@@ -109,9 +106,6 @@ import org.robovm.apple.dispatch.*;
     protected native @Pointer long init();
     @Method(selector = "initToBuffer:capacity:")
     protected native @Pointer long init(@Pointer long buffer, @MachineSizedUInt long capacity);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "initWithURL:append:")
     protected native @Pointer long init(NSURL url, boolean shouldAppend);
     @Method(selector = "initToFileAtPath:append:")

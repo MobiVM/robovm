@@ -89,9 +89,6 @@ import org.robovm.apple.foundation.*;
     /*<constants>*/
     public static final EAGLColorFormat RGBA8 = new EAGLColorFormat("RGBA8");
     public static final EAGLColorFormat RGB565 = new EAGLColorFormat("RGB565");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final EAGLColorFormat SRGBA8 = new EAGLColorFormat("SRGBA8");
     /*</constants>*/
     
@@ -122,9 +119,6 @@ import org.robovm.apple.foundation.*;
         public static native NSString RGBA8();
         @GlobalValue(symbol="kEAGLColorFormatRGB565", optional=true)
         public static native NSString RGB565();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kEAGLColorFormatSRGBA8", optional=true)
         public static native NSString SRGBA8();
         /*</values>*/

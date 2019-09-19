@@ -43,7 +43,6 @@ import org.robovm.apple.linkpresentation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 8.0 and later.
  * @deprecated Deprecated in iOS 13.0. Use UIContextualAction and related APIs instead.
  */
 /*</javadoc>*/

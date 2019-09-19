@@ -41,9 +41,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVVideoCompositionLayerInstruction/*</name>*/ 
@@ -102,9 +100,6 @@ import org.robovm.apple.audiotoolbox.*;
     protected native boolean getTransformRamp(@ByVal CMTime time, CGAffineTransform.CGAffineTransformPtr startTransform, CGAffineTransform.CGAffineTransformPtr endTransform, CMTimeRange.CMTimeRangePtr timeRange);
     @Method(selector = "getOpacityRampForTime:startOpacity:endOpacity:timeRange:")
     protected native boolean getOpacityRamp(@ByVal CMTime time, FloatPtr startOpacity, FloatPtr endOpacity, CMTimeRange.CMTimeRangePtr timeRange);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "getCropRectangleRampForTime:startCropRectangle:endCropRectangle:timeRange:")
     protected native boolean getCropRectangleRamp(@ByVal CMTime time, CGRect.CGRectPtr startCropRectangle, CGRect.CGRectPtr endCropRectangle, CMTimeRange.CMTimeRangePtr timeRange);
     @Method(selector = "encodeWithCoder:")

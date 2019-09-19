@@ -41,9 +41,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 7.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVSpeechUtterance/*</name>*/ 
@@ -104,19 +102,10 @@ import org.robovm.apple.audiotoolbox.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @GlobalValue(symbol="AVSpeechUtteranceMinimumSpeechRate", optional=true)
     public static native float getMinimumSpeechRate();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @GlobalValue(symbol="AVSpeechUtteranceMaximumSpeechRate", optional=true)
     public static native float getMaximumSpeechRate();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @GlobalValue(symbol="AVSpeechUtteranceDefaultSpeechRate", optional=true)
     public static native float getDefaultSpeechRate();
     

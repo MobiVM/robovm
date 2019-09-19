@@ -116,9 +116,6 @@ import org.robovm.apple.dispatch.*;
     public static native NSMutableCharacterSet getCapitalizedLetterCharacterSet();
     @Method(selector = "symbolCharacterSet")
     public static native NSMutableCharacterSet getSymbolCharacterSet();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Method(selector = "newlineCharacterSet")
     public static native NSMutableCharacterSet getNewlineCharacterSet();
     @Method(selector = "characterSetWithRange:")

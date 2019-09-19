@@ -32,7 +32,6 @@ import org.robovm.apple.foundation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 5.0 and later.
  * @deprecated Deprecated in iOS 13.0. Use the Remote Notifications Background Modes instead: https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/pushing_updates_to_your_app_silently
  */
 /*</javadoc>*/

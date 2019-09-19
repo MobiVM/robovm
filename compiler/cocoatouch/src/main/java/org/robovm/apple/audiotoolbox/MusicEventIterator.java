@@ -185,64 +185,28 @@ import org.robovm.apple.uikit.*;
         return ptr.get(); 
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="NewMusicEventIterator", optional=true)
     protected static native OSStatus create0(MusicTrack inTrack, MusicEventIterator.MusicEventIteratorPtr outIterator);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="DisposeMusicEventIterator", optional=true)
     protected native OSStatus dispose0();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="MusicEventIteratorSeek", optional=true)
     protected native OSStatus seek0(double inTimeStamp);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="MusicEventIteratorNextEvent", optional=true)
     protected native OSStatus nextEvent0();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="MusicEventIteratorPreviousEvent", optional=true)
     protected native OSStatus previousEvent0();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="MusicEventIteratorGetEventInfo", optional=true)
     protected native OSStatus getEventInfo0(DoublePtr outTimeStamp, IntPtr outEventType, VoidPtr.VoidPtrPtr outEventData, IntPtr outEventDataSize);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="MusicEventIteratorSetEventInfo", optional=true)
     protected native OSStatus setEventInfo0(MusicEventType inEventType, VoidPtr inEventData);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="MusicEventIteratorSetEventTime", optional=true)
     protected native OSStatus setEventTime0(double inTimeStamp);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="MusicEventIteratorDeleteEvent", optional=true)
     protected native OSStatus deleteEvent0();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="MusicEventIteratorHasPreviousEvent", optional=true)
     protected native OSStatus hasPreviousEvent0(BooleanPtr outHasPrevEvent);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="MusicEventIteratorHasNextEvent", optional=true)
     protected native OSStatus hasNextEvent0(BooleanPtr outHasNextEvent);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="MusicEventIteratorHasCurrentEvent", optional=true)
     protected native OSStatus hasCurrentEvent0(BooleanPtr outHasCurEvent);
     /*</methods>*/

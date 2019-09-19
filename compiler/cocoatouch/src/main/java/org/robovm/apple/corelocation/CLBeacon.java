@@ -34,9 +34,7 @@ import org.robovm.apple.contacts.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 7.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreLocation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CLBeacon/*</name>*/ 
@@ -65,7 +63,6 @@ import org.robovm.apple.contacts.*;
     @Property(selector = "UUID")
     public native NSUUID getUUID();
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 13.0.
      */
     @Deprecated

@@ -59,29 +59,14 @@ import org.robovm.apple.linkpresentation.*;
     /*<methods>*/
     @Method(selector = "tableView:willDisplayCell:forRowAtIndexPath:")
     void willDisplayCell(UITableView tableView, UITableViewCell cell, NSIndexPath indexPath);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "tableView:willDisplayHeaderView:forSection:")
     void willDisplayHeaderView(UITableView tableView, UIView view, @MachineSizedSInt long section);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "tableView:willDisplayFooterView:forSection:")
     void willDisplayFooterView(UITableView tableView, UIView view, @MachineSizedSInt long section);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "tableView:didEndDisplayingCell:forRowAtIndexPath:")
     void didEndDisplayingCell(UITableView tableView, UITableViewCell cell, NSIndexPath indexPath);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "tableView:didEndDisplayingHeaderView:forSection:")
     void didEndDisplayingHeaderView(UITableView tableView, UIView view, @MachineSizedSInt long section);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "tableView:didEndDisplayingFooterView:forSection:")
     void didEndDisplayingFooterView(UITableView tableView, UIView view, @MachineSizedSInt long section);
     @Method(selector = "tableView:heightForRowAtIndexPath:")
@@ -90,19 +75,10 @@ import org.robovm.apple.linkpresentation.*;
     @MachineSizedFloat double getHeightForHeader(UITableView tableView, @MachineSizedSInt long section);
     @Method(selector = "tableView:heightForFooterInSection:")
     @MachineSizedFloat double getHeightForFooter(UITableView tableView, @MachineSizedSInt long section);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "tableView:estimatedHeightForRowAtIndexPath:")
     @MachineSizedFloat double getEstimatedHeightForRow(UITableView tableView, NSIndexPath indexPath);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "tableView:estimatedHeightForHeaderInSection:")
     @MachineSizedFloat double getEstimatedHeightForHeader(UITableView tableView, @MachineSizedSInt long section);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "tableView:estimatedHeightForFooterInSection:")
     @MachineSizedFloat double getEstimatedHeightForFooter(UITableView tableView, @MachineSizedSInt long section);
     @Method(selector = "tableView:viewForHeaderInSection:")
@@ -111,44 +87,25 @@ import org.robovm.apple.linkpresentation.*;
     UIView getViewForFooter(UITableView tableView, @MachineSizedSInt long section);
     @Method(selector = "tableView:accessoryButtonTappedForRowWithIndexPath:")
     void accessoryButtonTapped(UITableView tableView, NSIndexPath indexPath);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "tableView:shouldHighlightRowAtIndexPath:")
     boolean shouldHighlightRow(UITableView tableView, NSIndexPath indexPath);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "tableView:didHighlightRowAtIndexPath:")
     void didHighlightRow(UITableView tableView, NSIndexPath indexPath);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "tableView:didUnhighlightRowAtIndexPath:")
     void didUnhighlightRow(UITableView tableView, NSIndexPath indexPath);
     @Method(selector = "tableView:willSelectRowAtIndexPath:")
     NSIndexPath willSelectRow(UITableView tableView, NSIndexPath indexPath);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "tableView:willDeselectRowAtIndexPath:")
     NSIndexPath willDeselectRow(UITableView tableView, NSIndexPath indexPath);
     @Method(selector = "tableView:didSelectRowAtIndexPath:")
     void didSelectRow(UITableView tableView, NSIndexPath indexPath);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "tableView:didDeselectRowAtIndexPath:")
     void didDeselectRow(UITableView tableView, NSIndexPath indexPath);
     @Method(selector = "tableView:editingStyleForRowAtIndexPath:")
     UITableViewCellEditingStyle getEditingStyleForRow(UITableView tableView, NSIndexPath indexPath);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "tableView:titleForDeleteConfirmationButtonForRowAtIndexPath:")
     String getTitleForDeleteConfirmationButton(UITableView tableView, NSIndexPath indexPath);
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 13.0.
      */
     @Deprecated
@@ -175,21 +132,18 @@ import org.robovm.apple.linkpresentation.*;
     @Method(selector = "tableView:indentationLevelForRowAtIndexPath:")
     @MachineSizedSInt long getIndentationLevelForRow(UITableView tableView, NSIndexPath indexPath);
     /**
-     * @since Available in iOS 5.0 and later.
      * @deprecated Deprecated in iOS 13.0.
      */
     @Deprecated
     @Method(selector = "tableView:shouldShowMenuForRowAtIndexPath:")
     boolean shouldShowMenuForRow(UITableView tableView, NSIndexPath indexPath);
     /**
-     * @since Available in iOS 5.0 and later.
      * @deprecated Deprecated in iOS 13.0.
      */
     @Deprecated
     @Method(selector = "tableView:canPerformAction:forRowAtIndexPath:withSender:")
     boolean canPerformAction(UITableView tableView, Selector action, NSIndexPath indexPath, NSObject sender);
     /**
-     * @since Available in iOS 5.0 and later.
      * @deprecated Deprecated in iOS 13.0.
      */
     @Deprecated

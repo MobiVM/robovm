@@ -72,9 +72,6 @@ public enum /*<name>*/NSURLErrorCode/*</name>*/ implements NSErrorCode {
     FileDoesNotExist(-1100L),
     FileIsDirectory(-1101L),
     NoPermissionsToReadFile(-1102L),
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     DataLengthExceedsMaximum(-1103L),
     /**
      * @since Available in iOS 10.3 and later.
@@ -96,33 +93,12 @@ public enum /*<name>*/NSURLErrorCode/*</name>*/ implements NSErrorCode {
     CannotMoveFile(-3005L),
     DownloadDecodingFailedMidStream(-3006L),
     DownloadDecodingFailedToComplete(-3007L),
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     InternationalRoamingOff(-1018L),
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     CallIsActive(-1019L),
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     DataNotAllowed(-1020L),
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     RequestBodyStreamExhausted(-1021L),
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     BackgroundSessionRequiresSharedContainer(-995L),
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     BackgroundSessionInUseByAnotherProcess(-996L),
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     BackgroundSessionWasDisconnected(-997L);
     /*</values>*/
 

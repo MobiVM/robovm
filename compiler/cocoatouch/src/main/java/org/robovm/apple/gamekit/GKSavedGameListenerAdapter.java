@@ -49,14 +49,8 @@ import org.robovm.apple.uikit.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @NotImplemented("player:didModifySavedGame:")
     public void didModifySavedGame(GKPlayer player, GKSavedGame savedGame) {}
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @NotImplemented("player:hasConflictingSavedGames:")
     public void hasConflictingSavedGames(GKPlayer player, NSArray<GKSavedGame> savedGames) {}
     /*</methods>*/

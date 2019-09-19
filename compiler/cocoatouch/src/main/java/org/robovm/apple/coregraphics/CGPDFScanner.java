@@ -145,64 +145,28 @@ import org.robovm.apple.uikit.*;
         return null;
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGPDFScannerCreate", optional=true)
     private static native CGPDFScanner create(CGPDFContentStream cs, CGPDFOperatorTable table, @Pointer long info);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGPDFScannerScan", optional=true)
     public native boolean scan();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGPDFScannerGetContentStream", optional=true)
     public native CGPDFContentStream getContentStream();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGPDFScannerPopObject", optional=true)
     private native boolean popObject(CGPDFObject.CGPDFObjectPtr value);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGPDFScannerPopBoolean", optional=true)
     private native boolean popBoolean(BooleanPtr value);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGPDFScannerPopInteger", optional=true)
     private native boolean popInteger(MachineSizedSIntPtr value);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGPDFScannerPopNumber", optional=true)
     private native boolean popNumber(MachineSizedFloatPtr value);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGPDFScannerPopName", optional=true)
     private native boolean popName(BytePtr.BytePtrPtr value);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGPDFScannerPopString", optional=true)
     private native boolean popString(CGPDFString.CGPDFStringPtr value);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGPDFScannerPopArray", optional=true)
     private native boolean popArray(CGPDFArray.CGPDFArrayPtr value);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGPDFScannerPopDictionary", optional=true)
     private native boolean popDictionary(CGPDFDictionary.CGPDFDictionaryPtr value);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGPDFScannerPopStream", optional=true)
     private native boolean popStream(CGPDFStream.CGPDFStreamPtr value);
     /*</methods>*/

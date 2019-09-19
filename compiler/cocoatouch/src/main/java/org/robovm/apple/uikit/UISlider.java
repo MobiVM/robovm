@@ -42,9 +42,7 @@ import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 2.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UISlider/*</name>*/ 
@@ -88,34 +86,16 @@ import org.robovm.apple.linkpresentation.*;
     public native boolean isContinuous();
     @Property(selector = "setContinuous:")
     public native void setContinuous(boolean v);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "minimumTrackTintColor")
     public native UIColor getMinimumTrackTintColor();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setMinimumTrackTintColor:")
     public native void setMinimumTrackTintColor(UIColor v);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "maximumTrackTintColor")
     public native UIColor getMaximumTrackTintColor();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setMaximumTrackTintColor:")
     public native void setMaximumTrackTintColor(UIColor v);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "thumbTintColor")
     public native UIColor getThumbTintColor();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setThumbTintColor:")
     public native void setThumbTintColor(UIColor v);
     @Property(selector = "currentThumbImage")

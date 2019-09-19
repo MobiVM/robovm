@@ -34,9 +34,7 @@ import org.robovm.apple.contacts.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 6.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("PassKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/PKPassLibrary/*</name>*/ 
@@ -85,9 +83,6 @@ import org.robovm.apple.contacts.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @GlobalValue(symbol="PKPassLibraryDidChangeNotification", optional=true)
     public static native NSString DidChangeNotification();
     /**
@@ -105,9 +100,6 @@ import org.robovm.apple.contacts.*;
     public native NSArray<PKPass> getPasses();
     @Method(selector = "passWithPassTypeIdentifier:serialNumber:")
     public native PKPass getPass(String identifier, String serialNumber);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "passesOfType:")
     public native NSArray<PKPass> getPassesOfType(PKPassType passType);
     /**
@@ -121,9 +113,6 @@ import org.robovm.apple.contacts.*;
     public native boolean containsPass(PKPass pass);
     @Method(selector = "replacePassWithPass:")
     public native boolean replacePass(PKPass pass);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "addPasses:withCompletionHandler:")
     public native void addPasses(NSArray<PKPass> passes, @Block VoidBlock1<PKPassLibraryAddPassesStatus> completion);
     /**
@@ -146,21 +135,14 @@ import org.robovm.apple.contacts.*;
      */
     @Method(selector = "canAddFelicaPass")
     public native boolean canAddFelicaPass();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "activatePaymentPass:withActivationData:completion:")
     public native void activatePaymentPass(PKPaymentPass paymentPass, NSData activationData, @Block VoidBlock2<Boolean, NSError> completion);
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 9.0. Use activatePaymentPass:withActivationData:completion: instead
      */
     @Deprecated
     @Method(selector = "activatePaymentPass:withActivationCode:completion:")
     public native void activatePaymentPass(PKPaymentPass paymentPass, String activationCode, @Block VoidBlock2<Boolean, NSError> completion);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "isPassLibraryAvailable")
     public static native boolean isPassLibraryAvailable();
     /**
@@ -179,7 +161,6 @@ import org.robovm.apple.contacts.*;
     @Method(selector = "isSuppressingAutomaticPassPresentation")
     public static native boolean isSuppressingAutomaticPassPresentation();
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 9.0. Use -[PKPassLibrary isPaymentPassActivationAvailable] instead
      */
     @Deprecated

@@ -62,9 +62,6 @@ import org.robovm.apple.contacts.*;
         return code;
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @GlobalValue(symbol="PKPassKitErrorDomain", optional=true)
     public static native String getClassDomain();
     /*</methods>*/

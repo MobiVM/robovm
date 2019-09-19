@@ -60,14 +60,8 @@ import org.robovm.apple.security.*;
     public native String getReason();
     @Property(selector = "userInfo")
     public native NSDictionary<?, ?> getUserInfo();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Property(selector = "callStackReturnAddresses")
     public native NSArray<NSNumber> getCallStackReturnAddresses();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "callStackSymbols")
     public native NSArray<NSString> getCallStackSymbols();
     @Property(selector = "supportsSecureCoding")

@@ -50,49 +50,22 @@ import org.robovm.apple.uikit.*;
     /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Bridge(symbol="CTTypesetterGetTypeID", optional=true)
     public static native @MachineSizedUInt long getClassTypeID();
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Bridge(symbol="CTTypesetterCreateWithAttributedString", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CTTypesetter create(NSAttributedString string);
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Bridge(symbol="CTTypesetterCreateWithAttributedStringAndOptions", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CTTypesetter create(NSAttributedString string, CTTypesetterOptions options);
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Bridge(symbol="CTTypesetterCreateLineWithOffset", optional=true)
     public native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CTLine createLine(@ByVal CFRange stringRange, double offset);
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Bridge(symbol="CTTypesetterCreateLine", optional=true)
     public native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CTLine createLine(@ByVal CFRange stringRange);
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Bridge(symbol="CTTypesetterSuggestLineBreakWithOffset", optional=true)
     public native @MachineSizedSInt long suggestLineBreak(@MachineSizedSInt long startIndex, double width, double offset);
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Bridge(symbol="CTTypesetterSuggestLineBreak", optional=true)
     public native @MachineSizedSInt long suggestLineBreak(@MachineSizedSInt long startIndex, double width);
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Bridge(symbol="CTTypesetterSuggestClusterBreakWithOffset", optional=true)
     public native @MachineSizedSInt long suggestClusterBreak(@MachineSizedSInt long startIndex, double width, double offset);
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Bridge(symbol="CTTypesetterSuggestClusterBreak", optional=true)
     public native @MachineSizedSInt long suggestClusterBreak(@MachineSizedSInt long startIndex, double width);
     /*</methods>*/

@@ -39,9 +39,7 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 5.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
 public final class /*<name>*/NSJSONReadingOptions/*</name>*/ extends Bits</*<name>*/NSJSONReadingOptions/*</name>*/> {
@@ -50,9 +48,6 @@ public final class /*<name>*/NSJSONReadingOptions/*</name>*/ extends Bits</*<nam
     public static final NSJSONReadingOptions MutableContainers = new NSJSONReadingOptions(1L);
     public static final NSJSONReadingOptions MutableLeaves = new NSJSONReadingOptions(2L);
     public static final NSJSONReadingOptions FragmentsAllowed = new NSJSONReadingOptions(4L);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Deprecated
     public static final NSJSONReadingOptions AllowFragments = new NSJSONReadingOptions(4L);
     /*</values>*/

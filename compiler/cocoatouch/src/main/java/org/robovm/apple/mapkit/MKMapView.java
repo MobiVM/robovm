@@ -35,9 +35,7 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 3.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("MapKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MKMapView/*</name>*/ 
@@ -77,14 +75,8 @@ import org.robovm.apple.dispatch.*;
     public native @ByVal MKMapRect getVisibleMapRect();
     @Property(selector = "setVisibleMapRect:")
     public native void setVisibleMapRect(@ByVal MKMapRect v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "camera")
     public native MKMapCamera getCamera();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setCamera:")
     public native void setCamera(MKMapCamera v);
     /**
@@ -115,24 +107,12 @@ import org.robovm.apple.dispatch.*;
     public native boolean isScrollEnabled();
     @Property(selector = "setScrollEnabled:")
     public native void setScrollEnabled(boolean v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "isRotateEnabled")
     public native boolean isRotateEnabled();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setRotateEnabled:")
     public native void setRotateEnabled(boolean v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "isPitchEnabled")
     public native boolean isPitchEnabled();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setPitchEnabled:")
     public native void setPitchEnabled(boolean v);
     /**
@@ -166,27 +146,19 @@ import org.robovm.apple.dispatch.*;
     @Property(selector = "setPointOfInterestFilter:")
     public native void setPointOfInterestFilter(MKPointOfInterestFilter v);
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 13.0. Use pointOfInterestFilter
      */
     @Deprecated
     @Property(selector = "showsPointsOfInterest")
     public native boolean showsPointsOfInterest();
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 13.0. Use pointOfInterestFilter
      */
     @Deprecated
     @Property(selector = "setShowsPointsOfInterest:")
     public native void setShowsPointsOfInterest(boolean v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "showsBuildings")
     public native boolean showsBuildings();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setShowsBuildings:")
     public native void setShowsBuildings(boolean v);
     /**
@@ -205,14 +177,8 @@ import org.robovm.apple.dispatch.*;
     public native void setShowsUserLocation(boolean v);
     @Property(selector = "userLocation")
     public native MKUserLocation getUserLocation();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "userTrackingMode")
     public native MKUserTrackingMode getUserTrackingMode();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setUserTrackingMode:")
     public native void setUserTrackingMode(MKUserTrackingMode v);
     @Property(selector = "isUserLocationVisible")
@@ -225,9 +191,6 @@ import org.robovm.apple.dispatch.*;
     public native void setSelectedAnnotations(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsListMarshaler.class) List<? extends MKAnnotation> v);
     @Property(selector = "annotationVisibleRect")
     public native @ByVal CGRect getAnnotationVisibleRect();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "overlays")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsListMarshaler.class) List<? extends MKOverlay> getOverlays();
     /*</properties>*/
@@ -258,9 +221,6 @@ import org.robovm.apple.dispatch.*;
     public native void setVisibleMapRect(@ByVal MKMapRect mapRect, @ByVal UIEdgeInsets insets, boolean animate);
     @Method(selector = "mapRectThatFits:edgePadding:")
     public native @ByVal MKMapRect getMapRectThatFits(@ByVal MKMapRect mapRect, @ByVal UIEdgeInsets insets);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "setCamera:animated:")
     public native void setCamera(MKMapCamera camera, boolean animated);
     /**
@@ -281,9 +241,6 @@ import org.robovm.apple.dispatch.*;
     public native @ByVal CGRect convertRegionToRectToView(@ByVal MKCoordinateRegion region, UIView view);
     @Method(selector = "convertRect:toRegionFromView:")
     public native @ByVal MKCoordinateRegion convertRectToRegionFromView(@ByVal CGRect rect, UIView view);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "setUserTrackingMode:animated:")
     public native void setUserTrackingMode(MKUserTrackingMode mode, boolean animated);
     @Method(selector = "addAnnotation:")
@@ -294,9 +251,6 @@ import org.robovm.apple.dispatch.*;
     public native void removeAnnotation(MKAnnotation annotation);
     @Method(selector = "removeAnnotations:")
     public native void removeAnnotations(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsListMarshaler.class) List<? extends MKAnnotation> annotations);
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     @Method(selector = "annotationsInMapRect:")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSSet.AsSetMarshaler.class) Set<? extends MKAnnotation> getAnnotations(@ByVal MKMapRect mapRect);
     @Method(selector = "viewForAnnotation:")
@@ -317,86 +271,40 @@ import org.robovm.apple.dispatch.*;
     public native void selectAnnotation(MKAnnotation annotation, boolean animated);
     @Method(selector = "deselectAnnotation:animated:")
     public native void deselectAnnotation(MKAnnotation annotation, boolean animated);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "showAnnotations:animated:")
     public native void showAnnotations(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsListMarshaler.class) List<? extends MKAnnotation> annotations, boolean animated);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "addOverlay:level:")
     public native void addOverlay(MKOverlay overlay, MKOverlayLevel level);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "addOverlays:level:")
     public native void addOverlays(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsListMarshaler.class) List<? extends MKOverlay> overlays, MKOverlayLevel level);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "removeOverlay:")
     public native void removeOverlay(MKOverlay overlay);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "removeOverlays:")
     public native void removeOverlays(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsListMarshaler.class) List<? extends MKOverlay> overlays);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "insertOverlay:atIndex:level:")
     public native void insertOverlay(MKOverlay overlay, @MachineSizedUInt long index, MKOverlayLevel level);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "insertOverlay:aboveOverlay:")
     public native void insertOverlayAbove(MKOverlay overlay, MKOverlay sibling);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "insertOverlay:belowOverlay:")
     public native void insertOverlayBelow(MKOverlay overlay, MKOverlay sibling);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "exchangeOverlay:withOverlay:")
     public native void exchangeOverlay(MKOverlay overlay1, MKOverlay overlay2);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "overlaysInLevel:")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsListMarshaler.class) List<? extends MKOverlay> getOverlays(MKOverlayLevel level);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "rendererForOverlay:")
     public native MKOverlayRenderer getOverlayRenderer(MKOverlay overlay);
     /**
-     * @since Available in iOS 4.0 and later.
      * @deprecated Deprecated in iOS 13.0.
      */
     @Deprecated
     @Method(selector = "viewForOverlay:")
     public native MKOverlayView getOverlayView(MKOverlay overlay);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "addOverlay:")
     public native void addOverlay(MKOverlay overlay);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "addOverlays:")
     public native void addOverlays(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsListMarshaler.class) List<? extends MKOverlay> overlays);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "insertOverlay:atIndex:")
     public native void insertOverlay(MKOverlay overlay, @MachineSizedUInt long index);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "exchangeOverlayAtIndex:withOverlayAtIndex:")
     public native void exchangeOverlay(@MachineSizedUInt long index1, @MachineSizedUInt long index2);
     /*</methods>*/

@@ -57,9 +57,6 @@ import org.robovm.apple.dispatch.*;
     public NSXMLParser(NSURL url) { super((SkipInit) null); initObject(init(url)); }
     @Method(selector = "initWithData:")
     public NSXMLParser(NSData data) { super((SkipInit) null); initObject(init(data)); }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "initWithStream:")
     public NSXMLParser(NSInputStream stream) { super((SkipInit) null); initObject(init(stream)); }
     /*</constructors>*/
@@ -76,24 +73,12 @@ import org.robovm.apple.dispatch.*;
     public native boolean shouldReportNamespacePrefixes();
     @Property(selector = "setShouldReportNamespacePrefixes:")
     public native void setShouldReportNamespacePrefixes(boolean v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "externalEntityResolvingPolicy")
     public native NSXMLParserExternalEntityResolvingPolicy getExternalEntityResolvingPolicy();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setExternalEntityResolvingPolicy:")
     public native void setExternalEntityResolvingPolicy(NSXMLParserExternalEntityResolvingPolicy v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "allowedExternalEntityURLs")
     public native NSSet<NSURL> getAllowedExternalEntityURLs();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setAllowedExternalEntityURLs:")
     public native void setAllowedExternalEntityURLs(NSSet<NSURL> v);
     @Property(selector = "parserError")
@@ -117,9 +102,6 @@ import org.robovm.apple.dispatch.*;
     protected native @Pointer long init(NSURL url);
     @Method(selector = "initWithData:")
     protected native @Pointer long init(NSData data);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "initWithStream:")
     protected native @Pointer long init(NSInputStream stream);
     @Method(selector = "parse")

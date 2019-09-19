@@ -718,20 +718,15 @@ import org.robovm.apple.dispatch.*;
     public native String appendPathComponent(String str);
     @Method(selector = "stringByAppendingPathExtension:")
     public native String appendPathExtension(String str);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "stringByAddingPercentEncodingWithAllowedCharacters:")
     public native String addPercentEncoding(NSCharacterSet allowedCharacters);
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 9.0.
      */
     @Deprecated
     @Method(selector = "stringByAddingPercentEscapesUsingEncoding:")
     public native String addPercentEscapes(NSStringEncoding enc);
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 9.0.
      */
     @Deprecated

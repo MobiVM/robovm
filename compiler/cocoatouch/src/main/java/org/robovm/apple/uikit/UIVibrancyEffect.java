@@ -43,9 +43,7 @@ import org.robovm.apple.linkpresentation.*;
 import org.robovm.rt.annotation.WeaklyLinked;
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIVibrancyEffect/*</name>*/ 

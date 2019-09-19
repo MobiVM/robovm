@@ -42,9 +42,7 @@ import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 2.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIEvent/*</name>*/ 
@@ -60,14 +58,8 @@ import org.robovm.apple.linkpresentation.*;
     protected UIEvent(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "type")
     public native UIEventType getType();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "subtype")
     public native UIEventSubtype getSubtype();
     @Property(selector = "timestamp")
@@ -81,9 +73,6 @@ import org.robovm.apple.linkpresentation.*;
     public native NSSet<UITouch> getTouches(UIWindow window);
     @Method(selector = "touchesForView:")
     public native NSSet<UITouch> getTouches(UIView view);
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Method(selector = "touchesForGestureRecognizer:")
     public native NSSet<UITouch> getTouches(UIGestureRecognizer gesture);
     /**

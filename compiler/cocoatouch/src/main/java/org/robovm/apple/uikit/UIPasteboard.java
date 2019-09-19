@@ -42,9 +42,7 @@ import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 3.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIPasteboard/*</name>*/ 
@@ -209,7 +207,6 @@ import org.robovm.apple.linkpresentation.*;
     }
     /*<methods>*/
     /**
-     * @since Available in iOS 3.0 and later.
      * @deprecated Deprecated in iOS 10.0. The Find pasteboard is no longer available.
      */
     @Deprecated

@@ -32,9 +32,7 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("Metal") @NativeProtocolProxy/*</annotations>*/
 /*<visibility>*/public final/*</visibility>*/ class /*<name>*/MTLTexture/*</name>*/ 
@@ -49,7 +47,6 @@ import org.robovm.apple.dispatch.*;
     /*</constructors>*/
     /*<properties>*/
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 10.0. Use parentTexture or buffer instead
      */
     @Deprecated

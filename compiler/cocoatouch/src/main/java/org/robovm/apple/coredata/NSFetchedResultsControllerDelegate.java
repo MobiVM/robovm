@@ -67,9 +67,6 @@ import org.robovm.apple.uikit.*;
     void willChangeContent(NSFetchedResultsController controller);
     @Method(selector = "controllerDidChangeContent:")
     void didChangeContent(NSFetchedResultsController controller);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "controller:sectionIndexTitleForSectionName:")
     String getSectionIndexTitle(NSFetchedResultsController controller, String sectionName);
     /*</methods>*/

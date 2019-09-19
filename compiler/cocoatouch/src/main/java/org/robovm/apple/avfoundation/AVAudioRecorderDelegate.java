@@ -41,9 +41,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 3.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ interface /*<name>*/AVAudioRecorderDelegate/*</name>*/ 
@@ -63,14 +61,12 @@ import org.robovm.apple.audiotoolbox.*;
     @Method(selector = "audioRecorderEncodeErrorDidOccur:error:")
     void encodeErrorDidOccur(AVAudioRecorder recorder, NSError error);
     /**
-     * @since Available in iOS 2.2 and later.
      * @deprecated Deprecated in iOS 8.0.
      */
     @Deprecated
     @Method(selector = "audioRecorderBeginInterruption:")
     void beginInterruption(AVAudioRecorder recorder);
     /**
-     * @since Available in iOS 6.0 and later.
      * @deprecated Deprecated in iOS 8.0.
      */
     @Deprecated

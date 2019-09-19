@@ -112,9 +112,6 @@ import org.robovm.apple.audiotoolbox.*;
     }
     
 
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public long getAgeOutPeriod() {
         if (has(Keys.AgeOutPeriod())) {
             CFNumber val = get(Keys.AgeOutPeriod(), CFNumber.class);
@@ -122,9 +119,6 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public CMMemoryPoolOptions setAgeOutPeriod(long ageOutPeriod) {
         set(Keys.AgeOutPeriod(), CFNumber.valueOf(ageOutPeriod));
         return this;
@@ -135,9 +129,6 @@ import org.robovm.apple.audiotoolbox.*;
     @Library("CoreMedia")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 6.0 and later.
-         */
         @GlobalValue(symbol="kCMMemoryPoolOption_AgeOutPeriod", optional=true)
         public static native CFString AgeOutPeriod();
     }

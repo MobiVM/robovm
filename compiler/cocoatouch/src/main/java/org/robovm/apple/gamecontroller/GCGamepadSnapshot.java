@@ -34,7 +34,6 @@ import org.robovm.apple.uikit.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 7.0 and later.
  * @deprecated Deprecated in iOS 13.0.
  */
 /*</javadoc>*/

@@ -386,34 +386,16 @@ import org.robovm.apple.uikit.*;
     @GlobalValue(symbol="kCGColorSpaceExtendedLinearGray", optional=true)
     public static native String ExtendedLinearGray();
     
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGColorSpaceCreateDeviceGray", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGColorSpace createDeviceGray();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGColorSpaceCreateDeviceRGB", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGColorSpace createDeviceRGB();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGColorSpaceCreateDeviceCMYK", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGColorSpace createDeviceCMYK();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGColorSpaceCreateCalibratedGray", optional=true)
     private static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGColorSpace createCalibratedGray(@Pointer long whitePoint, @Pointer long blackPoint, @MachineSizedFloat double gamma);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGColorSpaceCreateCalibratedRGB", optional=true)
     private static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGColorSpace createCalibratedRGB(@Pointer long whitePoint, @Pointer long blackPoint, @Pointer long gamma, @Pointer long matrix);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGColorSpaceCreateLab", optional=true)
     private static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGColorSpace createLab(@Pointer long whitePoint, @Pointer long blackPoint, @Pointer long range);
     /**
@@ -421,24 +403,12 @@ import org.robovm.apple.uikit.*;
      */
     @Bridge(symbol="CGColorSpaceCreateWithICCData", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGColorSpace createWithICCData(CFType data);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGColorSpaceCreateICCBased", optional=true)
     private static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGColorSpace createICCBased(@MachineSizedUInt long nComponents, @Pointer long range, CGDataProvider profile, CGColorSpace alternate);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGColorSpaceCreateIndexed", optional=true)
     private static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGColorSpace createIndexed(CGColorSpace baseSpace, @MachineSizedUInt long lastIndex, @Pointer long colorTable);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGColorSpaceCreatePattern", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGColorSpace createPattern(CGColorSpace baseSpace);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGColorSpaceCreateWithName", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGColorSpace create(String name);
     /**
@@ -451,34 +421,16 @@ import org.robovm.apple.uikit.*;
      */
     @Bridge(symbol="CGColorSpaceCopyName", optional=true)
     public native @org.robovm.rt.bro.annotation.Marshaler(CFString.AsStringNoRetainMarshaler.class) String copyName();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGColorSpaceGetTypeID", optional=true)
     public static native @MachineSizedUInt long getClassTypeID();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGColorSpaceGetNumberOfComponents", optional=true)
     public native @MachineSizedUInt long getNumberOfComponents();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGColorSpaceGetModel", optional=true)
     public native CGColorSpaceModel getModel();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGColorSpaceGetBaseColorSpace", optional=true)
     public native CGColorSpace getBaseColorSpace();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGColorSpaceGetColorTableCount", optional=true)
     public native @MachineSizedUInt long getColorTableCount();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGColorSpaceGetColorTable", optional=true)
     private native void getColorTable(@Pointer long table);
     /**
@@ -512,14 +464,12 @@ import org.robovm.apple.uikit.*;
     @Bridge(symbol="CGColorSpaceCreateWithPropertyList", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGColorSpace createWithPropertyList(CFType plist);
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 11.0. No longer supported
      */
     @Deprecated
     @Bridge(symbol="CGColorSpaceCreateWithICCProfile", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGColorSpace createWithICCProfile(NSData data);
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 11.0. No longer supported
      */
     @Deprecated

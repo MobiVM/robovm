@@ -97,17 +97,8 @@ import org.robovm.apple.audiotoolbox.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVLayerVideoGravity ResizeAspect = new AVLayerVideoGravity("ResizeAspect");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVLayerVideoGravity ResizeAspectFill = new AVLayerVideoGravity("ResizeAspectFill");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVLayerVideoGravity Resize = new AVLayerVideoGravity("Resize");
     /*</constants>*/
     
@@ -134,19 +125,10 @@ import org.robovm.apple.audiotoolbox.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVLayerVideoGravityResizeAspect", optional=true)
         public static native NSString ResizeAspect();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVLayerVideoGravityResizeAspectFill", optional=true)
         public static native NSString ResizeAspectFill();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVLayerVideoGravityResize", optional=true)
         public static native NSString Resize();
         /*</values>*/

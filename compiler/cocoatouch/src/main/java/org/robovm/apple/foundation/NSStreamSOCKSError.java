@@ -57,9 +57,6 @@ import org.robovm.apple.dispatch.*;
     /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @GlobalValue(symbol="NSStreamSOCKSErrorDomain", optional=true)
     public static native String getClassDomain();
     /*</methods>*/

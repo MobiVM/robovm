@@ -40,9 +40,7 @@ import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 5.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreImage") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CIContext/*</name>*/ 
@@ -59,22 +57,14 @@ import org.robovm.apple.avfoundation.*;
      * @since Available in iOS 9.0 and later.
      */
     public CIContext(CGContext cgctx, CIContextOptions options) { super((Handle) null, create(cgctx, options)); retain(getHandle()); }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public CIContext(CIContextOptions options) { super((Handle) null, create(options)); retain(getHandle()); }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public CIContext() { super((Handle) null, create()); retain(getHandle()); }
     /**
-     * @since Available in iOS 5.0 and later.
      * @deprecated Deprecated in iOS 12.0. Core Image OpenGLES API deprecated. (Define CI_SILENCE_GL_DEPRECATION to silence these warnings)
      */
     @Deprecated
     public CIContext(EAGLContext eaglContext) { super((Handle) null, create(eaglContext)); retain(getHandle()); }
     /**
-     * @since Available in iOS 5.0 and later.
      * @deprecated Deprecated in iOS 12.0. Core Image OpenGLES API deprecated. (Define CI_SILENCE_GL_DEPRECATION to silence these warnings)
      */
     @Deprecated
@@ -116,21 +106,12 @@ import org.robovm.apple.avfoundation.*;
     @WeaklyLinked
     @Method(selector = "render:toBitmap:rowBytes:bounds:format:colorSpace:")
     public native void render(CIImage image, VoidPtr data, @MachineSizedSInt long rowBytes, @ByVal CGRect bounds, int format, CGColorSpace colorSpace);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @WeaklyLinked
     @Method(selector = "render:toIOSurface:bounds:colorSpace:")
     public native void render(CIImage image, IOSurface surface, @ByVal CGRect bounds, CGColorSpace colorSpace);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @WeaklyLinked
     @Method(selector = "render:toCVPixelBuffer:")
     public native void render(CIImage image, CVPixelBuffer buffer);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @WeaklyLinked
     @Method(selector = "render:toCVPixelBuffer:bounds:colorSpace:")
     public native void render(CIImage image, CVPixelBuffer buffer, @ByVal CGRect bounds, CGColorSpace colorSpace);
@@ -145,14 +126,8 @@ import org.robovm.apple.avfoundation.*;
      */
     @Method(selector = "clearCaches")
     public native void clearCaches();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "inputImageMaximumSize")
     public native @ByVal CGSize getInputImageMaximumSize();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "outputImageMaximumSize")
     public native @ByVal CGSize getOutputImageMaximumSize();
     /**
@@ -160,25 +135,17 @@ import org.robovm.apple.avfoundation.*;
      */
     @Method(selector = "contextWithCGContext:options:")
     protected static native @Pointer long create(CGContext cgctx, CIContextOptions options);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "contextWithOptions:")
     protected static native @Pointer long create(CIContextOptions options);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "context")
     protected static native @Pointer long create();
     /**
-     * @since Available in iOS 5.0 and later.
      * @deprecated Deprecated in iOS 12.0. Core Image OpenGLES API deprecated. (Define CI_SILENCE_GL_DEPRECATION to silence these warnings)
      */
     @Deprecated
     @Method(selector = "contextWithEAGLContext:")
     protected static native @Pointer long create(EAGLContext eaglContext);
     /**
-     * @since Available in iOS 5.0 and later.
      * @deprecated Deprecated in iOS 12.0. Core Image OpenGLES API deprecated. (Define CI_SILENCE_GL_DEPRECATION to silence these warnings)
      */
     @Deprecated

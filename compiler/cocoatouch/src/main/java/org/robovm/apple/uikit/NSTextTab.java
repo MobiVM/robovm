@@ -42,9 +42,7 @@ import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 7.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSTextTab/*</name>*/ 
@@ -77,9 +75,6 @@ import org.robovm.apple.linkpresentation.*;
     /*<methods>*/
     @Method(selector = "initWithTextAlignment:location:options:")
     protected native @Pointer long init(NSTextAlignment alignment, @MachineSizedFloat double loc, NSTextTabOptions options);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "columnTerminatorsForLocale:")
     public static native NSCharacterSet getColumnTerminators(NSLocale aLocale);
     @Method(selector = "encodeWithCoder:")

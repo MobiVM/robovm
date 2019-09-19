@@ -116,9 +116,6 @@ import org.robovm.apple.linkpresentation.*;
     public @ByVal CGRect getFirstRect(UITextRange range) { return null; }
     @NotImplemented("caretRectForPosition:")
     public @ByVal CGRect getCaretRect(UITextPosition position) { return null; }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @NotImplemented("selectionRectsForRange:")
     public NSArray<UITextSelectionRect> getSelectionRects(UITextRange range) { return null; }
     @NotImplemented("closestPositionToPoint:")
@@ -127,9 +124,6 @@ import org.robovm.apple.linkpresentation.*;
     public UITextPosition getClosestPosition(@ByVal CGPoint point, UITextRange range) { return null; }
     @NotImplemented("characterRangeAtPoint:")
     public UITextRange getCharacterRange(@ByVal CGPoint point) { return null; }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @NotImplemented("shouldChangeTextInRange:replacementText:")
     public boolean shouldChangeText(UITextRange range, String text) { return false; }
     @NotImplemented("textStylingAtPosition:inDirection:")

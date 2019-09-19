@@ -41,9 +41,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("AVFoundation") @NativeClass @WeaklyLinked/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVPlayerLayer/*</name>*/ 
@@ -72,9 +70,6 @@ import org.robovm.apple.audiotoolbox.*;
     public native void setVideoGravity(AVLayerVideoGravity v);
     @Property(selector = "isReadyForDisplay")
     public native boolean isReadyForDisplay();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "videoRect")
     public native @ByVal CGRect getVideoRect();
     /**

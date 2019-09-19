@@ -42,9 +42,7 @@ import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 2.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIPageControl/*</name>*/ 
@@ -80,24 +78,12 @@ import org.robovm.apple.linkpresentation.*;
     public native boolean defersCurrentPageDisplay();
     @Property(selector = "setDefersCurrentPageDisplay:")
     public native void setDefersCurrentPageDisplay(boolean v);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "pageIndicatorTintColor")
     public native UIColor getPageIndicatorTintColor();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "setPageIndicatorTintColor:")
     public native void setPageIndicatorTintColor(UIColor v);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "currentPageIndicatorTintColor")
     public native UIColor getCurrentPageIndicatorTintColor();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "setCurrentPageIndicatorTintColor:")
     public native void setCurrentPageIndicatorTintColor(UIColor v);
     /*</properties>*/

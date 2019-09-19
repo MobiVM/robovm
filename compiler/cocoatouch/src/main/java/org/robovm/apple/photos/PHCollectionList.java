@@ -38,9 +38,7 @@ import org.robovm.apple.imageio.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("Photos") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/PHCollectionList/*</name>*/ 
@@ -54,81 +52,43 @@ import org.robovm.apple.imageio.*;
     public PHCollectionList() {}
     protected PHCollectionList(Handle h, long handle) { super(h, handle); }
     protected PHCollectionList(SkipInit skipInit) { super(skipInit); }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public PHCollectionList(NSArray<PHCollection> collections, String title) { super((Handle) null, createTransientCollectionList(collections, title)); retain(getHandle()); }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public PHCollectionList(PHFetchResult<PHCollection> fetchResult, String title) { super((Handle) null, createTransientCollectionList(fetchResult, title)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "collectionListType")
     public native PHCollectionListType getCollectionListType();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "collectionListSubtype")
     public native PHCollectionListSubtype getCollectionListSubtype();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "startDate")
     public native NSDate getStartDate();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "endDate")
     public native NSDate getEndDate();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "localizedLocationNames")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getLocalizedLocationNames();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "fetchCollectionListsContainingCollection:options:")
     public static native PHFetchResult<PHCollectionList> fetchCollectionListsContainingCollection(PHCollection collection, PHFetchOptions options);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "fetchCollectionListsWithLocalIdentifiers:options:")
     public static native PHFetchResult<PHCollectionList> fetchCollectionListsWithLocalIdentifiers(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> identifiers, PHFetchOptions options);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "fetchCollectionListsWithType:subtype:options:")
     public static native PHFetchResult<PHCollectionList> fetchCollectionListsWithType(PHCollectionListType collectionListType, PHCollectionListSubtype subtype, PHFetchOptions options);
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 13.0. Will be removed in a future release
      */
     @Deprecated
     @Method(selector = "fetchMomentListsWithSubtype:containingMoment:options:")
     public static native PHFetchResult<PHCollectionList> fetchMomentListsWithSubtypeContainingMoment(PHCollectionListSubtype momentListSubtype, PHAssetCollection moment, PHFetchOptions options);
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 13.0. Will be removed in a future release
      */
     @Deprecated
     @Method(selector = "fetchMomentListsWithSubtype:options:")
     public static native PHFetchResult<PHCollectionList> fetchMomentListsWithSubtype(PHCollectionListSubtype momentListSubtype, PHFetchOptions options);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "transientCollectionListWithCollections:title:")
     protected static native @Pointer long createTransientCollectionList(NSArray<PHCollection> collections, String title);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "transientCollectionListWithCollectionsFetchResult:title:")
     protected static native @Pointer long createTransientCollectionList(PHFetchResult<PHCollection> fetchResult, String title);
     /*</methods>*/

@@ -97,33 +97,12 @@ import org.robovm.apple.audiotoolbox.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final AVAudioSessionMode Default = new AVAudioSessionMode("Default");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final AVAudioSessionMode VoiceChat = new AVAudioSessionMode("VoiceChat");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final AVAudioSessionMode GameChat = new AVAudioSessionMode("GameChat");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final AVAudioSessionMode VideoRecording = new AVAudioSessionMode("VideoRecording");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final AVAudioSessionMode Measurement = new AVAudioSessionMode("Measurement");
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public static final AVAudioSessionMode MoviePlayback = new AVAudioSessionMode("MoviePlayback");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final AVAudioSessionMode VideoChat = new AVAudioSessionMode("VideoChat");
     /**
      * @since Available in iOS 9.0 and later.
@@ -158,39 +137,18 @@ import org.robovm.apple.audiotoolbox.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="AVAudioSessionModeDefault", optional=true)
         public static native NSString Default();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="AVAudioSessionModeVoiceChat", optional=true)
         public static native NSString VoiceChat();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="AVAudioSessionModeGameChat", optional=true)
         public static native NSString GameChat();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="AVAudioSessionModeVideoRecording", optional=true)
         public static native NSString VideoRecording();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="AVAudioSessionModeMeasurement", optional=true)
         public static native NSString Measurement();
-        /**
-         * @since Available in iOS 6.0 and later.
-         */
         @GlobalValue(symbol="AVAudioSessionModeMoviePlayback", optional=true)
         public static native NSString MoviePlayback();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="AVAudioSessionModeVideoChat", optional=true)
         public static native NSString VideoChat();
         /**

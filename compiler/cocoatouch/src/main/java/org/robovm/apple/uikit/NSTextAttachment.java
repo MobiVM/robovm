@@ -42,9 +42,7 @@ import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 7.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSTextAttachment/*</name>*/ 
@@ -60,9 +58,6 @@ import org.robovm.apple.linkpresentation.*;
     public NSTextAttachment() {}
     protected NSTextAttachment(Handle h, long handle) { super(h, handle); }
     protected NSTextAttachment(SkipInit skipInit) { super(skipInit); }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "initWithData:ofType:")
     public NSTextAttachment(NSData contentData, String uti) { super((SkipInit) null); initObject(init(contentData, uti)); }
     /**
@@ -73,44 +68,20 @@ import org.robovm.apple.linkpresentation.*;
     public NSTextAttachment(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "contents")
     public native NSData getContents();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setContents:")
     public native void setContents(NSData v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "fileType")
     public native String getFileType();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setFileType:")
     public native void setFileType(String v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "image")
     public native UIImage getImage();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setImage:")
     public native void setImage(UIImage v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "bounds")
     public native @ByVal CGRect getBounds();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setBounds:")
     public native void setBounds(@ByVal CGRect v);
     @Property(selector = "fileWrapper")
@@ -126,9 +97,6 @@ import org.robovm.apple.linkpresentation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "initWithData:ofType:")
     protected native @Pointer long init(NSData contentData, String uti);
     /**
@@ -136,14 +104,8 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Method(selector = "textAttachmentWithImage:")
     protected static native @Pointer long create(UIImage image);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "imageForBounds:textContainer:characterIndex:")
     public native UIImage getImageForBounds(@ByVal CGRect imageBounds, NSTextContainer textContainer, @MachineSizedUInt long charIndex);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "attachmentBoundsForTextContainer:proposedLineFragment:glyphPosition:characterIndex:")
     public native @ByVal CGRect getAttachmentBounds(NSTextContainer textContainer, @ByVal CGRect lineFrag, @ByVal CGPoint position, @MachineSizedUInt long charIndex);
     @Method(selector = "encodeWithCoder:")

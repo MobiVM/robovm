@@ -58,9 +58,6 @@ import org.robovm.apple.dispatch.*;
     void didBecomeInvalid(NSURLSession session, NSError error);
     @Method(selector = "URLSession:didReceiveChallenge:completionHandler:")
     void didReceiveChallenge(NSURLSession session, NSURLAuthenticationChallenge challenge, @Block VoidBlock2<NSURLSessionAuthChallengeDisposition, NSURLCredential> completionHandler);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "URLSessionDidFinishEventsForBackgroundURLSession:")
     void didFinishEvents(NSURLSession session);
     /*</methods>*/

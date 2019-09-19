@@ -35,9 +35,7 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 7.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("MapKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MKMapCamera/*</name>*/ 
@@ -83,14 +81,12 @@ import org.robovm.apple.dispatch.*;
     @Property(selector = "setPitch:")
     public native void setPitch(@MachineSizedFloat double v);
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Use centerCoordinateDistance
      */
     @Deprecated
     @Property(selector = "altitude")
     public native double getAltitude();
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Use centerCoordinateDistance
      */
     @Deprecated

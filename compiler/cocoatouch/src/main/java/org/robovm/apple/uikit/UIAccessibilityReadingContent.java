@@ -57,24 +57,12 @@ import org.robovm.apple.linkpresentation.*;
     
     /*</properties>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "accessibilityLineNumberForPoint:")
     @MachineSizedSInt long accessibilityLineNumberForPoint(@ByVal CGPoint point);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "accessibilityContentForLineNumber:")
     String accessibilityContentForLineNumber(@MachineSizedSInt long lineNumber);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "accessibilityFrameForLineNumber:")
     @ByVal CGRect accessibilityFrameForLineNumber(@MachineSizedSInt long lineNumber);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "accessibilityPageContent")
     String accessibilityPageContent();
     /**

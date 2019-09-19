@@ -43,7 +43,6 @@ import org.robovm.apple.linkpresentation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 8.0 and later.
  * @deprecated Deprecated in iOS 10.0. Use UserNotifications Framework's -[UNNotificationCategory actions] or -[UNNotificationCategory minimalActions]
  */
 /*</javadoc>*/

@@ -58,14 +58,8 @@ import org.robovm.apple.audiotoolbox.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @NotImplemented("outputMediaDataWillChange:")
     public void mediaDataWillChange(AVPlayerItemOutput sender) {}
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @NotImplemented("outputSequenceWasFlushed:")
     public void sequenceWasFlushed(AVPlayerItemOutput output) {}
     /*</methods>*/

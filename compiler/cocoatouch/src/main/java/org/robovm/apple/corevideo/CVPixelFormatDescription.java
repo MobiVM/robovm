@@ -136,9 +136,6 @@ import org.robovm.apple.iosurface.*;
     }
     
 
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public String getName() {
         if (has(Keys.Name())) {
             CFString val = get(Keys.Name(), CFString.class);
@@ -146,16 +143,10 @@ import org.robovm.apple.iosurface.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CVPixelFormatDescription setName(String name) {
         set(Keys.Name(), new CFString(name));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public long getConstant() {
         if (has(Keys.Constant())) {
             CFNumber val = get(Keys.Constant(), CFNumber.class);
@@ -163,16 +154,10 @@ import org.robovm.apple.iosurface.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CVPixelFormatDescription setConstant(long constant) {
         set(Keys.Constant(), CFNumber.valueOf(constant));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public String getCodecType() {
         if (has(Keys.CodecType())) {
             CFString val = get(Keys.CodecType(), CFString.class);
@@ -180,16 +165,10 @@ import org.robovm.apple.iosurface.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CVPixelFormatDescription setCodecType(String codecType) {
         set(Keys.CodecType(), new CFString(codecType));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public String getFourCC() {
         if (has(Keys.FourCC())) {
             CFString val = get(Keys.FourCC(), CFString.class);
@@ -197,16 +176,10 @@ import org.robovm.apple.iosurface.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CVPixelFormatDescription setFourCC(String fourCC) {
         set(Keys.FourCC(), new CFString(fourCC));
         return this;
     }
-    /**
-     * @since Available in iOS 4.3 and later.
-     */
     public boolean containsAlpha() {
         if (has(Keys.ContainsAlpha())) {
             CFBoolean val = get(Keys.ContainsAlpha(), CFBoolean.class);
@@ -214,16 +187,10 @@ import org.robovm.apple.iosurface.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 4.3 and later.
-     */
     public CVPixelFormatDescription setContainsAlpha(boolean containsAlpha) {
         set(Keys.ContainsAlpha(), CFBoolean.valueOf(containsAlpha));
         return this;
     }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public boolean containsYCbCr() {
         if (has(Keys.ContainsYCbCr())) {
             CFBoolean val = get(Keys.ContainsYCbCr(), CFBoolean.class);
@@ -231,16 +198,10 @@ import org.robovm.apple.iosurface.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public CVPixelFormatDescription setContainsYCbCr(boolean containsYCbCr) {
         set(Keys.ContainsYCbCr(), CFBoolean.valueOf(containsYCbCr));
         return this;
     }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public boolean containsRGB() {
         if (has(Keys.ContainsRGB())) {
             CFBoolean val = get(Keys.ContainsRGB(), CFBoolean.class);
@@ -248,16 +209,10 @@ import org.robovm.apple.iosurface.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public CVPixelFormatDescription setContainsRGB(boolean containsRGB) {
         set(Keys.ContainsRGB(), CFBoolean.valueOf(containsRGB));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public int getPlanes() {
         if (has(Keys.Planes())) {
             CFNumber val = get(Keys.Planes(), CFNumber.class);
@@ -265,16 +220,10 @@ import org.robovm.apple.iosurface.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CVPixelFormatDescription setPlanes(int planes) {
         set(Keys.Planes(), CFNumber.valueOf(planes));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public int getBlockWidth() {
         if (has(Keys.BlockWidth())) {
             CFNumber val = get(Keys.BlockWidth(), CFNumber.class);
@@ -282,16 +231,10 @@ import org.robovm.apple.iosurface.*;
         }
         return 1;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CVPixelFormatDescription setBlockWidth(int blockWidth) {
         set(Keys.BlockWidth(), CFNumber.valueOf(blockWidth));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public int getBlockHeight() {
         if (has(Keys.BlockHeight())) {
             CFNumber val = get(Keys.BlockHeight(), CFNumber.class);
@@ -299,16 +242,10 @@ import org.robovm.apple.iosurface.*;
         }
         return 1;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CVPixelFormatDescription setBlockHeight(int blockHeight) {
         set(Keys.BlockHeight(), CFNumber.valueOf(blockHeight));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public int getBitsPerBlock() {
         if (has(Keys.BitsPerBlock())) {
             CFNumber val = get(Keys.BitsPerBlock(), CFNumber.class);
@@ -316,16 +253,10 @@ import org.robovm.apple.iosurface.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CVPixelFormatDescription setBitsPerBlock(int bitsPerBlock) {
         set(Keys.BitsPerBlock(), CFNumber.valueOf(bitsPerBlock));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public int getBlockHorizontalAlignment() {
         if (has(Keys.BlockHorizontalAlignment())) {
             CFNumber val = get(Keys.BlockHorizontalAlignment(), CFNumber.class);
@@ -333,16 +264,10 @@ import org.robovm.apple.iosurface.*;
         }
         return 1;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CVPixelFormatDescription setBlockHorizontalAlignment(int blockHorizontalAlignment) {
         set(Keys.BlockHorizontalAlignment(), CFNumber.valueOf(blockHorizontalAlignment));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public int getBlockVerticalAlignment() {
         if (has(Keys.BlockVerticalAlignment())) {
             CFNumber val = get(Keys.BlockVerticalAlignment(), CFNumber.class);
@@ -350,16 +275,10 @@ import org.robovm.apple.iosurface.*;
         }
         return 1;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CVPixelFormatDescription setBlockVerticalAlignment(int blockVerticalAlignment) {
         set(Keys.BlockVerticalAlignment(), CFNumber.valueOf(blockVerticalAlignment));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public NSData getBlackBlock() {
         if (has(Keys.BlackBlock())) {
             NSData val = get(Keys.BlackBlock(), NSData.class);
@@ -367,16 +286,10 @@ import org.robovm.apple.iosurface.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CVPixelFormatDescription setBlackBlock(NSData blackBlock) {
         set(Keys.BlackBlock(), blackBlock);
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public int getHorizontalSubsampling() {
         if (has(Keys.HorizontalSubsampling())) {
             CFNumber val = get(Keys.HorizontalSubsampling(), CFNumber.class);
@@ -384,16 +297,10 @@ import org.robovm.apple.iosurface.*;
         }
         return 1;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CVPixelFormatDescription setHorizontalSubsampling(int horizontalSubsampling) {
         set(Keys.HorizontalSubsampling(), CFNumber.valueOf(horizontalSubsampling));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public int getVerticalSubsampling() {
         if (has(Keys.VerticalSubsampling())) {
             CFNumber val = get(Keys.VerticalSubsampling(), CFNumber.class);
@@ -401,16 +308,10 @@ import org.robovm.apple.iosurface.*;
         }
         return 1;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CVPixelFormatDescription setVerticalSubsampling(int verticalSubsampling) {
         set(Keys.VerticalSubsampling(), CFNumber.valueOf(verticalSubsampling));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public int getOpenGLFormat() {
         if (has(Keys.OpenGLFormat())) {
             CFNumber val = get(Keys.OpenGLFormat(), CFNumber.class);
@@ -418,16 +319,10 @@ import org.robovm.apple.iosurface.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CVPixelFormatDescription setOpenGLFormat(int openGLFormat) {
         set(Keys.OpenGLFormat(), CFNumber.valueOf(openGLFormat));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public int getOpenGLType() {
         if (has(Keys.OpenGLType())) {
             CFNumber val = get(Keys.OpenGLType(), CFNumber.class);
@@ -435,16 +330,10 @@ import org.robovm.apple.iosurface.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CVPixelFormatDescription setOpenGLType(int openGLType) {
         set(Keys.OpenGLType(), CFNumber.valueOf(openGLType));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public int getOpenGLInternalFormat() {
         if (has(Keys.OpenGLInternalFormat())) {
             CFNumber val = get(Keys.OpenGLInternalFormat(), CFNumber.class);
@@ -452,16 +341,10 @@ import org.robovm.apple.iosurface.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CVPixelFormatDescription setOpenGLInternalFormat(int openGLInternalFormat) {
         set(Keys.OpenGLInternalFormat(), CFNumber.valueOf(openGLInternalFormat));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CGBitmapInfo getCGBitmapInfo() {
         if (has(Keys.CGBitmapInfo())) {
             CFNumber val = get(Keys.CGBitmapInfo(), CFNumber.class);
@@ -469,16 +352,10 @@ import org.robovm.apple.iosurface.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CVPixelFormatDescription setCGBitmapInfo(CGBitmapInfo cGBitmapInfo) {
         set(Keys.CGBitmapInfo(), CFNumber.valueOf(cGBitmapInfo.value()));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public boolean isCompatibleWithQD() {
         if (has(Keys.QDCompatibility())) {
             CFBoolean val = get(Keys.QDCompatibility(), CFBoolean.class);
@@ -486,16 +363,10 @@ import org.robovm.apple.iosurface.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CVPixelFormatDescription setCompatibleWithQD(boolean compatibleWithQD) {
         set(Keys.QDCompatibility(), CFBoolean.valueOf(compatibleWithQD));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public boolean isCompatibleWithCGBitmapContext() {
         if (has(Keys.CGBitmapContextCompatibility())) {
             CFBoolean val = get(Keys.CGBitmapContextCompatibility(), CFBoolean.class);
@@ -503,16 +374,10 @@ import org.robovm.apple.iosurface.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CVPixelFormatDescription setCompatibleWithCGBitmapContext(boolean compatibleWithCGBitmapContext) {
         set(Keys.CGBitmapContextCompatibility(), CFBoolean.valueOf(compatibleWithCGBitmapContext));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public boolean isCompatibleWithCGImage() {
         if (has(Keys.CGImageCompatibility())) {
             CFBoolean val = get(Keys.CGImageCompatibility(), CFBoolean.class);
@@ -520,16 +385,10 @@ import org.robovm.apple.iosurface.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CVPixelFormatDescription setCompatibleWithCGImage(boolean compatibleWithCGImage) {
         set(Keys.CGImageCompatibility(), CFBoolean.valueOf(compatibleWithCGImage));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public boolean isCompatibleWithOpenGL() {
         if (has(Keys.OpenGLCompatibility())) {
             CFBoolean val = get(Keys.OpenGLCompatibility(), CFBoolean.class);
@@ -537,16 +396,10 @@ import org.robovm.apple.iosurface.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CVPixelFormatDescription setCompatibleWithOpenGL(boolean compatibleWithOpenGL) {
         set(Keys.OpenGLCompatibility(), CFBoolean.valueOf(compatibleWithOpenGL));
         return this;
     }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public boolean isCompatibleWithOpenGLES() {
         if (has(Keys.OpenGLESCompatibility())) {
             CFBoolean val = get(Keys.OpenGLESCompatibility(), CFBoolean.class);
@@ -554,27 +407,15 @@ import org.robovm.apple.iosurface.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public CVPixelFormatDescription setCompatibleWithOpenGLES(boolean compatibleWithOpenGLES) {
         set(Keys.OpenGLESCompatibility(), CFBoolean.valueOf(compatibleWithOpenGLES));
         return this;
     }
     
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CVPixelFormatDescriptionCreateWithPixelFormatType", optional=true)
     public static native CVPixelFormatDescription create(CFAllocator allocator, CVPixelFormatType pixelFormat);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CVPixelFormatDescriptionArrayCreateWithAllPixelFormatTypes", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CVPixelFormatType.AsListMarshaler.class) List<CVPixelFormatType> getAllPixelFormatTypes(CFAllocator allocator);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CVPixelFormatDescriptionRegisterDescriptionWithPixelFormatType", optional=true)
     public static native void registerDescription(CVPixelFormatDescription description, CVPixelFormatType pixelFormat);
     /*</methods>*/
@@ -617,39 +458,18 @@ import org.robovm.apple.iosurface.*;
     @Library("CoreVideo")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVPixelFormatName", optional=true)
         public static native CFString Name();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVPixelFormatConstant", optional=true)
         public static native CFString Constant();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVPixelFormatCodecType", optional=true)
         public static native CFString CodecType();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVPixelFormatFourCC", optional=true)
         public static native CFString FourCC();
-        /**
-         * @since Available in iOS 4.3 and later.
-         */
         @GlobalValue(symbol="kCVPixelFormatContainsAlpha", optional=true)
         public static native CFString ContainsAlpha();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="kCVPixelFormatContainsYCbCr", optional=true)
         public static native CFString ContainsYCbCr();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="kCVPixelFormatContainsRGB", optional=true)
         public static native CFString ContainsRGB();
         /**
@@ -677,99 +497,42 @@ import org.robovm.apple.iosurface.*;
          */
         @GlobalValue(symbol="kCVPixelFormatComponentRange_WideRange", optional=true)
         public static native CFString ComponentRange_WideRange();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVPixelFormatPlanes", optional=true)
         public static native CFString Planes();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVPixelFormatBlockWidth", optional=true)
         public static native CFString BlockWidth();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVPixelFormatBlockHeight", optional=true)
         public static native CFString BlockHeight();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVPixelFormatBitsPerBlock", optional=true)
         public static native CFString BitsPerBlock();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVPixelFormatBlockHorizontalAlignment", optional=true)
         public static native CFString BlockHorizontalAlignment();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVPixelFormatBlockVerticalAlignment", optional=true)
         public static native CFString BlockVerticalAlignment();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVPixelFormatBlackBlock", optional=true)
         public static native CFString BlackBlock();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVPixelFormatHorizontalSubsampling", optional=true)
         public static native CFString HorizontalSubsampling();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVPixelFormatVerticalSubsampling", optional=true)
         public static native CFString VerticalSubsampling();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVPixelFormatOpenGLFormat", optional=true)
         public static native CFString OpenGLFormat();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVPixelFormatOpenGLType", optional=true)
         public static native CFString OpenGLType();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVPixelFormatOpenGLInternalFormat", optional=true)
         public static native CFString OpenGLInternalFormat();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVPixelFormatCGBitmapInfo", optional=true)
         public static native CFString CGBitmapInfo();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVPixelFormatQDCompatibility", optional=true)
         public static native CFString QDCompatibility();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVPixelFormatCGBitmapContextCompatibility", optional=true)
         public static native CFString CGBitmapContextCompatibility();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVPixelFormatCGImageCompatibility", optional=true)
         public static native CFString CGImageCompatibility();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVPixelFormatOpenGLCompatibility", optional=true)
         public static native CFString OpenGLCompatibility();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="kCVPixelFormatOpenGLESCompatibility", optional=true)
         public static native CFString OpenGLESCompatibility();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVPixelFormatFillExtendedPixelsCallback", optional=true)
         public static native CFString FillExtendedPixelsCallback();
     }

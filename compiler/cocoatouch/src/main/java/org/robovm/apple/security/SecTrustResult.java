@@ -103,9 +103,6 @@ import org.robovm.apple.dispatch.*;
     }
     
 
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public NSDate getEvaluationDate() {
         if (has(Keys.EvaluationDate())) {
             NSDate val = get(Keys.EvaluationDate(), NSDate.class);
@@ -113,9 +110,6 @@ import org.robovm.apple.dispatch.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public boolean isExtendedValidation() {
         if (has(Keys.ExtendedValidation())) {
             CFBoolean val = get(Keys.ExtendedValidation(), CFBoolean.class);
@@ -123,9 +117,6 @@ import org.robovm.apple.dispatch.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public String getOrganizationName() {
         if (has(Keys.OrganizationName())) {
             CFString val = get(Keys.OrganizationName(), CFString.class);
@@ -133,9 +124,6 @@ import org.robovm.apple.dispatch.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public SecTrustResultType getResultValue() {
         if (has(Keys.ResultValue())) {
             CFNumber val = get(Keys.ResultValue(), CFNumber.class);
@@ -143,9 +131,6 @@ import org.robovm.apple.dispatch.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public boolean isRevocationChecked() {
         if (has(Keys.RevocationChecked())) {
             CFBoolean val = get(Keys.RevocationChecked(), CFBoolean.class);
@@ -153,9 +138,6 @@ import org.robovm.apple.dispatch.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public NSDate getRevocationValidUntilDate() {
         if (has(Keys.RevocationValidUntilDate())) {
             NSDate val = get(Keys.RevocationValidUntilDate(), NSDate.class);
@@ -169,34 +151,16 @@ import org.robovm.apple.dispatch.*;
     @Library("Security")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kSecTrustEvaluationDate", optional=true)
         public static native CFType EvaluationDate();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kSecTrustExtendedValidation", optional=true)
         public static native CFType ExtendedValidation();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kSecTrustOrganizationName", optional=true)
         public static native CFType OrganizationName();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kSecTrustResultValue", optional=true)
         public static native CFType ResultValue();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kSecTrustRevocationChecked", optional=true)
         public static native CFType RevocationChecked();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kSecTrustRevocationValidUntilDate", optional=true)
         public static native CFType RevocationValidUntilDate();
         /**

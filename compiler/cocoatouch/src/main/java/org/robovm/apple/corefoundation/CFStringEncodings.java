@@ -135,9 +135,6 @@ public enum /*<name>*/CFStringEncodings/*</name>*/ implements ValuedEnum {
     JIS_X0208_90(1570L),
     JIS_X0212_90(1571L),
     JIS_C6226_78(1572L),
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     ShiftJIS_X0213(1576L),
     ShiftJIS_X0213_MenKuTen(1577L),
     GB_2312_80(1584L),
@@ -171,13 +168,7 @@ public enum /*<name>*/CFStringEncodings/*</name>*/ implements ValuedEnum {
     NextStepJapanese(2818L),
     EBCDIC_US(3073L),
     EBCDIC_CP037(3074L),
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     UTF7(67109120L),
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     UTF7_IMAP(2576L),
     ShiftJIS_X0213_00(1576L);
     /*</values>*/

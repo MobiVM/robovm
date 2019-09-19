@@ -37,9 +37,7 @@ import org.robovm.apple.metal.*;
 import org.robovm.rt.annotation.WeaklyLinked;
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 2.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("QuartzCore") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CAAnimation/*</name>*/ 
@@ -141,9 +139,6 @@ import org.robovm.rt.annotation.WeaklyLinked;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CACurrentMediaTime", optional=true)
     public static native double getCurrentMediaTime();
     

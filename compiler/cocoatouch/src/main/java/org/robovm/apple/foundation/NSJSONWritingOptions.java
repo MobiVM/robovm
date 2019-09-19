@@ -39,9 +39,7 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 5.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
 public final class /*<name>*/NSJSONWritingOptions/*</name>*/ extends Bits</*<name>*/NSJSONWritingOptions/*</name>*/> {

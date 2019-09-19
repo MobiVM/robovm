@@ -39,9 +39,7 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 7.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(Bits.AsLongMarshaler.class)/*</annotations>*/
 public final class /*<name>*/NSActivityOptions/*</name>*/ extends Bits</*<name>*/NSActivityOptions/*</name>*/> {

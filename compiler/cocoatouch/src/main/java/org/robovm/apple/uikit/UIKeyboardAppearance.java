@@ -48,13 +48,7 @@ import org.robovm.apple.linkpresentation.*;
 public enum /*<name>*/UIKeyboardAppearance/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Default(0L),
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     Dark(1L),
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     Light(2L),
     Alert(1L);
     /*</values>*/

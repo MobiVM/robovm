@@ -88,9 +88,6 @@ import org.robovm.apple.corelocation.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final HMErrorUserInfoKey FailedAccessories = new HMErrorUserInfoKey("FailedAccessories");
     /*</constants>*/
     
@@ -117,9 +114,6 @@ import org.robovm.apple.corelocation.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="HMUserFailedAccessoriesKey", optional=true)
         public static native NSString FailedAccessories();
         /*</values>*/

@@ -42,9 +42,7 @@ import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 2.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIApplication/*</name>*/ 
@@ -239,7 +237,6 @@ import org.robovm.apple.linkpresentation.*;
     @Property(selector = "setDelegate:", strongRef = true)
     public native void setDelegate(UIApplicationDelegate v);
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 13.0. Use UIView's userInteractionEnabled property instead
      */
     @Deprecated
@@ -250,7 +247,6 @@ import org.robovm.apple.linkpresentation.*;
     @Property(selector = "setIdleTimerDisabled:")
     public native void setIdleTimerDisabled(boolean v);
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 13.0. Should not be used for applications that support multiple scenes as it returns a key window across all connected scenes
      */
     @Deprecated
@@ -259,49 +255,42 @@ import org.robovm.apple.linkpresentation.*;
     @Property(selector = "windows")
     public native NSArray<UIWindow> getWindows();
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 13.0. Provide a custom network activity UI in your app if desired.
      */
     @Deprecated
     @Property(selector = "isNetworkActivityIndicatorVisible")
     public native boolean isNetworkActivityIndicatorVisible();
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 13.0. Provide a custom network activity UI in your app if desired.
      */
     @Deprecated
     @Property(selector = "setNetworkActivityIndicatorVisible:")
     public native void setNetworkActivityIndicatorVisible(boolean v);
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 13.0. Use the statusBarManager property of the window scene instead.
      */
     @Deprecated
     @Property(selector = "statusBarStyle")
     public native UIStatusBarStyle getStatusBarStyle();
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 13.0. Use the statusBarManager property of the window scene instead.
      */
     @Deprecated
     @Property(selector = "isStatusBarHidden")
     public native boolean isStatusBarHidden();
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 13.0. Use the interfaceOrientation property of the window scene instead.
      */
     @Deprecated
     @Property(selector = "statusBarOrientation")
     public native UIInterfaceOrientation getStatusBarOrientation();
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 13.0. Use viewWillTransitionToSize:withTransitionCoordinator: instead.
      */
     @Deprecated
     @Property(selector = "statusBarOrientationAnimationDuration")
     public native double getStatusBarOrientationAnimationDuration();
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 13.0. Use the statusBarManager property of the window scene instead.
      */
     @Deprecated
@@ -311,44 +300,20 @@ import org.robovm.apple.linkpresentation.*;
     public native @MachineSizedSInt long getApplicationIconBadgeNumber();
     @Property(selector = "setApplicationIconBadgeNumber:")
     public native void setApplicationIconBadgeNumber(@MachineSizedSInt long v);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "applicationSupportsShakeToEdit")
     public native boolean supportsShakeToEdit();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "setApplicationSupportsShakeToEdit:")
     public native void setSupportsShakeToEdit(boolean v);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "applicationState")
     public native UIApplicationState getApplicationState();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "backgroundTimeRemaining")
     public native double getBackgroundTimeRemaining();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "backgroundRefreshStatus")
     public native UIBackgroundRefreshStatus getBackgroundRefreshStatus();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "isProtectedDataAvailable")
     public native boolean isProtectedDataAvailable();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "userInterfaceLayoutDirection")
     public native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "preferredContentSizeCategory")
     public native String getPreferredContentSizeCategory();
     /**
@@ -366,27 +331,21 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Property(selector = "supportsMultipleScenes")
     public native boolean supportsMultipleScenes();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "isRegisteredForRemoteNotifications")
     public native boolean isRegisteredForRemoteNotifications();
     /**
-     * @since Available in iOS 4.0 and later.
      * @deprecated Deprecated in iOS 10.0. Use UserNotifications Framework's -[UNUserNotificationCenter getPendingNotificationRequestsWithCompletionHandler:]
      */
     @Deprecated
     @Property(selector = "scheduledLocalNotifications")
     public native NSArray<UILocalNotification> getScheduledLocalNotifications();
     /**
-     * @since Available in iOS 4.0 and later.
      * @deprecated Deprecated in iOS 10.0. Use UserNotifications Framework's -[UNUserNotificationCenter getPendingNotificationRequestsWithCompletionHandler:]
      */
     @Deprecated
     @Property(selector = "setScheduledLocalNotifications:")
     public native void setScheduledLocalNotifications(NSArray<UILocalNotification> v);
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 10.0. Use UserNotifications Framework's -[UNUserNotificationCenter getNotificationSettingsWithCompletionHandler:] and -[UNUserNotificationCenter getNotificationCategoriesWithCompletionHandler:]
      */
     @Deprecated
@@ -413,21 +372,18 @@ import org.robovm.apple.linkpresentation.*;
     @Property(selector = "alternateIconName")
     public native String getAlternateIconName();
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 9.0. Explicit setting of the status bar orientation is more limited in iOS 6.0 and later
      */
     @Deprecated
     @Property(selector = "setStatusBarOrientation:")
     public native void setStatusBarOrientation(UIInterfaceOrientation v);
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 9.0. Use -[UIViewController preferredStatusBarStyle]
      */
     @Deprecated
     @Property(selector = "setStatusBarStyle:")
     public native void setStatusBarStyle(UIStatusBarStyle v);
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 9.0. Use -[UIViewController prefersStatusBarHidden]
      */
     @Deprecated
@@ -512,46 +468,24 @@ import org.robovm.apple.linkpresentation.*;
     }
     
     /*<methods>*/
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @GlobalValue(symbol="UIContentSizeCategoryDidChangeNotification", optional=true)
     public static native NSString ContentSizeCategoryDidChangeNotification();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @GlobalValue(symbol="UIContentSizeCategoryNewValueKey", optional=true)
     protected static native NSString ContentSizeCategoryNewValueKey();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @GlobalValue(symbol="UIBackgroundTaskInvalid", optional=true)
     public static native @MachineSizedUInt long getInvalidBackgroundTask();
     /**
-     * @since Available in iOS 4.0 and later.
      * @deprecated Deprecated in iOS 13.0. Please use PushKit for VoIP applications.
      */
     @Deprecated
     @GlobalValue(symbol="UIMinimumKeepAliveTimeout", optional=true)
     public static native double getMinimumKeepAliveTimeout();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @GlobalValue(symbol="UIApplicationBackgroundFetchIntervalMinimum", optional=true)
     public static native double getBackgroundFetchIntervalMinimum();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @GlobalValue(symbol="UIApplicationBackgroundFetchIntervalNever", optional=true)
     public static native double getBackgroundFetchIntervalNever();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @GlobalValue(symbol="UIApplicationDidEnterBackgroundNotification", optional=true)
     public static native NSString DidEnterBackgroundNotification();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @GlobalValue(symbol="UIApplicationWillEnterForegroundNotification", optional=true)
     public static native NSString WillEnterForegroundNotification();
     @GlobalValue(symbol="UIApplicationDidFinishLaunchingNotification", optional=true)
@@ -567,70 +501,49 @@ import org.robovm.apple.linkpresentation.*;
     @GlobalValue(symbol="UIApplicationSignificantTimeChangeNotification", optional=true)
     public static native NSString SignificantTimeChangeNotification();
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 13.0. Use viewWillTransitionToSize:withTransitionCoordinator: instead.
      */
     @Deprecated
     @GlobalValue(symbol="UIApplicationWillChangeStatusBarOrientationNotification", optional=true)
     public static native NSString WillChangeStatusBarOrientationNotification();
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 13.0. Use viewWillTransitionToSize:withTransitionCoordinator: instead.
      */
     @Deprecated
     @GlobalValue(symbol="UIApplicationDidChangeStatusBarOrientationNotification", optional=true)
     public static native NSString DidChangeStatusBarOrientationNotification();
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 13.0. Use viewWillTransitionToSize:withTransitionCoordinator: instead.
      */
     @Deprecated
     @GlobalValue(symbol="UIApplicationStatusBarOrientationUserInfoKey", optional=true)
     protected static native NSString StatusBarOrientationUserInfoKey();
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 13.0. Use viewWillTransitionToSize:withTransitionCoordinator: instead.
      */
     @Deprecated
     @GlobalValue(symbol="UIApplicationWillChangeStatusBarFrameNotification", optional=true)
     public static native NSString WillChangeStatusBarFrameNotification();
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 13.0. Use viewWillTransitionToSize:withTransitionCoordinator: instead.
      */
     @Deprecated
     @GlobalValue(symbol="UIApplicationDidChangeStatusBarFrameNotification", optional=true)
     public static native NSString DidChangeStatusBarFrameNotification();
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 13.0. Use viewWillTransitionToSize:withTransitionCoordinator: instead.
      */
     @Deprecated
     @GlobalValue(symbol="UIApplicationStatusBarFrameUserInfoKey", optional=true)
     protected static native NSString StatusBarFrameUserInfoKey();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @GlobalValue(symbol="UIApplicationBackgroundRefreshStatusDidChangeNotification", optional=true)
     public static native NSString BackgroundRefreshStatusDidChangeNotification();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @GlobalValue(symbol="UIApplicationProtectedDataWillBecomeUnavailable", optional=true)
     public static native NSString ProtectedDataWillBecomeUnavailableNotification();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @GlobalValue(symbol="UIApplicationProtectedDataDidBecomeAvailable", optional=true)
     public static native NSString ProtectedDataDidBecomeAvailableNotification();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @GlobalValue(symbol="UIApplicationOpenSettingsURLString", optional=true)
     public static native String getOpenSettingsURLString();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @GlobalValue(symbol="UIApplicationUserDidTakeScreenshotNotification", optional=true)
     public static native NSString UserDidTakeScreenshotNotification();
     
@@ -638,29 +551,23 @@ import org.robovm.apple.linkpresentation.*;
     protected static native int main(int argc, BytePtr.BytePtrPtr argv, String principalClassName, String delegateClassName);
     
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 13.0. Use UIView's userInteractionEnabled property instead
      */
     @Deprecated
     @Method(selector = "beginIgnoringInteractionEvents")
     public native void beginIgnoringInteractionEvents();
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 13.0. Use UIView's userInteractionEnabled property instead
      */
     @Deprecated
     @Method(selector = "endIgnoringInteractionEvents")
     public native void endIgnoringInteractionEvents();
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 10.0.
      */
     @Deprecated
     @Method(selector = "openURL:")
     public native boolean openURL(NSURL url);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "canOpenURL:")
     public native boolean canOpenURL(NSURL url);
     /**
@@ -672,28 +579,15 @@ import org.robovm.apple.linkpresentation.*;
     public native void sendEvent(UIEvent event);
     @Method(selector = "sendAction:to:from:forEvent:")
     public native boolean sendAction(Selector action, NSObject target, NSObject sender, UIEvent event);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "supportedInterfaceOrientationsForWindow:")
     public native UIInterfaceOrientationMask getSupportedInterfaceOrientations(UIWindow window);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "beginBackgroundTaskWithExpirationHandler:")
     public native @MachineSizedUInt long beginBackgroundTask(@Block Runnable handler);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "beginBackgroundTaskWithName:expirationHandler:")
     public native @MachineSizedUInt long beginBackgroundTask(String taskName, @Block Runnable handler);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "endBackgroundTask:")
     public native void endBackgroundTask(@MachineSizedUInt long identifier);
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 13.0. Use a BGAppRefreshTask in the BackgroundTasks framework instead
      */
     @Deprecated
@@ -714,77 +608,57 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Method(selector = "requestSceneSessionRefresh:")
     public native void requestSceneSessionRefresh(UISceneSession sceneSession);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "registerForRemoteNotifications")
     public native void registerForRemoteNotifications();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "unregisterForRemoteNotifications")
     public native void unregisterForRemoteNotifications();
     /**
-     * @since Available in iOS 3.0 and later.
      * @deprecated Deprecated in iOS 8.0. Use -[UIApplication registerForRemoteNotifications] and UserNotifications Framework's -[UNUserNotificationCenter requestAuthorizationWithOptions:completionHandler:]
      */
     @Deprecated
     @Method(selector = "registerForRemoteNotificationTypes:")
     public native void registerForRemoteNotificationTypes(UIRemoteNotificationType types);
     /**
-     * @since Available in iOS 3.0 and later.
      * @deprecated Deprecated in iOS 8.0. Use -[UIApplication isRegisteredForRemoteNotifications] and UserNotifications Framework's -[UNUserNotificationCenter getNotificationSettingsWithCompletionHandler:] to retrieve user-enabled remote notification and user notification settings
      */
     @Deprecated
     @Method(selector = "enabledRemoteNotificationTypes")
     public native UIRemoteNotificationType getEnabledRemoteNotificationTypes();
     /**
-     * @since Available in iOS 4.0 and later.
      * @deprecated Deprecated in iOS 10.0. Use UserNotifications Framework's -[UNUserNotificationCenter addNotificationRequest:withCompletionHandler:]
      */
     @Deprecated
     @Method(selector = "presentLocalNotificationNow:")
     public native void presentLocalNotificationNow(UILocalNotification notification);
     /**
-     * @since Available in iOS 4.0 and later.
      * @deprecated Deprecated in iOS 10.0. Use UserNotifications Framework's -[UNUserNotificationCenter addNotificationRequest:withCompletionHandler:]
      */
     @Deprecated
     @Method(selector = "scheduleLocalNotification:")
     public native void scheduleLocalNotification(UILocalNotification notification);
     /**
-     * @since Available in iOS 4.0 and later.
      * @deprecated Deprecated in iOS 10.0. Use UserNotifications Framework's -[UNUserNotificationCenter removePendingNotificationRequestsWithIdentifiers:]
      */
     @Deprecated
     @Method(selector = "cancelLocalNotification:")
     public native void cancelLocalNotification(UILocalNotification notification);
     /**
-     * @since Available in iOS 4.0 and later.
      * @deprecated Deprecated in iOS 10.0. Use UserNotifications Framework's -[UNUserNotificationCenter removeAllPendingNotificationRequests]
      */
     @Deprecated
     @Method(selector = "cancelAllLocalNotifications")
     public native void cancelAllLocalNotifications();
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 10.0. Use UserNotifications Framework's -[UNUserNotificationCenter requestAuthorizationWithOptions:completionHandler:] and -[UNUserNotificationCenter setNotificationCategories:]
      */
     @Deprecated
     @Method(selector = "registerUserNotificationSettings:")
     public native void registerUserNotificationSettings(UIUserNotificationSettings notificationSettings);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "beginReceivingRemoteControlEvents")
     public native void beginReceivingRemoteControlEvents();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "endReceivingRemoteControlEvents")
     public native void endReceivingRemoteControlEvents();
     /**
-     * @since Available in iOS 5.0 and later.
      * @deprecated Deprecated in iOS 9.0. Newsstand apps now behave like normal apps on SpringBoard
      */
     @Deprecated
@@ -795,56 +669,39 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Method(selector = "setAlternateIconName:completionHandler:")
     public native void setAlternateIcon(String alternateIconName, @Block VoidBlock1<NSError> completionHandler);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "extendStateRestoration")
     public native void extendStateRestoration();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "completeStateRestoration")
     public native void completeStateRestoration();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "ignoreSnapshotOnNextApplicationLaunch")
     public native void ignoreSnapshotOnNextApplicationLaunch();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "registerObjectForStateRestoration:restorationIdentifier:")
     public static native void registerObjectForStateRestoration(UIStateRestoring object, String restorationIdentifier);
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 9.0. Explicit setting of the status bar orientation is more limited in iOS 6.0 and later
      */
     @Deprecated
     @Method(selector = "setStatusBarOrientation:animated:")
     public native void setStatusBarOrientation(UIInterfaceOrientation interfaceOrientation, boolean animated);
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 9.0. Use -[UIViewController preferredStatusBarStyle]
      */
     @Deprecated
     @Method(selector = "setStatusBarStyle:animated:")
     public native void setStatusBarStyle(UIStatusBarStyle statusBarStyle, boolean animated);
     /**
-     * @since Available in iOS 3.2 and later.
      * @deprecated Deprecated in iOS 9.0. Use -[UIViewController prefersStatusBarHidden]
      */
     @Deprecated
     @Method(selector = "setStatusBarHidden:withAnimation:")
     public native void setStatusBarHidden(boolean hidden, UIStatusBarAnimation animation);
     /**
-     * @since Available in iOS 4.0 and later.
      * @deprecated Deprecated in iOS 9.0. Please use PushKit for VoIP applications instead of calling this method
      */
     @Deprecated
     @Method(selector = "setKeepAliveTimeout:handler:")
     public native boolean setKeepAliveTimeout(double timeout, @Block Runnable keepAliveHandler);
     /**
-     * @since Available in iOS 4.0 and later.
      * @deprecated Deprecated in iOS 9.0. Please use PushKit for VoIP applications instead of calling this method
      */
     @Deprecated

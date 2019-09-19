@@ -33,7 +33,6 @@ import org.robovm.apple.uikit.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 4.1 and later.
  * @deprecated Deprecated in iOS 7.0. Use GKGameCenterViewController instead
  */
 /*</javadoc>*/

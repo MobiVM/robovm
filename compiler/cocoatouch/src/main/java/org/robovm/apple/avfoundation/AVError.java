@@ -71,9 +71,6 @@ import org.robovm.apple.audiotoolbox.*;
         return code;
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @GlobalValue(symbol="AVFoundationErrorDomain", optional=true)
     public static native String getClassDomain();
     /*</methods>*/

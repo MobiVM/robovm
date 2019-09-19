@@ -105,9 +105,6 @@ import org.robovm.apple.avfoundation.*;
     public static final CIFilterCategory Transition = new CIFilterCategory("Transition");
     public static final CIFilterCategory TileEffect = new CIFilterCategory("TileEffect");
     public static final CIFilterCategory Generator = new CIFilterCategory("Generator");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final CIFilterCategory Reduction = new CIFilterCategory("Reduction");
     public static final CIFilterCategory Gradient = new CIFilterCategory("Gradient");
     public static final CIFilterCategory Stylize = new CIFilterCategory("Stylize");
@@ -166,9 +163,6 @@ import org.robovm.apple.avfoundation.*;
         public static native NSString TileEffect();
         @GlobalValue(symbol="kCICategoryGenerator", optional=true)
         public static native NSString Generator();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="kCICategoryReduction", optional=true)
         public static native NSString Reduction();
         @GlobalValue(symbol="kCICategoryGradient", optional=true)

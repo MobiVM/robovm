@@ -42,9 +42,7 @@ import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 3.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIAccessibilityElement/*</name>*/ 
@@ -100,14 +98,8 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Property(selector = "setAccessibilityFrameInContainerSpace:")
     public native void setAccessibilityFrameInContainerSpace(@ByVal CGRect v);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "accessibilityIdentifier")
     public native String getAccessibilityIdentifier();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setAccessibilityIdentifier:")
     public native void setAccessibilityIdentifier(String v);
     /*</properties>*/

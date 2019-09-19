@@ -150,24 +150,12 @@ import org.robovm.apple.uikit.*;
         return new CTLineBoundsOptions(ptr.get());
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Bridge(symbol="CTParagraphStyleGetTypeID", optional=true)
     public static native @MachineSizedUInt long getClassTypeID();
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Bridge(symbol="CTParagraphStyleCreate", optional=true)
     protected static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CTParagraphStyle create(CTParagraphStyleSetting settings, @MachineSizedUInt long settingCount);
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Bridge(symbol="CTParagraphStyleCreateCopy", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CTParagraphStyle createCopy(CTParagraphStyle paragraphStyle);
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Bridge(symbol="CTParagraphStyleGetValueForSpecifier", optional=true)
     protected native boolean getValueForSpecifier(CTParagraphStyleSpecifier spec, @MachineSizedUInt long valueBufferSize, VoidPtr valueBuffer);
     /*</methods>*/

@@ -83,14 +83,8 @@ import org.robovm.apple.uikit.*;
         }
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGPDFOperatorTableCreate", optional=true)
     public static native CGPDFOperatorTable create();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGPDFOperatorTableSetCallback", optional=true)
     private native void setCallback(@org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class) String name, FunctionPtr callback);
     /*</methods>*/

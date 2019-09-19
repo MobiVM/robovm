@@ -41,9 +41,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVCaptureVideoPreviewLayer/*</name>*/ 
@@ -74,9 +72,6 @@ import org.robovm.apple.audiotoolbox.*;
     public native AVCaptureSession getSession();
     @Property(selector = "setSession:")
     public native void setSession(AVCaptureSession v);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "connection")
     public native AVCaptureConnection getConnection();
     @Property(selector = "videoGravity")
@@ -93,39 +88,18 @@ import org.robovm.apple.audiotoolbox.*;
     /*<methods>*/
     @Method(selector = "initWithSession:")
     protected native @Pointer long init(AVCaptureSession session);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "initWithSessionWithNoConnection:")
     protected native @Pointer long initWithNoConnection(AVCaptureSession session);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "setSessionWithNoConnection:")
     public native void setSessionWithNoConnection(AVCaptureSession session);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "captureDevicePointOfInterestForPoint:")
     public native @ByVal CGPoint captureDevicePointOfInterest(@ByVal CGPoint pointInLayer);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "pointForCaptureDevicePointOfInterest:")
     public native @ByVal CGPoint getDevicePointOfInterest(@ByVal CGPoint captureDevicePointOfInterest);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "metadataOutputRectOfInterestForRect:")
     public native @ByVal CGRect getRectOfInterestInLayerCoordinates(@ByVal CGRect rectInLayerCoordinates);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "rectForMetadataOutputRectOfInterest:")
     public native @ByVal CGRect getRectOfInterestInMetadataOutputCoordinates(@ByVal CGRect rectInMetadataOutputCoordinates);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "transformedMetadataObjectForMetadataObject:")
     public native AVMetadataObject getTransformedMetadataObject(AVMetadataObject metadataObject);
     /*</methods>*/

@@ -42,9 +42,7 @@ import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.2 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIPrintFormatter/*</name>*/ 
@@ -71,14 +69,12 @@ import org.robovm.apple.linkpresentation.*;
     @Property(selector = "setMaximumContentWidth:")
     public native void setMaximumContentWidth(@MachineSizedFloat double v);
     /**
-     * @since Available in iOS 4.2 and later.
      * @deprecated Deprecated in iOS 10.0.
      */
     @Deprecated
     @Property(selector = "contentInsets")
     public native @ByVal UIEdgeInsets getContentInsets();
     /**
-     * @since Available in iOS 4.2 and later.
      * @deprecated Deprecated in iOS 10.0.
      */
     @Deprecated

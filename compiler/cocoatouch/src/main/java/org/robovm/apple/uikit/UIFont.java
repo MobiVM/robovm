@@ -42,9 +42,7 @@ import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 2.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIFont/*</name>*/ 
@@ -76,16 +74,10 @@ import org.robovm.apple.linkpresentation.*;
     public native @MachineSizedFloat double getCapHeight();
     @Property(selector = "xHeight")
     public native @MachineSizedFloat double getXHeight();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "lineHeight")
     public native @MachineSizedFloat double getLineHeight();
     @Property(selector = "leading")
     public native @MachineSizedFloat double getLeading();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "fontDescriptor")
     public native UIFontDescriptor getFontDescriptor();
     @Property(selector = "labelFontSize")
@@ -107,9 +99,6 @@ import org.robovm.apple.linkpresentation.*;
     /*<methods>*/
     @Method(selector = "fontWithSize:")
     public native UIFont newWithSize(@MachineSizedFloat double fontSize);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "preferredFontForTextStyle:")
     public static native UIFont getPreferredFont(UIFontTextStyle style);
     /**
@@ -142,9 +131,6 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Method(selector = "monospacedSystemFontOfSize:weight:")
     public static native UIFont getMonospacedSystemFont(@MachineSizedFloat double fontSize, @MachineSizedFloat double weight);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "fontWithDescriptor:size:")
     public static native UIFont getFont(UIFontDescriptor descriptor, @MachineSizedFloat double pointSize);
     /*</methods>*/

@@ -61,9 +61,6 @@ import org.robovm.apple.linkpresentation.*;
     /*<methods>*/
     @NotImplemented("awakeFromNib")
     public void awakeFromNib() {}
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @NotImplemented("prepareForInterfaceBuilder")
     public void prepareForInterfaceBuilder() {}
     /*</methods>*/

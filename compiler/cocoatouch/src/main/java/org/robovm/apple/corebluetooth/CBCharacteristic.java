@@ -33,9 +33,7 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 5.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreBluetooth") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CBCharacteristic/*</name>*/ 
@@ -60,7 +58,6 @@ import org.robovm.apple.dispatch.*;
     @Property(selector = "descriptors")
     public native NSArray<CBDescriptor> getDescriptors();
     /**
-     * @since Available in iOS 5.0 and later.
      * @deprecated Deprecated in iOS 8.0.
      */
     @Deprecated

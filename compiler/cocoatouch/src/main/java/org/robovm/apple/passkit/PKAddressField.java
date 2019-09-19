@@ -35,7 +35,6 @@ import org.robovm.apple.contacts.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 8.0 and later.
  * @deprecated Deprecated in iOS 11.0. Use PKContactField and -requiredShippingContactFields / -requiredBillingContactFields
  */
 /*</javadoc>*/

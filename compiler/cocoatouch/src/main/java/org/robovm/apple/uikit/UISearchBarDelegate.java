@@ -67,9 +67,6 @@ import org.robovm.apple.linkpresentation.*;
     void didEndEditing(UISearchBar searchBar);
     @Method(selector = "searchBar:textDidChange:")
     void didChange(UISearchBar searchBar, String searchText);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "searchBar:shouldChangeTextInRange:replacementText:")
     boolean shouldChange(UISearchBar searchBar, @ByVal NSRange range, String text);
     @Method(selector = "searchBarSearchButtonClicked:")
@@ -78,14 +75,8 @@ import org.robovm.apple.linkpresentation.*;
     void bookmarkButtonClicked(UISearchBar searchBar);
     @Method(selector = "searchBarCancelButtonClicked:")
     void cancelButtonClicked(UISearchBar searchBar);
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Method(selector = "searchBarResultsListButtonClicked:")
     void resultsListButtonClicked(UISearchBar searchBar);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "searchBar:selectedScopeButtonIndexDidChange:")
     void selectedScopeButtonIndexDidChange(UISearchBar searchBar, @MachineSizedSInt long selectedScope);
     /*</methods>*/

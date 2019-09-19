@@ -55,17 +55,8 @@ public enum /*<name>*/UIKeyboardType/*</name>*/ implements ValuedEnum {
     PhonePad(5L),
     NamePhonePad(6L),
     EmailAddress(7L),
-    /**
-     * @since Available in iOS 4.1 and later.
-     */
     DecimalPad(8L),
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     Twitter(9L),
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     WebSearch(10L),
     /**
      * @since Available in iOS 10.0 and later.

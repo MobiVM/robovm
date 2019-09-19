@@ -34,9 +34,7 @@ import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 3.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreData") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSPropertyDescription/*</name>*/ 
@@ -77,66 +75,41 @@ import org.robovm.apple.uikit.*;
     @Property(selector = "setUserInfo:")
     public native void setUserInfo(NSDictionary<?, ?> v);
     /**
-     * @since Available in iOS 3.0 and later.
      * @deprecated Deprecated in iOS 11.0. Use NSEntityDescription.indexes instead
      */
     @Deprecated
     @Property(selector = "isIndexed")
     public native boolean isIndexed();
     /**
-     * @since Available in iOS 3.0 and later.
      * @deprecated Deprecated in iOS 11.0. Use NSEntityDescription.indexes instead
      */
     @Deprecated
     @Property(selector = "setIndexed:")
     public native void setIndexed(boolean v);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "versionHash")
     public native NSData getVersionHash();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "versionHashModifier")
     public native String getVersionHashModifier();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "setVersionHashModifier:")
     public native void setVersionHashModifier(String v);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "isIndexedBySpotlight")
     public native boolean isIndexedBySpotlight();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "setIndexedBySpotlight:")
     public native void setIndexedBySpotlight(boolean v);
     /**
-     * @since Available in iOS 3.0 and later.
      * @deprecated Deprecated in iOS 11.0. Spotlight integration is deprecated. Use CoreSpotlight integration instead.
      */
     @Deprecated
     @Property(selector = "isStoredInExternalRecord")
     public native boolean isStoredInExternalRecord();
     /**
-     * @since Available in iOS 3.0 and later.
      * @deprecated Deprecated in iOS 11.0. Spotlight integration is deprecated. Use CoreSpotlight integration instead.
      */
     @Deprecated
     @Property(selector = "setStoredInExternalRecord:")
     public native void setStoredInExternalRecord(boolean v);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "renamingIdentifier")
     public native String getRenamingIdentifier();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "setRenamingIdentifier:")
     public native void setRenamingIdentifier(String v);
     /*</properties>*/

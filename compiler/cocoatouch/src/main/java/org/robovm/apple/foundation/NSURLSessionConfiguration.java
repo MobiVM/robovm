@@ -40,9 +40,7 @@ import org.robovm.apple.dispatch.*;
 import org.robovm.apple.coreservices.CFProxy;
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 7.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSURLSessionConfiguration/*</name>*/ 
@@ -114,64 +112,34 @@ import org.robovm.apple.coreservices.CFProxy;
      */
     @Property(selector = "setWaitsForConnectivity:")
     public native void setWaitsForConnectivity(boolean v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "isDiscretionary")
     public native boolean isDiscretionary();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setDiscretionary:")
     public native void setDiscretionary(boolean v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "sharedContainerIdentifier")
     public native String getSharedContainerIdentifier();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setSharedContainerIdentifier:")
     public native void setSharedContainerIdentifier(String v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "sessionSendsLaunchEvents")
     public native boolean sendsLaunchEvents();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setSessionSendsLaunchEvents:")
     public native void setSendsLaunchEvents(boolean v);
     @Property(selector = "connectionProxyDictionary")
     public native CFProxy getConnectionProxy();
     @Property(selector = "setConnectionProxyDictionary:")
     public native void setConnectionProxy(CFProxy v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Deprecated
     @WeaklyLinked
     @Property(selector = "TLSMinimumSupportedProtocol")
     public native SSLProtocol getTLSMinimumSupportedProtocol();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Deprecated
     @WeaklyLinked
     @Property(selector = "setTLSMinimumSupportedProtocol:")
     public native void setTLSMinimumSupportedProtocol(SSLProtocol v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Deprecated
     @WeaklyLinked
     @Property(selector = "TLSMaximumSupportedProtocol")
     public native SSLProtocol getTLSMaximumSupportedProtocol();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Deprecated
     @WeaklyLinked
     @Property(selector = "setTLSMaximumSupportedProtocol:")
@@ -255,13 +223,9 @@ import org.robovm.apple.coreservices.CFProxy;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "backgroundSessionConfigurationWithIdentifier:")
     public static native NSURLSessionConfiguration getBackgroundSessionConfiguration(String identifier);
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 8.0.
      */
     @Deprecated

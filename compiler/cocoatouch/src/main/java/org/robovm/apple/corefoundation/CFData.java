@@ -113,9 +113,6 @@ import org.robovm.apple.coretext.*;
     protected native @Pointer long getBytePtr();
     @Bridge(symbol="CFDataGetBytes", optional=true)
     protected native void getBytes(@ByVal CFRange range, @Pointer long buffer);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CFDataFind", optional=true)
     public native @ByVal CFRange find(CFData dataToFind, @ByVal CFRange searchRange, CFDataSearchFlags compareOptions);
     /*</methods>*/

@@ -42,9 +42,7 @@ import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 5.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIPopoverBackgroundView/*</name>*/ 
@@ -73,7 +71,6 @@ import org.robovm.apple.linkpresentation.*;
     @Property(selector = "setArrowDirection:")
     public native void setArrowDirection(UIPopoverArrowDirection v);
     /**
-     * @since Available in iOS 6.0 and later.
      * @deprecated Deprecated in iOS 13.0. No longer supported
      */
     @Deprecated

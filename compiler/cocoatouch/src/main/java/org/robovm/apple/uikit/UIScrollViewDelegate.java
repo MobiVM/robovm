@@ -59,16 +59,10 @@ import org.robovm.apple.linkpresentation.*;
     /*<methods>*/
     @Method(selector = "scrollViewDidScroll:")
     void didScroll(UIScrollView scrollView);
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Method(selector = "scrollViewDidZoom:")
     void didZoom(UIScrollView scrollView);
     @Method(selector = "scrollViewWillBeginDragging:")
     void willBeginDragging(UIScrollView scrollView);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "scrollViewWillEndDragging:withVelocity:targetContentOffset:")
     void willEndDragging(UIScrollView scrollView, @ByVal CGPoint velocity, CGPoint targetContentOffset);
     @Method(selector = "scrollViewDidEndDragging:willDecelerate:")
@@ -81,9 +75,6 @@ import org.robovm.apple.linkpresentation.*;
     void didEndScrollingAnimation(UIScrollView scrollView);
     @Method(selector = "viewForZoomingInScrollView:")
     UIView getViewForZooming(UIScrollView scrollView);
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Method(selector = "scrollViewWillBeginZooming:withView:")
     void willBeginZooming(UIScrollView scrollView, UIView view);
     @Method(selector = "scrollViewDidEndZooming:withView:atScale:")

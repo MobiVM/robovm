@@ -39,18 +39,13 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 7.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/NSURLErrorCancelledReason/*</name>*/ implements ValuedEnum {
     /*<values>*/
     UserForceQuitApplication(0L),
     BackgroundUpdatesDisabled(1L),
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     InsufficientSystemResources(2L);
     /*</values>*/
 

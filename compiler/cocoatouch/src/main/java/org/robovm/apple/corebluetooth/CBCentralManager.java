@@ -33,9 +33,7 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 5.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreBluetooth") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CBCentralManager/*</name>*/ 
@@ -52,9 +50,6 @@ import org.robovm.apple.dispatch.*;
     @WeaklyLinked
     @Method(selector = "initWithDelegate:queue:")
     public CBCentralManager(CBCentralManagerDelegate delegate, DispatchQueue queue) { super((SkipInit) null); initObject(init(delegate, queue)); }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @WeaklyLinked
     @Method(selector = "initWithDelegate:queue:options:")
     public CBCentralManager(CBCentralManagerDelegate delegate, DispatchQueue queue, CBCentralManagerOptions options) { super((SkipInit) null); initObject(init(delegate, queue, options)); }
@@ -77,20 +72,11 @@ import org.robovm.apple.dispatch.*;
     @WeaklyLinked
     @Method(selector = "initWithDelegate:queue:")
     protected native @Pointer long init(CBCentralManagerDelegate delegate, DispatchQueue queue);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @WeaklyLinked
     @Method(selector = "initWithDelegate:queue:options:")
     protected native @Pointer long init(CBCentralManagerDelegate delegate, DispatchQueue queue, CBCentralManagerOptions options);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "retrievePeripheralsWithIdentifiers:")
     public native NSArray<CBPeripheral> retrievePeripheralsWithId(NSArray<NSUUID> identifiers);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "retrieveConnectedPeripheralsWithServices:")
     public native NSArray<CBPeripheral> retrieveConnectedPeripherals(NSArray<CBUUID> serviceUUIDs);
     @Method(selector = "scanForPeripheralsWithServices:options:")

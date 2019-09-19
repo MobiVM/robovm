@@ -40,9 +40,7 @@ import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 5.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreImage") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CIFilter/*</name>*/ 
@@ -56,9 +54,6 @@ import org.robovm.apple.avfoundation.*;
     protected CIFilter(Handle h, long handle) { super(h, handle); }
     protected CIFilter(SkipInit skipInit) { super(skipInit); }
     public CIFilter(String name) { super((Handle) null, create(name)); retain(getHandle()); }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public CIFilter(String name, CIFilterInputParameters params) { super((Handle) null, create(name, params)); retain(getHandle()); }
     /**
      * @since Available in iOS 10.0 and later.
@@ -77,9 +72,6 @@ import org.robovm.apple.avfoundation.*;
     /*</constructors>*/
     public CIFilter(String name, Object...inputParameters) {super((Handle) null, create(name, inputParameters)); retain(getHandle()); }
     /*<properties>*/
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "outputImage")
     public native CIImage getOutputImage();
     @Property(selector = "name")
@@ -174,9 +166,6 @@ import org.robovm.apple.avfoundation.*;
     public native void setDefaults();
     @Method(selector = "filterWithName:")
     protected static native @Pointer long create(String name);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "filterWithName:withInputParameters:")
     protected static native @Pointer long create(String name, CIFilterInputParameters params);
     @Method(selector = "filterNamesInCategory:")
@@ -208,23 +197,14 @@ import org.robovm.apple.avfoundation.*;
      */
     @Method(selector = "localizedReferenceDocumentationForFilterName:")
     public static native NSURL localizedReferenceDocumentationForFilterName(String filterName);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "serializedXMPFromFilters:inputImageExtent:")
     public static native NSData serializeToXMP(NSArray<CIFilter> filters, @ByVal CGRect extent);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public static NSArray<CIFilter> deserializeFromXMP(NSData xmpData, @ByVal CGRect extent) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        NSArray<CIFilter> result = deserializeFromXMP(xmpData, extent, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        return result;
     }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "filterArrayFromSerializedXMP:inputImageExtent:error:")
     private static native NSArray<CIFilter> deserializeFromXMP(NSData xmpData, @ByVal CGRect extent, NSError.NSErrorPtr outError);
     /**

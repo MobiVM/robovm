@@ -105,65 +105,20 @@ import org.robovm.apple.coretext.*;
     public static final CFDateFormatterProperty ShortWeekdaySymbols = new CFDateFormatterProperty("ShortWeekdaySymbols");
     public static final CFDateFormatterProperty AMSymbol = new CFDateFormatterProperty("AMSymbol");
     public static final CFDateFormatterProperty PMSymbol = new CFDateFormatterProperty("PMSymbol");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CFDateFormatterProperty LongEraSymbols = new CFDateFormatterProperty("LongEraSymbols");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CFDateFormatterProperty VeryShortMonthSymbols = new CFDateFormatterProperty("VeryShortMonthSymbols");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CFDateFormatterProperty StandaloneMonthSymbols = new CFDateFormatterProperty("StandaloneMonthSymbols");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CFDateFormatterProperty ShortStandaloneMonthSymbols = new CFDateFormatterProperty("ShortStandaloneMonthSymbols");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CFDateFormatterProperty VeryShortStandaloneMonthSymbols = new CFDateFormatterProperty("VeryShortStandaloneMonthSymbols");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CFDateFormatterProperty VeryShortWeekdaySymbols = new CFDateFormatterProperty("VeryShortWeekdaySymbols");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CFDateFormatterProperty StandaloneWeekdaySymbols = new CFDateFormatterProperty("StandaloneWeekdaySymbols");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CFDateFormatterProperty ShortStandaloneWeekdaySymbols = new CFDateFormatterProperty("ShortStandaloneWeekdaySymbols");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CFDateFormatterProperty VeryShortStandaloneWeekdaySymbols = new CFDateFormatterProperty("VeryShortStandaloneWeekdaySymbols");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CFDateFormatterProperty QuarterSymbols = new CFDateFormatterProperty("QuarterSymbols");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CFDateFormatterProperty ShortQuarterSymbols = new CFDateFormatterProperty("ShortQuarterSymbols");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CFDateFormatterProperty StandaloneQuarterSymbols = new CFDateFormatterProperty("StandaloneQuarterSymbols");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CFDateFormatterProperty ShortStandaloneQuarterSymbols = new CFDateFormatterProperty("ShortStandaloneQuarterSymbols");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CFDateFormatterProperty GregorianStartDate = new CFDateFormatterProperty("GregorianStartDate");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CFDateFormatterProperty DoesRelativeDateFormattingKey = new CFDateFormatterProperty("DoesRelativeDateFormattingKey");
     /*</constants>*/
     
@@ -218,79 +173,34 @@ import org.robovm.apple.coretext.*;
         public static native CFString AMSymbol();
         @GlobalValue(symbol="kCFDateFormatterPMSymbol", optional=true)
         public static native CFString PMSymbol();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCFDateFormatterLongEraSymbols", optional=true)
         public static native CFString LongEraSymbols();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCFDateFormatterVeryShortMonthSymbols", optional=true)
         public static native CFString VeryShortMonthSymbols();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCFDateFormatterStandaloneMonthSymbols", optional=true)
         public static native CFString StandaloneMonthSymbols();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCFDateFormatterShortStandaloneMonthSymbols", optional=true)
         public static native CFString ShortStandaloneMonthSymbols();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCFDateFormatterVeryShortStandaloneMonthSymbols", optional=true)
         public static native CFString VeryShortStandaloneMonthSymbols();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCFDateFormatterVeryShortWeekdaySymbols", optional=true)
         public static native CFString VeryShortWeekdaySymbols();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCFDateFormatterStandaloneWeekdaySymbols", optional=true)
         public static native CFString StandaloneWeekdaySymbols();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCFDateFormatterShortStandaloneWeekdaySymbols", optional=true)
         public static native CFString ShortStandaloneWeekdaySymbols();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCFDateFormatterVeryShortStandaloneWeekdaySymbols", optional=true)
         public static native CFString VeryShortStandaloneWeekdaySymbols();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCFDateFormatterQuarterSymbols", optional=true)
         public static native CFString QuarterSymbols();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCFDateFormatterShortQuarterSymbols", optional=true)
         public static native CFString ShortQuarterSymbols();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCFDateFormatterStandaloneQuarterSymbols", optional=true)
         public static native CFString StandaloneQuarterSymbols();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCFDateFormatterShortStandaloneQuarterSymbols", optional=true)
         public static native CFString ShortStandaloneQuarterSymbols();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCFDateFormatterGregorianStartDate", optional=true)
         public static native CFString GregorianStartDate();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCFDateFormatterDoesRelativeDateFormattingKey", optional=true)
         public static native CFString DoesRelativeDateFormattingKey();
         /*</values>*/

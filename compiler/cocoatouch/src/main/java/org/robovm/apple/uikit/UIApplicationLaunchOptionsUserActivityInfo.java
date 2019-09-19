@@ -112,9 +112,6 @@ import org.robovm.apple.linkpresentation.*;
     }
     
 
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public String getType() {
         if (has(Keys.Type())) {
             NSString val = (NSString) get(Keys.Type());
@@ -128,9 +125,6 @@ import org.robovm.apple.linkpresentation.*;
     @Library("UIKit")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="UIApplicationLaunchOptionsUserActivityTypeKey", optional=true)
         public static native NSString Type();
     }

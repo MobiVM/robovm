@@ -92,17 +92,8 @@ import org.robovm.apple.metal.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CAFilter Nearest = new CAFilter("Nearest");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CAFilter Linear = new CAFilter("Linear");
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public static final CAFilter Trilinear = new CAFilter("Trilinear");
     /*</constants>*/
     
@@ -129,19 +120,10 @@ import org.robovm.apple.metal.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCAFilterNearest", optional=true)
         public static native NSString Nearest();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCAFilterLinear", optional=true)
         public static native NSString Linear();
-        /**
-         * @since Available in iOS 3.0 and later.
-         */
         @GlobalValue(symbol="kCAFilterTrilinear", optional=true)
         public static native NSString Trilinear();
         /*</values>*/

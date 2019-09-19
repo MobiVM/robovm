@@ -115,9 +115,6 @@ import org.robovm.apple.avfoundation.*;
     }
     
 
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public CIImage getOutputImage() {
         if (has(Keys.OutputImage())) {
             CIImage val = (CIImage) get(Keys.OutputImage());
@@ -125,16 +122,10 @@ import org.robovm.apple.avfoundation.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public CIFilterInputParameters setOutputImage(CIImage outputImage) {
         set(Keys.OutputImage(), outputImage);
         return this;
     }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public CIImage getBackgroundImage() {
         if (has(Keys.BackgroundImage())) {
             CIImage val = (CIImage) get(Keys.BackgroundImage());
@@ -142,16 +133,10 @@ import org.robovm.apple.avfoundation.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public CIFilterInputParameters setBackgroundImage(CIImage backgroundImage) {
         set(Keys.BackgroundImage(), backgroundImage);
         return this;
     }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public CIImage getInputImage() {
         if (has(Keys.Image())) {
             CIImage val = (CIImage) get(Keys.Image());
@@ -159,16 +144,10 @@ import org.robovm.apple.avfoundation.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public CIFilterInputParameters setInputImage(CIImage inputImage) {
         set(Keys.Image(), inputImage);
         return this;
     }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public long getVersion() {
         if (has(Keys.Version())) {
             NSNumber val = (NSNumber) get(Keys.Version());
@@ -176,9 +155,6 @@ import org.robovm.apple.avfoundation.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public CIFilterInputParameters setVersion(long version) {
         set(Keys.Version(), NSNumber.valueOf(version));
         return this;
@@ -198,19 +174,10 @@ import org.robovm.apple.avfoundation.*;
     @Library("CoreImage")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="kCIOutputImageKey", optional=true)
         public static native NSString OutputImage();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="kCIInputBackgroundImageKey", optional=true)
         public static native NSString BackgroundImage();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="kCIInputImageKey", optional=true)
         public static native NSString Image();
         /**
@@ -228,39 +195,18 @@ import org.robovm.apple.avfoundation.*;
          */
         @GlobalValue(symbol="kCIInputAmountKey", optional=true)
         public static native NSString Amount();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kCIInputTimeKey", optional=true)
         public static native NSString Time();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kCIInputTransformKey", optional=true)
         public static native NSString Transform();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kCIInputScaleKey", optional=true)
         public static native NSString Scale();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kCIInputAspectRatioKey", optional=true)
         public static native NSString AspectRatio();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kCIInputCenterKey", optional=true)
         public static native NSString Center();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kCIInputRadiusKey", optional=true)
         public static native NSString Radius();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kCIInputAngleKey", optional=true)
         public static native NSString Angle();
         /**
@@ -268,44 +214,20 @@ import org.robovm.apple.avfoundation.*;
          */
         @GlobalValue(symbol="kCIInputRefractionKey", optional=true)
         public static native NSString Refraction();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kCIInputWidthKey", optional=true)
         public static native NSString Width();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kCIInputSharpnessKey", optional=true)
         public static native NSString Sharpness();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kCIInputIntensityKey", optional=true)
         public static native NSString Intensity();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kCIInputEVKey", optional=true)
         public static native NSString EV();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kCIInputSaturationKey", optional=true)
         public static native NSString Saturation();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kCIInputColorKey", optional=true)
         public static native NSString Color();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kCIInputBrightnessKey", optional=true)
         public static native NSString Brightness();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kCIInputContrastKey", optional=true)
         public static native NSString Contrast();
         /**
@@ -323,9 +245,6 @@ import org.robovm.apple.avfoundation.*;
          */
         @GlobalValue(symbol="kCIInputGradientImageKey", optional=true)
         public static native NSString GradientImage();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kCIInputMaskImageKey", optional=true)
         public static native NSString MaskImage();
         /**
@@ -338,19 +257,10 @@ import org.robovm.apple.avfoundation.*;
          */
         @GlobalValue(symbol="kCIInputShadingImageKey", optional=true)
         public static native NSString ShadingImage();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kCIInputTargetImageKey", optional=true)
         public static native NSString TargetImage();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kCIInputExtentKey", optional=true)
         public static native NSString Extent();
-        /**
-         * @since Available in iOS 6.0 and later.
-         */
         @GlobalValue(symbol="kCIInputVersionKey", optional=true)
         public static native NSString Version();
         /**

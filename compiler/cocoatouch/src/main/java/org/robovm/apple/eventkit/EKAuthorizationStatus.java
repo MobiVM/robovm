@@ -35,9 +35,7 @@ import org.robovm.apple.mapkit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 6.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/EKAuthorizationStatus/*</name>*/ implements ValuedEnum {

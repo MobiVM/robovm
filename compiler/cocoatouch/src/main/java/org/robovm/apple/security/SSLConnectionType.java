@@ -39,13 +39,11 @@ import org.robovm.apple.dispatch.*;
 public enum /*<name>*/SSLConnectionType/*</name>*/ implements ValuedEnum {
     /*<values>*/
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 13.0.
      */
     @Deprecated
     Stream(0L),
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 13.0.
      */
     @Deprecated

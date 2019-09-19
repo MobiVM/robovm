@@ -42,9 +42,7 @@ import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIPresentationController/*</name>*/ 
@@ -88,14 +86,8 @@ import org.robovm.apple.linkpresentation.*;
     public native UITraitCollection getOverrideTraitCollection();
     @Property(selector = "setOverrideTraitCollection:")
     public native void setOverrideTraitCollection(UITraitCollection v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "traitCollection")
     public native UITraitCollection getTraitCollection();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "preferredContentSize")
     public native @ByVal CGSize getPreferredContentSize();
     @Property(selector = "preferredFocusEnvironments")
@@ -139,34 +131,16 @@ import org.robovm.apple.linkpresentation.*;
     public native void dismissalTransitionWillBegin();
     @Method(selector = "dismissalTransitionDidEnd:")
     public native void dismissalTransitionDidEnd(boolean completed);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "traitCollectionDidChange:")
     public native void traitCollectionDidChange(UITraitCollection previousTraitCollection);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "preferredContentSizeDidChangeForChildContentContainer:")
     public native void preferredContentSizeDidChangeForChildContentContainer(UIContentContainer container);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "systemLayoutFittingSizeDidChangeForChildContentContainer:")
     public native void systemLayoutFittingSizeDidChangeForChildContentContainer(UIContentContainer container);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "sizeForChildContentContainer:withParentContainerSize:")
     public native @ByVal CGSize sizeForChildContentContainer(UIContentContainer container, @ByVal CGSize parentSize);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "viewWillTransitionToSize:withTransitionCoordinator:")
     public native void viewWillTransitionToSize(@ByVal CGSize size, UIViewControllerTransitionCoordinator coordinator);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "willTransitionToTraitCollection:withTransitionCoordinator:")
     public native void willTransitionToTraitCollection(UITraitCollection newCollection, UIViewControllerTransitionCoordinator coordinator);
     @Method(selector = "setNeedsFocusUpdate")

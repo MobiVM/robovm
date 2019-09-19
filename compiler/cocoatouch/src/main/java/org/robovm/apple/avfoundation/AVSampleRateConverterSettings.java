@@ -116,9 +116,6 @@ import org.robovm.apple.audiotoolbox.*;
     }
     
 
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public AVSampleRateConverterAlgorithm getAlgorithm() {
         if (has(Keys.Algorithm())) {
             NSString val = (NSString) get(Keys.Algorithm());
@@ -126,16 +123,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public AVSampleRateConverterSettings setAlgorithm(AVSampleRateConverterAlgorithm algorithm) {
         set(Keys.Algorithm(), algorithm.value());
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public AVAudioQuality getAudioQuality() {
         if (has(Keys.AudioQuality())) {
             NSNumber val = (NSNumber) get(Keys.AudioQuality());
@@ -143,9 +134,6 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public AVSampleRateConverterSettings setAudioQuality(AVAudioQuality audioQuality) {
         set(Keys.AudioQuality(), NSNumber.valueOf(audioQuality.value()));
         return this;
@@ -156,14 +144,8 @@ import org.robovm.apple.audiotoolbox.*;
     @Library("AVFoundation")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="AVSampleRateConverterAlgorithmKey", optional=true)
         public static native NSString Algorithm();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="AVSampleRateConverterAudioQualityKey", optional=true)
         public static native NSString AudioQuality();
     }

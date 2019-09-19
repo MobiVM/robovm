@@ -116,9 +116,6 @@ import org.robovm.apple.audiotoolbox.*;
     }
     
 
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public long getWidth() {
         if (has(Keys.Width())) {
             NSNumber val = (NSNumber) get(Keys.Width());
@@ -126,16 +123,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public AVVideoCleanAperture setWidth(long width) {
         set(Keys.Width(), NSNumber.valueOf(width));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public long getHeight() {
         if (has(Keys.Height())) {
             NSNumber val = (NSNumber) get(Keys.Height());
@@ -143,16 +134,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public AVVideoCleanAperture setHeight(long height) {
         set(Keys.Height(), NSNumber.valueOf(height));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public long getHorizontalOffset() {
         if (has(Keys.HorizontalOffset())) {
             NSNumber val = (NSNumber) get(Keys.HorizontalOffset());
@@ -160,16 +145,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public AVVideoCleanAperture setHorizontalOffset(long horizontalOffset) {
         set(Keys.HorizontalOffset(), NSNumber.valueOf(horizontalOffset));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public long getVerticalOffset() {
         if (has(Keys.VerticalOffset())) {
             NSNumber val = (NSNumber) get(Keys.VerticalOffset());
@@ -177,9 +156,6 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public AVVideoCleanAperture setVerticalOffset(long verticalOffset) {
         set(Keys.VerticalOffset(), NSNumber.valueOf(verticalOffset));
         return this;
@@ -190,24 +166,12 @@ import org.robovm.apple.audiotoolbox.*;
     @Library("AVFoundation")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVVideoCleanApertureWidthKey", optional=true)
         public static native NSString Width();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVVideoCleanApertureHeightKey", optional=true)
         public static native NSString Height();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVVideoCleanApertureHorizontalOffsetKey", optional=true)
         public static native NSString HorizontalOffset();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVVideoCleanApertureVerticalOffsetKey", optional=true)
         public static native NSString VerticalOffset();
     }

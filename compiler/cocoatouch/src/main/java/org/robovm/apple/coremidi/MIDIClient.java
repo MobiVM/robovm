@@ -77,9 +77,6 @@ import org.robovm.apple.coremidi.MIDIPort.MIDIPortPtr;
         return null;
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     @Bridge(symbol="MIDIClientCreate", optional=true)
     protected static native MIDIError create(String name, FunctionPtr notifyProc, @Pointer long notifyRefCon, MIDIClient.MIDIClientPtr outClient);
     /**
@@ -87,9 +84,6 @@ import org.robovm.apple.coremidi.MIDIPort.MIDIPortPtr;
      */
     @Bridge(symbol="MIDIClientCreateWithBlock", optional=true)
     protected static native MIDIError create(String name, MIDIClient.MIDIClientPtr outClient, @Block VoidBlock1<MIDINotification> notifyBlock);
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     @Bridge(symbol="MIDIClientDispose", optional=true)
     public native MIDIError dispose();
     /*</methods>*/

@@ -89,14 +89,12 @@ import org.robovm.apple.avfoundation.*;
     @Property(selector = "setPreferredFramesPerSecond:")
     public native void setPreferredFramesPerSecond(@MachineSizedSInt long v);
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 12.0.
      */
     @Deprecated
     @Property(selector = "eaglContext")
     public native EAGLContext getEaglContext();
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 12.0.
      */
     @Deprecated

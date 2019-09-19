@@ -57,14 +57,8 @@ import org.robovm.apple.linkpresentation.*;
     
     /*</properties>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "imageForBounds:textContainer:characterIndex:")
     UIImage getImageForBounds(@ByVal CGRect imageBounds, NSTextContainer textContainer, @MachineSizedUInt long charIndex);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "attachmentBoundsForTextContainer:proposedLineFragment:glyphPosition:characterIndex:")
     @ByVal CGRect getAttachmentBounds(NSTextContainer textContainer, @ByVal CGRect lineFrag, @ByVal CGPoint position, @MachineSizedUInt long charIndex);
     /*</methods>*/

@@ -121,9 +121,6 @@ import org.robovm.apple.linkpresentation.*;
     @Library("UIKit")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="NSTabColumnTerminatorsAttributeName", optional=true)
         public static native NSString TabColumnTerminators();
     }

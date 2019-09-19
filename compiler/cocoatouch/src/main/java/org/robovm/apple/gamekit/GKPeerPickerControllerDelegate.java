@@ -33,7 +33,6 @@ import org.robovm.apple.uikit.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 3.0 and later.
  * @deprecated Deprecated in iOS 7.0. Use MCBrowserViewController along with MCBrowserViewControllerDelegate from the MultipeerConnectivity framework
  */
 /*</javadoc>*/

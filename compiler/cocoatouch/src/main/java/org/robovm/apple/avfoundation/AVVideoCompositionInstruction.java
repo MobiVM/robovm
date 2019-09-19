@@ -41,9 +41,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVVideoCompositionInstruction/*</name>*/ 
@@ -69,14 +67,8 @@ import org.robovm.apple.audiotoolbox.*;
     public native NSArray<AVVideoCompositionLayerInstruction> getLayerInstructions();
     @Property(selector = "enablePostProcessing")
     public native boolean isPostProcessingEnabled();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "requiredSourceTrackIDs")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsIntegerListMarshaler.class) List<Integer> getRequiredSourceTrackIDs();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "passthroughTrackID")
     public native int getPassthroughTrackID();
     @Property(selector = "supportsSecureCoding")

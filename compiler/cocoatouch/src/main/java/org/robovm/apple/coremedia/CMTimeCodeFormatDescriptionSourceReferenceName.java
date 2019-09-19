@@ -112,9 +112,6 @@ import org.robovm.apple.audiotoolbox.*;
     }
     
 
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public String getValue() {
         if (has(Keys.Value())) {
             CFString val = get(Keys.Value(), CFString.class);
@@ -122,16 +119,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CMTimeCodeFormatDescriptionSourceReferenceName setValue(String value) {
         set(Keys.Value(), new CFString(value));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public long getLangCode() {
         if (has(Keys.LangCode())) {
             CFNumber val = get(Keys.LangCode(), CFNumber.class);
@@ -139,9 +130,6 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CMTimeCodeFormatDescriptionSourceReferenceName setLangCode(long langCode) {
         set(Keys.LangCode(), CFNumber.valueOf(langCode));
         return this;
@@ -152,14 +140,8 @@ import org.robovm.apple.audiotoolbox.*;
     @Library("CoreMedia")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCMTimeCodeFormatDescriptionKey_Value", optional=true)
         public static native CFString Value();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCMTimeCodeFormatDescriptionKey_LangCode", optional=true)
         public static native CFString LangCode();
     }

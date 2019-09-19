@@ -32,9 +32,7 @@ import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 7.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("GameKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GKTurnBasedExchange/*</name>*/ 
@@ -73,25 +71,13 @@ import org.robovm.apple.uikit.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @GlobalValue(symbol="GKExchangeTimeoutDefault", optional=true)
     public static native double getDefaultTimeout();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @GlobalValue(symbol="GKExchangeTimeoutNone", optional=true)
     public static native double getNoneTimeout();
     
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "cancelWithLocalizableMessageKey:arguments:completionHandler:")
     public native void cancel(String key, @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> arguments, @Block VoidBlock1<NSError> completionHandler);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "replyWithLocalizableMessageKey:arguments:data:completionHandler:")
     public native void reply(String key, @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> arguments, NSData data, @Block VoidBlock1<NSError> completionHandler);
     /*</methods>*/

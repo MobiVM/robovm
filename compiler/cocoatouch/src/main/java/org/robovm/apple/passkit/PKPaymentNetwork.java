@@ -90,9 +90,6 @@ import org.robovm.apple.contacts.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final PKPaymentNetwork Amex = new PKPaymentNetwork("Amex");
     /**
      * @since Available in iOS 10.3 and later.
@@ -144,9 +141,6 @@ import org.robovm.apple.contacts.*;
      * @since Available in iOS 12.0 and later.
      */
     public static final PKPaymentNetwork Maestro = new PKPaymentNetwork("Maestro");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final PKPaymentNetwork MasterCard = new PKPaymentNetwork("MasterCard");
     /**
      * @since Available in iOS 9.0 and later.
@@ -160,9 +154,6 @@ import org.robovm.apple.contacts.*;
      * @since Available in iOS 10.1 and later.
      */
     public static final PKPaymentNetwork Suica = new PKPaymentNetwork("Suica");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final PKPaymentNetwork Visa = new PKPaymentNetwork("Visa");
     /**
      * @since Available in iOS 12.0 and later.
@@ -193,9 +184,6 @@ import org.robovm.apple.contacts.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="PKPaymentNetworkAmex", optional=true)
         public static native NSString Amex();
         /**
@@ -261,9 +249,6 @@ import org.robovm.apple.contacts.*;
          */
         @GlobalValue(symbol="PKPaymentNetworkMaestro", optional=true)
         public static native NSString Maestro();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="PKPaymentNetworkMasterCard", optional=true)
         public static native NSString MasterCard();
         /**
@@ -281,9 +266,6 @@ import org.robovm.apple.contacts.*;
          */
         @GlobalValue(symbol="PKPaymentNetworkSuica", optional=true)
         public static native NSString Suica();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="PKPaymentNetworkVisa", optional=true)
         public static native NSString Visa();
         /**

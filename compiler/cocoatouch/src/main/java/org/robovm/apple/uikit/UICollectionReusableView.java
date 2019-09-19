@@ -42,9 +42,7 @@ import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 6.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UICollectionReusableView/*</name>*/ 
@@ -77,9 +75,6 @@ import org.robovm.apple.linkpresentation.*;
     public native void willTransition(UICollectionViewLayout oldLayout, UICollectionViewLayout newLayout);
     @Method(selector = "didTransitionFromLayout:toLayout:")
     public native void didTransition(UICollectionViewLayout oldLayout, UICollectionViewLayout newLayout);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "preferredLayoutAttributesFittingAttributes:")
     public native UICollectionViewLayoutAttributes getPreferredLayoutAttributesFittingAttributes(UICollectionViewLayoutAttributes layoutAttributes);
     /*</methods>*/

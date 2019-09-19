@@ -57,9 +57,6 @@ import org.robovm.apple.linkpresentation.*;
     /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Bridge(symbol="UIGuidedAccessRestrictionStateForIdentifier", optional=true)
     public static native UIGuidedAccessRestrictionState getState(String restrictionIdentifier);
     /*</methods>*/

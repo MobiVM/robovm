@@ -95,25 +95,10 @@ import org.robovm.apple.dispatch.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final NSStreamSocketSecurityLevel None = new NSStreamSocketSecurityLevel("None");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final NSStreamSocketSecurityLevel SSLv2 = new NSStreamSocketSecurityLevel("SSLv2");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final NSStreamSocketSecurityLevel SSLv3 = new NSStreamSocketSecurityLevel("SSLv3");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final NSStreamSocketSecurityLevel TLSv1 = new NSStreamSocketSecurityLevel("TLSv1");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final NSStreamSocketSecurityLevel NegotiatedSSL = new NSStreamSocketSecurityLevel("NegotiatedSSL");
     /*</constants>*/
     
@@ -140,29 +125,14 @@ import org.robovm.apple.dispatch.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="NSStreamSocketSecurityLevelNone", optional=true)
         public static native NSString None();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="NSStreamSocketSecurityLevelSSLv2", optional=true)
         public static native NSString SSLv2();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="NSStreamSocketSecurityLevelSSLv3", optional=true)
         public static native NSString SSLv3();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="NSStreamSocketSecurityLevelTLSv1", optional=true)
         public static native NSString TLSv1();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="NSStreamSocketSecurityLevelNegotiatedSSL", optional=true)
         public static native NSString NegotiatedSSL();
         /*</values>*/

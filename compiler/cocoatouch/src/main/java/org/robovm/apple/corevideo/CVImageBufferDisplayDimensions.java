@@ -111,9 +111,6 @@ import org.robovm.apple.iosurface.*;
     }
     
 
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public long getWidth() {
         if (has(Keys.Width())) {
             CFNumber val = get(Keys.Width(), CFNumber.class);
@@ -121,16 +118,10 @@ import org.robovm.apple.iosurface.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CVImageBufferDisplayDimensions setWidth(long width) {
         set(Keys.Width(), CFNumber.valueOf(width));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public long getHeight() {
         if (has(Keys.Height())) {
             CFNumber val = get(Keys.Height(), CFNumber.class);
@@ -138,9 +129,6 @@ import org.robovm.apple.iosurface.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CVImageBufferDisplayDimensions setHeight(long height) {
         set(Keys.Height(), CFNumber.valueOf(height));
         return this;
@@ -151,14 +139,8 @@ import org.robovm.apple.iosurface.*;
     @Library("CoreVideo")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVImageBufferDisplayWidthKey", optional=true)
         public static native CFString Width();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVImageBufferDisplayHeightKey", optional=true)
         public static native CFString Height();
     }

@@ -63,9 +63,6 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "isEnumeratingDirectoryPostOrder")
     public native boolean isEnumeratingDirectoryPostOrder();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "level")
     public native @MachineSizedUInt long getLevel();
     /*</properties>*/
@@ -73,9 +70,6 @@ import org.robovm.apple.dispatch.*;
     /*<methods>*/
     @Method(selector = "skipDescendents")
     public native void skipDescendents();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "skipDescendants")
     public native void skipDescendants();
     /*</methods>*/

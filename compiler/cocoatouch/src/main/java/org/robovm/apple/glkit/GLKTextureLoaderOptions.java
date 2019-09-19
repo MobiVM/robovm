@@ -112,9 +112,6 @@ import org.robovm.apple.modelio.*;
     }
     
 
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public boolean shouldApplyPremultiplication() {
         if (has(Keys.ApplyPremultiplication())) {
             NSNumber val = (NSNumber) get(Keys.ApplyPremultiplication());
@@ -122,16 +119,10 @@ import org.robovm.apple.modelio.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public GLKTextureLoaderOptions setShouldApplyPremultiplication(boolean shouldApplyPremultiplication) {
         set(Keys.ApplyPremultiplication(), NSNumber.valueOf(shouldApplyPremultiplication));
         return this;
     }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public boolean shouldGenerateMipmaps() {
         if (has(Keys.GenerateMipmaps())) {
             NSNumber val = (NSNumber) get(Keys.GenerateMipmaps());
@@ -139,16 +130,10 @@ import org.robovm.apple.modelio.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public GLKTextureLoaderOptions setShouldGenerateMipmaps(boolean shouldGenerateMipmaps) {
         set(Keys.GenerateMipmaps(), NSNumber.valueOf(shouldGenerateMipmaps));
         return this;
     }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public boolean isOriginBottomLeft() {
         if (has(Keys.OriginBottomLeft())) {
             NSNumber val = (NSNumber) get(Keys.OriginBottomLeft());
@@ -156,9 +141,6 @@ import org.robovm.apple.modelio.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public GLKTextureLoaderOptions setOriginBottomLeft(boolean originBottomLeft) {
         set(Keys.OriginBottomLeft(), NSNumber.valueOf(originBottomLeft));
         return this;
@@ -175,7 +157,6 @@ import org.robovm.apple.modelio.*;
         return this;
     }
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 12.0. OpenGLES API deprecated. (Define GLES_SILENCE_DEPRECATION to silence these warnings)
      */
     @Deprecated
@@ -187,7 +168,6 @@ import org.robovm.apple.modelio.*;
         return false;
     }
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 12.0. OpenGLES API deprecated. (Define GLES_SILENCE_DEPRECATION to silence these warnings)
      */
     @Deprecated
@@ -201,25 +181,15 @@ import org.robovm.apple.modelio.*;
     @Library("GLKit")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="GLKTextureLoaderApplyPremultiplication", optional=true)
         public static native NSString ApplyPremultiplication();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="GLKTextureLoaderGenerateMipmaps", optional=true)
         public static native NSString GenerateMipmaps();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="GLKTextureLoaderOriginBottomLeft", optional=true)
         public static native NSString OriginBottomLeft();
         @GlobalValue(symbol="GLKTextureLoaderGrayscaleAsAlpha", optional=true)
         public static native NSString GrayscaleAsAlpha();
         /**
-         * @since Available in iOS 7.0 and later.
          * @deprecated Deprecated in iOS 12.0. OpenGLES API deprecated. (Define GLES_SILENCE_DEPRECATION to silence these warnings)
          */
         @Deprecated

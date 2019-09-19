@@ -42,9 +42,7 @@ import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 6.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSLayoutConstraint/*</name>*/ 
@@ -58,9 +56,6 @@ import org.robovm.apple.linkpresentation.*;
     public NSLayoutConstraint() {}
     protected NSLayoutConstraint(Handle h, long handle) { super(h, handle); }
     protected NSLayoutConstraint(SkipInit skipInit) { super(skipInit); }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public NSLayoutConstraint(NSObject view1, NSLayoutAttribute attr1, NSLayoutRelation relation, NSObject view2, NSLayoutAttribute attr2, @MachineSizedFloat double multiplier, @MachineSizedFloat double c) { super((Handle) null, create(view1, attr1, relation, view2, attr2, multiplier, c)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
@@ -98,47 +93,23 @@ import org.robovm.apple.linkpresentation.*;
     public native @MachineSizedFloat double getConstant();
     @Property(selector = "setConstant:")
     public native void setConstant(@MachineSizedFloat double v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "isActive")
     public native boolean isActive();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setActive:")
     public native void setActive(boolean v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "identifier")
     public native String getIdentifier();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setIdentifier:")
     public native void setIdentifier(String v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "constraintsWithVisualFormat:options:metrics:views:")
     public static native NSArray<NSLayoutConstraint> createConstraints(String format, NSLayoutFormatOptions opts, @org.robovm.rt.bro.annotation.Marshaler(NSDictionary.AsStringNumberMapMarshaler.class) Map<String, Number> metrics, @org.robovm.rt.bro.annotation.Marshaler(NSDictionary.AsStringMapMarshaler.class) Map<String, NSObjectProtocol> views);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "constraintWithItem:attribute:relatedBy:toItem:attribute:multiplier:constant:")
     protected static native @Pointer long create(NSObject view1, NSLayoutAttribute attr1, NSLayoutRelation relation, NSObject view2, NSLayoutAttribute attr2, @MachineSizedFloat double multiplier, @MachineSizedFloat double c);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "activateConstraints:")
     public static native void activateConstraints(NSArray<NSLayoutConstraint> constraints);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "deactivateConstraints:")
     public static native void deactivateConstraints(NSArray<NSLayoutConstraint> constraints);
     /*</methods>*/

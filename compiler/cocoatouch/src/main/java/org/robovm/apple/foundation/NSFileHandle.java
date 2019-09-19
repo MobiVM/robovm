@@ -121,31 +121,16 @@ import org.robovm.apple.dispatch.*;
     public static native NSFileHandle getStandardError();
     @Property(selector = "fileHandleWithNullDevice")
     public static native NSFileHandle getNullDevice();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "readabilityHandler")
     public native @Block VoidBlock1<NSFileHandle> getReadabilityHandler();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setReadabilityHandler:")
     public native void setReadabilityHandler(@Block VoidBlock1<NSFileHandle> v);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "writeabilityHandler")
     public native @Block VoidBlock1<NSFileHandle> getWriteabilityHandler();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setWriteabilityHandler:")
     public native void setWriteabilityHandler(@Block VoidBlock1<NSFileHandle> v);
     @Property(selector = "fileDescriptor")
     public native int getFileDescriptor();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Deprecated
     @Property(selector = "offsetInFile")
     public native long getOffsetInFile();
@@ -314,46 +299,28 @@ import org.robovm.apple.dispatch.*;
     public static native NSFileHandle createForWriting(String path);
     @Method(selector = "fileHandleForUpdatingAtPath:")
     public static native NSFileHandle createForUpdating(String path);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static NSFileHandle createForReading(NSURL url) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        NSFileHandle result = createForReading(url, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        return result;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "fileHandleForReadingFromURL:error:")
     private static native NSFileHandle createForReading(NSURL url, NSError.NSErrorPtr error);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static NSFileHandle createForWriting(NSURL url) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        NSFileHandle result = createForWriting(url, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        return result;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "fileHandleForWritingToURL:error:")
     private static native NSFileHandle createForWriting(NSURL url, NSError.NSErrorPtr error);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static NSFileHandle createForUpdating(NSURL url) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        NSFileHandle result = createForUpdating(url, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        return result;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "fileHandleForUpdatingURL:error:")
     private static native NSFileHandle createForUpdating(NSURL url, NSError.NSErrorPtr error);
     @Method(selector = "readInBackgroundAndNotifyForModes:")
@@ -374,51 +341,27 @@ import org.robovm.apple.dispatch.*;
     public native void waitForDataInBackgroundAndNotify();
     @Method(selector = "initWithFileDescriptor:")
     protected native @Pointer long init(int fd);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Deprecated
     @Method(selector = "readDataToEndOfFile")
     public native NSData readDataToEndOfFile();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Deprecated
     @Method(selector = "readDataOfLength:")
     public native NSData readData(@MachineSizedUInt long length);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Deprecated
     @Method(selector = "writeData:")
     public native void writeData(NSData data);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Deprecated
     @Method(selector = "seekToEndOfFile")
     public native long seekToEndOfFile();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Deprecated
     @Method(selector = "seekToFileOffset:")
     public native void seekToFileOffset(long offset);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Deprecated
     @Method(selector = "truncateFileAtOffset:")
     public native void truncateFile(long offset);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Deprecated
     @Method(selector = "synchronizeFile")
     public native void synchronizeFile();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Deprecated
     @Method(selector = "closeFile")
     public native void closeFile();

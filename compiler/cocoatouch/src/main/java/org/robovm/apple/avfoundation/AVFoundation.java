@@ -55,15 +55,9 @@ import org.robovm.apple.audiotoolbox.*;
     /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @GlobalValue(symbol="AVCoreAnimationBeginTimeAtZero", optional=true)
     public static native double CoreAnimationBeginTimeAtZero();
     
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="AVMakeRectWithAspectRatioInsideRect", optional=true)
     public static native @ByVal CGRect createRectWithAspectRatioInsideRect(@ByVal CGSize aspectRatio, @ByVal CGRect boundingRect);
     /*</methods>*/

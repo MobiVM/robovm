@@ -32,9 +32,7 @@ import org.robovm.apple.security.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Library("NetworkExtension")/*</annotations>*/
 public enum /*<name>*/NEFilterManagerError/*</name>*/ implements ValuedEnum {
@@ -56,9 +54,6 @@ public enum /*<name>*/NEFilterManagerError/*</name>*/ implements ValuedEnum {
     /*<bind>*/static { Bro.bind(NEFilterManagerError.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @GlobalValue(symbol="NEFilterErrorDomain", optional=true)
     public static native String getClassDomain();
     /*</methods>*/

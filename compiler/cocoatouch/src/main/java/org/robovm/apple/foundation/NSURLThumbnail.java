@@ -115,7 +115,6 @@ import org.robovm.apple.dispatch.*;
     
 
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Use the QuickLookThumbnailing framework and extension point instead
      */
     @Deprecated
@@ -128,7 +127,6 @@ import org.robovm.apple.dispatch.*;
         return null;
     }
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Use the QuickLookThumbnailing framework and extension point instead
      */
     @Deprecated
@@ -144,7 +142,6 @@ import org.robovm.apple.dispatch.*;
     public static class Keys {
         static { Bro.bind(Keys.class); }
         /**
-         * @since Available in iOS 8.0 and later.
          * @deprecated Use the QuickLookThumbnailing framework and extension point instead
          */
         @Deprecated

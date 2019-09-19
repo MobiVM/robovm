@@ -41,13 +41,7 @@ public final class /*<name>*/NSFetchRequestResultType/*</name>*/ extends Bits</*
     /*<values>*/
     public static final NSFetchRequestResultType ManagedObject = new NSFetchRequestResultType(0L);
     public static final NSFetchRequestResultType ManagedObjectID = new NSFetchRequestResultType(1L);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public static final NSFetchRequestResultType Dictionary = new NSFetchRequestResultType(2L);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public static final NSFetchRequestResultType Count = new NSFetchRequestResultType(4L);
     /*</values>*/
 

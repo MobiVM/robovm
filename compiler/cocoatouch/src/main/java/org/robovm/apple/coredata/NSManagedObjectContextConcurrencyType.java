@@ -34,15 +34,12 @@ import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 5.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/NSManagedObjectContextConcurrencyType/*</name>*/ implements ValuedEnum {
     /*<values>*/
     /**
-     * @since Available in iOS 3.0 and later.
      * @deprecated Deprecated in iOS 9.0. Use another NSManagedObjectContextConcurrencyType
      */
     @Deprecated

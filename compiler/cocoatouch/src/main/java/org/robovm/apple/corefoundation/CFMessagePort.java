@@ -163,9 +163,6 @@ import org.robovm.apple.coretext.*;
     protected native CFMessagePortErrorCode sendRequest(int msgid, CFData data, double sendTimeout, double rcvTimeout, String replyMode, CFData.CFDataPtr returnData);
     @Bridge(symbol="CFMessagePortCreateRunLoopSource", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CFRunLoopSource createRunLoopSource(CFAllocator allocator, CFMessagePort local, @MachineSizedSInt long order);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @WeaklyLinked
     @Bridge(symbol="CFMessagePortSetDispatchQueue", optional=true)
     public native void setDispatchQueue(DispatchQueue queue);

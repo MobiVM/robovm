@@ -43,7 +43,6 @@ import org.robovm.apple.linkpresentation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 5.0 and later.
  * @deprecated Deprecated in iOS 9.0. Access destinationViewController.popoverPresentationController from your segue's performHandler or override of -perform
  */
 /*</javadoc>*/

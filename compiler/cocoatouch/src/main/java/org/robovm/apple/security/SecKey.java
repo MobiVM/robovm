@@ -122,34 +122,16 @@ import org.robovm.apple.dispatch.*;
         return plainTextPtr.toByteArray((int)plainTextLenPtr.get());
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="SecKeyGetTypeID", optional=true)
     public static native @MachineSizedUInt long getClassTypeID();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="SecKeyGeneratePair", optional=true)
     protected static native OSStatus generatePair0(SecKeyParameters parameters, SecKey.SecKeyPtr publicKey, SecKey.SecKeyPtr privateKey);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="SecKeyRawSign", optional=true)
     protected native OSStatus rawSign0(SecPadding padding, @Pointer long dataToSign, @MachineSizedUInt long dataToSignLen, BytePtr sig, MachineSizedUIntPtr sigLen);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="SecKeyRawVerify", optional=true)
     protected native OSStatus rawVerify0(SecPadding padding, @Pointer long signedData, @MachineSizedUInt long signedDataLen, @Pointer long sig, @MachineSizedUInt long sigLen);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="SecKeyEncrypt", optional=true)
     protected native OSStatus encrypt0(SecPadding padding, @Pointer long plainText, @MachineSizedUInt long plainTextLen, BytePtr cipherText, MachineSizedUIntPtr cipherTextLen);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="SecKeyDecrypt", optional=true)
     protected native OSStatus decrypt0(SecPadding padding, @Pointer long cipherText, @MachineSizedUInt long cipherTextLen, BytePtr plainText, MachineSizedUIntPtr plainTextLen);
     /**
@@ -162,9 +144,6 @@ import org.robovm.apple.dispatch.*;
      */
     @Bridge(symbol="SecKeyCreateWithData", optional=true)
     public static native SecKey createWithData(NSData keyData, NSDictionary attributes, NSError error);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="SecKeyGetBlockSize", optional=true)
     public native @MachineSizedUInt long getBlockSize();
     /**

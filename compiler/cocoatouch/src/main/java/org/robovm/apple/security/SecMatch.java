@@ -108,9 +108,6 @@ import org.robovm.apple.dispatch.*;
     }
     
 
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public SecPolicy getPolicy() {
         if (has(Keys.Policy())) {
             SecPolicy val = get(Keys.Policy(), SecPolicy.class);
@@ -118,16 +115,10 @@ import org.robovm.apple.dispatch.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public SecMatch setPolicy(SecPolicy policy) {
         set(Keys.Policy(), policy);
         return this;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public NSArray<NSData> getIssuers() {
         if (has(Keys.Issuers())) {
             NSArray<NSData> val = get(Keys.Issuers(), NSArray.class);
@@ -135,16 +126,10 @@ import org.robovm.apple.dispatch.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public SecMatch setIssuers(NSArray<NSData> issuers) {
         set(Keys.Issuers(), issuers);
         return this;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public String getEmailAddressIfPresent() {
         if (has(Keys.EmailAddressIfPresent())) {
             CFString val = get(Keys.EmailAddressIfPresent(), CFString.class);
@@ -152,16 +137,10 @@ import org.robovm.apple.dispatch.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public SecMatch setEmailAddressIfPresent(String emailAddressIfPresent) {
         set(Keys.EmailAddressIfPresent(), new CFString(emailAddressIfPresent));
         return this;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public String getSubjectContains() {
         if (has(Keys.SubjectContains())) {
             CFString val = get(Keys.SubjectContains(), CFString.class);
@@ -169,16 +148,10 @@ import org.robovm.apple.dispatch.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public SecMatch setSubjectContains(String subjectContains) {
         set(Keys.SubjectContains(), new CFString(subjectContains));
         return this;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public boolean isCaseInsensitive() {
         if (has(Keys.CaseInsensitive())) {
             CFBoolean val = get(Keys.CaseInsensitive(), CFBoolean.class);
@@ -186,16 +159,10 @@ import org.robovm.apple.dispatch.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public SecMatch setCaseInsensitive(boolean caseInsensitive) {
         set(Keys.CaseInsensitive(), CFBoolean.valueOf(caseInsensitive));
         return this;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public boolean isTrustedOnly() {
         if (has(Keys.TrustedOnly())) {
             CFBoolean val = get(Keys.TrustedOnly(), CFBoolean.class);
@@ -203,16 +170,10 @@ import org.robovm.apple.dispatch.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public SecMatch setTrustedOnly(boolean trustedOnly) {
         set(Keys.TrustedOnly(), CFBoolean.valueOf(trustedOnly));
         return this;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public NSDate getValidOnDate() {
         if (has(Keys.ValidOnDate())) {
             NSDate val = get(Keys.ValidOnDate(), NSDate.class);
@@ -220,16 +181,10 @@ import org.robovm.apple.dispatch.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public SecMatch setValidOnDate(NSDate validOnDate) {
         set(Keys.ValidOnDate(), validOnDate);
         return this;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public SecMatchLimit getLimit() {
         if (has(Keys.Limit())) {
             CFType val = get(Keys.Limit(), CFType.class);
@@ -237,9 +192,6 @@ import org.robovm.apple.dispatch.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public SecMatch setLimit(SecMatchLimit limit) {
         set(Keys.Limit(), limit.value());
         return this;
@@ -250,54 +202,24 @@ import org.robovm.apple.dispatch.*;
     @Library("Security")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kSecMatchPolicy", optional=true)
         public static native CFType Policy();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kSecMatchItemList", optional=true)
         public static native CFType ItemList();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kSecMatchSearchList", optional=true)
         public static native CFType SearchList();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kSecMatchIssuers", optional=true)
         public static native CFType Issuers();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kSecMatchEmailAddressIfPresent", optional=true)
         public static native CFType EmailAddressIfPresent();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kSecMatchSubjectContains", optional=true)
         public static native CFType SubjectContains();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kSecMatchCaseInsensitive", optional=true)
         public static native CFType CaseInsensitive();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kSecMatchTrustedOnly", optional=true)
         public static native CFType TrustedOnly();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kSecMatchValidOnDate", optional=true)
         public static native CFType ValidOnDate();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kSecMatchLimit", optional=true)
         public static native CFType Limit();
     }

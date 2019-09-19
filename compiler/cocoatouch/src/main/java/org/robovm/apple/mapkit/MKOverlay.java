@@ -35,9 +35,7 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ interface /*<name>*/MKOverlay/*</name>*/ 
@@ -57,9 +55,6 @@ import org.robovm.apple.dispatch.*;
     /*<methods>*/
     @Method(selector = "intersectsMapRect:")
     boolean intersects(@ByVal MKMapRect mapRect);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "canReplaceMapContent")
     boolean canReplaceMapContent();
     /*</methods>*/

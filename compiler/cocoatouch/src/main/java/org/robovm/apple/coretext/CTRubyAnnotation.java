@@ -65,14 +65,8 @@ import org.robovm.apple.uikit.*;
         return create(alignment, overhang, sizeFactor, ptr);
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Bridge(symbol="CTRubyAnnotationGetTypeID", optional=true)
     public static native @MachineSizedUInt long getClassTypeID();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Bridge(symbol="CTRubyAnnotationCreate", optional=true)
     private static native CTRubyAnnotation create(CTRubyAlignment alignment, CTRubyOverhang overhang, @MachineSizedFloat double sizeFactor, CFString.CFStringPtr text);
     /**
@@ -80,29 +74,14 @@ import org.robovm.apple.uikit.*;
      */
     @Bridge(symbol="CTRubyAnnotationCreateWithAttributes", optional=true)
     public static native CTRubyAnnotation createWithAttributes(CTRubyAlignment alignment, CTRubyOverhang overhang, CTRubyPosition position, String string, NSDictionary attributes);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Bridge(symbol="CTRubyAnnotationCreateCopy", optional=true)
     public static native CTRubyAnnotation createCopy(CTRubyAnnotation rubyAnnotation);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Bridge(symbol="CTRubyAnnotationGetAlignment", optional=true)
     public native CTRubyAlignment getAlignment();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Bridge(symbol="CTRubyAnnotationGetOverhang", optional=true)
     public native CTRubyOverhang getOverhang();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Bridge(symbol="CTRubyAnnotationGetSizeFactor", optional=true)
     public native @MachineSizedFloat double getSizeFactor();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Bridge(symbol="CTRubyAnnotationGetTextForPosition", optional=true)
     public native String getTextForPosition(CTRubyPosition position);
     /*</methods>*/

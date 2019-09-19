@@ -92,21 +92,9 @@ import org.robovm.apple.metal.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public static final CATextTruncationMode None = new CATextTruncationMode("None");
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public static final CATextTruncationMode Start = new CATextTruncationMode("Start");
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public static final CATextTruncationMode End = new CATextTruncationMode("End");
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public static final CATextTruncationMode Middle = new CATextTruncationMode("Middle");
     /*</constants>*/
     
@@ -133,24 +121,12 @@ import org.robovm.apple.metal.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 3.2 and later.
-         */
         @GlobalValue(symbol="kCATruncationNone", optional=true)
         public static native NSString None();
-        /**
-         * @since Available in iOS 3.2 and later.
-         */
         @GlobalValue(symbol="kCATruncationStart", optional=true)
         public static native NSString Start();
-        /**
-         * @since Available in iOS 3.2 and later.
-         */
         @GlobalValue(symbol="kCATruncationEnd", optional=true)
         public static native NSString End();
-        /**
-         * @since Available in iOS 3.2 and later.
-         */
         @GlobalValue(symbol="kCATruncationMiddle", optional=true)
         public static native NSString Middle();
         /*</values>*/

@@ -111,9 +111,6 @@ import org.robovm.apple.iosurface.*;
     }
     
 
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public long getHorizontalSpacing() {
         if (has(Keys.HorizontalSpacing())) {
             CFNumber val = get(Keys.HorizontalSpacing(), CFNumber.class);
@@ -121,16 +118,10 @@ import org.robovm.apple.iosurface.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CVImageBufferPixelAspectRatio setHorizontalSpacing(long horizontalSpacing) {
         set(Keys.HorizontalSpacing(), CFNumber.valueOf(horizontalSpacing));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public long getVerticalSpacing() {
         if (has(Keys.VerticalSpacing())) {
             CFNumber val = get(Keys.VerticalSpacing(), CFNumber.class);
@@ -138,9 +129,6 @@ import org.robovm.apple.iosurface.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CVImageBufferPixelAspectRatio setVerticalSpacing(long verticalSpacing) {
         set(Keys.VerticalSpacing(), CFNumber.valueOf(verticalSpacing));
         return this;
@@ -151,14 +139,8 @@ import org.robovm.apple.iosurface.*;
     @Library("CoreVideo")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVImageBufferPixelAspectRatioHorizontalSpacingKey", optional=true)
         public static native CFString HorizontalSpacing();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVImageBufferPixelAspectRatioVerticalSpacingKey", optional=true)
         public static native CFString VerticalSpacing();
     }

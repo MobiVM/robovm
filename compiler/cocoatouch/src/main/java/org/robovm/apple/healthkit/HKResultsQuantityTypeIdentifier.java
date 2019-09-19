@@ -87,45 +87,15 @@ import org.robovm.apple.foundation.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final HKResultsQuantityTypeIdentifier OxygenSaturation = new HKResultsQuantityTypeIdentifier("OxygenSaturation");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final HKResultsQuantityTypeIdentifier PeripheralPerfusionIndex = new HKResultsQuantityTypeIdentifier("PeripheralPerfusionIndex");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final HKResultsQuantityTypeIdentifier BloodGlucose = new HKResultsQuantityTypeIdentifier("BloodGlucose");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final HKResultsQuantityTypeIdentifier NumberOfTimesFallen = new HKResultsQuantityTypeIdentifier("NumberOfTimesFallen");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final HKResultsQuantityTypeIdentifier ElectrodermalActivity = new HKResultsQuantityTypeIdentifier("ElectrodermalActivity");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final HKResultsQuantityTypeIdentifier InhalerUsage = new HKResultsQuantityTypeIdentifier("InhalerUsage");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final HKResultsQuantityTypeIdentifier BloodAlcoholContent = new HKResultsQuantityTypeIdentifier("BloodAlcoholContent");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final HKResultsQuantityTypeIdentifier ForcedVitalCapacity = new HKResultsQuantityTypeIdentifier("ForcedVitalCapacity");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final HKResultsQuantityTypeIdentifier ForcedExpiratoryVolume1 = new HKResultsQuantityTypeIdentifier("ForcedExpiratoryVolume1");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final HKResultsQuantityTypeIdentifier PeakExpiratoryFlowRate = new HKResultsQuantityTypeIdentifier("PeakExpiratoryFlowRate");
     /*</constants>*/
     
@@ -152,54 +122,24 @@ import org.robovm.apple.foundation.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="HKQuantityTypeIdentifierOxygenSaturation", optional=true)
         public static native NSString OxygenSaturation();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="HKQuantityTypeIdentifierPeripheralPerfusionIndex", optional=true)
         public static native NSString PeripheralPerfusionIndex();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="HKQuantityTypeIdentifierBloodGlucose", optional=true)
         public static native NSString BloodGlucose();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="HKQuantityTypeIdentifierNumberOfTimesFallen", optional=true)
         public static native NSString NumberOfTimesFallen();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="HKQuantityTypeIdentifierElectrodermalActivity", optional=true)
         public static native NSString ElectrodermalActivity();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="HKQuantityTypeIdentifierInhalerUsage", optional=true)
         public static native NSString InhalerUsage();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="HKQuantityTypeIdentifierBloodAlcoholContent", optional=true)
         public static native NSString BloodAlcoholContent();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="HKQuantityTypeIdentifierForcedVitalCapacity", optional=true)
         public static native NSString ForcedVitalCapacity();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="HKQuantityTypeIdentifierForcedExpiratoryVolume1", optional=true)
         public static native NSString ForcedExpiratoryVolume1();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="HKQuantityTypeIdentifierPeakExpiratoryFlowRate", optional=true)
         public static native NSString PeakExpiratoryFlowRate();
         /*</values>*/

@@ -90,39 +90,18 @@ import org.robovm.apple.audiotoolbox.*;
         return ptr.get();
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMTimeCodeFormatDescriptionCreate", optional=true)
     private static native OSStatus create0(CFAllocator allocator, CMTimeCodeFormatType timeCodeFormatType, @ByVal CMTime frameDuration, int frameQuanta, CMTimeCodeFlags flags, CMTimeCodeFormatDescriptionExtension extensions, CMTimeCodeFormatDescription.CMTimeCodeFormatDescriptionPtr formatDescriptionOut);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMTimeCodeFormatDescriptionGetFrameDuration", optional=true)
     public native @ByVal CMTime getFrameDuration();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMTimeCodeFormatDescriptionGetFrameQuanta", optional=true)
     public native int getFrameQuanta();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMTimeCodeFormatDescriptionGetTimeCodeFlags", optional=true)
     public native CMTimeCodeFlags getTimeCodeFlags();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Bridge(symbol="CMTimeCodeFormatDescriptionCreateFromBigEndianTimeCodeDescriptionData", optional=true)
     private static native OSStatus createFromBigEndianTimeCodeDescriptionData0(CFAllocator allocator, BytePtr timeCodeDescriptionData, @MachineSizedUInt long size, String flavor, CMTimeCodeFormatDescription.CMTimeCodeFormatDescriptionPtr formatDescriptionOut);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Bridge(symbol="CMTimeCodeFormatDescriptionCreateFromBigEndianTimeCodeDescriptionBlockBuffer", optional=true)
     private static native OSStatus createFromBigEndianTimeCodeDescriptionBlockBuffer0(CFAllocator allocator, CMBlockBuffer timeCodeDescriptionBlockBuffer, String flavor, CMTimeCodeFormatDescription.CMTimeCodeFormatDescriptionPtr formatDescriptionOut);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Bridge(symbol="CMTimeCodeFormatDescriptionCopyAsBigEndianTimeCodeDescriptionBlockBuffer", optional=true)
     private static native OSStatus copyAsBigEndianTimeCodeDescriptionBlockBuffer0(CFAllocator allocator, CMTimeCodeFormatDescription timeCodeFormatDescription, String flavor, CMBlockBuffer.CMBlockBufferPtr blockBufferOut);
     /*</methods>*/

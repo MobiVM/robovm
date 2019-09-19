@@ -117,9 +117,6 @@ import org.robovm.apple.linkpresentation.*;
     }
     
 
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public NSTextLayoutOrientation getOrientation() {
         if (has(Keys.Orientation())) {
             NSNumber val = (NSNumber) get(Keys.Orientation());
@@ -127,16 +124,10 @@ import org.robovm.apple.linkpresentation.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public NSTextLayoutSection setOrientation(NSTextLayoutOrientation orientation) {
         set(Keys.Orientation(), NSNumber.valueOf(orientation.value()));
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public NSRange getRange() {
         if (has(Keys.Range())) {
             NSValue val = (NSValue) get(Keys.Range());
@@ -144,9 +135,6 @@ import org.robovm.apple.linkpresentation.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public NSTextLayoutSection setRange(NSRange range) {
         set(Keys.Range(), NSValue.valueOf(range));
         return this;
@@ -157,14 +145,8 @@ import org.robovm.apple.linkpresentation.*;
     @Library("UIKit")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="NSTextLayoutSectionOrientation", optional=true)
         public static native NSString Orientation();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="NSTextLayoutSectionRange", optional=true)
         public static native NSString Range();
     }

@@ -38,9 +38,7 @@ import org.robovm.apple.imageio.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("Photos") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/PHFetchResultChangeDetails<T extends PHObject>/*</name>*/
@@ -54,73 +52,34 @@ import org.robovm.apple.imageio.*;
     public PHFetchResultChangeDetails() {}
     protected PHFetchResultChangeDetails(Handle h, long handle) { super(h, handle); }
     protected PHFetchResultChangeDetails(SkipInit skipInit) { super(skipInit); }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public PHFetchResultChangeDetails(PHFetchResult<T> fromResult, PHFetchResult<T> toResult, NSArray<T> changedObjects) { super((Handle) null, create(fromResult, toResult, changedObjects)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "fetchResultBeforeChanges")
     public native PHFetchResult<T> getFetchResultBeforeChanges();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "fetchResultAfterChanges")
     public native PHFetchResult<T> getFetchResultAfterChanges();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "hasIncrementalChanges")
     public native boolean hasIncrementalChanges();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "removedIndexes")
     public native NSIndexSet getRemovedIndexes();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "removedObjects")
     public native NSArray<T> getRemovedObjects();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "insertedIndexes")
     public native NSIndexSet getInsertedIndexes();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "insertedObjects")
     public native NSArray<T> getInsertedObjects();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "changedIndexes")
     public native NSIndexSet getChangedIndexes();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "changedObjects")
     public native NSArray<T> getChangedObjects();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "hasMoves")
     public native boolean hasMoves();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "enumerateMovesWithBlock:")
     public native void enumerateMoves(@Block("(@MachineSizedUInt,@MachineSizedUInt)") VoidBlock2<Long, Long> handler);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "changeDetailsFromFetchResult:toFetchResult:changedObjects:")
     protected static native @Pointer <T extends PHObject> long create(PHFetchResult<T> fromResult, PHFetchResult<T> toResult, NSArray<T> changedObjects);
     /*</methods>*/

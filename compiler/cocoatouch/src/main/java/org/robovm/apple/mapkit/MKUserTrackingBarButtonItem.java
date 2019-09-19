@@ -35,9 +35,7 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 5.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("MapKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MKUserTrackingBarButtonItem/*</name>*/ 
@@ -57,9 +55,6 @@ import org.robovm.apple.dispatch.*;
     public MKUserTrackingBarButtonItem(NSCoder coder) { super(coder); }
     @Method(selector = "initWithImage:style:target:action:")
     public MKUserTrackingBarButtonItem(UIImage image, UIBarButtonItemStyle style, NSObject target, Selector action) { super(image, style, target, action); }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "initWithImage:landscapeImagePhone:style:target:action:")
     public MKUserTrackingBarButtonItem(UIImage image, UIImage landscapeImagePhone, UIBarButtonItemStyle style, NSObject target, Selector action) { super(image, landscapeImagePhone, style, target, action); }
     @Method(selector = "initWithTitle:style:target:action:")

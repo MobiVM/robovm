@@ -32,9 +32,7 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("Metal") @NativeProtocolProxy/*</annotations>*/
 /*<visibility>*/public final/*</visibility>*/ class /*<name>*/MTLDevice/*</name>*/ 
@@ -131,9 +129,6 @@ import org.robovm.apple.dispatch.*;
         return newComputePipelineState(computeFunction, options, (MTLComputePipelineReflection.MTLComputePipelineReflectionPtr)null);
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Bridge(symbol="MTLCreateSystemDefaultDevice", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(NSObject.NoRetainMarshaler.class) MTLDevice getSystemDefaultDevice();
     

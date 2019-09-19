@@ -128,9 +128,6 @@ import org.robovm.apple.dispatch.*;
     }
     
 
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public double getEstimatedTimeRemaining() {
         if (has(NSProgressUserInfoKey.EstimatedTimeRemaining)) {
             NSNumber val = (NSNumber) get(NSProgressUserInfoKey.EstimatedTimeRemaining);
@@ -138,16 +135,10 @@ import org.robovm.apple.dispatch.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public NSProgressUserInfo setEstimatedTimeRemaining(double estimatedTimeRemaining) {
         set(NSProgressUserInfoKey.EstimatedTimeRemaining, NSNumber.valueOf(estimatedTimeRemaining));
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public long getThroughput() {
         if (has(NSProgressUserInfoKey.Throughput)) {
             NSNumber val = (NSNumber) get(NSProgressUserInfoKey.Throughput);
@@ -155,16 +146,10 @@ import org.robovm.apple.dispatch.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public NSProgressUserInfo setThroughput(long throughput) {
         set(NSProgressUserInfoKey.Throughput, NSNumber.valueOf(throughput));
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public NSProgressFileOperationKind getFileOperationKind() {
         if (has(NSProgressUserInfoKey.FileOperationKind)) {
             NSString val = (NSString) get(NSProgressUserInfoKey.FileOperationKind);
@@ -172,16 +157,10 @@ import org.robovm.apple.dispatch.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public NSProgressUserInfo setFileOperationKind(NSProgressFileOperationKind fileOperationKind) {
         set(NSProgressUserInfoKey.FileOperationKind, fileOperationKind.value());
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public NSURL getFileURL() {
         if (has(NSProgressUserInfoKey.FileURL)) {
             NSURL val = (NSURL) get(NSProgressUserInfoKey.FileURL);
@@ -189,16 +168,10 @@ import org.robovm.apple.dispatch.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public NSProgressUserInfo setFileURL(NSURL fileURL) {
         set(NSProgressUserInfoKey.FileURL, fileURL);
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public long getTotalFileCount() {
         if (has(NSProgressUserInfoKey.FileTotalCount)) {
             NSNumber val = (NSNumber) get(NSProgressUserInfoKey.FileTotalCount);
@@ -206,16 +179,10 @@ import org.robovm.apple.dispatch.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public NSProgressUserInfo setTotalFileCount(long totalFileCount) {
         set(NSProgressUserInfoKey.FileTotalCount, NSNumber.valueOf(totalFileCount));
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public long getCompletedFileCount() {
         if (has(NSProgressUserInfoKey.FileCompletedCount)) {
             NSNumber val = (NSNumber) get(NSProgressUserInfoKey.FileCompletedCount);
@@ -223,9 +190,6 @@ import org.robovm.apple.dispatch.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public NSProgressUserInfo setCompletedFileCount(long completedFileCount) {
         set(NSProgressUserInfoKey.FileCompletedCount, NSNumber.valueOf(completedFileCount));
         return this;

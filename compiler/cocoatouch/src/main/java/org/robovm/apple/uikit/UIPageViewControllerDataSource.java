@@ -61,14 +61,8 @@ import org.robovm.apple.linkpresentation.*;
     UIViewController getViewControllerBefore(UIPageViewController pageViewController, UIViewController viewController);
     @Method(selector = "pageViewController:viewControllerAfterViewController:")
     UIViewController getViewControllerAfter(UIPageViewController pageViewController, UIViewController viewController);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "presentationCountForPageViewController:")
     @MachineSizedSInt long getPresentationCount(UIPageViewController pageViewController);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "presentationIndexForPageViewController:")
     @MachineSizedSInt long getPresentationIndex(UIPageViewController pageViewController);
     /*</methods>*/

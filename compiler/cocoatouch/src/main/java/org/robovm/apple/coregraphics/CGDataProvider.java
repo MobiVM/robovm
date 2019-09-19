@@ -54,29 +54,14 @@ import org.robovm.apple.uikit.*;
         return create(VM.getStringUTFChars(file.getAbsolutePath()));
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGDataProviderGetTypeID", optional=true)
     public static native @MachineSizedUInt long getClassTypeID();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGDataProviderCreateWithCFData", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGDataProvider create(NSData data);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGDataProviderCreateWithURL", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGDataProvider create(NSURL url);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGDataProviderCreateWithFilename", optional=true)
     private static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGDataProvider create(@Pointer long filename);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGDataProviderCopyData", optional=true)
     public native @org.robovm.rt.bro.annotation.Marshaler(NSObject.NoRetainMarshaler.class) NSData getData();
     /**

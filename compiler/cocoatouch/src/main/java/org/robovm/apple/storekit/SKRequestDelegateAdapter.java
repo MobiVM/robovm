@@ -49,14 +49,8 @@ import org.robovm.apple.uikit.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @NotImplemented("requestDidFinish:")
     public void didFinish(SKRequest request) {}
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @NotImplemented("request:didFailWithError:")
     public void didFail(SKRequest request, NSError error) {}
     /*</methods>*/

@@ -81,9 +81,6 @@ import org.robovm.apple.metal.*;
     public native void removeJoint(SKPhysicsJoint joint);
     @Method(selector = "removeAllJoints")
     public native void removeAllJoints();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "sampleFieldsAt:")
     public native @ByVal VectorFloat3 sampleFieldsAt(@ByVal VectorFloat3 position);
     @Method(selector = "bodyAtPoint:")

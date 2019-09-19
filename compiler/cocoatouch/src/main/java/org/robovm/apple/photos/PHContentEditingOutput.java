@@ -38,9 +38,7 @@ import org.robovm.apple.imageio.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("Photos") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/PHContentEditingOutput/*</name>*/ 
@@ -54,44 +52,23 @@ import org.robovm.apple.imageio.*;
     public PHContentEditingOutput() {}
     protected PHContentEditingOutput(Handle h, long handle) { super(h, handle); }
     protected PHContentEditingOutput(SkipInit skipInit) { super(skipInit); }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "initWithContentEditingInput:")
     public PHContentEditingOutput(PHContentEditingInput contentEditingInput) { super((SkipInit) null); initObject(init(contentEditingInput)); }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "initWithPlaceholderForCreatedAsset:")
     public PHContentEditingOutput(PHObjectPlaceholder placeholderForCreatedAsset) { super((SkipInit) null); initObject(init(placeholderForCreatedAsset)); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "adjustmentData")
     public native PHAdjustmentData getAdjustmentData();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setAdjustmentData:")
     public native void setAdjustmentData(PHAdjustmentData v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "renderedContentURL")
     public native NSURL getRenderedContentURL();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "initWithContentEditingInput:")
     protected native @Pointer long init(PHContentEditingInput contentEditingInput);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "initWithPlaceholderForCreatedAsset:")
     protected native @Pointer long init(PHObjectPlaceholder placeholderForCreatedAsset);
     /*</methods>*/

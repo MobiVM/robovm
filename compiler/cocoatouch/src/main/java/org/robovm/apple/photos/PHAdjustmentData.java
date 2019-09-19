@@ -38,9 +38,7 @@ import org.robovm.apple.imageio.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("Photos") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/PHAdjustmentData/*</name>*/ 
@@ -54,34 +52,19 @@ import org.robovm.apple.imageio.*;
     public PHAdjustmentData() {}
     protected PHAdjustmentData(Handle h, long handle) { super(h, handle); }
     protected PHAdjustmentData(SkipInit skipInit) { super(skipInit); }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "initWithFormatIdentifier:formatVersion:data:")
     public PHAdjustmentData(String formatIdentifier, String formatVersion, NSData data) { super((SkipInit) null); initObject(init(formatIdentifier, formatVersion, data)); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "formatIdentifier")
     public native String getFormatIdentifier();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "formatVersion")
     public native String getFormatVersion();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "data")
     public native NSData getData();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "initWithFormatIdentifier:formatVersion:data:")
     protected native @Pointer long init(String formatIdentifier, String formatVersion, NSData data);
     /*</methods>*/

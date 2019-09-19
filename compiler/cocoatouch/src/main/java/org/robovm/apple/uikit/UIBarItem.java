@@ -44,9 +44,7 @@ import org.robovm.apple.corefoundation.CFDictionary;
 import org.robovm.apple.coremedia.CMTextMarkupAttributes;
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 2.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIBarItem/*</name>*/ 
@@ -76,14 +74,8 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     public native UIImage getImage();
     @Property(selector = "setImage:")
     public native void setImage(UIImage v);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "landscapeImagePhone")
     public native UIImage getLandscapeImagePhone();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setLandscapeImagePhone:")
     public native void setLandscapeImagePhone(UIImage v);
     /**
@@ -100,14 +92,8 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     public native @ByVal UIEdgeInsets getImageInsets();
     @Property(selector = "setImageInsets:")
     public native void setImageInsets(@ByVal UIEdgeInsets v);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "landscapeImagePhoneInsets")
     public native @ByVal UIEdgeInsets getLandscapeImagePhoneInsets();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setLandscapeImagePhoneInsets:")
     public native void setLandscapeImagePhoneInsets(@ByVal UIEdgeInsets v);
     /**
@@ -187,14 +173,8 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     /*<methods>*/
     @Method(selector = "initWithCoder:")
     protected native @Pointer long init(NSCoder coder);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "setTitleTextAttributes:forState:")
     public native void setTitleTextAttributesDictionary(NSDictionary<NSString, ?> attributes, UIControlState state);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "titleTextAttributesForState:")
     public native NSDictionary<NSString, ?> getTitleTextAttributesDictionary(UIControlState state);
     @Method(selector = "encodeWithCoder:")

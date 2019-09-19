@@ -41,9 +41,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 6.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVPlayerItemOutput/*</name>*/ 
@@ -59,14 +57,8 @@ import org.robovm.apple.audiotoolbox.*;
     protected AVPlayerItemOutput(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "suppressesPlayerRendering")
     public native boolean suppressesPlayerRendering();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "setSuppressesPlayerRendering:")
     public native void setSuppressesPlayerRendering(boolean v);
     /*</properties>*/

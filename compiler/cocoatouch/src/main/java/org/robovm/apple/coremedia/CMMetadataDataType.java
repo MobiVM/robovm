@@ -128,44 +128,20 @@ import org.robovm.apple.audiotoolbox.*;
         return getBaseDataTypeForConformingDataType(dataType);
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Bridge(symbol="CMMetadataDataTypeRegistryRegisterDataType", optional=true)
     protected static native OSStatus registerDataType0(String dataType, String description, @org.robovm.rt.bro.annotation.Marshaler(CFArray.AsStringListMarshaler.class) List<String> conformingDataTypes);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Bridge(symbol="CMMetadataDataTypeRegistryDataTypeIsRegistered", optional=true)
     public static native boolean isDataTypeRegistered(String dataType);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Bridge(symbol="CMMetadataDataTypeRegistryGetDataTypeDescription", optional=true)
     public static native String getDataTypeDescription(String dataType);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Bridge(symbol="CMMetadataDataTypeRegistryGetConformingDataTypes", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFArray.AsStringListMarshaler.class) List<String> getConformingDataTypes(String dataType);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Bridge(symbol="CMMetadataDataTypeRegistryDataTypeConformsToDataType", optional=true)
     public static native boolean doesDataTypeConformToDataType(String dataType, String conformsToDataType);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Bridge(symbol="CMMetadataDataTypeRegistryGetBaseDataTypes", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CMMetadataBaseDataType.AsListMarshaler.class) List<CMMetadataBaseDataType> getBaseDataTypes();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Bridge(symbol="CMMetadataDataTypeRegistryDataTypeIsBaseDataType", optional=true)
     public static native boolean isDataTypeBaseDataType(String dataType);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Bridge(symbol="CMMetadataDataTypeRegistryGetBaseDataTypeForConformingDataType", optional=true)
     public static native CMMetadataBaseDataType getBaseDataTypeForConformingDataType(String dataType);
     /*</methods>*/

@@ -66,9 +66,6 @@ import org.robovm.apple.linkpresentation.*;
         return read(thiz, data, opts, null);
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "fixAttributesInRange:")
     public static native void fixAttributesInRange(NSMutableAttributedString thiz, @ByVal NSRange range);
     /**
@@ -85,22 +82,15 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Method(selector = "readFromURL:options:documentAttributes:error:")
     private static native boolean read(NSMutableAttributedString thiz, NSURL url, NSAttributedStringDocumentAttributes opts, NSDictionary.NSDictionaryPtr<?, ?> dict, NSError.NSErrorPtr error);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static boolean read(NSMutableAttributedString thiz, NSData data, NSAttributedStringDocumentAttributes opts, NSDictionary.NSDictionaryPtr<?, ?> dict) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        boolean result = read(thiz, data, opts, dict, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        return result;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "readFromData:options:documentAttributes:error:")
     private static native boolean read(NSMutableAttributedString thiz, NSData data, NSAttributedStringDocumentAttributes opts, NSDictionary.NSDictionaryPtr<?, ?> dict, NSError.NSErrorPtr error);
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 9.0.
      */
     @Deprecated
@@ -111,7 +101,6 @@ import org.robovm.apple.linkpresentation.*;
        return result;
     }
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 9.0.
      */
     @Deprecated

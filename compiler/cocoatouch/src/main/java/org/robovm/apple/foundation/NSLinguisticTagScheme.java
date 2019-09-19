@@ -95,33 +95,12 @@ import org.robovm.apple.dispatch.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final NSLinguisticTagScheme TokenType = new NSLinguisticTagScheme("TokenType");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final NSLinguisticTagScheme LexicalClass = new NSLinguisticTagScheme("LexicalClass");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final NSLinguisticTagScheme NameType = new NSLinguisticTagScheme("NameType");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final NSLinguisticTagScheme NameTypeOrLexicalClass = new NSLinguisticTagScheme("NameTypeOrLexicalClass");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final NSLinguisticTagScheme Lemma = new NSLinguisticTagScheme("Lemma");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final NSLinguisticTagScheme Language = new NSLinguisticTagScheme("Language");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final NSLinguisticTagScheme Script = new NSLinguisticTagScheme("Script");
     /*</constants>*/
     
@@ -148,39 +127,18 @@ import org.robovm.apple.dispatch.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="NSLinguisticTagSchemeTokenType", optional=true)
         public static native NSString TokenType();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="NSLinguisticTagSchemeLexicalClass", optional=true)
         public static native NSString LexicalClass();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="NSLinguisticTagSchemeNameType", optional=true)
         public static native NSString NameType();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="NSLinguisticTagSchemeNameTypeOrLexicalClass", optional=true)
         public static native NSString NameTypeOrLexicalClass();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="NSLinguisticTagSchemeLemma", optional=true)
         public static native NSString Lemma();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="NSLinguisticTagSchemeLanguage", optional=true)
         public static native NSString Language();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="NSLinguisticTagSchemeScript", optional=true)
         public static native NSString Script();
         /*</values>*/

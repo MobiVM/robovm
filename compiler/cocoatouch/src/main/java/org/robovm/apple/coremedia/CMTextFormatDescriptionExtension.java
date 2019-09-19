@@ -112,9 +112,6 @@ import org.robovm.apple.audiotoolbox.*;
     }
     
 
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CMTextDisplayFlags getDisplayFlags() {
         if (has(Keys.DisplayFlags())) {
             CFNumber val = get(Keys.DisplayFlags(), CFNumber.class);
@@ -122,16 +119,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CMTextFormatDescriptionExtension setDisplayFlags(CMTextDisplayFlags displayFlags) {
         set(Keys.DisplayFlags(), CFNumber.valueOf(displayFlags.value()));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CMTextFormatDescriptionColor getBackgroundColor() {
         if (has(Keys.BackgroundColor())) {
             CFDictionary val = get(Keys.BackgroundColor(), CFDictionary.class);
@@ -139,16 +130,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CMTextFormatDescriptionExtension setBackgroundColor(CMTextFormatDescriptionColor backgroundColor) {
         set(Keys.BackgroundColor(), backgroundColor.getDictionary());
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CMTextFormatDescriptionRect getDefaultTextBox() {
         if (has(Keys.DefaultTextBox())) {
             CFDictionary val = get(Keys.DefaultTextBox(), CFDictionary.class);
@@ -156,16 +141,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CMTextFormatDescriptionExtension setDefaultTextBox(CMTextFormatDescriptionRect defaultTextBox) {
         set(Keys.DefaultTextBox(), defaultTextBox.getDictionary());
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CMTextFormatDescriptionStyle getDefaultStyle() {
         if (has(Keys.DefaultStyle())) {
             CFDictionary val = get(Keys.DefaultStyle(), CFDictionary.class);
@@ -173,16 +152,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CMTextFormatDescriptionExtension setDefaultStyle(CMTextFormatDescriptionStyle defaultStyle) {
         set(Keys.DefaultStyle(), defaultStyle.getDictionary());
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CMTextJustification getHorizontalJustification() {
         if (has(Keys.HorizontalJustification())) {
             CFNumber val = get(Keys.HorizontalJustification(), CFNumber.class);
@@ -190,16 +163,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CMTextFormatDescriptionExtension setHorizontalJustification(CMTextJustification horizontalJustification) {
         set(Keys.HorizontalJustification(), CFNumber.valueOf(horizontalJustification.value()));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CMTextJustification getVerticalJustification() {
         if (has(Keys.VerticalJustification())) {
             CFNumber val = get(Keys.VerticalJustification(), CFNumber.class);
@@ -207,16 +174,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CMTextFormatDescriptionExtension setVerticalJustification(CMTextJustification verticalJustification) {
         set(Keys.VerticalJustification(), CFNumber.valueOf(verticalJustification.value()));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public Map<String, String> getFontTable() {
         if (has(Keys.FontTable())) {
             CFDictionary val = get(Keys.FontTable(), CFDictionary.class);
@@ -224,16 +185,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CMTextFormatDescriptionExtension setFontTable(Map<String, String> fontTable) {
         set(Keys.FontTable(), CFDictionary.fromStringStringMap(fontTable));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CMTextJustification getTextJustification() {
         if (has(Keys.TextJustification())) {
             CFNumber val = get(Keys.TextJustification(), CFNumber.class);
@@ -241,16 +196,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CMTextFormatDescriptionExtension setTextJustification(CMTextJustification textJustification) {
         set(Keys.TextJustification(), CFNumber.valueOf(textJustification.value()));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public String getDefaultFontName() {
         if (has(Keys.DefaultFontName())) {
             CFString val = get(Keys.DefaultFontName(), CFString.class);
@@ -258,9 +207,6 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CMTextFormatDescriptionExtension setDefaultFontName(String defaultFontName) {
         set(Keys.DefaultFontName(), new CFString(defaultFontName));
         return this;
@@ -271,49 +217,22 @@ import org.robovm.apple.audiotoolbox.*;
     @Library("CoreMedia")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCMTextFormatDescriptionExtension_DisplayFlags", optional=true)
         public static native CFString DisplayFlags();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCMTextFormatDescriptionExtension_BackgroundColor", optional=true)
         public static native CFString BackgroundColor();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCMTextFormatDescriptionExtension_DefaultTextBox", optional=true)
         public static native CFString DefaultTextBox();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCMTextFormatDescriptionExtension_DefaultStyle", optional=true)
         public static native CFString DefaultStyle();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCMTextFormatDescriptionExtension_HorizontalJustification", optional=true)
         public static native CFString HorizontalJustification();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCMTextFormatDescriptionExtension_VerticalJustification", optional=true)
         public static native CFString VerticalJustification();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCMTextFormatDescriptionExtension_FontTable", optional=true)
         public static native CFString FontTable();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCMTextFormatDescriptionExtension_TextJustification", optional=true)
         public static native CFString TextJustification();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCMTextFormatDescriptionExtension_DefaultFontName", optional=true)
         public static native CFString DefaultFontName();
     }

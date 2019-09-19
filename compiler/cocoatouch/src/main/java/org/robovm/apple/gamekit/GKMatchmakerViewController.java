@@ -32,9 +32,7 @@ import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.1 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("GameKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GKMatchmakerViewController/*</name>*/ 
@@ -52,9 +50,6 @@ import org.robovm.apple.uikit.*;
     public GKMatchmakerViewController(GKMatchRequest request) { super((SkipInit) null); initObject(init(request)); }
     @Method(selector = "initWithInvite:")
     public GKMatchmakerViewController(GKInvite invite) { super((SkipInit) null); initObject(init(invite)); }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "initWithNavigationBarClass:toolbarClass:")
     public GKMatchmakerViewController(Class<? extends UINavigationBar> navigationBarClass, Class<? extends UIToolbar> toolbarClass) { super(navigationBarClass, toolbarClass); }
     @Method(selector = "initWithRootViewController:")
@@ -76,14 +71,12 @@ import org.robovm.apple.uikit.*;
     @Property(selector = "setHosted:")
     public native void setHosted(boolean v);
     /**
-     * @since Available in iOS 5.0 and later.
      * @deprecated Deprecated in iOS 7.0.
      */
     @Deprecated
     @Property(selector = "defaultInvitationMessage")
     public native String getDefaultInvitationMessage();
     /**
-     * @since Available in iOS 5.0 and later.
      * @deprecated Deprecated in iOS 7.0.
      */
     @Deprecated
@@ -96,21 +89,14 @@ import org.robovm.apple.uikit.*;
     protected native @Pointer long init(GKMatchRequest request);
     @Method(selector = "initWithInvite:")
     protected native @Pointer long init(GKInvite invite);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "addPlayersToMatch:")
     public native void addPlayersToMatch(GKMatch match);
     /**
-     * @since Available in iOS 5.0 and later.
      * @deprecated Deprecated in iOS 8.0. use setHostedPlayer:didConnect:
      */
     @Deprecated
     @Method(selector = "setHostedPlayer:connected:")
     public native void setHostedPlayer(String playerID, boolean connected);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "setHostedPlayer:didConnect:")
     public native void setHostedPlayer(GKPlayer player, boolean connected);
     /*</methods>*/

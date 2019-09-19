@@ -55,39 +55,21 @@ import org.robovm.apple.audiotoolbox.*;
     private NSValueExtensions() {}
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "CMTimeValue")
     public static native @ByVal CMTime getCMTimeValue(NSValue thiz);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "CMTimeRangeValue")
     public static native @ByVal CMTimeRange getCMTimeRangeValue(NSValue thiz);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "CMTimeMappingValue")
     public static native @ByVal CMTimeMapping getCMTimeMappingValue(NSValue thiz);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "valueWithCMTime:")
     protected static native NSValue create(ObjCClass clazz, @ByVal CMTime time);
     public static NSValue create(@ByVal CMTime time) { return create(ObjCClass.getByType(NSValue.class), time); }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "valueWithCMTimeRange:")
     protected static native NSValue create(ObjCClass clazz, @ByVal CMTimeRange timeRange);
     public static NSValue create(@ByVal CMTimeRange timeRange) { return create(ObjCClass.getByType(NSValue.class), timeRange); }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "valueWithCMTimeMapping:")
     protected static native NSValue create(ObjCClass clazz, @ByVal CMTimeMapping timeMapping);
     public static NSValue create(@ByVal CMTimeMapping timeMapping) { return create(ObjCClass.getByType(NSValue.class), timeMapping); }

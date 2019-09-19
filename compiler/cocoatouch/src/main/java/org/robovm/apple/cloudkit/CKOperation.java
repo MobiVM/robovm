@@ -34,9 +34,7 @@ import org.robovm.apple.fileprovider.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("CloudKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CKOperation/*</name>*/ 
@@ -88,28 +86,24 @@ import org.robovm.apple.fileprovider.*;
     @Property(selector = "setLongLivedOperationWasPersistedBlock:")
     public native void setLongLivedOperationWasPersistedBlock(@Block Runnable v);
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 11.0. Use CKOperationConfiguration
      */
     @Deprecated
     @Property(selector = "container")
     public native CKContainer getContainer();
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 11.0. Use CKOperationConfiguration
      */
     @Deprecated
     @Property(selector = "setContainer:")
     public native void setContainer(CKContainer v);
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 11.0. Use CKOperationConfiguration
      */
     @Deprecated
     @Property(selector = "allowsCellularAccess")
     public native boolean allowsCellularAccess();
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 11.0. Use CKOperationConfiguration
      */
     @Deprecated

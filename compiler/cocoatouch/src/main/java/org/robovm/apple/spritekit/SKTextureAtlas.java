@@ -100,9 +100,6 @@ import org.robovm.apple.metal.*;
     public native void preload(@Block Runnable completionHandler);
     @Method(selector = "atlasNamed:")
     protected static native @Pointer long create(String name);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "atlasWithDictionary:")
     protected static native @Pointer long create(NSDictionary<NSString, ?> properties);
     @Method(selector = "preloadTextureAtlases:withCompletionHandler:")

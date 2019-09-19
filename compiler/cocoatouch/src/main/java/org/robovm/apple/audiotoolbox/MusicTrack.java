@@ -258,111 +258,48 @@ import org.robovm.apple.uikit.*;
         OSStatusException.throwIfNecessary(status);
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="MusicTrackGetSequence", optional=true)
     protected native OSStatus getSequence0(MusicSequence.MusicSequencePtr outSequence);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="MusicTrackSetDestNode", optional=true)
     protected native OSStatus setDestNode0(int inNode);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @WeaklyLinked
     @Bridge(symbol="MusicTrackSetDestMIDIEndpoint", optional=true)
     protected native OSStatus setDestMIDIEndpoint0(MIDIEndpoint inEndpoint);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="MusicTrackGetDestNode", optional=true)
     protected native OSStatus getDestNode0(IntPtr outNode);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @WeaklyLinked
     @Bridge(symbol="MusicTrackGetDestMIDIEndpoint", optional=true)
     protected native OSStatus getDestMIDIEndpoint0(MIDIEndpoint.MIDIEndpointPtr outEndpoint);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="MusicTrackSetProperty", optional=true)
     protected native OSStatus setProperty0(MusicTrackProperty inPropertyID, VoidPtr inData, int inLength);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="MusicTrackGetProperty", optional=true)
     protected native OSStatus getProperty0(MusicTrackProperty inPropertyID, VoidPtr outData, IntPtr ioLength);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="MusicTrackMoveEvents", optional=true)
     protected native OSStatus moveEvents0(double inStartTime, double inEndTime, double inMoveTime);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="MusicTrackClear", optional=true)
     protected native OSStatus clear0(double inStartTime, double inEndTime);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="MusicTrackCut", optional=true)
     protected native OSStatus cut0(double inStartTime, double inEndTime);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="MusicTrackCopyInsert", optional=true)
     protected native OSStatus copyInsert0(double inSourceStartTime, double inSourceEndTime, MusicTrack inDestTrack, double inDestInsertTime);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="MusicTrackMerge", optional=true)
     protected native OSStatus merge0(double inSourceStartTime, double inSourceEndTime, MusicTrack inDestTrack, double inDestInsertTime);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="MusicTrackNewMIDINoteEvent", optional=true)
     protected native OSStatus newMIDINoteEvent0(double inTimeStamp, MIDINoteMessage inMessage);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="MusicTrackNewMIDIChannelEvent", optional=true)
     protected native OSStatus newMIDIChannelEvent0(double inTimeStamp, MIDIChannelMessage inMessage);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="MusicTrackNewMIDIRawDataEvent", optional=true)
     protected native OSStatus newMIDIRawDataEvent0(double inTimeStamp, MIDIRawData inRawData);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="MusicTrackNewExtendedNoteEvent", optional=true)
     protected native OSStatus newExtendedNoteEvent0(double inTimeStamp, ExtendedNoteOnEvent inInfo);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="MusicTrackNewParameterEvent", optional=true)
     protected native OSStatus newParameterEvent0(double inTimeStamp, AUParameterEvent inInfo);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="MusicTrackNewExtendedTempoEvent", optional=true)
     protected native OSStatus newExtendedTempoEvent0(double inTimeStamp, double inBPM);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="MusicTrackNewMetaEvent", optional=true)
     protected native OSStatus newMetaEvent0(double inTimeStamp, MIDIMetaEvent inMetaEvent);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="MusicTrackNewUserEvent", optional=true)
     protected native OSStatus newUserEvent0(double inTimeStamp, MusicEventUserData inUserData);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="MusicTrackNewAUPresetEvent", optional=true)
     protected native OSStatus newAUPresetEvent0(double inTimeStamp, AUPresetEvent inPresetEvent);
     /*</methods>*/

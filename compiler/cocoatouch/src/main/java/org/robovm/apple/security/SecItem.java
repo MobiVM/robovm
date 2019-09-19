@@ -83,24 +83,12 @@ import org.robovm.apple.dispatch.*;
         OSStatusException.throwIfNecessary(status);
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="SecItemCopyMatching", optional=true)
     protected static native OSStatus getMatching0(SecQuery query, CFType.CFTypePtr result);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="SecItemAdd", optional=true)
     protected static native OSStatus add0(SecAttributes attributes, CFType.CFTypePtr result);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="SecItemUpdate", optional=true)
     protected static native OSStatus update0(SecQuery query, SecAttributes attributesToUpdate);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="SecItemDelete", optional=true)
     protected static native OSStatus delete0(SecQuery query);
     /*</methods>*/

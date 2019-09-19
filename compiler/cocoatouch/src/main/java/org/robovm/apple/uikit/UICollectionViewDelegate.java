@@ -71,14 +71,8 @@ import org.robovm.apple.linkpresentation.*;
     void didSelectItem(UICollectionView collectionView, NSIndexPath indexPath);
     @Method(selector = "collectionView:didDeselectItemAtIndexPath:")
     void didDeselectItem(UICollectionView collectionView, NSIndexPath indexPath);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "collectionView:willDisplayCell:forItemAtIndexPath:")
     void willDisplayCell(UICollectionView collectionView, UICollectionViewCell cell, NSIndexPath indexPath);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "collectionView:willDisplaySupplementaryView:forElementKind:atIndexPath:")
     void willDisplaySupplementaryView(UICollectionView collectionView, UICollectionReusableView view, String elementKind, NSIndexPath indexPath);
     @Method(selector = "collectionView:didEndDisplayingCell:forItemAtIndexPath:")
@@ -86,21 +80,18 @@ import org.robovm.apple.linkpresentation.*;
     @Method(selector = "collectionView:didEndDisplayingSupplementaryView:forElementOfKind:atIndexPath:")
     void didEndDisplayingSupplementaryView(UICollectionView collectionView, UICollectionReusableView view, String elementKind, NSIndexPath indexPath);
     /**
-     * @since Available in iOS 6.0 and later.
      * @deprecated Deprecated in iOS 13.0.
      */
     @Deprecated
     @Method(selector = "collectionView:shouldShowMenuForItemAtIndexPath:")
     boolean shouldShowMenuForItem(UICollectionView collectionView, NSIndexPath indexPath);
     /**
-     * @since Available in iOS 6.0 and later.
      * @deprecated Deprecated in iOS 13.0.
      */
     @Deprecated
     @Method(selector = "collectionView:canPerformAction:forItemAtIndexPath:withSender:")
     boolean canPerformAction(UICollectionView collectionView, Selector action, NSIndexPath indexPath, NSObject sender);
     /**
-     * @since Available in iOS 6.0 and later.
      * @deprecated Deprecated in iOS 13.0.
      */
     @Deprecated

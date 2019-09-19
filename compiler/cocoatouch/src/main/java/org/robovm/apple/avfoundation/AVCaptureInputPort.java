@@ -41,9 +41,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVCaptureInputPort/*</name>*/ 
@@ -83,9 +81,6 @@ import org.robovm.apple.audiotoolbox.*;
     public native boolean isEnabled();
     @Property(selector = "setEnabled:")
     public native void setEnabled(boolean v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "clock")
     public native CMClock getClock();
     /**
@@ -101,9 +96,6 @@ import org.robovm.apple.audiotoolbox.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @GlobalValue(symbol="AVCaptureInputPortFormatDescriptionDidChangeNotification", optional=true)
     public static native NSString FormatDescriptionDidChangeNotification();
     

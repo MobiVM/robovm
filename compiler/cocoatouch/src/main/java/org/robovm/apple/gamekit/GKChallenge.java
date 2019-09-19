@@ -32,9 +32,7 @@ import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 6.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("GameKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GKChallenge/*</name>*/ 
@@ -53,27 +51,19 @@ import org.robovm.apple.uikit.*;
     /*</constructors>*/
     /*<properties>*/
     /**
-     * @since Available in iOS 6.0 and later.
      * @deprecated Deprecated in iOS 8.0. Use issuingPlayer instead
      */
     @Deprecated
     @Property(selector = "issuingPlayerID")
     public native String getIssuingPlayerID();
     /**
-     * @since Available in iOS 6.0 and later.
      * @deprecated Deprecated in iOS 8.0. Use receivingPlayer instead
      */
     @Deprecated
     @Property(selector = "receivingPlayerID")
     public native String getReceivingPlayerID();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "issuingPlayer")
     public native GKPlayer getIssuingPlayer();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "receivingPlayer")
     public native GKPlayer getReceivingPlayer();
     @Property(selector = "state")

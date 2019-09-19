@@ -35,9 +35,7 @@ import org.robovm.apple.mapkit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 5.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("EventKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/EKCalendarItem/*</name>*/ 
@@ -58,14 +56,8 @@ import org.robovm.apple.mapkit.*;
     public native EKCalendar getCalendar();
     @Property(selector = "setCalendar:")
     public native void setCalendar(EKCalendar v);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "calendarItemIdentifier")
     public native String getCalendarItemIdentifier();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "calendarItemExternalIdentifier")
     public native String getCalendarItemExternalIdentifier();
     @Property(selector = "title")
@@ -80,51 +72,24 @@ import org.robovm.apple.mapkit.*;
     public native String getNotes();
     @Property(selector = "setNotes:")
     public native void setNotes(String v);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "URL")
     public native NSURL getURL();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setURL:")
     public native void setURL(NSURL v);
     @Property(selector = "lastModifiedDate")
     public native NSDate getLastModifiedDate();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "creationDate")
     public native NSDate getCreationDate();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "timeZone")
     public native NSTimeZone getTimeZone();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setTimeZone:")
     public native void setTimeZone(NSTimeZone v);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "hasAlarms")
     public native boolean hasAlarms();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "hasRecurrenceRules")
     public native boolean hasRecurrenceRules();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "hasAttendees")
     public native boolean hasAttendees();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "hasNotes")
     public native boolean hasNotes();
     @Property(selector = "attendees")
@@ -133,14 +98,8 @@ import org.robovm.apple.mapkit.*;
     public native NSArray<EKAlarm> getAlarms();
     @Property(selector = "setAlarms:")
     public native void setAlarms(NSArray<EKAlarm> v);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "recurrenceRules")
     public native NSArray<EKRecurrenceRule> getRecurrenceRules();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setRecurrenceRules:")
     public native void setRecurrenceRules(NSArray<EKRecurrenceRule> v);
     /*</properties>*/

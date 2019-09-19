@@ -174,54 +174,24 @@ import org.robovm.apple.uikit.*;
         return null;
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGPDFDictionaryGetCount", optional=true)
     public native @MachineSizedUInt long size();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGPDFDictionaryGetObject", optional=true)
     private native boolean getObject(@org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsDefaultCharsetZMarshaler.class) String key, CGPDFObject.CGPDFObjectPtr value);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGPDFDictionaryGetBoolean", optional=true)
     private native boolean getBoolean(@org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsDefaultCharsetZMarshaler.class) String key, BooleanPtr value);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGPDFDictionaryGetInteger", optional=true)
     private native boolean getInteger(@org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsDefaultCharsetZMarshaler.class) String key, MachineSizedSIntPtr value);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGPDFDictionaryGetNumber", optional=true)
     private native boolean getNumber(@org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsDefaultCharsetZMarshaler.class) String key, MachineSizedFloatPtr value);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGPDFDictionaryGetName", optional=true)
     private native boolean getName(@org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsDefaultCharsetZMarshaler.class) String key, BytePtr.BytePtrPtr value);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGPDFDictionaryGetString", optional=true)
     private native boolean getString(@org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsDefaultCharsetZMarshaler.class) String key, CGPDFString.CGPDFStringPtr value);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGPDFDictionaryGetArray", optional=true)
     private native boolean getArray(@org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsDefaultCharsetZMarshaler.class) String key, CGPDFArray.CGPDFArrayPtr value);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGPDFDictionaryGetDictionary", optional=true)
     private native boolean getDictionary(@org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsDefaultCharsetZMarshaler.class) String key, CGPDFDictionary.CGPDFDictionaryPtr value);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGPDFDictionaryGetStream", optional=true)
     private native boolean getStream(@org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsDefaultCharsetZMarshaler.class) String key, CGPDFStream.CGPDFStreamPtr value);
     /**

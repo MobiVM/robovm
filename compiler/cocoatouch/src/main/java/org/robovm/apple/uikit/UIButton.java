@@ -42,9 +42,7 @@ import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 2.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIButton/*</name>*/ 
@@ -93,14 +91,8 @@ import org.robovm.apple.linkpresentation.*;
     public native boolean showsTouchWhenHighlighted();
     @Property(selector = "setShowsTouchWhenHighlighted:")
     public native void setShowsTouchWhenHighlighted(boolean v);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "tintColor")
     public native UIColor getTintColor();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setTintColor:")
     public native void setTintColor(UIColor v);
     @Property(selector = "buttonType")
@@ -120,19 +112,10 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Property(selector = "currentPreferredSymbolConfiguration")
     public native UIImageSymbolConfiguration getCurrentPreferredSymbolConfiguration();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "currentAttributedTitle")
     public native NSAttributedString getCurrentAttributedTitle();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "titleLabel")
     public native UILabel getTitleLabel();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "imageView")
     public native UIImageView getImageView();
     /**
@@ -167,9 +150,6 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Method(selector = "setPreferredSymbolConfiguration:forImageInState:")
     public native void setPreferredSymbolConfiguration(UIImageSymbolConfiguration configuration, UIControlState state);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "setAttributedTitle:forState:")
     public native void setAttributedTitle(NSAttributedString title, UIControlState state);
     @Method(selector = "titleForState:")
@@ -187,9 +167,6 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Method(selector = "preferredSymbolConfigurationForImageInState:")
     public native UIImageSymbolConfiguration preferredSymbolConfigurationForImageInState(UIControlState state);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "attributedTitleForState:")
     public native NSAttributedString getAttributedTitle(UIControlState state);
     @Method(selector = "backgroundRectForBounds:")

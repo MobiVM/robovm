@@ -356,14 +356,8 @@ import org.robovm.apple.coretext.CTAttributedStringAttributes;
         }
     }
     /*<properties>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "formattingContext")
     public native NSFormattingContext getFormattingContext();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setFormattingContext:")
     public native void setFormattingContext(NSFormattingContext v);
     @Property(selector = "numberStyle")
@@ -566,64 +560,28 @@ import org.robovm.apple.coretext.CTAttributedStringAttributes;
     public native NSNumber getMaximum();
     @Property(selector = "setMaximum:")
     public native void setMaximum(NSNumber v);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Property(selector = "currencyGroupingSeparator")
     public native String getCurrencyGroupingSeparator();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Property(selector = "setCurrencyGroupingSeparator:")
     public native void setCurrencyGroupingSeparator(String v);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Property(selector = "isLenient")
     public native boolean isLenient();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Property(selector = "setLenient:")
     public native void setLenient(boolean v);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Property(selector = "usesSignificantDigits")
     public native boolean usesSignificantDigits();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Property(selector = "setUsesSignificantDigits:")
     public native void setUsesSignificantDigits(boolean v);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Property(selector = "minimumSignificantDigits")
     public native @MachineSizedUInt long getMinimumSignificantDigits();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Property(selector = "setMinimumSignificantDigits:")
     public native void setMinimumSignificantDigits(@MachineSizedUInt long v);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Property(selector = "maximumSignificantDigits")
     public native @MachineSizedUInt long getMaximumSignificantDigits();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Property(selector = "setMaximumSignificantDigits:")
     public native void setMaximumSignificantDigits(@MachineSizedUInt long v);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Property(selector = "isPartialStringValidationEnabled")
     public native boolean isPartialStringValidationEnabled();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Property(selector = "setPartialStringValidationEnabled:")
     public native void setPartialStringValidationEnabled(boolean v);
     /*</properties>*/
@@ -636,9 +594,6 @@ import org.robovm.apple.coretext.CTAttributedStringAttributes;
     public native String format(NSNumber number);
     @Method(selector = "numberFromString:")
     public native NSNumber parse(String string);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "localizedStringFromNumber:numberStyle:")
     public static native String formatLocalized(NSNumber num, NSNumberFormatterStyle nstyle);
     @Method(selector = "defaultFormatterBehavior")

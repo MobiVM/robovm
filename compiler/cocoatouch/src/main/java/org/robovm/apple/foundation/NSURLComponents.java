@@ -39,9 +39,7 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 7.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSURLComponents/*</name>*/ 
@@ -63,9 +61,6 @@ import org.robovm.apple.dispatch.*;
     /*<properties>*/
     @Property(selector = "URL")
     public native NSURL getURL();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "string")
     public native String getString();
     @Property(selector = "scheme")
@@ -164,14 +159,8 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "rangeOfFragment")
     public native @ByVal NSRange getRangeOfFragment();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "queryItems")
     public native NSArray<NSURLQueryItem> getQueryItems();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setQueryItems:")
     public native void setQueryItems(NSArray<NSURLQueryItem> v);
     /**

@@ -91,21 +91,9 @@ import org.robovm.apple.iosurface.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CVImageBufferColorPrimaries ITU_R_709_2 = new CVImageBufferColorPrimaries("ITU_R_709_2");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CVImageBufferColorPrimaries EBU_3213 = new CVImageBufferColorPrimaries("EBU_3213");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CVImageBufferColorPrimaries SMPTE_C = new CVImageBufferColorPrimaries("SMPTE_C");
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public static final CVImageBufferColorPrimaries P22 = new CVImageBufferColorPrimaries("P22");
     /**
      * @since Available in iOS 9.0 and later.
@@ -144,24 +132,12 @@ import org.robovm.apple.iosurface.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVImageBufferColorPrimaries_ITU_R_709_2", optional=true)
         public static native CFString ITU_R_709_2();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVImageBufferColorPrimaries_EBU_3213", optional=true)
         public static native CFString EBU_3213();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVImageBufferColorPrimaries_SMPTE_C", optional=true)
         public static native CFString SMPTE_C();
-        /**
-         * @since Available in iOS 6.0 and later.
-         */
         @GlobalValue(symbol="kCVImageBufferColorPrimaries_P22", optional=true)
         public static native CFString P22();
         /**

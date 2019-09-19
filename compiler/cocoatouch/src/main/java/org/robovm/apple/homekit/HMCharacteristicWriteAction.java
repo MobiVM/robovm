@@ -32,9 +32,7 @@ import org.robovm.apple.corelocation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("HomeKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/HMCharacteristicWriteAction<T extends NSObject>/*</name>*/

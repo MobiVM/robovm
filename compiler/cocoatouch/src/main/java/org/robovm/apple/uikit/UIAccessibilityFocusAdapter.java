@@ -59,19 +59,10 @@ import org.robovm.apple.linkpresentation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @NotImplemented("accessibilityElementDidBecomeFocused")
     public void didBecomeFocused() {}
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @NotImplemented("accessibilityElementDidLoseFocus")
     public void didLoseFocus() {}
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @NotImplemented("accessibilityElementIsFocused")
     public boolean isFocused() { return false; }
     /**

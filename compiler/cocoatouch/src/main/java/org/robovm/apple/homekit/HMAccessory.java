@@ -32,9 +32,7 @@ import org.robovm.apple.corelocation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("HomeKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/HMAccessory/*</name>*/ 
@@ -53,7 +51,6 @@ import org.robovm.apple.corelocation.*;
     @Property(selector = "name")
     public native String getName();
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 9.0. No longer supported.
      */
     @Deprecated
@@ -73,7 +70,6 @@ import org.robovm.apple.corelocation.*;
     @Property(selector = "isBridged")
     public native boolean isBridged();
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 9.0. No longer supported.
      */
     @Deprecated

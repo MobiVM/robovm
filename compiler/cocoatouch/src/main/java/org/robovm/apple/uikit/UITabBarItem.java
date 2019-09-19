@@ -42,9 +42,7 @@ import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 2.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UITabBarItem/*</name>*/ 
@@ -62,37 +60,22 @@ import org.robovm.apple.linkpresentation.*;
     public UITabBarItem(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     @Method(selector = "initWithTitle:image:tag:")
     public UITabBarItem(String title, UIImage image, @MachineSizedSInt long tag) { super((SkipInit) null); initObject(init(title, image, tag)); }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "initWithTitle:image:selectedImage:")
     public UITabBarItem(String title, UIImage image, UIImage selectedImage) { super((SkipInit) null); initObject(init(title, image, selectedImage)); }
     @Method(selector = "initWithTabBarSystemItem:tag:")
     public UITabBarItem(UITabBarSystemItem systemItem, @MachineSizedSInt long tag) { super((SkipInit) null); initObject(init(systemItem, tag)); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "selectedImage")
     public native UIImage getSelectedImage();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setSelectedImage:")
     public native void setSelectedImage(UIImage v);
     @Property(selector = "badgeValue")
     public native String getBadgeValue();
     @Property(selector = "setBadgeValue:")
     public native void setBadgeValue(String v);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "titlePositionAdjustment")
     public native @ByVal UIOffset getTitlePositionAdjustment();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setTitlePositionAdjustment:")
     public native void setTitlePositionAdjustment(@ByVal UIOffset v);
     /**
@@ -132,29 +115,23 @@ import org.robovm.apple.linkpresentation.*;
     protected native @Pointer long init(NSCoder coder);
     @Method(selector = "initWithTitle:image:tag:")
     protected native @Pointer long init(String title, UIImage image, @MachineSizedSInt long tag);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "initWithTitle:image:selectedImage:")
     protected native @Pointer long init(String title, UIImage image, UIImage selectedImage);
     @Method(selector = "initWithTabBarSystemItem:tag:")
     protected native @Pointer long init(UITabBarSystemItem systemItem, @MachineSizedSInt long tag);
     /**
-     * @since Available in iOS 5.0 and later.
      * @deprecated Deprecated in iOS 7.0. Use initWithTitle:image:selectedImage: or the image and selectedImage properties along with UIImageRenderingModeAlwaysOriginal
      */
     @Deprecated
     @Method(selector = "setFinishedSelectedImage:withFinishedUnselectedImage:")
     public native void setFinishedImages(UIImage selectedImage, UIImage unselectedImage);
     /**
-     * @since Available in iOS 5.0 and later.
      * @deprecated Deprecated in iOS 7.0.
      */
     @Deprecated
     @Method(selector = "finishedSelectedImage")
     public native UIImage getFinishedSelectedImage();
     /**
-     * @since Available in iOS 5.0 and later.
      * @deprecated Deprecated in iOS 7.0.
      */
     @Deprecated

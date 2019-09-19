@@ -117,9 +117,6 @@ import org.robovm.apple.linkpresentation.*;
     }
     
 
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public CGRect getStartFrame() {
         if (has(Keys.FrameBegin())) {
             NSValue val = (NSValue) get(Keys.FrameBegin());
@@ -127,16 +124,10 @@ import org.robovm.apple.linkpresentation.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public UIKeyboardAnimation setStartFrame(CGRect startFrame) {
         set(Keys.FrameBegin(), NSValue.valueOf(startFrame));
         return this;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public CGRect getEndFrame() {
         if (has(Keys.FrameEnd())) {
             NSValue val = (NSValue) get(Keys.FrameEnd());
@@ -144,16 +135,10 @@ import org.robovm.apple.linkpresentation.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public UIKeyboardAnimation setEndFrame(CGRect endFrame) {
         set(Keys.FrameEnd(), NSValue.valueOf(endFrame));
         return this;
     }
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public double getAnimationDuration() {
         if (has(Keys.AnimationDuration())) {
             NSNumber val = (NSNumber) get(Keys.AnimationDuration());
@@ -161,16 +146,10 @@ import org.robovm.apple.linkpresentation.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public UIKeyboardAnimation setAnimationDuration(double animationDuration) {
         set(Keys.AnimationDuration(), NSNumber.valueOf(animationDuration));
         return this;
     }
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public UIViewAnimationCurve getAnimationCurve() {
         if (has(Keys.AnimationCurve())) {
             NSNumber val = (NSNumber) get(Keys.AnimationCurve());
@@ -178,9 +157,6 @@ import org.robovm.apple.linkpresentation.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public UIKeyboardAnimation setAnimationCurve(UIViewAnimationCurve animationCurve) {
         set(Keys.AnimationCurve(), NSNumber.valueOf(animationCurve.value()));
         return this;
@@ -208,24 +184,12 @@ import org.robovm.apple.linkpresentation.*;
     @Library("UIKit")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 3.2 and later.
-         */
         @GlobalValue(symbol="UIKeyboardFrameBeginUserInfoKey", optional=true)
         public static native NSString FrameBegin();
-        /**
-         * @since Available in iOS 3.2 and later.
-         */
         @GlobalValue(symbol="UIKeyboardFrameEndUserInfoKey", optional=true)
         public static native NSString FrameEnd();
-        /**
-         * @since Available in iOS 3.0 and later.
-         */
         @GlobalValue(symbol="UIKeyboardAnimationDurationUserInfoKey", optional=true)
         public static native NSString AnimationDuration();
-        /**
-         * @since Available in iOS 3.0 and later.
-         */
         @GlobalValue(symbol="UIKeyboardAnimationCurveUserInfoKey", optional=true)
         public static native NSString AnimationCurve();
         /**

@@ -88,17 +88,8 @@ import org.robovm.apple.dispatch.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final SecAttrKeyClass Public = new SecAttrKeyClass("Public");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final SecAttrKeyClass Private = new SecAttrKeyClass("Private");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final SecAttrKeyClass Symmetric = new SecAttrKeyClass("Symmetric");
     /*</constants>*/
     
@@ -125,19 +116,10 @@ import org.robovm.apple.dispatch.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kSecAttrKeyClassPublic", optional=true)
         public static native CFType Public();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kSecAttrKeyClassPrivate", optional=true)
         public static native CFType Private();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kSecAttrKeyClassSymmetric", optional=true)
         public static native CFType Symmetric();
         /*</values>*/

@@ -63,14 +63,8 @@ import org.robovm.apple.linkpresentation.*;
     public UITextAutocorrectionType getAutocorrectionType() { return null; }
     @NotImplemented("setAutocorrectionType:")
     public void setAutocorrectionType(UITextAutocorrectionType v) {}
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @NotImplemented("spellCheckingType")
     public UITextSpellCheckingType getSpellCheckingType() { return null; }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @NotImplemented("setSpellCheckingType:")
     public void setSpellCheckingType(UITextSpellCheckingType v) {}
     /**

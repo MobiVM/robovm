@@ -92,9 +92,6 @@ import org.robovm.apple.audiotoolbox.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CMFormatDescriptionVendor Apple = new CMFormatDescriptionVendor("Apple");
     /*</constants>*/
     
@@ -121,9 +118,6 @@ import org.robovm.apple.audiotoolbox.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCMFormatDescriptionVendor_Apple", optional=true)
         public static native CFString Apple();
         /*</values>*/

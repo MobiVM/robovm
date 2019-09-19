@@ -47,9 +47,6 @@ public final class /*<name>*/NSComparisonPredicateOptions/*</name>*/ extends Bit
     public static final NSComparisonPredicateOptions None = new NSComparisonPredicateOptions(0L);
     public static final NSComparisonPredicateOptions CaseInsensitive = new NSComparisonPredicateOptions(1L);
     public static final NSComparisonPredicateOptions DiacriticInsensitive = new NSComparisonPredicateOptions(2L);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final NSComparisonPredicateOptions Normalized = new NSComparisonPredicateOptions(4L);
     /*</values>*/
 

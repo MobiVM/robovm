@@ -496,84 +496,72 @@ import org.robovm.apple.avfoundation.*;
     @Property(selector = "setCategoryBitMask:")
     public native void setCategoryBitMask(@MachineSizedUInt long v);
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 11.0. Use fStop instead
      */
     @Deprecated
     @Property(selector = "focalBlurRadius")
     public native @MachineSizedFloat double getFocalBlurRadius();
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 11.0. Use fStop instead
      */
     @Deprecated
     @Property(selector = "setFocalBlurRadius:")
     public native void setFocalBlurRadius(@MachineSizedFloat double v);
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 11.0. Use -[SCNCamera fieldOfView] or -[SCNCamera focalLength] instead
      */
     @Deprecated
     @Property(selector = "xFov")
     public native double getXFov();
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 11.0. Use -[SCNCamera fieldOfView] or -[SCNCamera focalLength] instead
      */
     @Deprecated
     @Property(selector = "setXFov:")
     public native void setXFov(double v);
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 11.0. Use -[SCNCamera fieldOfView] or -[SCNCamera focalLength] instead
      */
     @Deprecated
     @Property(selector = "yFov")
     public native double getYFov();
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 11.0. Use -[SCNCamera fieldOfView] or -[SCNCamera focalLength] instead
      */
     @Deprecated
     @Property(selector = "setYFov:")
     public native void setYFov(double v);
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 11.0. Use -[SCNCamera fStop] instead with fStop = sensorHeight / aperture.
      */
     @Deprecated
     @Property(selector = "aperture")
     public native @MachineSizedFloat double getAperture();
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 11.0. Use -[SCNCamera fStop] instead with fStop = sensorHeight / aperture.
      */
     @Deprecated
     @Property(selector = "setAperture:")
     public native void setAperture(@MachineSizedFloat double v);
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 11.0.
      */
     @Deprecated
     @Property(selector = "focalSize")
     public native @MachineSizedFloat double getFocalSize();
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 11.0.
      */
     @Deprecated
     @Property(selector = "setFocalSize:")
     public native void setFocalSize(@MachineSizedFloat double v);
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 11.0.
      */
     @Deprecated
     @Property(selector = "focalDistance")
     public native @MachineSizedFloat double getFocalDistance();
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 11.0.
      */
     @Deprecated
@@ -619,28 +607,24 @@ import org.robovm.apple.avfoundation.*;
     @Method(selector = "removeAnimationForKey:blendOutDuration:")
     public native void removeAnimationForKey(String key, @MachineSizedFloat double duration);
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 11.0.
      */
     @Deprecated
     @Method(selector = "removeAnimationForKey:fadeOutDuration:")
     public native void removeAnimation(String key, @MachineSizedFloat double duration);
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 11.0.
      */
     @Deprecated
     @Method(selector = "animationForKey:")
     public native CAAnimation getAnimation(String key);
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 11.0. Use -[SCNAnimationPlayer setPaused:] instead
      */
     @Deprecated
     @Method(selector = "pauseAnimationForKey:")
     public native void pauseAnimation(String key);
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 11.0. Use -[SCNAnimationPlayer setPaused:] instead
      */
     @Deprecated
@@ -654,7 +638,6 @@ import org.robovm.apple.avfoundation.*;
     @Method(selector = "setSpeed:forAnimationKey:")
     public native void setSpeed(@MachineSizedFloat double speed, String key);
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 11.0. Use -[SCNAnimationPlayer paused] instead
      */
     @Deprecated

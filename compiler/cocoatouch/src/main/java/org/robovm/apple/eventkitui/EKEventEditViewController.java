@@ -33,9 +33,7 @@ import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("EventKitUI") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/EKEventEditViewController/*</name>*/ 
@@ -49,9 +47,6 @@ import org.robovm.apple.uikit.*;
     public EKEventEditViewController() {}
     protected EKEventEditViewController(Handle h, long handle) { super(h, handle); }
     protected EKEventEditViewController(SkipInit skipInit) { super(skipInit); }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "initWithNavigationBarClass:toolbarClass:")
     public EKEventEditViewController(Class<? extends UINavigationBar> navigationBarClass, Class<? extends UIToolbar> toolbarClass) { super(navigationBarClass, toolbarClass); }
     @Method(selector = "initWithRootViewController:")

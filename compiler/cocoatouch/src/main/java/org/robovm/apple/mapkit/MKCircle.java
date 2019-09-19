@@ -35,9 +35,7 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("MapKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MKCircle/*</name>*/ 
@@ -70,9 +68,6 @@ import org.robovm.apple.dispatch.*;
     protected static native @Pointer long create(@ByVal MKMapRect mapRect);
     @Method(selector = "intersectsMapRect:")
     public native boolean intersects(@ByVal MKMapRect mapRect);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "canReplaceMapContent")
     public native boolean canReplaceMapContent();
     /*</methods>*/

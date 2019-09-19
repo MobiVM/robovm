@@ -50,28 +50,24 @@ import org.robovm.apple.uikit.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @since Available in iOS 5.0 and later.
      * @deprecated Deprecated in iOS 7.0.
      */
     @Deprecated
     @NotImplemented("handleInviteFromGameCenter:")
     public void handleInvite(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> playersToInvite) {}
     /**
-     * @since Available in iOS 6.0 and later.
      * @deprecated Deprecated in iOS 7.0.
      */
     @Deprecated
     @NotImplemented("handleTurnEventForMatch:didBecomeActive:")
     public void handleTurnEvent(GKTurnBasedMatch match, boolean didBecomeActive) {}
     /**
-     * @since Available in iOS 5.0 and later.
      * @deprecated Deprecated in iOS 7.0.
      */
     @Deprecated
     @NotImplemented("handleTurnEventForMatch:")
     public void handleTurnEvent(GKTurnBasedMatch match) {}
     /**
-     * @since Available in iOS 6.0 and later.
      * @deprecated Deprecated in iOS 7.0.
      */
     @Deprecated

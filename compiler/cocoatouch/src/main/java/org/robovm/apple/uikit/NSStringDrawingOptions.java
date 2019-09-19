@@ -42,9 +42,7 @@ import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 6.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
 public final class /*<name>*/NSStringDrawingOptions/*</name>*/ extends Bits</*<name>*/NSStringDrawingOptions/*</name>*/> {
@@ -53,9 +51,6 @@ public final class /*<name>*/NSStringDrawingOptions/*</name>*/ extends Bits</*<n
     public static final NSStringDrawingOptions UsesLineFragmentOrigin = new NSStringDrawingOptions(1L);
     public static final NSStringDrawingOptions UsesFontLeading = new NSStringDrawingOptions(2L);
     public static final NSStringDrawingOptions UsesDeviceMetrics = new NSStringDrawingOptions(8L);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public static final NSStringDrawingOptions TruncatesLastVisibleLine = new NSStringDrawingOptions(32L);
     /*</values>*/
 

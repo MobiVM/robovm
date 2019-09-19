@@ -41,9 +41,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVURLAsset/*</name>*/ 
@@ -64,9 +62,6 @@ import org.robovm.apple.audiotoolbox.*;
     /*<properties>*/
     @Property(selector = "URL")
     public native NSURL getURL();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "resourceLoader")
     public native AVAssetResourceLoader getResourceLoader();
     /**
@@ -84,19 +79,10 @@ import org.robovm.apple.audiotoolbox.*;
     /*<methods>*/
     @Method(selector = "initWithURL:options:")
     protected native @Pointer long init(NSURL URL, AVURLAssetOptions options);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "audiovisualTypes")
     public static native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getAudiovisualTypes();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "audiovisualMIMETypes")
     public static native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getAudiovisualMIMETypes();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "isPlayableExtendedMIMEType:")
     public static native boolean isPlayableExtendedMIMEType(String extendedMIMEType);
     @Method(selector = "compatibleTrackForCompositionTrack:")

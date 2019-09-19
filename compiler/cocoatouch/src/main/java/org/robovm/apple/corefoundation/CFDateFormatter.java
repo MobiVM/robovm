@@ -74,9 +74,6 @@ import org.robovm.apple.coretext.*;
         return ptr.get();
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CFDateFormatterCreateDateFormatFromTemplate", optional=true)
     private static native @org.robovm.rt.bro.annotation.Marshaler(CFString.AsStringNoRetainMarshaler.class) String getDateFormat(CFAllocator allocator, String tmplate, @MachineSizedUInt long options, CFLocale locale);
     @Bridge(symbol="CFDateFormatterGetTypeID", optional=true)

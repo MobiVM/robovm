@@ -35,9 +35,7 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 6.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("MapKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MKDirectionsRequest/*</name>*/ 
@@ -51,9 +49,6 @@ import org.robovm.apple.dispatch.*;
     public MKDirectionsRequest() {}
     protected MKDirectionsRequest(Handle h, long handle) { super(h, handle); }
     protected MKDirectionsRequest(SkipInit skipInit) { super(skipInit); }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "initWithContentsOfURL:")
     public MKDirectionsRequest(NSURL url) { super((SkipInit) null); initObject(init(url)); }
     /*</constructors>*/
@@ -66,57 +61,27 @@ import org.robovm.apple.dispatch.*;
     public native MKMapItem getDestination();
     @Property(selector = "setDestination:")
     public native void setDestination(MKMapItem v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "transportType")
     public native MKDirectionsTransportType getTransportType();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setTransportType:")
     public native void setTransportType(MKDirectionsTransportType v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "requestsAlternateRoutes")
     public native boolean requestsAlternateRoutes();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setRequestsAlternateRoutes:")
     public native void setRequestsAlternateRoutes(boolean v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "departureDate")
     public native NSDate getDepartureDate();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setDepartureDate:")
     public native void setDepartureDate(NSDate v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "arrivalDate")
     public native NSDate getArrivalDate();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setArrivalDate:")
     public native void setArrivalDate(NSDate v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "initWithContentsOfURL:")
     protected native @Pointer long init(NSURL url);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "isDirectionsRequestURL:")
     public static native boolean isDirectionsRequestURL(NSURL url);
     /*</methods>*/

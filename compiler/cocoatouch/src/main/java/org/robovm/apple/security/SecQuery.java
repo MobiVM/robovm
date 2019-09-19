@@ -137,9 +137,6 @@ import org.robovm.apple.dispatch.*;
     }
     
 
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public SecClass getClassType() {
         if (has(Keys.Class())) {
             CFType val = get(Keys.Class(), CFType.class);
@@ -147,9 +144,6 @@ import org.robovm.apple.dispatch.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public SecQuery setClassType(SecClass classType) {
         set(Keys.Class(), classType.value());
         return this;
@@ -160,9 +154,6 @@ import org.robovm.apple.dispatch.*;
     @Library("Security")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kSecClass", optional=true)
         public static native CFType Class();
     }

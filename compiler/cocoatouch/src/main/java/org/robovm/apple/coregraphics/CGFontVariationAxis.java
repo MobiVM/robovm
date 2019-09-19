@@ -108,9 +108,6 @@ import org.robovm.apple.uikit.*;
     }
     
 
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public String getName() {
         if (has(Keys.Name())) {
             CFString val = get(Keys.Name(), CFString.class);
@@ -118,16 +115,10 @@ import org.robovm.apple.uikit.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public CGFontVariationAxis setName(String name) {
         set(Keys.Name(), new CFString(name));
         return this;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public double getMinValue() {
         if (has(Keys.MinValue())) {
             CFNumber val = get(Keys.MinValue(), CFNumber.class);
@@ -135,16 +126,10 @@ import org.robovm.apple.uikit.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public CGFontVariationAxis setMinValue(double minValue) {
         set(Keys.MinValue(), CFNumber.valueOf(minValue));
         return this;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public double getMaxValue() {
         if (has(Keys.MaxValue())) {
             CFNumber val = get(Keys.MaxValue(), CFNumber.class);
@@ -152,16 +137,10 @@ import org.robovm.apple.uikit.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public CGFontVariationAxis setMaxValue(double maxValue) {
         set(Keys.MaxValue(), CFNumber.valueOf(maxValue));
         return this;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public double getDefaultValue() {
         if (has(Keys.DefaultValue())) {
             CFNumber val = get(Keys.DefaultValue(), CFNumber.class);
@@ -169,9 +148,6 @@ import org.robovm.apple.uikit.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public CGFontVariationAxis setDefaultValue(double defaultValue) {
         set(Keys.DefaultValue(), CFNumber.valueOf(defaultValue));
         return this;
@@ -182,24 +158,12 @@ import org.robovm.apple.uikit.*;
     @Library("CoreGraphics")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCGFontVariationAxisName", optional=true)
         public static native CFString Name();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCGFontVariationAxisMinValue", optional=true)
         public static native CFString MinValue();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCGFontVariationAxisMaxValue", optional=true)
         public static native CFString MaxValue();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCGFontVariationAxisDefaultValue", optional=true)
         public static native CFString DefaultValue();
     }

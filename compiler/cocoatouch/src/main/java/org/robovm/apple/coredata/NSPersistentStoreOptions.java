@@ -109,9 +109,6 @@ import org.robovm.apple.uikit.*;
     }
     
 
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public boolean isReadOnly() {
         if (has(Keys.ReadOnly())) {
             NSNumber val = (NSNumber) get(Keys.ReadOnly());
@@ -119,16 +116,10 @@ import org.robovm.apple.uikit.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public NSPersistentStoreOptions setReadOnly(boolean readOnly) {
         set(Keys.ReadOnly(), NSNumber.valueOf(readOnly));
         return this;
     }
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public long getTimeout() {
         if (has(Keys.Timeout())) {
             NSNumber val = (NSNumber) get(Keys.Timeout());
@@ -136,16 +127,10 @@ import org.robovm.apple.uikit.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public NSPersistentStoreOptions setTimeout(long timeout) {
         set(Keys.Timeout(), NSNumber.valueOf(timeout));
         return this;
     }
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public Map<String, NSObject> getSQLitePragmas() {
         if (has(Keys.SQLitePragmas())) {
             NSDictionary val = (NSDictionary) get(Keys.SQLitePragmas());
@@ -153,16 +138,10 @@ import org.robovm.apple.uikit.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public NSPersistentStoreOptions setSQLitePragmas(Map<String, NSObject> sQLitePragmas) {
         set(Keys.SQLitePragmas(), NSDictionary.fromStringMap(sQLitePragmas));
         return this;
     }
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public boolean isSQLiteAnalyzeEnabled() {
         if (has(Keys.SQLiteAnalyze())) {
             NSNumber val = (NSNumber) get(Keys.SQLiteAnalyze());
@@ -170,16 +149,10 @@ import org.robovm.apple.uikit.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public NSPersistentStoreOptions setSQLiteAnalyzeEnabled(boolean sQLiteAnalyzeEnabled) {
         set(Keys.SQLiteAnalyze(), NSNumber.valueOf(sQLiteAnalyzeEnabled));
         return this;
     }
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public boolean isSQLiteManualVacuumEnabled() {
         if (has(Keys.SQLiteManualVacuum())) {
             NSNumber val = (NSNumber) get(Keys.SQLiteManualVacuum());
@@ -187,16 +160,10 @@ import org.robovm.apple.uikit.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public NSPersistentStoreOptions setSQLiteManualVacuumEnabled(boolean sQLiteManualVacuumEnabled) {
         set(Keys.SQLiteManualVacuum(), NSNumber.valueOf(sQLiteManualVacuumEnabled));
         return this;
     }
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public boolean ignoresPersistentStoreVersioning() {
         if (has(Keys.IgnorePersistentStoreVersioning())) {
             NSNumber val = (NSNumber) get(Keys.IgnorePersistentStoreVersioning());
@@ -204,16 +171,10 @@ import org.robovm.apple.uikit.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public NSPersistentStoreOptions setIgnoresPersistentStoreVersioning(boolean ignoresPersistentStoreVersioning) {
         set(Keys.IgnorePersistentStoreVersioning(), NSNumber.valueOf(ignoresPersistentStoreVersioning));
         return this;
     }
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public boolean migratesPersistentStoresAutomatically() {
         if (has(Keys.MigratePersistentStoresAutomatically())) {
             NSNumber val = (NSNumber) get(Keys.MigratePersistentStoresAutomatically());
@@ -221,16 +182,10 @@ import org.robovm.apple.uikit.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public NSPersistentStoreOptions setMigratesPersistentStoresAutomatically(boolean migratesPersistentStoresAutomatically) {
         set(Keys.MigratePersistentStoresAutomatically(), NSNumber.valueOf(migratesPersistentStoresAutomatically));
         return this;
     }
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public boolean infersMappingModelAutomatically() {
         if (has(Keys.InferMappingModelAutomatically())) {
             NSNumber val = (NSNumber) get(Keys.InferMappingModelAutomatically());
@@ -238,16 +193,10 @@ import org.robovm.apple.uikit.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public NSPersistentStoreOptions setInfersMappingModelAutomatically(boolean infersMappingModelAutomatically) {
         set(Keys.InferMappingModelAutomatically(), NSNumber.valueOf(infersMappingModelAutomatically));
         return this;
     }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public boolean isForceDestroy() {
         if (has(Keys.ForceDestroy())) {
             NSNumber val = (NSNumber) get(Keys.ForceDestroy());
@@ -255,16 +204,10 @@ import org.robovm.apple.uikit.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public NSPersistentStoreOptions setForceDestroy(boolean forceDestroy) {
         set(Keys.ForceDestroy(), NSNumber.valueOf(forceDestroy));
         return this;
     }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public NSFileProtection getFileProtection() {
         if (has(Keys.FileProtection())) {
             NSString val = (NSString) get(Keys.FileProtection());
@@ -272,15 +215,11 @@ import org.robovm.apple.uikit.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public NSPersistentStoreOptions setFileProtection(NSFileProtection fileProtection) {
         set(Keys.FileProtection(), fileProtection.value());
         return this;
     }
     /**
-     * @since Available in iOS 5.0 and later.
      * @deprecated Deprecated in iOS 10.0. Please see the release notes and Core Data documentation.
      */
     @Deprecated
@@ -292,7 +231,6 @@ import org.robovm.apple.uikit.*;
         return null;
     }
     /**
-     * @since Available in iOS 5.0 and later.
      * @deprecated Deprecated in iOS 10.0. Please see the release notes and Core Data documentation.
      */
     @Deprecated
@@ -301,7 +239,6 @@ import org.robovm.apple.uikit.*;
         return this;
     }
     /**
-     * @since Available in iOS 5.0 and later.
      * @deprecated Deprecated in iOS 10.0. Please see the release notes and Core Data documentation.
      */
     @Deprecated
@@ -313,7 +250,6 @@ import org.robovm.apple.uikit.*;
         return null;
     }
     /**
-     * @since Available in iOS 5.0 and later.
      * @deprecated Deprecated in iOS 10.0. Please see the release notes and Core Data documentation.
      */
     @Deprecated
@@ -322,7 +258,6 @@ import org.robovm.apple.uikit.*;
         return this;
     }
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 10.0. Please see the release notes and Core Data documentation.
      */
     @Deprecated
@@ -334,7 +269,6 @@ import org.robovm.apple.uikit.*;
         return null;
     }
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 10.0. Please see the release notes and Core Data documentation.
      */
     @Deprecated
@@ -343,7 +277,6 @@ import org.robovm.apple.uikit.*;
         return this;
     }
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 10.0. Please see the release notes and Core Data documentation.
      */
     @Deprecated
@@ -355,7 +288,6 @@ import org.robovm.apple.uikit.*;
         return false;
     }
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 10.0. Please see the release notes and Core Data documentation.
      */
     @Deprecated
@@ -364,7 +296,6 @@ import org.robovm.apple.uikit.*;
         return this;
     }
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 10.0. Please see the release notes and Core Data documentation.
      */
     @Deprecated
@@ -376,7 +307,6 @@ import org.robovm.apple.uikit.*;
         return null;
     }
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 10.0. Please see the release notes and Core Data documentation.
      */
     @Deprecated
@@ -385,7 +315,6 @@ import org.robovm.apple.uikit.*;
         return this;
     }
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 10.0. Please see the release notes and Core Data documentation.
      */
     @Deprecated
@@ -397,7 +326,6 @@ import org.robovm.apple.uikit.*;
         return false;
     }
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 10.0. Please see the release notes and Core Data documentation.
      */
     @Deprecated
@@ -411,44 +339,20 @@ import org.robovm.apple.uikit.*;
     @Library("CoreData")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 3.0 and later.
-         */
         @GlobalValue(symbol="NSReadOnlyPersistentStoreOption", optional=true)
         public static native NSString ReadOnly();
-        /**
-         * @since Available in iOS 3.0 and later.
-         */
         @GlobalValue(symbol="NSPersistentStoreTimeoutOption", optional=true)
         public static native NSString Timeout();
-        /**
-         * @since Available in iOS 3.0 and later.
-         */
         @GlobalValue(symbol="NSSQLitePragmasOption", optional=true)
         public static native NSString SQLitePragmas();
-        /**
-         * @since Available in iOS 3.0 and later.
-         */
         @GlobalValue(symbol="NSSQLiteAnalyzeOption", optional=true)
         public static native NSString SQLiteAnalyze();
-        /**
-         * @since Available in iOS 3.0 and later.
-         */
         @GlobalValue(symbol="NSSQLiteManualVacuumOption", optional=true)
         public static native NSString SQLiteManualVacuum();
-        /**
-         * @since Available in iOS 3.0 and later.
-         */
         @GlobalValue(symbol="NSIgnorePersistentStoreVersioningOption", optional=true)
         public static native NSString IgnorePersistentStoreVersioning();
-        /**
-         * @since Available in iOS 3.0 and later.
-         */
         @GlobalValue(symbol="NSMigratePersistentStoresAutomaticallyOption", optional=true)
         public static native NSString MigratePersistentStoresAutomatically();
-        /**
-         * @since Available in iOS 3.0 and later.
-         */
         @GlobalValue(symbol="NSInferMappingModelAutomaticallyOption", optional=true)
         public static native NSString InferMappingModelAutomatically();
         /**
@@ -456,14 +360,8 @@ import org.robovm.apple.uikit.*;
          */
         @GlobalValue(symbol="NSPersistentStoreConnectionPoolMaxSizeKey", optional=true)
         public static native NSString ConnectionPoolMaxSize();
-        /**
-         * @since Available in iOS 6.0 and later.
-         */
         @GlobalValue(symbol="NSPersistentStoreForceDestroyOption", optional=true)
         public static native NSString ForceDestroy();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="NSPersistentStoreFileProtectionKey", optional=true)
         public static native NSString FileProtection();
         /**
@@ -497,42 +395,36 @@ import org.robovm.apple.uikit.*;
         @GlobalValue(symbol="NSPersistentHistoryTokenKey", optional=true)
         public static native NSString HistoryTokenKey();
         /**
-         * @since Available in iOS 5.0 and later.
          * @deprecated Deprecated in iOS 10.0. Please see the release notes and Core Data documentation.
          */
         @Deprecated
         @GlobalValue(symbol="NSPersistentStoreUbiquitousContentNameKey", optional=true)
         public static native NSString UbiquitousContentName();
         /**
-         * @since Available in iOS 5.0 and later.
          * @deprecated Deprecated in iOS 10.0. Please see the release notes and Core Data documentation.
          */
         @Deprecated
         @GlobalValue(symbol="NSPersistentStoreUbiquitousContentURLKey", optional=true)
         public static native NSString UbiquitousContentURL();
         /**
-         * @since Available in iOS 7.0 and later.
          * @deprecated Deprecated in iOS 10.0. Please see the release notes and Core Data documentation.
          */
         @Deprecated
         @GlobalValue(symbol="NSPersistentStoreUbiquitousPeerTokenOption", optional=true)
         public static native NSString UbiquitousPeerToken();
         /**
-         * @since Available in iOS 7.0 and later.
          * @deprecated Deprecated in iOS 10.0. Please see the release notes and Core Data documentation.
          */
         @Deprecated
         @GlobalValue(symbol="NSPersistentStoreRemoveUbiquitousMetadataOption", optional=true)
         public static native NSString RemoveUbiquitousMetadata();
         /**
-         * @since Available in iOS 7.0 and later.
          * @deprecated Deprecated in iOS 10.0. Please see the release notes and Core Data documentation.
          */
         @Deprecated
         @GlobalValue(symbol="NSPersistentStoreUbiquitousContainerIdentifierKey", optional=true)
         public static native NSString UbiquitousContainerIdentifier();
         /**
-         * @since Available in iOS 7.0 and later.
          * @deprecated Deprecated in iOS 10.0. Please see the release notes and Core Data documentation.
          */
         @Deprecated

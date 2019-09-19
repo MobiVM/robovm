@@ -83,42 +83,18 @@ import org.robovm.apple.uikit.*;
     }
     
     /*<methods>*/
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @GlobalValue(symbol="CGSizeZero", optional=true)
     public static native @ByVal CGSize Zero();
     
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public boolean equalsTo(CGSize size2) { return equalsTo(this, size2); }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGSizeEqualToSize", optional=true)
     private static native boolean equalsTo(@ByVal CGSize size1, @ByVal CGSize size2);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public NSDictionary<NSString, NSNumber> toDictionary() { return toDictionary(this); }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGSizeCreateDictionaryRepresentation", optional=true)
     private static native NSDictionary<NSString, NSNumber> toDictionary(@ByVal CGSize size);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGSizeMakeWithDictionaryRepresentation", optional=true)
     private static native boolean fromDictionary(NSDictionary<NSString, NSNumber> dict, CGSize size);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public CGSize apply(CGAffineTransform t) { return apply(this, t); }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGSizeApplyAffineTransform", optional=true)
     private static native @ByVal CGSize apply(@ByVal CGSize size, @ByVal CGAffineTransform t);
     /*</methods>*/

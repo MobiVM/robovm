@@ -42,9 +42,7 @@ import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 7.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
 public final class /*<name>*/UIFontDescriptorSymbolicTraits/*</name>*/ extends Bits</*<name>*/UIFontDescriptorSymbolicTraits/*</name>*/> {

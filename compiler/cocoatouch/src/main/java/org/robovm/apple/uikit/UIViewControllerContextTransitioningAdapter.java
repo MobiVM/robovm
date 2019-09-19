@@ -65,9 +65,6 @@ import org.robovm.apple.linkpresentation.*;
     public boolean isTransitionWasCancelled() { return false; }
     @NotImplemented("presentationStyle")
     public UIModalPresentationStyle getPresentationStyle() { return null; }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @NotImplemented("targetTransform")
     public @ByVal CGAffineTransform getTargetTransform() { return null; }
     /*</properties>*/
@@ -88,9 +85,6 @@ import org.robovm.apple.linkpresentation.*;
     public void completeTransition(boolean didComplete) {}
     @NotImplemented("viewControllerForKey:")
     public UIViewController getViewController(UITransitionContextViewControllerType key) { return null; }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @NotImplemented("viewForKey:")
     public UIView getView(UITransitionContextViewType key) { return null; }
     @NotImplemented("initialFrameForViewController:")

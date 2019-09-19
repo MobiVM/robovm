@@ -38,28 +38,14 @@ import org.robovm.apple.imageio.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/PHVideoRequestOptionsDeliveryMode/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     Automatic(0L),
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     HighQualityFormat(1L),
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     MediumQualityFormat(2L),
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     FastFormat(3L);
     /*</values>*/
 

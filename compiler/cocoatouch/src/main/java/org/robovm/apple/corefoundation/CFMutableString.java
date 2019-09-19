@@ -97,9 +97,6 @@ import org.robovm.apple.coretext.*;
     public native void capitalize(CFLocale locale);
     @Bridge(symbol="CFStringNormalize", optional=true)
     public native void normalize(CFStringNormalizationForm theForm);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CFStringFold", optional=true)
     public native void fold(CFStringCompareFlags theFlags, CFLocale theLocale);
     @Bridge(symbol="CFStringTransform", optional=true)

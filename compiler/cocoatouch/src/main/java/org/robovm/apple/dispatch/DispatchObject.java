@@ -45,29 +45,14 @@ import org.robovm.rt.bro.ptr.*;
     /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="dispatch_retain", optional=true)
     public native void retain();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="dispatch_release", optional=true)
     public native void release();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="dispatch_suspend", optional=true)
     public native void suspend();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="dispatch_resume", optional=true)
     public native void resume();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="dispatch_set_target_queue", optional=true)
     public native void setTargetQueue(DispatchQueue queue);
     /*</methods>*/

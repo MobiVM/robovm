@@ -42,9 +42,7 @@ import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 7.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIKeyCommand/*</name>*/ 
@@ -140,29 +138,14 @@ import org.robovm.apple.linkpresentation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @GlobalValue(symbol="UIKeyInputUpArrow", optional=true)
     public static native String UpArrow();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @GlobalValue(symbol="UIKeyInputDownArrow", optional=true)
     public static native String DownArrow();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @GlobalValue(symbol="UIKeyInputLeftArrow", optional=true)
     public static native String LeftArrow();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @GlobalValue(symbol="UIKeyInputRightArrow", optional=true)
     public static native String RightArrow();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @GlobalValue(symbol="UIKeyInputEscape", optional=true)
     public static native String Escape();
     

@@ -42,9 +42,7 @@ import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 5.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIStepper/*</name>*/ 
@@ -95,44 +93,20 @@ import org.robovm.apple.linkpresentation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "setBackgroundImage:forState:")
     public native void setBackgroundImage(UIImage image, UIControlState state);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "backgroundImageForState:")
     public native UIImage getBackgroundImage(UIControlState state);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "setDividerImage:forLeftSegmentState:rightSegmentState:")
     public native void setDividerImage(UIImage image, UIControlState leftState, UIControlState rightState);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "dividerImageForLeftSegmentState:rightSegmentState:")
     public native UIImage getDividerImage(UIControlState leftState, UIControlState rightState);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "setIncrementImage:forState:")
     public native void setIncrementImage(UIImage image, UIControlState state);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "incrementImageForState:")
     public native UIImage getIncrementImage(UIControlState state);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "setDecrementImage:forState:")
     public native void setDecrementImage(UIImage image, UIControlState state);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "decrementImageForState:")
     public native UIImage getDecrementImage(UIControlState state);
     /*</methods>*/

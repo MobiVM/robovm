@@ -43,7 +43,6 @@ import org.robovm.apple.linkpresentation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 2.0 and later.
  * @deprecated Deprecated in iOS 7.0. The segmentedControlStyle property no longer has any effect
  */
 /*</javadoc>*/

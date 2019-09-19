@@ -173,7 +173,6 @@ import org.robovm.apple.linkpresentation.*;
         return this;
     }
     /**
-     * @since Available in iOS 4.1 and later.
      * @deprecated Deprecated in iOS 11.0.
      */
     @Deprecated
@@ -185,7 +184,6 @@ import org.robovm.apple.linkpresentation.*;
         return null;
     }
     /**
-     * @since Available in iOS 4.1 and later.
      * @deprecated Deprecated in iOS 11.0.
      */
     @Deprecated
@@ -193,9 +191,6 @@ import org.robovm.apple.linkpresentation.*;
         set(Keys.ReferenceURL(), referenceURL);
         return this;
     }
-    /**
-     * @since Available in iOS 4.1 and later.
-     */
     public Map<String, NSObject> getMediaMetadata() {
         if (has(Keys.MediaMetadata())) {
             NSDictionary val = (NSDictionary) get(Keys.MediaMetadata());
@@ -203,9 +198,6 @@ import org.robovm.apple.linkpresentation.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 4.1 and later.
-     */
     public UIImagePickerControllerEditingInfo setMediaMetadata(Map<String, NSObject> mediaMetadata) {
         set(Keys.MediaMetadata(), NSDictionary.fromStringMap(mediaMetadata));
         return this;
@@ -227,15 +219,11 @@ import org.robovm.apple.linkpresentation.*;
         @GlobalValue(symbol="UIImagePickerControllerMediaURL", optional=true)
         public static native NSString MediaURL();
         /**
-         * @since Available in iOS 4.1 and later.
          * @deprecated Deprecated in iOS 11.0.
          */
         @Deprecated
         @GlobalValue(symbol="UIImagePickerControllerReferenceURL", optional=true)
         public static native NSString ReferenceURL();
-        /**
-         * @since Available in iOS 4.1 and later.
-         */
         @GlobalValue(symbol="UIImagePickerControllerMediaMetadata", optional=true)
         public static native NSString MediaMetadata();
         /**

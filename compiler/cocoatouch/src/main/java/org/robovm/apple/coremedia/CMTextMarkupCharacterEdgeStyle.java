@@ -90,25 +90,10 @@ import org.robovm.apple.audiotoolbox.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final CMTextMarkupCharacterEdgeStyle None = new CMTextMarkupCharacterEdgeStyle("None");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final CMTextMarkupCharacterEdgeStyle Raised = new CMTextMarkupCharacterEdgeStyle("Raised");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final CMTextMarkupCharacterEdgeStyle Depressed = new CMTextMarkupCharacterEdgeStyle("Depressed");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final CMTextMarkupCharacterEdgeStyle Uniform = new CMTextMarkupCharacterEdgeStyle("Uniform");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final CMTextMarkupCharacterEdgeStyle DropShadow = new CMTextMarkupCharacterEdgeStyle("DropShadow");
     /*</constants>*/
     
@@ -135,29 +120,14 @@ import org.robovm.apple.audiotoolbox.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kCMTextMarkupCharacterEdgeStyle_None", optional=true)
         public static native CFString None();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kCMTextMarkupCharacterEdgeStyle_Raised", optional=true)
         public static native CFString Raised();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kCMTextMarkupCharacterEdgeStyle_Depressed", optional=true)
         public static native CFString Depressed();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kCMTextMarkupCharacterEdgeStyle_Uniform", optional=true)
         public static native CFString Uniform();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kCMTextMarkupCharacterEdgeStyle_DropShadow", optional=true)
         public static native CFString DropShadow();
         /*</values>*/

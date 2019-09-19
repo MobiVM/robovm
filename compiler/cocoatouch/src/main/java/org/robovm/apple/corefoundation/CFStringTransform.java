@@ -106,9 +106,6 @@ import org.robovm.apple.coretext.*;
     public static final CFStringTransform LatinGreek = new CFStringTransform("LatinGreek");
     public static final CFStringTransform ToXMLHex = new CFStringTransform("ToXMLHex");
     public static final CFStringTransform ToUnicodeName = new CFStringTransform("ToUnicodeName");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CFStringTransform StripDiacritics = new CFStringTransform("StripDiacritics");
     /*</constants>*/
     
@@ -165,9 +162,6 @@ import org.robovm.apple.coretext.*;
         public static native CFString ToXMLHex();
         @GlobalValue(symbol="kCFStringTransformToUnicodeName", optional=true)
         public static native CFString ToUnicodeName();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCFStringTransformStripDiacritics", optional=true)
         public static native CFString StripDiacritics();
         /*</values>*/

@@ -88,209 +88,56 @@ import org.robovm.apple.coregraphics.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyIPTC ObjectTypeReference = new CGImagePropertyIPTC("ObjectTypeReference");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyIPTC ObjectAttributeReference = new CGImagePropertyIPTC("ObjectAttributeReference");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyIPTC ObjectName = new CGImagePropertyIPTC("ObjectName");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyIPTC EditStatus = new CGImagePropertyIPTC("EditStatus");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyIPTC EditorialUpdate = new CGImagePropertyIPTC("EditorialUpdate");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyIPTC Urgency = new CGImagePropertyIPTC("Urgency");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyIPTC SubjectReference = new CGImagePropertyIPTC("SubjectReference");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyIPTC Category = new CGImagePropertyIPTC("Category");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyIPTC SupplementalCategory = new CGImagePropertyIPTC("SupplementalCategory");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyIPTC FixtureIdentifier = new CGImagePropertyIPTC("FixtureIdentifier");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyIPTC Keywords = new CGImagePropertyIPTC("Keywords");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyIPTC ContentLocationCode = new CGImagePropertyIPTC("ContentLocationCode");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyIPTC ContentLocationName = new CGImagePropertyIPTC("ContentLocationName");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyIPTC ReleaseDate = new CGImagePropertyIPTC("ReleaseDate");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyIPTC ReleaseTime = new CGImagePropertyIPTC("ReleaseTime");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyIPTC ExpirationDate = new CGImagePropertyIPTC("ExpirationDate");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyIPTC ExpirationTime = new CGImagePropertyIPTC("ExpirationTime");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyIPTC SpecialInstructions = new CGImagePropertyIPTC("SpecialInstructions");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyIPTC ActionAdvised = new CGImagePropertyIPTC("ActionAdvised");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyIPTC ReferenceService = new CGImagePropertyIPTC("ReferenceService");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyIPTC ReferenceDate = new CGImagePropertyIPTC("ReferenceDate");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyIPTC ReferenceNumber = new CGImagePropertyIPTC("ReferenceNumber");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyIPTC DateCreated = new CGImagePropertyIPTC("DateCreated");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyIPTC TimeCreated = new CGImagePropertyIPTC("TimeCreated");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyIPTC DigitalCreationDate = new CGImagePropertyIPTC("DigitalCreationDate");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyIPTC DigitalCreationTime = new CGImagePropertyIPTC("DigitalCreationTime");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyIPTC OriginatingProgram = new CGImagePropertyIPTC("OriginatingProgram");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyIPTC ProgramVersion = new CGImagePropertyIPTC("ProgramVersion");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyIPTC ObjectCycle = new CGImagePropertyIPTC("ObjectCycle");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyIPTC Byline = new CGImagePropertyIPTC("Byline");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyIPTC BylineTitle = new CGImagePropertyIPTC("BylineTitle");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyIPTC City = new CGImagePropertyIPTC("City");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyIPTC SubLocation = new CGImagePropertyIPTC("SubLocation");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyIPTC ProvinceState = new CGImagePropertyIPTC("ProvinceState");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyIPTC CountryPrimaryLocationCode = new CGImagePropertyIPTC("CountryPrimaryLocationCode");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyIPTC CountryPrimaryLocationName = new CGImagePropertyIPTC("CountryPrimaryLocationName");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyIPTC OriginalTransmissionReference = new CGImagePropertyIPTC("OriginalTransmissionReference");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyIPTC Headline = new CGImagePropertyIPTC("Headline");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyIPTC Credit = new CGImagePropertyIPTC("Credit");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyIPTC Source = new CGImagePropertyIPTC("Source");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyIPTC CopyrightNotice = new CGImagePropertyIPTC("CopyrightNotice");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyIPTC Contact = new CGImagePropertyIPTC("Contact");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyIPTC CaptionAbstract = new CGImagePropertyIPTC("CaptionAbstract");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyIPTC WriterEditor = new CGImagePropertyIPTC("WriterEditor");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyIPTC ImageType = new CGImagePropertyIPTC("ImageType");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyIPTC ImageOrientation = new CGImagePropertyIPTC("ImageOrientation");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyIPTC LanguageIdentifier = new CGImagePropertyIPTC("LanguageIdentifier");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyIPTC StarRating = new CGImagePropertyIPTC("StarRating");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyIPTC CreatorContactInfo = new CGImagePropertyIPTC("CreatorContactInfo");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyIPTC RightsUsageTerms = new CGImagePropertyIPTC("RightsUsageTerms");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyIPTC Scene = new CGImagePropertyIPTC("Scene");
     /**
      * @since Available in iOS 11.3 and later.
@@ -1037,259 +884,106 @@ import org.robovm.apple.coregraphics.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyIPTCObjectTypeReference", optional=true)
         public static native CFString ObjectTypeReference();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyIPTCObjectAttributeReference", optional=true)
         public static native CFString ObjectAttributeReference();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyIPTCObjectName", optional=true)
         public static native CFString ObjectName();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyIPTCEditStatus", optional=true)
         public static native CFString EditStatus();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyIPTCEditorialUpdate", optional=true)
         public static native CFString EditorialUpdate();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyIPTCUrgency", optional=true)
         public static native CFString Urgency();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyIPTCSubjectReference", optional=true)
         public static native CFString SubjectReference();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyIPTCCategory", optional=true)
         public static native CFString Category();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyIPTCSupplementalCategory", optional=true)
         public static native CFString SupplementalCategory();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyIPTCFixtureIdentifier", optional=true)
         public static native CFString FixtureIdentifier();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyIPTCKeywords", optional=true)
         public static native CFString Keywords();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyIPTCContentLocationCode", optional=true)
         public static native CFString ContentLocationCode();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyIPTCContentLocationName", optional=true)
         public static native CFString ContentLocationName();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyIPTCReleaseDate", optional=true)
         public static native CFString ReleaseDate();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyIPTCReleaseTime", optional=true)
         public static native CFString ReleaseTime();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyIPTCExpirationDate", optional=true)
         public static native CFString ExpirationDate();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyIPTCExpirationTime", optional=true)
         public static native CFString ExpirationTime();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyIPTCSpecialInstructions", optional=true)
         public static native CFString SpecialInstructions();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyIPTCActionAdvised", optional=true)
         public static native CFString ActionAdvised();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyIPTCReferenceService", optional=true)
         public static native CFString ReferenceService();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyIPTCReferenceDate", optional=true)
         public static native CFString ReferenceDate();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyIPTCReferenceNumber", optional=true)
         public static native CFString ReferenceNumber();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyIPTCDateCreated", optional=true)
         public static native CFString DateCreated();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyIPTCTimeCreated", optional=true)
         public static native CFString TimeCreated();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyIPTCDigitalCreationDate", optional=true)
         public static native CFString DigitalCreationDate();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyIPTCDigitalCreationTime", optional=true)
         public static native CFString DigitalCreationTime();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyIPTCOriginatingProgram", optional=true)
         public static native CFString OriginatingProgram();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyIPTCProgramVersion", optional=true)
         public static native CFString ProgramVersion();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyIPTCObjectCycle", optional=true)
         public static native CFString ObjectCycle();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyIPTCByline", optional=true)
         public static native CFString Byline();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyIPTCBylineTitle", optional=true)
         public static native CFString BylineTitle();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyIPTCCity", optional=true)
         public static native CFString City();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyIPTCSubLocation", optional=true)
         public static native CFString SubLocation();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyIPTCProvinceState", optional=true)
         public static native CFString ProvinceState();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyIPTCCountryPrimaryLocationCode", optional=true)
         public static native CFString CountryPrimaryLocationCode();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyIPTCCountryPrimaryLocationName", optional=true)
         public static native CFString CountryPrimaryLocationName();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyIPTCOriginalTransmissionReference", optional=true)
         public static native CFString OriginalTransmissionReference();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyIPTCHeadline", optional=true)
         public static native CFString Headline();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyIPTCCredit", optional=true)
         public static native CFString Credit();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyIPTCSource", optional=true)
         public static native CFString Source();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyIPTCCopyrightNotice", optional=true)
         public static native CFString CopyrightNotice();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyIPTCContact", optional=true)
         public static native CFString Contact();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyIPTCCaptionAbstract", optional=true)
         public static native CFString CaptionAbstract();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyIPTCWriterEditor", optional=true)
         public static native CFString WriterEditor();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyIPTCImageType", optional=true)
         public static native CFString ImageType();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyIPTCImageOrientation", optional=true)
         public static native CFString ImageOrientation();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyIPTCLanguageIdentifier", optional=true)
         public static native CFString LanguageIdentifier();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyIPTCStarRating", optional=true)
         public static native CFString StarRating();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyIPTCCreatorContactInfo", optional=true)
         public static native CFString CreatorContactInfo();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyIPTCRightsUsageTerms", optional=true)
         public static native CFString RightsUsageTerms();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyIPTCScene", optional=true)
         public static native CFString Scene();
         /**

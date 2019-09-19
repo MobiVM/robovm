@@ -97,21 +97,9 @@ import org.robovm.apple.audiotoolbox.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final AVOutputSettingsPreset Size640x480 = new AVOutputSettingsPreset("Size640x480");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final AVOutputSettingsPreset Size960x540 = new AVOutputSettingsPreset("Size960x540");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final AVOutputSettingsPreset Size1280x720 = new AVOutputSettingsPreset("Size1280x720");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final AVOutputSettingsPreset Size1920x1080 = new AVOutputSettingsPreset("Size1920x1080");
     /**
      * @since Available in iOS 9.0 and later.
@@ -158,24 +146,12 @@ import org.robovm.apple.audiotoolbox.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="AVOutputSettingsPreset640x480", optional=true)
         public static native NSString Size640x480();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="AVOutputSettingsPreset960x540", optional=true)
         public static native NSString Size960x540();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="AVOutputSettingsPreset1280x720", optional=true)
         public static native NSString Size1280x720();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="AVOutputSettingsPreset1920x1080", optional=true)
         public static native NSString Size1920x1080();
         /**

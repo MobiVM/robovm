@@ -126,9 +126,6 @@ import org.robovm.apple.avfoundation.*;
         set(Keys.ColorSpace(), colorSpace);
         return this;
     }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @WeaklyLinked
     public CGImageProperties getProperties() {
         if (has(Keys.Properties())) {
@@ -137,9 +134,6 @@ import org.robovm.apple.avfoundation.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @WeaklyLinked
     public CIImageOptions setProperties(CGImageProperties properties) {
         set(Keys.Properties(), properties.getDictionary());
@@ -158,9 +152,6 @@ import org.robovm.apple.avfoundation.*;
          */
         @GlobalValue(symbol="kCIImageNearestSampling", optional=true)
         public static native CFString NearestSampling();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="kCIImageProperties", optional=true)
         public static native CFString Properties();
         /**

@@ -46,7 +46,6 @@ public enum /*<name>*/NSURLRequestNetworkServiceType/*</name>*/ implements Value
     /*<values>*/
     Default(0L),
     /**
-     * @since Available in iOS 4.0 and later.
      * @deprecated Deprecated in iOS 13.0. Use PushKit for VoIP control purposes
      */
     @Deprecated
@@ -55,13 +54,7 @@ public enum /*<name>*/NSURLRequestNetworkServiceType/*</name>*/ implements Value
     Background(3L),
     Voice(4L),
     ResponsiveData(6L),
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     AVStreaming(8L),
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     ResponsiveAV(9L),
     /**
      * @since Available in iOS 10.0 and later.

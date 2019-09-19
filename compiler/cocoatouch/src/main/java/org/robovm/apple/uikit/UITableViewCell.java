@@ -42,9 +42,7 @@ import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 2.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UITableViewCell/*</name>*/ 
@@ -58,9 +56,6 @@ import org.robovm.apple.linkpresentation.*;
     public UITableViewCell() {}
     protected UITableViewCell(Handle h, long handle) { super(h, handle); }
     protected UITableViewCell(SkipInit skipInit) { super(skipInit); }
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "initWithStyle:reuseIdentifier:")
     public UITableViewCell(UITableViewCellStyle style, String reuseIdentifier) { super((SkipInit) null); initObject(init(style, reuseIdentifier)); }
     @Method(selector = "initWithCoder:")
@@ -69,19 +64,10 @@ import org.robovm.apple.linkpresentation.*;
     public UITableViewCell(@ByVal CGRect frame) { super(frame); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "imageView")
     public native UIImageView getImageView();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "textLabel")
     public native UILabel getTextLabel();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "detailTextLabel")
     public native UILabel getDetailTextLabel();
     @Property(selector = "contentView")
@@ -94,14 +80,8 @@ import org.robovm.apple.linkpresentation.*;
     public native UIView getSelectedBackgroundView();
     @Property(selector = "setSelectedBackgroundView:")
     public native void setSelectedBackgroundView(UIView v);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "multipleSelectionBackgroundView")
     public native UIView getMultipleSelectionBackgroundView();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setMultipleSelectionBackgroundView:")
     public native void setMultipleSelectionBackgroundView(UIView v);
     @Property(selector = "reuseIdentifier")
@@ -152,14 +132,8 @@ import org.robovm.apple.linkpresentation.*;
     public native @MachineSizedFloat double getIndentationWidth();
     @Property(selector = "setIndentationWidth:")
     public native void setIndentationWidth(@MachineSizedFloat double v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "separatorInset")
     public native @ByVal UIEdgeInsets getSeparatorInset();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setSeparatorInset:")
     public native void setSeparatorInset(@ByVal UIEdgeInsets v);
     @Property(selector = "isEditing")
@@ -191,9 +165,6 @@ import org.robovm.apple.linkpresentation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "initWithStyle:reuseIdentifier:")
     protected native @Pointer long init(UITableViewCellStyle style, String reuseIdentifier);
     @Method(selector = "initWithCoder:")
@@ -206,14 +177,8 @@ import org.robovm.apple.linkpresentation.*;
     public native void setHighlighted(boolean highlighted, boolean animated);
     @Method(selector = "setEditing:animated:")
     public native void setEditing(boolean editing, boolean animated);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "willTransitionToState:")
     public native void willTransitionToState(UITableViewCellStateMask state);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "didTransitionToState:")
     public native void didTransitionToState(UITableViewCellStateMask state);
     /**
@@ -225,14 +190,8 @@ import org.robovm.apple.linkpresentation.*;
     public native boolean shouldBegin(UIGestureRecognizer gestureRecognizer);
     @Method(selector = "gestureRecognizer:shouldRecognizeSimultaneouslyWithGestureRecognizer:")
     public native boolean shouldRecognizeSimultaneously(UIGestureRecognizer gestureRecognizer, UIGestureRecognizer otherGestureRecognizer);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "gestureRecognizer:shouldRequireFailureOfGestureRecognizer:")
     public native boolean shouldRequireFailure(UIGestureRecognizer gestureRecognizer, UIGestureRecognizer otherGestureRecognizer);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "gestureRecognizer:shouldBeRequiredToFailByGestureRecognizer:")
     public native boolean shouldBeRequiredToFail(UIGestureRecognizer gestureRecognizer, UIGestureRecognizer otherGestureRecognizer);
     @Method(selector = "gestureRecognizer:shouldReceiveTouch:")

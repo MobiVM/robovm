@@ -32,9 +32,7 @@ import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 6.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("StoreKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SKStoreProductViewController/*</name>*/ 
@@ -54,22 +52,13 @@ import org.robovm.apple.uikit.*;
     public SKStoreProductViewController(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "delegate")
     public native SKStoreProductViewControllerDelegate getDelegate();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "setDelegate:", strongRef = true)
     public native void setDelegate(SKStoreProductViewControllerDelegate v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "loadProductWithParameters:completionBlock:")
     public native void loadProduct(SKStoreProductParameters parameters, @Block VoidBlock2<Boolean, NSError> block);
     /*</methods>*/

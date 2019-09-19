@@ -68,9 +68,6 @@ import org.robovm.apple.dispatch.*;
     protected native @Pointer long init(NSArray<MKPolygon> polygons);
     @Method(selector = "intersectsMapRect:")
     public native boolean intersects(@ByVal MKMapRect mapRect);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "canReplaceMapContent")
     public native boolean canReplaceMapContent();
     /*</methods>*/

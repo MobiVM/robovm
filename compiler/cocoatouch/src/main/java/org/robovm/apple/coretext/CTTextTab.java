@@ -50,29 +50,14 @@ import org.robovm.apple.uikit.*;
     /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Bridge(symbol="CTTextTabGetTypeID", optional=true)
     public static native @MachineSizedUInt long getClassTypeID();
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Bridge(symbol="CTTextTabCreate", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CTTextTab create(CTTextAlignment alignment, double location, CTTextTabOptions options);
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Bridge(symbol="CTTextTabGetAlignment", optional=true)
     public native CTTextAlignment getAlignment();
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Bridge(symbol="CTTextTabGetLocation", optional=true)
     public native double getLocation();
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Bridge(symbol="CTTextTabGetOptions", optional=true)
     public native CTTextTabOptions getOptions();
     /*</methods>*/

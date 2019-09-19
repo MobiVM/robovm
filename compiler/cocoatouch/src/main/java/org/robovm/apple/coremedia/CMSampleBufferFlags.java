@@ -37,9 +37,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
 public final class /*<name>*/CMSampleBufferFlags/*</name>*/ extends Bits</*<name>*/CMSampleBufferFlags/*</name>*/> {

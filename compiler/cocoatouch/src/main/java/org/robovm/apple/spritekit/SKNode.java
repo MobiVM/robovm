@@ -231,9 +231,6 @@ import org.robovm.apple.metal.*;
     public native SKNode getChild(String name);
     @Method(selector = "enumerateChildNodesWithName:usingBlock:")
     public native void enumerateChildNodes(String name, @Block VoidBlock2<SKNode, BooleanPtr> block);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "objectForKeyedSubscript:")
     public native NSArray<SKNode> findNodesByName(String name);
     @Method(selector = "inParentHierarchy:")

@@ -130,9 +130,6 @@ import org.robovm.apple.linkpresentation.*;
     }
     
 
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public boolean isSpeechPunctuation() {
         if (has(NSAttributedStringAttribute.SpeechPunctuation)) {
             NSNumber val = (NSNumber) get(NSAttributedStringAttribute.SpeechPunctuation);
@@ -140,16 +137,10 @@ import org.robovm.apple.linkpresentation.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public NSAttributedStringAttributes setSpeechPunctuation(boolean speechPunctuation) {
         set(NSAttributedStringAttribute.SpeechPunctuation, NSNumber.valueOf(speechPunctuation));
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public String getSpeechLanguage() {
         if (has(NSAttributedStringAttribute.SpeechLanguage)) {
             NSString val = (NSString) get(NSAttributedStringAttribute.SpeechLanguage);
@@ -157,16 +148,10 @@ import org.robovm.apple.linkpresentation.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public NSAttributedStringAttributes setSpeechLanguage(String speechLanguage) {
         set(NSAttributedStringAttribute.SpeechLanguage, new NSString(speechLanguage));
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public double getSpeechPitch() {
         if (has(NSAttributedStringAttribute.SpeechPitch)) {
             NSNumber val = (NSNumber) get(NSAttributedStringAttribute.SpeechPitch);
@@ -174,16 +159,10 @@ import org.robovm.apple.linkpresentation.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public NSAttributedStringAttributes setSpeechPitch(double speechPitch) {
         set(NSAttributedStringAttribute.SpeechPitch, NSNumber.valueOf(speechPitch));
         return this;
     }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public UIFont getFont() {
         if (has(NSAttributedStringAttribute.Font)) {
             UIFont val = (UIFont) get(NSAttributedStringAttribute.Font);
@@ -191,16 +170,10 @@ import org.robovm.apple.linkpresentation.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public NSAttributedStringAttributes setFont(UIFont font) {
         set(NSAttributedStringAttribute.Font, font);
         return this;
     }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public NSParagraphStyle getParagraphStyle() {
         if (has(NSAttributedStringAttribute.ParagraphStyle)) {
             NSParagraphStyle val = (NSParagraphStyle) get(NSAttributedStringAttribute.ParagraphStyle);
@@ -208,16 +181,10 @@ import org.robovm.apple.linkpresentation.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public NSAttributedStringAttributes setParagraphStyle(NSParagraphStyle paragraphStyle) {
         set(NSAttributedStringAttribute.ParagraphStyle, paragraphStyle);
         return this;
     }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public UIColor getForegroundColor() {
         if (has(NSAttributedStringAttribute.ForegroundColor)) {
             UIColor val = (UIColor) get(NSAttributedStringAttribute.ForegroundColor);
@@ -225,16 +192,10 @@ import org.robovm.apple.linkpresentation.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public NSAttributedStringAttributes setForegroundColor(UIColor foregroundColor) {
         set(NSAttributedStringAttribute.ForegroundColor, foregroundColor);
         return this;
     }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public UIColor getBackgroundColor() {
         if (has(NSAttributedStringAttribute.BackgroundColor)) {
             UIColor val = (UIColor) get(NSAttributedStringAttribute.BackgroundColor);
@@ -242,16 +203,10 @@ import org.robovm.apple.linkpresentation.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public NSAttributedStringAttributes setBackgroundColor(UIColor backgroundColor) {
         set(NSAttributedStringAttribute.BackgroundColor, backgroundColor);
         return this;
     }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public double getKerning() {
         if (has(NSAttributedStringAttribute.Kern)) {
             NSNumber val = (NSNumber) get(NSAttributedStringAttribute.Kern);
@@ -259,16 +214,10 @@ import org.robovm.apple.linkpresentation.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public NSAttributedStringAttributes setKerning(double kerning) {
         set(NSAttributedStringAttribute.Kern, NSNumber.valueOf(kerning));
         return this;
     }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public NSUnderlineStyle getStrikethroughStyle() {
         if (has(NSAttributedStringAttribute.StrikethroughStyle)) {
             NSNumber val = (NSNumber) get(NSAttributedStringAttribute.StrikethroughStyle);
@@ -276,16 +225,10 @@ import org.robovm.apple.linkpresentation.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public NSAttributedStringAttributes setStrikethroughStyle(NSUnderlineStyle strikethroughStyle) {
         set(NSAttributedStringAttribute.StrikethroughStyle, NSNumber.valueOf(strikethroughStyle.value()));
         return this;
     }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public NSUnderlineStyle getUnderlineStyle() {
         if (has(NSAttributedStringAttribute.UnderlineStyle)) {
             NSNumber val = (NSNumber) get(NSAttributedStringAttribute.UnderlineStyle);
@@ -293,16 +236,10 @@ import org.robovm.apple.linkpresentation.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public NSAttributedStringAttributes setUnderlineStyle(NSUnderlineStyle underlineStyle) {
         set(NSAttributedStringAttribute.UnderlineStyle, NSNumber.valueOf(underlineStyle.value()));
         return this;
     }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public UIColor getStrokeColor() {
         if (has(NSAttributedStringAttribute.StrokeColor)) {
             UIColor val = (UIColor) get(NSAttributedStringAttribute.StrokeColor);
@@ -310,16 +247,10 @@ import org.robovm.apple.linkpresentation.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public NSAttributedStringAttributes setStrokeColor(UIColor strokeColor) {
         set(NSAttributedStringAttribute.StrokeColor, strokeColor);
         return this;
     }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public double getStrokeWidth() {
         if (has(NSAttributedStringAttribute.StrokeWidth)) {
             NSNumber val = (NSNumber) get(NSAttributedStringAttribute.StrokeWidth);
@@ -327,16 +258,10 @@ import org.robovm.apple.linkpresentation.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public NSAttributedStringAttributes setStrokeWidth(double strokeWidth) {
         set(NSAttributedStringAttribute.StrokeWidth, NSNumber.valueOf(strokeWidth));
         return this;
     }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public NSShadow getShadow() {
         if (has(NSAttributedStringAttribute.Shadow)) {
             NSShadow val = (NSShadow) get(NSAttributedStringAttribute.Shadow);
@@ -344,16 +269,10 @@ import org.robovm.apple.linkpresentation.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public NSAttributedStringAttributes setShadow(NSShadow shadow) {
         set(NSAttributedStringAttribute.Shadow, shadow);
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public NSTextEffect getTextEffect() {
         if (has(NSAttributedStringAttribute.TextEffect)) {
             NSString val = (NSString) get(NSAttributedStringAttribute.TextEffect);
@@ -361,16 +280,10 @@ import org.robovm.apple.linkpresentation.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public NSAttributedStringAttributes setTextEffect(NSTextEffect textEffect) {
         set(NSAttributedStringAttribute.TextEffect, textEffect.value());
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public NSTextAttachment getAttachment() {
         if (has(NSAttributedStringAttribute.Attachment)) {
             NSTextAttachment val = (NSTextAttachment) get(NSAttributedStringAttribute.Attachment);
@@ -378,16 +291,10 @@ import org.robovm.apple.linkpresentation.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public NSAttributedStringAttributes setAttachment(NSTextAttachment attachment) {
         set(NSAttributedStringAttribute.Attachment, attachment);
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public NSURL getLink() {
         if (has(NSAttributedStringAttribute.Link)) {
             NSURL val = (NSURL) get(NSAttributedStringAttribute.Link);
@@ -395,16 +302,10 @@ import org.robovm.apple.linkpresentation.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public NSAttributedStringAttributes setLink(NSURL link) {
         set(NSAttributedStringAttribute.Link, link);
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public double getBaselineOffset() {
         if (has(NSAttributedStringAttribute.BaselineOffset)) {
             NSNumber val = (NSNumber) get(NSAttributedStringAttribute.BaselineOffset);
@@ -412,16 +313,10 @@ import org.robovm.apple.linkpresentation.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public NSAttributedStringAttributes setBaselineOffset(double baselineOffset) {
         set(NSAttributedStringAttribute.BaselineOffset, NSNumber.valueOf(baselineOffset));
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public UIColor getUnderlineColor() {
         if (has(NSAttributedStringAttribute.UnderlineColor)) {
             UIColor val = (UIColor) get(NSAttributedStringAttribute.UnderlineColor);
@@ -429,16 +324,10 @@ import org.robovm.apple.linkpresentation.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public NSAttributedStringAttributes setUnderlineColor(UIColor underlineColor) {
         set(NSAttributedStringAttribute.UnderlineColor, underlineColor);
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public UIColor getStrikethroughColor() {
         if (has(NSAttributedStringAttribute.StrikethroughColor)) {
             UIColor val = (UIColor) get(NSAttributedStringAttribute.StrikethroughColor);
@@ -446,16 +335,10 @@ import org.robovm.apple.linkpresentation.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public NSAttributedStringAttributes setStrikethroughColor(UIColor strikethroughColor) {
         set(NSAttributedStringAttribute.StrikethroughColor, strikethroughColor);
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public double getObliqueness() {
         if (has(NSAttributedStringAttribute.Obliqueness)) {
             NSNumber val = (NSNumber) get(NSAttributedStringAttribute.Obliqueness);
@@ -463,16 +346,10 @@ import org.robovm.apple.linkpresentation.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public NSAttributedStringAttributes setObliqueness(double obliqueness) {
         set(NSAttributedStringAttribute.Obliqueness, NSNumber.valueOf(obliqueness));
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public double getExpansion() {
         if (has(NSAttributedStringAttribute.Expansion)) {
             NSNumber val = (NSNumber) get(NSAttributedStringAttribute.Expansion);
@@ -480,16 +357,10 @@ import org.robovm.apple.linkpresentation.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public NSAttributedStringAttributes setExpansion(double expansion) {
         set(NSAttributedStringAttribute.Expansion, NSNumber.valueOf(expansion));
         return this;
     }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public boolean isVerticalText() {
         if (has(NSAttributedStringAttribute.VerticalGlyphForm)) {
             NSNumber val = (NSNumber) get(NSAttributedStringAttribute.VerticalGlyphForm);
@@ -497,9 +368,6 @@ import org.robovm.apple.linkpresentation.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public NSAttributedStringAttributes setVerticalText(boolean verticalText) {
         set(NSAttributedStringAttribute.VerticalGlyphForm, NSNumber.valueOf(verticalText));
         return this;

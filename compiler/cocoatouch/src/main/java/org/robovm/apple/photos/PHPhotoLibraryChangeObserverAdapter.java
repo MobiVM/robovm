@@ -55,9 +55,6 @@ import org.robovm.apple.imageio.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @NotImplemented("photoLibraryDidChange:")
     public void didChange(PHChange changeInstance) {}
     /*</methods>*/

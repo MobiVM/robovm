@@ -35,9 +35,7 @@ import org.robovm.apple.uikit.*;
 import org.robovm.apple.foundation.NSError.NSErrorPtr;
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 3.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreData") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSEntityMigrationPolicy/*</name>*/ 

@@ -62,14 +62,8 @@ import org.robovm.rt.bro.ptr.*;
         once(ptr, block);
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="dispatch_time", optional=true)
     protected static native long time(long when, long delta);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="dispatch_walltime", optional=true)
     protected static native long walltime(timespec when, long delta);
     /**
@@ -82,9 +76,6 @@ import org.robovm.rt.bro.ptr.*;
      */
     @Bridge(symbol="dispatch_set_qos_class_floor", optional=true)
     public static native void setQosClassFloor(@ByVal DispatchObject object, int qos_class, int relative_priority);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="dispatch_main", optional=true)
     public static native void main();
     /**
@@ -102,19 +93,10 @@ import org.robovm.rt.bro.ptr.*;
      */
     @Bridge(symbol="dispatch_assert_queue_not", optional=true)
     public static native void assertQueueNot(DispatchQueue queue);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="dispatch_once", optional=true)
     protected static native void once(MachineSizedSIntPtr predicate, @Block Runnable block);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="dispatch_read", optional=true)
     public static native void read(int fd, @MachineSizedUInt long length, DispatchQueue queue, @Block VoidBlock2<DispatchData, Integer> handler);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="dispatch_write", optional=true)
     public static native void write(int fd, DispatchData data, DispatchQueue queue, @Block VoidBlock2<DispatchData, Integer> handler);
     /**

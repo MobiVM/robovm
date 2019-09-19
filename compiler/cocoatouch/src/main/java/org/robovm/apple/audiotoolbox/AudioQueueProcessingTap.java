@@ -155,24 +155,12 @@ import org.robovm.apple.uikit.*;
         return processingFormat;
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Bridge(symbol="AudioQueueProcessingTapNew", optional=true)
     protected static native OSStatus create0(AudioQueue inAQ, FunctionPtr inCallback, @Pointer long inClientData, AudioQueueProcessingTapFlags inFlags, IntPtr outMaxFrames, AudioStreamBasicDescription outProcessingFormat, AudioQueueProcessingTap.AudioQueueProcessingTapPtr outAQTap);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Bridge(symbol="AudioQueueProcessingTapDispose", optional=true)
     protected native OSStatus dispose0();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Bridge(symbol="AudioQueueProcessingTapGetSourceAudio", optional=true)
     protected native OSStatus getSourceAudio0(int inNumberFrames, AudioTimeStamp ioTimeStamp, AudioQueueProcessingTapMutableFlags outFlags, IntPtr outNumberFrames, AudioBufferList ioData);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Bridge(symbol="AudioQueueProcessingTapGetQueueTime", optional=true)
     protected native OSStatus getQueueTime0(DoublePtr outQueueSampleTime, IntPtr outQueueFrameCount);
     /*</methods>*/

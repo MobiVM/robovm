@@ -59,9 +59,6 @@ import org.robovm.apple.avkit.*;
         }
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 7.1 and later.
-     */
     @GlobalValue(symbol="ADClientErrorDomain", optional=true)
     public static native String getClassDomain();
     /*</methods>*/

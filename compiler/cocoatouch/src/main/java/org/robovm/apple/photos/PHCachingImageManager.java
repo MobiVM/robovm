@@ -38,9 +38,7 @@ import org.robovm.apple.imageio.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("Photos") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/PHCachingImageManager/*</name>*/ 
@@ -56,32 +54,17 @@ import org.robovm.apple.imageio.*;
     protected PHCachingImageManager(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "allowsCachingHighQualityImages")
     public native boolean allowsCachingHighQualityImages();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setAllowsCachingHighQualityImages:")
     public native void setAllowsCachingHighQualityImages(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "startCachingImagesForAssets:targetSize:contentMode:options:")
     public native void startCachingImagesForAssets(NSArray<PHAsset> assets, @ByVal CGSize targetSize, PHImageContentMode contentMode, PHImageRequestOptions options);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "stopCachingImagesForAssets:targetSize:contentMode:options:")
     public native void stopCachingImagesForAssets(NSArray<PHAsset> assets, @ByVal CGSize targetSize, PHImageContentMode contentMode, PHImageRequestOptions options);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "stopCachingImagesForAllAssets")
     public native void stopCachingImagesForAllAssets();
     /*</methods>*/

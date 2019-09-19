@@ -60,21 +60,18 @@ import org.robovm.apple.linkpresentation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @since Available in iOS 3.2 and later.
      * @deprecated Deprecated in iOS 9.0.
      */
     @Deprecated
     @NotImplemented("popoverControllerShouldDismissPopover:")
     public boolean shouldDismiss(UIPopoverController popoverController) { return false; }
     /**
-     * @since Available in iOS 3.2 and later.
      * @deprecated Deprecated in iOS 9.0.
      */
     @Deprecated
     @NotImplemented("popoverControllerDidDismissPopover:")
     public void didDismiss(UIPopoverController popoverController) {}
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 9.0.
      */
     @Deprecated

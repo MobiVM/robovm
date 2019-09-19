@@ -98,9 +98,6 @@ import org.robovm.apple.linkpresentation.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final UIApplicationExtensionPointIdentifier Keyboard = new UIApplicationExtensionPointIdentifier("Keyboard");
     /*</constants>*/
     
@@ -127,9 +124,6 @@ import org.robovm.apple.linkpresentation.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="UIApplicationKeyboardExtensionPointIdentifier", optional=true)
         public static native NSString Keyboard();
         /*</values>*/

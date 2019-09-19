@@ -109,9 +109,6 @@ import org.robovm.apple.dispatch.*;
     }
     
 
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public String getFSName() {
         if (has(NSMetadataItemAttribute.FSName)) {
             NSString val = (NSString) get(NSMetadataItemAttribute.FSName);
@@ -119,9 +116,6 @@ import org.robovm.apple.dispatch.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public String getDisplayName() {
         if (has(NSMetadataItemAttribute.DisplayName)) {
             NSString val = (NSString) get(NSMetadataItemAttribute.DisplayName);
@@ -129,9 +123,6 @@ import org.robovm.apple.dispatch.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public NSURL getURL() {
         if (has(NSMetadataItemAttribute.URL)) {
             NSURL val = (NSURL) get(NSMetadataItemAttribute.URL);
@@ -139,9 +130,6 @@ import org.robovm.apple.dispatch.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public String getPath() {
         if (has(NSMetadataItemAttribute.Path)) {
             NSString val = (NSString) get(NSMetadataItemAttribute.Path);
@@ -149,9 +137,6 @@ import org.robovm.apple.dispatch.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public long getFSSize() {
         if (has(NSMetadataItemAttribute.FSSize)) {
             NSNumber val = (NSNumber) get(NSMetadataItemAttribute.FSSize);
@@ -159,9 +144,6 @@ import org.robovm.apple.dispatch.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public NSDate getFSCreationDate() {
         if (has(NSMetadataItemAttribute.FSCreationDate)) {
             NSDate val = (NSDate) get(NSMetadataItemAttribute.FSCreationDate);
@@ -169,9 +151,6 @@ import org.robovm.apple.dispatch.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public NSDate getFSContentChangeDate() {
         if (has(NSMetadataItemAttribute.FSContentChangeDate)) {
             NSDate val = (NSDate) get(NSMetadataItemAttribute.FSContentChangeDate);
@@ -179,9 +158,6 @@ import org.robovm.apple.dispatch.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public String getContentType() {
         if (has(NSMetadataItemAttribute.ContentType)) {
             NSString val = (NSString) get(NSMetadataItemAttribute.ContentType);
@@ -189,9 +165,6 @@ import org.robovm.apple.dispatch.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public List<String> getContentTypeTree() {
         if (has(NSMetadataItemAttribute.ContentTypeTree)) {
             NSArray<NSString> val = (NSArray<NSString>) get(NSMetadataItemAttribute.ContentTypeTree);
@@ -199,9 +172,6 @@ import org.robovm.apple.dispatch.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public boolean isUbiquitous() {
         if (has(NSMetadataItemAttribute.IsUbiquitous)) {
             NSNumber val = (NSNumber) get(NSMetadataItemAttribute.IsUbiquitous);
@@ -209,9 +179,6 @@ import org.robovm.apple.dispatch.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public boolean hasUnresolvedConflicts() {
         if (has(NSMetadataItemAttribute.HasUnresolvedConflicts)) {
             NSNumber val = (NSNumber) get(NSMetadataItemAttribute.HasUnresolvedConflicts);
@@ -220,7 +187,6 @@ import org.robovm.apple.dispatch.*;
         return false;
     }
     /**
-     * @since Available in iOS 5.0 and later.
      * @deprecated Deprecated in iOS 7.0. Use NSMetadataUbiquitousItemDownloadingStatusKey instead
      */
     @Deprecated
@@ -231,9 +197,6 @@ import org.robovm.apple.dispatch.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public NSMetadataItemDownloadingStatus getDownloadingStatus() {
         if (has(NSMetadataItemAttribute.DownloadingStatus)) {
             NSString val = (NSString) get(NSMetadataItemAttribute.DownloadingStatus);
@@ -241,9 +204,6 @@ import org.robovm.apple.dispatch.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public boolean isDownloading() {
         if (has(NSMetadataItemAttribute.IsDownloading)) {
             NSNumber val = (NSNumber) get(NSMetadataItemAttribute.IsDownloading);
@@ -251,9 +211,6 @@ import org.robovm.apple.dispatch.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public boolean isUploaded() {
         if (has(NSMetadataItemAttribute.IsUploaded)) {
             NSNumber val = (NSNumber) get(NSMetadataItemAttribute.IsUploaded);
@@ -261,9 +218,6 @@ import org.robovm.apple.dispatch.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public boolean isUploading() {
         if (has(NSMetadataItemAttribute.IsUploading)) {
             NSNumber val = (NSNumber) get(NSMetadataItemAttribute.IsUploading);
@@ -271,9 +225,6 @@ import org.robovm.apple.dispatch.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public double getPercentDownloaded() {
         if (has(NSMetadataItemAttribute.PercentDownloaded)) {
             NSNumber val = (NSNumber) get(NSMetadataItemAttribute.PercentDownloaded);
@@ -281,9 +232,6 @@ import org.robovm.apple.dispatch.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public double getPercentUploaded() {
         if (has(NSMetadataItemAttribute.PercentUploaded)) {
             NSNumber val = (NSNumber) get(NSMetadataItemAttribute.PercentUploaded);
@@ -291,9 +239,6 @@ import org.robovm.apple.dispatch.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public NSError getDownloadingError() {
         if (has(NSMetadataItemAttribute.DownloadingError)) {
             NSError val = (NSError) get(NSMetadataItemAttribute.DownloadingError);
@@ -301,9 +246,6 @@ import org.robovm.apple.dispatch.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public NSError getUploadingError() {
         if (has(NSMetadataItemAttribute.UploadingError)) {
             NSError val = (NSError) get(NSMetadataItemAttribute.UploadingError);
@@ -311,9 +253,6 @@ import org.robovm.apple.dispatch.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public boolean isDownloadRequested() {
         if (has(NSMetadataItemAttribute.DownloadRequested)) {
             NSNumber val = (NSNumber) get(NSMetadataItemAttribute.DownloadRequested);
@@ -321,9 +260,6 @@ import org.robovm.apple.dispatch.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public boolean isExternalDocument() {
         if (has(NSMetadataItemAttribute.IsExternalDocument)) {
             NSNumber val = (NSNumber) get(NSMetadataItemAttribute.IsExternalDocument);
@@ -331,9 +267,6 @@ import org.robovm.apple.dispatch.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public String getContainerDisplayName() {
         if (has(NSMetadataItemAttribute.ContainerDisplayName)) {
             NSString val = (NSString) get(NSMetadataItemAttribute.ContainerDisplayName);
@@ -341,9 +274,6 @@ import org.robovm.apple.dispatch.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public NSURL getURLInLocalContainer() {
         if (has(NSMetadataItemAttribute.URLInLocalContainer)) {
             NSURL val = (NSURL) get(NSMetadataItemAttribute.URLInLocalContainer);
@@ -351,9 +281,6 @@ import org.robovm.apple.dispatch.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public double getContentRelevance() {
         if (has(NSMetadataItemAttribute.ContentRelevance)) {
             NSNumber val = (NSNumber) get(NSMetadataItemAttribute.ContentRelevance);

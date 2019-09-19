@@ -48,13 +48,7 @@ import org.robovm.apple.linkpresentation.*;
 public enum /*<name>*/UIStatusBarAnimation/*</name>*/ implements ValuedEnum {
     /*<values>*/
     None(0L),
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     Fade(1L),
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     Slide(2L);
     /*</values>*/
 

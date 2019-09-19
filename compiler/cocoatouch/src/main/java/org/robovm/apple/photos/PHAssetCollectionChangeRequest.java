@@ -38,9 +38,7 @@ import org.robovm.apple.imageio.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("Photos") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/PHAssetCollectionChangeRequest/*</name>*/ 
@@ -54,82 +52,37 @@ import org.robovm.apple.imageio.*;
     public PHAssetCollectionChangeRequest() {}
     protected PHAssetCollectionChangeRequest(Handle h, long handle) { super(h, handle); }
     protected PHAssetCollectionChangeRequest(SkipInit skipInit) { super(skipInit); }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public PHAssetCollectionChangeRequest(PHAssetCollection assetCollection) { super((Handle) null, create(assetCollection)); retain(getHandle()); }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public PHAssetCollectionChangeRequest(PHAssetCollection assetCollection, PHFetchResult<PHAsset> assets) { super((Handle) null, create(assetCollection, assets)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "placeholderForCreatedAssetCollection")
     public native PHObjectPlaceholder getPlaceholderForCreatedAssetCollection();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "title")
     public native String getTitle();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setTitle:")
     public native void setTitle(String v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "addAssets:")
     public native void addAssets(NSFastEnumeration assets);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "insertAssets:atIndexes:")
     public native void insertAssets(NSFastEnumeration assets, NSIndexSet indexes);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "removeAssets:")
     public native void removeAssets(NSFastEnumeration assets);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "removeAssetsAtIndexes:")
     public native void removeAssets(NSIndexSet indexes);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "replaceAssetsAtIndexes:withAssets:")
     public native void replaceAssets(NSIndexSet indexes, NSFastEnumeration assets);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "moveAssetsAtIndexes:toIndex:")
     public native void moveAssetsTo(NSIndexSet fromIndexes, @MachineSizedUInt long toIndex);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "creationRequestForAssetCollectionWithTitle:")
     public static native PHAssetCollectionChangeRequest createAssetCollectionCreationRequest(String title);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "deleteAssetCollections:")
     public static native void deleteAssetCollections(NSFastEnumeration assetCollections);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "changeRequestForAssetCollection:")
     protected static native @Pointer long create(PHAssetCollection assetCollection);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "changeRequestForAssetCollection:assets:")
     protected static native @Pointer long create(PHAssetCollection assetCollection, PHFetchResult<PHAsset> assets);
     /*</methods>*/

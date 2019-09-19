@@ -42,33 +42,12 @@ import org.robovm.apple.corefoundation.*;
 
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CFStreamErrorDomain NetDB = new CFStreamErrorDomain("NetDB");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CFStreamErrorDomain SystemConfiguration = new CFStreamErrorDomain("SystemConfiguration");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CFStreamErrorDomain Mach = new CFStreamErrorDomain("Mach");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CFStreamErrorDomain NetServices = new CFStreamErrorDomain("NetServices");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CFStreamErrorDomain WinSock = new CFStreamErrorDomain("WinSock");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CFStreamErrorDomain FTP = new CFStreamErrorDomain("FTP");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CFStreamErrorDomain HTTP = new CFStreamErrorDomain("HTTP");
     /*</constants>*/
     
@@ -95,39 +74,18 @@ import org.robovm.apple.corefoundation.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCFStreamErrorDomainNetDB", optional=true)
         public static native int NetDB();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCFStreamErrorDomainSystemConfiguration", optional=true)
         public static native int SystemConfiguration();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCFStreamErrorDomainMach", optional=true)
         public static native int Mach();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCFStreamErrorDomainNetServices", optional=true)
         public static native int NetServices();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCFStreamErrorDomainWinSock", optional=true)
         public static native int WinSock();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCFStreamErrorDomainFTP", optional=true)
         public static native int FTP();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCFStreamErrorDomainHTTP", optional=true)
         public static native int HTTP();
         /*</values>*/

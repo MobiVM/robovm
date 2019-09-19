@@ -34,9 +34,7 @@ import org.robovm.apple.contacts.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 5.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreLocation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CLPlacemark/*</name>*/ 
@@ -66,7 +64,6 @@ import org.robovm.apple.contacts.*;
     @Property(selector = "timeZone")
     public native NSTimeZone getTimeZone();
     /**
-     * @since Available in iOS 5.0 and later.
      * @deprecated Deprecated in iOS 11.0. Use @properties
      */
     @Deprecated

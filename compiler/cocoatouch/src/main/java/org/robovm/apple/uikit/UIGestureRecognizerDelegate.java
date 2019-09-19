@@ -61,14 +61,8 @@ import org.robovm.apple.linkpresentation.*;
     boolean shouldBegin(UIGestureRecognizer gestureRecognizer);
     @Method(selector = "gestureRecognizer:shouldRecognizeSimultaneouslyWithGestureRecognizer:")
     boolean shouldRecognizeSimultaneously(UIGestureRecognizer gestureRecognizer, UIGestureRecognizer otherGestureRecognizer);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "gestureRecognizer:shouldRequireFailureOfGestureRecognizer:")
     boolean shouldRequireFailure(UIGestureRecognizer gestureRecognizer, UIGestureRecognizer otherGestureRecognizer);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "gestureRecognizer:shouldBeRequiredToFailByGestureRecognizer:")
     boolean shouldBeRequiredToFail(UIGestureRecognizer gestureRecognizer, UIGestureRecognizer otherGestureRecognizer);
     @Method(selector = "gestureRecognizer:shouldReceiveTouch:")

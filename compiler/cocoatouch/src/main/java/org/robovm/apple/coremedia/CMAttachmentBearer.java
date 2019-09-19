@@ -74,39 +74,18 @@ import org.robovm.apple.audiotoolbox.*;
     }
 
     /*<methods>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMSetAttachment", optional=true)
     public static native void setAttachment(CFType target, String key, CFType value, CMAttachmentMode attachmentMode);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMGetAttachment", optional=true)
     private static native CFType getAttachment(CFType target, String key, IntPtr attachmentModeOut);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMRemoveAttachment", optional=true)
     public static native void removeAttachment(CFType target, String key);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMRemoveAllAttachments", optional=true)
     public static native void removeAllAttachments(CFType target);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMCopyDictionaryOfAttachments", optional=true)
     private static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CFDictionary getAttachments(CFAllocator allocator, CFType target, CMAttachmentMode attachmentMode);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMSetAttachments", optional=true)
     public static native void setAttachments(CFType target, CFDictionary theAttachments, CMAttachmentMode attachmentMode);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMPropagateAttachments", optional=true)
     public static native void propagateAttachments(CMAttachmentBearer source, CMAttachmentBearer destination);
     /*</methods>*/

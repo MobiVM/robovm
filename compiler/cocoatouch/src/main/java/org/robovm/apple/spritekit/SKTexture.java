@@ -81,14 +81,8 @@ import org.robovm.apple.metal.*;
     @WeaklyLinked
     @Method(selector = "textureByApplyingCIFilter:")
     public native SKTexture newTextureByApplyingCIFilter(CIFilter filter);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "textureByGeneratingNormalMap")
     public native SKTexture newTextureByGeneratingNormalMap();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "textureByGeneratingNormalMapWithSmoothness:contrast:")
     public native SKTexture newTextureByGeneratingNormalMap(@MachineSizedFloat double smoothness, @MachineSizedFloat double contrast);
     @Method(selector = "textureRect")
@@ -106,14 +100,8 @@ import org.robovm.apple.metal.*;
     protected static native @Pointer long create(String name);
     @Method(selector = "textureWithRect:inTexture:")
     protected static native @Pointer long create(@ByVal CGRect rect, SKTexture texture);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "textureVectorNoiseWithSmoothness:size:")
     public static native SKTexture createVectorNoise(@MachineSizedFloat double smoothness, @ByVal CGSize size);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "textureNoiseWithSmoothness:size:grayscale:")
     public static native SKTexture createNoise(@MachineSizedFloat double smoothness, @ByVal CGSize size, boolean grayscale);
     @Method(selector = "textureWithCGImage:")

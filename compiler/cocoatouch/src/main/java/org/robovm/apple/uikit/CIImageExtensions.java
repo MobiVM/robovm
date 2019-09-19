@@ -76,14 +76,8 @@ import org.robovm.apple.linkpresentation.*;
         return thiz;
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "initWithImage:")
     protected static native @Pointer long init(CIImage thiz, UIImage image);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "initWithImage:options:")
     protected static native @Pointer long init(CIImage thiz, UIImage image, CIImageOptions options);
     /*</methods>*/

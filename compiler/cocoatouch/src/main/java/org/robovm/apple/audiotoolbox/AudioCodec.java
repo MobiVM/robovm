@@ -51,54 +51,24 @@ import org.robovm.apple.uikit.*;
     /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioCodecGetPropertyInfo", optional=true)
     public native OSStatus getPropertyInfo(int inPropertyID, IntPtr outSize, BooleanPtr outWritable);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioCodecGetProperty", optional=true)
     public native OSStatus getProperty(int inPropertyID, IntPtr ioPropertyDataSize, VoidPtr outPropertyData);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioCodecSetProperty", optional=true)
     public native OSStatus setProperty(int inPropertyID, int inPropertyDataSize, VoidPtr inPropertyData);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioCodecInitialize", optional=true)
     public native OSStatus initialize(AudioStreamBasicDescription inInputFormat, AudioStreamBasicDescription inOutputFormat, VoidPtr inMagicCookie, int inMagicCookieByteSize);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioCodecUninitialize", optional=true)
     public native OSStatus uninitialize();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioCodecAppendInputData", optional=true)
     public native OSStatus appendInputData(VoidPtr inInputData, IntPtr ioInputDataByteSize, IntPtr ioNumberPackets, AudioStreamPacketDescription inPacketDescription);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioCodecProduceOutputPackets", optional=true)
     public native OSStatus produceOutputPackets(VoidPtr outOutputData, IntPtr ioOutputDataByteSize, IntPtr ioNumberPackets, AudioStreamPacketDescription outPacketDescription, IntPtr outStatus);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="AudioCodecAppendInputBufferList", optional=true)
     public native OSStatus appendInputBufferList(AudioBufferList inBufferList, IntPtr ioNumberPackets, AudioStreamPacketDescription inPacketDescription, IntPtr outBytesConsumed);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="AudioCodecProduceOutputBufferList", optional=true)
     public native OSStatus produceOutputBufferList(AudioBufferList ioBufferList, IntPtr ioNumberPackets, AudioStreamPacketDescription outPacketDescription, IntPtr outStatus);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioCodecReset", optional=true)
     public native OSStatus reset();
     /*</methods>*/

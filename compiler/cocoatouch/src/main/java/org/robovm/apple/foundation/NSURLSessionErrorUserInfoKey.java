@@ -95,17 +95,11 @@ import org.robovm.apple.dispatch.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final NSURLSessionErrorUserInfoKey BackgroundTaskCancelledReason = new NSURLSessionErrorUserInfoKey("BackgroundTaskCancelledReason");
     /**
      * @since Available in iOS 13.0 and later.
      */
     public static final NSURLSessionErrorUserInfoKey NetworkUnavailableReason = new NSURLSessionErrorUserInfoKey("NetworkUnavailableReason");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final NSURLSessionErrorUserInfoKey DownloadTaskResumeData = new NSURLSessionErrorUserInfoKey("DownloadTaskResumeData");
     /*</constants>*/
     
@@ -132,9 +126,6 @@ import org.robovm.apple.dispatch.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="NSURLErrorBackgroundTaskCancelledReasonKey", optional=true)
         public static native NSString BackgroundTaskCancelledReason();
         /**
@@ -142,9 +133,6 @@ import org.robovm.apple.dispatch.*;
          */
         @GlobalValue(symbol="NSURLErrorNetworkUnavailableReasonKey", optional=true)
         public static native NSString NetworkUnavailableReason();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="NSURLSessionDownloadTaskResumeData", optional=true)
         public static native NSString DownloadTaskResumeData();
         /*</values>*/

@@ -114,9 +114,6 @@ import org.robovm.apple.dispatch.*;
     }
     
 
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public boolean shouldRemoveSynchronizableCredentials() {
         if (has(Keys.RemoveSynchronizableCredentials())) {
             NSNumber val = (NSNumber) get(Keys.RemoveSynchronizableCredentials());
@@ -124,9 +121,6 @@ import org.robovm.apple.dispatch.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public NSURLCredentialStorageRemovalOptions setShouldRemoveSynchronizableCredentials(boolean shouldRemoveSynchronizableCredentials) {
         set(Keys.RemoveSynchronizableCredentials(), NSNumber.valueOf(shouldRemoveSynchronizableCredentials));
         return this;
@@ -137,9 +131,6 @@ import org.robovm.apple.dispatch.*;
     @Library("Foundation")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="NSURLCredentialStorageRemoveSynchronizableCredentials", optional=true)
         public static native NSString RemoveSynchronizableCredentials();
     }

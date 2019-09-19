@@ -34,9 +34,7 @@ import org.robovm.apple.contacts.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("PassKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/PKPayment/*</name>*/ 
@@ -60,7 +58,6 @@ import org.robovm.apple.contacts.*;
     @Property(selector = "billingContact")
     public native PKContact getBillingContact();
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 9.0. Use billingContact instead
      */
     @Deprecated
@@ -73,7 +70,6 @@ import org.robovm.apple.contacts.*;
     @Property(selector = "shippingContact")
     public native PKContact getShippingContact();
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 9.0. Use shippingContact instead
      */
     @Deprecated

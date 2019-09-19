@@ -96,9 +96,6 @@ import org.robovm.apple.avfoundation.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public static final CIFormat ARGB8 = new CIFormat("ARGB8");
     public static final CIFormat BGRA8 = new CIFormat("BGRA8");
     public static final CIFormat RGBA8 = new CIFormat("RGBA8");
@@ -106,17 +103,11 @@ import org.robovm.apple.avfoundation.*;
      * @since Available in iOS 9.0 and later.
      */
     public static final CIFormat ABGR8 = new CIFormat("ABGR8");
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public static final CIFormat RGBAh = new CIFormat("RGBAh");
     /**
      * @since Available in iOS 10.0 and later.
      */
     public static final CIFormat RGBA16 = new CIFormat("RGBA16");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final CIFormat RGBAf = new CIFormat("RGBAf");
     /**
      * @since Available in iOS 9.0 and later.
@@ -223,9 +214,6 @@ import org.robovm.apple.avfoundation.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 6.0 and later.
-         */
         @GlobalValue(symbol="kCIFormatARGB8", optional=true)
         public static native int ARGB8();
         @GlobalValue(symbol="kCIFormatBGRA8", optional=true)
@@ -237,9 +225,6 @@ import org.robovm.apple.avfoundation.*;
          */
         @GlobalValue(symbol="kCIFormatABGR8", optional=true)
         public static native int ABGR8();
-        /**
-         * @since Available in iOS 6.0 and later.
-         */
         @GlobalValue(symbol="kCIFormatRGBAh", optional=true)
         public static native int RGBAh();
         /**
@@ -247,9 +232,6 @@ import org.robovm.apple.avfoundation.*;
          */
         @GlobalValue(symbol="kCIFormatRGBA16", optional=true)
         public static native int RGBA16();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kCIFormatRGBAf", optional=true)
         public static native int RGBAf();
         /**

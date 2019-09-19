@@ -96,14 +96,8 @@ import org.robovm.apple.linkpresentation.*;
     }
     
     /*<methods>*/
-    /**
-     * @since Available in iOS 3.1 and later.
-     */
     @Bridge(symbol="UIVideoAtPathIsCompatibleWithSavedPhotosAlbum", optional=true)
     protected static native boolean isCompatibleWithSavedPhotosAlbum(String videoPath);
-    /**
-     * @since Available in iOS 3.1 and later.
-     */
     @Bridge(symbol="UISaveVideoAtPathToSavedPhotosAlbum", optional=true)
     public static native void saveToPhotosAlbum(String videoPath, NSObject completionTarget, Selector completionSelector, @Pointer long contextInfo);
     /*</methods>*/

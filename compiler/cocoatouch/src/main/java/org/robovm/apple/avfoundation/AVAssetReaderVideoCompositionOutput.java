@@ -41,9 +41,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.1 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVAssetReaderVideoCompositionOutput/*</name>*/ 
@@ -83,9 +81,6 @@ import org.robovm.apple.audiotoolbox.*;
     public native AVVideoComposition getVideoComposition();
     @Property(selector = "setVideoComposition:")
     public native void setVideoComposition(AVVideoComposition v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "customVideoCompositor")
     public native AVVideoCompositing getCustomVideoCompositor();
     /*</properties>*/

@@ -90,25 +90,10 @@ import org.robovm.apple.audiotoolbox.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final CMTextMarkupAlignmentType Start = new CMTextMarkupAlignmentType("Start");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final CMTextMarkupAlignmentType Middle = new CMTextMarkupAlignmentType("Middle");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final CMTextMarkupAlignmentType End = new CMTextMarkupAlignmentType("End");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final CMTextMarkupAlignmentType Left = new CMTextMarkupAlignmentType("Left");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final CMTextMarkupAlignmentType Right = new CMTextMarkupAlignmentType("Right");
     /*</constants>*/
     
@@ -135,29 +120,14 @@ import org.robovm.apple.audiotoolbox.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kCMTextMarkupAlignmentType_Start", optional=true)
         public static native CFString Start();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kCMTextMarkupAlignmentType_Middle", optional=true)
         public static native CFString Middle();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kCMTextMarkupAlignmentType_End", optional=true)
         public static native CFString End();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kCMTextMarkupAlignmentType_Left", optional=true)
         public static native CFString Left();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kCMTextMarkupAlignmentType_Right", optional=true)
         public static native CFString Right();
         /*</values>*/

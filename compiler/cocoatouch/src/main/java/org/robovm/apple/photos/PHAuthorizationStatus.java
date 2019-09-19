@@ -38,28 +38,14 @@ import org.robovm.apple.imageio.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/PHAuthorizationStatus/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     NotDetermined(0L),
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     Restricted(1L),
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     Denied(2L),
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     Authorized(3L);
     /*</values>*/
 

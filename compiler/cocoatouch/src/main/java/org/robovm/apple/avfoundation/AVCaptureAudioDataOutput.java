@@ -41,9 +41,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVCaptureAudioDataOutput/*</name>*/ 
@@ -70,9 +68,6 @@ import org.robovm.apple.audiotoolbox.*;
     @WeaklyLinked
     @Method(selector = "setSampleBufferDelegate:queue:")
     public native void setSampleBufferDelegate(AVCaptureAudioDataOutputSampleBufferDelegate sampleBufferDelegate, DispatchQueue sampleBufferCallbackQueue);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "recommendedAudioSettingsForAssetWriterWithOutputFileType:")
     public native AVAudioSettings getRecommendedAudioSettings(String outputFileType);
     @Method(selector = "new")

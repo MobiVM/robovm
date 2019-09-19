@@ -102,9 +102,6 @@ import org.robovm.apple.corefoundation.*;
     }
     
 
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public boolean isHTTPProxyEnabled() {
         if (has(Keys.HTTPEnable())) {
             CFBoolean val = get(Keys.HTTPEnable(), CFBoolean.class);
@@ -112,9 +109,6 @@ import org.robovm.apple.corefoundation.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public int getHTTPProxyPort() {
         if (has(Keys.HTTPPort())) {
             CFNumber val = get(Keys.HTTPPort(), CFNumber.class);
@@ -122,9 +116,6 @@ import org.robovm.apple.corefoundation.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public String getHTTPProxyHost() {
         if (has(Keys.HTTPProxy())) {
             CFString val = get(Keys.HTTPProxy(), CFString.class);
@@ -132,9 +123,6 @@ import org.robovm.apple.corefoundation.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public boolean isAutoConfigurationEnabled() {
         if (has(Keys.ProxyAutoConfigEnable())) {
             CFBoolean val = get(Keys.ProxyAutoConfigEnable(), CFBoolean.class);
@@ -142,9 +130,6 @@ import org.robovm.apple.corefoundation.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public String getAutoConfigurationURL() {
         if (has(Keys.ProxyAutoConfigURLString())) {
             CFString val = get(Keys.ProxyAutoConfigURLString(), CFString.class);
@@ -152,9 +137,6 @@ import org.robovm.apple.corefoundation.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public String getAutoConfigurationJavaScript() {
         if (has(Keys.ProxyAutoConfigJavaScript())) {
             CFString val = get(Keys.ProxyAutoConfigJavaScript(), CFString.class);
@@ -168,34 +150,16 @@ import org.robovm.apple.corefoundation.*;
     @Library("CFNetwork")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCFNetworkProxiesHTTPEnable", optional=true)
         public static native CFString HTTPEnable();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCFNetworkProxiesHTTPPort", optional=true)
         public static native CFString HTTPPort();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCFNetworkProxiesHTTPProxy", optional=true)
         public static native CFString HTTPProxy();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCFNetworkProxiesProxyAutoConfigEnable", optional=true)
         public static native CFString ProxyAutoConfigEnable();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCFNetworkProxiesProxyAutoConfigURLString", optional=true)
         public static native CFString ProxyAutoConfigURLString();
-        /**
-         * @since Available in iOS 3.0 and later.
-         */
         @GlobalValue(symbol="kCFNetworkProxiesProxyAutoConfigJavaScript", optional=true)
         public static native CFString ProxyAutoConfigJavaScript();
     }

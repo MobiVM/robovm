@@ -98,13 +98,7 @@ import org.robovm.apple.linkpresentation.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final UITransitionContextViewType FromView = new UITransitionContextViewType("FromView");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final UITransitionContextViewType ToView = new UITransitionContextViewType("ToView");
     /*</constants>*/
     
@@ -131,14 +125,8 @@ import org.robovm.apple.linkpresentation.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="UITransitionContextFromViewKey", optional=true)
         public static native NSString FromView();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="UITransitionContextToViewKey", optional=true)
         public static native NSString ToView();
         /*</values>*/

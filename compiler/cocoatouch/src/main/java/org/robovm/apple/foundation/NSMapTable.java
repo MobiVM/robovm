@@ -41,9 +41,7 @@ import org.robovm.apple.foundation.NSDictionary.NSDictionaryPtr;
 import org.robovm.apple.foundation.NSObject.SkipInit;
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 6.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSMapTable<K extends NSObject, V extends NSObject>/*</name>*/

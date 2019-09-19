@@ -42,9 +42,7 @@ import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSFileProviderExtension/*</name>*/ 
@@ -61,14 +59,12 @@ import org.robovm.apple.linkpresentation.*;
     /*</constructors>*/
     /*<properties>*/
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 11.0.
      */
     @Deprecated
     @Property(selector = "providerIdentifier")
     public native String getProviderIdentifier();
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 11.0.
      */
     @Deprecated
@@ -92,39 +88,22 @@ import org.robovm.apple.linkpresentation.*;
     @Method(selector = "itemForIdentifier:error:")
     private native NSFileProviderItem itemForIdentifier(NSString identifier, NSError.NSErrorPtr error);
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 13.0. No longer called
      */
     @Deprecated
     @Method(selector = "URLForItemWithPersistentIdentifier:")
     public native NSURL getURLForItem(NSString identifier);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "persistentIdentifierForItemAtURL:")
     public native NSString getPersistentIdentifierForItem(NSURL url);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "providePlaceholderAtURL:completionHandler:")
     public native void providePlaceholder(NSURL url, @Block VoidBlock1<NSError> completionHandler);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "startProvidingItemAtURL:completionHandler:")
     public native void startProvidingItem(NSURL url, @Block VoidBlock1<NSError> completionHandler);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "stopProvidingItemAtURL:")
     public native void stopProvidingItem(NSURL url);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "itemChangedAtURL:")
     public native void itemChanged(NSURL url);
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 11.0. Use the corresponding method on NSFileProviderManager instead
      */
     @Deprecated
@@ -135,14 +114,12 @@ import org.robovm.apple.linkpresentation.*;
        return result;
     }
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 11.0. Use the corresponding method on NSFileProviderManager instead
      */
     @Deprecated
     @Method(selector = "writePlaceholderAtURL:withMetadata:error:")
     private static native boolean writePlaceholder(NSURL placeholderURL, NSURLProperties metadata, NSError.NSErrorPtr error);
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 11.0.
      */
     @Deprecated

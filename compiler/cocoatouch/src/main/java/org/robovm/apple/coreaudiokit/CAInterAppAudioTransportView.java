@@ -35,7 +35,6 @@ import org.robovm.apple.uikit.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 8.0 and later.
  * @deprecated Deprecated in iOS 13.0. Inter-App Audio API is deprecated in favor of Audio Units
  */
 /*</javadoc>*/

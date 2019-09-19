@@ -63,9 +63,6 @@ import org.robovm.apple.linkpresentation.*;
     @MachineSizedFloat double getRowHeight(UIPickerView pickerView, @MachineSizedSInt long component);
     @Method(selector = "pickerView:titleForRow:forComponent:")
     String getRowTitle(UIPickerView pickerView, @MachineSizedSInt long row, @MachineSizedSInt long component);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "pickerView:attributedTitleForRow:forComponent:")
     NSAttributedString getAttributedRowTitle(UIPickerView pickerView, @MachineSizedSInt long row, @MachineSizedSInt long component);
     @Method(selector = "pickerView:viewForRow:forComponent:reusingView:")

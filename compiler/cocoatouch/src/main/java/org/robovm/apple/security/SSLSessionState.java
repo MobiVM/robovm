@@ -39,31 +39,26 @@ import org.robovm.apple.dispatch.*;
 public enum /*<name>*/SSLSessionState/*</name>*/ implements ValuedEnum {
     /*<values>*/
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 13.0.
      */
     @Deprecated
     Idle(0L),
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 13.0.
      */
     @Deprecated
     Handshake(1L),
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 13.0.
      */
     @Deprecated
     Connected(2L),
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 13.0.
      */
     @Deprecated
     Closed(3L),
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 13.0.
      */
     @Deprecated

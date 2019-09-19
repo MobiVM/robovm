@@ -60,9 +60,6 @@ import org.robovm.apple.uikit.*;
         return code;
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @GlobalValue(symbol="SSReadingListErrorDomain", optional=true)
     public static native String getClassDomain();
     /*</methods>*/

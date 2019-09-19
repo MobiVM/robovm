@@ -42,9 +42,7 @@ import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.2 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UITextInputMode/*</name>*/ 
@@ -84,14 +82,10 @@ import org.robovm.apple.linkpresentation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     @GlobalValue(symbol="UITextInputCurrentInputModeDidChangeNotification", optional=true)
     public static native NSString CurrentInputModeDidChange();
     
     /**
-     * @since Available in iOS 4.2 and later.
      * @deprecated Deprecated in iOS 7.0.
      */
     @Deprecated

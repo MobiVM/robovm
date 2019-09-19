@@ -108,9 +108,6 @@ import org.robovm.apple.dispatch.*;
     }
     
 
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public String getPassphrase() {
         if (has(Keys.Passphrase())) {
             CFString val = get(Keys.Passphrase(), CFString.class);
@@ -118,9 +115,6 @@ import org.robovm.apple.dispatch.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public SecImportExportOptions setPassphrase(String passphrase) {
         set(Keys.Passphrase(), new CFString(passphrase));
         return this;
@@ -131,9 +125,6 @@ import org.robovm.apple.dispatch.*;
     @Library("Security")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kSecImportExportPassphrase", optional=true)
         public static native CFString Passphrase();
     }

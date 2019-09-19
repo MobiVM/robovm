@@ -42,9 +42,7 @@ import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 2.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UITabBarController/*</name>*/ 
@@ -82,9 +80,6 @@ import org.robovm.apple.linkpresentation.*;
     public native NSArray<UIViewController> getCustomizableViewControllers();
     @Property(selector = "setCustomizableViewControllers:")
     public native void setCustomizableViewControllers(NSArray<UIViewController> v);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "tabBar")
     public native UITabBar getTabBar();
     @Property(selector = "delegate")

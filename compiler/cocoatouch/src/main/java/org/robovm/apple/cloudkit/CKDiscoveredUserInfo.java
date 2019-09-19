@@ -35,7 +35,6 @@ import org.robovm.apple.fileprovider.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 8.0 and later.
  * @deprecated Deprecated in iOS 10.0.
  */
 /*</javadoc>*/
@@ -56,14 +55,12 @@ import org.robovm.apple.fileprovider.*;
     @Property(selector = "userRecordID")
     public native CKRecordID getUserRecordID();
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 9.0. Use CKDiscoveredUserInfo.displayContact.givenName
      */
     @Deprecated
     @Property(selector = "firstName")
     public native String getFirstName();
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 9.0. Use CKDiscoveredUserInfo.displayContact.familyName
      */
     @Deprecated

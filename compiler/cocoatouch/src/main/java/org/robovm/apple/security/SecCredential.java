@@ -103,9 +103,6 @@ import org.robovm.apple.dispatch.*;
     }
     
 
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public String getPassword() {
         if (has(Keys.Password())) {
             CFString val = get(Keys.Password(), CFString.class);
@@ -149,9 +146,6 @@ import org.robovm.apple.dispatch.*;
     @Library("Security")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="kSecSharedPassword", optional=true)
         public static native CFType Password();
     }

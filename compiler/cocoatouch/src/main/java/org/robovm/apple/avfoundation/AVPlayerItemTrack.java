@@ -41,9 +41,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVPlayerItemTrack/*</name>*/ 
@@ -65,9 +63,6 @@ import org.robovm.apple.audiotoolbox.*;
     public native boolean isEnabled();
     @Property(selector = "setEnabled:")
     public native void setEnabled(boolean v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "currentVideoFrameRate")
     public native float getCurrentVideoFrameRate();
     /*</properties>*/

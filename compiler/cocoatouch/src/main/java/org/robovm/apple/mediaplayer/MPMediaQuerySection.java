@@ -33,9 +33,7 @@ import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.2 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("MediaPlayer") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPMediaQuerySection/*</name>*/ 

@@ -50,29 +50,14 @@ import org.robovm.apple.uikit.*;
     /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Bridge(symbol="CTGlyphInfoGetTypeID", optional=true)
     public static native @MachineSizedUInt long getClassTypeID();
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Bridge(symbol="CTGlyphInfoCreateWithGlyphName", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CTGlyphInfo create(String glyphName, CTFont font, String baseString);
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Bridge(symbol="CTGlyphInfoCreateWithGlyph", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CTGlyphInfo create(short glyph, CTFont font, String baseString);
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Bridge(symbol="CTGlyphInfoCreateWithCharacterIdentifier", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CTGlyphInfo create(short cid, CTCharacterCollection collection, String baseString);
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Bridge(symbol="CTGlyphInfoGetGlyphName", optional=true)
     public native String getGlyphName();
     /**
@@ -80,14 +65,8 @@ import org.robovm.apple.uikit.*;
      */
     @Bridge(symbol="CTGlyphInfoGetGlyph", optional=true)
     public native short getGlyph();
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Bridge(symbol="CTGlyphInfoGetCharacterIdentifier", optional=true)
     public native short getCharacterIdentifier();
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Bridge(symbol="CTGlyphInfoGetCharacterCollection", optional=true)
     public native CTCharacterCollection getCharacterCollection();
     /*</methods>*/

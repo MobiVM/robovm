@@ -91,37 +91,13 @@ import org.robovm.apple.coretext.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final CFURLFileResourceType NamedPipe = new CFURLFileResourceType("NamedPipe");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final CFURLFileResourceType CharacterSpecial = new CFURLFileResourceType("CharacterSpecial");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final CFURLFileResourceType Directory = new CFURLFileResourceType("Directory");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final CFURLFileResourceType BlockSpecial = new CFURLFileResourceType("BlockSpecial");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final CFURLFileResourceType Regular = new CFURLFileResourceType("Regular");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final CFURLFileResourceType SymbolicLink = new CFURLFileResourceType("SymbolicLink");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final CFURLFileResourceType Socket = new CFURLFileResourceType("Socket");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final CFURLFileResourceType Unknown = new CFURLFileResourceType("Unknown");
     /*</constants>*/
     
@@ -148,44 +124,20 @@ import org.robovm.apple.coretext.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="kCFURLFileResourceTypeNamedPipe", optional=true)
         public static native CFString NamedPipe();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="kCFURLFileResourceTypeCharacterSpecial", optional=true)
         public static native CFString CharacterSpecial();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="kCFURLFileResourceTypeDirectory", optional=true)
         public static native CFString Directory();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="kCFURLFileResourceTypeBlockSpecial", optional=true)
         public static native CFString BlockSpecial();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="kCFURLFileResourceTypeRegular", optional=true)
         public static native CFString Regular();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="kCFURLFileResourceTypeSymbolicLink", optional=true)
         public static native CFString SymbolicLink();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="kCFURLFileResourceTypeSocket", optional=true)
         public static native CFString Socket();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="kCFURLFileResourceTypeUnknown", optional=true)
         public static native CFString Unknown();
         /*</values>*/

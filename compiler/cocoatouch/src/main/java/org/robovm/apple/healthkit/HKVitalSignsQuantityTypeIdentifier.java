@@ -87,29 +87,14 @@ import org.robovm.apple.foundation.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final HKVitalSignsQuantityTypeIdentifier HeartRate = new HKVitalSignsQuantityTypeIdentifier("HeartRate");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final HKVitalSignsQuantityTypeIdentifier BodyTemperature = new HKVitalSignsQuantityTypeIdentifier("BodyTemperature");
     /**
      * @since Available in iOS 9.0 and later.
      */
     public static final HKVitalSignsQuantityTypeIdentifier BasalBodyTemperature = new HKVitalSignsQuantityTypeIdentifier("BasalBodyTemperature");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final HKVitalSignsQuantityTypeIdentifier BloodPressureSystolic = new HKVitalSignsQuantityTypeIdentifier("BloodPressureSystolic");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final HKVitalSignsQuantityTypeIdentifier BloodPressureDiastolic = new HKVitalSignsQuantityTypeIdentifier("BloodPressureDiastolic");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final HKVitalSignsQuantityTypeIdentifier RespiratoryRate = new HKVitalSignsQuantityTypeIdentifier("RespiratoryRate");
     /*</constants>*/
     
@@ -136,14 +121,8 @@ import org.robovm.apple.foundation.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="HKQuantityTypeIdentifierHeartRate", optional=true)
         public static native NSString HeartRate();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="HKQuantityTypeIdentifierBodyTemperature", optional=true)
         public static native NSString BodyTemperature();
         /**
@@ -151,19 +130,10 @@ import org.robovm.apple.foundation.*;
          */
         @GlobalValue(symbol="HKQuantityTypeIdentifierBasalBodyTemperature", optional=true)
         public static native NSString BasalBodyTemperature();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="HKQuantityTypeIdentifierBloodPressureSystolic", optional=true)
         public static native NSString BloodPressureSystolic();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="HKQuantityTypeIdentifierBloodPressureDiastolic", optional=true)
         public static native NSString BloodPressureDiastolic();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="HKQuantityTypeIdentifierRespiratoryRate", optional=true)
         public static native NSString RespiratoryRate();
         /*</values>*/

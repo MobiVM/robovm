@@ -50,9 +50,6 @@ public enum /*<name>*/UITableViewCellSelectionStyle/*</name>*/ implements Valued
     None(0L),
     Blue(1L),
     Gray(2L),
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     Default(3L);
     /*</values>*/
 

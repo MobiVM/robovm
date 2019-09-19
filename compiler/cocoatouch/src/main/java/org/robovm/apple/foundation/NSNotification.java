@@ -52,9 +52,6 @@ import org.robovm.apple.dispatch.*;
     /*<constructors>*/
     protected NSNotification(Handle h, long handle) { super(h, handle); }
     protected NSNotification(SkipInit skipInit) { super(skipInit); }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "initWithName:object:userInfo:")
     public NSNotification(NSString name, NSObject object, NSDictionary<?, ?> userInfo) { super((SkipInit) null); initObject(init(name, object, userInfo)); }
     @Method(selector = "initWithCoder:")
@@ -90,9 +87,6 @@ import org.robovm.apple.dispatch.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "initWithName:object:userInfo:")
     protected native @Pointer long init(NSString name, NSObject object, NSDictionary<?, ?> userInfo);
     @Method(selector = "initWithCoder:")

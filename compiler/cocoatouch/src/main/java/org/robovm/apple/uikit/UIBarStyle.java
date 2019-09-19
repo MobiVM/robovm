@@ -50,13 +50,11 @@ public enum /*<name>*/UIBarStyle/*</name>*/ implements ValuedEnum {
     Default(0L),
     Black(1L),
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 13.0. Use UIBarStyleBlack instead.
      */
     @Deprecated
     BlackOpaque(1L),
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 13.0. Use UIBarStyleBlack and set the translucent property to YES instead.
      */
     @Deprecated

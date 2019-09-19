@@ -42,9 +42,7 @@ import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 2.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UITabBar/*</name>*/ 
@@ -78,24 +76,12 @@ import org.robovm.apple.linkpresentation.*;
     public native void setSelectedItem(UITabBarItem v);
     @Property(selector = "isCustomizing")
     public native boolean isCustomizing();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "tintColor")
     public native UIColor getTintColor();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setTintColor:")
     public native void setTintColor(UIColor v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "barTintColor")
     public native UIColor getBarTintColor();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setBarTintColor:")
     public native void setBarTintColor(UIColor v);
     /**
@@ -109,97 +95,47 @@ import org.robovm.apple.linkpresentation.*;
     @Property(selector = "setUnselectedItemTintColor:")
     public native void setUnselectedItemTintColor(UIColor v);
     /**
-     * @since Available in iOS 5.0 and later.
      * @deprecated Deprecated in iOS 8.0.
      */
     @Deprecated
     @Property(selector = "selectedImageTintColor")
     public native UIColor getSelectedImageTintColor();
     /**
-     * @since Available in iOS 5.0 and later.
      * @deprecated Deprecated in iOS 8.0.
      */
     @Deprecated
     @Property(selector = "setSelectedImageTintColor:")
     public native void setSelectedImageTintColor(UIColor v);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "backgroundImage")
     public native UIImage getBackgroundImage();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setBackgroundImage:")
     public native void setBackgroundImage(UIImage v);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "selectionIndicatorImage")
     public native UIImage getSelectionIndicatorImage();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setSelectionIndicatorImage:")
     public native void setSelectionIndicatorImage(UIImage v);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "shadowImage")
     public native UIImage getShadowImage();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "setShadowImage:")
     public native void setShadowImage(UIImage v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "itemPositioning")
     public native UITabBarItemPositioning getItemPositioning();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setItemPositioning:")
     public native void setItemPositioning(UITabBarItemPositioning v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "itemWidth")
     public native @MachineSizedFloat double getItemWidth();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setItemWidth:")
     public native void setItemWidth(@MachineSizedFloat double v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "itemSpacing")
     public native @MachineSizedFloat double getItemSpacing();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setItemSpacing:")
     public native void setItemSpacing(@MachineSizedFloat double v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "barStyle")
     public native UIBarStyle getBarStyle();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setBarStyle:")
     public native void setBarStyle(UIBarStyle v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "isTranslucent")
     public native boolean isTranslucent();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setTranslucent:")
     public native void setTranslucent(boolean v);
     /**

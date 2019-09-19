@@ -77,9 +77,6 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Method(selector = "encodeDirectionalEdgeInsets:forKey:")
     public static native void encodeDirectionalEdgeInsets(NSCoder thiz, @ByVal NSDirectionalEdgeInsets insets, String key);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "encodeUIOffset:forKey:")
     public static native void encodeUIOffset(NSCoder thiz, @ByVal UIOffset offset, String key);
     @Method(selector = "decodeCGPointForKey:")
@@ -99,9 +96,6 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Method(selector = "decodeDirectionalEdgeInsetsForKey:")
     public static native @ByVal NSDirectionalEdgeInsets decodeDirectionalEdgeInsets(NSCoder thiz, String key);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "decodeUIOffsetForKey:")
     public static native @ByVal UIOffset decodeUIOffset(NSCoder thiz, String key);
     /*</methods>*/

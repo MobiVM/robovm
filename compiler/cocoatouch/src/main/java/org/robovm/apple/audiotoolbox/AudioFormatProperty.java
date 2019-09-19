@@ -106,14 +106,8 @@ public enum /*<name>*/AudioFormatProperty/*</name>*/ implements ValuedEnum {
         return data;
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioFormatGetPropertyInfo", optional=true)
     protected static native OSStatus getPropertyInfo0(AudioFormatProperty inPropertyID, int inSpecifierSize, VoidPtr inSpecifier, IntPtr outPropertyDataSize);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioFormatGetProperty", optional=true)
     protected static native OSStatus getProperty0(AudioFormatProperty inPropertyID, int inSpecifierSize, VoidPtr inSpecifier, IntPtr ioPropertyDataSize, VoidPtr outPropertyData);
     /*</methods>*/

@@ -87,37 +87,16 @@ import org.robovm.apple.foundation.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final HKFitnessQuantityTypeIdentifier StepCount = new HKFitnessQuantityTypeIdentifier("StepCount");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final HKFitnessQuantityTypeIdentifier DistanceWalkingRunning = new HKFitnessQuantityTypeIdentifier("DistanceWalkingRunning");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final HKFitnessQuantityTypeIdentifier DistanceCycling = new HKFitnessQuantityTypeIdentifier("DistanceCycling");
     /**
      * @since Available in iOS 10.0 and later.
      */
     public static final HKFitnessQuantityTypeIdentifier DistanceWheelchair = new HKFitnessQuantityTypeIdentifier("DistanceWheelchair");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final HKFitnessQuantityTypeIdentifier BasalEnergyBurned = new HKFitnessQuantityTypeIdentifier("BasalEnergyBurned");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final HKFitnessQuantityTypeIdentifier ActiveEnergyBurned = new HKFitnessQuantityTypeIdentifier("ActiveEnergyBurned");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final HKFitnessQuantityTypeIdentifier FlightsClimbed = new HKFitnessQuantityTypeIdentifier("FlightsClimbed");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final HKFitnessQuantityTypeIdentifier NikeFuel = new HKFitnessQuantityTypeIdentifier("NikeFuel");
     /**
      * @since Available in iOS 9.3 and later.
@@ -160,19 +139,10 @@ import org.robovm.apple.foundation.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="HKQuantityTypeIdentifierStepCount", optional=true)
         public static native NSString StepCount();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="HKQuantityTypeIdentifierDistanceWalkingRunning", optional=true)
         public static native NSString DistanceWalkingRunning();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="HKQuantityTypeIdentifierDistanceCycling", optional=true)
         public static native NSString DistanceCycling();
         /**
@@ -180,24 +150,12 @@ import org.robovm.apple.foundation.*;
          */
         @GlobalValue(symbol="HKQuantityTypeIdentifierDistanceWheelchair", optional=true)
         public static native NSString DistanceWheelchair();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="HKQuantityTypeIdentifierBasalEnergyBurned", optional=true)
         public static native NSString BasalEnergyBurned();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="HKQuantityTypeIdentifierActiveEnergyBurned", optional=true)
         public static native NSString ActiveEnergyBurned();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="HKQuantityTypeIdentifierFlightsClimbed", optional=true)
         public static native NSString FlightsClimbed();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="HKQuantityTypeIdentifierNikeFuel", optional=true)
         public static native NSString NikeFuel();
         /**

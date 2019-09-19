@@ -59,7 +59,6 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "initRequiringSecureCoding:")
     public NSKeyedArchiver(boolean requiresSecureCoding) { super((SkipInit) null); initObject(init(requiresSecureCoding)); }
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 12.0. Use -initRequiringSecureCoding: instead
      */
     @Deprecated
@@ -80,14 +79,8 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "encodedData")
     public native NSData getEncodedData();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "requiresSecureCoding")
     public native boolean requiresSecureCoding();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "setRequiresSecureCoding:")
     public native void setRequiresSecureCoding(boolean v);
     /*</properties>*/
@@ -104,9 +97,6 @@ import org.robovm.apple.dispatch.*;
     }
     
     /*<methods>*/
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @GlobalValue(symbol="NSKeyedArchiveRootObjectKey", optional=true)
     public static native String ArchiveRootObjectKey();
     
@@ -116,7 +106,6 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "initRequiringSecureCoding:")
     protected native @Pointer long init(boolean requiresSecureCoding);
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 12.0. Use -initRequiringSecureCoding: instead
      */
     @Deprecated
@@ -134,14 +123,12 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "archivedDataWithRootObject:requiringSecureCoding:error:")
     public static native NSData archivedDataWithRootObject(NSObject object, boolean requiresSecureCoding, NSError.NSErrorPtr error);
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 12.0. Use +archivedDataWithRootObject:requiringSecureCoding:error: instead
      */
     @Deprecated
     @Method(selector = "archivedDataWithRootObject:")
     public static native NSData archive(NSObject rootObject);
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 12.0. Use +archivedDataWithRootObject:requiringSecureCoding:error: instead
      */
     @Deprecated

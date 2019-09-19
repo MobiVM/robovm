@@ -48,9 +48,6 @@ import org.robovm.apple.uikit.*;
     
     /*</properties>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "accessoryDidDisconnect:")
     void didDisconnect(EAAccessory accessory);
     /*</methods>*/

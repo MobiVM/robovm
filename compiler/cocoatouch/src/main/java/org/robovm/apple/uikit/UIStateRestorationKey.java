@@ -116,29 +116,14 @@ import org.robovm.apple.linkpresentation.*;
             + /*<name>*/UIStateRestorationKey/*</name>*/.class.getName());
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @GlobalValue(symbol="UIStateRestorationViewControllerStoryboardKey", optional=true)
     protected static native String ViewControllerStoryboardKey();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @GlobalValue(symbol="UIApplicationStateRestorationBundleVersionKey", optional=true)
     protected static native String ApplicationBundleVersionKey();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @GlobalValue(symbol="UIApplicationStateRestorationUserInterfaceIdiomKey", optional=true)
     protected static native String ApplicationUserInterfaceIdiomKey();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @GlobalValue(symbol="UIApplicationStateRestorationTimestampKey", optional=true)
     protected static native String ApplicationTimestampKey();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @GlobalValue(symbol="UIApplicationStateRestorationSystemVersionKey", optional=true)
     protected static native String ApplicationSystemVersionKey();
     /*</methods>*/

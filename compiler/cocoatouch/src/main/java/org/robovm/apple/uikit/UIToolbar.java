@@ -42,9 +42,7 @@ import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 2.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIToolbar/*</name>*/ 
@@ -72,28 +70,16 @@ import org.robovm.apple.linkpresentation.*;
     public native NSArray<UIBarButtonItem> getItems();
     @Property(selector = "setItems:")
     public native void setItems(NSArray<UIBarButtonItem> v);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "isTranslucent")
     public native boolean isTranslucent();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "setTranslucent:")
     public native void setTranslucent(boolean v);
     @Property(selector = "tintColor")
     public native UIColor getTintColor();
     @Property(selector = "setTintColor:")
     public native void setTintColor(UIColor v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "barTintColor")
     public native UIColor getBarTintColor();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setBarTintColor:")
     public native void setBarTintColor(UIColor v);
     /**
@@ -116,14 +102,8 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Property(selector = "setCompactAppearance:")
     public native void setCompactAppearance(UIToolbarAppearance v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "delegate")
     public native UIToolbarDelegate getDelegate();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setDelegate:", strongRef = true)
     public native void setDelegate(UIToolbarDelegate v);
     @Property(selector = "barPosition")
@@ -133,24 +113,12 @@ import org.robovm.apple.linkpresentation.*;
     /*<methods>*/
     @Method(selector = "setItems:animated:")
     public native void setItems(NSArray<UIBarButtonItem> items, boolean animated);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "setBackgroundImage:forToolbarPosition:barMetrics:")
     public native void setBackgroundImage(UIImage backgroundImage, UIBarPosition topOrBottom, UIBarMetrics barMetrics);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "backgroundImageForToolbarPosition:barMetrics:")
     public native UIImage getBackgroundImage(UIBarPosition topOrBottom, UIBarMetrics barMetrics);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "setShadowImage:forToolbarPosition:")
     public native void setShadowImage(UIImage shadowImage, UIBarPosition topOrBottom);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "shadowImageForToolbarPosition:")
     public native UIImage getShadowImage(UIBarPosition topOrBottom);
     /*</methods>*/

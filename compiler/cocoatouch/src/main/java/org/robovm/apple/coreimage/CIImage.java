@@ -40,9 +40,7 @@ import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 5.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreImage") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CIImage/*</name>*/ 
@@ -72,7 +70,6 @@ import org.robovm.apple.avfoundation.*;
     @Method(selector = "initWithBitmapData:bytesPerRow:size:format:colorSpace:")
     public CIImage(NSData data, @MachineSizedUInt long bytesPerRow, @ByVal CGSize size, int format, CGColorSpace colorSpace) { super((SkipInit) null); initObject(init(data, bytesPerRow, size, format, colorSpace)); }
     /**
-     * @since Available in iOS 6.0 and later.
      * @deprecated Deprecated in iOS 12.0. Core Image OpenGL API deprecated. (Define CI_SILENCE_GL_DEPRECATION to silence these warnings)
      */
     @Deprecated
@@ -87,14 +84,8 @@ import org.robovm.apple.avfoundation.*;
     public CIImage(NSURL url) { super((SkipInit) null); initObject(init(url)); }
     @Method(selector = "initWithContentsOfURL:options:")
     public CIImage(NSURL url, CIImageOptions options) { super((SkipInit) null); initObject(init(url, options)); }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "initWithIOSurface:")
     public CIImage(IOSurface surface) { super((SkipInit) null); initObject(init(surface)); }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "initWithIOSurface:options:")
     public CIImage(IOSurface surface, CIImageOptions options) { super((SkipInit) null); initObject(init(surface, options)); }
     /**
@@ -107,15 +98,9 @@ import org.robovm.apple.avfoundation.*;
      */
     @Method(selector = "initWithCVImageBuffer:options:")
     public CIImage(CVImageBuffer imageBuffer, CIImageOptions options) { super((SkipInit) null); initObject(init(imageBuffer, options)); }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @WeaklyLinked
     @Method(selector = "initWithCVPixelBuffer:")
     public CIImage(CVPixelBuffer pixelBuffer) { super((SkipInit) null); initObject(init(pixelBuffer)); }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @WeaklyLinked
     @Method(selector = "initWithCVPixelBuffer:options:")
     public CIImage(CVPixelBuffer pixelBuffer, CIImageOptions options) { super((SkipInit) null); initObject(init(pixelBuffer, options)); }
@@ -212,9 +197,6 @@ import org.robovm.apple.avfoundation.*;
     public static native CIImage getClearImage();
     @Property(selector = "extent")
     public native @ByVal CGRect getExtent();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "properties")
     public native NSDictionary<NSString, ?> getProperties();
     /**
@@ -289,7 +271,6 @@ import org.robovm.apple.avfoundation.*;
     @Method(selector = "initWithBitmapData:bytesPerRow:size:format:colorSpace:")
     protected native @Pointer long init(NSData data, @MachineSizedUInt long bytesPerRow, @ByVal CGSize size, int format, CGColorSpace colorSpace);
     /**
-     * @since Available in iOS 6.0 and later.
      * @deprecated Deprecated in iOS 12.0. Core Image OpenGL API deprecated. (Define CI_SILENCE_GL_DEPRECATION to silence these warnings)
      */
     @Deprecated
@@ -304,14 +285,8 @@ import org.robovm.apple.avfoundation.*;
     protected native @Pointer long init(NSURL url);
     @Method(selector = "initWithContentsOfURL:options:")
     protected native @Pointer long init(NSURL url, CIImageOptions options);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "initWithIOSurface:")
     protected native @Pointer long init(IOSurface surface);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "initWithIOSurface:options:")
     protected native @Pointer long init(IOSurface surface, CIImageOptions options);
     /**
@@ -324,15 +299,9 @@ import org.robovm.apple.avfoundation.*;
      */
     @Method(selector = "initWithCVImageBuffer:options:")
     protected native @Pointer long init(CVImageBuffer imageBuffer, CIImageOptions options);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @WeaklyLinked
     @Method(selector = "initWithCVPixelBuffer:")
     protected native @Pointer long init(CVPixelBuffer pixelBuffer);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @WeaklyLinked
     @Method(selector = "initWithCVPixelBuffer:options:")
     protected native @Pointer long init(CVPixelBuffer pixelBuffer, CIImageOptions options);
@@ -345,15 +314,9 @@ import org.robovm.apple.avfoundation.*;
      */
     @Method(selector = "imageByApplyingTransform:highQualityDownsample:")
     public native CIImage newImageByApplyingTransform(@ByVal CGAffineTransform matrix, boolean highQualityDownsample);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @WeaklyLinked
     @Method(selector = "imageByApplyingOrientation:")
     public native CIImage newImageByApplyingOrientation(CGImagePropertyOrientation orientation);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @WeaklyLinked
     @Method(selector = "imageTransformForOrientation:")
     public native @ByVal CGAffineTransform getImageTransformForOrientation(CGImagePropertyOrientation orientation);
@@ -367,16 +330,10 @@ import org.robovm.apple.avfoundation.*;
      */
     @Method(selector = "imageTransformForCGOrientation:")
     public native @ByVal CGAffineTransform imageTransformForCGOrientation(CGImagePropertyOrientation orientation);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "imageByCompositingOverImage:")
     public native CIImage newImageByCompositingOverImage(CIImage dest);
     @Method(selector = "imageByCroppingToRect:")
     public native CIImage newImageByCroppingToRect(@ByVal CGRect rect);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "imageByClampingToExtent")
     public native CIImage newImageByClampingToExtent();
     /**
@@ -384,9 +341,6 @@ import org.robovm.apple.avfoundation.*;
      */
     @Method(selector = "imageByClampingToRect:")
     public native CIImage newImageByClampingToRect(@ByVal CGRect rect);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "imageByApplyingFilter:withInputParameters:")
     public native CIImage newImageByApplyingFilter(String filterName, CIFilterInputParameters params);
     /**
@@ -449,21 +403,12 @@ import org.robovm.apple.avfoundation.*;
      */
     @Method(selector = "imageByInsertingIntermediate:")
     public native CIImage newImageByInsertingIntermediate(boolean cache);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "regionOfInterestForImage:inRect:")
     public native @ByVal CGRect getRegionOfInterest(CIImage image, @ByVal CGRect rect);
     @Method(selector = "emptyImage")
     public static native CIImage getEmptyImage();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "autoAdjustmentFilters")
     public native NSArray<CIFilter> getAutoAdjustmentFilters();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "autoAdjustmentFiltersWithOptions:")
     public native NSArray<CIFilter> getAutoAdjustmentFilters(CIImageAutoAdjustmentOptions options);
     /**

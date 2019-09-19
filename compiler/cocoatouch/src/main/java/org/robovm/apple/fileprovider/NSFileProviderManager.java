@@ -85,7 +85,6 @@ import org.robovm.apple.coregraphics.*;
     @GlobalValue(symbol="NSFileProviderInitialPageSortedByName", optional=true)
     public static native NSString getEnumerationInitialPageSortedByName();
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 13.0. NSFileProviderErrorItemKey
      */
     @Deprecated

@@ -51,7 +51,6 @@ public enum /*<name>*/AUTypeConverter/*</name>*/ implements AUSubType {
     AUiPodTimeOther(1768977519L),
     RoundTripAAC(1918984547L),
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 13.0.
      */
     @Deprecated

@@ -219,9 +219,6 @@ import org.robovm.apple.dispatch.*;
     /*<properties>*/
     @Property(selector = "count")
     protected native @MachineSizedUInt long getCount();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "firstObject")
     public native T first();
     @Property(selector = "lastObject")
@@ -564,35 +561,20 @@ import org.robovm.apple.dispatch.*;
     protected native NSArray<T> getSubarray(@ByVal NSRange range);
     @Method(selector = "initWithArray:")
     protected native @Pointer long init(NSArray<T> array);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Deprecated
     @Method(selector = "writeToFile:atomically:")
     protected native boolean writeFile(String path, boolean atomically);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Deprecated
     @Method(selector = "writeToURL:atomically:")
     public native boolean write(NSURL url, boolean atomically);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Deprecated
     @Method(selector = "arrayWithContentsOfFile:")
     protected static native NSArray<?> readFile(String path);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Deprecated
     @Method(selector = "arrayWithContentsOfURL:")
     public static native NSArray<?> read(NSURL url);
     @Method(selector = "addObserver:toObjectsAtIndexes:forKeyPath:options:context:")
     public native void addObserver(NSObject observer, NSIndexSet indexes, String keyPath, NSKeyValueObservingOptions options, VoidPtr context);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "removeObserver:fromObjectsAtIndexes:forKeyPath:context:")
     public native void removeObserver(NSObject observer, NSIndexSet indexes, String keyPath, VoidPtr context);
     /*</methods>*/
