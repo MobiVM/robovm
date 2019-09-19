@@ -383,8 +383,7 @@ classes:
     HMCharacteristicThresholdRangeEvent: #since 11.0
         methods:
             '-initWithCharacteristic:thresholdRange:':
-                #trim_after_first_colon: true
-                name: initWithCharacteristic$thresholdRange$
+                name: init
     HMDurationEvent: #since 11.0
         methods:
             '-initWithDuration:':

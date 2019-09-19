@@ -75,6 +75,6 @@ import org.robovm.apple.coregraphics.*;
     @Method(selector = "maximumWidthForInkType:")
     public static native @MachineSizedFloat double maximumWidthForInkType(PKInkType inkType);
     @Method(selector = "convertColor:fromUserInterfaceStyle:to:")
-    public static native UIColor convertColor$(UIColor color, UIUserInterfaceStyle fromUserInterfaceStyle, UIUserInterfaceStyle toUserInterfaceStyle);
+    public static native UIColor convertColor(UIColor color, UIUserInterfaceStyle fromUserInterfaceStyle, UIUserInterfaceStyle toUserInterfaceStyle);
     /*</methods>*/
 }

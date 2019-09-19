@@ -110,20 +110,15 @@ classes:
     NLGazetteer: #since 13.0
         methods:
             '-initWithContentsOfURL:error:':
-                #trim_after_first_colon: true
-                name: initWithContentsOfURL$error$
+                name: init
             '-initWithData:error:':
-                #trim_after_first_colon: true
-                name: initWithData$error$
+                name: init
             '-initWithDictionary:language:error:':
-                #trim_after_first_colon: true
-                name: initWithDictionary$language$error$
+                name: init
             '+gazetteerWithContentsOfURL:error:':
-                #trim_after_first_colon: true
-                name: gazetteerWithContentsOfURL$error$
+                exclude: true
             '+writeGazetteerForDictionary:language:toURL:error:':
-                #trim_after_first_colon: true
-                name: writeGazetteerForDictionary$language$toURL$error$
+                exclude: true
 protocols: {}
 
 functions:

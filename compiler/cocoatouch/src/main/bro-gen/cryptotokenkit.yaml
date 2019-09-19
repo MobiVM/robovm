@@ -46,7 +46,7 @@ classes:
             '-transmitRequest:reply:':
                 name: transmitRequest
             '-userInteractionForSecurePINVerificationWithPINFormat:APDU:PINByteOffset:':
-                name: userInteractionForSecurePINVerificationWithPINFormat$APDU$PINByteOffset$
+                name: userInteractionForSecurePINVerification
             '-userInteractionForSecurePINChangeWithPINFormat:APDU:currentPINByteOffset:newPINByteOffset:':
                 name: userInteractionForSecurePINChange
             '-sendIns:p1:p2:data:le:reply:':

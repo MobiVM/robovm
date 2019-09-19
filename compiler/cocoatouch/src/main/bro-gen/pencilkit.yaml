@@ -40,7 +40,7 @@ classes:
             '-initWithInkType:color:':
                 name: init
             '+convertColor:fromUserInterfaceStyle:to:':
-                name: convertColor$
+                name: convertColor
     PKLassoTool: {} #since 13.0
     PKTool: {} #since 13.0
     PKToolPicker: #since 13.0

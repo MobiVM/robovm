@@ -50,7 +50,7 @@ import org.robovm.apple.avfoundation.*;
     protected CXHandle(Handle h, long handle) { super(h, handle); }
     protected CXHandle(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithType:value:")
-    public CXHandle(CXHandleType type, String value) { super((SkipInit) null); initObject(initWithType$value$(type, value)); }
+    public CXHandle(CXHandleType type, String value) { super((SkipInit) null); initObject(init(type, value)); }
     @Method(selector = "initWithCoder:")
     public CXHandle(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
@@ -65,7 +65,7 @@ import org.robovm.apple.avfoundation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithType:value:")
-    protected native @Pointer long initWithType$value$(CXHandleType type, String value);
+    protected native @Pointer long init(CXHandleType type, String value);
     @Method(selector = "isEqualToHandle:")
     public native boolean isEqualToHandle(CXHandle handle);
     @Method(selector = "encodeWithCoder:")

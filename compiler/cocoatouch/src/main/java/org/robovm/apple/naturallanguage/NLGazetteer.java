@@ -52,17 +52,17 @@ import org.robovm.apple.coreml.*;
      * @since Available in iOS 13.0 and later.
      */
     @Method(selector = "initWithContentsOfURL:error:")
-    public NLGazetteer(NSURL url, NSError.NSErrorPtr error) { super((SkipInit) null); initObject(initWithContentsOfURL$error$(url, error)); }
+    public NLGazetteer(NSURL url, NSError.NSErrorPtr error) { super((SkipInit) null); initObject(init(url, error)); }
     /**
      * @since Available in iOS 13.0 and later.
      */
     @Method(selector = "initWithData:error:")
-    public NLGazetteer(NSData data, NSError.NSErrorPtr error) { super((SkipInit) null); initObject(initWithData$error$(data, error)); }
+    public NLGazetteer(NSData data, NSError.NSErrorPtr error) { super((SkipInit) null); initObject(init(data, error)); }
     /**
      * @since Available in iOS 13.0 and later.
      */
     @Method(selector = "initWithDictionary:language:error:")
-    public NLGazetteer(NSDictionary<?, ?> dictionary, NLLanguage language, NSError.NSErrorPtr error) { super((SkipInit) null); initObject(initWithDictionary$language$error$(dictionary, language, error)); }
+    public NLGazetteer(NSDictionary<?, ?> dictionary, NLLanguage language, NSError.NSErrorPtr error) { super((SkipInit) null); initObject(init(dictionary, language, error)); }
     /*</constructors>*/
     /*<properties>*/
     /**
@@ -82,31 +82,21 @@ import org.robovm.apple.coreml.*;
      * @since Available in iOS 13.0 and later.
      */
     @Method(selector = "initWithContentsOfURL:error:")
-    protected native @Pointer long initWithContentsOfURL$error$(NSURL url, NSError.NSErrorPtr error);
+    protected native @Pointer long init(NSURL url, NSError.NSErrorPtr error);
     /**
      * @since Available in iOS 13.0 and later.
      */
     @Method(selector = "initWithData:error:")
-    protected native @Pointer long initWithData$error$(NSData data, NSError.NSErrorPtr error);
+    protected native @Pointer long init(NSData data, NSError.NSErrorPtr error);
     /**
      * @since Available in iOS 13.0 and later.
      */
     @Method(selector = "initWithDictionary:language:error:")
-    protected native @Pointer long initWithDictionary$language$error$(NSDictionary<?, ?> dictionary, NLLanguage language, NSError.NSErrorPtr error);
+    protected native @Pointer long init(NSDictionary<?, ?> dictionary, NLLanguage language, NSError.NSErrorPtr error);
     /**
      * @since Available in iOS 13.0 and later.
      */
     @Method(selector = "labelForString:")
     public native String labelForString(String string);
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @Method(selector = "gazetteerWithContentsOfURL:error:")
-    public static native NLGazetteer gazetteerWithContentsOfURL$error$(NSURL url, NSError.NSErrorPtr error);
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @Method(selector = "writeGazetteerForDictionary:language:toURL:error:")
-    public static native boolean writeGazetteerForDictionary$language$toURL$error$(NSDictionary<?, ?> dictionary, NLLanguage language, NSURL url, NSError.NSErrorPtr error);
     /*</methods>*/
 }

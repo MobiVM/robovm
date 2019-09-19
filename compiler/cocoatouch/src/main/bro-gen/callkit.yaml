@@ -80,7 +80,7 @@ classes:
     CXHandle: #since 10.0
         methods:
             '-initWithType:value:':
-                name: initWithType$value$
+                name: init
     CXPlayDTMFCallAction: #since 10.0
         methods:
             '-initWithCallUUID:digits:type:':

@@ -91,7 +91,7 @@ import org.robovm.apple.security.*;
      * @since Available in iOS 9.0 and later.
      */
     @Method(selector = "userInteractionForSecurePINVerificationWithPINFormat:APDU:PINByteOffset:")
-    public native TKSmartCardUserInteractionForSecurePINVerification userInteractionForSecurePINVerificationWithPINFormat$APDU$PINByteOffset$(TKSmartCardPINFormat PINFormat, NSData APDU, @MachineSizedSInt long PINByteOffset);
+    public native TKSmartCardUserInteractionForSecurePINVerification userInteractionForSecurePINVerification(TKSmartCardPINFormat PINFormat, NSData APDU, @MachineSizedSInt long PINByteOffset);
     /**
      * @since Available in iOS 9.0 and later.
      */

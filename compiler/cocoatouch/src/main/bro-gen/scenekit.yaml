@@ -388,13 +388,11 @@ classes:
             '-removeParticleSystem:':
                 trim_after_first_colon: true
             '-convertVector:toNode:':
-                trim_after_first_colon: true
+                name: convertVectorToNode
             '-convertVector:fromNode:':
-                trim_after_first_colon: true
-                name: convertVector$fromNode$
+                name: convertVectorFromNode
             '-lookAt:up:localFront:':
-                trim_after_first_colon: true
-                name: lookAt$up$localFront$
+                name: lookAt
             '-rotateBy:aroundTarget:':
                 name: rotate
             '-simdConvertPosition:toNode:':

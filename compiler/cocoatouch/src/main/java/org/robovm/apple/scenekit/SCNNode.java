@@ -474,12 +474,12 @@ import org.robovm.apple.avfoundation.*;
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "convertVector:toNode:")
-    public native @ByVal SCNVector3 convertVector(@ByVal SCNVector3 vector, SCNNode node);
+    public native @ByVal SCNVector3 convertVectorToNode(@ByVal SCNVector3 vector, SCNNode node);
     /**
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "convertVector:fromNode:")
-    public native @ByVal SCNVector3 convertVector$fromNode$(@ByVal SCNVector3 vector, SCNNode node);
+    public native @ByVal SCNVector3 convertVectorFromNode(@ByVal SCNVector3 vector, SCNNode node);
     @Method(selector = "convertTransform:toNode:")
     public native @ByVal SCNMatrix4 convertTransformToNode(@ByVal SCNMatrix4 transform, SCNNode node);
     @Method(selector = "convertTransform:fromNode:")
@@ -499,7 +499,7 @@ import org.robovm.apple.avfoundation.*;
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "lookAt:up:localFront:")
-    public native void lookAt$up$localFront$(@ByVal SCNVector3 worldTarget, @ByVal SCNVector3 worldUp, @ByVal SCNVector3 localFront);
+    public native void lookAt(@ByVal SCNVector3 worldTarget, @ByVal SCNVector3 worldUp, @ByVal SCNVector3 localFront);
     /**
      * @since Available in iOS 11.0 and later.
      */
