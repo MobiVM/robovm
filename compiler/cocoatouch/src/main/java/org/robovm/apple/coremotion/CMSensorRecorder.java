@@ -66,7 +66,7 @@ import org.robovm.apple.foundation.*;
     public static native CMAuthorizationStatus authorizationStatus();
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use authorizationStatus
      */
     @Deprecated
     @Method(selector = "isAuthorizedForRecording")

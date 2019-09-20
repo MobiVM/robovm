@@ -54,6 +54,11 @@ import org.robovm.apple.dispatch.*;
     void reset(@ByVal NSRange range);
     @Method(selector = "indirectRenderCommandAtIndex:")
     MTLIndirectRenderCommand indirectRenderCommandAtIndex(@MachineSizedUInt long commandIndex);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "indirectComputeCommandAtIndex:")
+    MTLIndirectComputeCommand indirectComputeCommandAtIndex(@MachineSizedUInt long commandIndex);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

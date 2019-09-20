@@ -76,30 +76,25 @@ import org.robovm.rt.bro.ptr.*;
         after(Dispatch.walltime(ts, 0), this, block);
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @GlobalValue(symbol="_dispatch_main_q", optional=true, dereference=false)
     public static native DispatchQueue getMainQueue();
     
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="dispatch_async", optional=true)
     public native void async(@Block Runnable block);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="dispatch_sync", optional=true)
     public native void sync(@Block Runnable block);
     /**
-     * @since Available in iOS 4.0 and later.
+     * @since Available in iOS 12.0 and later.
      */
+    @Bridge(symbol="dispatch_async_and_wait", optional=true)
+    public native void asyncAndWait(@Block Runnable block);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Bridge(symbol="dispatch_async_and_wait_f", optional=true)
+    public native void asyncAndWaitF(VoidPtr context, FunctionPtr work);
     @Bridge(symbol="dispatch_apply", optional=true)
     private static native void apply(@MachineSizedUInt long iterations, DispatchQueue queue, @Block("(@MachineSizedUInt)") VoidBlock1<Long> block);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="dispatch_get_global_queue", optional=true)
     public static native DispatchQueue getGlobalQueue(@MachineSizedSInt long identifier, @MachineSizedUInt long flags);
     /**
@@ -117,30 +112,25 @@ import org.robovm.rt.bro.ptr.*;
      */
     @Bridge(symbol="dispatch_queue_create_with_target", optional=true)
     public static native DispatchQueue createWithTarget(BytePtr label, DispatchQueueAttr attr, DispatchQueue target);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="dispatch_queue_create", optional=true)
     public static native DispatchQueue create(@org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsUtf8ZMarshaler.class) String label, DispatchQueueAttr attr);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="dispatch_queue_get_label", optional=true)
     public native @org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsUtf8ZMarshaler.class) String getLabel();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="dispatch_after", optional=true)
     private static native void after(long when, DispatchQueue queue, @Block Runnable block);
-    /**
-     * @since Available in iOS 4.3 and later.
-     */
     @Bridge(symbol="dispatch_barrier_async", optional=true)
     public native void barrierAsync(@Block Runnable block);
-    /**
-     * @since Available in iOS 4.3 and later.
-     */
     @Bridge(symbol="dispatch_barrier_sync", optional=true)
     public native void barrierSync(@Block Runnable block);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Bridge(symbol="dispatch_barrier_async_and_wait", optional=true)
+    public native void barrierAsyncAndWait(@Block Runnable block);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Bridge(symbol="dispatch_barrier_async_and_wait_f", optional=true)
+    public native void barrierAsyncAndWaitF(VoidPtr context, FunctionPtr work);
     /*</methods>*/
 }

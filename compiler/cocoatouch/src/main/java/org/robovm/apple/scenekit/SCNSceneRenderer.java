@@ -84,6 +84,16 @@ import org.robovm.apple.avfoundation.*;
     boolean isJitteringEnabled();
     @Property(selector = "setJitteringEnabled:")
     void setJitteringEnabled(boolean v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "isTemporalAntialiasingEnabled")
+    boolean isTemporalAntialiasingEnabled();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setTemporalAntialiasingEnabled:")
+    void setTemporalAntialiasingEnabled(boolean v);
     @Property(selector = "showsStatistics")
     boolean showsStatistics();
     @Property(selector = "setShowsStatistics:")
@@ -162,6 +172,21 @@ import org.robovm.apple.avfoundation.*;
      */
     @Property(selector = "setAudioListener:")
     void setAudioListener(SCNNode v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "currentViewport")
+    @ByVal CGRect getCurrentViewport();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "usesReverseZ")
+    boolean usesReverseZ();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setUsesReverseZ:")
+    void setUsesReverseZ(boolean v);
     /*</properties>*/
     /*<methods>*/
     /**

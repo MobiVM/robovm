@@ -41,9 +41,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.1 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVAssetWriterInput/*</name>*/ 
@@ -93,9 +91,6 @@ import org.robovm.apple.audiotoolbox.*;
     public native AVMediaType getMediaType();
     @Property(selector = "outputSettings")
     protected native NSDictionary<NSString, ?> getOutputSettings();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "sourceFormatHint")
     public native CMFormatDescription getSourceFormatHint();
     @Property(selector = "metadata")
@@ -108,98 +103,44 @@ import org.robovm.apple.audiotoolbox.*;
     public native boolean expectsMediaDataInRealTime();
     @Property(selector = "setExpectsMediaDataInRealTime:")
     public native void setExpectsMediaDataInRealTime(boolean v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "languageCode")
     public native String getLanguageCode();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setLanguageCode:")
     public native void setLanguageCode(String v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "extendedLanguageTag")
     public native String getExtendedLanguageTag();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setExtendedLanguageTag:")
     public native void setExtendedLanguageTag(String v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "naturalSize")
     public native @ByVal CGSize getNaturalSize();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setNaturalSize:")
     public native void setNaturalSize(@ByVal CGSize v);
     @Property(selector = "transform")
     public native @ByVal CGAffineTransform getTransform();
     @Property(selector = "setTransform:")
     public native void setTransform(@ByVal CGAffineTransform v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "preferredVolume")
     public native float getPreferredVolume();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setPreferredVolume:")
     public native void setPreferredVolume(float v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "marksOutputTrackAsEnabled")
     public native boolean marksOutputTrackAsEnabled();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setMarksOutputTrackAsEnabled:")
     public native void setMarksOutputTrackAsEnabled(boolean v);
-    /**
-     * @since Available in iOS 4.3 and later.
-     */
     @Property(selector = "mediaTimeScale")
     public native int getMediaTimeScale();
-    /**
-     * @since Available in iOS 4.3 and later.
-     */
     @Property(selector = "setMediaTimeScale:")
     public native void setMediaTimeScale(int v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "preferredMediaChunkDuration")
     public native @ByVal CMTime getPreferredMediaChunkDuration();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setPreferredMediaChunkDuration:")
     public native void setPreferredMediaChunkDuration(@ByVal CMTime v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "preferredMediaChunkAlignment")
     public native @MachineSizedSInt long getPreferredMediaChunkAlignment();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setPreferredMediaChunkAlignment:")
     public native void setPreferredMediaChunkAlignment(@MachineSizedSInt long v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "sampleReferenceBaseURL")
     public native NSURL getSampleReferenceBaseURL();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setSampleReferenceBaseURL:")
     public native void setSampleReferenceBaseURL(NSURL v);
     /**
@@ -212,24 +153,12 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "setMediaDataLocation:")
     public native void setMediaDataLocation(AVAssetWriterInputMediaDataLocation v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "performsMultiPassEncodingIfSupported")
     public native boolean performsMultiPassEncodingIfSupported();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setPerformsMultiPassEncodingIfSupported:")
     public native void setPerformsMultiPassEncodingIfSupported(boolean v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "canPerformMultiplePasses")
     public native boolean canPerformMultiplePasses();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "currentPassDescription")
     public native AVAssetWriterInputPassDescription getCurrentPassDescription();
     /*</properties>*/
@@ -237,9 +166,6 @@ import org.robovm.apple.audiotoolbox.*;
     /*<methods>*/
     @Method(selector = "initWithMediaType:outputSettings:")
     protected native @Pointer long init(AVMediaType mediaType, NSDictionary<NSString, ?> outputSettings);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "initWithMediaType:outputSettings:sourceFormatHint:")
     protected native @Pointer long init(AVMediaType mediaType, NSDictionary<NSString, ?> outputSettings, CMFormatDescription sourceFormatHint);
     @WeaklyLinked
@@ -249,25 +175,13 @@ import org.robovm.apple.audiotoolbox.*;
     public native boolean appendSampleBuffer(CMSampleBuffer sampleBuffer);
     @Method(selector = "markAsFinished")
     public native void markAsFinished();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "canAddTrackAssociationWithTrackOfInput:type:")
     public native boolean canAddTrackAssociation(AVAssetWriterInput input, AVTrackAssociationType trackAssociationType);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "addTrackAssociationWithTrackOfInput:type:")
     public native void addTrackAssociation(AVAssetWriterInput input, AVTrackAssociationType trackAssociationType);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @WeaklyLinked
     @Method(selector = "respondToEachPassDescriptionOnQueue:usingBlock:")
     public native void respondToEachPassDescriptionOnQueue(DispatchQueue queue, @Block Runnable block);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "markCurrentPassAsFinished")
     public native void markCurrentPassAsFinished();
     /*</methods>*/

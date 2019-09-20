@@ -97,37 +97,13 @@ import org.robovm.apple.audiotoolbox.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMediaType Video = new AVMediaType("Video");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMediaType Audio = new AVMediaType("Audio");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMediaType Text = new AVMediaType("Text");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMediaType ClosedCaption = new AVMediaType("ClosedCaption");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMediaType Subtitle = new AVMediaType("Subtitle");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMediaType Timecode = new AVMediaType("Timecode");
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public static final AVMediaType Metadata = new AVMediaType("Metadata");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMediaType Muxed = new AVMediaType("Muxed");
     /**
      * @since Available in iOS 9.0 and later.
@@ -162,44 +138,20 @@ import org.robovm.apple.audiotoolbox.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMediaTypeVideo", optional=true)
         public static native NSString Video();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMediaTypeAudio", optional=true)
         public static native NSString Audio();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMediaTypeText", optional=true)
         public static native NSString Text();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMediaTypeClosedCaption", optional=true)
         public static native NSString ClosedCaption();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMediaTypeSubtitle", optional=true)
         public static native NSString Subtitle();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMediaTypeTimecode", optional=true)
         public static native NSString Timecode();
-        /**
-         * @since Available in iOS 6.0 and later.
-         */
         @GlobalValue(symbol="AVMediaTypeMetadata", optional=true)
         public static native NSString Metadata();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMediaTypeMuxed", optional=true)
         public static native NSString Muxed();
         /**

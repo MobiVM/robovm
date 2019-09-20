@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -77,18 +79,12 @@ import org.robovm.apple.intents.*;
     UIViewAnimationCurve getCompletionCurve();
     @Property(selector = "containerView")
     UIView getContainerView();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "targetTransform")
     @ByVal CGAffineTransform getTargetTransform();
     /*</properties>*/
     /*<methods>*/
     @Method(selector = "viewControllerForKey:")
     UIViewController getViewController(String key);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "viewForKey:")
     UIView getView(String key);
     /*</methods>*/

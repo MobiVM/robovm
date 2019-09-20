@@ -62,6 +62,11 @@ import org.robovm.apple.dispatch.*;
     @Bridge(symbol="sec_identity_create_with_certificates", optional=true)
     public static native SecArcIdentity createWithCertificates(SecIdentity identity, NSArray<?> certificates);
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="sec_identity_access_certificates", optional=true)
+    public native boolean accessCertificates(@Block VoidBlock1<SecArcCertificate> handler);
+    /**
      * @since Available in iOS 12.0 and later.
      */
     @Bridge(symbol="sec_identity_copy_ref", optional=true)

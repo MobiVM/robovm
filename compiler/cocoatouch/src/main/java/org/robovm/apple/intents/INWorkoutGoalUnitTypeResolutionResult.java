@@ -56,22 +56,22 @@ import org.robovm.apple.corelocation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "successWithResolvedWorkoutGoalUnitType:")
-    public static native INWorkoutGoalUnitTypeResolutionResult successWithResolvedWorkoutGoalUnitType(INWorkoutGoalUnitType resolvedWorkoutGoalUnitType);
+    public static native INWorkoutGoalUnitTypeResolutionResult success(INWorkoutGoalUnitType resolvedWorkoutGoalUnitType);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use +successWithResolvedWorkoutGoalUnitType:
      */
     @Deprecated
     @Method(selector = "successWithResolvedValue:")
-    public static native INWorkoutGoalUnitTypeResolutionResult successWithResolvedValue(INWorkoutGoalUnitType resolvedValue);
+    public static native INWorkoutGoalUnitTypeResolutionResult successValue(INWorkoutGoalUnitType resolvedValue);
     @Method(selector = "confirmationRequiredWithWorkoutGoalUnitTypeToConfirm:")
-    public static native INWorkoutGoalUnitTypeResolutionResult confirmationRequiredWithWorkoutGoalUnitTypeToConfirm(INWorkoutGoalUnitType workoutGoalUnitTypeToConfirm);
+    public static native INWorkoutGoalUnitTypeResolutionResult confirmationRequired(INWorkoutGoalUnitType workoutGoalUnitTypeToConfirm);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use +confirmationRequiredWithWorkoutGoalUnitTypeToConfirm:
      */
     @Deprecated
     @Method(selector = "confirmationRequiredWithValueToConfirm:")
-    public static native INWorkoutGoalUnitTypeResolutionResult confirmationRequiredWithValueToConfirm(INWorkoutGoalUnitType valueToConfirm);
+    public static native INWorkoutGoalUnitTypeResolutionResult confirmationRequiredForValue(INWorkoutGoalUnitType valueToConfirm);
     /*</methods>*/
 }

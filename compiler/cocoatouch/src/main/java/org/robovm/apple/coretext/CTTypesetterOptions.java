@@ -110,9 +110,6 @@ import org.robovm.apple.uikit.*;
     }
     
 
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public int getEmbeddingLevel() {
         if (has(Keys.ForcedEmbeddingLevel())) {
             CFNumber val = get(Keys.ForcedEmbeddingLevel(), CFNumber.class);
@@ -120,9 +117,6 @@ import org.robovm.apple.uikit.*;
         }
         return -1;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public CTTypesetterOptions setEmbeddingLevel(int embeddingLevel) {
         set(Keys.ForcedEmbeddingLevel(), CFNumber.valueOf(embeddingLevel));
         return this;
@@ -138,9 +132,6 @@ import org.robovm.apple.uikit.*;
          */
         @GlobalValue(symbol="kCTTypesetterOptionAllowUnboundedLayout", optional=true)
         public static native CFString AllowUnboundedLayout();
-        /**
-         * @since Available in iOS 3.2 and later.
-         */
         @GlobalValue(symbol="kCTTypesetterOptionForcedEmbeddingLevel", optional=true)
         public static native CFString ForcedEmbeddingLevel();
     }

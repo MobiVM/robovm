@@ -32,9 +32,7 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("Metal") @NativeProtocolProxy/*</annotations>*/
 /*<visibility>*/public final/*</visibility>*/ class /*<name>*/MTLComputePipelineState/*</name>*/ 
@@ -64,6 +62,11 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "staticThreadgroupMemoryLength")
     public native @MachineSizedUInt long getStaticThreadgroupMemoryLength();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "supportIndirectCommandBuffers")
+    public native boolean isSupportIndirectCommandBuffers();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -58,7 +58,6 @@ import org.robovm.apple.uikit.*;
     @NotImplemented("widgetActiveDisplayModeDidChange:withMaximumSize:")
     public void activeDisplayModeDidChange(NCWidgetDisplayMode activeDisplayMode, @ByVal CGSize maxSize) {}
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 10.0. This method will not be called on widgets linked against iOS versions 10.0 and later.
      */
     @Deprecated

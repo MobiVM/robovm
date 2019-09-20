@@ -70,5 +70,15 @@ import org.robovm.apple.corelocation.*;
     public void resolveDateTimeForSearchForNotebookItems(INSearchForNotebookItemsIntent intent, @Block VoidBlock1<INDateComponentsRangeResolutionResult> completion) {}
     @NotImplemented("resolveDateSearchTypeForSearchForNotebookItems:withCompletion:")
     public void resolveDateSearchTypeForSearchForNotebookItems(INSearchForNotebookItemsIntent intent, @Block VoidBlock1<INDateSearchTypeResolutionResult> completion) {}
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("resolveTemporalEventTriggerTypesForSearchForNotebookItems:withCompletion:")
+    public void resolveTemporalEventTriggerTypesForSearchForNotebookItems(INSearchForNotebookItemsIntent intent, @Block VoidBlock1<INTemporalEventTriggerTypeOptionsResolutionResult> completion) {}
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("resolveTaskPriorityForSearchForNotebookItems:withCompletion:")
+    public void resolveTaskPriorityForSearchForNotebookItems(INSearchForNotebookItemsIntent intent, @Block VoidBlock1<INTaskPriorityResolutionResult> completion) {}
     /*</methods>*/
 }

@@ -56,8 +56,8 @@ import org.robovm.apple.corelocation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "successWithResolvedVisualCodeType:")
-    public static native INVisualCodeTypeResolutionResult successWithResolvedVisualCodeType(INVisualCodeType resolvedVisualCodeType);
+    public static native INVisualCodeTypeResolutionResult success(INVisualCodeType resolvedVisualCodeType);
     @Method(selector = "confirmationRequiredWithVisualCodeTypeToConfirm:")
-    public static native INVisualCodeTypeResolutionResult confirmationRequiredWithVisualCodeTypeToConfirm(INVisualCodeType visualCodeTypeToConfirm);
+    public static native INVisualCodeTypeResolutionResult confirmationRequired(INVisualCodeType visualCodeTypeToConfirm);
     /*</methods>*/
 }

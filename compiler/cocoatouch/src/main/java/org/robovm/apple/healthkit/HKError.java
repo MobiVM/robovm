@@ -58,9 +58,6 @@ import org.robovm.apple.foundation.*;
         return code;
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @GlobalValue(symbol="HKErrorDomain", optional=true)
     public static native String getClassDomain();
     /*</methods>*/

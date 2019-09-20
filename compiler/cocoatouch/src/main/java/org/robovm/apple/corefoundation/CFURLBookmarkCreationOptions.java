@@ -36,9 +36,7 @@ import org.robovm.apple.coretext.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
 public final class /*<name>*/CFURLBookmarkCreationOptions/*</name>*/ extends Bits</*<name>*/CFURLBookmarkCreationOptions/*</name>*/> {
@@ -47,7 +45,6 @@ public final class /*<name>*/CFURLBookmarkCreationOptions/*</name>*/ extends Bit
     public static final CFURLBookmarkCreationOptions MinimalBookmarkMask = new CFURLBookmarkCreationOptions(512L);
     public static final CFURLBookmarkCreationOptions SuitableForBookmarkFile = new CFURLBookmarkCreationOptions(1024L);
     /**
-     * @since Available in iOS 4.0 and later.
      * @deprecated Deprecated in iOS 7.0. kCFURLBookmarkCreationPreferFileIDResolutionMask does nothing and has no effect on bookmark resolution
      */
     @Deprecated

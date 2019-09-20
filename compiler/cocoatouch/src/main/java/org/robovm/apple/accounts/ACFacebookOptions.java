@@ -107,7 +107,6 @@ import org.robovm.apple.foundation.*;
     
 
     /**
-     * @since Available in iOS 6.0 and later.
      * @deprecated Deprecated in iOS 11.0. Use Facebook SDK instead
      */
     @Deprecated
@@ -119,7 +118,6 @@ import org.robovm.apple.foundation.*;
         return null;
     }
     /**
-     * @since Available in iOS 6.0 and later.
      * @deprecated Deprecated in iOS 11.0. Use Facebook SDK instead
      */
     @Deprecated
@@ -128,7 +126,6 @@ import org.robovm.apple.foundation.*;
         return this;
     }
     /**
-     * @since Available in iOS 6.0 and later.
      * @deprecated Deprecated in iOS 11.0. Use Facebook SDK instead
      */
     @Deprecated
@@ -140,7 +137,6 @@ import org.robovm.apple.foundation.*;
         return null;
     }
     /**
-     * @since Available in iOS 6.0 and later.
      * @deprecated Deprecated in iOS 11.0. Use Facebook SDK instead
      */
     @Deprecated
@@ -149,7 +145,6 @@ import org.robovm.apple.foundation.*;
         return this;
     }
     /**
-     * @since Available in iOS 6.0 and later.
      * @deprecated Deprecated in iOS 11.0. Use Facebook SDK instead
      */
     @Deprecated
@@ -161,7 +156,6 @@ import org.robovm.apple.foundation.*;
         return null;
     }
     /**
-     * @since Available in iOS 6.0 and later.
      * @deprecated Deprecated in iOS 11.0. Use Facebook SDK instead
      */
     @Deprecated
@@ -184,21 +178,18 @@ import org.robovm.apple.foundation.*;
     public static class Keys {
         static { Bro.bind(Keys.class); }
         /**
-         * @since Available in iOS 6.0 and later.
          * @deprecated Deprecated in iOS 11.0. Use Facebook SDK instead
          */
         @Deprecated
         @GlobalValue(symbol="ACFacebookAppIdKey", optional=true)
         public static native NSString AppId();
         /**
-         * @since Available in iOS 6.0 and later.
          * @deprecated Deprecated in iOS 11.0. Use Facebook SDK instead
          */
         @Deprecated
         @GlobalValue(symbol="ACFacebookPermissionsKey", optional=true)
         public static native NSString Permissions();
         /**
-         * @since Available in iOS 6.0 and later.
          * @deprecated Deprecated in iOS 11.0. Use Facebook SDK instead
          */
         @Deprecated

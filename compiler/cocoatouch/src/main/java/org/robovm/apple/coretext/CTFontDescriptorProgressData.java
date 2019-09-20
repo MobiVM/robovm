@@ -105,9 +105,6 @@ import org.robovm.apple.uikit.*;
     }
     
 
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public CTFontDescriptor getSourceDescriptor() {
         if (has(Keys.SourceDescriptor())) {
             CTFontDescriptor val = get(Keys.SourceDescriptor(), CTFontDescriptor.class);
@@ -115,9 +112,6 @@ import org.robovm.apple.uikit.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public List<CTFontDescriptor> getDescriptors() {
         if (has(Keys.Descriptors())) {
             CFArray val = get(Keys.Descriptors(), CFArray.class);
@@ -125,9 +119,6 @@ import org.robovm.apple.uikit.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public List<CTFontDescriptor> getResult() {
         if (has(Keys.Result())) {
             CFArray val = get(Keys.Result(), CFArray.class);
@@ -135,9 +126,6 @@ import org.robovm.apple.uikit.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public double getPercentage() {
         if (has(Keys.Percentage())) {
             CFNumber val = get(Keys.Percentage(), CFNumber.class);
@@ -145,9 +133,6 @@ import org.robovm.apple.uikit.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public long getCurrentAssetSize() {
         if (has(Keys.CurrentAssetSize())) {
             CFNumber val = get(Keys.CurrentAssetSize(), CFNumber.class);
@@ -155,9 +140,6 @@ import org.robovm.apple.uikit.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public long getTotalDownloadedSize() {
         if (has(Keys.TotalDownloadedSize())) {
             CFNumber val = get(Keys.TotalDownloadedSize(), CFNumber.class);
@@ -165,9 +147,6 @@ import org.robovm.apple.uikit.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public long getTotalAssetSize() {
         if (has(Keys.TotalAssetSize())) {
             CFNumber val = get(Keys.TotalAssetSize(), CFNumber.class);
@@ -175,9 +154,6 @@ import org.robovm.apple.uikit.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public NSError getError() {
         if (has(Keys.Error())) {
             NSError val = get(Keys.Error(), NSError.class);
@@ -191,44 +167,20 @@ import org.robovm.apple.uikit.*;
     @Library("CoreText")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 6.0 and later.
-         */
         @GlobalValue(symbol="kCTFontDescriptorMatchingSourceDescriptor", optional=true)
         public static native CFString SourceDescriptor();
-        /**
-         * @since Available in iOS 6.0 and later.
-         */
         @GlobalValue(symbol="kCTFontDescriptorMatchingDescriptors", optional=true)
         public static native CFString Descriptors();
-        /**
-         * @since Available in iOS 6.0 and later.
-         */
         @GlobalValue(symbol="kCTFontDescriptorMatchingResult", optional=true)
         public static native CFString Result();
-        /**
-         * @since Available in iOS 6.0 and later.
-         */
         @GlobalValue(symbol="kCTFontDescriptorMatchingPercentage", optional=true)
         public static native CFString Percentage();
-        /**
-         * @since Available in iOS 6.0 and later.
-         */
         @GlobalValue(symbol="kCTFontDescriptorMatchingCurrentAssetSize", optional=true)
         public static native CFString CurrentAssetSize();
-        /**
-         * @since Available in iOS 6.0 and later.
-         */
         @GlobalValue(symbol="kCTFontDescriptorMatchingTotalDownloadedSize", optional=true)
         public static native CFString TotalDownloadedSize();
-        /**
-         * @since Available in iOS 6.0 and later.
-         */
         @GlobalValue(symbol="kCTFontDescriptorMatchingTotalAssetSize", optional=true)
         public static native CFString TotalAssetSize();
-        /**
-         * @since Available in iOS 6.0 and later.
-         */
         @GlobalValue(symbol="kCTFontDescriptorMatchingError", optional=true)
         public static native CFString Error();
     }

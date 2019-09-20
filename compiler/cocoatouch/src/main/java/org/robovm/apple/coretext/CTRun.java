@@ -154,69 +154,35 @@ import org.robovm.apple.uikit.*;
         return ptr.get();
     }    
     /*<methods>*/
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Bridge(symbol="CTRunGetTypeID", optional=true)
     public static native @MachineSizedUInt long getClassTypeID();
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Bridge(symbol="CTRunGetGlyphCount", optional=true)
     public native @MachineSizedSInt long getGlyphCount();
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Bridge(symbol="CTRunGetAttributes", optional=true)
     public native NSDictionary getAttributesDictionary();
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Bridge(symbol="CTRunGetStatus", optional=true)
     public native CTRunStatus getStatus();
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Bridge(symbol="CTRunGetGlyphs", optional=true)
     protected native void getGlyphs(@ByVal CFRange range, ShortPtr buffer);
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Bridge(symbol="CTRunGetPositions", optional=true)
     protected native void getPositions(@ByVal CFRange range, CGPoint buffer);
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Bridge(symbol="CTRunGetAdvances", optional=true)
     protected native void getAdvances(@ByVal CFRange range, CGSize buffer);
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Bridge(symbol="CTRunGetStringIndices", optional=true)
     protected native void getStringIndices(@ByVal CFRange range, LongPtr buffer);
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Bridge(symbol="CTRunGetStringRange", optional=true)
     public native @ByVal CFRange getStringRange();
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Bridge(symbol="CTRunGetTypographicBounds", optional=true)
     protected native double getTypographicBounds(@ByVal CFRange range, MachineSizedFloatPtr ascent, MachineSizedFloatPtr descent, MachineSizedFloatPtr leading);
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Bridge(symbol="CTRunGetImageBounds", optional=true)
     public native @ByVal CGRect getImageBounds(CGContext context, @ByVal CFRange range);
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Bridge(symbol="CTRunGetTextMatrix", optional=true)
     public native @ByVal CGAffineTransform getTextMatrix();
     /**
-     * @since Available in iOS 3.2 and later.
+     * @since Available in iOS 9.0 and later.
      */
+    @Bridge(symbol="CTRunGetBaseAdvancesAndOrigins", optional=true)
+    public native void getBaseAdvancesAndOrigins(@ByVal CFRange range, CGSize advancesBuffer, CGPoint originsBuffer);
     @Bridge(symbol="CTRunDraw", optional=true)
     public native void draw(CGContext context, @ByVal CFRange range);
     /*</methods>*/

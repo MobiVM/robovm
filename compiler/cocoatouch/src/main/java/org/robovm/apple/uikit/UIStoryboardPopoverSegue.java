@@ -37,11 +37,12 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 5.0 and later.
  * @deprecated Deprecated in iOS 9.0. Access destinationViewController.popoverPresentationController from your segue's performHandler or override of -perform
  */
 /*</javadoc>*/

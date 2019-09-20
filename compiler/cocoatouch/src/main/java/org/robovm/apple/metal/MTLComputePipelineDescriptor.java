@@ -87,6 +87,16 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "buffers")
     public native MTLPipelineBufferDescriptorArray getBuffers();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "supportIndirectCommandBuffers")
+    public native boolean isSupportIndirectCommandBuffers();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setSupportIndirectCommandBuffers:")
+    public native void setSupportIndirectCommandBuffers(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

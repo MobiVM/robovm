@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -60,6 +62,11 @@ import org.robovm.apple.intents.*;
     @Method(selector = "pickerView:accessibilityHintForComponent:")
     String getAccessibilityHint(UIPickerView pickerView, @MachineSizedSInt long component);
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "pickerView:accessibilityUserInputLabelsForComponent:")
+    NSArray<NSString> getAccessibilityUserInputLabels(UIPickerView pickerView, @MachineSizedSInt long component);
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "pickerView:accessibilityAttributedLabelForComponent:")
@@ -69,6 +76,11 @@ import org.robovm.apple.intents.*;
      */
     @Method(selector = "pickerView:accessibilityAttributedHintForComponent:")
     NSAttributedString getAccessibilityAttributedHint(UIPickerView pickerView, @MachineSizedSInt long component);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "pickerView:accessibilityAttributedUserInputLabelsForComponent:")
+    NSArray<NSAttributedString> getAccessibilityAttributedUserInputLabels(UIPickerView pickerView, @MachineSizedSInt long component);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

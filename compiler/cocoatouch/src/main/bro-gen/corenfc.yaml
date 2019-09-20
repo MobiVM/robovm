@@ -11,7 +11,15 @@ enums:
     NFCReaderError: { nserror: true, prefix: NFC}
     NFCTagType: {}
     NFCTypeNameFormat: {}
-
+    NFCPollingOption: {prefix: NFCPolling}
+    RequestFlag: {}
+    NFCNDEFStatus: {}
+    PollingRequestCode: {}
+    PollingTimeSlot: {}
+    EncryptionId: {}
+    NFCMiFareFamily: {prefix: NFCMiFare}
+    VASMode: {}
+    VASErrorCode: {}
 
 classes:
     NFCISO15693CustomCommandConfiguration: #since 11.0
@@ -30,31 +38,122 @@ classes:
         methods:
             '-initWithDelegate:queue:':
                 name: init
-    NFCNDEFMessage: {} #since 11.0
-    NFCNDEFPayload: {} #since 11.0
+    NFCNDEFMessage:  #since 11.0
+        methods:
+            '-initWithNDEFRecords:':
+                name: init
+            '+ndefMessageWithData:':
+                constructor: true
+                name: create
+    NFCNDEFPayload: #since 11.0
+        methods:
+            '-initWithFormat:type:identifier:payload:':
+                name: init
+            '-initWithFormat:type:identifier:payload:chunkSize:':
+                name: init
+            '-wellKnownTypeTextPayloadWithLocale:':
+                name: getWellKnownTypeTextPayload
+            '+wellKnownTypeURIPayloadWithString:':
+                name: create
+                constructor: true
+            '+wellKnownTypeURIPayloadWithURL:':
+                name: create
+                constructor: true
+            '+wellKnownTypeTextPayloadWithString:locale:':
+                name: create
+                constructor: true
+            '+wellKnowTypeTextPayloadWithString:locale:':
+                exclude: true #seems to be bug/typo in ios13 Beta
     NFCNDEFReaderSession: #since 11.0
         methods:
             '-initWithDelegate:queue:invalidateAfterFirstRead:':
                 name: init
+            '-connectToTag:completionHandler:':
+                name: connectToTag
     NFCReaderSession: {} #since 11.0
     NFCTagCommandConfiguration: {} #since 11.0
-
-
+    #ios13
+    NFCISO7816APDU: #since 13.0
+        methods:
+            '-initWithInstructionClass:instructionCode:p1Parameter:p2Parameter:data:expectedResponseLength:':
+                name: init
+            '-initWithData:':
+                name: init
+    NFCTagReaderSession: #since 13.0
+        methods:
+            '-initWithPollingOption:delegate:queue:':
+                name: init
+            '-connectToTag:completionHandler:':
+                name: connectToTag
+    NFCVASCommandConfiguration: #since 13.0
+        methods:
+            '-initWithVASMode:passTypeIdentifier:url:':
+                name: init
+    NFCVASReaderSession: #since 13.0
+        methods:
+            '-initWithVASCommandConfigurations:delegate:queue:':
+                name: init
+    NFCVASResponse: {} #since 13.0
 
 protocols:
     NFCISO15693Tag: #since 11.0
+        skip_adapter: true
         methods:
             '-sendCustomCommandWithConfiguration:completionHandler:':
                 name: sendCustomCommand
             '-readMultipleBlocksWithConfiguration:completionHandler:':
                 name: readMultipleBlocks
+            '-stayQuietWithCompletionHandler:':
+                name: stayQuiet
+            '-readSingleBlockWithRequestFlags:blockNumber:completionHandler:':
+                name: readSingleBlock
+            '-writeSingleBlockWithRequestFlags:blockNumber:dataBlock:completionHandler:':
+                name: writeSingleBlock
+            '-lockBlockWithRequestFlags:blockNumber:completionHandler:':
+                name: lockBlock
+            '-readMultipleBlocksWithRequestFlags:blockRange:completionHandler:':
+                name: readMultipleBlocks
+            '-writeMultipleBlocksWithRequestFlags:blockRange:dataBlocks:completionHandler:':
+                name: writeMultipleBlocks
+            '-selectWithRequestFlags:completionHandler:':
+                name: selectWithRequestFlags
+            '-resetToReadyWithRequestFlags:completionHandler:':
+                name: resetToReady
+            '-writeAFIWithRequestFlag:afi:completionHandler:':
+                name: writeAFI
+            '-lockAFIWithRequestFlag:completionHandler:':
+                name: lockAFI
+            '-writeDSFIDWithRequestFlag:dsfid:completionHandler:':
+                name: writeDSFID
+            '-lockDFSIDWithRequestFlag:completionHandler:':
+                name: lockDFSID
+            '-getSystemInfoWithRequestFlag:completionHandler:':
+                name: getSystemInfo
+            '-getMultipleBlockSecurityStatusWithRequestFlag:blockRange:completionHandler:':
+                name: getMultipleBlockSecurityStatus
+            '-customCommandWithRequestFlag:customCommandCode:customRequestParameters:completionHandler:':
+                name: customCommand
+            '-extendedReadSingleBlockWithRequestFlags:blockNumber:completionHandler:':
+                name: extendedReadSingleBlock
+            '-extendedWriteSingleBlockWithRequestFlags:blockNumber:dataBlock:completionHandler:':
+                name: extendedWriteSingleBlock
+            '-extendedLockBlockWithRequestFlags:blockNumber:completionHandler:':
+                name: extendedLockBlock
+            '-extendedReadMultipleBlocksWithRequestFlags:blockRange:completionHandler:':
+                name: extendedReadMultipleBlocks
     NFCNDEFReaderSessionDelegate: #since 11.0
         methods:
             '-readerSession:didInvalidateWithError:':
                 name: didInvalidateWithError
             '-readerSession:didDetectNDEFs:':
                 name: didDetectNDEFs
-    NFCReaderSession: { name: NFCReaderSessionProtocol } #since 11.0
+            '-readerSession:didDetectTags:':
+                name: didDetectTags
+    NFCReaderSession: #since 11.0
+        name: NFCReaderSessionProtocol
+        methods:
+            '-invalidateSessionWithErrorMessage:':
+                name: invalidateSession
     NFCReaderSessionDelegate: #since 11.0
         methods:
             '-readerSession:didDetectTags:':
@@ -62,7 +161,65 @@ protocols:
             '-readerSession:didInvalidateWithError:':
                 name: didInvalidateWithError
     NFCTag: {} #since 11.0
-
+    #ios13
+    NFCFeliCaTag: #since 13.0
+        skip_adapter: true
+        methods:
+            '-pollingWithSystemCode:requestCode:timeSlot:completionHandler:':
+                name: pollingUsingSystemCode
+            '-requestServiceWithNodeCodeList:completionHandler:':
+                name: requestService
+            '-requestResponseWithCompletionHandler:':
+                name: requestResponse
+            '-readWithoutEncryptionWithServiceCodeList:blockList:completionHandler:':
+                name: readWithoutEncryption
+            '-writeWithoutEncryptionWithServiceCodeList:blockList:blockData:completionHandler:':
+                name: writeWithoutEncryption
+            '-requestSystemCodeWithCompletionHandler:':
+                name: requestSystemCode
+            '-requestServiceV2WithNodeCodeList:completionHandler:':
+                name: requestServiceV2
+            '-requestSpecificationVersionWithCompletionHandler:':
+                name: requestSpecificationVersion
+            '-resetModeWithCompletionHandler:':
+                name: resetMode
+            '-sendFeliCaCommandPacket:completionHandler:':
+                name: sendFeliCaCommandPacket
+    NFCISO7816Tag: #since 13.0
+        skip_adapter: true
+        methods:
+            '-sendCommandAPDU:completionHandler:':
+                name: sendCommandAPDU
+    NFCMiFareTag: #since 13.0
+        skip_adapter: true
+        methods:
+            '-sendMiFareCommand:completionHandler:':
+                name: sendMiFareCommand
+            '-sendMiFareISO7816Command:completionHandler:':
+                name: sendMiFareISO7816Command
+    NFCNDEFTag: #since 13.0
+        skip_adapter: true
+        methods:
+            '-queryNDEFStatusWithCompletionHandler:':
+                name: queryNDEFStatus
+            '-readNDEFWithCompletionHandler:':
+                name: readNDEF
+            '-writeNDEF:completionHandler:':
+                name: writeNDEF
+            '-writeLockWithCompletionHandler:':
+                name: writeLock
+    NFCTagReaderSessionDelegate: #since 13.0
+        methods:
+            '-tagReaderSession:didInvalidateWithError:':
+                name: didInvalidate
+            '-tagReaderSession:didDetectTags:':
+                name: didDetectTags
+    NFCVASReaderSessionDelegate: #since 13.0
+        methods:
+            '-readerSession:didInvalidateWithError:':
+                name: didInvalidate
+            '-readerSession:didReceiveVASResponses:':
+                name: didReceiveVASResponses
 
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version
@@ -78,6 +235,10 @@ values:
     NFCISO15693TagResponseErrorKey:
         class: NFCReaderError
         name: ISO15693TagResponseErrorKey
+        type: NSString
+    NFCTagResponseUnexpectedLengthErrorKey:
+        class: NFCReaderError
+        name: TagResponseUnexpectedLengthErrorKey
         type: NSString
 
     # Make sure we don't miss any values if new ones are introduced in a later version

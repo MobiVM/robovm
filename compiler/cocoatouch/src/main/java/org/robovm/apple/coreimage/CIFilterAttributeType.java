@@ -36,6 +36,7 @@ import org.robovm.apple.imageio.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.metal.*;
 import org.robovm.apple.iosurface.*;
+import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -100,13 +101,7 @@ import org.robovm.apple.iosurface.*;
     public static final CIFilterAttributeType Distance = new CIFilterAttributeType("Distance");
     public static final CIFilterAttributeType Angle = new CIFilterAttributeType("Angle");
     public static final CIFilterAttributeType Boolean = new CIFilterAttributeType("Boolean");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final CIFilterAttributeType Integer = new CIFilterAttributeType("Integer");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final CIFilterAttributeType Count = new CIFilterAttributeType("Count");
     public static final CIFilterAttributeType Position = new CIFilterAttributeType("Position");
     public static final CIFilterAttributeType Offset = new CIFilterAttributeType("Offset");
@@ -116,21 +111,12 @@ import org.robovm.apple.iosurface.*;
      * @since Available in iOS 9.0 and later.
      */
     public static final CIFilterAttributeType OpaqueColor = new CIFilterAttributeType("OpaqueColor");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final CIFilterAttributeType Color = new CIFilterAttributeType("Color");
     /**
      * @since Available in iOS 9.0 and later.
      */
     public static final CIFilterAttributeType Gradient = new CIFilterAttributeType("Gradient");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final CIFilterAttributeType Image = new CIFilterAttributeType("Image");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final CIFilterAttributeType Transform = new CIFilterAttributeType("Transform");
     /*</constants>*/
     
@@ -167,14 +153,8 @@ import org.robovm.apple.iosurface.*;
         public static native NSString Angle();
         @GlobalValue(symbol="kCIAttributeTypeBoolean", optional=true)
         public static native NSString Boolean();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="kCIAttributeTypeInteger", optional=true)
         public static native NSString Integer();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="kCIAttributeTypeCount", optional=true)
         public static native NSString Count();
         @GlobalValue(symbol="kCIAttributeTypePosition", optional=true)
@@ -190,9 +170,6 @@ import org.robovm.apple.iosurface.*;
          */
         @GlobalValue(symbol="kCIAttributeTypeOpaqueColor", optional=true)
         public static native NSString OpaqueColor();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="kCIAttributeTypeColor", optional=true)
         public static native NSString Color();
         /**
@@ -200,14 +177,8 @@ import org.robovm.apple.iosurface.*;
          */
         @GlobalValue(symbol="kCIAttributeTypeGradient", optional=true)
         public static native NSString Gradient();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="kCIAttributeTypeImage", optional=true)
         public static native NSString Image();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="kCIAttributeTypeTransform", optional=true)
         public static native NSString Transform();
         /*</values>*/

@@ -33,9 +33,7 @@ import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 3.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("ExternalAccessory") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/EAAccessoryManager/*</name>*/ 
@@ -90,53 +88,26 @@ import org.robovm.apple.uikit.*;
     protected EAAccessoryManager(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "connectedAccessories")
     public native NSArray<EAAccessory> getConnectedAccessories();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @GlobalValue(symbol="EAAccessoryDidConnectNotification", optional=true)
     public static native NSString AccessoryDidConnectNotification();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @GlobalValue(symbol="EAAccessoryDidDisconnectNotification", optional=true)
     public static native NSString AccessoryDidDisconnectNotification();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @GlobalValue(symbol="EAAccessoryKey", optional=true)
     protected static native NSString AccessoryKey();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @GlobalValue(symbol="EAAccessorySelectedKey", optional=true)
     protected static native NSString AccessorySelectedKey();
     
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "showBluetoothAccessoryPickerWithNameFilter:completion:")
     public native void showBluetoothAccessoryPicker(NSPredicate predicate, @Block VoidBlock1<NSError> completion);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "registerForLocalNotifications")
     public native void registerForLocalNotifications();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "unregisterForLocalNotifications")
     public native void unregisterForLocalNotifications();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "sharedAccessoryManager")
     public static native EAAccessoryManager getSharedAccessoryManager();
     /*</methods>*/

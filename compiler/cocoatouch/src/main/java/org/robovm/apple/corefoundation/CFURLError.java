@@ -37,7 +37,6 @@ import org.robovm.apple.coretext.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 2.0 and later.
  * @deprecated Deprecated in iOS 7.0. Use CFError codes instead
  */
 /*</javadoc>*/

@@ -95,17 +95,8 @@ import org.robovm.apple.dispatch.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final NSURLUbiquitousItemDownloadingStatus NotDownloaded = new NSURLUbiquitousItemDownloadingStatus("NotDownloaded");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final NSURLUbiquitousItemDownloadingStatus Downloaded = new NSURLUbiquitousItemDownloadingStatus("Downloaded");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final NSURLUbiquitousItemDownloadingStatus Current = new NSURLUbiquitousItemDownloadingStatus("Current");
     /*</constants>*/
     
@@ -132,19 +123,10 @@ import org.robovm.apple.dispatch.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="NSURLUbiquitousItemDownloadingStatusNotDownloaded", optional=true)
         public static native NSString NotDownloaded();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="NSURLUbiquitousItemDownloadingStatusDownloaded", optional=true)
         public static native NSString Downloaded();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="NSURLUbiquitousItemDownloadingStatusCurrent", optional=true)
         public static native NSString Current();
         /*</values>*/

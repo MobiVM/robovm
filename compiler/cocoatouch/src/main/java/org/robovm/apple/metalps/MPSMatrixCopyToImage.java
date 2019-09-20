@@ -77,11 +77,11 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     protected native @Pointer long init(NSCoder decoder, MTLDevice device);
     @Method(selector = "encodeToCommandBuffer:sourceMatrix:destinationImage:")
-    public native void encodeToCommandBuffer(MTLCommandBuffer commandBuffer, MPSMatrix sourceMatrix, MPSImage destinationImage);
+    public native void encode(MTLCommandBuffer commandBuffer, MPSMatrix sourceMatrix, MPSImage destinationImage);
     /**
      * @since Available in iOS 12.0 and later.
      */
     @Method(selector = "encodeBatchToCommandBuffer:sourceMatrix:destinationImages:")
-    public native void encodeBatchToCommandBuffer(MTLCommandBuffer commandBuffer, MPSMatrix sourceMatrix, NSArray<MPSImage> destinationImages);
+    public native void encodeBatch(MTLCommandBuffer commandBuffer, MPSMatrix sourceMatrix, NSArray<MPSImage> destinationImages);
     /*</methods>*/
 }

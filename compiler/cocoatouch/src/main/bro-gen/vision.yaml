@@ -11,10 +11,17 @@ enums:
     VNImageCropAndScaleOption: {}
     VNErrorCode: {nserror: true, prefix: VNError}
     VNRequestTrackingLevel: {}
-
+    VNElementType: {}
+    VNRequestFaceLandmarksConstellation: {}
+    VNRequestTextRecognitionLevel: {}
 classes:
     VNBarcodeObservation: {} #since 11.0
-    VNClassificationObservation: {} #since 11.0
+    VNClassificationObservation: #since 11.0
+        methods:
+            '-hasMinimumRecall:forPrecision:':
+                name: hasMinimumRecall
+            '-hasMinimumPrecision:forRecall:':
+                name: hasMinimumPrecision
     VNCoreMLFeatureValueObservation: {} #since 11.0
     VNCoreMLModel: #since 11.0
         methods:
@@ -30,7 +37,10 @@ classes:
             '-initWithModel:':
                 name: init
     VNDetectBarcodesRequest: {} #since 11.0
-    VNDetectFaceLandmarksRequest: {} #since 11.0
+    VNDetectFaceLandmarksRequest: #since 11.0
+        methods:
+            '+revision:supportsConstellation:':
+                name: revision
     VNDetectFaceRectanglesRequest: {} #since 11.0
     VNDetectHorizonRequest: {} #since 11.0
     VNDetectRectanglesRequest: {} #since 11.0
@@ -68,7 +78,11 @@ classes:
     VNImageTranslationAlignmentObservation: {} #since 11.0
     VNObservation: {} #since 11.0
     VNPixelBufferObservation: {} #since 11.0
-    VNRectangleObservation: {} #since 11.0
+    VNRectangleObservation: #since 11.0
+        methods:
+            '+rectangleObservationWithRequestRevision:topLeft:bottomLeft:bottomRight:topRight:':
+                name: create
+                constructor: true
     VNRequest: #since 11.0
         methods:
             '-initWithCompletionHandler:':
@@ -125,10 +139,44 @@ classes:
     VNTrackingRequest: {} #since 11.0
     VNTranslationalImageRegistrationRequest: {} #since 11.0
     VNRecognizedObjectObservation: {} #since 12.0
+    # ios13
+    VNClassifyImageRequest: #since 13.0
+        methods:
+            '+knownClassificationsForRevision:error:':
+                name: getKnownClassificationsForRevision
+                throws: NSErrorException
+    VNDetectFaceCaptureQualityRequest: {} #since 13.0
+    VNDetectHumanRectanglesRequest: {} #since 13.0
+    VNFeaturePrintObservation: #since 13.0
+        methods:
+            '-computeDistance:toFeaturePrintObservation:error:':
+                name: computeDistance
+                throws: NSErrorException
+    VNGenerateAttentionBasedSaliencyImageRequest: {} #since 13.0
+    VNGenerateImageFeaturePrintRequest: {} #since 13.0
+    VNGenerateObjectnessBasedSaliencyImageRequest: {} #since 13.0
+    VNRecognizeAnimalsRequest: #since 13.0
+        methods:
+            '+knownAnimalIdentifiersForRevision:error:':
+                name: getKnownAnimalIdentifiersForRevision
+                throws: NSErrorException
+    VNRecognizeTextRequest: #since 13.0
+        methods:
+            '+supportedRecognitionLanguagesForTextRecognitionLevel:revision:error:':
+                name: getSupportedRecognitionLanguagesForTextRecognitionLevel
+                throws: NSErrorException
+    VNRecognizedText: #since 13.0
+        methods:
+            '-boundingBoxForRange:error:':
+                name: getBoundingBoxForRange
+                throws: NSErrorException
+    VNRecognizedTextObservation: {} #since 13.0
+    VNSaliencyImageObservation: {} #since 13.0
 
 protocols:
     VNFaceObservationAccepting: {} #since 11.0
     VNRequestRevisionProviding: {} #since 12.0
+    VNRequestProgressProviding: {} #since 13.0
 
 functions:
 
@@ -155,6 +203,10 @@ functions:
     VNImagePointForFaceLandmarkPoint:
         class: VNUtils
         name: getImagePointForFaceLandmarkPoint
+
+    VNElementTypeSize:
+        class: VNElementType
+        name: getSize
 
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (VN.*):
@@ -193,7 +245,14 @@ values:
         class: '#{g[0]}'
         name: 'getRevision#{g[1]}'
 
-    VNDetectFaceRectanglesRequestRevision1:
+    VNAnimalIdentifier(Dog|Cat):
+        class: VNAnimalIdentifier
+        type: NSString
+        name: '#{g[0]}'
+    VNAnimalDetector(Dog|Cat):
+        class: VNAnimalDetector
+        type: NSString
+        name: '#{g[0]}'
 
     # Make sure we don't miss any values if new ones are introduced in a later version
     (VN.*):
@@ -201,15 +260,66 @@ values:
         name: 'Value__#{g[0]}'
 
 constants:
-    VNDetectBarcodesRequestRevision1:
+    VNDetectBarcodesRequest(Revision1):
         class: VNDetectBarcodesRequest
-        name: Revision1
-    VNTranslationalImageRegistrationRequestRevision1:
+        name: '#{g[0]}'
+    VNTranslationalImageRegistrationRequest(Revision1):
         class: VNTranslationalImageRegistrationRequest
-        name: Revision1
-    VNHomographicImageRegistrationRequestRevision1:
+        name: '#{g[0]}'
+    VNHomographicImageRegistrationRequest(Revision1):
         class: VNHomographicImageRegistrationRequest
-        name: Revision1
+        name: '#{g[0]}'
+    VNRequest(RevisionUnspecified):
+        class: VNRequest
+        name: '#{g[0]}'
+    VNClassifyImageRequest(Revision1):
+        class: VNClassifyImageRequest
+        name: '#{g[0]}'
+    VNDetectFaceRectanglesRequest(Revision1|Revision2):
+        class: VNDetectFaceRectanglesRequest
+        name: '#{g[0]}'
+    VNDetectFaceLandmarksRequest(Revision1|Revision2|Revision3):
+        class: VNDetectFaceLandmarksRequest
+        name: '#{g[0]}'
+    VNDetectFaceCaptureQualityRequest(Revision1):
+        class: VNDetectFaceCaptureQualityRequest
+        name: '#{g[0]}'
+    VNDetectHorizonRequest(Revision1):
+        class: VNDetectHorizonRequest
+        name: '#{g[0]}'
+    VNDetectRectanglesRequest(Revision1):
+        class: VNDetectRectanglesRequest
+        name: '#{g[0]}'
+    VNDetectTextRectanglesRequest(Revision1):
+        class: VNDetectTextRectanglesRequest
+        name: '#{g[0]}'
+    VNRecognizeTextRequest(Revision1):
+        class: VNRecognizeTextRequest
+        name: '#{g[0]}'
+    VNGenerateAttentionBasedSaliencyImageRequest(Revision1):
+        class: VNGenerateAttentionBasedSaliencyImageRequest
+        name: '#{g[0]}'
+    VNGenerateObjectnessBasedSaliencyImageRequest(Revision1):
+        class: VNGenerateObjectnessBasedSaliencyImageRequest
+        name: '#{g[0]}'
+    VNGenerateImageFeaturePrintRequest(Revision1):
+        class: VNGenerateImageFeaturePrintRequest
+        name: '#{g[0]}'
+    VNCoreMLRequest(Revision1):
+        class: VNCoreMLRequest
+        name: '#{g[0]}'
+    VNTrackObjectRequest(Revision1|Revision2):
+        class: VNTrackObjectRequest
+        name: '#{g[0]}'
+    VNTrackRectangleRequest(Revision1):
+        class: VNTrackRectangleRequest
+        name: '#{g[0]}'
+    VNDetectHumanRectanglesRequest(Revision1):
+        class: VNDetectHumanRectanglesRequest
+        name: '#{g[0]}'
+    VNRecognizeAnimalsRequest(Revision1):
+        class: VNRecognizeAnimalsRequest
+        name: '#{g[0]}'
 
     # Make sure we don't miss any constants if new ones are introduced in a later version
     (VN.*):

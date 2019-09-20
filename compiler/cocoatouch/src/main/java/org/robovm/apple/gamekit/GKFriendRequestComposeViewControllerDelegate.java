@@ -33,7 +33,6 @@ import org.robovm.apple.uikit.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 4.2 and later.
  * @deprecated Deprecated in iOS 10.0.
  */
 /*</javadoc>*/
@@ -51,7 +50,6 @@ import org.robovm.apple.uikit.*;
     /*</properties>*/
     /*<methods>*/
     /**
-     * @since Available in iOS 4.2 and later.
      * @deprecated Deprecated in iOS 10.0.
      */
     @Deprecated

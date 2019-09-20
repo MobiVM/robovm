@@ -91,29 +91,18 @@ import org.robovm.apple.coretext.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CFStreamSocketSecurityLevel None = new CFStreamSocketSecurityLevel("None");
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 10.0.
      */
     @Deprecated
     public static final CFStreamSocketSecurityLevel SSLv2 = new CFStreamSocketSecurityLevel("SSLv2");
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 10.0.
      */
     @Deprecated
     public static final CFStreamSocketSecurityLevel SSLv3 = new CFStreamSocketSecurityLevel("SSLv3");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CFStreamSocketSecurityLevel TLSv1 = new CFStreamSocketSecurityLevel("TLSv1");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CFStreamSocketSecurityLevel NegotiatedSSL = new CFStreamSocketSecurityLevel("NegotiatedSSL");
     /*</constants>*/
     
@@ -140,33 +129,22 @@ import org.robovm.apple.coretext.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCFStreamSocketSecurityLevelNone", optional=true)
         public static native CFString None();
         /**
-         * @since Available in iOS 2.0 and later.
          * @deprecated Deprecated in iOS 10.0.
          */
         @Deprecated
         @GlobalValue(symbol="kCFStreamSocketSecurityLevelSSLv2", optional=true)
         public static native CFString SSLv2();
         /**
-         * @since Available in iOS 2.0 and later.
          * @deprecated Deprecated in iOS 10.0.
          */
         @Deprecated
         @GlobalValue(symbol="kCFStreamSocketSecurityLevelSSLv3", optional=true)
         public static native CFString SSLv3();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCFStreamSocketSecurityLevelTLSv1", optional=true)
         public static native CFString TLSv1();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCFStreamSocketSecurityLevelNegotiatedSSL", optional=true)
         public static native CFString NegotiatedSSL();
         /*</values>*/

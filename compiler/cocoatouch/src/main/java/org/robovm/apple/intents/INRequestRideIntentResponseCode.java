@@ -54,7 +54,11 @@ public enum /*<name>*/INRequestRideIntentResponseCode/*</name>*/ implements Valu
     FailureRequiringAppLaunchMustVerifyCredentials(6L),
     FailureRequiringAppLaunchNoServiceInArea(7L),
     FailureRequiringAppLaunchServiceTemporarilyUnavailable(8L),
-    FailureRequiringAppLaunchPreviousRideNeedsCompletion(9L);
+    FailureRequiringAppLaunchPreviousRideNeedsCompletion(9L),
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    FailureRequiringAppLaunchRideScheduledTooFar(10L);
     /*</values>*/
 
     /*<bind>*/

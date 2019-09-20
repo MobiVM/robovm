@@ -56,22 +56,22 @@ import org.robovm.apple.corelocation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "successWithResolvedWorkoutLocationType:")
-    public static native INWorkoutLocationTypeResolutionResult successWithResolvedWorkoutLocationType(INWorkoutLocationType resolvedWorkoutLocationType);
+    public static native INWorkoutLocationTypeResolutionResult success(INWorkoutLocationType resolvedWorkoutLocationType);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use +successWithResolvedWorkoutLocationType:
      */
     @Deprecated
     @Method(selector = "successWithResolvedValue:")
-    public static native INWorkoutLocationTypeResolutionResult successWithResolvedValue(INWorkoutLocationType resolvedValue);
+    public static native INWorkoutLocationTypeResolutionResult successValue(INWorkoutLocationType resolvedValue);
     @Method(selector = "confirmationRequiredWithWorkoutLocationTypeToConfirm:")
-    public static native INWorkoutLocationTypeResolutionResult confirmationRequiredWithWorkoutLocationTypeToConfirm(INWorkoutLocationType workoutLocationTypeToConfirm);
+    public static native INWorkoutLocationTypeResolutionResult confirmationRequired(INWorkoutLocationType workoutLocationTypeToConfirm);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use +confirmationRequiredWithWorkoutLocationTypeToConfirm:
      */
     @Deprecated
     @Method(selector = "confirmationRequiredWithValueToConfirm:")
-    public static native INWorkoutLocationTypeResolutionResult confirmationRequiredWithValueToConfirm(INWorkoutLocationType valueToConfirm);
+    public static native INWorkoutLocationTypeResolutionResult confirmationRequiredForValue(INWorkoutLocationType valueToConfirm);
     /*</methods>*/
 }

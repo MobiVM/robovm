@@ -41,9 +41,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.1 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVAssetReaderOutput/*</name>*/ 
@@ -61,24 +59,12 @@ import org.robovm.apple.audiotoolbox.*;
     /*<properties>*/
     @Property(selector = "mediaType")
     public native AVMediaType getMediaType();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "alwaysCopiesSampleData")
     public native boolean alwaysCopiesSampleData();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setAlwaysCopiesSampleData:")
     public native void setAlwaysCopiesSampleData(boolean v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "supportsRandomAccess")
     public native boolean supportsRandomAccess();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setSupportsRandomAccess:")
     public native void setSupportsRandomAccess(boolean v);
     /*</properties>*/
@@ -87,14 +73,8 @@ import org.robovm.apple.audiotoolbox.*;
     @WeaklyLinked
     @Method(selector = "copyNextSampleBuffer")
     public native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CMSampleBuffer getNextSampleBuffer();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "resetForReadingTimeRanges:")
     public native void resetForReadingTimeRanges(@org.robovm.rt.bro.annotation.Marshaler(CMTimeRange.AsValuedListMarshaler.class) List<CMTimeRange> timeRanges);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "markConfigurationAsFinal")
     public native void markConfigurationAsFinal();
     /*</methods>*/

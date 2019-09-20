@@ -111,9 +111,6 @@ import org.robovm.apple.iosurface.*;
     }
     
 
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CVBufferAttributes getPropagatedAttachments() {
         if (has(CVBufferAttribute.PropagatedAttachments)) {
             CFDictionary val = get(CVBufferAttribute.PropagatedAttachments, CFDictionary.class);
@@ -121,16 +118,10 @@ import org.robovm.apple.iosurface.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CVBufferAttributes setPropagatedAttachments(CVBufferAttributes propagatedAttachments) {
         set(CVBufferAttribute.PropagatedAttachments, propagatedAttachments.getDictionary());
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CVBufferAttributes getNonPropagatedAttachments() {
         if (has(CVBufferAttribute.NonPropagatedAttachments)) {
             CFDictionary val = get(CVBufferAttribute.NonPropagatedAttachments, CFDictionary.class);
@@ -138,16 +129,10 @@ import org.robovm.apple.iosurface.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CVBufferAttributes setNonPropagatedAttachments(CVBufferAttributes nonPropagatedAttachments) {
         set(CVBufferAttribute.NonPropagatedAttachments, nonPropagatedAttachments.getDictionary());
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CVBufferMovieTime getMovieTime() {
         if (has(CVBufferAttribute.MovieTime)) {
             CFDictionary val = get(CVBufferAttribute.MovieTime, CFDictionary.class);
@@ -155,9 +140,6 @@ import org.robovm.apple.iosurface.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CVBufferAttributes setMovieTime(CVBufferMovieTime movieTime) {
         set(CVBufferAttribute.MovieTime, movieTime.getDictionary());
         return this;

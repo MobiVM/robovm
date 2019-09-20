@@ -102,24 +102,12 @@ import org.robovm.apple.uikit.*;
         OSStatusException.throwIfNecessary(status);
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="MusicDeviceMIDIEvent", optional=true)
     protected static native OSStatus midiEvent0(AudioComponentInstance inUnit, int status, int data1, int data2, int offsetSampleFrame);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="MusicDeviceSysEx", optional=true)
     protected static native OSStatus sysEx0(AudioComponentInstance inUnit, @Pointer long data, int length);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="MusicDeviceStartNote", optional=true)
     protected static native OSStatus startNote0(AudioComponentInstance inUnit, int inInstrument, int inGroupID, IntPtr outNoteInstanceID, int inOffsetSampleFrame, MusicDeviceNoteParams inParams);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="MusicDeviceStopNote", optional=true)
     protected static native OSStatus stopNote0(AudioComponentInstance inUnit, int groupID, int noteInstanceID, int offsetSampleFrame);
     /*</methods>*/

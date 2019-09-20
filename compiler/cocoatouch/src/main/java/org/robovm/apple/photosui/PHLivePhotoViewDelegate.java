@@ -33,7 +33,9 @@ import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 9.1 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ interface /*<name>*/PHLivePhotoViewDelegate/*</name>*/ 
@@ -48,8 +50,14 @@ import org.robovm.apple.uikit.*;
     
     /*</properties>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 9.1 and later.
+     */
     @Method(selector = "livePhotoView:willBeginPlaybackWithStyle:")
     void willBeginPlayback(PHLivePhotoView livePhotoView, PHLivePhotoViewPlaybackStyle playbackStyle);
+    /**
+     * @since Available in iOS 9.1 and later.
+     */
     @Method(selector = "livePhotoView:didEndPlaybackWithStyle:")
     void didEndPlayback(PHLivePhotoView livePhotoView, PHLivePhotoViewPlaybackStyle playbackStyle);
     /*</methods>*/

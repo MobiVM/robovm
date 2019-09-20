@@ -54,7 +54,7 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "initWithIdentifier:displayString:")
     public INObject(String identifier, String displayString) { super((SkipInit) null); initObject(init(identifier, displayString)); }
     @Method(selector = "initWithCoder:")
-    public INObject(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public INObject(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "identifier")
@@ -63,12 +63,20 @@ import org.robovm.apple.corelocation.*;
     public native String getDisplayString();
     @Property(selector = "pronunciationHint")
     public native String getPronunciationHint();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "alternativeSpeakableMatches")
+    public native NSArray<INSpeakableString> getAlternativeSpeakableMatches();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setAlternativeSpeakableMatches:")
+    public native void setAlternativeSpeakableMatches(NSArray<INSpeakableString> v);
     @Property(selector = "spokenPhrase")
     public native String getSpokenPhrase();
     @Property(selector = "vocabularyIdentifier")
     public native String getVocabularyIdentifier();
-    @Property(selector = "alternativeSpeakableMatches")
-    public native NSArray<?> getAlternativeSpeakableMatches();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
@@ -81,6 +89,6 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

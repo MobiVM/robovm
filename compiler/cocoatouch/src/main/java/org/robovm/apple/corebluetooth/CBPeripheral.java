@@ -33,9 +33,7 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 5.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreBluetooth") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CBPeripheral/*</name>*/ 
@@ -58,7 +56,6 @@ import org.robovm.apple.dispatch.*;
     @Property(selector = "name")
     public native String getName();
     /**
-     * @since Available in iOS 5.0 and later.
      * @deprecated Deprecated in iOS 8.0.
      */
     @Deprecated
@@ -68,8 +65,16 @@ import org.robovm.apple.dispatch.*;
     public native CBPeripheralState getState();
     @Property(selector = "services")
     public native NSArray<CBService> getServices();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Property(selector = "canSendWriteWithoutResponse")
     public native boolean canSendWriteWithoutResponse();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "ancsAuthorized")
+    public native boolean isAncsAuthorized();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

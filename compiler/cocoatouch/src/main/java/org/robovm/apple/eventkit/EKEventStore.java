@@ -35,9 +35,7 @@ import org.robovm.apple.mapkit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("EventKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/EKEventStore/*</name>*/ 
@@ -69,8 +67,10 @@ import org.robovm.apple.mapkit.*;
     @Property(selector = "eventStoreIdentifier")
     public native String getEventStoreIdentifier();
     /**
-     * @since Available in iOS 5.0 and later.
+     * @since Available in iOS 12.0 and later.
      */
+    @Property(selector = "delegateSources")
+    public native NSArray<EKSource> getDelegateSources();
     @Property(selector = "sources")
     public native NSArray<EKSource> getSources();
     @Property(selector = "defaultCalendarForNewEvents")
@@ -78,129 +78,69 @@ import org.robovm.apple.mapkit.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @GlobalValue(symbol="EKEventStoreChangedNotification", optional=true)
     public static native NSString ChangedNotification();
     
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "requestAccessToEntityType:completion:")
     public native void requestAccess(EKEntityType entityType, @Block VoidBlock2<Boolean, NSError> completion);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "sourceWithIdentifier:")
     public native EKSource getSource(String identifier);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "calendarsForEntityType:")
     public native NSArray<EKCalendar> getCalendars(EKEntityType entityType);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "defaultCalendarForNewReminders")
     public native EKCalendar getDefaultCalendarForNewReminders();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "calendarWithIdentifier:")
     public native EKCalendar getCalendar(String identifier);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public boolean saveCalendar(EKCalendar calendar, boolean commit) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        boolean result = saveCalendar(calendar, commit, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        return result;
     }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "saveCalendar:commit:error:")
     private native boolean saveCalendar(EKCalendar calendar, boolean commit, NSError.NSErrorPtr error);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public boolean removeCalendar(EKCalendar calendar, boolean commit) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        boolean result = removeCalendar(calendar, commit, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        return result;
     }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "removeCalendar:commit:error:")
     private native boolean removeCalendar(EKCalendar calendar, boolean commit, NSError.NSErrorPtr error);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "calendarItemWithIdentifier:")
     public native EKCalendarItem getCalendarItem(String identifier);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "calendarItemsWithExternalIdentifier:")
     public native NSArray<EKCalendarItem> getCalendarItems(String externalIdentifier);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public boolean saveEvent(EKEvent event, EKSpan span) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        boolean result = saveEvent(event, span, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        return result;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "saveEvent:span:error:")
     private native boolean saveEvent(EKEvent event, EKSpan span, NSError.NSErrorPtr error);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public boolean removeEvent(EKEvent event, EKSpan span) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        boolean result = removeEvent(event, span, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        return result;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "removeEvent:span:error:")
     private native boolean removeEvent(EKEvent event, EKSpan span, NSError.NSErrorPtr error);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public boolean saveEvent(EKEvent event, EKSpan span, boolean commit) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        boolean result = saveEvent(event, span, commit, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        return result;
     }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "saveEvent:span:commit:error:")
     private native boolean saveEvent(EKEvent event, EKSpan span, boolean commit, NSError.NSErrorPtr error);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public boolean removeEvent(EKEvent event, EKSpan span, boolean commit) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        boolean result = removeEvent(event, span, commit, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        return result;
     }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "removeEvent:span:commit:error:")
     private native boolean removeEvent(EKEvent event, EKSpan span, boolean commit, NSError.NSErrorPtr error);
     @Method(selector = "eventWithIdentifier:")
@@ -211,86 +151,44 @@ import org.robovm.apple.mapkit.*;
     public native void enumerateEvents(NSPredicate predicate, @Block VoidBlock2<EKEvent, BooleanPtr> block);
     @Method(selector = "predicateForEventsWithStartDate:endDate:calendars:")
     public native NSPredicate getPredicateForEvents(NSDate startDate, NSDate endDate, NSArray<EKCalendar> calendars);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public boolean saveReminder(EKReminder reminder, boolean commit) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        boolean result = saveReminder(reminder, commit, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        return result;
     }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "saveReminder:commit:error:")
     private native boolean saveReminder(EKReminder reminder, boolean commit, NSError.NSErrorPtr error);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public boolean removeReminder(EKReminder reminder, boolean commit) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        boolean result = removeReminder(reminder, commit, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        return result;
     }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "removeReminder:commit:error:")
     private native boolean removeReminder(EKReminder reminder, boolean commit, NSError.NSErrorPtr error);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "fetchRemindersMatchingPredicate:completion:")
     public native NSObject fetchReminders(NSPredicate predicate, @Block VoidBlock1<NSArray<EKReminder>> completion);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "cancelFetchRequest:")
     public native void cancelFetchRequest(NSObject fetchIdentifier);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "predicateForRemindersInCalendars:")
     public native NSPredicate getPredicateForReminders(NSArray<EKCalendar> calendars);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "predicateForIncompleteRemindersWithDueDateStarting:ending:calendars:")
     public native NSPredicate getPredicateForIncompleteReminders(NSDate startDate, NSDate endDate, NSArray<EKCalendar> calendars);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "predicateForCompletedRemindersWithCompletionDateStarting:ending:calendars:")
     public native NSPredicate getPredicateForCompletedReminders(NSDate startDate, NSDate endDate, NSArray<EKCalendar> calendars);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public boolean commit() throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        boolean result = commit(ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        return result;
     }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "commit:")
     private native boolean commit(NSError.NSErrorPtr error);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "reset")
     public native void reset();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "refreshSourcesIfNecessary")
     public native void refreshSourcesIfNecessary();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "authorizationStatusForEntityType:")
     public static native EKAuthorizationStatus getAuthorizationStatusForEntityType(EKEntityType entityType);
     /*</methods>*/

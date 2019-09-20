@@ -36,7 +36,7 @@ import org.robovm.apple.fileprovider.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 10.0 and later.
- * @deprecated Deprecated in iOS 12.0.
+ * @deprecated Deprecated in iOS 12.0. Use CKShareParticipantRole
  */
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Deprecated/*</annotations>*/

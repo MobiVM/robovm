@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -48,7 +50,6 @@ public enum /*<name>*/UITableViewCellSeparatorStyle/*</name>*/ implements Valued
     None(0L),
     SingleLine(1L),
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 11.0. Use UITableViewCellSeparatorStyleSingleLine for a single line separator.
      */
     @Deprecated

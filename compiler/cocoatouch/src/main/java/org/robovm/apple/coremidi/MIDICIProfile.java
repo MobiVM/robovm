@@ -51,7 +51,7 @@ import org.robovm.apple.corefoundation.*;
     @Method(selector = "initWithData:name:")
     public MIDICIProfile(NSData data, String inName) { super((SkipInit) null); initObject(init(data, inName)); }
     @Method(selector = "initWithCoder:")
-    public MIDICIProfile(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public MIDICIProfile(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "name")
@@ -68,6 +68,6 @@ import org.robovm.apple.corefoundation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

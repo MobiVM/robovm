@@ -41,9 +41,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.1 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVAssetReaderAudioMixOutput/*</name>*/ 
@@ -69,14 +67,8 @@ import org.robovm.apple.audiotoolbox.*;
     public native AVAudioMix getAudioMix();
     @Property(selector = "setAudioMix:")
     public native void setAudioMix(AVAudioMix v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "audioTimePitchAlgorithm")
     public native AVAudioTimePitchAlgorithm getAudioTimePitchAlgorithm();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setAudioTimePitchAlgorithm:")
     public native void setAudioTimePitchAlgorithm(AVAudioTimePitchAlgorithm v);
     /*</properties>*/

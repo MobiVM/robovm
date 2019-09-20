@@ -95,9 +95,6 @@ import org.robovm.apple.dispatch.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final NSExtensionContextErrorUserInfoKey ExtensionItemsAndErrorsKey = new NSExtensionContextErrorUserInfoKey("ExtensionItemsAndErrorsKey");
     /*</constants>*/
     
@@ -124,9 +121,6 @@ import org.robovm.apple.dispatch.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="NSExtensionItemsAndErrorsKey", optional=true)
         public static native NSString ExtensionItemsAndErrorsKey();
         /*</values>*/

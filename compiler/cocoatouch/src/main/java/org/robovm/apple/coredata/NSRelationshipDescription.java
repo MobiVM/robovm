@@ -29,12 +29,12 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corespotlight.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 3.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreData") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSRelationshipDescription/*</name>*/ 
@@ -72,19 +72,10 @@ import org.robovm.apple.corespotlight.*;
     public native void setDeleteRule(NSDeleteRule v);
     @Property(selector = "isToMany")
     public native boolean isToMany();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "versionHash")
     public native NSData getVersionHash();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "isOrdered")
     public native boolean isOrdered();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setOrdered:")
     public native void setOrdered(boolean v);
     /*</properties>*/

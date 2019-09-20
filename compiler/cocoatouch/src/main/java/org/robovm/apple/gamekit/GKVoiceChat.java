@@ -32,9 +32,7 @@ import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.1 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("GameKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GKVoiceChat/*</name>*/ 
@@ -50,14 +48,8 @@ import org.robovm.apple.uikit.*;
     protected GKVoiceChat(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "playerVoiceChatStateDidChangeHandler")
     public native @Block VoidBlock2<GKPlayer, GKVoiceChatPlayerState> getPlayerVoiceChatStateDidChangeHandler();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setPlayerVoiceChatStateDidChangeHandler:")
     public native void setPlayerVoiceChatStateDidChangeHandler(@Block VoidBlock2<GKPlayer, GKVoiceChatPlayerState> v);
     @Property(selector = "name")
@@ -70,27 +62,21 @@ import org.robovm.apple.uikit.*;
     public native float getVolume();
     @Property(selector = "setVolume:")
     public native void setVolume(float v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "players")
     public native NSArray<GKPlayer> getPlayers();
     /**
-     * @since Available in iOS 5.0 and later.
      * @deprecated Deprecated in iOS 8.0. use players
      */
     @Deprecated
     @Property(selector = "playerIDs")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getPlayerIDs();
     /**
-     * @since Available in iOS 4.1 and later.
      * @deprecated Deprecated in iOS 8.0. use setPlayerVoiceChatStateDidChangeHandler:
      */
     @Deprecated
     @Property(selector = "playerStateUpdateHandler")
     public native @Block VoidBlock2<NSString, GKVoiceChatPlayerState> getPlayerStateUpdateHandler();
     /**
-     * @since Available in iOS 4.1 and later.
      * @deprecated Deprecated in iOS 8.0. use setPlayerVoiceChatStateDidChangeHandler:
      */
     @Deprecated
@@ -103,15 +89,11 @@ import org.robovm.apple.uikit.*;
     public native void start();
     @Method(selector = "stop")
     public native void stop();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "setPlayer:muted:")
     public native void setPlayerMuted(GKPlayer player, boolean isMuted);
     @Method(selector = "isVoIPAllowed")
     public static native boolean isVoIPAllowed();
     /**
-     * @since Available in iOS 5.0 and later.
      * @deprecated Deprecated in iOS 8.0. use setPlayer:muted:
      */
     @Deprecated

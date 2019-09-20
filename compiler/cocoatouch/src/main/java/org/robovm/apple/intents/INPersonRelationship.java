@@ -102,5 +102,15 @@ import org.robovm.apple.corelocation.*;
      */
     @GlobalValue(symbol="INPersonRelationshipManager", optional=true)
     public static native NSString Manager();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @GlobalValue(symbol="INPersonRelationshipSon", optional=true)
+    public static native NSString Son();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @GlobalValue(symbol="INPersonRelationshipDaughter", optional=true)
+    public static native NSString Daughter();
     /*</methods>*/
 }

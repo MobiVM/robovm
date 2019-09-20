@@ -63,14 +63,8 @@ import org.robovm.apple.dispatch.*;
     public native NSNetServiceDelegate getDelegate();
     @Property(selector = "setDelegate:", strongRef = true)
     public native void setDelegate(NSNetServiceDelegate v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "includesPeerToPeer")
     public native boolean includesPeerToPeer();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setIncludesPeerToPeer:")
     public native void setIncludesPeerToPeer(boolean v);
     @Property(selector = "name")
@@ -83,9 +77,6 @@ import org.robovm.apple.dispatch.*;
     public native String getHostName();
     @Property(selector = "addresses")
     public native NSArray<NSData> getAddresses();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Property(selector = "port")
     public native @MachineSizedSInt long getPort();
     /*</properties>*/
@@ -117,9 +108,6 @@ import org.robovm.apple.dispatch.*;
     public native void removeFromRunLoop(NSRunLoop aRunLoop, String mode);
     @Method(selector = "publish")
     public native void publish();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Method(selector = "publishWithOptions:")
     public native void publish(NSNetServiceOptions options);
     @Method(selector = "stop")

@@ -95,27 +95,16 @@ import org.robovm.apple.dispatch.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public static final NSValueTransformerName NegateBoolean = new NSValueTransformerName("NegateBoolean");
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public static final NSValueTransformerName IsNil = new NSValueTransformerName("IsNil");
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public static final NSValueTransformerName IsNotNil = new NSValueTransformerName("IsNotNil");
     /**
-     * @since Available in iOS 3.0 and later.
-     * @deprecated Deprecated in iOS 12.0.
+     * @deprecated Deprecated in iOS 12.0. Use NSSecureUnarchiveFromDataTransformerName
      */
     @Deprecated
     public static final NSValueTransformerName UnarchiveFromData = new NSValueTransformerName("UnarchiveFromData");
     /**
-     * @since Available in iOS 3.0 and later.
-     * @deprecated Deprecated in iOS 12.0.
+     * @deprecated Deprecated in iOS 12.0. Use NSSecureUnarchiveFromDataTransformerName
      */
     @Deprecated
     public static final NSValueTransformerName KeyedUnarchiveFromData = new NSValueTransformerName("KeyedUnarchiveFromData");
@@ -148,31 +137,20 @@ import org.robovm.apple.dispatch.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 3.0 and later.
-         */
         @GlobalValue(symbol="NSNegateBooleanTransformerName", optional=true)
         public static native NSString NegateBoolean();
-        /**
-         * @since Available in iOS 3.0 and later.
-         */
         @GlobalValue(symbol="NSIsNilTransformerName", optional=true)
         public static native NSString IsNil();
-        /**
-         * @since Available in iOS 3.0 and later.
-         */
         @GlobalValue(symbol="NSIsNotNilTransformerName", optional=true)
         public static native NSString IsNotNil();
         /**
-         * @since Available in iOS 3.0 and later.
-         * @deprecated Deprecated in iOS 12.0.
+         * @deprecated Deprecated in iOS 12.0. Use NSSecureUnarchiveFromDataTransformerName
          */
         @Deprecated
         @GlobalValue(symbol="NSUnarchiveFromDataTransformerName", optional=true)
         public static native NSString UnarchiveFromData();
         /**
-         * @since Available in iOS 3.0 and later.
-         * @deprecated Deprecated in iOS 12.0.
+         * @deprecated Deprecated in iOS 12.0. Use NSSecureUnarchiveFromDataTransformerName
          */
         @Deprecated
         @GlobalValue(symbol="NSKeyedUnarchiveFromDataTransformerName", optional=true)

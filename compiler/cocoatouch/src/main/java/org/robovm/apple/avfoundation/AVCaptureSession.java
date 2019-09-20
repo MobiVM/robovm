@@ -41,9 +41,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVCaptureSession/*</name>*/ 
@@ -138,31 +136,21 @@ import org.robovm.apple.audiotoolbox.*;
     public native NSArray<AVCaptureInput> getInputs();
     @Property(selector = "outputs")
     public native NSArray<AVCaptureOutput> getOutputs();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "connections")
+    public native NSArray<AVCaptureConnection> getConnections();
     @Property(selector = "isRunning")
     public native boolean isRunning();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "isInterrupted")
     public native boolean isInterrupted();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "usesApplicationAudioSession")
     public native boolean usesApplicationAudioSession();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setUsesApplicationAudioSession:")
     public native void setUsesApplicationAudioSession(boolean v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "automaticallyConfiguresApplicationAudioSession")
     public native boolean automaticallyConfiguresApplicationAudioSession();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setAutomaticallyConfiguresApplicationAudioSession:")
     public native void setAutomaticallyConfiguresApplicationAudioSession(boolean v);
     /**
@@ -175,37 +163,19 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "setAutomaticallyConfiguresCaptureDeviceForWideColor:")
     public native void setAutomaticallyConfiguresCaptureDeviceForWideColor(boolean v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "masterClock")
     public native CMClock getMasterClock();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @GlobalValue(symbol="AVCaptureSessionRuntimeErrorNotification", optional=true)
     public static native NSString RuntimeErrorNotification();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @GlobalValue(symbol="AVCaptureSessionErrorKey", optional=true)
     protected static native NSString NotificationErrorKey();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @GlobalValue(symbol="AVCaptureSessionDidStartRunningNotification", optional=true)
     public static native NSString DidStartRunningNotification();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @GlobalValue(symbol="AVCaptureSessionDidStopRunningNotification", optional=true)
     public static native NSString DidStopRunningNotification();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @GlobalValue(symbol="AVCaptureSessionWasInterruptedNotification", optional=true)
     public static native NSString WasInterruptedNotification();
     /**
@@ -218,9 +188,6 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @GlobalValue(symbol="AVCaptureSessionInterruptionSystemPressureStateKey", optional=true)
     public static native String InterruptionSystemPressureStateKey();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @GlobalValue(symbol="AVCaptureSessionInterruptionEndedNotification", optional=true)
     public static native NSString InterruptionEndedNotification();
     
@@ -238,29 +205,14 @@ import org.robovm.apple.audiotoolbox.*;
     public native void addOutput(AVCaptureOutput output);
     @Method(selector = "removeOutput:")
     public native void removeOutput(AVCaptureOutput output);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "addInputWithNoConnections:")
     public native void addInputWithNoConnections(AVCaptureInput input);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "addOutputWithNoConnections:")
     public native void addOutputWithNoConnections(AVCaptureOutput output);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "canAddConnection:")
     public native boolean canAddConnection(AVCaptureConnection connection);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "addConnection:")
     public native void addConnection(AVCaptureConnection connection);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "removeConnection:")
     public native void removeConnection(AVCaptureConnection connection);
     @Method(selector = "beginConfiguration")

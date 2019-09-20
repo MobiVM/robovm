@@ -42,7 +42,7 @@ import org.robovm.apple.imageio.*;
 /*</javadoc>*/
 /*<annotations>*/@Library("Photos") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/PHAssetCollectionChangeRequest/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
+    extends /*<extends>*/PHChangeRequest/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class PHAssetCollectionChangeRequestPtr extends Ptr<PHAssetCollectionChangeRequest, PHAssetCollectionChangeRequestPtr> {}/*</ptr>*/

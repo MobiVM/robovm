@@ -108,9 +108,6 @@ import org.robovm.apple.imageio.*;
     }
     
 
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public boolean isResultInCloud() {
         if (has(Keys.ResultIsInCloud())) {
             NSNumber val = (NSNumber) get(Keys.ResultIsInCloud());
@@ -118,9 +115,6 @@ import org.robovm.apple.imageio.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public boolean isResultDegraded() {
         if (has(Keys.ResultIsDegraded())) {
             NSNumber val = (NSNumber) get(Keys.ResultIsDegraded());
@@ -128,9 +122,6 @@ import org.robovm.apple.imageio.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public long getResultRequestID() {
         if (has(Keys.ResultRequestID())) {
             NSNumber val = (NSNumber) get(Keys.ResultRequestID());
@@ -138,9 +129,6 @@ import org.robovm.apple.imageio.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public boolean isCancelled() {
         if (has(Keys.Cancelled())) {
             NSNumber val = (NSNumber) get(Keys.Cancelled());
@@ -148,9 +136,6 @@ import org.robovm.apple.imageio.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public NSError getError() {
         if (has(Keys.Error())) {
             NSError val = (NSError) get(Keys.Error());
@@ -164,29 +149,14 @@ import org.robovm.apple.imageio.*;
     @Library("Photos")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="PHImageResultIsInCloudKey", optional=true)
         public static native NSString ResultIsInCloud();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="PHImageResultIsDegradedKey", optional=true)
         public static native NSString ResultIsDegraded();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="PHImageResultRequestIDKey", optional=true)
         public static native NSString ResultRequestID();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="PHImageCancelledKey", optional=true)
         public static native NSString Cancelled();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="PHImageErrorKey", optional=true)
         public static native NSString Error();
     }

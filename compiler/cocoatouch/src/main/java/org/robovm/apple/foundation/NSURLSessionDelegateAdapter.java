@@ -60,9 +60,6 @@ import org.robovm.apple.dispatch.*;
     public void didBecomeInvalid(NSURLSession session, NSError error) {}
     @NotImplemented("URLSession:didReceiveChallenge:completionHandler:")
     public void didReceiveChallenge(NSURLSession session, NSURLAuthenticationChallenge challenge, @Block VoidBlock2<NSURLSessionAuthChallengeDisposition, NSURLCredential> completionHandler) {}
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @NotImplemented("URLSessionDidFinishEventsForBackgroundURLSession:")
     public void didFinishEvents(NSURLSession session) {}
     /*</methods>*/

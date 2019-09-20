@@ -58,7 +58,7 @@ import org.robovm.apple.scenekit.SCNVector4;
     protected NSValue(Handle h, long handle) { super(h, handle); }
     protected NSValue(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public NSValue(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public NSValue(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "objCType")
@@ -246,7 +246,7 @@ import org.robovm.apple.scenekit.SCNVector4;
     @Method(selector = "getValue:size:")
     protected native void getValue(VoidPtr value, @MachineSizedUInt long size);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
+    protected native @Pointer long init(NSCoder coder);
     @Method(selector = "valueWithBytes:objCType:")
     public static native NSValue valueOf(VoidPtr value, BytePtr type);
     @Method(selector = "isEqualToValue:")
@@ -255,6 +255,10 @@ import org.robovm.apple.scenekit.SCNVector4;
     public static native NSValue valueOf(NSObject anObject);
     @Method(selector = "valueWithPointer:")
     public static native NSValue valueOf(VoidPtr pointer);
+    /**
+     * @deprecated Use getValue:size:
+     */
+    @Deprecated
     @Method(selector = "getValue:")
     protected native void getValue(VoidPtr value);
     @Method(selector = "valueWithRange:")

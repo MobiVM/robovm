@@ -31,9 +31,7 @@ import org.robovm.apple.foundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreMotion") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CMLogItem/*</name>*/ 
@@ -48,7 +46,7 @@ import org.robovm.apple.foundation.*;
     protected CMLogItem(Handle h, long handle) { super(h, handle); }
     protected CMLogItem(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public CMLogItem(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public CMLogItem(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "timestamp")
@@ -61,6 +59,6 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

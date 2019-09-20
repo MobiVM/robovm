@@ -41,9 +41,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("AVFoundation") @NativeClass @WeaklyLinked/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVSampleBufferDisplayLayer/*</name>*/ 
@@ -88,31 +86,39 @@ import org.robovm.apple.audiotoolbox.*;
     public native AVLayerVideoGravity getVideoGravity();
     @Property(selector = "setVideoGravity:")
     public native void setVideoGravity(AVLayerVideoGravity v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "status")
     public native AVQueuedSampleBufferRenderingStatus getStatus();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "error")
     public native NSError getError();
     @Property(selector = "isReadyForMoreMediaData")
     public native boolean isReadyForMoreMediaData();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "preventsCapture")
+    public native boolean isPreventsCapture();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setPreventsCapture:")
+    public native void setPreventsCapture(boolean v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "preventsDisplaySleepDuringVideoPlayback")
+    public native boolean isPreventsDisplaySleepDuringVideoPlayback();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setPreventsDisplaySleepDuringVideoPlayback:")
+    public native void setPreventsDisplaySleepDuringVideoPlayback(boolean v);
     @Property(selector = "timebase")
     public native CMTimebase getTimebase();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @GlobalValue(symbol="AVSampleBufferDisplayLayerFailedToDecodeNotification", optional=true)
     public static native NSString FailedToDecodeNotification();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @GlobalValue(symbol="AVSampleBufferDisplayLayerFailedToDecodeNotificationErrorKey", optional=true)
     protected static native NSString FailedToDecodeNotificationErrorKey();
     

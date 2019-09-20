@@ -51,10 +51,10 @@ import org.robovm.apple.dispatch.*;
     /*<methods>*/
     @Method(selector = "readerSessionDidBecomeActive:")
     void readerSessionDidBecomeActive(NFCReaderSession session);
-    @Method(selector = "readerSession:didDetectTags:")
-    void didDetectTags(NFCReaderSession session, NSArray<?> tags);
     @Method(selector = "readerSession:didInvalidateWithError:")
     void didInvalidateWithError(NFCReaderSession session, NSError error);
+    @Method(selector = "readerSession:didDetectTags:")
+    void didDetectTags(NFCReaderSession session, NSArray<?> tags);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

@@ -56,6 +56,16 @@ import org.robovm.apple.dispatch.*;
     MTLStorageMode getStorageMode();
     @Property(selector = "cpuCacheMode")
     MTLCPUCacheMode getCpuCacheMode();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "hazardTrackingMode")
+    MTLHazardTrackingMode getHazardTrackingMode();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "resourceOptions")
+    MTLResourceOptions getResourceOptions();
     @Property(selector = "size")
     @MachineSizedUInt long getSize();
     @Property(selector = "usedSize")
@@ -65,6 +75,11 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "currentAllocatedSize")
     @MachineSizedUInt long getCurrentAllocatedSize();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "type")
+    MTLHeapType getType();
     /*</properties>*/
     /*<methods>*/
     @Method(selector = "maxAvailableSizeWithAlignment:")
@@ -75,6 +90,16 @@ import org.robovm.apple.dispatch.*;
     MTLTexture newTexture(MTLTextureDescriptor desc);
     @Method(selector = "setPurgeableState:")
     MTLPurgeableState setPurgeableState(MTLPurgeableState state);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "newBufferWithLength:options:offset:")
+    MTLBuffer newBuffer(@MachineSizedUInt long length, MTLResourceOptions options, @MachineSizedUInt long offset);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "newTextureWithDescriptor:offset:")
+    MTLTexture newTexture(MTLTextureDescriptor descriptor, @MachineSizedUInt long offset);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

@@ -97,45 +97,15 @@ import org.robovm.apple.audiotoolbox.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVErrorUserInfoKey Device = new AVErrorUserInfoKey("Device");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVErrorUserInfoKey Time = new AVErrorUserInfoKey("Time");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVErrorUserInfoKey FileSize = new AVErrorUserInfoKey("FileSize");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVErrorUserInfoKey PID = new AVErrorUserInfoKey("PID");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVErrorUserInfoKey RecordingSuccessfullyFinished = new AVErrorUserInfoKey("RecordingSuccessfullyFinished");
-    /**
-     * @since Available in iOS 4.3 and later.
-     */
     public static final AVErrorUserInfoKey MediaType = new AVErrorUserInfoKey("MediaType");
-    /**
-     * @since Available in iOS 4.3 and later.
-     */
     public static final AVErrorUserInfoKey MediaSubType = new AVErrorUserInfoKey("MediaSubType");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVErrorUserInfoKey PresentationTimeStamp = new AVErrorUserInfoKey("PresentationTimeStamp");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVErrorUserInfoKey PersistentTrackID = new AVErrorUserInfoKey("PersistentTrackID");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVErrorUserInfoKey FileType = new AVErrorUserInfoKey("FileType");
     /*</constants>*/
     
@@ -162,54 +132,24 @@ import org.robovm.apple.audiotoolbox.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVErrorDeviceKey", optional=true)
         public static native NSString Device();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVErrorTimeKey", optional=true)
         public static native NSString Time();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVErrorFileSizeKey", optional=true)
         public static native NSString FileSize();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVErrorPIDKey", optional=true)
         public static native NSString PID();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVErrorRecordingSuccessfullyFinishedKey", optional=true)
         public static native NSString RecordingSuccessfullyFinished();
-        /**
-         * @since Available in iOS 4.3 and later.
-         */
         @GlobalValue(symbol="AVErrorMediaTypeKey", optional=true)
         public static native NSString MediaType();
-        /**
-         * @since Available in iOS 4.3 and later.
-         */
         @GlobalValue(symbol="AVErrorMediaSubTypeKey", optional=true)
         public static native NSString MediaSubType();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVErrorPresentationTimeStampKey", optional=true)
         public static native NSString PresentationTimeStamp();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVErrorPersistentTrackIDKey", optional=true)
         public static native NSString PersistentTrackID();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVErrorFileTypeKey", optional=true)
         public static native NSString FileType();
         /*</values>*/

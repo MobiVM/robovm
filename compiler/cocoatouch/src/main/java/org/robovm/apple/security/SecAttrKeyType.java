@@ -88,13 +88,7 @@ import org.robovm.apple.dispatch.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final SecAttrKeyType RSA = new SecAttrKeyType("RSA");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final SecAttrKeyType EC = new SecAttrKeyType("EC");
     /**
      * @since Available in iOS 10.0 and later.
@@ -125,14 +119,8 @@ import org.robovm.apple.dispatch.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kSecAttrKeyTypeRSA", optional=true)
         public static native CFType RSA();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kSecAttrKeyTypeEC", optional=true)
         public static native CFType EC();
         /**

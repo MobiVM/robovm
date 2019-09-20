@@ -91,70 +91,26 @@ import org.robovm.apple.iosurface.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CVImageBufferAttribute CGColorSpace = new CVImageBufferAttribute("CGColorSpace");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CVImageBufferAttribute CleanAperture = new CVImageBufferAttribute("CleanAperture");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CVImageBufferAttribute PreferredCleanAperture = new CVImageBufferAttribute("PreferredCleanAperture");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CVImageBufferAttribute FieldCount = new CVImageBufferAttribute("FieldCount");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CVImageBufferAttribute FieldDetail = new CVImageBufferAttribute("FieldDetail");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CVImageBufferAttribute PixelAspectRatio = new CVImageBufferAttribute("PixelAspectRatio");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CVImageBufferAttribute DisplayDimensions = new CVImageBufferAttribute("DisplayDimensions");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CVImageBufferAttribute GammaLevel = new CVImageBufferAttribute("GammaLevel");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CVImageBufferAttribute ICCProfile = new CVImageBufferAttribute("ICCProfile");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CVImageBufferAttribute YCbCrMatrix = new CVImageBufferAttribute("YCbCrMatrix");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CVImageBufferAttribute ColorPrimaries = new CVImageBufferAttribute("ColorPrimaries");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CVImageBufferAttribute TransferFunction = new CVImageBufferAttribute("TransferFunction");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CVImageBufferAttribute ChromaLocationTopField = new CVImageBufferAttribute("ChromaLocationTopField");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CVImageBufferAttribute ChromaLocationBottomField = new CVImageBufferAttribute("ChromaLocationBottomField");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CVImageBufferAttribute ChromaSubsampling = new CVImageBufferAttribute("ChromaSubsampling");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final CVImageBufferAttribute AlphaChannelIsOpaque = new CVImageBufferAttribute("AlphaChannelIsOpaque");
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final CVImageBufferAttribute AlphaChannelMode = new CVImageBufferAttribute("AlphaChannelMode");
     /**
      * @since Available in iOS 11.0 and later.
      */
@@ -165,7 +121,7 @@ import org.robovm.apple.iosurface.*;
     public static final CVImageBufferAttribute ContentLightLevelInfo = new CVImageBufferAttribute("ContentLightLevelInfo");
     /*</constants>*/
     
-    private static /*<name>*/CVImageBufferAttribute/*</name>*/[] values = new /*<name>*/CVImageBufferAttribute/*</name>*/[] {/*<value_list>*/CGColorSpace, CleanAperture, PreferredCleanAperture, FieldCount, FieldDetail, PixelAspectRatio, DisplayDimensions, GammaLevel, ICCProfile, YCbCrMatrix, ColorPrimaries, TransferFunction, ChromaLocationTopField, ChromaLocationBottomField, ChromaSubsampling, AlphaChannelIsOpaque, MasteringDisplayColorVolume, ContentLightLevelInfo/*</value_list>*/};
+    private static /*<name>*/CVImageBufferAttribute/*</name>*/[] values = new /*<name>*/CVImageBufferAttribute/*</name>*/[] {/*<value_list>*/CGColorSpace, CleanAperture, PreferredCleanAperture, FieldCount, FieldDetail, PixelAspectRatio, DisplayDimensions, GammaLevel, ICCProfile, YCbCrMatrix, ColorPrimaries, TransferFunction, ChromaLocationTopField, ChromaLocationBottomField, ChromaSubsampling, AlphaChannelIsOpaque, AlphaChannelMode, MasteringDisplayColorVolume, ContentLightLevelInfo/*</value_list>*/};
     
     /*<name>*/CVImageBufferAttribute/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -191,86 +147,43 @@ import org.robovm.apple.iosurface.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVImageBufferCGColorSpaceKey", optional=true)
         public static native CFString CGColorSpace();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVImageBufferCleanApertureKey", optional=true)
         public static native CFString CleanAperture();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVImageBufferPreferredCleanApertureKey", optional=true)
         public static native CFString PreferredCleanAperture();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVImageBufferFieldCountKey", optional=true)
         public static native CFString FieldCount();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVImageBufferFieldDetailKey", optional=true)
         public static native CFString FieldDetail();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVImageBufferPixelAspectRatioKey", optional=true)
         public static native CFString PixelAspectRatio();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVImageBufferDisplayDimensionsKey", optional=true)
         public static native CFString DisplayDimensions();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVImageBufferGammaLevelKey", optional=true)
         public static native CFString GammaLevel();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVImageBufferICCProfileKey", optional=true)
         public static native CFString ICCProfile();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVImageBufferYCbCrMatrixKey", optional=true)
         public static native CFString YCbCrMatrix();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVImageBufferColorPrimariesKey", optional=true)
         public static native CFString ColorPrimaries();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVImageBufferTransferFunctionKey", optional=true)
         public static native CFString TransferFunction();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVImageBufferChromaLocationTopFieldKey", optional=true)
         public static native CFString ChromaLocationTopField();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVImageBufferChromaLocationBottomFieldKey", optional=true)
         public static native CFString ChromaLocationBottomField();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVImageBufferChromaSubsamplingKey", optional=true)
         public static native CFString ChromaSubsampling();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="kCVImageBufferAlphaChannelIsOpaque", optional=true)
         public static native CFString AlphaChannelIsOpaque();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="kCVImageBufferAlphaChannelModeKey", optional=true)
+        public static native CFString AlphaChannelMode();
         /**
          * @since Available in iOS 11.0 and later.
          */

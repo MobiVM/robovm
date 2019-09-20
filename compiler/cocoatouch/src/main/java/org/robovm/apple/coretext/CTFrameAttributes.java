@@ -110,9 +110,6 @@ import org.robovm.apple.uikit.*;
     }
     
 
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public CTFrameProgression getProgression() {
         if (has(Keys.Progression())) {
             CFNumber val = get(Keys.Progression(), CFNumber.class);
@@ -120,16 +117,10 @@ import org.robovm.apple.uikit.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public CTFrameAttributes setProgression(CTFrameProgression progression) {
         set(Keys.Progression(), CFNumber.valueOf(progression.value()));
         return this;
     }
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     public CTFramePathFillRule getPathFillRule() {
         if (has(Keys.PathFillRule())) {
             CFNumber val = get(Keys.PathFillRule(), CFNumber.class);
@@ -137,16 +128,10 @@ import org.robovm.apple.uikit.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     public CTFrameAttributes setPathFillRule(CTFramePathFillRule pathFillRule) {
         set(Keys.PathFillRule(), CFNumber.valueOf(pathFillRule.value()));
         return this;
     }
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     public double getPathWidth() {
         if (has(Keys.PathWidth())) {
             CFNumber val = get(Keys.PathWidth(), CFNumber.class);
@@ -154,16 +139,10 @@ import org.robovm.apple.uikit.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     public CTFrameAttributes setPathWidth(double pathWidth) {
         set(Keys.PathWidth(), CFNumber.valueOf(pathWidth));
         return this;
     }
-    /**
-     * @since Available in iOS 4.3 and later.
-     */
     public List<CTFrameClippingPath> getClippingPaths() {
         if (has(Keys.ClippingPaths())) {
             CFArray val = get(Keys.ClippingPaths(), CFArray.class);
@@ -176,9 +155,6 @@ import org.robovm.apple.uikit.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 4.3 and later.
-     */
     public CTFrameAttributes setClippingPaths(List<CTFrameClippingPath> clippingPaths) {
         CFArray val = CFMutableArray.create();
         for (CTFrameClippingPath e : clippingPaths) {
@@ -193,24 +169,12 @@ import org.robovm.apple.uikit.*;
     @Library("CoreText")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 3.2 and later.
-         */
         @GlobalValue(symbol="kCTFrameProgressionAttributeName", optional=true)
         public static native CFString Progression();
-        /**
-         * @since Available in iOS 4.2 and later.
-         */
         @GlobalValue(symbol="kCTFramePathFillRuleAttributeName", optional=true)
         public static native CFString PathFillRule();
-        /**
-         * @since Available in iOS 4.2 and later.
-         */
         @GlobalValue(symbol="kCTFramePathWidthAttributeName", optional=true)
         public static native CFString PathWidth();
-        /**
-         * @since Available in iOS 4.3 and later.
-         */
         @GlobalValue(symbol="kCTFrameClippingPathsAttributeName", optional=true)
         public static native CFString ClippingPaths();
     }

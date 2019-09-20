@@ -54,7 +54,7 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "initWithUserActivity:")
     public INShortcut(NSUserActivity userActivity) { super((SkipInit) null); initObject(init(userActivity)); }
     @Method(selector = "initWithCoder:")
-    public INShortcut(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public INShortcut(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "intent")
@@ -73,6 +73,6 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

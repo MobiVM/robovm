@@ -35,9 +35,10 @@ import org.robovm.apple.corelocation.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 10.0 and later.
+ * @deprecated Deprecated in iOS 13.0. Please conform to INSearchForPhotosIntentHandling and INStartPhotoPlaybackIntentHandling instead
  */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
+/*<annotations>*/@Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ interface /*<name>*/INPhotosDomainHandling/*</name>*/ 
     /*<implements>*/extends INSearchForPhotosIntentHandling, INStartPhotoPlaybackIntentHandling/*</implements>*/ {
 

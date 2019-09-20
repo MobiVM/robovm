@@ -42,8 +42,8 @@ import org.robovm.apple.dispatch.*;
 
 /*</javadoc>*/
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/NSMutableSet/*</name>*/ <T extends NSObject>
-    extends /*<extends>*/NSSet/*</extends>*/ <T>
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/NSMutableSet<T extends NSObject>/*</name>*/
+    extends /*<extends>*/NSSet<T>/*</extends>*/
     /*<implements>*//*</implements>*/ {
 
     public static class NSMutableSetPtr<T extends NSObject> extends Ptr<NSMutableSet<T>, NSMutableSetPtr<T>> {}
@@ -115,9 +115,9 @@ import org.robovm.apple.dispatch.*;
     
     /*<methods>*/
     @Method(selector = "addObject:")
-    protected native void addObject(NSObject object);
+    protected native void addObject(T object);
     @Method(selector = "removeObject:")
-    protected native void removeObject(NSObject object);
+    protected native void removeObject(T object);
     @Method(selector = "initWithCapacity:")
     protected native @Pointer long init(@MachineSizedUInt long numItems);
     @Method(selector = "removeAllObjects")

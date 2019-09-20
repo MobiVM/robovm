@@ -37,12 +37,12 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 2.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIControl/*</name>*/ 
@@ -60,7 +60,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithFrame:")
     public UIControl(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public UIControl(NSCoder decoder) { super(decoder); }
+    public UIControl(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "isEnabled")

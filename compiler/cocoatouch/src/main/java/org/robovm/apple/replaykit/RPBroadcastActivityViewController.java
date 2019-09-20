@@ -52,7 +52,7 @@ import org.robovm.apple.coremedia.*;
     @Method(selector = "initWithNibName:bundle:")
     public RPBroadcastActivityViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
     @Method(selector = "initWithCoder:")
-    public RPBroadcastActivityViewController(NSCoder decoder) { super(decoder); }
+    public RPBroadcastActivityViewController(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "delegate")

@@ -64,9 +64,6 @@ import org.robovm.apple.audiotoolbox.*;
         return CMMuxedStreamType.valueOf(getMediaSubType());
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMMuxedFormatDescriptionCreate", optional=true)
     private static native OSStatus create0(CFAllocator allocator, CMMuxedStreamType muxType, CMVideoFormatDescriptionExtension extensions, CMMuxedFormatDescription.CMMuxedFormatDescriptionPtr formatDescriptionOut);
     /*</methods>*/

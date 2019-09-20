@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -55,19 +57,10 @@ import org.robovm.apple.intents.*;
     
     /*</properties>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "accessibilityElementDidBecomeFocused")
     void didBecomeFocused();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "accessibilityElementDidLoseFocus")
     void didLoseFocus();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "accessibilityElementIsFocused")
     boolean isFocused();
     /**

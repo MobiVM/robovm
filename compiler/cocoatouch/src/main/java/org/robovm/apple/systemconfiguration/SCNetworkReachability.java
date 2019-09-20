@@ -146,49 +146,22 @@ import org.robovm.apple.dispatch.*;
         return setCallback(new FunctionPtr(cbInvoke), context);
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="SCNetworkReachabilityCreateWithAddress", optional=true)
     private static native @Pointer long create(CFAllocator allocator, Struct<?> address);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="SCNetworkReachabilityCreateWithAddressPair", optional=true)
     private static native @Pointer long create(CFAllocator allocator, Struct<?> localAddress, Struct<?> remoteAddress);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="SCNetworkReachabilityCreateWithName", optional=true)
     private static native @Pointer long create(CFAllocator allocator, BytePtr nodename);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="SCNetworkReachabilityGetTypeID", optional=true)
     public static native @MachineSizedUInt long getClassTypeID();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="SCNetworkReachabilityGetFlags", optional=true)
     protected native boolean getFlags(IntPtr flags);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="SCNetworkReachabilitySetCallback", optional=true)
     protected native boolean setCallback(FunctionPtr callout, SCNetworkReachabilityContext context);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="SCNetworkReachabilityScheduleWithRunLoop", optional=true)
     public native boolean schedule(CFRunLoop runLoop, CFString runLoopMode);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="SCNetworkReachabilityUnscheduleFromRunLoop", optional=true)
     public native boolean unschedule(CFRunLoop runLoop, CFString runLoopMode);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @WeaklyLinked
     @Bridge(symbol="SCNetworkReachabilitySetDispatchQueue", optional=true)
     public native boolean setDispatchQueue(DispatchQueue queue);

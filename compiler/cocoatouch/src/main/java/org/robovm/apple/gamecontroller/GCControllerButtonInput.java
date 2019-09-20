@@ -33,9 +33,7 @@ import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 7.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("GameController") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GCControllerButtonInput/*</name>*/ 
@@ -55,18 +53,14 @@ import org.robovm.apple.uikit.*;
     public native @Block VoidBlock3<GCControllerButtonInput, Float, Boolean> getValueChangedHandler();
     @Property(selector = "setValueChangedHandler:")
     public native void setValueChangedHandler(@Block VoidBlock3<GCControllerButtonInput, Float, Boolean> v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "pressedChangedHandler")
     public native @Block VoidBlock3<GCControllerButtonInput, Float, Boolean> getPressedChangedHandler();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setPressedChangedHandler:")
     public native void setPressedChangedHandler(@Block VoidBlock3<GCControllerButtonInput, Float, Boolean> v);
     @Property(selector = "value")
     public native float getValue();
+    @Property(selector = "setValue:")
+    public native void setValue(float v);
     @Property(selector = "isPressed")
     public native boolean isPressed();
     /*</properties>*/

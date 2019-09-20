@@ -56,8 +56,8 @@ import org.robovm.apple.corelocation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "successWithResolvedValue:")
-    public static native INIntegerResolutionResult successWithResolvedValue(@MachineSizedSInt long resolvedValue);
+    public static native INIntegerResolutionResult success(@MachineSizedSInt long resolvedValue);
     @Method(selector = "confirmationRequiredWithValueToConfirm:")
-    public static native INIntegerResolutionResult confirmationRequiredWithValueToConfirm(NSNumber valueToConfirm);
+    public static native INIntegerResolutionResult confirmationRequired(NSNumber valueToConfirm);
     /*</methods>*/
 }

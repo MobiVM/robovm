@@ -29,6 +29,10 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corevideo.*;
+import org.robovm.apple.coregraphics.*;
+import org.robovm.apple.imageio.*;
+import org.robovm.apple.vision.*;
+import org.robovm.apple.metal.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -92,6 +96,20 @@ import org.robovm.apple.corevideo.*;
     /**
      * @since Available in iOS 12.0 and later.
      */
+    public MLBatchProvider getPredictionsFromBatch(MLBatchProvider inputBatch) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       MLBatchProvider result = getPredictionsFromBatch(inputBatch, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "predictionsFromBatch:error:")
+    private native MLBatchProvider getPredictionsFromBatch(MLBatchProvider inputBatch, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
     public MLBatchProvider getPredictionsFromBatch(MLBatchProvider inputBatch, MLPredictionOptions options) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        MLBatchProvider result = getPredictionsFromBatch(inputBatch, options, ptr);
@@ -103,6 +121,20 @@ import org.robovm.apple.corevideo.*;
      */
     @Method(selector = "predictionsFromBatch:options:error:")
     private native MLBatchProvider getPredictionsFromBatch(MLBatchProvider inputBatch, MLPredictionOptions options, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public NSObject getParameterValue(MLParameterKey key) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       NSObject result = getParameterValue(key, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "parameterValueForKey:error:")
+    private native NSObject getParameterValue(MLParameterKey key, NSError.NSErrorPtr error);
     @Method(selector = "modelWithContentsOfURL:error:")
     protected static native @Pointer long create(NSURL url, NSError.NSErrorPtr error);
     /**

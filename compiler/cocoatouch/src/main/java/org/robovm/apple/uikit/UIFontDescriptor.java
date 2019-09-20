@@ -37,12 +37,12 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 7.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIFontDescriptor/*</name>*/ 
@@ -57,7 +57,7 @@ import org.robovm.apple.intents.*;
     protected UIFontDescriptor(Handle h, long handle) { super(h, handle); }
     protected UIFontDescriptor(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public UIFontDescriptor(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public UIFontDescriptor(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     @Method(selector = "initWithFontAttributes:")
     public UIFontDescriptor(UIFontDescriptorAttributes attributes) { super((SkipInit) null); initObject(init(attributes)); }
     public UIFontDescriptor(String fontName, @MachineSizedFloat double size) { super((Handle) null, create(fontName, size)); retain(getHandle()); }
@@ -96,7 +96,7 @@ import org.robovm.apple.intents.*;
     }
     /*<methods>*/
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
+    protected native @Pointer long init(NSCoder coder);
     @Method(selector = "objectForKey:")
     protected native NSObject getValue(NSString anAttribute);
     @Method(selector = "matchingFontDescriptorsWithMandatoryKeys:")
@@ -115,6 +115,11 @@ import org.robovm.apple.intents.*;
     public native UIFontDescriptor newWithFamily(String newFamily);
     @Method(selector = "fontDescriptorWithSymbolicTraits:")
     public native UIFontDescriptor newWithSymbolicTraits(UIFontDescriptorSymbolicTraits symbolicTraits);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "fontDescriptorWithDesign:")
+    public native UIFontDescriptor newWithDesign(UIFontDescriptorSystemDesign design);
     @Method(selector = "fontDescriptorWithName:size:")
     protected static native @Pointer long create(String fontName, @MachineSizedFloat double size);
     @Method(selector = "fontDescriptorWithName:matrix:")

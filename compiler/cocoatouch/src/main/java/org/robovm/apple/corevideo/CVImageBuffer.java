@@ -129,24 +129,12 @@ import org.robovm.apple.iosurface.*;
      */
     @Bridge(symbol="CVTransferFunctionGetStringForIntegerCodePoint", optional=true)
     public static native CFString intCodePointToStringCVTransferFunction(int transferFunctionCodePoint);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CVImageBufferGetEncodedSize", optional=true)
     public native @ByVal CGSize getEncodedSize();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CVImageBufferGetDisplaySize", optional=true)
     public native @ByVal CGSize getDisplaySize();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CVImageBufferGetCleanRect", optional=true)
     public native @ByVal CGRect getCleanRect();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CVImageBufferIsFlipped", optional=true)
     public native boolean isFlipped();
     /**

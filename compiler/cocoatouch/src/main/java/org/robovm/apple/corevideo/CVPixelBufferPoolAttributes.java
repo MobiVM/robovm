@@ -111,9 +111,6 @@ import org.robovm.apple.iosurface.*;
     }
     
 
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public int getMinimumBufferCount() {
         if (has(Keys.MinimumBufferCount())) {
             CFNumber val = get(Keys.MinimumBufferCount(), CFNumber.class);
@@ -121,16 +118,10 @@ import org.robovm.apple.iosurface.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CVPixelBufferPoolAttributes setMinimumBufferCount(int minimumBufferCount) {
         set(Keys.MinimumBufferCount(), CFNumber.valueOf(minimumBufferCount));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public double getMaximumBufferAge() {
         if (has(Keys.MaximumBufferAge())) {
             CFNumber val = get(Keys.MaximumBufferAge(), CFNumber.class);
@@ -138,9 +129,6 @@ import org.robovm.apple.iosurface.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CVPixelBufferPoolAttributes setMaximumBufferAge(double maximumBufferAge) {
         set(Keys.MaximumBufferAge(), CFNumber.valueOf(maximumBufferAge));
         return this;
@@ -151,14 +139,8 @@ import org.robovm.apple.iosurface.*;
     @Library("CoreVideo")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVPixelBufferPoolMinimumBufferCountKey", optional=true)
         public static native CFString MinimumBufferCount();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVPixelBufferPoolMaximumBufferAgeKey", optional=true)
         public static native CFString MaximumBufferAge();
     }

@@ -77,7 +77,7 @@ import org.robovm.apple.imageio.*;
     @Property(selector = "lookAtPoint")
     public native @ByVal VectorFloat3 getLookAtPoint();
     @Property(selector = "blendShapes")
-    public native NSDictionary<?, ?> getBlendShapes();
+    public native NSDictionary<NSString, NSNumber> getBlendShapes();
     @Property(selector = "isTracked")
     public native boolean isTracked();
     /*</properties>*/

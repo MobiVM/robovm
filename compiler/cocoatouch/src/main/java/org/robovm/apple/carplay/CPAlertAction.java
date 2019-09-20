@@ -53,7 +53,7 @@ import org.robovm.apple.mapkit.*;
     @Method(selector = "initWithTitle:style:handler:")
     public CPAlertAction(String title, CPAlertActionStyle style, @Block VoidBlock1<CPAlertAction> handler) { super((SkipInit) null); initObject(init(title, style, handler)); }
     @Method(selector = "initWithCoder:")
-    public CPAlertAction(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public CPAlertAction(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "title")
@@ -72,6 +72,6 @@ import org.robovm.apple.mapkit.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

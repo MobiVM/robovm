@@ -97,13 +97,7 @@ import org.robovm.apple.audiotoolbox.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataKeyIcyMetadata StreamTitle = new AVMetadataKeyIcyMetadata("StreamTitle");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataKeyIcyMetadata StreamURL = new AVMetadataKeyIcyMetadata("StreamURL");
     /*</constants>*/
     
@@ -130,14 +124,8 @@ import org.robovm.apple.audiotoolbox.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIcyMetadataKeyStreamTitle", optional=true)
         public static native NSString StreamTitle();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIcyMetadataKeyStreamURL", optional=true)
         public static native NSString StreamURL();
         /*</values>*/

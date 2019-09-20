@@ -88,21 +88,9 @@ import org.robovm.apple.coregraphics.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyColorModel RGB = new CGImagePropertyColorModel("RGB");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyColorModel Gray = new CGImagePropertyColorModel("Gray");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyColorModel CMYK = new CGImagePropertyColorModel("CMYK");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyColorModel Lab = new CGImagePropertyColorModel("Lab");
     /*</constants>*/
     
@@ -129,24 +117,12 @@ import org.robovm.apple.coregraphics.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyColorModelRGB", optional=true)
         public static native CFString RGB();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyColorModelGray", optional=true)
         public static native CFString Gray();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyColorModelCMYK", optional=true)
         public static native CFString CMYK();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyColorModelLab", optional=true)
         public static native CFString Lab();
         /*</values>*/

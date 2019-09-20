@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -57,44 +59,20 @@ import org.robovm.apple.intents.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @NotImplemented("layoutManager:shouldGenerateGlyphs:properties:characterIndexes:font:forGlyphRange:")
     public @MachineSizedUInt long shouldGenerateGlyphs(NSLayoutManager layoutManager, ShortPtr glyphs, MachineSizedSIntPtr props, MachineSizedUIntPtr charIndexes, UIFont aFont, @ByVal NSRange glyphRange) { return 0; }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @NotImplemented("layoutManager:lineSpacingAfterGlyphAtIndex:withProposedLineFragmentRect:")
     public @MachineSizedFloat double getLineSpacingAfterGlyph(NSLayoutManager layoutManager, @MachineSizedUInt long glyphIndex, @ByVal CGRect rect) { return 0; }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @NotImplemented("layoutManager:paragraphSpacingBeforeGlyphAtIndex:withProposedLineFragmentRect:")
     public @MachineSizedFloat double getParagraphSpacingBeforeGlyph(NSLayoutManager layoutManager, @MachineSizedUInt long glyphIndex, @ByVal CGRect rect) { return 0; }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @NotImplemented("layoutManager:paragraphSpacingAfterGlyphAtIndex:withProposedLineFragmentRect:")
     public @MachineSizedFloat double getParagraphSpacingAfterGlyph(NSLayoutManager layoutManager, @MachineSizedUInt long glyphIndex, @ByVal CGRect rect) { return 0; }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @NotImplemented("layoutManager:shouldUseAction:forControlCharacterAtIndex:")
     public NSControlCharacterAction shouldUseAction(NSLayoutManager layoutManager, NSControlCharacterAction action, @MachineSizedUInt long charIndex) { return null; }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @NotImplemented("layoutManager:shouldBreakLineByWordBeforeCharacterAtIndex:")
     public boolean shouldBreakLineByWordBeforeCharacter(NSLayoutManager layoutManager, @MachineSizedUInt long charIndex) { return false; }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @NotImplemented("layoutManager:shouldBreakLineByHyphenatingBeforeCharacterAtIndex:")
     public boolean shouldBreakLineByHyphenatingBeforeCharacter(NSLayoutManager layoutManager, @MachineSizedUInt long charIndex) { return false; }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @NotImplemented("layoutManager:boundingBoxForControlGlyphAtIndex:forTextContainer:proposedLineFragment:glyphPosition:characterIndex:")
     public @ByVal CGRect getBoundingBoxForControlGlyph(NSLayoutManager layoutManager, @MachineSizedUInt long glyphIndex, NSTextContainer textContainer, @ByVal CGRect proposedRect, @ByVal CGPoint glyphPosition, @MachineSizedUInt long charIndex) { return null; }
     /**
@@ -102,19 +80,10 @@ import org.robovm.apple.intents.*;
      */
     @NotImplemented("layoutManager:shouldSetLineFragmentRect:lineFragmentUsedRect:baselineOffset:inTextContainer:forGlyphRange:")
     public boolean shouldSetLineFragmentRect(NSLayoutManager layoutManager, CGRect lineFragmentRect, CGRect lineFragmentUsedRect, MachineSizedFloatPtr baselineOffset, NSTextContainer textContainer, @ByVal NSRange glyphRange) { return false; }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @NotImplemented("layoutManagerDidInvalidateLayout:")
     public void didInvalidateLayout(NSLayoutManager sender) {}
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @NotImplemented("layoutManager:didCompleteLayoutForTextContainer:atEnd:")
     public void didCompleteLayout(NSLayoutManager layoutManager, NSTextContainer textContainer, boolean layoutFinishedFlag) {}
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @NotImplemented("layoutManager:textContainer:didChangeGeometryFromSize:")
     public void didChangeGeometry(NSLayoutManager layoutManager, NSTextContainer textContainer, @ByVal CGSize oldSize) {}
     /*</methods>*/

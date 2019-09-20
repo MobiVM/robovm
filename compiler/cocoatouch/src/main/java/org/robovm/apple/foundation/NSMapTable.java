@@ -41,12 +41,10 @@ import org.robovm.apple.foundation.NSDictionary.NSDictionaryPtr;
 import org.robovm.apple.foundation.NSObject.SkipInit;
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 6.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/NSMapTable/*</name>*/ <K extends NSObject, V extends NSObject>
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/NSMapTable<K extends NSObject, V extends NSObject>/*</name>*/
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*/implements NSSecureCoding, NSFastEnumeration/*</implements>*/, Map<K, V> {
 
@@ -182,7 +180,7 @@ import org.robovm.apple.foundation.NSObject.SkipInit;
     @Method(selector = "initWithKeyOptions:valueOptions:capacity:")
     public NSMapTable(NSMapTableOptions keyOptions, NSMapTableOptions valueOptions, @MachineSizedUInt long initialCapacity) { super((SkipInit) null); initObject(init(keyOptions, valueOptions, initialCapacity)); }
     @Method(selector = "initWithCoder:")
-    public NSMapTable(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public NSMapTable(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "count")
@@ -248,7 +246,7 @@ import org.robovm.apple.foundation.NSObject.SkipInit;
             return null;
         }
         V oldValue = get(key);
-        removeObject((NSObject) key);
+        removeObject((K) key);
         return oldValue;
     }
     @Override
@@ -279,11 +277,11 @@ import org.robovm.apple.foundation.NSObject.SkipInit;
     @Method(selector = "initWithKeyOptions:valueOptions:capacity:")
     protected native @Pointer long init(NSMapTableOptions keyOptions, NSMapTableOptions valueOptions, @MachineSizedUInt long initialCapacity);
     @Method(selector = "objectForKey:")
-    protected native NSObject getObject(NSObject aKey);
+    protected native V getObject(K aKey);
     @Method(selector = "removeObjectForKey:")
-    protected native void removeObject(NSObject aKey);
+    protected native void removeObject(K aKey);
     @Method(selector = "setObject:forKey:")
-    protected native void setObject(NSObject anObject, NSObject aKey);
+    protected native void setObject(V anObject, K aKey);
     @Method(selector = "keyEnumerator")
     protected native NSEnumerator<K> getKeyEnumerator();
     @Method(selector = "objectEnumerator")
@@ -295,6 +293,6 @@ import org.robovm.apple.foundation.NSObject.SkipInit;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

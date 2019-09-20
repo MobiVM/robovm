@@ -120,9 +120,6 @@ import org.robovm.apple.uikit.*;
     }
     
 
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public String getTitle() {
         if (has(Keys.Title())) {
             CFString val = get(Keys.Title(), CFString.class);
@@ -130,16 +127,10 @@ import org.robovm.apple.uikit.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public CGPDFContextOptions setTitle(String title) {
         set(Keys.Title(), new CFString(title));
         return this;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public String getAuthor() {
         if (has(Keys.Author())) {
             CFString val = get(Keys.Author(), CFString.class);
@@ -147,16 +138,10 @@ import org.robovm.apple.uikit.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public CGPDFContextOptions setAuthor(String author) {
         set(Keys.Author(), new CFString(author));
         return this;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public String getSubject() {
         if (has(Keys.Subject())) {
             CFString val = get(Keys.Subject(), CFString.class);
@@ -164,16 +149,10 @@ import org.robovm.apple.uikit.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public CGPDFContextOptions setSubject(String subject) {
         set(Keys.Subject(), new CFString(subject));
         return this;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public String getKeywords() {
         if (has(Keys.Keywords())) {
             CFString val = get(Keys.Keywords(), CFString.class);
@@ -181,16 +160,10 @@ import org.robovm.apple.uikit.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public CGPDFContextOptions setKeywords(String keywords) {
         set(Keys.Keywords(), new CFString(keywords));
         return this;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public String getCreator() {
         if (has(Keys.Creator())) {
             CFString val = get(Keys.Creator(), CFString.class);
@@ -198,16 +171,10 @@ import org.robovm.apple.uikit.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public CGPDFContextOptions setCreator(String creator) {
         set(Keys.Creator(), new CFString(creator));
         return this;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public String getOwnerPassword() {
         if (has(Keys.OwnerPassword())) {
             CFString val = get(Keys.OwnerPassword(), CFString.class);
@@ -215,16 +182,10 @@ import org.robovm.apple.uikit.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public CGPDFContextOptions setOwnerPassword(String ownerPassword) {
         set(Keys.OwnerPassword(), new CFString(ownerPassword));
         return this;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public String getUserPassword() {
         if (has(Keys.UserPassword())) {
             CFString val = get(Keys.UserPassword(), CFString.class);
@@ -232,16 +193,10 @@ import org.robovm.apple.uikit.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public CGPDFContextOptions setUserPassword(String userPassword) {
         set(Keys.UserPassword(), new CFString(userPassword));
         return this;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public int getEncryptionKeyLength() {
         if (has(Keys.EncryptionKeyLength())) {
             CFNumber val = get(Keys.EncryptionKeyLength(), CFNumber.class);
@@ -249,16 +204,10 @@ import org.robovm.apple.uikit.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public CGPDFContextOptions setEncryptionKeyLength(int encryptionKeyLength) {
         set(Keys.EncryptionKeyLength(), CFNumber.valueOf(encryptionKeyLength));
         return this;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public boolean allowsPrinting() {
         if (has(Keys.AllowsPrinting())) {
             CFBoolean val = get(Keys.AllowsPrinting(), CFBoolean.class);
@@ -266,16 +215,10 @@ import org.robovm.apple.uikit.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public CGPDFContextOptions setAllowsPrinting(boolean allowsPrinting) {
         set(Keys.AllowsPrinting(), CFBoolean.valueOf(allowsPrinting));
         return this;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public boolean allowsCopying() {
         if (has(Keys.AllowsCopying())) {
             CFBoolean val = get(Keys.AllowsCopying(), CFBoolean.class);
@@ -283,9 +226,6 @@ import org.robovm.apple.uikit.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public CGPDFContextOptions setAllowsCopying(boolean allowsCopying) {
         set(Keys.AllowsCopying(), CFBoolean.valueOf(allowsCopying));
         return this;
@@ -296,54 +236,24 @@ import org.robovm.apple.uikit.*;
     @Library("CoreGraphics")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCGPDFContextTitle", optional=true)
         public static native CFString Title();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCGPDFContextAuthor", optional=true)
         public static native CFString Author();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCGPDFContextSubject", optional=true)
         public static native CFString Subject();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCGPDFContextKeywords", optional=true)
         public static native CFString Keywords();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCGPDFContextCreator", optional=true)
         public static native CFString Creator();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCGPDFContextOwnerPassword", optional=true)
         public static native CFString OwnerPassword();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCGPDFContextUserPassword", optional=true)
         public static native CFString UserPassword();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCGPDFContextEncryptionKeyLength", optional=true)
         public static native CFString EncryptionKeyLength();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCGPDFContextAllowsPrinting", optional=true)
         public static native CFString AllowsPrinting();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCGPDFContextAllowsCopying", optional=true)
         public static native CFString AllowsCopying();
         /**

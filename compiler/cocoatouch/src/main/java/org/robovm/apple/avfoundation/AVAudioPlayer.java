@@ -41,9 +41,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 2.2 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVAudioPlayer/*</name>*/ 
@@ -73,9 +71,6 @@ import org.robovm.apple.audiotoolbox.*;
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        initObject(handle);
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "initWithContentsOfURL:fileTypeHint:error:")
     public AVAudioPlayer(NSURL url, String utiString) throws NSErrorException {
        super((SkipInit) null);
@@ -84,9 +79,6 @@ import org.robovm.apple.audiotoolbox.*;
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        initObject(handle);
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "initWithData:fileTypeHint:error:")
     public AVAudioPlayer(NSData data, String utiString) throws NSErrorException {
        super((SkipInit) null);
@@ -111,56 +103,32 @@ import org.robovm.apple.audiotoolbox.*;
     public native NSURL getUrl();
     @Property(selector = "data")
     public native NSData getData();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "pan")
     public native float getPan();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "setPan:")
     public native void setPan(float v);
     @Property(selector = "volume")
     public native float getVolume();
     @Property(selector = "setVolume:")
     public native void setVolume(float v);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "enableRate")
     public native boolean isRateEnabled();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setEnableRate:")
     public native void setRateEnabled(boolean v);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "rate")
     public native float getRate();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setRate:")
     public native void setRate(float v);
     @Property(selector = "currentTime")
     public native double getCurrentTime();
     @Property(selector = "setCurrentTime:")
     public native void setCurrentTime(double v);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "deviceCurrentTime")
     public native double getDeviceCurrentTime();
     @Property(selector = "numberOfLoops")
     public native @MachineSizedSInt long getNumberOfLoops();
     @Property(selector = "setNumberOfLoops:")
     public native void setNumberOfLoops(@MachineSizedSInt long v);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "settings")
     public native AVAudioSettings getSettings();
     /**
@@ -172,14 +140,8 @@ import org.robovm.apple.audiotoolbox.*;
     public native boolean isMeteringEnabled();
     @Property(selector = "setMeteringEnabled:")
     public native void setMeteringEnabled(boolean v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "channelAssignments")
     public native NSArray<AVAudioSessionChannelDescription> getChannelAssignments();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setChannelAssignments:")
     public native void setChannelAssignments(NSArray<AVAudioSessionChannelDescription> v);
     /*</properties>*/
@@ -189,23 +151,14 @@ import org.robovm.apple.audiotoolbox.*;
     private native @Pointer long init(NSURL url, NSError.NSErrorPtr outError);
     @Method(selector = "initWithData:error:")
     private native @Pointer long init(NSData data, NSError.NSErrorPtr outError);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "initWithContentsOfURL:fileTypeHint:error:")
     private native @Pointer long init(NSURL url, String utiString, NSError.NSErrorPtr outError);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "initWithData:fileTypeHint:error:")
     private native @Pointer long init(NSData data, String utiString, NSError.NSErrorPtr outError);
     @Method(selector = "prepareToPlay")
     public native boolean prepareToPlay();
     @Method(selector = "play")
     public native boolean play();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "playAtTime:")
     public native boolean playAtTime(double time);
     @Method(selector = "pause")

@@ -55,5 +55,10 @@ import org.robovm.apple.foundation.*;
     /*<methods>*/
     @Method(selector = "workoutRouteType")
     public static native HKSeriesType workoutRouteType();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "heartbeatSeriesType")
+    public static native HKSeriesType heartbeatSeriesType();
     /*</methods>*/
 }

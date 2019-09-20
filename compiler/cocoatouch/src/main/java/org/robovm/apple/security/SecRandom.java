@@ -57,15 +57,9 @@ import org.robovm.apple.dispatch.*;
         return bytes;
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @GlobalValue(symbol="kSecRandomDefault", optional=true)
     public static native SecRandom getDefault();
     
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="SecRandomCopyBytes", optional=true)
     protected native int getBytes(@MachineSizedUInt long count, @Pointer long bytes);
     /*</methods>*/

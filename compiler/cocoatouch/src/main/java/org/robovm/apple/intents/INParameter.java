@@ -50,7 +50,7 @@ import org.robovm.apple.corelocation.*;
     protected INParameter(Handle h, long handle) { super(h, handle); }
     protected INParameter(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public INParameter(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public INParameter(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "parameterClass")
@@ -73,6 +73,6 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

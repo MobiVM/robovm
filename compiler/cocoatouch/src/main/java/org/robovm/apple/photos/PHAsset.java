@@ -38,9 +38,7 @@ import org.robovm.apple.imageio.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("Photos") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/PHAsset/*</name>*/ 
@@ -111,20 +109,13 @@ import org.robovm.apple.imageio.*;
     @Method(selector = "fetchAssetsWithMediaType:options:")
     public static native PHFetchResult<PHAsset> fetchAssetsWithMediaType(PHAssetMediaType mediaType, PHFetchOptions options);
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 11.0. Will be removed in a future release
      */
     @Deprecated
     @Method(selector = "fetchAssetsWithALAssetURLs:options:")
     public static native PHFetchResult<PHAsset> fetchAssetsWithALAssetURLs(NSArray<NSURL> assetURLs, PHFetchOptions options);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "requestContentEditingInputWithOptions:completionHandler:")
     public native @MachineSizedUInt long requestContentEditingInput(PHContentEditingInputRequestOptions options, @Block VoidBlock2<PHContentEditingInput, NSDictionary<?, ?>> completionHandler);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "cancelContentEditingInputRequest:")
     public native void cancelContentEditingInputRequest(@MachineSizedUInt long requestID);
     /*</methods>*/

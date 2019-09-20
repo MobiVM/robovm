@@ -41,9 +41,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVCaptureConnection/*</name>*/ 
@@ -54,17 +52,11 @@ import org.robovm.apple.audiotoolbox.*;
     /*<bind>*/static { ObjCRuntime.bind(AVCaptureConnection.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public AVCaptureConnection() {}
+    protected AVCaptureConnection() {}
     protected AVCaptureConnection(Handle h, long handle) { super(h, handle); }
     protected AVCaptureConnection(SkipInit skipInit) { super(skipInit); }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "initWithInputPorts:output:")
     public AVCaptureConnection(NSArray<AVCaptureInputPort> ports, AVCaptureOutput output) { super((SkipInit) null); initObject(init(ports, output)); }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "initWithInputPort:videoPreviewLayer:")
     public AVCaptureConnection(AVCaptureInputPort port, AVCaptureVideoPreviewLayer layer) { super((SkipInit) null); initObject(init(port, layer)); }
     /*</constructors>*/
@@ -73,9 +65,6 @@ import org.robovm.apple.audiotoolbox.*;
     public native NSArray<AVCaptureInputPort> getInputPorts();
     @Property(selector = "output")
     public native AVCaptureOutput getOutput();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "videoPreviewLayer")
     public native AVCaptureVideoPreviewLayer getVideoPreviewLayer();
     @Property(selector = "isEnabled")
@@ -92,14 +81,8 @@ import org.robovm.apple.audiotoolbox.*;
     public native boolean isVideoMirrored();
     @Property(selector = "setVideoMirrored:")
     public native void setVideoMirrored(boolean v);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "automaticallyAdjustsVideoMirroring")
     public native boolean automaticallyAdjustsVideoMirroring();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "setAutomaticallyAdjustsVideoMirroring:")
     public native void setAutomaticallyAdjustsVideoMirroring(boolean v);
     @Property(selector = "isVideoOrientationSupported")
@@ -109,98 +92,68 @@ import org.robovm.apple.audiotoolbox.*;
     @Property(selector = "setVideoOrientation:")
     public native void setVideoOrientation(AVCaptureVideoOrientation v);
     /**
-     * @since Available in iOS 5.0 and later.
      * @deprecated Deprecated in iOS 7.0. Use AVCaptureDevice's activeFormat.videoSupportedFrameRateRanges instead.
      */
     @Deprecated
     @Property(selector = "isVideoMinFrameDurationSupported")
     public native boolean supportsVideoMinFrameDuration();
     /**
-     * @since Available in iOS 5.0 and later.
      * @deprecated Deprecated in iOS 7.0. Use AVCaptureDevice's activeVideoMinFrameDuration instead.
      */
     @Deprecated
     @Property(selector = "videoMinFrameDuration")
     public native @ByVal CMTime getVideoMinFrameDuration();
     /**
-     * @since Available in iOS 5.0 and later.
      * @deprecated Deprecated in iOS 7.0. Use AVCaptureDevice's activeVideoMinFrameDuration instead.
      */
     @Deprecated
     @Property(selector = "setVideoMinFrameDuration:")
     public native void setVideoMinFrameDuration(@ByVal CMTime v);
     /**
-     * @since Available in iOS 5.0 and later.
      * @deprecated Deprecated in iOS 7.0. Use AVCaptureDevice's activeFormat.videoSupportedFrameRateRanges instead.
      */
     @Deprecated
     @Property(selector = "isVideoMaxFrameDurationSupported")
     public native boolean supportsVideoMaxFrameDuration();
     /**
-     * @since Available in iOS 5.0 and later.
      * @deprecated Deprecated in iOS 7.0. Use AVCaptureDevice's activeVideoMaxFrameDuration instead.
      */
     @Deprecated
     @Property(selector = "videoMaxFrameDuration")
     public native @ByVal CMTime getVideoMaxFrameDuration();
     /**
-     * @since Available in iOS 5.0 and later.
      * @deprecated Deprecated in iOS 7.0. Use AVCaptureDevice's activeVideoMaxFrameDuration instead.
      */
     @Deprecated
     @Property(selector = "setVideoMaxFrameDuration:")
     public native void setVideoMaxFrameDuration(@ByVal CMTime v);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "videoMaxScaleAndCropFactor")
     public native @MachineSizedFloat double getVideoMaxScaleAndCropFactor();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "videoScaleAndCropFactor")
     public native @MachineSizedFloat double getVideoScaleAndCropFactor();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setVideoScaleAndCropFactor:")
     public native void setVideoScaleAndCropFactor(@MachineSizedFloat double v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "preferredVideoStabilizationMode")
     public native AVCaptureVideoStabilizationMode getPreferredVideoStabilizationMode();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setPreferredVideoStabilizationMode:")
     public native void setPreferredVideoStabilizationMode(AVCaptureVideoStabilizationMode v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "activeVideoStabilizationMode")
     public native AVCaptureVideoStabilizationMode getActiveVideoStabilizationMode();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "isVideoStabilizationSupported")
     public native boolean supportsVideoStabilization();
     /**
-     * @since Available in iOS 6.0 and later.
      * @deprecated Deprecated in iOS 8.0. Use activeVideoStabilizationMode instead.
      */
     @Deprecated
     @Property(selector = "isVideoStabilizationEnabled")
     public native boolean isVideoStabilizationEnabled();
     /**
-     * @since Available in iOS 6.0 and later.
      * @deprecated Deprecated in iOS 8.0. Use preferredVideoStabilizationMode instead.
      */
     @Deprecated
     @Property(selector = "enablesVideoStabilizationWhenAvailable")
     public native boolean enablesVideoStabilizationWhenAvailable();
     /**
-     * @since Available in iOS 6.0 and later.
      * @deprecated Deprecated in iOS 8.0. Use preferredVideoStabilizationMode instead.
      */
     @Deprecated
@@ -224,14 +177,8 @@ import org.robovm.apple.audiotoolbox.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "initWithInputPorts:output:")
     protected native @Pointer long init(NSArray<AVCaptureInputPort> ports, AVCaptureOutput output);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "initWithInputPort:videoPreviewLayer:")
     protected native @Pointer long init(AVCaptureInputPort port, AVCaptureVideoPreviewLayer layer);
     /*</methods>*/

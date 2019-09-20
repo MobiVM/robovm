@@ -83,7 +83,6 @@ public enum /*<name>*/AVErrorCode/*</name>*/ implements NSErrorCode {
     ContentIsNotAuthorized(-11835L),
     ApplicationIsNotAuthorized(-11836L),
     /**
-     * @since Available in iOS 4.3 and later.
      * @deprecated Deprecated in iOS 9.0. AVCaptureSession no longer produces an AVCaptureSessionRuntimeErrorNotification with this error. See AVCaptureSessionInterruptionReasonVideoDeviceNotAvailableInBackground.
      */
     @Deprecated
@@ -102,17 +101,8 @@ public enum /*<name>*/AVErrorCode/*</name>*/ implements NSErrorCode {
     FailedToLoadMediaData(-11849L),
     ServerIncorrectlyConfigured(-11850L),
     ApplicationIsNotAuthorizedToUseDevice(-11852L),
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     FailedToParse(-11853L),
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     FileTypeDoesNotSupportSampleReferences(-11854L),
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     UndecodableMediaData(-11855L),
     /**
      * @since Available in iOS 8.3 and later.
@@ -169,7 +159,19 @@ public enum /*<name>*/AVErrorCode/*</name>*/ implements NSErrorCode {
     /**
      * @since Available in iOS 12.0 and later.
      */
-    ExternalPlaybackNotSupportedForAsset(-11870L);
+    ExternalPlaybackNotSupportedForAsset(-11870L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    OperationNotSupportedForPreset(-11871L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    SessionHardwareCostOverage(-11872L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    UnsupportedDeviceActiveFormat(-11873L);
     /*</values>*/
 
     /*<bind>*/

@@ -105,7 +105,7 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "initWithDomain:code:userInfo:")
     public NSError(String domain, @MachineSizedSInt long code, NSErrorUserInfo dict) { super((SkipInit) null); initObject(init(domain, code, dict)); }
     @Method(selector = "initWithCoder:")
-    public NSError(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public NSError(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     
     private static final Selector domain = Selector.register("domain");
@@ -169,6 +169,6 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

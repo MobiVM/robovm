@@ -31,9 +31,7 @@ import org.robovm.apple.foundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("HealthKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/HKWorkoutEvent/*</name>*/ 
@@ -48,14 +46,13 @@ import org.robovm.apple.foundation.*;
     protected HKWorkoutEvent(Handle h, long handle) { super(h, handle); }
     protected HKWorkoutEvent(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public HKWorkoutEvent(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public HKWorkoutEvent(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "type")
     public native HKWorkoutEventType getType();
     /**
-     * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use dateInterval
      */
     @Deprecated
     @Property(selector = "date")
@@ -76,15 +73,14 @@ import org.robovm.apple.foundation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use workoutEventWithType:dateInterval:metadata:
      */
     @Deprecated
     @Method(selector = "workoutEventWithType:date:")
     public static native HKWorkoutEvent create(HKWorkoutEventType type, NSDate date);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use workoutEventWithType:dateInterval:metadata:
      */
     @Deprecated
     @Method(selector = "workoutEventWithType:date:metadata:")
@@ -97,6 +93,6 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

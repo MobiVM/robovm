@@ -31,9 +31,7 @@ import org.robovm.apple.foundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("HealthKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/HKQuantity/*</name>*/ 
@@ -48,7 +46,7 @@ import org.robovm.apple.foundation.*;
     protected HKQuantity(Handle h, long handle) { super(h, handle); }
     protected HKQuantity(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public HKQuantity(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public HKQuantity(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "supportsSecureCoding")
@@ -67,6 +65,6 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

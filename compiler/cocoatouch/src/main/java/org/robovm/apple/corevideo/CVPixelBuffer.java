@@ -139,119 +139,50 @@ import org.robovm.apple.iosurface.*;
         return new long[] {left.get(), right.get(), top.get(), bottom.get()};
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CVPixelBufferGetTypeID", optional=true)
     public static native @MachineSizedUInt long getClassTypeID();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CVPixelBufferCreateResolvedAttributesDictionary", optional=true)
     private static native CVReturn createResolvedAttributesDictionary(CFAllocator allocator, @org.robovm.rt.bro.annotation.Marshaler(CVPixelBufferAttributes.AsListMarshaler.class) List<CVPixelBufferAttributes> attributes, CFDictionary.CFDictionaryPtr resolvedDictionaryOut);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CVPixelBufferCreate", optional=true)
     protected static native CVReturn create(CFAllocator allocator, @MachineSizedUInt long width, @MachineSizedUInt long height, CVPixelFormatType pixelFormatType, CVPixelBufferAttributes pixelBufferAttributes, CVPixelBuffer.CVPixelBufferPtr pixelBufferOut);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CVPixelBufferCreateWithBytes", optional=true)
     protected static native CVReturn create(CFAllocator allocator, @MachineSizedUInt long width, @MachineSizedUInt long height, CVPixelFormatType pixelFormatType, VoidPtr baseAddress, @MachineSizedUInt long bytesPerRow, FunctionPtr releaseCallback, @Pointer long releaseRefCon, CVPixelBufferAttributes pixelBufferAttributes, CVPixelBuffer.CVPixelBufferPtr pixelBufferOut);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CVPixelBufferCreateWithPlanarBytes", optional=true)
     protected static native CVReturn create(CFAllocator allocator, @MachineSizedUInt long width, @MachineSizedUInt long height, CVPixelFormatType pixelFormatType, VoidPtr dataPtr, @MachineSizedUInt long dataSize, @MachineSizedUInt long numberOfPlanes, VoidPtr.VoidPtrPtr planeBaseAddress, MachineSizedUIntPtr planeWidth, MachineSizedUIntPtr planeHeight, MachineSizedUIntPtr planeBytesPerRow, FunctionPtr releaseCallback, VoidPtr releaseRefCon, CVPixelBufferAttributes pixelBufferAttributes, CVPixelBuffer.CVPixelBufferPtr pixelBufferOut);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CVPixelBufferLockBaseAddress", optional=true)
     public native CVReturn lockBaseAddress(CVPixelBufferLockFlags lockFlags);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CVPixelBufferUnlockBaseAddress", optional=true)
     public native CVReturn unlockBaseAddress(CVPixelBufferLockFlags unlockFlags);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CVPixelBufferGetWidth", optional=true)
     public native @MachineSizedUInt long getWidth();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CVPixelBufferGetHeight", optional=true)
     public native @MachineSizedUInt long getHeight();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CVPixelBufferGetPixelFormatType", optional=true)
     public native CVPixelFormatType getPixelFormatType();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CVPixelBufferGetBaseAddress", optional=true)
     public native VoidPtr getBaseAddress();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CVPixelBufferGetBytesPerRow", optional=true)
     public native @MachineSizedUInt long getBytesPerRow();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CVPixelBufferGetDataSize", optional=true)
     public native @MachineSizedUInt long getDataSize();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CVPixelBufferIsPlanar", optional=true)
     public native boolean isPlanar();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CVPixelBufferGetPlaneCount", optional=true)
     public native @MachineSizedUInt long getPlaneCount();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CVPixelBufferGetWidthOfPlane", optional=true)
     public native @MachineSizedUInt long getWidthOfPlane(@MachineSizedUInt long planeIndex);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CVPixelBufferGetHeightOfPlane", optional=true)
     public native @MachineSizedUInt long getHeightOfPlane(@MachineSizedUInt long planeIndex);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CVPixelBufferGetBaseAddressOfPlane", optional=true)
     public native VoidPtr getBaseAddressOfPlane(@MachineSizedUInt long planeIndex);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CVPixelBufferGetBytesPerRowOfPlane", optional=true)
     public native @MachineSizedUInt long getBytesPerRowOfPlane(@MachineSizedUInt long planeIndex);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CVPixelBufferGetExtendedPixels", optional=true)
     protected native void getExtendedPixels(MachineSizedUIntPtr extraColumnsOnLeft, MachineSizedUIntPtr extraColumnsOnRight, MachineSizedUIntPtr extraRowsOnTop, MachineSizedUIntPtr extraRowsOnBottom);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CVPixelBufferFillExtendedPixels", optional=true)
     public native CVReturn fillExtendedPixels();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CVPixelBufferGetIOSurface", optional=true)
     public native IOSurface getIOSurface();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CVPixelBufferCreateWithIOSurface", optional=true)
     protected static native CVReturn create(CFAllocator allocator, IOSurface surface, CVPixelBufferAttributes pixelBufferAttributes, CVPixelBuffer.CVPixelBufferPtr pixelBufferOut);
     /*</methods>*/

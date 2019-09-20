@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -65,8 +67,7 @@ import org.robovm.apple.intents.*;
     @NotImplemented("documentPickerWasCancelled:")
     public void wasCancelled(UIDocumentPickerViewController controller) {}
     /**
-     * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 11.0. Implement documentPicker:didPickDocumentsAtURLs: instead
+     * @deprecated Deprecated in iOS 11.0. Use documentPicker:didPickDocumentsAtURLs:
      */
     @Deprecated
     @NotImplemented("documentPicker:didPickDocumentAtURL:")

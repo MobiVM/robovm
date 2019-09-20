@@ -32,9 +32,7 @@ import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 6.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("GameKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GKGameCenterViewController/*</name>*/ 
@@ -48,9 +46,6 @@ import org.robovm.apple.uikit.*;
     public GKGameCenterViewController() {}
     protected GKGameCenterViewController(Handle h, long handle) { super(h, handle); }
     protected GKGameCenterViewController(SkipInit skipInit) { super(skipInit); }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "initWithNavigationBarClass:toolbarClass:")
     public GKGameCenterViewController(Class<? extends UINavigationBar> navigationBarClass, Class<? extends UIToolbar> toolbarClass) { super(navigationBarClass, toolbarClass); }
     @Method(selector = "initWithRootViewController:")
@@ -69,35 +64,21 @@ import org.robovm.apple.uikit.*;
     public native GKGameCenterViewControllerState getViewState();
     @Property(selector = "setViewState:")
     public native void setViewState(GKGameCenterViewControllerState v);
-    /**
-     * @since Available in iOS 4.1 and later.
-     */
     @Property(selector = "leaderboardTimeScope")
     public native GKLeaderboardTimeScope getLeaderboardTimeScope();
-    /**
-     * @since Available in iOS 4.1 and later.
-     */
     @Property(selector = "setLeaderboardTimeScope:")
     public native void setLeaderboardTimeScope(GKLeaderboardTimeScope v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "leaderboardIdentifier")
     public native String getLeaderboardIdentifier();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setLeaderboardIdentifier:")
     public native void setLeaderboardIdentifier(String v);
     /**
-     * @since Available in iOS 4.1 and later.
      * @deprecated Deprecated in iOS 7.0. GKGameCenterViewController's leaderboardCategory property is deprecated. Use leaderboardIdentifier instead.
      */
     @Deprecated
     @Property(selector = "leaderboardCategory")
     public native String getLeaderboardCategory();
     /**
-     * @since Available in iOS 4.1 and later.
      * @deprecated Deprecated in iOS 7.0. GKGameCenterViewController's leaderboardCategory property is deprecated. Use leaderboardIdentifier instead.
      */
     @Deprecated

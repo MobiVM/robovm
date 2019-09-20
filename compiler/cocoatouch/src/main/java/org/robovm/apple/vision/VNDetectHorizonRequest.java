@@ -48,7 +48,9 @@ import org.robovm.apple.imageio.*;
 
     /*<ptr>*/public static class VNDetectHorizonRequestPtr extends Ptr<VNDetectHorizonRequest, VNDetectHorizonRequestPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(VNDetectHorizonRequest.class); }/*</bind>*/
-    /*<constants>*//*</constants>*/
+    /*<constants>*/
+    public static final int Revision1 = 1;
+    /*</constants>*/
     /*<constructors>*/
     public VNDetectHorizonRequest() {}
     protected VNDetectHorizonRequest(Handle h, long handle) { super(h, handle); }
@@ -61,12 +63,6 @@ import org.robovm.apple.imageio.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 12.0 and later.
-     */
-    @GlobalValue(symbol="VNDetectHorizonRequestRevision1", optional=true)
-    public static native @MachineSizedUInt long getRevision1();
-    
     
     /*</methods>*/
 }

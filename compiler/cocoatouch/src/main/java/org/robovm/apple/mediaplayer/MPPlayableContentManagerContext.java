@@ -59,7 +59,7 @@ import org.robovm.apple.coregraphics.*;
     public native boolean isContentLimitsEnforced();
     /**
      * @since Available in iOS 8.4 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use contentLimitsEnforced
      */
     @Deprecated
     @Property(selector = "contentLimitsEnabled")

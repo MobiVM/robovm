@@ -59,9 +59,6 @@ import org.robovm.apple.foundation.*;
         return code;
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @GlobalValue(symbol="ACErrorDomain", optional=true)
     public static native String getClassDomain();
     /*</methods>*/

@@ -56,8 +56,8 @@ import org.robovm.apple.corelocation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "successWithResolvedCallDestinationType:")
-    public static native INCallDestinationTypeResolutionResult successWithResolvedCallDestinationType(INCallDestinationType resolvedCallDestinationType);
+    public static native INCallDestinationTypeResolutionResult success(INCallDestinationType resolvedCallDestinationType);
     @Method(selector = "confirmationRequiredWithCallDestinationTypeToConfirm:")
-    public static native INCallDestinationTypeResolutionResult confirmationRequiredWithCallDestinationTypeToConfirm(INCallDestinationType callDestinationTypeToConfirm);
+    public static native INCallDestinationTypeResolutionResult confirmationRequired(INCallDestinationType callDestinationTypeToConfirm);
     /*</methods>*/
 }

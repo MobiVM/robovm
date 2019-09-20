@@ -37,11 +37,12 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 2.0 and later.
  * @deprecated Deprecated in iOS 8.3. UIActionSheet is deprecated. Use UIAlertController with a preferredStyle of UIAlertControllerStyleActionSheet instead
  */
 /*</javadoc>*/
@@ -60,7 +61,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithFrame:")
     public UIActionSheet(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public UIActionSheet(NSCoder decoder) { super(decoder); }
+    public UIActionSheet(NSCoder coder) { super(coder); }
     /*</constructors>*/
     public UIActionSheet(String title, UIActionSheetDelegate delegate, String cancelButtonTitle,
             String destructiveButtonTitle, String ... otherButtonTitles) {
@@ -113,14 +114,8 @@ import org.robovm.apple.intents.*;
     public native void showFrom(UIToolbar view);
     @Method(selector = "showFromTabBar:")
     public native void showFrom(UITabBar view);
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Method(selector = "showFromBarButtonItem:animated:")
     public native void showFrom(UIBarButtonItem item, boolean animated);
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Method(selector = "showFromRect:inView:animated:")
     public native void showFrom(@ByVal CGRect rect, UIView view, boolean animated);
     @Method(selector = "showInView:")

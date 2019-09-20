@@ -48,68 +48,32 @@ import org.robovm.apple.coregraphics.*;
     /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CGImageDestinationGetTypeID", optional=true)
     public static native @MachineSizedUInt long getClassTypeID();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CGImageDestinationCopyTypeIdentifiers", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFArray.AsStringListMarshaler.class) List<String> getTypeIdentifiers();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CGImageDestinationCreateWithDataConsumer", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGImageDestination create(CGDataConsumer consumer, String type, @MachineSizedUInt long count, NSDictionary options);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CGImageDestinationCreateWithData", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGImageDestination create(NSData data, String type, @MachineSizedUInt long count, NSDictionary options);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CGImageDestinationCreateWithURL", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGImageDestination create(NSURL url, String type, @MachineSizedUInt long count, NSDictionary options);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CGImageDestinationSetProperties", optional=true)
     public native void setProperties(CGImageDestinationProperties properties);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CGImageDestinationAddImage", optional=true)
     public native void addImage(CGImage image, CGImageDestinationProperties properties);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CGImageDestinationAddImageFromSource", optional=true)
     public native void addImageFromSource(CGImageSource isrc, @MachineSizedUInt long index, CGImageDestinationProperties properties);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CGImageDestinationFinalize", optional=true)
     public native boolean finalizeDestination();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Bridge(symbol="CGImageDestinationAddImageAndMetadata", optional=true)
     public native void addImageAndMetadata(CGImage image, CGImageMetadata metadata, NSDictionary options);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public boolean copyImageSource(CGImageSource isrc, CGImageDestinationCopySourceOptions options) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        boolean result = copyImageSource(isrc, options, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        return result;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Bridge(symbol="CGImageDestinationCopyImageSource", optional=true)
     private native boolean copyImageSource(CGImageSource isrc, CGImageDestinationCopySourceOptions options, NSError.NSErrorPtr error);
     /**

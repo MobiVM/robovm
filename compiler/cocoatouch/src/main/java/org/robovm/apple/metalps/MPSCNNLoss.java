@@ -83,8 +83,8 @@ import org.robovm.apple.metal.*;
     @Method(selector = "encodeToCommandBuffer:sourceImage:labels:")
     public native MPSImage encode(MTLCommandBuffer commandBuffer, MPSImage sourceImage, MPSCNNLossLabels labels);
     @Method(selector = "encodeBatchToCommandBuffer:sourceImages:labels:destinationImages:")
-    public native void encodeBatchLabels(MTLCommandBuffer commandBuffer, NSArray<MPSImage> sourceImage, NSArray <MPSCNNLossLabels> labels, NSArray<MPSImage> destinationImage);
+    public native void encodeBatchLabels(MTLCommandBuffer commandBuffer, NSArray<MPSImage> sourceImage, NSArray<MPSCNNLossLabels> labels, NSArray<MPSImage> destinationImage);
     @Method(selector = "encodeBatchToCommandBuffer:sourceImages:labels:")
-    public native NSArray<MPSImage> encodeBatchLabels(MTLCommandBuffer commandBuffer, NSArray<MPSImage> sourceImage, NSArray <MPSCNNLossLabels> labels);
+    public native NSArray<MPSImage> encodeBatchLabels(MTLCommandBuffer commandBuffer, NSArray<MPSImage> sourceImage, NSArray<MPSCNNLossLabels> labels);
     /*</methods>*/
 }

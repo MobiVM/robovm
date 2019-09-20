@@ -32,9 +32,7 @@ import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.1 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("GameKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GKLeaderboard/*</name>*/ 
@@ -48,13 +46,9 @@ import org.robovm.apple.uikit.*;
     public GKLeaderboard() {}
     protected GKLeaderboard(Handle h, long handle) { super(h, handle); }
     protected GKLeaderboard(SkipInit skipInit) { super(skipInit); }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "initWithPlayers:")
     public GKLeaderboard(NSArray<GKPlayer> players) { super((SkipInit) null); initObject(init(players)); }
     /**
-     * @since Available in iOS 4.1 and later.
      * @deprecated Deprecated in iOS 8.0. Use initWithPlayers: instead
      */
     @Deprecated
@@ -70,14 +64,8 @@ import org.robovm.apple.uikit.*;
     public native GKLeaderboardPlayerScope getPlayerScope();
     @Property(selector = "setPlayerScope:")
     public native void setPlayerScope(GKLeaderboardPlayerScope v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "identifier")
     public native String getIdentifier();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setIdentifier:")
     public native void setIdentifier(String v);
     @Property(selector = "title")
@@ -94,20 +82,15 @@ import org.robovm.apple.uikit.*;
     public native GKScore getLocalPlayerScore();
     @Property(selector = "isLoading")
     public native boolean isLoading();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "groupIdentifier")
     public native String getGroupIdentifier();
     /**
-     * @since Available in iOS 4.1 and later.
      * @deprecated Deprecated in iOS 7.0. Use identifier instead
      */
     @Deprecated
     @Property(selector = "category")
     public native String getCategory();
     /**
-     * @since Available in iOS 4.1 and later.
      * @deprecated Deprecated in iOS 7.0. Use identifier instead
      */
     @Deprecated
@@ -116,35 +99,24 @@ import org.robovm.apple.uikit.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "initWithPlayers:")
     protected native @Pointer long init(NSArray<GKPlayer> players);
     @Method(selector = "loadScoresWithCompletionHandler:")
     public native void loadScores(@Block VoidBlock2<NSArray<GKScore>, NSError> completionHandler);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "loadLeaderboardsWithCompletionHandler:")
     public static native void loadLeaderboards(@Block VoidBlock2<NSArray<GKLeaderboard>, NSError> completionHandler);
     /**
-     * @since Available in iOS 4.1 and later.
      * @deprecated Deprecated in iOS 8.0. Use initWithPlayers: instead
      */
     @Deprecated
     @Method(selector = "initWithPlayerIDs:")
     protected native @Pointer long init(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> playerIDs);
     /**
-     * @since Available in iOS 5.0 and later.
      * @deprecated Deprecated in iOS 7.0. Use setDefaultLeaderboardIdentifier:completionHandler: on GKLocalPlayer instead
      */
     @Deprecated
     @Method(selector = "setDefaultLeaderboard:withCompletionHandler:")
     public static native void setDefaultLeaderboard(String leaderboardIdentifier, @Block VoidBlock1<NSError> completionHandler);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "loadImageWithCompletionHandler:")
     public native void loadImage(@Block VoidBlock2<UIImage, NSError> completionHandler);
     /*</methods>*/

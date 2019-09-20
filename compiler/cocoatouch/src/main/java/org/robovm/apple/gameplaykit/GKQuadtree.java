@@ -39,11 +39,11 @@ import org.robovm.apple.uikit.*;
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("GameplayKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/GKQuadtree/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/GKQuadtree<ElementType extends NSObject>/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class GKQuadtreePtr extends Ptr<GKQuadtree, GKQuadtreePtr> {}/*</ptr>*/
+    /*<ptr>*/public static class GKQuadtreePtr<ElementType extends NSObject> extends Ptr<GKQuadtree<ElementType>, GKQuadtreePtr<ElementType>> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(GKQuadtree.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
@@ -61,16 +61,16 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "initWithBoundingQuad:minimumCellSize:")
     protected native @Pointer long init(@ByVal GKQuad quad, float minCellSize);
     @Method(selector = "addElement:withPoint:")
-    public native GKQuadtreeNode addElement(NSObject element, @ByVal VectorFloat2 point);
+    public native GKQuadtreeNode addElement(ElementType element, @ByVal VectorFloat2 point);
     @Method(selector = "addElement:withQuad:")
-    public native GKQuadtreeNode addElement(NSObject element, @ByVal GKQuad quad);
+    public native GKQuadtreeNode addElement(ElementType element, @ByVal GKQuad quad);
     @Method(selector = "elementsAtPoint:")
-    public native NSArray<?> elementsAtPoint(@ByVal VectorFloat2 point);
+    public native NSArray<ElementType> elementsAtPoint(@ByVal VectorFloat2 point);
     @Method(selector = "elementsInQuad:")
-    public native NSArray<?> elementsInQuad(@ByVal GKQuad quad);
+    public native NSArray<ElementType> elementsInQuad(@ByVal GKQuad quad);
     @Method(selector = "removeElement:")
-    public native boolean removeElement(NSObject element);
+    public native boolean removeElement(ElementType element);
     @Method(selector = "removeElement:withNode:")
-    public native boolean removeElement(NSObject data, GKQuadtreeNode node);
+    public native boolean removeElement(ElementType data, GKQuadtreeNode node);
     /*</methods>*/
 }

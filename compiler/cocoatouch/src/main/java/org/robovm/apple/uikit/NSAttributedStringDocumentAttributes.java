@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -128,9 +130,6 @@ import org.robovm.apple.intents.*;
     }
     
 
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public NSDocumentType getDocumentType() {
         if (has(NSAttributedStringDocumentAttribute.DocumentType)) {
             NSString val = (NSString) get(NSAttributedStringDocumentAttribute.DocumentType);
@@ -138,16 +137,10 @@ import org.robovm.apple.intents.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public NSAttributedStringDocumentAttributes setDocumentType(NSDocumentType documentType) {
         set(NSAttributedStringDocumentAttribute.DocumentType, documentType.value());
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public NSStringEncoding getCharacterEncoding() {
         if (has(NSAttributedStringDocumentAttribute.CharacterEncoding)) {
             NSNumber val = (NSNumber) get(NSAttributedStringDocumentAttribute.CharacterEncoding);
@@ -155,16 +148,10 @@ import org.robovm.apple.intents.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public NSAttributedStringDocumentAttributes setCharacterEncoding(NSStringEncoding characterEncoding) {
         set(NSAttributedStringDocumentAttribute.CharacterEncoding, NSNumber.valueOf(characterEncoding.value()));
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public NSAttributedStringAttributes getDefaultAttributes() {
         if (has(NSAttributedStringDocumentAttribute.DefaultAttributes)) {
             NSDictionary val = (NSDictionary) get(NSAttributedStringDocumentAttribute.DefaultAttributes);
@@ -172,16 +159,10 @@ import org.robovm.apple.intents.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public NSAttributedStringDocumentAttributes setDefaultAttributes(NSAttributedStringAttributes defaultAttributes) {
         set(NSAttributedStringDocumentAttribute.DefaultAttributes, defaultAttributes.getDictionary());
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public CGSize getPaperSize() {
         if (has(NSAttributedStringDocumentAttribute.PaperSize)) {
             NSValue val = (NSValue) get(NSAttributedStringDocumentAttribute.PaperSize);
@@ -189,16 +170,10 @@ import org.robovm.apple.intents.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public NSAttributedStringDocumentAttributes setPaperSize(CGSize paperSize) {
         set(NSAttributedStringDocumentAttribute.PaperSize, NSValue.valueOf(paperSize));
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public UIEdgeInsets getPaperMargin() {
         if (has(NSAttributedStringDocumentAttribute.PaperMargin)) {
             NSValue val = (NSValue) get(NSAttributedStringDocumentAttribute.PaperMargin);
@@ -206,16 +181,10 @@ import org.robovm.apple.intents.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public NSAttributedStringDocumentAttributes setPaperMargin(UIEdgeInsets paperMargin) {
         set(NSAttributedStringDocumentAttribute.PaperMargin, NSValue.valueOf(paperMargin));
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public CGSize getViewSize() {
         if (has(NSAttributedStringDocumentAttribute.ViewSize)) {
             NSValue val = (NSValue) get(NSAttributedStringDocumentAttribute.ViewSize);
@@ -223,16 +192,10 @@ import org.robovm.apple.intents.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public NSAttributedStringDocumentAttributes setViewSize(CGSize viewSize) {
         set(NSAttributedStringDocumentAttribute.ViewSize, NSValue.valueOf(viewSize));
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public double getViewZoom() {
         if (has(NSAttributedStringDocumentAttribute.ViewZoom)) {
             NSNumber val = (NSNumber) get(NSAttributedStringDocumentAttribute.ViewZoom);
@@ -240,16 +203,10 @@ import org.robovm.apple.intents.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public NSAttributedStringDocumentAttributes setViewZoom(double viewZoom) {
         set(NSAttributedStringDocumentAttribute.ViewZoom, NSNumber.valueOf(viewZoom));
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public boolean isReadOnly() {
         if (has(NSAttributedStringDocumentAttribute.ReadOnly)) {
             NSNumber val = (NSNumber) get(NSAttributedStringDocumentAttribute.ReadOnly);
@@ -257,16 +214,10 @@ import org.robovm.apple.intents.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public NSAttributedStringDocumentAttributes setReadOnly(boolean readOnly) {
         set(NSAttributedStringDocumentAttribute.ReadOnly, NSNumber.valueOf(readOnly));
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public UIColor getBackgroundColor() {
         if (has(NSAttributedStringDocumentAttribute.BackgroundColor)) {
             UIColor val = (UIColor) get(NSAttributedStringDocumentAttribute.BackgroundColor);
@@ -274,16 +225,10 @@ import org.robovm.apple.intents.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public NSAttributedStringDocumentAttributes setBackgroundColor(UIColor backgroundColor) {
         set(NSAttributedStringDocumentAttribute.BackgroundColor, backgroundColor);
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public double getHyphenationFactor() {
         if (has(NSAttributedStringDocumentAttribute.HyphenationFactor)) {
             NSNumber val = (NSNumber) get(NSAttributedStringDocumentAttribute.HyphenationFactor);
@@ -291,16 +236,10 @@ import org.robovm.apple.intents.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public NSAttributedStringDocumentAttributes setHyphenationFactor(double hyphenationFactor) {
         set(NSAttributedStringDocumentAttribute.HyphenationFactor, NSNumber.valueOf(hyphenationFactor));
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public double getDefaultTabInterval() {
         if (has(NSAttributedStringDocumentAttribute.DefaultTabInterval)) {
             NSNumber val = (NSNumber) get(NSAttributedStringDocumentAttribute.DefaultTabInterval);
@@ -308,9 +247,6 @@ import org.robovm.apple.intents.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public NSAttributedStringDocumentAttributes setDefaultTabInterval(double defaultTabInterval) {
         set(NSAttributedStringDocumentAttribute.DefaultTabInterval, NSNumber.valueOf(defaultTabInterval));
         return this;

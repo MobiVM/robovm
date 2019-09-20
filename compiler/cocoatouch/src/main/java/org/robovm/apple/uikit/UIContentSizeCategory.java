@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -100,53 +102,17 @@ import org.robovm.apple.intents.*;
      * @since Available in iOS 10.0 and later.
      */
     public static final UIContentSizeCategory Unspecified = new UIContentSizeCategory("Unspecified");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final UIContentSizeCategory ExtraSmall = new UIContentSizeCategory("ExtraSmall");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final UIContentSizeCategory Small = new UIContentSizeCategory("Small");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final UIContentSizeCategory Medium = new UIContentSizeCategory("Medium");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final UIContentSizeCategory Large = new UIContentSizeCategory("Large");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final UIContentSizeCategory ExtraLarge = new UIContentSizeCategory("ExtraLarge");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final UIContentSizeCategory ExtraExtraLarge = new UIContentSizeCategory("ExtraExtraLarge");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final UIContentSizeCategory ExtraExtraExtraLarge = new UIContentSizeCategory("ExtraExtraExtraLarge");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final UIContentSizeCategory AccessibilityMedium = new UIContentSizeCategory("AccessibilityMedium");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final UIContentSizeCategory AccessibilityLarge = new UIContentSizeCategory("AccessibilityLarge");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final UIContentSizeCategory AccessibilityExtraLarge = new UIContentSizeCategory("AccessibilityExtraLarge");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final UIContentSizeCategory AccessibilityExtraExtraLarge = new UIContentSizeCategory("AccessibilityExtraExtraLarge");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final UIContentSizeCategory AccessibilityExtraExtraExtraLarge = new UIContentSizeCategory("AccessibilityExtraExtraExtraLarge");
     /*</constants>*/
     
@@ -189,64 +155,28 @@ import org.robovm.apple.intents.*;
          */
         @GlobalValue(symbol="UIContentSizeCategoryUnspecified", optional=true)
         public static native NSString Unspecified();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="UIContentSizeCategoryExtraSmall", optional=true)
         public static native NSString ExtraSmall();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="UIContentSizeCategorySmall", optional=true)
         public static native NSString Small();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="UIContentSizeCategoryMedium", optional=true)
         public static native NSString Medium();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="UIContentSizeCategoryLarge", optional=true)
         public static native NSString Large();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="UIContentSizeCategoryExtraLarge", optional=true)
         public static native NSString ExtraLarge();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="UIContentSizeCategoryExtraExtraLarge", optional=true)
         public static native NSString ExtraExtraLarge();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="UIContentSizeCategoryExtraExtraExtraLarge", optional=true)
         public static native NSString ExtraExtraExtraLarge();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="UIContentSizeCategoryAccessibilityMedium", optional=true)
         public static native NSString AccessibilityMedium();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="UIContentSizeCategoryAccessibilityLarge", optional=true)
         public static native NSString AccessibilityLarge();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="UIContentSizeCategoryAccessibilityExtraLarge", optional=true)
         public static native NSString AccessibilityExtraLarge();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="UIContentSizeCategoryAccessibilityExtraExtraLarge", optional=true)
         public static native NSString AccessibilityExtraExtraLarge();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="UIContentSizeCategoryAccessibilityExtraExtraExtraLarge", optional=true)
         public static native NSString AccessibilityExtraExtraExtraLarge();
         /*</values>*/

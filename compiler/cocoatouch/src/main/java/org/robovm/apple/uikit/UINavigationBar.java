@@ -37,14 +37,14 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 import org.robovm.apple.corefoundation.CFDictionary;
 import org.robovm.apple.coremedia.CMTextMarkupAttributes;
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 2.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UINavigationBar/*</name>*/ 
@@ -61,7 +61,7 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     @Method(selector = "initWithFrame:")
     public UINavigationBar(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public UINavigationBar(NSCoder decoder) { super(decoder); }
+    public UINavigationBar(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /**
      * @since Available in iOS 5.0 and later.
@@ -130,14 +130,8 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     public native UINavigationBarDelegate getDelegate();
     @Property(selector = "setDelegate:", strongRef = true)
     public native void setDelegate(UINavigationBarDelegate v);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "isTranslucent")
     public native boolean isTranslucent();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "setTranslucent:")
     public native void setTranslucent(boolean v);
     @Property(selector = "topItem")
@@ -162,34 +156,16 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     public native UIColor getTintColor();
     @Property(selector = "setTintColor:")
     public native void setTintColor(UIColor v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "barTintColor")
     public native UIColor getBarTintColor();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setBarTintColor:")
     public native void setBarTintColor(UIColor v);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "shadowImage")
     public native UIImage getShadowImage();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "setShadowImage:")
     public native void setShadowImage(UIImage v);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "titleTextAttributes")
     public native NSDictionary<NSString, ?> getTitleTextAttributesDictionary();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setTitleTextAttributes:")
     public native void setTitleTextAttributesDictionary(NSDictionary<NSString, ?> v);
     /**
@@ -202,26 +178,44 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
      */
     @Property(selector = "setLargeTitleTextAttributes:")
     public native void setLargeTitleTextAttributes(NSDictionary<NSString, ?> v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "backIndicatorImage")
     public native UIImage getBackIndicatorImage();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setBackIndicatorImage:")
     public native void setBackIndicatorImage(UIImage v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "backIndicatorTransitionMaskImage")
     public native UIImage getBackIndicatorTransitionMaskImage();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setBackIndicatorTransitionMaskImage:")
     public native void setBackIndicatorTransitionMaskImage(UIImage v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "standardAppearance")
+    public native UINavigationBarAppearance getStandardAppearance();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setStandardAppearance:")
+    public native void setStandardAppearance(UINavigationBarAppearance v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "compactAppearance")
+    public native UINavigationBarAppearance getCompactAppearance();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setCompactAppearance:")
+    public native void setCompactAppearance(UINavigationBarAppearance v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "scrollEdgeAppearance")
+    public native UINavigationBarAppearance getScrollEdgeAppearance();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setScrollEdgeAppearance:")
+    public native void setScrollEdgeAppearance(UINavigationBarAppearance v);
     @Property(selector = "barPosition")
     public native UIBarPosition getBarPosition();
     /*</properties>*/
@@ -233,34 +227,16 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     public native UINavigationItem popNavigationItem(boolean animated);
     @Method(selector = "setItems:animated:")
     public native void setItems(NSArray<UINavigationItem> items, boolean animated);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "setBackgroundImage:forBarPosition:barMetrics:")
     public native void setBackgroundImage(UIImage backgroundImage, UIBarPosition barPosition, UIBarMetrics barMetrics);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "backgroundImageForBarPosition:barMetrics:")
     public native UIImage getBackgroundImage(UIBarPosition barPosition, UIBarMetrics barMetrics);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "setBackgroundImage:forBarMetrics:")
     public native void setBackgroundImage(UIImage backgroundImage, UIBarMetrics barMetrics);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "backgroundImageForBarMetrics:")
     public native UIImage getBackgroundImage(UIBarMetrics barMetrics);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "setTitleVerticalPositionAdjustment:forBarMetrics:")
     public native void setTitleVerticalPositionAdjustment(@MachineSizedFloat double adjustment, UIBarMetrics barMetrics);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "titleVerticalPositionAdjustmentForBarMetrics:")
     public native @MachineSizedFloat double getTitleVerticalPositionAdjustment(UIBarMetrics barMetrics);
     /*</methods>*/

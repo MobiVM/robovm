@@ -52,7 +52,7 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "initWithLocation:name:vendorIdentifier:restaurantIdentifier:")
     public INRestaurant(CLLocation location, String name, String vendorIdentifier, String restaurantIdentifier) { super((SkipInit) null); initObject(init(location, name, vendorIdentifier, restaurantIdentifier)); }
     @Method(selector = "initWithCoder:")
-    public INRestaurant(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public INRestaurant(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "location")
@@ -81,6 +81,6 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

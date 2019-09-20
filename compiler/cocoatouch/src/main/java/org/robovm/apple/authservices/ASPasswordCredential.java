@@ -29,6 +29,7 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -39,7 +40,7 @@ import org.robovm.apple.uikit.*;
 /*<annotations>*/@Library("AuthenticationServices") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/ASPasswordCredential/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
+    /*<implements>*/implements ASAuthorizationCredential/*</implements>*/ {
 
     /*<ptr>*/public static class ASPasswordCredentialPtr extends Ptr<ASPasswordCredential, ASPasswordCredentialPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(ASPasswordCredential.class); }/*</bind>*/
@@ -51,7 +52,7 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "initWithUser:password:")
     public ASPasswordCredential(String user, String password) { super((SkipInit) null); initObject(init(user, password)); }
     @Method(selector = "initWithCoder:")
-    public ASPasswordCredential(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public ASPasswordCredential(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "user")
@@ -68,6 +69,6 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

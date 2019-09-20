@@ -33,9 +33,7 @@ import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 3.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("MediaPlayer") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPMediaQuery/*</name>*/ 
@@ -51,7 +49,7 @@ import org.robovm.apple.coregraphics.*;
     @Method(selector = "initWithFilterPredicates:")
     public MPMediaQuery(NSSet<MPMediaPredicate> filterPredicates) { super((SkipInit) null); initObject(init(filterPredicates)); }
     @Method(selector = "initWithCoder:")
-    public MPMediaQuery(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public MPMediaQuery(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "filterPredicates")
@@ -66,14 +64,8 @@ import org.robovm.apple.coregraphics.*;
     public native MPMediaGrouping getGroupingType();
     @Property(selector = "setGroupingType:")
     public native void setGroupingType(MPMediaGrouping v);
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     @Property(selector = "itemSections")
     public native NSArray<MPMediaQuerySection> getItemSections();
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     @Property(selector = "collectionSections")
     public native NSArray<MPMediaQuerySection> getCollectionSections();
     @Property(selector = "supportsSecureCoding")
@@ -108,6 +100,6 @@ import org.robovm.apple.coregraphics.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

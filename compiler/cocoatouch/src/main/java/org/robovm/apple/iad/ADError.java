@@ -61,6 +61,10 @@ import org.robovm.apple.avkit.*;
         return code;
     }
     /*<methods>*/
+    /**
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
     @GlobalValue(symbol="ADErrorDomain", optional=true)
     public static native String getClassDomain();
     /*</methods>*/

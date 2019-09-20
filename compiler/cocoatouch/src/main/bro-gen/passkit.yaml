@@ -7,11 +7,7 @@ headers:
     - /System/Library/Frameworks/PassKit.framework/Headers/PassKit.h
 private_typedefs:
     CGRect: '@ByVal org.robovm.apple.coregraphics.CGRect'
-typedefs:
-    'void (^)(PKPassLibraryAddPassesStatus)': '@Block VoidBlock1<PKPassLibraryAddPassesStatus>'
-    'void (^)(PKPaymentAuthorizationStatus)': '@Block VoidBlock1<PKPaymentAuthorizationStatus>'
-    'void (^)(BOOL, NSError *)': '@Block VoidBlock2<Boolean, NSError>'
-    
+
 enums:
     PKPassKitErrorCode: {}
     PKPassLibraryAddPassesStatus: {}
@@ -187,7 +183,10 @@ classes:
         methods:
             '-init.*':
                 name: init
-    PKPaymentRequestPaymentMethodUpdate: {} #since 11.0
+    PKPaymentRequestPaymentMethodUpdate: #since 11.0
+        methods:
+            '-initWithErrors:paymentSummaryItems:':
+                name: init
     PKPaymentRequestShippingContactUpdate: #since 11.0
         methods:
             '-init.*':

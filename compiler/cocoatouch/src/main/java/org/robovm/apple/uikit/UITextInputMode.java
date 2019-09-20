@@ -37,12 +37,12 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.2 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UITextInputMode/*</name>*/ 
@@ -70,7 +70,7 @@ import org.robovm.apple.intents.*;
     protected UITextInputMode(Handle h, long handle) { super(h, handle); }
     protected UITextInputMode(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public UITextInputMode(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public UITextInputMode(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "primaryLanguage")
@@ -82,14 +82,10 @@ import org.robovm.apple.intents.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     @GlobalValue(symbol="UITextInputCurrentInputModeDidChangeNotification", optional=true)
     public static native NSString CurrentInputModeDidChange();
     
     /**
-     * @since Available in iOS 4.2 and later.
      * @deprecated Deprecated in iOS 7.0.
      */
     @Deprecated
@@ -98,6 +94,6 @@ import org.robovm.apple.intents.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

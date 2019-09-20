@@ -103,7 +103,6 @@ import org.robovm.apple.corefoundation.*;
     
 
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 9.0. Use NSURLSessionAPI for ftp requests
      */
     @Deprecated
@@ -115,7 +114,6 @@ import org.robovm.apple.corefoundation.*;
         return 0;
     }
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 9.0. Use NSURLSessionAPI for ftp requests
      */
     @Deprecated
@@ -127,7 +125,6 @@ import org.robovm.apple.corefoundation.*;
         return null;
     }
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 9.0. Use NSURLSessionAPI for ftp requests
      */
     @Deprecated
@@ -139,7 +136,6 @@ import org.robovm.apple.corefoundation.*;
         return null;
     }
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 9.0. Use NSURLSessionAPI for ftp requests
      */
     @Deprecated
@@ -151,7 +147,6 @@ import org.robovm.apple.corefoundation.*;
         return null;
     }
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 9.0. Use NSURLSessionAPI for ftp requests
      */
     @Deprecated
@@ -163,7 +158,6 @@ import org.robovm.apple.corefoundation.*;
         return null;
     }
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 9.0. Use NSURLSessionAPI for ftp requests
      */
     @Deprecated
@@ -175,7 +169,6 @@ import org.robovm.apple.corefoundation.*;
         return 0;
     }
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 9.0. Use NSURLSessionAPI for ftp requests
      */
     @Deprecated
@@ -193,56 +186,48 @@ import org.robovm.apple.corefoundation.*;
     public static class Keys {
         static { Bro.bind(Keys.class); }
         /**
-         * @since Available in iOS 2.0 and later.
          * @deprecated Deprecated in iOS 9.0. Use NSURLSessionAPI for ftp requests
          */
         @Deprecated
         @GlobalValue(symbol="kCFFTPResourceMode", optional=true)
         public static native CFString Mode();
         /**
-         * @since Available in iOS 2.0 and later.
          * @deprecated Deprecated in iOS 9.0. Use NSURLSessionAPI for ftp requests
          */
         @Deprecated
         @GlobalValue(symbol="kCFFTPResourceName", optional=true)
         public static native CFString Name();
         /**
-         * @since Available in iOS 2.0 and later.
          * @deprecated Deprecated in iOS 9.0. Use NSURLSessionAPI for ftp requests
          */
         @Deprecated
         @GlobalValue(symbol="kCFFTPResourceOwner", optional=true)
         public static native CFString Owner();
         /**
-         * @since Available in iOS 2.0 and later.
          * @deprecated Deprecated in iOS 9.0. Use NSURLSessionAPI for ftp requests
          */
         @Deprecated
         @GlobalValue(symbol="kCFFTPResourceGroup", optional=true)
         public static native CFString Group();
         /**
-         * @since Available in iOS 2.0 and later.
          * @deprecated Deprecated in iOS 9.0. Use NSURLSessionAPI for ftp requests
          */
         @Deprecated
         @GlobalValue(symbol="kCFFTPResourceLink", optional=true)
         public static native CFString Link();
         /**
-         * @since Available in iOS 2.0 and later.
          * @deprecated Deprecated in iOS 9.0. Use NSURLSessionAPI for ftp requests
          */
         @Deprecated
         @GlobalValue(symbol="kCFFTPResourceSize", optional=true)
         public static native CFString Size();
         /**
-         * @since Available in iOS 2.0 and later.
          * @deprecated Deprecated in iOS 9.0. Use NSURLSessionAPI for ftp requests
          */
         @Deprecated
         @GlobalValue(symbol="kCFFTPResourceType", optional=true)
         public static native CFString Type();
         /**
-         * @since Available in iOS 2.0 and later.
          * @deprecated Deprecated in iOS 9.0. Use NSURLSessionAPI for ftp requests
          */
         @Deprecated

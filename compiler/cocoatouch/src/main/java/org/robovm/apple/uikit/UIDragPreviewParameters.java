@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -46,7 +48,7 @@ import org.robovm.apple.intents.*;
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIDragPreviewParameters/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
+    extends /*<extends>*/UIPreviewParameters/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class UIDragPreviewParametersPtr extends Ptr<UIDragPreviewParameters, UIDragPreviewParametersPtr> {}/*</ptr>*/
@@ -57,21 +59,13 @@ import org.robovm.apple.intents.*;
     protected UIDragPreviewParameters(Handle h, long handle) { super(h, handle); }
     protected UIDragPreviewParameters(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithTextLineRects:")
-    public UIDragPreviewParameters(NSArray<NSValue> textLineRects) { super((SkipInit) null); initObject(init(textLineRects)); }
+    public UIDragPreviewParameters(NSArray<NSValue> textLineRects) { super(textLineRects); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "visiblePath")
-    public native UIBezierPath getVisiblePath();
-    @Property(selector = "setVisiblePath:")
-    public native void setVisiblePath(UIBezierPath v);
-    @Property(selector = "backgroundColor")
-    public native UIColor getBackgroundColor();
-    @Property(selector = "setBackgroundColor:")
-    public native void setBackgroundColor(UIColor v);
+    
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithTextLineRects:")
-    protected native @Pointer long init(NSArray<NSValue> textLineRects);
+    
     /*</methods>*/
 }

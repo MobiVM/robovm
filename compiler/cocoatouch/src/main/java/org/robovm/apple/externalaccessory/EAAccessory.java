@@ -33,9 +33,7 @@ import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 3.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("ExternalAccessory") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/EAAccessory/*</name>*/ 
@@ -53,64 +51,33 @@ import org.robovm.apple.uikit.*;
     protected EAAccessory(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "isConnected")
     public native boolean isConnected();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "connectionID")
     public native @MachineSizedUInt long getConnectionID();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "manufacturer")
     public native String getManufacturer();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "name")
     public native String getName();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "modelNumber")
     public native String getModelNumber();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "serialNumber")
     public native String getSerialNumber();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "firmwareRevision")
     public native String getFirmwareRevision();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "hardwareRevision")
     public native String getHardwareRevision();
     /**
-     * @since Available in iOS 9.0 and later.
+     * @since Available in iOS 9.3 and later.
+     * @deprecated Deprecated in iOS 13.0. Not supported
      */
+    @Deprecated
     @Property(selector = "dockType")
     public native String getDockType();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "protocolStrings")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getProtocolStrings();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "delegate")
     public native EAAccessoryDelegate getDelegate();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "setDelegate:", strongRef = true)
     public native void setDelegate(EAAccessoryDelegate v);
     /*</properties>*/

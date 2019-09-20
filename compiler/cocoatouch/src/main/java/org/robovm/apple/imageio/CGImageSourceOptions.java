@@ -108,9 +108,6 @@ import org.robovm.apple.coregraphics.*;
     }
     
 
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public String getTypeIdentifierHint() {
         if (has(Keys.TypeIdentifierHint())) {
             CFString val = get(Keys.TypeIdentifierHint(), CFString.class);
@@ -118,16 +115,10 @@ import org.robovm.apple.coregraphics.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CGImageSourceOptions setTypeIdentifierHint(String typeIdentifierHint) {
         set(Keys.TypeIdentifierHint(), new CFString(typeIdentifierHint));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public boolean shouldCache() {
         if (has(Keys.ShouldCache())) {
             CFBoolean val = get(Keys.ShouldCache(), CFBoolean.class);
@@ -135,16 +126,10 @@ import org.robovm.apple.coregraphics.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CGImageSourceOptions setShouldCache(boolean shouldCache) {
         set(Keys.ShouldCache(), CFBoolean.valueOf(shouldCache));
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public boolean shouldCacheImmediately() {
         if (has(Keys.ShouldCacheImmediately())) {
             CFBoolean val = get(Keys.ShouldCacheImmediately(), CFBoolean.class);
@@ -152,16 +137,10 @@ import org.robovm.apple.coregraphics.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public CGImageSourceOptions setShouldCacheImmediately(boolean shouldCacheImmediately) {
         set(Keys.ShouldCacheImmediately(), CFBoolean.valueOf(shouldCacheImmediately));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public boolean shouldAllowFloat() {
         if (has(Keys.ShouldAllowFloat())) {
             CFBoolean val = get(Keys.ShouldAllowFloat(), CFBoolean.class);
@@ -169,16 +148,10 @@ import org.robovm.apple.coregraphics.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CGImageSourceOptions setShouldAllowFloat(boolean shouldAllowFloat) {
         set(Keys.ShouldAllowFloat(), CFBoolean.valueOf(shouldAllowFloat));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public boolean shouldCreateThumbnailFromImageIfAbsent() {
         if (has(Keys.CreateThumbnailFromImageIfAbsent())) {
             CFBoolean val = get(Keys.CreateThumbnailFromImageIfAbsent(), CFBoolean.class);
@@ -186,16 +159,10 @@ import org.robovm.apple.coregraphics.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CGImageSourceOptions setShouldCreateThumbnailFromImageIfAbsent(boolean shouldCreateThumbnailFromImageIfAbsent) {
         set(Keys.CreateThumbnailFromImageIfAbsent(), CFBoolean.valueOf(shouldCreateThumbnailFromImageIfAbsent));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public long getThumbnailMaxPixelSize() {
         if (has(Keys.ThumbnailMaxPixelSize())) {
             CFNumber val = get(Keys.ThumbnailMaxPixelSize(), CFNumber.class);
@@ -203,16 +170,10 @@ import org.robovm.apple.coregraphics.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CGImageSourceOptions setThumbnailMaxPixelSize(long thumbnailMaxPixelSize) {
         set(Keys.ThumbnailMaxPixelSize(), CFNumber.valueOf(thumbnailMaxPixelSize));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public boolean shouldCreateThumbnailWithTransform() {
         if (has(Keys.CreateThumbnailWithTransform())) {
             CFBoolean val = get(Keys.CreateThumbnailWithTransform(), CFBoolean.class);
@@ -220,9 +181,6 @@ import org.robovm.apple.coregraphics.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CGImageSourceOptions setShouldCreateThumbnailWithTransform(boolean shouldCreateThumbnailWithTransform) {
         set(Keys.CreateThumbnailWithTransform(), CFBoolean.valueOf(shouldCreateThumbnailWithTransform));
         return this;
@@ -250,44 +208,20 @@ import org.robovm.apple.coregraphics.*;
     @Library("ImageIO")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImageSourceTypeIdentifierHint", optional=true)
         public static native CFString TypeIdentifierHint();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImageSourceShouldCache", optional=true)
         public static native CFString ShouldCache();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kCGImageSourceShouldCacheImmediately", optional=true)
         public static native CFString ShouldCacheImmediately();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImageSourceShouldAllowFloat", optional=true)
         public static native CFString ShouldAllowFloat();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImageSourceCreateThumbnailFromImageIfAbsent", optional=true)
         public static native CFString CreateThumbnailFromImageIfAbsent();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImageSourceCreateThumbnailFromImageAlways", optional=true)
         public static native CFString CreateThumbnailFromImageAlways();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImageSourceThumbnailMaxPixelSize", optional=true)
         public static native CFString ThumbnailMaxPixelSize();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImageSourceCreateThumbnailWithTransform", optional=true)
         public static native CFString CreateThumbnailWithTransform();
         /**

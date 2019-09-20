@@ -113,6 +113,40 @@ enums:
     INUpcomingMediaPredictionMode: {} #since 12.0
     INDailyRoutineSituation: {} #since 12.0
     INRelevantShortcutRole: {} #since 12.0
+    # ios13
+    INCallAudioRoute: {} #since 13.0
+    INPlaybackQueueLocation: {} #since 13.0
+    INMediaAffinityType: {} #since 13.0
+    INTaskPriority: {} #since 13.0
+    INTemporalEventTriggerTypeOptions: {prefix: INTemporalEventTriggerTypeOption} #since 13.0
+    INStartCallIntentResponseCode: {} #since 13.0
+    INAddMediaIntentResponseCode: {} #since 13.0
+    INSearchForMediaIntentResponseCode: {} #since 13.0
+    INUpdateMediaAffinityIntentResponseCode: {} #since 13.0
+    INDeleteTasksIntentResponseCode: {} #since 13.0
+    INSnoozeTasksIntentResponseCode: {} #since 13.0
+    INGetReservationDetailsIntentResponseCode: {} #since 13.0
+    INAddMediaMediaDestinationUnsupportedReason: {} #since 13.0
+    INAddMediaMediaItemUnsupportedReason: {} #since 13.0
+    INAddTasksTargetTaskListConfirmationReason: {} #since 13.0
+    INAddTasksTemporalEventTriggerUnsupportedReason: {} #since 13.0
+    INDeleteTasksTaskListUnsupportedReason: {} #since 13.0
+    INDeleteTasksTaskUnsupportedReason: {} #since 13.0
+    INMediaDestinationType: {} #since 13.0
+    INMediaReference: {} #since 13.0
+    INMediaSortOrder: {} #since 13.0
+    INPlayMediaMediaItemUnsupportedReason: {} #since 13.0
+    INPlayMediaPlaybackSpeedUnsupportedReason: {} #since 13.0
+    INReservationActionType: {} #since 13.0
+    INReservationStatus: {} #since 13.0
+    INSearchForMediaMediaItemUnsupportedReason: {} #since 13.0
+    INSetTaskAttributeTemporalEventTriggerUnsupportedReason: {} #since 13.0
+    INSnoozeTasksTaskUnsupportedReason: {} #since 13.0
+    INStartCallCallCapabilityUnsupportedReason: {} #since 13.0
+    INStartCallContactUnsupportedReason: {} #since 13.0
+    INTicketedEventCategory: {} #since 13.0
+    INUpdateMediaAffinityMediaItemUnsupportedReason: {} #since 13.0
+    INMediaUserContextSubscriptionStatus: {} #since 13.0
 
 categories:
     NSUserActivity: {}
@@ -121,7 +155,16 @@ categories:
             '+placemarkWithLocation:name:postalAddress:':
                 name: getPlacemark
 classes:
-    INAccountTypeResolutionResult: {} #since 11.0
+    INAccountTypeResolutionResult: #since 11.0
+        methods:
+            '+successWithResolvedAccountType:':
+                name: success
+            '+successWithResolvedValue:':
+                name: successValue
+            '+confirmationRequiredWithAccountTypeToConfirm:':
+                name: confirmationRequired
+            '+confirmationRequiredWithValueToConfirm:':
+                name: confirmationRequiredForValue
     INActivateCarSignalIntent: #since 10.3
         methods:
             '-initWithCarName:signals:':
@@ -133,6 +176,8 @@ classes:
     INAddTasksIntent: #since 11.0
         methods:
             '-initWithTargetTaskList:taskTitles:spatialEventTrigger:temporalEventTrigger:':
+                name: init
+            '-initWithTargetTaskList:taskTitles:spatialEventTrigger:temporalEventTrigger:priority:':
                 name: init
     INAddTasksIntentResponse: #since 11.0
         methods:
@@ -150,7 +195,12 @@ classes:
         methods:
             '-init.*':
                 name: init
-    INBalanceTypeResolutionResult: {} #since 11.0
+    INBalanceTypeResolutionResult: #since 11.0
+        methods:
+            '+successWithResolvedBalanceType:':
+                name: success
+            '+confirmationRequiredWithBalanceTypeToConfirm:':
+                name: confirmationRequired
     INBillDetails: #since 10.3
         methods:
             '-initWithBillType:paymentStatus:billPayee:amountDue:minimumDue:lateFee:dueDate:paymentDate:':
@@ -159,8 +209,24 @@ classes:
         methods:
             '-initWithNickname:number:organizationName:':
                 name: init
-    INBillPayeeResolutionResult: {} #since 10.3
-    INBillTypeResolutionResult: {} #since 10.3
+    INBillPayeeResolutionResult: #since 10.3
+        methods:
+            '+successWithResolvedBillPayee:':
+                name: success
+            '+disambiguationWithBillPayeesToDisambiguate:':
+                name: disambiguation
+            '+confirmationRequiredWithBillPayeeToConfirm:':
+                name: confirmationRequired
+    INBillTypeResolutionResult: #since 10.3
+        methods:
+            '+successWithResolvedBillType:':
+                name: success
+            '+successWithResolvedValue:':
+                name: successValue
+            '+confirmationRequiredWithBillTypeToConfirm:':
+                name: confirmationRequired
+            '+confirmationRequiredWithValueToConfirm:':
+                name: confirmationRequiredForValue
     INBookRestaurantReservationIntent: #since 10.0
         methods:
             '-initWithRestaurant:bookingDateComponents:partySize:bookingIdentifier:guest:selectedOffer:guestProvidedSpecialRequestText:':
@@ -169,14 +235,44 @@ classes:
         methods:
             '-initWithCode:userActivity:':
                 name: init
-    INBooleanResolutionResult: {} #since 10.0
-    INCallDestinationTypeResolutionResult: {} #since 11.0
+    INBooleanResolutionResult: #since 10.0
+        methods:
+            '+successWithResolvedValue:':
+                name: success
+            '+confirmationRequiredWithValueToConfirm:':
+                name: confirmationRequired
+    INCallDestinationTypeResolutionResult: #since 11.0
+        methods:
+            '+successWithResolvedCallDestinationType:':
+                name: success
+            '+confirmationRequiredWithCallDestinationTypeToConfirm:':
+                name: confirmationRequired
     INCallRecord: #since 11.0
         methods:
             '-initWithIdentifier:dateCreated:caller:callRecordType:callCapability:callDuration:unseen:':
                 name: init
-    INCallRecordTypeOptionsResolutionResult: {} #since 11.0
-    INCallRecordTypeResolutionResult: {} #since 10.0
+            '-initWithIdentifier:dateCreated:caller:callRecordType:callCapability:callDuration:unseen:numberOfCalls:':
+                name: init
+    INCallRecordTypeOptionsResolutionResult: #since 11.0
+        methods:
+            '+successWithResolvedCallRecordTypeOptions:':
+                name: success
+            '+successWithResolvedValue:':
+                name: successValue
+            '+confirmationRequiredWithCallRecordTypeOptionsToConfirm:':
+                name: confirmationRequired
+            '+confirmationRequiredWithValueToConfirm:':
+                name: confirmationRequiredForValue
+    INCallRecordTypeResolutionResult: #since 10.0
+        methods:
+            '+successWithResolvedCallRecordType:':
+                name: success
+            '+successWithResolvedValue:':
+                name: successValue
+            '+confirmationRequiredWithCallRecordTypeToConfirm:':
+                name: confirmationRequired
+            '+confirmationRequiredWithValueToConfirm:':
+                name: confirmationRequiredForValue
     INCancelRideIntent: #since 11.0
         methods:
             '-initWithRideIdentifier:':
@@ -193,11 +289,56 @@ classes:
         methods:
             '-initWithCode:userActivity:':
                 name: init
-    INCarAirCirculationModeResolutionResult: {} #since 10.0
-    INCarAudioSourceResolutionResult: {} #since 10.0
-    INCarDefrosterResolutionResult: {} #since 10.0
-    INCarSeatResolutionResult: {} #since 10.0
-    INCarSignalOptionsResolutionResult: {} #since 10.3
+    INCarAirCirculationModeResolutionResult: #since 10.0
+        methods:
+            '+successWithResolvedCarAirCirculationMode:':
+                name: success
+            '+successWithResolvedValue:':
+                name: successValue
+            '+confirmationRequiredWithCarAirCirculationModeToConfirm:':
+                name: confirmationRequired
+            '+confirmationRequiredWithValueToConfirm:':
+                name: confirmationRequiredForValue
+    INCarAudioSourceResolutionResult: #since 10.0
+        methods:
+            '+successWithResolvedCarAudioSource:':
+                name: success
+            '+successWithResolvedValue:':
+                name: successValue
+            '+confirmationRequiredWithCarAudioSourceToConfirm:':
+                name: confirmationRequired
+            '+confirmationRequiredWithValueToConfirm:':
+                name: confirmationRequiredForValue
+    INCarDefrosterResolutionResult: #since 10.0
+        methods:
+            '+successWithResolvedCarDefroster:':
+                name: success
+            '+successWithResolvedValue:':
+                name: successValue
+            '+confirmationRequiredWithCarDefrosterToConfirm:':
+                name: confirmationRequired
+            '+confirmationRequiredWithValueToConfirm:':
+                name: confirmationRequiredForValue
+    INCarSeatResolutionResult: #since 10.0
+        methods:
+            '+successWithResolvedCarSeat:':
+                name: success
+            '+successWithResolvedValue:':
+                name: successValue
+            '+confirmationRequiredWithCarSeatToConfirm:':
+                name: confirmationRequired
+            '+confirmationRequiredWithValueToConfirm:':
+                name: confirmationRequiredForValue
+    INCarSignalOptionsResolutionResult: #since 10.3
+        methods:
+            '+successWithResolvedCarSignalOptions:':
+                name: success
+            '+successWithResolvedValue:':
+                name: successValue
+            '+confirmationRequiredWithCarSignalOptionsToConfirm:':
+                name: confirmationRequired
+            '+confirmationRequiredWithValueToConfirm:':
+                name: confirmationRequiredForValue
     INCreateNoteIntent: #since 11.0
         methods:
             '-initWithTitle:content:groupName:':
@@ -218,15 +359,46 @@ classes:
         methods:
             '-initWithAmount:currencyCode:':
                 name: init
-    INCurrencyAmountResolutionResult: {} #since 10.0
+    INCurrencyAmountResolutionResult: #since 10.0
+        methods:
+            '+successWithResolvedCurrencyAmount:':
+                name: success
+            '+disambiguationWithCurrencyAmountsToDisambiguate:':
+                name: disambiguation
+            '+confirmationRequiredWithCurrencyAmountToConfirm:':
+                name: confirmationRequired
     INDateComponentsRange: #since 10.0
         methods:
             '-init.*':
                 name: init
-    INDateComponentsRangeResolutionResult: {} #since 10.0
-    INDateComponentsResolutionResult: {} #since 10.0
-    INDateSearchTypeResolutionResult: {} #since 11.0
-    INDoubleResolutionResult: {} #since 10.0
+    INDateComponentsRangeResolutionResult: #since 10.0
+        methods:
+            '+successWithResolvedDateComponentsRange:':
+                name: success
+            '+disambiguationWithDateComponentsRangesToDisambiguate:':
+                name: disambiguation
+            '+confirmationRequiredWithDateComponentsRangeToConfirm:':
+                name: confirmationRequired
+    INDateComponentsResolutionResult: #since 10.0
+        methods:
+            '+successWithResolvedDateComponents:':
+                name: success
+            '+disambiguationWithDateComponentsToDisambiguate:':
+                name: disambiguation
+            '+confirmationRequiredWithDateComponentsToConfirm:':
+                name: confirmationRequired
+    INDateSearchTypeResolutionResult: #since 11.0
+        methods:
+            '+successWithResolvedDateSearchType:':
+                name: success
+            '+confirmationRequiredWithDateSearchTypeToConfirm:':
+                name: confirmationRequired
+    INDoubleResolutionResult: #since 10.0
+        methods:
+            '+successWithResolvedValue:':
+                name: success
+            '+confirmationRequiredWithValueToConfirm:':
+                name: confirmationRequired
     INEndWorkoutIntent: #since 10.0
         methods:
             '-initWithWorkoutName:':
@@ -309,7 +481,12 @@ classes:
         methods:
             '-initWithImage:':
                 name: init
-    INIntegerResolutionResult: {} #since 10.0
+    INIntegerResolutionResult: #since 10.0
+        methods:
+            '+successWithResolvedValue:':
+                name: success
+            '+confirmationRequiredWithValueToConfirm:':
+                name: confirmationRequired
     INIntent:  #since 10.0
         methods:
             '-setImage:forParameterNamed:':
@@ -322,8 +499,11 @@ classes:
             '+deleteInteractionsWithIdentifiers:completion:':
                 name: deleteInteractions
             '+deleteInteractionsWithGroupIdentifier:completion:':
-                #trim_after_first_colon: true
                 name: deleteInteractionsByGroup
+            '-donateInteractionWithCompletion:':
+                name: donateInteraction
+            '+deleteAllInteractionsWithCompletion:':
+                name: deleteAllInteractions
     INListRideOptionsIntent: #since 10.0
         methods:
             '-initWithPickupLocation:dropOffLocation:':
@@ -332,22 +512,71 @@ classes:
         methods:
             '-initWithCode:userActivity:':
                 name: init
-    INLocationSearchTypeResolutionResult: {} #since 11.0
+    INLocationSearchTypeResolutionResult: #since 11.0
+        methods:
+            '+successWithResolvedLocationSearchType:':
+                name: success
+            '+confirmationRequiredWithLocationSearchTypeToConfirm:':
+                name: confirmationRequired
     INMessage: #since 10.0
         methods:
             '-init.*':
                 name: init
-    INMessageAttributeOptionsResolutionResult: {} #since 10.0
-    INMessageAttributeResolutionResult: {} #since 10.0
+    INMessageAttributeOptionsResolutionResult: #since 10.0
+        methods:
+            '+successWithResolvedMessageAttributeOptions:':
+                name: success
+            '+successWithResolvedValue:':
+                name: successValue
+            '+confirmationRequiredWithMessageAttributeOptionsToConfirm:':
+                name: confirmationRequired
+            '+confirmationRequiredWithValueToConfirm:':
+                name: confirmationRequiredForValue
+    INMessageAttributeResolutionResult: #since 10.0
+        methods:
+            '+successWithResolvedMessageAttribute:':
+                name: success
+            '+successWithResolvedValue:':
+                name: successValue
+            '+confirmationRequiredWithMessageAttributeToConfirm:':
+                name: confirmationRequired
+            '+confirmationRequiredWithValueToConfirm:':
+                name: confirmationRequiredForValue
     INNote: #since 11.0
         methods:
             '-initWithTitle:contents:groupName:createdDateComponents:modifiedDateComponents:identifier:':
                 name: init
     INNoteContent: {} #since 11.0
-    INNoteContentResolutionResult: {} #since 11.0
-    INNoteContentTypeResolutionResult: {} #since 11.0
-    INNoteResolutionResult: {} #since 11.0
-    INNotebookItemTypeResolutionResult: {} #since 11.0
+    INNoteContentResolutionResult: #since 11.0
+        methods:
+            '+successWithResolvedNoteContent:':
+                name: success
+            '+disambiguationWithNoteContentsToDisambiguate:':
+                name: disambiguation
+            '+confirmationRequiredWithNoteContentToConfirm:':
+                name: confirmation
+    INNoteContentTypeResolutionResult: #since 11.0
+        methods:
+            '+successWithResolvedNoteContentType:':
+                name: success
+            '+confirmationRequiredWithNoteContentTypeToConfirm:':
+                name: confirmation
+    INNoteResolutionResult: #since 11.0
+        methods:
+            '+successWithResolvedNote:':
+                name: success
+            '+disambiguationWithNotesToDisambiguate:':
+                name: disambiguation
+            '+confirmationRequiredWithNoteToConfirm:':
+                name: confirmationRequired
+    INNotebookItemTypeResolutionResult: #since 11.0
+        methods:
+            '+successWithResolvedNotebookItemType:':
+                name: success
+            '+disambiguationWithNotebookItemTypesToDisambiguate:':
+                name: disambiguation
+            '+confirmationRequiredWithNotebookItemTypeToConfirm:':
+                name: confirmationRequired
     INParameter: #since 11.0
         methods:
             '-setIndex:forSubKeyPath:':
@@ -376,12 +605,26 @@ classes:
                 name: init
             '-initWithNickname:number:accountType:organizationName:':
                 name: init
-    INPaymentAccountResolutionResult: {} #since 10.3
+    INPaymentAccountResolutionResult: #since 10.3
+        methods:
+            '+successWithResolvedPaymentAccount:':
+                name: success
+            '+disambiguationWithPaymentAccountsToDisambiguate:':
+                name: disambiguation
+            '+confirmationRequiredWithPaymentAccountToConfirm:':
+                name: confirmationRequired
     INPaymentAmount: #since 10.3
         methods:
             '-initWithAmountType:amount:':
                 name: init
-    INPaymentAmountResolutionResult: {} #since 10.3
+    INPaymentAmountResolutionResult: #since 10.3
+        methods:
+            '+successWithResolvedPaymentAmount:':
+                name: success
+            '+disambiguationWithPaymentAmountsToDisambiguate:':
+                name: disambiguation
+            '+confirmationRequiredWithPaymentAmountToConfirm:':
+                name: confirmationRequired
     INPaymentMethod: #since 10.0
         methods:
             '-initWithType:name:identificationHint:icon:':
@@ -390,7 +633,16 @@ classes:
         methods:
             '-init.*':
                 name: init
-    INPaymentStatusResolutionResult: {} #since 10.0
+    INPaymentStatusResolutionResult: #since 10.0
+        methods:
+            '+successWithResolvedPaymentStatus:':
+                name: success
+            '+successWithResolvedValue:':
+                name: successValue
+            '+confirmationRequiredWithPaymentStatusToConfirm:':
+                name: confirmationRequired
+            '+confirmationRequiredWithValueToConfirm:':
+                name: confirmationRequiredForValue
     INPerson: #since 10.0
         properties:
             'handle':
@@ -402,8 +654,22 @@ classes:
         methods:
             '-init.*':
                 name: init
-    INPersonResolutionResult: {} #since 10.0
-    INPlacemarkResolutionResult: {} #since 10.0
+    INPersonResolutionResult: #since 10.0
+        methods:
+            '+successWithResolvedPerson:':
+                name: success
+            '+disambiguationWithPeopleToDisambiguate:':
+                name: disambiguation
+            '+confirmationRequiredWithPersonToConfirm:':
+                name: confirmationRequired
+    INPlacemarkResolutionResult: #since 10.0
+        methods:
+            '+successWithResolvedPlacemark:':
+                name: success
+            '+disambiguationWithPlacemarksToDisambiguate:':
+                name: disambiguation
+            '+confirmationRequiredWithPlacemarkToConfirm:':
+                name: confirmationRequired
     INPreferences: {} #since 10.0
     INPriceRange: #since 10.0
         methods:
@@ -415,13 +681,40 @@ classes:
                 static_constructor_name: createWithMinimumPrice
             '-init.*':
                 name: init
-    INRadioTypeResolutionResult: {} #since 10.0
+    INRadioTypeResolutionResult: #since 10.0
+        methods:
+            '+successWithResolvedRadioType:':
+                name: success
+            '+successWithResolvedValue:':
+                name: successValue
+            '+confirmationRequiredWithRadioTypeToConfirm:':
+                name: confirmationRequired
+            '+confirmationRequiredWithValueToConfirm:':
+                name: confirmationRequiredForValue
     INRecurrenceRule: #since 11.0
         methods:
             '-initWithInterval:frequency:':
                 name: init
-    INRelativeReferenceResolutionResult: {} #since 10.0
-    INRelativeSettingResolutionResult: {} #since 10.0
+    INRelativeReferenceResolutionResult: #since 10.0
+        methods:
+            '+successWithResolvedRelativeReference:':
+                name: success
+            '+successWithResolvedValue:':
+                name: successValue
+            '+confirmationRequiredWithRelativeReferenceToConfirm:':
+                name: confirmationRequired
+            '+confirmationRequiredWithValueToConfirm:':
+                name: confirmationRequiredForValue
+    INRelativeSettingResolutionResult: #since 10.0
+        methods:
+            '+successWithResolvedRelativeSetting:':
+                name: success
+            '+successWithResolvedValue:':
+                name: successValue
+            '+confirmationRequiredWithRelativeSettingToConfirm:':
+                name: confirmationRequired
+            '+confirmationRequiredWithValueToConfirm:':
+                name: confirmationRequiredForValue
     INRequestPaymentCurrencyAmountResolutionResult: #since 11.0
         methods:
             '-initWithCurrencyAmountResolutionResult:':
@@ -455,7 +748,14 @@ classes:
             '-initWithNameComponents:phoneNumber:emailAddress:':
                 name: init
     INRestaurantGuestDisplayPreferences: {} #since 10.0
-    INRestaurantGuestResolutionResult: {} #since 10.0
+    INRestaurantGuestResolutionResult: #since 10.0
+        methods:
+            '+successWithResolvedRestaurantGuest:':
+                name: success
+            '+disambiguationWithRestaurantGuestsToDisambiguate:':
+                name: disambiguation
+            '+confirmationRequiredWithRestaurantGuestToConfirm:':
+                name: confirmationRequired
     INRestaurantOffer: {} #since 10.0
     INRestaurantReservationBooking: #since 10.0
         methods:
@@ -465,7 +765,14 @@ classes:
         methods:
             '-initWithRestaurant:bookingDate:partySize:bookingIdentifier:guest:status:dateStatusModified:':
                 name: init
-    INRestaurantResolutionResult: {} #since 10.0
+    INRestaurantResolutionResult: #since 10.0
+        methods:
+            '+successWithResolvedRestaurant:':
+                name: success
+            '+disambiguationWithRestaurantsToDisambiguate:':
+                name: disambiguation
+            '+confirmationRequiredWithRestaurantToConfirm:':
+                name: confirmationRequired
     INResumeWorkoutIntent: #since 10.0
         methods:
             '-initWithWorkoutName:':
@@ -474,7 +781,14 @@ classes:
         methods:
             '-initWithCode:userActivity:':
                 name: init
-    INRideCompletionStatus: {} #since 10.0
+    INRideCompletionStatus: #since 10.0
+        methods:
+            '+completedWithSettledPaymentAmount:':
+                name: completedSettled
+            '+completedWithOutstandingPaymentAmount:':
+                name: completedOutstanding
+            '+completedWithOutstandingFeedbackType:':
+                name: completed
     INRideDriver: #since 10.0
         methods:
             '-initWithPersonHandle:nameComponents:displayName:image:rating:phoneNumber:':
@@ -553,6 +867,8 @@ classes:
             '-initWithTitle:content:itemType:status:location:locationSearchType:dateTime:dateSearchType:':
                 name: init
             '-initWithTitle:content:itemType:status:location:locationSearchType:dateTime:dateSearchType:notebookItemIdentifier:':
+                name: init
+            '-initWithTitle:content:itemType:status:location:locationSearchType:dateTime:dateSearchType:temporalEventTriggerTypes:taskPriority:notebookItemIdentifier:':
                 name: init
     INSearchForNotebookItemsIntentResponse: #since 11.0
         methods:
@@ -682,6 +998,8 @@ classes:
         methods:
             '-initWithTargetTask:status:spatialEventTrigger:temporalEventTrigger:':
                 name: init
+            '-initWithTargetTask:taskTitle:status:priority:spatialEventTrigger:temporalEventTrigger:':
+                name: init
     INSetTaskAttributeIntentResponse: #since 11.0
         methods:
             '-initWithCode:userActivity:':
@@ -690,7 +1008,14 @@ classes:
         methods:
             '-initWithPlacemark:event:':
                 name: init
-    INSpatialEventTriggerResolutionResult: {} #since 11.0
+    INSpatialEventTriggerResolutionResult: #since 11.0
+        methods:
+            '+successWithResolvedSpatialEventTrigger:':
+                name: success
+            '+disambiguationWithSpatialEventTriggersToDisambiguate:':
+                name: disambiguation
+            '+confirmationRequiredWithSpatialEventTriggerToConfirm:':
+                name: confirmationRequired
     INSpeakableString: #since 10.0
         methods:
             '-initWithVocabularyIdentifier:spokenPhrase:pronunciationHint:':
@@ -698,7 +1023,14 @@ classes:
                 static_constructor_name: createWithVocabulary
             '-init.*':
                 name: init
-    INSpeakableStringResolutionResult: {} #since 10.0
+    INSpeakableStringResolutionResult: #since 10.0
+        methods:
+            '+successWithResolvedString:':
+                name: success
+            '+disambiguationWithStringsToDisambiguate:':
+                name: disambiguation
+            '+confirmationRequiredWithStringToConfirm:':
+                name: confirmationRequired
     INStartAudioCallIntent: #since 10.0
         methods:
             '-initWithDestinationType:contacts:':
@@ -733,24 +1065,66 @@ classes:
         methods:
             '-initWithCode:userActivity:':
                 name: init
-    INStringResolutionResult: {} #since 10.0
+    INStringResolutionResult: #since 10.0
+        methods:
+            '+successWithResolvedString:':
+                name: success
+            '+disambiguationWithStringsToDisambiguate:':
+                name: disambiguation
+            '+confirmationRequiredWithStringToConfirm:':
+                name: confirmationRequired
     INTask: #since 11.0
         methods:
             '-initWithTitle:status:taskType:spatialEventTrigger:temporalEventTrigger:createdDateComponents:modifiedDateComponents:identifier:':
+                name: init
+            '-initWithTitle:status:taskType:spatialEventTrigger:temporalEventTrigger:createdDateComponents:modifiedDateComponents:identifier:priority:':
                 name: init
     INTaskList: #since 11.0
         methods:
             '-initWithTitle:tasks:groupName:createdDateComponents:modifiedDateComponents:identifier:':
                 name: init
-    INTaskListResolutionResult: {} #since 11.0
-    INTaskResolutionResult: {} #since 11.0
-    INTaskStatusResolutionResult: {} #since 11.0
-    INTemperatureResolutionResult: {} #since 10.0
+    INTaskListResolutionResult: #since 11.0
+        methods:
+            '+successWithResolvedTaskList:':
+                name: success
+            '+disambiguationWithTaskListsToDisambiguate:':
+                name: disambiguation
+            '+confirmationRequiredWithTaskListToConfirm:':
+                name: confirmationRequired
+    INTaskResolutionResult: #since 11.0
+        methods:
+            '+successWithResolvedTask:':
+                name: success
+            '+disambiguationWithTasksToDisambiguate:':
+                name: disambiguation
+            '+confirmationRequiredWithTaskToConfirm:':
+                name: confirmationRequired
+    INTaskStatusResolutionResult: #since 11.0
+        methods:
+            '+successWithResolvedTaskStatus:':
+                name: success
+            '+confirmationRequiredWithTaskStatusToConfirm:':
+                name: confirmationRequired
+    INTemperatureResolutionResult: #since 10.0
+        methods:
+            '+successWithResolvedTemperature:':
+                name: success
+            '+disambiguationWithTemperaturesToDisambiguate:':
+                name: disambiguation
+            '+confirmationRequiredWithTemperatureToConfirm:':
+                name: confirmationRequired
     INTemporalEventTrigger: #since 11.0
         methods:
             '-initWithDateComponentsRange:':
                 name: init
-    INTemporalEventTriggerResolutionResult: {} #since 11.0
+    INTemporalEventTriggerResolutionResult: #since 11.0
+        methods:
+            '+successWithResolvedTemporalEventTrigger:':
+                name: success
+            '+disambiguationWithTemporalEventTriggersToDisambiguate:':
+                name: disambiguation
+            '+confirmationRequiredWithTemporalEventTriggerToConfirm:':
+                name: confirmationRequired
     INTermsAndConditions: #since 10.0
         methods:
             '-initWithLocalizedTermsAndConditionsText:privacyPolicyURL:termsAndConditionsURL:':
@@ -767,15 +1141,38 @@ classes:
         methods:
             '-initWithCode:userActivity:':
                 name: init
-    INVisualCodeTypeResolutionResult: {} #since 11.0
+    INVisualCodeTypeResolutionResult: #since 11.0
+        methods:
+            '+successWithResolvedVisualCodeType:':
+                name: success
+            '+confirmationRequiredWithVisualCodeTypeToConfirm:':
+                name: confirmationRequired
     INVocabulary: #since 10.0
         methods:
             '-setVocabularyStrings:ofType:':
                 trim_after_first_colon: true
             '-setVocabulary:ofType:':
                 trim_after_first_colon: true
-    INWorkoutGoalUnitTypeResolutionResult: {} #since 10.0
-    INWorkoutLocationTypeResolutionResult: {} #since 10.0
+    INWorkoutGoalUnitTypeResolutionResult: #since 10.0
+        methods:
+            '+successWithResolvedWorkoutGoalUnitType:':
+                name: success
+            '+successWithResolvedValue:':
+                name: successValue
+            '+confirmationRequiredWithWorkoutGoalUnitTypeToConfirm:':
+                name: confirmationRequired
+            '+confirmationRequiredWithValueToConfirm:':
+                name: confirmationRequiredForValue
+    INWorkoutLocationTypeResolutionResult: #since 10.0
+        methods:
+            '+successWithResolvedWorkoutLocationType:':
+                name: success
+            '+successWithResolvedValue:':
+                name: successValue
+            '+confirmationRequiredWithWorkoutLocationTypeToConfirm:':
+                name: confirmationRequired
+            '+confirmationRequiredWithValueToConfirm:':
+                name: confirmationRequiredForValue
     INDailyRoutineRelevanceProvider: #since 12.0
         methods:
             '-initWithSituation:':
@@ -796,6 +1193,8 @@ classes:
         methods:
             '-initWithIdentifier:title:type:artwork:':
                 name: init
+            '-initWithIdentifier:title:type:artwork:artist:':
+                name: init
     INObject: #since 12.0
         methods:
             '-initWithIdentifier:displayString:pronunciationHint:':
@@ -805,6 +1204,9 @@ classes:
     INPlayMediaIntent: #since 12.0
         methods:
             '-initWithMediaItems:mediaContainer:playShuffled:playbackRepeatMode:resumePlayback:':
+                name: init
+            '-initWithMediaItems:mediaContainer:playShuffled:playbackRepeatMode:resumePlayback:playbackQueueLocation:playbackSpeed:mediaSearch:':
+                #trim_after_first_colon: true
                 name: init
     INPlayMediaIntentResponse: #since 12.0
         methods:
@@ -836,7 +1238,350 @@ classes:
                 name: getVoiceShortcut
             '-getAllVoiceShortcutsWithCompletion:':
                 name: getAllVoiceShortcuts
-    INIntentResolutionResult: {} #since 10.0
+    INIntentResolutionResult: #since 10.0
+        methods:
+            '+unsupportedWithReason:':
+                name: unsupported
+            '+confirmationRequiredWithItemToConfirm:forReason:':
+                name: confirmationRequired
+    # ios 13
+    INAddMediaIntent: #since 13.0
+        methods:
+            '-initWithMediaItems:mediaSearch:mediaDestination:':
+                name: init
+    INAddMediaIntentResponse: #since 13.0
+        methods:
+            '-initWithCode:userActivity:':
+                name: init
+    INAddMediaMediaDestinationResolutionResult: #since 13.0
+        methods:
+            '-initWithMediaDestinationResolutionResult:':
+                name: init
+    INAddMediaMediaItemResolutionResult: #since 13.0
+        methods:
+            '-initWithMediaItemResolutionResult:':
+                name: init
+    INAddTasksTargetTaskListResolutionResult: #since 13.0
+        methods:
+            '-initWithTaskListResolutionResult:':
+                name: init
+            '+confirmationRequiredWithTaskListToConfirm:forReason:':
+                name: confirmationRequired
+    INAddTasksTemporalEventTriggerResolutionResult: #since 13.0
+        methods:
+            '-initWithTemporalEventTriggerResolutionResult:':
+                name: init
+    INAirline: #since 13.0
+        methods:
+            '-initWithName:iataCode:icaoCode:':
+                name: init
+    INAirport: #since 13.0
+        methods:
+            '-initWithName:iataCode:icaoCode:':
+                name: init
+    INAirportGate: #since 13.0
+        methods:
+            '-initWithAirport:terminal:gate:':
+                name: init
+    INCallCapabilityResolutionResult: #since 13.0
+        methods:
+            '+successWithResolvedCallCapability:':
+                name: success
+            '+confirmationRequiredWithCallCapabilityToConfirm:':
+                name: confirmationRequired
+    INDeleteTasksIntent: #since 13.0
+        methods:
+            '-initWithTaskList:tasks:all:':
+                name: init
+    INDeleteTasksIntentResponse: #since 13.0
+        methods:
+            '-initWithCode:userActivity:':
+                name: init
+    INDeleteTasksTaskListResolutionResult: #since 13.0
+        methods:
+            '-initWithTaskListResolutionResult:':
+                name: init
+    INDeleteTasksTaskResolutionResult: #since 13.0
+        methods:
+            '-initWithTaskResolutionResult:':
+                name: init
+    INEnergyResolutionResult: #since 13.0
+        methods:
+            '+successWithResolvedEnergy:':
+                name: success
+            '+disambiguationWithEnergyToDisambiguate:':
+                name: disambiguation
+            '+confirmationRequiredWithEnergyToConfirm:':
+                name: confirmationRequired
+    INEnumResolutionResult: #since 13.0
+        methods:
+            '+successWithResolvedValue:':
+                name: success
+            '+confirmationRequiredWithValueToConfirm:':
+                name: confirmationRequired
+    INFile: #since 13.0
+        methods:
+            '+fileWithData:filename:typeIdentifier:':
+                constructor: true
+                name: create
+            '+fileWithFileURL:filename:typeIdentifier:':
+                constructor: true
+                name: create
+    INFileResolutionResult: #since 13.0
+        methods:
+            '+successWithResolvedFile:':
+                name: success
+            '+disambiguationWithFilesToDisambiguate:':
+                name: disambiguation
+            '+confirmationRequiredWithFileToConfirm:':
+                name: confirmationRequired
+    INFlight: #since 13.0
+        methods:
+            '-initWithAirline:flightNumber:boardingTime:flightDuration:departureAirportGate:arrivalAirportGate:':
+                name: init
+    INFlightReservation: #since 13.0
+        methods:
+            '-initWithItemReference:reservationNumber:bookingTime:reservationStatus:reservationHolderName:actions:reservedSeat:flight:':
+                name: init
+    INGetReservationDetailsIntent: #since 13.0
+        methods:
+            '-initWithReservationContainerReference:reservationItemReferences:':
+                name: init
+    INGetReservationDetailsIntentResponse: #since 13.0
+        methods:
+            '-initWithCode:userActivity:':
+                name: init
+    INLengthResolutionResult: #since 13.0
+        methods:
+            '+successWithResolvedLength:':
+                name: success
+            '+disambiguationWithLengthsToDisambiguate:':
+                name: disambiguation
+            '+confirmationRequiredWithLengthToConfirm:':
+                name: confirmationRequired
+    INLodgingReservation: #since 13.0
+        methods:
+            '-initWithItemReference:reservationNumber:bookingTime:reservationStatus:reservationHolderName:actions:lodgingBusinessLocation:reservationDuration:numberOfAdults:numberOfChildren:':
+                name: init
+    INMassResolutionResult: #since 13.0
+        methods:
+            '+successWithResolvedMass:':
+                name: success
+            '+disambiguationWithMassToDisambiguate:':
+                name: disambiguation
+            '+confirmationRequiredWithMassToConfirm:':
+                name: confirmationRequired
+    INMediaAffinityTypeResolutionResult: #since 13.0
+        methods:
+            '+successWithResolvedMediaAffinityType:':
+                name: success
+            '+confirmationRequiredWithMediaAffinityTypeToConfirm:':
+                name: confirmationRequired
+    INMediaDestination: #since 13.0
+        skip_def_constructor: true # in sake of libraryDestination
+        methods:
+            '+libraryDestination':
+                constructor: true
+            '+playlistDestinationWithName:':
+                constructor: true
+                name: playlistDestination
+    INMediaDestinationResolutionResult: #since 13.0
+        methods:
+            '+successWithResolvedMediaDestination:':
+                name: success
+            '+disambiguationWithMediaDestinationsToDisambiguate:':
+                name: disambiguation
+            '+confirmationRequiredWithMediaDestinationToConfirm:':
+                name: confirmationRequired
+    INMediaItemResolutionResult: #since 12.0
+        methods:
+            '+successWithResolvedMediaItem:':
+                name: success
+            '+successesWithResolvedMediaItems:':
+                name: successes
+            '+disambiguationWithMediaItemsToDisambiguate:':
+                name: disambiguation
+            '+confirmationRequiredWithMediaItemToConfirm:':
+                name: confirmationRequired
+    INMediaSearch: #since 13.0
+        methods:
+            '-initWithMediaType:sortOrder:mediaName:artistName:albumName:genreNames:moodNames:releaseDate:reference:mediaIdentifier:':
+                name: init
+            '-initWithMediaType:sortOrder:mediaName:artistName:albumName:genreNames:moodNames:activityNames:releaseDate:reference:mediaIdentifier:':
+                name: init
+    INMediaUserContext: {} #since 13.0
+    INObjectResolutionResult: #since 13.0
+        methods:
+            '+successWithResolvedObject:':
+                name: success
+            '+disambiguationWithObjectsToDisambiguate:':
+                name: disambiguation
+            '+confirmationRequiredWithObjectToConfirm:':
+                name: confirmationRequired
+    INPaymentMethodResolutionResult: #since 13.0
+        methods:
+            '+successWithResolvedPaymentMethod:':
+                name: success
+            '+disambiguationWithPaymentMethodsToDisambiguate:':
+                name: disambiguation
+            '+confirmationRequiredWithPaymentMethodToConfirm:':
+                name: confirmationRequired
+    INPlayMediaMediaItemResolutionResult: #since 13.0
+        methods:
+            '-initWithMediaItemResolutionResult:':
+                name: init
+    INPlayMediaPlaybackSpeedResolutionResult: #since 13.0
+        methods:
+            '-initWithDoubleResolutionResult:':
+                name: init
+    INPlaybackQueueLocationResolutionResult: #since 13.0
+        methods:
+            '+successWithResolvedPlaybackQueueLocation:':
+                name: success
+            '+confirmationRequiredWithPlaybackQueueLocationToConfirm:':
+                name: confirmationRequired
+    INPlaybackRepeatModeResolutionResult: #since 12.0
+        methods:
+            '+successWithResolvedPlaybackRepeatMode:':
+                name: success
+            '+confirmationRequiredWithPlaybackRepeatModeToConfirm:':
+                name: confirmationRequired
+    INRentalCar: #since 13.0
+        methods:
+            '-initWithRentalCompanyName:type:make:model:rentalCarDescription:':
+                name: init
+    INRentalCarReservation: #since 13.0
+        methods:
+            '-initWithItemReference:reservationNumber:bookingTime:reservationStatus:reservationHolderName:actions:rentalCar:rentalDuration:pickupLocation:dropOffLocation:':
+                name: init
+    INReservation: {} #since 13.0
+    INReservationAction: #since 13.0
+        methods:
+            '-initWithType:validDuration:userActivity:':
+                name: init
+    INRestaurantReservation: #since 13.0
+        methods:
+            '-initWithItemReference:reservationNumber:bookingTime:reservationStatus:reservationHolderName:actions:reservationDuration:partySize:restaurantLocation:':
+                name: init
+    INSearchForMediaIntent: #since 13.0
+        methods:
+            '-initWithMediaItems:mediaSearch:':
+                name: init
+    INSearchForMediaIntentResponse: #since 13.0
+        methods:
+            '-initWithCode:userActivity:':
+                name: init
+    INSearchForMediaMediaItemResolutionResult: #since 13.0
+        methods:
+            '-initWithMediaItemResolutionResult:':
+                name: init
+    INSeat: #since 13.0
+        methods:
+            '-initWithSeatSection:seatRow:seatNumber:seatingType:':
+                name: init
+    INSetTaskAttributeTemporalEventTriggerResolutionResult: #since 13.0
+        methods:
+            '-initWithTemporalEventTriggerResolutionResult:':
+                name: init
+    INSnoozeTasksIntent: #since 13.0
+        methods:
+            '-initWithTasks:nextTriggerTime:all:':
+                name: init
+    INSnoozeTasksIntentResponse: #since 13.0
+        methods:
+            '-initWithCode:userActivity:':
+                name: init
+    INSnoozeTasksTaskResolutionResult: #since 13.0
+        methods:
+            '-initWithTaskResolutionResult:':
+                name: init
+    INSpeedResolutionResult: #since 13.0
+        methods:
+            '+successWithResolvedSpeed:':
+                name: success
+            '+disambiguationWithSpeedToDisambiguate:':
+                name: disambiguation
+            '+confirmationRequiredWithSpeedToConfirm:':
+                name: confirmationRequired
+    INStartCallCallCapabilityResolutionResult: #since 13.0
+        methods:
+            '-initWithCallCapabilityResolutionResult:':
+                name: init
+    INStartCallContactResolutionResult: #since 13.0
+        methods:
+            '-initWithPersonResolutionResult:':
+                name: init
+    INStartCallIntent: #since 13.0
+        methods:
+            '-initWithAudioRoute:destinationType:contacts:recordTypeForRedialing:callCapability:':
+                name: init
+    INStartCallIntentResponse: #since 13.0
+        methods:
+            '-initWithCode:userActivity:':
+                name: init
+    INTaskPriorityResolutionResult: #since 13.0
+        methods:
+            '+successWithResolvedTaskPriority:':
+                name: success
+            '+confirmationRequiredWithTaskPriorityToConfirm:':
+                name: confirmationRequired
+    INTemporalEventTriggerTypeOptionsResolutionResult: #since 13.0
+        methods:
+            '+successWithResolvedTemporalEventTriggerTypeOptions:':
+                name: successWith
+            '+confirmationRequiredWithTemporalEventTriggerTypeOptionsToConfirm:':
+                name: confirmationRequire
+    INTicketedEvent: #since 13.0
+        methods:
+            '-initWithCategory:name:eventDuration:location:':
+                name: init
+    INTicketedEventReservation: #since 13.0
+        methods:
+            '-initWithItemReference:reservationNumber:bookingTime:reservationStatus:reservationHolderName:actions:reservedSeat:event:':
+                name: init
+    INTimeIntervalResolutionResult: #since 13.0
+        methods:
+            '+successWithResolvedTimeInterval:':
+                name: success
+            '+confirmationRequiredWithTimeIntervalToConfirm:':
+                name: confirmationRequired
+    INTrainReservation: #since 13.0
+        methods:
+            '-initWithItemReference:reservationNumber:bookingTime:reservationStatus:reservationHolderName:actions:reservedSeat:trainTrip:':
+                name: init
+    INTrainTrip: #since 13.0
+        methods:
+            '-initWithProvider:trainName:trainNumber:tripDuration:departureStationLocation:departurePlatform:arrivalStationLocation:arrivalPlatform:':
+                name: init
+    INURLResolutionResult: #since 13.0
+        methods:
+            '+successWithResolvedURL:':
+                name: success
+            '+disambiguationWithURLsToDisambiguate:':
+                name: disambiguation
+            '+confirmationRequiredWithURLToConfirm:':
+                name: confirmationRequired
+    INUpdateMediaAffinityIntent: #since 13.0
+        methods:
+            '-initWithMediaItems:mediaSearch:affinityType:':
+                name: init
+    INUpdateMediaAffinityIntentResponse: #since 13.0
+        methods:
+            '-initWithCode:userActivity:':
+                name: init
+    INUpdateMediaAffinityMediaItemResolutionResult: #since 13.0
+        methods:
+            '-initWithMediaItemResolutionResult:':
+                name: init
+    INUserContext: {} #since 13.0
+    INVolumeResolutionResult: #since 13.0
+        methods:
+            '+successWithResolvedVolume:':
+                name: success
+            '+disambiguationWithVolumeToDisambiguate:':
+                name: disambiguation
+            '+confirmationRequiredWithVolumeToConfirm:':
+                name: confirmationRequired
 
 protocols:
     INActivateCarSignalIntentHandling: #since 10.3
@@ -862,6 +1607,13 @@ protocols:
             '-resolveSpatialEventTriggerForAddTasks:withCompletion:':
                 trim_after_first_colon: true
             '-resolveTemporalEventTriggerForAddTasks:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveTargetTaskListForAddTasks:completion:':
+                name: resolveTargetTaskList
+            '-resolveTemporalEventTriggerForAddTasks:completion:':
+                name: resolveTemporalEventTrigger
+                trim_after_first_colon: true
+            '-resolvePriorityForAddTasks:withCompletion:':
                 trim_after_first_colon: true
     INAppendToNoteIntentHandling: #since 11.0
         methods:
@@ -1186,6 +1938,10 @@ protocols:
                 trim_after_first_colon: true
             '-resolveDateSearchTypeForSearchForNotebookItems:withCompletion:':
                 trim_after_first_colon: true
+            '-resolveTemporalEventTriggerTypesForSearchForNotebookItems:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveTaskPriorityForSearchForNotebookItems:withCompletion:':
+                trim_after_first_colon: true
     INSearchForPhotosIntentHandling: #since 10.0
         methods:
             '-handleSearchForPhotos:completion:':
@@ -1374,6 +2130,12 @@ protocols:
                 trim_after_first_colon: true
             '-resolveTemporalEventTriggerForSetTaskAttribute:withCompletion:':
                 trim_after_first_colon: true
+            '-resolveTaskTitleForSetTaskAttribute:withCompletion:':
+                trim_after_first_colon: true
+            '-resolvePriorityForSetTaskAttribute:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveTemporalEventTriggerForSetTaskAttribute:completion:':
+                name: resolveTemporalEventTrigger
     INSpeakable: {}
     INStartAudioCallIntentHandling: #since 10.0
         methods:
@@ -1447,6 +2209,79 @@ protocols:
                 trim_after_first_colon: true
             '-confirmPlayMedia:completion:':
                 trim_after_first_colon: true
+            '-resolveMediaItemsForPlayMedia:withCompletion:':
+                trim_after_first_colon: true
+            '-resolvePlayShuffledForPlayMedia:withCompletion:':
+                trim_after_first_colon: true
+            '-resolvePlaybackRepeatModeForPlayMedia:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveResumePlaybackForPlayMedia:withCompletion:':
+                trim_after_first_colon: true
+            '-resolvePlaybackQueueLocationForPlayMedia:withCompletion:':
+                trim_after_first_colon: true
+            '-resolvePlaybackSpeedForPlayMedia:withCompletion:':
+                trim_after_first_colon: true
+    # ios13
+    INAddMediaIntentHandling: #since 13.0
+        methods:
+            '-handleAddMedia:completion:':
+                name: handleAddMedia
+            '-confirmAddMedia:completion:':
+                name: confirmAddMedia
+            '-resolveMediaItemsForAddMedia:withCompletion:':
+                name: resolveMediaItems
+            '-resolveMediaDestinationForAddMedia:withCompletion:':
+                name: resolveMediaDestination
+    INDeleteTasksIntentHandling: #since 13.0
+        methods:
+            '-handleDeleteTasks:completion:':
+                name: handleDeleteTasks
+            '-confirmDeleteTasks:completion:':
+                name: confirmDeleteTasks
+            '-resolveTaskListForDeleteTasks:withCompletion:':
+                name: resolveTaskList
+            '-resolveTasksForDeleteTasks:withCompletion:':
+                name: resolveTasks
+    INSearchForMediaIntentHandling: #since 13.0
+        methods:
+            '-handleSearchForMedia:completion:':
+                name: handleSearch
+            '-confirmSearchForMedia:completion:':
+                name: confirmSearch
+            '-resolveMediaItemsForSearchForMedia:withCompletion:':
+                name: resolveMediaItems
+    INSnoozeTasksIntentHandling: #since 13.0
+        methods:
+            '-handleSnoozeTasks:completion:':
+                name: handleSnoozeTasks
+            '-confirmSnoozeTasks:completion:':
+                name: confirmSnoozeTasks
+            '-resolveTasksForSnoozeTasks:withCompletion:':
+                name: resolveTasks
+            '-resolveNextTriggerTimeForSnoozeTasks:withCompletion:':
+                name: resolveNextTriggerTime
+    INStartCallIntentHandling: #since 13.0
+        methods:
+            '-handleStartCall:completion:':
+                name: handleStartCall
+            '-confirmStartCall:completion:':
+                name: confirmStartCall
+            '-resolveDestinationTypeForStartCall:withCompletion:':
+                name: resolveDestinationType
+            '-resolveContactsForStartCall:withCompletion:':
+                name: resolveContacts
+            '-resolveCallCapabilityForStartCall:withCompletion:':
+                name: resolveCallCapability
+    INUpdateMediaAffinityIntentHandling: #since 13.0
+        methods:
+            '-handleUpdateMediaAffinity:completion:':
+                name: handleUpdate
+            '-confirmUpdateMediaAffinity:completion:':
+                name: confirmUpdate
+            '-resolveMediaItemsForUpdateMediaAffinity:withCompletion:':
+                name: resolveMediaItems
+            '-resolveAffinityTypeForUpdateMediaAffinity:withCompletion:':
+                name: resolveAffinityType
 
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version

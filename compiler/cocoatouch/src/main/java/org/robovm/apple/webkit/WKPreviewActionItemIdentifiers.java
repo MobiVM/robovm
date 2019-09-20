@@ -50,22 +50,30 @@ import org.robovm.apple.security.*;
     /*<methods>*/
     /**
      * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 13.0. This API will be replaced
      */
+    @Deprecated
     @GlobalValue(symbol="WKPreviewActionItemIdentifierOpen", optional=true)
     public static native String Open();
     /**
      * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 13.0. This API will be replaced
      */
+    @Deprecated
     @GlobalValue(symbol="WKPreviewActionItemIdentifierAddToReadingList", optional=true)
     public static native String AddToReadingList();
     /**
      * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 13.0. This API will be replaced
      */
+    @Deprecated
     @GlobalValue(symbol="WKPreviewActionItemIdentifierCopy", optional=true)
     public static native String Copy();
     /**
      * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 13.0. This API will be replaced
      */
+    @Deprecated
     @GlobalValue(symbol="WKPreviewActionItemIdentifierShare", optional=true)
     public static native String Share();
     /*</methods>*/

@@ -97,65 +97,20 @@ import org.robovm.apple.audiotoolbox.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMetadataKey3GPUserData Copyright = new AVMetadataKey3GPUserData("Copyright");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMetadataKey3GPUserData Author = new AVMetadataKey3GPUserData("Author");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMetadataKey3GPUserData Performer = new AVMetadataKey3GPUserData("Performer");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMetadataKey3GPUserData Genre = new AVMetadataKey3GPUserData("Genre");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMetadataKey3GPUserData RecordingYear = new AVMetadataKey3GPUserData("RecordingYear");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMetadataKey3GPUserData Location = new AVMetadataKey3GPUserData("Location");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMetadataKey3GPUserData Title = new AVMetadataKey3GPUserData("Title");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMetadataKey3GPUserData Description = new AVMetadataKey3GPUserData("Description");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final AVMetadataKey3GPUserData Collection = new AVMetadataKey3GPUserData("Collection");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final AVMetadataKey3GPUserData UserRating = new AVMetadataKey3GPUserData("UserRating");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final AVMetadataKey3GPUserData Thumbnail = new AVMetadataKey3GPUserData("Thumbnail");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final AVMetadataKey3GPUserData AlbumAndTrack = new AVMetadataKey3GPUserData("AlbumAndTrack");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final AVMetadataKey3GPUserData KeywordList = new AVMetadataKey3GPUserData("KeywordList");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final AVMetadataKey3GPUserData MediaClassification = new AVMetadataKey3GPUserData("MediaClassification");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final AVMetadataKey3GPUserData MediaRating = new AVMetadataKey3GPUserData("MediaRating");
     /*</constants>*/
     
@@ -182,79 +137,34 @@ import org.robovm.apple.audiotoolbox.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMetadata3GPUserDataKeyCopyright", optional=true)
         public static native NSString Copyright();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMetadata3GPUserDataKeyAuthor", optional=true)
         public static native NSString Author();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMetadata3GPUserDataKeyPerformer", optional=true)
         public static native NSString Performer();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMetadata3GPUserDataKeyGenre", optional=true)
         public static native NSString Genre();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMetadata3GPUserDataKeyRecordingYear", optional=true)
         public static native NSString RecordingYear();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMetadata3GPUserDataKeyLocation", optional=true)
         public static native NSString Location();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMetadata3GPUserDataKeyTitle", optional=true)
         public static native NSString Title();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMetadata3GPUserDataKeyDescription", optional=true)
         public static native NSString Description();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="AVMetadata3GPUserDataKeyCollection", optional=true)
         public static native NSString Collection();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="AVMetadata3GPUserDataKeyUserRating", optional=true)
         public static native NSString UserRating();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="AVMetadata3GPUserDataKeyThumbnail", optional=true)
         public static native NSString Thumbnail();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="AVMetadata3GPUserDataKeyAlbumAndTrack", optional=true)
         public static native NSString AlbumAndTrack();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="AVMetadata3GPUserDataKeyKeywordList", optional=true)
         public static native NSString KeywordList();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="AVMetadata3GPUserDataKeyMediaClassification", optional=true)
         public static native NSString MediaClassification();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="AVMetadata3GPUserDataKeyMediaRating", optional=true)
         public static native NSString MediaRating();
         /*</values>*/

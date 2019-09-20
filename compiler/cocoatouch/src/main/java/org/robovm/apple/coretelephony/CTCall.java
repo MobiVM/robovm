@@ -32,9 +32,7 @@ import org.robovm.apple.corefoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreTelephony") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CTCall/*</name>*/ 
@@ -51,14 +49,12 @@ import org.robovm.apple.corefoundation.*;
     /*</constructors>*/
     /*<properties>*/
     /**
-     * @since Available in iOS 4.0 and later.
      * @deprecated Deprecated in iOS 10.0. Replaced by <CallKit/CXCall.h> properties
      */
     @Deprecated
     @Property(selector = "callState")
     public native CTCallState getCallState();
     /**
-     * @since Available in iOS 4.0 and later.
      * @deprecated Deprecated in iOS 10.0. Replaced by <CallKit/CXCall.h> properties
      */
     @Deprecated

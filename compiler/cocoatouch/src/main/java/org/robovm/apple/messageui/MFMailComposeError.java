@@ -60,9 +60,6 @@ import org.robovm.apple.messages.*;
         return code;
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @GlobalValue(symbol="MFMailComposeErrorDomain", optional=true)
     public static native String getClassDomain();
     /*</methods>*/

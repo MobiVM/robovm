@@ -52,7 +52,7 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "initWithPartySizeRange:sizeDescription:priceRange:")
     public INRidePartySizeOption(@ByVal NSRange partySizeRange, String sizeDescription, INPriceRange priceRange) { super((SkipInit) null); initObject(init(partySizeRange, sizeDescription, priceRange)); }
     @Method(selector = "initWithCoder:")
-    public INRidePartySizeOption(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public INRidePartySizeOption(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "partySizeRange")
@@ -71,6 +71,6 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

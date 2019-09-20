@@ -37,12 +37,12 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 3.2 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIGestureRecognizer/*</name>*/ 
@@ -117,6 +117,8 @@ import org.robovm.apple.intents.*;
     protected UIGestureRecognizer(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithTarget:action:")
     public UIGestureRecognizer(NSObject target, Selector action) { super((SkipInit) null); initObject(init(target, action)); }
+    @Method(selector = "initWithCoder:")
+    public UIGestureRecognizer(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "state")
@@ -192,6 +194,8 @@ import org.robovm.apple.intents.*;
     /*<methods>*/
     @Method(selector = "initWithTarget:action:")
     protected native @Pointer long init(NSObject target, Selector action);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder coder);
     @Method(selector = "addTarget:action:")
     public native void addTarget(NSObject target, Selector action);
     @Method(selector = "removeTarget:action:")
@@ -215,14 +219,8 @@ import org.robovm.apple.intents.*;
     public native boolean canPreventGestureRecognizer(UIGestureRecognizer preventedGestureRecognizer);
     @Method(selector = "canBePreventedByGestureRecognizer:")
     public native boolean canBePreventedByGestureRecognizer(UIGestureRecognizer preventingGestureRecognizer);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "shouldRequireFailureOfGestureRecognizer:")
     public native boolean shouldRequireFailureOfGestureRecognizer(UIGestureRecognizer otherGestureRecognizer);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "shouldBeRequiredToFailByGestureRecognizer:")
     public native boolean shouldBeRequiredToFailByGestureRecognizer(UIGestureRecognizer otherGestureRecognizer);
     @Method(selector = "touchesBegan:withEvent:")

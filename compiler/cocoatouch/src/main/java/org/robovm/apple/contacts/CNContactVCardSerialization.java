@@ -54,7 +54,7 @@ import org.robovm.apple.foundation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "descriptorForRequiredKeys")
-    public static native String getDescriptorForRequiredKeys();
+    public static native NSObject getDescriptorForRequiredKeys();
     public static NSData convertContactsToData(NSArray<CNContact> contacts) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        NSData result = convertContactsToData(contacts, ptr);

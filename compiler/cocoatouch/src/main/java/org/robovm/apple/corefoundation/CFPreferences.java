@@ -161,7 +161,6 @@ import org.robovm.apple.coretext.*;
     @Bridge(symbol="CFPreferencesSynchronize", optional=true)
     protected static native boolean synchronize(String applicationID, String userName, String hostName);
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 7.0. Unsupported API
      */
     @Deprecated

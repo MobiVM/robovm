@@ -32,9 +32,7 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("Metal") @NativeProtocolProxy/*</annotations>*/
 /*<visibility>*/public final/*</visibility>*/ class /*<name>*/MTLBlitCommandEncoder/*</name>*/ 
@@ -77,6 +75,16 @@ import org.robovm.apple.dispatch.*;
     public native void generateMipmapsForTexture(MTLTexture texture);
     @Method(selector = "fillBuffer:range:value:")
     public native void fillBuffer(MTLBuffer buffer, @ByVal NSRange range, byte value);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "copyFromTexture:sourceSlice:sourceLevel:toTexture:destinationSlice:destinationLevel:sliceCount:levelCount:")
+    public native void copyFromTextureToTexture(MTLTexture sourceTexture, @MachineSizedUInt long sourceSlice, @MachineSizedUInt long sourceLevel, MTLTexture destinationTexture, @MachineSizedUInt long destinationSlice, @MachineSizedUInt long destinationLevel, @MachineSizedUInt long sliceCount, @MachineSizedUInt long levelCount);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "copyFromTexture:toTexture:")
+    public native void copyFromTextureToTexture(MTLTexture sourceTexture, MTLTexture destinationTexture);
     @Method(selector = "copyFromBuffer:sourceOffset:toBuffer:destinationOffset:size:")
     public native void copyFromBufferToBuffer(MTLBuffer sourceBuffer, @MachineSizedUInt long sourceOffset, MTLBuffer destinationBuffer, @MachineSizedUInt long destinationOffset, @MachineSizedUInt long size);
     /**
@@ -89,6 +97,16 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "waitForFence:")
     public native void waitForFence(MTLFence fence);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "getTextureAccessCounters:region:mipLevel:slice:resetCounters:countersBuffer:countersBufferOffset:")
+    public native void getTextureAccessCounters(MTLTexture texture, @ByVal MTLRegion region, @MachineSizedUInt long mipLevel, @MachineSizedUInt long slice, boolean resetCounters, MTLBuffer countersBuffer, @MachineSizedUInt long countersBufferOffset);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "resetTextureAccessCounters:region:mipLevel:slice:")
+    public native void resetTextureAccessCounters(MTLTexture texture, @ByVal MTLRegion region, @MachineSizedUInt long mipLevel, @MachineSizedUInt long slice);
     /**
      * @since Available in iOS 12.0 and later.
      */

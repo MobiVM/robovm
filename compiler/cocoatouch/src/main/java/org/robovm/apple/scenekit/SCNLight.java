@@ -45,7 +45,7 @@ import org.robovm.apple.avfoundation.*;
 /*<annotations>*/@Library("SceneKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SCNLight/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements SCNAnimatable, SCNTechniqueSupport, NSSecureCoding/*</implements>*/ {
+    /*<implements>*/implements SCNAnimatable, NSSecureCoding, SCNTechniqueSupport/*</implements>*/ {
 
     /*<ptr>*/public static class SCNLightPtr extends Ptr<SCNLight, SCNLightPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(SCNLight.class); }/*</bind>*/
@@ -55,7 +55,7 @@ import org.robovm.apple.avfoundation.*;
     protected SCNLight(Handle h, long handle) { super(h, handle); }
     protected SCNLight(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public SCNLight(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public SCNLight(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "type")
@@ -225,6 +225,131 @@ import org.robovm.apple.avfoundation.*;
      */
     @Property(selector = "sphericalHarmonicsCoefficients")
     public native NSData getSphericalHarmonicsCoefficients();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "probeType")
+    public native SCNLightProbeType getProbeType();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setProbeType:")
+    public native void setProbeType(SCNLightProbeType v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "probeUpdateType")
+    public native SCNLightProbeUpdateType getProbeUpdateType();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setProbeUpdateType:")
+    public native void setProbeUpdateType(SCNLightProbeUpdateType v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "probeExtents")
+    public native @ByVal VectorFloat3 getProbeExtents();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setProbeExtents:")
+    public native void setProbeExtents(@ByVal VectorFloat3 v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "probeOffset")
+    public native @ByVal VectorFloat3 getProbeOffset();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setProbeOffset:")
+    public native void setProbeOffset(@ByVal VectorFloat3 v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "parallaxCorrectionEnabled")
+    public native boolean isParallaxCorrectionEnabled();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setParallaxCorrectionEnabled:")
+    public native void setParallaxCorrectionEnabled(boolean v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "parallaxExtentsFactor")
+    public native @ByVal VectorFloat3 getParallaxExtentsFactor();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setParallaxExtentsFactor:")
+    public native void setParallaxExtentsFactor(@ByVal VectorFloat3 v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "parallaxCenterOffset")
+    public native @ByVal VectorFloat3 getParallaxCenterOffset();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setParallaxCenterOffset:")
+    public native void setParallaxCenterOffset(@ByVal VectorFloat3 v);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "probeEnvironment")
+    public native SCNMaterialProperty getProbeEnvironment();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "areaType")
+    public native SCNLightAreaType getAreaType();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setAreaType:")
+    public native void setAreaType(SCNLightAreaType v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "areaExtents")
+    public native @ByVal VectorFloat3 getAreaExtents();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setAreaExtents:")
+    public native void setAreaExtents(@ByVal VectorFloat3 v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "areaPolygonVertices")
+    public native NSArray<NSValue> getAreaPolygonVertices();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setAreaPolygonVertices:")
+    public native void setAreaPolygonVertices(NSArray<NSValue> v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "drawsArea")
+    public native boolean drawsArea();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setDrawsArea:")
+    public native void setDrawsArea(boolean v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "doubleSided")
+    public native boolean isDoubleSided();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setDoubleSided:")
+    public native void setDoubleSided(boolean v);
     @Property(selector = "gobo")
     public native SCNMaterialProperty getGobo();
     @Property(selector = "categoryBitMask")
@@ -233,12 +358,12 @@ import org.robovm.apple.avfoundation.*;
     public native void setCategoryBitMask(@MachineSizedUInt long v);
     @Property(selector = "animationKeys")
     public native NSArray<NSString> getAnimationKeys();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     @Property(selector = "technique")
     public native SCNTechnique getTechnique();
     @Property(selector = "setTechnique:")
     public native void setTechnique(SCNTechnique v);
-    @Property(selector = "supportsSecureCoding")
-    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -266,28 +391,24 @@ import org.robovm.apple.avfoundation.*;
     @Method(selector = "removeAnimationForKey:blendOutDuration:")
     public native void removeAnimationForKey(String key, @MachineSizedFloat double duration);
     /**
-     * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use -removeAnimationForKey:blendOutDuration:
      */
     @Deprecated
     @Method(selector = "removeAnimationForKey:fadeOutDuration:")
     public native void removeAnimation(String key, @MachineSizedFloat double duration);
     /**
-     * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use -animationPlayerForKey:
      */
     @Deprecated
     @Method(selector = "animationForKey:")
     public native CAAnimation getAnimation(String key);
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 11.0. Use -[SCNAnimationPlayer setPaused:] instead
      */
     @Deprecated
     @Method(selector = "pauseAnimationForKey:")
     public native void pauseAnimation(String key);
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 11.0. Use -[SCNAnimationPlayer setPaused:] instead
      */
     @Deprecated
@@ -301,7 +422,6 @@ import org.robovm.apple.avfoundation.*;
     @Method(selector = "setSpeed:forAnimationKey:")
     public native void setSpeed(@MachineSizedFloat double speed, String key);
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 11.0. Use -[SCNAnimationPlayer paused] instead
      */
     @Deprecated
@@ -310,6 +430,6 @@ import org.robovm.apple.avfoundation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

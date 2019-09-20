@@ -36,12 +36,11 @@ import org.robovm.apple.imageio.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.metal.*;
 import org.robovm.apple.iosurface.*;
+import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 5.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreImage") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CIFilter/*</name>*/ 
@@ -55,9 +54,6 @@ import org.robovm.apple.iosurface.*;
     protected CIFilter(Handle h, long handle) { super(h, handle); }
     protected CIFilter(SkipInit skipInit) { super(skipInit); }
     public CIFilter(String name) { super((Handle) null, create(name)); retain(getHandle()); }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public CIFilter(String name, CIFilterInputParameters params) { super((Handle) null, create(name, params)); retain(getHandle()); }
     /**
      * @since Available in iOS 10.0 and later.
@@ -72,13 +68,10 @@ import org.robovm.apple.iosurface.*;
      */
     public CIFilter(CVPixelBuffer pixelBuffer, NSDictionary<?, ?> properties, CIRAWFilterOptions options) { super((Handle) null, create(pixelBuffer, properties, options)); retain(getHandle()); }
     @Method(selector = "initWithCoder:")
-    public CIFilter(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public CIFilter(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     public CIFilter(String name, Object...inputParameters) {super((Handle) null, create(name, inputParameters)); retain(getHandle()); }
     /*<properties>*/
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "outputImage")
     public native CIImage getOutputImage();
     @Property(selector = "name")
@@ -173,9 +166,6 @@ import org.robovm.apple.iosurface.*;
     public native void setDefaults();
     @Method(selector = "filterWithName:")
     protected static native @Pointer long create(String name);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "filterWithName:withInputParameters:")
     protected static native @Pointer long create(String name, CIFilterInputParameters params);
     @Method(selector = "filterNamesInCategory:")
@@ -207,23 +197,14 @@ import org.robovm.apple.iosurface.*;
      */
     @Method(selector = "localizedReferenceDocumentationForFilterName:")
     public static native NSURL localizedReferenceDocumentationForFilterName(String filterName);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "serializedXMPFromFilters:inputImageExtent:")
     public static native NSData serializeToXMP(NSArray<CIFilter> filters, @ByVal CGRect extent);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public static NSArray<CIFilter> deserializeFromXMP(NSData xmpData, @ByVal CGRect extent) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        NSArray<CIFilter> result = deserializeFromXMP(xmpData, extent, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        return result;
     }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "filterArrayFromSerializedXMP:inputImageExtent:error:")
     private static native NSArray<CIFilter> deserializeFromXMP(NSData xmpData, @ByVal CGRect extent, NSError.NSErrorPtr outError);
     /**
@@ -241,9 +222,14 @@ import org.robovm.apple.iosurface.*;
      */
     @Method(selector = "filterWithCVPixelBuffer:properties:options:")
     protected static native @Pointer long create(CVPixelBuffer pixelBuffer, NSDictionary<?, ?> properties, CIRAWFilterOptions options);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "supportedRawCameraModels")
+    public static native NSArray<NSString> supportedRawCameraModels();
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

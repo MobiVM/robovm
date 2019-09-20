@@ -50,59 +50,26 @@ import org.robovm.rt.bro.ptr.*;
     /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="dispatch_io_create", optional=true)
     public static native DispatchIO create(@MachineSizedUInt long type, int fd, DispatchQueue queue, @Block VoidBlock1<Integer> cleanup_handler);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="dispatch_io_create_with_path", optional=true)
     public static native DispatchIO create(@MachineSizedUInt long type, @org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsUtf8ZMarshaler.class) String path, int oflag, short mode, DispatchQueue queue, @Block VoidBlock1<Integer> cleanup_handler);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="dispatch_io_create_with_io", optional=true)
     public static native DispatchIO create(@MachineSizedUInt long type, DispatchIO io, DispatchQueue queue, @Block VoidBlock1<Integer> cleanup_handler);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="dispatch_io_read", optional=true)
     public native void read(long offset, @MachineSizedUInt long length, DispatchQueue queue, @Block VoidBlock3<Boolean, DispatchData, Integer> io_handler);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="dispatch_io_write", optional=true)
     public native void write(long offset, DispatchData data, DispatchQueue queue, @Block VoidBlock3<Boolean, DispatchData, Integer> io_handler);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="dispatch_io_close", optional=true)
     public native void close(@MachineSizedUInt long flags);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="dispatch_io_barrier", optional=true)
     public native void barrier(@Block Runnable barrier);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="dispatch_io_get_descriptor", optional=true)
     public native int getDescriptor();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="dispatch_io_set_high_water", optional=true)
     public native void setHighWater(@MachineSizedUInt long high_water);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="dispatch_io_set_low_water", optional=true)
     public native void setLowWater(@MachineSizedUInt long low_water);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="dispatch_io_set_interval", optional=true)
     public native void setInterval(long interval, @MachineSizedUInt long flags);
     /*</methods>*/

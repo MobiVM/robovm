@@ -34,9 +34,7 @@ import org.robovm.apple.contacts.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreLocation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CLVisit/*</name>*/ 
@@ -51,7 +49,7 @@ import org.robovm.apple.contacts.*;
     protected CLVisit(Handle h, long handle) { super(h, handle); }
     protected CLVisit(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public CLVisit(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public CLVisit(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "arrivalDate")
@@ -70,6 +68,6 @@ import org.robovm.apple.contacts.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

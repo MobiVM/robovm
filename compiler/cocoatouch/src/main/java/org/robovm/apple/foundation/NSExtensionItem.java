@@ -39,9 +39,7 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSExtensionItem/*</name>*/ 
@@ -56,7 +54,7 @@ import org.robovm.apple.dispatch.*;
     protected NSExtensionItem(Handle h, long handle) { super(h, handle); }
     protected NSExtensionItem(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public NSExtensionItem(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public NSExtensionItem(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "attributedTitle")
@@ -80,25 +78,16 @@ import org.robovm.apple.dispatch.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @GlobalValue(symbol="NSExtensionItemAttributedTitleKey", optional=true)
     public static native String AttributedTitleKey();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @GlobalValue(symbol="NSExtensionItemAttributedContentTextKey", optional=true)
     public static native String AttributedContentTextKey();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @GlobalValue(symbol="NSExtensionItemAttachmentsKey", optional=true)
     public static native String AttachmentsKey();
     
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

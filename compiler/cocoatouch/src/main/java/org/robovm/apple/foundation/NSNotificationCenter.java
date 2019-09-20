@@ -102,9 +102,6 @@ import org.robovm.apple.dispatch.*;
     public native void removeObserver(NSObject observer);
     @Method(selector = "removeObserver:name:object:")
     public native void removeObserver(NSObject observer, NSString name, NSObject anObject);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "addObserverForName:object:queue:usingBlock:")
     public native NSObject addObserver(NSString name, NSObject obj, NSOperationQueue queue, @Block VoidBlock1<NSNotification> block);
     /*</methods>*/

@@ -71,6 +71,16 @@ import org.robovm.apple.security.*;
      */
     @Bridge(symbol="nw_advertise_descriptor_get_no_auto_rename", optional=true)
     public native boolean getNoAutoRename();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="nw_advertise_descriptor_set_txt_record_object", optional=true)
+    public native void setTxtRecordObject(NWTxtRecord txt_record);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="nw_advertise_descriptor_copy_txt_record_object", optional=true)
+    public native NWTxtRecord copyTxtRecordObject();
     
     
     /*</methods>*/

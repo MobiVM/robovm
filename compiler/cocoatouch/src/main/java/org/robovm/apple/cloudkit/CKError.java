@@ -110,9 +110,6 @@ import org.robovm.apple.fileprovider.*;
         return -1;
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @GlobalValue(symbol="CKErrorDomain", optional=true)
     public static native String getClassDomain();
     /*</methods>*/

@@ -51,7 +51,7 @@ import org.robovm.apple.uikit.*;
     protected GKPolygonObstacle(Handle h, long handle) { super(h, handle); }
     protected GKPolygonObstacle(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public GKPolygonObstacle(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public GKPolygonObstacle(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     public GKPolygonObstacle(VectorFloat2[] points) {
         super((SkipInit) null);
@@ -74,6 +74,6 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

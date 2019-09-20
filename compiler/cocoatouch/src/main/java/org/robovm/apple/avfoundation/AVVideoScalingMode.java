@@ -97,21 +97,9 @@ import org.robovm.apple.audiotoolbox.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final AVVideoScalingMode Fit = new AVVideoScalingMode("Fit");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final AVVideoScalingMode Resize = new AVVideoScalingMode("Resize");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final AVVideoScalingMode ResizeAspect = new AVVideoScalingMode("ResizeAspect");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final AVVideoScalingMode ResizeAspectFill = new AVVideoScalingMode("ResizeAspectFill");
     /*</constants>*/
     
@@ -138,24 +126,12 @@ import org.robovm.apple.audiotoolbox.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="AVVideoScalingModeFit", optional=true)
         public static native NSString Fit();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="AVVideoScalingModeResize", optional=true)
         public static native NSString Resize();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="AVVideoScalingModeResizeAspect", optional=true)
         public static native NSString ResizeAspect();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="AVVideoScalingModeResizeAspectFill", optional=true)
         public static native NSString ResizeAspectFill();
         /*</values>*/

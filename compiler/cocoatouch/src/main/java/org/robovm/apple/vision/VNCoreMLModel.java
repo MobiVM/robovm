@@ -63,7 +63,26 @@ import org.robovm.apple.imageio.*;
     }
     /*</constructors>*/
     /*<properties>*/
-    
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "inputImageFeatureName")
+    public native String getInputImageFeatureName();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setInputImageFeatureName:")
+    public native void setInputImageFeatureName(String v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "featureProvider")
+    public native MLFeatureProvider getFeatureProvider();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setFeatureProvider:")
+    public native void setFeatureProvider(MLFeatureProvider v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

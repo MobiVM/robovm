@@ -34,9 +34,7 @@ import org.robovm.apple.fileprovider.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("CloudKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CKSubscription/*</name>*/ 
@@ -51,35 +49,30 @@ import org.robovm.apple.fileprovider.*;
     protected CKSubscription(Handle h, long handle) { super(h, handle); }
     protected CKSubscription(SkipInit skipInit) { super(skipInit); }
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 10.0. Init the appropriate CKSubscription subclass
      */
     @Deprecated
     @Method(selector = "initWithCoder:")
     public CKSubscription(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 10.0. Use CKQuerySubscription instead
      */
     @Deprecated
     @Method(selector = "initWithRecordType:predicate:options:")
     public CKSubscription(String recordType, NSPredicate predicate, CKSubscriptionOptions subscriptionOptions) { super((SkipInit) null); initObject(init(recordType, predicate, subscriptionOptions)); }
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 10.0. Use CKQuerySubscription instead
      */
     @Deprecated
     @Method(selector = "initWithRecordType:predicate:subscriptionID:options:")
     public CKSubscription(String recordType, NSPredicate predicate, String subscriptionID, CKSubscriptionOptions subscriptionOptions) { super((SkipInit) null); initObject(init(recordType, predicate, subscriptionID, subscriptionOptions)); }
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 10.0. Use CKRecordZoneSubscription instead
      */
     @Deprecated
     @Method(selector = "initWithZoneID:options:")
     public CKSubscription(CKRecordZoneID zoneID, CKSubscriptionOptions subscriptionOptions) { super((SkipInit) null); initObject(init(zoneID, subscriptionOptions)); }
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 10.0. Use CKRecordZoneSubscription instead
      */
     @Deprecated
@@ -96,35 +89,30 @@ import org.robovm.apple.fileprovider.*;
     @Property(selector = "setNotificationInfo:")
     public native void setNotificationInfo(CKNotificationInfo v);
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 10.0. Use CKQuerySubscription instead
      */
     @Deprecated
     @Property(selector = "recordType")
     public native String getRecordType();
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 10.0. Use CKQuerySubscription instead
      */
     @Deprecated
     @Property(selector = "predicate")
     public native NSPredicate getPredicate();
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 10.0. Use CKQuerySubscriptionOptions instead
      */
     @Deprecated
     @Property(selector = "subscriptionOptions")
     public native CKSubscriptionOptions getSubscriptionOptions();
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 10.0. Use CKRecordZoneSubscription instead
      */
     @Deprecated
     @Property(selector = "zoneID")
     public native CKRecordZoneID getZoneID();
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 10.0. Use CKRecordZoneSubscription instead
      */
     @Deprecated
@@ -136,35 +124,30 @@ import org.robovm.apple.fileprovider.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 10.0. Init the appropriate CKSubscription subclass
      */
     @Deprecated
     @Method(selector = "initWithCoder:")
     protected native @Pointer long init(NSCoder aDecoder);
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 10.0. Use CKQuerySubscription instead
      */
     @Deprecated
     @Method(selector = "initWithRecordType:predicate:options:")
     protected native @Pointer long init(String recordType, NSPredicate predicate, CKSubscriptionOptions subscriptionOptions);
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 10.0. Use CKQuerySubscription instead
      */
     @Deprecated
     @Method(selector = "initWithRecordType:predicate:subscriptionID:options:")
     protected native @Pointer long init(String recordType, NSPredicate predicate, String subscriptionID, CKSubscriptionOptions subscriptionOptions);
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 10.0. Use CKRecordZoneSubscription instead
      */
     @Deprecated
     @Method(selector = "initWithZoneID:options:")
     protected native @Pointer long init(CKRecordZoneID zoneID, CKSubscriptionOptions subscriptionOptions);
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 10.0. Use CKRecordZoneSubscription instead
      */
     @Deprecated

@@ -87,17 +87,8 @@ import org.robovm.apple.foundation.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final HKCharacteristicTypeIdentifier BiologicalSex = new HKCharacteristicTypeIdentifier("BiologicalSex");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final HKCharacteristicTypeIdentifier BloodType = new HKCharacteristicTypeIdentifier("BloodType");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final HKCharacteristicTypeIdentifier DateOfBirth = new HKCharacteristicTypeIdentifier("DateOfBirth");
     /**
      * @since Available in iOS 9.0 and later.
@@ -132,19 +123,10 @@ import org.robovm.apple.foundation.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="HKCharacteristicTypeIdentifierBiologicalSex", optional=true)
         public static native NSString BiologicalSex();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="HKCharacteristicTypeIdentifierBloodType", optional=true)
         public static native NSString BloodType();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="HKCharacteristicTypeIdentifierDateOfBirth", optional=true)
         public static native NSString DateOfBirth();
         /**

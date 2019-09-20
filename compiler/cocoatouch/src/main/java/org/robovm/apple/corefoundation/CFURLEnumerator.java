@@ -51,43 +51,22 @@ import org.robovm.apple.coretext.*;
     /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CFURLEnumeratorGetTypeID", optional=true)
     public static native @MachineSizedUInt long getClassTypeID();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CFURLEnumeratorCreateForDirectoryURL", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CFURLEnumerator createForDirectoryURL(CFAllocator alloc, CFURL directoryURL, CFURLEnumeratorOptions option, CFArray propertyKeys);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CFURLEnumeratorCreateForMountedVolumes", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CFURLEnumerator createForMountedVolumes(CFAllocator alloc, CFURLEnumeratorOptions option, CFArray propertyKeys);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CFURLEnumeratorResult getNextURL(CFURL.CFURLPtr url) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        CFURLEnumeratorResult result = getNextURL(url, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        return result;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CFURLEnumeratorGetNextURL", optional=true)
     private native CFURLEnumeratorResult getNextURL(CFURL.CFURLPtr url, NSError.NSErrorPtr error);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CFURLEnumeratorSkipDescendents", optional=true)
     public native void skipDescendents();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CFURLEnumeratorGetDescendentLevel", optional=true)
     public native @MachineSizedSInt long getDescendentLevel();
     /*</methods>*/

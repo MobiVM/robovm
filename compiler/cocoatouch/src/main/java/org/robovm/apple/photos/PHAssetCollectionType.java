@@ -38,15 +38,17 @@ import org.robovm.apple.imageio.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/PHAssetCollectionType/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Album(1L),
     SmartAlbum(2L),
+    /**
+     * @deprecated Deprecated in iOS 13.0. Will be removed in a future release
+     */
+    @Deprecated
     Moment(3L);
     /*</values>*/
 

@@ -162,6 +162,16 @@ import org.robovm.apple.security.*;
      */
     @Bridge(symbol="nw_connection_get_maximum_datagram_size", optional=true)
     public native int getMaximumDatagramSize();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="nw_connection_access_establishment_report", optional=true)
+    public native void accessEstablishmentReport(DispatchQueue queue, @Block VoidBlock1<NWEstablishmentReport> access_block);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="nw_connection_create_new_data_transfer_report", optional=true)
+    public native NWDataTransferReport createNewDataTransferReport();
     
     
     /*</methods>*/

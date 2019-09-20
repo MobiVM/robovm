@@ -38,15 +38,55 @@ import org.robovm.apple.dispatch.*;
 /*<annotations>*//*</annotations>*/
 public enum /*<name>*/SSLSessionOption/*</name>*/ implements ValuedEnum {
     /*<values>*/
+    /**
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
     BreakOnServerAuth(0L),
+    /**
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
     BreakOnCertRequested(1L),
+    /**
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
     BreakOnClientAuth(2L),
+    /**
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
     FalseStart(3L),
+    /**
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
     SendOneByteRecord(4L),
+    /**
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
     AllowServerIdentityChange(5L),
+    /**
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
     Fallback(6L),
+    /**
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
     BreakOnClientHello(7L),
+    /**
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
     AllowRenegotiation(8L),
+    /**
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
     EnableSessionTickets(9L);
     /*</values>*/
 

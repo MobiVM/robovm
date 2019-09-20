@@ -55,7 +55,7 @@ import org.robovm.apple.avfoundation.*;
     protected SCNLevelOfDetail(Handle h, long handle) { super(h, handle); }
     protected SCNLevelOfDetail(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public SCNLevelOfDetail(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public SCNLevelOfDetail(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "geometry")
@@ -76,6 +76,6 @@ import org.robovm.apple.avfoundation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

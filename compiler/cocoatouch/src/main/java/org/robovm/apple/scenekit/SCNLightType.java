@@ -108,9 +108,13 @@ import org.robovm.apple.avfoundation.*;
      * @since Available in iOS 10.0 and later.
      */
     public static final SCNLightType Probe = new SCNLightType("Probe");
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final SCNLightType Area = new SCNLightType("Area");
     /*</constants>*/
     
-    private static /*<name>*/SCNLightType/*</name>*/[] values = new /*<name>*/SCNLightType/*</name>*/[] {/*<value_list>*/Ambient, Omni, Directional, Spot, IES, Probe/*</value_list>*/};
+    private static /*<name>*/SCNLightType/*</name>*/[] values = new /*<name>*/SCNLightType/*</name>*/[] {/*<value_list>*/Ambient, Omni, Directional, Spot, IES, Probe, Area/*</value_list>*/};
     
     /*<name>*/SCNLightType/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -151,6 +155,11 @@ import org.robovm.apple.avfoundation.*;
          */
         @GlobalValue(symbol="SCNLightTypeProbe", optional=true)
         public static native NSString Probe();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="SCNLightTypeArea", optional=true)
+        public static native NSString Area();
         /*</values>*/
     }
 }

@@ -56,7 +56,7 @@ import org.robovm.apple.dispatch.*;
     protected NSPersonNameComponents(Handle h, long handle) { super(h, handle); }
     protected NSPersonNameComponents(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public NSPersonNameComponents(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public NSPersonNameComponents(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "namePrefix")
@@ -95,6 +95,6 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

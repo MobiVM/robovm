@@ -46,7 +46,7 @@ import org.robovm.apple.corelocation.*;
     /*<bind>*/static { ObjCRuntime.bind(INRelevantShortcutStore.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public INRelevantShortcutStore() {}
+    protected INRelevantShortcutStore() {}
     protected INRelevantShortcutStore(Handle h, long handle) { super(h, handle); }
     protected INRelevantShortcutStore(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/

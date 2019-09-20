@@ -29,6 +29,10 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corevideo.*;
+import org.robovm.apple.coregraphics.*;
+import org.robovm.apple.imageio.*;
+import org.robovm.apple.vision.*;
+import org.robovm.apple.metal.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -39,7 +43,7 @@ import org.robovm.apple.corevideo.*;
 /*<annotations>*/@Library("CoreML") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MLSequenceConstraint/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class MLSequenceConstraintPtr extends Ptr<MLSequenceConstraint, MLSequenceConstraintPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(MLSequenceConstraint.class); }/*</bind>*/
@@ -48,15 +52,22 @@ import org.robovm.apple.corevideo.*;
     public MLSequenceConstraint() {}
     protected MLSequenceConstraint(Handle h, long handle) { super(h, handle); }
     protected MLSequenceConstraint(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public MLSequenceConstraint(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "valueDescription")
     public native MLFeatureDescription getValueDescription();
     @Property(selector = "countRange")
     public native @ByVal NSRange getCountRange();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

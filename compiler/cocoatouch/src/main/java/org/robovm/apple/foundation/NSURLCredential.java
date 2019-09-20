@@ -56,20 +56,14 @@ import org.robovm.apple.dispatch.*;
     @WeaklyLinked
     @Method(selector = "initWithUser:password:persistence:")
     public NSURLCredential(String user, String password, NSURLCredentialPersistence persistence) { super((SkipInit) null); initObject(init(user, password, persistence)); }
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @WeaklyLinked
     @Method(selector = "initWithIdentity:certificates:persistence:")
     public NSURLCredential(SecIdentity identity, @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsListMarshaler.class) List<SecCertificate> certArray, NSURLCredentialPersistence persistence) { super((SkipInit) null); initObject(init(identity, certArray, persistence)); }
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @WeaklyLinked
     @Method(selector = "initWithTrust:")
     public NSURLCredential(SecTrust trust) { super((SkipInit) null); initObject(init(trust)); }
     @Method(selector = "initWithCoder:")
-    public NSURLCredential(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public NSURLCredential(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "persistence")
@@ -83,9 +77,6 @@ import org.robovm.apple.dispatch.*;
     @WeaklyLinked
     @Property(selector = "identity")
     public native SecIdentity getIdentity();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "certificates")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsListMarshaler.class) List<SecCertificate> getCertificates();
     @Property(selector = "supportsSecureCoding")
@@ -96,21 +87,15 @@ import org.robovm.apple.dispatch.*;
     @WeaklyLinked
     @Method(selector = "initWithUser:password:persistence:")
     protected native @Pointer long init(String user, String password, NSURLCredentialPersistence persistence);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @WeaklyLinked
     @Method(selector = "initWithIdentity:certificates:persistence:")
     protected native @Pointer long init(SecIdentity identity, @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsListMarshaler.class) List<SecCertificate> certArray, NSURLCredentialPersistence persistence);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @WeaklyLinked
     @Method(selector = "initWithTrust:")
     protected native @Pointer long init(SecTrust trust);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

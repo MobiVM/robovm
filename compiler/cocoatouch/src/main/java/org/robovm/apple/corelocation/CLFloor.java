@@ -34,9 +34,7 @@ import org.robovm.apple.contacts.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreLocation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CLFloor/*</name>*/ 
@@ -51,7 +49,7 @@ import org.robovm.apple.contacts.*;
     protected CLFloor(Handle h, long handle) { super(h, handle); }
     protected CLFloor(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public CLFloor(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public CLFloor(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "level")
@@ -64,6 +62,6 @@ import org.robovm.apple.contacts.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

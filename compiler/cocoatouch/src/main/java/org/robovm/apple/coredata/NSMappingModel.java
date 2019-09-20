@@ -29,12 +29,12 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corespotlight.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 3.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreData") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSMappingModel/*</name>*/ 
@@ -73,18 +73,12 @@ import org.robovm.apple.corespotlight.*;
     protected native @Pointer long init(NSURL url);
     @Method(selector = "mappingModelFromBundles:forSourceModel:destinationModel:")
     protected static native @Pointer long create(NSArray<NSBundle> bundles, NSManagedObjectModel sourceModel, NSManagedObjectModel destinationModel);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     protected static @Pointer long createInferred(NSManagedObjectModel sourceModel, NSManagedObjectModel destinationModel) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        long result = createInferred(sourceModel, destinationModel, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        return result;
     }
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "inferredMappingModelForSourceModel:destinationModel:error:")
     private static native @Pointer long createInferred(NSManagedObjectModel sourceModel, NSManagedObjectModel destinationModel, NSError.NSErrorPtr error);
     /*</methods>*/

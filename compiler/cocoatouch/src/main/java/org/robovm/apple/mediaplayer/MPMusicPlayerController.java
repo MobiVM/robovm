@@ -33,9 +33,7 @@ import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 3.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("MediaPlayer") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPMusicPlayerController/*</name>*/ 
@@ -109,14 +107,12 @@ import org.robovm.apple.coregraphics.*;
     @Property(selector = "setShuffleMode:")
     public native void setShuffleMode(MPMusicShuffleMode v);
     /**
-     * @since Available in iOS 3.0 and later.
      * @deprecated Deprecated in iOS 7.0. Use MPVolumeView for volume control.
      */
     @Deprecated
     @Property(selector = "volume")
     public native float getVolume();
     /**
-     * @since Available in iOS 3.0 and later.
      * @deprecated Deprecated in iOS 7.0. Use MPVolumeView for volume control.
      */
     @Deprecated
@@ -126,14 +122,10 @@ import org.robovm.apple.coregraphics.*;
     public native MPMediaItem getNowPlayingItem();
     @Property(selector = "setNowPlayingItem:")
     public native void setNowPlayingItem(MPMediaItem v);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "indexOfNowPlayingItem")
     public native @MachineSizedUInt long getIndexOfNowPlayingItem();
     /**
-     * @since Available in iOS 3.0 and later.
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. Use systemMusicPlayer
      */
     @Deprecated
     @Property(selector = "iPodMusicPlayer")
@@ -152,7 +144,6 @@ import org.robovm.apple.coregraphics.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @since Available in iOS 3.2 and later.
      * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit.
      */
     @Deprecated

@@ -60,39 +60,18 @@ import org.robovm.apple.corefoundation.*;
         return ptr.get();
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     @Bridge(symbol="MIDIDeviceGetNumberOfEntities", optional=true)
     public native @MachineSizedUInt long getNumberOfEntities();
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     @Bridge(symbol="MIDIDeviceGetEntity", optional=true)
     public native MIDIEntity getEntity(@MachineSizedUInt long entityIndex0);
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     @Bridge(symbol="MIDIDeviceAddEntity", optional=true)
     protected native MIDIError addEntity(String name, boolean embedded, @MachineSizedUInt long numSourceEndpoints, @MachineSizedUInt long numDestinationEndpoints, MIDIEntity.MIDIEntityPtr newEntity);
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     @Bridge(symbol="MIDIDeviceRemoveEntity", optional=true)
     public native MIDIError removeEntity(MIDIEntity entity);
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     @Bridge(symbol="MIDIExternalDeviceCreate", optional=true)
     protected static native MIDIError createExternal(String name, String manufacturer, String model, MIDIDevice.MIDIDevicePtr outDevice);
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     @Bridge(symbol="MIDIDeviceCreate", optional=true)
     protected static native MIDIError create(MIDIDriver owner, String name, String manufacturer, String model, MIDIDevice.MIDIDevicePtr outDevice);
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     @Bridge(symbol="MIDIDeviceDispose", optional=true)
     public native MIDIError dispose();
     /*</methods>*/

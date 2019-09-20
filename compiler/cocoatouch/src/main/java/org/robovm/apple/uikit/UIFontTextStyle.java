@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -112,33 +114,15 @@ import org.robovm.apple.intents.*;
      * @since Available in iOS 9.0 and later.
      */
     public static final UIFontTextStyle Title3 = new UIFontTextStyle("Title3");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final UIFontTextStyle Headline = new UIFontTextStyle("Headline");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final UIFontTextStyle Subheadline = new UIFontTextStyle("Subheadline");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final UIFontTextStyle Body = new UIFontTextStyle("Body");
     /**
      * @since Available in iOS 9.0 and later.
      */
     public static final UIFontTextStyle Callout = new UIFontTextStyle("Callout");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final UIFontTextStyle Footnote = new UIFontTextStyle("Footnote");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final UIFontTextStyle Caption1 = new UIFontTextStyle("Caption1");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final UIFontTextStyle Caption2 = new UIFontTextStyle("Caption2");
     /*</constants>*/
     
@@ -185,19 +169,10 @@ import org.robovm.apple.intents.*;
          */
         @GlobalValue(symbol="UIFontTextStyleTitle3", optional=true)
         public static native NSString Title3();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="UIFontTextStyleHeadline", optional=true)
         public static native NSString Headline();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="UIFontTextStyleSubheadline", optional=true)
         public static native NSString Subheadline();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="UIFontTextStyleBody", optional=true)
         public static native NSString Body();
         /**
@@ -205,19 +180,10 @@ import org.robovm.apple.intents.*;
          */
         @GlobalValue(symbol="UIFontTextStyleCallout", optional=true)
         public static native NSString Callout();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="UIFontTextStyleFootnote", optional=true)
         public static native NSString Footnote();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="UIFontTextStyleCaption1", optional=true)
         public static native NSString Caption1();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="UIFontTextStyleCaption2", optional=true)
         public static native NSString Caption2();
         /*</values>*/

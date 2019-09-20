@@ -54,25 +54,25 @@ import org.robovm.apple.imageio.*;
     protected VNImageRequestHandler(Handle h, long handle) { super(h, handle); }
     protected VNImageRequestHandler(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCVPixelBuffer:options:")
-    public VNImageRequestHandler(CVPixelBuffer pixelBuffer, NSDictionary<?, ?> options) { super((SkipInit) null); initObject(init(pixelBuffer, options)); }
+    public VNImageRequestHandler(CVPixelBuffer pixelBuffer, VNImageOption options) { super((SkipInit) null); initObject(init(pixelBuffer, options)); }
     @Method(selector = "initWithCVPixelBuffer:orientation:options:")
-    public VNImageRequestHandler(CVPixelBuffer pixelBuffer, CGImagePropertyOrientation orientation, NSDictionary<?, ?> options) { super((SkipInit) null); initObject(init(pixelBuffer, orientation, options)); }
+    public VNImageRequestHandler(CVPixelBuffer pixelBuffer, CGImagePropertyOrientation orientation, VNImageOption options) { super((SkipInit) null); initObject(init(pixelBuffer, orientation, options)); }
     @Method(selector = "initWithCGImage:options:")
-    public VNImageRequestHandler(CGImage image, NSDictionary<?, ?> options) { super((SkipInit) null); initObject(init(image, options)); }
+    public VNImageRequestHandler(CGImage image, VNImageOption options) { super((SkipInit) null); initObject(init(image, options)); }
     @Method(selector = "initWithCGImage:orientation:options:")
-    public VNImageRequestHandler(CGImage image, CGImagePropertyOrientation orientation, NSDictionary<?, ?> options) { super((SkipInit) null); initObject(init(image, orientation, options)); }
+    public VNImageRequestHandler(CGImage image, CGImagePropertyOrientation orientation, VNImageOption options) { super((SkipInit) null); initObject(init(image, orientation, options)); }
     @Method(selector = "initWithCIImage:options:")
-    public VNImageRequestHandler(CIImage image, NSDictionary<?, ?> options) { super((SkipInit) null); initObject(init(image, options)); }
+    public VNImageRequestHandler(CIImage image, VNImageOption options) { super((SkipInit) null); initObject(init(image, options)); }
     @Method(selector = "initWithCIImage:orientation:options:")
-    public VNImageRequestHandler(CIImage image, CGImagePropertyOrientation orientation, NSDictionary<?, ?> options) { super((SkipInit) null); initObject(init(image, orientation, options)); }
+    public VNImageRequestHandler(CIImage image, CGImagePropertyOrientation orientation, VNImageOption options) { super((SkipInit) null); initObject(init(image, orientation, options)); }
     @Method(selector = "initWithURL:options:")
-    public VNImageRequestHandler(NSURL imageURL, NSDictionary<?, ?> options) { super((SkipInit) null); initObject(init(imageURL, options)); }
+    public VNImageRequestHandler(NSURL imageURL, VNImageOption options) { super((SkipInit) null); initObject(init(imageURL, options)); }
     @Method(selector = "initWithURL:orientation:options:")
-    public VNImageRequestHandler(NSURL imageURL, CGImagePropertyOrientation orientation, NSDictionary<?, ?> options) { super((SkipInit) null); initObject(init(imageURL, orientation, options)); }
+    public VNImageRequestHandler(NSURL imageURL, CGImagePropertyOrientation orientation, VNImageOption options) { super((SkipInit) null); initObject(init(imageURL, orientation, options)); }
     @Method(selector = "initWithData:options:")
-    public VNImageRequestHandler(NSData imageData, NSDictionary<?, ?> options) { super((SkipInit) null); initObject(init(imageData, options)); }
+    public VNImageRequestHandler(NSData imageData, VNImageOption options) { super((SkipInit) null); initObject(init(imageData, options)); }
     @Method(selector = "initWithData:orientation:options:")
-    public VNImageRequestHandler(NSData imageData, CGImagePropertyOrientation orientation, NSDictionary<?, ?> options) { super((SkipInit) null); initObject(init(imageData, orientation, options)); }
+    public VNImageRequestHandler(NSData imageData, CGImagePropertyOrientation orientation, VNImageOption options) { super((SkipInit) null); initObject(init(imageData, orientation, options)); }
     /*</constructors>*/
     /*<properties>*/
     
@@ -80,25 +80,25 @@ import org.robovm.apple.imageio.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithCVPixelBuffer:options:")
-    protected native @Pointer long init(CVPixelBuffer pixelBuffer, NSDictionary<?, ?> options);
+    protected native @Pointer long init(CVPixelBuffer pixelBuffer, VNImageOption options);
     @Method(selector = "initWithCVPixelBuffer:orientation:options:")
-    protected native @Pointer long init(CVPixelBuffer pixelBuffer, CGImagePropertyOrientation orientation, NSDictionary<?, ?> options);
+    protected native @Pointer long init(CVPixelBuffer pixelBuffer, CGImagePropertyOrientation orientation, VNImageOption options);
     @Method(selector = "initWithCGImage:options:")
-    protected native @Pointer long init(CGImage image, NSDictionary<?, ?> options);
+    protected native @Pointer long init(CGImage image, VNImageOption options);
     @Method(selector = "initWithCGImage:orientation:options:")
-    protected native @Pointer long init(CGImage image, CGImagePropertyOrientation orientation, NSDictionary<?, ?> options);
+    protected native @Pointer long init(CGImage image, CGImagePropertyOrientation orientation, VNImageOption options);
     @Method(selector = "initWithCIImage:options:")
-    protected native @Pointer long init(CIImage image, NSDictionary<?, ?> options);
+    protected native @Pointer long init(CIImage image, VNImageOption options);
     @Method(selector = "initWithCIImage:orientation:options:")
-    protected native @Pointer long init(CIImage image, CGImagePropertyOrientation orientation, NSDictionary<?, ?> options);
+    protected native @Pointer long init(CIImage image, CGImagePropertyOrientation orientation, VNImageOption options);
     @Method(selector = "initWithURL:options:")
-    protected native @Pointer long init(NSURL imageURL, NSDictionary<?, ?> options);
+    protected native @Pointer long init(NSURL imageURL, VNImageOption options);
     @Method(selector = "initWithURL:orientation:options:")
-    protected native @Pointer long init(NSURL imageURL, CGImagePropertyOrientation orientation, NSDictionary<?, ?> options);
+    protected native @Pointer long init(NSURL imageURL, CGImagePropertyOrientation orientation, VNImageOption options);
     @Method(selector = "initWithData:options:")
-    protected native @Pointer long init(NSData imageData, NSDictionary<?, ?> options);
+    protected native @Pointer long init(NSData imageData, VNImageOption options);
     @Method(selector = "initWithData:orientation:options:")
-    protected native @Pointer long init(NSData imageData, CGImagePropertyOrientation orientation, NSDictionary<?, ?> options);
+    protected native @Pointer long init(NSData imageData, CGImagePropertyOrientation orientation, VNImageOption options);
     public boolean performRequests(NSArray<VNRequest> requests) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        boolean result = performRequests(requests, ptr);

@@ -49,7 +49,7 @@ import org.robovm.apple.corelocation.*;
     protected HMCharacteristicThresholdRangeEvent(Handle h, long handle) { super(h, handle); }
     protected HMCharacteristicThresholdRangeEvent(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCharacteristic:thresholdRange:")
-    public HMCharacteristicThresholdRangeEvent(HMCharacteristic characteristic, HMNumberRange thresholdRange) { super((SkipInit) null); initObject(initWithCharacteristic$thresholdRange$(characteristic, thresholdRange)); }
+    public HMCharacteristicThresholdRangeEvent(HMCharacteristic characteristic, HMNumberRange thresholdRange) { super((SkipInit) null); initObject(init(characteristic, thresholdRange)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "characteristic")
@@ -60,6 +60,6 @@ import org.robovm.apple.corelocation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithCharacteristic:thresholdRange:")
-    protected native @Pointer long initWithCharacteristic$thresholdRange$(HMCharacteristic characteristic, HMNumberRange thresholdRange);
+    protected native @Pointer long init(HMCharacteristic characteristic, HMNumberRange thresholdRange);
     /*</methods>*/
 }

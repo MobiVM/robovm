@@ -55,6 +55,10 @@ public final class /*<name>*/UNAuthorizationOptions/*</name>*/ extends Bits</*<n
      * @since Available in iOS 12.0 and later.
      */
     public static final UNAuthorizationOptions Provisional = new UNAuthorizationOptions(64L);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final UNAuthorizationOptions Announcement = new UNAuthorizationOptions(128L);
     /*</values>*/
 
     /*<bind>*/

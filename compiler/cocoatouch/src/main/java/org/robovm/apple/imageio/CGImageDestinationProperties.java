@@ -108,9 +108,6 @@ import org.robovm.apple.coregraphics.*;
     }
     
 
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public double getLossyCompressionQuality() {
         if (has(Keys.LossyCompressionQuality())) {
             CFNumber val = get(Keys.LossyCompressionQuality(), CFNumber.class);
@@ -118,16 +115,10 @@ import org.robovm.apple.coregraphics.*;
         }
         return 1;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CGImageDestinationProperties setLossyCompressionQuality(double lossyCompressionQuality) {
         set(Keys.LossyCompressionQuality(), CFNumber.valueOf(lossyCompressionQuality));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CGColor getBackgroundColor() {
         if (has(Keys.BackgroundColor())) {
             CGColor val = get(Keys.BackgroundColor(), CGColor.class);
@@ -135,16 +126,10 @@ import org.robovm.apple.coregraphics.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CGImageDestinationProperties setBackgroundColor(CGColor backgroundColor) {
         set(Keys.BackgroundColor(), backgroundColor);
         return this;
     }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public long getMaxPixelSize() {
         if (has(Keys.ImageMaxPixelSize())) {
             CFNumber val = get(Keys.ImageMaxPixelSize(), CFNumber.class);
@@ -152,16 +137,10 @@ import org.robovm.apple.coregraphics.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public CGImageDestinationProperties setMaxPixelSize(long maxPixelSize) {
         set(Keys.ImageMaxPixelSize(), CFNumber.valueOf(maxPixelSize));
         return this;
     }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public boolean embedsThumbnail() {
         if (has(Keys.EmbedThumbnail())) {
             CFBoolean val = get(Keys.EmbedThumbnail(), CFBoolean.class);
@@ -169,9 +148,6 @@ import org.robovm.apple.coregraphics.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public CGImageDestinationProperties setEmbedsThumbnail(boolean embedsThumbnail) {
         set(Keys.EmbedThumbnail(), CFBoolean.valueOf(embedsThumbnail));
         return this;
@@ -182,24 +158,12 @@ import org.robovm.apple.coregraphics.*;
     @Library("ImageIO")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImageDestinationLossyCompressionQuality", optional=true)
         public static native CFString LossyCompressionQuality();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImageDestinationBackgroundColor", optional=true)
         public static native CFString BackgroundColor();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="kCGImageDestinationImageMaxPixelSize", optional=true)
         public static native CFString ImageMaxPixelSize();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="kCGImageDestinationEmbedThumbnail", optional=true)
         public static native CFString EmbedThumbnail();
         /**

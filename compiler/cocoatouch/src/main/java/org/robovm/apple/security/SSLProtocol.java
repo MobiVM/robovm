@@ -38,17 +38,70 @@ import org.robovm.apple.dispatch.*;
 /*<annotations>*//*</annotations>*/
 public enum /*<name>*/SSLProtocol/*</name>*/ implements ValuedEnum {
     /*<values>*/
+    /**
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
     SSLProtocolUnknown(0L),
-    SSLProtocol3(2L),
+    /**
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
     TLSProtocol1(4L),
+    /**
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
     TLSProtocol11(7L),
+    /**
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
     TLSProtocol12(8L),
+    /**
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
     DTLSProtocol1(9L),
+    /**
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
     TLSProtocol13(10L),
+    /**
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
+    DTLSProtocol12(11L),
+    /**
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
     TLSProtocolMaxSupported(999L),
+    /**
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
     SSLProtocol2(1L),
+    /**
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
+    SSLProtocol3(2L),
+    /**
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
     SSLProtocol3Only(3L),
+    /**
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
     TLSProtocol1Only(5L),
+    /**
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
     SSLProtocolAll(6L);
     /*</values>*/
 

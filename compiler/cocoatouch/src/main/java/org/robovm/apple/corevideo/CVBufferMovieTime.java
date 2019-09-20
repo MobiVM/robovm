@@ -117,14 +117,8 @@ import org.robovm.apple.iosurface.*;
     @Library("CoreVideo")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVBufferTimeValueKey", optional=true)
         public static native CFString Value();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVBufferTimeScaleKey", optional=true)
         public static native CFString Scale();
     }

@@ -37,7 +37,7 @@ import org.robovm.apple.foundation.*;
 /*</javadoc>*/
 /*<annotations>*/@Library("Contacts") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CNContactFetchRequest/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
+    extends /*<extends>*/CNFetchRequest/*</extends>*/ 
     /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class CNContactFetchRequestPtr extends Ptr<CNContactFetchRequest, CNContactFetchRequestPtr> {}/*</ptr>*/
@@ -50,7 +50,7 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "initWithKeysToFetch:")
     public CNContactFetchRequest(@org.robovm.rt.bro.annotation.Marshaler(CNContactPropertyKey.AsListMarshaler.class) List<CNContactPropertyKey> keysToFetch) { super((SkipInit) null); initObject(init(keysToFetch)); }
     @Method(selector = "initWithCoder:")
-    public CNContactFetchRequest(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public CNContactFetchRequest(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "predicate")
@@ -89,6 +89,6 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

@@ -33,9 +33,7 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
 public final class /*<name>*/SecAccessControlCreateFlags/*</name>*/ extends Bits</*<name>*/SecAccessControlCreateFlags/*</name>*/> {
@@ -48,7 +46,7 @@ public final class /*<name>*/SecAccessControlCreateFlags/*</name>*/ extends Bits
     public static final SecAccessControlCreateFlags BiometryAny = new SecAccessControlCreateFlags(2L);
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Deprecated in iOS 11.3.
+     * @deprecated Deprecated in iOS 11.3. Use kSecAccessControlBiometryAny
      */
     @Deprecated
     public static final SecAccessControlCreateFlags TouchIDAny = new SecAccessControlCreateFlags(2L);
@@ -58,7 +56,7 @@ public final class /*<name>*/SecAccessControlCreateFlags/*</name>*/ extends Bits
     public static final SecAccessControlCreateFlags BiometryCurrentSet = new SecAccessControlCreateFlags(8L);
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Deprecated in iOS 11.3.
+     * @deprecated Deprecated in iOS 11.3. Use kSecAccessControlBiometryCurrentSet
      */
     @Deprecated
     public static final SecAccessControlCreateFlags TouchIDCurrentSet = new SecAccessControlCreateFlags(8L);

@@ -37,7 +37,19 @@ import org.robovm.apple.dispatch.*;
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/NFCTagType/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    ISO15693(1L);
+    ISO15693(1L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    FeliCa(2L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    ISO7816Compatible(3L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    MiFare(4L);
     /*</values>*/
 
     /*<bind>*/

@@ -90,19 +90,16 @@ import org.robovm.apple.imageio.*;
 
     /*<constants>*/
     /**
-     * @since Available in iOS 4.0 and later.
      * @deprecated Deprecated in iOS 9.0. Use PHAssetMediaTypeImage from the Photos framework instead
      */
     @Deprecated
     public static final ALAssetType Photo = new ALAssetType("Photo");
     /**
-     * @since Available in iOS 4.0 and later.
      * @deprecated Deprecated in iOS 9.0. Use PHAssetMediaTypeVideo from the Photos framework instead
      */
     @Deprecated
     public static final ALAssetType Video = new ALAssetType("Video");
     /**
-     * @since Available in iOS 4.0 and later.
      * @deprecated Deprecated in iOS 9.0. Use PHAssetMediaTypeAudio for audio or PHAssetMediaTypeUnknown for unknown media types from the Photos framework instead
      */
     @Deprecated
@@ -133,21 +130,18 @@ import org.robovm.apple.imageio.*;
 
         /*<values>*/
         /**
-         * @since Available in iOS 4.0 and later.
          * @deprecated Deprecated in iOS 9.0. Use PHAssetMediaTypeImage from the Photos framework instead
          */
         @Deprecated
         @GlobalValue(symbol="ALAssetTypePhoto", optional=true)
         public static native NSString Photo();
         /**
-         * @since Available in iOS 4.0 and later.
          * @deprecated Deprecated in iOS 9.0. Use PHAssetMediaTypeVideo from the Photos framework instead
          */
         @Deprecated
         @GlobalValue(symbol="ALAssetTypeVideo", optional=true)
         public static native NSString Video();
         /**
-         * @since Available in iOS 4.0 and later.
          * @deprecated Deprecated in iOS 9.0. Use PHAssetMediaTypeAudio for audio or PHAssetMediaTypeUnknown for unknown media types from the Photos framework instead
          */
         @Deprecated

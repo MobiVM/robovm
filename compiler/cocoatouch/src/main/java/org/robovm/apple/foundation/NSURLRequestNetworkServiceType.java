@@ -45,11 +45,17 @@ import org.robovm.apple.dispatch.*;
 public enum /*<name>*/NSURLRequestNetworkServiceType/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Default(0L),
+    /**
+     * @deprecated Deprecated in iOS 13.0. Use PushKit for VoIP control purposes
+     */
+    @Deprecated
     VoIP(1L),
     Video(2L),
     Background(3L),
     Voice(4L),
     ResponsiveData(6L),
+    AVStreaming(8L),
+    ResponsiveAV(9L),
     /**
      * @since Available in iOS 10.0 and later.
      */

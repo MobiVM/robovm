@@ -42,8 +42,11 @@ public enum /*<name>*/CTFontManagerScope/*</name>*/ implements ValuedEnum {
     /*<values>*/
     None(0L),
     Process(1L),
-    User(2L),
-    Session(3L);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    Persistent(2L),
+    User(2L);
     /*</values>*/
 
     /*<bind>*/

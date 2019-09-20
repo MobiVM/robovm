@@ -62,6 +62,11 @@ import org.robovm.apple.imageio.*;
     @Property(selector = "landmarks")
     public native VNFaceLandmarks2D getLandmarks();
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "faceCaptureQuality")
+    public native NSNumber getFaceCaptureQuality();
+    /**
      * @since Available in iOS 12.0 and later.
      */
     @Property(selector = "roll")

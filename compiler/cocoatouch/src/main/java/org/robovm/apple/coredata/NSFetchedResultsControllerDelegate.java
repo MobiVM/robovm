@@ -29,6 +29,8 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corespotlight.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -47,6 +49,16 @@ import org.robovm.apple.corespotlight.*;
     
     /*</properties>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "controller:didChangeContentWithSnapshot:")
+    void didChangeContent(NSFetchedResultsController controller, NSDiffableDataSourceSnapshot<NSString, NSManagedObjectID> snapshot);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "controller:didChangeContentWithDifference:")
+    void didChangeContent(NSFetchedResultsController controller, NSOrderedCollectionDifference<NSManagedObjectID> diff);
     @Method(selector = "controller:didChangeObject:atIndexPath:forChangeType:newIndexPath:")
     void didChangeObject(NSFetchedResultsController controller, NSObject anObject, NSIndexPath indexPath, NSFetchedResultsChangeType type, NSIndexPath newIndexPath);
     @Method(selector = "controller:didChangeSection:atIndex:forChangeType:")
@@ -55,9 +67,6 @@ import org.robovm.apple.corespotlight.*;
     void willChangeContent(NSFetchedResultsController controller);
     @Method(selector = "controllerDidChangeContent:")
     void didChangeContent(NSFetchedResultsController controller);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "controller:sectionIndexTitleForSectionName:")
     String getSectionIndexTitle(NSFetchedResultsController controller, String sectionName);
     /*</methods>*/

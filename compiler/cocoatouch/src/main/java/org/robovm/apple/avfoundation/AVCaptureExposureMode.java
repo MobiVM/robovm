@@ -41,9 +41,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/AVCaptureExposureMode/*</name>*/ implements ValuedEnum {
@@ -51,9 +49,6 @@ public enum /*<name>*/AVCaptureExposureMode/*</name>*/ implements ValuedEnum {
     Locked(0L),
     AutoExpose(1L),
     ContinuousAutoExposure(2L),
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     Custom(3L);
     /*</values>*/
 

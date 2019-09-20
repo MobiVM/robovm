@@ -87,13 +87,7 @@ import org.robovm.apple.foundation.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final HKCorrelationTypeIdentifier BloodPressure = new HKCorrelationTypeIdentifier("BloodPressure");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final HKCorrelationTypeIdentifier Food = new HKCorrelationTypeIdentifier("Food");
     /*</constants>*/
     
@@ -120,14 +114,8 @@ import org.robovm.apple.foundation.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="HKCorrelationTypeIdentifierBloodPressure", optional=true)
         public static native NSString BloodPressure();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="HKCorrelationTypeIdentifierFood", optional=true)
         public static native NSString Food();
         /*</values>*/

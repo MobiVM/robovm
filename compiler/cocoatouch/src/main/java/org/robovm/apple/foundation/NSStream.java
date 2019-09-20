@@ -194,14 +194,8 @@ import org.robovm.apple.dispatch.*;
     public native void scheduleInRunLoop(NSRunLoop aRunLoop, String mode);
     @Method(selector = "removeFromRunLoop:forMode:")
     public native void removeFromRunLoop(NSRunLoop aRunLoop, String mode);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "getStreamsToHostWithName:port:inputStream:outputStream:")
     protected static native void getStreamsToHost(String hostname, @MachineSizedSInt long port, NSInputStream.NSInputStreamPtr inputStream, NSOutputStream.NSOutputStreamPtr outputStream);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "getBoundStreamsWithBufferSize:inputStream:outputStream:")
     protected static native void getBoundStreams(@MachineSizedUInt long bufferSize, NSInputStream.NSInputStreamPtr inputStream, NSOutputStream.NSOutputStreamPtr outputStream);
     /*</methods>*/

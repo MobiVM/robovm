@@ -33,9 +33,7 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 5.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreBluetooth") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CBUUID/*</name>*/ 
@@ -52,15 +50,11 @@ import org.robovm.apple.dispatch.*;
     public CBUUID(String theString) { super((Handle) null, create(theString)); retain(getHandle()); }
     public CBUUID(NSData theData) { super((Handle) null, create(theData)); retain(getHandle()); }
     /**
-     * @since Available in iOS 5.0 and later.
      * @deprecated Deprecated in iOS 9.0.
      */
     @Deprecated
     @WeaklyLinked
     public CBUUID(CFUUID theUUID) { super((Handle) null, create(theUUID)); retain(getHandle()); }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public CBUUID(NSUUID theUUID) { super((Handle) null, create(theUUID)); retain(getHandle()); }
     /*</constructors>*/
     public CBUUID(CBUUIDIdentifier identifier) {
@@ -70,9 +64,6 @@ import org.robovm.apple.dispatch.*;
     /*<properties>*/
     @Property(selector = "data")
     public native NSData getData();
-    /**
-     * @since Available in iOS 7.1 and later.
-     */
     @Property(selector = "UUIDString")
     public native String getUUIDString();
     /*</properties>*/
@@ -83,16 +74,12 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "UUIDWithData:")
     protected static native @Pointer long create(NSData theData);
     /**
-     * @since Available in iOS 5.0 and later.
      * @deprecated Deprecated in iOS 9.0.
      */
     @Deprecated
     @WeaklyLinked
     @Method(selector = "UUIDWithCFUUID:")
     protected static native @Pointer long create(CFUUID theUUID);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "UUIDWithNSUUID:")
     protected static native @Pointer long create(NSUUID theUUID);
     /*</methods>*/

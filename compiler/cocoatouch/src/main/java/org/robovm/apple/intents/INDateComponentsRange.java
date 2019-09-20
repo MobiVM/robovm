@@ -62,7 +62,7 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "initWithEKRecurrenceRule:")
     public INDateComponentsRange(EKRecurrenceRule recurrenceRule) { super((SkipInit) null); initObject(init(recurrenceRule)); }
     @Method(selector = "initWithCoder:")
-    public INDateComponentsRange(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public INDateComponentsRange(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "startDateComponents")
@@ -99,6 +99,6 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

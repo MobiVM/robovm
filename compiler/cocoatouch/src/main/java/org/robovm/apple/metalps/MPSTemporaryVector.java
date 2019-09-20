@@ -51,6 +51,11 @@ import org.robovm.apple.metal.*;
     protected MPSTemporaryVector(SkipInit skipInit) { super(skipInit); }
     public MPSTemporaryVector(MTLCommandBuffer commandBuffer, MPSVectorDescriptor descriptor) { super((Handle) null, create(commandBuffer, descriptor)); retain(getHandle()); }
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "initWithBuffer:offset:descriptor:")
+    public MPSTemporaryVector(MTLBuffer buffer, @MachineSizedUInt long offset, MPSVectorDescriptor descriptor) { super(buffer, offset, descriptor); }
+    /**
      * @since Available in iOS 11.3 and later.
      */
     @Method(selector = "initWithDevice:descriptor:")

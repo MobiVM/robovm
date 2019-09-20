@@ -58,14 +58,8 @@ import org.robovm.apple.contacts.*;
     }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "passType")
     public native PKPassType getPassType();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "paymentPass")
     public native PKPaymentPass getPaymentPass();
     @Property(selector = "serialNumber")
@@ -86,9 +80,6 @@ import org.robovm.apple.contacts.*;
     public native String getOrganizationName();
     @Property(selector = "relevantDate")
     public native NSDate getRelevantDate();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "userInfo")
     public native NSDictionary<?, ?> getUserInfo();
     @Property(selector = "passURL")

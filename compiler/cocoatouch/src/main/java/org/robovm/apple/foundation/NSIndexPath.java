@@ -56,7 +56,7 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "initWithIndex:")
     public NSIndexPath(@MachineSizedUInt long index) { super((SkipInit) null); initObject(init(index)); }
     @Method(selector = "initWithCoder:")
-    public NSIndexPath(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public NSIndexPath(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     
     public NSIndexPath(long[] indexes) {
@@ -133,18 +133,19 @@ import org.robovm.apple.dispatch.*;
     public native NSIndexPath removeLastIndex();
     @Method(selector = "indexAtPosition:")
     public native @MachineSizedUInt long getIndexAt(@MachineSizedUInt long position);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "getIndexes:range:")
     private native void getIndexes(MachineSizedUIntPtr indexes, @ByVal NSRange positionRange);
     @Method(selector = "compare:")
     public native NSComparisonResult compare(NSIndexPath otherObject);
+    /**
+     * @deprecated Use getIndexes:range:
+     */
+    @Deprecated
     @Method(selector = "getIndexes:")
     private native void getIndexes(MachineSizedUIntPtr indexes);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

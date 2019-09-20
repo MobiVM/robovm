@@ -52,7 +52,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithDevice:weights:")
     public MPSCNNConvolutionTranspose(MTLDevice device, MPSCNNConvolutionDataSource weights) { super((SkipInit) null); initObject(init(device, weights)); }
     @Method(selector = "initWithCoder:device:")
-    public MPSCNNConvolutionTranspose(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
+    public MPSCNNConvolutionTranspose(NSCoder decoder, MTLDevice device) { super((SkipInit) null); initObject(init(decoder, device)); }
     @Method(selector = "initWithCoder:")
     public MPSCNNConvolutionTranspose(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
@@ -81,13 +81,18 @@ import org.robovm.apple.metal.*;
      */
     @Property(selector = "setAccumulatorPrecisionOption:")
     public native void setAccumulatorPrecisionOption(MPSNNConvolutionAccumulatorPrecisionOption v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "dataSource")
+    public native MPSCNNConvolutionDataSource getDataSource();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithDevice:weights:")
     protected native @Pointer long init(MTLDevice device, MPSCNNConvolutionDataSource weights);
     @Method(selector = "initWithCoder:device:")
-    protected native @Pointer long init(NSCoder aDecoder, MTLDevice device);
+    protected native @Pointer long init(NSCoder decoder, MTLDevice device);
     /**
      * @since Available in iOS 11.3 and later.
      */
@@ -108,5 +113,50 @@ import org.robovm.apple.metal.*;
      */
     @Method(selector = "encodeBatchToCommandBuffer:sourceImages:convolutionGradientStates:destinationImages:")
     public native void encodeBatchConvolutionGradient(MTLCommandBuffer commandBuffer, NSArray<MPSImage> sourceImage, NSArray<MPSCNNConvolutionGradientState> convolutionGradientState, NSArray<MPSImage> destinationImage);
+    /**
+     * @since Available in iOS 11.3 and later.
+     */
+    @Method(selector = "resultStateForSourceImage:sourceStates:destinationImage:")
+    public native MPSCNNConvolutionTransposeGradientState getResultStateEx(MPSImage sourceImage, NSArray<MPSCNNConvolutionGradientState> sourceStates, MPSImage destinationImage);
+    /**
+     * @since Available in iOS 11.3 and later.
+     */
+    @Method(selector = "resultStateBatchForSourceImage:sourceStates:destinationImage:")
+    public native NSArray<MPSCNNConvolutionTransposeGradientState> getResultStateBatchEx(NSArray<MPSImage> sourceImage, NSArray<NSArray<MPSCNNConvolutionGradientState>> sourceStates, NSArray<MPSImage> destinationImage);
+    /**
+     * @since Available in iOS 11.3 and later.
+     */
+    @Method(selector = "temporaryResultStateForCommandBuffer:sourceImage:sourceStates:destinationImage:")
+    public native MPSCNNConvolutionTransposeGradientState getTemporaryResultEx(MTLCommandBuffer commandBuffer, MPSImage sourceImage, NSArray<MPSCNNConvolutionGradientState> sourceStates, MPSImage destinationImage);
+    /**
+     * @since Available in iOS 11.3 and later.
+     */
+    @Method(selector = "temporaryResultStateBatchForCommandBuffer:sourceImage:sourceStates:destinationImage:")
+    public native NSArray<MPSCNNConvolutionTransposeGradientState> getTemporaryResultStateBatchEx(MTLCommandBuffer commandBuffer, NSArray<MPSImage> sourceImage, NSArray<NSArray<MPSCNNConvolutionGradientState>> sourceStates, NSArray<MPSImage> destinationImage);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "reloadWeightsAndBiasesFromDataSource")
+    public native void reloadWeightsAndBiasesFromDataSource();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "reloadWeightsAndBiasesWithCommandBuffer:state:")
+    public native void reloadWeightsAndBiases(MTLCommandBuffer commandBuffer, MPSCNNConvolutionWeightsAndBiasesState state);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "exportWeightsAndBiasesWithCommandBuffer:resultStateCanBeTemporary:")
+    public native MPSCNNConvolutionWeightsAndBiasesState exportWeightsAndBiases(MTLCommandBuffer commandBuffer, boolean resultStateCanBeTemporary);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "encodeToCommandBuffer:sourceImage:convolutionGradientState:destinationState:destinationStateIsTemporary:")
+    public native MPSImage encode(MTLCommandBuffer commandBuffer, MPSImage sourceImage, MPSCNNConvolutionGradientState convolutionGradientState, MPSCNNConvolutionTransposeGradientState.MPSCNNConvolutionTransposeGradientStatePtr outState, boolean isTemporary);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "encodeBatchToCommandBuffer:sourceImages:convolutionGradientStates:destinationStates:destinationStateIsTemporary:")
+    public native NSArray<MPSImage> encodeBatch(MTLCommandBuffer commandBuffer, NSArray<MPSImage> sourceImages, NSArray<MPSCNNConvolutionGradientState> convolutionGradientStates, NSArray.NSArrayPtr<MPSCNNConvolutionTransposeGradientState> outStates, boolean isTemporary);
     /*</methods>*/
 }

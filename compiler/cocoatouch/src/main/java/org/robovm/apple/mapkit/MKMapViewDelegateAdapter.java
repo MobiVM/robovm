@@ -67,14 +67,8 @@ import org.robovm.apple.dispatch.*;
     public void didFinishLoadingMap(MKMapView mapView) {}
     @NotImplemented("mapViewDidFailLoadingMap:withError:")
     public void didFailLoadingMap(MKMapView mapView, NSError error) {}
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @NotImplemented("mapViewWillStartRenderingMap:")
     public void willStartRenderingMap(MKMapView mapView) {}
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @NotImplemented("mapViewDidFinishRenderingMap:fullyRendered:")
     public void didFinishRenderingMap(MKMapView mapView, boolean fullyRendered) {}
     @NotImplemented("mapView:viewForAnnotation:")
@@ -83,66 +77,34 @@ import org.robovm.apple.dispatch.*;
     public void didAddAnnotationViews(MKMapView mapView, NSArray<MKAnnotationView> views) {}
     @NotImplemented("mapView:annotationView:calloutAccessoryControlTapped:")
     public void calloutAccessoryControlTapped(MKMapView mapView, MKAnnotationView view, UIControl control) {}
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @NotImplemented("mapView:didSelectAnnotationView:")
     public void didSelectAnnotationView(MKMapView mapView, MKAnnotationView view) {}
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @NotImplemented("mapView:didDeselectAnnotationView:")
     public void didDeselectAnnotationView(MKMapView mapView, MKAnnotationView view) {}
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @NotImplemented("mapViewWillStartLocatingUser:")
     public void willStartLocatingUser(MKMapView mapView) {}
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @NotImplemented("mapViewDidStopLocatingUser:")
     public void didStopLocatingUser(MKMapView mapView) {}
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @NotImplemented("mapView:didUpdateUserLocation:")
     public void didUpdateUserLocation(MKMapView mapView, MKUserLocation userLocation) {}
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @NotImplemented("mapView:didFailToLocateUserWithError:")
     public void didFailToLocateUser(MKMapView mapView, NSError error) {}
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @NotImplemented("mapView:annotationView:didChangeDragState:fromOldState:")
     public void didChangeDragState(MKMapView mapView, MKAnnotationView view, MKAnnotationViewDragState newState, MKAnnotationViewDragState oldState) {}
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @NotImplemented("mapView:didChangeUserTrackingMode:animated:")
     public void didChangeUserTrackingMode(MKMapView mapView, MKUserTrackingMode mode, boolean animated) {}
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @NotImplemented("mapView:rendererForOverlay:")
     public MKOverlayRenderer getOverlayRenderer(MKMapView mapView, MKOverlay overlay) { return null; }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @NotImplemented("mapView:didAddOverlayRenderers:")
     public void didAddOverlayRenderers(MKMapView mapView, NSArray<MKOverlayRenderer> renderers) {}
     /**
-     * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 13.0. Use -mapView:rendererForOverlay:
      */
     @Deprecated
     @NotImplemented("mapView:viewForOverlay:")
     public MKOverlayView getOverlayView(MKMapView mapView, MKOverlay overlay) { return null; }
     /**
-     * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 13.0. Use -mapView:didAddOverlayRenderers:
      */
     @Deprecated
     @NotImplemented("mapView:didAddOverlayViews:")

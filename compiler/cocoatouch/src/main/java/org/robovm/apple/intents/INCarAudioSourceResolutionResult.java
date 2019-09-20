@@ -56,22 +56,22 @@ import org.robovm.apple.corelocation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "successWithResolvedCarAudioSource:")
-    public static native INCarAudioSourceResolutionResult successWithResolvedCarAudioSource(INCarAudioSource resolvedCarAudioSource);
+    public static native INCarAudioSourceResolutionResult success(INCarAudioSource resolvedCarAudioSource);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use +successWithResolvedCarAudioSource:
      */
     @Deprecated
     @Method(selector = "successWithResolvedValue:")
-    public static native INCarAudioSourceResolutionResult successWithResolvedValue(INCarAudioSource resolvedValue);
+    public static native INCarAudioSourceResolutionResult successValue(INCarAudioSource resolvedValue);
     @Method(selector = "confirmationRequiredWithCarAudioSourceToConfirm:")
-    public static native INCarAudioSourceResolutionResult confirmationRequiredWithCarAudioSourceToConfirm(INCarAudioSource carAudioSourceToConfirm);
+    public static native INCarAudioSourceResolutionResult confirmationRequired(INCarAudioSource carAudioSourceToConfirm);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use +confirmationRequiredWithCarAudioSourceToConfirm:
      */
     @Deprecated
     @Method(selector = "confirmationRequiredWithValueToConfirm:")
-    public static native INCarAudioSourceResolutionResult confirmationRequiredWithValueToConfirm(INCarAudioSource valueToConfirm);
+    public static native INCarAudioSourceResolutionResult confirmationRequiredForValue(INCarAudioSource valueToConfirm);
     /*</methods>*/
 }

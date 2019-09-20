@@ -71,9 +71,6 @@ import org.robovm.apple.coretext.*;
         return create(null, name, tryAbbrev);
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @GlobalValue(symbol="kCFTimeZoneSystemTimeZoneDidChangeNotification", optional=true)
     public static native NSString SystemTimeZoneDidChangeNotification();
     
@@ -109,19 +106,10 @@ import org.robovm.apple.coretext.*;
     public native @org.robovm.rt.bro.annotation.Marshaler(CFString.AsStringNoRetainMarshaler.class) String getAbbreviation(double at);
     @Bridge(symbol="CFTimeZoneIsDaylightSavingTime", optional=true)
     public native boolean isDaylightSavingTime(double at);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CFTimeZoneGetDaylightSavingTimeOffset", optional=true)
     public native double getDaylightSavingTimeOffset(double at);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CFTimeZoneGetNextDaylightSavingTimeTransition", optional=true)
     public native double getNextDaylightSavingTimeTransition(double at);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CFTimeZoneCopyLocalizedName", optional=true)
     public native @org.robovm.rt.bro.annotation.Marshaler(CFString.AsStringNoRetainMarshaler.class) String getLocalizedName(CFTimeZoneNameStyle style, CFLocale locale);
     /*</methods>*/

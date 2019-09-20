@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -125,6 +127,16 @@ import org.robovm.apple.intents.*;
         public static native NSString NSDefaultAttributesDocumentOption();
         @GlobalValue(symbol="NSCharacterEncodingDocumentOption", optional=true)
         public static native NSString NSCharacterEncodingDocumentOption();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="NSTargetTextScalingDocumentOption", optional=true)
+        public static native NSString NSTargetTextScalingDocumentOption();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="NSSourceTextScalingDocumentOption", optional=true)
+        public static native NSString NSSourceTextScalingDocumentOption();
     }
     /*</keys>*/
 }

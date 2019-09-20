@@ -88,29 +88,26 @@ import org.robovm.apple.coregraphics.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyGIF LoopCount = new CGImagePropertyGIF("LoopCount");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyGIF DelayTime = new CGImagePropertyGIF("DelayTime");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyGIF ImageColorMap = new CGImagePropertyGIF("ImageColorMap");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyGIF HasGlobalColorMap = new CGImagePropertyGIF("HasGlobalColorMap");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyGIF UnclampedDelayTime = new CGImagePropertyGIF("UnclampedDelayTime");
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final CGImagePropertyGIF CanvasPixelWidth = new CGImagePropertyGIF("CanvasPixelWidth");
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final CGImagePropertyGIF CanvasPixelHeight = new CGImagePropertyGIF("CanvasPixelHeight");
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final CGImagePropertyGIF FrameInfoArray = new CGImagePropertyGIF("FrameInfoArray");
     /*</constants>*/
     
-    private static /*<name>*/CGImagePropertyGIF/*</name>*/[] values = new /*<name>*/CGImagePropertyGIF/*</name>*/[] {/*<value_list>*/LoopCount, DelayTime, ImageColorMap, HasGlobalColorMap, UnclampedDelayTime/*</value_list>*/};
+    private static /*<name>*/CGImagePropertyGIF/*</name>*/[] values = new /*<name>*/CGImagePropertyGIF/*</name>*/[] {/*<value_list>*/LoopCount, DelayTime, ImageColorMap, HasGlobalColorMap, UnclampedDelayTime, CanvasPixelWidth, CanvasPixelHeight, FrameInfoArray/*</value_list>*/};
     
     /*<name>*/CGImagePropertyGIF/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -133,31 +130,31 @@ import org.robovm.apple.coregraphics.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyGIFLoopCount", optional=true)
         public static native CFString LoopCount();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyGIFDelayTime", optional=true)
         public static native CFString DelayTime();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyGIFImageColorMap", optional=true)
         public static native CFString ImageColorMap();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyGIFHasGlobalColorMap", optional=true)
         public static native CFString HasGlobalColorMap();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyGIFUnclampedDelayTime", optional=true)
         public static native CFString UnclampedDelayTime();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyGIFCanvasPixelWidth", optional=true)
+        public static native CFString CanvasPixelWidth();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyGIFCanvasPixelHeight", optional=true)
+        public static native CFString CanvasPixelHeight();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyGIFFrameInfoArray", optional=true)
+        public static native CFString FrameInfoArray();
         /*</values>*/
     }
 }

@@ -75,6 +75,8 @@ import org.robovm.apple.metal.*;
     public native @MachineSizedUInt long getPrecision();
     @Property(selector = "usage")
     public native MTLTextureUsage getUsage();
+    @Property(selector = "featureChannelFormat")
+    public native MPSImageFeatureChannelFormat getFeatureChannelFormat();
     @Property(selector = "pixelSize")
     public native @MachineSizedUInt long getPixelSize();
     @Property(selector = "texture")
@@ -117,6 +119,11 @@ import org.robovm.apple.metal.*;
      */
     @Method(selector = "writeBytes:dataLayout:bytesPerRow:region:featureChannelInfo:imageIndex:")
     public native void writeBytes(VoidPtr dataBytes, MPSDataLayout dataLayout, @MachineSizedUInt long bytesPerRow, @ByVal MTLRegion region, @ByVal MPSImageReadWriteParams featureChannelInfo, @MachineSizedUInt long imageIndex);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "writeBytes:dataLayout:bytesPerColumn:bytesPerRow:bytesPerImage:region:featureChannelInfo:imageIndex:")
+    public native void writeBytes(VoidPtr dataBytes, MPSDataLayout dataLayout, @MachineSizedUInt long bytesPerColumn, @MachineSizedUInt long bytesPerRow, @MachineSizedUInt long bytesPerImage, @ByVal MTLRegion region, @ByVal MPSImageReadWriteParams featureChannelInfo, @MachineSizedUInt long imageIndex);
     /**
      * @since Available in iOS 11.0 and later.
      */

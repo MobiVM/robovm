@@ -103,9 +103,6 @@ import org.robovm.apple.dispatch.*;
     }
     
 
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public String getTitle() {
         if (has(Keys.Title())) {
             CFString val = get(Keys.Title(), CFString.class);
@@ -113,9 +110,6 @@ import org.robovm.apple.dispatch.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public String getError() {
         if (has(Keys.Error())) {
             CFString val = get(Keys.Error(), CFString.class);
@@ -129,14 +123,8 @@ import org.robovm.apple.dispatch.*;
     @Library("Security")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kSecPropertyTypeTitle", optional=true)
         public static native CFType Title();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kSecPropertyTypeError", optional=true)
         public static native CFType Error();
     }

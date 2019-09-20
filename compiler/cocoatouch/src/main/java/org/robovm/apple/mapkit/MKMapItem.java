@@ -35,9 +35,7 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 6.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("MapKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MKMapItem/*</name>*/ 
@@ -54,7 +52,7 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "initWithPlacemark:")
     public MKMapItem(MKPlacemark placemark) { super((SkipInit) null); initObject(init(placemark)); }
     @Method(selector = "initWithCoder:")
-    public MKMapItem(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public MKMapItem(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "placemark")
@@ -83,6 +81,16 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "setTimeZone:")
     public native void setTimeZone(NSTimeZone v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "pointOfInterestCategory")
+    public native MKPointOfInterestCategory getPointOfInterestCategory();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setPointOfInterestCategory:")
+    public native void setPointOfInterestCategory(MKPointOfInterestCategory v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     @Property(selector = "readableTypeIdentifiersForItemProvider")
@@ -111,7 +119,7 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     public static MKMapItem createProviderDataObject(NSData data, String typeIdentifier) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        MKMapItem result = createProviderDataObject(data, typeIdentifier, ptr);

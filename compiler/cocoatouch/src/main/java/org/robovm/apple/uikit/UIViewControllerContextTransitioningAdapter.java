@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -63,9 +65,6 @@ import org.robovm.apple.intents.*;
     public boolean isTransitionWasCancelled() { return false; }
     @NotImplemented("presentationStyle")
     public UIModalPresentationStyle getPresentationStyle() { return null; }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @NotImplemented("targetTransform")
     public @ByVal CGAffineTransform getTargetTransform() { return null; }
     /*</properties>*/
@@ -86,9 +85,6 @@ import org.robovm.apple.intents.*;
     public void completeTransition(boolean didComplete) {}
     @NotImplemented("viewControllerForKey:")
     public UIViewController getViewController(UITransitionContextViewControllerType key) { return null; }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @NotImplemented("viewForKey:")
     public UIView getView(UITransitionContextViewType key) { return null; }
     @NotImplemented("initialFrameForViewController:")

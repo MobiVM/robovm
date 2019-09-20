@@ -32,9 +32,7 @@ import org.robovm.apple.security.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("LocalAuthentication") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/LAContext/*</name>*/ 
@@ -55,16 +53,6 @@ import org.robovm.apple.security.*;
     @Property(selector = "setLocalizedFallbackTitle:")
     public native void setLocalizedFallbackTitle(String v);
     /**
-     * @since Available in iOS 10.0 and later.
-     */
-    @Property(selector = "localizedCancelTitle")
-    public native String getLocalizedCancelTitle();
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
-    @Property(selector = "setLocalizedCancelTitle:")
-    public native void setLocalizedCancelTitle(String v);
-    /**
      * @since Available in iOS 8.3 and later.
      * @deprecated Deprecated in iOS 9.0.
      */
@@ -78,6 +66,16 @@ import org.robovm.apple.security.*;
     @Deprecated
     @Property(selector = "setMaxBiometryFailures:")
     public native void setMaxBiometryFailures(NSNumber v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "localizedCancelTitle")
+    public native String getLocalizedCancelTitle();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "setLocalizedCancelTitle:")
+    public native void setLocalizedCancelTitle(String v);
     /**
      * @since Available in iOS 9.0 and later.
      */

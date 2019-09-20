@@ -31,9 +31,7 @@ import org.robovm.apple.foundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 5.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("Accounts") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/ACAccount/*</name>*/ 
@@ -65,9 +63,6 @@ import org.robovm.apple.foundation.*;
     public native String getUsername();
     @Property(selector = "setUsername:")
     public native void setUsername(String v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "userFullName")
     public native String getUserFullName();
     @Property(selector = "credential")

@@ -72,9 +72,6 @@ import org.robovm.apple.dispatch.*;
     public NSBundle() {}
     protected NSBundle(Handle h, long handle) { super(h, handle); }
     protected NSBundle(SkipInit skipInit) { super(skipInit); }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "initWithURL:")
     public NSBundle(NSURL url) { super((SkipInit) null); initObject(init(url)); }
     /*</constructors>*/
@@ -93,44 +90,20 @@ import org.robovm.apple.dispatch.*;
     public static native NSArray<NSBundle> getAllFrameworks();
     @Property(selector = "isLoaded")
     public native boolean isLoaded();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "bundleURL")
     public native NSURL getBundleURL();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "resourceURL")
     public native NSURL getResourceURL();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "executableURL")
     public native NSURL getExecutableURL();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "privateFrameworksURL")
     public native NSURL getPrivateFrameworksURL();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "sharedFrameworksURL")
     public native NSURL getSharedFrameworksURL();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "sharedSupportURL")
     public native NSURL getSharedSupportURL();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "builtInPlugInsURL")
     public native NSURL getBuiltInPlugInsURL();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "appStoreReceiptURL")
     public native NSURL getAppStoreReceiptURL();
     @Property(selector = "bundlePath")
@@ -161,9 +134,6 @@ import org.robovm.apple.dispatch.*;
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getLocalizations();
     @Property(selector = "developmentLocalization")
     public native String getDevelopmentLocalization();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Property(selector = "executableArchitectures")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSBundleExecutableArchitectureType.AsListMarshaler.class) List<NSBundleExecutableArchitectureType> getExecutableArchitectures();
     /*</properties>*/
@@ -183,69 +153,36 @@ import org.robovm.apple.dispatch.*;
     
     @Method(selector = "initWithPath:")
     protected native @Pointer long init(String path);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "initWithURL:")
     protected native @Pointer long init(NSURL url);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public boolean preflight() throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        boolean result = preflight(ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        return result;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Method(selector = "preflightAndReturnError:")
     private native boolean preflight(NSError.NSErrorPtr error);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public boolean load() throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        boolean result = load(ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        return result;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Method(selector = "loadAndReturnError:")
     private native boolean load(NSError.NSErrorPtr error);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "URLForAuxiliaryExecutable:")
     public native NSURL findAuxiliaryExecutableURL(String executableName);
     @Method(selector = "pathForAuxiliaryExecutable:")
     public native String findAuxiliaryExecutablePath(String executableName);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "URLForResource:withExtension:")
     public native NSURL findResourceURL(String name, String ext);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "URLForResource:withExtension:subdirectory:")
     public native NSURL findResourceURL(String name, String ext, String subpath);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "URLForResource:withExtension:subdirectory:localization:")
     public native NSURL findResourceURL(String name, String ext, String subpath, String localizationName);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "URLsForResourcesWithExtension:subdirectory:")
     public native NSArray<NSURL> findResourceURLs(String ext, String subpath);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "URLsForResourcesWithExtension:subdirectory:localization:")
     public native NSArray<NSURL> findResourceURLs(String ext, String subpath, String localizationName);
     @Method(selector = "pathForResource:ofType:")
@@ -268,14 +205,8 @@ import org.robovm.apple.dispatch.*;
     public static native NSBundle getBundle(Class<?> aClass);
     @Method(selector = "bundleWithIdentifier:")
     public static native NSBundle getBundle(String identifier);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "URLForResource:withExtension:subdirectory:inBundleWithURL:")
     public static native NSURL findResourceURLInBundle(String name, String ext, String subpath, NSURL bundleURL);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "URLsForResourcesWithExtension:subdirectory:inBundleWithURL:")
     public static native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> findResourceURLsInBundle(String ext, String subpath, NSURL bundleURL);
     @Method(selector = "pathForResource:ofType:inDirectory:")

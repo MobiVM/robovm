@@ -34,9 +34,7 @@ import org.robovm.apple.security.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("WebKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/WKNavigation/*</name>*/ 
@@ -52,7 +50,11 @@ import org.robovm.apple.security.*;
     protected WKNavigation(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "effectiveContentMode")
+    public native WKContentMode getEffectiveContentMode();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

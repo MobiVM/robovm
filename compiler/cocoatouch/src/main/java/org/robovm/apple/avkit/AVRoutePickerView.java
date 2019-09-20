@@ -54,7 +54,7 @@ import org.robovm.apple.iad.*;
     @Method(selector = "initWithFrame:")
     public AVRoutePickerView(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public AVRoutePickerView(NSCoder decoder) { super(decoder); }
+    public AVRoutePickerView(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "delegate")
@@ -65,6 +65,16 @@ import org.robovm.apple.iad.*;
     public native UIColor getActiveTintColor();
     @Property(selector = "setActiveTintColor:")
     public native void setActiveTintColor(UIColor v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "prioritizesVideoDevices")
+    public native boolean isPrioritizesVideoDevices();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setPrioritizesVideoDevices:")
+    public native void setPrioritizesVideoDevices(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

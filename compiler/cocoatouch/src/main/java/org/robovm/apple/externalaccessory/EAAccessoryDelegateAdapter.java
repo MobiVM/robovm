@@ -50,9 +50,6 @@ import org.robovm.apple.uikit.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @NotImplemented("accessoryDidDisconnect:")
     public void didDisconnect(EAAccessory accessory) {}
     /*</methods>*/

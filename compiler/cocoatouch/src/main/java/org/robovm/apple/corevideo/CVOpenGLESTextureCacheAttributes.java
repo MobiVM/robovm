@@ -112,7 +112,6 @@ import org.robovm.apple.iosurface.*;
     
 
     /**
-     * @since Available in iOS 5.0 and later.
      * @deprecated Deprecated in iOS 12.0. OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)
      */
     @Deprecated
@@ -124,7 +123,6 @@ import org.robovm.apple.iosurface.*;
         return 0;
     }
     /**
-     * @since Available in iOS 5.0 and later.
      * @deprecated Deprecated in iOS 12.0. OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)
      */
     @Deprecated
@@ -139,7 +137,6 @@ import org.robovm.apple.iosurface.*;
     public static class Keys {
         static { Bro.bind(Keys.class); }
         /**
-         * @since Available in iOS 5.0 and later.
          * @deprecated Deprecated in iOS 12.0. OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)
          */
         @Deprecated

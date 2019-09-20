@@ -91,11 +91,23 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "isRedEyeReductionEnabled")
     public native boolean isRedEyeReductionEnabled();
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use photoProcessingTimeRange
+     */
+    @Deprecated
     @Property(selector = "isStillImageStabilizationEnabled")
     public native boolean isStillImageStabilizationEnabled();
     /**
-     * @since Available in iOS 10.2 and later.
+     * @since Available in iOS 13.0 and later.
      */
+    @Property(selector = "isVirtualDeviceFusionEnabled")
+    public native boolean isVirtualDeviceFusionEnabled();
+    /**
+     * @since Available in iOS 10.2 and later.
+     * @deprecated Deprecated in iOS 13.0. Use virtualDeviceFusionEnabled
+     */
+    @Deprecated
     @Property(selector = "isDualCameraFusionEnabled")
     public native boolean isDualCameraFusionEnabled();
     /**
@@ -103,9 +115,18 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "expectedPhotoCount")
     public native @MachineSizedUInt long getExpectedPhotoCount();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "photoProcessingTimeRange")
+    public native @ByVal CMTimeRange getPhotoProcessingTimeRange();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "dimensionsForSemanticSegmentationMatteOfType:")
+    public native @ByVal CMVideoDimensions dimensionsForSemanticSegmentationMatteOfType(AVSemanticSegmentationMatteType semanticSegmentationMatteType);
     /*</methods>*/
 }

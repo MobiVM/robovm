@@ -152,9 +152,6 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @GlobalValue(symbol="kCMFormatDescriptionColorPrimaries_ITU_R_2020", optional=true)
     public static native CFString ColorPrimaries_ITU_R_2020();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @GlobalValue(symbol="kCMFormatDescriptionColorPrimaries_P22", optional=true)
     public static native CFString ColorPrimaries_P22();
     /**
@@ -197,6 +194,11 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @GlobalValue(symbol="kCMFormatDescriptionTransferFunction_Linear", optional=true)
     public static native CFString TransferFunction_Linear();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @GlobalValue(symbol="kCMFormatDescriptionTransferFunction_sRGB", optional=true)
+    public static native CFString TransferFunction_sRGB();
     /**
      * @since Available in iOS 9.0 and later.
      */
@@ -253,6 +255,16 @@ import org.robovm.apple.audiotoolbox.*;
     @GlobalValue(symbol="kCMFormatDescriptionChromaLocation_DV420", optional=true)
     public static native CFString ChromaLocationDV420();
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @GlobalValue(symbol="kCMFormatDescriptionAlphaChannelMode_StraightAlpha", optional=true)
+    public static native CFString AlphaChannelModeStraightAlpha();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @GlobalValue(symbol="kCMFormatDescriptionAlphaChannelMode_PremultipliedAlpha", optional=true)
+    public static native CFString AlphaChannelModePremultipliedAlpha();
+    /**
      * @since Available in iOS 9.0 and later.
      */
     @GlobalValue(symbol="kCMSampleBufferLensStabilizationInfo_Active", optional=true)
@@ -273,14 +285,8 @@ import org.robovm.apple.audiotoolbox.*;
     @GlobalValue(symbol="kCMSampleBufferLensStabilizationInfo_Off", optional=true)
     public static native CFString LensStabilizationInfoOff();
     
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMVideoFormatDescriptionCreate", optional=true)
     private static native OSStatus create0(CFAllocator allocator, CMVideoCodecType codecType, int width, int height, CMVideoFormatDescriptionExtension extensions, CMVideoFormatDescription.CMVideoFormatDescriptionPtr formatDescriptionOut);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMVideoFormatDescriptionCreateForImageBuffer", optional=true)
     private static native OSStatus create0(CFAllocator allocator, CVImageBuffer imageBuffer, CMVideoFormatDescription.CMVideoFormatDescriptionPtr formatDescriptionOut);
     /**
@@ -293,46 +299,22 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Bridge(symbol="CMVideoFormatDescriptionGetHEVCParameterSetAtIndex", optional=true)
     public static native OSStatus getHEVCParameterSetAtIndex(CMFormatDescription videoDesc, @MachineSizedUInt long parameterSetIndex, BytePtr.BytePtrPtr parameterSetPointerOut, MachineSizedUIntPtr parameterSetSizeOut, MachineSizedUIntPtr parameterSetCountOut, IntPtr NALUnitHeaderLengthOut);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMVideoFormatDescriptionGetDimensions", optional=true)
     public native @ByVal CMVideoDimensions getDimensions();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @WeaklyLinked
     @Bridge(symbol="CMVideoFormatDescriptionGetPresentationDimensions", optional=true)
     public native @ByVal CGSize getPresentationDimensions(boolean usePixelAspectRatio, boolean useCleanAperture);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @WeaklyLinked
     @Bridge(symbol="CMVideoFormatDescriptionGetCleanAperture", optional=true)
     public native @ByVal CGRect getCleanAperture(boolean originIsAtTopLeft);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMVideoFormatDescriptionGetExtensionKeysCommonWithImageBuffers", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFArray.AsStringListMarshaler.class) List<String> getExtensionKeysCommonWithImageBuffers();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMVideoFormatDescriptionMatchesImageBuffer", optional=true)
     public native boolean matchesImageBuffer(CVImageBuffer imageBuffer);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Bridge(symbol="CMVideoFormatDescriptionCreateFromBigEndianImageDescriptionData", optional=true)
     private static native OSStatus createFromBigEndianImageDescriptionData0(CFAllocator allocator, BytePtr imageDescriptionData, @MachineSizedUInt long size, int stringEncoding, String flavor, CMVideoFormatDescription.CMVideoFormatDescriptionPtr formatDescriptionOut);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Bridge(symbol="CMVideoFormatDescriptionCreateFromBigEndianImageDescriptionBlockBuffer", optional=true)
     private static native OSStatus createFromBigEndianImageDescriptionBlockBuffer0(CFAllocator allocator, CMBlockBuffer imageDescriptionBlockBuffer, int stringEncoding, String flavor, CMVideoFormatDescription.CMVideoFormatDescriptionPtr formatDescriptionOut);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Bridge(symbol="CMVideoFormatDescriptionCopyAsBigEndianImageDescriptionBlockBuffer", optional=true)
     private static native OSStatus copyAsBigEndianImageDescriptionBlockBuffer0(CFAllocator allocator, CMVideoFormatDescription videoFormatDescription, int stringEncoding, String flavor, CMBlockBuffer.CMBlockBufferPtr blockBufferOut);
     /*</methods>*/

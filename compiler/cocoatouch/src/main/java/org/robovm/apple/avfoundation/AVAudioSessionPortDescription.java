@@ -41,9 +41,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 6.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVAudioSessionPortDescription/*</name>*/ 
@@ -59,19 +57,10 @@ import org.robovm.apple.audiotoolbox.*;
     protected AVAudioSessionPortDescription(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "portType")
     public native AVAudioSessionPort getPortType();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "portName")
     public native String getPortName();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "UID")
     public native String getUID();
     /**
@@ -79,41 +68,23 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "hasHardwareVoiceCallProcessing")
     public native boolean hasHardwareVoiceCallProcessing();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "channels")
     public native NSArray<AVAudioSessionChannelDescription> getChannels();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "dataSources")
     public native NSArray<AVAudioSessionDataSourceDescription> getDataSources();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "selectedDataSource")
     public native AVAudioSessionDataSourceDescription getSelectedDataSource();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "preferredDataSource")
     public native AVAudioSessionDataSourceDescription getPreferredDataSource();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public boolean setPreferredDataSource(AVAudioSessionDataSourceDescription dataSource) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        boolean result = setPreferredDataSource(dataSource, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        return result;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "setPreferredDataSource:error:")
     private native boolean setPreferredDataSource(AVAudioSessionDataSourceDescription dataSource, NSError.NSErrorPtr outError);
     /*</methods>*/

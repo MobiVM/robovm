@@ -47,9 +47,6 @@ import org.robovm.apple.uikit.*;
     
     /*</properties>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "productsRequest:didReceiveResponse:")
     void didReceiveResponse(SKProductsRequest request, SKProductsResponse response);
     /*</methods>*/

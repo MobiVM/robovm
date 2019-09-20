@@ -60,6 +60,11 @@ import org.robovm.apple.contacts.*;
     public native PKPaymentMethodType getType();
     @Property(selector = "paymentPass")
     public native PKPaymentPass getPaymentPass();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "billingAddress")
+    public native CNContact getBillingAddress();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

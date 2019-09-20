@@ -102,9 +102,6 @@ import org.robovm.apple.coretext.*;
     public native @ByVal CFRange getRangeOfUnit(CFCalendarUnit smallerUnit, CFCalendarUnit biggerUnit, double at);
     @Bridge(symbol="CFCalendarGetOrdinalityOfUnit", optional=true)
     public native @MachineSizedSInt long getOrdinalityOfUnit(CFCalendarUnit smallerUnit, CFCalendarUnit biggerUnit, double at);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CFCalendarGetTimeRangeOfUnit", optional=true)
     private native boolean getTimeRangeOfUnit(CFCalendarUnit unit, double at, DoublePtr startp, DoublePtr tip);
     /*</methods>*/

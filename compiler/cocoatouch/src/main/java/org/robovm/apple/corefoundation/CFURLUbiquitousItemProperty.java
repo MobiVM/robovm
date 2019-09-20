@@ -91,43 +91,18 @@ import org.robovm.apple.coretext.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final CFURLUbiquitousItemProperty IsUbiquitousItem = new CFURLUbiquitousItemProperty("IsUbiquitousItem");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final CFURLUbiquitousItemProperty HasUnresolvedConflicts = new CFURLUbiquitousItemProperty("HasUnresolvedConflicts");
     /**
-     * @since Available in iOS 5.0 and later.
      * @deprecated Deprecated in iOS 7.0. Use kCFURLUbiquitousItemDownloadingStatusKey instead
      */
     @Deprecated
     public static final CFURLUbiquitousItemProperty IsDownloaded = new CFURLUbiquitousItemProperty("IsDownloaded");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final CFURLUbiquitousItemProperty IsDownloading = new CFURLUbiquitousItemProperty("IsDownloading");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final CFURLUbiquitousItemProperty IsUploaded = new CFURLUbiquitousItemProperty("IsUploaded");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final CFURLUbiquitousItemProperty IsUploading = new CFURLUbiquitousItemProperty("IsUploading");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final CFURLUbiquitousItemProperty DownloadingStatus = new CFURLUbiquitousItemProperty("DownloadingStatus");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final CFURLUbiquitousItemProperty DownloadingError = new CFURLUbiquitousItemProperty("DownloadingError");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final CFURLUbiquitousItemProperty UploadingError = new CFURLUbiquitousItemProperty("UploadingError");
     /*</constants>*/
     
@@ -154,51 +129,26 @@ import org.robovm.apple.coretext.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="kCFURLIsUbiquitousItemKey", optional=true)
         public static native CFString IsUbiquitousItem();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="kCFURLUbiquitousItemHasUnresolvedConflictsKey", optional=true)
         public static native CFString HasUnresolvedConflicts();
         /**
-         * @since Available in iOS 5.0 and later.
          * @deprecated Deprecated in iOS 7.0. Use kCFURLUbiquitousItemDownloadingStatusKey instead
          */
         @Deprecated
         @GlobalValue(symbol="kCFURLUbiquitousItemIsDownloadedKey", optional=true)
         public static native CFString IsDownloaded();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="kCFURLUbiquitousItemIsDownloadingKey", optional=true)
         public static native CFString IsDownloading();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="kCFURLUbiquitousItemIsUploadedKey", optional=true)
         public static native CFString IsUploaded();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="kCFURLUbiquitousItemIsUploadingKey", optional=true)
         public static native CFString IsUploading();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kCFURLUbiquitousItemDownloadingStatusKey", optional=true)
         public static native CFString DownloadingStatus();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kCFURLUbiquitousItemDownloadingErrorKey", optional=true)
         public static native CFString DownloadingError();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kCFURLUbiquitousItemUploadingErrorKey", optional=true)
         public static native CFString UploadingError();
         /*</values>*/

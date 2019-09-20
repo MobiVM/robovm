@@ -92,25 +92,10 @@ import org.robovm.apple.metal.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public static final CATextAlignmentMode Natural = new CATextAlignmentMode("Natural");
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public static final CATextAlignmentMode Left = new CATextAlignmentMode("Left");
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public static final CATextAlignmentMode Right = new CATextAlignmentMode("Right");
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public static final CATextAlignmentMode Center = new CATextAlignmentMode("Center");
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public static final CATextAlignmentMode Justified = new CATextAlignmentMode("Justified");
     /*</constants>*/
     
@@ -137,29 +122,14 @@ import org.robovm.apple.metal.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 3.2 and later.
-         */
         @GlobalValue(symbol="kCAAlignmentNatural", optional=true)
         public static native NSString Natural();
-        /**
-         * @since Available in iOS 3.2 and later.
-         */
         @GlobalValue(symbol="kCAAlignmentLeft", optional=true)
         public static native NSString Left();
-        /**
-         * @since Available in iOS 3.2 and later.
-         */
         @GlobalValue(symbol="kCAAlignmentRight", optional=true)
         public static native NSString Right();
-        /**
-         * @since Available in iOS 3.2 and later.
-         */
         @GlobalValue(symbol="kCAAlignmentCenter", optional=true)
         public static native NSString Center();
-        /**
-         * @since Available in iOS 3.2 and later.
-         */
         @GlobalValue(symbol="kCAAlignmentJustified", optional=true)
         public static native NSString Justified();
         /*</values>*/

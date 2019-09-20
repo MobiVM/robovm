@@ -59,34 +59,16 @@ import org.robovm.apple.audiotoolbox.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "encodeCMTime:forKey:")
     public static native void encodeCMTime(NSCoder thiz, @ByVal CMTime time, String key);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "decodeCMTimeForKey:")
     public static native @ByVal CMTime decodeCMTime(NSCoder thiz, String key);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "encodeCMTimeRange:forKey:")
     public static native void encodeCMTimeRange(NSCoder thiz, @ByVal CMTimeRange timeRange, String key);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "decodeCMTimeRangeForKey:")
     public static native @ByVal CMTimeRange decodeCMTimeRange(NSCoder thiz, String key);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "encodeCMTimeMapping:forKey:")
     public static native void encodeCMTimeMapping(NSCoder thiz, @ByVal CMTimeMapping timeMapping, String key);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "decodeCMTimeMappingForKey:")
     public static native @ByVal CMTimeMapping decodeCMTimeMapping(NSCoder thiz, String key);
     /*</methods>*/

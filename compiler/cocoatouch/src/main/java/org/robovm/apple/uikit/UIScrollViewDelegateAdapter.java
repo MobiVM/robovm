@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -59,16 +61,10 @@ import org.robovm.apple.intents.*;
     /*<methods>*/
     @NotImplemented("scrollViewDidScroll:")
     public void didScroll(UIScrollView scrollView) {}
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @NotImplemented("scrollViewDidZoom:")
     public void didZoom(UIScrollView scrollView) {}
     @NotImplemented("scrollViewWillBeginDragging:")
     public void willBeginDragging(UIScrollView scrollView) {}
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @NotImplemented("scrollViewWillEndDragging:withVelocity:targetContentOffset:")
     public void willEndDragging(UIScrollView scrollView, @ByVal CGPoint velocity, CGPoint targetContentOffset) {}
     @NotImplemented("scrollViewDidEndDragging:willDecelerate:")
@@ -81,9 +77,6 @@ import org.robovm.apple.intents.*;
     public void didEndScrollingAnimation(UIScrollView scrollView) {}
     @NotImplemented("viewForZoomingInScrollView:")
     public UIView getViewForZooming(UIScrollView scrollView) { return null; }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @NotImplemented("scrollViewWillBeginZooming:withView:")
     public void willBeginZooming(UIScrollView scrollView, UIView view) {}
     @NotImplemented("scrollViewDidEndZooming:withView:atScale:")

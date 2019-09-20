@@ -59,9 +59,6 @@ import org.robovm.apple.coretext.*;
     /*<methods>*/
     @Bridge(symbol="CFRunLoopTimerGetTypeID", optional=true)
     public static native @MachineSizedUInt long getClassTypeID();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="CFRunLoopTimerCreateWithHandler", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CFRunLoopTimer create(CFAllocator allocator, double fireDate, double interval, @MachineSizedUInt long flags, @MachineSizedSInt long order, @Block VoidBlock1<CFRunLoopTimer> block);
     @Bridge(symbol="CFRunLoopTimerGetNextFireDate", optional=true)
@@ -78,14 +75,8 @@ import org.robovm.apple.coretext.*;
     public native void invalidate();
     @Bridge(symbol="CFRunLoopTimerIsValid", optional=true)
     public native boolean isValid();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Bridge(symbol="CFRunLoopTimerGetTolerance", optional=true)
     public native double getTolerance();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Bridge(symbol="CFRunLoopTimerSetTolerance", optional=true)
     public native void setTolerance(double tolerance);
     /*</methods>*/

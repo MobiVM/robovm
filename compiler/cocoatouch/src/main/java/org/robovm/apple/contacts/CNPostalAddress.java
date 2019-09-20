@@ -48,7 +48,7 @@ import org.robovm.apple.foundation.*;
     protected CNPostalAddress(Handle h, long handle) { super(h, handle); }
     protected CNPostalAddress(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public CNPostalAddress(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public CNPostalAddress(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "street")
@@ -83,6 +83,6 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

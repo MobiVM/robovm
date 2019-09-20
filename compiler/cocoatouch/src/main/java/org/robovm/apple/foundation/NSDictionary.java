@@ -42,7 +42,7 @@ import org.robovm.apple.dispatch.*;
 
 /*</javadoc>*/
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/NSDictionary/*</name>*/ <K extends NSObject, V extends NSObject>
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/NSDictionary<K extends NSObject, V extends NSObject>/*</name>*/
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*/implements NSPropertyList, NSFastEnumeration, Map<K, V>/*</implements>*/ {
 
@@ -413,7 +413,7 @@ import org.robovm.apple.dispatch.*;
     
     @Override
     public boolean equals(Object obj) {
-        return obj instanceof NSDictionary && equalsTo((NSDictionary<?, ?>) obj);
+        return obj instanceof NSDictionary && equalsTo((NSDictionary<K, V>) obj);
     }
     
     public static NSDictionary<?, ?> read(java.io.File file) {
@@ -593,18 +593,34 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "objectForKey:")
     protected native V getObject(K aKey);
     @Method(selector = "isEqualToDictionary:")
-    protected native boolean equalsTo(NSDictionary<?, ?> otherDictionary);
+    protected native boolean equalsTo(NSDictionary<K, V> otherDictionary);
+    /**
+     * @deprecated Use writeToURL:error:
+     */
+    @Deprecated
     @Method(selector = "writeToFile:atomically:")
     protected native boolean writeFile(String path, boolean atomically);
+    /**
+     * @deprecated Use writeToURL:error:
+     */
+    @Deprecated
     @Method(selector = "writeToURL:atomically:")
     public native boolean write(NSURL url, boolean atomically);
+    /**
+     * @deprecated Use dictionaryWithContentsOfURL:error:
+     */
+    @Deprecated
     @Method(selector = "dictionaryWithContentsOfFile:")
     protected static native NSDictionary<?, ?> read(String path);
+    /**
+     * @deprecated Use dictionaryWithContentsOfURL:error:
+     */
+    @Deprecated
     @Method(selector = "dictionaryWithContentsOfURL:")
     public static native NSDictionary<?, ?> read(NSURL url);
     @Method(selector = "initWithDictionary:")
-    protected native @Pointer long init(NSDictionary<?, ?> otherDictionary);
+    protected native @Pointer long init(NSDictionary<K, V> otherDictionary);
     @Method(selector = "initWithObjects:forKeys:")
-    protected native @Pointer long init(NSArray<?> objects, NSArray<?> keys);
+    protected native @Pointer long init(NSArray<V> objects, NSArray<?> keys);
     /*</methods>*/
 }

@@ -53,7 +53,7 @@ import org.robovm.apple.mapkit.*;
     @Method(selector = "initWithIdentifier:titleVariants:image:repeats:")
     public CPVoiceControlState(String identifier, NSArray<NSString> titleVariants, UIImage image, boolean repeats) { super((SkipInit) null); initObject(init(identifier, titleVariants, image, repeats)); }
     @Method(selector = "initWithCoder:")
-    public CPVoiceControlState(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public CPVoiceControlState(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "titleVariants")
@@ -74,6 +74,6 @@ import org.robovm.apple.mapkit.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

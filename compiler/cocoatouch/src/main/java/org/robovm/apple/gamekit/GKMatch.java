@@ -32,9 +32,7 @@ import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.1 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("GameKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GKMatch/*</name>*/ 
@@ -50,9 +48,6 @@ import org.robovm.apple.uikit.*;
     protected GKMatch(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "players")
     public native NSArray<GKPlayer> getPlayers();
     @Property(selector = "delegate")
@@ -62,7 +57,6 @@ import org.robovm.apple.uikit.*;
     @Property(selector = "expectedPlayerCount")
     public native @MachineSizedUInt long getExpectedPlayerCount();
     /**
-     * @since Available in iOS 4.1 and later.
      * @deprecated Deprecated in iOS 8.0. use players
      */
     @Deprecated
@@ -71,18 +65,12 @@ import org.robovm.apple.uikit.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public boolean sendDataToPlayers(NSData data, NSArray<GKPlayer> players, GKMatchSendDataMode mode) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        boolean result = sendDataToPlayers(data, players, mode, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        return result;
     }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "sendData:toPlayers:dataMode:error:")
     private native boolean sendDataToPlayers(NSData data, NSArray<GKPlayer> players, GKMatchSendDataMode mode, NSError.NSErrorPtr error);
     public boolean sendDataToAllPlayers(NSData data, GKMatchSendDataMode mode) throws NSErrorException {
@@ -97,25 +85,17 @@ import org.robovm.apple.uikit.*;
     public native void disconnect();
     @Method(selector = "voiceChatWithName:")
     public native GKVoiceChat getVoiceChat(String name);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "chooseBestHostingPlayerWithCompletionHandler:")
     public native void chooseBestHostingPlayer(@Block VoidBlock1<GKPlayer> completionHandler);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "rematchWithCompletionHandler:")
     public native void rematch(@Block VoidBlock2<GKMatch, NSError> completionHandler);
     /**
-     * @since Available in iOS 6.0 and later.
      * @deprecated Deprecated in iOS 8.0. use chooseBestHostingPlayerWithCompletionHandler:
      */
     @Deprecated
     @Method(selector = "chooseBestHostPlayerWithCompletionHandler:")
     public native void chooseBestHostPlayer(@Block VoidBlock1<NSString> completionHandler);
     /**
-     * @since Available in iOS 4.1 and later.
      * @deprecated Deprecated in iOS 8.0. use sendData:toPlayers:dataMode:error:
      */
     @Deprecated
@@ -126,7 +106,6 @@ import org.robovm.apple.uikit.*;
        return result;
     }
     /**
-     * @since Available in iOS 4.1 and later.
      * @deprecated Deprecated in iOS 8.0. use sendData:toPlayers:dataMode:error:
      */
     @Deprecated

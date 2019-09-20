@@ -39,8 +39,21 @@ import org.robovm.apple.foundation.*;
 public enum /*<name>*/HKCategoryValueOvulationTestResult/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Negative(1L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    LuteinizingHormoneSurge(2L),
+    /**
+     * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use HKCategoryValueOvulationTestResultLuteinizingHormoneSurge
+     */
+    @Deprecated
     Positive(2L),
-    Indeterminate(3L);
+    Indeterminate(3L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    EstrogenSurge(4L);
     /*</values>*/
 
     /*<bind>*/

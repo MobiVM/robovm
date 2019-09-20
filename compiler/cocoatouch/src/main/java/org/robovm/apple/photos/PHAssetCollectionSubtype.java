@@ -38,9 +38,7 @@ import org.robovm.apple.imageio.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/PHAssetCollectionSubtype/*</name>*/ implements ValuedEnum {
@@ -86,6 +84,10 @@ public enum /*<name>*/PHAssetCollectionSubtype/*</name>*/ implements ValuedEnum 
      * @since Available in iOS 11.0 and later.
      */
     SmartAlbumLongExposures(215L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    SmartAlbumUnableToUpload(216L),
     Any(Bro.IS_32BIT ? Integer.MAX_VALUE : Long.MAX_VALUE);
     /*</values>*/
 

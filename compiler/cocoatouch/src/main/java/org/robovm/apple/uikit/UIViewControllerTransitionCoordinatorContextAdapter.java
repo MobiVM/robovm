@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -78,9 +80,6 @@ import org.robovm.apple.intents.*;
     public UIViewAnimationCurve getCompletionCurve() { return null; }
     @NotImplemented("containerView")
     public UIView getContainerView() { return null; }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @NotImplemented("targetTransform")
     public @ByVal CGAffineTransform getTargetTransform() { return null; }
     /*</properties>*/
@@ -88,9 +87,6 @@ import org.robovm.apple.intents.*;
     /*<methods>*/
     @NotImplemented("viewControllerForKey:")
     public UIViewController getViewController(String key) { return null; }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @NotImplemented("viewForKey:")
     public UIView getView(String key) { return null; }
     /*</methods>*/

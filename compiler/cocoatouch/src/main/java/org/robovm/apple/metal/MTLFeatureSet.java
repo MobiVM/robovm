@@ -32,20 +32,12 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/MTLFeatureSet/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     iOS_GPUFamily1_v1(0L),
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     iOS_GPUFamily2_v1(1L),
     /**
      * @since Available in iOS 9.0 and later.

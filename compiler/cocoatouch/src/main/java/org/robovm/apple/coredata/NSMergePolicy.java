@@ -29,13 +29,13 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corespotlight.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 import org.robovm.apple.foundation.NSError.NSErrorPtr;
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 5.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreData") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSMergePolicy/*</name>*/ 
@@ -82,29 +82,14 @@ import org.robovm.apple.foundation.NSError.NSErrorPtr;
     public native NSMergePolicyType getMergeType();
     /*</properties>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @GlobalValue(symbol="NSErrorMergePolicy", optional=true)
     public static native NSMergePolicy getErrorMergePolicyConst();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @GlobalValue(symbol="NSMergeByPropertyStoreTrumpMergePolicy", optional=true)
     public static native NSMergePolicy getMergeByPropertyStoreTrumpMergePolicyConst();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @GlobalValue(symbol="NSMergeByPropertyObjectTrumpMergePolicy", optional=true)
     public static native NSMergePolicy getMergeByPropertyObjectTrumpMergePolicyConst();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @GlobalValue(symbol="NSOverwriteMergePolicy", optional=true)
     public static native NSMergePolicy getOverwriteMergePolicyConst();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @GlobalValue(symbol="NSRollbackMergePolicy", optional=true)
     public static native NSMergePolicy getRollbackMergePolicyConst();
     

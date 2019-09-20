@@ -37,11 +37,12 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 2.0 and later.
  * @deprecated Deprecated in iOS 9.0. UIAlertView is deprecated. Use UIAlertController with a preferredStyle of UIAlertControllerStyleAlert instead
  */
 /*</javadoc>*/
@@ -60,7 +61,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithFrame:")
     public UIAlertView(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
     @Method(selector = "initWithCoder:")
-    public UIAlertView(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public UIAlertView(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     
     public UIAlertView(String title, String message, UIAlertViewDelegate delegate, String cancelButtonTitle, 
@@ -99,14 +100,8 @@ import org.robovm.apple.intents.*;
     public native @MachineSizedSInt long getFirstOtherButtonIndex();
     @Property(selector = "isVisible")
     public native boolean isVisible();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "alertViewStyle")
     public native UIAlertViewStyle getAlertViewStyle();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setAlertViewStyle:")
     public native void setAlertViewStyle(UIAlertViewStyle v);
     /*</properties>*/
@@ -115,7 +110,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithFrame:")
     protected native @Pointer long init(@ByVal CGRect frame);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     @Method(selector = "addButtonWithTitle:")
     public native @MachineSizedSInt long addButton(String title);
     @Method(selector = "buttonTitleAtIndex:")
@@ -124,9 +119,6 @@ import org.robovm.apple.intents.*;
     public native void show();
     @Method(selector = "dismissWithClickedButtonIndex:animated:")
     public native void dismiss(@MachineSizedSInt long buttonIndex, boolean animated);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "textFieldAtIndex:")
     public native UITextField getTextField(@MachineSizedSInt long textFieldIndex);
     /*</methods>*/

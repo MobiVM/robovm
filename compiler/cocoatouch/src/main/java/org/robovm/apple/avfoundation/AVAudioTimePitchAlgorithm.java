@@ -97,21 +97,9 @@ import org.robovm.apple.audiotoolbox.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final AVAudioTimePitchAlgorithm LowQualityZeroLatency = new AVAudioTimePitchAlgorithm("LowQualityZeroLatency");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final AVAudioTimePitchAlgorithm TimeDomain = new AVAudioTimePitchAlgorithm("TimeDomain");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final AVAudioTimePitchAlgorithm Spectral = new AVAudioTimePitchAlgorithm("Spectral");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final AVAudioTimePitchAlgorithm Varispeed = new AVAudioTimePitchAlgorithm("Varispeed");
     /*</constants>*/
     
@@ -138,24 +126,12 @@ import org.robovm.apple.audiotoolbox.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="AVAudioTimePitchAlgorithmLowQualityZeroLatency", optional=true)
         public static native NSString LowQualityZeroLatency();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="AVAudioTimePitchAlgorithmTimeDomain", optional=true)
         public static native NSString TimeDomain();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="AVAudioTimePitchAlgorithmSpectral", optional=true)
         public static native NSString Spectral();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="AVAudioTimePitchAlgorithmVarispeed", optional=true)
         public static native NSString Varispeed();
         /*</values>*/

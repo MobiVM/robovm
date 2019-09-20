@@ -56,10 +56,10 @@ import org.robovm.apple.corelocation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "successWithResolvedPaymentAmount:")
-    public static native INPaymentAmountResolutionResult successWithResolvedPaymentAmount(INPaymentAmount resolvedPaymentAmount);
+    public static native INPaymentAmountResolutionResult success(INPaymentAmount resolvedPaymentAmount);
     @Method(selector = "disambiguationWithPaymentAmountsToDisambiguate:")
-    public static native INPaymentAmountResolutionResult disambiguationWithPaymentAmountsToDisambiguate(NSArray<INPaymentAmount> paymentAmountsToDisambiguate);
+    public static native INPaymentAmountResolutionResult disambiguation(NSArray<INPaymentAmount> paymentAmountsToDisambiguate);
     @Method(selector = "confirmationRequiredWithPaymentAmountToConfirm:")
-    public static native INPaymentAmountResolutionResult confirmationRequiredWithPaymentAmountToConfirm(INPaymentAmount paymentAmountToConfirm);
+    public static native INPaymentAmountResolutionResult confirmationRequired(INPaymentAmount paymentAmountToConfirm);
     /*</methods>*/
 }

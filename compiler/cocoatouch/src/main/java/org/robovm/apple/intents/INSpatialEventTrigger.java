@@ -52,7 +52,7 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "initWithPlacemark:event:")
     public INSpatialEventTrigger(CLPlacemark placemark, INSpatialEvent event) { super((SkipInit) null); initObject(init(placemark, event)); }
     @Method(selector = "initWithCoder:")
-    public INSpatialEventTrigger(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public INSpatialEventTrigger(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "placemark")
@@ -69,6 +69,6 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

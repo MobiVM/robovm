@@ -39,9 +39,7 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 7.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSURLSession/*</name>*/ 
@@ -75,9 +73,6 @@ import org.robovm.apple.dispatch.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @GlobalValue(symbol="NSURLSessionTransferSizeUnknown", optional=true)
     public static native long getTransferSizeUnknown();
     
@@ -122,6 +117,21 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "streamTaskWithNetService:")
     public native NSURLSessionStreamTask newStreamTask(NSNetService service);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "webSocketTaskWithURL:")
+    public native NSURLSessionWebSocketTask newWebSocket(NSURL url);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "webSocketTaskWithURL:protocols:")
+    public native NSURLSessionWebSocketTask newWebSocket(NSURL url, NSArray<NSString> protocols);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "webSocketTaskWithRequest:")
+    public native NSURLSessionWebSocketTask newWebSocket(NSURLRequest request);
     @Method(selector = "sessionWithConfiguration:")
     protected static native @Pointer long create(NSURLSessionConfiguration configuration);
     @Method(selector = "sessionWithConfiguration:delegate:delegateQueue:")

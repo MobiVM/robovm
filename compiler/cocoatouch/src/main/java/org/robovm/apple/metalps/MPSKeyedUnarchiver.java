@@ -62,14 +62,14 @@ import org.robovm.apple.metal.*;
     }
     /**
      * @since Available in iOS 11.3 and later.
-     * @deprecated Deprecated in iOS 12.0.
+     * @deprecated Deprecated in iOS 12.0. Use Please use -initForReadingFromData:device:error: instead
      */
     @Deprecated
     @Method(selector = "initWithDevice:")
     public MPSKeyedUnarchiver(MTLDevice device) { super((SkipInit) null); initObject(init(device)); }
     /**
      * @since Available in iOS 11.3 and later.
-     * @deprecated Deprecated in iOS 12.0.
+     * @deprecated Deprecated in iOS 12.0. Use Please use -initForReadingFromData:device:error: instead
      */
     @Deprecated
     @Method(selector = "initForReadingWithData:device:")
@@ -89,14 +89,14 @@ import org.robovm.apple.metal.*;
     public native MTLDevice mpsMTLDevice();
     /**
      * @since Available in iOS 11.3 and later.
-     * @deprecated Deprecated in iOS 12.0.
+     * @deprecated Deprecated in iOS 12.0. Use Please use -initForReadingFromData:device:error: instead
      */
     @Deprecated
     @Method(selector = "initWithDevice:")
     protected native @Pointer long init(MTLDevice device);
     /**
      * @since Available in iOS 11.3 and later.
-     * @deprecated Deprecated in iOS 12.0.
+     * @deprecated Deprecated in iOS 12.0. Use Please use -initForReadingFromData:device:error: instead
      */
     @Deprecated
     @Method(selector = "initForReadingWithData:device:")
@@ -131,14 +131,14 @@ import org.robovm.apple.metal.*;
     private static native NSObject unarchiveObject(Class<?> cls, NSData data, MTLDevice device, NSError.NSErrorPtr error);
     /**
      * @since Available in iOS 11.3 and later.
-     * @deprecated Deprecated in iOS 12.0.
+     * @deprecated Deprecated in iOS 12.0. Use Please use -unarchivedObjectOfClass:fromData:device:error: instead
      */
     @Deprecated
     @Method(selector = "unarchiveObjectWithData:device:")
     public static native NSObject unarchiveObject(NSData data, MTLDevice device);
     /**
      * @since Available in iOS 11.3 and later.
-     * @deprecated Deprecated in iOS 12.0.
+     * @deprecated Deprecated in iOS 12.0. Use Please use -unarchivedObjectOfClass:fromData:device:error: instead
      */
     @Deprecated
     public static NSObject unarchiveTopLevelObject(NSData data, MTLDevice device) throws NSErrorException {
@@ -149,14 +149,14 @@ import org.robovm.apple.metal.*;
     }
     /**
      * @since Available in iOS 11.3 and later.
-     * @deprecated Deprecated in iOS 12.0.
+     * @deprecated Deprecated in iOS 12.0. Use Please use -unarchivedObjectOfClass:fromData:device:error: instead
      */
     @Deprecated
     @Method(selector = "unarchiveTopLevelObjectWithData:device:error:")
     private static native NSObject unarchiveTopLevelObject(NSData data, MTLDevice device, NSError.NSErrorPtr error);
     /**
      * @since Available in iOS 11.3 and later.
-     * @deprecated Deprecated in iOS 12.0.
+     * @deprecated Deprecated in iOS 12.0. Use Please use -initForReadingFromData:device:error: instead
      */
     @Deprecated
     @Method(selector = "unarchiveObjectWithFile:device:")

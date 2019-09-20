@@ -73,44 +73,20 @@ import org.robovm.apple.metal.*;
     public native SKTexture getTexture();
     @Property(selector = "setTexture:")
     public native void setTexture(SKTexture v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "normalTexture")
     public native SKTexture getNormalTexture();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setNormalTexture:")
     public native void setNormalTexture(SKTexture v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "lightingBitMask")
     public native int getLightingBitMask();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setLightingBitMask:")
     public native void setLightingBitMask(int v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "shadowCastBitMask")
     public native int getShadowCastBitMask();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setShadowCastBitMask:")
     public native void setShadowCastBitMask(int v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "shadowedBitMask")
     public native int getShadowedBitMask();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setShadowedBitMask:")
     public native void setShadowedBitMask(int v);
     @Property(selector = "centerRect")
@@ -137,14 +113,8 @@ import org.robovm.apple.metal.*;
     public native @ByVal CGSize getSize();
     @Property(selector = "setSize:")
     public native void setSize(@ByVal CGSize v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "shader")
     public native SKShader getShader();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setShader:")
     public native void setShader(SKShader v);
     /**

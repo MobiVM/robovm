@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -61,14 +63,8 @@ import org.robovm.apple.intents.*;
     public UITextAutocorrectionType getAutocorrectionType() { return null; }
     @NotImplemented("setAutocorrectionType:")
     public void setAutocorrectionType(UITextAutocorrectionType v) {}
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @NotImplemented("spellCheckingType")
     public UITextSpellCheckingType getSpellCheckingType() { return null; }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @NotImplemented("setSpellCheckingType:")
     public void setSpellCheckingType(UITextSpellCheckingType v) {}
     /**

@@ -57,7 +57,7 @@ import org.robovm.apple.mapkit.*;
     @Method(selector = "initWithText:detailText:")
     public CPListItem(String text, String detailText) { super((SkipInit) null); initObject(init(text, detailText)); }
     @Method(selector = "initWithCoder:")
-    public CPListItem(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public CPListItem(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "text")
@@ -89,6 +89,6 @@ import org.robovm.apple.mapkit.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

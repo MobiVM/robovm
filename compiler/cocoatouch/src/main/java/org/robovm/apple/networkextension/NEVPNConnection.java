@@ -32,9 +32,7 @@ import org.robovm.apple.security.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("NetworkExtension") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NEVPNConnection/*</name>*/ 
@@ -64,9 +62,6 @@ import org.robovm.apple.security.*;
     protected NEVPNConnection(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "status")
     public native NEVPNStatus getStatus();
     /**
@@ -82,9 +77,6 @@ import org.robovm.apple.security.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @GlobalValue(symbol="NEVPNStatusDidChangeNotification", optional=true)
     public static native NSString StatusDidChangeNotification();
     /**
@@ -98,18 +90,12 @@ import org.robovm.apple.security.*;
     @GlobalValue(symbol="NEVPNConnectionStartOptionPassword", optional=true)
     public static native String NEVPNConnectionStartOptionPassword();
     
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public boolean startVPNTunnel() throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        boolean result = startVPNTunnel(ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        return result;
     }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "startVPNTunnelAndReturnError:")
     private native boolean startVPNTunnel(NSError.NSErrorPtr error);
     /**
@@ -126,9 +112,6 @@ import org.robovm.apple.security.*;
      */
     @Method(selector = "startVPNTunnelWithOptions:andReturnError:")
     private native boolean startVPNTunnel(NSDictionary<NSString, ?> options, NSError.NSErrorPtr error);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "stopVPNTunnel")
     public native void stopVPNTunnel();
     /*</methods>*/

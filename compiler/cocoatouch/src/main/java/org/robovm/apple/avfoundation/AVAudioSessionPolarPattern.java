@@ -97,17 +97,8 @@ import org.robovm.apple.audiotoolbox.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final AVAudioSessionPolarPattern Omnidirectional = new AVAudioSessionPolarPattern("Omnidirectional");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final AVAudioSessionPolarPattern Cardioid = new AVAudioSessionPolarPattern("Cardioid");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final AVAudioSessionPolarPattern Subcardioid = new AVAudioSessionPolarPattern("Subcardioid");
     /*</constants>*/
     
@@ -134,19 +125,10 @@ import org.robovm.apple.audiotoolbox.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="AVAudioSessionPolarPatternOmnidirectional", optional=true)
         public static native NSString Omnidirectional();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="AVAudioSessionPolarPatternCardioid", optional=true)
         public static native NSString Cardioid();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="AVAudioSessionPolarPatternSubcardioid", optional=true)
         public static native NSString Subcardioid();
         /*</values>*/

@@ -52,7 +52,7 @@ import org.robovm.apple.identitylookup.*;
     @Method(selector = "initWithNibName:bundle:")
     public ILClassificationUIExtensionViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
     @Method(selector = "initWithCoder:")
-    public ILClassificationUIExtensionViewController(NSCoder decoder) { super(decoder); }
+    public ILClassificationUIExtensionViewController(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "extensionContext")

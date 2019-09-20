@@ -38,9 +38,25 @@ import org.robovm.apple.dispatch.*;
 /*<annotations>*//*</annotations>*/
 public enum /*<name>*/SSLClientCertificateState/*</name>*/ implements ValuedEnum {
     /*<values>*/
+    /**
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
     None(0L),
+    /**
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
     Requested(1L),
+    /**
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
     Sent(2L),
+    /**
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
     Rejected(3L);
     /*</values>*/
 

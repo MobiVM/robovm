@@ -36,9 +36,10 @@ import org.robovm.apple.security.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 10.0 and later.
+ * @deprecated Deprecated in iOS 13.0. This API will be replaced
  */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
+/*<annotations>*/@Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ interface /*<name>*/WKPreviewActionItem/*</name>*/ 
     /*<implements>*/extends UIPreviewActionItem/*</implements>*/ {
 

@@ -82,42 +82,18 @@ import org.robovm.apple.uikit.*;
         return UIGeometry.toString(this);
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @GlobalValue(symbol="CGPointZero", optional=true)
     public static native @ByVal CGPoint Zero();
     
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public boolean equalsTo(CGPoint point2) { return equalsTo(this, point2); }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGPointEqualToPoint", optional=true)
     private static native boolean equalsTo(@ByVal CGPoint point1, @ByVal CGPoint point2);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public NSDictionary<NSString, NSNumber> toDictionary() { return toDictionary(this); }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGPointCreateDictionaryRepresentation", optional=true)
     private static native NSDictionary<NSString, NSNumber> toDictionary(@ByVal CGPoint point);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGPointMakeWithDictionaryRepresentation", optional=true)
     private static native boolean fromDictionary(NSDictionary<NSString, NSNumber> dict, CGPoint point);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public CGPoint apply(CGAffineTransform t) { return apply(this, t); }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGPointApplyAffineTransform", optional=true)
     private static native @ByVal CGPoint apply(@ByVal CGPoint point, @ByVal CGAffineTransform t);
     /*</methods>*/

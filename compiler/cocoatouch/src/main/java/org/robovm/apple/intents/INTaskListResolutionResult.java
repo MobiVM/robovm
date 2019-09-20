@@ -56,10 +56,10 @@ import org.robovm.apple.corelocation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "successWithResolvedTaskList:")
-    public static native INTaskListResolutionResult successWithResolvedTaskList(INTaskList resolvedTaskList);
+    public static native INTaskListResolutionResult success(INTaskList resolvedTaskList);
     @Method(selector = "disambiguationWithTaskListsToDisambiguate:")
-    public static native INTaskListResolutionResult disambiguationWithTaskListsToDisambiguate(NSArray<INTaskList> taskListsToDisambiguate);
+    public static native INTaskListResolutionResult disambiguation(NSArray<INTaskList> taskListsToDisambiguate);
     @Method(selector = "confirmationRequiredWithTaskListToConfirm:")
-    public static native INTaskListResolutionResult confirmationRequiredWithTaskListToConfirm(INTaskList taskListToConfirm);
+    public static native INTaskListResolutionResult confirmationRequired(INTaskList taskListToConfirm);
     /*</methods>*/
 }

@@ -40,9 +40,7 @@ import org.robovm.apple.metal.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("SpriteKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SKRange/*</name>*/ 
@@ -59,7 +57,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithLowerLimit:upperLimit:")
     public SKRange(@MachineSizedFloat double lower, @MachineSizedFloat double upper) { super((SkipInit) null); initObject(init(lower, upper)); }
     @Method(selector = "initWithCoder:")
-    public SKRange(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public SKRange(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "lowerLimit")
@@ -90,6 +88,6 @@ import org.robovm.apple.metal.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

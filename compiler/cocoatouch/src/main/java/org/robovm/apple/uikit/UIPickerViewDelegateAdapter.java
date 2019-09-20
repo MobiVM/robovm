@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -63,9 +65,6 @@ import org.robovm.apple.intents.*;
     public @MachineSizedFloat double getRowHeight(UIPickerView pickerView, @MachineSizedSInt long component) { return 0; }
     @NotImplemented("pickerView:titleForRow:forComponent:")
     public String getRowTitle(UIPickerView pickerView, @MachineSizedSInt long row, @MachineSizedSInt long component) { return null; }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @NotImplemented("pickerView:attributedTitleForRow:forComponent:")
     public NSAttributedString getAttributedRowTitle(UIPickerView pickerView, @MachineSizedSInt long row, @MachineSizedSInt long component) { return null; }
     @NotImplemented("pickerView:viewForRow:forComponent:reusingView:")

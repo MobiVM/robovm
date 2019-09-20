@@ -32,9 +32,7 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MTLRenderPipelineDescriptor/*</name>*/ 
@@ -86,6 +84,16 @@ import org.robovm.apple.dispatch.*;
     public native boolean isRasterizationEnabled();
     @Property(selector = "setRasterizationEnabled:")
     public native void setRasterizationEnabled(boolean v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "maxVertexAmplificationCount")
+    public native @MachineSizedUInt long getMaxVertexAmplificationCount();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setMaxVertexAmplificationCount:")
+    public native void setMaxVertexAmplificationCount(@MachineSizedUInt long v);
     @Property(selector = "colorAttachments")
     public native MTLRenderPipelineColorAttachmentDescriptorArray getColorAttachments();
     @Property(selector = "depthAttachmentPixelFormat")

@@ -57,9 +57,14 @@ import org.robovm.apple.imageio.*;
     /*<properties>*/
     @Property(selector = "identifier")
     public native String getIdentifier();
+    @Property(selector = "hasPrecisionRecallCurve")
+    public native boolean hasPrecisionRecallCurve();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "hasMinimumRecall:forPrecision:")
+    public native boolean hasMinimumRecall(float minimumRecall, float precision);
+    @Method(selector = "hasMinimumPrecision:forRecall:")
+    public native boolean hasMinimumPrecision(float minimumPrecision, float recall);
     /*</methods>*/
 }

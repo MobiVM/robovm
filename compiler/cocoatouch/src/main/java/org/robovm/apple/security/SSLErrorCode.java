@@ -103,7 +103,14 @@ public enum /*<name>*/SSLErrorCode/*</name>*/ implements ValuedEnum {
     BadCertificateStatusResponse(-9862L),
     CertificateRequired(-9863L),
     UnknownPSKIdentity(-9864L),
-    UnrecognizedName(-9865L);
+    UnrecognizedName(-9865L),
+    ATSViolation(-9880L),
+    ATSMinimumVersionViolation(-9881L),
+    ATSCiphersuiteViolation(-9882L),
+    ATSMinimumKeySizeViolation(-9883L),
+    ATSLeafCertificateHashAlgorithmViolation(-9884L),
+    ATSCertificateHashAlgorithmViolation(-9885L),
+    ATSCertificateTrustViolation(-9886L);
     /*</values>*/
 
     /*<bind>*/

@@ -77,6 +77,31 @@ import org.robovm.apple.avfoundation.*;
      */
     @Property(selector = "boneNode")
     public native SCNNode getBoneNode();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "simdLocalCoordinates")
+    public native @ByVal VectorFloat3 getSimdLocalCoordinates();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "simdWorldCoordinates")
+    public native @ByVal VectorFloat3 getSimdWorldCoordinates();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "simdLocalNormal")
+    public native @ByVal VectorFloat3 getSimdLocalNormal();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "simdWorldNormal")
+    public native @ByVal VectorFloat3 getSimdWorldNormal();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "simdModelTransform")
+    public native @ByVal MatrixFloat4x4 getSimdModelTransform();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

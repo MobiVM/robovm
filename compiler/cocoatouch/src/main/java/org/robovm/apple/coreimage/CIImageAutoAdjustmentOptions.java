@@ -36,6 +36,7 @@ import org.robovm.apple.imageio.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.metal.*;
 import org.robovm.apple.iosurface.*;
+import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -114,9 +115,6 @@ import org.robovm.apple.iosurface.*;
     }
     
 
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public boolean appliesEnhancementFilter() {
         if (has(Keys.Enhance())) {
             NSNumber val = (NSNumber) get(Keys.Enhance());
@@ -124,16 +122,10 @@ import org.robovm.apple.iosurface.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public CIImageAutoAdjustmentOptions setAppliesEnhancementFilter(boolean appliesEnhancementFilter) {
         set(Keys.Enhance(), NSNumber.valueOf(appliesEnhancementFilter));
         return this;
     }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public boolean appliesRedEyeFilter() {
         if (has(Keys.RedEye())) {
             NSNumber val = (NSNumber) get(Keys.RedEye());
@@ -141,16 +133,10 @@ import org.robovm.apple.iosurface.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public CIImageAutoAdjustmentOptions setAppliesRedEyeFilter(boolean appliesRedEyeFilter) {
         set(Keys.RedEye(), NSNumber.valueOf(appliesRedEyeFilter));
         return this;
     }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public List<CIFeature> getFeatures() {
         if (has(Keys.Features())) {
             NSArray<CIFeature> val = (NSArray<CIFeature>) get(Keys.Features());
@@ -158,16 +144,10 @@ import org.robovm.apple.iosurface.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public CIImageAutoAdjustmentOptions setFeatures(List<CIFeature> features) {
         set(Keys.Features(), new NSArray<>(features));
         return this;
     }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public boolean appliesCropFilter() {
         if (has(Keys.Crop())) {
             NSNumber val = (NSNumber) get(Keys.Crop());
@@ -175,16 +155,10 @@ import org.robovm.apple.iosurface.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public CIImageAutoAdjustmentOptions setAppliesCropFilter(boolean appliesCropFilter) {
         set(Keys.Crop(), NSNumber.valueOf(appliesCropFilter));
         return this;
     }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public boolean appliesAutoLevel() {
         if (has(Keys.Level())) {
             NSNumber val = (NSNumber) get(Keys.Level());
@@ -192,9 +166,6 @@ import org.robovm.apple.iosurface.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public CIImageAutoAdjustmentOptions setAppliesAutoLevel(boolean appliesAutoLevel) {
         set(Keys.Level(), NSNumber.valueOf(appliesAutoLevel));
         return this;
@@ -205,29 +176,14 @@ import org.robovm.apple.iosurface.*;
     @Library("CoreImage")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="kCIImageAutoAdjustEnhance", optional=true)
         public static native NSString Enhance();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="kCIImageAutoAdjustRedEye", optional=true)
         public static native NSString RedEye();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="kCIImageAutoAdjustFeatures", optional=true)
         public static native NSString Features();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="kCIImageAutoAdjustCrop", optional=true)
         public static native NSString Crop();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="kCIImageAutoAdjustLevel", optional=true)
         public static native NSString Level();
     }

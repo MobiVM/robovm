@@ -42,7 +42,7 @@ import org.robovm.apple.dispatch.*;
 
 /*</javadoc>*/
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/NSEnumerator/*</name>*/ <T extends NSObject>
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/NSEnumerator<T extends NSObject>/*</name>*/
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*/implements NSFastEnumeration/*</implements>*/ {
 

@@ -37,12 +37,12 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIImageAsset/*</name>*/ 
@@ -57,7 +57,7 @@ import org.robovm.apple.intents.*;
     protected UIImageAsset(Handle h, long handle) { super(h, handle); }
     protected UIImageAsset(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public UIImageAsset(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public UIImageAsset(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "supportsSecureCoding")
@@ -66,7 +66,13 @@ import org.robovm.apple.intents.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
+    protected native @Pointer long init(NSCoder coder);
+    @Method(selector = "imageWithConfiguration:")
+    public native UIImage getImage(UIImageConfiguration configuration);
+    @Method(selector = "registerImage:withConfiguration:")
+    public native void registerImage(UIImage image, UIImageConfiguration configuration);
+    @Method(selector = "unregisterImageWithConfiguration:")
+    public native void unregisterImage(UIImageConfiguration configuration);
     @Method(selector = "imageWithTraitCollection:")
     public native UIImage getImage(UITraitCollection traitCollection);
     @Method(selector = "registerImage:withTraitCollection:")

@@ -97,28 +97,76 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "setAutoRedEyeReductionEnabled:")
     public native void setAutoRedEyeReductionEnabled(boolean v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "photoQualityPrioritization")
+    public native AVCapturePhotoQualityPrioritization getPhotoQualityPrioritization();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setPhotoQualityPrioritization:")
+    public native void setPhotoQualityPrioritization(AVCapturePhotoQualityPrioritization v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use photoQualityPrioritization
+     */
+    @Deprecated
     @Property(selector = "isAutoStillImageStabilizationEnabled")
     public native boolean isAutoStillImageStabilizationEnabled();
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use photoQualityPrioritization
+     */
+    @Deprecated
     @Property(selector = "setAutoStillImageStabilizationEnabled:")
     public native void setAutoStillImageStabilizationEnabled(boolean v);
     /**
-     * @since Available in iOS 10.2 and later.
+     * @since Available in iOS 13.0 and later.
      */
+    @Property(selector = "isAutoVirtualDeviceFusionEnabled")
+    public native boolean isAutoVirtualDeviceFusionEnabled();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setAutoVirtualDeviceFusionEnabled:")
+    public native void setAutoVirtualDeviceFusionEnabled(boolean v);
+    /**
+     * @since Available in iOS 10.2 and later.
+     * @deprecated Deprecated in iOS 13.0. Use autoVirtualDeviceFusionEnabled
+     */
+    @Deprecated
     @Property(selector = "isAutoDualCameraFusionEnabled")
     public native boolean isAutoDualCameraFusionEnabled();
     /**
      * @since Available in iOS 10.2 and later.
+     * @deprecated Deprecated in iOS 13.0. Use autoVirtualDeviceFusionEnabled
      */
+    @Deprecated
     @Property(selector = "setAutoDualCameraFusionEnabled:")
     public native void setAutoDualCameraFusionEnabled(boolean v);
     /**
-     * @since Available in iOS 11.0 and later.
+     * @since Available in iOS 13.0 and later.
      */
+    @Property(selector = "virtualDeviceConstituentPhotoDeliveryEnabledDevices")
+    public native NSArray<AVCaptureDevice> getVirtualDeviceConstituentPhotoDeliveryEnabledDevices();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setVirtualDeviceConstituentPhotoDeliveryEnabledDevices:")
+    public native void setVirtualDeviceConstituentPhotoDeliveryEnabledDevices(NSArray<AVCaptureDevice> v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use virtualDeviceConstituentPhotoDeliveryEnabledDevices
+     */
+    @Deprecated
     @Property(selector = "isDualCameraDualPhotoDeliveryEnabled")
     public native boolean isDualCameraDualPhotoDeliveryEnabled();
     /**
      * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use virtualDeviceConstituentPhotoDeliveryEnabledDevices
      */
+    @Deprecated
     @Property(selector = "setDualCameraDualPhotoDeliveryEnabled:")
     public native void setDualCameraDualPhotoDeliveryEnabled(boolean v);
     @Property(selector = "isHighResolutionPhotoEnabled")
@@ -185,6 +233,26 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "setEmbedsPortraitEffectsMatteInPhoto:")
     public native void setEmbedsPortraitEffectsMatteInPhoto(boolean v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "enabledSemanticSegmentationMatteTypes")
+    public native NSArray<NSString> getEnabledSemanticSegmentationMatteTypes();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setEnabledSemanticSegmentationMatteTypes:")
+    public native void setEnabledSemanticSegmentationMatteTypes(NSArray<NSString> v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "embedsSemanticSegmentationMattesInPhoto")
+    public native boolean embedsSemanticSegmentationMattesInPhoto();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setEmbedsSemanticSegmentationMattesInPhoto:")
+    public native void setEmbedsSemanticSegmentationMattesInPhoto(boolean v);
     /**
      * @since Available in iOS 11.0 and later.
      */

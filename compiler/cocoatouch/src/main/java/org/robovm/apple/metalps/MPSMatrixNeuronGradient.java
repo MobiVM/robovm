@@ -87,7 +87,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithDevice:")
     protected native @Pointer long init(MTLDevice device);
     @Method(selector = "encodeToCommandBuffer:gradientMatrix:inputMatrix:biasVector:resultGradientForDataMatrix:resultGradientForBiasVector:")
-    public native void encodeToCommandBuffer(MTLCommandBuffer commandBuffer, MPSMatrix gradientMatrix, MPSMatrix inputMatrix, MPSVector biasVector, MPSMatrix resultGradientForDataMatrix, MPSVector resultGradientForBiasVector);
+    public native void encode(MTLCommandBuffer commandBuffer, MPSMatrix gradientMatrix, MPSMatrix inputMatrix, MPSVector biasVector, MPSMatrix resultGradientForDataMatrix, MPSVector resultGradientForBiasVector);
     @Method(selector = "initWithCoder:device:")
     protected native @Pointer long init(NSCoder decoder, MTLDevice device);
     @Method(selector = "copyWithZone:device:")

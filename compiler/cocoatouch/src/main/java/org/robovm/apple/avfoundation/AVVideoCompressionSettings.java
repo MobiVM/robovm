@@ -116,9 +116,6 @@ import org.robovm.apple.audiotoolbox.*;
     }
     
 
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public double getAverageBitRate() {
         if (has(Keys.AverageBitRate())) {
             NSNumber val = (NSNumber) get(Keys.AverageBitRate());
@@ -126,16 +123,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public AVVideoCompressionSettings setAverageBitRate(double averageBitRate) {
         set(Keys.AverageBitRate(), NSNumber.valueOf(averageBitRate));
         return this;
     }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public double getQuality() {
         if (has(Keys.Quality())) {
             NSNumber val = (NSNumber) get(Keys.Quality());
@@ -143,16 +134,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public AVVideoCompressionSettings setQuality(double quality) {
         set(Keys.Quality(), NSNumber.valueOf(quality));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public double getMaxKeyFrameInterval() {
         if (has(Keys.MaxKeyFrameInterval())) {
             NSNumber val = (NSNumber) get(Keys.MaxKeyFrameInterval());
@@ -160,16 +145,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public AVVideoCompressionSettings setMaxKeyFrameInterval(double maxKeyFrameInterval) {
         set(Keys.MaxKeyFrameInterval(), NSNumber.valueOf(maxKeyFrameInterval));
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public double getMaxKeyFrameIntervalDuration() {
         if (has(Keys.MaxKeyFrameIntervalDuration())) {
             NSNumber val = (NSNumber) get(Keys.MaxKeyFrameIntervalDuration());
@@ -177,9 +156,6 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public AVVideoCompressionSettings setMaxKeyFrameIntervalDuration(double maxKeyFrameIntervalDuration) {
         set(Keys.MaxKeyFrameIntervalDuration(), NSNumber.valueOf(maxKeyFrameIntervalDuration));
         return this;
@@ -190,24 +166,12 @@ import org.robovm.apple.audiotoolbox.*;
     @Library("AVFoundation")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVVideoAverageBitRateKey", optional=true)
         public static native NSString AverageBitRate();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="AVVideoQualityKey", optional=true)
         public static native NSString Quality();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVVideoMaxKeyFrameIntervalKey", optional=true)
         public static native NSString MaxKeyFrameInterval();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="AVVideoMaxKeyFrameIntervalDurationKey", optional=true)
         public static native NSString MaxKeyFrameIntervalDuration();
     }

@@ -108,9 +108,6 @@ import org.robovm.apple.coregraphics.*;
     }
     
 
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public double getElapsedPlaybackTime() {
         if (has(Keys.ElapsedPlaybackTime())) {
             NSNumber val = (NSNumber) get(Keys.ElapsedPlaybackTime());
@@ -118,16 +115,10 @@ import org.robovm.apple.coregraphics.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public MPNowPlayingInfo setElapsedPlaybackTime(double elapsedPlaybackTime) {
         set(Keys.ElapsedPlaybackTime(), NSNumber.valueOf(elapsedPlaybackTime));
         return this;
     }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public double getPlaybackRate() {
         if (has(Keys.PlaybackRate())) {
             NSNumber val = (NSNumber) get(Keys.PlaybackRate());
@@ -135,16 +126,10 @@ import org.robovm.apple.coregraphics.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public MPNowPlayingInfo setPlaybackRate(double playbackRate) {
         set(Keys.PlaybackRate(), NSNumber.valueOf(playbackRate));
         return this;
     }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public double getDefaultPlaybackRate() {
         if (has(Keys.DefaultPlaybackRate())) {
             NSNumber val = (NSNumber) get(Keys.DefaultPlaybackRate());
@@ -152,16 +137,10 @@ import org.robovm.apple.coregraphics.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public MPNowPlayingInfo setDefaultPlaybackRate(double defaultPlaybackRate) {
         set(Keys.DefaultPlaybackRate(), NSNumber.valueOf(defaultPlaybackRate));
         return this;
     }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public int getPlaybackQueueIndex() {
         if (has(Keys.PlaybackQueueIndex())) {
             NSNumber val = (NSNumber) get(Keys.PlaybackQueueIndex());
@@ -169,16 +148,10 @@ import org.robovm.apple.coregraphics.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public MPNowPlayingInfo setPlaybackQueueIndex(int playbackQueueIndex) {
         set(Keys.PlaybackQueueIndex(), NSNumber.valueOf(playbackQueueIndex));
         return this;
     }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public int getPlaybackQueueCount() {
         if (has(Keys.PlaybackQueueCount())) {
             NSNumber val = (NSNumber) get(Keys.PlaybackQueueCount());
@@ -186,16 +159,10 @@ import org.robovm.apple.coregraphics.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public MPNowPlayingInfo setPlaybackQueueCount(int playbackQueueCount) {
         set(Keys.PlaybackQueueCount(), NSNumber.valueOf(playbackQueueCount));
         return this;
     }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public int getChapterNumber() {
         if (has(Keys.ChapterNumber())) {
             NSNumber val = (NSNumber) get(Keys.ChapterNumber());
@@ -203,16 +170,10 @@ import org.robovm.apple.coregraphics.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public MPNowPlayingInfo setChapterNumber(int chapterNumber) {
         set(Keys.ChapterNumber(), NSNumber.valueOf(chapterNumber));
         return this;
     }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public int getChapterCount() {
         if (has(Keys.ChapterCount())) {
             NSNumber val = (NSNumber) get(Keys.ChapterCount());
@@ -220,9 +181,6 @@ import org.robovm.apple.coregraphics.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public MPNowPlayingInfo setChapterCount(int chapterCount) {
         set(Keys.ChapterCount(), NSNumber.valueOf(chapterCount));
         return this;
@@ -379,39 +337,18 @@ import org.robovm.apple.coregraphics.*;
     @Library("MediaPlayer")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="MPNowPlayingInfoPropertyElapsedPlaybackTime", optional=true)
         public static native NSString ElapsedPlaybackTime();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="MPNowPlayingInfoPropertyPlaybackRate", optional=true)
         public static native NSString PlaybackRate();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="MPNowPlayingInfoPropertyDefaultPlaybackRate", optional=true)
         public static native NSString DefaultPlaybackRate();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="MPNowPlayingInfoPropertyPlaybackQueueIndex", optional=true)
         public static native NSString PlaybackQueueIndex();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="MPNowPlayingInfoPropertyPlaybackQueueCount", optional=true)
         public static native NSString PlaybackQueueCount();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="MPNowPlayingInfoPropertyChapterNumber", optional=true)
         public static native NSString ChapterNumber();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="MPNowPlayingInfoPropertyChapterCount", optional=true)
         public static native NSString ChapterCount();
         /**

@@ -44,6 +44,14 @@ public final class /*<name>*/MTLIndirectCommandType/*</name>*/ extends Bits</*<n
     public static final MTLIndirectCommandType DrawIndexed = new MTLIndirectCommandType(2L);
     public static final MTLIndirectCommandType DrawPatches = new MTLIndirectCommandType(4L);
     public static final MTLIndirectCommandType DrawIndexedPatches = new MTLIndirectCommandType(8L);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final MTLIndirectCommandType ConcurrentDispatch = new MTLIndirectCommandType(32L);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final MTLIndirectCommandType ConcurrentDispatchThreads = new MTLIndirectCommandType(64L);
     /*</values>*/
 
     /*<bind>*/

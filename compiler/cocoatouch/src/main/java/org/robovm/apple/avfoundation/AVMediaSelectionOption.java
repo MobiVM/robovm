@@ -41,9 +41,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 5.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVMediaSelectionOption/*</name>*/ 
@@ -65,9 +63,6 @@ import org.robovm.apple.audiotoolbox.*;
     public native NSArray<NSNumber> getMediaSubTypes();
     @Property(selector = "isPlayable")
     public native boolean isPlayable();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "extendedLanguageTag")
     public native String getExtendedLanguageTag();
     @Property(selector = "locale")
@@ -76,9 +71,6 @@ import org.robovm.apple.audiotoolbox.*;
     public native NSArray<AVMetadataItem> getCommonMetadata();
     @Property(selector = "availableMetadataFormats")
     public native @org.robovm.rt.bro.annotation.Marshaler(AVMetadataFormat.AsListMarshaler.class) List<AVMetadataFormat> getAvailableMetadataFormats();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "displayName")
     public native String getDisplayName();
     /*</properties>*/
@@ -92,9 +84,6 @@ import org.robovm.apple.audiotoolbox.*;
     public native AVMediaSelectionOption getAssociatedMediaSelectionOption(AVMediaSelectionGroup mediaSelectionGroup);
     @Method(selector = "propertyList")
     public native NSPropertyList getPropertyList();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "displayNameWithLocale:")
     public native String getDisplayName(NSLocale locale);
     /*</methods>*/

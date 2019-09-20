@@ -48,7 +48,9 @@ import org.robovm.apple.imageio.*;
 
     /*<ptr>*/public static class VNCoreMLRequestPtr extends Ptr<VNCoreMLRequest, VNCoreMLRequestPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(VNCoreMLRequest.class); }/*</bind>*/
-    /*<constants>*//*</constants>*/
+    /*<constants>*/
+    public static final int Revision1 = 1;
+    /*</constants>*/
     /*<constructors>*/
     protected VNCoreMLRequest() {}
     protected VNCoreMLRequest(Handle h, long handle) { super(h, handle); }
@@ -68,12 +70,6 @@ import org.robovm.apple.imageio.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 12.0 and later.
-     */
-    @GlobalValue(symbol="VNCoreMLRequestRevision1", optional=true)
-    public static native @MachineSizedUInt long getRevision1();
-    
     @Method(selector = "initWithModel:")
     protected native @Pointer long init(VNCoreMLModel model);
     @Method(selector = "initWithModel:completionHandler:")

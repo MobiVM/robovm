@@ -65,7 +65,9 @@ public enum /*<name>*/GKErrorCode/*</name>*/ implements NSErrorCode {
     PlayerPhotoFailure(26L),
     UbiquityContainerUnavailable(27L),
     MatchNotConnected(28L),
-    GameSessionRequestInvalid(29L);
+    GameSessionRequestInvalid(29L),
+    RestrictedToAutomatch(30L),
+    APINotAvailable(31L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(GKErrorCode.class); }/*</bind>*/

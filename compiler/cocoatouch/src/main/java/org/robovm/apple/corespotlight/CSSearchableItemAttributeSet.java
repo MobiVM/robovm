@@ -50,7 +50,7 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "initWithItemContentType:")
     public CSSearchableItemAttributeSet(String itemContentType) { super((SkipInit) null); initObject(init(itemContentType)); }
     @Method(selector = "initWithCoder:")
-    public CSSearchableItemAttributeSet(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public CSSearchableItemAttributeSet(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "displayName")
@@ -888,6 +888,6 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

@@ -50,8 +50,7 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "pushRegistry:didUpdatePushCredentials:forType:")
     void didUpdatePushCredentials(PKPushRegistry registry, PKPushCredentials pushCredentials, String type);
     /**
-     * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use -pushRegistry:(PKPushRegistry *)registry didReceiveIncomingPushWithPayload:(PKPushPayload *)payload forType:(PKPushType)type withCompletionHandler:(void(^)(void))completion
      */
     @Deprecated
     @Method(selector = "pushRegistry:didReceiveIncomingPushWithPayload:forType:")

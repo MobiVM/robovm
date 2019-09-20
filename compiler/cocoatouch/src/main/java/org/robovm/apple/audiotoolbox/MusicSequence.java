@@ -309,125 +309,53 @@ import org.robovm.apple.uikit.*;
         return ptr.get();
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="NewMusicSequence", optional=true)
     protected static native OSStatus create0(MusicSequence.MusicSequencePtr outSequence);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="DisposeMusicSequence", optional=true)
     protected native OSStatus dispose0();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="MusicSequenceNewTrack", optional=true)
     protected native OSStatus newTrack0(MusicTrack.MusicTrackPtr outTrack);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="MusicSequenceDisposeTrack", optional=true)
     protected native OSStatus disposeTrack0(MusicTrack inTrack);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="MusicSequenceGetTrackCount", optional=true)
     protected native OSStatus getTrackCount0(IntPtr outNumberOfTracks);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="MusicSequenceGetIndTrack", optional=true)
     protected native OSStatus getIndTrack0(int inTrackIndex, MusicTrack.MusicTrackPtr outTrack);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="MusicSequenceGetTrackIndex", optional=true)
     protected native OSStatus getTrackIndex0(MusicTrack inTrack, IntPtr outTrackIndex);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="MusicSequenceGetTempoTrack", optional=true)
     protected native OSStatus getTempoTrack0(MusicTrack.MusicTrackPtr outTrack);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="MusicSequenceSetAUGraph", optional=true)
     protected native OSStatus setAUGraph0(AUGraph inGraph);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="MusicSequenceGetAUGraph", optional=true)
     protected native OSStatus getAUGraph0(AUGraph.AUGraphPtr outGraph);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @WeaklyLinked
     @Bridge(symbol="MusicSequenceSetMIDIEndpoint", optional=true)
     public native OSStatus setMIDIEndpoint0(MIDIEndpoint inEndpoint);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="MusicSequenceSetSequenceType", optional=true)
     protected native OSStatus setSequenceType0(MusicSequenceType inType);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="MusicSequenceGetSequenceType", optional=true)
     protected native OSStatus getSequenceType0(IntPtr outType);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="MusicSequenceFileLoad", optional=true)
     protected native OSStatus loadFile0(NSURL inFileRef, MusicSequenceFileTypeID inFileTypeHint, MusicSequenceLoadFlags inFlags);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="MusicSequenceFileLoadData", optional=true)
     protected native OSStatus loadFileData0(NSData inData, MusicSequenceFileTypeID inFileTypeHint, MusicSequenceLoadFlags inFlags);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="MusicSequenceFileCreate", optional=true)
     protected native OSStatus createFile0(NSURL inFileRef, MusicSequenceFileTypeID inFileType, MusicSequenceFileFlags inFlags, short inResolution);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="MusicSequenceFileCreateData", optional=true)
     protected native OSStatus createFileData0(MusicSequenceFileTypeID inFileType, MusicSequenceFileFlags inFlags, short inResolution, NSData.NSDataPtr outData);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="MusicSequenceReverse", optional=true)
     protected native OSStatus reverse0();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="MusicSequenceGetSecondsForBeats", optional=true)
     protected native OSStatus getSecondsForBeats0(double inBeats, DoublePtr outSeconds);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="MusicSequenceGetBeatsForSeconds", optional=true)
     protected native OSStatus getBeatsForSeconds0(double inSeconds, DoublePtr outBeats);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="MusicSequenceSetUserCallback", optional=true)
     public native OSStatus setUserCallback0(FunctionPtr inCallback, @Pointer long inClientData);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="MusicSequenceBeatsToBarBeatTime", optional=true)
     protected native OSStatus convertBeatsToBarBeatTime0(double inBeats, int inSubbeatDivisor, CABarBeatTime.CABarBeatTimePtr outBarBeatTime);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="MusicSequenceBarBeatTimeToBeats", optional=true)
     protected native OSStatus convertBarBeatTimeToBeats0(CABarBeatTime inBarBeatTime, DoublePtr outBeats);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="MusicSequenceGetInfoDictionary", optional=true)
     public native AudioFileInfoDictionary getInfoDictionary();
     /*</methods>*/

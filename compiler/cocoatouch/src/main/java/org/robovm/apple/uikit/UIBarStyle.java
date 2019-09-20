@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -47,7 +49,15 @@ public enum /*<name>*/UIBarStyle/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Default(0L),
     Black(1L),
+    /**
+     * @deprecated Deprecated in iOS 13.0. Use UIBarStyleBlack instead.
+     */
+    @Deprecated
     BlackOpaque(1L),
+    /**
+     * @deprecated Deprecated in iOS 13.0. Use UIBarStyleBlack and set the translucent property to YES instead.
+     */
+    @Deprecated
     BlackTranslucent(2L);
     /*</values>*/
 

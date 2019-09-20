@@ -50,8 +50,14 @@ import org.robovm.apple.uikit.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 9.1 and later.
+     */
     @NotImplemented("livePhotoView:willBeginPlaybackWithStyle:")
     public void willBeginPlayback(PHLivePhotoView livePhotoView, PHLivePhotoViewPlaybackStyle playbackStyle) {}
+    /**
+     * @since Available in iOS 9.1 and later.
+     */
     @NotImplemented("livePhotoView:didEndPlaybackWithStyle:")
     public void didEndPlayback(PHLivePhotoView livePhotoView, PHLivePhotoViewPlaybackStyle playbackStyle) {}
     /*</methods>*/

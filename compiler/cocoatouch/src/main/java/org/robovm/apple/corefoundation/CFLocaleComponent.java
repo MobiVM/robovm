@@ -106,25 +106,10 @@ import org.robovm.apple.coretext.*;
     public static final CFLocaleComponent GroupingSeparator = new CFLocaleComponent("GroupingSeparator");
     public static final CFLocaleComponent CurrencySymbol = new CFLocaleComponent("CurrencySymbol");
     public static final CFLocaleComponent CurrencyCode = new CFLocaleComponent("CurrencyCode");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CFLocaleComponent CollatorIdentifier = new CFLocaleComponent("CollatorIdentifier");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CFLocaleComponent QuotationBeginDelimiterKey = new CFLocaleComponent("QuotationBeginDelimiterKey");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CFLocaleComponent QuotationEndDelimiterKey = new CFLocaleComponent("QuotationEndDelimiterKey");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CFLocaleComponent AlternateQuotationBeginDelimiterKey = new CFLocaleComponent("AlternateQuotationBeginDelimiterKey");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CFLocaleComponent AlternateQuotationEndDelimiterKey = new CFLocaleComponent("AlternateQuotationEndDelimiterKey");
     /*</constants>*/
     
@@ -181,29 +166,14 @@ import org.robovm.apple.coretext.*;
         public static native CFString CurrencySymbol();
         @GlobalValue(symbol="kCFLocaleCurrencyCode", optional=true)
         public static native CFString CurrencyCode();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCFLocaleCollatorIdentifier", optional=true)
         public static native CFString CollatorIdentifier();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCFLocaleQuotationBeginDelimiterKey", optional=true)
         public static native CFString QuotationBeginDelimiterKey();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCFLocaleQuotationEndDelimiterKey", optional=true)
         public static native CFString QuotationEndDelimiterKey();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCFLocaleAlternateQuotationBeginDelimiterKey", optional=true)
         public static native CFString AlternateQuotationBeginDelimiterKey();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCFLocaleAlternateQuotationEndDelimiterKey", optional=true)
         public static native CFString AlternateQuotationEndDelimiterKey();
         /*</values>*/

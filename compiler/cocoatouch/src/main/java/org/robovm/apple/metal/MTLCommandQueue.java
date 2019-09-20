@@ -32,9 +32,7 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("Metal") @NativeProtocolProxy/*</annotations>*/
 /*<visibility>*/public final/*</visibility>*/ class /*<name>*/MTLCommandQueue/*</name>*/ 
@@ -62,7 +60,6 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "commandBufferWithUnretainedReferences")
     public native MTLCommandBuffer getCommandBufferWithUnretainedReferences();
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 11.0. Use MTLCaptureScope instead
      */
     @Deprecated

@@ -32,9 +32,7 @@ import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 3.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("StoreKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SKProductsRequest/*</name>*/ 
@@ -48,29 +46,17 @@ import org.robovm.apple.uikit.*;
     public SKProductsRequest() {}
     protected SKProductsRequest(Handle h, long handle) { super(h, handle); }
     protected SKProductsRequest(SkipInit skipInit) { super(skipInit); }
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "initWithProductIdentifiers:")
     public SKProductsRequest(@org.robovm.rt.bro.annotation.Marshaler(NSSet.AsStringSetMarshaler.class) Set<String> productIdentifiers) { super((SkipInit) null); initObject(init(productIdentifiers)); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "delegate")
     public native SKProductsRequestDelegate getDelegate();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "setDelegate:", strongRef = true)
     public native void setDelegate(SKProductsRequestDelegate v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "initWithProductIdentifiers:")
     protected native @Pointer long init(@org.robovm.rt.bro.annotation.Marshaler(NSSet.AsStringSetMarshaler.class) Set<String> productIdentifiers);
     /*</methods>*/

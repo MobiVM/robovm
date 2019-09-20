@@ -104,7 +104,6 @@ import org.robovm.apple.coregraphics.*;
     
 
     /**
-     * @since Available in iOS 3.2 and later.
      * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit.
      */
     @Deprecated
@@ -116,7 +115,6 @@ import org.robovm.apple.coregraphics.*;
         return 0;
     }
     /**
-     * @since Available in iOS 3.2 and later.
      * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit.
      */
     @Deprecated
@@ -134,14 +132,12 @@ import org.robovm.apple.coregraphics.*;
     public static class Keys {
         static { Bro.bind(Keys.class); }
         /**
-         * @since Available in iOS 3.2 and later.
          * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit.
          */
         @Deprecated
         @GlobalValue(symbol="MPMoviePlayerFullscreenAnimationDurationUserInfoKey", optional=true)
         public static native NSString Duration();
         /**
-         * @since Available in iOS 3.2 and later.
          * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit.
          */
         @Deprecated

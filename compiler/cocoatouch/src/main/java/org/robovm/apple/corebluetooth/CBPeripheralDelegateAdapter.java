@@ -50,26 +50,16 @@ import org.robovm.apple.dispatch.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @NotImplemented("peripheralDidUpdateName:")
     public void didUpdateName(CBPeripheral peripheral) {}
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @NotImplemented("peripheral:didModifyServices:")
     public void didModifyServices(CBPeripheral peripheral, NSArray<CBService> invalidatedServices) {}
     /**
-     * @since Available in iOS 5.0 and later.
      * @deprecated Deprecated in iOS 8.0.
      */
     @Deprecated
     @NotImplemented("peripheralDidUpdateRSSI:error:")
     public void didUpdateRSSI(CBPeripheral peripheral, NSError error) {}
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @NotImplemented("peripheral:didReadRSSI:error:")
     public void didReadRSSI(CBPeripheral peripheral, NSNumber RSSI, NSError error) {}
     @NotImplemented("peripheral:didDiscoverServices:")
@@ -91,7 +81,7 @@ import org.robovm.apple.dispatch.*;
     @NotImplemented("peripheral:didWriteValueForDescriptor:error:")
     public void didWriteValue(CBPeripheral peripheral, CBDescriptor descriptor, NSError error) {}
     @NotImplemented("peripheralIsReadyToSendWriteWithoutResponse:")
-    public void peripheralIsReadyToSendWriteWithoutResponse(CBPeripheral peripheral) {}
+    public void peripheralIsReadyToSendWrite(CBPeripheral peripheral) {}
     @NotImplemented("peripheral:didOpenL2CAPChannel:error:")
     public void didOpenL2CAPChannel(CBPeripheral peripheral, CBL2CAPChannel channel, NSError error) {}
     /*</methods>*/

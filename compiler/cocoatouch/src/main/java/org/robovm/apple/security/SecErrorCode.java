@@ -41,6 +41,10 @@ public enum /*<name>*/SecErrorCode/*</name>*/ implements ValuedEnum {
     Success(0L),
     Unimplemented(-4L),
     DiskFull(-34L),
+    /**
+     * @deprecated use errSecDiskFull
+     */
+    @Deprecated
     DskFull(-34L),
     IO(-36L),
     OpWr(-49L),
@@ -412,7 +416,10 @@ public enum /*<name>*/SecErrorCode/*</name>*/ implements ValuedEnum {
     TimestampRejection(-67895L),
     TimestampWaiting(-67896L),
     TimestampRevocationWarning(-67897L),
-    TimestampRevocationNotification(-67898L);
+    TimestampRevocationNotification(-67898L),
+    CertificatePolicyNotAllowed(-67899L),
+    CertificateNameNotAllowed(-67900L),
+    CertificateValidityPeriodTooLong(-67901L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(SecErrorCode.class); }/*</bind>*/

@@ -66,7 +66,7 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "initWithPrice:currencyCode:")
     public INPriceRange(NSDecimalNumber price, String currencyCode) { super((SkipInit) null); initObject(init(price, currencyCode)); }
     @Method(selector = "initWithCoder:")
-    public INPriceRange(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public INPriceRange(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "minimumPrice")
@@ -91,6 +91,6 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

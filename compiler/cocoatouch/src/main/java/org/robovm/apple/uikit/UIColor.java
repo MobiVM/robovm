@@ -37,12 +37,12 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 2.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIColor/*</name>*/ 
@@ -60,13 +60,15 @@ import org.robovm.apple.intents.*;
     public UIColor(@MachineSizedFloat double red, @MachineSizedFloat double green, @MachineSizedFloat double blue, @MachineSizedFloat double alpha) { super((SkipInit) null); initObject(init(red, green, blue, alpha)); }
     @Method(selector = "initWithCGColor:")
     public UIColor(CGColor cgColor) { super((SkipInit) null); initObject(init(cgColor)); }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "initWithCIColor:")
     public UIColor(CIColor ciColor) { super((SkipInit) null); initObject(init(ciColor)); }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "initWithDynamicProvider:")
+    public UIColor(@Block Block1<UITraitCollection, UIColor> dynamicProvider) { super((SkipInit) null); initObject(init(dynamicProvider)); }
     @Method(selector = "initWithCoder:")
-    public UIColor(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public UIColor(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "blackColor")
@@ -101,33 +103,172 @@ import org.robovm.apple.intents.*;
     public static native UIColor clear();
     @Property(selector = "CGColor")
     public native CGColor getCGColor();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "CIColor")
     public native CIColor getCIColor();
+    @Property(selector = "systemRedColor")
+    public static native UIColor systemRed();
+    @Property(selector = "systemGreenColor")
+    public static native UIColor systemGreen();
+    @Property(selector = "systemBlueColor")
+    public static native UIColor systemBlue();
+    @Property(selector = "systemOrangeColor")
+    public static native UIColor systemOrange();
+    @Property(selector = "systemYellowColor")
+    public static native UIColor systemYellow();
+    @Property(selector = "systemPinkColor")
+    public static native UIColor systemPink();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "systemPurpleColor")
+    public static native UIColor systemPurple();
+    @Property(selector = "systemTealColor")
+    public static native UIColor systemTeal();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "systemIndigoColor")
+    public static native UIColor systemIndigo();
+    @Property(selector = "systemGrayColor")
+    public static native UIColor systemGray();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "systemGray2Color")
+    public static native UIColor systemGray2();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "systemGray3Color")
+    public static native UIColor systemGray3();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "systemGray4Color")
+    public static native UIColor systemGray4();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "systemGray5Color")
+    public static native UIColor systemGray5();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "systemGray6Color")
+    public static native UIColor systemGray6();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "labelColor")
+    public static native UIColor label();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "secondaryLabelColor")
+    public static native UIColor secondaryLabel();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "tertiaryLabelColor")
+    public static native UIColor tertiaryLabel();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "quaternaryLabelColor")
+    public static native UIColor quaternaryLabel();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "linkColor")
+    public static native UIColor link();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "placeholderTextColor")
+    public static native UIColor placeholderText();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "separatorColor")
+    public static native UIColor separator();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "opaqueSeparatorColor")
+    public static native UIColor opaqueSeparator();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "systemBackgroundColor")
+    public static native UIColor systemBackground();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "secondarySystemBackgroundColor")
+    public static native UIColor secondarySystemBackground();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "tertiarySystemBackgroundColor")
+    public static native UIColor tertiarySystemBackground();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "systemGroupedBackgroundColor")
+    public static native UIColor systemGroupedBackground();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "secondarySystemGroupedBackgroundColor")
+    public static native UIColor secondarySystemGroupedBackground();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "tertiarySystemGroupedBackgroundColor")
+    public static native UIColor tertiarySystemGroupedBackground();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "systemFillColor")
+    public static native UIColor systemFill();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "secondarySystemFillColor")
+    public static native UIColor secondarySystemFill();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "tertiarySystemFillColor")
+    public static native UIColor tertiarySystemFill();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "quaternarySystemFillColor")
+    public static native UIColor quaternarySystemFill();
     @Property(selector = "lightTextColor")
     public static native UIColor lightText();
     @Property(selector = "darkTextColor")
     public static native UIColor darkText();
+    /**
+     * @deprecated Deprecated in iOS 13.0. Use systemGroupedBackgroundColor
+     */
+    @Deprecated
     @Property(selector = "groupTableViewBackgroundColor")
     public static native UIColor groupTableViewBackground();
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 7.0.
      */
     @Deprecated
     @Property(selector = "viewFlipsideBackgroundColor")
     public static native UIColor viewFlipsideBackground();
     /**
-     * @since Available in iOS 3.2 and later.
      * @deprecated Deprecated in iOS 7.0.
      */
     @Deprecated
     @Property(selector = "scrollViewTexturedBackgroundColor")
     public static native UIColor scrollViewTexturedBackground();
     /**
-     * @since Available in iOS 5.0 and later.
      * @deprecated Deprecated in iOS 7.0.
      */
     @Deprecated
@@ -196,9 +337,6 @@ import org.robovm.apple.intents.*;
     protected native @Pointer long init(@MachineSizedFloat double red, @MachineSizedFloat double green, @MachineSizedFloat double blue, @MachineSizedFloat double alpha);
     @Method(selector = "initWithCGColor:")
     protected native @Pointer long init(CGColor cgColor);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "initWithCIColor:")
     protected native @Pointer long init(CIColor ciColor);
     @Method(selector = "set")
@@ -207,19 +345,10 @@ import org.robovm.apple.intents.*;
     public native void setFill();
     @Method(selector = "setStroke")
     public native void setStroke();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "getWhite:alpha:")
     protected native boolean getWhiteAlpha(MachineSizedFloatPtr white, MachineSizedFloatPtr alpha);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "getHue:saturation:brightness:alpha:")
     protected native boolean getHSBA(MachineSizedFloatPtr hue, MachineSizedFloatPtr saturation, MachineSizedFloatPtr brightness, MachineSizedFloatPtr alpha);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "getRed:green:blue:alpha:")
     protected native boolean getRGBA(MachineSizedFloatPtr red, MachineSizedFloatPtr green, MachineSizedFloatPtr blue, MachineSizedFloatPtr alpha);
     @Method(selector = "colorWithAlphaComponent:")
@@ -239,9 +368,6 @@ import org.robovm.apple.intents.*;
     public static native UIColor fromCGColor(CGColor cgColor);
     @Method(selector = "colorWithPatternImage:")
     public static native UIColor fromPatternImage(UIImage image);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "colorWithCIColor:")
     public static native UIColor fromCIColor(CIColor ciColor);
     /**
@@ -254,10 +380,20 @@ import org.robovm.apple.intents.*;
      */
     @Method(selector = "colorNamed:inBundle:compatibleWithTraitCollection:")
     public static native UIColor fromResourceBundle(String name, NSBundle bundle, UITraitCollection traitCollection);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "initWithDynamicProvider:")
+    protected native @Pointer long init(@Block Block1<UITraitCollection, UIColor> dynamicProvider);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "resolvedColorWithTraitCollection:")
+    public native UIColor resolvedColorWithTraitCollection(UITraitCollection traitCollection);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     public static UIColor createProviderDataObject(NSData data, String typeIdentifier) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        UIColor result = createProviderDataObject(data, typeIdentifier, ptr);

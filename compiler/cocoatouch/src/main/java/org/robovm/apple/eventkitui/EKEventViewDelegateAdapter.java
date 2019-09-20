@@ -50,9 +50,6 @@ import org.robovm.apple.uikit.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     @NotImplemented("eventViewController:didCompleteWithAction:")
     public void didComplete(EKEventViewController controller, EKEventViewAction action) {}
     /*</methods>*/

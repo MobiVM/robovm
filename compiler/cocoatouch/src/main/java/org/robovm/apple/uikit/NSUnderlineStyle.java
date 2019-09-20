@@ -37,49 +37,25 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 6.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
 public final class /*<name>*/NSUnderlineStyle/*</name>*/ extends Bits</*<name>*/NSUnderlineStyle/*</name>*/> {
     /*<values>*/
     public static final NSUnderlineStyle None = new NSUnderlineStyle(0L);
     public static final NSUnderlineStyle Single = new NSUnderlineStyle(1L);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final NSUnderlineStyle Thick = new NSUnderlineStyle(2L);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final NSUnderlineStyle Double = new NSUnderlineStyle(9L);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final NSUnderlineStyle PatternSolid = new NSUnderlineStyle(0L);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final NSUnderlineStyle PatternDot = new NSUnderlineStyle(256L);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final NSUnderlineStyle PatternDash = new NSUnderlineStyle(512L);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final NSUnderlineStyle PatternDashDot = new NSUnderlineStyle(768L);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final NSUnderlineStyle PatternDashDotDot = new NSUnderlineStyle(1024L);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final NSUnderlineStyle ByWord = new NSUnderlineStyle(32768L);
     /*</values>*/
 

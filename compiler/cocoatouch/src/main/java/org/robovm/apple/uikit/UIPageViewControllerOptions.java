@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -126,9 +128,6 @@ import org.robovm.apple.intents.*;
         set(Keys.SpineLocation(), NSNumber.valueOf(spineLocation.value()));
         return this;
     }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public double getInterPageSpacing() {
         if (has(Keys.InterPageSpacing())) {
             NSNumber val = (NSNumber) get(Keys.InterPageSpacing());
@@ -136,9 +135,6 @@ import org.robovm.apple.intents.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public UIPageViewControllerOptions setInterPageSpacing(double interPageSpacing) {
         set(Keys.InterPageSpacing(), NSNumber.valueOf(interPageSpacing));
         return this;
@@ -151,9 +147,6 @@ import org.robovm.apple.intents.*;
         static { Bro.bind(Keys.class); }
         @GlobalValue(symbol="UIPageViewControllerOptionSpineLocationKey", optional=true)
         public static native NSString SpineLocation();
-        /**
-         * @since Available in iOS 6.0 and later.
-         */
         @GlobalValue(symbol="UIPageViewControllerOptionInterPageSpacingKey", optional=true)
         public static native NSString InterPageSpacing();
     }

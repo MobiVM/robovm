@@ -58,5 +58,10 @@ import org.robovm.apple.dispatch.*;
     public void beginSession() {}
     @NotImplemented("invalidateSession")
     public void invalidateSession() {}
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("invalidateSessionWithErrorMessage:")
+    public void invalidateSession(String errorMessage) {}
     /*</methods>*/
 }

@@ -32,9 +32,7 @@ import org.robovm.apple.security.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("NetworkExtension") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NEFilterManager/*</name>*/ 
@@ -50,14 +48,8 @@ import org.robovm.apple.security.*;
     protected NEFilterManager(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "localizedDescription")
     public native String getLocalizedDescription();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setLocalizedDescription:")
     public native void setLocalizedDescription(String v);
     /**
@@ -70,43 +62,22 @@ import org.robovm.apple.security.*;
      */
     @Property(selector = "setProviderConfiguration:")
     public native void setProviderConfiguration(NEFilterProviderConfiguration v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "isEnabled")
     public native boolean isEnabled();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setEnabled:")
     public native void setEnabled(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @GlobalValue(symbol="NEFilterConfigurationDidChangeNotification", optional=true)
     public static native String ConfigurationDidChangeNotification();
     
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "loadFromPreferencesWithCompletionHandler:")
     public native void loadFromPreferences(@Block VoidBlock1<NSError> completionHandler);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "removeFromPreferencesWithCompletionHandler:")
     public native void removeFromPreferences(@Block VoidBlock1<NSError> completionHandler);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "saveToPreferencesWithCompletionHandler:")
     public native void saveToPreferences(@Block VoidBlock1<NSError> completionHandler);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "sharedManager")
     public static native NEFilterManager sharedManager();
     /*</methods>*/

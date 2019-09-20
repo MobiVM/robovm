@@ -59,15 +59,9 @@ import org.robovm.apple.contacts.*;
     @StructMember(1) public native CLLocationCoordinate2D setLongitude(double longitude);
     /*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @GlobalValue(symbol="kCLLocationCoordinate2DInvalid", optional=true)
     public static native @ByVal CLLocationCoordinate2D Invalid();
     
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CLLocationCoordinate2DIsValid", optional=true)
     private static native boolean isValid(@ByVal CLLocationCoordinate2D coord);
     /*</methods>*/

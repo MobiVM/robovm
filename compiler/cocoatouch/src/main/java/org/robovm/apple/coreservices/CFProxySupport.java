@@ -106,33 +106,18 @@ import org.robovm.apple.corefoundation.*;
         return null;
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CFNetworkCopySystemProxySettings", optional=true)
     public static native CFSystemProxySettings getSystemProxySettings();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static List<CFProxy> getProxies(String proxyAutoConfigurationScript, NSURL targetURL) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        List<CFProxy> result = getProxies(proxyAutoConfigurationScript, targetURL, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        return result;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CFNetworkCopyProxiesForAutoConfigurationScript", optional=true)
     private static native @org.robovm.rt.bro.annotation.Marshaler(CFProxy.AsListMarshaler.class) List<CFProxy> getProxies(String proxyAutoConfigurationScript, NSURL targetURL, NSError.NSErrorPtr error);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CFNetworkExecuteProxyAutoConfigurationScript", optional=true)
     private static native CFRunLoopSource executeProxyAutoConfigurationScript(String proxyAutoConfigurationScript, NSURL targetURL, FunctionPtr cb, CFStreamClientContext clientContext);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CFNetworkExecuteProxyAutoConfigurationURL", optional=true)
     private static native CFRunLoopSource executeProxyAutoConfigurationURL(NSURL proxyAutoConfigURL, NSURL targetURL, FunctionPtr cb, CFStreamClientContext clientContext);
     /*</methods>*/

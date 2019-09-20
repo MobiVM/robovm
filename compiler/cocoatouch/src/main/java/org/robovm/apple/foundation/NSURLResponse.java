@@ -58,7 +58,7 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "initWithURL:MIMEType:expectedContentLength:textEncodingName:")
     public NSURLResponse(NSURL URL, String MIMEType, @MachineSizedSInt long length, String name) { super((SkipInit) null); initObject(init(URL, MIMEType, length, name)); }
     @Method(selector = "initWithCoder:")
-    public NSURLResponse(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public NSURLResponse(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "URL")
@@ -81,6 +81,6 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

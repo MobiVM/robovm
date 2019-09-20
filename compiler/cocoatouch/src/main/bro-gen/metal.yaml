@@ -77,6 +77,14 @@ enums:
     MTLPrimitiveTopologyClass: {} #since 12.0
     MTLIndirectCommandType: {} #since 12.0
 
+    MTLHazardTrackingMode: {} #since 13.0
+    MTLTextureSwizzle: {} #since 13.0
+    MTLGPUFamily: {} #since 13.0
+    MTLSparseTextureRegionAlignmentMode: {} #since 13.0
+    MTLSparseTextureMappingMode: {} #since 13.0
+    MTLHeapType: {} #since 13.0
+    MTLCaptureError: {nserror: true} #since 13.0
+    MTLCaptureDestination: {} #since 13.0
 classes:
     MTLAttribute: {}
     MTLFunctionConstant: {}
@@ -241,6 +249,9 @@ classes:
                 name: startCapture
             '-startCaptureWithScope:':
                 name: startCapture
+            '-startCaptureWithDescriptor:error:':
+                name: startCapture
+                throws: NSErrorException
     MTLPipelineBufferDescriptor: {} #since 11.0
     MTLPipelineBufferDescriptorArray: #since 11.0
         methods:
@@ -261,6 +272,45 @@ classes:
         methods:
             '-initWithDispatchQueue:':
                 name: init
+    # ios13
+    MTLCaptureDescriptor: {} #since 13.0
+    MTLRasterizationRateLayerArray: #since 13.0
+        methods:
+            '-setObject:atIndexedSubscript:':
+                name: setObjec
+    MTLRasterizationRateLayerDescriptor: #since 13.0
+        methods:
+            '-initWithSampleCount:':
+                name: init
+            '-initWithSampleCount:horizontal:vertical:':
+                name: init
+    MTLRasterizationRateMapDescriptor: #since 13.0
+        methods:
+            '-setLayer:atIndex:':
+                name: setLayer
+            '+rasterizationRateMapDescriptorWithScreenSize:':
+                name: create
+                constructor: true
+            '+rasterizationRateMapDescriptorWithScreenSize:layer:':
+                name: create
+                constructor: true
+            '+rasterizationRateMapDescriptorWithScreenSize:layerCount:layers:':
+                name: create
+                constructor: true
+    MTLRasterizationRateSampleArray: #since 13.0
+        methods:
+            '-setObject:atIndexedSubscript:':
+                name: setObject
+    MTLSharedTextureHandle: {} #since 13.0
+    # ios13 structs
+    MTLTextureSwizzleChannels: {}
+    MTLMapIndirectArguments: {}
+    MTLStageInRegionIndirectArguments: {}
+    MTLVertexAmplificationViewMapping: {}
+    MTLDrawPatchIndirectArguments: {}
+    MTLQuadTessellationFactorsHalf: {}
+    MTLTriangleTessellationFactorsHalf: {}
+    MTLIndirectCommandBufferExecutionRange: {}
 protocols:
     MTLHeap:
         methods:
@@ -270,6 +320,10 @@ protocols:
                   name: newTexture
             '-maxAvailableSizeWithAlignment:':
                 name: getMaxAvailableSize
+            '-newBufferWithLength:options:offset:':
+                name: newBuffer
+            '-newTextureWithDescriptor:offset:':
+                name: newTexture
     MTLFence: {}
 
 
@@ -300,6 +354,10 @@ protocols:
                 trim_after_first_colon: true
             '-optimizeIndirectCommandBuffer:withRange:':
                 trim_after_first_colon: true
+            '-getTextureAccessCounters:region:mipLevel:slice:resetCounters:countersBuffer:countersBufferOffset:':
+                name: getTextureAccessCounters
+            '-resetTextureAccessCounters:region:mipLevel:slice:':
+                name: resetTextureAccessCounters
     MTLBuffer: # DONE
         class: true
         annotations: ['@NativeProtocolProxy']
@@ -315,9 +373,11 @@ protocols:
             '-addDebugMarker:range:':
                 trim_after_first_colon: true
     MTLCommandBuffer: # DONE
-        class: true
-        annotations: ['@NativeProtocolProxy']
-        visibility: 'public final'
+        skip_adapter: true
+        # dkimitsa: switched back to pure protocol as there other frameworks that implements it (like MPS)
+        # class: true
+        # annotations: ['@NativeProtocolProxy']
+        # visibility: 'public final'
         properties:
             'retainedReferences':
                 name: maintainsRetainedReferences
@@ -435,6 +495,10 @@ protocols:
                 name: memoryBarrier
             '-memoryBarrierWithScope:':
                 name: memoryBarrier
+            '-executeCommandsInBuffer:withRange:':
+                name: executeCommandsInBuffer
+            '-executeCommandsInBuffer:indirectBuffer:indirectBufferOffset:':
+                name: executeCommandsInBuffer
     MTLComputePipelineState: # DONE
         class: true
         annotations: ['@NativeProtocolProxy']
@@ -523,6 +587,20 @@ protocols:
                 name: newArgumentEncoder
             '-newSharedEventWithHandle:':
                 name: newSharedEvent
+            '-newSharedTextureWithDescriptor:':
+                name: newSharedTexture
+            '-newSharedTextureWithHandle:':
+                name: newSharedTexture
+            '-supportsRasterizationRateMapWithLayerCount:':
+                name: supportsRasterizationRateMap
+            '-newRasterizationRateMapWithDescriptor:':
+                name: newRasterizationRateMap
+            '-sparseTileSizeWithTextureType:pixelFormat:sampleCount:':
+                name: sparseTileSizeWithTextureType
+            '-convertSparsePixelRegions:toTileRegions:withTileSize:alignmentMode:numRegions:':
+                name: convertSparsePixelRegions
+            '-convertSparseTileRegions:toPixelRegions:withTileSize:numRegions:':
+                name: convertSparseTileRegions
     MTLDrawable: # DONE
         methods:
             '-presentAtTime:':
@@ -727,6 +805,18 @@ protocols:
                 trim_after_first_colon: true
             '-executeCommandsInBuffer:withRange:':
                 trim_after_first_colon: true
+            '-setVertexAmplificationCount:viewMappings:':
+                trim_after_first_colon: true
+            '-useResource:usage:stages:':
+                trim_after_first_colon: true
+            '-useResources:count:usage:stages:':
+                trim_after_first_colon: true
+            '-useHeap:stages:':
+                trim_after_first_colon: true
+            '-useHeaps:count:stages:':
+                trim_after_first_colon: true
+            '-executeCommandsInBuffer:indirectBuffer:indirectBufferOffset:':
+                trim_after_first_colon: true
     MTLRenderPipelineState: # DONE
         class: true
         annotations: ['@NativeProtocolProxy']
@@ -793,6 +883,14 @@ protocols:
                 trim_after_first_colon: true
             '-setIndirectCommandBuffers:withRange:':
                 trim_after_first_colon: true
+            '-setRenderPipelineState:atIndex:':
+                name: setRenderPipelineState
+            '-setRenderPipelineStates:withRange:':
+                name: setRenderPipelineStates
+            '-setComputePipelineState:atIndex:':
+                name: setComputePipelineState
+            '-setComputePipelineStates:withRange:':
+                name: setComputePipelineStates
     MTLCaptureScope: {} #since 11.0
 
     MTLEvent: {} #since 12.0
@@ -818,7 +916,32 @@ protocols:
         methods:
             '-notifyListener:atValue:block:':
                 trim_after_first_colon: true
-
+    MTLIndirectComputeCommand: #since 13.0
+        methods:
+            '-setKernelBuffer:offset:atIndex:':
+                name: setKernelBuffer
+            '-concurrentDispatchThreadgroups:threadsPerThreadgroup:':
+                name: concurrentDispatchThreadgroups
+            '-concurrentDispatchThreads:threadsPerThreadgroup:':
+                name: concurrentDispatchThreads
+            '-setThreadgroupMemoryLength:atIndex:':
+                name: setThreadgroupMemoryLength
+    MTLRasterizationRateMap: #since 13.0
+        methods:
+            '-copyParameterDataToBuffer:offset:':
+                name: copyParameterDataToBuffer
+            '-mapScreenToPhysicalCoordinates:forLayer:':
+                name: mapScreenToPhysicalCoordinates
+            '-mapPhysicalToScreenCoordinates:forLayer:':
+                name: mapPhysicalToScreenCoordinates
+    MTLResourceStateCommandEncoder: #since 13.0
+        methods:
+            '-updateTextureMappings:mode:regions:mipLevels:slices:numRegions:':
+                name: updateTextureMappings
+            '-updateTextureMapping:mode:region:mipLevel:slice:':
+                name: updateTextureMapping
+            '-updateTextureMapping:mode:indirectBuffer:indirectBufferOffset:':
+                name: updateTextureMapping
 functions:
     MTLClearColorMake:
         exclude: true # use constructor instead
@@ -842,6 +965,9 @@ values:
         name: getClassDomain
     MTLRenderPipelineErrorDomain:
         class: MTLRenderPipelineError
+        name: getClassDomain
+    MTLCaptureErrorDomain:
+        class: MTLCaptureError
         name: getClassDomain
 
     # Make sure we don't miss any values if new ones are introduced in a later version

@@ -66,6 +66,11 @@ import org.robovm.apple.audiotoolbox.*;
     AVDepthData replacementDepthDataForPhoto(AVCapturePhoto photo);
     @Method(selector = "replacementPortraitEffectsMatteForPhoto:")
     AVPortraitEffectsMatte replacementPortraitEffectsMatteForPhoto(AVCapturePhoto photo);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "replacementSemanticSegmentationMatteOfType:forPhoto:")
+    AVSemanticSegmentationMatte replacementSemanticSegmentationMatteOfType(AVSemanticSegmentationMatteType semanticSegmentationMatteType, AVCapturePhoto photo);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

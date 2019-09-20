@@ -216,9 +216,6 @@ import org.robovm.apple.dispatch.*;
     }
     @Method(selector = "writeToURL:options:error:")
     private native boolean write(NSURL url, NSDataWritingOptions writeOptionsMask, NSError.NSErrorPtr errorPtr);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "rangeOfData:options:range:")
     public native @ByVal NSRange find(NSData dataToFind, NSDataSearchOptions mask, @ByVal NSRange searchRange);
     @Method(selector = "initWithBytes:length:")
@@ -247,28 +244,15 @@ import org.robovm.apple.dispatch.*;
     protected static native NSData readFile(String path);
     @Method(selector = "dataWithContentsOfURL:")
     public static native NSData read(NSURL url);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "initWithBase64EncodedString:options:")
     protected native @Pointer long init(String base64String, NSDataBase64DecodingOptions options);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "base64EncodedStringWithOptions:")
     public native String toBase64EncodedString(NSDataBase64EncodingOptions options);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "initWithBase64EncodedData:options:")
     protected native @Pointer long init(NSData base64Data, NSDataBase64DecodingOptions options);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "base64EncodedDataWithOptions:")
     public native NSData toBase64EncodedData(NSDataBase64EncodingOptions options);
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 8.0. Use +dataWithContentsOfURL:options:error: and NSDataReadingMappedIfSafe or NSDataReadingMappedAlways instead.
      */
     @Deprecated

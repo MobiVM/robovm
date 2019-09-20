@@ -108,9 +108,6 @@ import org.robovm.apple.coregraphics.*;
     }
     
 
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CGImagePropertyIPTCContactInfoData getCreatorContactInfo() {
         if (has(CGImagePropertyIPTC.CreatorContactInfo)) {
             CFDictionary val = get(CGImagePropertyIPTC.CreatorContactInfo, CFDictionary.class);
@@ -118,9 +115,6 @@ import org.robovm.apple.coregraphics.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CGImagePropertyIPTCData setCreatorContactInfo(CGImagePropertyIPTCContactInfoData creatorContactInfo) {
         set(CGImagePropertyIPTC.CreatorContactInfo, creatorContactInfo.getDictionary());
         return this;

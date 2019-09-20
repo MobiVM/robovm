@@ -37,12 +37,12 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 7.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIScreenEdgePanGestureRecognizer/*</name>*/ 
@@ -58,6 +58,8 @@ import org.robovm.apple.intents.*;
     protected UIScreenEdgePanGestureRecognizer(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithTarget:action:")
     public UIScreenEdgePanGestureRecognizer(NSObject target, Selector action) { super(target, action); }
+    @Method(selector = "initWithCoder:")
+    public UIScreenEdgePanGestureRecognizer(NSCoder coder) { super(coder); }
     /*</constructors>*/
     
     public UIScreenEdgePanGestureRecognizer(OnGestureListener listener) {

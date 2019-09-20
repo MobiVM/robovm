@@ -223,9 +223,6 @@ import org.robovm.apple.coretext.*;
     public native CFType retain();
     @Bridge(symbol="CFRelease", optional=true)
     public native void release();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Bridge(symbol="CFAutorelease", optional=true)
     public native CFType autorelease();
     @Bridge(symbol="CFGetRetainCount", optional=true)

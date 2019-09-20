@@ -51,7 +51,7 @@ import org.robovm.apple.fileprovider.*;
     protected CKShareParticipant(Handle h, long handle) { super(h, handle); }
     protected CKShareParticipant(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public CKShareParticipant(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public CKShareParticipant(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "userIdentity")
@@ -68,14 +68,14 @@ import org.robovm.apple.fileprovider.*;
     public native void setRole(CKShareParticipantRole v);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 12.0.
+     * @deprecated Deprecated in iOS 12.0. Use role
      */
     @Deprecated
     @Property(selector = "type")
     public native CKShareParticipantType getType();
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 12.0.
+     * @deprecated Deprecated in iOS 12.0. Use role
      */
     @Deprecated
     @Property(selector = "setType:")
@@ -94,6 +94,6 @@ import org.robovm.apple.fileprovider.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

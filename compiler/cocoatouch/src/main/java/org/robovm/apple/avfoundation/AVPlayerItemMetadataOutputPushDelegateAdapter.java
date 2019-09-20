@@ -58,9 +58,6 @@ import org.robovm.apple.audiotoolbox.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @NotImplemented("metadataOutput:didOutputTimedMetadataGroups:fromPlayerItemTrack:")
     public void didOutputTimedMetadataGroups(AVPlayerItemMetadataOutput output, NSArray<AVTimedMetadataGroup> groups, AVPlayerItemTrack track) {}
     /*</methods>*/

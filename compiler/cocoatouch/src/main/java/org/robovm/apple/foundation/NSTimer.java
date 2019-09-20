@@ -108,14 +108,8 @@ import org.robovm.apple.dispatch.*;
     public native void setFireDate(NSDate v);
     @Property(selector = "timeInterval")
     public native double getTimeInterval();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "tolerance")
     public native double getTolerance();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setTolerance:")
     public native void setTolerance(double v);
     @Property(selector = "isValid")

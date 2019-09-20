@@ -90,6 +90,16 @@ import org.robovm.apple.avfoundation.*;
     public native boolean isJitteringEnabled();
     @Property(selector = "setJitteringEnabled:")
     public native void setJitteringEnabled(boolean v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "isTemporalAntialiasingEnabled")
+    public native boolean isTemporalAntialiasingEnabled();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setTemporalAntialiasingEnabled:")
+    public native void setTemporalAntialiasingEnabled(boolean v);
     @Property(selector = "showsStatistics")
     public native boolean showsStatistics();
     @Property(selector = "setShowsStatistics:")
@@ -168,6 +178,21 @@ import org.robovm.apple.avfoundation.*;
      */
     @Property(selector = "setAudioListener:")
     public native void setAudioListener(SCNNode v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "currentViewport")
+    public native @ByVal CGRect getCurrentViewport();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "usesReverseZ")
+    public native boolean usesReverseZ();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setUsesReverseZ:")
+    public native void setUsesReverseZ(boolean v);
     @Property(selector = "technique")
     public native SCNTechnique getTechnique();
     @Property(selector = "setTechnique:")
@@ -202,13 +227,6 @@ import org.robovm.apple.avfoundation.*;
      */
     @Method(selector = "updateProbes:atTime:")
     public native void updateProbes(NSArray<SCNNode> lightProbes, double time);
-    /**
-     * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
-     */
-    @Deprecated
-    @Method(selector = "render")
-    public native void render();
     @Method(selector = "rendererWithContext:options:")
     public static native SCNRenderer create(EAGLContext context, NSDictionary<?, ?> options);
     /**
@@ -216,6 +234,12 @@ import org.robovm.apple.avfoundation.*;
      */
     @Method(selector = "rendererWithDevice:options:")
     public static native SCNRenderer create(MTLDevice device, NSDictionary<?, ?> options);
+    /**
+     * @deprecated Deprecated in iOS 9.0. Use -renderAtTime:withEncoder:pass:commandQueue:
+     */
+    @Deprecated
+    @Method(selector = "render")
+    public native void render();
     /**
      * @since Available in iOS 9.0 and later.
      */

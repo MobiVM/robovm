@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -69,6 +71,26 @@ import org.robovm.apple.intents.*;
      */
     @Method(selector = "presentationController:willPresentWithAdaptiveStyle:transitionCoordinator:")
     void willPresent(UIPresentationController presentationController, UIModalPresentationStyle style, UIViewControllerTransitionCoordinator transitionCoordinator);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "presentationControllerShouldDismiss:")
+    boolean presentationControllerShouldDismiss(UIPresentationController presentationController);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "presentationControllerWillDismiss:")
+    void presentationControllerWillDismiss(UIPresentationController presentationController);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "presentationControllerDidDismiss:")
+    void presentationControllerDidDismiss(UIPresentationController presentationController);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "presentationControllerDidAttemptToDismiss:")
+    void presentationControllerDidAttemptToDismiss(UIPresentationController presentationController);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

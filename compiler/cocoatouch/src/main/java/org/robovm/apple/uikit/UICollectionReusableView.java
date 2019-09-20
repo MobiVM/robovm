@@ -37,12 +37,12 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 6.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UICollectionReusableView/*</name>*/ 
@@ -59,7 +59,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithFrame:")
     public UICollectionReusableView(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public UICollectionReusableView(NSCoder decoder) { super(decoder); }
+    public UICollectionReusableView(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "reuseIdentifier")
@@ -75,9 +75,6 @@ import org.robovm.apple.intents.*;
     public native void willTransition(UICollectionViewLayout oldLayout, UICollectionViewLayout newLayout);
     @Method(selector = "didTransitionFromLayout:toLayout:")
     public native void didTransition(UICollectionViewLayout oldLayout, UICollectionViewLayout newLayout);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "preferredLayoutAttributesFittingAttributes:")
     public native UICollectionViewLayoutAttributes getPreferredLayoutAttributesFittingAttributes(UICollectionViewLayoutAttributes layoutAttributes);
     /*</methods>*/

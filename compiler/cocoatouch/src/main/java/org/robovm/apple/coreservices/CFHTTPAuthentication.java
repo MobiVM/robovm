@@ -53,63 +53,30 @@ import org.robovm.apple.corefoundation.*;
         return create(null, response);
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CFHTTPAuthenticationGetTypeID", optional=true)
     public static native @MachineSizedUInt long getClassTypeID();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CFHTTPAuthenticationCreateFromResponse", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CFHTTPAuthentication create(CFAllocator alloc, CFHTTPMessage response);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public boolean isValid() throws CFStreamErrorException {
        CFStreamError.CFStreamErrorPtr ptr = new CFStreamError.CFStreamErrorPtr();
        boolean result = isValid(ptr);
        if (ptr.get() != null) { throw new CFStreamErrorException(ptr.get()); }
        return result;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CFHTTPAuthenticationIsValid", optional=true)
     private native boolean isValid(CFStreamError.CFStreamErrorPtr error);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CFHTTPAuthenticationAppliesToRequest", optional=true)
     public native boolean appliesToRequest(CFHTTPMessage request);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CFHTTPAuthenticationRequiresOrderedRequests", optional=true)
     public native boolean requiresOrderedRequests();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CFHTTPAuthenticationCopyRealm", optional=true)
     public native @org.robovm.rt.bro.annotation.Marshaler(CFString.AsStringNoRetainMarshaler.class) String getRealm();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CFHTTPAuthenticationCopyDomains", optional=true)
     public native @org.robovm.rt.bro.annotation.Marshaler(NSObject.NoRetainMarshaler.class) NSArray<NSURL> getDomains();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CFHTTPAuthenticationCopyMethod", optional=true)
     public native @org.robovm.rt.bro.annotation.Marshaler(CFString.AsStringNoRetainMarshaler.class) String getMethod();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CFHTTPAuthenticationRequiresUserNameAndPassword", optional=true)
     public native boolean requiresUserNameAndPassword();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CFHTTPAuthenticationRequiresAccountDomain", optional=true)
     public native boolean requiresAccountDomain();
     /*</methods>*/

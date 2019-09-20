@@ -29,6 +29,10 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corevideo.*;
+import org.robovm.apple.coregraphics.*;
+import org.robovm.apple.imageio.*;
+import org.robovm.apple.vision.*;
+import org.robovm.apple.metal.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -39,7 +43,7 @@ import org.robovm.apple.corevideo.*;
 /*<annotations>*/@Library("CoreML") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MLModelDescription/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class MLModelDescriptionPtr extends Ptr<MLModelDescription, MLModelDescriptionPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(MLModelDescription.class); }/*</bind>*/
@@ -48,6 +52,8 @@ import org.robovm.apple.corevideo.*;
     public MLModelDescription() {}
     protected MLModelDescription(Handle h, long handle) { super(h, handle); }
     protected MLModelDescription(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public MLModelDescription(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "inputDescriptionsByName")
@@ -59,10 +65,21 @@ import org.robovm.apple.corevideo.*;
     @Property(selector = "predictedProbabilitiesName")
     public native String getPredictedProbabilitiesName();
     @Property(selector = "metadata")
-    public native NSDictionary<?, ?> getMetadata();
+    public native NSDictionary<NSString, ?> getMetadata();
+    @Property(selector = "isUpdatable")
+    public native boolean isUpdatable();
+    @Property(selector = "trainingInputDescriptionsByName")
+    public native NSDictionary<NSString, MLFeatureDescription> getTrainingInputDescriptionsByName();
+    @Property(selector = "parameterDescriptionsByKey")
+    public native NSDictionary<MLParameterKey, MLParameterDescription> getParameterDescriptionsByKey();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

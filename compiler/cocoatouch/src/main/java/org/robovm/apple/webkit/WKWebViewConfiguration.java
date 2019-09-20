@@ -34,9 +34,7 @@ import org.robovm.apple.security.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("WebKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/WKWebViewConfiguration/*</name>*/ 
@@ -51,7 +49,7 @@ import org.robovm.apple.security.*;
     protected WKWebViewConfiguration(Handle h, long handle) { super(h, handle); }
     protected WKWebViewConfiguration(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public WKWebViewConfiguration(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public WKWebViewConfiguration(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "processPool")
@@ -110,6 +108,16 @@ import org.robovm.apple.security.*;
      */
     @Property(selector = "setMediaTypesRequiringUserActionForPlayback:")
     public native void setMediaTypesRequiringUserActionForPlayback(WKAudiovisualMediaTypes v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "defaultWebpagePreferences")
+    public native WKWebpagePreferences getDefaultWebpagePreferences();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setDefaultWebpagePreferences:")
+    public native void setDefaultWebpagePreferences(WKWebpagePreferences v);
     @Property(selector = "allowsInlineMediaPlayback")
     public native boolean allowsInlineMediaPlayback();
     @Property(selector = "setAllowsInlineMediaPlayback:")
@@ -149,43 +157,39 @@ import org.robovm.apple.security.*;
     @Property(selector = "setIgnoresViewportScaleLimits:")
     public native void setIgnoresViewportScaleLimits(boolean v);
     /**
-     * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use mediaTypesRequiringUserActionForPlayback
      */
     @Deprecated
     @Property(selector = "mediaPlaybackRequiresUserAction")
     public native boolean mediaPlaybackRequiresUserAction();
     /**
-     * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use mediaTypesRequiringUserActionForPlayback
      */
     @Deprecated
     @Property(selector = "setMediaPlaybackRequiresUserAction:")
     public native void setMediaPlaybackRequiresUserAction(boolean v);
     /**
-     * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use allowsAirPlayForMediaPlayback
      */
     @Deprecated
     @Property(selector = "mediaPlaybackAllowsAirPlay")
     public native boolean mediaPlaybackAllowsAirPlay();
     /**
-     * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use allowsAirPlayForMediaPlayback
      */
     @Deprecated
     @Property(selector = "setMediaPlaybackAllowsAirPlay:")
     public native void setMediaPlaybackAllowsAirPlay(boolean v);
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use mediaTypesRequiringUserActionForPlayback
      */
     @Deprecated
     @Property(selector = "requiresUserActionForMediaPlayback")
     public native boolean requiresUserActionForMediaPlayback();
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use mediaTypesRequiringUserActionForPlayback
      */
     @Deprecated
     @Property(selector = "setRequiresUserActionForMediaPlayback:")
@@ -208,6 +212,6 @@ import org.robovm.apple.security.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

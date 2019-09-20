@@ -41,9 +41,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVVideoComposition/*</name>*/ 
@@ -58,9 +56,6 @@ import org.robovm.apple.audiotoolbox.*;
     @Deprecated protected AVVideoComposition(long handle) { super(handle); }
     protected AVVideoComposition(Handle h, long handle) { super(h, handle); }
     protected AVVideoComposition(SkipInit skipInit) { super(skipInit); }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public AVVideoComposition(AVAsset asset) { super((Handle) null, create(asset)); retain(getHandle()); }
     /**
      * @since Available in iOS 9.0 and later.
@@ -68,9 +63,6 @@ import org.robovm.apple.audiotoolbox.*;
     public AVVideoComposition(AVAsset asset, @Block VoidBlock1<AVAsynchronousCIImageFilteringRequest> ciFiltersApplier) { super((Handle) null, create(asset, ciFiltersApplier)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "customVideoCompositorClass")
     public native Class<? extends AVVideoCompositing> getCustomVideoCompositorClass();
     @Property(selector = "frameDuration")
@@ -82,9 +74,6 @@ import org.robovm.apple.audiotoolbox.*;
     public native int getSourceTrackIDForFrameTiming();
     @Property(selector = "renderSize")
     public native @ByVal CGSize getRenderSize();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "renderScale")
     public native float getRenderScale();
     @Property(selector = "instructions")
@@ -109,9 +98,6 @@ import org.robovm.apple.audiotoolbox.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "videoCompositionWithPropertiesOfAsset:")
     protected static native @Pointer long create(AVAsset asset);
     /**
@@ -119,9 +105,6 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Method(selector = "videoCompositionWithAsset:applyingCIFiltersWithHandler:")
     protected static native @Pointer long create(AVAsset asset, @Block VoidBlock1<AVAsynchronousCIImageFilteringRequest> ciFiltersApplier);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "isValidForAsset:timeRange:validationDelegate:")
     public native boolean isValid(AVAsset asset, @ByVal CMTimeRange timeRange, AVVideoCompositionValidationHandling validationDelegate);
     /*</methods>*/

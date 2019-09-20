@@ -35,9 +35,7 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 3.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("MapKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MKAnnotationView/*</name>*/ 
@@ -111,24 +109,12 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "setDetailCalloutAccessoryView:")
     public native void setDetailCalloutAccessoryView(UIView v);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "isDraggable")
     public native boolean isDraggable();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "setDraggable:")
     public native void setDraggable(boolean v);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "dragState")
     public native MKAnnotationViewDragState getDragState();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "setDragState:")
     public native void setDragState(MKAnnotationViewDragState v);
     /**
@@ -182,9 +168,6 @@ import org.robovm.apple.dispatch.*;
     public native void prepareForDisplay();
     @Method(selector = "setSelected:animated:")
     public native void setSelected(boolean selected, boolean animated);
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     @Method(selector = "setDragState:animated:")
     public native void setDragState(MKAnnotationViewDragState newDragState, boolean animated);
     /*</methods>*/

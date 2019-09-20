@@ -87,35 +87,24 @@ import org.robovm.apple.corefoundation.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final CFStreamNetworkServiceType Video = new CFStreamNetworkServiceType("Video");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final CFStreamNetworkServiceType Voice = new CFStreamNetworkServiceType("Voice");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final CFStreamNetworkServiceType Background = new CFStreamNetworkServiceType("Background");
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public static final CFStreamNetworkServiceType ResponsiveData = new CFStreamNetworkServiceType("ResponsiveData");
     /**
      * @since Available in iOS 10.0 and later.
      */
     public static final CFStreamNetworkServiceType CallSignaling = new CFStreamNetworkServiceType("CallSignaling");
+    public static final CFStreamNetworkServiceType AVStreaming = new CFStreamNetworkServiceType("AVStreaming");
+    public static final CFStreamNetworkServiceType ResponsiveAV = new CFStreamNetworkServiceType("ResponsiveAV");
     /**
-     * @since Available in iOS 4.0 and later.
      * @deprecated Deprecated in iOS 9.0. use PushKit for VoIP control purposes
      */
     @Deprecated
     public static final CFStreamNetworkServiceType VoIP = new CFStreamNetworkServiceType("VoIP");
     /*</constants>*/
     
-    private static /*<name>*/CFStreamNetworkServiceType/*</name>*/[] values = new /*<name>*/CFStreamNetworkServiceType/*</name>*/[] {/*<value_list>*/Video, Voice, Background, ResponsiveData, CallSignaling, VoIP/*</value_list>*/};
+    private static /*<name>*/CFStreamNetworkServiceType/*</name>*/[] values = new /*<name>*/CFStreamNetworkServiceType/*</name>*/[] {/*<value_list>*/Video, Voice, Background, ResponsiveData, CallSignaling, AVStreaming, ResponsiveAV, VoIP/*</value_list>*/};
     
     /*<name>*/CFStreamNetworkServiceType/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -138,24 +127,12 @@ import org.robovm.apple.corefoundation.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="kCFStreamNetworkServiceTypeVideo", optional=true)
         public static native CFString Video();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="kCFStreamNetworkServiceTypeVoice", optional=true)
         public static native CFString Voice();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="kCFStreamNetworkServiceTypeBackground", optional=true)
         public static native CFString Background();
-        /**
-         * @since Available in iOS 6.0 and later.
-         */
         @GlobalValue(symbol="kCFStreamNetworkServiceTypeResponsiveData", optional=true)
         public static native CFString ResponsiveData();
         /**
@@ -163,8 +140,11 @@ import org.robovm.apple.corefoundation.*;
          */
         @GlobalValue(symbol="kCFStreamNetworkServiceTypeCallSignaling", optional=true)
         public static native CFString CallSignaling();
+        @GlobalValue(symbol="kCFStreamNetworkServiceTypeAVStreaming", optional=true)
+        public static native CFString AVStreaming();
+        @GlobalValue(symbol="kCFStreamNetworkServiceTypeResponsiveAV", optional=true)
+        public static native CFString ResponsiveAV();
         /**
-         * @since Available in iOS 4.0 and later.
          * @deprecated Deprecated in iOS 9.0. use PushKit for VoIP control purposes
          */
         @Deprecated

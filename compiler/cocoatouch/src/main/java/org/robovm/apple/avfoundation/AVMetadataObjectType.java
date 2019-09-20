@@ -98,64 +98,38 @@ import org.robovm.apple.audiotoolbox.*;
 
     /*<constants>*/
     /**
-     * @since Available in iOS 6.0 and later.
+     * @since Available in iOS 13.0 and later.
      */
+    public static final AVMetadataObjectType HumanBody = new AVMetadataObjectType("HumanBody");
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final AVMetadataObjectType CatBody = new AVMetadataObjectType("CatBody");
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final AVMetadataObjectType DogBody = new AVMetadataObjectType("DogBody");
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final AVMetadataObjectType SalientObject = new AVMetadataObjectType("SalientObject");
     public static final AVMetadataObjectType Face = new AVMetadataObjectType("Face");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final AVMetadataObjectType UPCECode = new AVMetadataObjectType("UPCECode");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final AVMetadataObjectType Code39Code = new AVMetadataObjectType("Code39Code");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final AVMetadataObjectType Code39Mod43Code = new AVMetadataObjectType("Code39Mod43Code");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final AVMetadataObjectType EAN13Code = new AVMetadataObjectType("EAN13Code");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final AVMetadataObjectType EAN8Code = new AVMetadataObjectType("EAN8Code");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final AVMetadataObjectType Code93Code = new AVMetadataObjectType("Code93Code");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final AVMetadataObjectType Code128Code = new AVMetadataObjectType("Code128Code");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final AVMetadataObjectType PDF417Code = new AVMetadataObjectType("PDF417Code");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final AVMetadataObjectType QRCode = new AVMetadataObjectType("QRCode");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final AVMetadataObjectType AztecCode = new AVMetadataObjectType("AztecCode");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataObjectType Interleaved2of5Code = new AVMetadataObjectType("Interleaved2of5Code");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataObjectType ITF14Code = new AVMetadataObjectType("ITF14Code");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataObjectType DataMatrixCode = new AVMetadataObjectType("DataMatrixCode");
     /*</constants>*/
     
-    private static /*<name>*/AVMetadataObjectType/*</name>*/[] values = new /*<name>*/AVMetadataObjectType/*</name>*/[] {/*<value_list>*/Face, UPCECode, Code39Code, Code39Mod43Code, EAN13Code, EAN8Code, Code93Code, Code128Code, PDF417Code, QRCode, AztecCode, Interleaved2of5Code, ITF14Code, DataMatrixCode/*</value_list>*/};
+    private static /*<name>*/AVMetadataObjectType/*</name>*/[] values = new /*<name>*/AVMetadataObjectType/*</name>*/[] {/*<value_list>*/HumanBody, CatBody, DogBody, SalientObject, Face, UPCECode, Code39Code, Code39Mod43Code, EAN13Code, EAN8Code, Code93Code, Code128Code, PDF417Code, QRCode, AztecCode, Interleaved2of5Code, ITF14Code, DataMatrixCode/*</value_list>*/};
     
     /*<name>*/AVMetadataObjectType/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -179,73 +153,51 @@ import org.robovm.apple.audiotoolbox.*;
 
         /*<values>*/
         /**
-         * @since Available in iOS 6.0 and later.
+         * @since Available in iOS 13.0 and later.
          */
+        @GlobalValue(symbol="AVMetadataObjectTypeHumanBody", optional=true)
+        public static native NSString HumanBody();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="AVMetadataObjectTypeCatBody", optional=true)
+        public static native NSString CatBody();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="AVMetadataObjectTypeDogBody", optional=true)
+        public static native NSString DogBody();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="AVMetadataObjectTypeSalientObject", optional=true)
+        public static native NSString SalientObject();
         @GlobalValue(symbol="AVMetadataObjectTypeFace", optional=true)
         public static native NSString Face();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataObjectTypeUPCECode", optional=true)
         public static native NSString UPCECode();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataObjectTypeCode39Code", optional=true)
         public static native NSString Code39Code();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataObjectTypeCode39Mod43Code", optional=true)
         public static native NSString Code39Mod43Code();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataObjectTypeEAN13Code", optional=true)
         public static native NSString EAN13Code();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataObjectTypeEAN8Code", optional=true)
         public static native NSString EAN8Code();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataObjectTypeCode93Code", optional=true)
         public static native NSString Code93Code();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataObjectTypeCode128Code", optional=true)
         public static native NSString Code128Code();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataObjectTypePDF417Code", optional=true)
         public static native NSString PDF417Code();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataObjectTypeQRCode", optional=true)
         public static native NSString QRCode();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataObjectTypeAztecCode", optional=true)
         public static native NSString AztecCode();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataObjectTypeInterleaved2of5Code", optional=true)
         public static native NSString Interleaved2of5Code();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataObjectTypeITF14Code", optional=true)
         public static native NSString ITF14Code();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataObjectTypeDataMatrixCode", optional=true)
         public static native NSString DataMatrixCode();
         /*</values>*/

@@ -56,22 +56,22 @@ import org.robovm.apple.corelocation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "successWithResolvedBillType:")
-    public static native INBillTypeResolutionResult successWithResolvedBillType(INBillType resolvedBillType);
+    public static native INBillTypeResolutionResult success(INBillType resolvedBillType);
     /**
      * @since Available in iOS 10.3 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use +successWithResolvedBillType:
      */
     @Deprecated
     @Method(selector = "successWithResolvedValue:")
-    public static native INBillTypeResolutionResult successWithResolvedValue(INBillType resolvedValue);
+    public static native INBillTypeResolutionResult successValue(INBillType resolvedValue);
     @Method(selector = "confirmationRequiredWithBillTypeToConfirm:")
-    public static native INBillTypeResolutionResult confirmationRequiredWithBillTypeToConfirm(INBillType billTypeToConfirm);
+    public static native INBillTypeResolutionResult confirmationRequired(INBillType billTypeToConfirm);
     /**
      * @since Available in iOS 10.3 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use +confirmationRequiredWithBillTypeToConfirm:
      */
     @Deprecated
     @Method(selector = "confirmationRequiredWithValueToConfirm:")
-    public static native INBillTypeResolutionResult confirmationRequiredWithValueToConfirm(INBillType valueToConfirm);
+    public static native INBillTypeResolutionResult confirmationRequiredForValue(INBillType valueToConfirm);
     /*</methods>*/
 }

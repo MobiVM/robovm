@@ -56,10 +56,10 @@ import org.robovm.apple.corelocation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "successWithResolvedString:")
-    public static native INStringResolutionResult successWithResolvedString(String resolvedString);
+    public static native INStringResolutionResult success(String resolvedString);
     @Method(selector = "disambiguationWithStringsToDisambiguate:")
-    public static native INStringResolutionResult disambiguationWithStringsToDisambiguate(NSArray<NSString> stringsToDisambiguate);
+    public static native INStringResolutionResult disambiguation(NSArray<NSString> stringsToDisambiguate);
     @Method(selector = "confirmationRequiredWithStringToConfirm:")
-    public static native INStringResolutionResult confirmationRequiredWithStringToConfirm(String stringToConfirm);
+    public static native INStringResolutionResult confirmationRequired(String stringToConfirm);
     /*</methods>*/
 }

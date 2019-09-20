@@ -41,9 +41,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 3.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVAudioRecorder/*</name>*/ 
@@ -95,23 +93,14 @@ import org.robovm.apple.audiotoolbox.*;
     public native void setDelegate(AVAudioRecorderDelegate v);
     @Property(selector = "currentTime")
     public native double getCurrentTime();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "deviceCurrentTime")
     public native double getDeviceCurrentTime();
     @Property(selector = "isMeteringEnabled")
     public native boolean isMeteringEnabled();
     @Property(selector = "setMeteringEnabled:")
     public native void setMeteringEnabled(boolean v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "channelAssignments")
     public native NSArray<AVAudioSessionChannelDescription> getChannelAssignments();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setChannelAssignments:")
     public native void setChannelAssignments(NSArray<AVAudioSessionChannelDescription> v);
     /*</properties>*/
@@ -128,16 +117,10 @@ import org.robovm.apple.audiotoolbox.*;
     public native boolean prepareToRecord();
     @Method(selector = "record")
     public native boolean record();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "recordAtTime:")
     public native boolean recordAtTime(double time);
     @Method(selector = "recordForDuration:")
     public native boolean record(double duration);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "recordAtTime:forDuration:")
     public native boolean recordAtTime(double time, double duration);
     @Method(selector = "pause")

@@ -95,21 +95,9 @@ import org.robovm.apple.dispatch.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final NSProgressFileOperationKind Downloading = new NSProgressFileOperationKind("Downloading");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final NSProgressFileOperationKind DecompressingAfterDownloading = new NSProgressFileOperationKind("DecompressingAfterDownloading");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final NSProgressFileOperationKind Receiving = new NSProgressFileOperationKind("Receiving");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final NSProgressFileOperationKind Copying = new NSProgressFileOperationKind("Copying");
     /*</constants>*/
     
@@ -136,24 +124,12 @@ import org.robovm.apple.dispatch.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="NSProgressFileOperationKindDownloading", optional=true)
         public static native NSString Downloading();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="NSProgressFileOperationKindDecompressingAfterDownloading", optional=true)
         public static native NSString DecompressingAfterDownloading();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="NSProgressFileOperationKindReceiving", optional=true)
         public static native NSString Receiving();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="NSProgressFileOperationKindCopying", optional=true)
         public static native NSString Copying();
         /*</values>*/

@@ -42,8 +42,8 @@ import org.robovm.apple.dispatch.*;
 
 /*</javadoc>*/
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/NSMutableDictionary/*</name>*/ <K extends NSObject, V extends NSObject>
-    extends /*<extends>*/NSDictionary/*</extends>*/ <K, V>
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/NSMutableDictionary<K extends NSObject, V extends NSObject>/*</name>*/
+    extends /*<extends>*/NSDictionary<K, V>/*</extends>*/
     /*<implements>*//*</implements>*/ {
 
     public static class NSMutableDictionaryPtr<K extends NSObject, V extends NSObject> extends Ptr<NSMutableDictionary<K, V>, NSMutableDictionaryPtr<K, V>> {}
@@ -100,7 +100,7 @@ import org.robovm.apple.dispatch.*;
         
         V oldValue = get(key);
         if (key instanceof NSObject) {
-            removeObject((NSObject) key);
+            removeObject((K) key);
         } else {
             String strKey = String.valueOf(key);
             removeObjectForKey$(NSString.create(NSString.getChars(strKey), strKey.length()));
@@ -197,9 +197,9 @@ import org.robovm.apple.dispatch.*;
     
     /*<methods>*/
     @Method(selector = "removeObjectForKey:")
-    protected native void removeObject(NSObject aKey);
+    protected native void removeObject(K aKey);
     @Method(selector = "setObject:forKey:")
-    protected native void setObject(NSObject anObject, NSObject aKey);
+    protected native void setObject(V anObject, NSObject aKey);
     @Method(selector = "initWithCapacity:")
     protected native @Pointer long init(@MachineSizedUInt long numItems);
     @Method(selector = "removeAllObjects")

@@ -97,53 +97,20 @@ import org.robovm.apple.audiotoolbox.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVCaptureSessionPreset Photo = new AVCaptureSessionPreset("Photo");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVCaptureSessionPreset High = new AVCaptureSessionPreset("High");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVCaptureSessionPreset Medium = new AVCaptureSessionPreset("Medium");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVCaptureSessionPreset Low = new AVCaptureSessionPreset("Low");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final AVCaptureSessionPreset Size352x288 = new AVCaptureSessionPreset("Size352x288");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVCaptureSessionPreset Size640x480 = new AVCaptureSessionPreset("Size640x480");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVCaptureSessionPreset Size1280x720 = new AVCaptureSessionPreset("Size1280x720");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final AVCaptureSessionPreset Size1920x1080 = new AVCaptureSessionPreset("Size1920x1080");
     /**
      * @since Available in iOS 9.0 and later.
      */
     public static final AVCaptureSessionPreset Size3840x2160 = new AVCaptureSessionPreset("Size3840x2160");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final AVCaptureSessionPreset iFrame960x540 = new AVCaptureSessionPreset("iFrame960x540");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final AVCaptureSessionPreset iFrame1280x720 = new AVCaptureSessionPreset("iFrame1280x720");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final AVCaptureSessionPreset InputPriority = new AVCaptureSessionPreset("InputPriority");
     /*</constants>*/
     
@@ -170,44 +137,20 @@ import org.robovm.apple.audiotoolbox.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVCaptureSessionPresetPhoto", optional=true)
         public static native NSString Photo();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVCaptureSessionPresetHigh", optional=true)
         public static native NSString High();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVCaptureSessionPresetMedium", optional=true)
         public static native NSString Medium();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVCaptureSessionPresetLow", optional=true)
         public static native NSString Low();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="AVCaptureSessionPreset352x288", optional=true)
         public static native NSString Size352x288();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVCaptureSessionPreset640x480", optional=true)
         public static native NSString Size640x480();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVCaptureSessionPreset1280x720", optional=true)
         public static native NSString Size1280x720();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="AVCaptureSessionPreset1920x1080", optional=true)
         public static native NSString Size1920x1080();
         /**
@@ -215,19 +158,10 @@ import org.robovm.apple.audiotoolbox.*;
          */
         @GlobalValue(symbol="AVCaptureSessionPreset3840x2160", optional=true)
         public static native NSString Size3840x2160();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="AVCaptureSessionPresetiFrame960x540", optional=true)
         public static native NSString iFrame960x540();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="AVCaptureSessionPresetiFrame1280x720", optional=true)
         public static native NSString iFrame1280x720();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="AVCaptureSessionPresetInputPriority", optional=true)
         public static native NSString InputPriority();
         /*</values>*/

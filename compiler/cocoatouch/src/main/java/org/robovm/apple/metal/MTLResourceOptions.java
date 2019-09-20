@@ -32,9 +32,7 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
 public final class /*<name>*/MTLResourceOptions/*</name>*/ extends Bits</*<name>*/MTLResourceOptions/*</name>*/> {
@@ -56,7 +54,15 @@ public final class /*<name>*/MTLResourceOptions/*</name>*/ extends Bits</*<name>
     /**
      * @since Available in iOS 10.0 and later.
      */
+    public static final MTLResourceOptions HazardTrackingModeDefault = new MTLResourceOptions(0L);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
     public static final MTLResourceOptions HazardTrackingModeUntracked = new MTLResourceOptions(256L);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final MTLResourceOptions HazardTrackingModeTracked = new MTLResourceOptions(512L);
     /*</values>*/
 
     /*<bind>*/

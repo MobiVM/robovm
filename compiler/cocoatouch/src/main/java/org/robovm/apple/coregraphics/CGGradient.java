@@ -87,19 +87,10 @@ import org.robovm.apple.uikit.*;
         }
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGGradientGetTypeID", optional=true)
     public static native @MachineSizedUInt long getClassTypeID();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGGradientCreateWithColorComponents", optional=true)
     private static native CGGradient create(CGColorSpace space, @Pointer long components, @Pointer long locations, @MachineSizedUInt long count);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGGradientCreateWithColors", optional=true)
     private static native CGGradient create(CGColorSpace space, CFArray colors, @Pointer long locations);
     /*</methods>*/

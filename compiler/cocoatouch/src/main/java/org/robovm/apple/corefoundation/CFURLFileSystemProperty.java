@@ -91,159 +91,60 @@ import org.robovm.apple.coretext.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CFURLFileSystemProperty Name = new CFURLFileSystemProperty("Name");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CFURLFileSystemProperty LocalizedName = new CFURLFileSystemProperty("LocalizedName");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CFURLFileSystemProperty IsRegularFile = new CFURLFileSystemProperty("IsRegularFile");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CFURLFileSystemProperty IsDirectory = new CFURLFileSystemProperty("IsDirectory");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CFURLFileSystemProperty IsSymbolicLink = new CFURLFileSystemProperty("IsSymbolicLink");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CFURLFileSystemProperty IsVolume = new CFURLFileSystemProperty("IsVolume");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CFURLFileSystemProperty IsPackage = new CFURLFileSystemProperty("IsPackage");
     /**
      * @since Available in iOS 9.0 and later.
      */
     public static final CFURLFileSystemProperty IsApplication = new CFURLFileSystemProperty("IsApplication");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CFURLFileSystemProperty IsSystemImmutable = new CFURLFileSystemProperty("IsSystemImmutable");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CFURLFileSystemProperty IsUserImmutable = new CFURLFileSystemProperty("IsUserImmutable");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CFURLFileSystemProperty IsHidden = new CFURLFileSystemProperty("IsHidden");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CFURLFileSystemProperty HasHiddenExtension = new CFURLFileSystemProperty("HasHiddenExtension");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CFURLFileSystemProperty CreationDate = new CFURLFileSystemProperty("CreationDate");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CFURLFileSystemProperty ContentAccessDate = new CFURLFileSystemProperty("ContentAccessDate");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CFURLFileSystemProperty ContentModificationDate = new CFURLFileSystemProperty("ContentModificationDate");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CFURLFileSystemProperty AttributeModificationDate = new CFURLFileSystemProperty("AttributeModificationDate");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CFURLFileSystemProperty LinkCount = new CFURLFileSystemProperty("LinkCount");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CFURLFileSystemProperty ParentDirectoryURL = new CFURLFileSystemProperty("ParentDirectoryURL");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CFURLFileSystemProperty TypeIdentifier = new CFURLFileSystemProperty("TypeIdentifier");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CFURLFileSystemProperty LocalizedTypeDescription = new CFURLFileSystemProperty("LocalizedTypeDescription");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CFURLFileSystemProperty LabelNumber = new CFURLFileSystemProperty("LabelNumber");
     /**
-     * @since Available in iOS 4.0 and later.
      * @deprecated Deprecated in iOS 10.0. Use NSURLLabelColorKey
      */
     @Deprecated
     public static final CFURLFileSystemProperty LabelColor = new CFURLFileSystemProperty("LabelColor");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CFURLFileSystemProperty LocalizedLabel = new CFURLFileSystemProperty("LocalizedLabel");
     /**
-     * @since Available in iOS 4.0 and later.
      * @deprecated Deprecated in iOS 10.0. Use NSURLEffectiveIconKey
      */
     @Deprecated
     public static final CFURLFileSystemProperty EffectiveIcon = new CFURLFileSystemProperty("EffectiveIcon");
     /**
-     * @since Available in iOS 4.0 and later.
      * @deprecated Deprecated in iOS 10.0. Use NSURLCustomIconKey
      */
     @Deprecated
     public static final CFURLFileSystemProperty CustomIcon = new CFURLFileSystemProperty("CustomIcon");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final CFURLFileSystemProperty FileResourceIdentifier = new CFURLFileSystemProperty("FileResourceIdentifier");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final CFURLFileSystemProperty PreferredIOBlockSize = new CFURLFileSystemProperty("PreferredIOBlockSize");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final CFURLFileSystemProperty IsReadable = new CFURLFileSystemProperty("IsReadable");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final CFURLFileSystemProperty IsWritable = new CFURLFileSystemProperty("IsWritable");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final CFURLFileSystemProperty IsExecutable = new CFURLFileSystemProperty("IsExecutable");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final CFURLFileSystemProperty FileSecurity = new CFURLFileSystemProperty("FileSecurity");
-    /**
-     * @since Available in iOS 5.1 and later.
-     */
     public static final CFURLFileSystemProperty IsExcludedFromBackup = new CFURLFileSystemProperty("IsExcludedFromBackup");
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public static final CFURLFileSystemProperty Path = new CFURLFileSystemProperty("Path");
     /**
      * @since Available in iOS 10.0 and later.
      */
     public static final CFURLFileSystemProperty CanonicalPath = new CFURLFileSystemProperty("CanonicalPath");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final CFURLFileSystemProperty GenerationIdentifier = new CFURLFileSystemProperty("GenerationIdentifier");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final CFURLFileSystemProperty DocumentIdentifier = new CFURLFileSystemProperty("DocumentIdentifier");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final CFURLFileSystemProperty AddedToDirectoryDate = new CFURLFileSystemProperty("AddedToDirectoryDate");
     /**
      * @since Available in iOS 9.0 and later.
@@ -274,39 +175,18 @@ import org.robovm.apple.coretext.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCFURLNameKey", optional=true)
         public static native CFString Name();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCFURLLocalizedNameKey", optional=true)
         public static native CFString LocalizedName();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCFURLIsRegularFileKey", optional=true)
         public static native CFString IsRegularFile();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCFURLIsDirectoryKey", optional=true)
         public static native CFString IsDirectory();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCFURLIsSymbolicLinkKey", optional=true)
         public static native CFString IsSymbolicLink();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCFURLIsVolumeKey", optional=true)
         public static native CFString IsVolume();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCFURLIsPackageKey", optional=true)
         public static native CFString IsPackage();
         /**
@@ -314,135 +194,66 @@ import org.robovm.apple.coretext.*;
          */
         @GlobalValue(symbol="kCFURLIsApplicationKey", optional=true)
         public static native CFString IsApplication();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCFURLIsSystemImmutableKey", optional=true)
         public static native CFString IsSystemImmutable();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCFURLIsUserImmutableKey", optional=true)
         public static native CFString IsUserImmutable();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCFURLIsHiddenKey", optional=true)
         public static native CFString IsHidden();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCFURLHasHiddenExtensionKey", optional=true)
         public static native CFString HasHiddenExtension();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCFURLCreationDateKey", optional=true)
         public static native CFString CreationDate();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCFURLContentAccessDateKey", optional=true)
         public static native CFString ContentAccessDate();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCFURLContentModificationDateKey", optional=true)
         public static native CFString ContentModificationDate();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCFURLAttributeModificationDateKey", optional=true)
         public static native CFString AttributeModificationDate();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCFURLLinkCountKey", optional=true)
         public static native CFString LinkCount();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCFURLParentDirectoryURLKey", optional=true)
         public static native CFString ParentDirectoryURL();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCFURLTypeIdentifierKey", optional=true)
         public static native CFString TypeIdentifier();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCFURLLocalizedTypeDescriptionKey", optional=true)
         public static native CFString LocalizedTypeDescription();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCFURLLabelNumberKey", optional=true)
         public static native CFString LabelNumber();
         /**
-         * @since Available in iOS 4.0 and later.
          * @deprecated Deprecated in iOS 10.0. Use NSURLLabelColorKey
          */
         @Deprecated
         @GlobalValue(symbol="kCFURLLabelColorKey", optional=true)
         public static native CFString LabelColor();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCFURLLocalizedLabelKey", optional=true)
         public static native CFString LocalizedLabel();
         /**
-         * @since Available in iOS 4.0 and later.
          * @deprecated Deprecated in iOS 10.0. Use NSURLEffectiveIconKey
          */
         @Deprecated
         @GlobalValue(symbol="kCFURLEffectiveIconKey", optional=true)
         public static native CFString EffectiveIcon();
         /**
-         * @since Available in iOS 4.0 and later.
          * @deprecated Deprecated in iOS 10.0. Use NSURLCustomIconKey
          */
         @Deprecated
         @GlobalValue(symbol="kCFURLCustomIconKey", optional=true)
         public static native CFString CustomIcon();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="kCFURLFileResourceIdentifierKey", optional=true)
         public static native CFString FileResourceIdentifier();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="kCFURLPreferredIOBlockSizeKey", optional=true)
         public static native CFString PreferredIOBlockSize();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="kCFURLIsReadableKey", optional=true)
         public static native CFString IsReadable();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="kCFURLIsWritableKey", optional=true)
         public static native CFString IsWritable();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="kCFURLIsExecutableKey", optional=true)
         public static native CFString IsExecutable();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="kCFURLFileSecurityKey", optional=true)
         public static native CFString FileSecurity();
-        /**
-         * @since Available in iOS 5.1 and later.
-         */
         @GlobalValue(symbol="kCFURLIsExcludedFromBackupKey", optional=true)
         public static native CFString IsExcludedFromBackup();
-        /**
-         * @since Available in iOS 6.0 and later.
-         */
         @GlobalValue(symbol="kCFURLPathKey", optional=true)
         public static native CFString Path();
         /**
@@ -450,19 +261,10 @@ import org.robovm.apple.coretext.*;
          */
         @GlobalValue(symbol="kCFURLCanonicalPathKey", optional=true)
         public static native CFString CanonicalPath();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="kCFURLGenerationIdentifierKey", optional=true)
         public static native CFString GenerationIdentifier();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="kCFURLDocumentIdentifierKey", optional=true)
         public static native CFString DocumentIdentifier();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="kCFURLAddedToDirectoryDateKey", optional=true)
         public static native CFString AddedToDirectoryDate();
         /**

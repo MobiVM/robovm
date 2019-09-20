@@ -37,12 +37,12 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 2.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIScrollView/*</name>*/ 
@@ -59,7 +59,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithFrame:")
     public UIScrollView(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public UIScrollView(NSCoder decoder) { super(decoder); }
+    public UIScrollView(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "contentOffset")
@@ -89,6 +89,16 @@ import org.robovm.apple.intents.*;
      */
     @Property(selector = "setContentInsetAdjustmentBehavior:")
     public native void setContentInsetAdjustmentBehavior(UIScrollViewContentInsetAdjustmentBehavior v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "automaticallyAdjustsScrollIndicatorInsets")
+    public native boolean automaticallyAdjustsScrollIndicatorInsets();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setAutomaticallyAdjustsScrollIndicatorInsets:")
+    public native void setAutomaticallyAdjustsScrollIndicatorInsets(boolean v);
     /**
      * @since Available in iOS 11.0 and later.
      */
@@ -127,30 +137,44 @@ import org.robovm.apple.intents.*;
     public native boolean isScrollEnabled();
     @Property(selector = "setScrollEnabled:")
     public native void setScrollEnabled(boolean v);
-    @Property(selector = "showsHorizontalScrollIndicator")
-    public native boolean showsHorizontalScrollIndicator();
-    @Property(selector = "setShowsHorizontalScrollIndicator:")
-    public native void setShowsHorizontalScrollIndicator(boolean v);
     @Property(selector = "showsVerticalScrollIndicator")
     public native boolean showsVerticalScrollIndicator();
     @Property(selector = "setShowsVerticalScrollIndicator:")
     public native void setShowsVerticalScrollIndicator(boolean v);
-    @Property(selector = "scrollIndicatorInsets")
-    public native @ByVal UIEdgeInsets getScrollIndicatorInsets();
-    @Property(selector = "setScrollIndicatorInsets:")
-    public native void setScrollIndicatorInsets(@ByVal UIEdgeInsets v);
+    @Property(selector = "showsHorizontalScrollIndicator")
+    public native boolean showsHorizontalScrollIndicator();
+    @Property(selector = "setShowsHorizontalScrollIndicator:")
+    public native void setShowsHorizontalScrollIndicator(boolean v);
     @Property(selector = "indicatorStyle")
     public native UIScrollViewIndicatorStyle getIndicatorStyle();
     @Property(selector = "setIndicatorStyle:")
     public native void setIndicatorStyle(UIScrollViewIndicatorStyle v);
     /**
-     * @since Available in iOS 3.0 and later.
+     * @since Available in iOS 11.1 and later.
      */
+    @Property(selector = "verticalScrollIndicatorInsets")
+    public native @ByVal UIEdgeInsets getVerticalScrollIndicatorInsets();
+    /**
+     * @since Available in iOS 11.1 and later.
+     */
+    @Property(selector = "setVerticalScrollIndicatorInsets:")
+    public native void setVerticalScrollIndicatorInsets(@ByVal UIEdgeInsets v);
+    /**
+     * @since Available in iOS 11.1 and later.
+     */
+    @Property(selector = "horizontalScrollIndicatorInsets")
+    public native @ByVal UIEdgeInsets getHorizontalScrollIndicatorInsets();
+    /**
+     * @since Available in iOS 11.1 and later.
+     */
+    @Property(selector = "setHorizontalScrollIndicatorInsets:")
+    public native void setHorizontalScrollIndicatorInsets(@ByVal UIEdgeInsets v);
+    @Property(selector = "scrollIndicatorInsets")
+    public native @ByVal UIEdgeInsets getScrollIndicatorInsets();
+    @Property(selector = "setScrollIndicatorInsets:")
+    public native void setScrollIndicatorInsets(@ByVal UIEdgeInsets v);
     @Property(selector = "decelerationRate")
     public native @MachineSizedFloat double getDecelerationRate();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "setDecelerationRate:")
     public native void setDecelerationRate(@MachineSizedFloat double v);
     @Property(selector = "indexDisplayMode")
@@ -179,14 +203,8 @@ import org.robovm.apple.intents.*;
     public native @MachineSizedFloat double getMaximumZoomScale();
     @Property(selector = "setMaximumZoomScale:")
     public native void setMaximumZoomScale(@MachineSizedFloat double v);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "zoomScale")
     public native @MachineSizedFloat double getZoomScale();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "setZoomScale:")
     public native void setZoomScale(@MachineSizedFloat double v);
     @Property(selector = "bouncesZoom")
@@ -201,26 +219,14 @@ import org.robovm.apple.intents.*;
     public native boolean scrollsToTop();
     @Property(selector = "setScrollsToTop:")
     public native void setScrollsToTop(boolean v);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "panGestureRecognizer")
     public native UIPanGestureRecognizer getPanGestureRecognizer();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "pinchGestureRecognizer")
     public native UIPinchGestureRecognizer getPinchGestureRecognizer();
     @Property(selector = "directionalPressGestureRecognizer")
     public native UIGestureRecognizer getDirectionalPressGestureRecognizer();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "keyboardDismissMode")
     public native UIScrollViewKeyboardDismissMode getKeyboardDismissMode();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setKeyboardDismissMode:")
     public native void setKeyboardDismissMode(UIScrollViewKeyboardDismissMode v);
     /**
@@ -238,14 +244,8 @@ import org.robovm.apple.intents.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @GlobalValue(symbol="UIScrollViewDecelerationRateNormal", optional=true)
     public static native @MachineSizedFloat double getNormalDecelerationRate();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @GlobalValue(symbol="UIScrollViewDecelerationRateFast", optional=true)
     public static native @MachineSizedFloat double getFastDecelerationRate();
     
@@ -264,14 +264,8 @@ import org.robovm.apple.intents.*;
     public native boolean touchesShouldBegin(NSSet<UITouch> touches, UIEvent event, UIView view);
     @Method(selector = "touchesShouldCancelInContentView:")
     public native boolean touchesShouldCancelInContentView(UIView view);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "setZoomScale:animated:")
     public native void setZoomScale(@MachineSizedFloat double scale, boolean animated);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "zoomToRect:animated:")
     public native void zoomToRect(@ByVal CGRect rect, boolean animated);
     /*</methods>*/

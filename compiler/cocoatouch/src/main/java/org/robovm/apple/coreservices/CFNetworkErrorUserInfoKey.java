@@ -88,37 +88,13 @@ import org.robovm.apple.corefoundation.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 2.2 and later.
-     */
     public static final CFNetworkErrorUserInfoKey URLErrorFailingURLError = new CFNetworkErrorUserInfoKey("URLErrorFailingURLError");
-    /**
-     * @since Available in iOS 2.2 and later.
-     */
     public static final CFNetworkErrorUserInfoKey URLErrorFailingURLStringError = new CFNetworkErrorUserInfoKey("URLErrorFailingURLStringError");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CFNetworkErrorUserInfoKey GetAddrInfoFailure = new CFNetworkErrorUserInfoKey("GetAddrInfoFailure");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CFNetworkErrorUserInfoKey SOCKSStatusCode = new CFNetworkErrorUserInfoKey("SOCKSStatusCode");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CFNetworkErrorUserInfoKey SOCKSVersion = new CFNetworkErrorUserInfoKey("SOCKSVersion");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CFNetworkErrorUserInfoKey SOCKSNegotiationMethod = new CFNetworkErrorUserInfoKey("SOCKSNegotiationMethod");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CFNetworkErrorUserInfoKey DNSServiceFailure = new CFNetworkErrorUserInfoKey("DNSServiceFailure");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CFNetworkErrorUserInfoKey FTPStatusCode = new CFNetworkErrorUserInfoKey("FTPStatusCode");
     /*</constants>*/
     
@@ -145,44 +121,20 @@ import org.robovm.apple.corefoundation.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 2.2 and later.
-         */
         @GlobalValue(symbol="kCFURLErrorFailingURLErrorKey", optional=true)
         public static native NSString URLErrorFailingURLError();
-        /**
-         * @since Available in iOS 2.2 and later.
-         */
         @GlobalValue(symbol="kCFURLErrorFailingURLStringErrorKey", optional=true)
         public static native NSString URLErrorFailingURLStringError();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCFGetAddrInfoFailureKey", optional=true)
         public static native NSString GetAddrInfoFailure();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCFSOCKSStatusCodeKey", optional=true)
         public static native NSString SOCKSStatusCode();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCFSOCKSVersionKey", optional=true)
         public static native NSString SOCKSVersion();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCFSOCKSNegotiationMethodKey", optional=true)
         public static native NSString SOCKSNegotiationMethod();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCFDNSServiceFailureKey", optional=true)
         public static native NSString DNSServiceFailure();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCFFTPStatusCodeKey", optional=true)
         public static native NSString FTPStatusCode();
         /*</values>*/

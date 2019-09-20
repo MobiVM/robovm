@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -115,9 +117,6 @@ import org.robovm.apple.intents.*;
     }
     
 
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public NSTextLayoutOrientation getOrientation() {
         if (has(Keys.Orientation())) {
             NSNumber val = (NSNumber) get(Keys.Orientation());
@@ -125,16 +124,10 @@ import org.robovm.apple.intents.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public NSTextLayoutSection setOrientation(NSTextLayoutOrientation orientation) {
         set(Keys.Orientation(), NSNumber.valueOf(orientation.value()));
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public NSRange getRange() {
         if (has(Keys.Range())) {
             NSValue val = (NSValue) get(Keys.Range());
@@ -142,9 +135,6 @@ import org.robovm.apple.intents.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public NSTextLayoutSection setRange(NSRange range) {
         set(Keys.Range(), NSValue.valueOf(range));
         return this;
@@ -155,14 +145,8 @@ import org.robovm.apple.intents.*;
     @Library("UIKit")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="NSTextLayoutSectionOrientation", optional=true)
         public static native NSString Orientation();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="NSTextLayoutSectionRange", optional=true)
         public static native NSString Range();
     }

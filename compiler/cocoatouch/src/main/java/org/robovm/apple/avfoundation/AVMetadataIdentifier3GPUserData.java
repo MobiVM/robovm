@@ -97,65 +97,20 @@ import org.robovm.apple.audiotoolbox.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifier3GPUserData Copyright = new AVMetadataIdentifier3GPUserData("Copyright");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifier3GPUserData Author = new AVMetadataIdentifier3GPUserData("Author");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifier3GPUserData Performer = new AVMetadataIdentifier3GPUserData("Performer");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifier3GPUserData Genre = new AVMetadataIdentifier3GPUserData("Genre");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifier3GPUserData RecordingYear = new AVMetadataIdentifier3GPUserData("RecordingYear");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifier3GPUserData Location = new AVMetadataIdentifier3GPUserData("Location");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifier3GPUserData Title = new AVMetadataIdentifier3GPUserData("Title");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifier3GPUserData Description = new AVMetadataIdentifier3GPUserData("Description");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifier3GPUserData Collection = new AVMetadataIdentifier3GPUserData("Collection");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifier3GPUserData UserRating = new AVMetadataIdentifier3GPUserData("UserRating");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifier3GPUserData Thumbnail = new AVMetadataIdentifier3GPUserData("Thumbnail");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifier3GPUserData AlbumAndTrack = new AVMetadataIdentifier3GPUserData("AlbumAndTrack");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifier3GPUserData KeywordList = new AVMetadataIdentifier3GPUserData("KeywordList");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifier3GPUserData MediaClassification = new AVMetadataIdentifier3GPUserData("MediaClassification");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifier3GPUserData MediaRating = new AVMetadataIdentifier3GPUserData("MediaRating");
     /*</constants>*/
     
@@ -182,79 +137,34 @@ import org.robovm.apple.audiotoolbox.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifier3GPUserDataCopyright", optional=true)
         public static native NSString Copyright();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifier3GPUserDataAuthor", optional=true)
         public static native NSString Author();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifier3GPUserDataPerformer", optional=true)
         public static native NSString Performer();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifier3GPUserDataGenre", optional=true)
         public static native NSString Genre();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifier3GPUserDataRecordingYear", optional=true)
         public static native NSString RecordingYear();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifier3GPUserDataLocation", optional=true)
         public static native NSString Location();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifier3GPUserDataTitle", optional=true)
         public static native NSString Title();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifier3GPUserDataDescription", optional=true)
         public static native NSString Description();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifier3GPUserDataCollection", optional=true)
         public static native NSString Collection();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifier3GPUserDataUserRating", optional=true)
         public static native NSString UserRating();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifier3GPUserDataThumbnail", optional=true)
         public static native NSString Thumbnail();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifier3GPUserDataAlbumAndTrack", optional=true)
         public static native NSString AlbumAndTrack();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifier3GPUserDataKeywordList", optional=true)
         public static native NSString KeywordList();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifier3GPUserDataMediaClassification", optional=true)
         public static native NSString MediaClassification();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifier3GPUserDataMediaRating", optional=true)
         public static native NSString MediaRating();
         /*</values>*/

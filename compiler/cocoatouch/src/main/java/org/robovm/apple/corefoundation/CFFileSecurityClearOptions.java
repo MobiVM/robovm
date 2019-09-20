@@ -36,9 +36,7 @@ import org.robovm.apple.coretext.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 6.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
 public final class /*<name>*/CFFileSecurityClearOptions/*</name>*/ extends Bits</*<name>*/CFFileSecurityClearOptions/*</name>*/> {

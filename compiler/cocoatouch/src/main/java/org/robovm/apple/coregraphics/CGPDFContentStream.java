@@ -72,24 +72,12 @@ import org.robovm.apple.uikit.*;
     /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGPDFContentStreamCreateWithPage", optional=true)
     public static native CGPDFContentStream create(CGPDFPage page);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGPDFContentStreamCreateWithStream", optional=true)
     public static native CGPDFContentStream create(CGPDFStream stream, CGPDFDictionary streamResources, CGPDFContentStream parent);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGPDFContentStreamGetStreams", optional=true)
     public native @org.robovm.rt.bro.annotation.Marshaler(CGPDFContentStream.AsListMarshaler.class) List<CGPDFContentStream> getStreams();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGPDFContentStreamGetResource", optional=true)
     public native CGPDFObject getResource(@org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class) String category, @org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class) String name);
     /*</methods>*/

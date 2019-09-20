@@ -109,9 +109,6 @@ import org.robovm.apple.dispatch.*;
     }
     
 
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public String getName() {
         if (has(Keys.Name())) {
             NSString val = (NSString) get(Keys.Name());
@@ -119,9 +116,6 @@ import org.robovm.apple.dispatch.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public String getJobTitle() {
         if (has(Keys.JobTitle())) {
             NSString val = (NSString) get(Keys.JobTitle());
@@ -129,9 +123,6 @@ import org.robovm.apple.dispatch.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public String getOrganization() {
         if (has(Keys.Organization())) {
             NSString val = (NSString) get(Keys.Organization());
@@ -139,9 +130,6 @@ import org.robovm.apple.dispatch.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public String getStreet() {
         if (has(Keys.Street())) {
             NSString val = (NSString) get(Keys.Street());
@@ -149,9 +137,6 @@ import org.robovm.apple.dispatch.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public String getCity() {
         if (has(Keys.City())) {
             NSString val = (NSString) get(Keys.City());
@@ -159,9 +144,6 @@ import org.robovm.apple.dispatch.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public String getState() {
         if (has(Keys.State())) {
             NSString val = (NSString) get(Keys.State());
@@ -169,9 +151,6 @@ import org.robovm.apple.dispatch.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public String getZIP() {
         if (has(Keys.ZIP())) {
             NSString val = (NSString) get(Keys.ZIP());
@@ -179,9 +158,6 @@ import org.robovm.apple.dispatch.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public String getCountry() {
         if (has(Keys.Country())) {
             NSString val = (NSString) get(Keys.Country());
@@ -189,9 +165,6 @@ import org.robovm.apple.dispatch.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public String getPhone() {
         if (has(Keys.Phone())) {
             NSString val = (NSString) get(Keys.Phone());
@@ -205,49 +178,22 @@ import org.robovm.apple.dispatch.*;
     @Library("Foundation")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="NSTextCheckingNameKey", optional=true)
         public static native NSString Name();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="NSTextCheckingJobTitleKey", optional=true)
         public static native NSString JobTitle();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="NSTextCheckingOrganizationKey", optional=true)
         public static native NSString Organization();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="NSTextCheckingStreetKey", optional=true)
         public static native NSString Street();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="NSTextCheckingCityKey", optional=true)
         public static native NSString City();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="NSTextCheckingStateKey", optional=true)
         public static native NSString State();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="NSTextCheckingZIPKey", optional=true)
         public static native NSString ZIP();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="NSTextCheckingCountryKey", optional=true)
         public static native NSString Country();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="NSTextCheckingPhoneKey", optional=true)
         public static native NSString Phone();
     }

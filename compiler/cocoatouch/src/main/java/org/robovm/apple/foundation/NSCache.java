@@ -39,16 +39,14 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/NSCache/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/NSCache<K extends NSObject, T extends NSObject>/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class NSCachePtr extends Ptr<NSCache, NSCachePtr> {}/*</ptr>*/
+    /*<ptr>*/public static class NSCachePtr<K extends NSObject, T extends NSObject> extends Ptr<NSCache<K, T>, NSCachePtr<K, T>> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NSCache.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
@@ -79,35 +77,36 @@ import org.robovm.apple.dispatch.*;
     public native void setEvictsObjectsWithDiscardedContent(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
-    public NSObject get(String key) {
-        return get(new NSString(key));
-    }
-    
-    public void put(NSObject key, NSObject obj) {
+    public void put(K key, T obj) {
         setObject(obj, key);
     }
-    public void put(String key, NSObject obj) {
-        setObject(obj, new NSString(key));
-    }
-    public void put(NSObject key, NSObject obj, @MachineSizedUInt long g) {
+    public void put(K key, T obj, @MachineSizedUInt long g) {
         setObject(obj, key, g);
     }
-    public void put(String key, NSObject obj, @MachineSizedUInt long g) {
-        setObject(obj, new NSString(key), g);
+
+    //  bellow is dangerous API as expected to work only if key is NSString
+    public NSObject get(String key) {
+        return get((K) new NSString(key));
     }
-    
+    public void put(String key, T obj) {
+        setObject(obj, (K) new NSString(key));
+    }
+    public void put(String key, T obj, @MachineSizedUInt long g) {
+        setObject(obj, (K) new NSString(key), g);
+    }
+
     public void remove(String key) {
-        remove(new NSString(key));
+        remove((K) new NSString(key));
     }
     /*<methods>*/
     @Method(selector = "objectForKey:")
-    public native NSObject get(NSObject key);
+    public native T get(K key);
     @Method(selector = "setObject:forKey:")
-    protected native void setObject(NSObject obj, NSObject key);
+    protected native void setObject(T obj, K key);
     @Method(selector = "setObject:forKey:cost:")
-    protected native void setObject(NSObject obj, NSObject key, @MachineSizedUInt long g);
+    protected native void setObject(T obj, K key, @MachineSizedUInt long g);
     @Method(selector = "removeObjectForKey:")
-    public native void remove(NSObject key);
+    public native void remove(K key);
     @Method(selector = "removeAllObjects")
     public native void clear();
     /*</methods>*/

@@ -1,5 +1,5 @@
 package: org.robovm.apple.authservices
-include: [foundation, uikit]
+include: [foundation, uikit, coregraphics]
 library: AuthenticationServices
 framework: AuthenticationServices
 clang_args: ['-x', 'objective-c']
@@ -12,6 +12,11 @@ enums:
     ASExtensionErrorCode: {} #since 12.0
     ASCredentialServiceIdentifierType: {} #since 12.0
     ASWebAuthenticationSessionErrorCode: {} #since 12.0
+    ASUserDetectionStatus: {}
+    ASAuthorizationAppleIDProviderCredentialState: {prefix: ASAuthorizationAppleIDProviderCredential} #since 13.0
+    ASAuthorizationError: {nserror: true} #since 13.0
+    ASAuthorizationAppleIDButtonType: {} #since 13.0
+    ASAuthorizationAppleIDButtonStyle: {} #since 13.0
 
 classes:
     ASCredentialIdentityStore: #since 12.0
@@ -55,8 +60,64 @@ classes:
         methods:
             '-initWithURL:callbackURLScheme:completionHandler:':
                 name: init
+    #ios13
+    ASAuthorization: {} #since 13.0
+    ASAuthorizationAppleIDButton: #since 13.0
+        methods:
+            '-initWithAuthorizationButtonType:authorizationButtonStyle:':
+                name: init
+            '+buttonWithType:style:':
+                exclude: true
+    ASAuthorizationAppleIDCredential: {} #since 13.0
+    ASAuthorizationAppleIDProvider: #since 13.0
+        methods:
+            '-getCredentialStateForUserID:completion:':
+                name: getCredentialState
+    ASAuthorizationAppleIDRequest: {} #since 13.0
+    ASAuthorizationController: #since 13.0
+        methods:
+            '-initWithAuthorizationRequests:':
+                name: init
+    ASAuthorizationOpenIDRequest: {} #since 13.0
+    ASAuthorizationPasswordProvider: {} #since 13.0
+    ASAuthorizationPasswordRequest: {} #since 13.0
+    ASAuthorizationProviderExtensionAuthorizationRequest: #since 13.0
+        methods:
+            '-completeWithHTTPAuthorizationHeaders:':
+                name: complete
+            '-completeWithHTTPResponse:httpBody:':
+                name: complete
+            '-completeWithError:':
+                name: complete
+            '-presentAuthorizationViewControllerWithCompletion:':
+                name: presentAuthorizationViewController
+    ASAuthorizationRequest: {} #since 13.0
+    ASAuthorizationSingleSignOnCredential: {} #since 13.0
+    ASAuthorizationSingleSignOnProvider: #since 13.0
+        methods:
+            '+authorizationProviderWithIdentityProviderURL:':
+                constructor: true
+                name: create
+    ASAuthorizationSingleSignOnRequest: {} #since 13.0
 
-protocols: {}
+
+protocols:
+    ASAuthorizationControllerDelegate: #since 13.0
+        methods:
+            '-authorizationController:didCompleteWithAuthorization:':
+                name: didComplete
+            '-authorizationController:didCompleteWithError:':
+                name: didComplete
+    ASAuthorizationControllerPresentationContextProviding: {} #since 13.0
+    ASAuthorizationCredential: {} #since 13.0
+    ASAuthorizationProvider: {} #since 13.0
+    ASAuthorizationProviderExtensionAuthorizationRequestHandler: #since 13.0
+        methods:
+            '-beginAuthorizationWithRequest:':
+                name: beginAuthorization
+            '-cancelAuthorizationWithRequest:':
+                name: cancelAuthorization
+    ASWebAuthenticationPresentationContextProviding: {} #since 13.0
 
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version
@@ -67,6 +128,9 @@ functions:
 values:
     ASCredentialIdentityStoreErrorDomain:
         class: ASCredentialIdentityStoreErrorCode
+        name: getClassDomain
+    ASAuthorizationErrorDomain:
+        class: ASAuthorizationError
         name: getClassDomain
 
     # Make sure we don't miss any values if new ones are introduced in a later version

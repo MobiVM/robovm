@@ -49,14 +49,34 @@ import org.robovm.apple.corelocation.*;
     public INSetTaskAttributeIntent() {}
     protected INSetTaskAttributeIntent(Handle h, long handle) { super(h, handle); }
     protected INSetTaskAttributeIntent(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "initWithTargetTask:taskTitle:status:priority:spatialEventTrigger:temporalEventTrigger:")
+    public INSetTaskAttributeIntent(INTask targetTask, INSpeakableString taskTitle, INTaskStatus status, INTaskPriority priority, INSpatialEventTrigger spatialEventTrigger, INTemporalEventTrigger temporalEventTrigger) { super((SkipInit) null); initObject(init(targetTask, taskTitle, status, priority, spatialEventTrigger, temporalEventTrigger)); }
+    /**
+     * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use the designated initializer instead
+     */
+    @Deprecated
     @Method(selector = "initWithTargetTask:status:spatialEventTrigger:temporalEventTrigger:")
     public INSetTaskAttributeIntent(INTask targetTask, INTaskStatus status, INSpatialEventTrigger spatialEventTrigger, INTemporalEventTrigger temporalEventTrigger) { super((SkipInit) null); initObject(init(targetTask, status, spatialEventTrigger, temporalEventTrigger)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "targetTask")
     public native INTask getTargetTask();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "taskTitle")
+    public native INSpeakableString getTaskTitle();
     @Property(selector = "status")
     public native INTaskStatus getStatus();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "priority")
+    public native INTaskPriority getPriority();
     @Property(selector = "spatialEventTrigger")
     public native INSpatialEventTrigger getSpatialEventTrigger();
     @Property(selector = "temporalEventTrigger")
@@ -64,6 +84,16 @@ import org.robovm.apple.corelocation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "initWithTargetTask:taskTitle:status:priority:spatialEventTrigger:temporalEventTrigger:")
+    protected native @Pointer long init(INTask targetTask, INSpeakableString taskTitle, INTaskStatus status, INTaskPriority priority, INSpatialEventTrigger spatialEventTrigger, INTemporalEventTrigger temporalEventTrigger);
+    /**
+     * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use the designated initializer instead
+     */
+    @Deprecated
     @Method(selector = "initWithTargetTask:status:spatialEventTrigger:temporalEventTrigger:")
     protected native @Pointer long init(INTask targetTask, INTaskStatus status, INSpatialEventTrigger spatialEventTrigger, INTemporalEventTrigger temporalEventTrigger);
     /*</methods>*/

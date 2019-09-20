@@ -32,9 +32,7 @@ import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 5.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("GameKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GKNotificationBanner/*</name>*/ 
@@ -54,14 +52,8 @@ import org.robovm.apple.uikit.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "showBannerWithTitle:message:completionHandler:")
     public static native void showBanner(String title, String message, @Block Runnable completionHandler);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "showBannerWithTitle:message:duration:completionHandler:")
     public static native void showBanner(String title, String message, double duration, @Block Runnable completionHandler);
     /*</methods>*/

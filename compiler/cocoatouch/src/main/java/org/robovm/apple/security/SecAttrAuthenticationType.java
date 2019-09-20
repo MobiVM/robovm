@@ -88,37 +88,13 @@ import org.robovm.apple.dispatch.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final SecAttrAuthenticationType NTLM = new SecAttrAuthenticationType("NTLM");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final SecAttrAuthenticationType MSN = new SecAttrAuthenticationType("MSN");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final SecAttrAuthenticationType DPA = new SecAttrAuthenticationType("DPA");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final SecAttrAuthenticationType RPA = new SecAttrAuthenticationType("RPA");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final SecAttrAuthenticationType HTTPBasic = new SecAttrAuthenticationType("HTTPBasic");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final SecAttrAuthenticationType HTTPDigest = new SecAttrAuthenticationType("HTTPDigest");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final SecAttrAuthenticationType HTMLForm = new SecAttrAuthenticationType("HTMLForm");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final SecAttrAuthenticationType Default = new SecAttrAuthenticationType("Default");
     /*</constants>*/
     
@@ -145,44 +121,20 @@ import org.robovm.apple.dispatch.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kSecAttrAuthenticationTypeNTLM", optional=true)
         public static native CFType NTLM();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kSecAttrAuthenticationTypeMSN", optional=true)
         public static native CFType MSN();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kSecAttrAuthenticationTypeDPA", optional=true)
         public static native CFType DPA();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kSecAttrAuthenticationTypeRPA", optional=true)
         public static native CFType RPA();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kSecAttrAuthenticationTypeHTTPBasic", optional=true)
         public static native CFType HTTPBasic();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kSecAttrAuthenticationTypeHTTPDigest", optional=true)
         public static native CFType HTTPDigest();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kSecAttrAuthenticationTypeHTMLForm", optional=true)
         public static native CFType HTMLForm();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kSecAttrAuthenticationTypeDefault", optional=true)
         public static native CFType Default();
         /*</values>*/

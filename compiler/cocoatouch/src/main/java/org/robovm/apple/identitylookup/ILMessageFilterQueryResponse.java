@@ -49,7 +49,7 @@ import org.robovm.apple.uikit.*;
     protected ILMessageFilterQueryResponse(Handle h, long handle) { super(h, handle); }
     protected ILMessageFilterQueryResponse(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public ILMessageFilterQueryResponse(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public ILMessageFilterQueryResponse(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "action")
@@ -64,6 +64,6 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

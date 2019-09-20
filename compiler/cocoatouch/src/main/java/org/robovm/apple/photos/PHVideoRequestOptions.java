@@ -38,9 +38,7 @@ import org.robovm.apple.imageio.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("Photos") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/PHVideoRequestOptions/*</name>*/ 
@@ -69,9 +67,9 @@ import org.robovm.apple.imageio.*;
     @Property(selector = "setDeliveryMode:")
     public native void setDeliveryMode(PHVideoRequestOptionsDeliveryMode v);
     @Property(selector = "progressHandler")
-    public native @Block VoidBlock3<Double, NSError, BooleanPtr> getProgressHandler();
+    public native @Block VoidBlock4<Double, NSError, BooleanPtr, NSDictionary<?, ?>> getProgressHandler();
     @Property(selector = "setProgressHandler:")
-    public native void setProgressHandler(@Block VoidBlock3<Double, NSError, BooleanPtr> v);
+    public native void setProgressHandler(@Block VoidBlock4<Double, NSError, BooleanPtr, NSDictionary<?, ?>> v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

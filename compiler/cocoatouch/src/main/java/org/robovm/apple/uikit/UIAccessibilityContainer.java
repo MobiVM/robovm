@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -52,14 +54,8 @@ import org.robovm.apple.intents.*;
     /*</bind>*/
     /*<constants>*//*</constants>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "accessibilityElements")
     NSArray<UIAccessibilityElement> getAccessibilityElements();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setAccessibilityElements:")
     void setAccessibilityElements(NSArray<UIAccessibilityElement> v);
     /**

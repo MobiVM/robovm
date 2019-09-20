@@ -29,19 +29,19 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corespotlight.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreData") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/NSAsynchronousFetchRequest/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/NSAsynchronousFetchRequest<ResultType extends NSObject & NSFetchRequestResult>/*</name>*/ 
     extends /*<extends>*/NSPersistentStoreRequest/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class NSAsynchronousFetchRequestPtr extends Ptr<NSAsynchronousFetchRequest, NSAsynchronousFetchRequestPtr> {}/*</ptr>*/
+    /*<ptr>*/public static class NSAsynchronousFetchRequestPtr<ResultType extends NSObject & NSFetchRequestResult> extends Ptr<NSAsynchronousFetchRequest<ResultType>, NSAsynchronousFetchRequestPtr<ResultType>> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NSAsynchronousFetchRequest.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
@@ -49,11 +49,11 @@ import org.robovm.apple.corespotlight.*;
     protected NSAsynchronousFetchRequest(Handle h, long handle) { super(h, handle); }
     protected NSAsynchronousFetchRequest(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithFetchRequest:completionBlock:")
-    public NSAsynchronousFetchRequest(NSFetchRequest request, @Block VoidBlock1<NSAsynchronousFetchResult> blk) { super((SkipInit) null); initObject(init(request, blk)); }
+    public NSAsynchronousFetchRequest(NSFetchRequest<ResultType> request, @Block VoidBlock1<NSAsynchronousFetchResult> blk) { super((SkipInit) null); initObject(init(request, blk)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "fetchRequest")
-    public native NSFetchRequest getFetchRequest();
+    public native NSFetchRequest<ResultType> getFetchRequest();
     @Property(selector = "completionBlock")
     public native @Block VoidBlock1<NSAsynchronousFetchResult> getCompletionBlock();
     @Property(selector = "estimatedResultCount")
@@ -64,6 +64,6 @@ import org.robovm.apple.corespotlight.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithFetchRequest:completionBlock:")
-    protected native @Pointer long init(NSFetchRequest request, @Block VoidBlock1<NSAsynchronousFetchResult> blk);
+    protected native @Pointer long init(NSFetchRequest<ResultType> request, @Block VoidBlock1<NSAsynchronousFetchResult> blk);
     /*</methods>*/
 }

@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -53,47 +55,23 @@ import org.robovm.apple.intents.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*//*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @NotImplemented("accessibilityCustomActions")
     public NSArray<UIAccessibilityCustomAction> getAccessibilityCustomActions() { return null; }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @NotImplemented("setAccessibilityCustomActions:")
     public void setAccessibilityCustomActions(NSArray<UIAccessibilityCustomAction> v) {}
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @NotImplemented("accessibilityActivate")
     public boolean activate() { return false; }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @NotImplemented("accessibilityIncrement")
     public void increment() {}
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @NotImplemented("accessibilityDecrement")
     public void decrement() {}
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     @NotImplemented("accessibilityScroll:")
     public boolean scroll(UIAccessibilityScrollDirection direction) { return false; }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @NotImplemented("accessibilityPerformEscape")
     public boolean performEscape() { return false; }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @NotImplemented("accessibilityPerformMagicTap")
     public boolean performMagicTap() { return false; }
     /*</methods>*/

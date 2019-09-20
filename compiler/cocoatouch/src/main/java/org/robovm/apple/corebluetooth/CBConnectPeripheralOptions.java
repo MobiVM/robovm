@@ -108,9 +108,6 @@ import org.robovm.apple.dispatch.*;
     }
     
 
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public boolean notifiesOnConnection() {
         if (has(Keys.NotifyOnConnection())) {
             NSNumber val = (NSNumber) get(Keys.NotifyOnConnection());
@@ -118,9 +115,6 @@ import org.robovm.apple.dispatch.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public CBConnectPeripheralOptions setNotifiesOnConnection(boolean notifiesOnConnection) {
         set(Keys.NotifyOnConnection(), NSNumber.valueOf(notifiesOnConnection));
         return this;
@@ -136,9 +130,6 @@ import org.robovm.apple.dispatch.*;
         set(Keys.NotifyOnDisconnection(), NSNumber.valueOf(notifiesOnDisconnection));
         return this;
     }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public boolean notifiesOnNotification() {
         if (has(Keys.NotifyOnNotification())) {
             NSNumber val = (NSNumber) get(Keys.NotifyOnNotification());
@@ -146,9 +137,6 @@ import org.robovm.apple.dispatch.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public CBConnectPeripheralOptions setNotifiesOnNotification(boolean notifiesOnNotification) {
         set(Keys.NotifyOnNotification(), NSNumber.valueOf(notifiesOnNotification));
         return this;
@@ -159,23 +147,24 @@ import org.robovm.apple.dispatch.*;
     @Library("CoreBluetooth")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 6.0 and later.
-         */
         @GlobalValue(symbol="CBConnectPeripheralOptionNotifyOnConnectionKey", optional=true)
         public static native NSString NotifyOnConnection();
         @GlobalValue(symbol="CBConnectPeripheralOptionNotifyOnDisconnectionKey", optional=true)
         public static native NSString NotifyOnDisconnection();
-        /**
-         * @since Available in iOS 6.0 and later.
-         */
         @GlobalValue(symbol="CBConnectPeripheralOptionNotifyOnNotificationKey", optional=true)
         public static native NSString NotifyOnNotification();
-        /**
-         * @since Available in iOS 6.0 and later.
-         */
         @GlobalValue(symbol="CBConnectPeripheralOptionStartDelayKey", optional=true)
         public static native NSString StartDelay();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="CBConnectPeripheralOptionEnableTransportBridgingKey", optional=true)
+        public static native NSString EnableTransportBridging();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="CBConnectPeripheralOptionRequiresANCS", optional=true)
+        public static native NSString RequiresANCS();
     }
     /*</keys>*/
 }

@@ -38,9 +38,7 @@ import org.robovm.apple.imageio.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("Photos") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/PHAssetCollection/*</name>*/ 
@@ -84,8 +82,16 @@ import org.robovm.apple.imageio.*;
     public static native PHFetchResult<PHAssetCollection> fetchAssetCollectionsContainingAsset(PHAsset asset, PHAssetCollectionType type, PHFetchOptions options);
     @Method(selector = "fetchAssetCollectionsWithALAssetGroupURLs:options:")
     public static native PHFetchResult<PHAssetCollection> fetchAssetCollectionsWithALAssetGroupURLs(NSArray<NSURL> assetGroupURLs, PHFetchOptions options);
+    /**
+     * @deprecated Deprecated in iOS 13.0. Will be removed in a future release
+     */
+    @Deprecated
     @Method(selector = "fetchMomentsInMomentList:options:")
     public static native PHFetchResult<PHAssetCollection> fetchMomentsInMomentList(PHCollectionList momentList, PHFetchOptions options);
+    /**
+     * @deprecated Deprecated in iOS 13.0. Will be removed in a future release
+     */
+    @Deprecated
     @Method(selector = "fetchMomentsWithOptions:")
     public static native PHFetchResult<PHAssetCollection> fetchMoments(PHFetchOptions options);
     @Method(selector = "transientAssetCollectionWithAssets:title:")

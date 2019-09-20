@@ -41,9 +41,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/AVCaptureVideoStabilizationMode/*</name>*/ implements ValuedEnum {
@@ -51,6 +49,10 @@ public enum /*<name>*/AVCaptureVideoStabilizationMode/*</name>*/ implements Valu
     Off(0L),
     Standard(1L),
     Cinematic(2L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    CinematicExtended(3L),
     Auto(-1L);
     /*</values>*/
 

@@ -98,107 +98,50 @@ import org.robovm.apple.uikit.*;
      * @since Available in iOS 10.0 and later.
      */
     public static final CTAttributedStringAttribute RubyAnnotationScaleToFit = new CTAttributedStringAttribute("RubyAnnotationScaleToFit");
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public static final CTAttributedStringAttribute Font = new CTAttributedStringAttribute("Font");
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public static final CTAttributedStringAttribute ForegroundColorFromContext = new CTAttributedStringAttribute("ForegroundColorFromContext");
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public static final CTAttributedStringAttribute Kern = new CTAttributedStringAttribute("Kern");
     /**
-     * @since Available in iOS 3.2 and later.
+     * @since Available in iOS 10.0 and later.
      */
+    public static final CTAttributedStringAttribute Tracking = new CTAttributedStringAttribute("Tracking");
     public static final CTAttributedStringAttribute Ligature = new CTAttributedStringAttribute("Ligature");
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public static final CTAttributedStringAttribute ForegroundColor = new CTAttributedStringAttribute("ForegroundColor");
     /**
      * @since Available in iOS 10.0 and later.
      */
     public static final CTAttributedStringAttribute BackgroundColor = new CTAttributedStringAttribute("BackgroundColor");
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public static final CTAttributedStringAttribute ParagraphStyle = new CTAttributedStringAttribute("ParagraphStyle");
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public static final CTAttributedStringAttribute StrokeWidth = new CTAttributedStringAttribute("StrokeWidth");
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public static final CTAttributedStringAttribute StrokeColor = new CTAttributedStringAttribute("StrokeColor");
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public static final CTAttributedStringAttribute UnderlineStyle = new CTAttributedStringAttribute("UnderlineStyle");
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public static final CTAttributedStringAttribute Superscript = new CTAttributedStringAttribute("Superscript");
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public static final CTAttributedStringAttribute UnderlineColor = new CTAttributedStringAttribute("UnderlineColor");
-    /**
-     * @since Available in iOS 4.3 and later.
-     */
     public static final CTAttributedStringAttribute VerticalForms = new CTAttributedStringAttribute("VerticalForms");
     /**
      * @since Available in iOS 10.0 and later.
      */
     public static final CTAttributedStringAttribute HorizontalInVerticalForms = new CTAttributedStringAttribute("HorizontalInVerticalForms");
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public static final CTAttributedStringAttribute GlyphInfo = new CTAttributedStringAttribute("GlyphInfo");
     /**
-     * @since Available in iOS 3.2 and later.
      * @deprecated Deprecated in iOS 9.0. Use feature type kCharacterShapeType with the appropriate selector
      */
     @Deprecated
     public static final CTAttributedStringAttribute CharacterShape = new CTAttributedStringAttribute("CharacterShape");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final CTAttributedStringAttribute Language = new CTAttributedStringAttribute("Language");
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public static final CTAttributedStringAttribute RunDelegate = new CTAttributedStringAttribute("RunDelegate");
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public static final CTAttributedStringAttribute BaselineClass = new CTAttributedStringAttribute("BaselineClass");
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public static final CTAttributedStringAttribute BaselineInfo = new CTAttributedStringAttribute("BaselineInfo");
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public static final CTAttributedStringAttribute BaselineReferenceInfo = new CTAttributedStringAttribute("BaselineReferenceInfo");
     /**
      * @since Available in iOS 11.0 and later.
      */
     public static final CTAttributedStringAttribute BaselineOffset = new CTAttributedStringAttribute("BaselineOffset");
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public static final CTAttributedStringAttribute WritingDirection = new CTAttributedStringAttribute("WritingDirection");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final CTAttributedStringAttribute RubyAnnotation = new CTAttributedStringAttribute("RubyAnnotation");
     /*</constants>*/
     
-    private static /*<name>*/CTAttributedStringAttribute/*</name>*/[] values = new /*<name>*/CTAttributedStringAttribute/*</name>*/[] {/*<value_list>*/RubyAnnotationSizeFactor, RubyAnnotationScaleToFit, Font, ForegroundColorFromContext, Kern, Ligature, ForegroundColor, BackgroundColor, ParagraphStyle, StrokeWidth, StrokeColor, UnderlineStyle, Superscript, UnderlineColor, VerticalForms, HorizontalInVerticalForms, GlyphInfo, CharacterShape, Language, RunDelegate, BaselineClass, BaselineInfo, BaselineReferenceInfo, BaselineOffset, WritingDirection, RubyAnnotation/*</value_list>*/};
+    private static /*<name>*/CTAttributedStringAttribute/*</name>*/[] values = new /*<name>*/CTAttributedStringAttribute/*</name>*/[] {/*<value_list>*/RubyAnnotationSizeFactor, RubyAnnotationScaleToFit, Font, ForegroundColorFromContext, Kern, Tracking, Ligature, ForegroundColor, BackgroundColor, ParagraphStyle, StrokeWidth, StrokeColor, UnderlineStyle, Superscript, UnderlineColor, VerticalForms, HorizontalInVerticalForms, GlyphInfo, CharacterShape, Language, RunDelegate, BaselineClass, BaselineInfo, BaselineReferenceInfo, BaselineOffset, WritingDirection, RubyAnnotation/*</value_list>*/};
     
     /*<name>*/CTAttributedStringAttribute/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -231,29 +174,19 @@ import org.robovm.apple.uikit.*;
          */
         @GlobalValue(symbol="kCTRubyAnnotationScaleToFitAttributeName", optional=true)
         public static native CFString RubyAnnotationScaleToFit();
-        /**
-         * @since Available in iOS 3.2 and later.
-         */
         @GlobalValue(symbol="kCTFontAttributeName", optional=true)
         public static native CFString Font();
-        /**
-         * @since Available in iOS 3.2 and later.
-         */
         @GlobalValue(symbol="kCTForegroundColorFromContextAttributeName", optional=true)
         public static native CFString ForegroundColorFromContext();
-        /**
-         * @since Available in iOS 3.2 and later.
-         */
         @GlobalValue(symbol="kCTKernAttributeName", optional=true)
         public static native CFString Kern();
         /**
-         * @since Available in iOS 3.2 and later.
+         * @since Available in iOS 10.0 and later.
          */
+        @GlobalValue(symbol="kCTTrackingAttributeName", optional=true)
+        public static native CFString Tracking();
         @GlobalValue(symbol="kCTLigatureAttributeName", optional=true)
         public static native CFString Ligature();
-        /**
-         * @since Available in iOS 3.2 and later.
-         */
         @GlobalValue(symbol="kCTForegroundColorAttributeName", optional=true)
         public static native CFString ForegroundColor();
         /**
@@ -261,39 +194,18 @@ import org.robovm.apple.uikit.*;
          */
         @GlobalValue(symbol="kCTBackgroundColorAttributeName", optional=true)
         public static native CFString BackgroundColor();
-        /**
-         * @since Available in iOS 3.2 and later.
-         */
         @GlobalValue(symbol="kCTParagraphStyleAttributeName", optional=true)
         public static native CFString ParagraphStyle();
-        /**
-         * @since Available in iOS 3.2 and later.
-         */
         @GlobalValue(symbol="kCTStrokeWidthAttributeName", optional=true)
         public static native CFString StrokeWidth();
-        /**
-         * @since Available in iOS 3.2 and later.
-         */
         @GlobalValue(symbol="kCTStrokeColorAttributeName", optional=true)
         public static native CFString StrokeColor();
-        /**
-         * @since Available in iOS 3.2 and later.
-         */
         @GlobalValue(symbol="kCTUnderlineStyleAttributeName", optional=true)
         public static native CFString UnderlineStyle();
-        /**
-         * @since Available in iOS 3.2 and later.
-         */
         @GlobalValue(symbol="kCTSuperscriptAttributeName", optional=true)
         public static native CFString Superscript();
-        /**
-         * @since Available in iOS 3.2 and later.
-         */
         @GlobalValue(symbol="kCTUnderlineColorAttributeName", optional=true)
         public static native CFString UnderlineColor();
-        /**
-         * @since Available in iOS 4.3 and later.
-         */
         @GlobalValue(symbol="kCTVerticalFormsAttributeName", optional=true)
         public static native CFString VerticalForms();
         /**
@@ -301,41 +213,22 @@ import org.robovm.apple.uikit.*;
          */
         @GlobalValue(symbol="kCTHorizontalInVerticalFormsAttributeName", optional=true)
         public static native CFString HorizontalInVerticalForms();
-        /**
-         * @since Available in iOS 3.2 and later.
-         */
         @GlobalValue(symbol="kCTGlyphInfoAttributeName", optional=true)
         public static native CFString GlyphInfo();
         /**
-         * @since Available in iOS 3.2 and later.
          * @deprecated Deprecated in iOS 9.0. Use feature type kCharacterShapeType with the appropriate selector
          */
         @Deprecated
         @GlobalValue(symbol="kCTCharacterShapeAttributeName", optional=true)
         public static native CFString CharacterShape();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kCTLanguageAttributeName", optional=true)
         public static native CFString Language();
-        /**
-         * @since Available in iOS 3.2 and later.
-         */
         @GlobalValue(symbol="kCTRunDelegateAttributeName", optional=true)
         public static native CFString RunDelegate();
-        /**
-         * @since Available in iOS 6.0 and later.
-         */
         @GlobalValue(symbol="kCTBaselineClassAttributeName", optional=true)
         public static native CFString BaselineClass();
-        /**
-         * @since Available in iOS 6.0 and later.
-         */
         @GlobalValue(symbol="kCTBaselineInfoAttributeName", optional=true)
         public static native CFString BaselineInfo();
-        /**
-         * @since Available in iOS 6.0 and later.
-         */
         @GlobalValue(symbol="kCTBaselineReferenceInfoAttributeName", optional=true)
         public static native CFString BaselineReferenceInfo();
         /**
@@ -343,14 +236,8 @@ import org.robovm.apple.uikit.*;
          */
         @GlobalValue(symbol="kCTBaselineOffsetAttributeName", optional=true)
         public static native CFString BaselineOffset();
-        /**
-         * @since Available in iOS 6.0 and later.
-         */
         @GlobalValue(symbol="kCTWritingDirectionAttributeName", optional=true)
         public static native CFString WritingDirection();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="kCTRubyAnnotationAttributeName", optional=true)
         public static native CFString RubyAnnotation();
         /*</values>*/

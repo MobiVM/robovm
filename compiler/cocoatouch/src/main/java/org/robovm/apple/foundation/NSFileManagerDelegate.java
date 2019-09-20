@@ -56,58 +56,34 @@ import org.robovm.apple.dispatch.*;
     /*<methods>*/
     @Method(selector = "fileManager:shouldCopyItemAtPath:toPath:")
     boolean shouldCopyItemAtPath(NSFileManager fileManager, String srcPath, String dstPath);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "fileManager:shouldCopyItemAtURL:toURL:")
     boolean shouldCopyItemAtURL(NSFileManager fileManager, NSURL srcURL, NSURL dstURL);
     @Method(selector = "fileManager:shouldProceedAfterError:copyingItemAtPath:toPath:")
     boolean shouldProceedCopyingItemAtPath(NSFileManager fileManager, NSError error, String srcPath, String dstPath);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "fileManager:shouldProceedAfterError:copyingItemAtURL:toURL:")
     boolean shouldProceedCopyingItemAtURL(NSFileManager fileManager, NSError error, NSURL srcURL, NSURL dstURL);
     @Method(selector = "fileManager:shouldMoveItemAtPath:toPath:")
     boolean shouldMoveItemAtPath(NSFileManager fileManager, String srcPath, String dstPath);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "fileManager:shouldMoveItemAtURL:toURL:")
     boolean shouldMoveItemAtURL(NSFileManager fileManager, NSURL srcURL, NSURL dstURL);
     @Method(selector = "fileManager:shouldProceedAfterError:movingItemAtPath:toPath:")
     boolean shouldProceedMovingItemAtPath(NSFileManager fileManager, NSError error, String srcPath, String dstPath);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "fileManager:shouldProceedAfterError:movingItemAtURL:toURL:")
     boolean shouldProceedMovingItemAtURL(NSFileManager fileManager, NSError error, NSURL srcURL, NSURL dstURL);
     @Method(selector = "fileManager:shouldLinkItemAtPath:toPath:")
     boolean shouldLinkItemAtPath(NSFileManager fileManager, String srcPath, String dstPath);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "fileManager:shouldLinkItemAtURL:toURL:")
     boolean shouldLinkItemAtURL(NSFileManager fileManager, NSURL srcURL, NSURL dstURL);
     @Method(selector = "fileManager:shouldProceedAfterError:linkingItemAtPath:toPath:")
     boolean shouldProceedLinkingItemAtPath(NSFileManager fileManager, NSError error, String srcPath, String dstPath);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "fileManager:shouldProceedAfterError:linkingItemAtURL:toURL:")
     boolean shouldProceedLinkingItemAtURL(NSFileManager fileManager, NSError error, NSURL srcURL, NSURL dstURL);
     @Method(selector = "fileManager:shouldRemoveItemAtPath:")
     boolean shouldRemoveItemAtPath(NSFileManager fileManager, String path);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "fileManager:shouldRemoveItemAtURL:")
     boolean shouldRemoveItemAtURL(NSFileManager fileManager, NSURL URL);
     @Method(selector = "fileManager:shouldProceedAfterError:removingItemAtPath:")
     boolean shouldProceedRemovingItemAtPath(NSFileManager fileManager, NSError error, String path);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "fileManager:shouldProceedAfterError:removingItemAtURL:")
     boolean shouldProceedRemovingItemAtURL(NSFileManager fileManager, NSError error, NSURL URL);
     /*</methods>*/

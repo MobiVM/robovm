@@ -53,7 +53,7 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "initWithNibName:bundle:")
     public AUViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
     @Method(selector = "initWithCoder:")
-    public AUViewController(NSCoder decoder) { super(decoder); }
+    public AUViewController(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     

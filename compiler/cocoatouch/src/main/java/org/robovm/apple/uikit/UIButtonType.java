@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -46,14 +48,15 @@ import org.robovm.apple.intents.*;
 public enum /*<name>*/UIButtonType/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Custom(0L),
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     System(1L),
     DetailDisclosure(2L),
     InfoLight(3L),
     InfoDark(4L),
     ContactAdd(5L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    Close(7L),
     RoundedRect(1L);
     /*</values>*/
 

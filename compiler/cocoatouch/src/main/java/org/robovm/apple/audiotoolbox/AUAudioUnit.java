@@ -103,6 +103,8 @@ import org.robovm.apple.uikit.*;
     public native void setMaximumFramesToRender(int v);
     @Property(selector = "parameterTree")
     public native AUParameterTree getParameterTree();
+    @Property(selector = "setParameterTree:")
+    public native void setParameterTree(AUParameterTree v);
     @Property(selector = "allParameterValues")
     public native boolean isAllParameterValues();
     @Property(selector = "isMusicDeviceOrEffect")
@@ -141,6 +143,16 @@ import org.robovm.apple.uikit.*;
     public native void setFullStateForDocument(NSDictionary<NSString, ?> v);
     @Property(selector = "factoryPresets")
     public native NSArray<AUAudioUnitPreset> getFactoryPresets();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "userPresets")
+    public native NSArray<AUAudioUnitPreset> getUserPresets();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "supportsUserPresets")
+    public native boolean supportsUserPresets();
     @Property(selector = "currentPreset")
     public native AUAudioUnitPreset getCurrentPreset();
     @Property(selector = "setCurrentPreset:")
@@ -258,6 +270,48 @@ import org.robovm.apple.uikit.*;
     public native void removeRenderObserver(@MachineSizedSInt long token);
     @Method(selector = "parametersForOverviewWithCount:")
     public native NSArray<NSNumber> getParameters(@MachineSizedSInt long count);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public boolean saveUserPreset(AUAudioUnitPreset userPreset) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       boolean result = saveUserPreset(userPreset, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "saveUserPreset:error:")
+    private native boolean saveUserPreset(AUAudioUnitPreset userPreset, NSError.NSErrorPtr outError);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public boolean deleteUserPreset(AUAudioUnitPreset userPreset) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       boolean result = deleteUserPreset(userPreset, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "deleteUserPreset:error:")
+    private native boolean deleteUserPreset(AUAudioUnitPreset userPreset, NSError.NSErrorPtr outError);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public NSDictionary<NSString, ?> getPresetState(AUAudioUnitPreset userPreset) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       NSDictionary<NSString, ?> result = getPresetState(userPreset, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "presetStateFor:error:")
+    private native NSDictionary<NSString, ?> getPresetState(AUAudioUnitPreset userPreset, NSError.NSErrorPtr outError);
     /**
      * @since Available in iOS 12.0 and later.
      */

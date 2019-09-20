@@ -37,12 +37,12 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 2.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIImageView/*</name>*/ 
@@ -58,57 +58,46 @@ import org.robovm.apple.intents.*;
     protected UIImageView(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithImage:")
     public UIImageView(UIImage image) { super((SkipInit) null); initObject(init(image)); }
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "initWithImage:highlightedImage:")
     public UIImageView(UIImage image, UIImage highlightedImage) { super((SkipInit) null); initObject(init(image, highlightedImage)); }
     @Method(selector = "initWithFrame:")
     public UIImageView(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public UIImageView(NSCoder decoder) { super(decoder); }
+    public UIImageView(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "image")
     public native UIImage getImage();
     @Property(selector = "setImage:")
     public native void setImage(UIImage v);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "highlightedImage")
     public native UIImage getHighlightedImage();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "setHighlightedImage:")
     public native void setHighlightedImage(UIImage v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "preferredSymbolConfiguration")
+    public native UIImageSymbolConfiguration getPreferredSymbolConfiguration();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setPreferredSymbolConfiguration:")
+    public native void setPreferredSymbolConfiguration(UIImageSymbolConfiguration v);
     @Property(selector = "isUserInteractionEnabled")
     public native boolean isUserInteractionEnabled();
     @Property(selector = "setUserInteractionEnabled:")
     public native void setUserInteractionEnabled(boolean v);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "isHighlighted")
     public native boolean isHighlighted();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "setHighlighted:")
     public native void setHighlighted(boolean v);
     @Property(selector = "animationImages")
     public native NSArray<UIImage> getAnimationImages();
     @Property(selector = "setAnimationImages:")
     public native void setAnimationImages(NSArray<UIImage> v);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "highlightedAnimationImages")
     public native NSArray<UIImage> getHighlightedAnimationImages();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "setHighlightedAnimationImages:")
     public native void setHighlightedAnimationImages(NSArray<UIImage> v);
     @Property(selector = "animationDuration")
@@ -119,14 +108,8 @@ import org.robovm.apple.intents.*;
     public native @MachineSizedSInt long getAnimationRepeatCount();
     @Property(selector = "setAnimationRepeatCount:")
     public native void setAnimationRepeatCount(@MachineSizedSInt long v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "tintColor")
     public native UIColor getTintColor();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setTintColor:")
     public native void setTintColor(UIColor v);
     @Property(selector = "isAnimating")
@@ -140,9 +123,6 @@ import org.robovm.apple.intents.*;
     /*<methods>*/
     @Method(selector = "initWithImage:")
     protected native @Pointer long init(UIImage image);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "initWithImage:highlightedImage:")
     protected native @Pointer long init(UIImage image, UIImage highlightedImage);
     @Method(selector = "startAnimating")

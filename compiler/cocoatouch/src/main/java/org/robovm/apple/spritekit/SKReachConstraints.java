@@ -40,9 +40,7 @@ import org.robovm.apple.metal.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("SpriteKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SKReachConstraints/*</name>*/ 
@@ -59,7 +57,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithLowerAngleLimit:upperAngleLimit:")
     public SKReachConstraints(@MachineSizedFloat double lowerAngleLimit, @MachineSizedFloat double upperAngleLimit) { super((SkipInit) null); initObject(init(lowerAngleLimit, upperAngleLimit)); }
     @Method(selector = "initWithCoder:")
-    public SKReachConstraints(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public SKReachConstraints(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "lowerAngleLimit")
@@ -80,6 +78,6 @@ import org.robovm.apple.metal.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

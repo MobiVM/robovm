@@ -59,7 +59,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithName:type:")
     public SKAttribute(String name, SKAttributeType type) { super((SkipInit) null); initObject(init(name, type)); }
     @Method(selector = "initWithCoder:")
-    public SKAttribute(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public SKAttribute(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "name")
@@ -76,6 +76,6 @@ import org.robovm.apple.metal.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

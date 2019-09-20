@@ -97,21 +97,9 @@ import org.robovm.apple.audiotoolbox.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final AVAudioBitRateStrategy Constant = new AVAudioBitRateStrategy("Constant");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final AVAudioBitRateStrategy LongTermAverage = new AVAudioBitRateStrategy("LongTermAverage");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final AVAudioBitRateStrategy VariableConstrained = new AVAudioBitRateStrategy("VariableConstrained");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final AVAudioBitRateStrategy Variable = new AVAudioBitRateStrategy("Variable");
     /*</constants>*/
     
@@ -138,24 +126,12 @@ import org.robovm.apple.audiotoolbox.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="AVAudioBitRateStrategy_Constant", optional=true)
         public static native NSString Constant();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="AVAudioBitRateStrategy_LongTermAverage", optional=true)
         public static native NSString LongTermAverage();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="AVAudioBitRateStrategy_VariableConstrained", optional=true)
         public static native NSString VariableConstrained();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="AVAudioBitRateStrategy_Variable", optional=true)
         public static native NSString Variable();
         /*</values>*/

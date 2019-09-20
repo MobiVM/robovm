@@ -88,77 +88,23 @@ import org.robovm.apple.coregraphics.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyTIFF Compression = new CGImagePropertyTIFF("Compression");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyTIFF PhotometricInterpretation = new CGImagePropertyTIFF("PhotometricInterpretation");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyTIFF DocumentName = new CGImagePropertyTIFF("DocumentName");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyTIFF ImageDescription = new CGImagePropertyTIFF("ImageDescription");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyTIFF Make = new CGImagePropertyTIFF("Make");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyTIFF Model = new CGImagePropertyTIFF("Model");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyTIFF Orientation = new CGImagePropertyTIFF("Orientation");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyTIFF XResolution = new CGImagePropertyTIFF("XResolution");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyTIFF YResolution = new CGImagePropertyTIFF("YResolution");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyTIFF ResolutionUnit = new CGImagePropertyTIFF("ResolutionUnit");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyTIFF Software = new CGImagePropertyTIFF("Software");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyTIFF TransferFunction = new CGImagePropertyTIFF("TransferFunction");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyTIFF DateTime = new CGImagePropertyTIFF("DateTime");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyTIFF Artist = new CGImagePropertyTIFF("Artist");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyTIFF HostComputer = new CGImagePropertyTIFF("HostComputer");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyTIFF Copyright = new CGImagePropertyTIFF("Copyright");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyTIFF WhitePoint = new CGImagePropertyTIFF("WhitePoint");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyTIFF PrimaryChromaticities = new CGImagePropertyTIFF("PrimaryChromaticities");
     /**
      * @since Available in iOS 9.0 and later.
@@ -193,94 +139,40 @@ import org.robovm.apple.coregraphics.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyTIFFCompression", optional=true)
         public static native CFString Compression();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyTIFFPhotometricInterpretation", optional=true)
         public static native CFString PhotometricInterpretation();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyTIFFDocumentName", optional=true)
         public static native CFString DocumentName();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyTIFFImageDescription", optional=true)
         public static native CFString ImageDescription();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyTIFFMake", optional=true)
         public static native CFString Make();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyTIFFModel", optional=true)
         public static native CFString Model();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyTIFFOrientation", optional=true)
         public static native CFString Orientation();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyTIFFXResolution", optional=true)
         public static native CFString XResolution();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyTIFFYResolution", optional=true)
         public static native CFString YResolution();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyTIFFResolutionUnit", optional=true)
         public static native CFString ResolutionUnit();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyTIFFSoftware", optional=true)
         public static native CFString Software();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyTIFFTransferFunction", optional=true)
         public static native CFString TransferFunction();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyTIFFDateTime", optional=true)
         public static native CFString DateTime();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyTIFFArtist", optional=true)
         public static native CFString Artist();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyTIFFHostComputer", optional=true)
         public static native CFString HostComputer();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyTIFFCopyright", optional=true)
         public static native CFString Copyright();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyTIFFWhitePoint", optional=true)
         public static native CFString WhitePoint();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyTIFFPrimaryChromaticities", optional=true)
         public static native CFString PrimaryChromaticities();
         /**

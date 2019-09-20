@@ -5,22 +5,15 @@ framework: LocalAuthentication
 clang_args: ['-x', 'objective-c']
 headers:
     - /System/Library/Frameworks/LocalAuthentication.framework/Headers/LocalAuthentication.h
-    - /System/Library/Frameworks/LocalAuthentication.framework/Headers/LAPublicDefines.h
-typedefs:
-    'void (^)(BOOL, NSError *)': '@Block VoidBlock2<Boolean, NSError>'
-    
+
 enums:
     LAPolicy: {prefix: LAPolicy}
-    LAError: {name: LAErrorCode}
+    LAError: {nserror: true, name: LAError}
     LAAccessControlOperation: {}
     LACredentialType: {prefix: LACredentialType}
     LABiometryType: {prefix: LABiometry} #since 11.0
 
 classes:
-    LAError:
-        extends: NSError
-        annotations: ['@StronglyLinked']
-        
     LAContext: # DONE
         methods:
             '-canEvaluatePolicy:error:':
@@ -59,8 +52,8 @@ values:
         name: 'Value__#{g[0]}'
 
 constants:
-    # Unused
-    kLAPolicyDeviceOwnerAuthenticationWithBiometrics:
+    # Unused as these defines are used to initialize enums
+    kLAPolicyDeviceOwnerAuthentication(.*):
         exclude: true
     kLAPolicyDeviceOwnerAuthentication:
         exclude: true

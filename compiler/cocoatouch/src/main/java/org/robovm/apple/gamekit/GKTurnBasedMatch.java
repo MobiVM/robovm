@@ -32,9 +32,7 @@ import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 5.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("GameKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GKTurnBasedMatch/*</name>*/ 
@@ -66,120 +64,60 @@ import org.robovm.apple.uikit.*;
     public native String getMessage();
     @Property(selector = "setMessage:")
     public native void setMessage(String v);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "matchDataMaximumSize")
     public native @MachineSizedUInt long getMatchDataMaximumSize();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "exchanges")
     public native NSArray<GKTurnBasedExchange> getExchanges();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "activeExchanges")
     public native NSArray<GKTurnBasedExchange> getActiveExchanges();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "completedExchanges")
     public native NSArray<GKTurnBasedExchange> getCompletedExchanges();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "exchangeDataMaximumSize")
     public native @MachineSizedUInt long getExchangeDataMaximumSize();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "exchangeMaxInitiatedExchangesPerPlayer")
     public native @MachineSizedUInt long getExchangeMaxInitiatedExchangesPerPlayer();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @GlobalValue(symbol="GKTurnTimeoutDefault", optional=true)
     public static native double getDefaultTimeout();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @GlobalValue(symbol="GKTurnTimeoutNone", optional=true)
     public static native double getNoneTimeout();
     
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "setLocalizableMessageWithKey:arguments:")
     public native void setLocalizableMessage(String key, @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> arguments);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "rematchWithCompletionHandler:")
     public native void rematch(@Block VoidBlock2<GKTurnBasedMatch, NSError> completionHandler);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "acceptInviteWithCompletionHandler:")
     public native void acceptInvite(@Block VoidBlock2<GKTurnBasedMatch, NSError> completionHandler);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "declineInviteWithCompletionHandler:")
     public native void declineInvite(@Block VoidBlock1<NSError> completionHandler);
     @Method(selector = "removeWithCompletionHandler:")
     public native void remove(@Block VoidBlock1<NSError> completionHandler);
     @Method(selector = "loadMatchDataWithCompletionHandler:")
     public native void loadMatchData(@Block VoidBlock2<NSData, NSError> completionHandler);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "endTurnWithNextParticipants:turnTimeout:matchData:completionHandler:")
     public native void endTurn(NSArray<GKTurnBasedParticipant> nextParticipants, double timeout, NSData matchData, @Block VoidBlock1<NSError> completionHandler);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "participantQuitInTurnWithOutcome:nextParticipants:turnTimeout:matchData:completionHandler:")
     public native void participantQuitInTurn(GKTurnBasedMatchOutcome matchOutcome, NSArray<GKTurnBasedParticipant> nextParticipants, double timeout, NSData matchData, @Block VoidBlock1<NSError> completionHandler);
     @Method(selector = "participantQuitOutOfTurnWithOutcome:withCompletionHandler:")
     public native void participantQuitOutOfTurn(GKTurnBasedMatchOutcome matchOutcome, @Block VoidBlock1<NSError> completionHandler);
     @Method(selector = "endMatchInTurnWithMatchData:completionHandler:")
     public native void endMatch(NSData matchData, @Block VoidBlock1<NSError> completionHandler);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "endMatchInTurnWithMatchData:scores:achievements:completionHandler:")
     public native void endMatch(NSData matchData, NSArray<GKScore> scores, NSArray<GKAchievement> achievements, @Block VoidBlock1<NSError> completionHandler);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "saveCurrentTurnWithMatchData:completionHandler:")
     public native void saveCurrentTurn(NSData matchData, @Block VoidBlock1<NSError> completionHandler);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "saveMergedMatchData:withResolvedExchanges:completionHandler:")
     public native void saveMergedMatchData(NSData matchData, NSArray<GKTurnBasedExchange> exchanges, @Block VoidBlock1<NSError> completionHandler);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "sendExchangeToParticipants:data:localizableMessageKey:arguments:timeout:completionHandler:")
     public native void sendExchange(NSArray<GKTurnBasedParticipant> participants, NSData data, String key, @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> arguments, double timeout, @Block VoidBlock2<GKTurnBasedExchange, NSError> completionHandler);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "sendReminderToParticipants:localizableMessageKey:arguments:completionHandler:")
     public native void sendReminder(NSArray<GKTurnBasedParticipant> participants, String key, @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> arguments, @Block VoidBlock1<NSError> completionHandler);
     @Method(selector = "findMatchForRequest:withCompletionHandler:")
     public static native void findMatch(GKMatchRequest request, @Block VoidBlock2<GKTurnBasedMatch, NSError> completionHandler);
     @Method(selector = "loadMatchesWithCompletionHandler:")
     public static native void loadMatches(@Block VoidBlock2<NSArray<GKTurnBasedMatch>, NSError> completionHandler);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "loadMatchWithID:withCompletionHandler:")
     public static native void loadMatches(String matchID, @Block VoidBlock2<GKTurnBasedMatch, NSError> completionHandler);
     /*</methods>*/

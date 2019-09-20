@@ -71,6 +71,10 @@ public enum /*<name>*/MPSDataType/*</name>*/ implements ValuedEnum {
     /**
      * @since Available in iOS 10.0 and later.
      */
+    Int32(536870944L),
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
     UInt8(8L),
     /**
      * @since Available in iOS 10.0 and later.

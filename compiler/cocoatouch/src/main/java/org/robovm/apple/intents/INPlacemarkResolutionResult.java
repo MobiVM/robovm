@@ -56,10 +56,10 @@ import org.robovm.apple.corelocation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "successWithResolvedPlacemark:")
-    public static native INPlacemarkResolutionResult successWithResolvedPlacemark(CLPlacemark resolvedPlacemark);
+    public static native INPlacemarkResolutionResult success(CLPlacemark resolvedPlacemark);
     @Method(selector = "disambiguationWithPlacemarksToDisambiguate:")
-    public static native INPlacemarkResolutionResult disambiguationWithPlacemarksToDisambiguate(NSArray<CLPlacemark> placemarksToDisambiguate);
+    public static native INPlacemarkResolutionResult disambiguation(NSArray<CLPlacemark> placemarksToDisambiguate);
     @Method(selector = "confirmationRequiredWithPlacemarkToConfirm:")
-    public static native INPlacemarkResolutionResult confirmationRequiredWithPlacemarkToConfirm(CLPlacemark placemarkToConfirm);
+    public static native INPlacemarkResolutionResult confirmationRequired(CLPlacemark placemarkToConfirm);
     /*</methods>*/
 }

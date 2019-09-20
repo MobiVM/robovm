@@ -56,6 +56,11 @@ import org.robovm.apple.mapkit.*;
     /*<properties>*/
     @Property(selector = "limitedUserInterfaces")
     public native CPLimitableUserInterface getLimitedUserInterfaces();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "contentStyle")
+    public native CPContentStyle getContentStyle();
     @Property(selector = "delegate")
     public native CPSessionConfigurationDelegate getDelegate();
     @Property(selector = "setDelegate:", strongRef = true)

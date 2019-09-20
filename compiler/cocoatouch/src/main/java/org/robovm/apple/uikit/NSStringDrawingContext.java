@@ -37,12 +37,12 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 6.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSStringDrawingContext/*</name>*/ 
@@ -67,21 +67,18 @@ import org.robovm.apple.intents.*;
     @Property(selector = "totalBounds")
     public native @ByVal CGRect getTotalBounds();
     /**
-     * @since Available in iOS 6.0 and later.
      * @deprecated Deprecated in iOS 7.0.
      */
     @Deprecated
     @Property(selector = "minimumTrackingAdjustment")
     public native @MachineSizedFloat double getMinimumTrackingAdjustment();
     /**
-     * @since Available in iOS 6.0 and later.
      * @deprecated Deprecated in iOS 7.0.
      */
     @Deprecated
     @Property(selector = "setMinimumTrackingAdjustment:")
     public native void setMinimumTrackingAdjustment(@MachineSizedFloat double v);
     /**
-     * @since Available in iOS 6.0 and later.
      * @deprecated Deprecated in iOS 7.0.
      */
     @Deprecated

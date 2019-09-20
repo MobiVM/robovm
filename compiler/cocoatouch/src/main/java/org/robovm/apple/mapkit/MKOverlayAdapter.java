@@ -57,9 +57,6 @@ import org.robovm.apple.dispatch.*;
     /*<methods>*/
     @NotImplemented("intersectsMapRect:")
     public boolean intersects(@ByVal MKMapRect mapRect) { return false; }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @NotImplemented("canReplaceMapContent")
     public boolean canReplaceMapContent() { return false; }
     /*</methods>*/

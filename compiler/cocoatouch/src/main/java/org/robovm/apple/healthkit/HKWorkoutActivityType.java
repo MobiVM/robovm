@@ -31,9 +31,7 @@ import org.robovm.apple.foundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/HKWorkoutActivityType/*</name>*/ implements ValuedEnum {
@@ -53,7 +51,6 @@ public enum /*<name>*/HKWorkoutActivityType/*</name>*/ implements ValuedEnum {
     Cycling(13L),
     Dance(14L),
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 10.0.
      */
     @Deprecated
@@ -73,7 +70,6 @@ public enum /*<name>*/HKWorkoutActivityType/*</name>*/ implements ValuedEnum {
     MartialArts(28L),
     MindAndBody(29L),
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 11.0. Use HKWorkoutActivityTypeMixedCardio or HKWorkoutActivityTypeHighIntensityIntervalTraining
      */
     @Deprecated
@@ -173,6 +169,14 @@ public enum /*<name>*/HKWorkoutActivityType/*</name>*/ implements ValuedEnum {
      * @since Available in iOS 11.0 and later.
      */
     HandCycling(74L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    DiscSports(75L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    FitnessGaming(76L),
     Other(3000L);
     /*</values>*/
 

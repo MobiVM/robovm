@@ -54,19 +54,10 @@ import org.robovm.apple.dispatch.*;
         return ptr.toStringZ();
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="SCCopyLastError", optional=true)
     public static native NSError getLastError();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="SCError", optional=true)
     public static native SCStatusCode getLastStatus();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="SCErrorString", optional=true)
     protected static native BytePtr getStatusDescription0(SCStatusCode status);
     /*</methods>*/

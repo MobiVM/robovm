@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -171,8 +173,7 @@ import org.robovm.apple.intents.*;
         return this;
     }
     /**
-     * @since Available in iOS 4.1 and later.
-     * @deprecated Deprecated in iOS 11.0. Replace with public API: UIImagePickerControllerPHAsset
+     * @deprecated Deprecated in iOS 11.0. Use UIImagePickerControllerPHAsset
      */
     @Deprecated
     public NSURL getReferenceURL() {
@@ -183,17 +184,13 @@ import org.robovm.apple.intents.*;
         return null;
     }
     /**
-     * @since Available in iOS 4.1 and later.
-     * @deprecated Deprecated in iOS 11.0. Replace with public API: UIImagePickerControllerPHAsset
+     * @deprecated Deprecated in iOS 11.0. Use UIImagePickerControllerPHAsset
      */
     @Deprecated
     public UIImagePickerControllerEditingInfo setReferenceURL(NSURL referenceURL) {
         set(Keys.ReferenceURL(), referenceURL);
         return this;
     }
-    /**
-     * @since Available in iOS 4.1 and later.
-     */
     public Map<String, NSObject> getMediaMetadata() {
         if (has(Keys.MediaMetadata())) {
             NSDictionary val = (NSDictionary) get(Keys.MediaMetadata());
@@ -201,9 +198,6 @@ import org.robovm.apple.intents.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 4.1 and later.
-     */
     public UIImagePickerControllerEditingInfo setMediaMetadata(Map<String, NSObject> mediaMetadata) {
         set(Keys.MediaMetadata(), NSDictionary.fromStringMap(mediaMetadata));
         return this;
@@ -225,15 +219,11 @@ import org.robovm.apple.intents.*;
         @GlobalValue(symbol="UIImagePickerControllerMediaURL", optional=true)
         public static native NSString MediaURL();
         /**
-         * @since Available in iOS 4.1 and later.
-         * @deprecated Deprecated in iOS 11.0. Replace with public API: UIImagePickerControllerPHAsset
+         * @deprecated Deprecated in iOS 11.0. Use UIImagePickerControllerPHAsset
          */
         @Deprecated
         @GlobalValue(symbol="UIImagePickerControllerReferenceURL", optional=true)
         public static native NSString ReferenceURL();
-        /**
-         * @since Available in iOS 4.1 and later.
-         */
         @GlobalValue(symbol="UIImagePickerControllerMediaMetadata", optional=true)
         public static native NSString MediaMetadata();
         /**

@@ -32,9 +32,7 @@ import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.1 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("GameKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GKScore/*</name>*/ 
@@ -50,20 +48,16 @@ import org.robovm.apple.uikit.*;
     protected GKScore(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithLeaderboardIdentifier:")
     public GKScore(String identifier) { super((SkipInit) null); initObject(init(identifier)); }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "initWithLeaderboardIdentifier:player:")
     public GKScore(String identifier, GKPlayer player) { super((SkipInit) null); initObject(init(identifier, player)); }
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 8.0. use initWithLeaderboardIdentifier:player:
      */
     @Deprecated
     @Method(selector = "initWithLeaderboardIdentifier:forPlayer:")
     public GKScore(String identifier, String playerID) { super((SkipInit) null); initObject(init(identifier, playerID)); }
     @Method(selector = "initWithCoder:")
-    public GKScore(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public GKScore(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "value")
@@ -72,61 +66,37 @@ import org.robovm.apple.uikit.*;
     public native void setValue(long v);
     @Property(selector = "formattedValue")
     public native String getFormattedValue();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "leaderboardIdentifier")
     public native String getLeaderboardIdentifier();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setLeaderboardIdentifier:")
     public native void setLeaderboardIdentifier(String v);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "context")
     public native long getContext();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setContext:")
     public native void setContext(long v);
     @Property(selector = "date")
     public native NSDate getDate();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "player")
     public native GKPlayer getPlayer();
     @Property(selector = "rank")
     public native @MachineSizedSInt long getRank();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "shouldSetDefaultLeaderboard")
     public native boolean shouldSetDefaultLeaderboard();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setShouldSetDefaultLeaderboard:")
     public native void setShouldSetDefaultLeaderboard(boolean v);
     /**
-     * @since Available in iOS 4.1 and later.
      * @deprecated Deprecated in iOS 8.0. use player
      */
     @Deprecated
     @Property(selector = "playerID")
     public native String getPlayerID();
     /**
-     * @since Available in iOS 4.1 and later.
      * @deprecated Deprecated in iOS 7.0. Use leaderboardIdentifier instead
      */
     @Deprecated
     @Property(selector = "category")
     public native String getCategory();
     /**
-     * @since Available in iOS 4.1 and later.
      * @deprecated Deprecated in iOS 7.0. Use leaderboardIdentifier instead
      */
     @Deprecated
@@ -139,49 +109,33 @@ import org.robovm.apple.uikit.*;
     /*<methods>*/
     @Method(selector = "initWithLeaderboardIdentifier:")
     protected native @Pointer long init(String identifier);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "initWithLeaderboardIdentifier:player:")
     protected native @Pointer long init(String identifier, GKPlayer player);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "reportScores:withCompletionHandler:")
     public static native void reportScores(NSArray<GKScore> scores, @Block VoidBlock1<NSError> completionHandler);
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 8.0. use initWithLeaderboardIdentifier:player:
      */
     @Deprecated
     @Method(selector = "initWithLeaderboardIdentifier:forPlayer:")
     protected native @Pointer long init(String identifier, String playerID);
     /**
-     * @since Available in iOS 4.1 and later.
      * @deprecated Deprecated in iOS 7.0. Use +reportScores:withCompletionhandler: instead
      */
     @Deprecated
     @Method(selector = "reportScoreWithCompletionHandler:")
     public native void reportScore(@Block VoidBlock1<NSError> completionHandler);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "challengeComposeControllerWithMessage:players:completionHandler:")
     public native UIViewController getChallengeComposeController(String message, NSArray<GKPlayer> players, @Block VoidBlock3<UIViewController, Boolean, NSArray<GKPlayer>> completionHandler);
     /**
-     * @since Available in iOS 6.0 and later.
      * @deprecated Deprecated in iOS 7.0. pass GKPlayers to challengeComposeControllerWithMessage:players:completionHandler: and present the view controller instead
      */
     @Deprecated
     @Method(selector = "issueChallengeToPlayers:message:")
     public native void issueChallengeToPlayers(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> playerIDs, String message);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "reportScores:withEligibleChallenges:withCompletionHandler:")
     public static native void reportScores(NSArray<GKScore> scores, NSArray<GKChallenge> challenges, @Block VoidBlock1<NSError> completionHandler);
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 8.0. pass GKPlayers to challengeComposeControllerWithMessage:players:
      */
     @Deprecated
@@ -190,6 +144,6 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

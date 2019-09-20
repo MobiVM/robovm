@@ -52,6 +52,12 @@ import org.robovm.apple.foundation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @GlobalValue(symbol="HKDataTypeIdentifierHeartbeatSeries", optional=true)
+    public static native String getDataTypeIdentifier();
+    
     
     /*</methods>*/
 }

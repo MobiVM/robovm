@@ -83,6 +83,11 @@ import org.robovm.apple.dispatch.*;
     public native NSURL getCommentURL();
     @Property(selector = "portList")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsIntegerListMarshaler.class) List<Integer> getPortList();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "sameSitePolicy")
+    public native String getSameSitePolicy();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

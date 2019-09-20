@@ -32,9 +32,7 @@ import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 3.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("StoreKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SKRequest/*</name>*/ 
@@ -50,27 +48,15 @@ import org.robovm.apple.uikit.*;
     protected SKRequest(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "delegate")
     public native SKRequestDelegate getDelegate();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "setDelegate:", strongRef = true)
     public native void setDelegate(SKRequestDelegate v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "cancel")
     public native void cancel();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "start")
     public native void start();
     /*</methods>*/

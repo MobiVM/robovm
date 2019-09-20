@@ -41,9 +41,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVAudioChannelLayout/*</name>*/ 
@@ -63,7 +61,7 @@ import org.robovm.apple.audiotoolbox.*;
     @Method(selector = "initWithLayout:")
     public AVAudioChannelLayout(AudioChannelLayout layout) { super((SkipInit) null); initObject(init(layout)); }
     @Method(selector = "initWithCoder:")
-    public AVAudioChannelLayout(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public AVAudioChannelLayout(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "layoutTag")
@@ -88,6 +86,6 @@ import org.robovm.apple.audiotoolbox.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

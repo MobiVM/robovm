@@ -1,0 +1,207 @@
+package: org.robovm.apple.cryptotokenkit
+include: [foundation, security]
+library: CryptoTokenKit
+framework: CryptoTokenKit
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/CryptoTokenKit.framework/Headers/CryptoTokenKit.h
+
+private_typedefs:
+    '__CFString *': String
+
+typedefs:
+
+enums:
+    TKErrorCode: {nserror: true, prefix: TKError}
+    TKSmartCardProtocol: {}
+    TKSmartCardSlotState: {}
+    TKSmartCardPINCharset: {}
+    TKSmartCardPINEncoding: {}
+    TKSmartCardPINJustification: {}
+    TKSmartCardPINCompletion: {}
+    TKSmartCardPINConfirmation: {}
+    TKTokenOperation: {} #since 10.0
+
+typed_enums:
+
+classes:
+    TKBERTLVRecord: #since 10.0
+        methods:
+            '-initWithTag:value:':
+                name: init
+            '-initWithTag:records:':
+                name: init
+    TKCompactTLVRecord: #since 10.0
+        methods:
+            '-initWithTag:value:':
+                name: init
+    TKSimpleTLVRecord: #since 10.0
+        methods:
+            '-initWithTag:value:':
+                name: init
+    TKSmartCard:
+        methods:
+            '-beginSessionWithReply:':
+                name: beginSession
+            '-transmitRequest:reply:':
+                name: transmitRequest
+            '-userInteractionForSecurePINVerificationWithPINFormat:APDU:PINByteOffset:':
+                name: userInteractionForSecurePINVerification
+            '-userInteractionForSecurePINChangeWithPINFormat:APDU:currentPINByteOffset:newPINByteOffset:':
+                name: userInteractionForSecurePINChange
+            '-sendIns:p1:p2:data:le:reply:':
+                name: send
+            '-inSessionWithError:executeBlock:':
+                name: executeBlock
+            '-sendIns:p1:p2:data:le:sw:error:':
+                name: send
+    TKSmartCardATR:
+        methods:
+            '-initWithBytes:':
+                name: init
+            '-initWithSource:':
+                name: init
+    TKSmartCardATRInterfaceGroup: {}
+    TKSmartCardPINFormat: {}
+    TKSmartCardSlot: {}
+    TKSmartCardSlotManager:
+        methods:
+            '-getSlotWithName:reply:':
+                name: getSlot
+    TKSmartCardToken: #since 10.0
+        methods:
+            '-initWithSmartCard:AID:instanceID:tokenDriver:':
+                name: init
+    TKSmartCardTokenDriver: {} #since 10.0
+    TKSmartCardTokenSession: {} #since 10.0
+    TKSmartCardUserInteraction:
+        methods:
+            '-runWithReply:':
+                name: run
+    TKSmartCardUserInteractionForPINOperation: {}
+    TKSmartCardUserInteractionForSecurePINChange: {}
+    TKSmartCardUserInteractionForSecurePINVerification: {}
+    TKTLVRecord: {} #since 10.0
+    TKToken: #since 10.0
+        methods:
+            '-initWithTokenDriver:instanceID:':
+                name: init
+    TKTokenAuthOperation: #since 10.0
+        methods:
+            '-finishWithError:':
+                name: finish
+    TKTokenConfiguration: #since 13.0
+        methods:
+            '-keyForObjectID:error:':
+                name: getKey
+                throws: NSErrorException
+            '-certificateForObjectID:error:':
+                name: getCertificate
+                throws: NSErrorException
+    TKTokenDriver: {} #since 10.0
+    TKTokenDriverConfiguration: {} #since 13.0
+    TKTokenKeyAlgorithm: {} #since 10.0
+    TKTokenKeyExchangeParameters: {} #since 10.0
+    TKTokenKeychainCertificate: #since 10.0
+        methods:
+            '-initWithCertificate:objectID:':
+                name: init
+    TKTokenKeychainContents: #since 10.0
+        methods:
+            '-fillWithItems:':
+                name: fill
+            '-keyForObjectID:error:':
+                name: getKey
+                throws: NSErrorException
+            '-certificateForObjectID:error:':
+                name: getCertificate
+                throws: NSErrorException
+    TKTokenKeychainItem: #since 10.0
+        methods:
+            '-initWithObjectID:':
+                name: init
+    TKTokenKeychainKey: #since 10.0
+        methods:
+            '-initWithCertificate:objectID:':
+                name: init
+    TKTokenPasswordAuthOperation: {} #since 10.0
+    TKTokenSession: #since 10.0
+        methods:
+            '-initWithToken:':
+                name: init
+    TKTokenSmartCardPINAuthOperation: {} #since 10.0
+    TKTokenWatcher: #since 10.0
+        methods:
+            '-initWithInsertionHandler:':
+                name: init
+            '-addRemovalHandler:forTokenID:':
+                name: addRemovalHandler
+
+protocols:
+    TKSmartCardTokenDriverDelegate:
+        methods:
+            '-tokenDriver:createTokenForSmartCard:AID:error:':
+                name: createToken
+    TKSmartCardUserInteractionDelegate:
+        methods:
+            '-characterEnteredInUserInteraction:':
+                name: characterEntered
+            '-correctionKeyPressedInUserInteraction:':
+                name: correctionKeyPressed
+            '-validationKeyPressedInUserInteraction:':
+                name: validationKeyPressed
+            '-invalidCharacterEnteredInUserInteraction:':
+                name: invalidCharacterEntered
+            '-oldPINRequestedInUserInteraction:':
+                name: oldPINRequested
+            '-newPINRequestedInUserInteraction:':
+                name: newPINRequested
+            '-newPINConfirmationRequestedInUserInteraction:':
+                name: newPINConfirmationRequested
+
+    TKTokenDelegate: #since 10.0
+        methods:
+            '-token:createSessionWithError:':
+                name: createSession
+            '-token:terminateSession:':
+                name: terminateSession
+    TKTokenDriverDelegate: #since 10.0
+        methods:
+            '-tokenDriver:tokenForConfiguration:error:':
+                name: getToken
+            '-tokenDriver:terminateToken:':
+                name: terminateToken
+    TKTokenSessionDelegate: #since 10.0
+        methods:
+            '-tokenSession:beginAuthForOperation:constraint:error:':
+                name: beginAuth
+            '-tokenSession:supportsOperation:usingKey:algorithm:':
+                name: isSupportsOperation
+            '-tokenSession:signData:usingKey:algorithm:error:':
+                name: signData
+            '-tokenSession:decryptData:usingKey:algorithm:error:':
+                name: decryptData
+            '-tokenSession:performKeyExchangeWithPublicKey:usingKey:algorithm:parameters:error:':
+                name: performKeyExchange
+
+functions:
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (k?TK.*):
+        class: !!!FixMe
+        name: 'Function__#{g[0]}'
+
+values:
+    TKErrorDomain:
+        class: TKErrorCode
+        name: getClassDomain
+
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (k?TK.*):
+        class: !!!FixMe
+        name: 'Value__#{g[0]}'
+
+constants:
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (k?TK.*):
+        class: !!!FixMe
+        name: 'Constant__#{g[0]}'

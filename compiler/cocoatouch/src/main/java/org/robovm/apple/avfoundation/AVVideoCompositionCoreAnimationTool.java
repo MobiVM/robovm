@@ -41,9 +41,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVVideoCompositionCoreAnimationTool/*</name>*/ 
@@ -61,9 +59,6 @@ import org.robovm.apple.audiotoolbox.*;
     public AVVideoCompositionCoreAnimationTool(CALayer layer, int trackID) { super((Handle) null, create(layer, trackID)); retain(getHandle()); }
     @WeaklyLinked
     public AVVideoCompositionCoreAnimationTool(CALayer videoLayer, CALayer animationLayer) { super((Handle) null, create(videoLayer, animationLayer)); retain(getHandle()); }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @WeaklyLinked
     public AVVideoCompositionCoreAnimationTool(NSArray<CALayer> videoLayers, CALayer animationLayer) { super((Handle) null, create(videoLayers, animationLayer)); retain(getHandle()); }
     /*</constructors>*/
@@ -78,9 +73,6 @@ import org.robovm.apple.audiotoolbox.*;
     @WeaklyLinked
     @Method(selector = "videoCompositionCoreAnimationToolWithPostProcessingAsVideoLayer:inLayer:")
     protected static native @Pointer long create(CALayer videoLayer, CALayer animationLayer);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @WeaklyLinked
     @Method(selector = "videoCompositionCoreAnimationToolWithPostProcessingAsVideoLayers:inLayer:")
     protected static native @Pointer long create(NSArray<CALayer> videoLayers, CALayer animationLayer);

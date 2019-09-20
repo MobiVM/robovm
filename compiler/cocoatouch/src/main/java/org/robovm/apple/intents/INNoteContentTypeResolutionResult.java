@@ -35,9 +35,10 @@ import org.robovm.apple.corelocation.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 11.0 and later.
+ * @deprecated Deprecated in iOS 13.0. This resolution result is no longer used
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Intents") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("Intents") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/INNoteContentTypeResolutionResult/*</name>*/ 
     extends /*<extends>*/INIntentResolutionResult/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -56,8 +57,8 @@ import org.robovm.apple.corelocation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "successWithResolvedNoteContentType:")
-    public static native INNoteContentTypeResolutionResult successWithResolvedNoteContentType(INNoteContentType resolvedNoteContentType);
+    public static native INNoteContentTypeResolutionResult success(INNoteContentType resolvedNoteContentType);
     @Method(selector = "confirmationRequiredWithNoteContentTypeToConfirm:")
-    public static native INNoteContentTypeResolutionResult confirmationRequiredWithNoteContentTypeToConfirm(INNoteContentType noteContentTypeToConfirm);
+    public static native INNoteContentTypeResolutionResult confirmation(INNoteContentType noteContentTypeToConfirm);
     /*</methods>*/
 }

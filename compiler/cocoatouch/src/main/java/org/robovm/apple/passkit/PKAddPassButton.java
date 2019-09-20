@@ -55,7 +55,7 @@ import org.robovm.apple.contacts.*;
     @Method(selector = "initWithFrame:")
     public PKAddPassButton(@ByVal org.robovm.apple.coregraphics.CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public PKAddPassButton(NSCoder decoder) { super(decoder); }
+    public PKAddPassButton(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "addPassButtonStyle")

@@ -33,7 +33,6 @@ import org.robovm.apple.corefoundation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 2.0 and later.
  * @deprecated Deprecated in iOS 11.0.
  */
 /*</javadoc>*/

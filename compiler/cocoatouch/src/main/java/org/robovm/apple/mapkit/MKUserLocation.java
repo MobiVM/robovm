@@ -35,9 +35,7 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 3.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("MapKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MKUserLocation/*</name>*/ 
@@ -57,9 +55,6 @@ import org.robovm.apple.dispatch.*;
     public native boolean isUpdating();
     @Property(selector = "location")
     public native CLLocation getLocation();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "heading")
     public native CLHeading getHeading();
     @Property(selector = "title")

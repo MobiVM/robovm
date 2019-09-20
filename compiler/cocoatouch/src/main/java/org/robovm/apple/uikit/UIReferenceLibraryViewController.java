@@ -37,12 +37,12 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 5.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIReferenceLibraryViewController/*</name>*/ 
@@ -59,7 +59,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithTerm:")
     public UIReferenceLibraryViewController(String term) { super((SkipInit) null); initObject(init(term)); }
     @Method(selector = "initWithCoder:")
-    public UIReferenceLibraryViewController(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public UIReferenceLibraryViewController(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     
@@ -69,7 +69,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithTerm:")
     protected native @Pointer long init(String term);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     @Method(selector = "dictionaryHasDefinitionForTerm:")
     public static native boolean dictionaryHasDefinitionForTerm(String term);
     /*</methods>*/

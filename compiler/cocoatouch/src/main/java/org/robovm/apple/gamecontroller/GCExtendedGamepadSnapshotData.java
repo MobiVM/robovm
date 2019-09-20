@@ -46,7 +46,7 @@ import org.robovm.apple.uikit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public GCExtendedGamepadSnapshotData() {}
-    public GCExtendedGamepadSnapshotData(short version, short size, float dpadX, float dpadY, float buttonA, float buttonB, float buttonX, float buttonY, float leftShoulder, float rightShoulder, float leftThumbstickX, float leftThumbstickY, float rightThumbstickX, float rightThumbstickY, float leftTrigger, float rightTrigger, boolean leftThumbstickButton, boolean rightThumbstickButton) {
+    public GCExtendedGamepadSnapshotData(short version, short size, float dpadX, float dpadY, float buttonA, float buttonB, float buttonX, float buttonY, float leftShoulder, float rightShoulder, float leftThumbstickX, float leftThumbstickY, float rightThumbstickX, float rightThumbstickY, float leftTrigger, float rightTrigger, boolean supportsClickableThumbsticks, boolean leftThumbstickButton, boolean rightThumbstickButton) {
         this.setVersion(version);
         this.setSize(size);
         this.setDpadX(dpadX);
@@ -63,6 +63,7 @@ import org.robovm.apple.uikit.*;
         this.setRightThumbstickY(rightThumbstickY);
         this.setLeftTrigger(leftTrigger);
         this.setRightTrigger(rightTrigger);
+        this.setSupportsClickableThumbsticks(supportsClickableThumbsticks);
         this.setLeftThumbstickButton(leftThumbstickButton);
         this.setRightThumbstickButton(rightThumbstickButton);
     }
@@ -101,10 +102,12 @@ import org.robovm.apple.uikit.*;
     @StructMember(14) public native GCExtendedGamepadSnapshotData setLeftTrigger(float leftTrigger);
     @StructMember(15) public native float getRightTrigger();
     @StructMember(15) public native GCExtendedGamepadSnapshotData setRightTrigger(float rightTrigger);
-    @StructMember(16) public native boolean isLeftThumbstickButton();
-    @StructMember(16) public native GCExtendedGamepadSnapshotData setLeftThumbstickButton(boolean leftThumbstickButton);
-    @StructMember(17) public native boolean isRightThumbstickButton();
-    @StructMember(17) public native GCExtendedGamepadSnapshotData setRightThumbstickButton(boolean rightThumbstickButton);
+    @StructMember(16) public native boolean isSupportsClickableThumbsticks();
+    @StructMember(16) public native GCExtendedGamepadSnapshotData setSupportsClickableThumbsticks(boolean supportsClickableThumbsticks);
+    @StructMember(17) public native boolean isLeftThumbstickButton();
+    @StructMember(17) public native GCExtendedGamepadSnapshotData setLeftThumbstickButton(boolean leftThumbstickButton);
+    @StructMember(18) public native boolean isRightThumbstickButton();
+    @StructMember(18) public native GCExtendedGamepadSnapshotData setRightThumbstickButton(boolean rightThumbstickButton);
     /*</members>*/
     /*<methods>*//*</methods>*/
 }

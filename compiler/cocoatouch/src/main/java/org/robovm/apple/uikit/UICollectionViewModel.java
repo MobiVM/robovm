@@ -117,4 +117,44 @@ public class UICollectionViewModel extends UIScrollViewDelegateAdapter implement
     public NSIndexPath indexPathForIndexTitle(UICollectionView collectionView, String title, @MachineSizedSInt long index) { return null; }
     @NotImplemented("collectionView:shouldSpringLoadItemAtIndexPath:withContext:")
     public boolean shouldSpringLoadItem(UICollectionView collectionView, NSIndexPath indexPath, UISpringLoadedInteractionContext context) { return false; }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("collectionView:shouldBeginMultipleSelectionInteractionAtIndexPath:")
+    public boolean shouldBeginMultipleSelectionInteraction(UICollectionView collectionView, NSIndexPath indexPath) { return false; }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("collectionView:didBeginMultipleSelectionInteractionAtIndexPath:")
+    public void didBeginMultipleSelectionInteraction(UICollectionView collectionView, NSIndexPath indexPath) {}
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("collectionViewDidEndMultipleSelectionInteraction:")
+    public void collectionViewDidEndMultipleSelectionInteraction(UICollectionView collectionView) {}
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("collectionView:contextMenuConfigurationForItemAtIndexPath:point:")
+    public UIContextMenuConfiguration getContextMenuConfiguration(UICollectionView collectionView, NSIndexPath indexPath, @ByVal CGPoint point) { return null; }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("collectionView:previewForHighlightingContextMenuWithConfiguration:")
+    public UITargetedPreview getPreviewForHighlightingContextMenu(UICollectionView collectionView, UIContextMenuConfiguration configuration) { return null; }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("collectionView:previewForDismissingContextMenuWithConfiguration:")
+    public UITargetedPreview getPreviewForDismissingContextMenu(UICollectionView collectionView, UIContextMenuConfiguration configuration) { return null; }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("collectionView:willPerformPreviewActionForMenuWithConfiguration:animator:")
+    public void willPerformPreviewAction(UICollectionView collectionView, UIContextMenuConfiguration configuration, UIContextMenuInteractionCommitAnimating animator) {}
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("collectionView:willCommitMenuWithAnimator:")
+    public void willCommitMenu(UICollectionView collectionView, UIContextMenuInteractionCommitAnimating animator) {}
 }

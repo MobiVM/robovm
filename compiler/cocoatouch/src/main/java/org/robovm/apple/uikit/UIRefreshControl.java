@@ -37,12 +37,12 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 6.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIRefreshControl/*</name>*/ 
@@ -59,7 +59,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithFrame:")
     public UIRefreshControl(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public UIRefreshControl(NSCoder decoder) { super(decoder); }
+    public UIRefreshControl(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "isRefreshing")
@@ -75,14 +75,8 @@ import org.robovm.apple.intents.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "beginRefreshing")
     public native void beginRefreshing();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "endRefreshing")
     public native void endRefreshing();
     /*</methods>*/

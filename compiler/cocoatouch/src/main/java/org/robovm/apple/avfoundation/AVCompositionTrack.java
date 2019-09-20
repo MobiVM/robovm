@@ -41,9 +41,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVCompositionTrack/*</name>*/ 
@@ -61,6 +59,11 @@ import org.robovm.apple.audiotoolbox.*;
     /*<properties>*/
     @Property(selector = "segments")
     public native NSArray<AVAssetTrackSegment> getSegments();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "formatDescriptionReplacements")
+    public native NSArray<AVCompositionTrackFormatDescriptionReplacement> getFormatDescriptionReplacements();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

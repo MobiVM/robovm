@@ -39,17 +39,23 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
 public final class /*<name>*/NSDirectoryEnumerationOptions/*</name>*/ extends Bits</*<name>*/NSDirectoryEnumerationOptions/*</name>*/> {
     /*<values>*/
     public static final NSDirectoryEnumerationOptions None = new NSDirectoryEnumerationOptions(0L);
-    public static final NSDirectoryEnumerationOptions SubdirectoryDescendants = new NSDirectoryEnumerationOptions(1L);
-    public static final NSDirectoryEnumerationOptions PackageDescendants = new NSDirectoryEnumerationOptions(2L);
-    public static final NSDirectoryEnumerationOptions HiddenFiles = new NSDirectoryEnumerationOptions(4L);
+    public static final NSDirectoryEnumerationOptions SkipsSubdirectoryDescendants = new NSDirectoryEnumerationOptions(1L);
+    public static final NSDirectoryEnumerationOptions SkipsPackageDescendants = new NSDirectoryEnumerationOptions(2L);
+    public static final NSDirectoryEnumerationOptions SkipsHiddenFiles = new NSDirectoryEnumerationOptions(4L);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final NSDirectoryEnumerationOptions IncludesDirectoriesPostOrder = new NSDirectoryEnumerationOptions(8L);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final NSDirectoryEnumerationOptions ProducesRelativePathURLs = new NSDirectoryEnumerationOptions(16L);
     /*</values>*/
 
     private static final /*<name>*/NSDirectoryEnumerationOptions/*</name>*/[] values = _values(/*<name>*/NSDirectoryEnumerationOptions/*</name>*/.class);

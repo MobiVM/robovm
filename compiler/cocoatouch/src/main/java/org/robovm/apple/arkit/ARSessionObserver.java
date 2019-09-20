@@ -73,6 +73,11 @@ import org.robovm.apple.imageio.*;
     boolean sessionShouldAttemptRelocalization(ARSession session);
     @Method(selector = "session:didOutputAudioSampleBuffer:")
     void didOutputAudioSampleBuffer(ARSession session, CMSampleBuffer audioSampleBuffer);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "session:didOutputCollaborationData:")
+    void didOutputCollaborationData(ARSession session, ARCollaborationData data);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

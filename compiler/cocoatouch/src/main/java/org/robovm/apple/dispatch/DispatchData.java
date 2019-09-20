@@ -45,55 +45,25 @@ import org.robovm.rt.bro.ptr.*;
     /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @GlobalValue(symbol="_dispatch_data_empty", optional=true, dereference=false)
     public static native DispatchData Empty();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @GlobalValue(symbol="_dispatch_data_destructor_free", optional=true, dereference=false)
     public static native DispatchData DestructorFree();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @GlobalValue(symbol="_dispatch_data_destructor_munmap", optional=true, dereference=false)
     public static native DispatchData DestructorMunmap();
     
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="dispatch_data_create", optional=true)
     public static native DispatchData create(VoidPtr buffer, @MachineSizedUInt long size, DispatchQueue queue, @Block Runnable destructor);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="dispatch_data_get_size", optional=true)
     public native @MachineSizedUInt long getSize();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="dispatch_data_create_map", optional=true)
     public native DispatchData createMap(VoidPtr.VoidPtrPtr buffer_ptr, MachineSizedUIntPtr size_ptr);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="dispatch_data_create_concat", optional=true)
     public native DispatchData createConcat(DispatchData data2);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="dispatch_data_create_subrange", optional=true)
     public native DispatchData createSubrange(@MachineSizedUInt long offset, @MachineSizedUInt long length);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="dispatch_data_apply", optional=true)
     public native boolean apply(@Block("(,@MachineSizedUInt,,@MachineSizedUInt)") VoidBlock4<DispatchData, Long, VoidPtr, Long> applier);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="dispatch_data_copy_region", optional=true)
     public native DispatchData copyRegion(@MachineSizedUInt long location, MachineSizedUIntPtr offset_ptr);
     /*</methods>*/

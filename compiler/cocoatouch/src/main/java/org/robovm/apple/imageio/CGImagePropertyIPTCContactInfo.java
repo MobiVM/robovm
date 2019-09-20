@@ -88,37 +88,13 @@ import org.robovm.apple.coregraphics.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyIPTCContactInfo City = new CGImagePropertyIPTCContactInfo("City");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyIPTCContactInfo Country = new CGImagePropertyIPTCContactInfo("Country");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyIPTCContactInfo Address = new CGImagePropertyIPTCContactInfo("Address");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyIPTCContactInfo PostalCode = new CGImagePropertyIPTCContactInfo("PostalCode");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyIPTCContactInfo StateProvince = new CGImagePropertyIPTCContactInfo("StateProvince");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyIPTCContactInfo Emails = new CGImagePropertyIPTCContactInfo("Emails");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyIPTCContactInfo Phones = new CGImagePropertyIPTCContactInfo("Phones");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyIPTCContactInfo WebURLs = new CGImagePropertyIPTCContactInfo("WebURLs");
     /*</constants>*/
     
@@ -145,44 +121,20 @@ import org.robovm.apple.coregraphics.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyIPTCContactInfoCity", optional=true)
         public static native CFString City();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyIPTCContactInfoCountry", optional=true)
         public static native CFString Country();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyIPTCContactInfoAddress", optional=true)
         public static native CFString Address();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyIPTCContactInfoPostalCode", optional=true)
         public static native CFString PostalCode();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyIPTCContactInfoStateProvince", optional=true)
         public static native CFString StateProvince();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyIPTCContactInfoEmails", optional=true)
         public static native CFString Emails();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyIPTCContactInfoPhones", optional=true)
         public static native CFString Phones();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyIPTCContactInfoWebURLs", optional=true)
         public static native CFString WebURLs();
         /*</values>*/

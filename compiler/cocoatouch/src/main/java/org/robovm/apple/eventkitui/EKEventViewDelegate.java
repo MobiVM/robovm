@@ -48,9 +48,6 @@ import org.robovm.apple.uikit.*;
     
     /*</properties>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     @Method(selector = "eventViewController:didCompleteWithAction:")
     void didComplete(EKEventViewController controller, EKEventViewAction action);
     /*</methods>*/

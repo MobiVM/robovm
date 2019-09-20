@@ -88,21 +88,9 @@ import org.robovm.apple.corelocation.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final HMCharacteristicMetadataUnits Celsius = new HMCharacteristicMetadataUnits("Celsius");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final HMCharacteristicMetadataUnits Fahrenheit = new HMCharacteristicMetadataUnits("Fahrenheit");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final HMCharacteristicMetadataUnits Percentage = new HMCharacteristicMetadataUnits("Percentage");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final HMCharacteristicMetadataUnits ArcDegree = new HMCharacteristicMetadataUnits("ArcDegree");
     /**
      * @since Available in iOS 8.3 and later.
@@ -145,24 +133,12 @@ import org.robovm.apple.corelocation.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="HMCharacteristicMetadataUnitsCelsius", optional=true)
         public static native NSString Celsius();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="HMCharacteristicMetadataUnitsFahrenheit", optional=true)
         public static native NSString Fahrenheit();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="HMCharacteristicMetadataUnitsPercentage", optional=true)
         public static native NSString Percentage();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="HMCharacteristicMetadataUnitsArcDegree", optional=true)
         public static native NSString ArcDegree();
         /**

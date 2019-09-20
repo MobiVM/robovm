@@ -76,6 +76,11 @@ import org.robovm.apple.security.*;
      */
     @Bridge(symbol="nw_protocol_copy_udp_definition", optional=true)
     public static native NWProtocolDefinition copyudpDefinition();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="nw_protocol_copy_ws_definition", optional=true)
+    public static native NWProtocolDefinition copywsDefinition();
     
     
     /*</methods>*/

@@ -32,9 +32,7 @@ import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 3.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("StoreKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SKProductsResponse/*</name>*/ 
@@ -50,14 +48,8 @@ import org.robovm.apple.uikit.*;
     protected SKProductsResponse(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "products")
     public native NSArray<SKProduct> getProducts();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "invalidProductIdentifiers")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getInvalidProductIdentifiers();
     /*</properties>*/

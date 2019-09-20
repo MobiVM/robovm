@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -59,8 +61,16 @@ import org.robovm.apple.intents.*;
     /*<methods>*/
     @NotImplemented("prepareForPopoverPresentation:")
     public void prepareForPopoverPresentation(UIPopoverPresentationController popoverPresentationController) {}
+    /**
+     * @deprecated Deprecated in iOS 13.0. Use presentationControllerShouldDismiss:
+     */
+    @Deprecated
     @NotImplemented("popoverPresentationControllerShouldDismissPopover:")
     public boolean shouldDismissPopover(UIPopoverPresentationController popoverPresentationController) { return false; }
+    /**
+     * @deprecated Deprecated in iOS 13.0. Use presentationControllerDidDismiss:
+     */
+    @Deprecated
     @NotImplemented("popoverPresentationControllerDidDismissPopover:")
     public void didDismissPopover(UIPopoverPresentationController popoverPresentationController) {}
     @NotImplemented("popoverPresentationController:willRepositionPopoverToRect:inView:")

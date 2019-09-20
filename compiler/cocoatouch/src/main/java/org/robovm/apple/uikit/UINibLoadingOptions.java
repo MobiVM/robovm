@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -115,9 +117,6 @@ import org.robovm.apple.intents.*;
     }
     
 
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public Map<String, NSObject> getExternalObjects() {
         if (has(Keys.ExternalObjects())) {
             NSDictionary val = (NSDictionary) get(Keys.ExternalObjects());
@@ -125,9 +124,6 @@ import org.robovm.apple.intents.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public UINibLoadingOptions setExternalObjects(Map<String, NSObject> externalObjects) {
         set(Keys.ExternalObjects(), NSDictionary.fromStringMap(externalObjects));
         return this;
@@ -138,9 +134,6 @@ import org.robovm.apple.intents.*;
     @Library("UIKit")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 3.0 and later.
-         */
         @GlobalValue(symbol="UINibExternalObjects", optional=true)
         public static native NSString ExternalObjects();
     }

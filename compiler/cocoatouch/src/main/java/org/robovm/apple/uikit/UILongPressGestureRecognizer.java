@@ -37,12 +37,12 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 3.2 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UILongPressGestureRecognizer/*</name>*/ 
@@ -58,6 +58,8 @@ import org.robovm.apple.intents.*;
     protected UILongPressGestureRecognizer(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithTarget:action:")
     public UILongPressGestureRecognizer(NSObject target, Selector action) { super(target, action); }
+    @Method(selector = "initWithCoder:")
+    public UILongPressGestureRecognizer(NSCoder coder) { super(coder); }
     /*</constructors>*/
     
     public UILongPressGestureRecognizer(OnGestureListener listener) {

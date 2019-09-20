@@ -32,9 +32,7 @@ import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 3.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("StoreKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SKPayment/*</name>*/ 
@@ -49,30 +47,15 @@ import org.robovm.apple.uikit.*;
     @Deprecated protected SKPayment(long handle) { super(handle); }
     protected SKPayment(Handle h, long handle) { super(h, handle); }
     protected SKPayment(SkipInit skipInit) { super(skipInit); }
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public SKPayment(SKProduct product) { super((Handle) null, create(product)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "productIdentifier")
     public native String getProductIdentifier();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "requestData")
     public native NSData getRequestData();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "quantity")
     public native @MachineSizedSInt long getQuantity();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "applicationUsername")
     public native String getApplicationUsername();
     /**
@@ -88,9 +71,6 @@ import org.robovm.apple.uikit.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "paymentWithProduct:")
     protected static native @Pointer long create(SKProduct product);
     /*</methods>*/

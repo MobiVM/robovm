@@ -49,9 +49,6 @@ public final class /*<name>*/NSFileCoordinatorWritingOptions/*</name>*/ extends 
     public static final NSFileCoordinatorWritingOptions ForMoving = new NSFileCoordinatorWritingOptions(2L);
     public static final NSFileCoordinatorWritingOptions ForMerging = new NSFileCoordinatorWritingOptions(4L);
     public static final NSFileCoordinatorWritingOptions ForReplacing = new NSFileCoordinatorWritingOptions(8L);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final NSFileCoordinatorWritingOptions ContentIndependentMetadataOnly = new NSFileCoordinatorWritingOptions(16L);
     /*</values>*/
 

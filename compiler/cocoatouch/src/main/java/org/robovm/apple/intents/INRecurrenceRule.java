@@ -52,7 +52,7 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "initWithInterval:frequency:")
     public INRecurrenceRule(@MachineSizedUInt long interval, INRecurrenceFrequency frequency) { super((SkipInit) null); initObject(init(interval, frequency)); }
     @Method(selector = "initWithCoder:")
-    public INRecurrenceRule(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public INRecurrenceRule(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "interval")
@@ -69,6 +69,6 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

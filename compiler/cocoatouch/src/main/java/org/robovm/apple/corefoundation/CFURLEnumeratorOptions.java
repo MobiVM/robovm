@@ -49,6 +49,10 @@ public final class /*<name>*/CFURLEnumeratorOptions/*</name>*/ extends Bits</*<n
     public static final CFURLEnumeratorOptions SkipPackageContents = new CFURLEnumeratorOptions(8L);
     public static final CFURLEnumeratorOptions IncludeDirectoriesPreOrder = new CFURLEnumeratorOptions(16L);
     public static final CFURLEnumeratorOptions IncludeDirectoriesPostOrder = new CFURLEnumeratorOptions(32L);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final CFURLEnumeratorOptions GenerateRelativePathURLs = new CFURLEnumeratorOptions(64L);
     /*</values>*/
 
     private static final /*<name>*/CFURLEnumeratorOptions/*</name>*/[] values = _values(/*<name>*/CFURLEnumeratorOptions/*</name>*/.class);

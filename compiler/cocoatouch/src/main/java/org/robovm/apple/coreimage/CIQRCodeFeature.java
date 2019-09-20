@@ -36,12 +36,11 @@ import org.robovm.apple.imageio.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.metal.*;
 import org.robovm.apple.iosurface.*;
+import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreImage") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CIQRCodeFeature/*</name>*/ 
@@ -56,7 +55,7 @@ import org.robovm.apple.iosurface.*;
     protected CIQRCodeFeature(Handle h, long handle) { super(h, handle); }
     protected CIQRCodeFeature(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public CIQRCodeFeature(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public CIQRCodeFeature(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "bounds")
@@ -84,6 +83,6 @@ import org.robovm.apple.iosurface.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

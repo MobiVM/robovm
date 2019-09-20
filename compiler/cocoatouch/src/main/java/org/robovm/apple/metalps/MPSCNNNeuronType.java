@@ -99,9 +99,13 @@ public enum /*<name>*/MPSCNNNeuronType/*</name>*/ implements ValuedEnum {
      */
     Logarithm(14L),
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    GeLU(15L),
+    /**
      * @since Available in iOS 11.0 and later.
      */
-    Count(15L);
+    Count(16L);
     /*</values>*/
 
     /*<bind>*/

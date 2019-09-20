@@ -38,9 +38,7 @@ import org.robovm.apple.imageio.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("Photos") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/PHPhotoLibrary/*</name>*/ 
@@ -56,10 +54,24 @@ import org.robovm.apple.imageio.*;
     protected PHPhotoLibrary(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "unavailabilityReason")
+    public native NSError getUnavailabilityReason();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "registerAvailabilityObserver:")
+    public native void registerAvailabilityObserver(PHPhotoLibraryAvailabilityObserver observer);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "unregisterAvailabilityObserver:")
+    public native void unregisterAvailabilityObserver(PHPhotoLibraryAvailabilityObserver observer);
     @Method(selector = "performChanges:completionHandler:")
     public native void performChanges(@Block Runnable changeBlock, @Block VoidBlock2<Boolean, NSError> completionHandler);
     public boolean performChangesAndWait(@Block Runnable changeBlock) throws NSErrorException {

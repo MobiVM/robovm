@@ -41,9 +41,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVAudioIONode/*</name>*/ 
@@ -64,9 +62,27 @@ import org.robovm.apple.audiotoolbox.*;
     @WeaklyLinked
     @Property(selector = "audioUnit")
     public native AudioUnit getAudioUnit();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "isVoiceProcessingEnabled")
+    public native boolean isVoiceProcessingEnabled();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public boolean setVoiceProcessingEnabled(boolean enabled) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       boolean result = setVoiceProcessingEnabled(enabled, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "setVoiceProcessingEnabled:error:")
+    private native boolean setVoiceProcessingEnabled(boolean enabled, NSError.NSErrorPtr outError);
     /*</methods>*/
 }

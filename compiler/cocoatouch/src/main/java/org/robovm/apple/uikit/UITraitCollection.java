@@ -37,12 +37,12 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UITraitCollection/*</name>*/ 
@@ -57,7 +57,7 @@ import org.robovm.apple.intents.*;
     protected UITraitCollection(Handle h, long handle) { super(h, handle); }
     protected UITraitCollection(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public UITraitCollection(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public UITraitCollection(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /**
      * @since Available in iOS 12.0 and later.
      */
@@ -78,6 +78,18 @@ import org.robovm.apple.intents.*;
      * @since Available in iOS 10.0 and later.
      */
     public UITraitCollection(UIDisplayGamut displayGamut) { super((Handle) null, create(displayGamut)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public UITraitCollection(UIAccessibilityContrast accessibilityContrast) { super((Handle) null, create(accessibilityContrast)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public UITraitCollection(UIUserInterfaceLevel userInterfaceLevel) { super((Handle) null, create(userInterfaceLevel)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public UITraitCollection(UILegibilityWeight legibilityWeight) { super((Handle) null, create(legibilityWeight)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "userInterfaceIdiom")
@@ -113,13 +125,43 @@ import org.robovm.apple.intents.*;
      */
     @Property(selector = "displayGamut")
     public native UIDisplayGamut getDisplayGamut();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "accessibilityContrast")
+    public native UIAccessibilityContrast getAccessibilityContrast();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "userInterfaceLevel")
+    public native UIUserInterfaceLevel getUserInterfaceLevel();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "legibilityWeight")
+    public native UILegibilityWeight getLegibilityWeight();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "currentTraitCollection")
+    public static native UITraitCollection getCurrentTraitCollection();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setCurrentTraitCollection:")
+    public static native void setCurrentTraitCollection(UITraitCollection v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "imageConfiguration")
+    public native UIImageConfiguration getImageConfiguration();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     @Method(selector = "containsTraitsInCollection:")
     public native boolean containsTraits(UITraitCollection trait);
     @Method(selector = "traitCollectionWithTraitsFromCollections:")
@@ -157,6 +199,31 @@ import org.robovm.apple.intents.*;
      */
     @Method(selector = "traitCollectionWithDisplayGamut:")
     protected static native @Pointer long create(UIDisplayGamut displayGamut);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "traitCollectionWithAccessibilityContrast:")
+    protected static native @Pointer long create(UIAccessibilityContrast accessibilityContrast);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "traitCollectionWithUserInterfaceLevel:")
+    protected static native @Pointer long create(UIUserInterfaceLevel userInterfaceLevel);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "traitCollectionWithLegibilityWeight:")
+    protected static native @Pointer long create(UILegibilityWeight legibilityWeight);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "performAsCurrentTraitCollection:")
+    public native void performAsCurrentTraitCollection(@Block Runnable actions);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "hasDifferentColorAppearanceComparedToTraitCollection:")
+    public native boolean hasDifferentColorAppearanceComparedToTraitCollection(UITraitCollection traitCollection);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     /*</methods>*/

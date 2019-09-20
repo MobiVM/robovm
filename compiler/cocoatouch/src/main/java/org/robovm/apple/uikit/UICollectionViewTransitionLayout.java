@@ -37,12 +37,12 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 7.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UICollectionViewTransitionLayout/*</name>*/ 
@@ -59,7 +59,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithCurrentLayout:nextLayout:")
     public UICollectionViewTransitionLayout(UICollectionViewLayout currentLayout, UICollectionViewLayout newLayout) { super((SkipInit) null); initObject(init(currentLayout, newLayout)); }
     @Method(selector = "initWithCoder:")
-    public UICollectionViewTransitionLayout(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public UICollectionViewTransitionLayout(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "transitionProgress")
@@ -76,7 +76,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithCurrentLayout:nextLayout:")
     protected native @Pointer long init(UICollectionViewLayout currentLayout, UICollectionViewLayout newLayout);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     @Method(selector = "updateValue:forAnimatedKey:")
     public native void updateValue(@MachineSizedFloat double value, String key);
     @Method(selector = "valueForAnimatedKey:")

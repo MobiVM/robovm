@@ -37,11 +37,12 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 3.2 and later.
  * @deprecated Deprecated in iOS 9.0. UIPopoverController is deprecated. Popovers are now implemented as UIViewController presentations. Use a modal presentation style of UIModalPresentationPopover and UIPopoverPresentationController.
  */
 /*</javadoc>*/
@@ -81,34 +82,16 @@ import org.robovm.apple.intents.*;
     public native NSArray<UIView> getPassthroughViews();
     @Property(selector = "setPassthroughViews:")
     public native void setPassthroughViews(NSArray<UIView> v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "backgroundColor")
     public native UIColor getBackgroundColor();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setBackgroundColor:")
     public native void setBackgroundColor(UIColor v);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "popoverLayoutMargins")
     public native @ByVal UIEdgeInsets getPopoverLayoutMargins();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setPopoverLayoutMargins:")
     public native void setPopoverLayoutMargins(@ByVal UIEdgeInsets v);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "popoverBackgroundViewClass")
     public native Class<? extends UIPopoverBackgroundView> getPopoverBackgroundViewClass();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setPopoverBackgroundViewClass:")
     public native void setPopoverBackgroundViewClass(Class<? extends UIPopoverBackgroundView> v);
     /*</properties>*/

@@ -32,9 +32,7 @@ import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 3.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("StoreKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SKProduct/*</name>*/ 
@@ -50,44 +48,22 @@ import org.robovm.apple.uikit.*;
     protected SKProduct(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "localizedDescription")
     public native String getLocalizedDescription();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "localizedTitle")
     public native String getLocalizedTitle();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "price")
     public native NSDecimalNumber getPrice();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "priceLocale")
     public native NSLocale getPriceLocale();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "productIdentifier")
     public native String getProductIdentifier();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "isDownloadable")
     public native boolean isDownloadable();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "downloadContentLengths")
     public native NSArray<NSNumber> getDownloadContentLengths();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
+    @Property(selector = "contentVersion")
+    public native String getContentVersion();
     @Property(selector = "downloadContentVersion")
     public native String getDownloadContentVersion();
     /**

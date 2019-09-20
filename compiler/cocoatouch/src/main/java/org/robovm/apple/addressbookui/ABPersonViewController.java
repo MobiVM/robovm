@@ -34,7 +34,6 @@ import org.robovm.apple.addressbook.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 2.0 and later.
  * @deprecated Deprecated in iOS 9.0. Use +[CNContactViewController viewControllerForContact:] from ContactsUI.framework instead
  */
 /*</javadoc>*/
@@ -53,7 +52,7 @@ import org.robovm.apple.addressbook.*;
     @Method(selector = "initWithNibName:bundle:")
     public ABPersonViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
     @Method(selector = "initWithCoder:")
-    public ABPersonViewController(NSCoder decoder) { super(decoder); }
+    public ABPersonViewController(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "personViewDelegate")
@@ -76,24 +75,12 @@ import org.robovm.apple.addressbook.*;
     public native boolean allowsEditing();
     @Property(selector = "setAllowsEditing:")
     public native void setAllowsEditing(boolean v);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "allowsActions")
     public native boolean allowsActions();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "setAllowsActions:")
     public native void setAllowsActions(boolean v);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "shouldShowLinkedPeople")
     public native boolean shouldShowLinkedPeople();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "setShouldShowLinkedPeople:")
     public native void setShouldShowLinkedPeople(boolean v);
     /*</properties>*/

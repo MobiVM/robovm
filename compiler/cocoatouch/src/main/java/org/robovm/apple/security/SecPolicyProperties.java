@@ -108,9 +108,6 @@ import org.robovm.apple.dispatch.*;
     }
     
 
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public String getOid() {
         if (has(Keys.Oid())) {
             CFString val = get(Keys.Oid(), CFString.class);
@@ -118,16 +115,10 @@ import org.robovm.apple.dispatch.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public SecPolicyProperties setOid(String oid) {
         set(Keys.Oid(), new CFString(oid));
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public String getName() {
         if (has(Keys.Name())) {
             CFString val = get(Keys.Name(), CFString.class);
@@ -135,16 +126,10 @@ import org.robovm.apple.dispatch.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public SecPolicyProperties setName(String name) {
         set(Keys.Name(), new CFString(name));
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public boolean isClient() {
         if (has(Keys.Client())) {
             CFBoolean val = get(Keys.Client(), CFBoolean.class);
@@ -152,16 +137,10 @@ import org.robovm.apple.dispatch.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public SecPolicyProperties setClient(boolean client) {
         set(Keys.Client(), CFBoolean.valueOf(client));
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public SecRevocationPolicyFlags getRevocationFlags() {
         if (has(Keys.RevocationFlags())) {
             CFNumber val = get(Keys.RevocationFlags(), CFNumber.class);
@@ -169,9 +148,6 @@ import org.robovm.apple.dispatch.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public SecPolicyProperties setRevocationFlags(SecRevocationPolicyFlags revocationFlags) {
         set(Keys.RevocationFlags(), CFNumber.valueOf(revocationFlags.value()));
         return this;
@@ -182,24 +158,12 @@ import org.robovm.apple.dispatch.*;
     @Library("Security")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kSecPolicyOid", optional=true)
         public static native CFType Oid();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kSecPolicyName", optional=true)
         public static native CFType Name();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kSecPolicyClient", optional=true)
         public static native CFType Client();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kSecPolicyRevocationFlags", optional=true)
         public static native CFType RevocationFlags();
     }

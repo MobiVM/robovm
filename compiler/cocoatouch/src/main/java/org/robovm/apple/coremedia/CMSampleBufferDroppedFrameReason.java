@@ -90,17 +90,8 @@ import org.robovm.apple.audiotoolbox.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public static final CMSampleBufferDroppedFrameReason FrameWasLate = new CMSampleBufferDroppedFrameReason("FrameWasLate");
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public static final CMSampleBufferDroppedFrameReason OutOfBuffers = new CMSampleBufferDroppedFrameReason("OutOfBuffers");
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public static final CMSampleBufferDroppedFrameReason Discontinuity = new CMSampleBufferDroppedFrameReason("Discontinuity");
     /*</constants>*/
     
@@ -127,19 +118,10 @@ import org.robovm.apple.audiotoolbox.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 6.0 and later.
-         */
         @GlobalValue(symbol="kCMSampleBufferDroppedFrameReason_FrameWasLate", optional=true)
         public static native CFString FrameWasLate();
-        /**
-         * @since Available in iOS 6.0 and later.
-         */
         @GlobalValue(symbol="kCMSampleBufferDroppedFrameReason_OutOfBuffers", optional=true)
         public static native CFString OutOfBuffers();
-        /**
-         * @since Available in iOS 6.0 and later.
-         */
         @GlobalValue(symbol="kCMSampleBufferDroppedFrameReason_Discontinuity", optional=true)
         public static native CFString Discontinuity();
         /*</values>*/

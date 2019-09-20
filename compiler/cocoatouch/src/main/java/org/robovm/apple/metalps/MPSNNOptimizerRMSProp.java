@@ -74,12 +74,17 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithDevice:decay:epsilon:optimizerDescriptor:")
     protected native @Pointer long init(MTLDevice device, double decay, float epsilon, MPSNNOptimizerDescriptor optimizerDescriptor);
     @Method(selector = "encodeToCommandBuffer:inputGradientVector:inputValuesVector:inputSumOfSquaresVector:resultValuesVector:")
-    public native void encodeToCommandBuffer(MTLCommandBuffer commandBuffer, MPSVector inputGradientVector, MPSVector inputValuesVector, MPSVector inputSumOfSquaresVector, MPSVector resultValuesVector);
+    public native void encode(MTLCommandBuffer commandBuffer, MPSVector inputGradientVector, MPSVector inputValuesVector, MPSVector inputSumOfSquaresVector, MPSVector resultValuesVector);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "encodeToCommandBuffer:inputGradientMatrix:inputValuesMatrix:inputSumOfSquaresMatrix:resultValuesMatrix:")
+    public native void encode(MTLCommandBuffer commandBuffer, MPSMatrix inputGradientMatrix, MPSMatrix inputValuesMatrix, MPSMatrix inputSumOfSquaresMatrix, MPSMatrix resultValuesMatrix);
     @Method(selector = "encodeToCommandBuffer:convolutionGradientState:convolutionSourceState:inputSumOfSquaresVectors:resultState:")
-    public native void encodeToCommandBuffer(MTLCommandBuffer commandBuffer, MPSCNNConvolutionGradientState convolutionGradientState, MPSCNNConvolutionWeightsAndBiasesState convolutionSourceState, NSArray<MPSVector> inputSumOfSquaresVectors, MPSCNNConvolutionWeightsAndBiasesState resultState);
+    public native void encode(MTLCommandBuffer commandBuffer, MPSCNNConvolutionGradientState convolutionGradientState, MPSCNNConvolutionWeightsAndBiasesState convolutionSourceState, NSArray<MPSVector> inputSumOfSquaresVectors, MPSCNNConvolutionWeightsAndBiasesState resultState);
     @Method(selector = "encodeToCommandBuffer:batchNormalizationState:inputSumOfSquaresVectors:resultState:")
-    public native void encodeToCommandBuffer(MTLCommandBuffer commandBuffer, MPSCNNBatchNormalizationState batchNormalizationState, NSArray<MPSVector> inputSumOfSquaresVectors, MPSCNNNormalizationGammaAndBetaState resultState);
+    public native void encode(MTLCommandBuffer commandBuffer, MPSCNNBatchNormalizationState batchNormalizationState, NSArray<MPSVector> inputSumOfSquaresVectors, MPSCNNNormalizationGammaAndBetaState resultState);
     @Method(selector = "encodeToCommandBuffer:batchNormalizationGradientState:batchNormalizationSourceState:inputSumOfSquaresVectors:resultState:")
-    public native void encodeToCommandBuffer(MTLCommandBuffer commandBuffer, MPSCNNBatchNormalizationState batchNormalizationGradientState, MPSCNNBatchNormalizationState batchNormalizationSourceState, NSArray<MPSVector> inputSumOfSquaresVectors, MPSCNNNormalizationGammaAndBetaState resultState);
+    public native void encode(MTLCommandBuffer commandBuffer, MPSCNNBatchNormalizationState batchNormalizationGradientState, MPSCNNBatchNormalizationState batchNormalizationSourceState, NSArray<MPSVector> inputSumOfSquaresVectors, MPSCNNNormalizationGammaAndBetaState resultState);
     /*</methods>*/
 }

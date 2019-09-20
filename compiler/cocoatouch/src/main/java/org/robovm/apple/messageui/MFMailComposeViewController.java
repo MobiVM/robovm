@@ -33,9 +33,7 @@ import org.robovm.apple.messages.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 3.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("MessageUI") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MFMailComposeViewController/*</name>*/ 
@@ -49,9 +47,6 @@ import org.robovm.apple.messages.*;
     public MFMailComposeViewController() {}
     protected MFMailComposeViewController(Handle h, long handle) { super(h, handle); }
     protected MFMailComposeViewController(SkipInit skipInit) { super(skipInit); }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "initWithNavigationBarClass:toolbarClass:")
     public MFMailComposeViewController(Class<? extends UINavigationBar> navigationBarClass, Class<? extends UIToolbar> toolbarClass) { super(navigationBarClass, toolbarClass); }
     @Method(selector = "initWithRootViewController:")

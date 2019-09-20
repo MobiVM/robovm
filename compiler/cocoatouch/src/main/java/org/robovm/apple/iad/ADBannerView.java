@@ -36,7 +36,6 @@ import org.robovm.apple.avkit.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 4.0 and later.
  * @deprecated Deprecated in iOS 10.0.
  */
 /*</javadoc>*/
@@ -52,20 +51,14 @@ import org.robovm.apple.avkit.*;
     public ADBannerView() {}
     protected ADBannerView(Handle h, long handle) { super(h, handle); }
     protected ADBannerView(SkipInit skipInit) { super(skipInit); }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "initWithAdType:")
     public ADBannerView(ADAdType type) { super((SkipInit) null); initObject(init(type)); }
     @Method(selector = "initWithFrame:")
     public ADBannerView(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public ADBannerView(NSCoder decoder) { super(decoder); }
+    public ADBannerView(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "adType")
     public native ADAdType getAdType();
     @Property(selector = "delegate")
@@ -83,12 +76,14 @@ import org.robovm.apple.avkit.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 12.0 and later.
+     * @deprecated Deprecated in iOS 13.0.
+     */
+    @Deprecated
     @Bridge(symbol="ADClampedBannerSize", optional=true)
     public static native @ByVal CGSize getClampedBannerSize(@ByVal CGSize size);
     
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "initWithAdType:")
     protected native @Pointer long init(ADAdType type);
     @Method(selector = "cancelBannerViewAction")

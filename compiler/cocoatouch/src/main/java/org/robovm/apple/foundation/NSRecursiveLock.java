@@ -55,14 +55,8 @@ import org.robovm.apple.dispatch.*;
     protected NSRecursiveLock(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Property(selector = "name")
     public native String getName();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Property(selector = "setName:")
     public native void setName(String v);
     /*</properties>*/

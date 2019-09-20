@@ -58,9 +58,6 @@ import org.robovm.apple.security.*;
         return code;
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @GlobalValue(symbol="NEVPNErrorDomain", optional=true)
     public static native String getClassDomain();
     /*</methods>*/

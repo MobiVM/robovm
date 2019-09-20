@@ -33,11 +33,12 @@ import org.robovm.apple.foundation.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 12.0 and later.
+ * @deprecated Deprecated in iOS 13.0. Use HKCumulativeQuantitySample
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("HealthKit") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("HealthKit") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/HKCumulativeQuantitySeriesSample/*</name>*/ 
-    extends /*<extends>*/HKQuantitySample/*</extends>*/ 
+    extends /*<extends>*/HKCumulativeQuantitySample/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class HKCumulativeQuantitySeriesSamplePtr extends Ptr<HKCumulativeQuantitySeriesSample, HKCumulativeQuantitySeriesSamplePtr> {}/*</ptr>*/

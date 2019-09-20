@@ -33,9 +33,7 @@ import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 3.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("ExternalAccessory") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/EASession/*</name>*/ 
@@ -49,39 +47,21 @@ import org.robovm.apple.uikit.*;
     public EASession() {}
     protected EASession(Handle h, long handle) { super(h, handle); }
     protected EASession(SkipInit skipInit) { super(skipInit); }
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "initWithAccessory:forProtocol:")
     public EASession(EAAccessory accessory, String protocolString) { super((SkipInit) null); initObject(init(accessory, protocolString)); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "accessory")
     public native EAAccessory getAccessory();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "protocolString")
     public native String getProtocolString();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "inputStream")
     public native NSInputStream getInputStream();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "outputStream")
     public native NSOutputStream getOutputStream();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "initWithAccessory:forProtocol:")
     protected native @Pointer long init(EAAccessory accessory, String protocolString);
     /*</methods>*/

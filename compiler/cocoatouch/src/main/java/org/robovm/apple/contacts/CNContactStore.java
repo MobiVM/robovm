@@ -63,7 +63,11 @@ import org.robovm.apple.foundation.*;
     protected CNContactStore(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "currentHistoryToken")
+    public native NSData getCurrentHistoryToken();
     /*</properties>*/
     /*<members>*//*</members>*/
     public boolean enumerateContacts(CNContactFetchRequest fetchRequest, VoidBlock2<CNContact, BooleanPtr> block) throws NSErrorException {
@@ -98,6 +102,34 @@ import org.robovm.apple.foundation.*;
     }
     @Method(selector = "unifiedContactWithIdentifier:keysToFetch:error:")
     private native CNContact getUnifiedContact(String identifier, @org.robovm.rt.bro.annotation.Marshaler(CNContactPropertyKey.AsListMarshaler.class) List<CNContactPropertyKey> keys, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public CNFetchResult getEnumeratorForContactFetchReques(CNContactFetchRequest request) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       CNFetchResult result = getEnumeratorForContactFetchReques(request, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "enumeratorForContactFetchRequest:error:")
+    private native CNFetchResult getEnumeratorForContactFetchReques(CNContactFetchRequest request, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public CNFetchResult getEnumeratorForChangeHistoryFetchRequest(CNChangeHistoryFetchRequest request) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       CNFetchResult result = getEnumeratorForChangeHistoryFetchRequest(request, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "enumeratorForChangeHistoryFetchRequest:error:")
+    private native CNFetchResult getEnumeratorForChangeHistoryFetchRequest(CNChangeHistoryFetchRequest request, NSError.NSErrorPtr error);
     @Method(selector = "enumerateContactsWithFetchRequest:error:usingBlock:")
     private native boolean enumerateContacts(CNContactFetchRequest fetchRequest, NSError.NSErrorPtr error, @Block VoidBlock2<CNContact, BooleanPtr> block);
     public NSArray<CNGroup> getGroupsMatchingPredicate(NSPredicate predicate) throws NSErrorException {

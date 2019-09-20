@@ -35,9 +35,7 @@ import org.robovm.apple.mapkit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 5.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("EventKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/EKSource/*</name>*/ 
@@ -62,9 +60,6 @@ import org.robovm.apple.mapkit.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "calendarsForEntityType:")
     public native NSSet<EKCalendar> getCalendars(EKEntityType entityType);
     /*</methods>*/

@@ -33,9 +33,7 @@ import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 3.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("MediaPlayer") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPMediaPickerController/*</name>*/ 
@@ -53,7 +51,7 @@ import org.robovm.apple.coregraphics.*;
     @Method(selector = "initWithNibName:bundle:")
     public MPMediaPickerController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
     @Method(selector = "initWithCoder:")
-    public MPMediaPickerController(NSCoder decoder) { super(decoder); }
+    public MPMediaPickerController(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "mediaTypes")
@@ -66,14 +64,8 @@ import org.robovm.apple.coregraphics.*;
     public native boolean allowsPickingMultipleItems();
     @Property(selector = "setAllowsPickingMultipleItems:")
     public native void setAllowsPickingMultipleItems(boolean v);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "showsCloudItems")
     public native boolean showsCloudItems();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "setShowsCloudItems:")
     public native void setShowsCloudItems(boolean v);
     /**

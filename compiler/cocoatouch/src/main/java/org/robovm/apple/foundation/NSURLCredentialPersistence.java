@@ -47,9 +47,6 @@ public enum /*<name>*/NSURLCredentialPersistence/*</name>*/ implements ValuedEnu
     None(0L),
     ForSession(1L),
     Permanent(2L),
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     Synchronizable(3L);
     /*</values>*/
 

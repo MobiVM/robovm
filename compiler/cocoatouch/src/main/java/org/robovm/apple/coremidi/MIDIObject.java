@@ -103,59 +103,26 @@ import org.robovm.apple.corefoundation.*;
         return MIDIObjectType.valueOf(ptr.get());
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     @Bridge(symbol="MIDIObjectGetIntegerProperty", optional=true)
     protected native MIDIError getIntegerProperty(String propertyID, IntPtr outValue);
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     @Bridge(symbol="MIDIObjectSetIntegerProperty", optional=true)
     public native MIDIError setIntegerProperty(String propertyID, int value);
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     @Bridge(symbol="MIDIObjectGetStringProperty", optional=true)
     protected native MIDIError getStringProperty(String propertyID, NSString.NSStringPtr str);
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     @Bridge(symbol="MIDIObjectSetStringProperty", optional=true)
     public native MIDIError setStringProperty(String propertyID, String str);
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     @Bridge(symbol="MIDIObjectGetDataProperty", optional=true)
     protected native MIDIError getDataProperty(String propertyID, NSData.NSDataPtr outData);
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     @Bridge(symbol="MIDIObjectSetDataProperty", optional=true)
     public native MIDIError setDataProperty(String propertyID, NSData data);
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     @Bridge(symbol="MIDIObjectGetDictionaryProperty", optional=true)
     protected native MIDIError getDictionaryProperty(String propertyID, NSDictionary.NSDictionaryPtr outDict);
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     @Bridge(symbol="MIDIObjectSetDictionaryProperty", optional=true)
     public native MIDIError setDictionaryProperty(String propertyID, NSDictionary dict);
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     @Bridge(symbol="MIDIObjectGetProperties", optional=true)
     protected native MIDIError getProperties(CFPropertyList.CFPropertyListPtr outProperties, boolean deep);
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     @Bridge(symbol="MIDIObjectRemoveProperty", optional=true)
     public native MIDIError removeProperty(String propertyID);
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     @Bridge(symbol="MIDIObjectFindByUniqueID", optional=true)
     protected static native MIDIError findByUniqueID(int inUniqueID, MIDIObject.MIDIObjectPtr outObject, IntPtr outObjectType);
     /*</methods>*/

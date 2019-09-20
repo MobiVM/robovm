@@ -35,10 +35,10 @@ import org.robovm.apple.uikit.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 8.0 and later.
+ * @deprecated Deprecated in iOS 13.0. Inter-App Audio API is deprecated in favor of Audio Units
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("CoreAudioKit") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("CoreAudioKit") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CAInterAppAudioTransportView/*</name>*/ 
     extends /*<extends>*/UIView/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -53,7 +53,7 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "initWithFrame:")
     public CAInterAppAudioTransportView(@ByVal org.robovm.apple.coregraphics.CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public CAInterAppAudioTransportView(NSCoder decoder) { super(decoder); }
+    public CAInterAppAudioTransportView(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "isEnabled")

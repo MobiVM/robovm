@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -286,70 +288,74 @@ import org.robovm.apple.intents.*;
     @ByVal CGRect getAccessibilityFrame();
     @Property(selector = "setAccessibilityFrame:")
     void setAccessibilityFrame(@ByVal CGRect v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "accessibilityPath")
     UIBezierPath getAccessibilityPath();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setAccessibilityPath:")
     void setAccessibilityPath(UIBezierPath v);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "accessibilityActivationPoint")
     @ByVal CGPoint getAccessibilityActivationPoint();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setAccessibilityActivationPoint:")
     void setAccessibilityActivationPoint(@ByVal CGPoint v);
     @Property(selector = "accessibilityLanguage")
     String getAccessibilityLanguage();
     @Property(selector = "setAccessibilityLanguage:")
     void setAccessibilityLanguage(String v);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "accessibilityElementsHidden")
     boolean areAccessibilityElementsHidden();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setAccessibilityElementsHidden:")
     void setAccessibilityElementsHidden(boolean v);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "accessibilityViewIsModal")
     boolean isAccessibilityViewModal();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setAccessibilityViewIsModal:")
     void setAccessibilityViewModal(boolean v);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "shouldGroupAccessibilityChildren")
     boolean shouldGroupAccessibilityChildren();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "setShouldGroupAccessibilityChildren:")
     void setShouldGroupAccessibilityChildren(boolean v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "accessibilityNavigationStyle")
     UIAccessibilityNavigationStyle getAccessibilityNavigationStyle();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setAccessibilityNavigationStyle:")
     void setAccessibilityNavigationStyle(UIAccessibilityNavigationStyle v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "accessibilityRespondsToUserInteraction")
+    boolean isAccessibilityRespondsToUserInteraction();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setAccessibilityRespondsToUserInteraction:")
+    void setAccessibilityRespondsToUserInteraction(boolean v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "accessibilityUserInputLabels")
+    NSArray<NSString> getAccessibilityUserInputLabels();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setAccessibilityUserInputLabels:")
+    void setAccessibilityUserInputLabels(NSArray<NSString> v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "accessibilityAttributedUserInputLabels")
+    NSArray<NSAttributedString> getAccessibilityAttributedUserInputLabels();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setAccessibilityAttributedUserInputLabels:")
+    void setAccessibilityAttributedUserInputLabels(NSArray<NSAttributedString> v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "accessibilityTextualContext")
+    String getAccessibilityTextualContext();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setAccessibilityTextualContext:")
+    void setAccessibilityTextualContext(String v);
     /*</properties>*/
     /*<methods>*/
     

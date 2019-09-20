@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -66,20 +68,17 @@ public enum /*<name>*/UIBarButtonSystemItem/*</name>*/ implements ValuedEnum {
     Pause(18L),
     Rewind(19L),
     FastForward(20L),
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     Undo(21L),
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     Redo(22L),
     /**
-     * @since Available in iOS 4.0 and later.
      * @deprecated Deprecated in iOS 11.0.
      */
     @Deprecated
-    PageCurl(23L);
+    PageCurl(23L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    Close(24L);
     /*</values>*/
 
     private final long n;

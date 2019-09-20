@@ -219,35 +219,17 @@ import org.robovm.apple.audiotoolbox.*;
         OSStatusException.throwIfNecessary(status);
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @GlobalValue(symbol="kCMTimebaseNotification_EffectiveRateChanged", optional=true)
     public static native NSString EffectiveRateChangedNotification();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @GlobalValue(symbol="kCMTimebaseNotification_TimeJumped", optional=true)
     public static native NSString TimeJumpedNotification();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @GlobalValue(symbol="kCMTimebaseNotificationKey_EventTime", optional=true)
     protected static native NSString EventTimeNotificationKey();
     
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Bridge(symbol="CMTimebaseGetTypeID", optional=true)
     public static native @MachineSizedUInt long getClassTypeID();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Bridge(symbol="CMTimebaseCreateWithMasterClock", optional=true)
     protected static native OSStatus create0(CFAllocator allocator, CMClock masterClock, CMTimebase.CMTimebasePtr timebaseOut);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Bridge(symbol="CMTimebaseCreateWithMasterTimebase", optional=true)
     protected static native OSStatus create0(CFAllocator allocator, CMTimebase masterTimebase, CMTimebase.CMTimebasePtr timebaseOut);
     /**
@@ -271,120 +253,69 @@ import org.robovm.apple.audiotoolbox.*;
     @Bridge(symbol="CMTimebaseCopyUltimateMasterClock", optional=true)
     protected native CMClock copyUltimateMasterClock0();
     /**
-     * @since Available in iOS 6.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use CMTimebaseCopyMasterTimebase
      */
     @Deprecated
     @Bridge(symbol="CMTimebaseGetMasterTimebase", optional=true)
     public native CMTimebase getMasterTimebase();
     /**
-     * @since Available in iOS 6.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use CMTimebaseCopyMasterClock
      */
     @Deprecated
     @Bridge(symbol="CMTimebaseGetMasterClock", optional=true)
     public native CMClock getMasterClock();
     /**
-     * @since Available in iOS 6.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use CMTimebaseCopyMaster
      */
     @Deprecated
     @Bridge(symbol="CMTimebaseGetMaster", optional=true)
     public native CMTimebase getMaster();
     /**
-     * @since Available in iOS 6.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use CMTimebaseCopyUltimateMasterClock
      */
     @Deprecated
     @Bridge(symbol="CMTimebaseGetUltimateMasterClock", optional=true)
     public native CMClock getUltimateMasterClock();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
+    @Bridge(symbol="CMTimebaseSetMasterClock", optional=true)
+    protected native OSStatus setMasterClock0(CMClock newMasterClock);
+    @Bridge(symbol="CMTimebaseSetMasterTimebase", optional=true)
+    protected native OSStatus setMasterTimebase0(CMTimebase newMasterTimebase);
     @Bridge(symbol="CMTimebaseGetTime", optional=true)
     public native @ByVal CMTime getTime();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Bridge(symbol="CMTimebaseGetTimeWithTimeScale", optional=true)
     public native @ByVal CMTime getTime(int timescale, CMTimeRoundingMethod method);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Bridge(symbol="CMTimebaseSetTime", optional=true)
     protected native OSStatus setTime0(@ByVal CMTime time);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Bridge(symbol="CMTimebaseSetAnchorTime", optional=true)
     protected native OSStatus setAnchorTime0(@ByVal CMTime timebaseTime, @ByVal CMTime immediateMasterTime);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Bridge(symbol="CMTimebaseGetRate", optional=true)
     public native double getRate();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Bridge(symbol="CMTimebaseSetRate", optional=true)
     protected native OSStatus setRate0(double rate);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Bridge(symbol="CMTimebaseSetRateAndAnchorTime", optional=true)
     protected native OSStatus setRateAndAnchorTime0(double rate, @ByVal CMTime timebaseTime, @ByVal CMTime immediateMasterTime);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Bridge(symbol="CMTimebaseGetEffectiveRate", optional=true)
     public native double getEffectiveRate();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Bridge(symbol="CMTimebaseAddTimer", optional=true)
     protected native OSStatus addTimer0(NSTimer timer, NSRunLoop runloop);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Bridge(symbol="CMTimebaseRemoveTimer", optional=true)
     protected native OSStatus removeTimer0(NSTimer timer);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Bridge(symbol="CMTimebaseSetTimerNextFireTime", optional=true)
     protected native OSStatus setTimerNextFireTime0(NSTimer timer, @ByVal CMTime fireTime, int flags);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Bridge(symbol="CMTimebaseSetTimerToFireImmediately", optional=true)
     protected native OSStatus setTimerToFireImmediately0(NSTimer timer);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @WeaklyLinked
     @Bridge(symbol="CMTimebaseAddTimerDispatchSource", optional=true)
     protected native OSStatus addTimerDispatchSource0(DispatchSource timerSource);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @WeaklyLinked
     @Bridge(symbol="CMTimebaseRemoveTimerDispatchSource", optional=true)
     protected native OSStatus removeTimerDispatchSource0(DispatchSource timerSource);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @WeaklyLinked
     @Bridge(symbol="CMTimebaseSetTimerDispatchSourceNextFireTime", optional=true)
     protected native OSStatus setTimerDispatchSourceNextFireTime0(DispatchSource timerSource, @ByVal CMTime fireTime, int flags);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @WeaklyLinked
     @Bridge(symbol="CMTimebaseSetTimerDispatchSourceToFireImmediately", optional=true)
     protected native OSStatus setTimerDispatchSourceToFireImmediately0(DispatchSource timerSource);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Bridge(symbol="CMTimebaseNotificationBarrier", optional=true)
     protected native OSStatus notificationBarrier0();
     /*</methods>*/

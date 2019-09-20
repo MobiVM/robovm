@@ -54,6 +54,36 @@ import org.robovm.apple.corelocation.*;
     void handlePlayMedia(INPlayMediaIntent intent, @Block VoidBlock1<INPlayMediaIntentResponse> completion);
     @Method(selector = "confirmPlayMedia:completion:")
     void confirmPlayMedia(INPlayMediaIntent intent, @Block VoidBlock1<INPlayMediaIntentResponse> completion);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "resolveMediaItemsForPlayMedia:withCompletion:")
+    void resolveMediaItemsForPlayMedia(INPlayMediaIntent intent, @Block VoidBlock1<NSArray<INPlayMediaMediaItemResolutionResult>> completion);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "resolvePlayShuffledForPlayMedia:withCompletion:")
+    void resolvePlayShuffledForPlayMedia(INPlayMediaIntent intent, @Block VoidBlock1<INBooleanResolutionResult> completion);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "resolvePlaybackRepeatModeForPlayMedia:withCompletion:")
+    void resolvePlaybackRepeatModeForPlayMedia(INPlayMediaIntent intent, @Block VoidBlock1<INPlaybackRepeatModeResolutionResult> completion);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "resolveResumePlaybackForPlayMedia:withCompletion:")
+    void resolveResumePlaybackForPlayMedia(INPlayMediaIntent intent, @Block VoidBlock1<INBooleanResolutionResult> completion);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "resolvePlaybackQueueLocationForPlayMedia:withCompletion:")
+    void resolvePlaybackQueueLocationForPlayMedia(INPlayMediaIntent intent, @Block VoidBlock1<INPlaybackQueueLocationResolutionResult> completion);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "resolvePlaybackSpeedForPlayMedia:withCompletion:")
+    void resolvePlaybackSpeedForPlayMedia(INPlayMediaIntent intent, @Block VoidBlock1<INPlayMediaPlaybackSpeedResolutionResult> completion);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

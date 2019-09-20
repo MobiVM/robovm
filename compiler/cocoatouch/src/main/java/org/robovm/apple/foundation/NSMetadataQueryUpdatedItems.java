@@ -109,9 +109,6 @@ import org.robovm.apple.dispatch.*;
     }
     
 
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public NSArray<NSMetadataItem> getAddedItems() {
         if (has(Keys.UpdateAddedItems())) {
             NSArray<NSMetadataItem> val = (NSArray<NSMetadataItem>) get(Keys.UpdateAddedItems());
@@ -119,9 +116,6 @@ import org.robovm.apple.dispatch.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public NSArray<NSMetadataItem> getChangedItems() {
         if (has(Keys.UpdateChangedItems())) {
             NSArray<NSMetadataItem> val = (NSArray<NSMetadataItem>) get(Keys.UpdateChangedItems());
@@ -129,9 +123,6 @@ import org.robovm.apple.dispatch.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public NSArray<NSMetadataItem> getRemovedItems() {
         if (has(Keys.UpdateRemovedItems())) {
             NSArray<NSMetadataItem> val = (NSArray<NSMetadataItem>) get(Keys.UpdateRemovedItems());
@@ -145,19 +136,10 @@ import org.robovm.apple.dispatch.*;
     @Library("Foundation")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="NSMetadataQueryUpdateAddedItemsKey", optional=true)
         public static native NSString UpdateAddedItems();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="NSMetadataQueryUpdateChangedItemsKey", optional=true)
         public static native NSString UpdateChangedItems();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="NSMetadataQueryUpdateRemovedItemsKey", optional=true)
         public static native NSString UpdateRemovedItems();
     }

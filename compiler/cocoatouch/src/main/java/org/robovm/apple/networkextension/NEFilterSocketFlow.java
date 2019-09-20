@@ -68,28 +68,13 @@ import org.robovm.apple.security.*;
     /**
      * @since Available in iOS 9.0 and later.
      */
-    @Property(selector = "setSocketFamily:")
-    public native void setSocketFamily(int v);
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
     @Property(selector = "socketType")
     public native int getSocketType();
     /**
      * @since Available in iOS 9.0 and later.
      */
-    @Property(selector = "setSocketType:")
-    public native void setSocketType(int v);
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
     @Property(selector = "socketProtocol")
     public native int getSocketProtocol();
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
-    @Property(selector = "setSocketProtocol:")
-    public native void setSocketProtocol(int v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

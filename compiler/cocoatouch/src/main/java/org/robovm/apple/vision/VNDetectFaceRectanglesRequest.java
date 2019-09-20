@@ -48,7 +48,10 @@ import org.robovm.apple.imageio.*;
 
     /*<ptr>*/public static class VNDetectFaceRectanglesRequestPtr extends Ptr<VNDetectFaceRectanglesRequest, VNDetectFaceRectanglesRequestPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(VNDetectFaceRectanglesRequest.class); }/*</bind>*/
-    /*<constants>*//*</constants>*/
+    /*<constants>*/
+    public static final int Revision1 = 1;
+    public static final int Revision2 = 2;
+    /*</constants>*/
     /*<constructors>*/
     public VNDetectFaceRectanglesRequest() {}
     protected VNDetectFaceRectanglesRequest(Handle h, long handle) { super(h, handle); }
@@ -61,17 +64,6 @@ import org.robovm.apple.imageio.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 12.0 and later.
-     */
-    @GlobalValue(symbol="VNDetectFaceRectanglesRequestRevision1", optional=true)
-    public static native @MachineSizedUInt long getRevision1();
-    /**
-     * @since Available in iOS 12.0 and later.
-     */
-    @GlobalValue(symbol="VNDetectFaceRectanglesRequestRevision2", optional=true)
-    public static native @MachineSizedUInt long getRevision2();
-    
     
     /*</methods>*/
 }

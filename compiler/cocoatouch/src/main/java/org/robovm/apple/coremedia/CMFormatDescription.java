@@ -81,44 +81,20 @@ import org.robovm.apple.audiotoolbox.*;
         return equalsTo0(desc2, CFArray.fromStrings(formatDescriptionExtensionKeysToIgnore), CFArray.fromStrings(sampleDescriptionExtensionAtomKeysToIgnore));
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMFormatDescriptionCreate", optional=true)
     protected static native OSStatus create0(CFAllocator allocator, CMMediaType mediaType, int mediaSubType, CFDictionary extensions, CMFormatDescription.CMFormatDescriptionPtr formatDescriptionOut);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMFormatDescriptionGetTypeID", optional=true)
     public static native @MachineSizedUInt long getClassTypeID();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMFormatDescriptionEqual", optional=true)
     public native boolean equalsTo(CMFormatDescription otherFormatDescription);
-    /**
-     * @since Available in iOS 4.3 and later.
-     */
     @Bridge(symbol="CMFormatDescriptionEqualIgnoringExtensionKeys", optional=true)
     private native boolean equalsTo0(CMFormatDescription otherFormatDescription, CFType formatDescriptionExtensionKeysToIgnore, CFType sampleDescriptionExtensionAtomKeysToIgnore);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMFormatDescriptionGetMediaType", optional=true)
     public native CMMediaType getMediaType();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMFormatDescriptionGetMediaSubType", optional=true)
     public native int getMediaSubType();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMFormatDescriptionGetExtensions", optional=true)
     public native CFDictionary getExtensionDictionary();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMFormatDescriptionGetExtension", optional=true)
     public native CFType getExtension(String extensionKey);
     /*</methods>*/

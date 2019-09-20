@@ -92,89 +92,26 @@ import org.robovm.apple.audiotoolbox.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final CMMetadataBaseDataType RawData = new CMMetadataBaseDataType("RawData");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final CMMetadataBaseDataType UTF8 = new CMMetadataBaseDataType("UTF8");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final CMMetadataBaseDataType UTF16 = new CMMetadataBaseDataType("UTF16");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final CMMetadataBaseDataType GIF = new CMMetadataBaseDataType("GIF");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final CMMetadataBaseDataType JPEG = new CMMetadataBaseDataType("JPEG");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final CMMetadataBaseDataType PNG = new CMMetadataBaseDataType("PNG");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final CMMetadataBaseDataType BMP = new CMMetadataBaseDataType("BMP");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final CMMetadataBaseDataType Float32 = new CMMetadataBaseDataType("Float32");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final CMMetadataBaseDataType Float64 = new CMMetadataBaseDataType("Float64");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final CMMetadataBaseDataType SInt8 = new CMMetadataBaseDataType("SInt8");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final CMMetadataBaseDataType SInt16 = new CMMetadataBaseDataType("SInt16");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final CMMetadataBaseDataType SInt32 = new CMMetadataBaseDataType("SInt32");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final CMMetadataBaseDataType SInt64 = new CMMetadataBaseDataType("SInt64");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final CMMetadataBaseDataType UInt8 = new CMMetadataBaseDataType("UInt8");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final CMMetadataBaseDataType UInt16 = new CMMetadataBaseDataType("UInt16");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final CMMetadataBaseDataType UInt32 = new CMMetadataBaseDataType("UInt32");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final CMMetadataBaseDataType UInt64 = new CMMetadataBaseDataType("UInt64");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final CMMetadataBaseDataType PointF32 = new CMMetadataBaseDataType("PointF32");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final CMMetadataBaseDataType DimensionsF32 = new CMMetadataBaseDataType("DimensionsF32");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final CMMetadataBaseDataType RectF32 = new CMMetadataBaseDataType("RectF32");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final CMMetadataBaseDataType AffineTransformF64 = new CMMetadataBaseDataType("AffineTransformF64");
     /**
      * @since Available in iOS 9.0 and later.
@@ -189,16 +126,14 @@ import org.robovm.apple.audiotoolbox.*;
      */
     public static final CMMetadataBaseDataType JSON = new CMMetadataBaseDataType("JSON");
     /**
-     * @since Available in iOS 8.0 and later.
+     * @since Available in iOS 13.0 and later.
      */
+    public static final CMMetadataBaseDataType PerspectiveTransformF64 = new CMMetadataBaseDataType("PerspectiveTransformF64");
     public static final CMMetadataBaseDataType QuickTimeMetadataLocation_ISO6709 = new CMMetadataBaseDataType("QuickTimeMetadataLocation_ISO6709");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final CMMetadataBaseDataType QuickTimeMetadataDirection = new CMMetadataBaseDataType("QuickTimeMetadataDirection");
     /*</constants>*/
     
-    private static /*<name>*/CMMetadataBaseDataType/*</name>*/[] values = new /*<name>*/CMMetadataBaseDataType/*</name>*/[] {/*<value_list>*/RawData, UTF8, UTF16, GIF, JPEG, PNG, BMP, Float32, Float64, SInt8, SInt16, SInt32, SInt64, UInt8, UInt16, UInt32, UInt64, PointF32, DimensionsF32, RectF32, AffineTransformF64, PolygonF32, PolylineF32, JSON, QuickTimeMetadataLocation_ISO6709, QuickTimeMetadataDirection/*</value_list>*/};
+    private static /*<name>*/CMMetadataBaseDataType/*</name>*/[] values = new /*<name>*/CMMetadataBaseDataType/*</name>*/[] {/*<value_list>*/RawData, UTF8, UTF16, GIF, JPEG, PNG, BMP, Float32, Float64, SInt8, SInt16, SInt32, SInt64, UInt8, UInt16, UInt32, UInt64, PointF32, DimensionsF32, RectF32, AffineTransformF64, PolygonF32, PolylineF32, JSON, PerspectiveTransformF64, QuickTimeMetadataLocation_ISO6709, QuickTimeMetadataDirection/*</value_list>*/};
     
     /*<name>*/CMMetadataBaseDataType/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -221,109 +156,46 @@ import org.robovm.apple.audiotoolbox.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="kCMMetadataBaseDataType_RawData", optional=true)
         public static native CFString RawData();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="kCMMetadataBaseDataType_UTF8", optional=true)
         public static native CFString UTF8();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="kCMMetadataBaseDataType_UTF16", optional=true)
         public static native CFString UTF16();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="kCMMetadataBaseDataType_GIF", optional=true)
         public static native CFString GIF();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="kCMMetadataBaseDataType_JPEG", optional=true)
         public static native CFString JPEG();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="kCMMetadataBaseDataType_PNG", optional=true)
         public static native CFString PNG();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="kCMMetadataBaseDataType_BMP", optional=true)
         public static native CFString BMP();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="kCMMetadataBaseDataType_Float32", optional=true)
         public static native CFString Float32();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="kCMMetadataBaseDataType_Float64", optional=true)
         public static native CFString Float64();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="kCMMetadataBaseDataType_SInt8", optional=true)
         public static native CFString SInt8();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="kCMMetadataBaseDataType_SInt16", optional=true)
         public static native CFString SInt16();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="kCMMetadataBaseDataType_SInt32", optional=true)
         public static native CFString SInt32();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="kCMMetadataBaseDataType_SInt64", optional=true)
         public static native CFString SInt64();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="kCMMetadataBaseDataType_UInt8", optional=true)
         public static native CFString UInt8();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="kCMMetadataBaseDataType_UInt16", optional=true)
         public static native CFString UInt16();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="kCMMetadataBaseDataType_UInt32", optional=true)
         public static native CFString UInt32();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="kCMMetadataBaseDataType_UInt64", optional=true)
         public static native CFString UInt64();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="kCMMetadataBaseDataType_PointF32", optional=true)
         public static native CFString PointF32();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="kCMMetadataBaseDataType_DimensionsF32", optional=true)
         public static native CFString DimensionsF32();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="kCMMetadataBaseDataType_RectF32", optional=true)
         public static native CFString RectF32();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="kCMMetadataBaseDataType_AffineTransformF64", optional=true)
         public static native CFString AffineTransformF64();
         /**
@@ -342,13 +214,12 @@ import org.robovm.apple.audiotoolbox.*;
         @GlobalValue(symbol="kCMMetadataBaseDataType_JSON", optional=true)
         public static native CFString JSON();
         /**
-         * @since Available in iOS 8.0 and later.
+         * @since Available in iOS 13.0 and later.
          */
+        @GlobalValue(symbol="kCMMetadataBaseDataType_PerspectiveTransformF64", optional=true)
+        public static native CFString PerspectiveTransformF64();
         @GlobalValue(symbol="kCMMetadataDataType_QuickTimeMetadataLocation_ISO6709", optional=true)
         public static native CFString QuickTimeMetadataLocation_ISO6709();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="kCMMetadataDataType_QuickTimeMetadataDirection", optional=true)
         public static native CFString QuickTimeMetadataDirection();
         /*</values>*/

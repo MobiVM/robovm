@@ -91,6 +91,86 @@ import org.robovm.apple.dispatch.*;
     public native boolean isReusedConnection();
     @Property(selector = "resourceFetchType")
     public native NSURLSessionTaskMetricsResourceFetchType getResourceFetchType();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "countOfRequestHeaderBytesSent")
+    public native long getCountOfRequestHeaderBytesSent();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "countOfRequestBodyBytesSent")
+    public native long getCountOfRequestBodyBytesSent();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "countOfRequestBodyBytesBeforeEncoding")
+    public native long getCountOfRequestBodyBytesBeforeEncoding();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "countOfResponseHeaderBytesReceived")
+    public native long getCountOfResponseHeaderBytesReceived();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "countOfResponseBodyBytesReceived")
+    public native long getCountOfResponseBodyBytesReceived();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "countOfResponseBodyBytesAfterDecoding")
+    public native long getCountOfResponseBodyBytesAfterDecoding();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "localAddress")
+    public native String getLocalAddress();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "localPort")
+    public native NSNumber getLocalPort();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "remoteAddress")
+    public native String getRemoteAddress();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "remotePort")
+    public native NSNumber getRemotePort();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "negotiatedTLSProtocolVersion")
+    public native NSNumber getNegotiatedTLSProtocolVersion();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "negotiatedTLSCipherSuite")
+    public native NSNumber getNegotiatedTLSCipherSuite();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "isCellular")
+    public native boolean isCellular();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "isExpensive")
+    public native boolean isExpensive();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "isConstrained")
+    public native boolean isConstrained();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "isMultipath")
+    public native boolean isMultipath();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

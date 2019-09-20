@@ -116,9 +116,6 @@ import org.robovm.apple.audiotoolbox.*;
     }
     
 
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public AVAudioSessionInterruptionType getType() {
         if (has(Keys.Type())) {
             NSNumber val = (NSNumber) get(Keys.Type());
@@ -126,16 +123,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public AVAudioSessionInterruptionNotification setType(AVAudioSessionInterruptionType type) {
         set(Keys.Type(), NSNumber.valueOf(type.value()));
         return this;
     }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public AVAudioSessionInterruptionOptions getOptions() {
         if (has(Keys.Option())) {
             NSNumber val = (NSNumber) get(Keys.Option());
@@ -143,9 +134,6 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public AVAudioSessionInterruptionNotification setOptions(AVAudioSessionInterruptionOptions options) {
         set(Keys.Option(), NSNumber.valueOf(options.value()));
         return this;
@@ -156,14 +144,8 @@ import org.robovm.apple.audiotoolbox.*;
     @Library("AVFoundation")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 6.0 and later.
-         */
         @GlobalValue(symbol="AVAudioSessionInterruptionTypeKey", optional=true)
         public static native NSString Type();
-        /**
-         * @since Available in iOS 6.0 and later.
-         */
         @GlobalValue(symbol="AVAudioSessionInterruptionOptionKey", optional=true)
         public static native NSString Option();
         /**

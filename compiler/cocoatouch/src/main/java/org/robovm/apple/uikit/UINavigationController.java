@@ -37,12 +37,12 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 2.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UINavigationController/*</name>*/ 
@@ -56,17 +56,14 @@ import org.robovm.apple.intents.*;
     public UINavigationController() {}
     protected UINavigationController(Handle h, long handle) { super(h, handle); }
     protected UINavigationController(SkipInit skipInit) { super(skipInit); }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "initWithNavigationBarClass:toolbarClass:")
     public UINavigationController(Class<? extends UINavigationBar> navigationBarClass, Class<? extends UIToolbar> toolbarClass) { super((SkipInit) null); initObject(init(navigationBarClass, toolbarClass)); }
     @Method(selector = "initWithRootViewController:")
     public UINavigationController(UIViewController rootViewController) { super((SkipInit) null); initObject(init(rootViewController)); }
     @Method(selector = "initWithNibName:bundle:")
-    public UINavigationController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
+    public UINavigationController(String nibNameOrNil, NSBundle nibBundleOrNil) { super((SkipInit) null); initObject(init(nibNameOrNil, nibBundleOrNil)); }
     @Method(selector = "initWithCoder:")
-    public UINavigationController(NSCoder decoder) { super(decoder); }
+    public UINavigationController(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "topViewController")
@@ -83,78 +80,36 @@ import org.robovm.apple.intents.*;
     public native void setNavigationBarHidden(boolean v);
     @Property(selector = "navigationBar")
     public native UINavigationBar getNavigationBar();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "isToolbarHidden")
     public native boolean isToolbarHidden();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "setToolbarHidden:")
     public native void setToolbarHidden(boolean v);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "toolbar")
     public native UIToolbar getToolbar();
     @Property(selector = "delegate")
     public native UINavigationControllerDelegate getDelegate();
     @Property(selector = "setDelegate:", strongRef = true)
     public native void setDelegate(UINavigationControllerDelegate v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "interactivePopGestureRecognizer")
     public native UIGestureRecognizer getInteractivePopGestureRecognizer();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "hidesBarsWhenKeyboardAppears")
     public native boolean hidesBarsWhenKeyboardAppears();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setHidesBarsWhenKeyboardAppears:")
     public native void setHidesBarsWhenKeyboardAppears(boolean v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "hidesBarsOnSwipe")
     public native boolean hidesBarsOnSwipe();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setHidesBarsOnSwipe:")
     public native void setHidesBarsOnSwipe(boolean v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "barHideOnSwipeGestureRecognizer")
     public native UIPanGestureRecognizer getBarHideOnSwipeGestureRecognizer();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "hidesBarsWhenVerticallyCompact")
     public native boolean hidesBarsWhenVerticallyCompact();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setHidesBarsWhenVerticallyCompact:")
     public native void setHidesBarsWhenVerticallyCompact(boolean v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "hidesBarsOnTap")
     public native boolean hidesBarsOnTap();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setHidesBarsOnTap:")
     public native void setHidesBarsOnTap(boolean v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "barHideOnTapGestureRecognizer")
     public native UITapGestureRecognizer getBarHideOnTapGestureRecognizer();
     /*</properties>*/
@@ -163,13 +118,14 @@ import org.robovm.apple.intents.*;
     @GlobalValue(symbol="UINavigationControllerHideShowBarDuration", optional=true)
     public static native @MachineSizedFloat double getHideShowBarDuration();
     
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "initWithNavigationBarClass:toolbarClass:")
     protected native @Pointer long init(Class<? extends UINavigationBar> navigationBarClass, Class<? extends UIToolbar> toolbarClass);
     @Method(selector = "initWithRootViewController:")
     protected native @Pointer long init(UIViewController rootViewController);
+    @Method(selector = "initWithNibName:bundle:")
+    protected native @Pointer long init(String nibNameOrNil, NSBundle nibBundleOrNil);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     @Method(selector = "pushViewController:animated:")
     public native void pushViewController(UIViewController viewController, boolean animated);
     @Method(selector = "popViewControllerAnimated:")
@@ -178,21 +134,12 @@ import org.robovm.apple.intents.*;
     public native NSArray<UIViewController> popToViewController(UIViewController viewController, boolean animated);
     @Method(selector = "popToRootViewControllerAnimated:")
     public native NSArray<UIViewController> popToRootViewController(boolean animated);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "setViewControllers:animated:")
     public native void setViewControllers(NSArray<UIViewController> viewControllers, boolean animated);
     @Method(selector = "setNavigationBarHidden:animated:")
     public native void setNavigationBarHidden(boolean hidden, boolean animated);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "setToolbarHidden:animated:")
     public native void setToolbarHidden(boolean hidden, boolean animated);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "showViewController:sender:")
     public native void showViewController(UIViewController vc, NSObject sender);
     /*</methods>*/

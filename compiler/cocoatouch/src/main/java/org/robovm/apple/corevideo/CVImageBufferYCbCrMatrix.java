@@ -91,17 +91,8 @@ import org.robovm.apple.iosurface.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CVImageBufferYCbCrMatrix ITU_R_709_2 = new CVImageBufferYCbCrMatrix("ITU_R_709_2");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CVImageBufferYCbCrMatrix ITU_R_601_4 = new CVImageBufferYCbCrMatrix("ITU_R_601_4");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CVImageBufferYCbCrMatrix SMPTE_240M_1995 = new CVImageBufferYCbCrMatrix("SMPTE_240M_1995");
     /**
      * @since Available in iOS 9.0 and later.
@@ -140,19 +131,10 @@ import org.robovm.apple.iosurface.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVImageBufferYCbCrMatrix_ITU_R_709_2", optional=true)
         public static native CFString ITU_R_709_2();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVImageBufferYCbCrMatrix_ITU_R_601_4", optional=true)
         public static native CFString ITU_R_601_4();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVImageBufferYCbCrMatrix_SMPTE_240M_1995", optional=true)
         public static native CFString SMPTE_240M_1995();
         /**

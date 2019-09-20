@@ -41,9 +41,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVAssetTrack/*</name>*/ 
@@ -81,9 +79,6 @@ import org.robovm.apple.audiotoolbox.*;
     public native String getMediaType();
     @Property(selector = "formatDescriptions")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsListMarshaler.class) List<CMFormatDescription> getFormatDescriptions();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "isPlayable")
     public native boolean isPlayable();
     /**
@@ -113,32 +108,22 @@ import org.robovm.apple.audiotoolbox.*;
     public native @ByVal CGAffineTransform getPreferredTransform();
     @Property(selector = "preferredVolume")
     public native float getPreferredVolume();
+    @Property(selector = "hasAudioSampleDependencies")
+    public native boolean hasAudioSampleDependencies();
     @Property(selector = "nominalFrameRate")
     public native float getNominalFrameRate();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "minFrameDuration")
     public native @ByVal CMTime getMinFrameDuration();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "requiresFrameReordering")
     public native boolean requiresFrameReordering();
     @Property(selector = "segments")
     public native NSArray<AVAssetTrackSegment> getSegments();
     @Property(selector = "commonMetadata")
     public native NSArray<AVMetadataItem> getCommonMetadata();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "metadata")
     public native NSArray<AVMetadataItem> getMetadata();
     @Property(selector = "availableMetadataFormats")
     public native @org.robovm.rt.bro.annotation.Marshaler(AVMetadataFormat.AsListMarshaler.class) List<AVMetadataFormat> getAvailableMetadataFormats();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "availableTrackAssociationTypes")
     public native @org.robovm.rt.bro.annotation.Marshaler(AVTrackAssociationType.AsListMarshaler.class) List<AVTrackAssociationType> getAvailableTrackAssociationTypes();
     /*</properties>*/
@@ -172,9 +157,6 @@ import org.robovm.apple.audiotoolbox.*;
     public native @ByVal CMTime getSamplePresentationTime(@ByVal CMTime trackTime);
     @Method(selector = "metadataForFormat:")
     public native NSArray<AVMetadataItem> getMetadataForFormat(AVMetadataFormat format);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "associatedTracksOfType:")
     public native NSArray<AVAssetTrack> getAssociatedTracksOfType(AVTrackAssociationType trackAssociationType);
     @Method(selector = "statusOfValueForKey:error:")

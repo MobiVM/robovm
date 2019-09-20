@@ -50,7 +50,7 @@ import org.robovm.apple.corelocation.*;
     protected INRideCompletionStatus(Handle h, long handle) { super(h, handle); }
     protected INRideCompletionStatus(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public INRideCompletionStatus(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public INRideCompletionStatus(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "completionUserActivity")
@@ -90,14 +90,14 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "completed")
     public static native INRideCompletionStatus completed();
     @Method(selector = "completedWithSettledPaymentAmount:")
-    public static native INRideCompletionStatus completedWithSettledPaymentAmount(INCurrencyAmount settledPaymentAmount);
+    public static native INRideCompletionStatus completedSettled(INCurrencyAmount settledPaymentAmount);
     @Method(selector = "completedWithOutstandingPaymentAmount:")
-    public static native INRideCompletionStatus completedWithOutstandingPaymentAmount(INCurrencyAmount outstandingPaymentAmount);
+    public static native INRideCompletionStatus completedOutstanding(INCurrencyAmount outstandingPaymentAmount);
     /**
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "completedWithOutstandingFeedbackType:")
-    public static native INRideCompletionStatus completedWithOutstandingFeedbackType(INRideFeedbackTypeOptions feedbackType);
+    public static native INRideCompletionStatus completed(INRideFeedbackTypeOptions feedbackType);
     @Method(selector = "canceledByService")
     public static native INRideCompletionStatus canceledByService();
     @Method(selector = "canceledByUser")
@@ -107,6 +107,6 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

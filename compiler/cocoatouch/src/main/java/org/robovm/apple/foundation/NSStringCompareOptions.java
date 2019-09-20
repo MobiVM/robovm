@@ -50,21 +50,9 @@ public final class /*<name>*/NSStringCompareOptions/*</name>*/ extends Bits</*<n
     public static final NSStringCompareOptions Backwards = new NSStringCompareOptions(4L);
     public static final NSStringCompareOptions Anchored = new NSStringCompareOptions(8L);
     public static final NSStringCompareOptions Numeric = new NSStringCompareOptions(64L);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final NSStringCompareOptions DiacriticInsensitive = new NSStringCompareOptions(128L);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final NSStringCompareOptions WidthInsensitive = new NSStringCompareOptions(256L);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final NSStringCompareOptions ForcedOrdering = new NSStringCompareOptions(512L);
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public static final NSStringCompareOptions RegularExpression = new NSStringCompareOptions(1024L);
     /*</values>*/
 

@@ -108,9 +108,6 @@ import org.robovm.apple.dispatch.*;
     }
     
 
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public NSData getData() {
         if (has(Keys.Data())) {
             NSData val = get(Keys.Data(), NSData.class);
@@ -118,16 +115,10 @@ import org.robovm.apple.dispatch.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public SecValue setData(NSData data) {
         set(Keys.Data(), data);
         return this;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public CFType getRef() {
         if (has(Keys.Ref())) {
             CFType val = get(Keys.Ref(), CFType.class);
@@ -135,16 +126,10 @@ import org.robovm.apple.dispatch.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public SecValue setRef(CFType ref) {
         set(Keys.Ref(), ref);
         return this;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public NSData getPersistentRef() {
         if (has(Keys.PersistentRef())) {
             NSData val = get(Keys.PersistentRef(), NSData.class);
@@ -152,9 +137,6 @@ import org.robovm.apple.dispatch.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public SecValue setPersistentRef(NSData persistentRef) {
         set(Keys.PersistentRef(), persistentRef);
         return this;
@@ -165,19 +147,10 @@ import org.robovm.apple.dispatch.*;
     @Library("Security")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kSecValueData", optional=true)
         public static native CFType Data();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kSecValueRef", optional=true)
         public static native CFType Ref();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kSecValuePersistentRef", optional=true)
         public static native CFType PersistentRef();
     }

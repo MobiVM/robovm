@@ -56,22 +56,22 @@ import org.robovm.apple.corelocation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "successWithResolvedRelativeReference:")
-    public static native INRelativeReferenceResolutionResult successWithResolvedRelativeReference(INRelativeReference resolvedRelativeReference);
+    public static native INRelativeReferenceResolutionResult success(INRelativeReference resolvedRelativeReference);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use +successWithResolvedRelativeReference:
      */
     @Deprecated
     @Method(selector = "successWithResolvedValue:")
-    public static native INRelativeReferenceResolutionResult successWithResolvedValue(INRelativeReference resolvedValue);
+    public static native INRelativeReferenceResolutionResult successValue(INRelativeReference resolvedValue);
     @Method(selector = "confirmationRequiredWithRelativeReferenceToConfirm:")
-    public static native INRelativeReferenceResolutionResult confirmationRequiredWithRelativeReferenceToConfirm(INRelativeReference relativeReferenceToConfirm);
+    public static native INRelativeReferenceResolutionResult confirmationRequired(INRelativeReference relativeReferenceToConfirm);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use +confirmationRequiredWithRelativeReferenceToConfirm:
      */
     @Deprecated
     @Method(selector = "confirmationRequiredWithValueToConfirm:")
-    public static native INRelativeReferenceResolutionResult confirmationRequiredWithValueToConfirm(INRelativeReference valueToConfirm);
+    public static native INRelativeReferenceResolutionResult confirmationRequiredForValue(INRelativeReference valueToConfirm);
     /*</methods>*/
 }

@@ -110,9 +110,6 @@ import org.robovm.apple.uikit.*;
     }
     
 
-    /**
-     * @since Available in iOS 4.3 and later.
-     */
     public CGPath getPath() {
         if (has(Keys.Path())) {
             CGPath val = get(Keys.Path(), CGPath.class);
@@ -120,9 +117,6 @@ import org.robovm.apple.uikit.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 4.3 and later.
-     */
     public CTFrameClippingPath setPath(CGPath path) {
         set(Keys.Path(), path);
         return this;
@@ -133,9 +127,6 @@ import org.robovm.apple.uikit.*;
     @Library("CoreText")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 4.3 and later.
-         */
         @GlobalValue(symbol="kCTFramePathClippingPathAttributeName", optional=true)
         public static native CFString Path();
     }

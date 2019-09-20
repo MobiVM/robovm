@@ -39,9 +39,7 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 6.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSXPCConnection/*</name>*/ 
@@ -111,5 +109,12 @@ import org.robovm.apple.dispatch.*;
     public native void suspend();
     @Method(selector = "invalidate")
     public native void invalidate();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "scheduleSendBarrierBlock:")
+    public native void scheduleSendBarrierBlock(@Block Runnable block);
+    @Method(selector = "currentConnection")
+    public static native NSXPCConnection currentConnection();
     /*</methods>*/
 }

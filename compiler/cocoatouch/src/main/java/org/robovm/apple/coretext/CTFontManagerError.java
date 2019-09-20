@@ -51,9 +51,6 @@ import org.robovm.apple.uikit.*;
     /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @GlobalValue(symbol="kCTFontManagerErrorDomain", optional=true)
     public static native String getClassDomain();
     /*</methods>*/

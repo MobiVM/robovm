@@ -59,6 +59,11 @@ import org.robovm.apple.imageio.*;
     protected ARSession(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "identifier")
+    public native NSUUID getIdentifier();
     @Property(selector = "delegate")
     public native ARSessionDelegate getDelegate();
     @Property(selector = "setDelegate:", strongRef = true)
@@ -99,5 +104,20 @@ import org.robovm.apple.imageio.*;
      */
     @Method(selector = "createReferenceObjectWithTransform:center:extent:completionHandler:")
     public native void createReferenceObject(@ByVal MatrixFloat4x4 transform, @ByVal VectorFloat3 center, @ByVal VectorFloat3 extent, @Block VoidBlock2<ARReferenceObject, NSError> completionHandler);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "raycast:")
+    public native NSArray<ARRaycastResult> raycast(ARRaycastQuery query);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "trackedRaycast:updateHandler:")
+    public native ARTrackedRaycast trackedRaycast(ARRaycastQuery query, @Block VoidBlock1<NSArray<ARRaycastResult>> updateHandler);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "updateWithCollaborationData:")
+    public native void update(ARCollaborationData collaborationData);
     /*</methods>*/
 }

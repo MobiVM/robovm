@@ -53,7 +53,7 @@ import org.robovm.apple.mapkit.*;
     @Method(selector = "initWithStartButtonTitle:additionalRoutesButtonTitle:overviewButtonTitle:")
     public CPTripPreviewTextConfiguration(String startButtonTitle, String additionalRoutesButtonTitle, String overviewButtonTitle) { super((SkipInit) null); initObject(init(startButtonTitle, additionalRoutesButtonTitle, overviewButtonTitle)); }
     @Method(selector = "initWithCoder:")
-    public CPTripPreviewTextConfiguration(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public CPTripPreviewTextConfiguration(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "startButtonTitle")
@@ -72,6 +72,6 @@ import org.robovm.apple.mapkit.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

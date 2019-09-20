@@ -36,6 +36,7 @@ import org.robovm.apple.imageio.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.metal.*;
 import org.robovm.apple.iosurface.*;
+import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -114,9 +115,6 @@ import org.robovm.apple.iosurface.*;
     }
     
 
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public boolean recognizesEyeBlinks() {
         if (has(Keys.EyeBlink())) {
             NSNumber val = (NSNumber) get(Keys.EyeBlink());
@@ -124,16 +122,10 @@ import org.robovm.apple.iosurface.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public CIDetectorFeatureOptions setRecognizesEyeBlinks(boolean recognizesEyeBlinks) {
         set(Keys.EyeBlink(), NSNumber.valueOf(recognizesEyeBlinks));
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public boolean recognizesSmiles() {
         if (has(Keys.Smile())) {
             NSNumber val = (NSNumber) get(Keys.Smile());
@@ -141,16 +133,10 @@ import org.robovm.apple.iosurface.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public CIDetectorFeatureOptions setRecognizesSmiles(boolean recognizesSmiles) {
         set(Keys.Smile(), NSNumber.valueOf(recognizesSmiles));
         return this;
     }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public double getFocalLength() {
         if (has(Keys.FocalLength())) {
             NSNumber val = (NSNumber) get(Keys.FocalLength());
@@ -158,16 +144,10 @@ import org.robovm.apple.iosurface.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public CIDetectorFeatureOptions setFocalLength(double focalLength) {
         set(Keys.FocalLength(), NSNumber.valueOf(focalLength));
         return this;
     }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public double getAspectRatio() {
         if (has(Keys.AspectRatio())) {
             NSNumber val = (NSNumber) get(Keys.AspectRatio());
@@ -175,9 +155,6 @@ import org.robovm.apple.iosurface.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public CIDetectorFeatureOptions setAspectRatio(double aspectRatio) {
         set(Keys.AspectRatio(), NSNumber.valueOf(aspectRatio));
         return this;
@@ -207,29 +184,14 @@ import org.robovm.apple.iosurface.*;
     @Library("CoreImage")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="CIDetectorImageOrientation", optional=true)
         public static native NSString ImageOrientation();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="CIDetectorEyeBlink", optional=true)
         public static native NSString EyeBlink();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="CIDetectorSmile", optional=true)
         public static native NSString Smile();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="CIDetectorFocalLength", optional=true)
         public static native NSString FocalLength();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="CIDetectorAspectRatio", optional=true)
         public static native NSString AspectRatio();
     }

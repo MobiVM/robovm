@@ -95,129 +95,36 @@ import org.robovm.apple.dispatch.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final NSURLVolumeProperty LocalizedFormatDescription = new NSURLVolumeProperty("LocalizedFormatDescription");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final NSURLVolumeProperty TotalCapacity = new NSURLVolumeProperty("TotalCapacity");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final NSURLVolumeProperty AvailableCapacity = new NSURLVolumeProperty("AvailableCapacity");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final NSURLVolumeProperty ResourceCount = new NSURLVolumeProperty("ResourceCount");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final NSURLVolumeProperty SupportsPersistentIDs = new NSURLVolumeProperty("SupportsPersistentIDs");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final NSURLVolumeProperty SupportsSymbolicLinks = new NSURLVolumeProperty("SupportsSymbolicLinks");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final NSURLVolumeProperty SupportsHardLinks = new NSURLVolumeProperty("SupportsHardLinks");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final NSURLVolumeProperty SupportsJournaling = new NSURLVolumeProperty("SupportsJournaling");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final NSURLVolumeProperty IsJournaling = new NSURLVolumeProperty("IsJournaling");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final NSURLVolumeProperty SupportsSparseFiles = new NSURLVolumeProperty("SupportsSparseFiles");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final NSURLVolumeProperty SupportsZeroRuns = new NSURLVolumeProperty("SupportsZeroRuns");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final NSURLVolumeProperty SupportsCaseSensitiveNames = new NSURLVolumeProperty("SupportsCaseSensitiveNames");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final NSURLVolumeProperty SupportsCasePreservedNames = new NSURLVolumeProperty("SupportsCasePreservedNames");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final NSURLVolumeProperty SupportsRootDirectoryDates = new NSURLVolumeProperty("SupportsRootDirectoryDates");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final NSURLVolumeProperty SupportsVolumeSizes = new NSURLVolumeProperty("SupportsVolumeSizes");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final NSURLVolumeProperty SupportsRenaming = new NSURLVolumeProperty("SupportsRenaming");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final NSURLVolumeProperty SupportsAdvisoryFileLocking = new NSURLVolumeProperty("SupportsAdvisoryFileLocking");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final NSURLVolumeProperty SupportsExtendedSecurity = new NSURLVolumeProperty("SupportsExtendedSecurity");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final NSURLVolumeProperty IsBrowsable = new NSURLVolumeProperty("IsBrowsable");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final NSURLVolumeProperty MaximumFileSize = new NSURLVolumeProperty("MaximumFileSize");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final NSURLVolumeProperty IsEjectable = new NSURLVolumeProperty("IsEjectable");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final NSURLVolumeProperty IsRemovable = new NSURLVolumeProperty("IsRemovable");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final NSURLVolumeProperty IsInternal = new NSURLVolumeProperty("IsInternal");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final NSURLVolumeProperty IsAutomounted = new NSURLVolumeProperty("IsAutomounted");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final NSURLVolumeProperty IsLocal = new NSURLVolumeProperty("IsLocal");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final NSURLVolumeProperty IsReadOnly = new NSURLVolumeProperty("IsReadOnly");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final NSURLVolumeProperty CreationDate = new NSURLVolumeProperty("CreationDate");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final NSURLVolumeProperty URLForRemounting = new NSURLVolumeProperty("URLForRemounting");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final NSURLVolumeProperty UUIDString = new NSURLVolumeProperty("UUIDString");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final NSURLVolumeProperty Name = new NSURLVolumeProperty("Name");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final NSURLVolumeProperty LocalizedName = new NSURLVolumeProperty("LocalizedName");
     /**
      * @since Available in iOS 10.0 and later.
@@ -284,159 +191,66 @@ import org.robovm.apple.dispatch.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="NSURLVolumeLocalizedFormatDescriptionKey", optional=true)
         public static native NSString LocalizedFormatDescription();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="NSURLVolumeTotalCapacityKey", optional=true)
         public static native NSString TotalCapacity();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="NSURLVolumeAvailableCapacityKey", optional=true)
         public static native NSString AvailableCapacity();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="NSURLVolumeResourceCountKey", optional=true)
         public static native NSString ResourceCount();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="NSURLVolumeSupportsPersistentIDsKey", optional=true)
         public static native NSString SupportsPersistentIDs();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="NSURLVolumeSupportsSymbolicLinksKey", optional=true)
         public static native NSString SupportsSymbolicLinks();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="NSURLVolumeSupportsHardLinksKey", optional=true)
         public static native NSString SupportsHardLinks();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="NSURLVolumeSupportsJournalingKey", optional=true)
         public static native NSString SupportsJournaling();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="NSURLVolumeIsJournalingKey", optional=true)
         public static native NSString IsJournaling();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="NSURLVolumeSupportsSparseFilesKey", optional=true)
         public static native NSString SupportsSparseFiles();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="NSURLVolumeSupportsZeroRunsKey", optional=true)
         public static native NSString SupportsZeroRuns();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="NSURLVolumeSupportsCaseSensitiveNamesKey", optional=true)
         public static native NSString SupportsCaseSensitiveNames();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="NSURLVolumeSupportsCasePreservedNamesKey", optional=true)
         public static native NSString SupportsCasePreservedNames();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="NSURLVolumeSupportsRootDirectoryDatesKey", optional=true)
         public static native NSString SupportsRootDirectoryDates();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="NSURLVolumeSupportsVolumeSizesKey", optional=true)
         public static native NSString SupportsVolumeSizes();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="NSURLVolumeSupportsRenamingKey", optional=true)
         public static native NSString SupportsRenaming();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="NSURLVolumeSupportsAdvisoryFileLockingKey", optional=true)
         public static native NSString SupportsAdvisoryFileLocking();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="NSURLVolumeSupportsExtendedSecurityKey", optional=true)
         public static native NSString SupportsExtendedSecurity();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="NSURLVolumeIsBrowsableKey", optional=true)
         public static native NSString IsBrowsable();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="NSURLVolumeMaximumFileSizeKey", optional=true)
         public static native NSString MaximumFileSize();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="NSURLVolumeIsEjectableKey", optional=true)
         public static native NSString IsEjectable();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="NSURLVolumeIsRemovableKey", optional=true)
         public static native NSString IsRemovable();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="NSURLVolumeIsInternalKey", optional=true)
         public static native NSString IsInternal();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="NSURLVolumeIsAutomountedKey", optional=true)
         public static native NSString IsAutomounted();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="NSURLVolumeIsLocalKey", optional=true)
         public static native NSString IsLocal();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="NSURLVolumeIsReadOnlyKey", optional=true)
         public static native NSString IsReadOnly();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="NSURLVolumeCreationDateKey", optional=true)
         public static native NSString CreationDate();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="NSURLVolumeURLForRemountingKey", optional=true)
         public static native NSString URLForRemounting();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="NSURLVolumeUUIDStringKey", optional=true)
         public static native NSString UUIDString();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="NSURLVolumeNameKey", optional=true)
         public static native NSString Name();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="NSURLVolumeLocalizedNameKey", optional=true)
         public static native NSString LocalizedName();
         /**

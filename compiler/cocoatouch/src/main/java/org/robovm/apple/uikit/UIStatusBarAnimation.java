@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -46,13 +48,7 @@ import org.robovm.apple.intents.*;
 public enum /*<name>*/UIStatusBarAnimation/*</name>*/ implements ValuedEnum {
     /*<values>*/
     None(0L),
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     Fade(1L),
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     Slide(2L);
     /*</values>*/
 

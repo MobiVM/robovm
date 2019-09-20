@@ -39,9 +39,7 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSTextCheckingResult/*</name>*/ 
@@ -56,7 +54,7 @@ import org.robovm.apple.dispatch.*;
     protected NSTextCheckingResult(Handle h, long handle) { super(h, handle); }
     protected NSTextCheckingResult(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public NSTextCheckingResult(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public NSTextCheckingResult(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "resultType")
@@ -73,33 +71,18 @@ import org.robovm.apple.dispatch.*;
     public native NSTimeZone getTimeZone();
     @Property(selector = "duration")
     public native double getDuration();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "components")
     public native NSTextCheckingTransitComponents getComponents();
     @Property(selector = "URL")
     public native NSURL getURL();
     @Property(selector = "replacementString")
     public native String getReplacementString();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "alternativeStrings")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getAlternativeStrings();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "regularExpression")
     public native NSRegularExpression getRegularExpression();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "phoneNumber")
     public native String getPhoneNumber();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "numberOfRanges")
     public native @MachineSizedUInt long getNumberOfRanges();
     @Property(selector = "addressComponents")
@@ -119,9 +102,6 @@ import org.robovm.apple.dispatch.*;
     }
     
     /*<methods>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "rangeAtIndex:")
     public native @ByVal NSRange getRangeAt(@MachineSizedUInt long idx);
     /**
@@ -129,9 +109,6 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "rangeWithName:")
     public native @ByVal NSRange getRange(String name);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "resultByAdjustingRangesWithOffset:")
     public native NSTextCheckingResult newResultByAdjustingRanges(@MachineSizedSInt long offset);
     @Method(selector = "orthographyCheckingResultWithRange:orthography:")
@@ -156,29 +133,17 @@ import org.robovm.apple.dispatch.*;
     public static native NSTextCheckingResult getReplacementCheckingResult(@ByVal NSRange range, String replacementString);
     @Method(selector = "correctionCheckingResultWithRange:replacementString:")
     public static native NSTextCheckingResult getCorrectionCheckingResult(@ByVal NSRange range, String replacementString);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "correctionCheckingResultWithRange:replacementString:alternativeStrings:")
     public static native NSTextCheckingResult getCorrectionCheckingResult(@ByVal NSRange range, String replacementString, @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> alternativeStrings);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "regularExpressionCheckingResultWithRanges:count:regularExpression:")
     protected static native NSTextCheckingResult getRegularExpressionCheckingResult(NSRange ranges, @MachineSizedUInt long count, NSRegularExpression regularExpression);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "phoneNumberCheckingResultWithRange:phoneNumber:")
     public static native NSTextCheckingResult getPhoneNumberCheckingResult(@ByVal NSRange range, String phoneNumber);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "transitInformationCheckingResultWithRange:components:")
     public static native NSTextCheckingResult getTransitInformationCheckingResult(@ByVal NSRange range, NSTextCheckingTransitComponents components);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

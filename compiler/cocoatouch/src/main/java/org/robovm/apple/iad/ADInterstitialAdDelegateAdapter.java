@@ -56,9 +56,6 @@ import org.robovm.apple.avkit.*;
     public void didUnload(ADInterstitialAd interstitialAd) {}
     @NotImplemented("interstitialAd:didFailWithError:")
     public void didFail(ADInterstitialAd interstitialAd, NSError error) {}
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @NotImplemented("interstitialAdWillLoad:")
     public void willLoad(ADInterstitialAd interstitialAd) {}
     @NotImplemented("interstitialAdDidLoad:")

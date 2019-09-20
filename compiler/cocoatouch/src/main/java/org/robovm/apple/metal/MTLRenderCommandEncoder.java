@@ -32,9 +32,7 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("Metal") @NativeProtocolProxy/*</annotations>*/
 /*<visibility>*/public final/*</visibility>*/ class /*<name>*/MTLRenderCommandEncoder/*</name>*/ 
@@ -169,6 +167,11 @@ import org.robovm.apple.dispatch.*;
     public native void setViewports(MTLViewport viewports, @MachineSizedUInt long count);
     @Method(selector = "setFrontFacingWinding:")
     public native void setFrontFacingWinding(MTLWinding frontFacingWinding);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "setVertexAmplificationCount:viewMappings:")
+    public native void setVertexAmplificationCount(@MachineSizedUInt long count, MTLVertexAmplificationViewMapping viewMappings);
     @Method(selector = "setCullMode:")
     public native void setCullMode(MTLCullMode cullMode);
     /**
@@ -369,6 +372,9 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "setTileSamplerState:lodMinClamp:lodMaxClamp:atIndex:")
     public native void setTileSamplerState(MTLSamplerState sampler, float lodMinClamp, float lodMaxClamp, @MachineSizedUInt long index);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Method(selector = "setTileSamplerStates:lodMinClamps:lodMaxClamps:withRange:")
     public native void setTileSamplerStates(MTLSamplerState samplers, FloatPtr lodMinClamps, FloatPtr lodMaxClamps, @ByVal NSRange range);
     @Method(selector = "dispatchThreadsPerTile:")
@@ -386,6 +392,16 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "useResources:count:usage:")
     public native void useResources(MTLResource resources, @MachineSizedUInt long count, MTLResourceUsage usage);
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "useResource:usage:stages:")
+    public native void useResource(MTLResource resource, MTLResourceUsage usage, MTLRenderStages stages);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "useResources:count:usage:stages:")
+    public native void useResources(MTLResource resources, @MachineSizedUInt long count, MTLResourceUsage usage, MTLRenderStages stages);
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "useHeap:")
@@ -396,10 +412,25 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "useHeaps:count:")
     public native void useHeaps(MTLHeap heaps, @MachineSizedUInt long count);
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "useHeap:stages:")
+    public native void useHeap(MTLHeap heap, MTLRenderStages stages);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "useHeaps:count:stages:")
+    public native void useHeaps(MTLHeap heaps, @MachineSizedUInt long count, MTLRenderStages stages);
+    /**
      * @since Available in iOS 12.0 and later.
      */
     @Method(selector = "executeCommandsInBuffer:withRange:")
     public native void executeCommandsInBuffer(MTLIndirectCommandBuffer indirectCommandBuffer, @ByVal NSRange executionRange);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "executeCommandsInBuffer:indirectBuffer:indirectBufferOffset:")
+    public native void executeCommandsInBuffer(MTLIndirectCommandBuffer indirectCommandbuffer, MTLBuffer indirectRangeBuffer, @MachineSizedUInt long indirectBufferOffset);
     @Method(selector = "endEncoding")
     public native void endEncoding();
     @Method(selector = "insertDebugSignpost:")

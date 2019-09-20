@@ -29,6 +29,10 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corevideo.*;
+import org.robovm.apple.coregraphics.*;
+import org.robovm.apple.imageio.*;
+import org.robovm.apple.vision.*;
+import org.robovm.apple.metal.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -63,6 +67,70 @@ import org.robovm.apple.corevideo.*;
     }
     private MLFeatureValue(NSDictionary<?, NSNumber> value, NSError.NSErrorPtr ptr) throws NSErrorException {
        super((Handle) null, create(value, ptr));
+       retain(getHandle());
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+    }
+    public MLFeatureValue(NSURL url, @MachineSizedSInt long pixelsWide, @MachineSizedSInt long pixelsHigh, int pixelFormatType, MLFeatureValueImageOption options) throws NSErrorException {
+       this(url, pixelsWide, pixelsHigh, pixelFormatType, options, new NSError.NSErrorPtr());
+    }
+    private MLFeatureValue(NSURL url, @MachineSizedSInt long pixelsWide, @MachineSizedSInt long pixelsHigh, int pixelFormatType, MLFeatureValueImageOption options, NSError.NSErrorPtr ptr) throws NSErrorException {
+       super((Handle) null, create(url, pixelsWide, pixelsHigh, pixelFormatType, options, ptr));
+       retain(getHandle());
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+    }
+    public MLFeatureValue(NSURL url, MLImageConstraint constraint, MLFeatureValueImageOption options) throws NSErrorException {
+       this(url, constraint, options, new NSError.NSErrorPtr());
+    }
+    private MLFeatureValue(NSURL url, MLImageConstraint constraint, MLFeatureValueImageOption options, NSError.NSErrorPtr ptr) throws NSErrorException {
+       super((Handle) null, create(url, constraint, options, ptr));
+       retain(getHandle());
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+    }
+    public MLFeatureValue(CGImage cgImage, @MachineSizedSInt long pixelsWide, @MachineSizedSInt long pixelsHigh, int pixelFormatType, MLFeatureValueImageOption options) throws NSErrorException {
+       this(cgImage, pixelsWide, pixelsHigh, pixelFormatType, options, new NSError.NSErrorPtr());
+    }
+    private MLFeatureValue(CGImage cgImage, @MachineSizedSInt long pixelsWide, @MachineSizedSInt long pixelsHigh, int pixelFormatType, MLFeatureValueImageOption options, NSError.NSErrorPtr ptr) throws NSErrorException {
+       super((Handle) null, create(cgImage, pixelsWide, pixelsHigh, pixelFormatType, options, ptr));
+       retain(getHandle());
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+    }
+    public MLFeatureValue(CGImage cgImage, MLImageConstraint constraint, MLFeatureValueImageOption options) throws NSErrorException {
+       this(cgImage, constraint, options, new NSError.NSErrorPtr());
+    }
+    private MLFeatureValue(CGImage cgImage, MLImageConstraint constraint, MLFeatureValueImageOption options, NSError.NSErrorPtr ptr) throws NSErrorException {
+       super((Handle) null, create(cgImage, constraint, options, ptr));
+       retain(getHandle());
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+    }
+    public MLFeatureValue(NSURL url, CGImagePropertyOrientation orientation, @MachineSizedSInt long pixelsWide, @MachineSizedSInt long pixelsHigh, int pixelFormatType, MLFeatureValueImageOption options) throws NSErrorException {
+       this(url, orientation, pixelsWide, pixelsHigh, pixelFormatType, options, new NSError.NSErrorPtr());
+    }
+    private MLFeatureValue(NSURL url, CGImagePropertyOrientation orientation, @MachineSizedSInt long pixelsWide, @MachineSizedSInt long pixelsHigh, int pixelFormatType, MLFeatureValueImageOption options, NSError.NSErrorPtr ptr) throws NSErrorException {
+       super((Handle) null, create(url, orientation, pixelsWide, pixelsHigh, pixelFormatType, options, ptr));
+       retain(getHandle());
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+    }
+    public MLFeatureValue(NSURL url, CGImagePropertyOrientation orientation, MLImageConstraint constraint, MLFeatureValueImageOption options) throws NSErrorException {
+       this(url, orientation, constraint, options, new NSError.NSErrorPtr());
+    }
+    private MLFeatureValue(NSURL url, CGImagePropertyOrientation orientation, MLImageConstraint constraint, MLFeatureValueImageOption options, NSError.NSErrorPtr ptr) throws NSErrorException {
+       super((Handle) null, create(url, orientation, constraint, options, ptr));
+       retain(getHandle());
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+    }
+    public MLFeatureValue(CGImage cgImage, CGImagePropertyOrientation orientation, @MachineSizedSInt long pixelsWide, @MachineSizedSInt long pixelsHigh, int pixelFormatType, MLFeatureValueImageOption options) throws NSErrorException {
+       this(cgImage, orientation, pixelsWide, pixelsHigh, pixelFormatType, options, new NSError.NSErrorPtr());
+    }
+    private MLFeatureValue(CGImage cgImage, CGImagePropertyOrientation orientation, @MachineSizedSInt long pixelsWide, @MachineSizedSInt long pixelsHigh, int pixelFormatType, MLFeatureValueImageOption options, NSError.NSErrorPtr ptr) throws NSErrorException {
+       super((Handle) null, create(cgImage, orientation, pixelsWide, pixelsHigh, pixelFormatType, options, ptr));
+       retain(getHandle());
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+    }
+    public MLFeatureValue(CGImage cgImage, CGImagePropertyOrientation orientation, MLImageConstraint constraint, MLFeatureValueImageOption options) throws NSErrorException {
+       this(cgImage, orientation, constraint, options, new NSError.NSErrorPtr());
+    }
+    private MLFeatureValue(CGImage cgImage, CGImagePropertyOrientation orientation, MLImageConstraint constraint, MLFeatureValueImageOption options, NSError.NSErrorPtr ptr) throws NSErrorException {
+       super((Handle) null, create(cgImage, orientation, constraint, options, ptr));
        retain(getHandle());
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
     }
@@ -113,5 +181,21 @@ import org.robovm.apple.corevideo.*;
     protected static native @Pointer long create(MLFeatureType type);
     @Method(selector = "featureValueWithDictionary:error:")
     protected static native @Pointer long create(NSDictionary<?, NSNumber> value, NSError.NSErrorPtr error);
+    @Method(selector = "featureValueWithImageAtURL:pixelsWide:pixelsHigh:pixelFormatType:options:error:")
+    protected static native @Pointer long create(NSURL url, @MachineSizedSInt long pixelsWide, @MachineSizedSInt long pixelsHigh, int pixelFormatType, MLFeatureValueImageOption options, NSError.NSErrorPtr error);
+    @Method(selector = "featureValueWithImageAtURL:constraint:options:error:")
+    protected static native @Pointer long create(NSURL url, MLImageConstraint constraint, MLFeatureValueImageOption options, NSError.NSErrorPtr error);
+    @Method(selector = "featureValueWithCGImage:pixelsWide:pixelsHigh:pixelFormatType:options:error:")
+    protected static native @Pointer long create(CGImage cgImage, @MachineSizedSInt long pixelsWide, @MachineSizedSInt long pixelsHigh, int pixelFormatType, MLFeatureValueImageOption options, NSError.NSErrorPtr error);
+    @Method(selector = "featureValueWithCGImage:constraint:options:error:")
+    protected static native @Pointer long create(CGImage cgImage, MLImageConstraint constraint, MLFeatureValueImageOption options, NSError.NSErrorPtr error);
+    @Method(selector = "featureValueWithImageAtURL:orientation:pixelsWide:pixelsHigh:pixelFormatType:options:error:")
+    protected static native @Pointer long create(NSURL url, CGImagePropertyOrientation orientation, @MachineSizedSInt long pixelsWide, @MachineSizedSInt long pixelsHigh, int pixelFormatType, MLFeatureValueImageOption options, NSError.NSErrorPtr error);
+    @Method(selector = "featureValueWithImageAtURL:orientation:constraint:options:error:")
+    protected static native @Pointer long create(NSURL url, CGImagePropertyOrientation orientation, MLImageConstraint constraint, MLFeatureValueImageOption options, NSError.NSErrorPtr error);
+    @Method(selector = "featureValueWithCGImage:orientation:pixelsWide:pixelsHigh:pixelFormatType:options:error:")
+    protected static native @Pointer long create(CGImage cgImage, CGImagePropertyOrientation orientation, @MachineSizedSInt long pixelsWide, @MachineSizedSInt long pixelsHigh, int pixelFormatType, MLFeatureValueImageOption options, NSError.NSErrorPtr error);
+    @Method(selector = "featureValueWithCGImage:orientation:constraint:options:error:")
+    protected static native @Pointer long create(CGImage cgImage, CGImagePropertyOrientation orientation, MLImageConstraint constraint, MLFeatureValueImageOption options, NSError.NSErrorPtr error);
     /*</methods>*/
 }

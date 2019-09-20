@@ -41,9 +41,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 6.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVCaptureMetadataOutput/*</name>*/ 
@@ -70,14 +68,8 @@ import org.robovm.apple.audiotoolbox.*;
     public native @org.robovm.rt.bro.annotation.Marshaler(AVMetadataObjectType.AsListMarshaler.class) List<AVMetadataObjectType> getMetadataObjectTypes();
     @Property(selector = "setMetadataObjectTypes:")
     public native void setMetadataObjectTypes(@org.robovm.rt.bro.annotation.Marshaler(AVMetadataObjectType.AsListMarshaler.class) List<AVMetadataObjectType> v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "rectOfInterest")
     public native @ByVal CGRect getRectOfInterest();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setRectOfInterest:")
     public native void setRectOfInterest(@ByVal CGRect v);
     /*</properties>*/

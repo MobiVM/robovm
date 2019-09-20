@@ -52,7 +52,7 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "initWithShortcut:")
     public INRelevantShortcut(INShortcut shortcut) { super((SkipInit) null); initObject(init(shortcut)); }
     @Method(selector = "initWithCoder:")
-    public INRelevantShortcut(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public INRelevantShortcut(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "relevanceProviders")
@@ -79,6 +79,6 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

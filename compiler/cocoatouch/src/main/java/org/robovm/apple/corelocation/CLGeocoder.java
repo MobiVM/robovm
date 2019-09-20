@@ -34,9 +34,7 @@ import org.robovm.apple.contacts.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 5.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreLocation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CLGeocoder/*</name>*/ 
@@ -65,7 +63,6 @@ import org.robovm.apple.contacts.*;
     @Method(selector = "reverseGeocodeLocation:preferredLocale:completionHandler:")
     public native void reverseGeocodeLocation(CLLocation location, NSLocale locale, @Block VoidBlock2<NSArray<CLPlacemark>, NSError> completionHandler);
     /**
-     * @since Available in iOS 5.0 and later.
      * @deprecated Deprecated in iOS 11.0. Use -geocodePostalAddress:completionHandler:
      */
     @Deprecated

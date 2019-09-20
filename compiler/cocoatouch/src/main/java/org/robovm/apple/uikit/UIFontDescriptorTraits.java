@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -115,9 +117,6 @@ import org.robovm.apple.intents.*;
     }
     
 
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public UIFontDescriptorSymbolicTraits getSymbolicTraits() {
         if (has(Keys.SymbolicTrait())) {
             NSNumber val = (NSNumber) get(Keys.SymbolicTrait());
@@ -125,16 +124,10 @@ import org.robovm.apple.intents.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public UIFontDescriptorTraits setSymbolicTraits(UIFontDescriptorSymbolicTraits symbolicTraits) {
         set(Keys.SymbolicTrait(), NSNumber.valueOf(symbolicTraits.value()));
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public double getWeightTrait() {
         if (has(Keys.WeightTrait())) {
             NSNumber val = (NSNumber) get(Keys.WeightTrait());
@@ -142,16 +135,10 @@ import org.robovm.apple.intents.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public UIFontDescriptorTraits setWeightTrait(double weightTrait) {
         set(Keys.WeightTrait(), NSNumber.valueOf(weightTrait));
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public double getWidthTrait() {
         if (has(Keys.WidthTrait())) {
             NSNumber val = (NSNumber) get(Keys.WidthTrait());
@@ -159,16 +146,10 @@ import org.robovm.apple.intents.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public UIFontDescriptorTraits setWidthTrait(double widthTrait) {
         set(Keys.WidthTrait(), NSNumber.valueOf(widthTrait));
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public double getSlantTrait() {
         if (has(Keys.SlantTrait())) {
             NSNumber val = (NSNumber) get(Keys.SlantTrait());
@@ -176,9 +157,6 @@ import org.robovm.apple.intents.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public UIFontDescriptorTraits setSlantTrait(double slantTrait) {
         set(Keys.SlantTrait(), NSNumber.valueOf(slantTrait));
         return this;
@@ -189,24 +167,12 @@ import org.robovm.apple.intents.*;
     @Library("UIKit")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="UIFontSymbolicTrait", optional=true)
         public static native NSString SymbolicTrait();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="UIFontWeightTrait", optional=true)
         public static native NSString WeightTrait();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="UIFontWidthTrait", optional=true)
         public static native NSString WidthTrait();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="UIFontSlantTrait", optional=true)
         public static native NSString SlantTrait();
     }

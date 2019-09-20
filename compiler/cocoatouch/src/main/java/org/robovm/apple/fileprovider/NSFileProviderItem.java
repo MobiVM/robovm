@@ -92,6 +92,11 @@ import org.robovm.apple.coregraphics.*;
     NSPersonNameComponents getOwnerNameComponents();
     @Property(selector = "mostRecentEditorNameComponents")
     NSPersonNameComponents getMostRecentEditorNameComponents();
+    /**
+     * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 13.0. itemVersion
+     */
+    @Deprecated
     @Property(selector = "versionIdentifier")
     NSData getVersionIdentifier();
     @Property(selector = "userInfo")

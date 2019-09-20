@@ -52,7 +52,7 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "initWithLocalizedTermsAndConditionsText:privacyPolicyURL:termsAndConditionsURL:")
     public INTermsAndConditions(String localizedTermsAndConditionsText, NSURL privacyPolicyURL, NSURL termsAndConditionsURL) { super((SkipInit) null); initObject(init(localizedTermsAndConditionsText, privacyPolicyURL, termsAndConditionsURL)); }
     @Method(selector = "initWithCoder:")
-    public INTermsAndConditions(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public INTermsAndConditions(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "localizedTermsAndConditionsText")
@@ -71,6 +71,6 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

@@ -48,9 +48,6 @@ import org.robovm.apple.fileprovider.*;
     /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @GlobalValue(symbol="CKRecordTypeUserRecord", optional=true)
     public static native String User();
     /**

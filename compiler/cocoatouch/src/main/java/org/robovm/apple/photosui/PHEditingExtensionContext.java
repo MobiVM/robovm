@@ -34,10 +34,10 @@ import org.robovm.apple.uikit.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 8.0 and later.
+ * @deprecated Deprecated in iOS 13.0. No longer supported. This class will be removed in an upcoming release.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("PhotosUI") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("PhotosUI") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/PHEditingExtensionContext/*</name>*/ 
     extends /*<extends>*/NSExtensionContext/*</extends>*/ 
     /*<implements>*//*</implements>*/ {

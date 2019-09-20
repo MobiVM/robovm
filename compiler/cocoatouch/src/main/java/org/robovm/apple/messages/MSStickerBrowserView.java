@@ -54,7 +54,7 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "initWithFrame:stickerSize:")
     public MSStickerBrowserView(@ByVal CGRect frame, MSStickerSize stickerSize) { super((SkipInit) null); initObject(init(frame, stickerSize)); }
     @Method(selector = "initWithCoder:")
-    public MSStickerBrowserView(NSCoder decoder) { super(decoder); }
+    public MSStickerBrowserView(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "stickerSize")

@@ -204,16 +204,10 @@ import org.robovm.apple.dispatch.*;
     protected native @Pointer long init(String string);
     @Method(selector = "scanInt:")
     private native boolean scanInt(IntPtr result);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Method(selector = "scanInteger:")
     private native boolean scanInteger(MachineSizedSIntPtr result);
     @Method(selector = "scanLongLong:")
     private native boolean scanLongLong(LongPtr result);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "scanUnsignedLongLong:")
     private native boolean scanUnsignedLongLong(LongPtr result);
     @Method(selector = "scanFloat:")
@@ -222,19 +216,10 @@ import org.robovm.apple.dispatch.*;
     private native boolean scanDouble(DoublePtr result);
     @Method(selector = "scanHexInt:")
     private native boolean scanHexInt(IntPtr result);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Method(selector = "scanHexLongLong:")
     private native boolean scanHexLongLong(LongPtr result);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Method(selector = "scanHexFloat:")
     private native boolean scanHexFloat(FloatPtr result);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Method(selector = "scanHexDouble:")
     private native boolean scanHexDouble(DoublePtr result);
     @Method(selector = "scanString:intoString:")

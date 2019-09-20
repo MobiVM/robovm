@@ -85,8 +85,9 @@ import org.robovm.apple.coregraphics.*;
     @GlobalValue(symbol="NSFileProviderInitialPageSortedByName", optional=true)
     public static native NSString getEnumerationInitialPageSortedByName();
     /**
-     * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 13.0. NSFileProviderErrorItemKey
      */
+    @Deprecated
     @GlobalValue(symbol="NSFileProviderErrorCollidingItemKey", optional=true)
     public static native NSString getErrorCollidingItemKey();
     /**
@@ -99,6 +100,8 @@ import org.robovm.apple.coregraphics.*;
     public native void signalEnumerator(NSString containerItemIdentifier, @Block VoidBlock1<NSError> completion);
     @Method(selector = "registerURLSessionTask:forItemWithIdentifier:completionHandler:")
     public native void registerURLSessionTask(NSURLSessionTask task, NSString identifier, @Block VoidBlock1<NSError> completion);
+    @Method(selector = "managerForDomain:")
+    public static native NSFileProviderManager managerForDomain(NSFileProviderDomain domain);
     @Method(selector = "writePlaceholderAtURL:withMetadata:error:")
     public static native boolean writePlaceholderAtURL(NSURL placeholderURL, NSFileProviderItem metadata, NSError.NSErrorPtr error);
     @Method(selector = "placeholderURLForURL:")
@@ -111,7 +114,5 @@ import org.robovm.apple.coregraphics.*;
     public static native void getDomains(@Block VoidBlock2<NSArray<NSFileProviderDomain>, NSError> completionHandler);
     @Method(selector = "removeAllDomainsWithCompletionHandler:")
     public static native void removeAllDomains(@Block VoidBlock1<NSError> completionHandler);
-    @Method(selector = "managerForDomain:")
-    public static native NSFileProviderManager managerForDomain(NSFileProviderDomain domain);
     /*</methods>*/
 }

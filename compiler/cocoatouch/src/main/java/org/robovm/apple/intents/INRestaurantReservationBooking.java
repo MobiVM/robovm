@@ -52,7 +52,7 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "initWithRestaurant:bookingDate:partySize:bookingIdentifier:")
     public INRestaurantReservationBooking(INRestaurant restaurant, NSDate bookingDate, @MachineSizedUInt long partySize, String bookingIdentifier) { super((SkipInit) null); initObject(init(restaurant, bookingDate, partySize, bookingIdentifier)); }
     @Method(selector = "initWithCoder:")
-    public INRestaurantReservationBooking(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public INRestaurantReservationBooking(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "restaurant")
@@ -109,6 +109,6 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

@@ -38,9 +38,7 @@ import org.robovm.apple.imageio.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("Photos") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/PHObject/*</name>*/ 
@@ -52,7 +50,6 @@ import org.robovm.apple.imageio.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public PHObject() {}
-    @Deprecated protected PHObject(long handle) { super(handle); }
     protected PHObject(Handle h, long handle) { super(h, handle); }
     protected PHObject(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/

@@ -116,24 +116,22 @@ import org.robovm.apple.uikit.*;
         return getComponents(this).toFloatArray((int) getNumberOfComponents());
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGColorCreate", optional=true)
     private static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGColor create(CGColorSpace space, @Pointer long components);
     /**
-     * @since Available in iOS 2.0 and later.
+     * @since Available in iOS 13.0 and later.
      */
+    @Bridge(symbol="CGColorCreateGenericGrayGamma2_2", optional=true)
+    public static native CGColor createGenericGrayGamma2_2(@MachineSizedFloat double gray, @MachineSizedFloat double alpha);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="CGColorCreateSRGB", optional=true)
+    public static native CGColor createSRGB(@MachineSizedFloat double red, @MachineSizedFloat double green, @MachineSizedFloat double blue, @MachineSizedFloat double alpha);
     @Bridge(symbol="CGColorCreateWithPattern", optional=true)
     private static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGColor create(CGColorSpace space, CGPattern pattern, @Pointer long components);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGColorCreateCopy", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGColor createCopy(CGColor color);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGColorCreateCopyWithAlpha", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGColor createCopy(CGColor color, @MachineSizedFloat double alpha);
     /**
@@ -141,39 +139,18 @@ import org.robovm.apple.uikit.*;
      */
     @Bridge(symbol="CGColorCreateCopyByMatchingToColorSpace", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGColor createCopy(CGColorSpace p0, CGColorRenderingIntent intent, CGColor color, NSDictionary options);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGColorEqualToColor", optional=true)
     public native boolean equalsTo(CGColor color2);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGColorGetNumberOfComponents", optional=true)
     public native @MachineSizedUInt long getNumberOfComponents();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGColorGetComponents", optional=true)
     private static native MachineSizedFloatPtr getComponents(CGColor color);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGColorGetAlpha", optional=true)
     public native @MachineSizedFloat double getAlpha();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGColorGetColorSpace", optional=true)
     public native CGColorSpace getColorSpace();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGColorGetPattern", optional=true)
     public native CGPattern getPattern();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGColorGetTypeID", optional=true)
     public static native @MachineSizedUInt long getClassTypeID();
     /*</methods>*/

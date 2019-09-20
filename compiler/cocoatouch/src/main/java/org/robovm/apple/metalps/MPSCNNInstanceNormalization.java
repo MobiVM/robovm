@@ -72,7 +72,7 @@ import org.robovm.apple.metal.*;
     protected native @Pointer long init(NSCoder aDecoder, MTLDevice device);
     /**
      * @since Available in iOS 11.3 and later.
-     * @deprecated Deprecated in iOS 12.0.
+     * @deprecated Deprecated in iOS 12.0. Use Please use -reloadGammaAndBetaFromDataSource instead.
      */
     @Deprecated
     @Method(selector = "reloadDataSource:")

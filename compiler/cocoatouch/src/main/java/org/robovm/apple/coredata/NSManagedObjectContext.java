@@ -29,12 +29,12 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corespotlight.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 3.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreData") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSManagedObjectContext/*</name>*/ 
@@ -95,37 +95,22 @@ import org.robovm.apple.corespotlight.*;
     public NSManagedObjectContext() {}
     protected NSManagedObjectContext(Handle h, long handle) { super(h, handle); }
     protected NSManagedObjectContext(SkipInit skipInit) { super(skipInit); }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "initWithConcurrencyType:")
     public NSManagedObjectContext(NSManagedObjectContextConcurrencyType ct) { super((SkipInit) null); initObject(init(ct)); }
     @Method(selector = "initWithCoder:")
-    public NSManagedObjectContext(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public NSManagedObjectContext(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "persistentStoreCoordinator")
     public native NSPersistentStoreCoordinator getPersistentStoreCoordinator();
     @Property(selector = "setPersistentStoreCoordinator:")
     public native void setPersistentStoreCoordinator(NSPersistentStoreCoordinator v);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "parentContext")
     public native NSManagedObjectContext getParentContext();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setParentContext:")
     public native void setParentContext(NSManagedObjectContext v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "name")
     public native String getName();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setName:")
     public native void setName(String v);
     @Property(selector = "undoManager")
@@ -134,14 +119,8 @@ import org.robovm.apple.corespotlight.*;
     public native void setUndoManager(NSUndoManager v);
     @Property(selector = "hasChanges")
     public native boolean hasChanges();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "userInfo")
     public native NSMutableDictionary<?, ?> getUserInfo();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "concurrencyType")
     public native NSManagedObjectContextConcurrencyType getConcurrencyType();
     @Property(selector = "insertedObjects")
@@ -212,19 +191,10 @@ import org.robovm.apple.corespotlight.*;
         observeValue(keyPath, object, change);
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @GlobalValue(symbol="NSManagedObjectContextWillSaveNotification", optional=true)
     public static native NSString WillSaveNotification();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @GlobalValue(symbol="NSManagedObjectContextDidSaveNotification", optional=true)
     public static native NSString DidSaveNotification();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @GlobalValue(symbol="NSManagedObjectContextObjectsDidChangeNotification", optional=true)
     public static native NSString ObjectsDidChangeNotification();
     /**
@@ -233,37 +203,22 @@ import org.robovm.apple.corespotlight.*;
     @GlobalValue(symbol="NSManagedObjectContextQueryGenerationKey", optional=true)
     public static native NSString QueryGenerationKey();
     
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "initWithConcurrencyType:")
     protected native @Pointer long init(NSManagedObjectContextConcurrencyType ct);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "performBlock:")
     public native void performBlock(@Block Runnable block);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "performBlockAndWait:")
     public native void performBlockAndWait(@Block Runnable block);
     @Method(selector = "objectRegisteredForID:")
     public native NSManagedObject getObjectRegisteredForID(NSManagedObjectID objectID);
     @Method(selector = "objectWithID:")
     public native NSManagedObject getObjectWithId(NSManagedObjectID objectID);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public NSManagedObject getExistingObjectWithID(NSManagedObjectID objectID) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        NSManagedObject result = getExistingObjectWithID(objectID, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        return result;
     }
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "existingObjectWithID:error:")
     private native NSManagedObject getExistingObjectWithID(NSManagedObjectID objectID, NSError.NSErrorPtr error);
     public NSArray<NSManagedObject> executeFetchRequest(NSFetchRequest request) throws NSErrorException {
@@ -274,32 +229,20 @@ import org.robovm.apple.corespotlight.*;
     }
     @Method(selector = "executeFetchRequest:error:")
     private native NSArray<NSManagedObject> executeFetchRequest(NSFetchRequest request, NSError.NSErrorPtr error);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public @MachineSizedUInt long getCountForFetchRequest(NSFetchRequest request) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        long result = getCountForFetchRequest(request, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        return result;
     }
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "countForFetchRequest:error:")
     private native @MachineSizedUInt long getCountForFetchRequest(NSFetchRequest request, NSError.NSErrorPtr error);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public NSPersistentStoreResult executeRequest(NSPersistentStoreRequest request) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        NSPersistentStoreResult result = executeRequest(request, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        return result;
     }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "executeRequest:error:")
     private native NSPersistentStoreResult executeRequest(NSPersistentStoreRequest request, NSError.NSErrorPtr error);
     @Method(selector = "insertObject:")
@@ -336,21 +279,18 @@ import org.robovm.apple.corespotlight.*;
     @Method(selector = "refreshAllObjects")
     public native void refreshAllObjects();
     /**
-     * @since Available in iOS 3.0 and later.
      * @deprecated Deprecated in iOS 8.0. Use a queue style context and -performBlockAndWait: instead
      */
     @Deprecated
     @Method(selector = "lock")
     public native void lock();
     /**
-     * @since Available in iOS 3.0 and later.
      * @deprecated Deprecated in iOS 8.0. Use a queue style context and -performBlockAndWait: instead
      */
     @Deprecated
     @Method(selector = "unlock")
     public native void unlock();
     /**
-     * @since Available in iOS 3.0 and later.
      * @deprecated Deprecated in iOS 8.0. Use a queue style context and -performBlock: instead
      */
     @Deprecated
@@ -361,23 +301,14 @@ import org.robovm.apple.corespotlight.*;
      */
     @Method(selector = "shouldHandleInaccessibleFault:forObjectID:triggeredByProperty:")
     public native boolean shouldHandleInaccessibleFault(NSManagedObject fault, NSManagedObjectID oid, NSPropertyDescription property);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public boolean obtainPermanentIDsForObjects(NSArray<NSManagedObject> objects) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        boolean result = obtainPermanentIDsForObjects(objects, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        return result;
     }
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "obtainPermanentIDsForObjects:error:")
     private native boolean obtainPermanentIDsForObjects(NSArray<NSManagedObject> objects, NSError.NSErrorPtr error);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "mergeChangesFromContextDidSaveNotification:")
     public native void mergeChangesFromContextDidSaveNotification(NSNotification notification);
     /**
@@ -402,6 +333,6 @@ import org.robovm.apple.corespotlight.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

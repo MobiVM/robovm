@@ -53,8 +53,17 @@ import org.robovm.apple.dispatch.*;
     public NSURLCache() {}
     protected NSURLCache(Handle h, long handle) { super(h, handle); }
     protected NSURLCache(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @deprecated Use initWithMemoryCapacity:diskCapacity:directoryURL:
+     */
+    @Deprecated
     @Method(selector = "initWithMemoryCapacity:diskCapacity:diskPath:")
     public NSURLCache(@MachineSizedUInt long memoryCapacity, @MachineSizedUInt long diskCapacity, String path) { super((SkipInit) null); initObject(init(memoryCapacity, diskCapacity, path)); }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "initWithMemoryCapacity:diskCapacity:directoryURL:")
+    public NSURLCache(@MachineSizedUInt long memoryCapacity, @MachineSizedUInt long diskCapacity, NSURL directoryURL) { super((SkipInit) null); initObject(init(memoryCapacity, diskCapacity, directoryURL)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "sharedURLCache")
@@ -76,8 +85,17 @@ import org.robovm.apple.dispatch.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @deprecated Use initWithMemoryCapacity:diskCapacity:directoryURL:
+     */
+    @Deprecated
     @Method(selector = "initWithMemoryCapacity:diskCapacity:diskPath:")
     protected native @Pointer long init(@MachineSizedUInt long memoryCapacity, @MachineSizedUInt long diskCapacity, String path);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "initWithMemoryCapacity:diskCapacity:directoryURL:")
+    protected native @Pointer long init(@MachineSizedUInt long memoryCapacity, @MachineSizedUInt long diskCapacity, NSURL directoryURL);
     @Method(selector = "cachedResponseForRequest:")
     public native NSCachedURLResponse getCachedResponse(NSURLRequest request);
     @Method(selector = "storeCachedResponse:forRequest:")
@@ -86,24 +104,12 @@ import org.robovm.apple.dispatch.*;
     public native void removeCachedResponse(NSURLRequest request);
     @Method(selector = "removeAllCachedResponses")
     public native void removeAllCachedResponses();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "removeCachedResponsesSinceDate:")
     public native void removeCachedResponsesSinceDate(NSDate date);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "storeCachedResponse:forDataTask:")
     public native void storeCachedResponse(NSCachedURLResponse cachedResponse, NSURLSessionDataTask dataTask);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "getCachedResponseForDataTask:completionHandler:")
     public native void getCachedResponse(NSURLSessionDataTask dataTask, @Block VoidBlock1<NSCachedURLResponse> completionHandler);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "removeCachedResponseForDataTask:")
     public native void removeCachedResponse(NSURLSessionDataTask dataTask);
     /*</methods>*/

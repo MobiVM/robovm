@@ -53,7 +53,7 @@ import org.robovm.apple.uikit.*;
     protected AUParameter(Handle h, long handle) { super(h, handle); }
     protected AUParameter(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public AUParameter(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public AUParameter(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "minValue")
@@ -97,6 +97,6 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -52,6 +54,9 @@ import org.robovm.apple.intents.*;
     /*<constants>*/
     public static final int Required = 1000;
     public static final int DefaultHigh = 750;
+    public static final int DragThatCanResizeScene = 510;
+    public static final int SceneSizeStayPut = 500;
+    public static final int DragThatCannotResizeScene = 490;
     public static final int DefaultLow = 250;
     public static final int FittingSizeLevel = 50;
     /*</constants>*/

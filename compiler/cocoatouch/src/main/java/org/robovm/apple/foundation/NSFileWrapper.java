@@ -39,9 +39,7 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSFileWrapper/*</name>*/ 
@@ -55,9 +53,6 @@ import org.robovm.apple.dispatch.*;
     public NSFileWrapper() {}
     protected NSFileWrapper(Handle h, long handle) { super(h, handle); }
     protected NSFileWrapper(SkipInit skipInit) { super(skipInit); }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "initWithURL:options:error:")
     public NSFileWrapper(NSURL url, NSFileWrapperReadingOptions options) throws NSErrorException {
        super((SkipInit) null);
@@ -70,9 +65,6 @@ import org.robovm.apple.dispatch.*;
     public NSFileWrapper(@org.robovm.rt.bro.annotation.Marshaler(NSDictionary.AsStringMapMarshaler.class) Map<String, NSFileWrapper> childrenByPreferredName) { super((SkipInit) null); initObject(init(childrenByPreferredName)); }
     @Method(selector = "initRegularFileWithContents:")
     public NSFileWrapper(NSData contents) { super((SkipInit) null); initObject(init(contents)); }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "initSymbolicLinkWithDestinationURL:")
     public NSFileWrapper(NSURL url) { super((SkipInit) null); initObject(init(url)); }
     @Method(selector = "initWithCoder:")
@@ -103,9 +95,6 @@ import org.robovm.apple.dispatch.*;
     public native @org.robovm.rt.bro.annotation.Marshaler(NSDictionary.AsStringMapMarshaler.class) Map<String, NSFileWrapper> getFileWrappers();
     @Property(selector = "regularFileContents")
     public native NSData getRegularFileContents();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "symbolicLinkDestinationURL")
     public native NSURL getSymbolicLinkDestinationURL();
     @Property(selector = "supportsSecureCoding")
@@ -123,55 +112,34 @@ import org.robovm.apple.dispatch.*;
         return wrapper;
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "initWithURL:options:error:")
     private native @Pointer long init(NSURL url, NSFileWrapperReadingOptions options, NSError.NSErrorPtr outError);
     @Method(selector = "initDirectoryWithFileWrappers:")
     protected native @Pointer long init(@org.robovm.rt.bro.annotation.Marshaler(NSDictionary.AsStringMapMarshaler.class) Map<String, NSFileWrapper> childrenByPreferredName);
     @Method(selector = "initRegularFileWithContents:")
     protected native @Pointer long init(NSData contents);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "initSymbolicLinkWithDestinationURL:")
     protected native @Pointer long init(NSURL url);
     @Method(selector = "initWithSerializedRepresentation:")
     protected native @Pointer long initSerialized(NSData serializeRepresentation);
     @Method(selector = "initWithCoder:")
     protected native @Pointer long init(NSCoder inCoder);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "matchesContentsOfURL:")
     public native boolean matchesContentsOfURL(NSURL url);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public boolean readFromURL(NSURL url, NSFileWrapperReadingOptions options) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        boolean result = readFromURL(url, options, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        return result;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "readFromURL:options:error:")
     private native boolean readFromURL(NSURL url, NSFileWrapperReadingOptions options, NSError.NSErrorPtr outError);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public boolean writeToURL(NSURL url, NSFileWrapperWritingOptions options, NSURL originalContentsURL) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        boolean result = writeToURL(url, options, originalContentsURL, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        return result;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "writeToURL:options:originalContentsURL:error:")
     private native boolean writeToURL(NSURL url, NSFileWrapperWritingOptions options, NSURL originalContentsURL, NSError.NSErrorPtr outError);
     @Method(selector = "addFileWrapper:")

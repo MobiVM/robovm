@@ -37,12 +37,12 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 6.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UITableViewHeaderFooterView/*</name>*/ 
@@ -59,7 +59,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithReuseIdentifier:")
     public UITableViewHeaderFooterView(String reuseIdentifier) { super((SkipInit) null); initObject(init(reuseIdentifier)); }
     @Method(selector = "initWithCoder:")
-    public UITableViewHeaderFooterView(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public UITableViewHeaderFooterView(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     @Method(selector = "initWithFrame:")
     public UITableViewHeaderFooterView(@ByVal CGRect frame) { super(frame); }
     /*</constructors>*/
@@ -82,7 +82,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithReuseIdentifier:")
     protected native @Pointer long init(String reuseIdentifier);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     @Method(selector = "prepareForReuse")
     public native void prepareForReuse();
     /*</methods>*/

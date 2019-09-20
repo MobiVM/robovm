@@ -53,9 +53,6 @@ import org.robovm.apple.dispatch.*;
     public NSHTTPURLResponse() {}
     protected NSHTTPURLResponse(Handle h, long handle) { super(h, handle); }
     protected NSHTTPURLResponse(SkipInit skipInit) { super(skipInit); }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "initWithURL:statusCode:HTTPVersion:headerFields:")
     public NSHTTPURLResponse(NSURL url, @MachineSizedSInt long statusCode, String HTTPVersion, @org.robovm.rt.bro.annotation.Marshaler(NSDictionary.AsStringStringMapMarshaler.class) Map<String, String> headerFields) { super((SkipInit) null); initObject(init(url, statusCode, HTTPVersion, headerFields)); }
     @Method(selector = "initWithURL:MIMEType:expectedContentLength:textEncodingName:")
@@ -69,11 +66,13 @@ import org.robovm.apple.dispatch.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "initWithURL:statusCode:HTTPVersion:headerFields:")
     protected native @Pointer long init(NSURL url, @MachineSizedSInt long statusCode, String HTTPVersion, @org.robovm.rt.bro.annotation.Marshaler(NSDictionary.AsStringStringMapMarshaler.class) Map<String, String> headerFields);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "valueForHTTPHeaderField:")
+    public native String valueForHTTPHeaderField(String field);
     @Method(selector = "localizedStringForStatusCode:")
     public static native String getLocalizedStatusCode(@MachineSizedSInt long statusCode);
     /*</methods>*/

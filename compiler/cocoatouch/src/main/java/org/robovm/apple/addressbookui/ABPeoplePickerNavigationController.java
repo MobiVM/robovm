@@ -34,7 +34,6 @@ import org.robovm.apple.addressbook.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 2.0 and later.
  * @deprecated Deprecated in iOS 9.0. Use CNContactPickerViewController from ContactsUI.framework instead
  */
 /*</javadoc>*/
@@ -50,9 +49,6 @@ import org.robovm.apple.addressbook.*;
     public ABPeoplePickerNavigationController() {}
     protected ABPeoplePickerNavigationController(Handle h, long handle) { super(h, handle); }
     protected ABPeoplePickerNavigationController(SkipInit skipInit) { super(skipInit); }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "initWithNavigationBarClass:toolbarClass:")
     public ABPeoplePickerNavigationController(Class<? extends UINavigationBar> navigationBarClass, Class<? extends UIToolbar> toolbarClass) { super(navigationBarClass, toolbarClass); }
     @Method(selector = "initWithRootViewController:")
@@ -75,34 +71,16 @@ import org.robovm.apple.addressbook.*;
     public native ABAddressBook getAddressBook();
     @Property(selector = "setAddressBook:")
     public native void setAddressBook(ABAddressBook v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "predicateForEnablingPerson")
     public native NSPredicate getPredicateForEnablingPerson();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setPredicateForEnablingPerson:")
     public native void setPredicateForEnablingPerson(NSPredicate v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "predicateForSelectionOfPerson")
     public native NSPredicate getPredicateForSelectionOfPerson();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setPredicateForSelectionOfPerson:")
     public native void setPredicateForSelectionOfPerson(NSPredicate v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "predicateForSelectionOfProperty")
     public native NSPredicate getPredicateForSelectionOfProperty();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setPredicateForSelectionOfProperty:")
     public native void setPredicateForSelectionOfProperty(NSPredicate v);
     /*</properties>*/

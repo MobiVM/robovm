@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -75,6 +77,16 @@ import org.robovm.apple.intents.*;
     /*<methods>*/
     @Method(selector = "adjustTextPositionByCharacterOffset:")
     void adjustTextPosition(@MachineSizedSInt long offset);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "setMarkedText:selectedRange:")
+    void setMarkedText(String markedText, @ByVal NSRange selectedRange);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "unmarkText")
+    void unmarkText();
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

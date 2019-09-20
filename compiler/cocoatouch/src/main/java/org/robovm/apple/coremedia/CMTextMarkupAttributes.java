@@ -112,9 +112,6 @@ import org.robovm.apple.audiotoolbox.*;
     }
     
 
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public NSArray<NSNumber> getForegroundColorARGB() {
         if (has(CMTextMarkupAttribute.ForegroundColorARGB)) {
             NSArray<NSNumber> val = get(CMTextMarkupAttribute.ForegroundColorARGB, NSArray.class);
@@ -122,16 +119,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public CMTextMarkupAttributes setForegroundColorARGB(NSArray<NSNumber> foregroundColorARGB) {
         set(CMTextMarkupAttribute.ForegroundColorARGB, foregroundColorARGB);
         return this;
     }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public NSArray<NSNumber> getBackgroundColorARGB() {
         if (has(CMTextMarkupAttribute.BackgroundColorARGB)) {
             NSArray<NSNumber> val = get(CMTextMarkupAttribute.BackgroundColorARGB, NSArray.class);
@@ -139,16 +130,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public CMTextMarkupAttributes setBackgroundColorARGB(NSArray<NSNumber> backgroundColorARGB) {
         set(CMTextMarkupAttribute.BackgroundColorARGB, backgroundColorARGB);
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public NSArray<NSNumber> getCharacterBackgroundColorARGB() {
         if (has(CMTextMarkupAttribute.CharacterBackgroundColorARGB)) {
             NSArray<NSNumber> val = get(CMTextMarkupAttribute.CharacterBackgroundColorARGB, NSArray.class);
@@ -156,16 +141,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public CMTextMarkupAttributes setCharacterBackgroundColorARGB(NSArray<NSNumber> characterBackgroundColorARGB) {
         set(CMTextMarkupAttribute.CharacterBackgroundColorARGB, characterBackgroundColorARGB);
         return this;
     }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public boolean isBold() {
         if (has(CMTextMarkupAttribute.BoldStyle)) {
             CFBoolean val = get(CMTextMarkupAttribute.BoldStyle, CFBoolean.class);
@@ -173,16 +152,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public CMTextMarkupAttributes setBold(boolean bold) {
         set(CMTextMarkupAttribute.BoldStyle, CFBoolean.valueOf(bold));
         return this;
     }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public boolean isItalic() {
         if (has(CMTextMarkupAttribute.ItalicStyle)) {
             CFBoolean val = get(CMTextMarkupAttribute.ItalicStyle, CFBoolean.class);
@@ -190,16 +163,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public CMTextMarkupAttributes setItalic(boolean italic) {
         set(CMTextMarkupAttribute.ItalicStyle, CFBoolean.valueOf(italic));
         return this;
     }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public boolean isUnderline() {
         if (has(CMTextMarkupAttribute.UnderlineStyle)) {
             CFBoolean val = get(CMTextMarkupAttribute.UnderlineStyle, CFBoolean.class);
@@ -207,16 +174,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public CMTextMarkupAttributes setUnderline(boolean underline) {
         set(CMTextMarkupAttribute.UnderlineStyle, CFBoolean.valueOf(underline));
         return this;
     }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public String getFontFamilyName() {
         if (has(CMTextMarkupAttribute.FontFamilyName)) {
             CFString val = get(CMTextMarkupAttribute.FontFamilyName, CFString.class);
@@ -224,16 +185,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public CMTextMarkupAttributes setFontFamilyName(String fontFamilyName) {
         set(CMTextMarkupAttribute.FontFamilyName, new CFString(fontFamilyName));
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public CMTextMarkupGenericFontName getGenericFontFamilyName() {
         if (has(CMTextMarkupAttribute.GenericFontFamilyName)) {
             CFString val = get(CMTextMarkupAttribute.GenericFontFamilyName, CFString.class);
@@ -241,16 +196,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public CMTextMarkupAttributes setGenericFontFamilyName(CMTextMarkupGenericFontName genericFontFamilyName) {
         set(CMTextMarkupAttribute.GenericFontFamilyName, genericFontFamilyName.value());
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public double getBaseFontSizePercentageRelativeToVideoHeight() {
         if (has(CMTextMarkupAttribute.BaseFontSizePercentageRelativeToVideoHeight)) {
             CFNumber val = get(CMTextMarkupAttribute.BaseFontSizePercentageRelativeToVideoHeight, CFNumber.class);
@@ -258,16 +207,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public CMTextMarkupAttributes setBaseFontSizePercentageRelativeToVideoHeight(double baseFontSizePercentageRelativeToVideoHeight) {
         set(CMTextMarkupAttribute.BaseFontSizePercentageRelativeToVideoHeight, CFNumber.valueOf(baseFontSizePercentageRelativeToVideoHeight));
         return this;
     }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public double getRelativeFontSize() {
         if (has(CMTextMarkupAttribute.RelativeFontSize)) {
             CFNumber val = get(CMTextMarkupAttribute.RelativeFontSize, CFNumber.class);
@@ -275,16 +218,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public CMTextMarkupAttributes setRelativeFontSize(double relativeFontSize) {
         set(CMTextMarkupAttribute.RelativeFontSize, CFNumber.valueOf(relativeFontSize));
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public CMTextVerticalLayout getVerticalLayout() {
         if (has(CMTextMarkupAttribute.VerticalLayout)) {
             CFString val = get(CMTextMarkupAttribute.VerticalLayout, CFString.class);
@@ -292,16 +229,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public CMTextMarkupAttributes setVerticalLayout(CMTextVerticalLayout verticalLayout) {
         set(CMTextMarkupAttribute.VerticalLayout, verticalLayout.value());
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public CMTextMarkupAlignmentType getAlignment() {
         if (has(CMTextMarkupAttribute.Alignment)) {
             CFString val = get(CMTextMarkupAttribute.Alignment, CFString.class);
@@ -309,16 +240,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public CMTextMarkupAttributes setAlignment(CMTextMarkupAlignmentType alignment) {
         set(CMTextMarkupAttribute.Alignment, alignment.value());
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public double getTextPositionPercentageRelativeToWritingDirection() {
         if (has(CMTextMarkupAttribute.TextPositionPercentageRelativeToWritingDirection)) {
             CFNumber val = get(CMTextMarkupAttribute.TextPositionPercentageRelativeToWritingDirection, CFNumber.class);
@@ -326,16 +251,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public CMTextMarkupAttributes setTextPositionPercentageRelativeToWritingDirection(double textPositionPercentageRelativeToWritingDirection) {
         set(CMTextMarkupAttribute.TextPositionPercentageRelativeToWritingDirection, CFNumber.valueOf(textPositionPercentageRelativeToWritingDirection));
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public double getOrthogonalLinePositionPercentageRelativeToWritingDirection() {
         if (has(CMTextMarkupAttribute.OrthogonalLinePositionPercentageRelativeToWritingDirection)) {
             CFNumber val = get(CMTextMarkupAttribute.OrthogonalLinePositionPercentageRelativeToWritingDirection, CFNumber.class);
@@ -343,16 +262,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public CMTextMarkupAttributes setOrthogonalLinePositionPercentageRelativeToWritingDirection(double orthogonalLinePositionPercentageRelativeToWritingDirection) {
         set(CMTextMarkupAttribute.OrthogonalLinePositionPercentageRelativeToWritingDirection, CFNumber.valueOf(orthogonalLinePositionPercentageRelativeToWritingDirection));
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public double getWritingDirectionSizePercentage() {
         if (has(CMTextMarkupAttribute.WritingDirectionSizePercentage)) {
             CFNumber val = get(CMTextMarkupAttribute.WritingDirectionSizePercentage, CFNumber.class);
@@ -360,16 +273,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public CMTextMarkupAttributes setWritingDirectionSizePercentage(double writingDirectionSizePercentage) {
         set(CMTextMarkupAttribute.WritingDirectionSizePercentage, CFNumber.valueOf(writingDirectionSizePercentage));
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public CMTextMarkupCharacterEdgeStyle getCharacterEdgeStyle() {
         if (has(CMTextMarkupAttribute.CharacterEdgeStyle)) {
             CFString val = get(CMTextMarkupAttribute.CharacterEdgeStyle, CFString.class);
@@ -377,9 +284,6 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public CMTextMarkupAttributes setCharacterEdgeStyle(CMTextMarkupCharacterEdgeStyle characterEdgeStyle) {
         set(CMTextMarkupAttribute.CharacterEdgeStyle, characterEdgeStyle.value());
         return this;

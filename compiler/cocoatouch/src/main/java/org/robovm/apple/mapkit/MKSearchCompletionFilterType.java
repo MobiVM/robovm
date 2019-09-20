@@ -37,9 +37,10 @@ import org.robovm.apple.dispatch.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 9.3 and later.
+ * @deprecated Deprecated in iOS 13.0. Use MKLocalSearchCompleterResultType
  */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Deprecated/*</annotations>*/
 public enum /*<name>*/MKSearchCompletionFilterType/*</name>*/ implements ValuedEnum {
     /*<values>*/
     LocationsAndQueries(0L),

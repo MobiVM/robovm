@@ -32,9 +32,7 @@ import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 3.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("StoreKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SKPaymentTransaction/*</name>*/ 
@@ -50,46 +48,24 @@ import org.robovm.apple.uikit.*;
     protected SKPaymentTransaction(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "error")
     public native NSError getError();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "originalTransaction")
     public native SKPaymentTransaction getOriginalTransaction();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "payment")
     public native SKPayment getPayment();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "downloads")
     public native NSArray<SKDownload> getDownloads();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "transactionDate")
     public native NSDate getTransactionDate();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "transactionIdentifier")
     public native String getTransactionIdentifier();
     /**
-     * @since Available in iOS 3.0 and later.
      * @deprecated Deprecated in iOS 7.0. Use -[NSBundle appStoreReceiptURL]
      */
     @Deprecated
     @Property(selector = "transactionReceipt")
     public native NSData getTransactionReceipt();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "transactionState")
     public native SKPaymentTransactionState getTransactionState();
     /*</properties>*/

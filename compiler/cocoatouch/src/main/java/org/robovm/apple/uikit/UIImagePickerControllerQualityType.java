@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -48,17 +50,8 @@ public enum /*<name>*/UIImagePickerControllerQualityType/*</name>*/ implements V
     High(0L),
     Medium(1L),
     Low(2L),
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     _640x480(3L),
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     IFrame1280x720(4L),
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     IFrame960x540(5L);
     /*</values>*/
 

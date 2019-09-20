@@ -69,6 +69,10 @@ public enum /*<name>*/ARErrorCode/*</name>*/ implements NSErrorCode {
      */
     InvalidConfiguration(303L),
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    CollaborationDataUnavailable(304L),
+    /**
      * @since Available in iOS 12.0 and later.
      */
     InsufficientFeatures(400L),

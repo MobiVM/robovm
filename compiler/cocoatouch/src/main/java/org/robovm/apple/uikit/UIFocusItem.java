@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -63,6 +65,9 @@ import org.robovm.apple.intents.*;
     @ByVal CGRect getFrame();
     /*</properties>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
     @Method(selector = "didHintFocusMovement:")
     void didHintFocusMovement(UIFocusMovementHint hint);
     /*</methods>*/

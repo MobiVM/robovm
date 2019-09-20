@@ -54,39 +54,18 @@ import org.robovm.apple.coretext.*;
         return create(null, domain, code, userInfo);
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CFErrorGetTypeID", optional=true)
     public static native @MachineSizedUInt long getClassTypeID();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CFErrorCreate", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CFError create(CFAllocator allocator, String domain, @MachineSizedSInt long code, NSDictionary userInfo);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CFErrorGetDomain", optional=true)
     public native String getDomain();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CFErrorGetCode", optional=true)
     public native @MachineSizedSInt long getCode();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CFErrorCopyUserInfo", optional=true)
     public native NSDictionary getUserInfo();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CFErrorCopyFailureReason", optional=true)
     public native @org.robovm.rt.bro.annotation.Marshaler(CFString.AsStringNoRetainMarshaler.class) String getFailureReason();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CFErrorCopyRecoverySuggestion", optional=true)
     public native @org.robovm.rt.bro.annotation.Marshaler(CFString.AsStringNoRetainMarshaler.class) String getRecoverySuggestion();
     /*</methods>*/

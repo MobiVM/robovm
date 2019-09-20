@@ -104,9 +104,13 @@ import org.robovm.apple.avfoundation.*;
      * @since Available in iOS 10.0 and later.
      */
     public static final SCNLightingModel PhysicallyBased = new SCNLightingModel("PhysicallyBased");
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final SCNLightingModel ShadowOnly = new SCNLightingModel("ShadowOnly");
     /*</constants>*/
     
-    private static /*<name>*/SCNLightingModel/*</name>*/[] values = new /*<name>*/SCNLightingModel/*</name>*/[] {/*<value_list>*/Phong, Blinn, Lambert, Constant, PhysicallyBased/*</value_list>*/};
+    private static /*<name>*/SCNLightingModel/*</name>*/[] values = new /*<name>*/SCNLightingModel/*</name>*/[] {/*<value_list>*/Phong, Blinn, Lambert, Constant, PhysicallyBased, ShadowOnly/*</value_list>*/};
     
     /*<name>*/SCNLightingModel/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -142,6 +146,11 @@ import org.robovm.apple.avfoundation.*;
          */
         @GlobalValue(symbol="SCNLightingModelPhysicallyBased", optional=true)
         public static native NSString PhysicallyBased();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="SCNLightingModelShadowOnly", optional=true)
+        public static native NSString ShadowOnly();
         /*</values>*/
     }
 }

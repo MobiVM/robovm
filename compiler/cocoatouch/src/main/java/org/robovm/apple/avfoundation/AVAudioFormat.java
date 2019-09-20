@@ -41,9 +41,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVAudioFormat/*</name>*/ 
@@ -78,7 +76,7 @@ import org.robovm.apple.audiotoolbox.*;
     @Method(selector = "initWithCMAudioFormatDescription:")
     public AVAudioFormat(CMAudioFormatDescription formatDescription) { super((SkipInit) null); initObject(init(formatDescription)); }
     @Method(selector = "initWithCoder:")
-    public AVAudioFormat(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public AVAudioFormat(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "isStandard")
@@ -143,6 +141,6 @@ import org.robovm.apple.audiotoolbox.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

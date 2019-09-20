@@ -47,6 +47,7 @@ enums:
     HKBloodGlucoseMealTime: {} #since 11.0
     HKVO2MaxTestType: {} #since 11.0
     HKAuthorizationRequestStatus: {} #since 12.0
+    HKCategoryValueAudioExposureEvent: {} #since 13.0
 
 typed_enums:
     HKFHIRResourceType:
@@ -559,11 +560,19 @@ classes:
                 name: init
             '-insertQuantity:date:error:':
                 name: insertQuantity
+                throws: NSErrorException
             '-finishSeriesWithMetadata:completion:':
+                name: finishSeries
+            '-insertQuantity:dateInterval:error:':
+                name: insertQuantity
+                throws: NSErrorException
+            '-finishSeriesWithMetadata:endDate:completion:':
                 name: finishSeries
     HKQuantitySeriesSampleQuery: #since 12.0
         methods:
             '-initWithSample:quantityHandler:':
+                name: init
+            '-initWithQuantityType:predicate:quantityHandler:':
                 name: init
     HKWorkoutBuilder: #since 12.0
         methods:
@@ -581,6 +590,34 @@ classes:
                 name: endCollection
             '-finishWorkoutWithCompletion:':
                 name: finishWorkout
+    HKAudiogramSample: #since 13.0
+        methods:
+            '+audiogramSampleWithSensitivityPoints:startDate:endDate:metadata:':
+                name: create
+                constructor: true
+    HKAudiogramSampleType: {} #since 13.0
+    HKAudiogramSensitivityPoint: #since 13.0
+        methods:
+            '+sensitivityPointWithFrequency:leftEarSensitivity:rightEarSensitivity:error:':
+                name: create
+                constructor: true
+    HKCumulativeQuantitySample: {} #since 13.0
+    HKDiscreteQuantitySample: {} #since 13.0
+    HKHeartbeatSeriesBuilder: #since 13.0
+        methods:
+            '-initWithHealthStore:device:startDate:':
+                name: init
+            '-addHeartbeatWithTimeIntervalSinceSeriesStartDate:precededByGap:completion:':
+                name: addHeartbeat
+            '-addMetadata:completion:':
+                name: addMetadata
+            '-finishSeriesWithCompletion:':
+                name: finishSeries
+    HKHeartbeatSeriesQuery: #since 13.0
+        methods:
+            '-initWithHeartbeatSeries:dataHandler:':
+                name: init
+    HKHeartbeatSeriesSample: {} #since 13.0
 protocols:
     HKWorkoutSessionDelegate: {}
 
@@ -703,6 +740,9 @@ values:
     HKWorkoutRouteTypeIdentifier:
         class: HKWorkoutRoute
         name: getTypeIdentifier
+    HKDataTypeIdentifierHeartbeatSeries:
+        class: HKSeriesSample
+        name: getDataTypeIdentifier
 
     # Make sure we don't miss any values if new ones are introduced in a later version
     (HK.*):

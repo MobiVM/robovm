@@ -99,21 +99,9 @@ import org.robovm.apple.dispatch.*;
     public static final NSURLAuthenticationMethod HTTPBasic = new NSURLAuthenticationMethod("HTTPBasic");
     public static final NSURLAuthenticationMethod HTTPDigest = new NSURLAuthenticationMethod("HTTPDigest");
     public static final NSURLAuthenticationMethod HTMLForm = new NSURLAuthenticationMethod("HTMLForm");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final NSURLAuthenticationMethod NTLM = new NSURLAuthenticationMethod("NTLM");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final NSURLAuthenticationMethod Negotiate = new NSURLAuthenticationMethod("Negotiate");
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public static final NSURLAuthenticationMethod ClientCertificate = new NSURLAuthenticationMethod("ClientCertificate");
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public static final NSURLAuthenticationMethod ServerTrust = new NSURLAuthenticationMethod("ServerTrust");
     /*</constants>*/
     
@@ -148,24 +136,12 @@ import org.robovm.apple.dispatch.*;
         public static native NSString HTTPDigest();
         @GlobalValue(symbol="NSURLAuthenticationMethodHTMLForm", optional=true)
         public static native NSString HTMLForm();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="NSURLAuthenticationMethodNTLM", optional=true)
         public static native NSString NTLM();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="NSURLAuthenticationMethodNegotiate", optional=true)
         public static native NSString Negotiate();
-        /**
-         * @since Available in iOS 3.0 and later.
-         */
         @GlobalValue(symbol="NSURLAuthenticationMethodClientCertificate", optional=true)
         public static native NSString ClientCertificate();
-        /**
-         * @since Available in iOS 3.0 and later.
-         */
         @GlobalValue(symbol="NSURLAuthenticationMethodServerTrust", optional=true)
         public static native NSString ServerTrust();
         /*</values>*/

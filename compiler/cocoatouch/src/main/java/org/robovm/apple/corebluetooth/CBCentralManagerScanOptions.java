@@ -119,9 +119,6 @@ import org.robovm.apple.dispatch.*;
         set(Keys.AllowDuplicates(), NSNumber.valueOf(allowsDuplicates));
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public NSArray<CBUUID> getSolicitedServiceUUIDs() {
         if (has(Keys.SolicitedServiceUUIDs())) {
             NSArray<CBUUID> val = (NSArray<CBUUID>) get(Keys.SolicitedServiceUUIDs());
@@ -129,9 +126,6 @@ import org.robovm.apple.dispatch.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public CBCentralManagerScanOptions setSolicitedServiceUUIDs(NSArray<CBUUID> solicitedServiceUUIDs) {
         set(Keys.SolicitedServiceUUIDs(), solicitedServiceUUIDs);
         return this;
@@ -144,9 +138,6 @@ import org.robovm.apple.dispatch.*;
         static { Bro.bind(Keys.class); }
         @GlobalValue(symbol="CBCentralManagerScanOptionAllowDuplicatesKey", optional=true)
         public static native NSString AllowDuplicates();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="CBCentralManagerScanOptionSolicitedServiceUUIDsKey", optional=true)
         public static native NSString SolicitedServiceUUIDs();
     }

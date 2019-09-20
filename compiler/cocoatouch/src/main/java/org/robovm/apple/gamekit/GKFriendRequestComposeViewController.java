@@ -33,7 +33,6 @@ import org.robovm.apple.uikit.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 4.2 and later.
  * @deprecated Deprecated in iOS 10.0.
  */
 /*</javadoc>*/
@@ -49,9 +48,6 @@ import org.robovm.apple.uikit.*;
     public GKFriendRequestComposeViewController() {}
     protected GKFriendRequestComposeViewController(Handle h, long handle) { super(h, handle); }
     protected GKFriendRequestComposeViewController(SkipInit skipInit) { super(skipInit); }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "initWithNavigationBarClass:toolbarClass:")
     public GKFriendRequestComposeViewController(Class<? extends UINavigationBar> navigationBarClass, Class<? extends UIToolbar> toolbarClass) { super(navigationBarClass, toolbarClass); }
     @Method(selector = "initWithRootViewController:")
@@ -63,14 +59,12 @@ import org.robovm.apple.uikit.*;
     /*</constructors>*/
     /*<properties>*/
     /**
-     * @since Available in iOS 4.2 and later.
      * @deprecated Deprecated in iOS 10.0.
      */
     @Deprecated
     @Property(selector = "composeViewDelegate")
     public native GKFriendRequestComposeViewControllerDelegate getComposeViewDelegate();
     /**
-     * @since Available in iOS 4.2 and later.
      * @deprecated Deprecated in iOS 10.0.
      */
     @Deprecated
@@ -81,13 +75,9 @@ import org.robovm.apple.uikit.*;
     /*<methods>*/
     @Method(selector = "setMessage:")
     public native void setMessage(String message);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "addRecipientPlayers:")
     public native void addRecipientPlayers(NSArray<GKPlayer> players);
     /**
-     * @since Available in iOS 4.2 and later.
      * @deprecated Deprecated in iOS 8.0. use addRecipientPlayers:
      */
     @Deprecated

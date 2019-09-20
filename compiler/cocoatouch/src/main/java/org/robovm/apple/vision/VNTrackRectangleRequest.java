@@ -48,7 +48,9 @@ import org.robovm.apple.imageio.*;
 
     /*<ptr>*/public static class VNTrackRectangleRequestPtr extends Ptr<VNTrackRectangleRequest, VNTrackRectangleRequestPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(VNTrackRectangleRequest.class); }/*</bind>*/
-    /*<constants>*//*</constants>*/
+    /*<constants>*/
+    public static final int Revision1 = 1;
+    /*</constants>*/
     /*<constructors>*/
     protected VNTrackRectangleRequest() {}
     protected VNTrackRectangleRequest(Handle h, long handle) { super(h, handle); }
@@ -63,12 +65,6 @@ import org.robovm.apple.imageio.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 12.0 and later.
-     */
-    @GlobalValue(symbol="VNTrackRectangleRequestRevision1", optional=true)
-    public static native @MachineSizedUInt long getRevision1();
-    
     @Method(selector = "initWithRectangleObservation:")
     protected native @Pointer long init(VNRectangleObservation observation);
     @Method(selector = "initWithRectangleObservation:completionHandler:")

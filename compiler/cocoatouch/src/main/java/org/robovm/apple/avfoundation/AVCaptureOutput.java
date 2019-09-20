@@ -41,9 +41,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVCaptureOutput/*</name>*/ 
@@ -64,24 +62,12 @@ import org.robovm.apple.audiotoolbox.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "connectionWithMediaType:")
     public native AVCaptureConnection getConnection(AVMediaType mediaType);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "transformedMetadataObjectForMetadataObject:connection:")
     public native AVMetadataObject getTransformedMetadataObject(AVMetadataObject metadataObject, AVCaptureConnection connection);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "metadataOutputRectOfInterestForRect:")
     public native @ByVal CGRect getRectOfInterestInOutputCoordinates(@ByVal CGRect rectInOutputCoordinates);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "rectForMetadataOutputRectOfInterest:")
     public native @ByVal CGRect getRectOfInterestInMetadataOutputCoordinates(@ByVal CGRect rectInMetadataOutputCoordinates);
     /*</methods>*/

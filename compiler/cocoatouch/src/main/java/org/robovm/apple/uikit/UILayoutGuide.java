@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -57,7 +59,7 @@ import org.robovm.apple.intents.*;
     protected UILayoutGuide(Handle h, long handle) { super(h, handle); }
     protected UILayoutGuide(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public UILayoutGuide(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public UILayoutGuide(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "layoutFrame")
@@ -106,6 +108,6 @@ import org.robovm.apple.intents.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

@@ -63,14 +63,12 @@ import org.robovm.apple.audiotoolbox.*;
     @NotImplemented("audioRecorderEncodeErrorDidOccur:error:")
     public void encodeErrorDidOccur(AVAudioRecorder recorder, NSError error) {}
     /**
-     * @since Available in iOS 2.2 and later.
      * @deprecated Deprecated in iOS 8.0.
      */
     @Deprecated
     @NotImplemented("audioRecorderBeginInterruption:")
     public void beginInterruption(AVAudioRecorder recorder) {}
     /**
-     * @since Available in iOS 6.0 and later.
      * @deprecated Deprecated in iOS 8.0.
      */
     @Deprecated

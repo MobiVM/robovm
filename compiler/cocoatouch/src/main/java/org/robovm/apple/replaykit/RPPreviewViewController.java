@@ -50,7 +50,7 @@ import org.robovm.apple.coremedia.*;
     @Method(selector = "initWithNibName:bundle:")
     public RPPreviewViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
     @Method(selector = "initWithCoder:")
-    public RPPreviewViewController(NSCoder decoder) { super(decoder); }
+    public RPPreviewViewController(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "previewControllerDelegate")

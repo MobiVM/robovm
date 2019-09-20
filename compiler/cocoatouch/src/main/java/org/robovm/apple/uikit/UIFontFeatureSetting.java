@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -115,9 +117,6 @@ import org.robovm.apple.intents.*;
     }
     
 
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public long getTypeIdentifier() {
         if (has(Keys.TypeIdentifier())) {
             NSNumber val = (NSNumber) get(Keys.TypeIdentifier());
@@ -125,16 +124,10 @@ import org.robovm.apple.intents.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public UIFontFeatureSetting setTypeIdentifier(long typeIdentifier) {
         set(Keys.TypeIdentifier(), NSNumber.valueOf(typeIdentifier));
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public long getSelectorIdentifier() {
         if (has(Keys.SelectorIdentifier())) {
             NSNumber val = (NSNumber) get(Keys.SelectorIdentifier());
@@ -142,9 +135,6 @@ import org.robovm.apple.intents.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public UIFontFeatureSetting setSelectorIdentifier(long selectorIdentifier) {
         set(Keys.SelectorIdentifier(), NSNumber.valueOf(selectorIdentifier));
         return this;
@@ -155,14 +145,8 @@ import org.robovm.apple.intents.*;
     @Library("UIKit")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="UIFontFeatureTypeIdentifierKey", optional=true)
         public static native NSString TypeIdentifier();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="UIFontFeatureSelectorIdentifierKey", optional=true)
         public static native NSString SelectorIdentifier();
     }

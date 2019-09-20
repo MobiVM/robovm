@@ -48,7 +48,11 @@ import org.robovm.apple.imageio.*;
 
     /*<ptr>*/public static class VNDetectFaceLandmarksRequestPtr extends Ptr<VNDetectFaceLandmarksRequest, VNDetectFaceLandmarksRequestPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(VNDetectFaceLandmarksRequest.class); }/*</bind>*/
-    /*<constants>*//*</constants>*/
+    /*<constants>*/
+    public static final int Revision1 = 1;
+    public static final int Revision2 = 2;
+    public static final int Revision3 = 3;
+    /*</constants>*/
     /*<constructors>*/
     public VNDetectFaceLandmarksRequest() {}
     protected VNDetectFaceLandmarksRequest(Handle h, long handle) { super(h, handle); }
@@ -57,6 +61,16 @@ import org.robovm.apple.imageio.*;
     public VNDetectFaceLandmarksRequest(@Block VoidBlock2<VNRequest, NSError> completionHandler) { super(completionHandler); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "constellation")
+    public native VNRequestFaceLandmarksConstellation getConstellation();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setConstellation:")
+    public native void setConstellation(VNRequestFaceLandmarksConstellation v);
     @Property(selector = "inputFaceObservations")
     public native NSArray<VNFaceObservation> getInputFaceObservations();
     @Property(selector = "setInputFaceObservations:")
@@ -64,17 +78,7 @@ import org.robovm.apple.imageio.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 12.0 and later.
-     */
-    @GlobalValue(symbol="VNDetectFaceLandmarksRequestRevision1", optional=true)
-    public static native @MachineSizedUInt long getRevision1();
-    /**
-     * @since Available in iOS 12.0 and later.
-     */
-    @GlobalValue(symbol="VNDetectFaceLandmarksRequestRevision2", optional=true)
-    public static native @MachineSizedUInt long getRevision2();
-    
-    
+    @Method(selector = "revision:supportsConstellation:")
+    public static native boolean revision(@MachineSizedUInt long requestRevision, VNRequestFaceLandmarksConstellation constellation);
     /*</methods>*/
 }

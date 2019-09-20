@@ -127,6 +127,21 @@ import org.robovm.apple.coregraphics.*;
          */
         @GlobalValue(symbol="kCGImageAuxiliaryDataTypePortraitEffectsMatte", optional=true)
         public static native CFString PortraitEffectsMatte();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="kCGImageAuxiliaryDataTypeSemanticSegmentationSkinMatte", optional=true)
+        public static native CFString SemanticSegmentationSkinMatte();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="kCGImageAuxiliaryDataTypeSemanticSegmentationHairMatte", optional=true)
+        public static native CFString SemanticSegmentationHairMatte();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="kCGImageAuxiliaryDataTypeSemanticSegmentationTeethMatte", optional=true)
+        public static native CFString SemanticSegmentationTeethMatte();
     }
     /*</keys>*/
 }

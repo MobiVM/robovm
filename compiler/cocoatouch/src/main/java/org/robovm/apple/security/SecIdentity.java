@@ -68,19 +68,10 @@ import org.robovm.apple.dispatch.*;
         return ptr.get();
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="SecIdentityGetTypeID", optional=true)
     public static native @MachineSizedUInt long getClassTypeID();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="SecIdentityCopyCertificate", optional=true)
     protected native OSStatus getCertificate0(SecCertificate.SecCertificatePtr certificateRef);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="SecIdentityCopyPrivateKey", optional=true)
     protected native OSStatus getPrivateKey0(SecKey.SecKeyPtr privateKeyRef);
     /*</methods>*/

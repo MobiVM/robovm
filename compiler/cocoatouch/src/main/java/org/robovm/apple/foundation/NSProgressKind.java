@@ -95,9 +95,6 @@ import org.robovm.apple.dispatch.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final NSProgressKind File = new NSProgressKind("File");
     /*</constants>*/
     
@@ -124,9 +121,6 @@ import org.robovm.apple.dispatch.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="NSProgressKindFile", optional=true)
         public static native NSString File();
         /*</values>*/

@@ -37,7 +37,6 @@ import org.robovm.apple.metal.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 2.0 and later.
  * @deprecated Deprecated in iOS 12.0. OpenGLES is deprecated
  */
 /*</javadoc>*/

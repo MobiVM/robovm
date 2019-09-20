@@ -85,44 +85,20 @@ import org.robovm.apple.audiotoolbox.*;
         OSStatusException.throwIfNecessary(status);
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="CMSimpleQueueGetTypeID", optional=true)
     public static native @MachineSizedUInt long getClassTypeID();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="CMSimpleQueueCreate", optional=true)
     protected static native OSStatus create0(CFAllocator allocator, int capacity, CMSimpleQueue.CMSimpleQueuePtr queueOut);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="CMSimpleQueueEnqueue", optional=true)
     protected native OSStatus enqueue0(VoidPtr element);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="CMSimpleQueueDequeue", optional=true)
     public native VoidPtr dequeue();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="CMSimpleQueueGetHead", optional=true)
     public native VoidPtr getHead();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="CMSimpleQueueReset", optional=true)
     protected native OSStatus reset0();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="CMSimpleQueueGetCapacity", optional=true)
     public native int getCapacity();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="CMSimpleQueueGetCount", optional=true)
     public native int getCount();
     /*</methods>*/

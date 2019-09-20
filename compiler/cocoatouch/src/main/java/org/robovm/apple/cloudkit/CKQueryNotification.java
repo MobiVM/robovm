@@ -34,9 +34,7 @@ import org.robovm.apple.fileprovider.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("CloudKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CKQueryNotification/*</name>*/ 
@@ -59,7 +57,6 @@ import org.robovm.apple.fileprovider.*;
     @Property(selector = "recordID")
     public native CKRecordID getRecordID();
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 10.0. Use databaseScope instead
      */
     @Deprecated

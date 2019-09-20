@@ -114,9 +114,6 @@ import org.robovm.apple.dispatch.*;
     }
     
 
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public String getHost() {
         if (has(Keys.Host())) {
             NSString val = (NSString) get(Keys.Host());
@@ -124,16 +121,10 @@ import org.robovm.apple.dispatch.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public NSStreamSOCKSProxyConfiguration setHost(String host) {
         set(Keys.Host(), new NSString(host));
         return this;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public int getPort() {
         if (has(Keys.Port())) {
             NSNumber val = (NSNumber) get(Keys.Port());
@@ -141,16 +132,10 @@ import org.robovm.apple.dispatch.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public NSStreamSOCKSProxyConfiguration setPort(int port) {
         set(Keys.Port(), NSNumber.valueOf(port));
         return this;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public NSStreamSOCKSProxyVersion getVersion() {
         if (has(Keys.Version())) {
             NSString val = (NSString) get(Keys.Version());
@@ -158,16 +143,10 @@ import org.robovm.apple.dispatch.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public NSStreamSOCKSProxyConfiguration setVersion(NSStreamSOCKSProxyVersion version) {
         set(Keys.Version(), version.value());
         return this;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public String getUser() {
         if (has(Keys.User())) {
             NSString val = (NSString) get(Keys.User());
@@ -175,16 +154,10 @@ import org.robovm.apple.dispatch.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public NSStreamSOCKSProxyConfiguration setUser(String user) {
         set(Keys.User(), new NSString(user));
         return this;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public String getPassword() {
         if (has(Keys.Password())) {
             NSString val = (NSString) get(Keys.Password());
@@ -192,9 +165,6 @@ import org.robovm.apple.dispatch.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public NSStreamSOCKSProxyConfiguration setPassword(String password) {
         set(Keys.Password(), new NSString(password));
         return this;
@@ -205,29 +175,14 @@ import org.robovm.apple.dispatch.*;
     @Library("Foundation")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="NSStreamSOCKSProxyHostKey", optional=true)
         public static native NSString Host();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="NSStreamSOCKSProxyPortKey", optional=true)
         public static native NSString Port();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="NSStreamSOCKSProxyVersionKey", optional=true)
         public static native NSString Version();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="NSStreamSOCKSProxyUserKey", optional=true)
         public static native NSString User();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="NSStreamSOCKSProxyPasswordKey", optional=true)
         public static native NSString Password();
     }

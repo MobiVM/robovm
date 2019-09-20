@@ -41,9 +41,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVCaptureAudioChannel/*</name>*/ 
@@ -54,7 +52,7 @@ import org.robovm.apple.audiotoolbox.*;
     /*<bind>*/static { ObjCRuntime.bind(AVCaptureAudioChannel.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public AVCaptureAudioChannel() {}
+    protected AVCaptureAudioChannel() {}
     protected AVCaptureAudioChannel(Handle h, long handle) { super(h, handle); }
     protected AVCaptureAudioChannel(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/

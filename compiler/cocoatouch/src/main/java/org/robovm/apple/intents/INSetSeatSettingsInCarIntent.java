@@ -56,7 +56,7 @@ import org.robovm.apple.corelocation.*;
     public INSetSeatSettingsInCarIntent(NSNumber enableHeating, NSNumber enableCooling, NSNumber enableMassage, INCarSeat seat, NSNumber level, INRelativeSetting relativeLevelSetting, INSpeakableString carName) { super((SkipInit) null); initObject(init(enableHeating, enableCooling, enableMassage, seat, level, relativeLevelSetting, carName)); }
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 12.0.
+     * @deprecated Deprecated in iOS 12.0. Use -initWithEnableHeating:enableCooling:enableMassage:seat:level:relativeLevelSetting:relativeLevelSetting:carName:
      */
     @Deprecated
     @Method(selector = "initWithEnableHeating:enableCooling:enableMassage:seat:level:relativeLevelSetting:")
@@ -90,7 +90,7 @@ import org.robovm.apple.corelocation.*;
     protected native @Pointer long init(NSNumber enableHeating, NSNumber enableCooling, NSNumber enableMassage, INCarSeat seat, NSNumber level, INRelativeSetting relativeLevelSetting, INSpeakableString carName);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 12.0.
+     * @deprecated Deprecated in iOS 12.0. Use -initWithEnableHeating:enableCooling:enableMassage:seat:level:relativeLevelSetting:relativeLevelSetting:carName:
      */
     @Deprecated
     @Method(selector = "initWithEnableHeating:enableCooling:enableMassage:seat:level:relativeLevelSetting:")

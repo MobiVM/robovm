@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -59,112 +61,85 @@ import org.robovm.apple.intents.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 7.0. Use -sizeWithAttributes:
+     * @deprecated Deprecated in iOS 7.0. Use sizeWithAttributes:
      */
     @Deprecated
     @Method(selector = "sizeWithFont:")
     public static native @ByVal CGSize getSize(@Pointer long thiz, UIFont font);
     /**
-     * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 7.0. Use -boundingRectWithSize:options:attributes:context:
+     * @deprecated Deprecated in iOS 7.0. Use boundingRectWithSize:options:attributes:context:
      */
     @Deprecated
     @Method(selector = "sizeWithFont:forWidth:lineBreakMode:")
     public static native @ByVal CGSize getSize(@Pointer long thiz, UIFont font, @MachineSizedFloat double width, NSLineBreakMode lineBreakMode);
     /**
-     * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 7.0. Use -drawAtPoint:withAttributes:
+     * @deprecated Deprecated in iOS 7.0. Use drawAtPoint:withAttributes:
      */
     @Deprecated
     @Method(selector = "drawAtPoint:withFont:")
     public static native @ByVal CGSize draw(@Pointer long thiz, @ByVal CGPoint point, UIFont font);
     /**
-     * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 7.0. Use -drawInRect:withAttributes:
+     * @deprecated Deprecated in iOS 7.0. Use drawInRect:withAttributes:
      */
     @Deprecated
     @Method(selector = "drawAtPoint:forWidth:withFont:lineBreakMode:")
     public static native @ByVal CGSize draw(@Pointer long thiz, @ByVal CGPoint point, @MachineSizedFloat double width, UIFont font, NSLineBreakMode lineBreakMode);
     /**
-     * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 7.0. Use -boundingRectWithSize:options:attributes:context:
+     * @deprecated Deprecated in iOS 7.0. Use boundingRectWithSize:options:attributes:context:
      */
     @Deprecated
     @Method(selector = "sizeWithFont:constrainedToSize:")
     public static native @ByVal CGSize getSize(@Pointer long thiz, UIFont font, @ByVal CGSize size);
     /**
-     * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 7.0. Use -boundingRectWithSize:options:attributes:context:
+     * @deprecated Deprecated in iOS 7.0. Use boundingRectWithSize:options:attributes:context:
      */
     @Deprecated
     @Method(selector = "sizeWithFont:constrainedToSize:lineBreakMode:")
     public static native @ByVal CGSize getSize(@Pointer long thiz, UIFont font, @ByVal CGSize size, NSLineBreakMode lineBreakMode);
     /**
-     * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 7.0. Use -drawInRect:withAttributes:
+     * @deprecated Deprecated in iOS 7.0. Use drawInRect:withAttributes:
      */
     @Deprecated
     @Method(selector = "drawInRect:withFont:")
     public static native @ByVal CGSize draw(@Pointer long thiz, @ByVal CGRect rect, UIFont font);
     /**
-     * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 7.0. Use -drawInRect:withAttributes:
+     * @deprecated Deprecated in iOS 7.0. Use drawInRect:withAttributes:
      */
     @Deprecated
     @Method(selector = "drawInRect:withFont:lineBreakMode:")
     public static native @ByVal CGSize draw(@Pointer long thiz, @ByVal CGRect rect, UIFont font, NSLineBreakMode lineBreakMode);
     /**
-     * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 7.0. Use -drawInRect:withAttributes:
+     * @deprecated Deprecated in iOS 7.0. Use drawInRect:withAttributes:
      */
     @Deprecated
     @Method(selector = "drawInRect:withFont:lineBreakMode:alignment:")
     public static native @ByVal CGSize draw(@Pointer long thiz, @ByVal CGRect rect, UIFont font, NSLineBreakMode lineBreakMode, NSTextAlignment alignment);
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 7.0.
      */
     @Deprecated
     @Method(selector = "sizeWithFont:minFontSize:actualFontSize:forWidth:lineBreakMode:")
     public static native @ByVal CGSize getSize(@Pointer long thiz, UIFont font, @MachineSizedFloat double minFontSize, MachineSizedFloatPtr actualFontSize, @MachineSizedFloat double width, NSLineBreakMode lineBreakMode);
     /**
-     * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 7.0. Use -drawInRect:withAttributes:
+     * @deprecated Deprecated in iOS 7.0. Use drawInRect:withAttributes:
      */
     @Deprecated
     @Method(selector = "drawAtPoint:forWidth:withFont:fontSize:lineBreakMode:baselineAdjustment:")
     public static native @ByVal CGSize draw(@Pointer long thiz, @ByVal CGPoint point, @MachineSizedFloat double width, UIFont font, @MachineSizedFloat double fontSize, NSLineBreakMode lineBreakMode, UIBaselineAdjustment baselineAdjustment);
     /**
-     * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 7.0. Use -drawInRect:withAttributes:
+     * @deprecated Deprecated in iOS 7.0. Use drawInRect:withAttributes:
      */
     @Deprecated
     @Method(selector = "drawAtPoint:forWidth:withFont:minFontSize:actualFontSize:lineBreakMode:baselineAdjustment:")
     public static native @ByVal CGSize draw(@Pointer long thiz, @ByVal CGPoint point, @MachineSizedFloat double width, UIFont font, @MachineSizedFloat double minFontSize, MachineSizedFloatPtr actualFontSize, NSLineBreakMode lineBreakMode, UIBaselineAdjustment baselineAdjustment);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "sizeWithAttributes:")
     public static native @ByVal CGSize getSize(@Pointer long thiz, NSDictionary<NSString, ?> attrs);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "drawAtPoint:withAttributes:")
     public static native void draw(@Pointer long thiz, @ByVal CGPoint point, NSDictionary<NSString, ?> attrs);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "drawInRect:withAttributes:")
     public static native void draw(@Pointer long thiz, @ByVal CGRect rect, NSDictionary<NSString, ?> attrs);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "drawWithRect:options:attributes:context:")
     public static native void draw(@Pointer long thiz, @ByVal CGRect rect, NSStringDrawingOptions options, NSDictionary<NSString, ?> attributes, NSStringDrawingContext context);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "boundingRectWithSize:options:attributes:context:")
     public static native @ByVal CGRect getBoundingRect(@Pointer long thiz, @ByVal CGSize size, NSStringDrawingOptions options, NSDictionary<NSString, ?> attributes, NSStringDrawingContext context);
     /*</methods>*/

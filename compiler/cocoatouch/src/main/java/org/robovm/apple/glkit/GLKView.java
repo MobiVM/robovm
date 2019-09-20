@@ -38,7 +38,6 @@ import org.robovm.apple.modelio.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 5.0 and later.
  * @deprecated Deprecated in iOS 12.0. OpenGLES API deprecated. (Define GLES_SILENCE_DEPRECATION to silence these warnings)
  */
 /*</javadoc>*/
@@ -59,7 +58,7 @@ import org.robovm.apple.modelio.*;
     @Method(selector = "initWithFrame:")
     public GLKView(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public GLKView(NSCoder decoder) { super(decoder); }
+    public GLKView(NSCoder coder) { super(coder); }
     /*</constructors>*/
 
     /*<properties>*/

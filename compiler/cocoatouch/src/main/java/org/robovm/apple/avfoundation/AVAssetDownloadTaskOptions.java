@@ -166,6 +166,11 @@ import org.robovm.apple.audiotoolbox.*;
          */
         @GlobalValue(symbol="AVAssetDownloadTaskMediaSelectionKey", optional=true)
         public static native NSString MediaSelection();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="AVAssetDownloadTaskMediaSelectionPrefersMultichannelKey", optional=true)
+        public static native NSString MediaSelectionPrefersMultichannel();
     }
     /*</keys>*/
 }

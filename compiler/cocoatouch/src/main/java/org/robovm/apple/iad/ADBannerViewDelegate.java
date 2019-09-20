@@ -35,9 +35,11 @@ import org.robovm.apple.avkit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @deprecated Deprecated in iOS 13.0.
+ */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
+/*<annotations>*/@Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ interface /*<name>*/ADBannerViewDelegate/*</name>*/ 
     /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
 
@@ -50,9 +52,6 @@ import org.robovm.apple.avkit.*;
     
     /*</properties>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "bannerViewWillLoadAd:")
     void willLoadAd(ADBannerView banner);
     @Method(selector = "bannerViewDidLoadAd:")

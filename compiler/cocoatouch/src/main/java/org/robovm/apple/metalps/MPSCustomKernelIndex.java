@@ -39,9 +39,11 @@ import org.robovm.apple.metal.*;
 public enum /*<name>*/MPSCustomKernelIndex/*</name>*/ implements ValuedEnum {
     /*<values>*/
     DestIndex(0L),
+    Src0Index(0L),
     Src1Index(1L),
     Src2Index(2L),
     Src3Index(3L),
+    Src4Index(4L),
     UserDataIndex(30L);
     /*</values>*/
 

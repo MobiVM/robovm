@@ -41,9 +41,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVPlayer/*</name>*/ 
@@ -97,84 +95,36 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "setAutomaticallyWaitsToMinimizeStalling:")
     public native void setAutomaticallyWaitsToMinimizeStalling(boolean v);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "masterClock")
     public native CMClock getMasterClock();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "setMasterClock:")
     public native void setMasterClock(CMClock v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "volume")
     public native float getVolume();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setVolume:")
     public native void setVolume(float v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "isMuted")
     public native boolean isMuted();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setMuted:")
     public native void setMuted(boolean v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "appliesMediaSelectionCriteriaAutomatically")
     public native boolean appliesMediaSelectionCriteriaAutomatically();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setAppliesMediaSelectionCriteriaAutomatically:")
     public native void setAppliesMediaSelectionCriteriaAutomatically(boolean v);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "allowsExternalPlayback")
     public native boolean allowsExternalPlayback();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "setAllowsExternalPlayback:")
     public native void setAllowsExternalPlayback(boolean v);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "isExternalPlaybackActive")
     public native boolean isExternalPlaybackActive();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "usesExternalPlaybackWhileExternalScreenIsActive")
     public native boolean usesExternalPlaybackWhileExternalScreenIsActive();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "setUsesExternalPlaybackWhileExternalScreenIsActive:")
     public native void setUsesExternalPlaybackWhileExternalScreenIsActive(boolean v);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "externalPlaybackVideoGravity")
     public native String getExternalPlaybackVideoGravity();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "setExternalPlaybackVideoGravity:")
     public native void setExternalPlaybackVideoGravity(String v);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "outputObscuredDueToInsufficientExternalProtection")
     public native boolean outputObscuredDueToInsufficientExternalProtection();
     /**
@@ -193,14 +143,12 @@ import org.robovm.apple.audiotoolbox.*;
     @Property(selector = "setPreventsDisplaySleepDuringVideoPlayback:")
     public native void setPreventsDisplaySleepDuringVideoPlayback(boolean v);
     /**
-     * @since Available in iOS 4.0 and later.
      * @deprecated Deprecated in iOS 11.0. Allow AVPlayer to enable closed captions automatically according to user preferences by ensuring that the value of appliesMediaSelectionCriteriaAutomatically is YES.
      */
     @Deprecated
     @Property(selector = "isClosedCaptionDisplayEnabled")
     public native boolean isClosedCaptionDisplayEnabled();
     /**
-     * @since Available in iOS 4.0 and later.
      * @deprecated Deprecated in iOS 11.0. Allow AVPlayer to enable closed captions automatically according to user preferences by ensuring that the value of appliesMediaSelectionCriteriaAutomatically is YES.
      */
     @Deprecated
@@ -249,38 +197,20 @@ import org.robovm.apple.audiotoolbox.*;
     public native @ByVal CMTime getCurrentTime();
     @Method(selector = "seekToDate:")
     public native void seekToDate(NSDate date);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "seekToDate:completionHandler:")
     public native void seekToDate(NSDate date, @Block VoidBooleanBlock completionHandler);
     @Method(selector = "seekToTime:")
     public native void seekToTime(@ByVal CMTime time);
     @Method(selector = "seekToTime:toleranceBefore:toleranceAfter:")
     public native void seekToTime(@ByVal CMTime time, @ByVal CMTime toleranceBefore, @ByVal CMTime toleranceAfter);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "seekToTime:completionHandler:")
     public native void seekToTime(@ByVal CMTime time, @Block VoidBooleanBlock completionHandler);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "seekToTime:toleranceBefore:toleranceAfter:completionHandler:")
     public native void seekToTime(@ByVal CMTime time, @ByVal CMTime toleranceBefore, @ByVal CMTime toleranceAfter, @Block VoidBooleanBlock completionHandler);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "setRate:time:atHostTime:")
     public native void setRate(float rate, @ByVal CMTime itemTime, @ByVal CMTime hostClockTime);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "prerollAtRate:completionHandler:")
     public native void prerollAtRate(float rate, @Block VoidBooleanBlock completionHandler);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "cancelPendingPrerolls")
     public native void cancelPendingPrerolls();
     @WeaklyLinked
@@ -291,14 +221,8 @@ import org.robovm.apple.audiotoolbox.*;
     public native NSObject addBoundaryTimeObserver(@org.robovm.rt.bro.annotation.Marshaler(CMTime.AsValuedListMarshaler.class) List<CMTime> times, DispatchQueue queue, @Block Runnable block);
     @Method(selector = "removeTimeObserver:")
     public native void removeTimeObserver(NSObject observer);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "setMediaSelectionCriteria:forMediaCharacteristic:")
     public native void setMediaSelectionCriteria(AVPlayerMediaSelectionCriteria criteria, String mediaCharacteristic);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "mediaSelectionCriteriaForMediaCharacteristic:")
     public native AVPlayerMediaSelectionCriteria getMediaSelectionCriteria(String mediaCharacteristic);
     /*</methods>*/

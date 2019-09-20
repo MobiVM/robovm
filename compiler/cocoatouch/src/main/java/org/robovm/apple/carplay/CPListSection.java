@@ -55,7 +55,7 @@ import org.robovm.apple.mapkit.*;
     @Method(selector = "initWithItems:")
     public CPListSection(NSArray<CPListItem> items) { super((SkipInit) null); initObject(init(items)); }
     @Method(selector = "initWithCoder:")
-    public CPListSection(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public CPListSection(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "header")
@@ -76,6 +76,6 @@ import org.robovm.apple.mapkit.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

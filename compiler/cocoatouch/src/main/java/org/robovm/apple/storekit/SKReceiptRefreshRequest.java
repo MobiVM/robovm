@@ -32,9 +32,7 @@ import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 7.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("StoreKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SKReceiptRefreshRequest/*</name>*/ 
@@ -48,30 +46,18 @@ import org.robovm.apple.uikit.*;
     public SKReceiptRefreshRequest() {}
     protected SKReceiptRefreshRequest(Handle h, long handle) { super(h, handle); }
     protected SKReceiptRefreshRequest(SkipInit skipInit) { super(skipInit); }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "initWithReceiptProperties:")
     public SKReceiptRefreshRequest(SKReceiptRefreshRequestOptions properties) { super((SkipInit) null); initObject(init(properties)); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "receiptProperties")
     public native SKReceiptRefreshRequestOptions getReceiptProperties();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 7.1 and later.
-     */
     @Bridge(symbol="SKTerminateForInvalidReceipt", optional=true)
     public static native void terminateForInvalidReceipt();
     
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "initWithReceiptProperties:")
     protected native @Pointer long init(SKReceiptRefreshRequestOptions properties);
     /*</methods>*/

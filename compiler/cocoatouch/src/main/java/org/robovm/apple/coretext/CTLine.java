@@ -118,79 +118,34 @@ import org.robovm.apple.uikit.*;
         return ptr.get();
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Bridge(symbol="CTLineGetTypeID", optional=true)
     public static native @MachineSizedUInt long getClassTypeID();
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Bridge(symbol="CTLineCreateWithAttributedString", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CTLine create(NSAttributedString attrString);
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Bridge(symbol="CTLineCreateTruncatedLine", optional=true)
     public native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CTLine createTruncatedLine(double width, CTLineTruncationType truncationType, CTLine truncationToken);
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Bridge(symbol="CTLineCreateJustifiedLine", optional=true)
     public native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CTLine createJustifiedLine(@MachineSizedFloat double justificationFactor, double justificationWidth);
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Bridge(symbol="CTLineGetGlyphCount", optional=true)
     public native @MachineSizedSInt long getGlyphCount();
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Bridge(symbol="CTLineGetGlyphRuns", optional=true)
     public native @org.robovm.rt.bro.annotation.Marshaler(CTRun.AsListMarshaler.class) List<CTRun> getGlyphRuns();
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Bridge(symbol="CTLineGetStringRange", optional=true)
     public native @ByVal CFRange getStringRange();
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Bridge(symbol="CTLineGetPenOffsetForFlush", optional=true)
     public native double getPenOffset(@MachineSizedFloat double flushFactor, double flushWidth);
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Bridge(symbol="CTLineDraw", optional=true)
     public native void draw(CGContext context);
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Bridge(symbol="CTLineGetTypographicBounds", optional=true)
     protected native double getTypographicBounds(MachineSizedFloatPtr ascent, MachineSizedFloatPtr descent, MachineSizedFloatPtr leading);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Bridge(symbol="CTLineGetBoundsWithOptions", optional=true)
     public native @ByVal CGRect getBounds(CTLineBoundsOptions options);
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Bridge(symbol="CTLineGetTrailingWhitespaceWidth", optional=true)
     public native double getTrailingWhitespaceWidth();
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Bridge(symbol="CTLineGetImageBounds", optional=true)
     public native @ByVal CGRect getImageBounds(CGContext context);
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Bridge(symbol="CTLineGetStringIndexForPosition", optional=true)
     public native @MachineSizedSInt long getStringIndex(@ByVal CGPoint position);
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Bridge(symbol="CTLineGetOffsetForStringIndex", optional=true)
     protected native @MachineSizedFloat double getOffset(@MachineSizedSInt long charIndex, MachineSizedFloatPtr secondaryOffset);
     /**

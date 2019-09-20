@@ -53,6 +53,8 @@ import org.robovm.apple.dispatch.*;
     /*<properties>*/
     @Property(selector = "state")
     public native CBManagerState getState();
+    @Property(selector = "authorization")
+    public native CBManagerAuthorization getAuthorization();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

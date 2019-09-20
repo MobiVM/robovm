@@ -52,9 +52,6 @@ import org.robovm.rt.bro.ptr.*;
         return null;
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 4.3 and later.
-     */
     @GlobalValue(symbol="_dispatch_queue_attr_concurrent", optional=true, dereference=false)
     public static native DispatchQueueAttr Concurrent();
     /*</methods>*/

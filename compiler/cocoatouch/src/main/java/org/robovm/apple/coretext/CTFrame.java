@@ -63,44 +63,20 @@ import org.robovm.apple.uikit.*;
         return array.toArray(size);
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Bridge(symbol="CTFrameGetTypeID", optional=true)
     public static native @MachineSizedUInt long getClassTypeID();
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Bridge(symbol="CTFrameGetStringRange", optional=true)
     public native @ByVal CFRange getStringRange();
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Bridge(symbol="CTFrameGetVisibleStringRange", optional=true)
     public native @ByVal CFRange getVisibleStringRange();
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Bridge(symbol="CTFrameGetPath", optional=true)
     public native CGPath getPath();
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Bridge(symbol="CTFrameGetFrameAttributes", optional=true)
     public native CTFrameAttributes getFrameAttributes();
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Bridge(symbol="CTFrameGetLines", optional=true)
     public native @org.robovm.rt.bro.annotation.Marshaler(CTLine.AsListMarshaler.class) List<CTLine> getLines();
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Bridge(symbol="CTFrameGetLineOrigins", optional=true)
     protected native void getLineOrigins(@ByVal CFRange range, CGPoint origins);
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Bridge(symbol="CTFrameDraw", optional=true)
     public native void draw(CGContext context);
     /*</methods>*/

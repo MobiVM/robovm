@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -59,7 +61,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initForOpeningFilesWithContentTypes:")
     public UIDocumentBrowserViewController(NSArray<NSString> allowedContentTypes) { super((SkipInit) null); initObject(initForOpeningFilesWithContentTypes(allowedContentTypes)); }
     @Method(selector = "initWithCoder:")
-    public UIDocumentBrowserViewController(NSCoder decoder) { super(decoder); }
+    public UIDocumentBrowserViewController(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "delegate")
@@ -76,6 +78,21 @@ import org.robovm.apple.intents.*;
     public native void setAllowsPickingMultipleItems(boolean v);
     @Property(selector = "allowedContentTypes")
     public native NSArray<NSString> getAllowedContentTypes();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "recentDocumentsContentTypes")
+    public native NSArray<NSString> getRecentDocumentsContentTypes();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "shouldShowFileExtensions")
+    public native boolean shouldShowFileExtensions();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setShouldShowFileExtensions:")
+    public native void setShouldShowFileExtensions(boolean v);
     @Property(selector = "additionalLeadingNavigationBarButtonItems")
     public native NSArray<UIBarButtonItem> getAdditionalLeadingNavigationBarButtonItems();
     @Property(selector = "setAdditionalLeadingNavigationBarButtonItems:")
@@ -92,6 +109,26 @@ import org.robovm.apple.intents.*;
     public native UIDocumentBrowserUserInterfaceStyle getBrowserUserInterfaceStyle();
     @Property(selector = "setBrowserUserInterfaceStyle:")
     public native void setBrowserUserInterfaceStyle(UIDocumentBrowserUserInterfaceStyle v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "localizedCreateDocumentActionTitle")
+    public native String getLocalizedCreateDocumentActionTitle();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setLocalizedCreateDocumentActionTitle:")
+    public native void setLocalizedCreateDocumentActionTitle(String v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "defaultDocumentAspectRatio")
+    public native @MachineSizedFloat double getDefaultDocumentAspectRatio();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setDefaultDocumentAspectRatio:")
+    public native void setDefaultDocumentAspectRatio(@MachineSizedFloat double v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -108,7 +145,7 @@ import org.robovm.apple.intents.*;
     public native UIDocumentBrowserTransitionController transitionControllerForDocumentAtURL(NSURL documentURL);
     /**
      * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 12.0.
+     * @deprecated Deprecated in iOS 12.0. Use transitionControllerForDocumentAtURL:
      */
     @Deprecated
     @Method(selector = "transitionControllerForDocumentURL:")

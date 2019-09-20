@@ -56,22 +56,22 @@ import org.robovm.apple.corelocation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "successWithResolvedCarSeat:")
-    public static native INCarSeatResolutionResult successWithResolvedCarSeat(INCarSeat resolvedCarSeat);
+    public static native INCarSeatResolutionResult success(INCarSeat resolvedCarSeat);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use +successWithResolvedCarSeat:
      */
     @Deprecated
     @Method(selector = "successWithResolvedValue:")
-    public static native INCarSeatResolutionResult successWithResolvedValue(INCarSeat resolvedValue);
+    public static native INCarSeatResolutionResult successValue(INCarSeat resolvedValue);
     @Method(selector = "confirmationRequiredWithCarSeatToConfirm:")
-    public static native INCarSeatResolutionResult confirmationRequiredWithCarSeatToConfirm(INCarSeat carSeatToConfirm);
+    public static native INCarSeatResolutionResult confirmationRequired(INCarSeat carSeatToConfirm);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use +confirmationRequiredWithCarSeatToConfirm:
      */
     @Deprecated
     @Method(selector = "confirmationRequiredWithValueToConfirm:")
-    public static native INCarSeatResolutionResult confirmationRequiredWithValueToConfirm(INCarSeat valueToConfirm);
+    public static native INCarSeatResolutionResult confirmationRequiredForValue(INCarSeat valueToConfirm);
     /*</methods>*/
 }

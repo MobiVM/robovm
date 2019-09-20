@@ -48,16 +48,31 @@ import org.robovm.apple.dispatch.*;
     protected NFCNDEFReaderSession() {}
     protected NFCNDEFReaderSession(Handle h, long handle) { super(h, handle); }
     protected NFCNDEFReaderSession(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Method(selector = "initWithDelegate:queue:invalidateAfterFirstRead:")
     public NFCNDEFReaderSession(NFCNDEFReaderSessionDelegate delegate, DispatchQueue queue, boolean invalidateAfterFirstRead) { super((SkipInit) null); initObject(init(delegate, queue, invalidateAfterFirstRead)); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "readingAvailable")
-    public static native boolean isReadingAvailable();
+    
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Method(selector = "initWithDelegate:queue:invalidateAfterFirstRead:")
     protected native @Pointer long init(NFCNDEFReaderSessionDelegate delegate, DispatchQueue queue, boolean invalidateAfterFirstRead);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "restartPolling")
+    public native void restartPolling();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "connectToTag:completionHandler:")
+    public native void connectToTag(NFCNDEFTag tag, @Block VoidBlock1<NSError> completionHandler);
     /*</methods>*/
 }

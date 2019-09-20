@@ -29,6 +29,8 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corespotlight.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -56,6 +58,16 @@ import org.robovm.apple.corespotlight.*;
     public native void setResultType(NSPersistentHistoryResultType v);
     @Property(selector = "token")
     public native NSPersistentHistoryToken getToken();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "fetchRequest")
+    public native NSFetchRequest getFetchRequest();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setFetchRequest:")
+    public native void setFetchRequest(NSFetchRequest v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -65,6 +77,11 @@ import org.robovm.apple.corespotlight.*;
     public static native NSPersistentHistoryChangeRequest fetchHistoryAfterToken(NSPersistentHistoryToken token);
     @Method(selector = "fetchHistoryAfterTransaction:")
     public static native NSPersistentHistoryChangeRequest fetchHistoryAfterTransaction(NSPersistentHistoryTransaction transaction);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "fetchHistoryWithFetchRequest:")
+    public static native NSPersistentHistoryChangeRequest fetchHistory(NSFetchRequest fetchRequest);
     @Method(selector = "deleteHistoryBeforeDate:")
     public static native NSPersistentHistoryChangeRequest deleteHistoryBeforeDate(NSDate date);
     @Method(selector = "deleteHistoryBeforeToken:")

@@ -55,7 +55,7 @@ import org.robovm.apple.uikit.*;
     public SFSafariViewController(NSURL URL, SFSafariViewControllerConfiguration configuration) { super((SkipInit) null); initObject(init(URL, configuration)); }
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use -initWithURL:configuration:
      */
     @Deprecated
     @Method(selector = "initWithURL:entersReaderIfAvailable:")
@@ -113,7 +113,7 @@ import org.robovm.apple.uikit.*;
     protected native @Pointer long init(NSURL URL, SFSafariViewControllerConfiguration configuration);
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use -initWithURL:configuration:
      */
     @Deprecated
     @Method(selector = "initWithURL:entersReaderIfAvailable:")

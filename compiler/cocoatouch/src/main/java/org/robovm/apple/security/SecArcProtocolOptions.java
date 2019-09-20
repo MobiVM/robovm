@@ -52,30 +52,83 @@ import org.robovm.apple.dispatch.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="sec_protocol_options_are_equal", optional=true)
+    public native boolean areEqual(SecArcProtocolOptions optionsB);
+    /**
      * @since Available in iOS 12.0 and later.
      */
     @Bridge(symbol="sec_protocol_options_set_local_identity", optional=true)
     public native void setLocalIdentity(SecArcIdentity identity);
     /**
-     * @since Available in iOS 12.0 and later.
+     * @since Available in iOS 13.0 and later.
      */
+    @Bridge(symbol="sec_protocol_options_append_tls_ciphersuite", optional=true)
+    public native void appendTlsCiphersuite(TlsCiphersuite ciphersuite);
+    /**
+     * @since Available in iOS 12.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use sec_protocol_options_append_tls_ciphersuite
+     */
+    @Deprecated
     @Bridge(symbol="sec_protocol_options_add_tls_ciphersuite", optional=true)
     public native void addTlsCiphersuite(SSLCipherSuite ciphersuite);
     /**
-     * @since Available in iOS 12.0 and later.
+     * @since Available in iOS 13.0 and later.
      */
+    @Bridge(symbol="sec_protocol_options_append_tls_ciphersuite_group", optional=true)
+    public native void appendTlsCiphersuiteGroup(TlsCiphersuiteGroup group);
+    /**
+     * @since Available in iOS 12.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use sec_protocol_options_append_tls_ciphersuite_group
+     */
+    @Deprecated
     @Bridge(symbol="sec_protocol_options_add_tls_ciphersuite_group", optional=true)
     public native void addTlsCiphersuiteGroup(SSLCiphersuiteGroup group);
     /**
      * @since Available in iOS 12.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use sec_protocol_options_set_min_tls_protocol_version
      */
+    @Deprecated
     @Bridge(symbol="sec_protocol_options_set_tls_min_version", optional=true)
     public native void setTlsMinVersion(SSLProtocol version);
     /**
-     * @since Available in iOS 12.0 and later.
+     * @since Available in iOS 13.0 and later.
      */
+    @Bridge(symbol="sec_protocol_options_set_min_tls_protocol_version", optional=true)
+    public native void setMinTlsProtocolVersion(TlsProtocolVersion version);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="sec_protocol_options_get_default_min_tls_protocol_version", optional=true)
+    public static native TlsProtocolVersion getDefaultMinTlsProtocolVersion();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="sec_protocol_options_get_default_min_dtls_protocol_version", optional=true)
+    public static native TlsProtocolVersion getDefaultMinDtlsProtocolVersion();
+    /**
+     * @since Available in iOS 12.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use sec_protocol_options_set_max_tls_protocol_version
+     */
+    @Deprecated
     @Bridge(symbol="sec_protocol_options_set_tls_max_version", optional=true)
     public native void setTlsMaxVersion(SSLProtocol version);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="sec_protocol_options_set_max_tls_protocol_version", optional=true)
+    public native void setMaxTlsProtocolVersion(TlsProtocolVersion version);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="sec_protocol_options_get_default_max_tls_protocol_version", optional=true)
+    public static native TlsProtocolVersion getDefaultMaxTlsProtocolVersion();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="sec_protocol_options_get_default_max_dtls_protocol_version", optional=true)
+    public static native TlsProtocolVersion getDefaultMaxDtlsProtocolVersion();
     /**
      * @since Available in iOS 12.0 and later.
      */
@@ -88,14 +141,26 @@ import org.robovm.apple.dispatch.*;
     public native void setTlsServerName(BytePtr server_name);
     /**
      * @since Available in iOS 12.0 and later.
+     * @deprecated Deprecated in iOS 13.0. DHE ciphersuites are no longer supported
      */
+    @Deprecated
     @Bridge(symbol="sec_protocol_options_set_tls_diffie_hellman_parameters", optional=true)
-    public native void set_tlsDiffieHellmanParameters(DispatchData params);
+    public native void setTlsDiffieHellmanParameters(DispatchData params);
     /**
      * @since Available in iOS 12.0 and later.
      */
     @Bridge(symbol="sec_protocol_options_add_pre_shared_key", optional=true)
     public native void addPreSharedKey(DispatchData psk, DispatchData psk_identity);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="sec_protocol_options_set_tls_pre_shared_key_identity_hint", optional=true)
+    public native void set_tlsPreSharedKeyIdentityHint(DispatchData psk_identity_hint);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="sec_protocol_options_set_pre_shared_key_selection_block", optional=true)
+    public native void setPreSharedKeySelectionBlock(@Block("(,,@Block)") VoidBlock3<SecArcProtocolMetadata, DispatchData, VoidBlock1<DispatchData>> psk_selection_block, DispatchQueue psk_selection_queue);
     /**
      * @since Available in iOS 12.0 and later.
      */
@@ -105,7 +170,7 @@ import org.robovm.apple.dispatch.*;
      * @since Available in iOS 12.0 and later.
      */
     @Bridge(symbol="sec_protocol_options_set_tls_is_fallback_attempt", optional=true)
-    public native void set_tlsIsFallbackAttempt(boolean is_fallback_attempt);
+    public native void setTlsIsFallbackAttempt(boolean is_fallback_attempt);
     /**
      * @since Available in iOS 12.0 and later.
      */
@@ -115,7 +180,7 @@ import org.robovm.apple.dispatch.*;
      * @since Available in iOS 12.0 and later.
      */
     @Bridge(symbol="sec_protocol_options_set_tls_false_start_enabled", optional=true)
-    public native void set_tlsFalseStartEnabled(boolean false_start_enabled);
+    public native void setTlsFalseStartEnabled(boolean false_start_enabled);
     /**
      * @since Available in iOS 12.0 and later.
      */

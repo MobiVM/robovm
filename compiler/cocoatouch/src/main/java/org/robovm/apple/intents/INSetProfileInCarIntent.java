@@ -56,7 +56,7 @@ import org.robovm.apple.corelocation.*;
     public INSetProfileInCarIntent(NSNumber profileNumber, String profileName, NSNumber defaultProfile, INSpeakableString carName) { super((SkipInit) null); initObject(init(profileNumber, profileName, defaultProfile, carName)); }
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 10.2.
+     * @deprecated Deprecated in iOS 10.2. Use -initWithProfileNumber:profileName:defaultProfile:
      */
     @Deprecated
     @Method(selector = "initWithProfileNumber:profileLabel:defaultProfile:")
@@ -67,7 +67,7 @@ import org.robovm.apple.corelocation.*;
     }
     /**
      * @since Available in iOS 10.2 and later.
-     * @deprecated Deprecated in iOS 12.0.
+     * @deprecated Deprecated in iOS 12.0. Use -initWithProfileNumber:profileName:defaultProfile:carName:
      */
     @Deprecated
     @Method(selector = "initWithProfileNumber:profileName:defaultProfile:")
@@ -94,7 +94,7 @@ import org.robovm.apple.corelocation.*;
     public native INSpeakableString getCarName();
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 10.2.
+     * @deprecated Deprecated in iOS 10.2. Use profileName
      */
     @Deprecated
     @Property(selector = "profileLabel")
@@ -109,14 +109,14 @@ import org.robovm.apple.corelocation.*;
     protected native @Pointer long init(NSNumber profileNumber, String profileName, NSNumber defaultProfile, INSpeakableString carName);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 10.2.
+     * @deprecated Deprecated in iOS 10.2. Use -initWithProfileNumber:profileName:defaultProfile:
      */
     @Deprecated
     @Method(selector = "initWithProfileNumber:profileLabel:defaultProfile:")
     protected native @Pointer long initWithProfileLabel(NSNumber profileNumber, String profileLabel, NSNumber defaultProfile);
     /**
      * @since Available in iOS 10.2 and later.
-     * @deprecated Deprecated in iOS 12.0.
+     * @deprecated Deprecated in iOS 12.0. Use -initWithProfileNumber:profileName:defaultProfile:carName:
      */
     @Deprecated
     @Method(selector = "initWithProfileNumber:profileName:defaultProfile:")

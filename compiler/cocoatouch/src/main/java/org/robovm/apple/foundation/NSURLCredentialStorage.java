@@ -82,38 +82,20 @@ import org.robovm.apple.dispatch.*;
     public native void setCredential(NSURLCredential credential, NSURLProtectionSpace space);
     @Method(selector = "removeCredential:forProtectionSpace:")
     public native void removeCredential(NSURLCredential credential, NSURLProtectionSpace space);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "removeCredential:forProtectionSpace:options:")
     public native void removeCredential(NSURLCredential credential, NSURLProtectionSpace space, NSURLCredentialStorageRemovalOptions options);
     @Method(selector = "defaultCredentialForProtectionSpace:")
     public native NSURLCredential getDefaultCredential(NSURLProtectionSpace space);
     @Method(selector = "setDefaultCredential:forProtectionSpace:")
     public native void setDefaultCredential(NSURLCredential credential, NSURLProtectionSpace space);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "getCredentialsForProtectionSpace:task:completionHandler:")
     public native void getCredentials(NSURLProtectionSpace protectionSpace, NSURLSessionTask task, @Block VoidBlock1<NSDictionary<NSString, NSURLCredential>> completionHandler);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "setCredential:forProtectionSpace:task:")
     public native void setCredential(NSURLCredential credential, NSURLProtectionSpace protectionSpace, NSURLSessionTask task);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "removeCredential:forProtectionSpace:options:task:")
     public native void removeCredential(NSURLCredential credential, NSURLProtectionSpace protectionSpace, NSURLCredentialStorageRemovalOptions options, NSURLSessionTask task);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "getDefaultCredentialForProtectionSpace:task:completionHandler:")
     public native void getDefaultCredential(NSURLProtectionSpace space, NSURLSessionTask task, @Block VoidBlock1<NSURLCredential> completionHandler);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "setDefaultCredential:forProtectionSpace:task:")
     public native void setDefaultCredential(NSURLCredential credential, NSURLProtectionSpace protectionSpace, NSURLSessionTask task);
     /*</methods>*/

@@ -56,22 +56,22 @@ import org.robovm.apple.corelocation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "successWithResolvedMessageAttributeOptions:")
-    public static native INMessageAttributeOptionsResolutionResult successWithResolvedMessageAttributeOptions(INMessageAttributeOptions resolvedMessageAttributeOptions);
+    public static native INMessageAttributeOptionsResolutionResult success(INMessageAttributeOptions resolvedMessageAttributeOptions);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use +successWithResolvedMessageAttributeOptions:
      */
     @Deprecated
     @Method(selector = "successWithResolvedValue:")
-    public static native INMessageAttributeOptionsResolutionResult successWithResolvedValue(INMessageAttributeOptions resolvedValue);
+    public static native INMessageAttributeOptionsResolutionResult successValue(INMessageAttributeOptions resolvedValue);
     @Method(selector = "confirmationRequiredWithMessageAttributeOptionsToConfirm:")
-    public static native INMessageAttributeOptionsResolutionResult confirmationRequiredWithMessageAttributeOptionsToConfirm(INMessageAttributeOptions messageAttributeOptionsToConfirm);
+    public static native INMessageAttributeOptionsResolutionResult confirmationRequired(INMessageAttributeOptions messageAttributeOptionsToConfirm);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use +confirmationRequiredWithMessageAttributeOptionsToConfirm:
      */
     @Deprecated
     @Method(selector = "confirmationRequiredWithValueToConfirm:")
-    public static native INMessageAttributeOptionsResolutionResult confirmationRequiredWithValueToConfirm(INMessageAttributeOptions valueToConfirm);
+    public static native INMessageAttributeOptionsResolutionResult confirmationRequiredForValue(INMessageAttributeOptions valueToConfirm);
     /*</methods>*/
 }

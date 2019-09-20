@@ -29,6 +29,7 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -51,7 +52,7 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "initWithIdentifier:type:")
     public ASCredentialServiceIdentifier(String identifier, ASCredentialServiceIdentifierType type) { super((SkipInit) null); initObject(init(identifier, type)); }
     @Method(selector = "initWithCoder:")
-    public ASCredentialServiceIdentifier(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public ASCredentialServiceIdentifier(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "identifier")
@@ -68,6 +69,6 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

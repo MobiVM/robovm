@@ -298,9 +298,6 @@ import org.robovm.apple.audiotoolbox.*;
         }
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMBufferQueueCreate", optional=true)
     protected static native OSStatus create0(CFAllocator allocator, @MachineSizedSInt long capacity, CMBufferCallbacksStruct callbacks, CMBufferQueue.CMBufferQueuePtr queueOut);
     /**
@@ -308,114 +305,48 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Bridge(symbol="CMBufferQueueCreateWithHandlers", optional=true)
     public static native OSStatus createWithHandlers(CFAllocator allocator, @MachineSizedSInt long capacity, CMBufferHandlers handlers, CMBufferQueue.CMBufferQueuePtr queueOut);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMBufferQueueGetTypeID", optional=true)
     public static native @MachineSizedUInt long getClassTypeID();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMBufferQueueEnqueue", optional=true)
     protected native OSStatus enqueue0(CFType buf);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMBufferQueueDequeueAndRetain", optional=true)
     public native CFType dequeueAndRetain();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMBufferQueueDequeueIfDataReadyAndRetain", optional=true)
     public native CFType dequeueIfDataReadyAndRetain();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMBufferQueueGetHead", optional=true)
     public native CFType getHead();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMBufferQueueIsEmpty", optional=true)
     public native boolean isEmpty();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMBufferQueueMarkEndOfData", optional=true)
     protected native OSStatus markEndOfData0();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMBufferQueueContainsEndOfData", optional=true)
     public native boolean containsEndOfData();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMBufferQueueIsAtEndOfData", optional=true)
     public native boolean isAtEndOfData();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMBufferQueueReset", optional=true)
     protected native OSStatus reset0();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMBufferQueueResetWithCallback", optional=true)
     protected native OSStatus reset0(FunctionPtr callback, @Pointer long refcon);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMBufferQueueGetBufferCount", optional=true)
     public native @MachineSizedSInt long getBufferCount();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMBufferQueueGetDuration", optional=true)
     public native @ByVal CMTime getDuration();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMBufferQueueGetMinDecodeTimeStamp", optional=true)
     public native @ByVal CMTime getMinDecodeTimeStamp();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMBufferQueueGetFirstDecodeTimeStamp", optional=true)
     public native @ByVal CMTime getFirstDecodeTimeStamp();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMBufferQueueGetMinPresentationTimeStamp", optional=true)
     public native @ByVal CMTime getMinPresentationTimeStamp();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMBufferQueueGetFirstPresentationTimeStamp", optional=true)
     public native @ByVal CMTime getFirstPresentationTimeStamp();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMBufferQueueGetMaxPresentationTimeStamp", optional=true)
     public native @ByVal CMTime getMaxPresentationTimeStamp();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMBufferQueueGetEndPresentationTimeStamp", optional=true)
     public native @ByVal CMTime getEndPresentationTimeStamp();
-    /**
-     * @since Available in iOS 7.1 and later.
-     */
     @Bridge(symbol="CMBufferQueueGetTotalSize", optional=true)
     public native @MachineSizedUInt long getTotalSize();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMBufferQueueInstallTrigger", optional=true)
     protected native OSStatus installTrigger0(FunctionPtr callback, @Pointer long refcon, CMBufferQueueTriggerCondition condition, @ByVal CMTime time, CMBufferQueueTriggerToken.CMBufferQueueTriggerTokenPtr triggerTokenOut);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMBufferQueueInstallTriggerWithIntegerThreshold", optional=true)
     protected native OSStatus installTrigger0(FunctionPtr callback, @Pointer long refcon, CMBufferQueueTriggerCondition condition, @MachineSizedSInt long threshold, CMBufferQueueTriggerToken.CMBufferQueueTriggerTokenPtr triggerTokenOut);
     /**
@@ -428,24 +359,12 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Bridge(symbol="CMBufferQueueInstallTriggerHandlerWithIntegerThreshold", optional=true)
     protected native OSStatus installTrigger0(CMBufferQueueTriggerCondition condition, @MachineSizedSInt long threshold, CMBufferQueueTriggerToken.CMBufferQueueTriggerTokenPtr triggerTokenOut, @Block VoidBlock1<CMBufferQueueTriggerToken> handler);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMBufferQueueRemoveTrigger", optional=true)
     protected native OSStatus removeTrigger0(CMBufferQueueTriggerToken triggerToken);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMBufferQueueTestTrigger", optional=true)
     protected native boolean testTrigger0(CMBufferQueueTriggerToken triggerToken);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMBufferQueueCallForEachBuffer", optional=true)
     protected native OSStatus callForEachBuffer0(FunctionPtr callback, @Pointer long refcon);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMBufferQueueSetValidationCallback", optional=true)
     protected native OSStatus setValidationCallback0(FunctionPtr callback, @Pointer long refcon);
     /**

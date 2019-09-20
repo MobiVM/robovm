@@ -91,21 +91,9 @@ import org.robovm.apple.iosurface.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CVImageBufferFieldDetail TemporalTopFirst = new CVImageBufferFieldDetail("TemporalTopFirst");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CVImageBufferFieldDetail TemporalBottomFirst = new CVImageBufferFieldDetail("TemporalBottomFirst");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CVImageBufferFieldDetail SpatialFirstLineEarly = new CVImageBufferFieldDetail("SpatialFirstLineEarly");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CVImageBufferFieldDetail SpatialFirstLineLate = new CVImageBufferFieldDetail("SpatialFirstLineLate");
     /*</constants>*/
     
@@ -132,24 +120,12 @@ import org.robovm.apple.iosurface.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVImageBufferFieldDetailTemporalTopFirst", optional=true)
         public static native CFString TemporalTopFirst();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVImageBufferFieldDetailTemporalBottomFirst", optional=true)
         public static native CFString TemporalBottomFirst();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVImageBufferFieldDetailSpatialFirstLineEarly", optional=true)
         public static native CFString SpatialFirstLineEarly();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVImageBufferFieldDetailSpatialFirstLineLate", optional=true)
         public static native CFString SpatialFirstLineLate();
         /*</values>*/

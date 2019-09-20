@@ -56,17 +56,32 @@ import org.robovm.apple.imageio.*;
     protected PHAssetResource(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
     @Property(selector = "type")
     public native PHAssetResourceType getType();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
     @Property(selector = "assetLocalIdentifier")
     public native String getAssetLocalIdentifier();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
     @Property(selector = "uniformTypeIdentifier")
     public native String getUniformTypeIdentifier();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
     @Property(selector = "originalFilename")
     public native String getOriginalFilename();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
     @Method(selector = "assetResourcesForAsset:")
     public static native NSArray<PHAssetResource> getAssetResources(PHAsset asset);
     /**

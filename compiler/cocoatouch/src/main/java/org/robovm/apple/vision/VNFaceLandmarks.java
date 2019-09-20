@@ -44,7 +44,7 @@ import org.robovm.apple.imageio.*;
 /*<annotations>*/@Library("Vision") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/VNFaceLandmarks/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding, VNRequestRevisionProviding/*</implements>*/ {
 
     /*<ptr>*/public static class VNFaceLandmarksPtr extends Ptr<VNFaceLandmarks, VNFaceLandmarksPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(VNFaceLandmarks.class); }/*</bind>*/
@@ -53,13 +53,22 @@ import org.robovm.apple.imageio.*;
     protected VNFaceLandmarks() {}
     protected VNFaceLandmarks(Handle h, long handle) { super(h, handle); }
     protected VNFaceLandmarks(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public VNFaceLandmarks(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "confidence")
     public native float getConfidence();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
+    @Property(selector = "requestRevision")
+    public native @MachineSizedUInt long getRequestRevision();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

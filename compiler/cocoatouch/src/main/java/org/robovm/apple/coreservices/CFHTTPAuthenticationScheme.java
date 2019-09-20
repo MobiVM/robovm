@@ -87,33 +87,12 @@ import org.robovm.apple.corefoundation.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CFHTTPAuthenticationScheme Basic = new CFHTTPAuthenticationScheme("Basic");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CFHTTPAuthenticationScheme Digest = new CFHTTPAuthenticationScheme("Digest");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CFHTTPAuthenticationScheme NTLM = new CFHTTPAuthenticationScheme("NTLM");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CFHTTPAuthenticationScheme Kerberos = new CFHTTPAuthenticationScheme("Kerberos");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CFHTTPAuthenticationScheme Negotiate = new CFHTTPAuthenticationScheme("Negotiate");
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public static final CFHTTPAuthenticationScheme Negotiate2 = new CFHTTPAuthenticationScheme("Negotiate2");
-    /**
-     * @since Available in iOS 4.3 and later.
-     */
     public static final CFHTTPAuthenticationScheme XMobileMeAuthToken = new CFHTTPAuthenticationScheme("XMobileMeAuthToken");
     /*</constants>*/
     
@@ -140,39 +119,18 @@ import org.robovm.apple.corefoundation.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCFHTTPAuthenticationSchemeBasic", optional=true)
         public static native CFString Basic();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCFHTTPAuthenticationSchemeDigest", optional=true)
         public static native CFString Digest();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCFHTTPAuthenticationSchemeNTLM", optional=true)
         public static native CFString NTLM();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCFHTTPAuthenticationSchemeKerberos", optional=true)
         public static native CFString Kerberos();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCFHTTPAuthenticationSchemeNegotiate", optional=true)
         public static native CFString Negotiate();
-        /**
-         * @since Available in iOS 3.0 and later.
-         */
         @GlobalValue(symbol="kCFHTTPAuthenticationSchemeNegotiate2", optional=true)
         public static native CFString Negotiate2();
-        /**
-         * @since Available in iOS 4.3 and later.
-         */
         @GlobalValue(symbol="kCFHTTPAuthenticationSchemeXMobileMeAuthToken", optional=true)
         public static native CFString XMobileMeAuthToken();
         /*</values>*/

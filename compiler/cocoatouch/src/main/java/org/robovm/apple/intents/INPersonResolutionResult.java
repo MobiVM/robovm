@@ -56,10 +56,10 @@ import org.robovm.apple.corelocation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "successWithResolvedPerson:")
-    public static native INPersonResolutionResult successWithResolvedPerson(INPerson resolvedPerson);
+    public static native INPersonResolutionResult success(INPerson resolvedPerson);
     @Method(selector = "disambiguationWithPeopleToDisambiguate:")
-    public static native INPersonResolutionResult disambiguationWithPeopleToDisambiguate(NSArray<INPerson> peopleToDisambiguate);
+    public static native INPersonResolutionResult disambiguation(NSArray<INPerson> peopleToDisambiguate);
     @Method(selector = "confirmationRequiredWithPersonToConfirm:")
-    public static native INPersonResolutionResult confirmationRequiredWithPersonToConfirm(INPerson personToConfirm);
+    public static native INPersonResolutionResult confirmationRequired(INPerson personToConfirm);
     /*</methods>*/
 }

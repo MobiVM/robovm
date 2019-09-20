@@ -109,9 +109,6 @@ import org.robovm.apple.dispatch.*;
     }
     
 
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public String getAirline() {
         if (has(Keys.Airline())) {
             NSString val = (NSString) get(Keys.Airline());
@@ -119,9 +116,6 @@ import org.robovm.apple.dispatch.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public String getFlight() {
         if (has(Keys.Flight())) {
             NSString val = (NSString) get(Keys.Flight());
@@ -135,14 +129,8 @@ import org.robovm.apple.dispatch.*;
     @Library("Foundation")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="NSTextCheckingAirlineKey", optional=true)
         public static native NSString Airline();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="NSTextCheckingFlightKey", optional=true)
         public static native NSString Flight();
     }

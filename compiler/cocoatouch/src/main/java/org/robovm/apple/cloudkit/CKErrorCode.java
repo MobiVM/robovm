@@ -34,9 +34,7 @@ import org.robovm.apple.fileprovider.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 @ForceLinkClass(CKError.class)
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
@@ -55,7 +53,6 @@ public enum /*<name>*/CKErrorCode/*</name>*/ implements NSErrorCode {
     UnknownItem(11L),
     InvalidArguments(12L),
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 10.0. Will not be returned
      */
     @Deprecated

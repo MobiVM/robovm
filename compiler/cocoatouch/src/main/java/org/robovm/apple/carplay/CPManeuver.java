@@ -51,13 +51,27 @@ import org.robovm.apple.mapkit.*;
     protected CPManeuver(Handle h, long handle) { super(h, handle); }
     protected CPManeuver(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public CPManeuver(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public CPManeuver(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 12.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use symbolImage
+     */
+    @Deprecated
     @Property(selector = "symbolSet")
     public native CPImageSet getSymbolSet();
+    /**
+     * @since Available in iOS 12.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use symbolImage
+     */
+    @Deprecated
     @Property(selector = "setSymbolSet:")
     public native void setSymbolSet(CPImageSet v);
+    @Property(selector = "symbolImage")
+    public native UIImage getSymbolImage();
+    @Property(selector = "setSymbolImage:")
+    public native void setSymbolImage(UIImage v);
     @Property(selector = "junctionImage")
     public native UIImage getJunctionImage();
     @Property(selector = "setJunctionImage:")
@@ -86,6 +100,6 @@ import org.robovm.apple.mapkit.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

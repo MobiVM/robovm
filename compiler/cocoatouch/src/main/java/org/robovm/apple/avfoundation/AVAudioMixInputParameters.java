@@ -41,9 +41,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVAudioMixInputParameters/*</name>*/ 
@@ -62,14 +60,8 @@ import org.robovm.apple.audiotoolbox.*;
     /*<properties>*/
     @Property(selector = "trackID")
     public native int getTrackID();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "audioTimePitchAlgorithm")
     public native AVAudioTimePitchAlgorithm getAudioTimePitchAlgorithm();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @WeaklyLinked
     @Property(selector = "audioTapProcessor")
     public native MTAudioProcessingTap getAudioTapProcessor();

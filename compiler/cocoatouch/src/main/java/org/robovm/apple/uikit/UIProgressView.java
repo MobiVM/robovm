@@ -37,12 +37,12 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 2.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIProgressView/*</name>*/ 
@@ -59,7 +59,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithFrame:")
     public UIProgressView(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
     @Method(selector = "initWithCoder:")
-    public UIProgressView(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public UIProgressView(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     @Method(selector = "initWithProgressViewStyle:")
     public UIProgressView(UIProgressViewStyle style) { super((SkipInit) null); initObject(init(style)); }
     /*</constructors>*/
@@ -72,44 +72,20 @@ import org.robovm.apple.intents.*;
     public native float getProgress();
     @Property(selector = "setProgress:")
     public native void setProgress(float v);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "progressTintColor")
     public native UIColor getProgressTintColor();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setProgressTintColor:")
     public native void setProgressTintColor(UIColor v);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "trackTintColor")
     public native UIColor getTrackTintColor();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setTrackTintColor:")
     public native void setTrackTintColor(UIColor v);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "progressImage")
     public native UIImage getProgressImage();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setProgressImage:")
     public native void setProgressImage(UIImage v);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "trackImage")
     public native UIImage getTrackImage();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setTrackImage:")
     public native void setTrackImage(UIImage v);
     /**
@@ -128,12 +104,9 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithFrame:")
     protected native @Pointer long init(@ByVal CGRect frame);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     @Method(selector = "initWithProgressViewStyle:")
     protected native @Pointer long init(UIProgressViewStyle style);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "setProgress:animated:")
     public native void setProgress(float progress, boolean animated);
     /*</methods>*/

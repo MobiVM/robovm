@@ -53,7 +53,7 @@ import org.robovm.apple.mapkit.*;
     @Method(selector = "initWithType:handler:")
     public CPBarButton(CPBarButtonType type, @Block VoidBlock1<CPBarButton> handler) { super((SkipInit) null); initObject(init(type, handler)); }
     @Method(selector = "initWithCoder:")
-    public CPBarButton(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public CPBarButton(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "isEnabled")
@@ -80,6 +80,6 @@ import org.robovm.apple.mapkit.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

@@ -87,13 +87,7 @@ import org.robovm.apple.foundation.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final HKSampleSortIdentifier StartDate = new HKSampleSortIdentifier("StartDate");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final HKSampleSortIdentifier EndDate = new HKSampleSortIdentifier("EndDate");
     /*</constants>*/
     
@@ -120,14 +114,8 @@ import org.robovm.apple.foundation.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="HKSampleSortIdentifierStartDate", optional=true)
         public static native NSString StartDate();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="HKSampleSortIdentifierEndDate", optional=true)
         public static native NSString EndDate();
         /*</values>*/

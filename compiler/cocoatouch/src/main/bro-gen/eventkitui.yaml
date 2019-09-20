@@ -58,6 +58,11 @@ values:
         name: 'Value__#{g[0]}'
 
 constants:
+    EKUI_IS_IOS:
+        exclude: true
+    EKUI_IS_SIMULATOR:
+        exclude: true
+
     # Make sure we don't miss any constants if new ones are introduced in a later version
     (EK.*):
         class: EventKitUI

@@ -41,9 +41,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.3 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVMutableTimedMetadataGroup/*</name>*/ 
@@ -59,9 +57,6 @@ import org.robovm.apple.audiotoolbox.*;
     protected AVMutableTimedMetadataGroup(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithItems:timeRange:")
     public AVMutableTimedMetadataGroup(NSArray<AVMetadataItem> items, @ByVal CMTimeRange timeRange) { super(items, timeRange); }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "initWithSampleBuffer:")
     public AVMutableTimedMetadataGroup(CMSampleBuffer sampleBuffer) { super(sampleBuffer); }
     /*</constructors>*/

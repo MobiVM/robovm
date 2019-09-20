@@ -56,10 +56,10 @@ import org.robovm.apple.corelocation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "successWithResolvedTemporalEventTrigger:")
-    public static native INTemporalEventTriggerResolutionResult successWithResolvedTemporalEventTrigger(INTemporalEventTrigger resolvedTemporalEventTrigger);
+    public static native INTemporalEventTriggerResolutionResult success(INTemporalEventTrigger resolvedTemporalEventTrigger);
     @Method(selector = "disambiguationWithTemporalEventTriggersToDisambiguate:")
-    public static native INTemporalEventTriggerResolutionResult disambiguationWithTemporalEventTriggersToDisambiguate(NSArray<INTemporalEventTrigger> temporalEventTriggersToDisambiguate);
+    public static native INTemporalEventTriggerResolutionResult disambiguation(NSArray<INTemporalEventTrigger> temporalEventTriggersToDisambiguate);
     @Method(selector = "confirmationRequiredWithTemporalEventTriggerToConfirm:")
-    public static native INTemporalEventTriggerResolutionResult confirmationRequiredWithTemporalEventTriggerToConfirm(INTemporalEventTrigger temporalEventTriggerToConfirm);
+    public static native INTemporalEventTriggerResolutionResult confirmationRequired(INTemporalEventTrigger temporalEventTriggerToConfirm);
     /*</methods>*/
 }

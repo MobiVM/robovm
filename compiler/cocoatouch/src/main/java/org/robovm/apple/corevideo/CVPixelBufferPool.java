@@ -94,40 +94,19 @@ import org.robovm.apple.iosurface.*;
         return ptr.get();
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @GlobalValue(symbol="kCVPixelBufferPoolFreeBufferNotification", optional=true)
     public static native NSString FreeBufferNotification();
     
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CVPixelBufferPoolGetTypeID", optional=true)
     public static native @MachineSizedUInt long getClassTypeID();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CVPixelBufferPoolCreate", optional=true)
     private static native CVReturn create(CFAllocator allocator, CVPixelBufferPoolAttributes poolAttributes, CVPixelBufferAttributes pixelBufferAttributes, CVPixelBufferPool.CVPixelBufferPoolPtr poolOut);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CVPixelBufferPoolGetAttributes", optional=true)
     public native CVPixelBufferPoolAttributes getAttributes();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CVPixelBufferPoolGetPixelBufferAttributes", optional=true)
     public native CVPixelBufferAttributes getPixelBufferAttributes();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CVPixelBufferPoolCreatePixelBuffer", optional=true)
     private static native CVReturn createPixelBuffer(CFAllocator allocator, CVPixelBufferPool pixelBufferPool, CVPixelBuffer.CVPixelBufferPtr pixelBufferOut);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CVPixelBufferPoolCreatePixelBufferWithAuxAttributes", optional=true)
     private static native CVReturn createPixelBuffer(CFAllocator allocator, CVPixelBufferPool pixelBufferPool, CVPixelBufferPoolAuxiliaryAttributes auxAttributes, CVPixelBuffer.CVPixelBufferPtr pixelBufferOut);
     @Bridge(symbol="CVPixelBufferPoolFlush", optional=true)

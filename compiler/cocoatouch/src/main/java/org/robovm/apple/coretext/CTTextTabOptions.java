@@ -110,9 +110,6 @@ import org.robovm.apple.uikit.*;
     }
     
 
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public NSCharacterSet getTerminatingCharacter() {
         if (has(Keys.TerminatorsAttribute())) {
             NSCharacterSet val = get(Keys.TerminatorsAttribute(), NSCharacterSet.class);
@@ -120,9 +117,6 @@ import org.robovm.apple.uikit.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public CTTextTabOptions setTerminatingCharacter(NSCharacterSet terminatingCharacter) {
         set(Keys.TerminatorsAttribute(), terminatingCharacter);
         return this;
@@ -133,9 +127,6 @@ import org.robovm.apple.uikit.*;
     @Library("CoreText")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 3.2 and later.
-         */
         @GlobalValue(symbol="kCTTabColumnTerminatorsAttributeName", optional=true)
         public static native CFString TerminatorsAttribute();
     }

@@ -93,107 +93,41 @@ import org.robovm.apple.audiotoolbox.*;
         return getDescription(null, this);
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @GlobalValue(symbol="kCMTimeRangeZero", optional=true)
     public static native @ByVal CMTimeRange Zero();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @GlobalValue(symbol="kCMTimeRangeInvalid", optional=true)
     public static native @ByVal CMTimeRange Invalid();
     
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMTimeRangeMake", optional=true)
     public static native @ByVal CMTimeRange create(@ByVal CMTime start, @ByVal CMTime duration);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CMTimeRange union(CMTimeRange otherRange) { return union(this, otherRange); }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMTimeRangeGetUnion", optional=true)
     private static native @ByVal CMTimeRange union(@ByVal CMTimeRange range, @ByVal CMTimeRange otherRange);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CMTimeRange intersection(CMTimeRange otherRange) { return intersection(this, otherRange); }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMTimeRangeGetIntersection", optional=true)
     private static native @ByVal CMTimeRange intersection(@ByVal CMTimeRange range, @ByVal CMTimeRange otherRange);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public boolean equals(CMTimeRange range2) { return equals(this, range2); }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMTimeRangeEqual", optional=true)
     private static native boolean equals(@ByVal CMTimeRange range1, @ByVal CMTimeRange range2);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public boolean containsTime(CMTime time) { return containsTime(this, time); }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMTimeRangeContainsTime", optional=true)
     private static native boolean containsTime(@ByVal CMTimeRange range, @ByVal CMTime time);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public boolean containsTimeRange(CMTimeRange otherRange) { return containsTimeRange(this, otherRange); }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMTimeRangeContainsTimeRange", optional=true)
     private static native boolean containsTimeRange(@ByVal CMTimeRange range, @ByVal CMTimeRange otherRange);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CMTime getEnd() { return getEnd(this); }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMTimeRangeGetEnd", optional=true)
     private static native @ByVal CMTime getEnd(@ByVal CMTimeRange range);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMTimeRangeFromTimeToTime", optional=true)
     public static native @ByVal CMTimeRange fromTimeToTime(@ByVal CMTime start, @ByVal CMTime end);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public NSDictionary asDictionary(CFAllocator allocator) { return asDictionary(this, allocator); }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMTimeRangeCopyAsDictionary", optional=true)
     private static native NSDictionary asDictionary(@ByVal CMTimeRange range, CFAllocator allocator);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMTimeRangeMakeFromDictionary", optional=true)
     public static native @ByVal CMTimeRange create(NSDictionary dictionaryRepresentation);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMTimeRangeCopyDescription", optional=true)
     private static native String getDescription(CFAllocator allocator, @ByVal CMTimeRange range);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public void show() { show(this); }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMTimeRangeShow", optional=true)
     private static native void show(@ByVal CMTimeRange range);
     /*</methods>*/

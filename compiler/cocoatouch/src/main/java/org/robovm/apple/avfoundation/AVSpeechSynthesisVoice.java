@@ -41,9 +41,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 7.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVSpeechSynthesisVoice/*</name>*/ 
@@ -63,7 +61,7 @@ import org.robovm.apple.audiotoolbox.*;
      */
     public AVSpeechSynthesisVoice(AVSpeechSynthesisVoiceIdentifier identifier) { super((Handle) null, create(identifier)); retain(getHandle()); }
     @Method(selector = "initWithCoder:")
-    public AVSpeechSynthesisVoice(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public AVSpeechSynthesisVoice(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "language")
@@ -83,6 +81,16 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "quality")
     public native AVSpeechSynthesisVoiceQuality getQuality();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "gender")
+    public native AVSpeechSynthesisVoiceGender getGender();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "audioFileSettings")
+    public native NSDictionary<NSString, ?> getAudioFileSettings();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
@@ -102,6 +110,6 @@ import org.robovm.apple.audiotoolbox.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

@@ -37,12 +37,12 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 2.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UILabel/*</name>*/ 
@@ -59,7 +59,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithFrame:")
     public UILabel(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public UILabel(NSCoder decoder) { super(decoder); }
+    public UILabel(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "text")
@@ -90,14 +90,8 @@ import org.robovm.apple.intents.*;
     public native NSLineBreakMode getLineBreakMode();
     @Property(selector = "setLineBreakMode:")
     public native void setLineBreakMode(NSLineBreakMode v);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "attributedText")
     public native NSAttributedString getAttributedText();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "setAttributedText:")
     public native void setAttributedText(NSAttributedString v);
     @Property(selector = "highlightedTextColor")
@@ -128,14 +122,8 @@ import org.robovm.apple.intents.*;
     public native UIBaselineAdjustment getBaselineAdjustment();
     @Property(selector = "setBaselineAdjustment:")
     public native void setBaselineAdjustment(UIBaselineAdjustment v);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "minimumScaleFactor")
     public native @MachineSizedFloat double getMinimumScaleFactor();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "setMinimumScaleFactor:")
     public native void setMinimumScaleFactor(@MachineSizedFloat double v);
     /**
@@ -148,25 +136,17 @@ import org.robovm.apple.intents.*;
      */
     @Property(selector = "setAllowsDefaultTighteningForTruncation:")
     public native void setAllowsDefaultTighteningForTruncation(boolean v);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "preferredMaxLayoutWidth")
     public native @MachineSizedFloat double getPreferredMaxLayoutWidth();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "setPreferredMaxLayoutWidth:")
     public native void setPreferredMaxLayoutWidth(@MachineSizedFloat double v);
     /**
-     * @since Available in iOS 6.0 and later.
      * @deprecated Deprecated in iOS 7.0.
      */
     @Deprecated
     @Property(selector = "adjustsLetterSpacingToFitWidth")
     public native boolean adjustsLetterSpacingToFitWidth();
     /**
-     * @since Available in iOS 6.0 and later.
      * @deprecated Deprecated in iOS 7.0.
      */
     @Deprecated

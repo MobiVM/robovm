@@ -60,6 +60,16 @@ import org.robovm.apple.security.*;
     public native NSNumber getSnapshotWidth();
     @Property(selector = "setSnapshotWidth:")
     public native void setSnapshotWidth(NSNumber v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "afterScreenUpdates")
+    public native boolean isAfterScreenUpdates();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setAfterScreenUpdates:")
+    public native void setAfterScreenUpdates(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

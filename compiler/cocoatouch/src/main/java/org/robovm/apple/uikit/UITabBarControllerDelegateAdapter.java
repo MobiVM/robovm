@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -57,43 +59,22 @@ import org.robovm.apple.intents.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @NotImplemented("tabBarController:shouldSelectViewController:")
     public boolean shouldSelectViewController(UITabBarController tabBarController, UIViewController viewController) { return false; }
     @NotImplemented("tabBarController:didSelectViewController:")
     public void didSelectViewController(UITabBarController tabBarController, UIViewController viewController) {}
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @NotImplemented("tabBarController:willBeginCustomizingViewControllers:")
     public void willBeginCustomizingViewControllers(UITabBarController tabBarController, NSArray<UIViewController> viewControllers) {}
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @NotImplemented("tabBarController:willEndCustomizingViewControllers:changed:")
     public void willEndCustomizingViewControllers(UITabBarController tabBarController, NSArray<UIViewController> viewControllers, boolean changed) {}
     @NotImplemented("tabBarController:didEndCustomizingViewControllers:changed:")
     public void didEndCustomizingViewControllers(UITabBarController tabBarController, NSArray<UIViewController> viewControllers, boolean changed) {}
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @NotImplemented("tabBarControllerSupportedInterfaceOrientations:")
     public UIInterfaceOrientation getSupportedInterfaceOrientations(UITabBarController tabBarController) { return null; }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @NotImplemented("tabBarControllerPreferredInterfaceOrientationForPresentation:")
     public UIInterfaceOrientation getPreferredInterfaceOrientation(UITabBarController tabBarController) { return null; }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @NotImplemented("tabBarController:interactionControllerForAnimationController:")
     public UIViewControllerInteractiveTransitioning getInteractionController(UITabBarController tabBarController, UIViewControllerAnimatedTransitioning animationController) { return null; }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @NotImplemented("tabBarController:animationControllerForTransitionFromViewController:toViewController:")
     public UIViewControllerAnimatedTransitioning getAnimationController(UITabBarController tabBarController, UIViewController fromVC, UIViewController toVC) { return null; }
     /*</methods>*/

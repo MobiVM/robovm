@@ -184,7 +184,7 @@ import org.robovm.apple.metal.*;
     public native UIFocusItemContainer getFocusItemContainer();
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Deprecated in iOS 10.0. Use -preferredFocusEnvironments instead.
+     * @deprecated Deprecated in iOS 10.0. Use preferredFocusEnvironments
      */
     @Deprecated
     @Property(selector = "preferredFocusedView")
@@ -231,9 +231,6 @@ import org.robovm.apple.metal.*;
     public native SKNode getChild(String name);
     @Method(selector = "enumerateChildNodesWithName:usingBlock:")
     public native void enumerateChildNodes(String name, @Block VoidBlock2<SKNode, BooleanPtr> block);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "objectForKeyedSubscript:")
     public native NSArray<SKNode> findNodesByName(String name);
     @Method(selector = "inParentHierarchy:")
@@ -275,6 +272,9 @@ import org.robovm.apple.metal.*;
     protected static native @Pointer long create(String filename, NSSet<?> classes, NSError.NSErrorPtr error);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
     @Method(selector = "didHintFocusMovement:")
     public native void didHintFocusMovement(UIFocusMovementHint hint);
     @Method(selector = "setNeedsFocusUpdate")

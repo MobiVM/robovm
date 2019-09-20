@@ -49,7 +49,7 @@ import org.robovm.apple.foundation.*;
     protected HKQueryAnchor(SkipInit skipInit) { super(skipInit); }
     public HKQueryAnchor(@MachineSizedUInt long value) { super((Handle) null, create(value)); retain(getHandle()); }
     @Method(selector = "initWithCoder:")
-    public HKQueryAnchor(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public HKQueryAnchor(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "supportsSecureCoding")
@@ -62,6 +62,6 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

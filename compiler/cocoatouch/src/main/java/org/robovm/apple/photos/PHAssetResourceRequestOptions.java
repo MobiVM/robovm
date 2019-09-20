@@ -56,12 +56,24 @@ import org.robovm.apple.imageio.*;
     protected PHAssetResourceRequestOptions(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
     @Property(selector = "isNetworkAccessAllowed")
     public native boolean isNetworkAccessAllowed();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
     @Property(selector = "setNetworkAccessAllowed:")
     public native void setNetworkAccessAllowed(boolean v);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
     @Property(selector = "progressHandler")
     public native @Block VoidDoubleBlock getProgressHandler();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
     @Property(selector = "setProgressHandler:")
     public native void setProgressHandler(@Block VoidDoubleBlock v);
     /*</properties>*/

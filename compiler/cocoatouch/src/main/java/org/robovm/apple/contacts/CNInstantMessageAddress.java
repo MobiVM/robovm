@@ -50,7 +50,7 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "initWithUsername:service:")
     public CNInstantMessageAddress(String username, String service) { super((SkipInit) null); initObject(init(username, service)); }
     @Method(selector = "initWithCoder:")
-    public CNInstantMessageAddress(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public CNInstantMessageAddress(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     public CNInstantMessageAddress(String username, CNInstantMessageService service) {
         super((SkipInit) null); 
@@ -78,6 +78,6 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

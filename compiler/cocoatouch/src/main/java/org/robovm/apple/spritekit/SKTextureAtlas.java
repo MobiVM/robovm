@@ -56,7 +56,7 @@ import org.robovm.apple.metal.*;
     protected SKTextureAtlas(SkipInit skipInit) { super(skipInit); }
     public SKTextureAtlas(String name) { super((Handle) null, create(name)); retain(getHandle()); }
     @Method(selector = "initWithCoder:")
-    public SKTextureAtlas(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public SKTextureAtlas(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /**
      * Constructs a new texture atlas object from the specified texture files.
@@ -100,9 +100,6 @@ import org.robovm.apple.metal.*;
     public native void preload(@Block Runnable completionHandler);
     @Method(selector = "atlasNamed:")
     protected static native @Pointer long create(String name);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "atlasWithDictionary:")
     protected static native @Pointer long create(NSDictionary<NSString, ?> properties);
     @Method(selector = "preloadTextureAtlases:withCompletionHandler:")
@@ -115,6 +112,6 @@ import org.robovm.apple.metal.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

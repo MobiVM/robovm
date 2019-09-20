@@ -59,9 +59,6 @@ import org.robovm.apple.coretext.*;
     /*<methods>*/
     @Bridge(symbol="CFRunLoopObserverGetTypeID", optional=true)
     public static native @MachineSizedUInt long getClassTypeID();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="CFRunLoopObserverCreateWithHandler", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CFRunLoopObserver create(CFAllocator allocator, CFRunLoopActivity activities, boolean repeats, @MachineSizedSInt long order, @Block VoidBlock2<CFRunLoopObserver, CFRunLoopActivity> block);
     @Bridge(symbol="CFRunLoopObserverGetActivities", optional=true)

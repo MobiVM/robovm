@@ -47,49 +47,22 @@ import org.robovm.apple.uikit.*;
     /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGPDFContextCreate", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGPDFContext create(CGDataConsumer consumer, CGRect mediaBox, CGPDFContextOptions auxiliaryInfo);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGPDFContextCreateWithURL", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGPDFContext createWithURL(NSURL url, CGRect mediaBox, CGPDFContextOptions auxiliaryInfo);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGPDFContextClose", optional=true)
     public native void closeContext();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGPDFContextBeginPage", optional=true)
     public static native void beginPage(CGContext context, CGPDFBoxOptions pageInfo);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGPDFContextEndPage", optional=true)
     public native void endPage();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CGPDFContextAddDocumentMetadata", optional=true)
     public native void addDocumentMetadata(NSData metadata);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGPDFContextSetURLForRect", optional=true)
     public native void setURLForRect(NSURL url, @ByVal CGRect rect);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGPDFContextAddDestinationAtPoint", optional=true)
     public native void addDestinationAtPoint(String name, @ByVal CGPoint point);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGPDFContextSetDestinationForRect", optional=true)
     public native void setDestinationForRect(String name, @ByVal CGRect rect);
     /**
@@ -97,5 +70,15 @@ import org.robovm.apple.uikit.*;
      */
     @Bridge(symbol="CGPDFContextSetOutline", optional=true)
     public native void setOutline(NSDictionary outline);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="CGPDFContextBeginTag", optional=true)
+    public native void beginTag(CGPDFTagType tagType, NSDictionary tagProperties);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="CGPDFContextEndTag", optional=true)
+    public native void endTag();
     /*</methods>*/
 }

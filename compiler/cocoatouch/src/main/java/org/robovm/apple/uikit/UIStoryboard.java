@@ -37,12 +37,12 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 5.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIStoryboard/*</name>*/ 
@@ -65,8 +65,18 @@ import org.robovm.apple.intents.*;
     /*<methods>*/
     @Method(selector = "instantiateInitialViewController")
     public native UIViewController instantiateInitialViewController();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "instantiateInitialViewControllerWithCreator:")
+    public native UIViewController instantiateViewController(@Block Block1<NSCoder, UIViewController> block);
     @Method(selector = "instantiateViewControllerWithIdentifier:")
     public native UIViewController instantiateViewController(String identifier);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "instantiateViewControllerWithIdentifier:creator:")
+    public native UIViewController instantiateViewController(String identifier, @Block Block1<NSCoder, UIViewController> block);
     @Method(selector = "storyboardWithName:bundle:")
     protected static native @Pointer long create(String name, NSBundle storyboardBundleOrNil);
     /*</methods>*/

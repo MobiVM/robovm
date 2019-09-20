@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -116,8 +118,7 @@ import org.robovm.apple.intents.*;
     
 
     /**
-     * @since Available in iOS 3.2 and later.
-     * @deprecated Deprecated in iOS 8.0. Use NSBackgroundColorAttributeName instead
+     * @deprecated Deprecated in iOS 8.0. Use NSBackgroundColorAttributeName
      */
     @Deprecated
     public UIColor getBackgroundColor() {
@@ -128,8 +129,7 @@ import org.robovm.apple.intents.*;
         return null;
     }
     /**
-     * @since Available in iOS 3.2 and later.
-     * @deprecated Deprecated in iOS 8.0. Use NSBackgroundColorAttributeName instead
+     * @deprecated Deprecated in iOS 8.0. Use NSBackgroundColorAttributeName
      */
     @Deprecated
     public UITextInputTextStyle setBackgroundColor(UIColor backgroundColor) {
@@ -137,8 +137,7 @@ import org.robovm.apple.intents.*;
         return this;
     }
     /**
-     * @since Available in iOS 3.2 and later.
-     * @deprecated Deprecated in iOS 8.0. Use NSForegroundColorAttributeName instead
+     * @deprecated Deprecated in iOS 8.0. Use NSForegroundColorAttributeName
      */
     @Deprecated
     public UIColor getTextColor() {
@@ -149,8 +148,7 @@ import org.robovm.apple.intents.*;
         return null;
     }
     /**
-     * @since Available in iOS 3.2 and later.
-     * @deprecated Deprecated in iOS 8.0. Use NSForegroundColorAttributeName instead
+     * @deprecated Deprecated in iOS 8.0. Use NSForegroundColorAttributeName
      */
     @Deprecated
     public UITextInputTextStyle setTextColor(UIColor textColor) {
@@ -158,8 +156,7 @@ import org.robovm.apple.intents.*;
         return this;
     }
     /**
-     * @since Available in iOS 3.2 and later.
-     * @deprecated Deprecated in iOS 8.0. Use NSFontAttributeName instead
+     * @deprecated Deprecated in iOS 8.0. Use NSFontAttributeName
      */
     @Deprecated
     public UIFont getFont() {
@@ -170,8 +167,7 @@ import org.robovm.apple.intents.*;
         return null;
     }
     /**
-     * @since Available in iOS 3.2 and later.
-     * @deprecated Deprecated in iOS 8.0. Use NSFontAttributeName instead
+     * @deprecated Deprecated in iOS 8.0. Use NSFontAttributeName
      */
     @Deprecated
     public UITextInputTextStyle setFont(UIFont font) {
@@ -185,22 +181,19 @@ import org.robovm.apple.intents.*;
     public static class Keys {
         static { Bro.bind(Keys.class); }
         /**
-         * @since Available in iOS 3.2 and later.
-         * @deprecated Deprecated in iOS 8.0. Use NSBackgroundColorAttributeName instead
+         * @deprecated Deprecated in iOS 8.0. Use NSBackgroundColorAttributeName
          */
         @Deprecated
         @GlobalValue(symbol="UITextInputTextBackgroundColorKey", optional=true)
         public static native NSString BackgroundColor();
         /**
-         * @since Available in iOS 3.2 and later.
-         * @deprecated Deprecated in iOS 8.0. Use NSForegroundColorAttributeName instead
+         * @deprecated Deprecated in iOS 8.0. Use NSForegroundColorAttributeName
          */
         @Deprecated
         @GlobalValue(symbol="UITextInputTextColorKey", optional=true)
         public static native NSString Color();
         /**
-         * @since Available in iOS 3.2 and later.
-         * @deprecated Deprecated in iOS 8.0. Use NSFontAttributeName instead
+         * @deprecated Deprecated in iOS 8.0. Use NSFontAttributeName
          */
         @Deprecated
         @GlobalValue(symbol="UITextInputTextFontKey", optional=true)

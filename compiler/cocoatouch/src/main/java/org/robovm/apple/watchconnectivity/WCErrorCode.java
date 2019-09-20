@@ -61,7 +61,15 @@ public enum /*<name>*/WCErrorCode/*</name>*/ implements NSErrorCode {
     /**
      * @since Available in iOS 9.3 and later.
      */
-    TransferTimedOut(7017L);
+    TransferTimedOut(7017L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    CompanionAppNotInstalled(7018L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    WatchOnlyApp(7019L);
     /*</values>*/
 
     /*<bind>*/

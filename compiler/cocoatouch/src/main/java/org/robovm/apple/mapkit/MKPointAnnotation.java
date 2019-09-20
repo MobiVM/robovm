@@ -35,14 +35,12 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("MapKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MKPointAnnotation/*</name>*/ 
     extends /*<extends>*/MKShape/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements MKGeoJSONObject/*</implements>*/ {
 
     /*<ptr>*/public static class MKPointAnnotationPtr extends Ptr<MKPointAnnotation, MKPointAnnotationPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(MKPointAnnotation.class); }/*</bind>*/
@@ -51,6 +49,16 @@ import org.robovm.apple.dispatch.*;
     public MKPointAnnotation() {}
     protected MKPointAnnotation(Handle h, long handle) { super(h, handle); }
     protected MKPointAnnotation(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "initWithCoordinate:")
+    public MKPointAnnotation(@ByVal CLLocationCoordinate2D coordinate) { super((SkipInit) null); initObject(init(coordinate)); }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "initWithCoordinate:title:subtitle:")
+    public MKPointAnnotation(@ByVal CLLocationCoordinate2D coordinate, String title, String subtitle) { super((SkipInit) null); initObject(init(coordinate, title, subtitle)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "coordinate")
@@ -60,6 +68,15 @@ import org.robovm.apple.dispatch.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "initWithCoordinate:")
+    protected native @Pointer long init(@ByVal CLLocationCoordinate2D coordinate);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "initWithCoordinate:title:subtitle:")
+    protected native @Pointer long init(@ByVal CLLocationCoordinate2D coordinate, String title, String subtitle);
     /*</methods>*/
 }

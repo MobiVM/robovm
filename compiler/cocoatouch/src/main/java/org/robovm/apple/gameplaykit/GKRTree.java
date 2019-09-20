@@ -39,11 +39,11 @@ import org.robovm.apple.uikit.*;
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("GameplayKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/GKRTree/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/GKRTree<ElementType extends NSObject>/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class GKRTreePtr extends Ptr<GKRTree, GKRTreePtr> {}/*</ptr>*/
+    /*<ptr>*/public static class GKRTreePtr<ElementType extends NSObject> extends Ptr<GKRTree<ElementType>, GKRTreePtr<ElementType>> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(GKRTree.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
@@ -64,10 +64,10 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "initWithMaxNumberOfChildren:")
     protected native @Pointer long init(@MachineSizedUInt long maxNumberOfChildren);
     @Method(selector = "addElement:boundingRectMin:boundingRectMax:splitStrategy:")
-    public native void addElement(NSObject element, @ByVal VectorFloat2 boundingRectMin, @ByVal VectorFloat2 boundingRectMax, GKRTreeSplitStrategy splitStrategy);
+    public native void addElement(ElementType element, @ByVal VectorFloat2 boundingRectMin, @ByVal VectorFloat2 boundingRectMax, GKRTreeSplitStrategy splitStrategy);
     @Method(selector = "removeElement:boundingRectMin:boundingRectMax:")
-    public native void removeElement(NSObject element, @ByVal VectorFloat2 boundingRectMin, @ByVal VectorFloat2 boundingRectMax);
+    public native void removeElement(ElementType element, @ByVal VectorFloat2 boundingRectMin, @ByVal VectorFloat2 boundingRectMax);
     @Method(selector = "elementsInBoundingRectMin:rectMax:")
-    public native NSArray<?> elementsInBounding(@ByVal VectorFloat2 rectMin, @ByVal VectorFloat2 rectMax);
+    public native NSArray<ElementType> elementsInBounding(@ByVal VectorFloat2 rectMin, @ByVal VectorFloat2 rectMax);
     /*</methods>*/
 }

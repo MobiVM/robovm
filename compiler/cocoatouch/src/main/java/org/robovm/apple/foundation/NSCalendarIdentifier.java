@@ -95,69 +95,21 @@ import org.robovm.apple.dispatch.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final NSCalendarIdentifier Gregorian = new NSCalendarIdentifier("Gregorian");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final NSCalendarIdentifier Buddhist = new NSCalendarIdentifier("Buddhist");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final NSCalendarIdentifier Chinese = new NSCalendarIdentifier("Chinese");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final NSCalendarIdentifier Coptic = new NSCalendarIdentifier("Coptic");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final NSCalendarIdentifier EthiopicAmeteMihret = new NSCalendarIdentifier("EthiopicAmeteMihret");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final NSCalendarIdentifier EthiopicAmeteAlem = new NSCalendarIdentifier("EthiopicAmeteAlem");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final NSCalendarIdentifier Hebrew = new NSCalendarIdentifier("Hebrew");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final NSCalendarIdentifier ISO8601 = new NSCalendarIdentifier("ISO8601");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final NSCalendarIdentifier Indian = new NSCalendarIdentifier("Indian");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final NSCalendarIdentifier Islamic = new NSCalendarIdentifier("Islamic");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final NSCalendarIdentifier IslamicCivil = new NSCalendarIdentifier("IslamicCivil");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final NSCalendarIdentifier Japanese = new NSCalendarIdentifier("Japanese");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final NSCalendarIdentifier Persian = new NSCalendarIdentifier("Persian");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final NSCalendarIdentifier RepublicOfChina = new NSCalendarIdentifier("RepublicOfChina");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final NSCalendarIdentifier IslamicTabular = new NSCalendarIdentifier("IslamicTabular");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final NSCalendarIdentifier IslamicUmmAlQura = new NSCalendarIdentifier("IslamicUmmAlQura");
     /*</constants>*/
     
@@ -184,84 +136,36 @@ import org.robovm.apple.dispatch.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="NSCalendarIdentifierGregorian", optional=true)
         public static native NSString Gregorian();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="NSCalendarIdentifierBuddhist", optional=true)
         public static native NSString Buddhist();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="NSCalendarIdentifierChinese", optional=true)
         public static native NSString Chinese();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="NSCalendarIdentifierCoptic", optional=true)
         public static native NSString Coptic();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="NSCalendarIdentifierEthiopicAmeteMihret", optional=true)
         public static native NSString EthiopicAmeteMihret();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="NSCalendarIdentifierEthiopicAmeteAlem", optional=true)
         public static native NSString EthiopicAmeteAlem();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="NSCalendarIdentifierHebrew", optional=true)
         public static native NSString Hebrew();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="NSCalendarIdentifierISO8601", optional=true)
         public static native NSString ISO8601();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="NSCalendarIdentifierIndian", optional=true)
         public static native NSString Indian();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="NSCalendarIdentifierIslamic", optional=true)
         public static native NSString Islamic();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="NSCalendarIdentifierIslamicCivil", optional=true)
         public static native NSString IslamicCivil();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="NSCalendarIdentifierJapanese", optional=true)
         public static native NSString Japanese();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="NSCalendarIdentifierPersian", optional=true)
         public static native NSString Persian();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="NSCalendarIdentifierRepublicOfChina", optional=true)
         public static native NSString RepublicOfChina();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="NSCalendarIdentifierIslamicTabular", optional=true)
         public static native NSString IslamicTabular();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="NSCalendarIdentifierIslamicUmmAlQura", optional=true)
         public static native NSString IslamicUmmAlQura();
         /*</values>*/

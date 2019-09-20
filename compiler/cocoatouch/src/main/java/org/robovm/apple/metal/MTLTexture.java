@@ -32,9 +32,7 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("Metal") @NativeProtocolProxy/*</annotations>*/
 /*<visibility>*/public final/*</visibility>*/ class /*<name>*/MTLTexture/*</name>*/ 
@@ -49,7 +47,6 @@ import org.robovm.apple.dispatch.*;
     /*</constructors>*/
     /*<properties>*/
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 10.0. Use parentTexture or buffer instead
      */
     @Deprecated
@@ -113,13 +110,38 @@ import org.robovm.apple.dispatch.*;
     public native @MachineSizedUInt long getArrayLength();
     @Property(selector = "usage")
     public native MTLTextureUsage getUsage();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "isShareable")
+    public native boolean isShareable();
     @Property(selector = "isFramebufferOnly")
     public native boolean isFramebufferOnly();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "firstMipmapInTail")
+    public native @MachineSizedUInt long getFirstMipmapInTail();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "tailSizeInBytes")
+    public native @MachineSizedUInt long getTailSizeInBytes();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "isSparse")
+    public native boolean isSparse();
     /**
      * @since Available in iOS 12.0 and later.
      */
     @Property(selector = "allowGPUOptimizedContents")
     public native boolean isAllowGPUOptimizedContents();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "swizzle")
+    public native @ByVal MTLTextureSwizzleChannels getSwizzle();
     @Property(selector = "label")
     public native String getLabel();
     @Property(selector = "setLabel:")
@@ -134,10 +156,25 @@ import org.robovm.apple.dispatch.*;
     @Property(selector = "storageMode")
     public native MTLStorageMode getStorageMode();
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "hazardTrackingMode")
+    public native MTLHazardTrackingMode getHazardTrackingMode();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "resourceOptions")
+    public native MTLResourceOptions getResourceOptions();
+    /**
      * @since Available in iOS 10.0 and later.
      */
     @Property(selector = "heap")
     public native MTLHeap getHeap();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "heapOffset")
+    public native @MachineSizedUInt long getHeapOffset();
     /**
      * @since Available in iOS 11.0 and later.
      */
@@ -177,6 +214,16 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "newTextureViewWithPixelFormat:textureType:levels:slices:")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSObject.NoRetainMarshaler.class) MTLTexture newTextureView(MTLPixelFormat pixelFormat, MTLTextureType textureType, @ByVal NSRange levelRange, @ByVal NSRange sliceRange);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "newSharedTextureHandle")
+    public native MTLSharedTextureHandle newSharedTextureHandle();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "newTextureViewWithPixelFormat:textureType:levels:slices:swizzle:")
+    public native @org.robovm.rt.bro.annotation.Marshaler(NSObject.NoRetainMarshaler.class) MTLTexture newTextureView(MTLPixelFormat pixelFormat, MTLTextureType textureType, @ByVal NSRange levelRange, @ByVal NSRange sliceRange, @ByVal MTLTextureSwizzleChannels swizzle);
     @Method(selector = "setPurgeableState:")
     public native MTLPurgeableState setPurgeableState(MTLPurgeableState state);
     /**

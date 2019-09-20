@@ -92,25 +92,10 @@ import org.robovm.apple.metal.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final CAEmitterRenderMode Unordered = new CAEmitterRenderMode("Unordered");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final CAEmitterRenderMode OldestFirst = new CAEmitterRenderMode("OldestFirst");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final CAEmitterRenderMode OldestLast = new CAEmitterRenderMode("OldestLast");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final CAEmitterRenderMode BackToFront = new CAEmitterRenderMode("BackToFront");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final CAEmitterRenderMode Additive = new CAEmitterRenderMode("Additive");
     /*</constants>*/
     
@@ -137,29 +122,14 @@ import org.robovm.apple.metal.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="kCAEmitterLayerUnordered", optional=true)
         public static native NSString Unordered();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="kCAEmitterLayerOldestFirst", optional=true)
         public static native NSString OldestFirst();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="kCAEmitterLayerOldestLast", optional=true)
         public static native NSString OldestLast();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="kCAEmitterLayerBackToFront", optional=true)
         public static native NSString BackToFront();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="kCAEmitterLayerAdditive", optional=true)
         public static native NSString Additive();
         /*</values>*/

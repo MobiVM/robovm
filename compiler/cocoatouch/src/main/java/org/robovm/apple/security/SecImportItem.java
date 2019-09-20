@@ -103,9 +103,6 @@ import org.robovm.apple.dispatch.*;
     }
     
 
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public String getLabel() {
         if (has(Keys.Label())) {
             CFString val = get(Keys.Label(), CFString.class);
@@ -113,9 +110,6 @@ import org.robovm.apple.dispatch.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public NSData getKeyID() {
         if (has(Keys.KeyID())) {
             NSData val = get(Keys.KeyID(), NSData.class);
@@ -123,9 +117,6 @@ import org.robovm.apple.dispatch.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public SecTrust getTrust() {
         if (has(Keys.Trust())) {
             SecTrust val = get(Keys.Trust(), SecTrust.class);
@@ -133,9 +124,6 @@ import org.robovm.apple.dispatch.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public List<SecCertificate> getCertChain() {
         if (has(Keys.CertChain())) {
             CFArray val = get(Keys.CertChain(), CFArray.class);
@@ -143,9 +131,6 @@ import org.robovm.apple.dispatch.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public SecIdentity getIdentity() {
         if (has(Keys.Identity())) {
             SecIdentity val = get(Keys.Identity(), SecIdentity.class);
@@ -159,29 +144,14 @@ import org.robovm.apple.dispatch.*;
     @Library("Security")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kSecImportItemLabel", optional=true)
         public static native CFString Label();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kSecImportItemKeyID", optional=true)
         public static native CFString KeyID();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kSecImportItemTrust", optional=true)
         public static native CFString Trust();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kSecImportItemCertChain", optional=true)
         public static native CFString CertChain();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kSecImportItemIdentity", optional=true)
         public static native CFString Identity();
     }

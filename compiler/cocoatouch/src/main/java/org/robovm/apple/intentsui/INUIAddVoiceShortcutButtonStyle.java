@@ -44,7 +44,15 @@ public enum /*<name>*/INUIAddVoiceShortcutButtonStyle/*</name>*/ implements Valu
     White(0L),
     WhiteOutline(1L),
     Black(2L),
-    BlackOutline(3L);
+    BlackOutline(3L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    Automatic(4L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    AutomaticOutline(5L);
     /*</values>*/
 
     /*<bind>*/

@@ -37,11 +37,12 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 8.0 and later.
  * @deprecated Deprecated in iOS 10.0. Use UserNotifications Framework's UNNotificationCategory
  */
 /*</javadoc>*/
@@ -58,7 +59,7 @@ import org.robovm.apple.intents.*;
     protected UIUserNotificationCategory(Handle h, long handle) { super(h, handle); }
     protected UIUserNotificationCategory(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public UIUserNotificationCategory(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public UIUserNotificationCategory(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "identifier")
@@ -76,7 +77,7 @@ import org.robovm.apple.intents.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     @Method(selector = "actionsForContext:")
     public native NSArray<UIUserNotificationAction> getActions(UIUserNotificationActionContext context);
     @Method(selector = "encodeWithCoder:")

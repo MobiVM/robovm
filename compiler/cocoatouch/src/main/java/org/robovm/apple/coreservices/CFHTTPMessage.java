@@ -128,132 +128,60 @@ import org.robovm.apple.corefoundation.*;
         return applyCredentials(auth, credentials, null);
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CFHTTPMessageGetTypeID", optional=true)
     public static native @MachineSizedUInt long getClassTypeID();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CFHTTPMessageCreateRequest", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CFHTTPMessage createRequest(CFAllocator alloc, String requestMethod, NSURL url, CFHTTPVersion httpVersion);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CFHTTPMessageCreateResponse", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CFHTTPMessage createResponse(CFAllocator alloc, @MachineSizedSInt long statusCode, String statusDescription, CFHTTPVersion httpVersion);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CFHTTPMessageCreateEmpty", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CFHTTPMessage createEmpty(CFAllocator alloc, boolean isRequest);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CFHTTPMessageCreateCopy", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CFHTTPMessage createCopy(CFAllocator alloc, CFHTTPMessage message);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CFHTTPMessageIsRequest", optional=true)
     public native boolean isRequest();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CFHTTPMessageCopyVersion", optional=true)
     public native CFHTTPVersion getVersion();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CFHTTPMessageCopyBody", optional=true)
     public native NSData getBody();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CFHTTPMessageSetBody", optional=true)
     public native void setBody(NSData bodyData);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CFHTTPMessageCopyHeaderFieldValue", optional=true)
     public native @org.robovm.rt.bro.annotation.Marshaler(CFString.AsStringNoRetainMarshaler.class) String getHeaderFieldValue(String headerField);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CFHTTPMessageCopyAllHeaderFields", optional=true)
     public native @org.robovm.rt.bro.annotation.Marshaler(CFDictionary.AsStringStringMapMarshaler.class) Map<String, String> getAllHeaderFields();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CFHTTPMessageSetHeaderFieldValue", optional=true)
     public native void setHeaderFieldValue(String headerField, String value);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CFHTTPMessageAppendBytes", optional=true)
     private native boolean appendBytes(@Pointer long newBytes, @MachineSizedSInt long numBytes);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CFHTTPMessageIsHeaderComplete", optional=true)
     public native boolean isHeaderComplete();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CFHTTPMessageCopySerializedMessage", optional=true)
     public native @org.robovm.rt.bro.annotation.Marshaler(NSObject.NoRetainMarshaler.class) NSData getSerializedMessage();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CFHTTPMessageCopyRequestURL", optional=true)
     public native @org.robovm.rt.bro.annotation.Marshaler(NSObject.NoRetainMarshaler.class) NSURL getRequestURL();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CFHTTPMessageCopyRequestMethod", optional=true)
     public native @org.robovm.rt.bro.annotation.Marshaler(CFString.AsStringNoRetainMarshaler.class) String getRequestMethod();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CFHTTPMessageAddAuthentication", optional=true)
     public native boolean addAuthentication(CFHTTPMessage authenticationFailureResponse, String username, String password, CFHTTPAuthenticationScheme authenticationScheme, boolean forProxy);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CFHTTPMessageGetResponseStatusCode", optional=true)
     public native @MachineSizedSInt long getResponseStatusCode();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CFHTTPMessageCopyResponseStatusLine", optional=true)
     public native @org.robovm.rt.bro.annotation.Marshaler(CFString.AsStringNoRetainMarshaler.class) String getResponseStatusLine();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public boolean applyCredentials(CFHTTPAuthentication auth, String username, String password) throws CFStreamErrorException {
        CFStreamError.CFStreamErrorPtr ptr = new CFStreamError.CFStreamErrorPtr();
        boolean result = applyCredentials(auth, username, password, ptr);
        if (ptr.get() != null) { throw new CFStreamErrorException(ptr.get()); }
        return result;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CFHTTPMessageApplyCredentials", optional=true)
     private native boolean applyCredentials(CFHTTPAuthentication auth, String username, String password, CFStreamError.CFStreamErrorPtr error);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public boolean applyCredentials(CFHTTPAuthentication auth, CFHTTPAuthenticationCredentials dict) throws CFStreamErrorException {
        CFStreamError.CFStreamErrorPtr ptr = new CFStreamError.CFStreamErrorPtr();
        boolean result = applyCredentials(auth, dict, ptr);
        if (ptr.get() != null) { throw new CFStreamErrorException(ptr.get()); }
        return result;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CFHTTPMessageApplyCredentialDictionary", optional=true)
     private native boolean applyCredentials(CFHTTPAuthentication auth, CFHTTPAuthenticationCredentials dict, CFStreamError.CFStreamErrorPtr error);
     /*</methods>*/

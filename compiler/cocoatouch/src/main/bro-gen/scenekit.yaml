@@ -5,19 +5,6 @@ framework: SceneKit
 clang_args: ['-x', 'objective-c']
 headers:
     - /System/Library/Frameworks/SceneKit.framework/Headers/SceneKit.h
-typedefs:
-    'BOOL (^)()': '@Block Block0<Boolean>'
-    'void (^)(SCNNode *)': '@Block VoidBlock1<SCNNode>'
-    'void (^)(SCNNode *, CGFloat)': '@Block("(,@MachineSizedFloat)") VoidBlock2<SCNNode, Double>'
-    'BOOL (^)(SCNNode *, BOOL *)': '@Block Block2<SCNNode, BooleanPtr, Boolean>'
-    'void (^)(SCNNode *, BOOL *)': '@Block VoidBlock2<SCNNode, BooleanPtr>'
-    'BOOL (^)(id, NSString *, BOOL *)': '@Block Block3<NSObject, String, BooleanPtr, Boolean>'
-    'SCNMatrix4 (^)(SCNNode *, SCNMatrix4)': '@Block Block2<SCNNode, SCNMatrix4, SCNMatrix4>'
-    SCNQuaternion: SCNVector4
-
-private_typedefs:
-    SCNPhysicsShapeOption: SCNPhysicsShapeOptions
-
 enums:
     SCNErrorCode: { first: SCNProgramCompilationError, prefix: SCN, suffix: Error }
     SCNConsistencyErrorCode: { first: SCNConsistencyInvalidURIError }
@@ -58,6 +45,9 @@ enums:
     SCNFillMode: {} #since 11.0
     SCNTessellationSmoothingMode: {} #since 11.0
     SCNInteractionMode: {} #since 11.0
+    SCNLightProbeType: {} #since 13.0
+    SCNLightProbeUpdateType: {} #since 13.0
+    SCNLightAreaType: {} #since 13.0
 
 categories:
     NSValue: # DONE
@@ -168,6 +158,8 @@ classes:
         methods:
             '-projectionTransform':
                 property: true
+            '-projectionTransformWithViewportSize:':
+                name: getProjectionTransform
             '+camera':
                 name: create
     SCNConstraint: {} # DONE
@@ -396,13 +388,11 @@ classes:
             '-removeParticleSystem:':
                 trim_after_first_colon: true
             '-convertVector:toNode:':
-                trim_after_first_colon: true
+                name: convertVectorToNode
             '-convertVector:fromNode:':
-                trim_after_first_colon: true
-                name: convertVector$fromNode$
+                name: convertVectorFromNode
             '-lookAt:up:localFront:':
-                trim_after_first_colon: true
-                name: lookAt$up$localFront$
+                name: lookAt
             '-rotateBy:aroundTarget:':
                 name: rotate
             '-simdConvertPosition:toNode:':
@@ -1125,13 +1115,9 @@ values:
         exclude: true
 
     # SCNSceneRenderer
-    SCNHitTestOptionCategoryBitMask:
+    SCNHitTestOption(CategoryBitMask|SearchMode|IgnoreLightArea):
         dictionary: SCNHitTestOptions
-        name: 'OptionCategoryBitMask'
-        type: NSString
-    SCNHitTestOptionSearchMode:
-        dictionary: SCNHitTestOptions
-        name: 'OptionSearchMode'
+        name: 'Option#{g[0]}'
         type: NSString
     SCNHitTest(.*)Key:
         dictionary: SCNHitTestOptions
@@ -1230,13 +1216,18 @@ values:
     # SCNView
     SCN(PreferredRenderingAPI|PreferredDevice|PreferLowPowerDevice)Key:
         class: SCNView
-   
+
     # Make sure we don't miss any values if new ones are introduced in a later version
     (k?SCN.*):
         class: SceneKit
         name: 'Value__#{g[0]}'
 
 constants:
+    SCN_ENABLE_METAL:
+        exclude: true
+    SCN_ENABLE_OPENGL:
+        exclude: true
+
     # Make sure we don't miss any constants if new ones are introduced in a later version
     (k?SCN.*):
         class: SceneKit

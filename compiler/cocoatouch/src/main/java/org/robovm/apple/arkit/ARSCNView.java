@@ -48,7 +48,7 @@ import org.robovm.apple.imageio.*;
 /*<annotations>*/@Library("ARKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/ARSCNView/*</name>*/ 
     extends /*<extends>*/SCNView/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements ARSessionProviding/*</implements>*/ {
 
     /*<ptr>*/public static class ARSCNViewPtr extends Ptr<ARSCNView, ARSCNViewPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(ARSCNView.class); }/*</bind>*/
@@ -62,7 +62,7 @@ import org.robovm.apple.imageio.*;
     @Method(selector = "initWithFrame:")
     public ARSCNView(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public ARSCNView(NSCoder decoder) { super(decoder); }
+    public ARSCNView(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "delegate")
@@ -81,6 +81,26 @@ import org.robovm.apple.imageio.*;
     public native boolean automaticallyUpdatesLighting();
     @Property(selector = "setAutomaticallyUpdatesLighting:")
     public native void setAutomaticallyUpdatesLighting(boolean v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "rendersCameraGrain")
+    public native boolean isRendersCameraGrain();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setRendersCameraGrain:")
+    public native void setRendersCameraGrain(boolean v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "rendersMotionBlur")
+    public native boolean isRendersMotionBlur();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setRendersMotionBlur:")
+    public native void setRendersMotionBlur(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -106,5 +126,10 @@ import org.robovm.apple.imageio.*;
      */
     @Method(selector = "unprojectPoint:ontoPlaneWithTransform:")
     public native @ByVal VectorFloat3 unprojectPoint(@ByVal CGPoint point, @ByVal MatrixFloat4x4 planeTransform);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "raycastQueryFromPoint:allowingTarget:alignment:")
+    public native ARRaycastQuery raycastQueryFromPoint(@ByVal CGPoint point, ARRaycastTarget target, ARRaycastTargetAlignment alignment);
     /*</methods>*/
 }

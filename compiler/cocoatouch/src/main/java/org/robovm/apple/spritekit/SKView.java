@@ -57,7 +57,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithFrame:")
     public SKView(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public SKView(NSCoder decoder) { super(decoder); }
+    public SKView(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "isPaused")
@@ -76,62 +76,32 @@ import org.robovm.apple.metal.*;
     public native boolean showsNodeCount();
     @Property(selector = "setShowsNodeCount:")
     public native void setShowsNodeCount(boolean v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "showsQuadCount")
     public native boolean showsQuadCount();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setShowsQuadCount:")
     public native void setShowsQuadCount(boolean v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "showsPhysics")
     public native boolean showsPhysics();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setShowsPhysics:")
     public native void setShowsPhysics(boolean v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "showsFields")
     public native boolean showsFields();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setShowsFields:")
     public native void setShowsFields(boolean v);
     @Property(selector = "isAsynchronous")
     public native boolean isAsynchronous();
     @Property(selector = "setAsynchronous:")
     public native void setAsynchronous(boolean v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "allowsTransparency")
     public native boolean allowsTransparency();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setAllowsTransparency:")
     public native void setAllowsTransparency(boolean v);
     @Property(selector = "ignoresSiblingOrder")
     public native boolean ignoresSiblingOrder();
     @Property(selector = "setIgnoresSiblingOrder:")
     public native void setIgnoresSiblingOrder(boolean v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "shouldCullNonVisibleNodes")
     public native boolean shouldCullNonVisibleNodes();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setShouldCullNonVisibleNodes:")
     public native void setShouldCullNonVisibleNodes(boolean v);
     /**
@@ -155,14 +125,12 @@ import org.robovm.apple.metal.*;
     @Property(selector = "setDelegate:", strongRef = true)
     public native void setDelegate(SKViewDelegate v);
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 10.0.
      */
     @Deprecated
     @Property(selector = "frameInterval")
     public native @MachineSizedSInt long getFrameInterval();
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 10.0.
      */
     @Deprecated

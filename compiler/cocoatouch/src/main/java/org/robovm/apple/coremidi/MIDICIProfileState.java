@@ -51,7 +51,7 @@ import org.robovm.apple.corefoundation.*;
     @Method(selector = "initWithEnabledProfiles:disabledProfiles:")
     public MIDICIProfileState(NSArray<MIDICIProfile> enabled, NSArray<MIDICIProfile> disabled) { super((SkipInit) null); initObject(init(enabled, disabled)); }
     @Method(selector = "initWithCoder:")
-    public MIDICIProfileState(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public MIDICIProfileState(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "enabledProfiles")
@@ -68,6 +68,6 @@ import org.robovm.apple.corefoundation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

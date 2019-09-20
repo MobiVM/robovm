@@ -55,14 +55,14 @@ import org.robovm.apple.avfoundation.*;
     protected SCNPhysicsShape(Handle h, long handle) { super(h, handle); }
     protected SCNPhysicsShape(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public SCNPhysicsShape(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public SCNPhysicsShape(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     /**
      * @since Available in iOS 9.0 and later.
      */
     @Property(selector = "options")
-    public native NSDictionary<?, ?> getOptions();
+    public native NSDictionary<NSString, ?> getOptions();
     /**
      * @since Available in iOS 9.0 and later.
      */
@@ -87,6 +87,6 @@ import org.robovm.apple.avfoundation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

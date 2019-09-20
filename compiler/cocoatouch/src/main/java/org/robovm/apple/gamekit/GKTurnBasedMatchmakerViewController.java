@@ -32,9 +32,7 @@ import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 5.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("GameKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GKTurnBasedMatchmakerViewController/*</name>*/ 
@@ -48,9 +46,6 @@ import org.robovm.apple.uikit.*;
     public GKTurnBasedMatchmakerViewController() {}
     protected GKTurnBasedMatchmakerViewController(Handle h, long handle) { super(h, handle); }
     protected GKTurnBasedMatchmakerViewController(SkipInit skipInit) { super(skipInit); }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "initWithNavigationBarClass:toolbarClass:")
     public GKTurnBasedMatchmakerViewController(Class<? extends UINavigationBar> navigationBarClass, Class<? extends UIToolbar> toolbarClass) { super(navigationBarClass, toolbarClass); }
     @Method(selector = "initWithRootViewController:")

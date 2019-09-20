@@ -41,9 +41,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVCaptureVideoDataOutput/*</name>*/ 
@@ -82,21 +80,35 @@ import org.robovm.apple.audiotoolbox.*;
     protected native NSDictionary<NSString, ?> getVideoSettings0();
     @Property(selector = "setVideoSettings:")
     protected native void setVideoSettings0(NSDictionary<NSString, ?> v);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @WeaklyLinked
     @Property(selector = "availableVideoCVPixelFormatTypes")
     public native @org.robovm.rt.bro.annotation.Marshaler(CVPixelFormatType.AsListMarshaler.class) List<CVPixelFormatType> getAvailableVideoCVPixelFormatTypes();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "availableVideoCodecTypes")
     public native @org.robovm.rt.bro.annotation.Marshaler(CMVideoCodecType.AsListMarshaler.class) List<CMVideoCodecType> getAvailableVideoCodecTypes();
     @Property(selector = "alwaysDiscardsLateVideoFrames")
     public native boolean alwaysDiscardsLateVideoFrames();
     @Property(selector = "setAlwaysDiscardsLateVideoFrames:")
     public native void setAlwaysDiscardsLateVideoFrames(boolean v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "automaticallyConfiguresOutputBufferDimensions")
+    public native boolean automaticallyConfiguresOutputBufferDimensions();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setAutomaticallyConfiguresOutputBufferDimensions:")
+    public native void setAutomaticallyConfiguresOutputBufferDimensions(boolean v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "deliversPreviewSizedOutputBuffers")
+    public native boolean isDeliversPreviewSizedOutputBuffers();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setDeliversPreviewSizedOutputBuffers:")
+    public native void setDeliversPreviewSizedOutputBuffers(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /**
@@ -116,9 +128,6 @@ import org.robovm.apple.audiotoolbox.*;
     @WeaklyLinked
     @Method(selector = "setSampleBufferDelegate:queue:")
     public native void setSampleBufferDelegate(AVCaptureVideoDataOutputSampleBufferDelegate sampleBufferDelegate, DispatchQueue sampleBufferCallbackQueue);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "recommendedVideoSettingsForAssetWriterWithOutputFileType:")
     protected native NSDictionary<NSString, ?> getRecommendedVideoSettings0(String outputFileType);
     /**

@@ -37,12 +37,12 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 6.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSParagraphStyle/*</name>*/ 
@@ -57,7 +57,7 @@ import org.robovm.apple.intents.*;
     protected NSParagraphStyle(Handle h, long handle) { super(h, handle); }
     protected NSParagraphStyle(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public NSParagraphStyle(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public NSParagraphStyle(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "defaultParagraphStyle")
@@ -88,14 +88,8 @@ import org.robovm.apple.intents.*;
     public native @MachineSizedFloat double getParagraphSpacingBefore();
     @Property(selector = "hyphenationFactor")
     public native float getHyphenationFactor();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "tabStops")
     public native NSArray<NSTextTab> getTabStops();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "defaultTabInterval")
     public native @MachineSizedFloat double getDefaultTabInterval();
     /**
@@ -188,6 +182,6 @@ import org.robovm.apple.intents.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

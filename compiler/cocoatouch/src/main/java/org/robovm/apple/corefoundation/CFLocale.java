@@ -89,9 +89,6 @@ import org.robovm.apple.coretext.*;
         return createCopy(null, locale);
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @GlobalValue(symbol="kCFLocaleCurrentLocaleDidChangeNotification", optional=true)
     public static native NSString CurrentLocaleDidChangeNotification();
     
@@ -109,14 +106,8 @@ import org.robovm.apple.coretext.*;
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFArray.AsStringListMarshaler.class) List<String> getISOCountryCodes();
     @Bridge(symbol="CFLocaleCopyISOCurrencyCodes", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFArray.AsStringListMarshaler.class) List<String> getISOCurrencyCodes();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CFLocaleCopyCommonISOCurrencyCodes", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFArray.AsStringListMarshaler.class) List<String> getCommonISOCurrencyCodes();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CFLocaleCopyPreferredLanguages", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFArray.AsStringListMarshaler.class) List<String> getPreferredLanguages();
     @Bridge(symbol="CFLocaleCreateCanonicalLanguageIdentifierFromString", optional=true)
@@ -125,24 +116,12 @@ import org.robovm.apple.coretext.*;
     protected static native @org.robovm.rt.bro.annotation.Marshaler(CFString.AsStringNoRetainMarshaler.class) String getCanonicalLocaleIdentifier(CFAllocator allocator, String localeIdentifier);
     @Bridge(symbol="CFLocaleCreateCanonicalLocaleIdentifierFromScriptManagerCodes", optional=true)
     protected static native @org.robovm.rt.bro.annotation.Marshaler(CFString.AsStringNoRetainMarshaler.class) String getCanonicalLocaleIdentifier(CFAllocator allocator, short lcode, short rcode);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CFLocaleCreateLocaleIdentifierFromWindowsLocaleCode", optional=true)
     protected static native @org.robovm.rt.bro.annotation.Marshaler(CFString.AsStringNoRetainMarshaler.class) String getLocaleIdentifierFromWindowsLocaleCode(CFAllocator allocator, int lcid);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CFLocaleGetWindowsLocaleCodeFromLocaleIdentifier", optional=true)
     public static native int getWindowsLocaleCodeFromLocaleIdentifier(String localeIdentifier);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CFLocaleGetLanguageCharacterDirection", optional=true)
     public static native CFLocaleLanguageDirection getLanguageCharacterDirection(String isoLangCode);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CFLocaleGetLanguageLineDirection", optional=true)
     public static native CFLocaleLanguageDirection getLanguageLineDirection(String isoLangCode);
     @Bridge(symbol="CFLocaleCreateComponentsFromLocaleIdentifier", optional=true)

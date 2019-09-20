@@ -216,71 +216,38 @@ import org.robovm.apple.dispatch.*;
         OSStatusException.throwIfNecessary(status);
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="SecTrustGetTypeID", optional=true)
     public static native @MachineSizedUInt long getClassTypeID();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="SecTrustCreateWithCertificates", optional=true)
     protected static native OSStatus create0(CFType certificates, CFType policies, SecTrust.SecTrustPtr trust);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Bridge(symbol="SecTrustSetPolicies", optional=true)
     protected native OSStatus setPolicies0(CFType policies);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Bridge(symbol="SecTrustCopyPolicies", optional=true)
     protected native OSStatus getPolicies0(CFArray.CFArrayPtr policies);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Bridge(symbol="SecTrustSetNetworkFetchAllowed", optional=true)
     protected native OSStatus setNetworkFetchAllowed0(boolean allowFetch);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Bridge(symbol="SecTrustGetNetworkFetchAllowed", optional=true)
     protected native OSStatus isNetworkFetchAllowed0(BooleanPtr allowFetch);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="SecTrustSetAnchorCertificates", optional=true)
     protected native OSStatus setAnchorCertificates0(@org.robovm.rt.bro.annotation.Marshaler(CFArray.AsListMarshaler.class) List<SecCertificate> anchorCertificates);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="SecTrustSetAnchorCertificatesOnly", optional=true)
     protected native OSStatus setAnchorCertificatesOnly0(boolean anchorCertificatesOnly);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Bridge(symbol="SecTrustCopyCustomAnchorCertificates", optional=true)
     protected native OSStatus getCustomAnchorCertificates0(CFArray.CFArrayPtr anchors);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="SecTrustSetVerifyDate", optional=true)
     protected native OSStatus setVerifyDate0(NSDate verifyDate);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="SecTrustGetVerifyTime", optional=true)
     public native double getVerifyTime();
     /**
-     * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 100000.0.
+     * @deprecated Deprecated in iOS 13.0. Use SecTrustEvaluateWithError
      */
     @Deprecated
     @Bridge(symbol="SecTrustEvaluate", optional=true)
     protected native OSStatus evaluate0(IntPtr result);
     /**
-     * @since Available in iOS 7.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use SecTrustEvaluateAsyncWithError
      */
+    @Deprecated
     @WeaklyLinked
     @Bridge(symbol="SecTrustEvaluateAsync", optional=true)
     protected native OSStatus evaluateAsync0(DispatchQueue queue, @Block VoidBlock2<SecTrust, SecTrustResultType> result);
@@ -290,48 +257,26 @@ import org.robovm.apple.dispatch.*;
     @Bridge(symbol="SecTrustEvaluateWithError", optional=true)
     public native boolean evaluateWithError(NSError error);
     /**
-     * @since Available in iOS 7.0 and later.
+     * @since Available in iOS 13.0 and later.
      */
+    @Bridge(symbol="SecTrustEvaluateAsyncWithError", optional=true)
+    public native OSStatus evaluateAsyncWithError(DispatchQueue queue, @Block VoidBlock3<SecTrust, Boolean, NSError> result);
     @Bridge(symbol="SecTrustGetTrustResult", optional=true)
     protected native OSStatus getTrustResult0(IntPtr result);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="SecTrustCopyPublicKey", optional=true)
     public native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) SecKey getPublicKey();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="SecTrustGetCertificateCount", optional=true)
     public native @MachineSizedSInt long getCertificateCount();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="SecTrustGetCertificateAtIndex", optional=true)
     public native SecCertificate getCertificate(@MachineSizedSInt long ix);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="SecTrustCopyExceptions", optional=true)
     public native @org.robovm.rt.bro.annotation.Marshaler(NSObject.NoRetainMarshaler.class) NSData getExceptions();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="SecTrustSetExceptions", optional=true)
     public native boolean setExceptions(NSData exceptions);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="SecTrustCopyProperties", optional=true)
     public native SecTrustProperties getProperties();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Bridge(symbol="SecTrustCopyResult", optional=true)
     public native SecTrustResult getResult();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Bridge(symbol="SecTrustSetOCSPResponse", optional=true)
     protected native OSStatus setOCSPResponse0(CFType responseData);
     @Bridge(symbol="SecTrustSetSignedCertificateTimestamps", optional=true)

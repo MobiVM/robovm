@@ -69,24 +69,12 @@ import org.robovm.apple.uikit.*;
         OSStatusException.throwIfNecessary(status);
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioComponentInstanceNew", optional=true)
     protected static native OSStatus create0(AudioComponent inComponent, AudioComponentInstance.AudioComponentInstancePtr outInstance);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioComponentInstanceDispose", optional=true)
     protected native OSStatus dispose0();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioComponentInstanceGetComponent", optional=true)
     public native AudioComponent getComponent();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Bridge(symbol="AudioComponentInstanceCanDo", optional=true)
      native boolean canDo(short inSelectorID);
     /*</methods>*/

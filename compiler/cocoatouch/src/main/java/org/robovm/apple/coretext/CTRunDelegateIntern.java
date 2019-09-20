@@ -50,19 +50,10 @@ import org.robovm.apple.uikit.*;
     /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Bridge(symbol="CTRunDelegateGetTypeID", optional=true)
     public static native @MachineSizedUInt long getClassTypeID();
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Bridge(symbol="CTRunDelegateCreate", optional=true)
     protected static native CTRunDelegateIntern create(CTRunDelegateCallbacks callbacks, @Pointer long refCon);
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Bridge(symbol="CTRunDelegateGetRefCon", optional=true)
     protected native @Pointer long getRefCon();
     /*</methods>*/

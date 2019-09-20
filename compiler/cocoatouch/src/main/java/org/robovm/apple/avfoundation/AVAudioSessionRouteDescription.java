@@ -41,9 +41,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 6.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVAudioSessionRouteDescription/*</name>*/ 
@@ -59,14 +57,8 @@ import org.robovm.apple.audiotoolbox.*;
     protected AVAudioSessionRouteDescription(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "inputs")
     public native NSArray<AVAudioSessionPortDescription> getInputs();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "outputs")
     public native NSArray<AVAudioSessionPortDescription> getOutputs();
     /*</properties>*/

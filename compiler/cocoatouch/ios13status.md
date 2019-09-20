@@ -1,0 +1,108 @@
+processed:
+- (new from ios 10) Speech
+- (new from ios 9.3) HealthKitUI
+- (new from ios 11) DeviceCheck
+- (new from ios 10) CallKit
+- (new from ios 11.3) BusinessChat
+- (new) ImageCaptureCore
+- (new) VisionKit
+- (new) SoundAnalysis
+- (new) QuickLookThumbnailing
+- (new) PencilKit
+- (new) MetricKit
+- (new) CryptoTokenKit
+- (new) CoreHaptics
+- (new) BackgroundTasks
+- webkit
+- watchkit
+- watchconnectivity
+- vision
+- usernotificationsui
+- usernotifications
+- twitter
+- systemconfiguration
+- storekit
+- spritekit
+- social
+- scenekit
+- safariservices
+- replaykit
+- quicklook
+- pushkit
+- photosui
+- photos
+- passkit
+- opengles
+- notificationcenter
+- newsstandkit
+- networkextension
+- network
+- naturallanguage
+- multipeerconnectivity
+- modelio
+- mobilecoreservices
+- metalperformanceshaders
+- metalkit
+- metal
+- messageui
+- messages
+- mediatoolbox
+- mediaplayer
+- mapkit
+- localauthentication
+- iosurface
+- intentsui
+- intents
+- imageio
+- identitylookupui
+- identitylookup
+- iad
+- homekit
+- contactsui
+- contacts
+- healthkit
+- glkit
+- gameplaykit
+- gamekit
+- gamecontroller
+- new: fileproviderui
+- fileprovider
+- externalaccessory
+- eventkitui
+- eventkit
+- dispatch
+- cloudkit
+- classkit
+- carplay
+- avkit
+- authservices
+- audiotoolbox
+- assetslibrary
+- arkit
+- adsupport
+- accounts
+- addressbook
+- addressbookui
+- corevideo
+- coretext
+- coreservices
+- corespotlight
+- coretelephony
+- corenfc
+- coremotion
+- coreml
+- coremidi
+- coremedia
+- corelocation
+- coreimage
+- avfoundation
+- corebluetooth
+- coreaudiokit
+- coreaudio
+- coreanimation
+- uikit
+- new: linkpresentaion
+- foundation
+- security
+
+

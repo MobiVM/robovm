@@ -52,7 +52,7 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "initWithNibName:bundle:")
     public CNContactViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
     @Method(selector = "initWithCoder:")
-    public CNContactViewController(NSCoder decoder) { super(decoder); }
+    public CNContactViewController(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "contact")
@@ -103,7 +103,7 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "highlightPropertyWithKey:identifier:")
     public native void highlightProperty(CNContactPropertyKey key, String identifier);
     @Method(selector = "descriptorForRequiredKeys")
-    public static native String getDescriptorForRequiredKeys();
+    public static native NSObject getDescriptorForRequiredKeys();
     @Method(selector = "viewControllerForContact:")
     public static native CNContactViewController createForContact(CNContact contact);
     @Method(selector = "viewControllerForUnknownContact:")

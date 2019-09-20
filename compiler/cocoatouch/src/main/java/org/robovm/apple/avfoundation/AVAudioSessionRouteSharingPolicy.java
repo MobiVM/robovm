@@ -47,8 +47,18 @@ import org.robovm.apple.audiotoolbox.*;
 public enum /*<name>*/AVAudioSessionRouteSharingPolicy/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Default(0L),
+    LongFormAudio(1L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use AVAudioSessionRouteSharingPolicyLongFormAudio
+     */
+    @Deprecated
     LongForm(1L),
-    Independent(2L);
+    Independent(2L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    LongFormVideo(3L);
     /*</values>*/
 
     /*<bind>*/

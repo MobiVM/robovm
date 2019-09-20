@@ -38,9 +38,7 @@ import org.robovm.apple.imageio.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("Photos") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/PHContentEditingInput/*</name>*/ 
@@ -83,8 +81,7 @@ import org.robovm.apple.imageio.*;
     @Property(selector = "fullSizeImageOrientation")
     public native org.robovm.apple.imageio.CGImagePropertyOrientation getFullSizeImageOrientation();
     /**
-     * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use -audiovisualAsset
      */
     @Deprecated
     @WeaklyLinked

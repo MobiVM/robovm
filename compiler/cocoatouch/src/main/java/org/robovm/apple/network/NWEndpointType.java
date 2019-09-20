@@ -41,7 +41,8 @@ public enum /*<name>*/NWEndpointType/*</name>*/ implements ValuedEnum {
     invalid(0L),
     address(1L),
     host(2L),
-    bonjour_service(3L);
+    bonjour_service(3L),
+    url(4L);
     /*</values>*/
 
     /*<bind>*/

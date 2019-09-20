@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -107,70 +109,74 @@ import org.robovm.apple.intents.*;
     public @ByVal CGRect getAccessibilityFrame() { return null; }
     @NotImplemented("setAccessibilityFrame:")
     public void setAccessibilityFrame(@ByVal CGRect v) {}
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @NotImplemented("accessibilityPath")
     public UIBezierPath getAccessibilityPath() { return null; }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @NotImplemented("setAccessibilityPath:")
     public void setAccessibilityPath(UIBezierPath v) {}
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @NotImplemented("accessibilityActivationPoint")
     public @ByVal CGPoint getAccessibilityActivationPoint() { return null; }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @NotImplemented("setAccessibilityActivationPoint:")
     public void setAccessibilityActivationPoint(@ByVal CGPoint v) {}
     @NotImplemented("accessibilityLanguage")
     public String getAccessibilityLanguage() { return null; }
     @NotImplemented("setAccessibilityLanguage:")
     public void setAccessibilityLanguage(String v) {}
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @NotImplemented("accessibilityElementsHidden")
     public boolean areAccessibilityElementsHidden() { return false; }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @NotImplemented("setAccessibilityElementsHidden:")
     public void setAccessibilityElementsHidden(boolean v) {}
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @NotImplemented("accessibilityViewIsModal")
     public boolean isAccessibilityViewModal() { return false; }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @NotImplemented("setAccessibilityViewIsModal:")
     public void setAccessibilityViewModal(boolean v) {}
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @NotImplemented("shouldGroupAccessibilityChildren")
     public boolean shouldGroupAccessibilityChildren() { return false; }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @NotImplemented("setShouldGroupAccessibilityChildren:")
     public void setShouldGroupAccessibilityChildren(boolean v) {}
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @NotImplemented("accessibilityNavigationStyle")
     public UIAccessibilityNavigationStyle getAccessibilityNavigationStyle() { return null; }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @NotImplemented("setAccessibilityNavigationStyle:")
     public void setAccessibilityNavigationStyle(UIAccessibilityNavigationStyle v) {}
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("accessibilityRespondsToUserInteraction")
+    public boolean isAccessibilityRespondsToUserInteraction() { return false; }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("setAccessibilityRespondsToUserInteraction:")
+    public void setAccessibilityRespondsToUserInteraction(boolean v) {}
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("accessibilityUserInputLabels")
+    public NSArray<NSString> getAccessibilityUserInputLabels() { return null; }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("setAccessibilityUserInputLabels:")
+    public void setAccessibilityUserInputLabels(NSArray<NSString> v) {}
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("accessibilityAttributedUserInputLabels")
+    public NSArray<NSAttributedString> getAccessibilityAttributedUserInputLabels() { return null; }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("setAccessibilityAttributedUserInputLabels:")
+    public void setAccessibilityAttributedUserInputLabels(NSArray<NSAttributedString> v) {}
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("accessibilityTextualContext")
+    public String getAccessibilityTextualContext() { return null; }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("setAccessibilityTextualContext:")
+    public void setAccessibilityTextualContext(String v) {}
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

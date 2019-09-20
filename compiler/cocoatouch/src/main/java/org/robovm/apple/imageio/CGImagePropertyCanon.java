@@ -88,37 +88,13 @@ import org.robovm.apple.coregraphics.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyCanon OwnerName = new CGImagePropertyCanon("OwnerName");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyCanon CameraSerialNumber = new CGImagePropertyCanon("CameraSerialNumber");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyCanon ImageSerialNumber = new CGImagePropertyCanon("ImageSerialNumber");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyCanon FlashExposureComp = new CGImagePropertyCanon("FlashExposureComp");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyCanon ContinuousDrive = new CGImagePropertyCanon("ContinuousDrive");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyCanon LensModel = new CGImagePropertyCanon("LensModel");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyCanon Firmware = new CGImagePropertyCanon("Firmware");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyCanon AspectRatioInfo = new CGImagePropertyCanon("AspectRatioInfo");
     /*</constants>*/
     
@@ -145,44 +121,20 @@ import org.robovm.apple.coregraphics.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyMakerCanonOwnerName", optional=true)
         public static native CFString OwnerName();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyMakerCanonCameraSerialNumber", optional=true)
         public static native CFString CameraSerialNumber();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyMakerCanonImageSerialNumber", optional=true)
         public static native CFString ImageSerialNumber();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyMakerCanonFlashExposureComp", optional=true)
         public static native CFString FlashExposureComp();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyMakerCanonContinuousDrive", optional=true)
         public static native CFString ContinuousDrive();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyMakerCanonLensModel", optional=true)
         public static native CFString LensModel();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyMakerCanonFirmware", optional=true)
         public static native CFString Firmware();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyMakerCanonAspectRatioInfo", optional=true)
         public static native CFString AspectRatioInfo();
         /*</values>*/

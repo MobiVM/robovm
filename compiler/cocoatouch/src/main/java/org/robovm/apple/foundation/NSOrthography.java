@@ -39,9 +39,7 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSOrthography/*</name>*/ 
@@ -85,32 +83,20 @@ import org.robovm.apple.dispatch.*;
     public NSOrthography() {}
     protected NSOrthography(Handle h, long handle) { super(h, handle); }
     protected NSOrthography(SkipInit skipInit) { super(skipInit); }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "initWithDominantScript:languageMap:")
     public NSOrthography(String script, @org.robovm.rt.bro.annotation.Marshaler(NSOrthography.LanguageMapMarshaler.class) Map<String, List<String>> map) { super((SkipInit) null); initObject(init(script, map)); }
     @Method(selector = "initWithCoder:")
-    public NSOrthography(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public NSOrthography(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "dominantScript")
     public native String getDominantScript();
     @Property(selector = "languageMap")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSOrthography.LanguageMapMarshaler.class) Map<String, List<String>> getLanguageMap();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "dominantLanguage")
     public native String getDominantLanguage();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "allScripts")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getAllScripts();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "allLanguages")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getAllLanguages();
     @Property(selector = "supportsSecureCoding")
@@ -118,21 +104,12 @@ import org.robovm.apple.dispatch.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "initWithDominantScript:languageMap:")
     protected native @Pointer long init(String script, @org.robovm.rt.bro.annotation.Marshaler(NSOrthography.LanguageMapMarshaler.class) Map<String, List<String>> map);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
+    protected native @Pointer long init(NSCoder coder);
     @Method(selector = "languagesForScript:")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getLanguagesForScript(String script);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "dominantLanguageForScript:")
     public native String getDominantLanguageForScript(String script);
     /**

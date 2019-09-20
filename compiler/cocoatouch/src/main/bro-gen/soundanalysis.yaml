@@ -1,0 +1,77 @@
+package: org.robovm.apple.soundanalysis
+include: [foundation, avfoundation, coremedia, coreml]
+library: SoundAnalysis
+framework: SoundAnalysis
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/SoundAnalysis.framework/Headers/SoundAnalysis.h
+
+private_typedefs:
+
+typedefs:
+
+enums:
+    SNErrorCode: {nserror: true}
+
+typed_enums:
+
+classes:
+    SNAudioFileAnalyzer: #since 13.0
+        methods:
+            '-initWithURL:error:':
+                name: init
+                throws: NSErrorException
+            '-addRequest:withObserver:error:':
+                name: addRequest
+                throws: NSErrorException
+            '-analyzeWithCompletionHandler:':
+                name: analyze
+    SNAudioStreamAnalyzer: #since 13.0
+        methods:
+            '-initWithFormat:':
+                name: init
+            '-addRequest:withObserver:error:':
+                name: addRequest
+                throws: NSErrorException
+            '-analyzeAudioBuffer:atAudioFramePosition:':
+                name: analyzeAudioBuffer
+    SNClassification: {} #since 13.0
+    SNClassificationResult: {} #since 13.0
+    SNClassifySoundRequest: #since 13.0
+        methods:
+            '-initWithMLModel:error:':
+                name: init
+                throws: NSErrorException
+
+protocols:
+    SNRequest: #since 13.0
+        skip_adapter: true
+    SNResult: #since 13.0
+        skip_adapter: true
+    SNResultsObserving: #since 13.0
+        methods:
+            '-request:didProduceResult:':
+                name: didProduceResult
+            '-request:didFailWithError:':
+                name: didFail
+functions:
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (k?SN.*):
+        class: FixMe
+        name: 'Function__#{g[0]}'
+
+values:
+    SNErrorDomain:
+        class: SNErrorCode
+        name: getClassDomain
+
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (k?SN.*):
+        class: FixMe
+        name: 'Value__#{g[0]}'
+
+constants:
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (k?SN.*):
+        class: FixMe
+        name: 'Constant__#{g[0]}'

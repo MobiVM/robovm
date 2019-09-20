@@ -50,6 +50,11 @@ import org.robovm.apple.metal.*;
     protected MPSTemporaryMatrix(Handle h, long handle) { super(h, handle); }
     protected MPSTemporaryMatrix(SkipInit skipInit) { super(skipInit); }
     public MPSTemporaryMatrix(MTLCommandBuffer commandBuffer, MPSMatrixDescriptor matrixDescriptor) { super((Handle) null, create(commandBuffer, matrixDescriptor)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "initWithBuffer:offset:descriptor:")
+    public MPSTemporaryMatrix(MTLBuffer buffer, @MachineSizedUInt long offset, MPSMatrixDescriptor descriptor) { super(buffer, offset, descriptor); }
     @Method(selector = "initWithDevice:descriptor:")
     public MPSTemporaryMatrix(MTLDevice device, MPSMatrixDescriptor descriptor) { super(device, descriptor); }
     /*</constructors>*/

@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -70,13 +72,7 @@ import org.robovm.apple.intents.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public static final UILayoutFittingSize Compressed = new UILayoutFittingSize("Compressed");
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public static final UILayoutFittingSize Expanded = new UILayoutFittingSize("Expanded");
     /*</constants>*/
     
@@ -103,14 +99,8 @@ import org.robovm.apple.intents.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 6.0 and later.
-         */
         @GlobalValue(symbol="UILayoutFittingCompressedSize", optional=true)
         public static native @ByVal CGSize Compressed();
-        /**
-         * @since Available in iOS 6.0 and later.
-         */
         @GlobalValue(symbol="UILayoutFittingExpandedSize", optional=true)
         public static native @ByVal CGSize Expanded();
         /*</values>*/

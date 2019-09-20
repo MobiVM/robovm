@@ -52,10 +52,17 @@ import org.robovm.apple.mapkit.*;
     public CPNavigationAlert() {}
     protected CPNavigationAlert(Handle h, long handle) { super(h, handle); }
     protected CPNavigationAlert(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 12.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use initWithTitleVariants:subtitleVariants:image:primaryAction:secondaryAction:duration
+     */
+    @Deprecated
     @Method(selector = "initWithTitleVariants:subtitleVariants:imageSet:primaryAction:secondaryAction:duration:")
     public CPNavigationAlert(NSArray<NSString> titleVariants, NSArray<NSString> subtitleVariants, CPImageSet imageSet, CPAlertAction primaryAction, CPAlertAction secondaryAction, double duration) { super((SkipInit) null); initObject(init(titleVariants, subtitleVariants, imageSet, primaryAction, secondaryAction, duration)); }
+    @Method(selector = "initWithTitleVariants:subtitleVariants:image:primaryAction:secondaryAction:duration:")
+    public CPNavigationAlert(NSArray<NSString> titleVariants, NSArray<NSString> subtitleVariants, UIImage image, CPAlertAction primaryAction, CPAlertAction secondaryAction, double duration) { super((SkipInit) null); initObject(init(titleVariants, subtitleVariants, image, primaryAction, secondaryAction, duration)); }
     @Method(selector = "initWithCoder:")
-    public CPNavigationAlert(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public CPNavigationAlert(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "titleVariants")
@@ -64,6 +71,8 @@ import org.robovm.apple.mapkit.*;
     public native NSArray<NSString> getSubtitleVariants();
     @Property(selector = "imageSet")
     public native CPImageSet getImageSet();
+    @Property(selector = "image")
+    public native UIImage getImage();
     @Property(selector = "primaryAction")
     public native CPAlertAction getPrimaryAction();
     @Property(selector = "secondaryAction")
@@ -75,13 +84,20 @@ import org.robovm.apple.mapkit.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 12.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use initWithTitleVariants:subtitleVariants:image:primaryAction:secondaryAction:duration
+     */
+    @Deprecated
     @Method(selector = "initWithTitleVariants:subtitleVariants:imageSet:primaryAction:secondaryAction:duration:")
     protected native @Pointer long init(NSArray<NSString> titleVariants, NSArray<NSString> subtitleVariants, CPImageSet imageSet, CPAlertAction primaryAction, CPAlertAction secondaryAction, double duration);
+    @Method(selector = "initWithTitleVariants:subtitleVariants:image:primaryAction:secondaryAction:duration:")
+    protected native @Pointer long init(NSArray<NSString> titleVariants, NSArray<NSString> subtitleVariants, UIImage image, CPAlertAction primaryAction, CPAlertAction secondaryAction, double duration);
     @Method(selector = "updateTitleVariants:subtitleVariants:")
     public native void updateTitleVariants(NSArray<NSString> newTitleVariants, NSArray<NSString> newSubtitleVariants);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

@@ -40,9 +40,7 @@ import org.robovm.apple.metal.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("SpriteKit") @NativeClass @WeaklyLinked/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SKUniform/*</name>*/ 
@@ -93,49 +91,43 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithName:matrixFloat4x4:")
     public SKUniform(String name, @ByVal MatrixFloat4x4 value) { super((SkipInit) null); initObject(init(name, value)); }
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 10.0.
      */
     @Deprecated
     @Method(selector = "initWithName:floatVector2:")
     public SKUniform(String name, @ByVal GLKVector2 value) { super((SkipInit) null); initObject(init(name, value)); }
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 10.0.
      */
     @Deprecated
     @Method(selector = "initWithName:floatVector3:")
     public SKUniform(String name, @ByVal GLKVector3 value) { super((SkipInit) null); initObject(init(name, value)); }
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 10.0.
      */
     @Deprecated
     @Method(selector = "initWithName:floatVector4:")
     public SKUniform(String name, @ByVal GLKVector4 value) { super((SkipInit) null); initObject(init(name, value)); }
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 10.0.
      */
     @Deprecated
     @Method(selector = "initWithName:floatMatrix2:")
     public SKUniform(String name, @ByVal GLKMatrix2 value) { super((SkipInit) null); initObject(init(name, value)); }
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 10.0.
      */
     @Deprecated
     @Method(selector = "initWithName:floatMatrix3:")
     public SKUniform(String name, @ByVal GLKMatrix3 value) { super((SkipInit) null); initObject(init(name, value)); }
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 10.0.
      */
     @Deprecated
     @Method(selector = "initWithName:floatMatrix4:")
     public SKUniform(String name, @ByVal GLKMatrix4 value) { super((SkipInit) null); initObject(init(name, value)); }
     @Method(selector = "initWithCoder:")
-    public SKUniform(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public SKUniform(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "name")
@@ -211,84 +203,72 @@ import org.robovm.apple.metal.*;
     @Property(selector = "setMatrixFloat4x4Value:")
     public native void setMatrixFloat4x4Value(@ByVal MatrixFloat4x4 v);
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 10.0.
      */
     @Deprecated
     @Property(selector = "floatVector2Value")
     public native @ByVal GLKVector2 getFloatVector2Value();
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 10.0.
      */
     @Deprecated
     @Property(selector = "setFloatVector2Value:")
     public native void setFloatVector2Value(@ByVal GLKVector2 v);
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 10.0.
      */
     @Deprecated
     @Property(selector = "floatVector3Value")
     public native @ByVal GLKVector3 getFloatVector3Value();
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 10.0.
      */
     @Deprecated
     @Property(selector = "setFloatVector3Value:")
     public native void setFloatVector3Value(@ByVal GLKVector3 v);
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 10.0.
      */
     @Deprecated
     @Property(selector = "floatVector4Value")
     public native @ByVal GLKVector4 getFloatVector4Value();
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 10.0.
      */
     @Deprecated
     @Property(selector = "setFloatVector4Value:")
     public native void setFloatVector4Value(@ByVal GLKVector4 v);
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 10.0.
      */
     @Deprecated
     @Property(selector = "floatMatrix2Value")
     public native @ByVal GLKMatrix2 getFloatMatrix2Value();
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 10.0.
      */
     @Deprecated
     @Property(selector = "setFloatMatrix2Value:")
     public native void setFloatMatrix2Value(@ByVal GLKMatrix2 v);
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 10.0.
      */
     @Deprecated
     @Property(selector = "floatMatrix3Value")
     public native @ByVal GLKMatrix3 getFloatMatrix3Value();
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 10.0.
      */
     @Deprecated
     @Property(selector = "setFloatMatrix3Value:")
     public native void setFloatMatrix3Value(@ByVal GLKMatrix3 v);
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 10.0.
      */
     @Deprecated
     @Property(selector = "floatMatrix4Value")
     public native @ByVal GLKMatrix4 getFloatMatrix4Value();
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 10.0.
      */
     @Deprecated
@@ -336,42 +316,36 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithName:matrixFloat4x4:")
     protected native @Pointer long init(String name, @ByVal MatrixFloat4x4 value);
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 10.0.
      */
     @Deprecated
     @Method(selector = "initWithName:floatVector2:")
     protected native @Pointer long init(String name, @ByVal GLKVector2 value);
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 10.0.
      */
     @Deprecated
     @Method(selector = "initWithName:floatVector3:")
     protected native @Pointer long init(String name, @ByVal GLKVector3 value);
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 10.0.
      */
     @Deprecated
     @Method(selector = "initWithName:floatVector4:")
     protected native @Pointer long init(String name, @ByVal GLKVector4 value);
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 10.0.
      */
     @Deprecated
     @Method(selector = "initWithName:floatMatrix2:")
     protected native @Pointer long init(String name, @ByVal GLKMatrix2 value);
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 10.0.
      */
     @Deprecated
     @Method(selector = "initWithName:floatMatrix3:")
     protected native @Pointer long init(String name, @ByVal GLKMatrix3 value);
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 10.0.
      */
     @Deprecated
@@ -380,6 +354,6 @@ import org.robovm.apple.metal.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

@@ -53,5 +53,10 @@ import org.robovm.apple.mapkit.*;
     /*<methods>*/
     @NotImplemented("sessionConfiguration:limitedUserInterfacesChanged:")
     public void limitedUserInterfacesChanged(CPSessionConfiguration sessionConfiguration, CPLimitableUserInterface limitedUserInterfaces) {}
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("sessionConfiguration:contentStyleChanged:")
+    public void contentStyleChanged(CPSessionConfiguration sessionConfiguration, CPContentStyle contentStyle) {}
     /*</methods>*/
 }

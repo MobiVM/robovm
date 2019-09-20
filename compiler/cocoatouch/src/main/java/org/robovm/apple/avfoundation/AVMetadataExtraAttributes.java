@@ -116,9 +116,6 @@ import org.robovm.apple.audiotoolbox.*;
     }
     
 
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public String getValueURI() {
         if (has(Keys.ValueURI())) {
             NSString val = (NSString) get(Keys.ValueURI());
@@ -126,16 +123,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public AVMetadataExtraAttributes setValueURI(String valueURI) {
         set(Keys.ValueURI(), new NSString(valueURI));
         return this;
     }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public String getBaseURI() {
         if (has(Keys.BaseURI())) {
             NSString val = (NSString) get(Keys.BaseURI());
@@ -143,9 +134,6 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public AVMetadataExtraAttributes setBaseURI(String baseURI) {
         set(Keys.BaseURI(), new NSString(baseURI));
         return this;
@@ -173,14 +161,8 @@ import org.robovm.apple.audiotoolbox.*;
     @Library("AVFoundation")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataExtraAttributeValueURIKey", optional=true)
         public static native NSString ValueURI();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataExtraAttributeBaseURIKey", optional=true)
         public static native NSString BaseURI();
         /**

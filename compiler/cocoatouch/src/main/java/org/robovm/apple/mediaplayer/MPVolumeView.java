@@ -33,9 +33,7 @@ import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 2.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("MediaPlayer") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPVolumeView/*</name>*/ 
@@ -77,116 +75,89 @@ import org.robovm.apple.coregraphics.*;
     @Method(selector = "initWithFrame:")
     public MPVolumeView(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public MPVolumeView(NSCoder decoder) { super(decoder); }
+    public MPVolumeView(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     @Property(selector = "showsVolumeSlider")
     public native boolean showsVolumeSlider();
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     @Property(selector = "setShowsVolumeSlider:")
     public native void setShowsVolumeSlider(boolean v);
     /**
-     * @since Available in iOS 4.2 and later.
+     * @deprecated Deprecated in iOS 13.0. Use AVRoutePickerView instead.
      */
+    @Deprecated
     @Property(selector = "showsRouteButton")
     public native boolean showsRouteButton();
     /**
-     * @since Available in iOS 4.2 and later.
+     * @deprecated Deprecated in iOS 13.0. Use AVRoutePickerView instead.
      */
+    @Deprecated
     @Property(selector = "setShowsRouteButton:")
     public native void setShowsRouteButton(boolean v);
     /**
-     * @since Available in iOS 7.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use AVRouteDetector.multipleRoutesDetected instead.
      */
+    @Deprecated
     @Property(selector = "areWirelessRoutesAvailable")
     public native boolean areWirelessRoutesAvailable();
     /**
-     * @since Available in iOS 7.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use AVPlayer.externalPlaybackActive instead.
      */
+    @Deprecated
     @Property(selector = "isWirelessRouteActive")
     public native boolean isWirelessRouteActive();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "volumeWarningSliderImage")
     public native UIImage getVolumeWarningSliderImage();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setVolumeWarningSliderImage:")
     public native void setVolumeWarningSliderImage(UIImage v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @since Available in iOS 7.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use AVRouteDetectorMultipleRoutesDetectedDidChangeNotification instead.
      */
+    @Deprecated
     @GlobalValue(symbol="MPVolumeViewWirelessRoutesAvailableDidChangeNotification", optional=true)
     public static native NSString WirelessRoutesAvailableDidChangeNotification();
     /**
-     * @since Available in iOS 7.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use AVPlayer.externalPlaybackActive KVO instead.
      */
+    @Deprecated
     @GlobalValue(symbol="MPVolumeViewWirelessRouteActiveDidChangeNotification", optional=true)
     public static native NSString WirelessRouteActiveDidChangeNotification();
     
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "setMinimumVolumeSliderImage:forState:")
     public native void setMinimumVolumeSliderImage(UIImage image, UIControlState state);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "setMaximumVolumeSliderImage:forState:")
     public native void setMaximumVolumeSliderImage(UIImage image, UIControlState state);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "setVolumeThumbImage:forState:")
     public native void setVolumeThumbImage(UIImage image, UIControlState state);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "minimumVolumeSliderImageForState:")
     public native UIImage getMinimumVolumeSliderImage(UIControlState state);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "maximumVolumeSliderImageForState:")
     public native UIImage getMaximumVolumeSliderImage(UIControlState state);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "volumeThumbImageForState:")
     public native UIImage getVolumeThumbImage(UIControlState state);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "volumeSliderRectForBounds:")
     public native @ByVal CGRect getVolumeSliderRect(@ByVal CGRect bounds);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "volumeThumbRectForBounds:volumeSliderRect:value:")
     public native @ByVal CGRect getVolumeThumbRect(@ByVal CGRect bounds, @ByVal CGRect rect, float value);
     /**
-     * @since Available in iOS 6.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use AVRoutePickerView.routePickerButtonStyle instead.
      */
+    @Deprecated
     @Method(selector = "setRouteButtonImage:forState:")
     public native void setRouteButtonImage(UIImage image, UIControlState state);
     /**
-     * @since Available in iOS 6.0 and later.
+     * @deprecated Deprecated in iOS 13.0. See AVRoutePickerView for possible replacements.
      */
+    @Deprecated
     @Method(selector = "routeButtonImageForState:")
     public native UIImage getRouteButtonImage(UIControlState state);
     /**
-     * @since Available in iOS 6.0 and later.
+     * @deprecated Deprecated in iOS 13.0. See AVRoutePickerView for possible replacements.
      */
+    @Deprecated
     @Method(selector = "routeButtonRectForBounds:")
     public native @ByVal CGRect getRouteButtonRect(@ByVal CGRect bounds);
     /*</methods>*/

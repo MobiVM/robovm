@@ -35,9 +35,10 @@ import org.robovm.apple.corelocation.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 10.0 and later.
+ * @deprecated Deprecated in iOS 13.0. INStartVideoCallIntent is deprecated. Please adopt INStartCallIntent instead
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Intents") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("Intents") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/INStartVideoCallIntentResponse/*</name>*/ 
     extends /*<extends>*/INIntentResponse/*</extends>*/ 
     /*<implements>*//*</implements>*/ {

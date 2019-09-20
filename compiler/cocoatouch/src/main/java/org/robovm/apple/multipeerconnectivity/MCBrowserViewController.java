@@ -33,9 +33,7 @@ import org.robovm.apple.security.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 7.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("MultipeerConnectivity") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MCBrowserViewController/*</name>*/ 
@@ -56,7 +54,7 @@ import org.robovm.apple.security.*;
     @Method(selector = "initWithNibName:bundle:")
     public MCBrowserViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
     @Method(selector = "initWithCoder:")
-    public MCBrowserViewController(NSCoder decoder) { super(decoder); }
+    public MCBrowserViewController(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "delegate")

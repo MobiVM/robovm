@@ -20,6 +20,20 @@ enums:
     ARWorldMappingStatus: {}
     ARPlaneClassificationStatus: {}
     ARPlaneClassification: {}
+    #ios13
+    ARFrameSemantics: {prefix: ARFrameSemantic}
+    ARRaycastTarget: {}
+    ARRaycastTargetAlignment: {}
+    ARSegmentationClass: {}
+    ARCollaborationDataPriority: {}
+    ARCoachingGoal: {}
+    ARMatteResolution: {}
+typed_enums:
+    ARSkeletonJointName:
+        enum: ARSkeletonJointName
+        type: NSString
+        ARSkeletonJointName(.*):
+            name: "#{g[0]}"
 
 classes:
     ARSCNDebugOptions: {} # struct
@@ -57,6 +71,8 @@ classes:
                 trim_after_first_colon: true
             '-displayTransformForOrientation:viewportSize:':
                 name: displayTransform
+            '-raycastQueryFromPoint:allowingTarget:alignment:':
+                name: raycastQueryFromPoint
     ARHitTestResult: {} #since 11.0
     ARLightEstimate: {} #since 11.0
     AROrientationTrackingConfiguration: #since 11.0
@@ -81,6 +97,8 @@ classes:
                 trim_after_first_colon: true
             '-unprojectPoint:ontoPlaneWithTransform:':
                 trim_after_first_colon: true
+            '-raycastQueryFromPoint:allowingTarget:alignment:':
+                name: raycastQueryFromPoint
     ARSKView: #since 11.0
         methods:
             '-hitTest:types:':
@@ -95,6 +113,10 @@ classes:
                 name: run
             '-getCurrentWorldMapWithCompletionHandler:':
                 name: getCurrentWorldMap
+            '-trackedRaycast:updateHandler:':
+                name: trackedRaycast
+            '-updateWithCollaborationData:':
+                name: update
     ARWorldTrackingConfiguration:  #since 11.0
         skip_def_constructor: true
         methods:
@@ -111,6 +133,8 @@ classes:
                 name: init
             '+referenceImagesInGroupNamed:bundle:':
                 name: getReferenceImagesInGroup
+            '-validateWithCompletionHandler:':
+                name: validate
     ARSCNPlaneGeometry: #since 11.3
         methods:
             '+planeGeometryWithDevice:':
@@ -143,6 +167,45 @@ classes:
             '+referenceObjectsInGroupNamed:bundle:':
                 name: referenceObjectsInGroup
     ARWorldMap: {} #since 12.0
+    #ios13
+    ARBody2D: {} #since 13.0
+    ARBodyAnchor: {} #since 13.0
+    ARBodyTrackingConfiguration: #since 13.0
+        methods:
+            '+new':
+                exclude: true
+    ARCoachingOverlayView: #since 13.0
+        methods:
+            '-setActive:animated:':
+                name: setActive
+    ARCollaborationData: {} #since 13.0
+    ARMatteGenerator: #since 13.0
+        methods:
+            '-initWithDevice:matteResolution:':
+                name: init
+            '-generateMatteFromFrame:commandBuffer:':
+                name: generateMatte
+            '-generateDilatedDepthFromFrame:commandBuffer:':
+                name: generateDilatedDepth
+    ARParticipantAnchor: {} #since 13.0
+    ARPositionalTrackingConfiguration: #since 13.0
+        methods:
+            '+new':
+                exclude: true
+    ARQuickLookPreviewItem: #since 13.0
+        methods:
+            '-initWithFileAtURL:':
+                name: init
+    ARRaycastQuery: #since 13.0
+        methods:
+            '-initWithOrigin:direction:allowingTarget:alignment:':
+                name: init
+    ARRaycastResult: {} #since 13.0
+    ARSkeleton: {} #since 13.0
+    ARSkeleton2D: {} #since 13.0
+    ARSkeleton3D: {} #since 13.0
+    ARSkeletonDefinition: {} #since 13.0
+    ARTrackedRaycast: {} #since 13.0
 
 protocols:
     ARSCNViewDelegate: #since 11.0
@@ -187,9 +250,14 @@ protocols:
                 name: cameraDidChangeTrackingState
             '-session:didOutputAudioSampleBuffer:':
                 name: didOutputAudioSampleBuffer
+            '-session:didOutputCollaborationData:':
+                name: didOutputCollaborationData
     ARTrackable: {} #since 11.0
     ARAnchorCopying:  #since 12.0
         skip_adapter: true
+    ARCoachingOverlayViewDelegate: {} #since 13.0
+    ARSessionProviding: {}
+
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (AR.*):

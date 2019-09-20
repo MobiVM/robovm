@@ -66,6 +66,11 @@ import org.robovm.apple.audiotoolbox.*;
     @GlobalValue(symbol="AVContentKeySystemClearKey", optional=true)
     public static native String SystemClearKey();
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @GlobalValue(symbol="AVContentKeySystemAuthorizationToken", optional=true)
+    public static native String SystemAuthorizationToken();
+    /**
      * @since Available in iOS 12.2 and later.
      */
     @GlobalValue(symbol="AVContentKeySessionServerPlaybackContextOptionProtocolVersions", optional=true)
@@ -90,6 +95,11 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @GlobalValue(symbol="AVContentKeyRequestRetryReasonReceivedObsoleteContentKey", optional=true)
     public static native String RequestRetryReasonReceivedObsoleteContentKey();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @GlobalValue(symbol="AVContentKeyRequestRequiresValidationDataInSecureTokenKey", optional=true)
+    public static native String RequestRequiresValidationDataInSecureTokenKey();
     /**
      * @since Available in iOS 10.3 and later.
      */
