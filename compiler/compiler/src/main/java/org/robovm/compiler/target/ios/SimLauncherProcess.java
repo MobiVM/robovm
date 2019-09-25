@@ -96,6 +96,12 @@ public class SimLauncherProcess extends Process implements Launcher {
                         executor.exec();
                     }
 
+                    // bringing simulator to front (and showing it if it was just booted)
+                    log.info("Showing simulator %s", deviceType.getUdid());
+                    executor = new Executor(log, "open");
+                    executor.args("-a", "Simulator", "--args", "-CurrentDeviceUDID", deviceType.getUdid());
+                    executor.exec();
+
                     log.info("Deploying app %s to simulator %s", appDir.getAbsolutePath(),
                             deviceType.getUdid());
                     executor = new Executor(log, "xcrun");
@@ -120,6 +126,7 @@ public class SimLauncherProcess extends Process implements Launcher {
 
                     executor.wd(wd).out(outStream).err(errStream).closeOutputStreams(true).inheritEnv(false);
                     executor.exec();
+                    exitCode = 0;
                 } catch (ExecuteException e) {
                     exitCode = e.getExitValue();
                 } catch (Throwable t) {
