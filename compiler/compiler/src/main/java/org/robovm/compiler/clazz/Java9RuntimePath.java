@@ -4,11 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
-import java.nio.file.DirectoryStream;
-import java.nio.file.FileSystemNotFoundException;
-import java.nio.file.Files;
+import java.nio.file.*;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -20,6 +17,7 @@ import java.util.TreeSet;
  */
 public class Java9RuntimePath extends AbstractPath {
     private final Map<String, JrtFilePathClass> knownClasses = new HashMap<>();
+    private final Path jrtModulesPath = FileSystems.getFileSystem(URI.create("jrt:/")).getPath("/modules");
 
     Java9RuntimePath(File file, Clazzes clazzes, int index, boolean inBootclasspath) {
         super(file, clazzes, index, inBootclasspath);
@@ -29,8 +27,7 @@ public class Java9RuntimePath extends AbstractPath {
     protected Set<Clazz> doListClasses() {
         Set<Clazz> s = new TreeSet<>();
 
-        Path p = Paths.get(URI.create("jrt:/modules"));
-        try (DirectoryStream<java.nio.file.Path> modulesStream = Files.newDirectoryStream(p)) {
+        try (DirectoryStream<java.nio.file.Path> modulesStream = Files.newDirectoryStream(jrtModulesPath)) {
             for (Path module : modulesStream) {
                 // check each module folder for the class
                 Files.walk(module).forEach(cls -> {
@@ -55,7 +52,7 @@ public class Java9RuntimePath extends AbstractPath {
     public boolean hasChangedSince(long timestamp) {
         long lastModified;
         try {
-            lastModified = Files.getLastModifiedTime(Paths.get(URI.create("jrt:/modules"))).toMillis();
+            lastModified = Files.getLastModifiedTime(jrtModulesPath).toMillis();
             return lastModified > timestamp;
         } catch (IOException e) {
             return false;
