@@ -1,0 +1,139 @@
+diff --git a/include/libimobiledevice/libimobiledevice.h b/include/libimobiledevice/libimobiledevice.h
+index 8f8589d..8f2a289 100644
+--- a/include/libimobiledevice/libimobiledevice.h
++++ b/include/libimobiledevice/libimobiledevice.h
+@@ -240,6 +240,20 @@ idevice_error_t idevice_connection_enable_ssl(idevice_connection_t connection);
+  */
+ idevice_error_t idevice_connection_disable_ssl(idevice_connection_t connection);
+ 
++/**
++ * Disable bypass SSL for the given connection without sending out terminate messages.
++ *
++ * @param connection The connection to disable SSL for.
++ * @param sslBypass  if true ssl connection will not be terminated but just cleaned up, allowing
++ *                   plain text data going on underlying connection
++ *
++ * @return IDEVICE_E_SUCCESS on success, IDEVICE_E_INVALID_ARG when connection
++ *     is NULL. This function also returns IDEVICE_E_SUCCESS when SSL is not
++ *     enabled and does no further error checking on cleanup.
++ */
++idevice_error_t idevice_connection_disable_bypass_ssl(idevice_connection_t connection, uint8_t sslBypass);
++
++
+ /**
+  * Get the underlying file descriptor for a connection
+  *
+diff --git a/include/libimobiledevice/service.h b/include/libimobiledevice/service.h
+index 84c5092..13d0e15 100644
+--- a/include/libimobiledevice/service.h
++++ b/include/libimobiledevice/service.h
+@@ -168,6 +168,17 @@ service_error_t service_enable_ssl(service_client_t client);
+  */
+ service_error_t service_disable_ssl(service_client_t client);
+ 
++/**
++ * Disable SSL for the given service client without sending SSL terminate messages.
++ *
++ * @param client The connected service client for that SSL should be disabled.
++ *
++ * @return SERVICE_E_SUCCESS on success,
++ *     SERVICE_E_INVALID_ARG if client or client->connection is
++ *     NULL, or SERVICE_E_UNKNOWN_ERROR otherwise.
++ */
++service_error_t service_disable_bypass_ssl(service_client_t client, uint8_t sslBypass);
++
+ #ifdef __cplusplus
+ }
+ #endif
+diff --git a/src/debugserver.c b/src/debugserver.c
+index 1e06233..7d63bc6 100644
+--- a/src/debugserver.c
++++ b/src/debugserver.c
+@@ -77,7 +77,7 @@ LIBIMOBILEDEVICE_API debugserver_error_t debugserver_client_new(idevice_t device
+ 		debug_info("Creating base service client failed. Error: %i", ret);
+ 		return ret;
+ 	}
+-	service_disable_ssl(parent);
++	service_disable_bypass_ssl(parent, 1);
+ 
+ 	debugserver_client_t client_loc = (debugserver_client_t) malloc(sizeof(struct debugserver_client_private));
+ 	client_loc->parent = parent;
+diff --git a/src/idevice.c b/src/idevice.c
+index 06991c5..9595921 100644
+--- a/src/idevice.c
++++ b/src/idevice.c
+@@ -925,6 +925,11 @@ LIBIMOBILEDEVICE_API idevice_error_t idevice_connection_enable_ssl(idevice_conne
+ }
+ 
+ LIBIMOBILEDEVICE_API idevice_error_t idevice_connection_disable_ssl(idevice_connection_t connection)
++{
++	return idevice_connection_disable_bypass_ssl(connection, 0);
++}
++
++LIBIMOBILEDEVICE_API idevice_error_t idevice_connection_disable_bypass_ssl(idevice_connection_t connection, uint8_t sslBypass)
+ {
+ 	if (!connection)
+ 		return IDEVICE_E_INVALID_ARG;
+@@ -933,24 +938,29 @@ LIBIMOBILEDEVICE_API idevice_error_t idevice_connection_disable_ssl(idevice_conn
+ 		return IDEVICE_E_SUCCESS;
+ 	}
+ 
++	// some services require plain text communication after SSL handshake
++	// sending out SSL_shutdown will cause bytes
++	if (!sslBypass) {
+ #ifdef HAVE_OPENSSL
+-	if (connection->ssl_data->session) {
+-		/* see: https://www.openssl.org/docs/ssl/SSL_shutdown.html#RETURN_VALUES */
+-		if (SSL_shutdown(connection->ssl_data->session) == 0) {
+-			/* Only try bidirectional shutdown if we know it can complete */
+-			int ssl_error;
+-			if ((ssl_error = SSL_get_error(connection->ssl_data->session, 0)) == SSL_ERROR_NONE) {
+-				SSL_shutdown(connection->ssl_data->session);
+-			} else  {
+-				debug_info("Skipping bidirectional SSL shutdown. SSL error code: %i\n", ssl_error);
++		if (connection->ssl_data->session) {
++			/* see: https://www.openssl.org/docs/ssl/SSL_shutdown.html#RETURN_VALUES */
++			if (SSL_shutdown(connection->ssl_data->session) == 0) {
++				/* Only try bidirectional shutdown if we know it can complete */
++				int ssl_error;
++				if ((ssl_error = SSL_get_error(connection->ssl_data->session, 0)) == SSL_ERROR_NONE) {
++					SSL_shutdown(connection->ssl_data->session);
++				} else  {
++					debug_info("Skipping bidirectional SSL shutdown. SSL error code: %i\n", ssl_error);
++				}
+ 			}
+ 		}
+-	}
+ #else
+-	if (connection->ssl_data->session) {
+-		gnutls_bye(connection->ssl_data->session, GNUTLS_SHUT_RDWR);
+-	}
++		if (connection->ssl_data->session) {
++			gnutls_bye(connection->ssl_data->session, GNUTLS_SHUT_RDWR);
++		}
+ #endif
++	}
++
+ 	internal_ssl_cleanup(connection->ssl_data);
+ 	free(connection->ssl_data);
+ 	connection->ssl_data = NULL;
+diff --git a/src/service.c b/src/service.c
+index 091b599..658a2b6 100644
+--- a/src/service.c
++++ b/src/service.c
+@@ -187,9 +187,14 @@ LIBIMOBILEDEVICE_API service_error_t service_enable_ssl(service_client_t client)
+ }
+ 
+ LIBIMOBILEDEVICE_API service_error_t service_disable_ssl(service_client_t client)
++{
++	return service_disable_bypass_ssl(client, 0);
++}
++
++LIBIMOBILEDEVICE_API service_error_t service_disable_bypass_ssl(service_client_t client, uint8_t sslBypass)
+ {
+ 	if (!client || !client->connection)
+ 		return SERVICE_E_INVALID_ARG;
+-	return idevice_to_service_error(idevice_connection_disable_ssl(client->connection));
++	return idevice_to_service_error(idevice_connection_disable_bypass_ssl(client->connection, sslBypass));
+ }
+ 

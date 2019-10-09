@@ -94,6 +94,7 @@ ExternalProject_Add(extlibimobiledevice
   GIT_TAG 60823f9eeb3f09cd8083f613522d01e21d2f6d2d
   CONFIGURE_COMMAND bash -c "PKG_CONFIG_PATH='${EXTPREFIX}/lib/pkgconfig' CFLAGS='${LIBIMOBILEDEVICE_CFLAGS}' LDFLAGS='${LDFLAGS}' ./autogen.sh --prefix=${EXTPREFIX} --enable-debug-code --enable-shared=no --without-cython"
   UPDATE_COMMAND ""
+  PATCH_COMMAND bash -c "${CMAKE_SOURCE_DIR}/patches/apply-patches"
   BUILD_IN_SOURCE 1
   DEPENDS extlibplist extlibusbmuxd extopenssl
 )
