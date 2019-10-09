@@ -319,7 +319,7 @@ public class AfcClient implements AutoCloseable {
         }
         IntOut bytesReadOut = new IntOut();
         try {
-            checkResult(LibIMobileDevice.afc_file_read(getRef(), handle, data, count, bytesReadOut));
+            checkResult(LibIMobileDevice.afc_file_read(getRef(), handle, data, bytesReadOut));
             int bytesRead = bytesReadOut.getValue();
             if (bytesRead == 0) {
                 // Assume EOF reached.
@@ -360,7 +360,7 @@ public class AfcClient implements AutoCloseable {
         }
         IntOut bytesWrittenOut = new IntOut();
         try {
-            checkResult(LibIMobileDevice.afc_file_write(getRef(), handle, data, count, bytesWrittenOut));
+            checkResult(LibIMobileDevice.afc_file_write(getRef(), handle, data, bytesWrittenOut));
             int bytesWritten = bytesWrittenOut.getValue();
             return bytesWritten;
         } finally {

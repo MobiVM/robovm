@@ -8,18 +8,18 @@
 
 package org.robovm.libimobiledevice.binding;
 
-public class IDeviceRef {
+public class DebugServerCommandRef {
   private transient long swigCPtr;
 
-  protected IDeviceRef(long cPtr, @SuppressWarnings("unused") boolean futureUse) {
+  protected DebugServerCommandRef(long cPtr, @SuppressWarnings("unused") boolean futureUse) {
     swigCPtr = cPtr;
   }
 
-  protected IDeviceRef() {
+  protected DebugServerCommandRef() {
     swigCPtr = 0;
   }
 
-  protected static long getCPtr(IDeviceRef obj) {
+  protected static long getCPtr(DebugServerCommandRef obj) {
     return (obj == null) ? 0 : obj.swigCPtr;
   }
 
@@ -37,7 +37,7 @@ public class IDeviceRef {
     if (getClass() != obj.getClass()) {
       return false;
     }
-    IDeviceRef other = (IDeviceRef) obj;
+    DebugServerCommandRef other = (DebugServerCommandRef) obj;
     return swigCPtr == other.swigCPtr;
   }
 }

@@ -8,16 +8,16 @@
 
 package org.robovm.libimobiledevice.binding;
 
-public class PlistRefOut {
+public class DebugServerCommandRefOut {
   private transient long swigCPtr;
   protected transient boolean swigCMemOwn;
 
-  protected PlistRefOut(long cPtr, boolean cMemoryOwn) {
+  protected DebugServerCommandRefOut(long cPtr, boolean cMemoryOwn) {
     swigCMemOwn = cMemoryOwn;
     swigCPtr = cPtr;
   }
 
-  protected static long getCPtr(PlistRefOut obj) {
+  protected static long getCPtr(DebugServerCommandRefOut obj) {
     return (obj == null) ? 0 : obj.swigCPtr;
   }
 
@@ -29,19 +29,19 @@ public class PlistRefOut {
     if (swigCPtr != 0) {
       if (swigCMemOwn) {
         swigCMemOwn = false;
-        LibIMobileDeviceJNI.delete_PlistRefOut(swigCPtr);
+        LibIMobileDeviceJNI.delete_DebugServerCommandRefOut(swigCPtr);
       }
       swigCPtr = 0;
     }
   }
 
-  public PlistRef getValue() {
-    long cPtr = LibIMobileDeviceJNI.PlistRefOut_value_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new PlistRef(cPtr, false);
+  public DebugServerCommandRef getValue() {
+    long cPtr = LibIMobileDeviceJNI.DebugServerCommandRefOut_value_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new DebugServerCommandRef(cPtr, false);
   }
 
-  public PlistRefOut() {
-    this(LibIMobileDeviceJNI.new_PlistRefOut(), true);
+  public DebugServerCommandRefOut() {
+    this(LibIMobileDeviceJNI.new_DebugServerCommandRefOut(), true);
   }
 
 }

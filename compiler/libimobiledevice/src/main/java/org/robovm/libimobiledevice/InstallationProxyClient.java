@@ -273,7 +273,7 @@ public class InstallationProxyClient implements AutoCloseable {
             
             byte[] bytes = BinaryPropertyListWriter.writeToArray(dict);
             PlistRefOut plistOut = new PlistRefOut();
-            LibIMobileDevice.plist_from_bin(bytes, bytes.length, plistOut);
+            LibIMobileDevice.plist_from_bin(bytes, plistOut);
             PlistRef plist = plistOut.getValue();
             plistOut.delete();
             
