@@ -27,6 +27,7 @@ import java.io.UnsupportedEncodingException;
 import java.lang.ProcessBuilder.Redirect;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -44,8 +45,8 @@ import java.util.zip.ZipFile;
 
 import org.robovm.libimobiledevice.AfcClient;
 import org.robovm.libimobiledevice.AfcClient.UploadProgressCallback;
+import org.robovm.libimobiledevice.DebugServerClient;
 import org.robovm.libimobiledevice.IDevice;
-import org.robovm.libimobiledevice.IDeviceConnection;
 import org.robovm.libimobiledevice.InstallationProxyClient;
 import org.robovm.libimobiledevice.InstallationProxyClient.Options;
 import org.robovm.libimobiledevice.InstallationProxyClient.Options.PackageType;
@@ -70,7 +71,7 @@ import com.dd.plist.PropertyListParser;
  */
 public class AppLauncher {
     public static final int DEFAULT_FORWARD_PORT = 17777;
-    
+
     private static final String DEBUG_SERVER_SERVICE_NAME = "com.apple.debugserver";
     private static final char[] HEX_CHARS = "0123456789abcdef".toCharArray();
     private static final int RECEIVE_TIMEOUT = 5000;
@@ -78,7 +79,7 @@ public class AppLauncher {
 
     private byte[] buffer = new byte[4096];
     private StringBuilder bufferedResponses = new StringBuilder(4096);
-    
+
     private final IDevice device;
     private final String appId;
     private final File localAppPath;
@@ -334,15 +335,11 @@ public class AppLauncher {
     public void kill() {
         killed = true;
     }
-    
+
     private static String toHex(String s) {
         StringBuilder sb = new StringBuilder(s.length() * 2);
         byte[] bytes;
-        try {
-            bytes = s.getBytes("UTF8");
-        } catch (UnsupportedEncodingException e) {
-            throw new Error(e);
-        }
+        bytes = s.getBytes(StandardCharsets.UTF_8);
         for (int i = 0; i < bytes.length; i++) {
             int c = bytes[i] & 0xff;
             sb.append(HEX_CHARS[c >> 4]);
@@ -350,7 +347,7 @@ public class AppLauncher {
         }
         return sb.toString();
     }
-    
+
     private static byte fromHex(char c1, char c2) {
         int d = 0;
         if (c1 <= '9') {
@@ -366,7 +363,7 @@ public class AppLauncher {
         }
         return (byte) d;
     }
-    
+
     private static byte[] fromHex(String s) {
         int length = s.length();
         byte[] data = new byte[length / 2];
@@ -375,7 +372,7 @@ public class AppLauncher {
         }
         return data;
     }
-    
+
     private static byte[] fromHex(byte[] buffer, int offset, int length) {
         byte[] data = new byte[length / 2];
         for (int i = 0; i < (length >> 1); i++) {
@@ -383,7 +380,7 @@ public class AppLauncher {
         }
         return data;
     }
-    
+
     private String encode(String cmd) {
         int checksum = 0;
         for (int i = 0; i < cmd.length(); i++) {
@@ -416,23 +413,23 @@ public class AppLauncher {
         System.out.println();
     }
 
-    private void sendGdbPacket(IDeviceConnection conn, String packet) throws IOException {
+    private void sendGdbPacket(DebugServerClient client, String packet) throws IOException {
         debugGdb("Sending packet: " + packet);
-        byte[] data = packet.getBytes("ASCII");
+        byte[] data = packet.getBytes(StandardCharsets.US_ASCII);
         while (true) {
-            int sentBytes = conn.send(data, 0, data.length);
+            int sentBytes = client.send(data, 0, data.length);
             if (sentBytes == data.length) {
                 break;
             }
             data = Arrays.copyOfRange(data, sentBytes, data.length);
         }
     }
-    
-    private String receiveGdbPacket(IDeviceConnection conn) throws IOException, TimeoutException {
-        return receiveGdbPacket(conn, Integer.MAX_VALUE);
+
+    private String receiveGdbPacket(DebugServerClient client) throws IOException, TimeoutException {
+        return receiveGdbPacket(client, Integer.MAX_VALUE);
     }
-    
-    private String receiveGdbPacket(IDeviceConnection conn, long timeout) throws IOException, TimeoutException {
+
+    private String receiveGdbPacket(DebugServerClient client, long timeout) throws IOException, TimeoutException {
         int packetEnd = bufferedResponses.indexOf("#");
         if (packetEnd != -1 && bufferedResponses.length() - packetEnd > 2) {
             String packet = bufferedResponses.substring(0, packetEnd + 3);
@@ -440,16 +437,16 @@ public class AppLauncher {
             debugGdb("Received packet: " + packet);
             return packet;
         }
-        
+
         long deadline = System.currentTimeMillis() + timeout;
         while (true) {
             if (killed || Thread.currentThread().isInterrupted()) {
                 killed = true;
                 throw new InterruptedIOException();
             }
-            int receivedBytes = conn.receive(buffer, 0, buffer.length, 10);
+            int receivedBytes = client.receive(buffer, 0, buffer.length, 10);
             if (receivedBytes > 0) {
-                bufferedResponses.append(new String(buffer, 0, receivedBytes, "ASCII"));
+                bufferedResponses.append(new String(buffer, 0, receivedBytes, StandardCharsets.US_ASCII));
                 packetEnd = bufferedResponses.indexOf("#");
                 if (packetEnd != -1 && bufferedResponses.length() - packetEnd > 2) {
                     String packet = bufferedResponses.substring(0, packetEnd + 3);
@@ -463,47 +460,47 @@ public class AppLauncher {
             }
         }
     }
-    
-    private boolean receiveGdbAck(IDeviceConnection conn) throws IOException {
+
+    private boolean receiveGdbAck(DebugServerClient client) throws IOException {
         if (bufferedResponses.length() > 0) {
             char c = bufferedResponses.charAt(0);
             bufferedResponses.delete(0, 1);
             return c == '+';
         }
-        
+
         byte[] buffer = new byte[1];
-        conn.receive(buffer, 0, buffer.length, RECEIVE_TIMEOUT);
+        client.receive(buffer, 0, buffer.length, RECEIVE_TIMEOUT);
         debugGdb("Received ack: " + (char) buffer[0]);
         return buffer[0] == '+';
     }
-    
-    private void sendReceivePacket(IDeviceConnection conn, String packet, 
-            String expectedResponse, boolean ackMode) throws IOException, TimeoutException {
-        
-        sendGdbPacket(conn, packet);
+
+    private void sendReceivePacket(DebugServerClient client, String packet,
+                                   String expectedResponse, boolean ackMode) throws IOException, TimeoutException {
+
+        sendGdbPacket(client, packet);
         if (ackMode) {
-            receiveGdbAck(conn);
+            receiveGdbAck(client);
         }
-        String response = decode(receiveGdbPacket(conn, RECEIVE_TIMEOUT));
+        String response = decode(receiveGdbPacket(client, RECEIVE_TIMEOUT));
         if (!expectedResponse.equals(response)) {
             if (response.startsWith("E")) {
                 throw new RuntimeException("Launch failed: " + response.substring(1));
             }
-            throw new RuntimeException("Launch failed: Unexpected response '" 
+            throw new RuntimeException("Launch failed: Unexpected response '"
                     + response + "' to command '" + decode(packet) + "'");
         }
     }
-    
-    private void kill(IDeviceConnection conn) throws IOException, TimeoutException {
+
+    private void kill(DebugServerClient client) throws IOException, TimeoutException {
         // We're killed. Try to shutdown nicely.
         killed = false;
         Thread.interrupted();
         debugGdb("Sending break");
-        conn.send(BREAK, 0, BREAK.length);
-        receiveGdbPacket(conn, RECEIVE_TIMEOUT);
-        sendGdbPacket(conn, encode("k"));
+        client.send(BREAK, 0, BREAK.length);
+        receiveGdbPacket(client, RECEIVE_TIMEOUT);
+        sendGdbPacket(client, encode("k"));
     }
-    
+
     private String encodeArgs(String appPath) {
         StringBuilder sb = new StringBuilder();
         String hex = toHex(appPath);
@@ -514,7 +511,7 @@ public class AppLauncher {
         }
         return sb.toString();
     }
-    
+
     private String getAppPath(LockdowndClient lockdowndClient, String appId) throws IOException {
         LockdowndServiceDescriptor instService = lockdowndClient.startService(InstallationProxyClient.SERVICE_NAME);
         try (InstallationProxyClient instClient = new InstallationProxyClient(device, instService)) {
@@ -527,7 +524,7 @@ public class AppLauncher {
                     NSDictionary entitlements = (NSDictionary) appInfo.objectForKey("Entitlements");
                     if (entitlements == null || entitlements.objectForKey("get-task-allow") == null
                             || !entitlements.objectForKey("get-task-allow").equals(new NSNumber(true))) {
-                        throw new RuntimeException("App with id '" + appId + "' does not " 
+                        throw new RuntimeException("App with id '" + appId + "' does not "
                             + "have the 'get-task-allow' entitlement and cannot be debugged");
                     }
                     if (path == null) {
@@ -549,9 +546,7 @@ public class AppLauncher {
                 }
                 installInternal();
                 installed = true;
-            } catch (IOException e) {
-                throw e;
-            } catch (RuntimeException e) {
+            } catch (IOException | RuntimeException e) {
                 throw e;
             } catch (Exception e) {
                 throw new RuntimeException();
@@ -574,7 +569,7 @@ public class AppLauncher {
                 throw new IOException("xcode-select failed with error code: " + ret);
             }
             
-            return new File(new String(Files.readAllBytes(tmpFile.toPath()), "UTF-8").trim());
+            return new File(new String(Files.readAllBytes(tmpFile.toPath()), StandardCharsets.UTF_8).trim());
         } finally {
             tmpFile.delete();
         }
@@ -589,15 +584,17 @@ public class AppLauncher {
             // 7.0.3 (11B508)
             String.format("%s\\.%s\\.%s \\(%s\\)", versionParts[0], versionParts[1], versionParts[2], buildVersion), 
             // 7.0.3 (*)
-            String.format("%s\\.%s\\.%s \\(.*\\)", versionParts[0], versionParts[1], versionParts[2], buildVersion), 
+            String.format("%s\\.%s\\.%s \\(.*\\)", versionParts[0], versionParts[1], versionParts[2]),
             // 7.0.3
             String.format("%s\\.%s\\.%s", versionParts[0], versionParts[1], versionParts[2]), 
             // 7.0 (11A465)
             String.format("%s\\.%s \\(%s\\)", versionParts[0], versionParts[1], buildVersion),
             // 7.0 (*)
-            String.format("%s\\.%s \\(.*\\)", versionParts[0], versionParts[1], buildVersion),
+            String.format("%s\\.%s \\(.*\\)", versionParts[0], versionParts[1]),
             // 7.0
-            String.format("%s\\.%s", versionParts[0], versionParts[1]) 
+            String.format("%s\\.%s", versionParts[0], versionParts[1]),
+            // 7.(*) -- forced anything after major to allow using older image with newer devices (e.g. 13.0 with 13.1 device)
+            String.format("%s\\.(.*\\)", versionParts[0])
         };
         
         File[] dirs = dsDir.listFiles();
@@ -679,7 +676,6 @@ public class AppLauncher {
         
         int lockedRetriesLeft = launchOnLockedRetries;
         while (true) {
-            IDeviceConnection conn = null;
             String appPath = null;
             
             try (LockdowndClient lockdowndClient = new LockdowndClient(device, getClass().getSimpleName(), true)) {
@@ -689,51 +685,52 @@ public class AppLauncher {
                 if(appLauncherCallback != null) {
                     appLauncherCallback.setAppLaunchInfo(new AppLauncherInfo(device, appPath, productVersion, buildVersion));
                 }
-                LockdowndServiceDescriptor debugService = null;
+                LockdowndServiceDescriptor serviceDescriptor;
                 try {
-                    debugService = lockdowndClient.startService(DEBUG_SERVER_SERVICE_NAME);
+                    serviceDescriptor = lockdowndClient.startService(DEBUG_SERVER_SERVICE_NAME);
                 } catch (LibIMobileDeviceException e) {
                     if (e.getErrorCode() == LockdowndError.LOCKDOWN_E_INVALID_SERVICE.swigValue()) {
                         // This happens when the developer image hasn't been mounted.
                         // Mount and try again.
                         mountDeveloperImage(lockdowndClient);
-                        debugService = lockdowndClient.startService(DEBUG_SERVER_SERVICE_NAME);
+                        serviceDescriptor = lockdowndClient.startService(DEBUG_SERVER_SERVICE_NAME);
                     } else {
                         throw e;
                     }
                 }
-                conn = device.connect(debugService.getPort());
-                log("Debug server port: " + debugService.getPort());
-                if (localPort != -1) {
-                    String exe = ((NSDictionary) PropertyListParser.parse(new File(localAppPath, "Info.plist"))).objectForKey("CFBundleExecutable").toString();
-                    log("launchios \"" + new File(localAppPath, exe).getAbsolutePath() + "\" \"" + appPath + "\" " + localPort);
-                    StringBuilder argsString = new StringBuilder();
-                    for (String arg : args) {
-                        if (argsString.length() > 0) {
-                            argsString.append(' ');
+
+                try (DebugServerClient client = new DebugServerClient(device, serviceDescriptor)) {
+                    log("Debug server port: " + serviceDescriptor.getPort());
+
+                    if (localPort != -1) {
+                        String exe = ((NSDictionary) PropertyListParser.parse(new File(localAppPath, "Info.plist"))).objectForKey("CFBundleExecutable").toString();
+                        log("launchios \"" + new File(localAppPath, exe).getAbsolutePath() + "\" \"" + appPath + "\" " + localPort);
+                        StringBuilder argsString = new StringBuilder();
+                        for (String arg : args) {
+                            if (argsString.length() > 0) {
+                                argsString.append(' ');
+                            }
+                            argsString.append(arg);
                         }
-                        argsString.append(arg);
+                        log("process launch -- " + argsString);
                     }
-                    log("process launch -- " + argsString);
-                }
-            }
-    
-            if (lockedRetriesLeft == launchOnLockedRetries) {
-                // First try
-                log("Remote app path: " + appPath);
-                log("Launching app...");
-            } else {
-                log("Launching app (retry %d of %d)...", 
-                        (launchOnLockedRetries - lockedRetriesLeft), launchOnLockedRetries);
-            }
-            
-            try {                        
-                // just pipe stdout if no port forwarding should be done
-                // otherwise perform port forwarding and stdout piping
-                if(localPort == -1) {
-                    return pipeStdOut(conn, appPath);
-                } else {
-                    return forward(conn, appPath);
+
+                    if (lockedRetriesLeft == launchOnLockedRetries) {
+                        // First try
+                        log("Remote app path: " + appPath);
+                        log("Launching app...");
+                    } else {
+                        log("Launching app (retry %d of %d)...",
+                                (launchOnLockedRetries - lockedRetriesLeft), launchOnLockedRetries);
+                    }
+
+                    // just pipe stdout if no port forwarding should be done
+                    // otherwise perform port forwarding and stdout piping
+                    if(localPort == -1) {
+                        return pipeStdOut(client, appPath);
+                    } else {
+                        return forward(client, appPath);
+                    }
                 }
             } catch (RuntimeException e) {
                 if (!e.getMessage().contains("Locked") || lockedRetriesLeft == 0) {
@@ -743,15 +740,13 @@ public class AppLauncher {
                 log("Device locked. Retrying launch in %d seconds...", 
                         secondsBetweenLaunchOnLockedRetries);
                 Thread.sleep(secondsBetweenLaunchOnLockedRetries * 1000);
-            } finally {
-                conn.dispose();
             }
         }
     }
     
-    private int pipeStdOut(IDeviceConnection conn, String appPath) throws Exception {
+    private int pipeStdOut(DebugServerClient client, String appPath) throws Exception {
         log("App Path: %s", appPath);
-        
+
         // Talk to the debugserver using the GDB remote protocol.
         // See https://sourceware.org/gdb/onlinedocs/gdb/Remote-Protocol.html.
         // This process has been determined by observing how Xcode talks to
@@ -759,31 +754,31 @@ public class AppLauncher {
         // write the following to ~/.lldbinit:
         //   log enable -v -f /tmp/gdb-remote.log gdb-remote all
         // Disable ack mode
-        sendGdbPacket(conn, "+");
-        sendReceivePacket(conn, encode("QStartNoAckMode"), "OK", true);
-        sendGdbPacket(conn, "+");
+        sendGdbPacket(client, "+");
+        sendReceivePacket(client, encode("QStartNoAckMode"), "OK", true);
+        sendGdbPacket(client, "+");
 
         // Disable buffered IO. Xcode does it so we do it too.
-        sendReceivePacket(conn, encode("QEnvironment:NSUnbufferedIO=YES"), "OK", false);
+        sendReceivePacket(client, encode("QEnvironment:NSUnbufferedIO=YES"), "OK", false);
         // Set environment variables
         for (Entry<String, String> entry : env.entrySet()) {
             String cmd = String.format("QEnvironment:%s=%s", entry.getKey(), entry.getValue());
-            sendReceivePacket(conn, encode(cmd), "OK", false);
+            sendReceivePacket(client, encode(cmd), "OK", false);
         }
         // Tell the debuserver to send threads:xxx,yyy,... in stop replies
-        sendReceivePacket(conn, encode("QListThreadsInStopReply"), "OK", false);
+        sendReceivePacket(client, encode("QListThreadsInStopReply"), "OK", false);
         // Initialize argv with the app path and args
-        sendReceivePacket(conn, encode("A" + encodeArgs(appPath)), "OK", false);
+        sendReceivePacket(client, encode("A" + encodeArgs(appPath)), "OK", false);
         // Make sure the launch was successful
-        sendReceivePacket(conn, encode("qLaunchSuccess"), "OK", false);
+        sendReceivePacket(client, encode("qLaunchSuccess"), "OK", false);
         // Continue
-        sendGdbPacket(conn, encode("c"));
-        
+        sendGdbPacket(client, encode("c"));
+
         boolean wasInterrupted = false;
         try {
             while (true) {
                 try {
-                    String response = receiveGdbPacket(conn);
+                    String response = receiveGdbPacket(client);
                     String payload = decode(response);
                     if (payload.charAt(0) == 'W') {
                         // The app exited. The number following W is the exit code.
@@ -811,13 +806,13 @@ public class AppLauncher {
                             sb.append("c:").append(id).append(';');
                         }
                         sb.append('C').append(signal).append(':').append(threadId);
-                        sendGdbPacket(conn, encode(sb.toString()));
+                        sendGdbPacket(client, encode(sb.toString()));
                     } else if (payload.charAt(0) == 'X') {
                         int signal = Integer.parseInt(payload.substring(1, 3), 16);
                         String data = payload.substring(3);
                         String description = null;
                         if (data.contains("description:")) {
-                            description = new String(fromHex(data.replaceAll(".*description:([0-9a-fA-F]+).*", "$1")), "UTF8").trim();
+                            description = new String(fromHex(data.replaceAll(".*description:([0-9a-fA-F]+).*", "$1")), StandardCharsets.UTF_8).trim();
                             description = description.trim();
                             description = description.isEmpty() ? null : description;
                         }
@@ -828,7 +823,7 @@ public class AppLauncher {
                         message += ". Check the device logs in Xcode (Window->Devices) for more info.";
                         throw new RuntimeException(message);
                     } else {
-                        throw new RuntimeException("Unexpected response " 
+                        throw new RuntimeException("Unexpected response "
                                 + "from debugserver: " + response);
                     }
                 } catch (InterruptedIOException e) {
@@ -836,7 +831,7 @@ public class AppLauncher {
                     // the thread's interrupted state and we want to reset it
                     // when we exit.
                     wasInterrupted = Thread.currentThread().isInterrupted();
-                    kill(conn);
+                    kill(client);
                 }
             }
         } finally {
@@ -844,12 +839,12 @@ public class AppLauncher {
                 Thread.currentThread().interrupt();
             }
         }
-    }   
-    
-    private int forward(IDeviceConnection conn, String appPath) throws Exception {                
+    }
+
+    private int forward(DebugServerClient client, String appPath) throws Exception {
         boolean wasInterrupted = false;
         Socket clientSocket = null;
-                
+
         try(ServerSocket serverSocket = new ServerSocket(localPort)) {
             serverSocket.setReuseAddress(true);
             log("Waiting for GDB remote connection at http://127.0.0.1:" + localPort);
@@ -857,10 +852,10 @@ public class AppLauncher {
             clientSocket.setTcpNoDelay(true);
             log("GDB remote client connected");
         }
-        
+
         try (FileOutputStream fileOut = new FileOutputStream("/tmp/dbgout")){
             final InputStream in = clientSocket.getInputStream();
-            final OutputStream out = clientSocket.getOutputStream();                       
+            final OutputStream out = clientSocket.getOutputStream();
             byte[] buffer = new byte[10 * 4096];
             GdbRemoteParser lldbParser = new GdbRemoteParser();
             GdbRemoteParser debugServerParser = new GdbRemoteParser();
@@ -874,7 +869,7 @@ public class AppLauncher {
                         int readBytes = in.read(buffer);
                         int sent = 0;
                         while(sent != readBytes) {
-                            sent += conn.send(buffer, sent, readBytes - sent);
+                            sent += client.send(buffer, sent, readBytes - sent);
                         }
                         List<byte[]> messages = lldbParser.parse(buffer, 0, readBytes);
                         debugForward(fileOut, "lldb->debugserver: ", messages);
@@ -885,26 +880,26 @@ public class AppLauncher {
                             }
                         }
                     }
-                    
+
                     // check if we've been interrupted
                     if (killed || Thread.currentThread().isInterrupted()) {
                         killed = true;
                         throw new InterruptedIOException();
                     }
-                    
-                    // check if we got a reply from the debug server, wait 
+
+                    // check if we got a reply from the debug server, wait
                     // for 10 milliseconds
                     try {
-                        int readBytes = conn.receive(buffer, 0, buffer.length, 1);
+                        int readBytes = client.receive(buffer, 0, buffer.length, 1);
                         if(readBytes > 0) {
                             out.write(buffer, 0, readBytes);
                             out.flush();
-                            
+
                             List<byte[]> messages = debugServerParser.parse(buffer, 0, readBytes);
                             for(byte[] message: messages) {
                                 if (message[1] == 'W') {
                                     // The app exited. The number following W is the exit code.
-                                    int exitCode = Integer.parseInt(new String(message, 2, message.length - 2 - 3, "ASCII"), 16);
+                                    int exitCode = Integer.parseInt(new String(message, 2, message.length - 2 - 3, StandardCharsets.US_ASCII), 16);
                                     return exitCode;
                                 } else if (message[1] == 'O') {
                                     // Console output encoded as hex.
@@ -934,19 +929,17 @@ public class AppLauncher {
                     // the thread's interrupted state and we want to reset it
                     // when we exit.
                     wasInterrupted = Thread.currentThread().isInterrupted();
-                    kill(conn);
+                    kill(client);
                 }
             }
         } finally {
-            if(clientSocket != null) {
-                clientSocket.close();
-            }
+            clientSocket.close();
             if (wasInterrupted) {
                 Thread.currentThread().interrupt();
             }
         }
     }
-    
+
     private void debugForward(OutputStream fileOut, String prefix, List<byte[]> messages) throws IOException {
         if(!debug) {
             return;
@@ -954,12 +947,12 @@ public class AppLauncher {
         for(byte[] message: messages) {
             String msgStr = null;
             if(message.length > 256) {
-                msgStr = "(" + message.length + ") " + new String(message, 0, 256, "ASCII");
+                msgStr = "(" + message.length + ") " + new String(message, 0, 256, StandardCharsets.US_ASCII);
             } else {
-                msgStr = new String(message, "ASCII");
+                msgStr = new String(message, StandardCharsets.US_ASCII);
             }
             String msg = prefix + msgStr;
-            fileOut.write(msg.getBytes("ASCII"));
+            fileOut.write(msg.getBytes(StandardCharsets.US_ASCII));
             fileOut.write('\n');
             System.out.println(msg);
         }
@@ -1050,9 +1043,7 @@ public class AppLauncher {
     public int launch() throws IOException {
         try {
             return launchInternal();
-        } catch (IOException e) {
-            throw e;
-        } catch (RuntimeException e) {
+        } catch (IOException | RuntimeException e) {
             throw e;
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -1140,7 +1131,7 @@ public class AppLauncher {
         
         IDevice device = new IDevice(deviceId);
         
-        AppLauncher launcher = null;
+        AppLauncher launcher;
         if (localAppPath != null) {
             launcher = new AppLauncher(device, localAppPath);
         } else {
