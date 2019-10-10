@@ -26,8 +26,8 @@ public class LibIMobileDevice implements LibIMobileDeviceConstants {
     LibIMobileDeviceJNI.plist_to_xml(PlistRef.getCPtr(plist), plist, ByteArrayOut.getCPtr(plist_xml), plist_xml, IntOut.getCPtr(length), length);
   }
 
-  public static void plist_from_bin(byte[] plist_bin, PlistRefOut plist) {
-    LibIMobileDeviceJNI.plist_from_bin(plist_bin, PlistRefOut.getCPtr(plist), plist);
+  public static void plist_from_bin(byte[] plist_bin, int length, PlistRefOut plist) {
+    LibIMobileDeviceJNI.plist_from_bin(plist_bin, length, PlistRefOut.getCPtr(plist), plist);
   }
 
   public static void delete_StringOut_value(StringOut s) {
@@ -54,8 +54,8 @@ public class LibIMobileDevice implements LibIMobileDeviceConstants {
     return LibIMobileDeviceJNI.get_global_idevice_event_cb();
   }
 
-  public static MobileImageMounterError upload_image(MobileImageMounterClientRef client, String image_path, String image_type, byte[] sig) {
-    return MobileImageMounterError.swigToEnum(LibIMobileDeviceJNI.upload_image(MobileImageMounterClientRef.getCPtr(client), client, image_path, image_type, sig));
+  public static MobileImageMounterError upload_image(MobileImageMounterClientRef client, String image_path, String image_type, byte[] sig, long sig_size) {
+    return MobileImageMounterError.swigToEnum(LibIMobileDeviceJNI.upload_image(MobileImageMounterClientRef.getCPtr(client), client, image_path, image_type, sig, sig_size));
   }
 
   public static void idevice_set_debug_level(int level) {
@@ -94,16 +94,16 @@ public class LibIMobileDevice implements LibIMobileDeviceConstants {
     return IDeviceError.swigToEnum(LibIMobileDeviceJNI.idevice_disconnect(IDeviceConnectionRef.getCPtr(connection), connection));
   }
 
-  public static IDeviceError idevice_connection_send(IDeviceConnectionRef connection, byte[] data, IntOut sent_bytes) {
-    return IDeviceError.swigToEnum(LibIMobileDeviceJNI.idevice_connection_send(IDeviceConnectionRef.getCPtr(connection), connection, data, IntOut.getCPtr(sent_bytes), sent_bytes));
+  public static IDeviceError idevice_connection_send(IDeviceConnectionRef connection, byte[] data, int len, IntOut sent_bytes) {
+    return IDeviceError.swigToEnum(LibIMobileDeviceJNI.idevice_connection_send(IDeviceConnectionRef.getCPtr(connection), connection, data, len, IntOut.getCPtr(sent_bytes), sent_bytes));
   }
 
-  public static IDeviceError idevice_connection_receive_timeout(IDeviceConnectionRef connection, byte[] data, IntOut recv_bytes, int timeout) {
-    return IDeviceError.swigToEnum(LibIMobileDeviceJNI.idevice_connection_receive_timeout(IDeviceConnectionRef.getCPtr(connection), connection, data, IntOut.getCPtr(recv_bytes), recv_bytes, timeout));
+  public static IDeviceError idevice_connection_receive_timeout(IDeviceConnectionRef connection, byte[] data, int len, IntOut recv_bytes, int timeout) {
+    return IDeviceError.swigToEnum(LibIMobileDeviceJNI.idevice_connection_receive_timeout(IDeviceConnectionRef.getCPtr(connection), connection, data, len, IntOut.getCPtr(recv_bytes), recv_bytes, timeout));
   }
 
-  public static IDeviceError idevice_connection_receive(IDeviceConnectionRef connection, byte[] data, IntOut recv_bytes) {
-    return IDeviceError.swigToEnum(LibIMobileDeviceJNI.idevice_connection_receive(IDeviceConnectionRef.getCPtr(connection), connection, data, IntOut.getCPtr(recv_bytes), recv_bytes));
+  public static IDeviceError idevice_connection_receive(IDeviceConnectionRef connection, byte[] data, int len, IntOut recv_bytes) {
+    return IDeviceError.swigToEnum(LibIMobileDeviceJNI.idevice_connection_receive(IDeviceConnectionRef.getCPtr(connection), connection, data, len, IntOut.getCPtr(recv_bytes), recv_bytes));
   }
 
   public static IDeviceError idevice_connection_enable_ssl(IDeviceConnectionRef connection) {
@@ -274,12 +274,12 @@ public class LibIMobileDevice implements LibIMobileDeviceConstants {
     return AfcError.swigToEnum(LibIMobileDeviceJNI.afc_file_lock(AfcClientRef.getCPtr(client), client, handle, operation.swigValue()));
   }
 
-  public static AfcError afc_file_read(AfcClientRef client, long handle, byte[] data, IntOut bytes_read) {
-    return AfcError.swigToEnum(LibIMobileDeviceJNI.afc_file_read(AfcClientRef.getCPtr(client), client, handle, data, IntOut.getCPtr(bytes_read), bytes_read));
+  public static AfcError afc_file_read(AfcClientRef client, long handle, byte[] data, int length, IntOut bytes_read) {
+    return AfcError.swigToEnum(LibIMobileDeviceJNI.afc_file_read(AfcClientRef.getCPtr(client), client, handle, data, length, IntOut.getCPtr(bytes_read), bytes_read));
   }
 
-  public static AfcError afc_file_write(AfcClientRef client, long handle, byte[] data, IntOut bytes_written) {
-    return AfcError.swigToEnum(LibIMobileDeviceJNI.afc_file_write(AfcClientRef.getCPtr(client), client, handle, data, IntOut.getCPtr(bytes_written), bytes_written));
+  public static AfcError afc_file_write(AfcClientRef client, long handle, byte[] data, int length, IntOut bytes_written) {
+    return AfcError.swigToEnum(LibIMobileDeviceJNI.afc_file_write(AfcClientRef.getCPtr(client), client, handle, data, length, IntOut.getCPtr(bytes_written), bytes_written));
   }
 
   public static AfcError afc_file_seek(AfcClientRef client, long handle, long offset, int whence) {
@@ -439,8 +439,8 @@ public class LibIMobileDevice implements LibIMobileDeviceConstants {
     return MobileImageMounterError.swigToEnum(LibIMobileDeviceJNI.mobile_image_mounter_lookup_image(MobileImageMounterClientRef.getCPtr(client), client, image_type, PlistRefOut.getCPtr(result), result));
   }
 
-  public static MobileImageMounterError mobile_image_mounter_mount_image(MobileImageMounterClientRef client, String image_path, byte[] signature, String image_type, PlistRefOut result) {
-    return MobileImageMounterError.swigToEnum(LibIMobileDeviceJNI.mobile_image_mounter_mount_image(MobileImageMounterClientRef.getCPtr(client), client, image_path, signature, image_type, PlistRefOut.getCPtr(result), result));
+  public static MobileImageMounterError mobile_image_mounter_mount_image(MobileImageMounterClientRef client, String image_path, byte[] signature, short signature_size, String image_type, PlistRefOut result) {
+    return MobileImageMounterError.swigToEnum(LibIMobileDeviceJNI.mobile_image_mounter_mount_image(MobileImageMounterClientRef.getCPtr(client), client, image_path, signature, signature_size, image_type, PlistRefOut.getCPtr(result), result));
   }
 
   public static MobileImageMounterError mobile_image_mounter_hangup(MobileImageMounterClientRef client) {
@@ -459,16 +459,16 @@ public class LibIMobileDevice implements LibIMobileDeviceConstants {
     return DebugServerError.swigToEnum(LibIMobileDeviceJNI.debugserver_client_free(DebugServerClientRef.getCPtr(client), client));
   }
 
-  public static DebugServerError debugserver_client_send(DebugServerClientRef client, byte[] data, IntOut sent) {
-    return DebugServerError.swigToEnum(LibIMobileDeviceJNI.debugserver_client_send(DebugServerClientRef.getCPtr(client), client, data, IntOut.getCPtr(sent), sent));
+  public static DebugServerError debugserver_client_send(DebugServerClientRef client, byte[] data, int size, IntOut sent) {
+    return DebugServerError.swigToEnum(LibIMobileDeviceJNI.debugserver_client_send(DebugServerClientRef.getCPtr(client), client, data, size, IntOut.getCPtr(sent), sent));
   }
 
-  public static DebugServerError debugserver_client_receive_with_timeout(DebugServerClientRef client, byte[] data, IntOut received, int timeout) {
-    return DebugServerError.swigToEnum(LibIMobileDeviceJNI.debugserver_client_receive_with_timeout(DebugServerClientRef.getCPtr(client), client, data, IntOut.getCPtr(received), received, timeout));
+  public static DebugServerError debugserver_client_receive_with_timeout(DebugServerClientRef client, byte[] data, int size, IntOut received, int timeout) {
+    return DebugServerError.swigToEnum(LibIMobileDeviceJNI.debugserver_client_receive_with_timeout(DebugServerClientRef.getCPtr(client), client, data, size, IntOut.getCPtr(received), received, timeout));
   }
 
-  public static DebugServerError debugserver_client_receive(DebugServerClientRef client, byte[] data, IntOut received) {
-    return DebugServerError.swigToEnum(LibIMobileDeviceJNI.debugserver_client_receive(DebugServerClientRef.getCPtr(client), client, data, IntOut.getCPtr(received), received));
+  public static DebugServerError debugserver_client_receive(DebugServerClientRef client, byte[] data, int size, IntOut received) {
+    return DebugServerError.swigToEnum(LibIMobileDeviceJNI.debugserver_client_receive(DebugServerClientRef.getCPtr(client), client, data, size, IntOut.getCPtr(received), received));
   }
 
   public static DebugServerError debugserver_client_receive_response(DebugServerClientRef client, StringOut response) {

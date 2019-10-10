@@ -128,7 +128,7 @@ public class DebugServerClient implements AutoCloseable {
 
         IntOut bytesSentOut = new IntOut();
         try {
-            checkResult(LibIMobileDevice.debugserver_client_send(getRef(), data, bytesSentOut));
+            checkResult(LibIMobileDevice.debugserver_client_send(getRef(), data, count, bytesSentOut));
             return bytesSentOut.getValue();
         } finally {
             bytesSentOut.delete();
@@ -163,7 +163,7 @@ public class DebugServerClient implements AutoCloseable {
         IntOut bytesReceivedOut = new IntOut();
         try {
             checkResult(LibIMobileDevice.debugserver_client_receive_with_timeout(getRef(),
-                    data, bytesReceivedOut, timeout),  DebugServerError.DEBUGSERVER_E_TIMEOUT);
+                    data, count, bytesReceivedOut, timeout),  DebugServerError.DEBUGSERVER_E_TIMEOUT);
             int bytesRead = bytesReceivedOut.getValue();
             if (bytesRead > 0 && data != buffer) {
                 System.arraycopy(data, 0, buffer, offset, bytesRead);

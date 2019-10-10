@@ -7,7 +7,7 @@
 %}
 
 %include "common.i"
-
+%include "fast_primitive_arrays.i"
 
 %define CALLBACK(TYPE)
     %typemap(jni) TYPE "jlong"
@@ -67,16 +67,14 @@ OUT_CLASS(mobile_image_mounter_client_t, MobileImageMounterClientRefOut)
 OUT_CLASS(debugserver_client_t, DebugServerClientRefOut)
 
 // turn pointer + length just to byte-array (check common.i)
-%apply (int ARGC, char **ARGV) {(int argc, char* argv[])};
-%apply (char *ARRAY, size_t ARRAYSIZE) {(const char *plist_bin, uint32_t length)};
-%apply (char *ARRAY, size_t ARRAYSIZE) {(const char *data, uint32_t len)};
-%apply (char *ARRAY, size_t ARRAYSIZE) {(char *data, uint32_t len)};
-%apply (char *ARRAY, size_t ARRAYSIZE) {(const char *data, uint32_t length)};
-%apply (char *ARRAY, size_t ARRAYSIZE) {(char *data, uint32_t length)};
-%apply (char *ARRAY, size_t ARRAYSIZE) {(const char *signature, uint16_t signature_size)};
-%apply (char *ARRAY, size_t ARRAYSIZE) {(const char *sig, size_t sig_size)};
-%apply (char *ARRAY, size_t ARRAYSIZE) {(char* data, uint32_t size)};
-%apply (char *ARRAY, size_t ARRAYSIZE) {(const char* data, uint32_t size)};
+%apply signed char[] {(const char *plist_bin)};
+%apply signed char[] {(const char *data)};
+%apply signed char[] {(char *data)};
+%apply signed char[] {(const char *data)};
+%apply signed char[] {(char *data)};
+%apply signed char[] {(const char *signature)};
+%apply signed char[] {(const char *sig)};
+%apply signed char[] {(char* data)};
 
 //
 // Map pointer to container classes to receive value by pointer

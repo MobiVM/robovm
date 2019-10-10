@@ -108,7 +108,7 @@ public class IDeviceConnection implements AutoCloseable {
         IntOut bytesReceivedOut = new IntOut();
         try {
             IDevice.checkResult(LibIMobileDevice.idevice_connection_receive_timeout(getRef(), 
-                    data, bytesReceivedOut, timeout),  IDeviceError.IDEVICE_E_TIMEOUT);
+                    data, count, bytesReceivedOut, timeout),  IDeviceError.IDEVICE_E_TIMEOUT);
             int bytesRead = bytesReceivedOut.getValue();
             if (bytesRead > 0 && data != buffer) {
                 System.arraycopy(data, 0, buffer, offset, bytesRead);
@@ -149,7 +149,7 @@ public class IDeviceConnection implements AutoCloseable {
         
         IntOut bytesSentOut = new IntOut();
         try {
-            IDevice.checkResult(LibIMobileDevice.idevice_connection_send(getRef(), data, bytesSentOut));
+            IDevice.checkResult(LibIMobileDevice.idevice_connection_send(getRef(), data, count, bytesSentOut));
             return bytesSentOut.getValue();
         } finally {
             bytesSentOut.delete();

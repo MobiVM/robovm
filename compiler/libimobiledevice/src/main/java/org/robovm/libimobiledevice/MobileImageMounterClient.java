@@ -109,7 +109,7 @@ public class MobileImageMounterClient implements AutoCloseable {
         PlistRefOut plistOut = new PlistRefOut();
         try {
             checkResult(LibIMobileDevice.mobile_image_mounter_mount_image(getRef(), 
-                    imagePath, imageSignature, imageType, plistOut));
+                    imagePath, imageSignature, (short) imageSignature.length, imageType, plistOut));
             PlistRef plist = plistOut.getValue();
             return (NSDictionary) PlistUtil.toJavaPlist(plist);
         } finally {
@@ -173,7 +173,7 @@ public class MobileImageMounterClient implements AutoCloseable {
             imageType = "Developer";
         }
 
-        checkResult(LibIMobileDevice.upload_image(getRef(), localImageFile.getAbsolutePath(), imageType, signature));
+        checkResult(LibIMobileDevice.upload_image(getRef(), localImageFile.getAbsolutePath(), imageType, signature, signature.length));
     }
     
     protected MobileImageMounterClientRef getRef() {

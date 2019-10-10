@@ -212,6 +212,411 @@ static void SWIGUNUSED SWIG_JavaThrowException(JNIEnv *jenv, SWIG_JavaExceptionC
 #include <libimobiledevice/debugserver.h>
 
 
+#if defined(SWIG_NOINCLUDE) || defined(SWIG_NOARRAYS)
+
+
+static int SWIG_JavaArrayInSchar (JNIEnv *jenv, jbyte **jarr, signed char **carr, jbyteArray input);
+static void SWIG_JavaArrayArgoutSchar (JNIEnv *jenv, jbyte *jarr, signed char *carr, jbyteArray input);
+static jbyteArray SWIG_JavaArrayOutSchar (JNIEnv *jenv, signed char *result, jsize sz);
+
+
+static int SWIG_JavaArrayInUchar (JNIEnv *jenv, jbyte **jarr, unsigned char **carr, jbyteArray input);
+static void SWIG_JavaArrayArgoutUchar (JNIEnv *jenv, jbyte *jarr, unsigned char *carr, jbyteArray input);
+static jbyteArray SWIG_JavaArrayOutUchar (JNIEnv *jenv, unsigned char *result, jsize sz);
+
+
+static int SWIG_JavaArrayInShort (JNIEnv *jenv, jshort **jarr, short **carr, jshortArray input);
+static void SWIG_JavaArrayArgoutShort (JNIEnv *jenv, jshort *jarr, short *carr, jshortArray input);
+static jshortArray SWIG_JavaArrayOutShort (JNIEnv *jenv, short *result, jsize sz);
+
+
+static int SWIG_JavaArrayInUshort (JNIEnv *jenv, jchar **jarr, unsigned short **carr, jcharArray input);
+static void SWIG_JavaArrayArgoutUshort (JNIEnv *jenv, jchar *jarr, unsigned short *carr, jcharArray input);
+static jcharArray SWIG_JavaArrayOutUshort (JNIEnv *jenv, unsigned short *result, jsize sz);
+
+
+static int SWIG_JavaArrayInInt (JNIEnv *jenv, jint **jarr, int **carr, jintArray input);
+static void SWIG_JavaArrayArgoutInt (JNIEnv *jenv, jint *jarr, int *carr, jintArray input);
+static jintArray SWIG_JavaArrayOutInt (JNIEnv *jenv, int *result, jsize sz);
+
+
+static int SWIG_JavaArrayInUint (JNIEnv *jenv, jint **jarr, unsigned int **carr, jintArray input);
+static void SWIG_JavaArrayArgoutUint (JNIEnv *jenv, jint *jarr, unsigned int *carr, jintArray input);
+static jintArray SWIG_JavaArrayOutUint (JNIEnv *jenv, unsigned int *result, jsize sz);
+
+
+static int SWIG_JavaArrayInLong (JNIEnv *jenv, jint **jarr, long **carr, jintArray input);
+static void SWIG_JavaArrayArgoutLong (JNIEnv *jenv, jint *jarr, long *carr, jintArray input);
+static jintArray SWIG_JavaArrayOutLong (JNIEnv *jenv, long *result, jsize sz);
+
+
+static int SWIG_JavaArrayInUlong (JNIEnv *jenv, jint **jarr, unsigned long **carr, jintArray input);
+static void SWIG_JavaArrayArgoutUlong (JNIEnv *jenv, jint *jarr, unsigned long *carr, jintArray input);
+static jintArray SWIG_JavaArrayOutUlong (JNIEnv *jenv, unsigned long *result, jsize sz);
+
+
+static int SWIG_JavaArrayInLonglong (JNIEnv *jenv, jlong **jarr, jlong **carr, jlongArray input);
+static void SWIG_JavaArrayArgoutLonglong (JNIEnv *jenv, jlong *jarr, jlong *carr, jlongArray input);
+static jlongArray SWIG_JavaArrayOutLonglong (JNIEnv *jenv, jlong *result, jsize sz);
+
+
+static int SWIG_JavaArrayInFloat (JNIEnv *jenv, jfloat **jarr, float **carr, jfloatArray input);
+static void SWIG_JavaArrayArgoutFloat (JNIEnv *jenv, jfloat *jarr, float *carr, jfloatArray input);
+static jfloatArray SWIG_JavaArrayOutFloat (JNIEnv *jenv, float *result, jsize sz);
+
+
+static int SWIG_JavaArrayInDouble (JNIEnv *jenv, jdouble **jarr, double **carr, jdoubleArray input);
+static void SWIG_JavaArrayArgoutDouble (JNIEnv *jenv, jdouble *jarr, double *carr, jdoubleArray input);
+static jdoubleArray SWIG_JavaArrayOutDouble (JNIEnv *jenv, double *result, jsize sz);
+
+
+#else
+
+
+/* signed char[] support */
+static int SWIG_JavaArrayInSchar (JNIEnv *jenv, jbyte **jarr, signed char **carr, jbyteArray input) {
+  int i;
+  jsize sz;
+  if (!input) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null array");
+    return 0;
+  }
+  sz = (*jenv)->GetArrayLength(jenv, input);
+  *jarr = (*jenv)->GetByteArrayElements(jenv, input, 0);
+  if (!*jarr)
+    return 0;
+  *carr = (signed char*) *jarr;
+  return 1;
+}
+
+static void SWIG_JavaArrayArgoutSchar (JNIEnv *jenv, jbyte *jarr, signed char *carr, jbyteArray input) {
+  (*jenv)->ReleaseByteArrayElements(jenv, input, jarr, 0);
+}
+
+static jbyteArray SWIG_JavaArrayOutSchar (JNIEnv *jenv, signed char *result, jsize sz) {
+  jbyte *arr;
+  int i;
+  jbyteArray jresult = (*jenv)->NewByteArray(jenv, sz);
+  if (!jresult)
+    return NULL;
+  (*jenv)->SetByteArrayRegion(jenv, jresult, 0, sz, (jbyte *) result);
+  return jresult;
+}
+
+
+/* unsigned char[] support */
+static int SWIG_JavaArrayInUchar (JNIEnv *jenv, jbyte **jarr, unsigned char **carr, jbyteArray input) {
+  int i;
+  jsize sz;
+  if (!input) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null array");
+    return 0;
+  }
+  sz = (*jenv)->GetArrayLength(jenv, input);
+  *jarr = (*jenv)->GetByteArrayElements(jenv, input, 0);
+  if (!*jarr)
+    return 0;
+  *carr = (unsigned char*) *jarr;
+  return 1;
+}
+
+static void SWIG_JavaArrayArgoutUchar (JNIEnv *jenv, jbyte *jarr, unsigned char *carr, jbyteArray input) {
+  (*jenv)->ReleaseByteArrayElements(jenv, input, jarr, 0);
+}
+
+static jbyteArray SWIG_JavaArrayOutUchar (JNIEnv *jenv, unsigned char *result, jsize sz) {
+  jbyte *arr;
+  int i;
+  jbyteArray jresult = (*jenv)->NewByteArray(jenv, sz);
+  if (!jresult)
+    return NULL;
+  (*jenv)->SetByteArrayRegion(jenv, jresult, 0, sz, (jbyte *) result);
+  return jresult;
+}
+
+
+/* short[] support */
+static int SWIG_JavaArrayInShort (JNIEnv *jenv, jshort **jarr, short **carr, jshortArray input) {
+  int i;
+  jsize sz;
+  if (!input) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null array");
+    return 0;
+  }
+  sz = (*jenv)->GetArrayLength(jenv, input);
+  *jarr = (*jenv)->GetShortArrayElements(jenv, input, 0);
+  if (!*jarr)
+    return 0;
+  *carr = (short*) *jarr;
+  return 1;
+}
+
+static void SWIG_JavaArrayArgoutShort (JNIEnv *jenv, jshort *jarr, short *carr, jshortArray input) {
+  (*jenv)->ReleaseShortArrayElements(jenv, input, jarr, 0);
+}
+
+static jshortArray SWIG_JavaArrayOutShort (JNIEnv *jenv, short *result, jsize sz) {
+  jshort *arr;
+  int i;
+  jshortArray jresult = (*jenv)->NewShortArray(jenv, sz);
+  if (!jresult)
+    return NULL;
+  (*jenv)->SetShortArrayRegion(jenv, jresult, 0, sz, (jshort *) result);
+  return jresult;
+}
+
+
+/* unsigned short[] support */
+static int SWIG_JavaArrayInUshort (JNIEnv *jenv, jchar **jarr, unsigned short **carr, jcharArray input) {
+  int i;
+  jsize sz;
+  if (!input) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null array");
+    return 0;
+  }
+  sz = (*jenv)->GetArrayLength(jenv, input);
+  *jarr = (*jenv)->GetCharArrayElements(jenv, input, 0);
+  if (!*jarr)
+    return 0;
+  *carr = (unsigned short*) *jarr;
+  return 1;
+}
+
+static void SWIG_JavaArrayArgoutUshort (JNIEnv *jenv, jchar *jarr, unsigned short *carr, jcharArray input) {
+  (*jenv)->ReleaseCharArrayElements(jenv, input, jarr, 0);
+}
+
+static jcharArray SWIG_JavaArrayOutUshort (JNIEnv *jenv, unsigned short *result, jsize sz) {
+  jchar *arr;
+  int i;
+  jcharArray jresult = (*jenv)->NewCharArray(jenv, sz);
+  if (!jresult)
+    return NULL;
+  (*jenv)->SetCharArrayRegion(jenv, jresult, 0, sz, (jchar *) result);
+  return jresult;
+}
+
+
+/* int[] support */
+static int SWIG_JavaArrayInInt (JNIEnv *jenv, jint **jarr, int **carr, jintArray input) {
+  int i;
+  jsize sz;
+  if (!input) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null array");
+    return 0;
+  }
+  sz = (*jenv)->GetArrayLength(jenv, input);
+  *jarr = (*jenv)->GetIntArrayElements(jenv, input, 0);
+  if (!*jarr)
+    return 0;
+  *carr = (int*) *jarr;
+  return 1;
+}
+
+static void SWIG_JavaArrayArgoutInt (JNIEnv *jenv, jint *jarr, int *carr, jintArray input) {
+  (*jenv)->ReleaseIntArrayElements(jenv, input, jarr, 0);
+}
+
+static jintArray SWIG_JavaArrayOutInt (JNIEnv *jenv, int *result, jsize sz) {
+  jint *arr;
+  int i;
+  jintArray jresult = (*jenv)->NewIntArray(jenv, sz);
+  if (!jresult)
+    return NULL;
+  (*jenv)->SetIntArrayRegion(jenv, jresult, 0, sz, (jint *) result);
+  return jresult;
+}
+
+
+/* unsigned int[] support */
+static int SWIG_JavaArrayInUint (JNIEnv *jenv, jint **jarr, unsigned int **carr, jintArray input) {
+  int i;
+  jsize sz;
+  if (!input) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null array");
+    return 0;
+  }
+  sz = (*jenv)->GetArrayLength(jenv, input);
+  *jarr = (*jenv)->GetIntArrayElements(jenv, input, 0);
+  if (!*jarr)
+    return 0;
+  *carr = (unsigned int*) *jarr;
+  return 1;
+}
+
+static void SWIG_JavaArrayArgoutUint (JNIEnv *jenv, jint *jarr, unsigned int *carr, jintArray input) {
+  (*jenv)->ReleaseIntArrayElements(jenv, input, jarr, 0);
+}
+
+static jintArray SWIG_JavaArrayOutUint (JNIEnv *jenv, unsigned int *result, jsize sz) {
+  jint *arr;
+  int i;
+  jintArray jresult = (*jenv)->NewIntArray(jenv, sz);
+  if (!jresult)
+    return NULL;
+  (*jenv)->SetIntArrayRegion(jenv, jresult, 0, sz, (jint *) result);
+  return jresult;
+}
+
+
+/* long[] support */
+static int SWIG_JavaArrayInLong (JNIEnv *jenv, jint **jarr, long **carr, jintArray input) {
+  int i;
+  jsize sz;
+  if (!input) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null array");
+    return 0;
+  }
+  sz = (*jenv)->GetArrayLength(jenv, input);
+  *jarr = (*jenv)->GetIntArrayElements(jenv, input, 0);
+  if (!*jarr)
+    return 0;
+  *carr = (long*) *jarr;
+  return 1;
+}
+
+static void SWIG_JavaArrayArgoutLong (JNIEnv *jenv, jint *jarr, long *carr, jintArray input) {
+  (*jenv)->ReleaseIntArrayElements(jenv, input, jarr, 0);
+}
+
+static jintArray SWIG_JavaArrayOutLong (JNIEnv *jenv, long *result, jsize sz) {
+  jint *arr;
+  int i;
+  jintArray jresult = (*jenv)->NewIntArray(jenv, sz);
+  if (!jresult)
+    return NULL;
+  (*jenv)->SetIntArrayRegion(jenv, jresult, 0, sz, (jint *) result);
+  return jresult;
+}
+
+
+/* unsigned long[] support */
+static int SWIG_JavaArrayInUlong (JNIEnv *jenv, jint **jarr, unsigned long **carr, jintArray input) {
+  int i;
+  jsize sz;
+  if (!input) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null array");
+    return 0;
+  }
+  sz = (*jenv)->GetArrayLength(jenv, input);
+  *jarr = (*jenv)->GetIntArrayElements(jenv, input, 0);
+  if (!*jarr)
+    return 0;
+  *carr = (unsigned long*) *jarr;
+  return 1;
+}
+
+static void SWIG_JavaArrayArgoutUlong (JNIEnv *jenv, jint *jarr, unsigned long *carr, jintArray input) {
+  (*jenv)->ReleaseIntArrayElements(jenv, input, jarr, 0);
+}
+
+static jintArray SWIG_JavaArrayOutUlong (JNIEnv *jenv, unsigned long *result, jsize sz) {
+  jint *arr;
+  int i;
+  jintArray jresult = (*jenv)->NewIntArray(jenv, sz);
+  if (!jresult)
+    return NULL;
+  (*jenv)->SetIntArrayRegion(jenv, jresult, 0, sz, (jint *) result);
+  return jresult;
+}
+
+
+/* jlong[] support */
+static int SWIG_JavaArrayInLonglong (JNIEnv *jenv, jlong **jarr, jlong **carr, jlongArray input) {
+  int i;
+  jsize sz;
+  if (!input) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null array");
+    return 0;
+  }
+  sz = (*jenv)->GetArrayLength(jenv, input);
+  *jarr = (*jenv)->GetLongArrayElements(jenv, input, 0);
+  if (!*jarr)
+    return 0;
+  *carr = (jlong*) *jarr;
+  return 1;
+}
+
+static void SWIG_JavaArrayArgoutLonglong (JNIEnv *jenv, jlong *jarr, jlong *carr, jlongArray input) {
+  (*jenv)->ReleaseLongArrayElements(jenv, input, jarr, 0);
+}
+
+static jlongArray SWIG_JavaArrayOutLonglong (JNIEnv *jenv, jlong *result, jsize sz) {
+  jlong *arr;
+  int i;
+  jlongArray jresult = (*jenv)->NewLongArray(jenv, sz);
+  if (!jresult)
+    return NULL;
+  (*jenv)->SetLongArrayRegion(jenv, jresult, 0, sz, (jlong *) result);
+  return jresult;
+}
+
+
+/* float[] support */
+static int SWIG_JavaArrayInFloat (JNIEnv *jenv, jfloat **jarr, float **carr, jfloatArray input) {
+  int i;
+  jsize sz;
+  if (!input) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null array");
+    return 0;
+  }
+  sz = (*jenv)->GetArrayLength(jenv, input);
+  *jarr = (*jenv)->GetFloatArrayElements(jenv, input, 0);
+  if (!*jarr)
+    return 0;
+  *carr = (float*) *jarr;
+  return 1;
+}
+
+static void SWIG_JavaArrayArgoutFloat (JNIEnv *jenv, jfloat *jarr, float *carr, jfloatArray input) {
+  (*jenv)->ReleaseFloatArrayElements(jenv, input, jarr, 0);
+}
+
+static jfloatArray SWIG_JavaArrayOutFloat (JNIEnv *jenv, float *result, jsize sz) {
+  jfloat *arr;
+  int i;
+  jfloatArray jresult = (*jenv)->NewFloatArray(jenv, sz);
+  if (!jresult)
+    return NULL;
+  (*jenv)->SetFloatArrayRegion(jenv, jresult, 0, sz, (jfloat *) result);
+  return jresult;
+}
+
+
+/* double[] support */
+static int SWIG_JavaArrayInDouble (JNIEnv *jenv, jdouble **jarr, double **carr, jdoubleArray input) {
+  int i;
+  jsize sz;
+  if (!input) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null array");
+    return 0;
+  }
+  sz = (*jenv)->GetArrayLength(jenv, input);
+  *jarr = (*jenv)->GetDoubleArrayElements(jenv, input, 0);
+  if (!*jarr)
+    return 0;
+  *carr = (double*) *jarr;
+  return 1;
+}
+
+static void SWIG_JavaArrayArgoutDouble (JNIEnv *jenv, jdouble *jarr, double *carr, jdoubleArray input) {
+  (*jenv)->ReleaseDoubleArrayElements(jenv, input, jarr, 0);
+}
+
+static jdoubleArray SWIG_JavaArrayOutDouble (JNIEnv *jenv, double *result, jsize sz) {
+  jdouble *arr;
+  int i;
+  jdoubleArray jresult = (*jenv)->NewDoubleArray(jenv, sz);
+  if (!jresult)
+    return NULL;
+  (*jenv)->SetDoubleArrayRegion(jenv, jresult, 0, sz, (jdouble *) result);
+  return jresult;
+}
+
+
+#endif
+
+
     typedef struct StringArray {
       char * value;
     } StringArray;
@@ -1298,28 +1703,21 @@ SWIGEXPORT void JNICALL Java_org_robovm_libimobiledevice_binding_LibIMobileDevic
 }
 
 
-SWIGEXPORT void JNICALL Java_org_robovm_libimobiledevice_binding_LibIMobileDeviceJNI_plist_1from_1bin(JNIEnv *jenv, jclass jcls, jbyteArray jarg1, jlong jarg3, jobject jarg3_) {
+SWIGEXPORT void JNICALL Java_org_robovm_libimobiledevice_binding_LibIMobileDeviceJNI_plist_1from_1bin(JNIEnv *jenv, jclass jcls, jbyteArray jarg1, jint jarg2, jlong jarg3, jobject jarg3_) {
   char *arg1 = (char *) 0 ;
   uint32_t arg2 ;
   plist_t *arg3 = (plist_t *) 0 ;
+  jbyte *jarr1 ;
   
   (void)jenv;
   (void)jcls;
   (void)jarg3_;
-  {
-    if (!jarg1) {
-      SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, NULL);
-      return ;
-    }
-    arg1 = (char*)(*jenv)->GetByteArrayElements(jenv, jarg1, NULL);
-    if (!arg1) return ;
-    arg2 = (*jenv)->GetArrayLength(jenv, jarg1);
-  }
+  if (!SWIG_JavaArrayInSchar(jenv, &jarr1, (signed char **)&arg1, jarg1)) return ; 
+  arg2 = (uint32_t)jarg2; 
   arg3 = *(plist_t **)&jarg3; 
   plist_from_bin((char const *)arg1,arg2,arg3);
-  {
-    (*jenv)->ReleaseByteArrayElements(jenv, jarg1, (jbyte *)arg1, 0);
-  }
+  SWIG_JavaArrayArgoutSchar(jenv, jarr1, (signed char *)arg1, jarg1); 
+  
 }
 
 
@@ -1393,13 +1791,14 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_libimobiledevice_binding_LibIMobileDevi
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_robovm_libimobiledevice_binding_LibIMobileDeviceJNI_upload_1image(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jbyteArray jarg4) {
+SWIGEXPORT jint JNICALL Java_org_robovm_libimobiledevice_binding_LibIMobileDeviceJNI_upload_1image(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jbyteArray jarg4, jlong jarg5) {
   jint jresult = 0 ;
   mobile_image_mounter_client_t arg1 = (mobile_image_mounter_client_t) 0 ;
   char *arg2 = (char *) 0 ;
   char *arg3 = (char *) 0 ;
   char *arg4 = (char *) 0 ;
   size_t arg5 ;
+  jbyte *jarr4 ;
   mobile_image_mounter_error_t result;
   
   (void)jenv;
@@ -1416,22 +1815,14 @@ SWIGEXPORT jint JNICALL Java_org_robovm_libimobiledevice_binding_LibIMobileDevic
     arg3 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg3, 0);
     if (!arg3) return 0;
   }
-  {
-    if (!jarg4) {
-      SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, NULL);
-      return 0;
-    }
-    arg4 = (char*)(*jenv)->GetByteArrayElements(jenv, jarg4, NULL);
-    if (!arg4) return 0;
-    arg5 = (*jenv)->GetArrayLength(jenv, jarg4);
-  }
+  if (!SWIG_JavaArrayInSchar(jenv, &jarr4, (signed char **)&arg4, jarg4)) return 0; 
+  arg5 = (size_t)jarg5; 
   result = (mobile_image_mounter_error_t)upload_image(arg1,(char const *)arg2,(char const *)arg3,(char const *)arg4,arg5);
   jresult = (jint)result; 
+  SWIG_JavaArrayArgoutSchar(jenv, jarr4, (signed char *)arg4, jarg4); 
   if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
   if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
-  {
-    (*jenv)->ReleaseByteArrayElements(jenv, jarg4, (jbyte *)arg4, 0);
-  }
+  
   return jresult;
 }
 
@@ -1697,12 +2088,13 @@ SWIGEXPORT jint JNICALL Java_org_robovm_libimobiledevice_binding_LibIMobileDevic
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_robovm_libimobiledevice_binding_LibIMobileDeviceJNI_idevice_1connection_1send(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jbyteArray jarg2, jlong jarg4, jobject jarg4_) {
+SWIGEXPORT jint JNICALL Java_org_robovm_libimobiledevice_binding_LibIMobileDeviceJNI_idevice_1connection_1send(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jbyteArray jarg2, jint jarg3, jlong jarg4, jobject jarg4_) {
   jint jresult = 0 ;
   idevice_connection_t arg1 = (idevice_connection_t) 0 ;
   char *arg2 = (char *) 0 ;
   uint32_t arg3 ;
   uint32_t *arg4 = (uint32_t *) 0 ;
+  jbyte *jarr2 ;
   idevice_error_t result;
   
   (void)jenv;
@@ -1710,32 +2102,25 @@ SWIGEXPORT jint JNICALL Java_org_robovm_libimobiledevice_binding_LibIMobileDevic
   (void)jarg1_;
   (void)jarg4_;
   arg1 = *(idevice_connection_t *)&jarg1; 
-  {
-    if (!jarg2) {
-      SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, NULL);
-      return 0;
-    }
-    arg2 = (char*)(*jenv)->GetByteArrayElements(jenv, jarg2, NULL);
-    if (!arg2) return 0;
-    arg3 = (*jenv)->GetArrayLength(jenv, jarg2);
-  }
+  if (!SWIG_JavaArrayInSchar(jenv, &jarr2, (signed char **)&arg2, jarg2)) return 0; 
+  arg3 = (uint32_t)jarg3; 
   arg4 = *(uint32_t **)&jarg4; 
   result = (idevice_error_t)idevice_connection_send(arg1,(char const *)arg2,arg3,arg4);
   jresult = (jint)result; 
-  {
-    (*jenv)->ReleaseByteArrayElements(jenv, jarg2, (jbyte *)arg2, 0);
-  }
+  SWIG_JavaArrayArgoutSchar(jenv, jarr2, (signed char *)arg2, jarg2); 
+  
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_robovm_libimobiledevice_binding_LibIMobileDeviceJNI_idevice_1connection_1receive_1timeout(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jbyteArray jarg2, jlong jarg4, jobject jarg4_, jint jarg5) {
+SWIGEXPORT jint JNICALL Java_org_robovm_libimobiledevice_binding_LibIMobileDeviceJNI_idevice_1connection_1receive_1timeout(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jbyteArray jarg2, jint jarg3, jlong jarg4, jobject jarg4_, jint jarg5) {
   jint jresult = 0 ;
   idevice_connection_t arg1 = (idevice_connection_t) 0 ;
   char *arg2 = (char *) 0 ;
   uint32_t arg3 ;
   uint32_t *arg4 = (uint32_t *) 0 ;
   unsigned int arg5 ;
+  jbyte *jarr2 ;
   idevice_error_t result;
   
   (void)jenv;
@@ -1743,32 +2128,25 @@ SWIGEXPORT jint JNICALL Java_org_robovm_libimobiledevice_binding_LibIMobileDevic
   (void)jarg1_;
   (void)jarg4_;
   arg1 = *(idevice_connection_t *)&jarg1; 
-  {
-    if (!jarg2) {
-      SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, NULL);
-      return 0;
-    }
-    arg2 = (char*)(*jenv)->GetByteArrayElements(jenv, jarg2, NULL);
-    if (!arg2) return 0;
-    arg3 = (*jenv)->GetArrayLength(jenv, jarg2);
-  }
+  if (!SWIG_JavaArrayInSchar(jenv, &jarr2, (signed char **)&arg2, jarg2)) return 0; 
+  arg3 = (uint32_t)jarg3; 
   arg4 = *(uint32_t **)&jarg4; 
   arg5 = (unsigned int)jarg5; 
   result = (idevice_error_t)idevice_connection_receive_timeout(arg1,arg2,arg3,arg4,arg5);
   jresult = (jint)result; 
-  {
-    (*jenv)->ReleaseByteArrayElements(jenv, jarg2, (jbyte *)arg2, 0);
-  }
+  SWIG_JavaArrayArgoutSchar(jenv, jarr2, (signed char *)arg2, jarg2); 
+  
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_robovm_libimobiledevice_binding_LibIMobileDeviceJNI_idevice_1connection_1receive(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jbyteArray jarg2, jlong jarg4, jobject jarg4_) {
+SWIGEXPORT jint JNICALL Java_org_robovm_libimobiledevice_binding_LibIMobileDeviceJNI_idevice_1connection_1receive(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jbyteArray jarg2, jint jarg3, jlong jarg4, jobject jarg4_) {
   jint jresult = 0 ;
   idevice_connection_t arg1 = (idevice_connection_t) 0 ;
   char *arg2 = (char *) 0 ;
   uint32_t arg3 ;
   uint32_t *arg4 = (uint32_t *) 0 ;
+  jbyte *jarr2 ;
   idevice_error_t result;
   
   (void)jenv;
@@ -1776,21 +2154,13 @@ SWIGEXPORT jint JNICALL Java_org_robovm_libimobiledevice_binding_LibIMobileDevic
   (void)jarg1_;
   (void)jarg4_;
   arg1 = *(idevice_connection_t *)&jarg1; 
-  {
-    if (!jarg2) {
-      SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, NULL);
-      return 0;
-    }
-    arg2 = (char*)(*jenv)->GetByteArrayElements(jenv, jarg2, NULL);
-    if (!arg2) return 0;
-    arg3 = (*jenv)->GetArrayLength(jenv, jarg2);
-  }
+  if (!SWIG_JavaArrayInSchar(jenv, &jarr2, (signed char **)&arg2, jarg2)) return 0; 
+  arg3 = (uint32_t)jarg3; 
   arg4 = *(uint32_t **)&jarg4; 
   result = (idevice_error_t)idevice_connection_receive(arg1,arg2,arg3,arg4);
   jresult = (jint)result; 
-  {
-    (*jenv)->ReleaseByteArrayElements(jenv, jarg2, (jbyte *)arg2, 0);
-  }
+  SWIG_JavaArrayArgoutSchar(jenv, jarr2, (signed char *)arg2, jarg2); 
+  
   return jresult;
 }
 
@@ -2975,13 +3345,14 @@ SWIGEXPORT jint JNICALL Java_org_robovm_libimobiledevice_binding_LibIMobileDevic
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_robovm_libimobiledevice_binding_LibIMobileDeviceJNI_afc_1file_1read(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jbyteArray jarg3, jlong jarg5, jobject jarg5_) {
+SWIGEXPORT jint JNICALL Java_org_robovm_libimobiledevice_binding_LibIMobileDeviceJNI_afc_1file_1read(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jbyteArray jarg3, jint jarg4, jlong jarg5, jobject jarg5_) {
   jint jresult = 0 ;
   afc_client_t arg1 = (afc_client_t) 0 ;
   uint64_t arg2 ;
   char *arg3 = (char *) 0 ;
   uint32_t arg4 ;
   uint32_t *arg5 = (uint32_t *) 0 ;
+  jbyte *jarr3 ;
   afc_error_t result;
   
   (void)jenv;
@@ -2990,32 +3361,25 @@ SWIGEXPORT jint JNICALL Java_org_robovm_libimobiledevice_binding_LibIMobileDevic
   (void)jarg5_;
   arg1 = *(afc_client_t *)&jarg1; 
   arg2 = jarg2; 
-  {
-    if (!jarg3) {
-      SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, NULL);
-      return 0;
-    }
-    arg3 = (char*)(*jenv)->GetByteArrayElements(jenv, jarg3, NULL);
-    if (!arg3) return 0;
-    arg4 = (*jenv)->GetArrayLength(jenv, jarg3);
-  }
+  if (!SWIG_JavaArrayInSchar(jenv, &jarr3, (signed char **)&arg3, jarg3)) return 0; 
+  arg4 = (uint32_t)jarg4; 
   arg5 = *(uint32_t **)&jarg5; 
   result = (afc_error_t)afc_file_read(arg1,arg2,arg3,arg4,arg5);
   jresult = (jint)result; 
-  {
-    (*jenv)->ReleaseByteArrayElements(jenv, jarg3, (jbyte *)arg3, 0);
-  }
+  SWIG_JavaArrayArgoutSchar(jenv, jarr3, (signed char *)arg3, jarg3); 
+  
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_robovm_libimobiledevice_binding_LibIMobileDeviceJNI_afc_1file_1write(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jbyteArray jarg3, jlong jarg5, jobject jarg5_) {
+SWIGEXPORT jint JNICALL Java_org_robovm_libimobiledevice_binding_LibIMobileDeviceJNI_afc_1file_1write(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jbyteArray jarg3, jint jarg4, jlong jarg5, jobject jarg5_) {
   jint jresult = 0 ;
   afc_client_t arg1 = (afc_client_t) 0 ;
   uint64_t arg2 ;
   char *arg3 = (char *) 0 ;
   uint32_t arg4 ;
   uint32_t *arg5 = (uint32_t *) 0 ;
+  jbyte *jarr3 ;
   afc_error_t result;
   
   (void)jenv;
@@ -3024,21 +3388,13 @@ SWIGEXPORT jint JNICALL Java_org_robovm_libimobiledevice_binding_LibIMobileDevic
   (void)jarg5_;
   arg1 = *(afc_client_t *)&jarg1; 
   arg2 = jarg2; 
-  {
-    if (!jarg3) {
-      SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, NULL);
-      return 0;
-    }
-    arg3 = (char*)(*jenv)->GetByteArrayElements(jenv, jarg3, NULL);
-    if (!arg3) return 0;
-    arg4 = (*jenv)->GetArrayLength(jenv, jarg3);
-  }
+  if (!SWIG_JavaArrayInSchar(jenv, &jarr3, (signed char **)&arg3, jarg3)) return 0; 
+  arg4 = (uint32_t)jarg4; 
   arg5 = *(uint32_t **)&jarg5; 
   result = (afc_error_t)afc_file_write(arg1,arg2,(char const *)arg3,arg4,arg5);
   jresult = (jint)result; 
-  {
-    (*jenv)->ReleaseByteArrayElements(jenv, jarg3, (jbyte *)arg3, 0);
-  }
+  SWIG_JavaArrayArgoutSchar(jenv, jarr3, (signed char *)arg3, jarg3); 
+  
   return jresult;
 }
 
@@ -4011,7 +4367,7 @@ SWIGEXPORT jint JNICALL Java_org_robovm_libimobiledevice_binding_LibIMobileDevic
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_robovm_libimobiledevice_binding_LibIMobileDeviceJNI_mobile_1image_1mounter_1mount_1image(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jbyteArray jarg3, jstring jarg5, jlong jarg6, jobject jarg6_) {
+SWIGEXPORT jint JNICALL Java_org_robovm_libimobiledevice_binding_LibIMobileDeviceJNI_mobile_1image_1mounter_1mount_1image(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jbyteArray jarg3, jshort jarg4, jstring jarg5, jlong jarg6, jobject jarg6_) {
   jint jresult = 0 ;
   mobile_image_mounter_client_t arg1 = (mobile_image_mounter_client_t) 0 ;
   char *arg2 = (char *) 0 ;
@@ -4019,6 +4375,7 @@ SWIGEXPORT jint JNICALL Java_org_robovm_libimobiledevice_binding_LibIMobileDevic
   uint16_t arg4 ;
   char *arg5 = (char *) 0 ;
   plist_t *arg6 = (plist_t *) 0 ;
+  jbyte *jarr3 ;
   mobile_image_mounter_error_t result;
   
   (void)jenv;
@@ -4031,15 +4388,8 @@ SWIGEXPORT jint JNICALL Java_org_robovm_libimobiledevice_binding_LibIMobileDevic
     arg2 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg2, 0);
     if (!arg2) return 0;
   }
-  {
-    if (!jarg3) {
-      SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, NULL);
-      return 0;
-    }
-    arg3 = (char*)(*jenv)->GetByteArrayElements(jenv, jarg3, NULL);
-    if (!arg3) return 0;
-    arg4 = (*jenv)->GetArrayLength(jenv, jarg3);
-  }
+  if (!SWIG_JavaArrayInSchar(jenv, &jarr3, (signed char **)&arg3, jarg3)) return 0; 
+  arg4 = (uint16_t)jarg4; 
   arg5 = 0;
   if (jarg5) {
     arg5 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg5, 0);
@@ -4048,10 +4398,9 @@ SWIGEXPORT jint JNICALL Java_org_robovm_libimobiledevice_binding_LibIMobileDevic
   arg6 = *(plist_t **)&jarg6; 
   result = (mobile_image_mounter_error_t)mobile_image_mounter_mount_image(arg1,(char const *)arg2,(char const *)arg3,arg4,(char const *)arg5,arg6);
   jresult = (jint)result; 
+  SWIG_JavaArrayArgoutSchar(jenv, jarr3, (signed char *)arg3, jarg3); 
   if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
-  {
-    (*jenv)->ReleaseByteArrayElements(jenv, jarg3, (jbyte *)arg3, 0);
-  }
+  
   if (arg5) (*jenv)->ReleaseStringUTFChars(jenv, jarg5, (const char *)arg5);
   return jresult;
 }
@@ -4133,12 +4482,13 @@ SWIGEXPORT jint JNICALL Java_org_robovm_libimobiledevice_binding_LibIMobileDevic
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_robovm_libimobiledevice_binding_LibIMobileDeviceJNI_debugserver_1client_1send(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jbyteArray jarg2, jlong jarg4, jobject jarg4_) {
+SWIGEXPORT jint JNICALL Java_org_robovm_libimobiledevice_binding_LibIMobileDeviceJNI_debugserver_1client_1send(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jbyteArray jarg2, jint jarg3, jlong jarg4, jobject jarg4_) {
   jint jresult = 0 ;
   debugserver_client_t arg1 = (debugserver_client_t) 0 ;
   char *arg2 = (char *) 0 ;
   uint32_t arg3 ;
   uint32_t *arg4 = (uint32_t *) 0 ;
+  jbyte *jarr2 ;
   debugserver_error_t result;
   
   (void)jenv;
@@ -4146,32 +4496,25 @@ SWIGEXPORT jint JNICALL Java_org_robovm_libimobiledevice_binding_LibIMobileDevic
   (void)jarg1_;
   (void)jarg4_;
   arg1 = *(debugserver_client_t *)&jarg1; 
-  {
-    if (!jarg2) {
-      SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, NULL);
-      return 0;
-    }
-    arg2 = (char*)(*jenv)->GetByteArrayElements(jenv, jarg2, NULL);
-    if (!arg2) return 0;
-    arg3 = (*jenv)->GetArrayLength(jenv, jarg2);
-  }
+  if (!SWIG_JavaArrayInSchar(jenv, &jarr2, (signed char **)&arg2, jarg2)) return 0; 
+  arg3 = (uint32_t)jarg3; 
   arg4 = *(uint32_t **)&jarg4; 
   result = (debugserver_error_t)debugserver_client_send(arg1,(char const *)arg2,arg3,arg4);
   jresult = (jint)result; 
-  {
-    (*jenv)->ReleaseByteArrayElements(jenv, jarg2, (jbyte *)arg2, 0);
-  }
+  SWIG_JavaArrayArgoutSchar(jenv, jarr2, (signed char *)arg2, jarg2); 
+  
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_robovm_libimobiledevice_binding_LibIMobileDeviceJNI_debugserver_1client_1receive_1with_1timeout(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jbyteArray jarg2, jlong jarg4, jobject jarg4_, jint jarg5) {
+SWIGEXPORT jint JNICALL Java_org_robovm_libimobiledevice_binding_LibIMobileDeviceJNI_debugserver_1client_1receive_1with_1timeout(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jbyteArray jarg2, jint jarg3, jlong jarg4, jobject jarg4_, jint jarg5) {
   jint jresult = 0 ;
   debugserver_client_t arg1 = (debugserver_client_t) 0 ;
   char *arg2 = (char *) 0 ;
   uint32_t arg3 ;
   uint32_t *arg4 = (uint32_t *) 0 ;
   unsigned int arg5 ;
+  jbyte *jarr2 ;
   debugserver_error_t result;
   
   (void)jenv;
@@ -4179,32 +4522,25 @@ SWIGEXPORT jint JNICALL Java_org_robovm_libimobiledevice_binding_LibIMobileDevic
   (void)jarg1_;
   (void)jarg4_;
   arg1 = *(debugserver_client_t *)&jarg1; 
-  {
-    if (!jarg2) {
-      SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, NULL);
-      return 0;
-    }
-    arg2 = (char*)(*jenv)->GetByteArrayElements(jenv, jarg2, NULL);
-    if (!arg2) return 0;
-    arg3 = (*jenv)->GetArrayLength(jenv, jarg2);
-  }
+  if (!SWIG_JavaArrayInSchar(jenv, &jarr2, (signed char **)&arg2, jarg2)) return 0; 
+  arg3 = (uint32_t)jarg3; 
   arg4 = *(uint32_t **)&jarg4; 
   arg5 = (unsigned int)jarg5; 
   result = (debugserver_error_t)debugserver_client_receive_with_timeout(arg1,arg2,arg3,arg4,arg5);
   jresult = (jint)result; 
-  {
-    (*jenv)->ReleaseByteArrayElements(jenv, jarg2, (jbyte *)arg2, 0);
-  }
+  SWIG_JavaArrayArgoutSchar(jenv, jarr2, (signed char *)arg2, jarg2); 
+  
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_robovm_libimobiledevice_binding_LibIMobileDeviceJNI_debugserver_1client_1receive(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jbyteArray jarg2, jlong jarg4, jobject jarg4_) {
+SWIGEXPORT jint JNICALL Java_org_robovm_libimobiledevice_binding_LibIMobileDeviceJNI_debugserver_1client_1receive(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jbyteArray jarg2, jint jarg3, jlong jarg4, jobject jarg4_) {
   jint jresult = 0 ;
   debugserver_client_t arg1 = (debugserver_client_t) 0 ;
   char *arg2 = (char *) 0 ;
   uint32_t arg3 ;
   uint32_t *arg4 = (uint32_t *) 0 ;
+  jbyte *jarr2 ;
   debugserver_error_t result;
   
   (void)jenv;
@@ -4212,21 +4548,13 @@ SWIGEXPORT jint JNICALL Java_org_robovm_libimobiledevice_binding_LibIMobileDevic
   (void)jarg1_;
   (void)jarg4_;
   arg1 = *(debugserver_client_t *)&jarg1; 
-  {
-    if (!jarg2) {
-      SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, NULL);
-      return 0;
-    }
-    arg2 = (char*)(*jenv)->GetByteArrayElements(jenv, jarg2, NULL);
-    if (!arg2) return 0;
-    arg3 = (*jenv)->GetArrayLength(jenv, jarg2);
-  }
+  if (!SWIG_JavaArrayInSchar(jenv, &jarr2, (signed char **)&arg2, jarg2)) return 0; 
+  arg3 = (uint32_t)jarg3; 
   arg4 = *(uint32_t **)&jarg4; 
   result = (debugserver_error_t)debugserver_client_receive(arg1,arg2,arg3,arg4);
   jresult = (jint)result; 
-  {
-    (*jenv)->ReleaseByteArrayElements(jenv, jarg2, (jbyte *)arg2, 0);
-  }
+  SWIG_JavaArrayArgoutSchar(jenv, jarr2, (signed char *)arg2, jarg2); 
+  
   return jresult;
 }
 
