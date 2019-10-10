@@ -197,7 +197,16 @@ public class IDevice implements AutoCloseable {
             throw new LibIMobileDeviceException(result.swigValue(), result.name());
         }
     }
-    
+
+    /**
+     * overloaded version to allow known error, for example TIMEOUT
+     */
+    static void checkResult(IDeviceError result, IDeviceError allowed) {
+        if (result != IDeviceError.IDEVICE_E_SUCCESS && result != allowed) {
+            throw new LibIMobileDeviceException(result.swigValue(), result.name());
+        }
+    }
+
     /**
      * Listener which gets called when devices are added and removed.
      */
