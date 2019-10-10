@@ -63,9 +63,6 @@ public class LibIMobileDeviceJNI {
   public final static native long DebugServerClientRefOut_value_get(long jarg1, DebugServerClientRefOut jarg1_);
   public final static native long new_DebugServerClientRefOut();
   public final static native void delete_DebugServerClientRefOut(long jarg1);
-  public final static native long DebugServerCommandRefOut_value_get(long jarg1, DebugServerCommandRefOut jarg1_);
-  public final static native long new_DebugServerCommandRefOut();
-  public final static native void delete_DebugServerCommandRefOut(long jarg1);
   public final static native long plist_new_dict();
   public final static native void plist_free(long jarg1, PlistRef jarg1_);
   public final static native void plist_to_bin(long jarg1, PlistRef jarg1_, long jarg2, ByteArrayOut jarg2_, long jarg3, IntOut jarg3_);
@@ -207,13 +204,7 @@ public class LibIMobileDeviceJNI {
   public final static native int debugserver_client_send(long jarg1, DebugServerClientRef jarg1_, byte[] jarg2, long jarg4, IntOut jarg4_);
   public final static native int debugserver_client_receive_with_timeout(long jarg1, DebugServerClientRef jarg1_, byte[] jarg2, long jarg4, IntOut jarg4_, int jarg5);
   public final static native int debugserver_client_receive(long jarg1, DebugServerClientRef jarg1_, byte[] jarg2, long jarg4, IntOut jarg4_);
-  public final static native int debugserver_client_send_command(long jarg1, DebugServerClientRef jarg1_, long jarg2, DebugServerCommandRef jarg2_, long jarg3, StringOut jarg3_);
   public final static native int debugserver_client_receive_response(long jarg1, DebugServerClientRef jarg1_, long jarg2, StringOut jarg2_);
-  public final static native int debugserver_client_set_ack_mode(long jarg1, DebugServerClientRef jarg1_, int jarg2);
-  public final static native int debugserver_client_set_argv(long jarg1, DebugServerClientRef jarg1_, String[] jarg2, long jarg4, StringOut jarg4_);
-  public final static native int debugserver_client_set_environment_hex_encoded(long jarg1, DebugServerClientRef jarg1_, String jarg2, long jarg3, StringOut jarg3_);
-  public final static native int debugserver_command_new(String jarg1, String[] jarg2, long jarg4, DebugServerCommandRefOut jarg4_);
-  public final static native int debugserver_command_free(long jarg1, DebugServerCommandRef jarg1_);
 
   private static native void initNative();
   static {

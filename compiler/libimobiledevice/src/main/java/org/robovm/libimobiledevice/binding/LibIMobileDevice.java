@@ -471,32 +471,8 @@ public class LibIMobileDevice implements LibIMobileDeviceConstants {
     return DebugServerError.swigToEnum(LibIMobileDeviceJNI.debugserver_client_receive(DebugServerClientRef.getCPtr(client), client, data, IntOut.getCPtr(received), received));
   }
 
-  public static DebugServerError debugserver_client_send_command(DebugServerClientRef client, DebugServerCommandRef command, StringOut response) {
-    return DebugServerError.swigToEnum(LibIMobileDeviceJNI.debugserver_client_send_command(DebugServerClientRef.getCPtr(client), client, DebugServerCommandRef.getCPtr(command), command, StringOut.getCPtr(response), response));
-  }
-
   public static DebugServerError debugserver_client_receive_response(DebugServerClientRef client, StringOut response) {
     return DebugServerError.swigToEnum(LibIMobileDeviceJNI.debugserver_client_receive_response(DebugServerClientRef.getCPtr(client), client, StringOut.getCPtr(response), response));
-  }
-
-  public static DebugServerError debugserver_client_set_ack_mode(DebugServerClientRef client, int enabled) {
-    return DebugServerError.swigToEnum(LibIMobileDeviceJNI.debugserver_client_set_ack_mode(DebugServerClientRef.getCPtr(client), client, enabled));
-  }
-
-  public static DebugServerError debugserver_client_set_argv(DebugServerClientRef client, String[] argc, StringOut response) {
-    return DebugServerError.swigToEnum(LibIMobileDeviceJNI.debugserver_client_set_argv(DebugServerClientRef.getCPtr(client), client, argc, StringOut.getCPtr(response), response));
-  }
-
-  public static DebugServerError debugserver_client_set_environment_hex_encoded(DebugServerClientRef client, String env, StringOut response) {
-    return DebugServerError.swigToEnum(LibIMobileDeviceJNI.debugserver_client_set_environment_hex_encoded(DebugServerClientRef.getCPtr(client), client, env, StringOut.getCPtr(response), response));
-  }
-
-  public static DebugServerError debugserver_command_new(String name, String[] argc, DebugServerCommandRefOut command) {
-    return DebugServerError.swigToEnum(LibIMobileDeviceJNI.debugserver_command_new(name, argc, DebugServerCommandRefOut.getCPtr(command), command));
-  }
-
-  public static DebugServerError debugserver_command_free(DebugServerCommandRef command) {
-    return DebugServerError.swigToEnum(LibIMobileDeviceJNI.debugserver_command_free(DebugServerCommandRef.getCPtr(command), command));
   }
 
 

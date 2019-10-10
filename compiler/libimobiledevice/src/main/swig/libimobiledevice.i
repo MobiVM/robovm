@@ -37,7 +37,6 @@ REF_CLASS(instproxy_client_t, InstproxyClientRef)
 REF_CLASS(mobile_image_mounter_client_t, MobileImageMounterClientRef)
 // -- debug server
 REF_CLASS(debugserver_client_t, DebugServerClientRef)
-REF_CLASS(debugserver_command_t, DebugServerCommandRef)
 
 
 
@@ -66,7 +65,6 @@ OUT_CLASS(instproxy_client_t, InstproxyClientRefOut)
 OUT_CLASS(mobile_image_mounter_client_t, MobileImageMounterClientRefOut)
 // -- debug server
 OUT_CLASS(debugserver_client_t, DebugServerClientRefOut)
-OUT_CLASS(debugserver_command_t, DebugServerCommandRefOut)
 
 // turn pointer + length just to byte-array (check common.i)
 %apply (int ARGC, char **ARGV) {(int argc, char* argv[])};
@@ -118,7 +116,6 @@ OUT_ARG(InstproxyClientRefOut, instproxy_client_t *client)
 OUT_ARG(MobileImageMounterClientRefOut, mobile_image_mounter_client_t *client)
 // -- debug server
 OUT_ARG(DebugServerClientRefOut, debugserver_client_t *client)
-OUT_ARG(DebugServerCommandRefOut, debugserver_command_t *command)
 
 %apply jboolean {uint8_t ssl_enabled};
 %apply jboolean {uint8_t sslBypass};
@@ -147,6 +144,15 @@ OUT_ARG(DebugServerCommandRefOut, debugserver_command_t *command)
 // debugserver -- hex encoding is done in java
 %ignore debugserver_encode_string;
 %ignore debugserver_decode_string;
+// debugserver -- ignoring commands as all this happening in java
+%ignore debugserver_command_t;
+%ignore debugserver_client_send_command;
+%ignore debugserver_client_set_environment_hex_encoded;
+%ignore debugserver_command_new;
+%ignore debugserver_command_free;
+%ignore debugserver_client_set_argv;
+%ignore debugserver_client_send_command;
+%ignore debugserver_client_set_ack_mode;
 
 // Map just enough of the plist.h functions to be able to convert to/from Java plists.
 extern plist_t plist_new_dict(void);

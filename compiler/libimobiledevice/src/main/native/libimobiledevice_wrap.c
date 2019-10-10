@@ -414,18 +414,6 @@ SWIGINTERN void delete_DebugServerClientRefOut(struct DebugServerClientRefOut *s
       free(self);
     }
 
-    typedef struct DebugServerCommandRefOut {
-      debugserver_command_t value;
-    } DebugServerCommandRefOut;
-  
-SWIGINTERN struct DebugServerCommandRefOut *new_DebugServerCommandRefOut(void){
-      return (DebugServerCommandRefOut *) calloc(1,sizeof(debugserver_command_t));
-    }
-SWIGINTERN void delete_DebugServerCommandRefOut(struct DebugServerCommandRefOut *self){
-      ;
-      free(self);
-    }
-
 static JavaVM *vm = NULL;
 static jclass class_Callbacks = NULL;
 static jmethodID meth_callInstproxyCallback = NULL;
@@ -1228,43 +1216,6 @@ SWIGEXPORT void JNICALL Java_org_robovm_libimobiledevice_binding_LibIMobileDevic
   (void)jcls;
   arg1 = *(struct DebugServerClientRefOut **)&jarg1; 
   delete_DebugServerClientRefOut(arg1);
-}
-
-
-SWIGEXPORT jlong JNICALL Java_org_robovm_libimobiledevice_binding_LibIMobileDeviceJNI_DebugServerCommandRefOut_1value_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jlong jresult = 0 ;
-  struct DebugServerCommandRefOut *arg1 = (struct DebugServerCommandRefOut *) 0 ;
-  debugserver_command_t result;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(struct DebugServerCommandRefOut **)&jarg1; 
-  result = (debugserver_command_t) ((arg1)->value);
-  *(debugserver_command_t *)&jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT jlong JNICALL Java_org_robovm_libimobiledevice_binding_LibIMobileDeviceJNI_new_1DebugServerCommandRefOut(JNIEnv *jenv, jclass jcls) {
-  jlong jresult = 0 ;
-  struct DebugServerCommandRefOut *result = 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  result = (struct DebugServerCommandRefOut *)new_DebugServerCommandRefOut();
-  *(struct DebugServerCommandRefOut **)&jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void JNICALL Java_org_robovm_libimobiledevice_binding_LibIMobileDeviceJNI_delete_1DebugServerCommandRefOut(JNIEnv *jenv, jclass jcls, jlong jarg1) {
-  struct DebugServerCommandRefOut *arg1 = (struct DebugServerCommandRefOut *) 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  arg1 = *(struct DebugServerCommandRefOut **)&jarg1; 
-  delete_DebugServerCommandRefOut(arg1);
 }
 
 
@@ -4280,27 +4231,6 @@ SWIGEXPORT jint JNICALL Java_org_robovm_libimobiledevice_binding_LibIMobileDevic
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_robovm_libimobiledevice_binding_LibIMobileDeviceJNI_debugserver_1client_1send_1command(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_, jlong jarg3, jobject jarg3_) {
-  jint jresult = 0 ;
-  debugserver_client_t arg1 = (debugserver_client_t) 0 ;
-  debugserver_command_t arg2 = (debugserver_command_t) 0 ;
-  char **arg3 = (char **) 0 ;
-  debugserver_error_t result;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  (void)jarg2_;
-  (void)jarg3_;
-  arg1 = *(debugserver_client_t *)&jarg1; 
-  arg2 = *(debugserver_command_t *)&jarg2; 
-  arg3 = *(char ***)&jarg3; 
-  result = (debugserver_error_t)debugserver_client_send_command(arg1,arg2,arg3);
-  jresult = (jint)result; 
-  return jresult;
-}
-
-
 SWIGEXPORT jint JNICALL Java_org_robovm_libimobiledevice_binding_LibIMobileDeviceJNI_debugserver_1client_1receive_1response(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
   jint jresult = 0 ;
   debugserver_client_t arg1 = (debugserver_client_t) 0 ;
@@ -4314,149 +4244,6 @@ SWIGEXPORT jint JNICALL Java_org_robovm_libimobiledevice_binding_LibIMobileDevic
   arg1 = *(debugserver_client_t *)&jarg1; 
   arg2 = *(char ***)&jarg2; 
   result = (debugserver_error_t)debugserver_client_receive_response(arg1,arg2);
-  jresult = (jint)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT jint JNICALL Java_org_robovm_libimobiledevice_binding_LibIMobileDeviceJNI_debugserver_1client_1set_1ack_1mode(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
-  jint jresult = 0 ;
-  debugserver_client_t arg1 = (debugserver_client_t) 0 ;
-  int arg2 ;
-  debugserver_error_t result;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(debugserver_client_t *)&jarg1; 
-  arg2 = (int)jarg2; 
-  result = (debugserver_error_t)debugserver_client_set_ack_mode(arg1,arg2);
-  jresult = (jint)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT jint JNICALL Java_org_robovm_libimobiledevice_binding_LibIMobileDeviceJNI_debugserver_1client_1set_1argv(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jobjectArray jarg2, jlong jarg4, jobject jarg4_) {
-  jint jresult = 0 ;
-  debugserver_client_t arg1 = (debugserver_client_t) 0 ;
-  int arg2 ;
-  char **arg3 ;
-  char **arg4 = (char **) 0 ;
-  debugserver_error_t result;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  (void)jarg4_;
-  arg1 = *(debugserver_client_t *)&jarg1; 
-  {
-    int i = 0;
-    arg2 = (*jenv)->GetArrayLength(jenv, jarg2);
-    arg3 = (char **) malloc((arg2+1)*sizeof(char *));
-    /* make a copy of each string */
-    for (i = 0; i<arg2; i++) {
-      jstring j_string = (jstring)(*jenv)->GetObjectArrayElement(jenv, jarg2, i);
-      const char * c_string = (*jenv)->GetStringUTFChars(jenv, j_string, 0);
-      arg3[i] = malloc((strlen(c_string)+1)*sizeof(char));
-      strcpy(arg3[i], c_string);
-      (*jenv)->ReleaseStringUTFChars(jenv, j_string, c_string);
-      (*jenv)->DeleteLocalRef(jenv, j_string);
-    }
-    arg3[i] = 0;
-  }
-  arg4 = *(char ***)&jarg4; 
-  result = (debugserver_error_t)debugserver_client_set_argv(arg1,arg2,arg3,arg4);
-  jresult = (jint)result; 
-  {
-    int i;
-    for (i=0; i<arg2-1; i++)
-    free(arg3[i]);
-    free(arg3);
-  }
-  return jresult;
-}
-
-
-SWIGEXPORT jint JNICALL Java_org_robovm_libimobiledevice_binding_LibIMobileDeviceJNI_debugserver_1client_1set_1environment_1hex_1encoded(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jlong jarg3, jobject jarg3_) {
-  jint jresult = 0 ;
-  debugserver_client_t arg1 = (debugserver_client_t) 0 ;
-  char *arg2 = (char *) 0 ;
-  char **arg3 = (char **) 0 ;
-  debugserver_error_t result;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  (void)jarg3_;
-  arg1 = *(debugserver_client_t *)&jarg1; 
-  arg2 = 0;
-  if (jarg2) {
-    arg2 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg2, 0);
-    if (!arg2) return 0;
-  }
-  arg3 = *(char ***)&jarg3; 
-  result = (debugserver_error_t)debugserver_client_set_environment_hex_encoded(arg1,(char const *)arg2,arg3);
-  jresult = (jint)result; 
-  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
-  return jresult;
-}
-
-
-SWIGEXPORT jint JNICALL Java_org_robovm_libimobiledevice_binding_LibIMobileDeviceJNI_debugserver_1command_1new(JNIEnv *jenv, jclass jcls, jstring jarg1, jobjectArray jarg2, jlong jarg4, jobject jarg4_) {
-  jint jresult = 0 ;
-  char *arg1 = (char *) 0 ;
-  int arg2 ;
-  char **arg3 ;
-  debugserver_command_t *arg4 = (debugserver_command_t *) 0 ;
-  debugserver_error_t result;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg4_;
-  arg1 = 0;
-  if (jarg1) {
-    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
-    if (!arg1) return 0;
-  }
-  {
-    int i = 0;
-    arg2 = (*jenv)->GetArrayLength(jenv, jarg2);
-    arg3 = (char **) malloc((arg2+1)*sizeof(char *));
-    /* make a copy of each string */
-    for (i = 0; i<arg2; i++) {
-      jstring j_string = (jstring)(*jenv)->GetObjectArrayElement(jenv, jarg2, i);
-      const char * c_string = (*jenv)->GetStringUTFChars(jenv, j_string, 0);
-      arg3[i] = malloc((strlen(c_string)+1)*sizeof(char));
-      strcpy(arg3[i], c_string);
-      (*jenv)->ReleaseStringUTFChars(jenv, j_string, c_string);
-      (*jenv)->DeleteLocalRef(jenv, j_string);
-    }
-    arg3[i] = 0;
-  }
-  arg4 = *(debugserver_command_t **)&jarg4; 
-  result = (debugserver_error_t)debugserver_command_new((char const *)arg1,arg2,arg3,arg4);
-  jresult = (jint)result; 
-  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
-  {
-    int i;
-    for (i=0; i<arg2-1; i++)
-    free(arg3[i]);
-    free(arg3);
-  }
-  return jresult;
-}
-
-
-SWIGEXPORT jint JNICALL Java_org_robovm_libimobiledevice_binding_LibIMobileDeviceJNI_debugserver_1command_1free(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jint jresult = 0 ;
-  debugserver_command_t arg1 = (debugserver_command_t) 0 ;
-  debugserver_error_t result;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(debugserver_command_t *)&jarg1; 
-  result = (debugserver_error_t)debugserver_command_free(arg1);
   jresult = (jint)result; 
   return jresult;
 }
