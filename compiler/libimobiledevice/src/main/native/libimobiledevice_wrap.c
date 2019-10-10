@@ -4182,7 +4182,7 @@ SWIGEXPORT jint JNICALL Java_org_robovm_libimobiledevice_binding_LibIMobileDevic
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_robovm_libimobiledevice_binding_LibIMobileDeviceJNI_debugserver_1client_1send(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jint jarg3, jlong jarg4, jobject jarg4_) {
+SWIGEXPORT jint JNICALL Java_org_robovm_libimobiledevice_binding_LibIMobileDeviceJNI_debugserver_1client_1send(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jbyteArray jarg2, jlong jarg4, jobject jarg4_) {
   jint jresult = 0 ;
   debugserver_client_t arg1 = (debugserver_client_t) 0 ;
   char *arg2 = (char *) 0 ;
@@ -4195,21 +4195,26 @@ SWIGEXPORT jint JNICALL Java_org_robovm_libimobiledevice_binding_LibIMobileDevic
   (void)jarg1_;
   (void)jarg4_;
   arg1 = *(debugserver_client_t *)&jarg1; 
-  arg2 = 0;
-  if (jarg2) {
-    arg2 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg2, 0);
+  {
+    if (!jarg2) {
+      SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, NULL);
+      return 0;
+    }
+    arg2 = (char*)(*jenv)->GetByteArrayElements(jenv, jarg2, NULL);
     if (!arg2) return 0;
+    arg3 = (*jenv)->GetArrayLength(jenv, jarg2);
   }
-  arg3 = (uint32_t)jarg3; 
   arg4 = *(uint32_t **)&jarg4; 
   result = (debugserver_error_t)debugserver_client_send(arg1,(char const *)arg2,arg3,arg4);
   jresult = (jint)result; 
-  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
+  {
+    (*jenv)->ReleaseByteArrayElements(jenv, jarg2, (jbyte *)arg2, 0);
+  }
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_robovm_libimobiledevice_binding_LibIMobileDeviceJNI_debugserver_1client_1receive_1with_1timeout(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jint jarg3, jlong jarg4, jobject jarg4_, jint jarg5) {
+SWIGEXPORT jint JNICALL Java_org_robovm_libimobiledevice_binding_LibIMobileDeviceJNI_debugserver_1client_1receive_1with_1timeout(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jbyteArray jarg2, jlong jarg4, jobject jarg4_, jint jarg5) {
   jint jresult = 0 ;
   debugserver_client_t arg1 = (debugserver_client_t) 0 ;
   char *arg2 = (char *) 0 ;
@@ -4223,22 +4228,27 @@ SWIGEXPORT jint JNICALL Java_org_robovm_libimobiledevice_binding_LibIMobileDevic
   (void)jarg1_;
   (void)jarg4_;
   arg1 = *(debugserver_client_t *)&jarg1; 
-  arg2 = 0;
-  if (jarg2) {
-    arg2 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg2, 0);
+  {
+    if (!jarg2) {
+      SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, NULL);
+      return 0;
+    }
+    arg2 = (char*)(*jenv)->GetByteArrayElements(jenv, jarg2, NULL);
     if (!arg2) return 0;
+    arg3 = (*jenv)->GetArrayLength(jenv, jarg2);
   }
-  arg3 = (uint32_t)jarg3; 
   arg4 = *(uint32_t **)&jarg4; 
   arg5 = (unsigned int)jarg5; 
   result = (debugserver_error_t)debugserver_client_receive_with_timeout(arg1,arg2,arg3,arg4,arg5);
   jresult = (jint)result; 
-  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
+  {
+    (*jenv)->ReleaseByteArrayElements(jenv, jarg2, (jbyte *)arg2, 0);
+  }
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_robovm_libimobiledevice_binding_LibIMobileDeviceJNI_debugserver_1client_1receive(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jint jarg3, jlong jarg4, jobject jarg4_) {
+SWIGEXPORT jint JNICALL Java_org_robovm_libimobiledevice_binding_LibIMobileDeviceJNI_debugserver_1client_1receive(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jbyteArray jarg2, jlong jarg4, jobject jarg4_) {
   jint jresult = 0 ;
   debugserver_client_t arg1 = (debugserver_client_t) 0 ;
   char *arg2 = (char *) 0 ;
@@ -4251,16 +4261,21 @@ SWIGEXPORT jint JNICALL Java_org_robovm_libimobiledevice_binding_LibIMobileDevic
   (void)jarg1_;
   (void)jarg4_;
   arg1 = *(debugserver_client_t *)&jarg1; 
-  arg2 = 0;
-  if (jarg2) {
-    arg2 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg2, 0);
+  {
+    if (!jarg2) {
+      SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, NULL);
+      return 0;
+    }
+    arg2 = (char*)(*jenv)->GetByteArrayElements(jenv, jarg2, NULL);
     if (!arg2) return 0;
+    arg3 = (*jenv)->GetArrayLength(jenv, jarg2);
   }
-  arg3 = (uint32_t)jarg3; 
   arg4 = *(uint32_t **)&jarg4; 
   result = (debugserver_error_t)debugserver_client_receive(arg1,arg2,arg3,arg4);
   jresult = (jint)result; 
-  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
+  {
+    (*jenv)->ReleaseByteArrayElements(jenv, jarg2, (jbyte *)arg2, 0);
+  }
   return jresult;
 }
 

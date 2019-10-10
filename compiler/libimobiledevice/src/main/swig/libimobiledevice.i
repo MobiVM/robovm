@@ -77,6 +77,8 @@ OUT_CLASS(debugserver_command_t, DebugServerCommandRefOut)
 %apply (char *ARRAY, size_t ARRAYSIZE) {(char *data, uint32_t length)};
 %apply (char *ARRAY, size_t ARRAYSIZE) {(const char *signature, uint16_t signature_size)};
 %apply (char *ARRAY, size_t ARRAYSIZE) {(const char *sig, size_t sig_size)};
+%apply (char *ARRAY, size_t ARRAYSIZE) {(char* data, uint32_t size)};
+%apply (char *ARRAY, size_t ARRAYSIZE) {(const char* data, uint32_t size)};
 
 //
 // Map pointer to container classes to receive value by pointer
