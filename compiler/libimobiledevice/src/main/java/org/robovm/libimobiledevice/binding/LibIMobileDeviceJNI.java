@@ -204,9 +204,9 @@ public class LibIMobileDeviceJNI {
   public final static native int debugserver_client_new(long jarg1, IDeviceRef jarg1_, long jarg2, LockdowndServiceDescriptorStruct jarg2_, long jarg3, DebugServerClientRefOut jarg3_);
   public final static native int debugserver_client_start_service(long jarg1, IDeviceRef jarg1_, long jarg2, DebugServerClientRefOut jarg2_, String jarg3);
   public final static native int debugserver_client_free(long jarg1, DebugServerClientRef jarg1_);
-  public final static native int debugserver_client_send(long jarg1, DebugServerClientRef jarg1_, String jarg2, int jarg3, long jarg4, IntOut jarg4_);
-  public final static native int debugserver_client_receive_with_timeout(long jarg1, DebugServerClientRef jarg1_, String jarg2, int jarg3, long jarg4, IntOut jarg4_, int jarg5);
-  public final static native int debugserver_client_receive(long jarg1, DebugServerClientRef jarg1_, String jarg2, int jarg3, long jarg4, IntOut jarg4_);
+  public final static native int debugserver_client_send(long jarg1, DebugServerClientRef jarg1_, byte[] jarg2, long jarg4, IntOut jarg4_);
+  public final static native int debugserver_client_receive_with_timeout(long jarg1, DebugServerClientRef jarg1_, byte[] jarg2, long jarg4, IntOut jarg4_, int jarg5);
+  public final static native int debugserver_client_receive(long jarg1, DebugServerClientRef jarg1_, byte[] jarg2, long jarg4, IntOut jarg4_);
   public final static native int debugserver_client_send_command(long jarg1, DebugServerClientRef jarg1_, long jarg2, DebugServerCommandRef jarg2_, long jarg3, StringOut jarg3_);
   public final static native int debugserver_client_receive_response(long jarg1, DebugServerClientRef jarg1_, long jarg2, StringOut jarg2_);
   public final static native int debugserver_client_set_ack_mode(long jarg1, DebugServerClientRef jarg1_, int jarg2);

@@ -14,6 +14,7 @@ public enum DebugServerError {
   DEBUGSERVER_E_MUX_ERROR(-2),
   DEBUGSERVER_E_SSL_ERROR(-3),
   DEBUGSERVER_E_RESPONSE_ERROR(-4),
+  DEBUGSERVER_E_TIMEOUT(-5),
   DEBUGSERVER_E_UNKNOWN_ERROR(-256);
 
   public final int swigValue() {

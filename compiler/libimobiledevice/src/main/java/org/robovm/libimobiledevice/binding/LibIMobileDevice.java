@@ -459,16 +459,16 @@ public class LibIMobileDevice implements LibIMobileDeviceConstants {
     return DebugServerError.swigToEnum(LibIMobileDeviceJNI.debugserver_client_free(DebugServerClientRef.getCPtr(client), client));
   }
 
-  public static DebugServerError debugserver_client_send(DebugServerClientRef client, String data, int size, IntOut sent) {
-    return DebugServerError.swigToEnum(LibIMobileDeviceJNI.debugserver_client_send(DebugServerClientRef.getCPtr(client), client, data, size, IntOut.getCPtr(sent), sent));
+  public static DebugServerError debugserver_client_send(DebugServerClientRef client, byte[] data, IntOut sent) {
+    return DebugServerError.swigToEnum(LibIMobileDeviceJNI.debugserver_client_send(DebugServerClientRef.getCPtr(client), client, data, IntOut.getCPtr(sent), sent));
   }
 
-  public static DebugServerError debugserver_client_receive_with_timeout(DebugServerClientRef client, String data, int size, IntOut received, int timeout) {
-    return DebugServerError.swigToEnum(LibIMobileDeviceJNI.debugserver_client_receive_with_timeout(DebugServerClientRef.getCPtr(client), client, data, size, IntOut.getCPtr(received), received, timeout));
+  public static DebugServerError debugserver_client_receive_with_timeout(DebugServerClientRef client, byte[] data, IntOut received, int timeout) {
+    return DebugServerError.swigToEnum(LibIMobileDeviceJNI.debugserver_client_receive_with_timeout(DebugServerClientRef.getCPtr(client), client, data, IntOut.getCPtr(received), received, timeout));
   }
 
-  public static DebugServerError debugserver_client_receive(DebugServerClientRef client, String data, int size, IntOut received) {
-    return DebugServerError.swigToEnum(LibIMobileDeviceJNI.debugserver_client_receive(DebugServerClientRef.getCPtr(client), client, data, size, IntOut.getCPtr(received), received));
+  public static DebugServerError debugserver_client_receive(DebugServerClientRef client, byte[] data, IntOut received) {
+    return DebugServerError.swigToEnum(LibIMobileDeviceJNI.debugserver_client_receive(DebugServerClientRef.getCPtr(client), client, data, IntOut.getCPtr(received), received));
   }
 
   public static DebugServerError debugserver_client_send_command(DebugServerClientRef client, DebugServerCommandRef command, StringOut response) {
