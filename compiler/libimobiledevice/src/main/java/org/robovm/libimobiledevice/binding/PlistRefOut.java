@@ -36,7 +36,8 @@ public class PlistRefOut {
   }
 
   public PlistRef getValue() {
-    return new PlistRef(LibIMobileDeviceJNI.PlistRefOut_value_get(swigCPtr, this), true);
+    long cPtr = LibIMobileDeviceJNI.PlistRefOut_value_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new PlistRef(cPtr, false);
   }
 
   public PlistRefOut() {

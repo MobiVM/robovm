@@ -41,8 +41,8 @@ typedef enum {
 	IDEVICE_E_UNKNOWN_ERROR   = -2,
 	IDEVICE_E_NO_DEVICE       = -3,
 	IDEVICE_E_NOT_ENOUGH_DATA = -4,
-	IDEVICE_E_BAD_HEADER      = -5,
-	IDEVICE_E_SSL_ERROR       = -6
+	IDEVICE_E_SSL_ERROR       = -6,
+	IDEVICE_E_TIMEOUT         = -7
 } idevice_error_t;
 
 typedef struct idevice_private idevice_private;
@@ -55,11 +55,12 @@ typedef idevice_connection_private *idevice_connection_t; /**< The connection ha
 /** The event type for device add or removal */
 enum idevice_event_type {
 	IDEVICE_DEVICE_ADD = 1,
-	IDEVICE_DEVICE_REMOVE
+	IDEVICE_DEVICE_REMOVE,
+	IDEVICE_DEVICE_PAIRED
 };
 
 /* event data structure */
-/** Provides information about the occured event. */
+/** Provides information about the occurred event. */
 typedef struct {
 	enum idevice_event_type event; /**< The event type. */
 	const char *udid; /**< The device unique id. */
@@ -87,7 +88,7 @@ void idevice_set_debug_level(int level);
  * @param user_data Application-specific data passed as parameter
  *   to the registered callback function.
  *
- * @return IDEVICE_E_SUCCESS on success or an error value when an error occured.
+ * @return IDEVICE_E_SUCCESS on success or an error value when an error occurred.
  */
 idevice_error_t idevice_event_subscribe(idevice_event_cb_t callback, void *user_data);
 
@@ -95,7 +96,7 @@ idevice_error_t idevice_event_subscribe(idevice_event_cb_t callback, void *user_
  * Release the event callback function that has been registered with
  *  idevice_event_subscribe().
  *
- * @return IDEVICE_E_SUCCESS on success or an error value when an error occured.
+ * @return IDEVICE_E_SUCCESS on success or an error value when an error occurred.
  */
 idevice_error_t idevice_event_unsubscribe(void);
 
@@ -108,7 +109,7 @@ idevice_error_t idevice_event_unsubscribe(void);
  *   This list is terminated by a NULL pointer.
  * @param count Number of devices found.
  *
- * @return IDEVICE_E_SUCCESS on success or an error value when an error occured.
+ * @return IDEVICE_E_SUCCESS on success or an error value when an error occurred.
  */
 idevice_error_t idevice_get_device_list(char ***devices, int *count);
 
@@ -240,6 +241,20 @@ idevice_error_t idevice_connection_enable_ssl(idevice_connection_t connection);
 idevice_error_t idevice_connection_disable_ssl(idevice_connection_t connection);
 
 /**
+ * Disable bypass SSL for the given connection without sending out terminate messages.
+ *
+ * @param connection The connection to disable SSL for.
+ * @param sslBypass  if true ssl connection will not be terminated but just cleaned up, allowing
+ *                   plain text data going on underlying connection
+ *
+ * @return IDEVICE_E_SUCCESS on success, IDEVICE_E_INVALID_ARG when connection
+ *     is NULL. This function also returns IDEVICE_E_SUCCESS when SSL is not
+ *     enabled and does no further error checking on cleanup.
+ */
+idevice_error_t idevice_connection_disable_bypass_ssl(idevice_connection_t connection, uint8_t sslBypass);
+
+
+/**
  * Get the underlying file descriptor for a connection
  *
  * @param connection The connection to get fd of
@@ -252,7 +267,7 @@ idevice_error_t idevice_connection_get_fd(idevice_connection_t connection, int *
 /* misc */
 
 /**
- * Gets the handle of the device. Depends on the connection type.
+ * Gets the handle or (usbmux device id) of the device.
  */
 idevice_error_t idevice_get_handle(idevice_t device, uint32_t *handle);
 

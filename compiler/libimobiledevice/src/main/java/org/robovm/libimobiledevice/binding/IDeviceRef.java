@@ -22,5 +22,22 @@ public class IDeviceRef {
   protected static long getCPtr(IDeviceRef obj) {
     return (obj == null) ? 0 : obj.swigCPtr;
   }
-}
 
+  public int hashCode() {
+    return 31 + (int) (swigCPtr ^ (swigCPtr >>> 32));
+  }
+
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
+    IDeviceRef other = (IDeviceRef) obj;
+    return swigCPtr == other.swigCPtr;
+  }
+}

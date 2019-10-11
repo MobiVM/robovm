@@ -37,4 +37,11 @@ public class LockdowndServiceDescriptor {
     public boolean isSslEnabled() {
         return sslEnabled;
     }
+
+    public LockdowndServiceDescriptorStruct toDescriptorStruct() {
+        LockdowndServiceDescriptorStruct res = new LockdowndServiceDescriptorStruct();
+        res.setPort((short) port);
+        res.setSslEnabled(sslEnabled);
+        return res;
+    }
 }
