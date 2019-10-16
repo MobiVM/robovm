@@ -212,20 +212,18 @@ public class ObjCBlockPluginTest {
                 BOOLEAN);
     }
 
-    @Test(expected = CompilerException.class)
+    @Test
     public void testResolveTargetMethodSignatureGenericWithUnresolvedIndirectTypeVariable() throws Exception {
-        SootMethod target = toSootClass(F.class).getMethodByName("run");
-        SootMethod m = toSootClass(Runners.class).getMethodByName("runner7");
-        SootMethodType mType = new SootMethodType(m);
-        ObjCBlockPlugin.resolveTargetMethodSignature(m, target, mType.getGenericParameterTypes()[0]);
+        testResolveTargetMethodSignature("runner7",
+                classNameToType("java.lang.Object"), classNameToType("java.lang.Integer"),
+                classNameToType("java.lang.Integer"), BOOLEAN);
     }
 
-    @Test(expected = CompilerException.class)
+    @Test
     public void testResolveTargetMethodSignatureGenericWithUnresolvedDirectTypeVariable() throws Exception {
-        SootMethod target = toSootClass(F.class).getMethodByName("run");
-        SootMethod m = toSootClass(Runners.class).getMethodByName("runner8");
-        SootMethodType mType = new SootMethodType(m);
-        ObjCBlockPlugin.resolveTargetMethodSignature(m, target, mType.getGenericParameterTypes()[0]);
+        testResolveTargetMethodSignature("runner8",
+                classNameToType("java.lang.Object"), classNameToType("java.lang.Integer"),
+                classNameToType("java.lang.Number"), BOOLEAN);
     }
 
     @Test

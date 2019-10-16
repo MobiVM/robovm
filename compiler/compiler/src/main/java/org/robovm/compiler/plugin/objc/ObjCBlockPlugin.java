@@ -876,29 +876,38 @@ public class ObjCBlockPlugin extends AbstractCompilerPlugin {
             offspring = (SootClassType) ((ParameterizedType) blockParamType).getRawType();
             actualArgs = ((ParameterizedType) blockParamType).getActualTypeArguments();
         }
-        
+
         Type[] resolvedArgs = resolveActualTypeArgs(offspring, base, actualArgs);
-        
+
+        // build map of generic parameter name to resolved argument values, resolve all type parameters to
+        // flat values
+        Map<String, Type> flatResolvedArgs = new HashMap<>();
+        for (int i = 0; i < typeParameters.length; i++) {
+            TypeVariable<?> t = typeParameters[i];
+            Type argValue = resolvedArgs[i];
+            flatResolvedArgs.put(t.getName(), resolveMethodType(blockMethod, -2, argValue, null));
+        }
+
         Type[] result = new Type[targetMethod.getParameterCount() + 1];
         SootMethodType targetMethodType = new SootMethodType(targetMethod);
-        result[0] = resolveMethodType(blockMethod, -1, targetMethodType.getGenericReturnType(), 
-                resolvedArgs, typeParameters);
+        result[0] = resolveMethodType(blockMethod, -1, targetMethodType.getGenericReturnType(),
+                flatResolvedArgs);
         Type[] genericParameterTypes = targetMethodType.getGenericParameterTypes();
         for (int i = 1; i < result.length; i++) {
-            result[i] = resolveMethodType(blockMethod, i - 1,
-                    genericParameterTypes[i - 1],
-                    resolvedArgs, typeParameters);
+            result[i] = resolveMethodType(blockMethod, i - 1, genericParameterTypes[i - 1], flatResolvedArgs);
         }
         
         return result;
     }
     
     /**
-     * 
+     * Resolves type of parameter
+     * @param blockMethod invoke method of block, which parameters being converted, used for exception only
+     * @param paramIndex index of method's parameter. used for exception message only
+     * @param t method parameter type to resolve (might be normal type or TypeVariable)
+     * @param resolvedArgs map of resolved generic arguments to be used to resolve method's TypeVariables
      */
-    private static Type resolveMethodType(SootMethod blockMethod, int paramIndex,
-            Type t, Type[] resolvedArgs, 
-            TypeVariable<?>[] typeParameters) {
+    private static Type resolveMethodType(SootMethod blockMethod, int paramIndex, Type t, Map<String, Type> resolvedArgs) {
         
         if (t instanceof SootClassType) {
             return t;
@@ -907,48 +916,42 @@ public class ObjCBlockPlugin extends AbstractCompilerPlugin {
             return t;
         }
         if (t instanceof TypeVariable) {
-            int idx = indexOf(((TypeVariable<?>) t).getName(), typeParameters);
-            if (idx != -1) {
-                Type u = resolvedArgs[idx];
-                if (u instanceof TypeVariable) {
-                    if (((TypeVariable<?>) t).getName().equals(((TypeVariable<?>) u).getName())) {
-                        return resolveMethodType(blockMethod, paramIndex,
-                                ((TypeVariable<?>) t).getBounds()[0], 
-                                resolvedArgs, typeParameters);
-                    }
-                }
-                return resolveMethodType(blockMethod, paramIndex, resolvedArgs[idx], 
-                        resolvedArgs, typeParameters);
+            if (resolvedArgs == null) {
+                // there is no resolved arguments, resolving arguments itself -- resolve it bounds
+                return resolveMethodType(blockMethod, paramIndex, ((TypeVariable<?>) t).getBounds()[0], resolvedArgs);
+            } else {
+                // resolving method argument
+                Type u = resolvedArgs.get(((TypeVariable) t).getName());
+                if (u != null)
+                    return u;
             }
-            throw new CompilerException("Unresolved type variable " + t 
+            throw new CompilerException("Unresolved type variable " + t
                     + " in " 
-                    + (paramIndex == -1 ? "return type" : "parameter " + (paramIndex + 1)) 
+                    + (paramIndex == -1 ? "return type" : (paramIndex == -2 ? "argument" : "parameter " + (paramIndex + 1)))
                     + " of @Block method " + blockMethod);
         }
         if (t instanceof WildcardType) {
             Type[] upperBounds = ((WildcardType) t).getUpperBounds();
-            return resolveMethodType(blockMethod, paramIndex, upperBounds[0], 
-                    resolvedArgs, typeParameters);
+            return resolveMethodType(blockMethod, paramIndex, upperBounds[0], resolvedArgs);
         }
         if (t instanceof ParameterizedType) {
             ImplForType pType = (ImplForType) t;
             ListOfTypes types = new ListOfTypes(pType.getActualTypeArguments().length);
             for (Type arg : pType.getActualTypeArguments()) {
-                types.add(resolveMethodType(blockMethod, paramIndex, arg, resolvedArgs, typeParameters));
+                types.add(resolveMethodType(blockMethod, paramIndex, arg, resolvedArgs));
             }
-            return new ImplForType((ImplForType) pType.getOwnerType(), 
+            return new ImplForType((ImplForType) pType.getOwnerType(),
                     pType.getRawType().getSootClass().getName(), types);
         }
         if (t instanceof GenericArrayType) {
             Type componentType = resolveMethodType(blockMethod, paramIndex,
-                    ((GenericArrayType) t).getGenericComponentType(), 
-                    resolvedArgs, typeParameters);
+                    ((GenericArrayType) t).getGenericComponentType(), resolvedArgs);
             return new ImplForArray(componentType);
         }
         
         throw new CompilerException("Unresolved type " + t 
-                + " in " 
-                + (paramIndex == -1 ? "return type" : "parameter " + (paramIndex + 1)) 
+                + " in "
+                + (paramIndex == -1 ? "return type" : (paramIndex == -2 ? "argument" : "parameter " + (paramIndex + 1)))
                 + " of @Block method " + blockMethod);
     }
 
