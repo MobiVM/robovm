@@ -294,14 +294,21 @@ public class BridgeMethodCompiler extends BroMethodCompiler {
         
         if (!method.isStatic()) {
             MarshalerMethod marshalerMethod = config.getMarshalerLookup().findMarshalerMethod(new MarshalSite(method, MarshalSite.RECEIVER));
-            MarshaledArg marshaledArg = new MarshaledArg();
-            marshaledArg.paramIndex = MarshalSite.RECEIVER;
-            marshaledArgs.add(marshaledArg);
             Type nativeType = targetParameterTypes[0];
-            Value nativeValue = marshalObjectToNative(fn, marshalerMethod, marshaledArg, 
-                    useCWrapper ? I8_PTR : nativeType, env, args.get(0).getValue(),
-                    MarshalerFlags.CALL_TYPE_BRIDGE);
-            args.set(0, new Argument(nativeValue));
+            // in case of EnumValue native type will be primitive, handle it as primitive type with marshaller
+            if (nativeType instanceof PrimitiveType) {
+                Value nativeValue = marshalValueObjectToNative(fn, marshalerMethod, nativeType, env,
+                        args.get(0).getValue(), MarshalerFlags.CALL_TYPE_BRIDGE);
+                args.set(0, new Argument(nativeValue));
+            } else {
+                MarshaledArg marshaledArg = new MarshaledArg();
+                marshaledArg.paramIndex = MarshalSite.RECEIVER;
+                marshaledArgs.add(marshaledArg);
+                Value nativeValue = marshalObjectToNative(fn, marshalerMethod, marshaledArg,
+                        useCWrapper ? I8_PTR : nativeType, env, args.get(0).getValue(),
+                        MarshalerFlags.CALL_TYPE_BRIDGE);
+                args.set(0, new Argument(nativeValue));
+            }
         }
         
         for (int i = 0, argIdx = 0; i < method.getParameterCount(); i++) {
