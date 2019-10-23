@@ -16,7 +16,6 @@
     </properties>
 
     <artifactId>robovm-maven-parent</artifactId>
-    <version>2.3.8-SNAPSHOT</version>
     <name>RoboVM Maven</name>
     <packaging>pom</packaging>
 
