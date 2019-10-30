@@ -24,6 +24,7 @@
 #   include <mach/mach_init.h>
 #else
 #   include <semaphore.h>
+#   include <stdbool.h>
 #endif
 #include <errno.h>
 #include "private.h"
