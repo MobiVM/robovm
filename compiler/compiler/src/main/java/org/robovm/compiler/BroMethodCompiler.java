@@ -551,9 +551,15 @@ public abstract class BroMethodCompiler extends AbstractMethodCompiler {
                 // NativeObjects are always passed by reference.
                 paramTypes.add(idx, I8_PTR);
             } else {
-                throw new IllegalArgumentException("Receiver of non static " 
-                        + anno + " method " + method 
-                        + " must either be a Struct or a NativeObject");
+                // ValueEnum supported using marshaller
+                MarshalerMethod marshalerMethod = config.getMarshalerLookup().findMarshalerMethod(new MarshalSite(method, MarshalSite.RECEIVER));
+                if (marshalerMethod instanceof ValueMarshalerMethod) {
+                    paramTypes.add(idx, ((ValueMarshalerMethod) marshalerMethod).getNativeType(config.getArch()));
+                } else {
+                    throw new IllegalArgumentException("Receiver of non static "
+                            + anno + " method " + method
+                            + " must either be a Struct, ValueEnum or a NativeObject");
+                }
             }
         }
 
