@@ -593,8 +593,20 @@ public class AppLauncher {
             String.format("%s\\.%s \\(.*\\)", versionParts[0], versionParts[1]),
             // 7.0
             String.format("%s\\.%s", versionParts[0], versionParts[1]),
-            // 7.(*) -- forced anything after major to allow using older image with newer devices (e.g. 13.0 with 13.1 device)
-            String.format("%s\\.(.*\\)", versionParts[0])
+            //
+            // wildcard versions to allow newer devices to work with older sdk as long as major version matches
+            // 7.0.* (*)
+            String.format("%s\\.%s\\.\\d+ \\(.*\\)", versionParts[0], versionParts[1]),
+            // 7.0.*
+            String.format("%s\\.%s\\.\\d+", versionParts[0], versionParts[1]),
+            // 7.*.* (*)
+            String.format("%s\\.\\d+\\.\\d+ \\(.*\\)", versionParts[0]),
+            // 7.*.*
+            String.format("%s\\.\\d+\\.\\d+", versionParts[0]),
+            // 7.* (*)
+            String.format("%s\\.\\d+ \\(.*\\)", versionParts[0]),
+            // 7.*
+            String.format("%s\\.\\d+", versionParts[0])
         };
         
         File[] dirs = dsDir.listFiles();
