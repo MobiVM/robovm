@@ -430,7 +430,10 @@ public class AppCompiler {
         Set<Clazz> linkClasses = new HashSet<Clazz>();
         int compiledCount = 0;
         outer: while (!compileQueue.isEmpty() && !Thread.currentThread().isInterrupted()) {
-            while (!compileQueue.isEmpty() && !Thread.currentThread().isInterrupted()) {
+            while (!compileQueue.isEmpty() ) {
+                if (Thread.currentThread().isInterrupted()) {
+                    break outer;
+                }
                 Clazz clazz = compileQueue.pollFirst();
                 if (!linkClasses.contains(clazz)) {
                     if (compile(executor, listenerWrapper, clazz, compileQueue, linkClasses)) {
@@ -463,12 +466,18 @@ public class AppCompiler {
 
         // Shutdown the executor and wait for running tasks to complete.
         if (executor instanceof ExecutorService) {
+            // save interrupted status (also Thread.interrupted() clears it)
+            // as if it stays set executorService.awaitTermination will exit with
+            // InterruptedException and clear interrupted state
+            boolean wasInterrupted = Thread.interrupted();
             ExecutorService executorService = (ExecutorService) executor;
             executorService.shutdown();
             try {
                 executorService.awaitTermination(Long.MAX_VALUE, TimeUnit.DAYS);
-            } catch (InterruptedException e) {
+            } catch (InterruptedException ignored) {
             }
+            if (wasInterrupted)
+                Thread.currentThread().interrupt();
         }
 
         if (listenerWrapper.t != null) {
@@ -485,8 +494,10 @@ public class AppCompiler {
             throw new CompilerException(listenerWrapper.t);
         }
 
-        long duration = System.currentTimeMillis() - start;
-        config.getLogger().info("Compiled %d classes in %.2f seconds", compiledCount, duration / 1000.0);
+        if (!Thread.currentThread().isInterrupted()) {
+            long duration = System.currentTimeMillis() - start;
+            config.getLogger().info("Compiled %d classes in %.2f seconds", compiledCount, duration / 1000.0);
+        }
 
         return linkClasses;
     }

@@ -16,17 +16,16 @@
  */
 package org.robovm.idea.builder;
 
-import com.intellij.ide.actions.ImportModuleAction;
-import com.intellij.ide.util.newProjectWizard.AddModuleWizard;
 import com.intellij.ide.util.projectWizard.JavaModuleBuilder;
 import com.intellij.ide.util.projectWizard.ModuleWizardStep;
 import com.intellij.ide.util.projectWizard.WizardContext;
-import com.intellij.openapi.application.ApplicationManager;
+import com.intellij.openapi.externalSystem.importing.ImportSpecBuilder;
 import com.intellij.openapi.externalSystem.model.ExternalSystemDataKeys;
+import com.intellij.openapi.externalSystem.settings.AbstractExternalSystemSettings;
+import com.intellij.openapi.externalSystem.util.ExternalSystemApiUtil;
+import com.intellij.openapi.externalSystem.util.ExternalSystemUtil;
 import com.intellij.openapi.fileEditor.FileDocumentManager;
-import com.intellij.openapi.module.ModifiableModuleModel;
 import com.intellij.openapi.module.Module;
-import com.intellij.openapi.module.ModuleManager;
 import com.intellij.openapi.module.ModuleType;
 import com.intellij.openapi.module.StdModuleTypes;
 import com.intellij.openapi.options.ConfigurationException;
@@ -35,7 +34,6 @@ import com.intellij.openapi.projectRoots.JavaSdk;
 import com.intellij.openapi.projectRoots.Sdk;
 import com.intellij.openapi.roots.ContentEntry;
 import com.intellij.openapi.roots.LanguageLevelModuleExtension;
-import com.intellij.openapi.roots.LanguageLevelModuleExtensionImpl;
 import com.intellij.openapi.roots.ModifiableRootModel;
 import com.intellij.openapi.roots.ProjectRootManager;
 import com.intellij.openapi.roots.SourceFolder;
@@ -45,18 +43,18 @@ import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.pom.java.LanguageLevel;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.jetbrains.idea.maven.project.MavenProjectsManager;
-import org.jetbrains.plugins.gradle.service.project.wizard.GradleProjectImportBuilder;
-import org.jetbrains.plugins.gradle.service.project.wizard.GradleProjectImportProvider;
 import org.jetbrains.plugins.gradle.settings.DistributionType;
+import org.jetbrains.plugins.gradle.settings.GradleProjectSettings;
+import org.jetbrains.plugins.gradle.util.GradleConstants;
 import org.robovm.compiler.Version;
 import org.robovm.idea.RoboVmPlugin;
 import org.robovm.idea.sdk.RoboVmSdkType;
 import org.robovm.templater.Templater;
 
 import java.io.File;
-import java.io.FileWriter;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -92,12 +90,6 @@ public class RoboVmModuleBuilder extends JavaModuleBuilder {
         this.robovmDir = "";
     }
 
-    public RoboVmModuleBuilder(String templateName, String robovmDir) {
-        this.templateName = templateName;
-        this.templateCustomValues = null;
-        this.robovmDir = robovmDir;
-    }
-
     @Nullable
     @Override
     public String getBuilderId() {
@@ -110,10 +102,13 @@ public class RoboVmModuleBuilder extends JavaModuleBuilder {
     }
 
     @Override
-    public ModuleWizardStep[] createWizardSteps(WizardContext wizardContext, ModulesProvider modulesProvider) {
+    public ModuleWizardStep[] createWizardSteps(@NotNull WizardContext wizardContext, @NotNull ModulesProvider modulesProvider) {
         RoboVmModuleWizardStep wizardStep = new RoboVmModuleWizardStep(this, wizardContext, modulesProvider, this.templateCustomValues);
 
-        if (!robovmDir.isEmpty()) {
+        // Android Studio is not providing maven plugin anymore, and module management is also lame so it will not
+        // allow to manage modules without build system.
+        // Leaving only Gradle as only option for AS
+        if (RoboVmPlugin.isAndroidStudio()) {
             wizardStep.disableBuildSystem();
             buildSystem = BuildSystem.Gradle;
         }
@@ -122,23 +117,19 @@ public class RoboVmModuleBuilder extends JavaModuleBuilder {
     }
 
     @Override
-    public void setupRootModel(final ModifiableRootModel modifiableRootModel) throws ConfigurationException {
+    public void setupRootModel(@NotNull final ModifiableRootModel modifiableRootModel) throws ConfigurationException {
         // set the Java SDK
         myJdk = RoboVmPlugin.getSdk();
-        if (myJdk == null || !robovmDir.isEmpty()) {
-            myJdk = RoboVmSdkType.findBestJdk();
-        }
 
         // set a project jdk if none is set
         ProjectRootManager manager = ProjectRootManager.getInstance(modifiableRootModel.getProject());
         if (manager.getProjectSdk() == null) {
-            manager.setProjectSdk(RoboVmSdkType.findBestJdk());
+            manager.setProjectSdk(myJdk);
         }
 
         // before calling super setup SDK for projects with buildsystem == None
         if (buildSystem == BuildSystem.None) {
-            Sdk jdk = RoboVmSdkType.findBestJdk();
-            LanguageLevel langLevel = ((JavaSdk) jdk.getSdkType()).getVersion(jdk).getMaxLanguageLevel();
+            LanguageLevel langLevel = RoboVmSdkType.REQUIRED_JAVA_LANGUAGE_LEVEL;
             modifiableRootModel.getModuleExtension(LanguageLevelModuleExtension.class).setLanguageLevel(langLevel);
         }
 
@@ -151,7 +142,7 @@ public class RoboVmModuleBuilder extends JavaModuleBuilder {
 
         if (buildSystem != BuildSystem.None) {
             applyTemplate(project, module, contentRootFile);
-            applyBuildSystem(project, module, contentRootFile);
+            applyBuildSystem(project, module, modifiableRootModel, contentRootFile);
         } else {
             applyTemplate(project, module, contentRootFile);
 
@@ -192,19 +183,12 @@ public class RoboVmModuleBuilder extends JavaModuleBuilder {
                     FileUtils.write(buildFile, template);
                 } else {
                     String template = IOUtils.toString(RoboVmModuleBuilder.class.getResource("/template_build.gradle"),
-                            "UTF-8");
+                            StandardCharsets.UTF_8);
                     template = template.replaceAll(ROBOVM_VERSION_PLACEHOLDER, Version.getVersion());
                     FileUtils.write(buildFile, template);
                 }
-                // write android sdk location to local.properties
-                if (!robovmDir.isEmpty()) {
-                    final File localProps = new File(contentRoot +  "/local.properties");
-                    try (FileWriter writer = new FileWriter(localProps)) {
-                        writer.write("sdk.dir=" + RoboVmPlugin.getBestAndroidSdkDir().getAbsolutePath().replace('\\', '/'));
-                    }
-                }
             } else if (buildSystem == BuildSystem.Maven) {
-                String template = IOUtils.toString(RoboVmModuleBuilder.class.getResource("/template_pom.xml"), "UTF-8");
+                String template = IOUtils.toString(RoboVmModuleBuilder.class.getResource("/template_pom.xml"), StandardCharsets.UTF_8);
                 template = template.replaceAll(ROBOVM_VERSION_PLACEHOLDER, Version.getVersion());
                 template = template.replaceAll(PACKAGE_NAME_PLACEHOLDER, packageName);
                 template = template.replaceAll(APP_NAME_PLACEHOLDER, appName);
@@ -222,7 +206,7 @@ public class RoboVmModuleBuilder extends JavaModuleBuilder {
         RoboVmPlugin.logInfo(project, "Project created in %s", contentRoot);
     }
 
-    private void applyBuildSystem(final Project project, final Module module, VirtualFile contentRootFile ) {
+    private void applyBuildSystem(final Project project, final Module module, ModifiableRootModel rootModel, VirtualFile contentRootFile ) {
         String contentRoot = contentRootFile.getPath();
 
         if (buildSystem == BuildSystem.Gradle) {
@@ -234,55 +218,20 @@ public class RoboVmModuleBuilder extends JavaModuleBuilder {
             });
             if (files != null && files.length != 0) {
                 project.putUserData(ExternalSystemDataKeys.NEWLY_CREATED_PROJECT, Boolean.TRUE);
-                // to workaround "AWT events are not allowed inside write action"
-                ApplicationManager.getApplication().invokeLater(() -> {
+                GradleProjectSettings gradleSettings = new GradleProjectSettings();
+                gradleSettings.setDistributionType(DistributionType.WRAPPED);
+                gradleSettings.setExternalProjectPath(contentRoot);
+                gradleSettings.setResolveModulePerSourceSet(false);
 
-                    // dkimitsa: there is a mess between ProjectDataManagers.
-                    // IDEA uses new com.intellij.openapi.externalSystem.service.project.ProjectDataManager;
-                    // but Android studio outdated: com.intellij.openapi.externalSystem.service.project.manage.ProjectDataManager;
-                    // so try first using recent one if failed -- try outdated
-                    GradleProjectImportBuilder gradleProjectImportBuilder;
-                    try {
-                        // recent from Idea2017
-                        com.intellij.openapi.externalSystem.service.project.ProjectDataManager projectDataManager;
-                        projectDataManager = com.intellij.openapi.externalSystem.service.project.ProjectDataManager.getInstance();
-                        gradleProjectImportBuilder = new GradleProjectImportBuilder(projectDataManager);
-                    } catch (Throwable ignored) {
-                        // old idea and AndroidStudios (even v3)
-                        com.intellij.openapi.externalSystem.service.project.manage.ProjectDataManager projectDataManager;
-                        projectDataManager = com.intellij.openapi.externalSystem.service.project.manage.ProjectDataManager.getInstance();
-                        gradleProjectImportBuilder = new GradleProjectImportBuilder(projectDataManager);
-                    }
+                AbstractExternalSystemSettings settings = ExternalSystemApiUtil.getSettings(rootModel.getProject(), GradleConstants.SYSTEM_ID);
+                project.putUserData(ExternalSystemDataKeys.NEWLY_CREATED_PROJECT, Boolean.TRUE);
+                settings.linkProject(gradleSettings);
 
-                    gradleProjectImportBuilder.getControl(project).getProjectSettings()
-                            .setDistributionType(DistributionType.WRAPPED);
-                    gradleProjectImportBuilder.getControl(project).getProjectSettings().
-                            setResolveModulePerSourceSet(false);
-                    GradleProjectImportProvider gradleProjectImportProvider = new GradleProjectImportProvider(
-                            gradleProjectImportBuilder);
-                    AddModuleWizard wizard = new AddModuleWizard(project, files[0].getPath(),
-                            gradleProjectImportProvider);
-                    if (wizard.getStepCount() <= 0 || wizard.showAndGet()) {
-                        ImportModuleAction.createFromWizard(project, wizard);
+                FileDocumentManager.getInstance().saveAllDocuments();
+                ImportSpecBuilder builder = new ImportSpecBuilder(rootModel.getProject(), GradleConstants.SYSTEM_ID);
+                builder.forceWhenUptodate(true);
 
-                        ApplicationManager.getApplication().runWriteAction(new Runnable() {
-                            @Override
-                            public void run() {
-                                ModifiableModuleModel modifiableModel = ModuleManager.getInstance(project).getModifiableModel();
-                                try {
-                                    LanguageLevelModuleExtensionImpl langModel = LanguageLevelModuleExtensionImpl.getInstance(module);
-                                    langModel = (LanguageLevelModuleExtensionImpl) langModel.getModifiableModel(true);
-                                    langModel.setLanguageLevel(LanguageLevel.JDK_1_8);
-                                    langModel.commit();
-                                } catch(Throwable t) {
-                                    // should not happen
-                                    t.printStackTrace();
-                                }
-                                modifiableModel.commit();
-                            }
-                        });
-                    }
-                });
+                ExternalSystemUtil.refreshProjects(builder);
             }
         } else {
             FileDocumentManager.getInstance().saveAllDocuments();
@@ -310,7 +259,7 @@ public class RoboVmModuleBuilder extends JavaModuleBuilder {
         this.buildSystem = buildSystem;
     }
 
-    public static enum BuildSystem {
+    public enum BuildSystem {
         Gradle, Maven, None
     }
 }
