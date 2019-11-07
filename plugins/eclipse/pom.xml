@@ -13,9 +13,7 @@
         <relativePath>../../</relativePath>
     </parent>
 
-    <groupId>com.mobidevelop.robovm</groupId>
     <artifactId>org.robovm.eclipse.parent</artifactId>
-    <version>2.3.8-SNAPSHOT</version>
     <name>RoboVM for Eclipse</name>
     <packaging>pom</packaging>
 
@@ -39,7 +37,7 @@
     </licenses>
 
     <properties>
-        <tycho.version>1.4.0</tycho.version>
+        <tycho.version>1.5.0-SNAPSHOT</tycho.version>
         <eclipse-site>https://download.eclipse.org/releases/photon</eclipse-site>
     </properties>
 
@@ -50,6 +48,16 @@
             <layout>p2</layout>
         </repository>
     </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>tycho-snapshots</id>
+            <url>https://repo.eclipse.org/content/repositories/tycho-snapshots/</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
 
     <build>
         <plugins>

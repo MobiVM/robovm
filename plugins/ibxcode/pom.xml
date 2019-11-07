@@ -10,7 +10,6 @@
 
     <artifactId>robovm-ibxcode</artifactId>
     <name>RoboVM XCode/IB project generator</name>
-    <version>2.3.8-SNAPSHOT</version>
     <packaging>jar</packaging>
     <url>http://github.com/MobiVM/robovm</url>
     <description>

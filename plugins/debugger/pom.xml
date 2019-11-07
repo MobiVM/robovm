@@ -10,7 +10,6 @@
 
     <artifactId>robovm-debugger</artifactId>
     <name>RoboVM Debugger</name>
-    <version>2.3.8-SNAPSHOT</version>
     <packaging>jar</packaging>
     <url>http://github.com/MobiVM/robovm</url>
     <description>
