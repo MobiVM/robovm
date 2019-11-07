@@ -142,7 +142,7 @@ public class ObjCBlockPlugin extends AbstractCompilerPlugin {
             Map<String, Integer> blockTypeIds = new HashMap<>();
             for (SootMethod method : sootClass.getMethods()) {
                 if (method.isNative() && (hasBridgeAnnotation(method) || hasGlobalValueAnnotation(method))
-                    || hasCallbackAnnotation(method)) {
+                    || hasCallbackAnnotation(method) || hasStructMemberAnnotation(method)) {
                     
                     int[] indexes = getBlockParameterIndexes(method);
                     if (indexes != null || hasAnnotation(method, BLOCK)) {

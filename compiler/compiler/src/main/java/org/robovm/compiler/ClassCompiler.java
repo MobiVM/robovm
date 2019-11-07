@@ -776,13 +776,6 @@ public class ClassCompiler {
     }
     
     private void compile(Clazz clazz, OutputStream out) throws IOException {
-        javaMethodCompiler.reset(clazz);
-        bridgeMethodCompiler.reset(clazz);
-        callbackMethodCompiler.reset(clazz);
-        nativeMethodCompiler.reset(clazz);
-        structMemberMethodCompiler.reset(clazz);
-        globalValueMethodCompiler.reset(clazz);
-        
         ClazzInfo ci = clazz.resetClazzInfo();
 
         mb = new ModuleBuilder();
@@ -794,7 +787,20 @@ public class ClassCompiler {
         for (CompilerPlugin compilerPlugin : config.getCompilerPlugins()) {
             compilerPlugin.beforeClass(config, clazz, mb);
         }
-        
+
+        // dkimitsa: intentionally moved reset section after compiler plugin beforeClass invocation.
+        // one reason for this is structMemberMethodCompiler. it tries to resolve structure type
+        // and find out all marshallers but some of them (like ObjCBlock ones) are generated only
+        // in beforeClass. so to have all marshallers and generated classes in place, reset section
+        // is moved here. it shall have no affect as these compilers are not used by plugins itself
+        javaMethodCompiler.reset(clazz);
+        bridgeMethodCompiler.reset(clazz);
+        callbackMethodCompiler.reset(clazz);
+        nativeMethodCompiler.reset(clazz);
+        structMemberMethodCompiler.reset(clazz);
+        globalValueMethodCompiler.reset(clazz);
+
+
         sootClass = clazz.getSootClass();
         trampolines = new HashMap<>();
         catches = new HashSet<String>();

@@ -9,6 +9,8 @@ import org.robovm.compiler.config.Config;
 import org.robovm.compiler.config.Config.Home;
 import org.robovm.compiler.llvm.StructureType;
 import org.robovm.compiler.log.Logger;
+import org.robovm.compiler.plugin.objc.ObjCBlockPlugin;
+import org.robovm.objc.annotation.Block;
 import org.robovm.rt.bro.Struct;
 import org.robovm.rt.bro.annotation.ByVal;
 import org.robovm.rt.bro.annotation.Packed;
@@ -109,7 +111,22 @@ public class StructMemberMethodCompilerTest {
         assertEquals(config.getDataLayout().getStoreSize(packed), 12);
     }
 
-
+    @Test
+    public void testBlockMember() {
+        Clazz clz = toClazz(StructWithBlock.class);
+        // run ObjCBlockPlugin.beforeClass to return attach marshaller annotation to
+        // method that operates blocks
+        try {
+            ObjCBlockPlugin objCBlockPlugin = new ObjCBlockPlugin();
+            objCBlockPlugin.beforeClass(config, clz, new ModuleBuilder());
+        } catch (IOException e) {
+            // should not happen
+            throw new IllegalStateException();
+        }
+        StructMemberMethodCompiler compiler = new StructMemberMethodCompiler(config);
+        StructureType struct = compiler.getStructType(clz.getSootClass());
+        assertEquals("{i8*}", struct.getDefinition());
+    }
 
     @Vectorised
     public static class VectorFloat2 extends Struct<VectorFloat2> {
@@ -158,6 +175,10 @@ public class StructMemberMethodCompilerTest {
 
         @StructMember(1) public native byte getC();
         @StructMember(1) public native PackedLongByte4 setC(byte c);
+    }
+
+    public static class StructWithBlock extends Struct<StructWithBlock> {
+        @StructMember(0) public native @Block Runnable getA();
     }
 
     public static class MockHome extends Home {
