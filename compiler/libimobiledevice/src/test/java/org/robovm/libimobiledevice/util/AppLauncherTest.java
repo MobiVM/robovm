@@ -52,13 +52,23 @@ public class AppLauncherTest {
         File f613 = createDeveloperImage(dsDir, "6.1.3", false);
         File f70_11A465 = createDeveloperImage(dsDir, "7.0 (11A465)");
         File f703_11B508 = createDeveloperImage(dsDir, "7.0.3 (11B508)");
-        
+        File f812_13B812 = createDeveloperImage(dsDir, "8.1.2 (13B812)");
+        File f92 = createDeveloperImage(dsDir, "9.2");
+        File f102 = createDeveloperImage(dsDir, "10.2 (14D123)");
+
         assertEquals(f703_11B508, AppLauncher.findDeveloperImage(dsDir.toFile(), "7.0.3", "11B508"));
         assertEquals(f61, AppLauncher.findDeveloperImage(dsDir.toFile(), "6.1.3", "10A123"));
         assertEquals(f61, AppLauncher.findDeveloperImage(dsDir.toFile(), "6.1.1", "10A123"));
         assertEquals(f612, AppLauncher.findDeveloperImage(dsDir.toFile(), "6.1.2", "10A123"));
         assertEquals(f703_11B508, AppLauncher.findDeveloperImage(dsDir.toFile(), "7.0.3", "12C123"));
         assertEquals(f70_11A465, AppLauncher.findDeveloperImage(dsDir.toFile(), "7.0.2", "12C123"));
+        // finding not exact match
+        assertEquals(f812_13B812, AppLauncher.findDeveloperImage(dsDir.toFile(), "8.1.3", "14C710"));
+        assertEquals(f812_13B812, AppLauncher.findDeveloperImage(dsDir.toFile(), "8.2", "14C710"));
+        assertEquals(f92, AppLauncher.findDeveloperImage(dsDir.toFile(), "9.3.3", "15C710"));
+        assertEquals(f92, AppLauncher.findDeveloperImage(dsDir.toFile(), "9.3", "15C710"));
+        assertEquals(f102, AppLauncher.findDeveloperImage(dsDir.toFile(), "10.3.5", "15C710"));
+        assertEquals(f102, AppLauncher.findDeveloperImage(dsDir.toFile(), "10.3", "15C710"));
     }
 
 }
