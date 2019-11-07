@@ -868,7 +868,13 @@ public class ClassCompiler {
             String name = method.getName();
             Function function = null;
             if (hasBridgeAnnotation(method)) {
-                function = bridgeMethod(method);
+                // javac generates JVM synthetic bridge methods for covariant return
+                // and copies @Bridge annotations as well. Don't try to compile bridge methods
+                // as these are not a subject for RoboVM bridge compiler and it will fail on them
+                if (!isJvmSyntheticBridgeMethod(method))
+                    function = bridgeMethod(method);
+                else
+                    function = method(method);
             } else if (hasGlobalValueAnnotation(method)) {
                 function = globalValueMethod(method);
             } else if (isStruct(sootClass) && ("_sizeOf".equals(name) 
@@ -1038,6 +1044,16 @@ public class ClassCompiler {
             }
         }
         clazz.saveClazzInfo();
+    }
+
+    private boolean isJvmSyntheticBridgeMethod(SootMethod method) {
+        final int BRIDGE = 0x00000040;
+        final int SYNTHETIC = 0x00001000;
+
+        return !method.isAbstract() &&
+                !method.isNative() &&
+                (method.getModifiers() & BRIDGE) == BRIDGE &&
+                (method.getModifiers() & SYNTHETIC) == SYNTHETIC;
     }
 
     private static void addClassDependencyIfNeeded(Clazz clazz, soot.Type type, boolean weak) {
@@ -1495,7 +1511,7 @@ public class ClassCompiler {
                     body.add(linetableGlobal.ref());
                 }
             }
-            if (hasBridgeAnnotation(m)) {
+            if (hasBridgeAnnotation(m) && !isJvmSyntheticBridgeMethod(m)) {
                 if (!readBooleanElem(getAnnotation(m, BRIDGE), "dynamic", false)) {
                     body.add(new GlobalRef(Symbols.bridgePtrSymbol(m), I8_PTR));
                 } else {
