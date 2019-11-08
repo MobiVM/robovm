@@ -446,6 +446,27 @@ public abstract class AbstractTarget implements Target {
         }
     }
 
+    private boolean isValidSwiftDir(File swiftDir) {
+        // FIXME: simplest criteria is to check for one of core libs
+        return new File(swiftDir, "libswiftCore.dylib").exists();
+    }
+
+    private File getSwiftDir(String system) throws IOException {
+        // FIXME: dkimitsa: its a temporal for finding location of swift libraries
+        // FIXME: as in XCode 11 these are not under swift subdir anymore (but in swift-5.0).
+        // FIXME: while its a workaround and hardcode for specific swift version and proper way of
+        // FIXME: finding swift library location to be used
+        String[] versions = new String[]{"swift", "swift-5.0"};
+        String xcodePath = ToolchainUtil.findXcodePath();
+        for (String v: versions) {
+            File candidate = new File(xcodePath, "Toolchains/XcodeDefault.xctoolchain/usr/lib/" + v + "/" + system);
+            if (isValidSwiftDir(candidate))
+                return candidate;
+        }
+
+        throw new IOException("Failed to locate Swift Library directory!");
+    }
+
 	protected void copySwiftLibs(Collection<String> swiftLibraries, File targetDir, boolean strip) throws IOException {
 		String system = null;
 		if (config.getOs() == OS.ios) {
@@ -457,8 +478,7 @@ public abstract class AbstractTarget implements Target {
 		} else {
 			system = "mac";
 		}
-		File swiftDir = new File(ToolchainUtil.findXcodePath(),
-				"Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/" + system);
+		File swiftDir = getSwiftDir(system);
 
 		// dkimitsa: there is hidden dependencies possible between swift libraries.
 		// e.g. one swiftLib has dependency that is not listed in included framework

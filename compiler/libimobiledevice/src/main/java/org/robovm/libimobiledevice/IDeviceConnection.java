@@ -21,6 +21,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 import org.robovm.libimobiledevice.binding.IDeviceConnectionRef;
+import org.robovm.libimobiledevice.binding.IDeviceError;
 import org.robovm.libimobiledevice.binding.IntOut;
 import org.robovm.libimobiledevice.binding.LibIMobileDevice;
 
@@ -107,7 +108,7 @@ public class IDeviceConnection implements AutoCloseable {
         IntOut bytesReceivedOut = new IntOut();
         try {
             IDevice.checkResult(LibIMobileDevice.idevice_connection_receive_timeout(getRef(), 
-                    data, count, bytesReceivedOut, timeout));
+                    data, count, bytesReceivedOut, timeout),  IDeviceError.IDEVICE_E_TIMEOUT);
             int bytesRead = bytesReceivedOut.getValue();
             if (bytesRead > 0 && data != buffer) {
                 System.arraycopy(data, 0, buffer, offset, bytesRead);
