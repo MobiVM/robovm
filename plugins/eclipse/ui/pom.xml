@@ -12,6 +12,19 @@
     <name>RoboVM for Eclipse Core and UI</name>
     <packaging>eclipse-plugin</packaging>
 
+    <dependencyManagement>
+        <dependencies>
+            <!-- include parent pom as bill of material to pick up dependency definitions from it -->
+            <dependency>
+                <groupId>com.mobidevelop.robovm</groupId>
+                <artifactId>robovm-parent</artifactId>
+                <version>${robovm.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <build>
         <resources>
             <resource>
