@@ -10,6 +10,7 @@
     <properties>
         <ij.plugin>true</ij.plugin>
         <ij.pluginDescriptor>src/main/resources/META-INF/plugin.xml</ij.pluginDescriptor>
+        <robovm.version>2.3.8-SNAPSHOT</robovm.version>
     </properties>
 
     <scm>
@@ -39,7 +40,7 @@
             <dependency>
                 <groupId>com.mobidevelop.robovm</groupId>
                 <artifactId>robovm-parent</artifactId>
-                <version>${project.version}</version>
+                <version>${robovm.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>

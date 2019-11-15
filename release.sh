@@ -43,10 +43,6 @@ git push
 #
 cd ../idea
 
-# Set the pom version to the release version
-mvn versions:set -DnewVersion=$RELEASE_VERSION
-mvn versions:commit
-
 # Set the gradle version to the release version
 sed "s/^version *=.*/version = '$RELEASE_VERSION'/" build.gradle | sed "s/roboVMVersion *=.*/roboVMVersion = '$RELEASE_VERSION'/" > build.gradle.tmp
 mv build.gradle.tmp build.gradle
@@ -59,9 +55,12 @@ git push
 # Copy the target/*-dist.jar to whereever you want it
 scp build/distributions/idea-$RELEASE_VERSION.zip robovm@robovm.mobidevelop.com:/usr/share/nginx/html/downloads/releases/idea
 
-# Set the pom version to the next development version
+# Set the pom version to the next development version (it always have to be development)
 mvn versions:set -DnewVersion=$DEVELOPMENT_VERSION-SNAPSHOT
 mvn versions:commit
+mv pom.xml pom.xml.bak && sed "s/<robovm.version>.*<\/robovm.version>/<robovm.version>$DEVELOPMENT_VERSION-SNAPSHOT<\/robovm.version>/" pom.xml.bak > pom.xml
+rm pom.xml.bak
+
 # Set the gradle version to the next development version
 sed "s/^version *=.*/version = '$DEVELOPMENT_VERSION-SNAPSHOT'/" build.gradle | sed "s/roboVMVersion *=.*/roboVMVersion = '$DEVELOPMENT_VERSION-SNAPSHOT'/" > build.gradle.tmp
 mv build.gradle.tmp build.gradle
