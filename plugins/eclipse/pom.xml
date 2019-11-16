@@ -2,17 +2,8 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <prerequisites>
-        <maven>3.0</maven>
-    </prerequisites>
-
-    <parent>
-        <groupId>com.mobidevelop.robovm</groupId>
-        <artifactId>robovm-parent</artifactId>
-        <version>2.3.8-SNAPSHOT</version>
-        <relativePath>../../</relativePath>
-    </parent>
-
+    <groupId>com.mobidevelop.robovm</groupId>
+    <version>2.3.8-SNAPSHOT</version>
     <artifactId>org.robovm.eclipse.parent</artifactId>
     <name>RoboVM for Eclipse</name>
     <packaging>pom</packaging>
@@ -37,7 +28,8 @@
     </licenses>
 
     <properties>
-        <tycho.version>1.5.0-SNAPSHOT</tycho.version>
+        <robovm.version>2.3.8-SNAPSHOT</robovm.version>
+        <tycho.version>1.5.1</tycho.version>
         <eclipse-site>https://download.eclipse.org/releases/photon</eclipse-site>
     </properties>
 
@@ -47,27 +39,50 @@
             <url>${eclipse-site}</url>
             <layout>p2</layout>
         </repository>
-    </repositories>
 
-    <pluginRepositories>
-        <pluginRepository>
-            <id>tycho-snapshots</id>
-            <url>https://repo.eclipse.org/content/repositories/tycho-snapshots/</url>
+        <repository>
+            <id>sonatype-nexus-snapshots</id>
+            <name>Sonatype Nexus Snapshots</name>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
             <snapshots>
                 <enabled>true</enabled>
             </snapshots>
-        </pluginRepository>
-    </pluginRepositories>
+        </repository>
+    </repositories>
 
     <build>
         <plugins>
+            <!-- compiler: produce Java8 code everywhere by default -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-release-plugin</artifactId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <release>8</release>
+                    <debug>true</debug>
+                    <optimize>true</optimize>
+                    <encoding>UTF-8</encoding>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
+                <version>3.1.2</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                            <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+                        </manifest>
+                        <manifestEntries>
+                            <!-- need to keep it this way, as MobiVM uses build number Z (from X.Y.Z) as release version -->
+                            <Specification-Version>${project.version}</Specification-Version>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.eclipse.tycho</groupId>
@@ -78,6 +93,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-deploy-plugin</artifactId>
+                <version>3.0.0-M1</version>
                 <configuration>
                     <skip>true</skip>
                 </configuration>
