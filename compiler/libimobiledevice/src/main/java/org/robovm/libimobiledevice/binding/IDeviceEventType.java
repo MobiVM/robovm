@@ -10,7 +10,8 @@ package org.robovm.libimobiledevice.binding;
 
 public enum IDeviceEventType {
   IDEVICE_DEVICE_ADD(1),
-  IDEVICE_DEVICE_REMOVE;
+  IDEVICE_DEVICE_REMOVE,
+  IDEVICE_DEVICE_PAIRED;
 
   public final int swigValue() {
     return swigValue;

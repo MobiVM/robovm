@@ -98,8 +98,20 @@ public class DeviceType implements Comparable<DeviceType> {
     public String getUdid() {
 		return udid;
 	}
-    
+
     public String getState() {
+        return getState(false);
+    }
+
+    public String getState(boolean fresh) {
+        if (fresh) {
+            // get fresh state by requesting a list
+            for (DeviceType t : listDeviceTypes()) {
+                if (udid.equals(t.udid))
+                    return t.state;
+            }
+
+        }
     	return state;
     }
 

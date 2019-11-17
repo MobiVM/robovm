@@ -1,75 +1,13 @@
 %module LibIMobileDevice
 %{
-
-#include <libimobiledevice/libimobiledevice.h>
-#include <libimobiledevice/lockdown.h>
 #include <libimobiledevice/afc.h>
 #include <libimobiledevice/installation_proxy.h>
 #include <libimobiledevice/mobile_image_mounter.h>
-
+#include <libimobiledevice/debugserver.h>
 %}
 
-%include "enums.swg"
+%include "common.i"
 %include "fast_primitive_arrays.i"
-//%include "arrays_java.i"
-
-%javaconst(1);
-SWIG_JAVABODY_METHODS(protected, protected, SWIGTYPE)
-
-%define OUT_CLASS(TYPE,NAME,CLEANUP...)
-    %{
-        typedef struct NAME {
-            TYPE value;
-        } NAME;
-    %}
-    typedef struct NAME {
-    %immutable;
-        TYPE value;
-    } NAME;
-    %extend NAME {
-        NAME() {
-          return (NAME *) calloc(1,sizeof(TYPE));
-        }
-        ~NAME() {
-          CLEANUP;
-          free(self);
-        }
-    };
-    %types(TYPE);
-%enddef
-
-%define OUT_ARG(javatype, pattern)
-    %typemap(jni) pattern "jlong"
-    %typemap(jtype) pattern "long"
-    %typemap(jstype) pattern "javatype"
-    %typemap(javain) pattern "javatype.getCPtr($javainput)"
-%enddef
-
-%define ARRAY_CLASS(TYPE,NAME)
-    %{
-        typedef struct NAME {
-            TYPE value;
-        } NAME;
-    %}
-    typedef struct NAME {
-        TYPE value;
-    } NAME;
-    %extend NAME {
-        NAME(int nelements) {
-          return (NAME *) calloc(nelements,sizeof(TYPE));
-        }
-        ~NAME() {
-          free(self);
-        }
-        TYPE get(int index) {
-          return self[index].value;
-        }
-        void set(int index, TYPE value) {
-          self[index].value = value;
-        }
-    };
-    %types(TYPE);
-%enddef
 
 %define CALLBACK(TYPE)
     %typemap(jni) TYPE "jlong"
@@ -81,15 +19,37 @@ CALLBACK(instproxy_status_cb_t)
 CALLBACK(idevice_event_cb_t)
 
 // Map user_data passed to callbacks as int. We will pass in a
-// callback id which is mapped to a cllback object instance in Java.
+// callback id which is mapped to a callback object instance in Java.
 %typemap(jni) void *user_data "jint"
 %typemap(jtype) void *user_data "int"
 %typemap(jstype) void *user_data "int"
 %typemap(javain) void *user_data "$javainput"
 
+//
+// Registering pointers to structs
+//
+REF_CLASS(idevice_t, IDeviceRef)
+REF_CLASS(idevice_connection_t, IDeviceConnectionRef)
+REF_CLASS(lockdownd_client_t, LockdowndClientRef)
+REF_CLASS(plist_t, PlistRef)
+REF_CLASS(afc_client_t, AfcClientRef)
+REF_CLASS(instproxy_client_t, InstproxyClientRef)
+REF_CLASS(mobile_image_mounter_client_t, MobileImageMounterClientRef)
+// -- debug server
+REF_CLASS(debugserver_client_t, DebugServerClientRef)
+
+
+
+
+//
+// registering wrappers for arrays
+//
 ARRAY_CLASS(char *, StringArray)
 ARRAY_CLASS(jbyte, ByteArray)
 
+//
+// Registering container classes that will be used to receive value by pointer
+//
 OUT_CLASS(jint, IntOut)
 OUT_CLASS(jlong, LongOut)
 OUT_CLASS(char *, StringOut)
@@ -103,6 +63,22 @@ OUT_CLASS(afc_client_t, AfcClientRefOut)
 OUT_CLASS(plist_t, PlistRefOut)
 OUT_CLASS(instproxy_client_t, InstproxyClientRefOut)
 OUT_CLASS(mobile_image_mounter_client_t, MobileImageMounterClientRefOut)
+// -- debug server
+OUT_CLASS(debugserver_client_t, DebugServerClientRefOut)
+
+// turn pointer + length just to byte-array (check common.i)
+%apply signed char[] {(const char *plist_bin)};
+%apply signed char[] {(const char *data)};
+%apply signed char[] {(char *data)};
+%apply signed char[] {(const char *data)};
+%apply signed char[] {(char *data)};
+%apply signed char[] {(const char *signature)};
+%apply signed char[] {(const char *sig)};
+%apply signed char[] {(char* data)};
+
+//
+// Map pointer to container classes to receive value by pointer
+//
 OUT_ARG(IntOut, int *)
 OUT_ARG(IntOut, uint32_t *)
 OUT_ARG(LongOut, uint64_t *)
@@ -125,6 +101,7 @@ OUT_ARG(StringOut, char **session_id)
 OUT_ARG(StringOut, char **type)
 OUT_ARG(StringOut, char **udid)
 OUT_ARG(StringOut, char **value)
+OUT_ARG(StringOut, char **response)
 OUT_ARG(ByteArrayOut, char **plist_bin)
 OUT_ARG(ByteArrayOut, char **plist_xml)
 OUT_ARG(IDeviceRefOut, idevice_t *device)
@@ -135,13 +112,11 @@ OUT_ARG(PlistRefOut, plist_t *)
 OUT_ARG(AfcClientRefOut, afc_client_t *client)
 OUT_ARG(InstproxyClientRefOut, instproxy_client_t *client)
 OUT_ARG(MobileImageMounterClientRefOut, mobile_image_mounter_client_t *client)
+// -- debug server
+OUT_ARG(DebugServerClientRefOut, debugserver_client_t *client)
 
-%apply signed char[] {char *data};
-%apply signed char[] {char *plist_bin};
-%apply signed char[] {char *plist_xml};
-%apply signed char[] {char *sig};
-%apply signed char[] {char *signature};
 %apply jboolean {uint8_t ssl_enabled};
+%apply jboolean {uint8_t sslBypass};
 
 %rename (IDeviceEvent) idevice_event_t;
 %rename (IDeviceEventType) idevice_event_type;
@@ -151,17 +126,31 @@ OUT_ARG(MobileImageMounterClientRefOut, mobile_image_mounter_client_t *client)
 %rename (AfcFileMode) afc_file_mode_t;
 %rename (AfcLinkType) afc_link_type_t;
 %rename (sslEnabled) ssl_enabled; 
-%rename (connectionType) conn_type; 
+%rename (connectionType) conn_type;
+%rename (args) argc;
+%rename (AfcError) afc_error_t;
+%rename (IDeviceError) idevice_error_t;
+%rename (InstProxyError) instproxy_error_t;
+%rename (LockdowndError) lockdownd_error_t;
+%rename (MobileImageMounterError) mobile_image_mounter_error_t;
+%rename (DebugServerError) debugserver_error_t;
 
-typedef short int16_t;
-typedef short uint16_t;
-typedef int int32_t;
-typedef int uint32_t;
-typedef jlong int64_t;
-typedef jlong uint64_t;
+
 
 %ignore instproxy_client_options_add;
 %ignore mobile_image_mounter_upload_image;
+// debugserver -- hex encoding is done in java
+%ignore debugserver_encode_string;
+%ignore debugserver_decode_string;
+// debugserver -- ignoring commands as all this happening in java
+%ignore debugserver_command_t;
+%ignore debugserver_client_send_command;
+%ignore debugserver_client_set_environment_hex_encoded;
+%ignore debugserver_command_new;
+%ignore debugserver_command_free;
+%ignore debugserver_client_set_argv;
+%ignore debugserver_client_send_command;
+%ignore debugserver_client_set_ack_mode;
 
 // Map just enough of the plist.h functions to be able to convert to/from Java plists.
 extern plist_t plist_new_dict(void);
@@ -271,11 +260,10 @@ mobile_image_mounter_error_t upload_image(mobile_image_mounter_client_t client, 
 }
 %}
 
-%include "libimobiledevice/libimobiledevice.h"
-%include "libimobiledevice/lockdown.h"
 %include "libimobiledevice/afc.h"
 %include "libimobiledevice/installation_proxy.h"
 %include "libimobiledevice/mobile_image_mounter.h"
+%include "libimobiledevice/debugserver.h"
 
 %pragma(java) jniclasscode=%{
   private static native void initNative();

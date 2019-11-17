@@ -14,8 +14,8 @@ public enum IDeviceError {
   IDEVICE_E_UNKNOWN_ERROR(-2),
   IDEVICE_E_NO_DEVICE(-3),
   IDEVICE_E_NOT_ENOUGH_DATA(-4),
-  IDEVICE_E_BAD_HEADER(-5),
-  IDEVICE_E_SSL_ERROR(-6);
+  IDEVICE_E_SSL_ERROR(-6),
+  IDEVICE_E_TIMEOUT(-7);
 
   public final int swigValue() {
     return swigValue;

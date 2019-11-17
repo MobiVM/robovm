@@ -141,7 +141,8 @@ public interface ValuedEnum {
                     + value + " (0x" + Long.toHexString(value) + ") found in " 
                     + enumType.getName());
         }
-        
+
+        @MarshalsValue
         public static long toNative(ValuedEnum v, long flags) {
             return v.value();
         }
@@ -156,7 +157,8 @@ public interface ValuedEnum {
         public static <T extends Enum<T> & ValuedEnum> ValuedEnum toObject(Class<T> cls, @MachineSizedSInt long value, long flags) {
             return AsLongMarshaler.toObject(cls, value, flags);
         }
-        
+
+        @MarshalsValue
         public static @MachineSizedSInt long toNative(ValuedEnum v, long flags) {
             return v.value();
         }
@@ -171,7 +173,8 @@ public interface ValuedEnum {
         public static <T extends Enum<T> & ValuedEnum> ValuedEnum toObject(Class<T> cls, @MachineSizedUInt long value, long flags) {
             return AsLongMarshaler.toObject(cls, value, flags);
         }
-        
+
+        @MarshalsValue
         public static @MachineSizedUInt long toNative(ValuedEnum v, long flags) {
             return v.value();
         }
