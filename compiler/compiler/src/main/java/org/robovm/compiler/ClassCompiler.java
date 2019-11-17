@@ -832,6 +832,9 @@ public class ClassCompiler {
             // method that will provide meta flags for runtime to help finding out if stret is required
             SootMethod stretMeta = new SootMethod(STRUCT_ATTRIBUTES_METHOD, Collections.EMPTY_LIST, IntType.v(), Modifier.PUBLIC | Modifier.STATIC | Modifier.NATIVE);
             sootClass.addMethod(stretMeta);
+            // method that returns offset of struct member
+            SootMethod offset = new SootMethod("offsetOf", Collections.singletonList(IntType.v()), IntType.v(), Modifier.PUBLIC | Modifier.STATIC | Modifier.NATIVE);
+            sootClass.addMethod(offset);
         }
         
         mb.addInclude(getClass().getClassLoader().getResource(String.format("header-%s-%s.ll", config.getOs().getFamily(), config.getArch())));
@@ -877,8 +880,8 @@ public class ClassCompiler {
                     function = method(method);
             } else if (hasGlobalValueAnnotation(method)) {
                 function = globalValueMethod(method);
-            } else if (isStruct(sootClass) && ("_sizeOf".equals(name) 
-                        || "sizeOf".equals(name) || STRUCT_ATTRIBUTES_METHOD.equals(name) || hasStructMemberAnnotation(method))) {
+            } else if (isStruct(sootClass) && ("_sizeOf".equals(name) || "sizeOf".equals(name) ||
+                    "offsetOf".equals(name) || STRUCT_ATTRIBUTES_METHOD.equals(name) || hasStructMemberAnnotation(method))) {
                 function = structMember(method);
             } else if (method.isNative()) {
                 function = nativeMethod(method);

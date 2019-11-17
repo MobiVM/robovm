@@ -734,7 +734,7 @@ public abstract class BroMethodCompiler extends AbstractMethodCompiler {
         }
 
         // find out if regular structure is simple wrapper around 8, 16 or 32 int
-        // (this is needed to find out if this structure will be retured by value on arm7 cpus)
+        // (this is needed to find out if this structure will be returned by value on arm7 CPUs)
         boolean singleIntStruct = result.length == 1 && result[0] instanceof IntegerType && ((IntegerType)result[0]).getBits() <= 32;
         if (!singleIntStruct) {
             attributes |= StructureType.ATTR_NOT_SINGLE_INT_STRUCT;
@@ -990,7 +990,20 @@ public abstract class BroMethodCompiler extends AbstractMethodCompiler {
         
         return memberType;
     }
-    
+
+    /**
+     * returns own members offsets in bytes from start of struct
+     */
+    public int[] getStructMemberOffsets(StructureType structType) {
+        // get offset of each struct member by calling llvm api
+        int membersCount = structType.getTypeCount() - structType.getOwnMembersOffset();
+        int offset = structType.getOwnMembersOffset(); // inherited struct (if any) goes as member 0, own members starts 1
+        int[] offsets = new int[membersCount];
+        for (int idx = 0; idx < membersCount; idx++)
+            offsets[idx] = config.getDataLayout().getOffsetOfElement(structType, offset + idx);
+        return offsets;
+    }
+
     protected SootMethod createFakeStructRetMethod(SootMethod originalMethod) {
         // Create a new method with the same parameters but a @StructRet parameter inserted first
         @SuppressWarnings("unchecked")

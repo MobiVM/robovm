@@ -592,6 +592,13 @@ public class TrampolineCompiler {
                 method.setDeclared(true);
                 return method;
             }
+            if (name.equals("offsetOf") && isStruct(clazz)) {
+                method = new SootMethod("offsetOf", Collections.singletonList(IntType.v()), IntType.v(),
+                        Modifier.PUBLIC | Modifier.STATIC);
+                method.setDeclaringClass(clazz);
+                method.setDeclared(true);
+                return method;
+            }
 
             SootClass c = !clazz.isInterface() && clazz.hasSuperclass() ? clazz.getSuperclass() : null;
             while (c != null) {

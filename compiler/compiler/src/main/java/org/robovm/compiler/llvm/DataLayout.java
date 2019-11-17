@@ -99,7 +99,15 @@ public class DataLayout {
             }
         });
     }
-    
+
+    public int getOffsetOfElement(StructureType type, int idx) {
+        return runTypeQuery(type, new TypeCallback<Integer>() {
+            Integer doWithType(TargetMachine targetMachine, org.robovm.llvm.Type type) {
+                return (int) targetMachine.getDataLayout().getOffsetOfElement(type, idx);
+            }
+        });
+    }
+
     private static abstract class TypeCallback<T> {
         abstract T doWithType(TargetMachine targetMachine, org.robovm.llvm.Type type);
     }
