@@ -16,8 +16,8 @@
         <connection>scm:git:git://github.com/MobiVM/robovm.git</connection>
         <developerConnection>scm:git:git@github.com:mobidevelop/robovm.git</developerConnection>
         <url>https://github.com/MobiVM/robovm.git</url>
-      <tag>HEAD</tag>
-  </scm>
+        <tag>HEAD</tag>
+    </scm>
 
     <profiles>
         <profile>
@@ -176,7 +176,7 @@
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-compress</artifactId>
-            <version>1.18</version>
+            <version>1.19</version>
         </dependency>
         <dependency>
             <groupId>com.mobidevelop.robovm</groupId>
