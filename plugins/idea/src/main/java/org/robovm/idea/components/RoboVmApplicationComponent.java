@@ -27,6 +27,8 @@ import org.robovm.idea.components.setupwizard.NoXcodeSetupDialog;
 import org.robovm.idea.components.setupwizard.XcodeSetupDialog;
 import org.robovm.idea.sdk.RoboVmSdkType;
 
+import java.awt.*;
+
 /**
  * Call on app startup, responsible for extracting/updating the RoboVM SDK and
  * setting up the SDK so its available in IDEA.
@@ -41,6 +43,11 @@ public class RoboVmApplicationComponent implements ApplicationComponent {
     }
 
     private void displaySetupWizard() {
+        // build with gradle plugin will try to run plugin and it will fail on any attempt to show dialogue.
+        // skip any wizards if there is no graphics environment
+        if (GraphicsEnvironment.isHeadless())
+            return;
+
         // uncomment for debugging
         // PropertiesComponent.getInstance().unsetValue(ROBOVM_HAS_SHOWN_ANDROID_WIZARD);
         // PropertiesComponent.getInstance().unsetValue(ROBOVM_HAS_SHOWN_LICENSE_WIZARD);
