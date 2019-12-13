@@ -16,31 +16,21 @@
  */
 package org.robovm.compiler.target.ios;
 
-import static java.util.Collections.emptyList;
-import static org.apache.commons.lang3.Validate.notNull;
+import com.dd.plist.NSDictionary;
+import com.dd.plist.NSObject;
+import com.dd.plist.PropertyListParser;
+import org.apache.commons.exec.util.StringUtils;
+import org.robovm.compiler.util.ToolchainUtil;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import com.dd.plist.NSDictionary;
-import com.dd.plist.NSObject;
-import com.dd.plist.PropertyListParser;
-import org.apache.commons.exec.util.StringUtils;
-import org.apache.commons.lang3.Validate;
-import org.robovm.compiler.util.ToolchainUtil;
 
 /**
  * Contains info on an SDK installed on the system.
  */
 public class SDK implements Comparable<SDK> {
-    private static final String ADDITIONAL_SDK_LOCATION = "/Library/Developer/CoreSimulator/Profiles/Runtimes";
-    private static final String IOS_SIMULATOR_MAJOR_MINOR_VERSION_REGEX = "iOS ([0-9]{1,2}).([0-9]{1,2}).simruntime";
-    private static final Pattern IOS_SIMULATOR_MAJOR_MINOR_VERSION_REGEX_PATTERN = Pattern.compile(IOS_SIMULATOR_MAJOR_MINOR_VERSION_REGEX);
-
     private String displayName;
     private String minimalDisplayName;
     private String canonicalName;
@@ -114,49 +104,6 @@ public class SDK implements Comparable<SDK> {
         return allSdks;
     }
 
-    private static Collection<? extends SDK> listAdditionalFileFormatSdks() {
-        File sdksDir = new File(ADDITIONAL_SDK_LOCATION);
-        if (!sdksDir.isDirectory()) {
-            return emptyList();
-        }
-
-        List<SDK> sdks = new ArrayList<>();
-
-        for (File sdkRoot : notNull(sdksDir.listFiles())) {
-            if (sdkRoot.getName().matches(IOS_SIMULATOR_MAJOR_MINOR_VERSION_REGEX)) {
-                sdks.add(createAdditionalFileFormatSdk(sdkRoot));
-            }
-        }
-
-        return sdks;
-    }
-
-    /**
-     * New directory format SDKs, as downloaded by Xcode version >= 8.3.
-     * <p>Fills only some of the data of the SDK, but enough to use it as Simulator.</p>
-     */
-    static SDK createAdditionalFileFormatSdk(File sdkRootDir) {
-
-        Matcher matcher = IOS_SIMULATOR_MAJOR_MINOR_VERSION_REGEX_PATTERN.matcher(sdkRootDir.getName());
-        Validate.isTrue(matcher.find());
-
-        String majorVersion = matcher.group(1);
-        String minorVersion = matcher.group(2);
-
-        String name = sdkRootDir.getName();
-
-        SDK sdk = new SDK();
-        sdk.major = Integer.valueOf(majorVersion);
-        sdk.minor = Integer.valueOf(minorVersion);
-        sdk.minimalDisplayName = name;
-        sdk.displayName = name;
-        sdk.canonicalName = name;
-        sdk.version = majorVersion + "." + minorVersion;
-        sdk.root = sdkRootDir;
-
-        return sdk;
-    }
-
     /**
      * List SDKs bundled with Xcode.
      */
@@ -188,7 +135,6 @@ public class SDK implements Comparable<SDK> {
 
     public static List<SDK> listSimulatorSDKs() {
         List<SDK> sdks = listSDKs("iPhoneSimulator");
-        sdks.addAll(listAdditionalFileFormatSdks());
         return sdks;
     }
 

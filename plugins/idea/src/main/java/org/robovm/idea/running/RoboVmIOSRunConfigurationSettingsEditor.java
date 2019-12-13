@@ -16,13 +16,9 @@
  */
 package org.robovm.idea.running;
 
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-import java.util.Comparator;
-import java.util.List;
-
-import javax.swing.*;
-
+import com.intellij.openapi.module.Module;
+import com.intellij.openapi.options.ConfigurationException;
+import com.intellij.openapi.options.SettingsEditor;
 import org.jetbrains.annotations.NotNull;
 import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.target.ios.DeviceType;
@@ -31,9 +27,9 @@ import org.robovm.compiler.target.ios.ProvisioningProfile;
 import org.robovm.compiler.target.ios.SigningIdentity;
 import org.robovm.idea.RoboVmPlugin;
 
-import com.intellij.openapi.module.Module;
-import com.intellij.openapi.options.ConfigurationException;
-import com.intellij.openapi.options.SettingsEditor;
+import javax.swing.*;
+import java.util.Comparator;
+import java.util.List;
 
 public class RoboVmIOSRunConfigurationSettingsEditor extends SettingsEditor<RoboVmRunConfiguration> {
     private static final Arch[] DEVICE_ARCHS = {Arch.thumbv7, Arch.arm64};
@@ -80,7 +76,7 @@ public class RoboVmIOSRunConfigurationSettingsEditor extends SettingsEditor<Robo
         SimTypeDecorator selectedSimType = (SimTypeDecorator) simType.getSelectedItem();
         config.setSimArch((Arch) simArch.getSelectedItem());
         config.setSimulatorName(selectedSimType != null ? selectedSimType.getType().getDeviceName() : null);
-        config.setSimulatorSdk(selectedSimType != null ? selectedSimType.getType().getSdk().getVersionCode() : 0);
+        config.setSimulatorSdk(selectedSimType != null ? selectedSimType.getType().getVersion().versionCode : 0);
 
         config.setArguments(args.getText());
     }
@@ -135,15 +131,15 @@ public class RoboVmIOSRunConfigurationSettingsEditor extends SettingsEditor<Robo
             simulatorName = "";
         for (DeviceType type : simDeviceTypes) {
             simType.addItem(new SimTypeDecorator(type));
-            if (type.getDeviceName().equals(simulatorName) && type.getSdk().getVersionCode() == config.getSimulatorSdk()) {
+            if (type.getDeviceName().equals(simulatorName) && type.getVersion().versionCode == config.getSimulatorSdk()) {
                 exactSimVersonMatchIdx = simType.getItemCount() - 1;
-            } else if (type.getDeviceName().equals(simulatorName) && type.getSdk().getVersionCode() > bestSimNameMatchVersion) {
+            } else if (type.getDeviceName().equals(simulatorName) && type.getVersion().versionCode > bestSimNameMatchVersion) {
                 bestSimNameMatchIdx = simType.getItemCount() - 1;
-                bestSimNameMatchVersion = type.getSdk().getVersionCode();
+                bestSimNameMatchVersion = type.getVersion().versionCode;
             } else if (simulatorName.isEmpty() && type.getDeviceName().contains("iPhone-6") &&
-                    !type.getDeviceName().contains("Plus") && type.getSdk().getVersionCode() > bestDefaultSimMatchVersion) {
+                    !type.getDeviceName().contains("Plus") && type.getVersion().versionCode > bestDefaultSimMatchVersion) {
                 bestDefaultSimMatchIdx = simType.getItemCount() - 1;
-                bestDefaultSimMatchVersion = type.getSdk().getVersionCode();
+                bestDefaultSimMatchVersion = type.getVersion().versionCode;
             }
         }
         if (exactSimVersonMatchIdx < 0) {
@@ -246,7 +242,7 @@ public class RoboVmIOSRunConfigurationSettingsEditor extends SettingsEditor<Robo
 
         @Override
         public String toString() {
-            return type.getSimpleDeviceName() + " - " + type.getSdk().getVersion();
+            return type.getSimpleDeviceName() + " - " + type.getVersion();
         }
     }
 }
