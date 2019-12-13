@@ -2,7 +2,6 @@ package org.robovm.idea.components;
 
 import com.google.gson.Gson;
 import com.intellij.compiler.server.BuildProcessParametersProvider;
-import com.intellij.openapi.project.Project;
 import com.intellij.util.PathUtil;
 import groovy.lang.GroovyObject;
 import org.jetbrains.annotations.NotNull;
@@ -13,12 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RoboVmBuildProcessParametersProvider extends BuildProcessParametersProvider {
-    private Project project = null;
-
-    public RoboVmBuildProcessParametersProvider(@NotNull Project project) {
-        this.project = project;
-    }
-
     @Override
     @NotNull
     public List<String> getClassPath() {

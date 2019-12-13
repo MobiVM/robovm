@@ -66,13 +66,13 @@ public class CleanRoboVmCacheAction extends AnAction {
             File file = new File(System.getProperty("user.home"), ".robovm/cache");
             try {
                 FileUtils.deleteDirectory(file);
-            } catch (IOException e) {
+            } catch (IOException ignored) {
             }
         }
 
         @Override
-        public void onError(@NotNull Exception error) {
-            super.onError(error);
+        public void onThrowable(@NotNull Throwable error) {
+            super.onThrowable(error);
             exceptionIfHappened = error;
         }
 
@@ -82,7 +82,7 @@ public class CleanRoboVmCacheAction extends AnAction {
 
             // single exit point
             if (exceptionIfHappened != null) {
-                Notifications.Bus.notify(new Notification( "RoboVM", "RoboVM Cache Clearer",
+                Notifications.Bus.notify(new Notification( "RoboVM", "RoboVM cache clearer",
                         "Failed due error: " + exceptionIfHappened.getMessage(), NotificationType.ERROR));
             }
 

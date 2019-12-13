@@ -16,11 +16,14 @@
  */
 package org.robovm.idea.running;
 
-import com.intellij.execution.ExecutionException;
 import com.intellij.execution.Executor;
-import com.intellij.execution.RunManager;
-import com.intellij.execution.RunnerAndConfigurationSettings;
-import com.intellij.execution.configurations.*;
+import com.intellij.execution.configurations.ConfigurationFactory;
+import com.intellij.execution.configurations.ConfigurationType;
+import com.intellij.execution.configurations.ModuleBasedConfiguration;
+import com.intellij.execution.configurations.RunConfiguration;
+import com.intellij.execution.configurations.RunConfigurationWithSuppressedDefaultDebugAction;
+import com.intellij.execution.configurations.RunProfileState;
+import com.intellij.execution.configurations.RunProfileWithCompileBeforeLaunchOption;
 import com.intellij.execution.runners.ExecutionEnvironment;
 import com.intellij.execution.runners.RunConfigurationWithSuppressedDefaultRunAction;
 import com.intellij.openapi.module.Module;
@@ -37,7 +40,6 @@ import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.config.Config;
 import org.robovm.idea.RoboVmPlugin;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -76,11 +78,6 @@ public class RoboVmRunConfiguration extends ModuleBasedConfiguration<RoboVmRunCo
     }
 
     @Override
-    public ModuleBasedConfiguration clone() {
-        return super.clone();
-    }
-
-    @Override
     public Collection<Module> getValidModules() {
         return RoboVmPlugin.getRoboVmModules(getConfigurationModule().getProject());
     }
@@ -88,7 +85,7 @@ public class RoboVmRunConfiguration extends ModuleBasedConfiguration<RoboVmRunCo
     @NotNull
     @Override
     public SettingsEditor<? extends RunConfiguration> getConfigurationEditor() {
-        if(type instanceof RoboVmIOSConfigurationType) {
+        if (type instanceof RoboVmIOSConfigurationType) {
             return new RoboVmIOSRunConfigurationSettingsEditor();
         } else {
             return new RoboVmConsoleRunConfigurationSettingsEditor();
@@ -97,24 +94,24 @@ public class RoboVmRunConfiguration extends ModuleBasedConfiguration<RoboVmRunCo
 
     @Nullable
     @Override
-    public RunProfileState getState(@NotNull Executor executor, @NotNull ExecutionEnvironment environment) throws ExecutionException {
+    public RunProfileState getState(@NotNull Executor executor, @NotNull ExecutionEnvironment environment) {
         return new RoboVmRunProfileState(environment);
     }
 
     @Override
-    public void readExternal(Element element) throws InvalidDataException {
+    public void readExternal(@NotNull Element element) throws InvalidDataException {
         super.readExternal(element);
 
         readModule(element);
         moduleName = JDOMExternalizerUtil.readField(element, "moduleName");
         String targetTypeStr = JDOMExternalizerUtil.readField(element, "targetType");
-        targetType = targetTypeStr.length() == 0? null: TargetType.valueOf(targetTypeStr);
+        targetType = targetTypeStr == null || targetTypeStr.length() == 0 ? null : TargetType.valueOf(targetTypeStr);
         String deviceArchStr = JDOMExternalizerUtil.readField(element, "deviceArch");
-        deviceArch = deviceArchStr.length() == 0? null: Arch.valueOf(deviceArchStr);
+        deviceArch = deviceArchStr == null || deviceArchStr.length() == 0 ? null : Arch.valueOf(deviceArchStr);
         signingIdentity = JDOMExternalizerUtil.readField(element, "signingIdentity");
         provisioningProfile = JDOMExternalizerUtil.readField(element, "provisioningProfile");
         String simArchStr = JDOMExternalizerUtil.readField(element, "simArch");
-        simArch = simArchStr.length() == 0? null: Arch.valueOf(simArchStr);
+        simArch = simArchStr == null || simArchStr.length() == 0 ? null : Arch.valueOf(simArchStr);
         simulatorName = JDOMExternalizerUtil.readField(element, "simulatorName");
         String simSdkString = JDOMExternalizerUtil.readField(element, "simulatorSdk");
         simulatorSdk = -1;
@@ -124,27 +121,26 @@ public class RoboVmRunConfiguration extends ModuleBasedConfiguration<RoboVmRunCo
         } catch (Throwable ignored) {
         }
         arguments = JDOMExternalizerUtil.readField(element, "arguments");
-        if(arguments == null) arguments = "";
+        if (arguments == null) arguments = "";
         workingDir = JDOMExternalizerUtil.readField(element, "workingDir");
-        if(workingDir == null) workingDir = "";
+        if (workingDir == null) workingDir = "";
     }
 
     @Override
-    public void writeExternal(Element element) throws WriteExternalException {
+    public void writeExternal(@NotNull Element element) throws WriteExternalException {
         super.writeExternal(element);
 
         setModuleName(moduleName);
-        writeModule(element);
         JDOMExternalizerUtil.writeField(element, "moduleName", moduleName);
-        JDOMExternalizerUtil.writeField(element, "targetType", targetType == null? null: targetType.toString());
-        JDOMExternalizerUtil.writeField(element, "deviceArch", deviceArch == null? null: deviceArch.toString());
+        JDOMExternalizerUtil.writeField(element, "targetType", targetType == null ? null : targetType.toString());
+        JDOMExternalizerUtil.writeField(element, "deviceArch", deviceArch == null ? null : deviceArch.toString());
         JDOMExternalizerUtil.writeField(element, "signingIdentity", signingIdentity);
         JDOMExternalizerUtil.writeField(element, "provisioningProfile", provisioningProfile);
-        JDOMExternalizerUtil.writeField(element, "simArch", simArch == null? null: simArch.toString());
+        JDOMExternalizerUtil.writeField(element, "simArch", simArch == null ? null : simArch.toString());
         JDOMExternalizerUtil.writeField(element, "simulatorName", simulatorName);
         JDOMExternalizerUtil.writeField(element, "simulatorSdk", Integer.toString(simulatorSdk));
-        JDOMExternalizerUtil.writeField(element, "arguments", arguments == null? "": arguments);
-        JDOMExternalizerUtil.writeField(element, "workingDir", workingDir == null? "": workingDir);
+        JDOMExternalizerUtil.writeField(element, "arguments", arguments == null ? "" : arguments);
+        JDOMExternalizerUtil.writeField(element, "workingDir", workingDir == null ? "" : workingDir);
     }
 
     public void setDeviceArch(Arch deviceArch) {
@@ -198,7 +194,7 @@ public class RoboVmRunConfiguration extends ModuleBasedConfiguration<RoboVmRunCo
     public void setModuleName(String moduleName) {
         this.moduleName = moduleName;
         for (Module module : ModuleManager.getInstance(getConfigurationModule().getProject()).getModules()) {
-            if(module.getName().equals(moduleName)) {
+            if (module.getName().equals(moduleName)) {
                 setModule(module);
                 break;
             }

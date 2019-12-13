@@ -20,6 +20,7 @@ import java.io.File;
 
 import javax.swing.*;
 
+import com.intellij.openapi.util.io.FileUtil;
 import org.jdom.Element;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -65,7 +66,7 @@ public class RoboVmSdkType extends SdkType implements JavaSdkType {
 
     @Override
     public boolean isValidSdkHome(String path) {
-        return RoboVmPlugin.getSdkHome().equals(new File(path));
+        return FileUtil.filesEqual(RoboVmPlugin.getSdkHome(), new File(path));
     }
 
     @NotNull
@@ -114,6 +115,7 @@ public class RoboVmSdkType extends SdkType implements JavaSdkType {
         // add all class and source jars from the SDK lib/ folder
         for(File file: RoboVmPlugin.getSdkLibraries()) {
             VirtualFile virtualFile = JarFileSystem.getInstance().findLocalVirtualFileByPath(file.getAbsolutePath());
+            assert virtualFile != null;
             sdkModificator.addRoot(virtualFile, file.getName().endsWith("-sources.jar")?  OrderRootType.SOURCES: OrderRootType.CLASSES);
         }
 
@@ -130,15 +132,12 @@ public class RoboVmSdkType extends SdkType implements JavaSdkType {
         if(RoboVmPlugin.getSdk() != null) return;
 
         // if not, create a new SDK
-        ApplicationManager.getApplication().runWriteAction(new Runnable() {
-            @Override
-            public void run() {
-                RoboVmSdkType sdkType = new RoboVmSdkType();
-                Sdk sdk = ProjectJdkTable.getInstance().createSdk(sdkType.suggestSdkName(null, null), sdkType);
-                sdkType.setupSdkRoots(sdk);
-                ProjectJdkTable.getInstance().addJdk(sdk);
-                RoboVmPlugin.logInfo(null, "Added new SDK " + sdk.getName());
-            }
+        ApplicationManager.getApplication().runWriteAction(() -> {
+            RoboVmSdkType sdkType = new RoboVmSdkType();
+            Sdk sdk = ProjectJdkTable.getInstance().createSdk(sdkType.suggestSdkName(null, null), sdkType);
+            sdkType.setupSdkRoots(sdk);
+            ProjectJdkTable.getInstance().addJdk(sdk);
+            RoboVmPlugin.logInfo(null, "Added new SDK " + sdk.getName());
         });
     }
 
@@ -152,7 +151,7 @@ public class RoboVmSdkType extends SdkType implements JavaSdkType {
                 } else {
                     JavaSdkVersion version = ((JavaSdk) jdk.getSdkType()).getVersion(jdk);
                     JavaSdkVersion bestVersion = ((JavaSdk)bestJdk.getSdkType()).getVersion(bestJdk);
-                    if(version.isAtLeast(bestVersion)) {
+                    if(version != null && bestVersion != null && version.isAtLeast(bestVersion)) {
                         bestJdk = jdk;
                     }
                 }

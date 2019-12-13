@@ -1,30 +1,27 @@
 package org.robovm.idea.components.setupwizard;
 
 import com.intellij.execution.ExecutionException;
+import com.intellij.execution.configurations.GeneralCommandLine;
 import com.intellij.execution.process.ProcessOutput;
 import com.intellij.execution.util.ExecUtil;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.fileChooser.FileChooserDescriptor;
 import com.intellij.openapi.fileChooser.FileChooserDialog;
 import com.intellij.openapi.fileChooser.FileChooserFactory;
-import com.intellij.openapi.projectRoots.*;
-import com.intellij.openapi.ui.DialogWrapper;
-import com.intellij.openapi.ui.ValidationInfo;
-import com.intellij.openapi.util.Pair;
+import com.intellij.openapi.projectRoots.JavaSdk;
+import com.intellij.openapi.projectRoots.JdkUtil;
+import com.intellij.openapi.projectRoots.ProjectJdkTable;
+import com.intellij.openapi.projectRoots.Sdk;
 import com.intellij.openapi.vfs.LocalFileSystem;
 import com.intellij.openapi.vfs.VirtualFile;
-import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.URL;
-import java.util.*;
+import java.util.Arrays;
 import java.util.List;
 
 public class JdkSetupDialog extends JDialog {
@@ -35,7 +32,6 @@ public class JdkSetupDialog extends JDialog {
     private JButton downloadJDKButton;
     private JButton nextButton;
     private JLabel errorLabel;
-    private JPanel header;
 
     public JdkSetupDialog() {
         setContentPane(panel);
@@ -44,66 +40,53 @@ public class JdkSetupDialog extends JDialog {
         setTitle("RoboVM Setup");
         infoText.setText("<html>RoboVM requires Java Development Kit (JDK) 8.0 or higher.<br><br>Please specify the location of your JDK.");
 
-        for(String jdkLocation: JavaSdk.getInstance().suggestHomePaths()) {
+        for (String jdkLocation : JavaSdk.getInstance().suggestHomePaths()) {
             jdkHome.setText(jdkLocation);
             break;
         }
 
-        browseButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                FileChooserDialog fileChooser = FileChooserFactory.getInstance()
-                        .createFileChooser(new FileChooserDescriptor(true, false, false, false, false, false) {
-                            @Override
-                            public boolean isFileVisible(VirtualFile file, boolean showHiddenFiles) {
-                                return file.isDirectory();
-                            }
-                            @Override
-                            public boolean isFileSelectable(VirtualFile file) {
-                                return file.isDirectory();
-                            }
-                        }, null, panel);
-                File jdkDir = new File(System.getProperty("user.home"));
-                if(jdkHome.getText() != null && !jdkHome.getText().isEmpty()) {
-                    jdkDir = new File(jdkHome.getText());
-                }
+        browseButton.addActionListener(e -> {
+            FileChooserDialog fileChooser = FileChooserFactory.getInstance()
+                    .createFileChooser(new FileChooserDescriptor(true, false, false, false, false, false) {
+                        @Override
+                        public boolean isFileVisible(VirtualFile file, boolean showHiddenFiles) {
+                            return file.isDirectory();
+                        }
 
-                VirtualFile[] dir = fileChooser.choose(null, LocalFileSystem.getInstance().findFileByIoFile(jdkDir));
-                if(dir != null && dir.length > 0) {
-                    jdkHome.setText(dir[0].getCanonicalPath());
-                }
-                validateInput();
+                        @Override
+                        public boolean isFileSelectable(VirtualFile file) {
+                            return file.isDirectory();
+                        }
+                    }, null, panel);
+            File jdkDir = new File(System.getProperty("user.home"));
+            if (jdkHome.getText() != null && !jdkHome.getText().isEmpty()) {
+                jdkDir = new File(jdkHome.getText());
+            }
+
+            VirtualFile[] dir = fileChooser.choose(null, LocalFileSystem.getInstance().findFileByIoFile(jdkDir));
+            if (dir.length > 0) {
+                jdkHome.setText(dir[0].getCanonicalPath());
+            }
+            validateInput();
+        });
+
+        downloadJDKButton.addActionListener(e -> {
+            try {
+                Desktop.getDesktop().browse(new URI("https://www.oracle.com/technetwork/java/javase/downloads/index.html"));
+            } catch (URISyntaxException | IOException e1) {
+                // do nothing
             }
         });
 
-        downloadJDKButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    Desktop.getDesktop().browse(new URI("http://www.oracle.com/technetwork/java/javase/downloads/index.html"));
-                } catch (URISyntaxException e1) {
-                    // do nothing
-                } catch (IOException e2) {
-                    // do nothing
-                }
-            }
-        });
-
-        nextButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                final File jdkDir = new File(jdkHome.getText());
-                ApplicationManager.getApplication().runWriteAction(new Runnable() {
-                    @Override
-                    public void run() {
-                        JavaSdk javaSdk = JavaSdk.getInstance();
-                        Sdk sdk = javaSdk.createJdk(suggestJdkName(jdkDir), jdkDir.getAbsolutePath());
-                        javaSdk.setupSdkPaths(sdk);
-                        ProjectJdkTable.getInstance().addJdk(sdk);
-                    }
-                });
-                dispose();
-            }
+        nextButton.addActionListener(e -> {
+            final File jdkDir = new File(jdkHome.getText());
+            ApplicationManager.getApplication().runWriteAction(() -> {
+                JavaSdk javaSdk = JavaSdk.getInstance();
+                Sdk sdk = javaSdk.createJdk(suggestJdkName(jdkDir), jdkDir.getAbsolutePath());
+                javaSdk.setupSdkPaths(sdk);
+                ProjectJdkTable.getInstance().addJdk(sdk);
+            });
+            dispose();
         });
 
         validateInput();
@@ -112,22 +95,20 @@ public class JdkSetupDialog extends JDialog {
     }
 
     private void validateInput() {
-        boolean valid = jdkHome.getText() != null &&
-                !jdkHome.getText().isEmpty() &&
-                JavaSdk.checkForJdk(new File(jdkHome.getText()));
+        String jdkPath = jdkHome.getText();
+        boolean valid = jdkPath != null && !jdkPath.isEmpty() && JdkUtil.checkForJdk(new File(jdkPath));
         errorLabel.setVisible(!valid);
         nextButton.setEnabled(valid);
     }
 
     private static String suggestJdkName(File jdkDir) {
-        File file = jdkDir;
-        File javaExe = new File(new File(file, "bin"), "java");
-        if(!javaExe.exists()) {
-            new File(new File(file, "bin"), "java.exe");
+        File javaExe = new File(new File(jdkDir, "bin"), "java");
+        if (!javaExe.exists()) {
+            new File(new File(jdkDir, "bin"), "java.exe");
         }
-        ProcessOutput output = null;
+        ProcessOutput output;
         try {
-            output = ExecUtil.execAndGetOutput(Arrays.asList(javaExe.getAbsolutePath(), "-version"), null);
+            output = ExecUtil.execAndGetOutput(new GeneralCommandLine(Arrays.asList(javaExe.getAbsolutePath(), "-version")));
         } catch (ExecutionException e) {
             e.printStackTrace();
             return "JDK";
@@ -142,7 +123,7 @@ public class JdkSetupDialog extends JDialog {
             String line = lines.get(1);
             int pos = line.indexOf("(build ");
             if (pos != -1) {
-                stringBuilder.append(line.substring(pos + 7, line.length() - 1));
+                stringBuilder.append(line, pos + 7, line.length() - 1);
             }
             line = lines.get(2);
             pos = line.indexOf(" (build");
@@ -150,9 +131,8 @@ public class JdkSetupDialog extends JDialog {
                 String substring = line.substring(0, pos);
                 stringBuilder.append(" (").append(substring).append(")");
             }
-        }
-        else {
-            stringBuilder.append(file.getName());
+        } else {
+            stringBuilder.append(jdkDir.getName());
         }
         return stringBuilder.toString();
     }
