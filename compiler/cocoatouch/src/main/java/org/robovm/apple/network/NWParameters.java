@@ -35,7 +35,7 @@ import org.robovm.apple.security.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*/@Library("Network") @NativeProtocolProxy("OS_nw_parameters")/*</annotations>*/
+/*<annotations>*/@Library("Network") @NativeClass("NSObject")/*</annotations>*/
 /*<visibility>*/public final/*</visibility>*/ class /*<name>*/NWParameters/*</name>*/ 
     extends /*<extends>*/NWObject/*</extends>*/ 
     /*<implements>*/implements NSObjectProtocol/*</implements>*/ {
@@ -44,6 +44,8 @@ import org.robovm.apple.security.*;
     /*<bind>*/static { ObjCRuntime.bind(NWParameters.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
+    public NWParameters() { super((Handle) null, create());  }
+    
     
     /*</constructors>*/
     /*<properties>*/
@@ -76,7 +78,7 @@ import org.robovm.apple.security.*;
      * @since Available in iOS 12.0 and later.
      */
     @Bridge(symbol="nw_parameters_create", optional=true)
-    public static native NWParameters create();
+    protected static native @Pointer long create();
     /**
      * @since Available in iOS 12.0 and later.
      */

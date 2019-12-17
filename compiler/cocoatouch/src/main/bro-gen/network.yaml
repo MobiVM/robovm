@@ -10,7 +10,8 @@ private_typedefs:
     dispatch_data_t: DispatchData
     '__CFError *': NSError
 
-typedefs: {}
+typedefs:
+    nw_framer_message_t: NWFramerMessage
 
 enums:
     nw_endpoint_type_t: {prefix: nw_endpoint_type_, name: NWEndpointType}
@@ -37,7 +38,14 @@ enums:
     nw_ws_close_code_t: {prefix: nw_ws_close_code_, name: NWWsCoseCode}
     nw_ws_version_t: {prefix: nw_ws_, name: NWWsVersion}
     nw_ws_response_status_t: {prefix: nw_ws_response_status_, name: NWWsResponseStatus}
-classes: {}
+
+classes:
+    NWFramerMessage:
+        extends: NWProtocolMetadata
+        annotations: ['@NativeClass("NSObject")']
+    NWObject:
+        extends: NSObject
+        annotations: ['@NativeClass("NSObject")']
 
 protocols:
     OS_nw_object:
@@ -49,7 +57,7 @@ protocols:
         extends: NWObject
         visibility: 'public final'
     NWAdvertiseDescriptor:  # FIXME: this is workaround as bro-gen uses javaname when merging annotations
-        annotations: ['@NativeProtocolProxy("OS_nw_advertise_descriptor")']
+        annotations: ['@NativeClass("NSObject")']
 
     OS_nw_connection:
         class: true
@@ -57,7 +65,7 @@ protocols:
         extends: NWObject
         visibility: 'public final'
     NWConnection: # FIXME: this is workaround as bro-gen uses javaname when merging annotations
-        annotations: ['@NativeProtocolProxy("OS_nw_connection")']
+        annotations: ['@NativeClass("NSObject")']
 
     OS_nw_content_context:
         class: true
@@ -65,7 +73,7 @@ protocols:
         extends: NWObject
         visibility: 'public final'
     NWContentContext:  # FIXME: this is workaround as bro-gen uses javaname when merging annotations
-        annotations: ['@NativeProtocolProxy("OS_nw_content_context")']
+        annotations: ['@NativeClass("NSObject")']
 
     OS_nw_endpoint:
         class: true
@@ -73,7 +81,7 @@ protocols:
         extends: NWObject
         visibility: 'public final'
     NWEndpoint:  # FIXME: this is workaround as bro-gen uses javaname when merging annotations
-        annotations: ['@NativeProtocolProxy("OS_nw_endpoint")']
+        annotations: ['@NativeClass("NSObject")']
 
     OS_nw_error:
         class: true
@@ -81,7 +89,7 @@ protocols:
         extends: NWObject
         visibility: 'public final'
     NWError:  # FIXME: this is workaround as bro-gen uses javaname when merging annotations
-        annotations: ['@NativeProtocolProxy("OS_nw_error")']
+        annotations: ['@NativeClass("NSObject")']
 
     OS_nw_interface:
         class: true
@@ -89,7 +97,7 @@ protocols:
         extends: NWObject
         visibility: 'public final'
     NWInterface:  # FIXME: this is workaround as bro-gen uses javaname when merging annotations
-        annotations: ['@NativeProtocolProxy("OS_nw_interface")']
+        annotations: ['@NativeClass("NSObject")']
 
     OS_nw_listener:
         class: true
@@ -97,7 +105,7 @@ protocols:
         extends: NWObject
         visibility: 'public final'
     NWListener:  # FIXME: this is workaround as bro-gen uses javaname when merging annotations
-        annotations: ['@NativeProtocolProxy("OS_nw_listener")']
+        annotations: ['@NativeClass("NSObject")']
 
     OS_nw_parameters:
         class: true
@@ -105,7 +113,7 @@ protocols:
         extends: NWObject
         visibility: 'public final'
     NWParameters:  # FIXME: this is workaround as bro-gen uses javaname when merging annotations
-        annotations: ['@NativeProtocolProxy("OS_nw_parameters")']
+        annotations: ['@NativeClass("NSObject")']
 
     OS_nw_path:
         class: true
@@ -113,7 +121,7 @@ protocols:
         extends: NWObject
         visibility: 'public final'
     NWPath:  # FIXME: this is workaround as bro-gen uses javaname when merging annotations
-        annotations: ['@NativeProtocolProxy("OS_nw_path")']
+        annotations: ['@NativeClass("NSObject")']
 
     OS_nw_path_monitor:
         class: true
@@ -121,7 +129,7 @@ protocols:
         extends: NWObject
         visibility: 'public final'
     NWPathMonitor:  # FIXME: this is workaround as bro-gen uses javaname when merging annotations
-        annotations: ['@NativeProtocolProxy("OS_nw_path_monitor")']
+        annotations: ['@NativeClass("NSObject")']
 
     OS_nw_protocol_definition:
         class: true
@@ -129,15 +137,15 @@ protocols:
         extends: NWObject
         visibility: 'public final'
     NWProtocolDefinition:  # FIXME: this is workaround as bro-gen uses javaname when merging annotations
-        annotations: ['@NativeProtocolProxy("OS_nw_protocol_definition")']
+        annotations: ['@NativeClass("NSObject")']
 
     OS_nw_protocol_metadata:
         class: true
         name: NWProtocolMetadata
         extends: NWObject
-        visibility: 'public final'
+        # visibility: 'public final' # commented out as NWFramerMessage is extending from it
     NWProtocolMetadata:  # FIXME: this is workaround as bro-gen uses javaname when merging annotations
-        annotations: ['@NativeProtocolProxy("OS_nw_protocol_metadata")']
+        annotations: ['@NativeClass("NSObject")']
 
     OS_nw_protocol_options:
         class: true
@@ -145,7 +153,7 @@ protocols:
         extends: NWObject
         visibility: 'public final'
     NWProtocolOptions:  # FIXME: this is workaround as bro-gen uses javaname when merging annotations
-        annotations: ['@NativeProtocolProxy("OS_nw_protocol_options")']
+        annotations: ['@NativeClass("NSObject")']
 
     OS_nw_protocol_stack:
         class: true
@@ -153,7 +161,7 @@ protocols:
         extends: NWObject
         visibility: 'public final'
     NWProtocolStack:  # FIXME: this is workaround as bro-gen uses javaname when merging annotations
-        annotations: ['@NativeProtocolProxy("OS_nw_protocol_stack")']
+        annotations: ['@NativeClass("NSObject")']
 
     OS_nw_browse_descriptor:
         class: true
@@ -161,7 +169,7 @@ protocols:
         extends: NWObject
         visibility: 'public final'
     NWBrowseDescriptor:  # FIXME: this is workaround as bro-gen uses javaname when merging annotations
-        annotations: ['@NativeProtocolProxy("OS_nw_browse_descriptor")']
+        annotations: ['@NativeClass("NSObject")']
 
     OS_nw_browse_result:
         class: true
@@ -169,7 +177,7 @@ protocols:
         extends: NWObject
         visibility: 'public final'
     NWBrowseResult:  # FIXME: this is workaround as bro-gen uses javaname when merging annotations
-        annotations: ['@NativeProtocolProxy("OS_nw_browse_result")']
+        annotations: ['@NativeClass("NSObject")']
 
     OS_nw_browser:
         class: true
@@ -177,7 +185,7 @@ protocols:
         extends: NWObject
         visibility: 'public final'
     NWBrowser:  # FIXME: this is workaround as bro-gen uses javaname when merging annotations
-        annotations: ['@NativeProtocolProxy("OS_nw_browser")']
+        annotations: ['@NativeClass("NSObject")']
 
     OS_nw_data_transfer_report:
         class: true
@@ -185,7 +193,7 @@ protocols:
         extends: NWObject
         visibility: 'public final'
     NWDataTransferReport:  # FIXME: this is workaround as bro-gen uses javaname when merging annotations
-        annotations: ['@NativeProtocolProxy("OS_nw_data_transfer_report")']
+        annotations: ['@NativeClass("NSObject")']
 
     OS_nw_establishment_report:
         class: true
@@ -193,7 +201,7 @@ protocols:
         extends: NWObject
         visibility: 'public final'
     NWEstablishmentReport:  # FIXME: this is workaround as bro-gen uses javaname when merging annotations
-        annotations: ['@NativeProtocolProxy("OS_nw_establishment_report")']
+        annotations: ['@NativeClass("NSObject")']
 
     OS_nw_ethernet_channel:
         exclude: true # as available only on MacOS
@@ -204,7 +212,7 @@ protocols:
         extends: NWObject
         visibility: 'public final'
     NWFramer:  # FIXME: this is workaround as bro-gen uses javaname when merging annotations
-        annotations: ['@NativeProtocolProxy("OS_nw_framer")']
+        annotations: ['@NativeClass("NSObject")']
 
     OS_nw_txt_record:
         class: true
@@ -212,7 +220,7 @@ protocols:
         extends: NWObject
         visibility: 'public final'
     NWTxtRecord:  # FIXME: this is workaround as bro-gen uses javaname when merging annotations
-        annotations: ['@NativeProtocolProxy("OS_nw_txt_record")']
+        annotations: ['@NativeClass("NSObject")']
 
     OS_nw_ws_request:
         class: true
@@ -220,7 +228,7 @@ protocols:
         extends: NWObject
         visibility: 'public final'
     NWWsRequest:  # FIXME: this is workaround as bro-gen uses javaname when merging annotations
-        annotations: ['@NativeProtocolProxy("OS_nw_ws_request")']
+        annotations: ['@NativeClass("NSObject")']
 
     OS_nw_ws_response:
         class: true
@@ -228,23 +236,54 @@ protocols:
         extends: NWObject
         visibility: 'public final'
     NWWsResponse:  # FIXME: this is workaround as bro-gen uses javaname when merging annotations
-        annotations: ['@NativeProtocolProxy("OS_nw_ws_response")']
-functions:
+        annotations: ['@NativeClass("NSObject")']
 
+functions:
+    # NWAdvertiseDescriptor
+    nw_advertise_descriptor_(create_bonjour_service):
+        class: NWAdvertiseDescriptor
+        name: '#{g[0].downcase_first_camelize}'
+        constructor: true
+        parameters:
+            0: {type: String, marshaler: StringMarshalers.AsAsciiZMarshaler }
+            1: {type: String, marshaler: StringMarshalers.AsAsciiZMarshaler }
+            2: {type: String, marshaler: StringMarshalers.AsAsciiZMarshaler }
     nw_advertise_descriptor_(.*):
         class: NWAdvertiseDescriptor
-        name: '#{g[0].camelize}'
+        name: '#{g[0].downcase_first_camelize}'
 
+    # NWContentContext
+    nw_content_context_create:
+        class: NWContentContext
+        constructor: true
+        name: create
+        parameters:
+            0: {type: String, marshaler: StringMarshalers.AsAsciiZMarshaler }
+    nw_content_context_(get_identifier):
+        class: NWContentContext
+        name: '#{g[0].downcase_first_camelize}'
+        return_type: String
+        return_marshaler: StringMarshalers.AsAsciiZMarshaler
     nw_content_context_get_is_final:
         class: NWContentContext
         name: isFinal
     nw_content_context_(.*):
         class: NWContentContext
-        name: '#{g[0].camelize}'
+        name: '#{g[0].downcase_first_camelize}'
 
+    # NWConnection
+    nw_connection_create:
+        class: NWConnection
+        constructor: true
+        name: create
+    nw_connection_copy_description:
+        class: NWConnection
+        name: copyDescription0
+        visibility: protected
+        return_type: '@Pointer long'
     nw_connection_(.*):
         class: NWConnection
-        name: '#{g[0].camelize}'
+        name: '#{g[0].downcase_first_camelize}'
 
     # TODO: don't want to bother with sockaddr
     nw_endpoint_create_address:
@@ -253,72 +292,94 @@ functions:
         exclude: true
     nw_endpoint_(create_host):
         class: NWEndpoint
-        name: '#{g[0].camelize}'
+        constructor: true
+        name: '#{g[0].downcase_first_camelize}'
         parameters:
             hostname: {type: String, marshaler: StringMarshalers.AsAsciiZMarshaler }
             port: {type: String, marshaler: StringMarshalers.AsAsciiZMarshaler }
     nw_endpoint_(create_bonjour_service):
         class: NWEndpoint
-        name: '#{g[0].camelize}'
+        constructor: true
+        name: '#{g[0].downcase_first_camelize}'
         parameters:
             name: {type: String, marshaler: StringMarshalers.AsAsciiZMarshaler }
             type: {type: String, marshaler: StringMarshalers.AsAsciiZMarshaler }
             domain: {type: String, marshaler: StringMarshalers.AsAsciiZMarshaler }
     nw_endpoint_(get_hostname|get_bonjour_service_name|get_bonjour_service_type|get_bonjour_service_domain|copy_port_string|copy_address_string|get_url):
         class: NWEndpoint
-        name: '#{g[0].camelize}'
+        name: '#{g[0].downcase_first_camelize}'
         return_type: String
         return_marshaler: StringMarshalers.AsAsciiZMarshaler
     nw_endpoint_(create_url):
         class: NWEndpoint
-        name: '#{g[0].camelize}'
+        constructor: true
+        name: '#{g[0].downcase_first_camelize}'
         parameters:
             url: {type: String, marshaler: StringMarshalers.AsAsciiZMarshaler }
     nw_endpoint_(.*):
         class: NWEndpoint
-        name: '#{g[0].camelize}'
+        name: '#{g[0].downcase_first_camelize}'
 
     nw_error_(.*):
         class: NWError
-        name: '#{g[0].camelize}'
+        name: '#{g[0].downcase_first_camelize}'
 
-    nw_interface_(.*)_(.*):
+    # NWInterface
+    nw_interface_get_name:
         class: NWInterface
-        name: '#{g[0]}#{g[1].camelize}'
+        name: getName
+        return_type: String
+        return_marshaler: StringMarshalers.AsAsciiZMarshaler
+    nw_interface_(.*):
+        class: NWInterface
+        name: '#{g[0].downcase_first_camelize}'
 
+    # NWParameters
+    nw_parameters_create:
+        class: NWParameters
+        constructor: true
+        name: create
     nw_parameters_copy:
         class: NWParameters
         name: copyParameters # otherwise it will break compiler on synthetic bridged method from NSObject
-
     nw_parameters_(.*):
         class: NWParameters
-        name: '#{g[0].camelize}'
+        name: '#{g[0].downcase_first_camelize}'
         parameters:
             interface:
                 name: inf
 
+    nw_path_monitor_(create.*):
+        class: NWPathMonitor
+        constructor: true
+        name: '#{g[0].downcase_first_camelize}'
+
     nw_path_monitor_(.*):
         class: NWPathMonitor
-        name: '#{g[0].camelize}'
+        name: '#{g[0].downcase_first_camelize}'
 
     nw_path_(.*):
         class: NWPath
-        name: '#{g[0].camelize}'
+        name: '#{g[0].downcase_first_camelize}'
 
-    nw_protocol_definition_(.*)_(.*):
+    # NWProtocolDefinition
+    nw_protocol_definition_(.*):
         class: NWProtocolDefinition
-        name: '#{g[0]}#{g[1].camelize}'
-    nw_protocol_copy_(.*)_definition:
+        name: '#{g[0].downcase_first_camelize}'
+    nw_protocol_copy_(.*):
         class: NWProtocolDefinition
-        name: 'copy#{g[0]}Definition'
+        name: 'copy#{g[0].camelize}'
+    nw_framer_protocol_create_message:
+        class: NWProtocolDefinition
+        name: 'createFramerMessage'
 
     nw_protocol_metadata_(.*):
         class: NWProtocolMetadata
-        name: '#{g[0].camelize}'
+        name: '#{g[0].downcase_first_camelize}'
 
-    nw_protocol_options_(.*)_(.*):
+    nw_protocol_options_(.*):
         class: NWProtocolOptions
-        name: '#{g[0]}#{g[1].camelize}'
+        name: '#{g[0].downcase_first_camelize}'
     nw_(.*)_options_set_(.*):
         class: NWProtocolOptions
         name: 'set#{g[0].camelize}#{g[1].camelize}'
@@ -328,22 +389,28 @@ functions:
 
     nw_protocol_stack_(.*):
         class: NWProtocolStack
-        name: '#{g[0].camelize}'
+        name: '#{g[0].downcase_first_camelize}'
+
+    nw_listener_(create.*):
+        class: NWListener
+        constructor: true
+        name: '#{g[0].downcase_first_camelize}'
+        parameters:
+            port: {type: String, marshaler: StringMarshalers.AsAsciiZMarshaler }
 
     nw_listener_(.*):
         class: NWListener
-        name: '#{g[0].camelize}'
+        name: '#{g[0].downcase_first_camelize}'
 
-    nw_ip_metadata_get_(.*)_(.*):
+    nw_ip_metadata_get_(.*):
         class: NWProtocolMetadata
-        name: 'getIp#{g[0].camelize}#{g[1].camelize}'
-    nw_ip_metadata_set_(.*)_(.*):
+        name: 'getIp#{g[0].camelize}'
+    nw_ip_metadata_set_(.*):
         class: NWProtocolMetadata
-        name: 'setIp#{g[0].camelize}#{g[1].camelize}'
+        name: 'setIp#{g[0].camelize}'
     nw_(.*)_create_metadata:
         class: NWProtocolMetadata
         name: 'create#{g[0].camelize}Metadata'
-
     nw_tcp_get_available_receive_buffer:
         class: NWProtocolMetadata
         name: getTcpAvailableReceiveBuffer
@@ -360,6 +427,7 @@ functions:
         class: NWProtocolMetadata
         name: copySecArcProtocolMetadata
 
+    # no need these as rely on NSObject retain/release
     nw_(retain|release):
         class: NWObject
         visibility: private
@@ -372,111 +440,127 @@ functions:
     # ios13
     nw_txt_record_(find_key|access_key|set_key|remove_key):
         class: NWTxtRecord
-        name: '#{g[0].camelize}'
+        name: '#{g[0].downcase_first_camelize}'
         parameters:
             key: {type: String, marshaler: StringMarshalers.AsAsciiZMarshaler }
+    nw_txt_record_(create.*):
+        class: NWTxtRecord
+        constructor: true
+        name: '#{g[0].downcase_first_camelize}'
     nw_txt_record_(.*):
         class: NWTxtRecord
-        name: '#{g[0].camelize}'
+        name: '#{g[0].downcase_first_camelize}'
 
+    # NWBrowseDescriptor
     nw_browse_descriptor_(create_bonjour_service):
         class: NWBrowseDescriptor
-        name: '#{g[0].camelize}'
+        constructor: true
+        name: '#{g[0].downcase_first_camelize}'
         parameters:
             type: {type: String, marshaler: StringMarshalers.AsAsciiZMarshaler }
             domain: {type: String, marshaler: StringMarshalers.AsAsciiZMarshaler }
     nw_browse_descriptor_(get_bonjour_service_type|get_bonjour_service_domain):
         class: NWBrowseDescriptor
-        name: '#{g[0].camelize}'
+        name: '#{g[0].downcase_first_camelize}'
         return_type: String
         return_marshaler: StringMarshalers.AsAsciiZMarshaler
     nw_browse_descriptor_(.*):
         class: NWBrowseDescriptor
-        name: '#{g[0].camelize}'
+        name: '#{g[0].downcase_first_camelize}'
 
+    # NWBrowseResult
     nw_browse_result_(.*):
         class: NWBrowseResult
-        name: '#{g[0].camelize}'
+        name: '#{g[0].downcase_first_camelize}'
 
+    # NWBrowser
+    nw_browser_(create):
+        class: NWBrowser
+        constructor: true
+        name: '#{g[0].downcase_first_camelize}'
     nw_browser_(.*):
         class: NWBrowser
-        name: '#{g[0].camelize}'
+        name: '#{g[0].downcase_first_camelize}'
 
+    # NWEstablishmentReport
     nw_establishment_report_(.*):
         class: NWEstablishmentReport
-        name: '#{g[0].camelize}'
+        name: '#{g[0].downcase_first_camelize}'
 
+    # NWDataTransferReport
     nw_data_transfer_report_(.*):
         class: NWDataTransferReport
-        name: '#{g[0].camelize}'
+        name: '#{g[0].downcase_first_camelize}'
 
     nw_framer_message_create:
         class:  NWFramer
         name: createMessage
 
-    nw_framer_message_(set_value|access_value|set_object_value|copy_object_value):
-        class: NWProtocolMetadata
-        name: 'framerMessage#{g[0].camelize}'
+    nw_framer_message_(.*):
+        class: NWFramerMessage
+        name: '#{g[0].downcase_first_camelize}'
         parameters:
             key: {type: String, marshaler: StringMarshalers.AsAsciiZMarshaler }
-    nw_framer_message_(.*):
-        class: NWProtocolMetadata
-        name: 'framerMessage#{g[0].camelize}'
 
     nw_framer_(create_definition):
         class: NWFramer
-        name: '#{g[0].camelize}'
+        name: '#{g[0].downcase_first_camelize}'
         parameters:
             identifier: {type: String, marshaler: StringMarshalers.AsAsciiZMarshaler }
 
+    nw_framer_(create_options):
+        class: NWProtocolDefinition
+        name: createFramerOptions
+
     nw_framer_(.*):
         class: NWFramer
-        name: '#{g[0].camelize}'
+        name: '#{g[0].downcase_first_camelize}'
 
     nw_ws_options_(add_additional_header):
         class: NWProtocolOptions
-        name: '#{g[0].camelize}'
+        name: '#{g[0].downcase_first_camelize}'
         parameters:
             name: {type: String, marshaler: StringMarshalers.AsAsciiZMarshaler }
             value: {type: String, marshaler: StringMarshalers.AsAsciiZMarshaler }
 
     nw_ws_options_(add_subprotocol):
         class: NWProtocolOptions
-        name: '#{g[0].camelize}'
+        name: '#{g[0].downcase_first_camelize}'
         parameters:
             subprotocol: {type: String, marshaler: StringMarshalers.AsAsciiZMarshaler }
 
     nw_ws_options_(.*):
         class: NWProtocolOptions
-        name: '#{g[0].camelize}'
+        name: '#{g[0].downcase_first_camelize}'
 
     nw_ws_metadata_(.*):
         class: NWProtocolMetadata
-        name: '#{g[0].camelize}'
+        name: '#{g[0].downcase_first_camelize}'
 
     nw_ws_request_(.*):
         class: NWWsRequest
-        name: '#{g[0].camelize}'
+        name: '#{g[0].downcase_first_camelize}'
 
     nw_ws_response_(create):
         class: NWWsResponse
-        name: '#{g[0].camelize}'
+        constructor: true
+        name: '#{g[0].downcase_first_camelize}'
         parameters:
             selected_subprotocol: {type: String, marshaler: StringMarshalers.AsAsciiZMarshaler }
     nw_ws_response_(get_selected_subprotocol):
         class: NWWsResponse
-        name: '#{g[0].camelize}'
+        name: '#{g[0].downcase_first_camelize}'
         return_type: String
         return_marshaler: StringMarshalers.AsAsciiZMarshaler
     nw_ws_response_(add_additional_header):
         class: NWWsResponse
-        name: '#{g[0].camelize}'
+        name: '#{g[0].downcase_first_camelize}'
         parameters:
             name: {type: String, marshaler: StringMarshalers.AsAsciiZMarshaler }
             value: {type: String, marshaler: StringMarshalers.AsAsciiZMarshaler }
     nw_ws_response_(.*):
         class: NWWsResponse
-        name: '#{g[0].camelize}'
+        name: '#{g[0].downcase_first_camelize}'
 
 
     # Make sure we don't miss any functions if new ones are introduced in a later version
@@ -499,7 +583,7 @@ values:
 
     _nw_data_transfer_report_(.*):
         class: NWDataTransferReport
-        name: '#{g[0].camelize}'
+        name: '#{g[0].downcase_first_camelize}'
 
     # Make sure we don't miss any values if new ones are introduced in a later version
     (k?nw_.*):

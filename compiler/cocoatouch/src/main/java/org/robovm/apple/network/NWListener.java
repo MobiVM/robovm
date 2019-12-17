@@ -35,7 +35,7 @@ import org.robovm.apple.security.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*/@Library("Network") @NativeProtocolProxy("OS_nw_listener")/*</annotations>*/
+/*<annotations>*/@Library("Network") @NativeClass("NSObject")/*</annotations>*/
 /*<visibility>*/public final/*</visibility>*/ class /*<name>*/NWListener/*</name>*/ 
     extends /*<extends>*/NWObject/*</extends>*/ 
     /*<implements>*/implements NSObjectProtocol/*</implements>*/ {
@@ -44,6 +44,10 @@ import org.robovm.apple.security.*;
     /*<bind>*/static { ObjCRuntime.bind(NWListener.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
+    public NWListener(String port, NWParameters parameters) { super((Handle) null, createWithPort(port, parameters));  }
+    public NWListener(NWParameters parameters) { super((Handle) null, create(parameters));  }
+    public NWListener(NWConnection connection, NWParameters parameters) { super((Handle) null, createWithConnection(connection, parameters));  }
+    
     
     /*</constructors>*/
     /*<properties>*/
@@ -55,17 +59,17 @@ import org.robovm.apple.security.*;
      * @since Available in iOS 12.0 and later.
      */
     @Bridge(symbol="nw_listener_create_with_port", optional=true)
-    public static native NWListener createWithPort(BytePtr port, NWParameters parameters);
+    protected static native @Pointer long createWithPort(@org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class) String port, NWParameters parameters);
     /**
      * @since Available in iOS 12.0 and later.
      */
     @Bridge(symbol="nw_listener_create", optional=true)
-    public static native NWListener create(NWParameters parameters);
+    protected static native @Pointer long create(NWParameters parameters);
     /**
      * @since Available in iOS 12.0 and later.
      */
     @Bridge(symbol="nw_listener_create_with_connection", optional=true)
-    public static native NWListener createWithConnection(NWConnection connection, NWParameters parameters);
+    protected static native @Pointer long createWithConnection(NWConnection connection, NWParameters parameters);
     /**
      * @since Available in iOS 12.0 and later.
      */

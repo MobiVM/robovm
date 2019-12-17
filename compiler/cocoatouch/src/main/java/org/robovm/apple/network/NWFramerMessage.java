@@ -35,19 +35,14 @@ import org.robovm.apple.security.*;
 /*<javadoc>*/
 /*</javadoc>*/
 /*<annotations>*/@Library("Network") @NativeClass("NSObject")/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/NWObject/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/NWFramerMessage/*</name>*/ 
+    extends /*<extends>*/NWProtocolMetadata/*</extends>*/
     /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/
     /*</ptr>*/
-    /*<bind>*/static { Bro.bind(NWObject.class); }/*</bind>*/
+    /*<bind>*/static { Bro.bind(NWFramerMessage.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    protected NWObject() {}
-
-    public NWObject(Handle h, long handle) {
-        super(h, handle);
-    }
     /*<constructors>*/
     
     /*</constructors>*/
@@ -55,14 +50,24 @@ import org.robovm.apple.security.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @since Available in iOS 12.0 and later.
+     * @since Available in iOS 13.0 and later.
      */
-    @Bridge(symbol="nw_retain", optional=true)
-    private static native void nwArcRetain(@Pointer long obj);
+    @Bridge(symbol="nw_framer_message_set_value", optional=true)
+    public native void setValue(@org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class) String key, VoidPtr value, @Block VoidBlock1<VoidPtr> dispose_value);
     /**
-     * @since Available in iOS 12.0 and later.
+     * @since Available in iOS 13.0 and later.
      */
-    @Bridge(symbol="nw_release", optional=true)
-    private static native void nwArcRelease(@Pointer long obj);
+    @Bridge(symbol="nw_framer_message_access_value", optional=true)
+    public native boolean accessValue(@org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class) String key, @Block Block1<VoidPtr, Boolean> access_value);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="nw_framer_message_set_object_value", optional=true)
+    public native void setObjectValue(@org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class) String key, NSObject value);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="nw_framer_message_copy_object_value", optional=true)
+    public native NSObject copyObjectValue(@org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class) String key);
     /*</methods>*/
 }

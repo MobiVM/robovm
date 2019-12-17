@@ -35,7 +35,7 @@ import org.robovm.apple.security.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*/@Library("Network") @NativeProtocolProxy("OS_nw_browse_descriptor")/*</annotations>*/
+/*<annotations>*/@Library("Network") @NativeClass("NSObject")/*</annotations>*/
 /*<visibility>*/public final/*</visibility>*/ class /*<name>*/NWBrowseDescriptor/*</name>*/ 
     extends /*<extends>*/NWObject/*</extends>*/ 
     /*<implements>*/implements NSObjectProtocol/*</implements>*/ {
@@ -44,6 +44,8 @@ import org.robovm.apple.security.*;
     /*<bind>*/static { ObjCRuntime.bind(NWBrowseDescriptor.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
+    public NWBrowseDescriptor(String type, String domain) { super((Handle) null, createBonjourService(type, domain));  }
+    
     
     /*</constructors>*/
     /*<properties>*/
@@ -55,17 +57,17 @@ import org.robovm.apple.security.*;
      * @since Available in iOS 13.0 and later.
      */
     @Bridge(symbol="nw_browse_descriptor_create_bonjour_service", optional=true)
-    public static native NWBrowseDescriptor createBonjourService(@org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class) String type, @org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class) String domain);
+    protected static native @Pointer long createBonjourService(@org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class) String type, @org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class) String domain);
     /**
      * @since Available in iOS 13.0 and later.
      */
     @Bridge(symbol="nw_browse_descriptor_get_bonjour_service_type", optional=true)
-    public native @org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class) String getBonjourServiceType();
+    public native @org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class)String getBonjourServiceType();
     /**
      * @since Available in iOS 13.0 and later.
      */
     @Bridge(symbol="nw_browse_descriptor_get_bonjour_service_domain", optional=true)
-    public native @org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class) String getBonjourServiceDomain();
+    public native @org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class)String getBonjourServiceDomain();
     /**
      * @since Available in iOS 13.0 and later.
      */

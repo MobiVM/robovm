@@ -35,7 +35,7 @@ import org.robovm.apple.security.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*/@Library("Network") @NativeProtocolProxy("OS_nw_ws_response")/*</annotations>*/
+/*<annotations>*/@Library("Network") @NativeClass("NSObject")/*</annotations>*/
 /*<visibility>*/public final/*</visibility>*/ class /*<name>*/NWWsResponse/*</name>*/ 
     extends /*<extends>*/NWObject/*</extends>*/ 
     /*<implements>*/implements NSObjectProtocol/*</implements>*/ {
@@ -44,6 +44,8 @@ import org.robovm.apple.security.*;
     /*<bind>*/static { ObjCRuntime.bind(NWWsResponse.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
+    public NWWsResponse(NWWsResponseStatus status, String selected_subprotocol) { super((Handle) null, create(status, selected_subprotocol));  }
+    
     
     /*</constructors>*/
     /*<properties>*/
@@ -55,7 +57,7 @@ import org.robovm.apple.security.*;
      * @since Available in iOS 13.0 and later.
      */
     @Bridge(symbol="nw_ws_response_create", optional=true)
-    public static native NWWsResponse create(NWWsResponseStatus status, @org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class) String selected_subprotocol);
+    protected static native @Pointer long create(NWWsResponseStatus status, @org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class) String selected_subprotocol);
     /**
      * @since Available in iOS 13.0 and later.
      */
@@ -65,7 +67,7 @@ import org.robovm.apple.security.*;
      * @since Available in iOS 13.0 and later.
      */
     @Bridge(symbol="nw_ws_response_get_selected_subprotocol", optional=true)
-    public native @org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class) String getSelectedSubprotocol();
+    public native @org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class)String getSelectedSubprotocol();
     /**
      * @since Available in iOS 13.0 and later.
      */
