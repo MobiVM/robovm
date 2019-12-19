@@ -101,12 +101,12 @@ public class RoboVmRunProfileState extends CommandLineState {
                 DeviceType bestType = null;
                 int bestTypeVersion = -1;
                 for(DeviceType type: DeviceType.listDeviceTypes()) {
-                    if (type.getDeviceName().equals(runConfig.getSimulatorName()) && type.getSdk().getVersionCode() == runConfig.getSimulatorSdk()) {
+                    if (type.getDeviceName().equals(runConfig.getSimulatorName()) && type.getVersion().versionCode == runConfig.getSimulatorSdk()) {
                         exactType = type;
                         break;
-                    } else if (type.getDeviceName().equals(runConfig.getSimulatorName()) && type.getSdk().getVersionCode() > bestTypeVersion) {
+                    } else if (type.getDeviceName().equals(runConfig.getSimulatorName()) && type.getVersion().versionCode > bestTypeVersion) {
                         bestType = type;
-                        bestTypeVersion = type.getSdk().getVersionCode();
+                        bestTypeVersion = type.getVersion().versionCode;
                     }
                 }
                 if (exactType == null)

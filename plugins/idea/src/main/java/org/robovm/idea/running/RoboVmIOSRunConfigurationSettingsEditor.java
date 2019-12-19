@@ -72,7 +72,7 @@ public class RoboVmIOSRunConfigurationSettingsEditor extends SettingsEditor<Robo
         config.setProvisioningProfile(provisioningProfile.getSelectedItem().toString());
         config.setSimArch((Arch) simArch.getSelectedItem());
         config.setSimulatorName(((SimTypeWrapper) simType.getSelectedItem()).getType().getDeviceName());
-        config.setSimulatorSdk(((SimTypeWrapper) simType.getSelectedItem()).getType().getSdk().getVersionCode());
+        config.setSimulatorSdk(((SimTypeWrapper) simType.getSelectedItem()).getType().getVersion().versionCode);
         config.setArguments(args.getText());
     }
 
@@ -121,15 +121,15 @@ public class RoboVmIOSRunConfigurationSettingsEditor extends SettingsEditor<Robo
         int bestDefaultSimMatchIdx = -1, bestDefaultSimMatchVersion = -1;
         for (DeviceType type : DeviceType.listDeviceTypes()) {
             simType.addItem(new SimTypeWrapper(type));
-            if (type.getDeviceName().equals(config.getSimulatorName()) && type.getSdk().getVersionCode() == config.getSimulatorSdk()) {
+            if (type.getDeviceName().equals(config.getSimulatorName()) && type.getVersion().versionCode == config.getSimulatorSdk()) {
                 exactSimVersonMatchIdx = simType.getItemCount() - 1;
-            } else if (type.getDeviceName().equals(config.getSimulatorName()) && type.getSdk().getVersionCode() > bestSimNameMatchVersion) {
+            } else if (type.getDeviceName().equals(config.getSimulatorName()) && type.getVersion().versionCode > bestSimNameMatchVersion) {
                 bestSimNameMatchIdx = simType.getItemCount() - 1;
-                bestSimNameMatchVersion = type.getSdk().getVersionCode();
+                bestSimNameMatchVersion = type.getVersion().versionCode;
             } else if (config.getSimulatorName().isEmpty() && type.getDeviceName().contains("iPhone-6") &&
-                    !type.getDeviceName().contains("Plus") && type.getSdk().getVersionCode() > bestDefaultSimMatchVersion) {
+                    !type.getDeviceName().contains("Plus") && type.getVersion().versionCode > bestDefaultSimMatchVersion) {
                 bestDefaultSimMatchIdx = simType.getItemCount() - 1;
-                bestDefaultSimMatchVersion = type.getSdk().getVersionCode();
+                bestDefaultSimMatchVersion = type.getVersion().versionCode;
             }
         }
         if (exactSimVersonMatchIdx < 0) {
@@ -229,7 +229,7 @@ public class RoboVmIOSRunConfigurationSettingsEditor extends SettingsEditor<Robo
 
         @Override
         public String toString() {
-            return type.getSimpleDeviceName() + " - " + type.getSdk().getVersion();
+            return type.getSimpleDeviceName() + " - " + type.getVersion();
         }
     }
 }
