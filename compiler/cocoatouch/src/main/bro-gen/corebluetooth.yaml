@@ -49,7 +49,10 @@ classes:
     CBATTRequest: {} # DONE
     CBAttribute: {} # DONE
     CBCentral: {} # DONE
-    CBManager: {} # DONE
+    CBManager:
+        properties:
+            '+authorization':
+                getter: authorization
     CBCentralManager: # DONE
         extends: NSObject # TODO: this added intentionally, super CBManager is ios10 only
         methods:
