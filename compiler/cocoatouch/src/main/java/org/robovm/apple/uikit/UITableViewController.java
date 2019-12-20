@@ -237,11 +237,6 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Method(selector = "tableView:willPerformPreviewActionForMenuWithConfiguration:animator:")
     public native void willPerformPreviewAction(UITableView tableView, UIContextMenuConfiguration configuration, UIContextMenuInteractionCommitAnimating animator);
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @Method(selector = "tableView:willCommitMenuWithAnimator:")
-    public native void willCommitMenu(UITableView tableView, UIContextMenuInteractionCommitAnimating animator);
     @Method(selector = "scrollViewDidScroll:")
     public native void didScroll(UIScrollView scrollView);
     @Method(selector = "scrollViewDidZoom:")

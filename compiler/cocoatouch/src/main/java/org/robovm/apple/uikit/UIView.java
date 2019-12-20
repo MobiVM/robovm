@@ -614,7 +614,7 @@ import org.robovm.apple.linkpresentation.*;
     @Method(selector = "frameForAlignmentRect:")
     public native @ByVal CGRect getFrameForAlignmentRect(@ByVal CGRect alignmentRect);
     /**
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Override -viewForFirstBaselineLayout or -viewForLastBaselineLayout as appropriate, instead
      */
     @Deprecated
     @Method(selector = "viewForBaselineLayout")
