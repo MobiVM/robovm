@@ -58,7 +58,7 @@ import org.robovm.apple.corefoundation.*;
     @Method(selector = "subscribers")
     public static native NSArray<CTSubscriber> subscribers();
     /**
-     * @deprecated Deprecated in iOS 12.1. Use Use subscribers instead
+     * @deprecated Deprecated in iOS 12.1. Use subscribers instead
      */
     @Deprecated
     @Method(selector = "subscriber")
