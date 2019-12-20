@@ -42,6 +42,10 @@ public enum /*<name>*/ASAuthorizationAppleIDButtonType/*</name>*/ implements Val
     /*<values>*/
     SignIn(0L),
     Continue(1L),
+    /**
+     * @since Available in iOS 13.2 and later.
+     */
+    SignUp(2L),
     Default(0L);
     /*</values>*/
 
