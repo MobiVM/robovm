@@ -88,6 +88,9 @@ import org.robovm.apple.dispatch.*;
     public static native NSOperationQueue getCurrentQueue();
     @Property(selector = "mainQueue")
     public static native NSOperationQueue getMainQueue();
+    /**
+     * @deprecated access to operations is inherently a race condition, it should not be used. For barrier style behaviors please use addBarrierBlock: instead
+     */
     @Deprecated
     @Property(selector = "operations")
     public native NSArray<NSOperation> getOperations();

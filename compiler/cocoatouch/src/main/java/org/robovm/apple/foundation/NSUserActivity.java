@@ -127,6 +127,16 @@ import org.robovm.apple.dispatch.*;
     @Property(selector = "setDelegate:", strongRef = true)
     public native void setDelegate(NSUserActivityDelegate v);
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "targetContentIdentifier")
+    public native String getTargetContentIdentifier();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setTargetContentIdentifier:")
+    public native void setTargetContentIdentifier(String v);
+    /**
      * @since Available in iOS 9.0 and later.
      */
     @Property(selector = "isEligibleForHandoff")
