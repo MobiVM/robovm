@@ -100,7 +100,7 @@ import org.robovm.apple.coretext.*;
     @Bridge(symbol="CFURLCopyPassword", optional=true)
     public native @org.robovm.rt.bro.annotation.Marshaler(CFString.AsStringNoRetainMarshaler.class) String getPassword();
     /**
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. The CFURLCopyParameterString function is deprecated. Post deprecation for applications linked with or after the macOS 10.15, and for all iOS, watchOS, and tvOS applications, CFURLCopyParameterString will always return NULL, and the CFURLCopyPath(), CFURLCopyStrictPath(), and CFURLCopyFileSystemPath() functions will return the complete path including the semicolon separator and params component if the URL string contains them.
      */
     @Deprecated
     @Bridge(symbol="CFURLCopyParameterString", optional=true)
@@ -124,13 +124,13 @@ import org.robovm.apple.coretext.*;
     @Bridge(symbol="CFURLCreateStringByReplacingPercentEscapes", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFString.AsStringNoRetainMarshaler.class) String decodeURLString(CFAllocator allocator, String originalString, String charactersToLeaveEscaped);
     /**
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use [NSString stringByRemovingPercentEncoding] or CFURLCreateStringByReplacingPercentEscapes() instead, which always uses the recommended UTF-8 encoding.
      */
     @Deprecated
     @Bridge(symbol="CFURLCreateStringByReplacingPercentEscapesUsingEncoding", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFString.AsStringNoRetainMarshaler.class) String decodeURLString(CFAllocator allocator, String origString, String charsToLeaveEscaped, CFStringEncodings encoding);
     /**
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use [NSString stringByAddingPercentEncodingWithAllowedCharacters:] instead, which always uses the recommended UTF-8 encoding, and which encodes for a specific URL component or subcomponent (since each URL component or subcomponent has different rules for what characters are valid).
      */
     @Deprecated
     @Bridge(symbol="CFURLCreateStringByAddingPercentEscapes", optional=true)
