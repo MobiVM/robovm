@@ -132,7 +132,7 @@ import org.robovm.apple.corefoundation.*;
     @Bridge(symbol="ABRecordSetValue", optional=true)
     private native boolean setValue(ABProperty property, CFType value, NSError.NSErrorPtr error);
     /**
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use CN mutable object's properties, setting to @, @[], or nil
      */
     @Deprecated
     public boolean removeValue(ABProperty property) throws NSErrorException {
@@ -142,7 +142,7 @@ import org.robovm.apple.corefoundation.*;
        return result;
     }
     /**
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use CN mutable object's properties, setting to @, @[], or nil
      */
     @Deprecated
     @Bridge(symbol="ABRecordRemoveValue", optional=true)
