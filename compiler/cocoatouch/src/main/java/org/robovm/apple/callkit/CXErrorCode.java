@@ -40,7 +40,15 @@ import org.robovm.apple.avfoundation.*;
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Library("CallKit")/*</annotations>*/
 public enum /*<name>*/CXErrorCode/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    UnknownError(0L);
+    UnknownError(0L),
+    /**
+     * @since Available in iOS 13.2 and later.
+     */
+    Unentitled(1L),
+    /**
+     * @since Available in iOS 13.2 and later.
+     */
+    InvalidArgument(2L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(CXErrorCode.class); }/*</bind>*/
