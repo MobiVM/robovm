@@ -117,5 +117,10 @@ import org.robovm.apple.corelocation.*;
      */
     @NotImplemented("home:didUpdateHomeHubState:")
     public void didUpdateHomeHubState(HMHome home, HMHomeHubState homeHubState) {}
+    /**
+     * @since Available in iOS 13.2 and later.
+     */
+    @NotImplemented("homeDidUpdateSupportedFeatures:")
+    public void didUpdateSupportedFeatures(HMHome home) {}
     /*</methods>*/
 }

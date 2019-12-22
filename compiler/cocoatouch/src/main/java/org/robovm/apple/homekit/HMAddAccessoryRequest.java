@@ -58,6 +58,11 @@ import org.robovm.apple.corelocation.*;
     public native HMAccessoryCategory getAccessoryCategory();
     @Property(selector = "requiresSetupPayloadURL")
     public native boolean requiresSetupPayloadURL();
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 13.0. No longer supported
+     */
+    @Deprecated
     @Property(selector = "requiresOwnershipToken")
     public native boolean requiresOwnershipToken();
     /*</properties>*/

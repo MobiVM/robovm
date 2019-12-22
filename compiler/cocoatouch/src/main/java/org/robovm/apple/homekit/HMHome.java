@@ -68,6 +68,11 @@ import org.robovm.apple.corelocation.*;
     @Property(selector = "accessories")
     public native NSArray<HMAccessory> getAccessories();
     /**
+     * @since Available in iOS 13.2 and later.
+     */
+    @Property(selector = "supportsAddingNetworkRouter")
+    public native boolean supportsAddingNetworkRouter();
+    /**
      * @since Available in iOS 9.0 and later.
      */
     @Property(selector = "currentUser")
