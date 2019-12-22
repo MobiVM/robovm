@@ -101,7 +101,7 @@ import org.robovm.apple.uikit.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. GCExtendedGamepadSnapshot has been deprecated, use [GCController capture] instead
      */
     @Deprecated
     @Method(selector = "saveSnapshot")

@@ -34,7 +34,7 @@ import org.robovm.apple.uikit.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 10.0 and later.
- * @deprecated Deprecated in iOS 12.0.
+ * @deprecated Deprecated in iOS 12.0. GKGameSession is deprecated, use real-time and turn-based matchmaking APIs instead.
  */
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Deprecated/*</annotations>*/

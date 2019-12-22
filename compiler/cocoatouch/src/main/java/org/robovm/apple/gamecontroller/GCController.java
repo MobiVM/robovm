@@ -68,13 +68,13 @@ import org.robovm.apple.uikit.*;
     /*</constructors>*/
     /*<properties>*/
     /**
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. controllerPausedHandler has been deprecated. Use the Menu button found on the controller's profile, if it exists.
      */
     @Deprecated
     @Property(selector = "controllerPausedHandler")
     public native @Block VoidBlock1<GCController> getControllerPausedHandler();
     /**
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. controllerPausedHandler has been deprecated. Use the Menu button found on the controller's profile, if it exists.
      */
     @Deprecated
     @Property(selector = "setControllerPausedHandler:")
