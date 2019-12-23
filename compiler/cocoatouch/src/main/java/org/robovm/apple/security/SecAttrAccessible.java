@@ -91,7 +91,7 @@ import org.robovm.apple.dispatch.*;
     public static final SecAttrAccessible WhenUnlocked = new SecAttrAccessible("WhenUnlocked");
     public static final SecAttrAccessible AfterFirstUnlock = new SecAttrAccessible("AfterFirstUnlock");
     /**
-     * @deprecated Deprecated in iOS 12.0.
+     * @deprecated Deprecated in iOS 12.0. Use an accessibility level that provides some user protection, such as kSecAttrAccessibleAfterFirstUnlock
      */
     @Deprecated
     public static final SecAttrAccessible Always = new SecAttrAccessible("Always");
@@ -99,7 +99,7 @@ import org.robovm.apple.dispatch.*;
     public static final SecAttrAccessible WhenUnlockedThisDeviceOnly = new SecAttrAccessible("WhenUnlockedThisDeviceOnly");
     public static final SecAttrAccessible AfterFirstUnlockThisDeviceOnly = new SecAttrAccessible("AfterFirstUnlockThisDeviceOnly");
     /**
-     * @deprecated Deprecated in iOS 12.0.
+     * @deprecated Deprecated in iOS 12.0. Use an accessibility level that provides some user protection, such as kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly
      */
     @Deprecated
     public static final SecAttrAccessible AlwaysThisDeviceOnly = new SecAttrAccessible("AlwaysThisDeviceOnly");
@@ -133,7 +133,7 @@ import org.robovm.apple.dispatch.*;
         @GlobalValue(symbol="kSecAttrAccessibleAfterFirstUnlock", optional=true)
         public static native CFType AfterFirstUnlock();
         /**
-         * @deprecated Deprecated in iOS 12.0.
+         * @deprecated Deprecated in iOS 12.0. Use an accessibility level that provides some user protection, such as kSecAttrAccessibleAfterFirstUnlock
          */
         @Deprecated
         @GlobalValue(symbol="kSecAttrAccessibleAlways", optional=true)
@@ -145,7 +145,7 @@ import org.robovm.apple.dispatch.*;
         @GlobalValue(symbol="kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly", optional=true)
         public static native CFType AfterFirstUnlockThisDeviceOnly();
         /**
-         * @deprecated Deprecated in iOS 12.0.
+         * @deprecated Deprecated in iOS 12.0. Use an accessibility level that provides some user protection, such as kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly
          */
         @Deprecated
         @GlobalValue(symbol="kSecAttrAccessibleAlwaysThisDeviceOnly", optional=true)
