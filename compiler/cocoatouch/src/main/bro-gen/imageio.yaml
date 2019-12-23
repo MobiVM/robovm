@@ -19,7 +19,8 @@ enums:
     CGImageMetadataErrors: {}
     CGImagePropertyOrientation: {}
     CGImageSourceStatus: {}
-        
+    CGImageAnimationStatus: {prefix: kCGImageAnimationStatus_}
+
 classes:
     # Opaque types
     CGImageDestination:
@@ -196,6 +197,21 @@ functions:
     CGImageSource(.*):
         class: CGImageSource
         name: '#{g[0]}'
+
+    CGAnimateImageAtURLWithBlock:
+        class: CGImageAnimation
+        name: animateImages
+        return_type: CGImageAnimationStatus
+        parameters:
+            options:
+                type: CGImageAnimationOptions
+    CGAnimateImageDataWithBlock:
+        class: CGImageAnimation
+        name: animateImages
+        return_type: CGImageAnimationStatus
+        parameters:
+            options:
+                type: CGImageAnimationOptions
 
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (k?CG.*):
@@ -490,6 +506,19 @@ values:
         dictionary: CGImageAuxiliaryDataInfoData
         name: '#{g[0]}'
         type: CFString
+
+    # CGImageAnimation
+    kCGImageAnimation(.*):
+        dictionary: CGImageAnimationOptions
+        name: '#{g[0]}'
+        type: CFString
+        methods:
+            StartIndex:
+                type: CFNumber
+            DelayTime:
+                type: CFNumber
+            LoopCount:
+                type: CFNumber
 
     # Make sure we don't miss any values if new ones are introduced in a later version
     (k?CG.*):
