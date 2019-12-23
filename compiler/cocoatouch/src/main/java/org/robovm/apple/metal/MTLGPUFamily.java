@@ -50,8 +50,8 @@ public enum /*<name>*/MTLGPUFamily/*</name>*/ implements ValuedEnum {
     Common1(3001L),
     Common2(3002L),
     Common3(3003L),
-    iOSMac1(4001L),
-    iOSMac2(4002L);
+    MacCatalyst1(4001L),
+    MacCatalyst2(4002L);
     /*</values>*/
 
     /*<bind>*/

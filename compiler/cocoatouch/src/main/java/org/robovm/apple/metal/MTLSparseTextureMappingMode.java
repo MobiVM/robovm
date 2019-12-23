@@ -36,12 +36,11 @@ import org.robovm.apple.dispatch.*;
  * @since Available in iOS 13.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
-public final class /*<name>*/MTLSparseTextureMappingMode/*</name>*/ extends Bits</*<name>*/MTLSparseTextureMappingMode/*</name>*/> {
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
+public enum /*<name>*/MTLSparseTextureMappingMode/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    public static final MTLSparseTextureMappingMode None = new MTLSparseTextureMappingMode(0L);
-    public static final MTLSparseTextureMappingMode Map = new MTLSparseTextureMappingMode(0L);
-    public static final MTLSparseTextureMappingMode Unmap = new MTLSparseTextureMappingMode(1L);
+    Map(0L),
+    Unmap(1L);
     /*</values>*/
 
     /*<bind>*/
@@ -49,17 +48,17 @@ public final class /*<name>*/MTLSparseTextureMappingMode/*</name>*/ extends Bits
     /*<constants>*//*</constants>*/
     /*<methods>*//*</methods>*/
 
-    private static final /*<name>*/MTLSparseTextureMappingMode/*</name>*/[] values = _values(/*<name>*/MTLSparseTextureMappingMode/*</name>*/.class);
+    private final long n;
 
-    public /*<name>*/MTLSparseTextureMappingMode/*</name>*/(long value) { super(value); }
-    private /*<name>*/MTLSparseTextureMappingMode/*</name>*/(long value, long mask) { super(value, mask); }
-    protected /*<name>*/MTLSparseTextureMappingMode/*</name>*/ wrap(long value, long mask) {
-        return new /*<name>*/MTLSparseTextureMappingMode/*</name>*/(value, mask);
-    }
-    protected /*<name>*/MTLSparseTextureMappingMode/*</name>*/[] _values() {
-        return values;
-    }
-    public static /*<name>*/MTLSparseTextureMappingMode/*</name>*/[] values() {
-        return values.clone();
+    private /*<name>*/MTLSparseTextureMappingMode/*</name>*/(long n) { this.n = n; }
+    public long value() { return n; }
+    public static /*<name>*/MTLSparseTextureMappingMode/*</name>*/ valueOf(long n) {
+        for (/*<name>*/MTLSparseTextureMappingMode/*</name>*/ v : values()) {
+            if (v.n == n) {
+                return v;
+            }
+        }
+        throw new IllegalArgumentException("No constant with value " + n + " found in " 
+            + /*<name>*/MTLSparseTextureMappingMode/*</name>*/.class.getName());
     }
 }

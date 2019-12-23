@@ -36,12 +36,11 @@ import org.robovm.apple.dispatch.*;
  * @since Available in iOS 13.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
-public final class /*<name>*/MTLSparseTextureRegionAlignmentMode/*</name>*/ extends Bits</*<name>*/MTLSparseTextureRegionAlignmentMode/*</name>*/> {
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
+public enum /*<name>*/MTLSparseTextureRegionAlignmentMode/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    public static final MTLSparseTextureRegionAlignmentMode None = new MTLSparseTextureRegionAlignmentMode(0L);
-    public static final MTLSparseTextureRegionAlignmentMode Outward = new MTLSparseTextureRegionAlignmentMode(0L);
-    public static final MTLSparseTextureRegionAlignmentMode Inward = new MTLSparseTextureRegionAlignmentMode(1L);
+    Outward(0L),
+    Inward(1L);
     /*</values>*/
 
     /*<bind>*/
@@ -49,17 +48,17 @@ public final class /*<name>*/MTLSparseTextureRegionAlignmentMode/*</name>*/ exte
     /*<constants>*//*</constants>*/
     /*<methods>*//*</methods>*/
 
-    private static final /*<name>*/MTLSparseTextureRegionAlignmentMode/*</name>*/[] values = _values(/*<name>*/MTLSparseTextureRegionAlignmentMode/*</name>*/.class);
+    private final long n;
 
-    public /*<name>*/MTLSparseTextureRegionAlignmentMode/*</name>*/(long value) { super(value); }
-    private /*<name>*/MTLSparseTextureRegionAlignmentMode/*</name>*/(long value, long mask) { super(value, mask); }
-    protected /*<name>*/MTLSparseTextureRegionAlignmentMode/*</name>*/ wrap(long value, long mask) {
-        return new /*<name>*/MTLSparseTextureRegionAlignmentMode/*</name>*/(value, mask);
-    }
-    protected /*<name>*/MTLSparseTextureRegionAlignmentMode/*</name>*/[] _values() {
-        return values;
-    }
-    public static /*<name>*/MTLSparseTextureRegionAlignmentMode/*</name>*/[] values() {
-        return values.clone();
+    private /*<name>*/MTLSparseTextureRegionAlignmentMode/*</name>*/(long n) { this.n = n; }
+    public long value() { return n; }
+    public static /*<name>*/MTLSparseTextureRegionAlignmentMode/*</name>*/ valueOf(long n) {
+        for (/*<name>*/MTLSparseTextureRegionAlignmentMode/*</name>*/ v : values()) {
+            if (v.n == n) {
+                return v;
+            }
+        }
+        throw new IllegalArgumentException("No constant with value " + n + " found in " 
+            + /*<name>*/MTLSparseTextureRegionAlignmentMode/*</name>*/.class.getName());
     }
 }
