@@ -44,6 +44,9 @@ import org.robovm.apple.security.*;
     /*<bind>*/static { ObjCRuntime.bind(NWConnection.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
     public NWConnection(NWEndpoint endpoint, NWParameters parameters) { super((Handle) null, create(endpoint, parameters));  }
     
     
@@ -77,7 +80,7 @@ import org.robovm.apple.security.*;
      * @since Available in iOS 12.0 and later.
      */
     @Bridge(symbol="nw_connection_create", optional=true)
-    protected static native @Pointer long create(NWEndpoint endpoint, NWParameters parameters);
+    private static native @Pointer long create(NWEndpoint endpoint, NWParameters parameters);
     /**
      * @since Available in iOS 12.0 and later.
      */

@@ -44,6 +44,9 @@ import org.robovm.apple.security.*;
     /*<bind>*/static { ObjCRuntime.bind(NWContentContext.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
     public NWContentContext(String context_identifier) { super((Handle) null, create(context_identifier));  }
     
     
@@ -73,12 +76,12 @@ import org.robovm.apple.security.*;
      * @since Available in iOS 12.0 and later.
      */
     @Bridge(symbol="nw_content_context_create", optional=true)
-    protected static native @Pointer long create(@org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class) String context_identifier);
+    private static native @Pointer long create(@org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class) String context_identifier);
     /**
      * @since Available in iOS 12.0 and later.
      */
     @Bridge(symbol="nw_content_context_get_identifier", optional=true)
-    public native @org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class)String getIdentifier();
+    public native @org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class) String getIdentifier();
     /**
      * @since Available in iOS 12.0 and later.
      */

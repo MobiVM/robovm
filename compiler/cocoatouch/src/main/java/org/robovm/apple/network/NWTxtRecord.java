@@ -44,7 +44,13 @@ import org.robovm.apple.security.*;
     /*<bind>*/static { ObjCRuntime.bind(NWTxtRecord.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
     public NWTxtRecord(BytePtr txt_bytes, @MachineSizedUInt long txt_len) { super((Handle) null, createWithBytes(txt_bytes, txt_len));  }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
     public NWTxtRecord() { super((Handle) null, createDictionary());  }
     
     
@@ -59,12 +65,12 @@ import org.robovm.apple.security.*;
      * @since Available in iOS 13.0 and later.
      */
     @Bridge(symbol="nw_txt_record_create_with_bytes", optional=true)
-    protected static native @Pointer long createWithBytes(BytePtr txt_bytes, @MachineSizedUInt long txt_len);
+    private static native @Pointer long createWithBytes(BytePtr txt_bytes, @MachineSizedUInt long txt_len);
     /**
      * @since Available in iOS 13.0 and later.
      */
     @Bridge(symbol="nw_txt_record_create_dictionary", optional=true)
-    protected static native @Pointer long createDictionary();
+    private static native @Pointer long createDictionary();
     /**
      * @since Available in iOS 13.0 and later.
      */

@@ -45,8 +45,6 @@ import org.robovm.apple.security.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     
-    
-    
     /*</constructors>*/
     /*<properties>*/
     

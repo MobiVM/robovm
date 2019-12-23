@@ -43,9 +43,7 @@ import org.robovm.apple.security.*;
     /*</ptr>*/
     /*<bind>*/static { Bro.bind(NWFramerMessage.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*/
-    
-    /*</constructors>*/
+    /*<constructors>*//*</constructors>*/
     /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

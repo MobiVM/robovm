@@ -44,6 +44,9 @@ import org.robovm.apple.security.*;
     /*<bind>*/static { ObjCRuntime.bind(NWParameters.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
     public NWParameters() { super((Handle) null, create());  }
     
     
@@ -78,7 +81,7 @@ import org.robovm.apple.security.*;
      * @since Available in iOS 12.0 and later.
      */
     @Bridge(symbol="nw_parameters_create", optional=true)
-    protected static native @Pointer long create();
+    private static native @Pointer long create();
     /**
      * @since Available in iOS 12.0 and later.
      */

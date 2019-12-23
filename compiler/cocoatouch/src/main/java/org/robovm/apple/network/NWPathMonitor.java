@@ -44,7 +44,13 @@ import org.robovm.apple.security.*;
     /*<bind>*/static { ObjCRuntime.bind(NWPathMonitor.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
     public NWPathMonitor() { super((Handle) null, create());  }
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
     public NWPathMonitor(NWInterfaceType required_interface_type) { super((Handle) null, createWithType(required_interface_type));  }
     
     
@@ -58,12 +64,12 @@ import org.robovm.apple.security.*;
      * @since Available in iOS 12.0 and later.
      */
     @Bridge(symbol="nw_path_monitor_create", optional=true)
-    protected static native @Pointer long create();
+    private static native @Pointer long create();
     /**
      * @since Available in iOS 12.0 and later.
      */
     @Bridge(symbol="nw_path_monitor_create_with_type", optional=true)
-    protected static native @Pointer long createWithType(NWInterfaceType required_interface_type);
+    private static native @Pointer long createWithType(NWInterfaceType required_interface_type);
     /**
      * @since Available in iOS 12.0 and later.
      */

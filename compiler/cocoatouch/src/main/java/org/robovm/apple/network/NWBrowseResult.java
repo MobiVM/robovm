@@ -44,7 +44,7 @@ import org.robovm.apple.security.*;
     /*<bind>*/static { ObjCRuntime.bind(NWBrowseResult.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-
+    
     /*</constructors>*/
     /*<properties>*/
     

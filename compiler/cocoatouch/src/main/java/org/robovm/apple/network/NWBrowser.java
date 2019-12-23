@@ -44,6 +44,9 @@ import org.robovm.apple.security.*;
     /*<bind>*/static { ObjCRuntime.bind(NWBrowser.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
     public NWBrowser(NWBrowseDescriptor descriptor, NWParameters parameters) { super((Handle) null, create(descriptor, parameters));  }
     
     
@@ -57,7 +60,7 @@ import org.robovm.apple.security.*;
      * @since Available in iOS 13.0 and later.
      */
     @Bridge(symbol="nw_browser_create", optional=true)
-    protected static native @Pointer long create(NWBrowseDescriptor descriptor, NWParameters parameters);
+    private static native @Pointer long create(NWBrowseDescriptor descriptor, NWParameters parameters);
     /**
      * @since Available in iOS 13.0 and later.
      */

@@ -48,9 +48,7 @@ import org.robovm.apple.security.*;
     public NWObject(Handle h, long handle) {
         super(h, handle);
     }
-    /*<constructors>*/
-    
-    /*</constructors>*/
+    /*<constructors>*//*</constructors>*/
     /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -44,6 +44,9 @@ import org.robovm.apple.security.*;
     /*<bind>*/static { ObjCRuntime.bind(NWAdvertiseDescriptor.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
     public NWAdvertiseDescriptor(String name, String type, String domain) { super((Handle) null, createBonjourService(name, type, domain));  }
     
     
@@ -57,7 +60,7 @@ import org.robovm.apple.security.*;
      * @since Available in iOS 12.0 and later.
      */
     @Bridge(symbol="nw_advertise_descriptor_create_bonjour_service", optional=true)
-    protected static native @Pointer long createBonjourService(@org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class) String name, @org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class) String type, @org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class) String domain);
+    private static native @Pointer long createBonjourService(@org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class) String name, @org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class) String type, @org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class) String domain);
     /**
      * @since Available in iOS 12.0 and later.
      */

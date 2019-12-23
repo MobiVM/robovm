@@ -44,8 +44,17 @@ import org.robovm.apple.security.*;
     /*<bind>*/static { ObjCRuntime.bind(NWListener.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
     public NWListener(String port, NWParameters parameters) { super((Handle) null, createWithPort(port, parameters));  }
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
     public NWListener(NWParameters parameters) { super((Handle) null, create(parameters));  }
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
     public NWListener(NWConnection connection, NWParameters parameters) { super((Handle) null, createWithConnection(connection, parameters));  }
     
     
@@ -59,17 +68,17 @@ import org.robovm.apple.security.*;
      * @since Available in iOS 12.0 and later.
      */
     @Bridge(symbol="nw_listener_create_with_port", optional=true)
-    protected static native @Pointer long createWithPort(@org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class) String port, NWParameters parameters);
+    private static native @Pointer long createWithPort(@org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class) String port, NWParameters parameters);
     /**
      * @since Available in iOS 12.0 and later.
      */
     @Bridge(symbol="nw_listener_create", optional=true)
-    protected static native @Pointer long create(NWParameters parameters);
+    private static native @Pointer long create(NWParameters parameters);
     /**
      * @since Available in iOS 12.0 and later.
      */
     @Bridge(symbol="nw_listener_create_with_connection", optional=true)
-    protected static native @Pointer long createWithConnection(NWConnection connection, NWParameters parameters);
+    private static native @Pointer long createWithConnection(NWConnection connection, NWParameters parameters);
     /**
      * @since Available in iOS 12.0 and later.
      */

@@ -45,8 +45,6 @@ import org.robovm.apple.security.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     
-    
-    
     /*</constructors>*/
     /*<properties>*/
     
@@ -62,7 +60,7 @@ import org.robovm.apple.security.*;
      * @since Available in iOS 12.0 and later.
      */
     @Bridge(symbol="nw_interface_get_name", optional=true)
-    public native @org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class)String getName();
+    public native @org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class) String getName();
     /**
      * @since Available in iOS 12.0 and later.
      */
