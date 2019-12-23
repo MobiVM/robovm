@@ -189,5 +189,10 @@ import org.robovm.apple.uikit.*;
      */
     @Method(selector = "requestDownloadWithOptions:completion:")
     public native NSProgress requestDownload(NSDictionary<NSString, ?> options, @Block VoidBlock2<NSString, NSError> completion);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "requestReadDataAtOffset:length:completion:")
+    public native void requestReadData(long offset, long length, @Block VoidBlock2<NSData, NSError> completion);
     /*</methods>*/
 }

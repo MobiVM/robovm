@@ -46,7 +46,8 @@ public enum /*<name>*/ICReturnCodeOffset/*</name>*/ implements ValuedEnum {
     PTPOffset(-21250L),
     SystemOffset(-21300L),
     DeviceOffset(-21350L),
-    DeviceConnection(-21400L);
+    DeviceConnection(-21400L),
+    ObjectOffset(-21450L);
     /*</values>*/
 
     /*<bind>*/

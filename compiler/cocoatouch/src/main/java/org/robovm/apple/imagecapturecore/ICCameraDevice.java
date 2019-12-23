@@ -86,16 +86,24 @@ import org.robovm.apple.uikit.*;
      */
     @Property(selector = "iCloudPhotosEnabled")
     public native boolean isICloudPhotosEnabled();
-    @Property(selector = "mountPoint")
-    public native String getMountPoint();
-    @Property(selector = "tetheredCaptureEnabled")
-    public native boolean isTetheredCaptureEnabled();
     @Property(selector = "timeOffset")
     public native double getTimeOffset();
     @Property(selector = "batteryLevelAvailable")
     public native boolean isBatteryLevelAvailable();
     @Property(selector = "batteryLevel")
     public native @MachineSizedUInt long getBatteryLevel();
+    @Property(selector = "tetheredCaptureEnabled")
+    public native boolean isTetheredCaptureEnabled();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "ptpEventHandler")
+    public native @Block VoidBlock1<NSData> getPtpEventHandler();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setPtpEventHandler:")
+    public native void setPtpEventHandler(@Block VoidBlock1<NSData> v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -104,8 +112,11 @@ import org.robovm.apple.uikit.*;
      */
     @Method(selector = "filesOfType:")
     public native NSArray<NSString> filesOfType(String fileUTType);
-    @Method(selector = "requestSyncClock")
-    public native void requestSyncClock();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "requestDownloadFile:options:downloadDelegate:didDownloadSelector:contextInfo:")
+    public native void requestDownloadFile(ICCameraFile file, NSDictionary<NSString, ?> options, ICCameraDeviceDownloadDelegate downloadDelegate, Selector selector, VoidPtr contextInfo);
     /**
      * @since Available in iOS 13.0 and later.
      */
@@ -119,9 +130,7 @@ import org.robovm.apple.uikit.*;
     /**
      * @since Available in iOS 13.0 and later.
      */
-    @Method(selector = "requestDownloadFile:options:downloadDelegate:didDownloadSelector:contextInfo:")
-    public native void requestDownloadFile(ICCameraFile file, NSDictionary<NSString, ?> options, ICCameraDeviceDownloadDelegate downloadDelegate, Selector selector, VoidPtr contextInfo);
-    @Method(selector = "cancelDownload")
-    public native void cancelDownload();
+    @Method(selector = "requestSendPTPCommand:outData:completion:")
+    public native void requestSendPTPCommand(NSData ptpCommand, NSData ptpData, @Block VoidBlock3<NSData, NSData, NSError> completion);
     /*</methods>*/
 }

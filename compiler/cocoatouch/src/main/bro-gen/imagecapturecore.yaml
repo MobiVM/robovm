@@ -20,7 +20,9 @@ enums:
     ICReturnThumbnailErrorCode: {prefix: ICReturn, merge_with: ICReturnCode}
     ICReturnMetadataErrorCode: {prefix: ICReturn, merge_with: ICReturnCode}
     ICReturnConnectionErrorCode: {prefix: ICReturn, merge_with: ICReturnCode}
-
+    ICReturnPTPDeviceErrorCode: {prefix: ICReturn, merge_with: ICReturnCode}
+    ICReturnDownloadErrorCode: {prefix: ICReturn, merge_with: ICReturnCode}
+    ICReturnObjectErrorCode: {prefix: ICReturn, merge_with: ICReturnCode}
 typed_enums:
     # here most of typed value enums are converted just into const classes as this framework has complicated generic usage (like generic in generic) and bro-gen fails here
     ICDeleteResult:
@@ -63,6 +65,8 @@ classes:
                 name: requestDeleteFiles
             '-requestDownloadFile:options:downloadDelegate:didDownloadSelector:contextInfo:':
                 name: requestDownloadFile
+            '-requestSendPTPCommand:outData:completion:':
+                name: requestSendPTPCommand
     ICCameraFile: #since 13.0
         methods:
             '-requestThumbnailDataWithOptions:completion:':
@@ -71,6 +75,8 @@ classes:
                 name: requestMetadataDictionary
             '-requestDownloadWithOptions:completion:':
                 name: requestDownload
+            '-requestReadDataAtOffset:length:completion:':
+                name: requestReadData
     ICCameraFolder: {} #since 13.0
     ICCameraItem: {} #since 13.0
     ICDevice: #since 13.0

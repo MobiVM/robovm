@@ -80,6 +80,9 @@ import org.robovm.apple.uikit.*;
      */
     @NotImplemented("cameraDeviceDidChangeCapability:")
     public void cameraDeviceDidChangeCapability(ICCameraDevice camera) {}
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
     @NotImplemented("cameraDevice:didReceivePTPEvent:")
     public void didReceivePTPEvent(ICCameraDevice camera, NSData eventData) {}
     /**
