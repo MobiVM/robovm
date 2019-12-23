@@ -56,7 +56,7 @@ import org.robovm.apple.metal.*;
     public MPSCNNConvolutionDescriptor(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use Please use neuronType, neuronParameterA and neuronParameterB properties instead.
      */
     @Deprecated
     public MPSCNNConvolutionDescriptor(@MachineSizedUInt long kernelWidth, @MachineSizedUInt long kernelHeight, @MachineSizedUInt long inputFeatureChannels, @MachineSizedUInt long outputFeatureChannels, MPSCNNNeuron neuronFilter) { super((Handle) null, create(kernelWidth, kernelHeight, inputFeatureChannels, outputFeatureChannels, neuronFilter)); retain(getHandle()); }
@@ -162,35 +162,35 @@ Please set fusedNeuronDescriptor property instead.
     public native void setNeuronType(MPSCNNNeuronType neuronType, float parameterA, float parameterB);
     /**
      * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 11.3. Use use fusedNeuronDescriptor property instead
+     * @deprecated Deprecated in iOS 11.3. use fusedNeuronDescriptor property instead
      */
     @Deprecated
     @Method(selector = "neuronType")
     public native MPSCNNNeuronType neuronType();
     /**
      * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 11.3. Use use fusedNeuronDescriptor property instead
+     * @deprecated Deprecated in iOS 11.3. use fusedNeuronDescriptor property instead
      */
     @Deprecated
     @Method(selector = "neuronParameterA")
     public native float neuronParameterA();
     /**
      * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 11.3. Use use fusedNeuronDescriptor property instead
+     * @deprecated Deprecated in iOS 11.3. use fusedNeuronDescriptor property instead
      */
     @Deprecated
     @Method(selector = "neuronParameterB")
     public native float neuronParameterB();
     /**
      * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 11.3. Use use fusedNeuronDescriptor property instead
+     * @deprecated Deprecated in iOS 11.3. use fusedNeuronDescriptor property instead
      */
     @Deprecated
     @Method(selector = "setNeuronToPReLUWithParametersA:")
     public native void setNeuronToPReLU(NSData A);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use Please use neuronType, neuronParameterA and neuronParameterB properties instead.
      */
     @Deprecated
     @Method(selector = "cnnConvolutionDescriptorWithKernelWidth:kernelHeight:inputFeatureChannels:outputFeatureChannels:neuronFilter:")

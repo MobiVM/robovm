@@ -58,7 +58,7 @@ import org.robovm.apple.metal.*;
     public MPSNNGraph(MTLDevice device, NSArray<MPSNNImageNode> resultImages, BooleanPtr areResultsNeeded) { super((SkipInit) null); initObject(init(device, resultImages, areResultsNeeded)); }
     /**
      * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 11.3.
+     * @deprecated Deprecated in iOS 11.3. Use Please use -initWithDevice:resultImage:resultIsNeeded: instead. Without this information, too much or too little work may occur. Results may be undefined.
      */
     @Deprecated
     @Method(selector = "initWithDevice:resultImage:")
@@ -105,7 +105,7 @@ import org.robovm.apple.metal.*;
     protected native @Pointer long init(MTLDevice device, NSArray<MPSNNImageNode> resultImages, BooleanPtr areResultsNeeded);
     /**
      * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 11.3.
+     * @deprecated Deprecated in iOS 11.3. Use Please use -initWithDevice:resultImage:resultIsNeeded: instead. Without this information, too much or too little work may occur. Results may be undefined.
      */
     @Deprecated
     @Method(selector = "initWithDevice:resultImage:")

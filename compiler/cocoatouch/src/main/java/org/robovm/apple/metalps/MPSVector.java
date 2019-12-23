@@ -73,6 +73,11 @@ import org.robovm.apple.metal.*;
     public native MPSDataType getDataType();
     @Property(selector = "vectorBytes")
     public native @MachineSizedUInt long getVectorBytes();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "offset")
+    public native @MachineSizedUInt long getOffset();
     @Property(selector = "data")
     public native MTLBuffer getData();
     /*</properties>*/
