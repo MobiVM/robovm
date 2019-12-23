@@ -147,6 +147,12 @@ classes:
             '-initWithIdentifier:keyIdentifier:nonce:signature:timestamp:':
                 name: init
     SKStorefront: {} #since 13.0
+    SKArcadeService:
+        methods:
+            '+registerArcadeAppWithRandomFromLib:randomFromLibLength:resultHandler:':
+                name: registerArcadeApp
+            '+arcadeSubscriptionStatusWithNonce:resultHandler:':
+                name: getArcadeSubscriptionStatus
 protocols:
     SKCloudServiceSetupViewControllerDelegate:
         methods:
