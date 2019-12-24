@@ -41,8 +41,8 @@ public final class ObjCClass extends ObjCObject {
     
     private static final String OBJC_PROXY_CLASS_SUFFIX = "$ObjCProxy";
     private static final int OBJC_PROXY_CLASS_SUFFIX_LENGTH = OBJC_PROXY_CLASS_SUFFIX.length();
-    private static final Map<Class<? extends ObjCObject>, ObjCClass> typeToClass = new HashMap<Class<? extends ObjCObject>, ObjCClass>();
-    private static final Map<String, ObjCClass> nameToClass = new HashMap<String, ObjCClass>();
+    private static final Map<Class<? extends ObjCObject>, ObjCClass> typeToClass = new HashMap<>();
+    private static final Map<String, ObjCClass> nameToClass = new HashMap<>();
     private static final Map<String, Class<? extends ObjCObject>> allNativeClasses = new HashMap<>();
     private static final Map<String, Class<? extends ObjCObject>> allNativeProtocolProxies = new HashMap<>();
     private static final Map<String, Class<? extends ObjCObject>> allCustomClasses = new HashMap<>();
@@ -408,7 +408,7 @@ public final class ObjCClass extends ObjCObject {
 
         // register protocols now to allow conformsToProtocol works
         // TODO: might impact performance
-        Class cls = type;
+        Class<?> cls = type;
         while (cls != null && cls != ObjCObject.class) {
             Class<?>[] interfaces = cls.getInterfaces();
             for (Class<?> inf : interfaces) {
@@ -429,13 +429,27 @@ public final class ObjCClass extends ObjCObject {
         return new ObjCClass(handle, type, name, !isObjCProxy(type), false);
     }
 
+    /**
+     * Callback for '+alloc' selector of registered missing native classes.
+     * Called when missing class is being directly allocated.
+     * Throws exception ObjCClassNotFoundException
+     */
     @Callback
-    private static void allocatingMissingClass(@Pointer long self, @Pointer long sel) {
-        // -alloc of missing objc class was called
+    private static void allocatingMissingClass(@Pointer long self, @SuppressWarnings("unused") @Pointer long sel) {
+        // +alloc of missing objc class was called
         ObjCClass c = ObjCObject.getPeerObject(self);
-        throw new ObjCClassNotFoundException(c.name);
+        String name = c != null ? c.name : VM.newStringUTF(ObjCRuntime.class_getName(self));
+        throw new ObjCClassNotFoundException("Allocating missing native class " + name);
     }
 
+    /**
+     * register objc pseudo class for missing native classes. classes might be missing in case api is re-arranged in way
+     * super of existing class (e.g. from ios12) is changed to newly introduced class (e.g. in ios13)
+     * this was causing ObjCClassNotFoundException when using such bindings on previous version of ios(e.g. ios12)
+     * as super class is missing (as part of ios13)
+     * registered pseudo-class extends from parent class and overrides only '+alloc' method to not allow creation of
+     * missing class
+     */
     @SuppressWarnings("unchecked")
     private static ObjCClass registerMissingNativeClass(Class<? extends ObjCObject> type, String name)  {
         ObjCClass superclass = getByType((Class<? extends ObjCObject>) type.getSuperclass());
@@ -472,7 +486,7 @@ public final class ObjCClass extends ObjCObject {
     }
 
     private static Map<String, Method> getCallbacks(Class<?> type) {
-        Map<String, Method> callbacks = new HashMap<String, Method>();
+        Map<String, Method> callbacks = new HashMap<>();
         findCallbacks(type, callbacks);
         return callbacks;
     }
