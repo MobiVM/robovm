@@ -189,6 +189,9 @@ public class Config {
     @Element(required = false)
     private Tools tools;
 
+    @Element(required = false)
+    private Boolean enableBitcode;
+
     private SigningIdentity iosSignIdentity;
     private ProvisioningProfile iosProvisioningProfile;
     private String iosDeviceType;
@@ -573,6 +576,15 @@ public class Config {
 
     public boolean isIosSkipSigning() {
         return iosSkipSigning;
+    }
+
+    public boolean isEnableBitcode() {return enableBitcode != null && enableBitcode && shouldEmitBitcode(); }
+
+    public boolean shouldEmitBitcode() {
+        // emit bitcode to object file even if it is not enabled.
+        // as currently only `__LLVM,__asm` is being added
+        // but build should match criteria
+        return !debug && os == OS.ios && (sliceArch == Arch.arm64 || sliceArch == Arch.thumbv7);
     }
 
     public Tools getTools() {
@@ -1562,6 +1574,11 @@ public class Config {
 
         public Builder addTargetPlugin(TargetPlugin plugin) {
             config.plugins.add(plugin);
+            return this;
+        }
+
+        public Builder enableBitcode(boolean enableBitcode) {
+            config.enableBitcode = enableBitcode;
             return this;
         }
 

@@ -292,6 +292,10 @@ public class IOSTarget extends AbstractTarget {
             if (config.isDebug()) {
                 ccArgs.add("-Wl,-no_pie");
             }
+            if (config.isEnableBitcode()) {
+                // tells clang to keep bitcode while linking
+                ccArgs.add("-fembed-bitcode");
+            }
         } else {
             ccArgs.add("-mios-simulator-version-min=" + minVersion);
             if (config.getArch() == Arch.x86 || config.isDebug()) {
@@ -329,7 +333,12 @@ public class IOSTarget extends AbstractTarget {
             // LLDB can't resolve the DWARF info
             if (!config.isDebug()) {
                 strip(installDir, getExecutable());
-            }            
+            }
+            // remove bitcode to minimize binary size if not required
+            if (!config.isEnableBitcode()) {
+                config.getLogger().info("Striping bitcode from binary: %s", new File(installDir, getExecutable()));
+                stripBitcode(new File(installDir, getExecutable()));
+            }
             if (config.isIosSkipSigning()) {
                 config.getLogger().warn("Skipping code signing. The resulting app will "
                         + "be unsigned and will not run on unjailbroken devices");

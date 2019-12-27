@@ -115,6 +115,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -491,7 +492,7 @@ public class ClassCompiler {
 
     private static void createObjectFileFromData(Config config, Context context, TargetMachine targetMachine, ModuleBuilder mb,
                                                  String dataName, File llFile, File oFile) throws IOException, InterruptedException {
-        byte[] data = mb.build().toString().getBytes("UTF-8");
+        byte[] data = mb.build().toString().getBytes(StandardCharsets.UTF_8);
         if (llFile != null) {
             llFile.getParentFile().mkdirs();
             FileUtils.writeByteArrayToFile(llFile, data);
@@ -595,6 +596,10 @@ public class ClassCompiler {
                 }
             }
         }
+
+        // emit bitcode section for line number object file
+        if (linesMb != null)
+            emitBitcodeSection(config, linesMb);
 
         return linesMb;
     }
@@ -704,8 +709,8 @@ public class ClassCompiler {
         BufferedReader in = null;
         BufferedWriter out = null;
         try {
-            in = new BufferedReader(new InputStreamReader(inStream, "UTF-8"));
-            out = new BufferedWriter(new OutputStreamWriter(outStream, "UTF-8"));
+            in = new BufferedReader(new InputStreamReader(inStream, StandardCharsets.UTF_8));
+            out = new BufferedWriter(new OutputStreamWriter(outStream, StandardCharsets.UTF_8));
             String line = null;
             String currentFunction = null;
             while ((line = in.readLine()) != null) {
@@ -1005,8 +1010,11 @@ public class ClassCompiler {
         for (CompilerPlugin compilerPlugin : config.getCompilerPlugins()) {
             compilerPlugin.afterClass(config, clazz, mb);
         }
-        
-        OutputStreamWriter writer = new OutputStreamWriter(out, "UTF-8");
+
+        // emit bitcode section for class
+        emitBitcodeSection(config, mb);
+
+        OutputStreamWriter writer = new OutputStreamWriter(out, StandardCharsets.UTF_8);
         mb.build().write(writer);
         writer.flush();
 
@@ -1044,6 +1052,17 @@ public class ClassCompiler {
             }
         }
         clazz.saveClazzInfo();
+    }
+
+    /**
+     * adds `__LLVM,__asm` section to module builder to mark it as object without bitcode build from assembly.
+     */
+    static void emitBitcodeSection(Config config, ModuleBuilder mb) {
+        // for release build add bitcode section
+        if (mb != null && config.shouldEmitBitcode()) {
+            // can't just add section, adding zero constants to create one
+            mb.addGlobal(new Global("robovm.bitcode", Linkage.appending, new IntegerConstant(0), true, "__LLVM,__asm"));
+        }
     }
 
     private boolean isJvmSyntheticBridgeMethod(SootMethod method) {
