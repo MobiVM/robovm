@@ -17,13 +17,15 @@
 package org.robovm.idea;
 
 import com.intellij.openapi.util.IconLoader;
+import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
+import java.util.Objects;
 
 /**
  * preloads icons used by various components
  */
 public class RoboVmIcons {
-    public static final Icon ROBOVM_SMALL = IconLoader.findIcon("/icons/robovm_small.png");
-    public static final Icon ROBOVM_LARGE = IconLoader.findIcon("/icons/robovm_large.png");
+    public static final @NotNull Icon ROBOVM_SMALL = Objects.requireNonNull(IconLoader.findIcon("/icons/robovm_small.png"));
+    public static final @NotNull Icon ROBOVM_LARGE = Objects.requireNonNull(IconLoader.findIcon("/icons/robovm_large.png"));
 }

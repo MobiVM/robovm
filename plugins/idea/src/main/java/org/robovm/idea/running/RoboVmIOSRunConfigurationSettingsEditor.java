@@ -18,8 +18,6 @@ package org.robovm.idea.running;
 
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -38,8 +36,8 @@ import com.intellij.openapi.options.ConfigurationException;
 import com.intellij.openapi.options.SettingsEditor;
 
 public class RoboVmIOSRunConfigurationSettingsEditor extends SettingsEditor<RoboVmRunConfiguration> {
-    private static final Arch[] DEVICE_ARCHS = { Arch.thumbv7, Arch.arm64 };
-    private static final Arch[] SIMULATOR_ARCHS = { Arch.x86, Arch.x86_64 };
+    private static final Arch[] DEVICE_ARCHS = {Arch.thumbv7, Arch.arm64};
+    private static final Arch[] SIMULATOR_ARCHS = {Arch.x86, Arch.x86_64};
 
     public static final String SKIP_SIGNING = "Don't sign";
     public static final String AUTO_SIGNING_IDENTITY = "Auto (matches 'iPhone Developer|iOS Development')";
@@ -47,32 +45,43 @@ public class RoboVmIOSRunConfigurationSettingsEditor extends SettingsEditor<Robo
 
     private JPanel panel;
     private JTabbedPane tabbedPane1;
-    private JComboBox module;
+    private JComboBox<String> module;
     private JRadioButton attachedDeviceRadioButton;
     private JRadioButton simulatorRadioButton;
-    private JComboBox simType;
-    private JComboBox signingIdentity;
-    private JComboBox provisioningProfile;
-    private JComboBox simArch;
-    private JComboBox deviceArch;
+    private JComboBox<SimTypeDecorator> simType;
+    private JComboBox<String> signingIdentity;
+    private JComboBox<String> provisioningProfile;
+    private JComboBox<Arch> simArch;
+    private JComboBox<Arch> deviceArch;
     private JTextArea args;
 
     @Override
-    protected void resetEditorFrom(RoboVmRunConfiguration config) {
+    protected void resetEditorFrom(@NotNull RoboVmRunConfiguration config) {
         populateControls(config);
     }
 
     @Override
-    protected void applyEditorTo(RoboVmRunConfiguration config) throws ConfigurationException {
-        config.setModuleName(module.getSelectedItem() != null ? module.getSelectedItem().toString() : "");
-        config.setTargetType(attachedDeviceRadioButton.isSelected() ? RoboVmRunConfiguration.TargetType.Device
-                : RoboVmRunConfiguration.TargetType.Simulator);
+    protected void applyEditorTo(@NotNull RoboVmRunConfiguration config) throws ConfigurationException {
+        if (module.getSelectedItem() == null)
+            throw new ConfigurationException("RoboVM module is not specified!");
+        config.setModuleName(module.getSelectedItem().toString());
+
+        // device specific
+        if (attachedDeviceRadioButton.isSelected() || simType.getSelectedItem() == null)
+            // if there is no simulator any simulator -- save as device target
+            config.setTargetType(RoboVmRunConfiguration.TargetType.Device);
+        else
+            config.setTargetType(RoboVmRunConfiguration.TargetType.Simulator);
         config.setDeviceArch((Arch) deviceArch.getSelectedItem());
-        config.setSigningIdentity(signingIdentity.getSelectedItem().toString());
-        config.setProvisioningProfile(provisioningProfile.getSelectedItem().toString());
+        config.setSigningIdentity((String) signingIdentity.getSelectedItem());
+        config.setProvisioningProfile((String) provisioningProfile.getSelectedItem());
+
+        // simulator related settings
+        SimTypeDecorator selectedSimType = (SimTypeDecorator) simType.getSelectedItem();
         config.setSimArch((Arch) simArch.getSelectedItem());
-        config.setSimulatorName(((SimTypeWrapper) simType.getSelectedItem()).getType().getDeviceName());
-        config.setSimulatorSdk(((SimTypeWrapper) simType.getSelectedItem()).getType().getSdk().getVersionCode());
+        config.setSimulatorName(selectedSimType != null ? selectedSimType.getType().getDeviceName() : null);
+        config.setSimulatorSdk(selectedSimType != null ? selectedSimType.getType().getSdk().getVersionCode() : 0);
+
         config.setArguments(args.getText());
     }
 
@@ -82,13 +91,12 @@ public class RoboVmIOSRunConfigurationSettingsEditor extends SettingsEditor<Robo
         return panel;
     }
 
-    private void populateControls(RoboVmRunConfiguration config) {
-
+    private void populateControls(@NotNull RoboVmRunConfiguration config) {
         updateModuleConfig(config);
         updateDeviceConfig(config);
         updateSimulatorConfig(config);
 
-        attachedDeviceRadioButton.setSelected(config.getTargetType() == RoboVmRunConfiguration.TargetType.Device);
+        attachedDeviceRadioButton.setSelected(config.getTargetType() == RoboVmRunConfiguration.TargetType.Device || simType.getItemCount() == 0);
         args.setText(config.getArguments());
     }
 
@@ -96,12 +104,7 @@ public class RoboVmIOSRunConfigurationSettingsEditor extends SettingsEditor<Robo
         // populate with RoboVM Sdk modules
         this.module.removeAllItems();
         List<Module> roboVmModules = RoboVmPlugin.getRoboVmModules(config.getProject(), IOSTarget.TYPE);
-        Collections.sort(roboVmModules, new Comparator<Module>() {
-            @Override
-            public int compare(Module o1, Module o2) {
-                return o1.getName().compareTo(o2.getName());
-            }
-        });
+        roboVmModules.sort(Comparator.comparing(Module::getName));
         for (Module module : roboVmModules) {
             this.module.addItem(module.getName());
             if (module.getName().equals(config.getModuleName())) {
@@ -115,18 +118,29 @@ public class RoboVmIOSRunConfigurationSettingsEditor extends SettingsEditor<Robo
         simType.removeAllItems();
         simArch.removeAllItems();
 
+        // check if there is any known simulator, if there isn't any -- just disable everything and return
+        List<DeviceType> simDeviceTypes = DeviceType.listDeviceTypes();
+        simType.setEnabled(!simDeviceTypes.isEmpty());
+        simArch.setEnabled(!simDeviceTypes.isEmpty());
+        simulatorRadioButton.setEnabled(!simDeviceTypes.isEmpty());
+        if (simDeviceTypes.isEmpty())
+            return;
+
         // set simulator types and find one that matches version and name
         int exactSimVersonMatchIdx = -1;
         int bestSimNameMatchIdx = -1, bestSimNameMatchVersion = -1;
         int bestDefaultSimMatchIdx = -1, bestDefaultSimMatchVersion = -1;
-        for (DeviceType type : DeviceType.listDeviceTypes()) {
-            simType.addItem(new SimTypeWrapper(type));
-            if (type.getDeviceName().equals(config.getSimulatorName()) && type.getSdk().getVersionCode() == config.getSimulatorSdk()) {
+        String simulatorName = config.getSimulatorName();
+        if (simulatorName == null)
+            simulatorName = "";
+        for (DeviceType type : simDeviceTypes) {
+            simType.addItem(new SimTypeDecorator(type));
+            if (type.getDeviceName().equals(simulatorName) && type.getSdk().getVersionCode() == config.getSimulatorSdk()) {
                 exactSimVersonMatchIdx = simType.getItemCount() - 1;
-            } else if (type.getDeviceName().equals(config.getSimulatorName()) && type.getSdk().getVersionCode() > bestSimNameMatchVersion) {
+            } else if (type.getDeviceName().equals(simulatorName) && type.getSdk().getVersionCode() > bestSimNameMatchVersion) {
                 bestSimNameMatchIdx = simType.getItemCount() - 1;
                 bestSimNameMatchVersion = type.getSdk().getVersionCode();
-            } else if (config.getSimulatorName().isEmpty() && type.getDeviceName().contains("iPhone-6") &&
+            } else if (simulatorName.isEmpty() && type.getDeviceName().contains("iPhone-6") &&
                     !type.getDeviceName().contains("Plus") && type.getSdk().getVersionCode() > bestDefaultSimMatchVersion) {
                 bestDefaultSimMatchIdx = simType.getItemCount() - 1;
                 bestDefaultSimMatchVersion = type.getSdk().getVersionCode();
@@ -144,7 +158,8 @@ public class RoboVmIOSRunConfigurationSettingsEditor extends SettingsEditor<Robo
             simType.setSelectedIndex(exactSimVersonMatchIdx);
 
         // set default arch for selected simulator
-        SimTypeWrapper wrapper = (SimTypeWrapper) simType.getSelectedItem();
+        SimTypeDecorator wrapper = (SimTypeDecorator) simType.getSelectedItem();
+        assert wrapper != null;
         for (Arch arch : SIMULATOR_ARCHS) {
             for (Arch otherArch : wrapper.getType().getArchs()) {
                 if (arch == otherArch) {
@@ -160,15 +175,10 @@ public class RoboVmIOSRunConfigurationSettingsEditor extends SettingsEditor<Robo
 
         // set a listener that populates the arch of a selected
         // sim properly.
-        simType.addItemListener(new ItemListener() {
-            @Override
-            public void itemStateChanged(ItemEvent e) {
-                updateSimArchs((SimTypeWrapper) e.getItem());
-            }
-        });
+        simType.addItemListener(e -> updateSimArchs((SimTypeDecorator) e.getItem()));
     }
 
-    private void updateSimArchs(SimTypeWrapper wrapper) {
+    private void updateSimArchs(SimTypeDecorator wrapper) {
         simArch.removeAllItems();
         for (Arch arch : SIMULATOR_ARCHS) {
             for (Arch otherArch : wrapper.getType().getArchs()) {
@@ -193,37 +203,44 @@ public class RoboVmIOSRunConfigurationSettingsEditor extends SettingsEditor<Robo
         signingIdentity.addItem(SKIP_SIGNING);
         for (SigningIdentity identity : SigningIdentity.list()) {
             signingIdentity.addItem(identity.getName());
-            if (identity.getName().equals(config.getSigningIdentity())) {
-                signingIdentity.setSelectedIndex(signingIdentity.getItemCount() - 1);
-            }
         }
+        // first select auto,  then try to apply one from config (might do nothing if not in the list)
+        signingIdentity.setSelectedIndex(0);
+        String selectedIdentity = config.getSigningIdentity();
+        if (selectedIdentity != null && !selectedIdentity.isEmpty())
+            signingIdentity.setSelectedItem(selectedIdentity);
 
         // populate provisioning profiles
         provisioningProfile.addItem(AUTO_PROVISIONING_PROFILE);
-        for (ProvisioningProfile profile : ProvisioningProfile.list()) {
+        List<ProvisioningProfile> profiles = ProvisioningProfile.list();
+        for (ProvisioningProfile profile : profiles) {
             provisioningProfile.addItem(profile.getName());
-            if (profile.getName().equals(config.getProvisioningProfile())) {
-                provisioningProfile.setSelectedIndex(provisioningProfile.getItemCount() - 1);
-            }
         }
+        // first select auto profile, then try to apply one from config (might do nothing if not in the list)
+        provisioningProfile.setSelectedIndex(0);
+        String selectedProfile = config.getProvisioningProfile();
+        if (selectedProfile != null && !selectedProfile.isEmpty())
+            provisioningProfile.setSelectedItem(selectedProfile);
 
         // populate device archs
         for (Arch arch : DEVICE_ARCHS) {
             deviceArch.addItem(arch);
-            if (arch == config.getDeviceArch()) {
-                deviceArch.setSelectedItem(arch);
-            }
+        }
+        deviceArch.setSelectedIndex(0);
+        if (config.getDeviceArch() != null) {
+            deviceArch.setSelectedItem(config.getDeviceArch());
         }
     }
 
-    private class SimTypeWrapper {
+    private static class SimTypeDecorator {
         private final DeviceType type;
 
-        public SimTypeWrapper(DeviceType type) {
+        public SimTypeDecorator(@NotNull DeviceType type) {
             this.type = type;
         }
 
-        public DeviceType getType() {
+        public @NotNull
+        DeviceType getType() {
             return type;
         }
 

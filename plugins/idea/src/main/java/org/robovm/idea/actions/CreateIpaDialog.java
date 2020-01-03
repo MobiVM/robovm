@@ -17,7 +17,6 @@
 package org.robovm.idea.actions;
 
 import com.intellij.ide.util.PropertiesComponent;
-import com.intellij.openapi.fileChooser.FileChooser;
 import com.intellij.openapi.fileChooser.FileChooserDescriptor;
 import com.intellij.openapi.fileChooser.FileChooserDialog;
 import com.intellij.openapi.fileChooser.FileChooserFactory;
@@ -29,19 +28,16 @@ import com.intellij.openapi.ui.ValidationInfo;
 import com.intellij.openapi.vfs.VirtualFile;
 import org.jetbrains.annotations.Nullable;
 import org.robovm.compiler.config.Arch;
-import org.robovm.compiler.target.ios.DeviceType;
 import org.robovm.compiler.target.ios.IOSTarget;
 import org.robovm.compiler.target.ios.ProvisioningProfile;
 import org.robovm.compiler.target.ios.SigningIdentity;
 import org.robovm.idea.RoboVmPlugin;
-import org.robovm.idea.running.RoboVmRunConfiguration;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class CreateIpaDialog extends DialogWrapper {
     private static final String MODULE_NAME = "robovm.ipaConfig.moduleName";
@@ -54,12 +50,12 @@ public class CreateIpaDialog extends DialogWrapper {
     private static final String ARCHS_32BIT = "32-bit (thumbv7)";
     private static final String ARCHS_64BIT = "64-bit (arm64)";
     private JPanel panel;
-    private JComboBox archs;
-    private JComboBox signingIdentity;
-    private JComboBox provisioningProfile;
+    private JComboBox<String> archs;
+    private JComboBox<String> signingIdentity;
+    private JComboBox<String> provisioningProfile;
     private JButton browseButton;
     private JTextField destinationDir;
-    private JComboBox module;
+    private JComboBox<String> module;
     private Project project;
 
     protected CreateIpaDialog(@Nullable Project project) {
@@ -104,7 +100,7 @@ public class CreateIpaDialog extends DialogWrapper {
         // populate architectures
         for(String arch: new String[] { ARCHS_ALL, ARCHS_32BIT, ARCHS_64BIT }) {
             archs.addItem(arch);
-            if(arch.equals(configProvisioning)) {
+            if(arch.equals(configArchs)) {
                 this.archs.setSelectedIndex(this.archs.getItemCount()-1);
             }
         }
@@ -113,25 +109,22 @@ public class CreateIpaDialog extends DialogWrapper {
             destinationDir.setText(configDestDir);
         }
 
-        browseButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                FileChooserDialog fileChooser = FileChooserFactory.getInstance()
-                        .createFileChooser(new FileChooserDescriptor(true, false, false, false, false, false) {
-                            @Override
-                            public boolean isFileVisible(VirtualFile file, boolean showHiddenFiles) {
-                                return file.isDirectory();
-                            }
+        browseButton.addActionListener(e -> {
+            FileChooserDialog fileChooser = FileChooserFactory.getInstance()
+                    .createFileChooser(new FileChooserDescriptor(true, false, false, false, false, false) {
+                        @Override
+                        public boolean isFileVisible(VirtualFile file, boolean showHiddenFiles) {
+                            return file.isDirectory();
+                        }
 
-                            @Override
-                            public boolean isFileSelectable(VirtualFile file) {
-                                return file.isDirectory();
-                            }
-                        }, null, panel);
-                VirtualFile[] dir = fileChooser.choose(project);
-                if (dir != null && dir.length > 0) {
-                    destinationDir.setText(dir[0].getCanonicalPath());
-                }
+                        @Override
+                        public boolean isFileSelectable(VirtualFile file) {
+                            return file.isDirectory();
+                        }
+                    }, null, panel);
+            VirtualFile[] dir = fileChooser.choose(project);
+            if (dir.length > 0) {
+                destinationDir.setText(dir[0].getCanonicalPath());
             }
         });
     }
@@ -169,27 +162,32 @@ public class CreateIpaDialog extends DialogWrapper {
 
     public CreateIpaAction.IpaConfig getIpaConfig() {
         saveProperties();
-        Module module = ModuleManager.getInstance(project).findModuleByName(this.module.getSelectedItem().toString());
-        String signingIdentity = this.signingIdentity.getSelectedItem().toString();
-        String provisioningProile = this.provisioningProfile.getSelectedItem().toString();
-        List<Arch> archs = new ArrayList<Arch>();
-        if(this.archs.getSelectedItem().toString().equals(ARCHS_ALL)) {
-            archs.add(Arch.thumbv7);
-            archs.add(Arch.arm64);
-        } else if(this.archs.getSelectedItem().toString().equals(ARCHS_32BIT)) {
-            archs.add(Arch.thumbv7);
-        } else if(this.archs.getSelectedItem().toString().equals(ARCHS_64BIT)) {
-            archs.add(Arch.arm64);
+        Module module = ModuleManager.getInstance(project).findModuleByName((String) Objects.requireNonNull(this.module.getSelectedItem()));
+        String signingIdentity = (String) Objects.requireNonNull(this.signingIdentity.getSelectedItem());
+        String provisioningProile = (String) Objects.requireNonNull(this.provisioningProfile.getSelectedItem());
+        String arch = (String) Objects.requireNonNull(this.archs.getSelectedItem());
+        List<Arch> archs = new ArrayList<>();
+        switch (arch) {
+            case ARCHS_ALL:
+                archs.add(Arch.thumbv7);
+                archs.add(Arch.arm64);
+                break;
+            case ARCHS_32BIT:
+                archs.add(Arch.thumbv7);
+                break;
+            case ARCHS_64BIT:
+                archs.add(Arch.arm64);
+                break;
         }
         return new CreateIpaAction.IpaConfig(module, new File(this.destinationDir.getText()), signingIdentity, provisioningProile, archs);
     }
 
     private void saveProperties() {
         PropertiesComponent properties = PropertiesComponent.getInstance(project);
-        properties.setValue(MODULE_NAME, module.getSelectedItem().toString());
-        properties.setValue(SIGNING_IDENTITY, signingIdentity.getSelectedItem().toString());
-        properties.setValue(PROVISIONING_PROFILE, provisioningProfile.getSelectedItem().toString());
-        properties.setValue(ARCHS, archs.getSelectedItem().toString());
+        properties.setValue(MODULE_NAME, (String)module.getSelectedItem());
+        properties.setValue(SIGNING_IDENTITY, (String)signingIdentity.getSelectedItem());
+        properties.setValue(PROVISIONING_PROFILE, (String)provisioningProfile.getSelectedItem());
+        properties.setValue(ARCHS, (String)archs.getSelectedItem());
         properties.setValue(DESTINATION_DIR, destinationDir.getText());
     }
 }

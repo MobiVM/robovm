@@ -17,25 +17,28 @@ package org.robovm.idea.actions;
 
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
-import com.intellij.openapi.actionSystem.DataConstants;
+import com.intellij.openapi.actionSystem.LangDataKeys;
 import com.intellij.openapi.module.Module;
 import com.intellij.openapi.module.ModuleManager;
+import org.jetbrains.annotations.NotNull;
 import org.robovm.idea.RoboVmPlugin;
 import org.robovm.idea.ibxcode.RoboVmIbXcodeProjectTask;
 
 public class GenerateXCodeProjectAction extends AnAction {
 
     @Override
-    public void actionPerformed(AnActionEvent anActionEvent) {
+    public void actionPerformed(@NotNull AnActionEvent anActionEvent) {
         if (!RoboVmIbXcodeProjectTask.isBusy()) {
-            Module module = (Module) anActionEvent.getDataContext().getData(DataConstants.MODULE);
-            // this workarounds the issue when there are module groups are created with suffixes _main, _test
-            // as from project tree modules without suffix is picked up this caused no class path to be present
-            // and empty project to be generated
-            // TODO: this to be fixed on plugin level -- e.g. create project without module group etc (as in v1.14)
-            module = workaroundModuleGroupingIssue(module);
-            RoboVmIbXcodeProjectTask task = new RoboVmIbXcodeProjectTask(module);
-            task.generateProject();
+            Module module = anActionEvent.getDataContext().getData(LangDataKeys.MODULE);
+            if (module != null) {
+                // this workarounds the issue when there are module groups are created with suffixes _main, _test
+                // as from project tree modules without suffix is picked up this caused no class path to be present
+                // and empty project to be generated
+                // TODO: this to be fixed on plugin level -- e.g. create project without module group etc (as in v1.14)
+                module = workaroundModuleGroupingIssue(module);
+                RoboVmIbXcodeProjectTask task = new RoboVmIbXcodeProjectTask(module);
+                task.generateProject();
+            }
         }
     }
 
@@ -59,7 +62,7 @@ public class GenerateXCodeProjectAction extends AnAction {
     }
 
     private boolean isValidModuleEvent(AnActionEvent e) {
-        Module module = (Module) e.getDataContext().getData(DataConstants.MODULE);
+        Module module = e.getDataContext().getData(LangDataKeys.MODULE);
         return module != null && RoboVmPlugin.isRoboVmModule(module);
     }
 }

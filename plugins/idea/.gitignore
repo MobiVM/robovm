@@ -4,3 +4,4 @@
 /.idea/
 /build/
 org.robovm.idea.iml
+/.gradle/

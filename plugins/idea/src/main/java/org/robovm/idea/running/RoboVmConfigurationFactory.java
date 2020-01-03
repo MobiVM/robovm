@@ -16,25 +16,27 @@
  */
 package org.robovm.idea.running;
 
-import com.intellij.execution.RunManager;
-import com.intellij.execution.RunnerAndConfigurationSettings;
 import com.intellij.execution.configurations.ConfigurationFactory;
 import com.intellij.execution.configurations.ConfigurationType;
 import com.intellij.execution.configurations.RunConfiguration;
+import com.intellij.execution.configurations.RunConfigurationSingletonPolicy;
 import com.intellij.openapi.project.Project;
+import org.jetbrains.annotations.NotNull;
 
 public class RoboVmConfigurationFactory extends ConfigurationFactory {
     protected RoboVmConfigurationFactory(ConfigurationType type) {
         super(type);
     }
 
+    @NotNull
     @Override
-    public RunConfiguration createTemplateConfiguration(Project project) {
+    public RunConfiguration createTemplateConfiguration(@NotNull Project project) {
         return new RoboVmRunConfiguration(getType(), "RoboVM Run Configuration", new RoboVmRunConfigurationSettings(project), this);
     }
 
+    @NotNull
     @Override
-    public boolean isConfigurationSingletonByDefault() {
-        return true;
+    public RunConfigurationSingletonPolicy getSingletonPolicy() {
+        return RunConfigurationSingletonPolicy.SINGLE_INSTANCE_ONLY;
     }
 }
