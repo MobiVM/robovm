@@ -63,4 +63,9 @@ import org.robovm.apple.modelio.*;
     @StructMember(0) public native GLKMatrix2 setM(@Array({4}) FloatBuffer m);
     /*</members>*/
     /*<methods>*//*</methods>*/
+
+    public static GLKMatrix2 create(float[] m) {
+        return new GLKMatrix2().setM(FloatBuffer.wrap(m));
+    }
+
 }
