@@ -72,17 +72,12 @@ public class RoboVmBeforeRunTaskProvider extends BeforeRunTaskProvider<RoboVmBef
     }
 
     @Override
-    public boolean configureTask(@NotNull RunConfiguration runConfiguration, @NotNull Task task) {
-        return false;
-    }
-
-    @Override
     public boolean canExecuteTask(@NotNull RunConfiguration configuration, @NotNull Task task) {
         return configuration instanceof RoboVmRunConfiguration;
     }
 
     @Override
-    public boolean executeTask(@NotNull DataContext context, @NotNull final RunConfiguration configuration, final ExecutionEnvironment env, @NotNull Task task) {
+    public boolean executeTask(@NotNull DataContext context, @NotNull final RunConfiguration configuration, @NotNull final ExecutionEnvironment env, @NotNull Task task) {
         final RoboVmRunConfiguration runConfig = (RoboVmRunConfiguration) configuration;
         if (runConfig.getConfig() != null) {
             // configuration is set when RoboVmCompilerTask is executed.

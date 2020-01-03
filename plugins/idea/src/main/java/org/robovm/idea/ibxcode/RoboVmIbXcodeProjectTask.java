@@ -20,7 +20,6 @@ import com.intellij.notification.NotificationType;
 import com.intellij.notification.Notifications;
 import com.intellij.openapi.compiler.CompilationException;
 import com.intellij.openapi.compiler.CompileContext;
-import com.intellij.openapi.compiler.CompileStatusNotification;
 import com.intellij.openapi.compiler.CompilerManager;
 import com.intellij.openapi.compiler.CompilerPaths;
 import com.intellij.openapi.module.Module;
@@ -75,18 +74,15 @@ public class RoboVmIbXcodeProjectTask {
         }
 
         // compile module
-        CompilerManager.getInstance(project).make(module, new CompileStatusNotification() {
-            @Override
-            public void finished(boolean aborted, int errors, int warnings, CompileContext compileContext) {
-                if (aborted) {
-                    RoboVmPlugin.logDebug(project, "XCode project: compilation aborted");
-                    complete(null);
-                } else if (errors > 0) {
-                    Exception ex = new CompilationException("XCode project generation failed due compilation errors");
-                    complete(ex);
-                } else {
-                    startGeneratingWithClassPath(compileContext);
-                }
+        CompilerManager.getInstance(project).make(module, (aborted, errors, warnings, compileContext) -> {
+            if (aborted) {
+                RoboVmPlugin.logDebug(project, "XCode project: compilation aborted");
+                complete(null);
+            } else if (errors > 0) {
+                Exception ex = new CompilationException("XCode project generation failed due compilation errors");
+                complete(ex);
+            } else {
+                startGeneratingWithClassPath(compileContext);
             }
         });
     }
@@ -172,7 +168,7 @@ public class RoboVmIbXcodeProjectTask {
                 while (taskThread.isAlive() && !progress.isCanceled()) {
                     taskThread.join(500);
                 }
-                if (taskThread.isAlive() && progress.isCanceled()) {
+                if (taskThread.isAlive()) {
                     taskThread.interrupt();
                     taskThread.join(500);
                 }
@@ -201,8 +197,8 @@ public class RoboVmIbXcodeProjectTask {
         }
 
         @Override
-        public void onError(@NotNull Exception error) {
-            super.onError(error);
+        public void onThrowable(@NotNull Throwable error) {
+            super.onThrowable(error);
             exceptionIfHappened = error;
         }
 
@@ -244,7 +240,7 @@ public class RoboVmIbXcodeProjectTask {
         }
 
         @Override
-        public Config build() throws IOException {
+        public Config build() {
             // do not build any complex config as it is time consuming and not required at all for this task
             return this.config;
         }

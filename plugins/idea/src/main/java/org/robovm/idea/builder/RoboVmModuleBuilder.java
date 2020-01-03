@@ -30,8 +30,6 @@ import com.intellij.openapi.module.ModuleType;
 import com.intellij.openapi.module.StdModuleTypes;
 import com.intellij.openapi.options.ConfigurationException;
 import com.intellij.openapi.project.Project;
-import com.intellij.openapi.projectRoots.JavaSdk;
-import com.intellij.openapi.projectRoots.Sdk;
 import com.intellij.openapi.roots.ContentEntry;
 import com.intellij.openapi.roots.LanguageLevelModuleExtension;
 import com.intellij.openapi.roots.ModifiableRootModel;
@@ -55,8 +53,8 @@ import org.robovm.idea.sdk.RoboVmSdkType;
 import org.robovm.templater.Templater;
 
 import java.io.File;
-import java.io.FilenameFilter;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
@@ -81,7 +79,7 @@ public class RoboVmModuleBuilder extends JavaModuleBuilder {
     protected BuildSystem buildSystem;
 
     public RoboVmModuleBuilder(String templateName) {
-        this(templateName, (Map<String, String>)null);
+        this(templateName, null);
     }
 
     public RoboVmModuleBuilder(String templateName, Map<String, String> customValues) {
@@ -97,7 +95,7 @@ public class RoboVmModuleBuilder extends JavaModuleBuilder {
     }
 
     @Override
-    public ModuleType getModuleType() {
+    public ModuleType<JavaModuleBuilder> getModuleType() {
         return StdModuleTypes.JAVA;
     }
 
@@ -113,7 +111,7 @@ public class RoboVmModuleBuilder extends JavaModuleBuilder {
             buildSystem = BuildSystem.Gradle;
         }
 
-        return new ModuleWizardStep[] { wizardStep };
+        return new ModuleWizardStep[]{wizardStep};
     }
 
     @Override
@@ -152,14 +150,23 @@ public class RoboVmModuleBuilder extends JavaModuleBuilder {
                     entry.removeSourceFolder(srcFolder);
                 }
                 if (robovmDir.isEmpty()) {
-                    entry.addSourceFolder(contentRootFile.findFileByRelativePath("/src/main/java"), false);
+                    VirtualFile javaPath = contentRootFile.findFileByRelativePath("/src/main/java");
+                    if (javaPath != null)
+                        entry.addSourceFolder(javaPath, false);
                 }
-                new File(entry.getFile().getCanonicalPath()).delete();
+
+                try {
+                    VirtualFile entryDir = entry.getFile();
+                    if (entryDir != null)
+                        entryDir.delete(null);
+                } catch (IOException e) {
+                    throw new ConfigurationException("Failed to delete " + entry, e, "Error");
+                }
             }
         }
     }
 
-    private void applyTemplate(Project project, Module module, VirtualFile contentRootFile) {
+    private void applyTemplate(Project project, @SuppressWarnings("unused") Module module, VirtualFile contentRootFile) {
         String contentRoot = contentRootFile.getPath();
 
         // extract the template files and setup the source folders
@@ -180,12 +187,12 @@ public class RoboVmModuleBuilder extends JavaModuleBuilder {
                 if (buildFile.exists()) {
                     String template = FileUtils.readFileToString(buildFile, StandardCharsets.UTF_8.name());
                     template = template.replaceAll(ROBOVM_VERSION_PLACEHOLDER, Version.getVersion());
-                    FileUtils.write(buildFile, template);
+                    FileUtils.write(buildFile, template, Charset.defaultCharset());
                 } else {
                     String template = IOUtils.toString(RoboVmModuleBuilder.class.getResource("/template_build.gradle"),
                             StandardCharsets.UTF_8);
                     template = template.replaceAll(ROBOVM_VERSION_PLACEHOLDER, Version.getVersion());
-                    FileUtils.write(buildFile, template);
+                    FileUtils.write(buildFile, template, Charset.defaultCharset());
                 }
             } else if (buildSystem == BuildSystem.Maven) {
                 String template = IOUtils.toString(RoboVmModuleBuilder.class.getResource("/template_pom.xml"), StandardCharsets.UTF_8);
@@ -193,7 +200,7 @@ public class RoboVmModuleBuilder extends JavaModuleBuilder {
                 template = template.replaceAll(PACKAGE_NAME_PLACEHOLDER, packageName);
                 template = template.replaceAll(APP_NAME_PLACEHOLDER, appName);
                 File buildFile = new File(contentRoot + "/pom.xml");
-                FileUtils.write(buildFile, template);
+                FileUtils.write(buildFile, template, Charset.defaultCharset());
             }
         } catch (IOException e) {
             RoboVmPlugin.logError(project, "Couldn't create build system file %s",
@@ -206,16 +213,12 @@ public class RoboVmModuleBuilder extends JavaModuleBuilder {
         RoboVmPlugin.logInfo(project, "Project created in %s", contentRoot);
     }
 
-    private void applyBuildSystem(final Project project, final Module module, ModifiableRootModel rootModel, VirtualFile contentRootFile ) {
+    private void applyBuildSystem(final Project project, @SuppressWarnings("unused") final Module module, ModifiableRootModel rootModel, VirtualFile contentRootFile) {
         String contentRoot = contentRootFile.getPath();
 
         if (buildSystem == BuildSystem.Gradle) {
             File baseDir = new File(contentRoot);
-            File[] files = baseDir.listFiles(new FilenameFilter() {
-                public boolean accept(File dir, String name) {
-                    return FileUtil.namesEqual("build.gradle", name);
-                }
-            });
+            File[] files = baseDir.listFiles((dir, name) -> FileUtil.namesEqual("build.gradle", name));
             if (files != null && files.length != 0) {
                 project.putUserData(ExternalSystemDataKeys.NEWLY_CREATED_PROJECT, Boolean.TRUE);
                 GradleProjectSettings gradleSettings = new GradleProjectSettings();
@@ -223,8 +226,10 @@ public class RoboVmModuleBuilder extends JavaModuleBuilder {
                 gradleSettings.setExternalProjectPath(contentRoot);
                 gradleSettings.setResolveModulePerSourceSet(false);
 
+                //noinspection rawtypes
                 AbstractExternalSystemSettings settings = ExternalSystemApiUtil.getSettings(rootModel.getProject(), GradleConstants.SYSTEM_ID);
                 project.putUserData(ExternalSystemDataKeys.NEWLY_CREATED_PROJECT, Boolean.TRUE);
+                //noinspection unchecked
                 settings.linkProject(gradleSettings);
 
                 FileDocumentManager.getInstance().saveAllDocuments();

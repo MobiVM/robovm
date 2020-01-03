@@ -17,12 +17,12 @@ package org.robovm.idea.actions;
 
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
-import com.intellij.openapi.compiler.CompileContext;
 import com.intellij.openapi.compiler.CompileScope;
-import com.intellij.openapi.compiler.CompileStatusNotification;
 import com.intellij.openapi.compiler.CompilerManager;
 import com.intellij.openapi.module.Module;
+import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.DialogWrapper;
+import com.intellij.openapi.ui.MessageType;
 import com.intellij.openapi.util.Key;
 import org.robovm.idea.RoboVmPlugin;
 
@@ -32,19 +32,22 @@ public class CreateFrameworkAction extends AnAction {
     public static final Key<FrameworkConfig> FRAMEWORK_CONFIG_KEY = Key.create("FRAMEWORK_CONFIG");
 
     public void actionPerformed(final AnActionEvent e) {
-        final CreateFrameworkDialog dialog = new CreateFrameworkDialog(e.getProject());
+        Project project = e.getProject();
+        if (project == null) {
+            RoboVmPlugin.logBalloon(null, MessageType.ERROR, "Oops. Project is missing.");
+            return;
+        }
+
+        final CreateFrameworkDialog dialog = new CreateFrameworkDialog(project);
         dialog.show();
-        if(dialog.getExitCode() == DialogWrapper.OK_EXIT_CODE) {
+        if (dialog.getExitCode() == DialogWrapper.OK_EXIT_CODE) {
             // create Framework
             FrameworkConfig frameworkConfig = dialog.getFrameworkConfig();
-            CompileScope scope = CompilerManager.getInstance(e.getProject()).createModuleCompileScope(frameworkConfig.module, true);
+            CompileScope scope = CompilerManager.getInstance(project).createModuleCompileScope(frameworkConfig.module, true);
             scope.putUserData(FRAMEWORK_CONFIG_KEY, frameworkConfig);
-            CompilerManager.getInstance(e.getProject()).compile(scope, new CompileStatusNotification() {
-                @Override
-                public void finished(boolean aborted, int errors, int warnings, CompileContext compileContext) {
-                    RoboVmPlugin.logInfo(e.getProject(), "Framework creation complete, %d errors, %d warnings", errors, warnings);
-                }
-            });
+            CompilerManager.getInstance(project).compile(scope, (aborted, errors, warnings, compileContext) ->
+                    RoboVmPlugin.logInfo(project, "Framework creation complete, %d errors, %d warnings", errors, warnings)
+            );
         }
     }
 
