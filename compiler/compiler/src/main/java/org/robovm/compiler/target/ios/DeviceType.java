@@ -16,16 +16,7 @@
  */
 package org.robovm.compiler.target.ios;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
+import org.apache.commons.exec.util.StringUtils;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -33,19 +24,26 @@ import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.log.Logger;
 import org.robovm.compiler.util.Executor;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 /**
  * Simulator device types, consisting of the device type id and SDK version as
  * listed by xcrun simctl devices -j list.
  */
 public class DeviceType implements Comparable<DeviceType> {
-    public static final String PREFIX = "com.apple.CoreSimulator.SimDeviceType.";
     public static final String IOS_VERSION_PREFIX = "com.apple.CoreSimulator.SimRuntime.iOS-";
     public static final String PREFERRED_IPHONE_SIM_NAME = "iPhone 6";
     public static final String PREFERRED_IPAD_SIM_NAME = "iPad Air";
-    
+
     public static final String[] ONLY_32BIT_DEVICES = {"iPhone 4", "iPhone 4s", "iPhone 5", "iPhone 5c", "iPad 2"};
 
-    public static enum DeviceFamily {
+    public enum DeviceFamily {
         iPhone,
         iPad
     }
@@ -53,14 +51,14 @@ public class DeviceType implements Comparable<DeviceType> {
     private final String deviceName;
     private final String udid;
     private final String state;
-    private final SDK sdk;
+    private final Version version;
     private final Set<Arch> archs;
 
-    DeviceType(String deviceName, String udid, String state, SDK sdk, Set<Arch> archs) {
+    DeviceType(String deviceName, String udid, String state, Version version, Set<Arch> archs) {
         this.deviceName = deviceName;
         this.udid = udid;
         this.state = state;
-        this.sdk = sdk;
+        this.version = version;
         this.archs = archs;
     }
 
@@ -68,8 +66,8 @@ public class DeviceType implements Comparable<DeviceType> {
         return deviceName;
     }
 
-    public SDK getSdk() {
-        return sdk;
+    public Version getVersion() {
+        return version;
     }
 
     public Set<Arch> getArchs() {
@@ -80,7 +78,7 @@ public class DeviceType implements Comparable<DeviceType> {
      * @return id as understood by the AppCompiler -simdevicetype flag
      */
     public String getSimpleDeviceTypeId() {
-        return getSimpleDeviceName() + ", " + sdk.getVersion();
+        return getSimpleDeviceName() + ", " + getVersion();
     }
 
     public String getSimpleDeviceName() {
@@ -94,10 +92,10 @@ public class DeviceType implements Comparable<DeviceType> {
             return DeviceFamily.iPad;
         }
     }
-    
+
     public String getUdid() {
-		return udid;
-	}
+        return udid;
+    }
 
     public String getState() {
         return getState(false);
@@ -112,62 +110,53 @@ public class DeviceType implements Comparable<DeviceType> {
             }
 
         }
-    	return state;
+        return state;
     }
 
     public static List<DeviceType> listDeviceTypes() {
         try {
-        	List<SDK> sdks = SDK.listSimulatorSDKs();
-        	Map<String, SDK> sdkMap = new HashMap<>();
-        	for (SDK sdk : sdks) {
-        		sdkMap.put(sdk.getVersion(), sdk);
-        	}
-        	
             String capture = new Executor(Logger.NULL_LOGGER, "xcrun").args(
                     "simctl", "list", "devices", "-j").execCapture();
-            List<DeviceType> types = new ArrayList<DeviceType>();
-            
+            List<DeviceType> types = new ArrayList<>();
+
             JSONParser parser = new JSONParser();
-            JSONObject deviceList = (JSONObject)((JSONObject) parser.parse(capture)).get("devices");
-            
-            Iterator iter=deviceList.entrySet().iterator();
-            while(iter.hasNext()){
-    			Map.Entry entry=(Map.Entry)iter.next();
-    			String sdkMapKey = entry.getKey().toString();
-    			if (sdkMapKey.startsWith(IOS_VERSION_PREFIX)) {
-    			    // com.apple.CoreSimulator.SimRuntime.iOS-
-                    sdkMapKey = sdkMapKey.replace(IOS_VERSION_PREFIX, "").replace('-', '.');
-                } else if (sdkMapKey.startsWith("iOS ")) {
-                    sdkMapKey = sdkMapKey.replace("iOS ","");
+            JSONObject deviceList = (JSONObject) ((JSONObject) parser.parse(capture)).get("devices");
+
+            for (Object value : deviceList.entrySet()) {
+                //noinspection rawtypes
+                Map.Entry entry = (Map.Entry) value;
+                String versionKey = entry.getKey().toString();
+                if (versionKey.startsWith(IOS_VERSION_PREFIX)) {
+                    // com.apple.CoreSimulator.SimRuntime.iOS-
+                    versionKey = versionKey.replace(IOS_VERSION_PREFIX, "").replace('-', '.');
+                } else if (versionKey.startsWith("iOS ")) {
+                    versionKey = versionKey.replace("iOS ", "");
                 } else {
-    			    // not iOS
-    			    continue;
+                    // not iOS
+                    continue;
                 }
-    			JSONArray devices = (JSONArray) entry.getValue();
-    			for (Object obj : devices) {
-    				JSONObject device = (JSONObject) obj;
-    				SDK sdk = sdkMap.get(sdkMapKey);
-    				boolean isAvailable = false;
-    				if (sdk != null) {
-    				    if (device.containsKey("isAvailable")) {
-    				        Object o = device.get("isAvailable");
-                            isAvailable = o instanceof Boolean ? (Boolean) o : "true".equals(o.toString());
-                        } else if (device.containsKey("availability"))
-                            isAvailable = !device.get("availability").toString().contains("unavailable");
-                    }
+                JSONArray devices = (JSONArray) entry.getValue();
+                for (Object obj : devices) {
+                    JSONObject device = (JSONObject) obj;
+                    boolean isAvailable = false;
+                    if (device.containsKey("isAvailable")) {
+                        Object o = device.get("isAvailable");
+                        isAvailable = o instanceof Boolean ? (Boolean) o : "true".equals(o.toString());
+                    } else if (device.containsKey("availability"))
+                        isAvailable = !device.get("availability").toString().contains("unavailable");
 
-    				if (isAvailable) {
+                    if (isAvailable) {
                         final String deviceName = device.get("name").toString();
-    					Set<Arch> archs = new HashSet<>();
-    					archs.add(Arch.x86);
-    					if (!Arrays.asList(ONLY_32BIT_DEVICES).contains(deviceName)) {
-    						archs.add(Arch.x86_64);
-    					}
+                        Set<Arch> archs = new HashSet<>();
+                        archs.add(Arch.x86);
+                        if (!Arrays.asList(ONLY_32BIT_DEVICES).contains(deviceName)) {
+                            archs.add(Arch.x86_64);
+                        }
 
-    					types.add(new DeviceType(deviceName, device.get("udid").toString(), 
-    							device.get("state").toString(), sdk, archs));
-    				}
-    			}
+                        types.add(new DeviceType(deviceName, device.get("udid").toString(),
+                                device.get("state").toString(), Version.parse(versionKey), archs));
+                    }
+                }
             }
 
             // Sort. Make sure that devices that have an id which is a prefix of
@@ -181,7 +170,7 @@ public class DeviceType implements Comparable<DeviceType> {
 
     @Override
     public int compareTo(DeviceType that) {
-        int c = this.sdk.compareTo(that.sdk);
+        int c = this.version.compareTo(that.version);
         if (c == 0) {
             c = this.getFamily().compareTo(that.getFamily());
             if (c == 0) {
@@ -192,7 +181,7 @@ public class DeviceType implements Comparable<DeviceType> {
     }
 
     private static List<DeviceType> filter(List<DeviceType> deviceTypes, Arch arch,
-            DeviceFamily family, String deviceName, String sdkVersion) {
+                                           DeviceFamily family, String deviceName, Version simVersion) {
 
         deviceName = deviceName == null ? null : deviceName.toLowerCase();
 
@@ -201,7 +190,7 @@ public class DeviceType implements Comparable<DeviceType> {
             if (arch == null || type.getArchs().contains(arch)) {
                 if (family == null || family == type.getFamily()) {
                     if (deviceName == null || type.getDeviceName().toLowerCase().contains(deviceName)) {
-                        if (sdkVersion == null || type.getSdk().getVersion().equals(sdkVersion)) {
+                        if (simVersion == null || type.version.isSameOrBetter(simVersion)) {
                             result.add(type);
                         }
                     }
@@ -247,7 +236,7 @@ public class DeviceType implements Comparable<DeviceType> {
      * specified this method will default to {@link DeviceFamily#iPhone}.
      */
     public static DeviceType getBestDeviceType(Arch arch, DeviceFamily family,
-            String deviceName, String sdkVersion) {
+                                               String deviceName, String deviceVersion) {
 
         if (deviceName == null && family == null) {
             family = DeviceFamily.iPhone;
@@ -262,19 +251,20 @@ public class DeviceType implements Comparable<DeviceType> {
         DeviceType exact = null;
         DeviceType bestDefault = null;
         DeviceType bestAny = null;
-        List<DeviceType> devices = filter(listDeviceTypes(), arch, family, deviceName, sdkVersion);
+        Version version = deviceVersion != null ? Version.parse(deviceVersion) : null;
+        List<DeviceType> devices = filter(listDeviceTypes(), arch, family, deviceName, version);
         for (DeviceType type : devices) {
-            if (deviceName != null && type.getDeviceName().equals(deviceName)) {
+            if (type.getDeviceName().equals(deviceName)) {
                 // match for specified device
-                if (exact == null || (sdkVersion == null && type.getSdk().getVersionCode() >  exact.getSdk().getVersionCode()))
+                if (exact == null || (version == null && type.version.versionCode > exact.version.versionCode))
                     exact = type;
             } else if (deviceName == null && type.getDeviceName().equals(preferredDeciveName)) {
                 // match for preferable device
-                if (bestDefault == null || (sdkVersion == null && type.getSdk().getVersionCode() >  bestDefault.getSdk().getVersionCode()))
+                if (bestDefault == null || (version == null && type.version.versionCode > bestDefault.version.versionCode))
                     bestDefault = type;
             } else {
-                // just pick one with best SDK version
-                if (bestAny == null || (sdkVersion == null && type.getSdk().getVersionCode() >  bestAny.getSdk().getVersionCode()))
+                // just pick one with best version
+                if (bestAny == null || (version == null && type.version.versionCode > bestAny.version.versionCode))
                     bestAny = type;
             }
         }
@@ -286,15 +276,49 @@ public class DeviceType implements Comparable<DeviceType> {
         if (best == null) {
             throw new IllegalArgumentException("Unable to find a matching device "
                     + "[arch=" + arch + ", family=" + family
-                    + ", name=" + deviceName + ", sdk=" + sdkVersion + "]");
+                    + ", name=" + deviceName + ", version=" + version + "]");
         }
         return best;
     }
 
     @Override
     public String toString() {
-        return "DeviceType [deviceName=" + deviceName + ", sdk=" + sdk + ", archs=" + archs + "]";
+        return "DeviceType [deviceName=" + deviceName + ", version=" + version + ", archs=" + archs + "]";
     }
 
-	
+    /**
+     * simulator version
+     */
+    public static class Version {
+        public final int major, minor, revision, versionCode;
+
+        public Version(int major, int minor, int revision, int versionCode) {
+            this.major = major;
+            this.minor = minor;
+            this.revision = revision;
+            this.versionCode = versionCode;
+        }
+
+        static Version parse(String v) {
+            String[] parts = StringUtils.split(v, ".");
+            int major = Integer.parseInt(parts[0]);
+            int minor = parts.length >= 2 ? Integer.parseInt(parts[1]) : 0;
+            int revision = parts.length >= 3 ? Integer.parseInt(parts[2]) : 0;
+            int versionCode = (major << 16) | (minor << 8) | revision;
+            return new Version(major, minor, revision, versionCode);
+        }
+
+        @Override
+        public String toString() {
+            return major + "." + minor + (revision != 0 ? ("." + revision) : "");
+        }
+
+        public int compareTo(Version other) {
+            return versionCode - other.versionCode;
+        }
+
+        public boolean isSameOrBetter(Version other) {
+            return versionCode >= other.versionCode;
+        }
+    }
 }
