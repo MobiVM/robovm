@@ -235,8 +235,7 @@ public class RoboVmIOSRunConfigurationSettingsEditor extends SettingsEditor<Robo
             this.type = type;
         }
 
-        public @NotNull
-        DeviceType getType() {
+        public @NotNull DeviceType getType() {
             return type;
         }
 
