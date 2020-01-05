@@ -30,6 +30,7 @@ import org.apache.commons.io.filefilter.AndFileFilter;
 import org.apache.commons.io.filefilter.PrefixFileFilter;
 import org.apache.commons.io.filefilter.RegexFileFilter;
 import org.apache.commons.io.filefilter.SuffixFileFilter;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.tuple.Pair;
 import org.robovm.compiler.CompilerException;
 import org.robovm.compiler.config.AppExtension;
@@ -316,6 +317,19 @@ public class IOSTarget extends AbstractTarget {
         libArgs.add("-rpath");
         libArgs.add("-Xlinker");
         libArgs.add("@loader_path/Frameworks");
+
+        if (!isDeviceArch(arch)) {
+            // add simulated entitlement to allow Security framework to work on simulator
+            File simEntitlement = createSimulatedEntitlementsPList(getBundleId());
+            ccArgs.add("-Xlinker");
+            ccArgs.add("-sectcreate");
+            ccArgs.add("-Xlinker");
+            ccArgs.add("__TEXT");
+            ccArgs.add("-Xlinker");
+            ccArgs.add("__entitlements");
+            ccArgs.add("-Xlinker");
+            ccArgs.add(simEntitlement.getAbsolutePath());
+        }
         
         super.doBuild(outFile, ccArgs, objectFiles, libArgs);
     }
@@ -385,6 +399,9 @@ public class IOSTarget extends AbstractTarget {
                 signFrameworks(SigningIdentity.ADHOC, appDir);
                 signAppExtensions(SigningIdentity.ADHOC, appDir, true);
             }
+            // sign the app
+            // NB: it is not required as app can run without it but Xcode does this
+            codesignApp(SigningIdentity.ADHOC, createEntitlementsPList(true), appDir);
         }
     }
 
@@ -530,6 +547,10 @@ public class IOSTarget extends AbstractTarget {
         if (verbose) {
             args.add("--verbose");
         }
+        if (identity == SigningIdentity.ADHOC) {
+            // don't contact time server in case of adhoc signing to save time
+            args.add("--timestamp=none");
+        }
         args.add(target);
         Executor executor = new Executor(config.getLogger(), "codesign");
         if (allocate) {
@@ -552,6 +573,45 @@ public class IOSTarget extends AbstractTarget {
         new Executor(config.getLogger(), new File(config.getHome().getBinDir(), "ldid"))
                 .args(args)
                 .exec();
+    }
+
+    /**
+     * creates simple entitlement plist from scratch that only containts get-task-allow
+     * used to sign binary for simulator
+     */
+    private File createEntitlementsPList(boolean getTaskAllow) throws IOException {
+        try {
+            File destFile = new File(config.getTmpDir(), "Entitlements.plist");
+            NSDictionary dict = new NSDictionary();
+            dict.put("com.apple.security.get-task-allow", getTaskAllow);
+            PropertyListParser.saveAsXML(dict, destFile);
+            return destFile;
+        } catch (IOException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * Creates simulated entitlements for simulator run. These are not used for signing
+     * but just put as __TEXT __entitlements section
+     */
+    private File createSimulatedEntitlementsPList(String bundleId) throws IOException {
+        try {
+            // generate random group id as there is no one real available when compiling for simulator
+            String groupId = RandomStringUtils.randomAlphanumeric(10).toUpperCase();
+            File destFile = new File(config.getTmpDir(), "Entitlements-Simulated.plist");
+            NSDictionary dict = new NSDictionary();
+            dict.put("application-identifier", groupId + "." + bundleId);
+            dict.put("keychain-access-groups", new NSArray(new NSString(groupId + "." + bundleId)));
+            PropertyListParser.saveAsXML(dict, destFile);
+            return destFile;
+        } catch (IOException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private File getOrCreateEntitlementsPList(boolean getTaskAllow, String bundleId) throws IOException {
