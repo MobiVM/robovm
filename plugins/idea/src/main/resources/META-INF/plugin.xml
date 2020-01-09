@@ -20,6 +20,9 @@
     ]]>
     </change-notes>
 
+    <extensions defaultExtensionNs="org.jetbrains.plugins.gradle">
+        <projectResolve implementation="org.robovm.idea.gradle.RoboVMGradleProjectResolver"/>
+    </extensions>
     <extensions defaultExtensionNs="com.intellij">
         <configurationType implementation="org.robovm.idea.running.RoboVmIOSConfigurationType"/>
         <configurationType implementation="org.robovm.idea.running.RoboVmConsoleConfigurationType"/>
