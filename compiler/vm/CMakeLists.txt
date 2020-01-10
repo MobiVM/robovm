@@ -5,7 +5,7 @@ set(MACOSX_MIN_VERSION 10.9)
 # The iOS SDK version required when building the VM libs
 set(IOS_SDK_VERSION 10.0)
 # The minimum iOS version needed by apps built by RoboVM
-set(IOS_MIN_VERSION 7.0)
+set(IOS_MIN_VERSION 8.0)
 
 cmake_minimum_required(VERSION 2.8.8)
 project(build)
@@ -124,7 +124,11 @@ endif()
 # Set up global C and C++ compiler flags
 set(C_FLAGS "${C_FLAGS} -std=gnu99 -fPIC")
 set(CXX_FLAGS "${CXX_FLAGS} -std=gnu++11 -fPIC")
-set(C_CXX_FLAGS "${C_CXX_FLAGS} -Wall -fdata-sections -ffunction-sections -fPIC")
+set(C_CXX_FLAGS "${C_CXX_FLAGS} -Wall -fPIC")
+if(NOT IOS)
+  # -fdata-sections -ffunction-sections conflicts with -fembed-bitcode
+  set(C_CXX_FLAGS "${C_CXX_FLAGS} -fdata-sections -ffunction-sections")
+endif()
 if(CARCH)
   set(C_CXX_FLAGS "${C_CXX_FLAGS} -arch ${CARCH}")
 elseif(64_BIT)
@@ -144,6 +148,9 @@ if(MACOSX)
 elseif(IOS)
   set(C_CXX_FLAGS "${C_CXX_FLAGS} -miphoneos-version-min=${IOS_MIN_VERSION}")
   set(CMAKE_OSX_DEPLOYMENT_TARGET "") #reset variable for compat with SDK 10.12, see issue #48
+  if (ARCH STREQUAL "arm64" OR ARCH STREQUAL "thumbv7")
+    set(C_CXX_FLAGS "${C_CXX_FLAGS} -fembed-bitcode")
+  endif()
 endif()
 
 # Linker flags
@@ -193,6 +200,9 @@ if(MACOSX)
 endif()
 if(IOS)
   set(ASM_FLAGS "${ASM_FLAGS} -miphoneos-version-min=${IOS_MIN_VERSION}")
+  if (ARCH STREQUAL "arm64" OR ARCH STREQUAL "thumbv7")
+    set(ASM_FLAGS "${ASM_FLAGS} -fembed-bitcode")
+  endif()
 endif()
 set(CMAKE_ASM_COMPILE_OBJECT "${CMAKE_C_COMPILER} ${ASM_FLAGS} -o <OBJECT> <SOURCE>")
 enable_language(ASM)

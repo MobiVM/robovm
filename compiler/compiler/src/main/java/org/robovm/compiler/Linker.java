@@ -492,6 +492,9 @@ public class Linker {
         linkerO.getParentFile().mkdirs();
 
         try (Context context = new Context()) {
+            // emit bitcode section for linker?.o
+            ClassCompiler.emitBitcodeSection(config, mb);
+
             String ir = mb.build().toString();
             if (config.isDumpIntermediates()) {
                 File linkerLl = new File(config.getTmpDir(), "linker" + num + ".ll");

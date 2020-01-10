@@ -17,36 +17,6 @@
  */
 package org.robovm.compiler.config;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.Reader;
-import java.io.Writer;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
-import java.util.ServiceLoader;
-import java.util.TreeMap;
-import java.util.jar.Attributes;
-import java.util.jar.JarFile;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipFile;
-
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.robovm.compiler.DependencyGraph;
@@ -96,6 +66,37 @@ import org.simpleframework.xml.stream.Format;
 import org.simpleframework.xml.stream.InputNode;
 import org.simpleframework.xml.stream.OutputNode;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.Reader;
+import java.io.Writer;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
+import java.util.ServiceLoader;
+import java.util.TreeMap;
+import java.util.jar.Attributes;
+import java.util.jar.JarFile;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
+
 /**
  * Holds compiler configuration.
  */
@@ -113,11 +114,11 @@ public class Config {
 
     public enum Cacerts {
         full
-    };
+    }
 
     public enum TreeShakerMode {
         none, conservative, aggressive
-    };
+    }
 
     @Element(required = false)
     private File installDir = null;
@@ -188,6 +189,9 @@ public class Config {
     @Element(required = false)
     private Tools tools;
 
+    @Element(required = false)
+    private Boolean enableBitcode;
+
     private SigningIdentity iosSignIdentity;
     private ProvisioningProfile iosProvisioningProfile;
     private String iosDeviceType;
@@ -225,7 +229,7 @@ public class Config {
     private transient Clazzes clazzes;
     private transient VTable.Cache vtableCache;
     private transient ITable.Cache itableCache;
-    private transient List<Path> resourcesPaths = new ArrayList<Path>();
+    private transient List<Path> resourcesPaths = new ArrayList<>();
     private transient DataLayout dataLayout;
     private transient MarshalerLookup marshalerLookup;
     private transient Config configBeforeBuild;
@@ -233,7 +237,7 @@ public class Config {
     private transient Arch sliceArch;
     private transient StripArchivesBuilder stripArchivesBuilder;
 
-    protected Config() throws IOException {
+    protected Config() {
         // Add standard plugins
         this.plugins.addAll(0, Arrays.asList(
                 new InterfaceBuilderClassesPlugin(),
@@ -296,7 +300,7 @@ public class Config {
     }
 
     public List<Arch> getArchs() {
-        return archs == null ? Collections.<Arch> emptyList()
+        return archs == null ? Collections.emptyList()
                 : Collections.unmodifiableList(archs);
     }
     
@@ -333,7 +337,7 @@ public class Config {
     }
 
     public boolean isSkipRuntimeLib() {
-        return skipRuntimeLib != null && skipRuntimeLib.booleanValue();
+        return skipRuntimeLib != null && skipRuntimeLib;
     }
 
     public boolean isSkipLinking() {
@@ -390,57 +394,57 @@ public class Config {
     }
 
     public List<String> getForceLinkClasses() {
-        return forceLinkClasses == null ? Collections.<String> emptyList()
+        return forceLinkClasses == null ? Collections.emptyList()
                 : Collections.unmodifiableList(forceLinkClasses);
     }
 
     public List<ForceLinkMethodsConfig> getForceLinkMethods() {
-        return forceLinkMethods == null ? Collections.<ForceLinkMethodsConfig> emptyList()
+        return forceLinkMethods == null ? Collections.emptyList()
                 : Collections.unmodifiableList(forceLinkMethods);
     }
 
     public List<String> getExportedSymbols() {
-        return exportedSymbols == null ? Collections.<String> emptyList()
+        return exportedSymbols == null ? Collections.emptyList()
                 : Collections.unmodifiableList(exportedSymbols);
     }
 
     public List<String> getUnhideSymbols() {
-        return unhideSymbols == null ? Collections.<String> emptyList()
+        return unhideSymbols == null ? Collections.emptyList()
                 : Collections.unmodifiableList(unhideSymbols);
     }
     
     public List<Lib> getLibs() {
-        return libs == null ? Collections.<Lib> emptyList()
+        return libs == null ? Collections.emptyList()
                 : Collections.unmodifiableList(libs);
     }
 
     public List<String> getFrameworks() {
-        return frameworks == null ? Collections.<String> emptyList()
+        return frameworks == null ? Collections.emptyList()
                 : Collections.unmodifiableList(frameworks);
     }
 
     public List<String> getWeakFrameworks() {
-        return weakFrameworks == null ? Collections.<String> emptyList()
+        return weakFrameworks == null ? Collections.emptyList()
                 : Collections.unmodifiableList(weakFrameworks);
     }
 
     public List<File> getFrameworkPaths() {
-        return frameworkPaths == null ? Collections.<File> emptyList()
+        return frameworkPaths == null ? Collections.emptyList()
                 : Collections.unmodifiableList(frameworkPaths);
     }
 
     public List<AppExtension> getAppExtensions() {
-        return appExtensions == null ? Collections.<AppExtension> emptyList()
+        return appExtensions == null ? Collections.emptyList()
                 : Collections.unmodifiableList(appExtensions);
     }
 
     public List<File> getAppExtensionPaths() {
-        return appExtensionPaths == null ? Collections.<File> emptyList()
+        return appExtensionPaths == null ? Collections.emptyList()
                 : Collections.unmodifiableList(appExtensionPaths);
     }
 
     public List<Resource> getResources() {
-        return resources == null ? Collections.<Resource> emptyList()
+        return resources == null ? Collections.emptyList()
                 : Collections.unmodifiableList(resources);
     }
 
@@ -499,17 +503,17 @@ public class Config {
     }
 
     public List<String> getPluginArguments() {
-        return pluginArguments == null ? Collections.<String> emptyList()
+        return pluginArguments == null ? Collections.emptyList()
                 : Collections.unmodifiableList(pluginArguments);
     }
 
     public List<File> getBootclasspath() {
-        return bootclasspath == null ? Collections.<File> emptyList()
+        return bootclasspath == null ? Collections.emptyList()
                 : Collections.unmodifiableList(bootclasspath);
     }
 
     public List<File> getClasspath() {
-        return classpath == null ? Collections.<File> emptyList()
+        return classpath == null ? Collections.emptyList()
                 : Collections.unmodifiableList(classpath);
     }
 
@@ -572,6 +576,15 @@ public class Config {
 
     public boolean isIosSkipSigning() {
         return iosSkipSigning;
+    }
+
+    public boolean isEnableBitcode() {return enableBitcode != null && enableBitcode && shouldEmitBitcode(); }
+
+    public boolean shouldEmitBitcode() {
+        // emit bitcode to object file even if it is not enabled.
+        // as currently only `__LLVM,__asm` is being added
+        // but build should match criteria
+        return !debug && os == OS.ios && (sliceArch == Arch.arm64 || sliceArch == Arch.thumbv7);
     }
 
     public Tools getTools() {
@@ -672,12 +685,8 @@ public class Config {
     }
 
     private static Map<Object, Object> getManifestAttributes(File jarFile) throws IOException {
-        JarFile jf = null;
-        try {
-            jf = new JarFile(jarFile);
-            return new HashMap<Object, Object>(jf.getManifest().getMainAttributes());
-        } finally {
-            jf.close();
+        try (JarFile jf = new JarFile(jarFile)) {
+            return new HashMap<>(jf.getManifest().getMainAttributes());
         }
     }
 
@@ -728,7 +737,7 @@ public class Config {
         if (from == null) {
             return to;
         }
-        to = to != null ? to : new ArrayList<T>();
+        to = to != null ? to : new ArrayList<>();
         for (T o : from) {
             if (!to.contains(o)) {
                 to.add(o);
@@ -787,14 +796,14 @@ public class Config {
     }
 
     private static <T> List<T> toList(Iterator<T> it) {
-        List<T> l = new ArrayList<T>();
+        List<T> l = new ArrayList<>();
         while (it.hasNext()) {
             l.add(it.next());
         }
         return l;
     }
 
-    private void loadPluginsFromClassPath() throws IOException {
+    private void loadPluginsFromClassPath() {
         ClassLoader classLoader = getClass().getClassLoader();
         ServiceLoader<CompilerPlugin> compilerPluginLoader = ServiceLoader.load(CompilerPlugin.class, classLoader);
         ServiceLoader<LaunchPlugin> launchPluginLoader = ServiceLoader.load(LaunchPlugin.class, classLoader);
@@ -837,10 +846,10 @@ public class Config {
         }
 
         if (bootclasspath == null) {
-            bootclasspath = new ArrayList<File>();
+            bootclasspath = new ArrayList<>();
         }
         if (classpath == null) {
-            classpath = new ArrayList<File>();
+            classpath = new ArrayList<>();
         }
 
         if (mainJar != null) {
@@ -872,9 +881,9 @@ public class Config {
             imageName = executableName;
         }
 
-        List<File> realBootclasspath = bootclasspath == null ? new ArrayList<File>() : bootclasspath;
+        List<File> realBootclasspath = bootclasspath == null ? new ArrayList<>() : bootclasspath;
         if (!isSkipRuntimeLib()) {
-            realBootclasspath = new ArrayList<File>(bootclasspath);
+            realBootclasspath = new ArrayList<>(bootclasspath);
             realBootclasspath.add(0, home.rtPath);
         }
 
@@ -967,10 +976,10 @@ public class Config {
     }
 
     public static class Home {
-        private File binDir = null;
-        private File libVmDir = null;
-        private File rtPath = null;
-        private Map<Cacerts, File> cacertsPath = null;
+        private File binDir;
+        private File libVmDir;
+        private File rtPath;
+        private Map<Cacerts, File> cacertsPath;
         private boolean dev = false;
 
         public Home(File homeDir) {
@@ -984,7 +993,7 @@ public class Config {
             binDir = new File(homeDir, "bin");
             libVmDir = new File(homeDir, "lib/vm");
             rtPath = new File(homeDir, "lib/robovm-rt.jar");
-            cacertsPath = new HashMap<Cacerts, File>();
+            cacertsPath = new HashMap<>();
             cacertsPath.put(Cacerts.full, new File(homeDir, "lib/robovm-cacerts-full.jar"));
         }
 
@@ -992,7 +1001,7 @@ public class Config {
             this.binDir = binDir;
             this.libVmDir = libVmDir;
             this.rtPath = rtPath;
-            cacertsPath = new HashMap<Cacerts, File>();
+            cacertsPath = new HashMap<>();
             cacertsPath.put(Cacerts.full, new File(devDir,
                     "cacerts/full/target/robovm-cacerts-full-" + Version.getVersion() + ".jar"));
             this.dev = true;
@@ -1035,7 +1044,7 @@ public class Config {
                 return new Home(dir);
             }
 
-            List<File> candidates = new ArrayList<File>();
+            List<File> candidates = new ArrayList<>();
             File userHome = new File(System.getProperty("user.home"));
             candidates.add(new File(userHome, "Applications/robovm"));
             candidates.add(new File(userHome, ".robovm/home"));
@@ -1088,7 +1097,7 @@ public class Config {
             try {
                 String thisVersion = Version.getVersion();
                 String thatVersion = getImplementationVersion(rtJarFile);
-                if (thisVersion == null || thatVersion == null || !thisVersion.equals(thatVersion)) {
+                if (thisVersion == null || !thisVersion.equals(thatVersion)) {
                     throw new IllegalArgumentException(error + "version mismatch (expected: "
                             + thisVersion + ", was: " + thatVersion + ")");
                 }
@@ -1147,6 +1156,7 @@ public class Config {
         return builder.config;
     }
 
+    @SuppressWarnings({"UnusedReturnValue", "unused"})
     public static class Builder {
         protected final Config config;
 
@@ -1154,7 +1164,7 @@ public class Config {
             this.config = config;
         }
 
-        public Builder() throws IOException {
+        public Builder() {
             this.config = new Config();
         }
 
@@ -1189,7 +1199,7 @@ public class Config {
 
         public Builder addClasspathEntry(File f) {
             if (config.classpath == null) {
-                config.classpath = new ArrayList<File>();
+                config.classpath = new ArrayList<>();
             }
             config.classpath.add(f);
             return this;
@@ -1204,7 +1214,7 @@ public class Config {
 
         public Builder addBootClasspathEntry(File f) {
             if (config.bootclasspath == null) {
-                config.bootclasspath = new ArrayList<File>();
+                config.bootclasspath = new ArrayList<>();
             }
             config.bootclasspath.add(f);
             return this;
@@ -1324,7 +1334,7 @@ public class Config {
 
         public Builder addForceLinkClass(String pattern) {
             if (config.forceLinkClasses == null) {
-                config.forceLinkClasses = new ArrayList<String>();
+                config.forceLinkClasses = new ArrayList<>();
             }
             config.forceLinkClasses.add(pattern);
             return this;
@@ -1339,7 +1349,7 @@ public class Config {
 
         public Builder addExportedSymbol(String symbol) {
             if (config.exportedSymbols == null) {
-                config.exportedSymbols = new ArrayList<String>();
+                config.exportedSymbols = new ArrayList<>();
             }
             config.exportedSymbols.add(symbol);
             return this;
@@ -1354,7 +1364,7 @@ public class Config {
 
         public Builder addUnhideSymbol(String symbol) {
             if (config.unhideSymbols == null) {
-                config.unhideSymbols = new ArrayList<String>();
+                config.unhideSymbols = new ArrayList<>();
             }
             config.unhideSymbols.add(symbol);
             return this;
@@ -1369,7 +1379,7 @@ public class Config {
 
         public Builder addLib(Lib lib) {
             if (config.libs == null) {
-                config.libs = new ArrayList<Lib>();
+                config.libs = new ArrayList<>();
             }
             config.libs.add(lib);
             return this;
@@ -1384,7 +1394,7 @@ public class Config {
 
         public Builder addFramework(String framework) {
             if (config.frameworks == null) {
-                config.frameworks = new ArrayList<String>();
+                config.frameworks = new ArrayList<>();
             }
             config.frameworks.add(framework);
             return this;
@@ -1399,7 +1409,7 @@ public class Config {
 
         public Builder addWeakFramework(String framework) {
             if (config.weakFrameworks == null) {
-                config.weakFrameworks = new ArrayList<String>();
+                config.weakFrameworks = new ArrayList<>();
             }
             config.weakFrameworks.add(framework);
             return this;
@@ -1414,7 +1424,7 @@ public class Config {
 
         public Builder addFrameworkPath(File frameworkPath) {
             if (config.frameworkPaths == null) {
-                config.frameworkPaths = new ArrayList<File>();
+                config.frameworkPaths = new ArrayList<>();
             }
             config.frameworkPaths.add(frameworkPath);
             return this;
@@ -1447,7 +1457,7 @@ public class Config {
 
         public Builder addExtenaionPath(File extensionPath) {
             if (config.appExtensionPaths == null) {
-                config.appExtensionPaths = new ArrayList<File>();
+                config.appExtensionPaths = new ArrayList<>();
             }
             config.appExtensionPaths.add(extensionPath);
             return this;
@@ -1462,7 +1472,7 @@ public class Config {
 
         public Builder addResource(Resource resource) {
             if (config.resources == null) {
-                config.resources = new ArrayList<Resource>();
+                config.resources = new ArrayList<>();
             }
             config.resources.add(resource);
             return this;
@@ -1490,13 +1500,9 @@ public class Config {
 
         public Builder addProperties(File file) throws IOException {
             Properties props = new Properties();
-            Reader reader = null;
-            try {
-                reader = new InputStreamReader(new FileInputStream(file), "utf-8");
+            try (Reader reader = new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8)) {
                 props.load(reader);
                 addProperties(props);
-            } finally {
-                IOUtils.closeQuietly(reader);
             }
             return this;
         }
@@ -1571,6 +1577,11 @@ public class Config {
             return this;
         }
 
+        public Builder enableBitcode(boolean enableBitcode) {
+            config.enableBitcode = enableBitcode;
+            return this;
+        }
+
         public void addPluginArgument(String argName) {
             if (config.pluginArguments == null) {
                 config.pluginArguments = new ArrayList<>();
@@ -1616,14 +1627,14 @@ public class Config {
                 if (propsFile.exists()) {
                     config.logger.info("Loading default RoboVM config properties file: "
                             + propsFile.getAbsolutePath());
-                    try (Reader reader = new InputStreamReader(new FileInputStream(propsFile), "utf-8")) {
+                    try (Reader reader = new InputStreamReader(new FileInputStream(propsFile), StandardCharsets.UTF_8)) {
                         props.load(reader);
                     }
                 }
                 if (localPropsFile.exists()) {
                     config.logger.info("Loading local RoboVM config properties file: "
                             + localPropsFile.getAbsolutePath());
-                    try (Reader reader = new InputStreamReader(new FileInputStream(localPropsFile), "utf-8")) {
+                    try (Reader reader = new InputStreamReader(new FileInputStream(localPropsFile), StandardCharsets.UTF_8)) {
                         props.load(reader);
                     }
                 }
@@ -1671,12 +1682,8 @@ public class Config {
         }
 
         public void read(File file) throws IOException {
-            Reader reader = null;
-            try {
-                reader = new InputStreamReader(new FileInputStream(file), "utf-8");
+            try (Reader reader = new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8)) {
                 read(reader, file.getAbsoluteFile().getParentFile());
-            } finally {
-                IOUtils.closeQuietly(reader);
             }
         }
 
@@ -1684,19 +1691,17 @@ public class Config {
             try {
                 Serializer serializer = createSerializer(config, wd);
                 serializer.read(config, reader);
-            } catch (IOException e) {
-                throw e;
-            } catch (RuntimeException e) {
+            } catch (IOException | RuntimeException e) {
                 throw e;
             } catch (Exception e) {
-                throw (IOException) new IOException().initCause(e);
+                throw new IOException(e);
             }
             // <roots> was renamed to <forceLinkClasses> but we still support
             // <roots>. We need to copy <roots> to <forceLinkClasses> and set
             // <roots> to null.
             if (config.roots != null && !config.roots.isEmpty()) {
                 if (config.forceLinkClasses == null) {
-                    config.forceLinkClasses = new ArrayList<String>();
+                    config.forceLinkClasses = new ArrayList<>();
                 }
                 config.forceLinkClasses.addAll(config.roots);
                 config.roots = null;
@@ -1704,12 +1709,8 @@ public class Config {
         }
 
         public void write(File file) throws IOException {
-            Writer writer = null;
-            try {
-                writer = new OutputStreamWriter(new FileOutputStream(file), "utf-8");
+            try (Writer writer = new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8)) {
                 write(writer, file.getAbsoluteFile().getParentFile());
-            } finally {
-                IOUtils.closeQuietly(writer);
             }
         }
 
@@ -1717,12 +1718,10 @@ public class Config {
             try {
                 Serializer serializer = createSerializer(config, wd);
                 serializer.write(config, writer);
-            } catch (IOException e) {
-                throw e;
-            } catch (RuntimeException e) {
+            } catch (IOException | RuntimeException e) {
                 throw e;
             } catch (Exception e) {
-                throw (IOException) new IOException().initCause(e);
+                throw new IOException(e);
             }
         }
 
@@ -1812,13 +1811,8 @@ public class Config {
                 return false;
             }
             if (value == null) {
-                if (other.value != null) {
-                    return false;
-                }
-            } else if (!value.equals(other.value)) {
-                return false;
-            }
-            return true;
+                return other.value == null;
+            } else return value.equals(other.value);
         }
     }
 
@@ -1836,7 +1830,7 @@ public class Config {
                 return null;
             }
             InputNode forceNode = node.getAttribute("force");
-            boolean force = forceNode == null || Boolean.valueOf(forceNode.getValue());
+            boolean force = forceNode == null || Boolean.parseBoolean(forceNode.getValue());
             if (value.endsWith(".a") || value.endsWith(".o")) {
                 return new Lib(fileConverter.read(value).getAbsolutePath(), force);
             } else {

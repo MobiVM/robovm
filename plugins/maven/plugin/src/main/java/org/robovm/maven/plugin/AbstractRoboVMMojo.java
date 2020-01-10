@@ -15,13 +15,6 @@
  */
 package org.robovm.maven.plugin;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.StringReader;
-import java.io.StringWriter;
-import java.util.Collection;
-import java.util.List;
-
 import org.apache.commons.io.FileUtils;
 import org.apache.maven.artifact.Artifact;
 import org.apache.maven.artifact.DefaultArtifact;
@@ -33,7 +26,6 @@ import org.apache.maven.artifact.resolver.ArtifactResolver;
 import org.apache.maven.model.Plugin;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
-import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.plugins.annotations.Component;
 import org.apache.maven.plugins.annotations.Execute;
 import org.apache.maven.plugins.annotations.LifecyclePhase;
@@ -56,12 +48,20 @@ import org.robovm.compiler.log.Logger;
 import org.robovm.compiler.target.ios.ProvisioningProfile;
 import org.robovm.compiler.target.ios.SigningIdentity;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.StringReader;
+import java.io.StringWriter;
+import java.util.Collection;
+import java.util.List;
+
 /**
+ *
  */
-@Execute(goal="compile", phase = LifecyclePhase.COMPILE)
+@Execute(goal = "compile", phase = LifecyclePhase.COMPILE)
 public abstract class AbstractRoboVMMojo extends AbstractMojo {
 
-    @Component
+    @Parameter(defaultValue = "${project}", readonly = true, required = true)
     protected MavenProject project;
 
     @Component
@@ -70,7 +70,7 @@ public abstract class AbstractRoboVMMojo extends AbstractMojo {
     @Component
     private ArtifactResolver artifactResolver;
 
-    @Parameter(defaultValue="${localRepository}")
+    @Parameter(defaultValue = "${localRepository}")
     private ArtifactRepository localRepository;
 
     /**
@@ -78,7 +78,7 @@ public abstract class AbstractRoboVMMojo extends AbstractMojo {
      * robovm-dist bundle will be downloaded from Maven and extracted into this
      * directory. Note that each release of RoboVM is placed in a separate
      * sub-directory with the version number as suffix.
-     *
+     * <p>
      * If not set, then the tar file is extracted into the local Maven
      * repository where the tar file is downloaded to.
      */
@@ -88,13 +88,13 @@ public abstract class AbstractRoboVMMojo extends AbstractMojo {
     /**
      * The path to a {@code robovm.properties} file which contains info for your app.
      */
-    @Parameter(property="robovm.propertiesFile")
+    @Parameter(property = "robovm.propertiesFile")
     protected File propertiesFile;
 
     /**
      * The path to a {@code robovm.xml} file which configures the RoboVM compiler.
      */
-    @Parameter(property="robovm.configFile")
+    @Parameter(property = "robovm.configFile")
     protected File configFile;
 
     /**
@@ -102,40 +102,40 @@ public abstract class AbstractRoboVMMojo extends AbstractMojo {
      * Default is to look for an identity starting with 'iPhone Developer' or
      * 'iOS Development'. Enclose in '/' to search by regexp, e.g. '/foo|bar/'.
      */
-    @Parameter(property="robovm.iosSignIdentity")
+    @Parameter(property = "robovm.iosSignIdentity")
     protected String iosSignIdentity;
 
     /**
      * The provisioning profile to use when building for device.
      */
-    @Parameter(property="robovm.iosProvisioningProfile")
+    @Parameter(property = "robovm.iosProvisioningProfile")
     protected String iosProvisioningProfile;
 
     /**
      * Whether the app should be signed or not. Unsigned apps can only be run on jailbroken
      * devices.
      */
-    @Parameter(property="robovm.iosSkipSigning")
+    @Parameter(property = "robovm.iosSkipSigning")
     protected boolean iosSkipSigning = false;
 
     /**
      * The directory into which the RoboVM distributable for the project will be built.
      */
-    @Parameter(property="robovm.installDir", defaultValue="${project.build.directory}/robovm")
+    @Parameter(property = "robovm.installDir", defaultValue = "${project.build.directory}/robovm")
     protected File installDir;
 
     /**
      * Overrides the arch used when running the app. One of x86, x86_64, thumbv7, arm64.
      * Will be ignored if the specified value isn't supported by the executed goal.
      */
-    @Parameter(property="robovm.arch")
+    @Parameter(property = "robovm.arch")
     protected String arch;
 
     /**
      * Overrides the os used when running the app. One of macosx, linux, ios.
      * Will be ignored if the specified value isn't supported by the executed goal.
      */
-    @Parameter(property="robovm.os")
+    @Parameter(property = "robovm.os")
     protected String os;
 
     /**
@@ -145,7 +145,7 @@ public abstract class AbstractRoboVMMojo extends AbstractMojo {
      * will connect back to the local host to attach to already started
      * debugging server which is waiting for connection on <code>robovm.debugPort</code>.
      */
-    @Parameter(property="robovm.debug")
+    @Parameter(property = "robovm.debug")
     protected String debug;
 
     /**
@@ -154,8 +154,20 @@ public abstract class AbstractRoboVMMojo extends AbstractMojo {
      * The port actually used will be written to the console before the app is
      * launched.
      */
-    @Parameter(property="robovm.debugPort")
+    @Parameter(property = "robovm.debugPort")
     protected int debugPort = -1;
+
+    /**
+     * Whether the app should dump intermediate .ll/.s files
+     */
+    @Parameter(property = "robovm.dumpIntermediates")
+    protected boolean dumpIntermediates = false;
+
+    /**
+     * Whether the app should be build with bitcode embedded
+     */
+    @Parameter(property = "robovm.enableBitcode")
+    protected boolean enableBitcode = false;
 
     private Logger roboVMLogger;
 
@@ -251,7 +263,8 @@ public abstract class AbstractRoboVMMojo extends AbstractMojo {
         Home home = null;
         try {
             home = Home.find();
-        } catch (Throwable t) {}
+        } catch (Throwable ignored) {
+        }
         if (home == null || !home.isDev()) {
             home = new Config.Home(unpackRoboVMDist());
         }
@@ -293,6 +306,14 @@ public abstract class AbstractRoboVMMojo extends AbstractMojo {
             }
         }
 
+        if (dumpIntermediates) {
+            builder.dumpIntermediates(true);
+        }
+
+        if (enableBitcode) {
+            builder.enableBitcode(true);
+        }
+
         builder.clearClasspathEntries();
 
         // configure the runtime classpath
@@ -316,16 +337,12 @@ public abstract class AbstractRoboVMMojo extends AbstractMojo {
     }
 
     protected AppCompiler build(OS os, Arch arch, String targetType)
-            throws MojoExecutionException, MojoFailureException {
+            throws MojoExecutionException {
 
         getLog().info("Building RoboVM app for: " + os + " (" + arch + ")");
 
         Config.Builder builder;
-        try {
-            builder = new Config.Builder();
-        } catch (IOException e) {
-            throw new MojoExecutionException(e.getMessage(), e);
-        }
+        builder = new Config.Builder();
 
         configure(builder).os(os).arch(arch).targetType(targetType);
 
@@ -401,7 +418,7 @@ public abstract class AbstractRoboVMMojo extends AbstractMojo {
                     + artifact);
         }
         Collection<Artifact> resolvedArtifacts = result.getArtifacts();
-        artifact = (Artifact) resolvedArtifacts.iterator().next();
+        artifact = resolvedArtifacts.iterator().next();
         return artifact;
     }
 
