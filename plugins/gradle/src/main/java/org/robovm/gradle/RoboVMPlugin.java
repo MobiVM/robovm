@@ -18,6 +18,7 @@ package org.robovm.gradle;
 import org.gradle.api.Plugin;
 import org.gradle.api.Project;
 import org.gradle.api.Task;
+import org.gradle.tooling.provider.model.ToolingModelBuilderRegistry;
 import org.robovm.compiler.Version;
 import org.robovm.gradle.tasks.ArchiveTask;
 import org.robovm.gradle.tasks.ConsoleTask;
@@ -25,7 +26,9 @@ import org.robovm.gradle.tasks.IOSDeviceTask;
 import org.robovm.gradle.tasks.IPadSimulatorTask;
 import org.robovm.gradle.tasks.IPhoneSimulatorTask;
 import org.robovm.gradle.tasks.InstallTask;
+import org.robovm.gradle.tooling.ModelBuilder;
 
+import javax.inject.Inject;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,13 +38,22 @@ import java.util.Map;
  * @author Junji Takakura
  */
 public class RoboVMPlugin implements Plugin<Project> {
+    private final ToolingModelBuilderRegistry registry;
 
     public static String getRoboVMVersion() {
         return Version.getVersion();
     }
 
+    @Inject
+    public RoboVMPlugin(ToolingModelBuilderRegistry registry) {
+        this.registry = registry;
+    }
+
     @Override
     public void apply(Project project) {
+        // register tooling model builder to provide model to Idea plugin
+        registry.register(new ModelBuilder());
+
         project.getExtensions().create(RoboVMPluginExtension.NAME, RoboVMPluginExtension.class, project);
         project.task(params(IPhoneSimulatorTask.class, "Runs your iOS app in the iPhone simulator"),
                 "launchIPhoneSimulator");

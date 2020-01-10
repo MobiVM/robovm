@@ -74,14 +74,12 @@ public class CleanBuildFoldersAction extends AnAction {
                     File moduleBaseDir = RoboVmPlugin.getModuleBaseDir(module);
                     File robovmBuildDir = new File(moduleBaseDir, "robovm-build");
                     FileUtils.deleteDirectory(robovmBuildDir);
-
-                    //Refresh the module folder, so that we see, it has happened
-                    VirtualFile moduleFile = module.getModuleFile();
-                    if (moduleFile != null)
-                        moduleFile.getParent().refresh(false, true);
                 }
             } catch (Exception e) {
                 throw new RuntimeException(e);
+            } finally {
+                //Refresh the module folder, so that we see, it has happened
+                project.getBaseDir().refresh(false, true);
             }
         }
 
