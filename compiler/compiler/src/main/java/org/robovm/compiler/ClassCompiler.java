@@ -1438,7 +1438,7 @@ public class ClassCompiler {
             if (attributesEncoder.methodHasAttributes(m)) {
                 flags |= MI_ATTRIBUTES;
             }
-            if (hasBridgeAnnotation(m) || hasGlobalValueAnnotation(m)) {
+            if ((hasBridgeAnnotation(m) && !isJvmSyntheticBridgeMethod(m)) || hasGlobalValueAnnotation(m)) {
                 flags |= MI_BRO_BRIDGE;
             }
             if (hasCallbackAnnotation(m)) {
