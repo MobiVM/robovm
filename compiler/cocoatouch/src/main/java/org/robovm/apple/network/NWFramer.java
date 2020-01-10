@@ -35,8 +35,8 @@ import org.robovm.apple.security.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*/@Library("Network") @NativeProtocolProxy("OS_nw_framer")/*</annotations>*/
-/*<visibility>*/public final/*</visibility>*/ class /*<name>*/NWFramer/*</name>*/ 
+/*<annotations>*/@Library("Network") @NativeClass("NSObject")/*</annotations>*/
+/*<visibility>*/public final/*</visibility>*/ class /*<name>*/NWFramer/*</name>*/
     extends /*<extends>*/NWObject/*</extends>*/ 
     /*<implements>*/implements NSObjectProtocol/*</implements>*/ {
 
@@ -54,13 +54,8 @@ import org.robovm.apple.security.*;
     /**
      * @since Available in iOS 13.0 and later.
      */
-    @Bridge(symbol="nw_framer_protocol_create_message", optional=true)
-    public static native NWProtocolMetadata protocolCreateMessage(NWProtocolDefinition definition);
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
     @Bridge(symbol="nw_framer_message_create", optional=true)
-    public native NWProtocolMetadata createMessage();
+    public native NWFramerMessage createMessage();
     /**
      * @since Available in iOS 13.0 and later.
      */
@@ -75,7 +70,7 @@ import org.robovm.apple.security.*;
      * @since Available in iOS 13.0 and later.
      */
     @Bridge(symbol="nw_framer_set_output_handler", optional=true)
-    public native void setOutputHandler(@Block("(,,@MachineSizedUInt,)") VoidBlock4<NWFramer, NWProtocolMetadata, Long, Boolean> output_handler);
+    public native void setOutputHandler(@Block("(,,@MachineSizedUInt,)") VoidBlock4<NWFramer, NWFramerMessage, Long, Boolean> output_handler);
     /**
      * @since Available in iOS 13.0 and later.
      */
@@ -115,12 +110,12 @@ import org.robovm.apple.security.*;
      * @since Available in iOS 13.0 and later.
      */
     @Bridge(symbol="nw_framer_deliver_input", optional=true)
-    public native void deliverInput(BytePtr input_buffer, @MachineSizedUInt long input_length, NWProtocolMetadata message, boolean is_complete);
+    public native void deliverInput(BytePtr input_buffer, @MachineSizedUInt long input_length, NWFramerMessage message, boolean is_complete);
     /**
      * @since Available in iOS 13.0 and later.
      */
     @Bridge(symbol="nw_framer_deliver_input_no_copy", optional=true)
-    public native boolean deliverInputNoCopy(@MachineSizedUInt long input_length, NWProtocolMetadata message, boolean is_complete);
+    public native boolean deliverInputNoCopy(@MachineSizedUInt long input_length, NWFramerMessage message, boolean is_complete);
     /**
      * @since Available in iOS 13.0 and later.
      */

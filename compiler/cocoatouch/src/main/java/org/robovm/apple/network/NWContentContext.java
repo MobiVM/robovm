@@ -35,7 +35,7 @@ import org.robovm.apple.security.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*/@Library("Network") @NativeProtocolProxy("OS_nw_content_context")/*</annotations>*/
+/*<annotations>*/@Library("Network") @NativeClass("NSObject")/*</annotations>*/
 /*<visibility>*/public final/*</visibility>*/ class /*<name>*/NWContentContext/*</name>*/ 
     extends /*<extends>*/NWObject/*</extends>*/ 
     /*<implements>*/implements NSObjectProtocol/*</implements>*/ {
@@ -44,6 +44,11 @@ import org.robovm.apple.security.*;
     /*<bind>*/static { ObjCRuntime.bind(NWContentContext.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    public NWContentContext(String context_identifier) { super((Handle) null, create(context_identifier));  }
+    
     
     /*</constructors>*/
     /*<properties>*/
@@ -71,12 +76,12 @@ import org.robovm.apple.security.*;
      * @since Available in iOS 12.0 and later.
      */
     @Bridge(symbol="nw_content_context_create", optional=true)
-    public static native NWContentContext create(BytePtr context_identifier);
+    private static native @Pointer long create(@org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class) String context_identifier);
     /**
      * @since Available in iOS 12.0 and later.
      */
     @Bridge(symbol="nw_content_context_get_identifier", optional=true)
-    public native BytePtr getIdentifier();
+    public native @org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class) String getIdentifier();
     /**
      * @since Available in iOS 12.0 and later.
      */

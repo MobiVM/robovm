@@ -33,50 +33,39 @@ import org.robovm.apple.security.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
 /*</javadoc>*/
 /*<annotations>*/@Library("Network") @NativeClass("NSObject")/*</annotations>*/
-/*<visibility>*/public final/*</visibility>*/ class /*<name>*/NWBrowseResult/*</name>*/ 
-    extends /*<extends>*/NWObject/*</extends>*/ 
-    /*<implements>*/implements NSObjectProtocol/*</implements>*/ {
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/NWFramerMessage/*</name>*/ 
+    extends /*<extends>*/NWProtocolMetadata/*</extends>*/
+    /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class NWBrowseResultPtr extends Ptr<NWBrowseResult, NWBrowseResultPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(NWBrowseResult.class); }/*</bind>*/
+    /*<ptr>*/
+    /*</ptr>*/
+    /*<bind>*/static { Bro.bind(NWFramerMessage.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*/
-    
-    /*</constructors>*/
-    /*<properties>*/
-    
-    /*</properties>*/
+    /*<constructors>*//*</constructors>*/
+    /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
      * @since Available in iOS 13.0 and later.
      */
-    @Bridge(symbol="nw_browse_result_copy_endpoint", optional=true)
-    public native NWEndpoint copyEndpoint();
+    @Bridge(symbol="nw_framer_message_set_value", optional=true)
+    public native void setValue(@org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class) String key, VoidPtr value, @Block VoidBlock1<VoidPtr> dispose_value);
     /**
      * @since Available in iOS 13.0 and later.
      */
-    @Bridge(symbol="nw_browse_result_get_changes", optional=true)
-    public native NWBrowseResultChange getChanges(NWBrowseResult new_result);
+    @Bridge(symbol="nw_framer_message_access_value", optional=true)
+    public native boolean accessValue(@org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class) String key, @Block Block1<VoidPtr, Boolean> access_value);
     /**
      * @since Available in iOS 13.0 and later.
      */
-    @Bridge(symbol="nw_browse_result_get_interfaces_count", optional=true)
-    public native @MachineSizedUInt long getInterfacesCount();
+    @Bridge(symbol="nw_framer_message_set_object_value", optional=true)
+    public native void setObjectValue(@org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class) String key, NSObject value);
     /**
      * @since Available in iOS 13.0 and later.
      */
-    @Bridge(symbol="nw_browse_result_copy_txt_record_object", optional=true)
-    public native NWTxtRecord copyTxtRecordObject();
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @Bridge(symbol="nw_browse_result_enumerate_interfaces", optional=true)
-    public native void enumerateInterfaces(@Block Block1<NWInterface, Boolean> enumerator);
-    
-    
+    @Bridge(symbol="nw_framer_message_copy_object_value", optional=true)
+    public native NSObject copyObjectValue(@org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class) String key);
     /*</methods>*/
 }

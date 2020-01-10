@@ -35,7 +35,7 @@ import org.robovm.apple.security.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*/@Library("Network") @NativeProtocolProxy("OS_nw_txt_record")/*</annotations>*/
+/*<annotations>*/@Library("Network") @NativeClass("NSObject")/*</annotations>*/
 /*<visibility>*/public final/*</visibility>*/ class /*<name>*/NWTxtRecord/*</name>*/ 
     extends /*<extends>*/NWObject/*</extends>*/ 
     /*<implements>*/implements NSObjectProtocol/*</implements>*/ {
@@ -44,23 +44,33 @@ import org.robovm.apple.security.*;
     /*<bind>*/static { ObjCRuntime.bind(NWTxtRecord.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public NWTxtRecord(BytePtr txt_bytes, @MachineSizedUInt long txt_len) { super((Handle) null, createWithBytes(txt_bytes, txt_len));  }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public NWTxtRecord() { super((Handle) null, createDictionary());  }
+    
     
     /*</constructors>*/
     /*<properties>*/
     
     /*</properties>*/
     /*<members>*//*</members>*/
+
     /*<methods>*/
     /**
      * @since Available in iOS 13.0 and later.
      */
     @Bridge(symbol="nw_txt_record_create_with_bytes", optional=true)
-    public static native NWTxtRecord createWithBytes(BytePtr txt_bytes, @MachineSizedUInt long txt_len);
+    private static native @Pointer long createWithBytes(BytePtr txt_bytes, @MachineSizedUInt long txt_len);
     /**
      * @since Available in iOS 13.0 and later.
      */
     @Bridge(symbol="nw_txt_record_create_dictionary", optional=true)
-    public static native NWTxtRecord createDictionary();
+    private static native @Pointer long createDictionary();
     /**
      * @since Available in iOS 13.0 and later.
      */

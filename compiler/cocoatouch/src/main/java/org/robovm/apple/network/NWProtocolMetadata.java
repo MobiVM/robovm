@@ -35,8 +35,8 @@ import org.robovm.apple.security.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*/@Library("Network") @NativeProtocolProxy("OS_nw_protocol_metadata")/*</annotations>*/
-/*<visibility>*/public final/*</visibility>*/ class /*<name>*/NWProtocolMetadata/*</name>*/ 
+/*<annotations>*/@Library("Network") @NativeClass("NSObject")/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/NWProtocolMetadata/*</name>*/
     extends /*<extends>*/NWObject/*</extends>*/ 
     /*<implements>*/implements NSObjectProtocol/*</implements>*/ {
 
@@ -61,26 +61,6 @@ import org.robovm.apple.security.*;
      */
     @Bridge(symbol="nw_protocol_metadata_is_framer_message", optional=true)
     public native boolean isFramerMessage();
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @Bridge(symbol="nw_framer_message_set_value", optional=true)
-    public native void framerMessageSetValue(@org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class) String key, VoidPtr value, @Block VoidBlock1<VoidPtr> dispose_value);
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @Bridge(symbol="nw_framer_message_access_value", optional=true)
-    public native boolean framerMessageAccessValue(@org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class) String key, @Block Block1<VoidPtr, Boolean> access_value);
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @Bridge(symbol="nw_framer_message_set_object_value", optional=true)
-    public native void framerMessageSetObjectValue(@org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class) String key, NSObject value);
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @Bridge(symbol="nw_framer_message_copy_object_value", optional=true)
-    public native NSObject framerMessageCopyObjectValue(@org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class) String key);
     /**
      * @since Available in iOS 12.0 and later.
      */
