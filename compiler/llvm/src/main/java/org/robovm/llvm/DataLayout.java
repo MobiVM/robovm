@@ -61,6 +61,11 @@ public class DataLayout implements AutoCloseable {
         return LLVM.StoreSizeOfType(ref, type.ref).longValue();
     }
 
+    public long getOffsetOfElement(Type type, int idx) {
+        checkDisposed();
+        return LLVM.OffsetOfElement(ref, type.ref, idx).longValue();
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;

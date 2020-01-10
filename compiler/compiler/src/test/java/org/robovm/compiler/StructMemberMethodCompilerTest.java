@@ -23,6 +23,7 @@ import soot.options.Options;
 import java.io.File;
 import java.io.IOException;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -112,6 +113,15 @@ public class StructMemberMethodCompilerTest {
     }
 
     @Test
+    public void testStructMemberOffsets() {
+        StructMemberMethodCompiler compiler = new StructMemberMethodCompiler(config);
+
+        StructureType packed = compiler.getStructType(toSootClass(StructForOffsetsPacked.class));
+        int[] offsets = compiler.getStructMemberOffsets(packed);
+        assertArrayEquals(new int[]{0, 1, 3}, offsets);
+    }
+
+    @Test
     public void testBlockMember() {
         Clazz clz = toClazz(StructWithBlock.class);
         // run ObjCBlockPlugin.beforeClass to return attach marshaller annotation to
@@ -179,6 +189,13 @@ public class StructMemberMethodCompilerTest {
 
     public static class StructWithBlock extends Struct<StructWithBlock> {
         @StructMember(0) public native @Block Runnable getA();
+    }
+
+    @Packed(1)
+    public static class StructForOffsetsPacked extends Struct<StructForOffsetsPacked> {
+        @StructMember(0) public native byte getA();
+        @StructMember(1) public native short getB();
+        @StructMember(2) public native int getC();
     }
 
     public static class MockHome extends Home {
