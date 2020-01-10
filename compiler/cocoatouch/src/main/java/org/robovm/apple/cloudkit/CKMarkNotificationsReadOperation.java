@@ -35,7 +35,7 @@ import org.robovm.apple.fileprovider.*;
 
 /*<javadoc>*/
 /**
- * @deprecated Deprecated in iOS 11.0.
+ * @deprecated Deprecated in iOS 11.0. Instead of iterating notifications, consider using CKDatabaseSubscription, CKFetchDatabaseChangesOperation, and CKFetchRecordZoneChangesOperation as appropriate
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("CloudKit") @NativeClass @Deprecated/*</annotations>*/

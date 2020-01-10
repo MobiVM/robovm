@@ -40,7 +40,7 @@ import org.robovm.apple.corelocation.*;
 /*<annotations>*/@Library("Intents") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/INUserContext/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class INUserContextPtr extends Ptr<INUserContext, INUserContextPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(INUserContext.class); }/*</bind>*/
@@ -49,13 +49,20 @@ import org.robovm.apple.corelocation.*;
     protected INUserContext() {}
     protected INUserContext(Handle h, long handle) { super(h, handle); }
     protected INUserContext(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public INUserContext(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "becomeCurrent")
     public native void becomeCurrent();
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

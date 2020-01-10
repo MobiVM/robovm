@@ -35,7 +35,7 @@ import org.robovm.apple.corelocation.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 10.0 and later.
- * @deprecated Deprecated in iOS 13.0.
+ * @deprecated Deprecated in iOS 13.0. Please conform to INStartWorkoutIntentHandling, INPauseWorkoutIntentHandling, INEndWorkoutIntentHandling, INCancelWorkoutIntentHandling and INResumeWorkoutIntentHandling instead
  */
 /*</javadoc>*/
 /*<annotations>*/@Deprecated/*</annotations>*/

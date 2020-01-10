@@ -60,13 +60,13 @@ import org.robovm.apple.contacts.*;
     @NotImplemented("locationManager:didDetermineState:forRegion:")
     public void didDetermineState(CLLocationManager manager, CLRegionState state, CLRegion region) {}
     /**
-     * @deprecated Deprecated in iOS 13.0. Use Use locationManager:didRangeBeacons:satisfyingConstraint:
+     * @deprecated Deprecated in iOS 13.0. Use locationManager:didRangeBeacons:satisfyingConstraint:
      */
     @Deprecated
     @NotImplemented("locationManager:didRangeBeacons:inRegion:")
     public void didRangeBeacons(CLLocationManager manager, NSArray<CLBeacon> beacons, CLBeaconRegion region) {}
     /**
-     * @deprecated Deprecated in iOS 13.0. Use Use locationManager:didFailRangingBeaconsForConstraint:error:
+     * @deprecated Deprecated in iOS 13.0. Use locationManager:didFailRangingBeaconsForConstraint:error:
      */
     @Deprecated
     @NotImplemented("locationManager:rangingBeaconsDidFailForRegion:withError:")

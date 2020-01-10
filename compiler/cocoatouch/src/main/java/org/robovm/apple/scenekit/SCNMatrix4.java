@@ -178,7 +178,6 @@ import org.robovm.apple.avfoundation.*;
     public SCNMatrix4 mult(SCNMatrix4 b) { return mult(this, b); }
     @Bridge(symbol="SCNMatrix4Mult", optional=true)
     private static native @ByVal SCNMatrix4 mult(@ByVal SCNMatrix4 a, @ByVal SCNMatrix4 b);
-    @WeaklyLinked
     public GLKMatrix4 toGLKMatrix4() { return toGLKMatrix4(this); }
     @WeaklyLinked
     @Bridge(symbol="SCNMatrix4ToGLKMatrix4", optional=true)

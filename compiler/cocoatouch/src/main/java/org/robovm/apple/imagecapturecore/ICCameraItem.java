@@ -74,11 +74,6 @@ import org.robovm.apple.uikit.*;
     /**
      * @since Available in iOS 13.0 and later.
      */
-    @Property(selector = "fileSystemPath")
-    public native String getFileSystemPath();
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
     @Property(selector = "isLocked")
     public native boolean isLocked();
     /**

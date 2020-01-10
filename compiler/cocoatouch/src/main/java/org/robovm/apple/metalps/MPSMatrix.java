@@ -80,6 +80,11 @@ import org.robovm.apple.metal.*;
      */
     @Property(selector = "matrixBytes")
     public native @MachineSizedUInt long getMatrixBytes();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "offset")
+    public native @MachineSizedUInt long getOffset();
     @Property(selector = "data")
     public native MTLBuffer getData();
     /*</properties>*/

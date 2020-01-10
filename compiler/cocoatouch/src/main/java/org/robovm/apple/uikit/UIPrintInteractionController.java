@@ -73,13 +73,13 @@ import org.robovm.apple.linkpresentation.*;
     @Property(selector = "setDelegate:", strongRef = true)
     public native void setDelegate(UIPrintInteractionControllerDelegate v);
     /**
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Pages can be removed from the print preview, so page range is always shown.
      */
     @Deprecated
     @Property(selector = "showsPageRange")
     public native boolean showsPageRange();
     /**
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Pages can be removed from the print preview, so page range is always shown.
      */
     @Deprecated
     @Property(selector = "setShowsPageRange:")

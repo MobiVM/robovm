@@ -4415,6 +4415,10 @@ protocols:
                 name: getConfigurationForConnectingSceneSession
             '-application:didDiscardSceneSessions:':
                 name: didDiscardSceneSessions
+            '-application:shouldSaveSecureApplicationState:':
+                name: shouldSaveSecureApplicationState
+            '-application:shouldRestoreSecureApplicationState:':
+                name: shouldRestoreSecureApplicationState
     UIBarPositioning: {} # DONE
     UIBarPositioningDelegate: # DONE
         methods:

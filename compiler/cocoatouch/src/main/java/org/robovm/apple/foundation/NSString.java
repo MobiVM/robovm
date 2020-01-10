@@ -721,13 +721,13 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "stringByAddingPercentEncodingWithAllowedCharacters:")
     public native String addPercentEncoding(NSCharacterSet allowedCharacters);
     /**
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use -stringByAddingPercentEncodingWithAllowedCharacters: instead, which always uses the recommended UTF-8 encoding, and which encodes for a specific URL component or subcomponent since each URL component or subcomponent has different rules for what characters are valid.
      */
     @Deprecated
     @Method(selector = "stringByAddingPercentEscapesUsingEncoding:")
     public native String addPercentEscapes(NSStringEncoding enc);
     /**
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use -stringByRemovingPercentEncoding instead, which always uses the recommended UTF-8 encoding.
      */
     @Deprecated
     @Method(selector = "stringByReplacingPercentEscapesUsingEncoding:")

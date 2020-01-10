@@ -89,13 +89,13 @@ import org.robovm.apple.avfoundation.*;
     @Property(selector = "setPreferredFramesPerSecond:")
     public native void setPreferredFramesPerSecond(@MachineSizedSInt long v);
     /**
-     * @deprecated Deprecated in iOS 12.0.
+     * @deprecated Deprecated in iOS 12.0. OpenGL API deprecated, please use Metal instead. (Define SCN_SILENCE_GL_DEPRECATION to silence these warnings)
      */
     @Deprecated
     @Property(selector = "eaglContext")
     public native EAGLContext getEaglContext();
     /**
-     * @deprecated Deprecated in iOS 12.0.
+     * @deprecated Deprecated in iOS 12.0. OpenGL API deprecated, please use Metal instead. (Define SCN_SILENCE_GL_DEPRECATION to silence these warnings)
      */
     @Deprecated
     @Property(selector = "setEaglContext:")

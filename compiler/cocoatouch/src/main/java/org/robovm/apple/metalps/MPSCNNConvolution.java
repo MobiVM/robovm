@@ -89,28 +89,28 @@ import org.robovm.apple.metal.*;
     public native MPSCNNNeuron getNeuron();
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 12.0. Use Use fusedNeuronDesciptor instead.
+     * @deprecated Deprecated in iOS 12.0. Use fusedNeuronDesciptor instead.
      */
     @Deprecated
     @Property(selector = "neuronType")
     public native MPSCNNNeuronType getNeuronType();
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 12.0. Use Use fusedNeuronDesciptor instead.
+     * @deprecated Deprecated in iOS 12.0. Use fusedNeuronDesciptor instead.
      */
     @Deprecated
     @Property(selector = "neuronParameterA")
     public native float getNeuronParameterA();
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 12.0. Use Use fusedNeuronDesciptor instead.
+     * @deprecated Deprecated in iOS 12.0. Use fusedNeuronDesciptor instead.
      */
     @Deprecated
     @Property(selector = "neuronParameterB")
     public native float getNeuronParameterB();
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 12.0. Use Use fusedNeuronDesciptor instead.
+     * @deprecated Deprecated in iOS 12.0. Use fusedNeuronDesciptor instead.
      */
     @Deprecated
     @Property(selector = "neuronParameterC")

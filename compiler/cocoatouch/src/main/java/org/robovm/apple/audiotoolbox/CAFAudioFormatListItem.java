@@ -38,7 +38,7 @@ import org.robovm.apple.uikit.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
+/*<annotations>*/@Packed(1)/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CAFAudioFormatListItem/*</name>*/ 
     extends /*<extends>*/Struct<CAFAudioFormatListItem>/*</extends>*/ 
     /*<implements>*//*</implements>*/ {

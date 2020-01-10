@@ -167,7 +167,7 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "largeCalorieUnit")
     public static native HKUnit largeCalorie();
     /**
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use smallCalorieUnit or largeCalorieUnit, depending on which you mean
      */
     @Deprecated
     @Method(selector = "calorieUnit")

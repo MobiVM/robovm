@@ -59,7 +59,7 @@ import org.robovm.apple.foundation.NSError.NSErrorPtr;
     protected NSURL(Handle h, long handle) { super(h, handle); }
     protected NSURL(SkipInit skipInit) { super(skipInit); }
     /**
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use NSURLComponents instead, which lets you create a valid URL with any valid combination of URL components and subcomponents (not just scheme, host and path), and lets you set components and subcomponents with either percent-encoded or un-percent-encoded strings.
      */
     @Deprecated
     @Method(selector = "initWithScheme:host:path:")
@@ -138,7 +138,7 @@ import org.robovm.apple.foundation.NSError.NSErrorPtr;
     @Property(selector = "fragment")
     public native String getFragment();
     /**
-     * @deprecated Deprecated in iOS 13.0.
+     * @deprecated Deprecated in iOS 13.0. The parameterString method is deprecated. Post deprecation for applications linked with or after the macOS 10.15, and for all iOS, watchOS, and tvOS applications, parameterString will always return nil, and the path method will return the complete path including the semicolon separator and params component if the URL string contains them.
      */
     @Deprecated
     @Property(selector = "parameterString")
@@ -350,7 +350,7 @@ import org.robovm.apple.foundation.NSError.NSErrorPtr;
     }
     /*<methods>*/
     /**
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use NSURLComponents instead, which lets you create a valid URL with any valid combination of URL components and subcomponents (not just scheme, host and path), and lets you set components and subcomponents with either percent-encoded or un-percent-encoded strings.
      */
     @Deprecated
     @Method(selector = "initWithScheme:host:path:")

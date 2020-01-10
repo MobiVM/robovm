@@ -91,8 +91,11 @@ public enum /*<name>*/ICReturnCode/*</name>*/ implements NSErrorCode {
     ConnectionEjectedSuddenly(-21352L),
     ConnectionSessionAlreadyOpen(-21353L),
     ConnectionEjectFailed(-21354L),
-    ConnectionFailedToOpen(-21400L),
-    ConnectionFailedToOpenDevice(-21401L),
+    ConnectionFailedToOpen(-21355L),
+    ConnectionFailedToOpenDevice(-21356L),
+    PTPFailedToSendCommand(-21100L),
+    DownloadPathInvalid(-21100L),
+    DownloadFileWritable(-21101L),
     LegacyCommunication(-9900L),
     LegacyDeviceNotFound(-9901L),
     LegacyDeviceNotOpen(-9902L),
@@ -114,7 +117,11 @@ public enum /*<name>*/ICReturnCode/*</name>*/ implements NSErrorCode {
     LegacyDeviceUnsupported(-9918L),
     LegacyFrameworkInternal(-9919L),
     LegacyExtensionInternal(-9920L),
-    LegacyInvalidSession(-9921L);
+    LegacyInvalidSession(-9921L),
+    CodeObjectDoesNotExist(-21450L),
+    CodeObjectDataOffsetInvalid(-21451L),
+    CodeObjectCouldNotBeRead(-21452L),
+    CodeObjectDataEmpty(-21453L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(ICReturnCode.class); }/*</bind>*/

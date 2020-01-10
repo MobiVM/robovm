@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.robovm.apple.metal;
+package org.robovm.apple.imageio;
 
 /*<imports>*/
 import java.io.*;
@@ -28,19 +28,21 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
-import org.robovm.apple.dispatch.*;
+import org.robovm.apple.corefoundation.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 13.0 and later.
- */
+
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/MTLSparseTextureRegionAlignmentMode/*</name>*/ implements ValuedEnum {
+/*<annotations>*//*</annotations>*/
+public enum /*<name>*/CGImageAnimationStatus/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    Outward(0L),
-    Inward(1L);
+    ParameterError(-22140L),
+    CorruptInputImage(-22141L),
+    UnsupportedFormat(-22142L),
+    IncompleteInputImage(-22143L),
+    AllocationFailure(-22144L);
     /*</values>*/
 
     /*<bind>*/
@@ -50,15 +52,15 @@ public enum /*<name>*/MTLSparseTextureRegionAlignmentMode/*</name>*/ implements 
 
     private final long n;
 
-    private /*<name>*/MTLSparseTextureRegionAlignmentMode/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/CGImageAnimationStatus/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/MTLSparseTextureRegionAlignmentMode/*</name>*/ valueOf(long n) {
-        for (/*<name>*/MTLSparseTextureRegionAlignmentMode/*</name>*/ v : values()) {
+    public static /*<name>*/CGImageAnimationStatus/*</name>*/ valueOf(long n) {
+        for (/*<name>*/CGImageAnimationStatus/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/MTLSparseTextureRegionAlignmentMode/*</name>*/.class.getName());
+            + /*<name>*/CGImageAnimationStatus/*</name>*/.class.getName());
     }
 }

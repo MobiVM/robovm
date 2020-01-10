@@ -78,6 +78,9 @@ import org.robovm.apple.uikit.*;
      */
     @Method(selector = "cameraDeviceDidChangeCapability:")
     void cameraDeviceDidChangeCapability(ICCameraDevice camera);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
     @Method(selector = "cameraDevice:didReceivePTPEvent:")
     void didReceivePTPEvent(ICCameraDevice camera, NSData eventData);
     /**

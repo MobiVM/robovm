@@ -45,6 +45,7 @@ public enum /*<name>*/CTFontManagerRegistrationError/*</name>*/ implements Value
     UnrecognizedFormat(103L),
     InvalidFontData(104L),
     AlreadyRegistered(105L),
+    ExceededResourceLimit(106L),
     NotRegistered(201L),
     InUse(202L),
     SystemRequired(203L),

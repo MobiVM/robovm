@@ -376,25 +376,25 @@ import org.robovm.apple.audiotoolbox.*;
     @Method(selector = "removeMediaDataCollector:")
     public native void removeMediaDataCollector(AVPlayerItemMediaDataCollector collector);
     /**
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use -seekToTime:completionHandler:, passing nil for the completionHandler if you don't require notification of completion
      */
     @Deprecated
     @Method(selector = "seekToTime:")
     public native void seekToTime(@ByVal CMTime time);
     /**
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use -seekToTime:toleranceBefore:toleranceAfter:completionHandler:, passing nil for the completionHandler if you don't require notification of completion
      */
     @Deprecated
     @Method(selector = "seekToTime:toleranceBefore:toleranceAfter:")
     public native void seekToTime(@ByVal CMTime time, @ByVal CMTime toleranceBefore, @ByVal CMTime toleranceAfter);
     /**
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use -seekToDate:completionHandler:, passing nil for the completionHandler if you don't require notification of completion
      */
     @Deprecated
     @Method(selector = "seekToDate:")
     public native boolean seekToDate(NSDate date);
     /**
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use currentMediaSelection to obtain an instance of AVMediaSelection, which encompasses the currently selected AVMediaSelectionOption in each of the available AVMediaSelectionGroups
      */
     @Deprecated
     @Method(selector = "selectedMediaOptionInMediaSelectionGroup:")

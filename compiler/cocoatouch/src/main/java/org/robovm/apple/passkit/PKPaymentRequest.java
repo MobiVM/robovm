@@ -167,25 +167,25 @@ import org.robovm.apple.contacts.*;
     @Property(selector = "setSupportedCountries:")
     public native void setSupportedCountries(NSSet<NSString> v);
     /**
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. ABRecordRef has been deprecated, and does not support all available address properties. You should migrate to shippingContact.
      */
     @Deprecated
     @Property(selector = "shippingAddress")
     public native ABRecord getShippingAddress();
     /**
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. ABRecordRef has been deprecated, and does not support all available address properties. You should migrate to shippingContact.
      */
     @Deprecated
     @Property(selector = "setShippingAddress:", strongRef = true)
     public native void setShippingAddress(ABRecord v);
     /**
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. ABRecordRef has been deprecated, and does not support all available address properties. You should migrate to billingContact.
      */
     @Deprecated
     @Property(selector = "billingAddress")
     public native ABRecord getBillingAddress();
     /**
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. ABRecordRef has been deprecated, and does not support all available address properties. You should migrate to billingContact.
      */
     @Deprecated
     @Property(selector = "setBillingAddress:", strongRef = true)

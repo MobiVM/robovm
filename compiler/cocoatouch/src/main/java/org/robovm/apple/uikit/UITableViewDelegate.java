@@ -209,11 +209,6 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Method(selector = "tableView:willPerformPreviewActionForMenuWithConfiguration:animator:")
     void willPerformPreviewAction(UITableView tableView, UIContextMenuConfiguration configuration, UIContextMenuInteractionCommitAnimating animator);
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @Method(selector = "tableView:willCommitMenuWithAnimator:")
-    void willCommitMenu(UITableView tableView, UIContextMenuInteractionCommitAnimating animator);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

@@ -79,10 +79,6 @@ import org.robovm.apple.coregraphics.*;
      */
     @Method(selector = "itemForIdentifier:error:")
     private native NSFileProviderItem itemForIdentifier(NSString identifier, NSError.NSErrorPtr error);
-    /**
-     * @deprecated Deprecated in iOS 13.0. No longer called
-     */
-    @Deprecated
     @Method(selector = "URLForItemWithPersistentIdentifier:")
     public native NSURL getURLForItem(NSString identifier);
     @Method(selector = "persistentIdentifierForItemAtURL:")

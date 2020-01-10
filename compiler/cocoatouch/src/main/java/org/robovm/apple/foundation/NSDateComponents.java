@@ -143,13 +143,13 @@ import org.robovm.apple.dispatch.*;
     }
     /*<methods>*/
     /**
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. Use -weekOfMonth or -weekOfYear, depending on which you mean
      */
     @Deprecated
     @Method(selector = "week")
     public native @MachineSizedSInt long getWeek();
     /**
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. Use -setWeekOfMonth: or -setWeekOfYear:, depending on which you mean
      */
     @Deprecated
     @Method(selector = "setWeek:")

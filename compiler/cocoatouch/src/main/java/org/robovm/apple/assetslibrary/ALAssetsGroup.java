@@ -97,7 +97,7 @@ import org.robovm.apple.imageio.*;
     @Method(selector = "valueForProperty:")
     public native NSObject getValue(ALAssetsGroupProperty property);
     /**
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use fetchKeyAssetsInAssetCollection:options: on PHAsset, then use the PHImageManager to request image data for key assets in the asset collection from the Photos framework instead
      */
     @Deprecated
     @WeaklyLinked

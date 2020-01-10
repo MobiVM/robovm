@@ -105,7 +105,7 @@ import org.robovm.apple.imageio.*;
     @Deprecated
     public static final ALAssetsGroupProperty PersistentID = new ALAssetsGroupProperty("PersistentID");
     /**
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use the localIdentifier property on a PHAssetCollection from the Photos framework, or to lookup PHAssetCollections by a previously known ALAssetsGroupPropertyURL use fetchAssetCollectionsWithALAssetGroupURLs:options: instead
      */
     @Deprecated
     public static final ALAssetsGroupProperty URL = new ALAssetsGroupProperty("URL");
@@ -153,7 +153,7 @@ import org.robovm.apple.imageio.*;
         @GlobalValue(symbol="ALAssetsGroupPropertyPersistentID", optional=true)
         public static native NSString PersistentID();
         /**
-         * @deprecated Deprecated in iOS 9.0.
+         * @deprecated Deprecated in iOS 9.0. Use the localIdentifier property on a PHAssetCollection from the Photos framework, or to lookup PHAssetCollections by a previously known ALAssetsGroupPropertyURL use fetchAssetCollectionsWithALAssetGroupURLs:options: instead
          */
         @Deprecated
         @GlobalValue(symbol="ALAssetsGroupPropertyURL", optional=true)

@@ -126,13 +126,13 @@ import org.robovm.apple.dispatch.*;
     public static native NSString PowerStateDidChangeNotification();
     
     /**
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. -operatingSystem always returns NSMACHOperatingSystem, use -operatingSystemVersion or -isOperatingSystemAtLeastVersion: instead
      */
     @Deprecated
     @Method(selector = "operatingSystem")
     public native NSOperatingSystem getOperatingSystem();
     /**
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. -operatingSystemName always returns NSMACHOperatingSystem, use -operatingSystemVersionString instead
      */
     @Deprecated
     @Method(selector = "operatingSystemName")

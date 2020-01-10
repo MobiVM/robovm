@@ -169,11 +169,6 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Method(selector = "collectionView:willPerformPreviewActionForMenuWithConfiguration:animator:")
     void willPerformPreviewAction(UICollectionView collectionView, UIContextMenuConfiguration configuration, UIContextMenuInteractionCommitAnimating animator);
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @Method(selector = "collectionView:willCommitMenuWithAnimator:")
-    void willCommitMenu(UICollectionView collectionView, UIContextMenuInteractionCommitAnimating animator);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

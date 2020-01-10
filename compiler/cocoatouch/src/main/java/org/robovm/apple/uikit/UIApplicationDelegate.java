@@ -209,14 +209,32 @@ import org.robovm.apple.linkpresentation.*;
     boolean shouldAllowExtensionPointIdentifier(UIApplication application, UIApplicationExtensionPointIdentifier extensionPointIdentifier);
     @Method(selector = "application:viewControllerWithRestorationIdentifierPath:coder:")
     UIViewController getViewController(UIApplication application, @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> identifierComponents, NSCoder coder);
-    @Method(selector = "application:shouldSaveApplicationState:")
-    boolean shouldSaveApplicationState(UIApplication application, NSCoder coder);
-    @Method(selector = "application:shouldRestoreApplicationState:")
-    boolean shouldRestoreApplicationState(UIApplication application, NSCoder coder);
+    /**
+     * @since Available in iOS 13.2 and later.
+     */
+    @Method(selector = "application:shouldSaveSecureApplicationState:")
+    boolean shouldSaveSecureApplicationState(UIApplication application, NSCoder coder);
+    /**
+     * @since Available in iOS 13.2 and later.
+     */
+    @Method(selector = "application:shouldRestoreSecureApplicationState:")
+    boolean shouldRestoreSecureApplicationState(UIApplication application, NSCoder coder);
     @Method(selector = "application:willEncodeRestorableStateWithCoder:")
     void willEncodeRestorableState(UIApplication application, NSCoder coder);
     @Method(selector = "application:didDecodeRestorableStateWithCoder:")
     void didDecodeRestorableState(UIApplication application, NSCoder coder);
+    /**
+     * @deprecated Deprecated in iOS 13.2. Use application:shouldSaveSecureApplicationState: instead
+     */
+    @Deprecated
+    @Method(selector = "application:shouldSaveApplicationState:")
+    boolean shouldSaveApplicationState(UIApplication application, NSCoder coder);
+    /**
+     * @deprecated Deprecated in iOS 13.2. Use application:shouldRestoreSecureApplicationState: instead
+     */
+    @Deprecated
+    @Method(selector = "application:shouldRestoreApplicationState:")
+    boolean shouldRestoreApplicationState(UIApplication application, NSCoder coder);
     @Method(selector = "application:willContinueUserActivityWithType:")
     boolean willContinueUserActivity(UIApplication application, String userActivityType);
     @Method(selector = "application:continueUserActivity:restorationHandler:")

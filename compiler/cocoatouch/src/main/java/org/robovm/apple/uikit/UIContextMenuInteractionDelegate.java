@@ -71,27 +71,6 @@ import org.robovm.apple.linkpresentation.*;
     void willDisplayMenu(UIContextMenuInteraction interaction, UIContextMenuConfiguration configuration, UIContextMenuInteractionAnimating animator);
     @Method(selector = "contextMenuInteraction:willEndForConfiguration:animator:")
     void willEnd(UIContextMenuInteraction interaction, UIContextMenuConfiguration configuration, UIContextMenuInteractionAnimating animator);
-    /**
-     * @since Available in iOS 13.0 and later.
-     * @deprecated Deprecated in iOS 13.0. Use contextMenuInteraction:willPerformPreviewActionForMenuWithConfiguration:animator:
-     */
-    @Deprecated
-    @Method(selector = "contextMenuInteraction:willCommitWithAnimator:")
-    void willCommitWithAnimator(UIContextMenuInteraction interaction, UIContextMenuInteractionCommitAnimating animator);
-    /**
-     * @since Available in iOS 13.0 and later.
-     * @deprecated Deprecated in iOS 13.0. Use contextMenuInteraction:willDisplayMenuForConfiguration:animator:
-     */
-    @Deprecated
-    @Method(selector = "contextMenuInteractionWillPresent:")
-    void contextMenuInteractionWillPresent(UIContextMenuInteraction interaction);
-    /**
-     * @since Available in iOS 13.0 and later.
-     * @deprecated Deprecated in iOS 13.0. Use contextMenuInteraction:willEndForConfiguration:animator:
-     */
-    @Deprecated
-    @Method(selector = "contextMenuInteractionDidEnd:")
-    void contextMenuInteractionDidEnd(UIContextMenuInteraction interaction);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

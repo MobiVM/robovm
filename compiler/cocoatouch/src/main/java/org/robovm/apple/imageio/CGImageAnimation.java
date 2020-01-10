@@ -1,19 +1,19 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.robovm.apple.coretelephony;
+package org.robovm.apple.imageio;
 
 /*<imports>*/
 import java.io.*;
@@ -29,39 +29,33 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corefoundation.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
 /*</javadoc>*/
-/*<annotations>*/@Library("CoreTelephony") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/CTSubscriberInfo/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
+/*<annotations>*/@Library("ImageIO")/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/CGImageAnimation/*</name>*/ 
+    extends /*<extends>*/CocoaUtility/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class CTSubscriberInfoPtr extends Ptr<CTSubscriberInfo, CTSubscriberInfoPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(CTSubscriberInfo.class); }/*</bind>*/
+    /*<ptr>*/
+    /*</ptr>*/
+    /*<bind>*/static { Bro.bind(CGImageAnimation.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*/
-    public CTSubscriberInfo() {}
-    protected CTSubscriberInfo(Handle h, long handle) { super(h, handle); }
-    protected CTSubscriberInfo(SkipInit skipInit) { super(skipInit); }
-    /*</constructors>*/
-    /*<properties>*/
-    
-    /*</properties>*/
+    /*<constructors>*//*</constructors>*/
+    /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @since Available in iOS 12.1 and later.
+     * @since Available in iOS 13.0 and later.
      */
-    @Method(selector = "subscribers")
-    public static native NSArray<CTSubscriber> subscribers();
+    @Bridge(symbol="CGAnimateImageAtURLWithBlock", optional=true)
+    public static native CGImageAnimationStatus animateImages(NSURL url, CGImageAnimationOptions options, @Block("(@MachineSizedUInt,,)") VoidBlock3<Long, CGImage, BooleanPtr> block);
     /**
-     * @deprecated Deprecated in iOS 12.1. Use subscribers instead
+     * @since Available in iOS 13.0 and later.
      */
-    @Deprecated
-    @Method(selector = "subscriber")
-    public static native CTSubscriber getSubscriber();
+    @Bridge(symbol="CGAnimateImageDataWithBlock", optional=true)
+    public static native CGImageAnimationStatus animateImages(NSData data, CGImageAnimationOptions options, @Block("(@MachineSizedUInt,,)") VoidBlock3<Long, CGImage, BooleanPtr> block);
     /*</methods>*/
 }

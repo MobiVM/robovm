@@ -236,14 +236,32 @@ import org.robovm.apple.linkpresentation.*;
     public boolean shouldAllowExtensionPointIdentifier(UIApplication application, UIApplicationExtensionPointIdentifier extensionPointIdentifier) { return false; }
     @NotImplemented("application:viewControllerWithRestorationIdentifierPath:coder:")
     public UIViewController getViewController(UIApplication application, @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> identifierComponents, NSCoder coder) { return null; }
-    @NotImplemented("application:shouldSaveApplicationState:")
-    public boolean shouldSaveApplicationState(UIApplication application, NSCoder coder) { return false; }
-    @NotImplemented("application:shouldRestoreApplicationState:")
-    public boolean shouldRestoreApplicationState(UIApplication application, NSCoder coder) { return false; }
+    /**
+     * @since Available in iOS 13.2 and later.
+     */
+    @NotImplemented("application:shouldSaveSecureApplicationState:")
+    public boolean shouldSaveSecureApplicationState(UIApplication application, NSCoder coder) { return false; }
+    /**
+     * @since Available in iOS 13.2 and later.
+     */
+    @NotImplemented("application:shouldRestoreSecureApplicationState:")
+    public boolean shouldRestoreSecureApplicationState(UIApplication application, NSCoder coder) { return false; }
     @NotImplemented("application:willEncodeRestorableStateWithCoder:")
     public void willEncodeRestorableState(UIApplication application, NSCoder coder) {}
     @NotImplemented("application:didDecodeRestorableStateWithCoder:")
     public void didDecodeRestorableState(UIApplication application, NSCoder coder) {}
+    /**
+     * @deprecated Deprecated in iOS 13.2. Use application:shouldSaveSecureApplicationState: instead
+     */
+    @Deprecated
+    @NotImplemented("application:shouldSaveApplicationState:")
+    public boolean shouldSaveApplicationState(UIApplication application, NSCoder coder) { return false; }
+    /**
+     * @deprecated Deprecated in iOS 13.2. Use application:shouldRestoreSecureApplicationState: instead
+     */
+    @Deprecated
+    @NotImplemented("application:shouldRestoreApplicationState:")
+    public boolean shouldRestoreApplicationState(UIApplication application, NSCoder coder) { return false; }
     @NotImplemented("application:willContinueUserActivityWithType:")
     public boolean willContinueUserActivity(UIApplication application, String userActivityType) { return false; }
     @NotImplemented("application:continueUserActivity:restorationHandler:")
