@@ -7,6 +7,7 @@ set(SRC
 )
 
 add_library(robovm-debug STATIC ${SRC})
+add_dependencies(robovm-debug extgc)
 
 set_target_properties(robovm-debug PROPERTIES SUFFIX "${LIB_SUFFIX}")
 install(TARGETS robovm-debug DESTINATION ${INSTALL_DIR})

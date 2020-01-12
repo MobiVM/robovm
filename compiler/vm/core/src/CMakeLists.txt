@@ -51,7 +51,9 @@ set_target_properties(robovm-core PROPERTIES SUFFIX "${LIB_SUFFIX}")
 install(TARGETS robovm-core DESTINATION ${INSTALL_DIR})
 
 add_executable(test_call0 test/test_call0.c test/CuTest.c call0-${OS_FAMILY}-${ARCH}.s unwind.c)
+add_dependencies(test_call0 extgc)
 add_library(test_call0_lib STATIC test/test_call0.c test/CuTest.c call0-${OS_FAMILY}-${ARCH}.s unwind.c)
+add_dependencies(test_call0_lib extgc)
 set_property(SOURCE test/test_call0.c PROPERTY COMPILE_FLAGS "-O0") # Disable optimizations
 add_test(testCall0ReturnByte test_call0 "testCall0ReturnByte")
 add_test(testCall0ReturnInt test_call0 "testCall0ReturnInt")
@@ -64,7 +66,9 @@ add_test(testCall0ManyArgsOfEach test_call0 "testCall0ManyArgsOfEach")
 add_test(testCall0Unwind test_call0 "testCall0Unwind")
 
 add_executable(test_proxy0 test/test_proxy0.c test/CuTest.c proxy0-${OS_FAMILY}-${ARCH}.s unwind.c)
+add_dependencies(test_proxy0 extgc)
 add_library(test_proxy0_lib test/test_proxy0.c test/CuTest.c proxy0-${OS_FAMILY}-${ARCH}.s unwind.c)
+add_dependencies(test_proxy0_lib extgc)
 set_property(SOURCE test/test_proxy0.c PROPERTY COMPILE_FLAGS "-O0") # Disable optimizations
 add_test(testProxy0ReturnByte test_proxy0 "testProxy0ReturnByte")
 add_test(testProxy0ReturnInt test_proxy0 "testProxy0ReturnInt")
@@ -78,7 +82,9 @@ add_test(testProxy0Unwind test_proxy0 "testProxy0Unwind")
 add_test(testProxy0ReturnAddress test_proxy0 "testProxy0ReturnAddress")
 
 add_executable(test_trycatch test/test_trycatch.c test/CuTest.c trycatch-${OS_FAMILY}-${ARCH}.s)
+add_dependencies(test_trycatch extgc)
 add_library(test_trycatch_lib test/test_trycatch.c test/CuTest.c trycatch-${OS_FAMILY}-${ARCH}.s)
+add_dependencies(test_trycatch_lib extgc)
 set_property(SOURCE test/test_trycatch.c PROPERTY COMPILE_FLAGS "-O0") # Disable optimizations
 add_test(testTrycatchEnterLeaveOnce test_trycatch "testTrycatchEnterLeaveOnce")
 add_test(testTrycatchEnterLeaveMultiple test_trycatch "testTrycatchEnterLeaveMultiple")
