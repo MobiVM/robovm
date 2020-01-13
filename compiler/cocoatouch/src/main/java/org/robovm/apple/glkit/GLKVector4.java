@@ -83,7 +83,7 @@ import org.robovm.apple.modelio.*;
     /**
      * ported from GLKVector4MakeWithVector3
      */
-    public static GLKVector4 create(@ByVal GLKVector3 vector, float w) {
+    public static GLKVector4 create(GLKVector3 vector, float w) {
         float[] v = {vector.getV().get(0), vector.getV().get(1), vector.getV().get(2), w};
         return create(v);
     }

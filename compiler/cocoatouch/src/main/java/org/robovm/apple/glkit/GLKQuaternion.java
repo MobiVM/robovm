@@ -97,7 +97,7 @@ import org.robovm.apple.modelio.*;
     /**
      * ported from GLKQuaternionMakeWithVector3
      */
-    public static GLKQuaternion create(@ByVal GLKVector3 vector, float scalar) {
+    public static GLKQuaternion create(GLKVector3 vector, float scalar) {
         float[] v = {vector.getV().get(0), vector.getV().get(1), vector.getV().get(2), scalar};
         return create(v);
     }
@@ -123,7 +123,7 @@ import org.robovm.apple.modelio.*;
     /**
      * ported from GLKQuaternionMakeWithAngleAndVector3Axis
      */
-    public static GLKQuaternion createRotation(float radians, @ByVal GLKVector3 axisVector) {
+    public static GLKQuaternion createRotation(float radians, GLKVector3 axisVector) {
         return createRotation(radians, axisVector.getV().get(0), axisVector.getV().get(1), axisVector.getV().get(2));
     }
 
