@@ -103,9 +103,7 @@
 
     <modules>
         <module>ui</module>
-        <!--    these seems to be required when Plugin was distributed using Eclipse market place -->
-        <!--    seems not required anymore -->
-        <!--    <module>feature</module>-->
-        <!--    <module>update-site</module>-->
+        <module>feature</module>
+        <module>update-site</module>
     </modules>
 </project>

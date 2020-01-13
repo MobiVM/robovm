@@ -744,7 +744,7 @@ import org.robovm.apple.modelio.*;
     /**
      * ported from GLKMatrix4MultiplyVector3Array
      */
-    public void multiplyVector3Array(@ByRef GLKVector3 vectors, long vectorCount) {
+    public void multiplyVector3Array(GLKVector3 vectors, long vectorCount) {
         GLKVector3 v = vectors;
         for (int i = 0; i < vectorCount; i++) {
             v.update(this.multiplyVector3(v));
@@ -793,7 +793,7 @@ import org.robovm.apple.modelio.*;
     /**
      * ported from GLKMatrix4MultiplyVector4Array
      */
-    public void multiplyVector4Array(GLKVector4 vectors, @MachineSizedUInt long vectorCount) {
+    public void multiplyVector4Array(GLKVector4 vectors, long vectorCount) {
         GLKVector4 v = vectors;
         for (int i = 0; i < vectorCount; i++) {
             v.update(this.multiplyVector4(v));

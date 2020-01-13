@@ -66,7 +66,6 @@ import org.robovm.apple.modelio.*;
     /**
      * ported from GLKVector3Make
      */
-    @Bridge(symbol="GLKVector3Make", optional=true)
     public static GLKVector3 create(float x, float y, float z) {
         float[] v = {x, y, z};
         return create(v);
