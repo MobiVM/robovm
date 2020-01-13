@@ -11,6 +11,7 @@ add_library(robovm-bc STATIC
   classinfo.c
   MurmurHash3.c
 )
+add_dependencies(robovm-bc extgc)
 
 set_target_properties(robovm-bc PROPERTIES SUFFIX "${LIB_SUFFIX}")
 install(TARGETS robovm-bc DESTINATION ${INSTALL_DIR})

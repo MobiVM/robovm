@@ -4,7 +4,7 @@ SELF=$(basename $0)
 BASE=$(cd $(dirname $0); pwd -P)
 CLEAN=0
 VERBOSE=
-WORKERS=1
+WORKERS=6
 
 function usage {
   cat <<EOF

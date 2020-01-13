@@ -42,5 +42,6 @@ if(DARWIN)
 endif()
 
 add_library(robovm-rt-core OBJECT ${SRC})
+add_dependencies(robovm-rt-core extgc)
 set(ROBOVM_RT_CORE_OBJECTS $<TARGET_OBJECTS:robovm-rt-core> PARENT_SCOPE)
 
