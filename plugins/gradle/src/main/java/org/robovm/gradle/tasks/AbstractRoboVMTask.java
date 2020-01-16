@@ -360,7 +360,7 @@ abstract public class AbstractRoboVMTask extends DefaultTask {
 
     private List<RemoteRepository> createRemoteRepositories() {
         List<RemoteRepository> repositories = new ArrayList<>();
-        repositories.add(new RemoteRepository("maven-central", "default", "http://repo1.maven.org/maven2/"));
+        repositories.add(new RemoteRepository("maven-central", "default", "https://repo1.maven.org/maven2/"));
         repositories.add(new RemoteRepository("oss.sonatype.org-snapshots", "default",
                 "https://oss.sonatype.org/content/repositories/snapshots/"));
 
