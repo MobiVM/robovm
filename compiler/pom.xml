@@ -149,12 +149,8 @@
   <pluginRepositories>
     <pluginRepository>
       <id>maven.org</id>
-      <url>http://repo1.maven.org/maven2/</url>
+      <url>https://repo1.maven.org/maven2/</url>
       <releases><enabled>true</enabled></releases>
-    </pluginRepository>
-    <pluginRepository>
-      <id>Codehaus repository</id>
-      <url>http://repository.codehaus.org/</url>
     </pluginRepository>
   </pluginRepositories>
   
