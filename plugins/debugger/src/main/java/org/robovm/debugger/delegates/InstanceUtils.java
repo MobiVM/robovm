@@ -675,7 +675,8 @@ public class InstanceUtils {
         String name = readStringValue(nameInstance);
         VmThreadGroup threadGroup = getFieldValue(objectPtr, ci, ClassDataConsts.fields.JAVA_LANG_THREAD_GROUP);
 
-        return new VmThread(objectPtr, (Long)threadPtr, ci, name, threadGroup);
+        // allow null threadPtr, when thread object is created but thread is not started (attached)
+        return new VmThread(objectPtr, threadPtr != null ? (Long)threadPtr : 0L, ci, name, threadGroup);
     }
 
     private VmThreadGroup createThreadGroupInstance(ClassInfo ci, long objectPtr, @SuppressWarnings("unused") Object unused) {

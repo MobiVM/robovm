@@ -632,13 +632,16 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
         // get corresponding thread object
         VmThread thread = delegates.state().referenceRefIdHolder().instanceByAddr(event.threadObj());
         if (event.eventId() == HookConsts.events.THREAD_ATTACHED || event.eventId() == HookConsts.events.THREAD_STARTED) {
-            if (thread != null)
-                throw new DebuggerException("Thread " + Long.toHexString(event.threadObj()) + " already attached/started!");
+            if (thread != null) {
+                if (thread.threadPtr() != 0)
+                    throw new DebuggerException("Thread " + Long.toHexString(event.threadObj()) + " already attached/started!");
+                // thread object was resolved before it was started, just attach thread
+                thread.attach(event.thread());
+            } else {
+                thread = delegates.instances().instanceByPointer(event.threadObj(), event.thread(), true);
+            }
 
-            // attach thread
-            thread = delegates.instances().instanceByPointer(event.threadObj(), event.thread(), true);
             delegates.state().threads().add(thread);
-
             log.debug("THREAD_STARTED: " + thread);
 
             return new JdwpEventData(JdwpConsts.EventKind.THREAD_START, thread);
