@@ -48,6 +48,14 @@ public class JdwpEventRequest {
         return true;
     }
 
+    public boolean test(EventData data, int modifierKind) {
+        // test through specific predicates
+        for (EventPredicate predicate : predicates)
+            if (predicate.modifierKind() == modifierKind && !predicate.test(data))
+                return false;
+        return true;
+    }
+
     public int requestId() {
         return requestId;
     }

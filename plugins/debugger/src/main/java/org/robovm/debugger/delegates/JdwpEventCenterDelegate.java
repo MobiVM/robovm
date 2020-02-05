@@ -23,6 +23,7 @@ import org.robovm.debugger.hooks.payloads.HooksEventPayload;
 import org.robovm.debugger.hooks.payloads.HooksThreadEventPayload;
 import org.robovm.debugger.hooks.payloads.HooksThreadStoppedEventPayload;
 import org.robovm.debugger.jdwp.JdwpConsts;
+import org.robovm.debugger.jdwp.handlers.eventrequest.events.EventData;
 import org.robovm.debugger.jdwp.handlers.eventrequest.events.IJdwpEventDelegate;
 import org.robovm.debugger.jdwp.handlers.eventrequest.events.JdwpClassLoadedEventData;
 import org.robovm.debugger.jdwp.handlers.eventrequest.events.JdwpEventData;
@@ -53,6 +54,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.LinkedBlockingQueue;
+import java.util.function.Predicate;
 
 /**
  * @author Demyan Kimitsa
@@ -326,9 +328,24 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
                 if (thread.suspendCount() == 0)
                     throw new DebuggerException(JdwpConsts.Error.THREAD_NOT_SUSPENDED);
 
+                // simple event data and validator for step out/over operations to properly find back-stack to stop
+                // and make sure it is not in ignored class
+                class StackTraceValidator extends EventData implements Predicate<VmStackTrace> {
+                    String className;
+                    public String getClassName() { return className; }
+                    public boolean test(VmStackTrace vmStackTrace) {
+                        if (vmStackTrace.classInfo() instanceof ClassInfoImpl) {
+                            className = ((ClassInfoImpl) vmStackTrace.classInfo()).className().replace('/', '.');
+                            return request.test(this, JdwpConsts.EventModifier.CLASS_MATCH) &&
+                                    request.test(this, JdwpConsts.EventModifier.CLASS_EXCLUDE) ;
+                        }
+                        return false; // can't get class name
+                    }
+                }
+
                 // apply it to target
                 // size modifier is ignored as stepping in hooks implemented as line only
-                RuntimeUtils.RuntimeStepReference ref = delegates.runtime().step(thread, stepMod.depth());
+                RuntimeUtils.RuntimeStepReference ref = delegates.runtime().step(thread, stepMod.depth(), new StackTraceValidator());
 
                 // remember the request to be able to resume it in case some of criteria doesn't pass (e.g. class is filtered out)
                 // or execution is interrupted and stepping is canceled by exception event
