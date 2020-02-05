@@ -260,7 +260,13 @@ public abstract class ByteBufferReader {
             throw new DebuggerException("Cant read zero number of bytes!");
 
         expects(numBytes);
-        return Arrays.copyOfRange(byteBuffer.array(), byteBuffer.position(),  byteBuffer.position() + numBytes);
+        if (byteBuffer.hasArray())
+            return Arrays.copyOfRange(byteBuffer.array(), byteBuffer.position(),  byteBuffer.position() + numBytes);
+        else {
+            byte[] res = new byte[numBytes];
+            byteBuffer.get(res);
+            return res;
+        }
     }
 
 
