@@ -732,6 +732,10 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
             return null;
         }
 
+        // skip synthetic methods from being visible to debugger
+        if (methodInfo.isBridge() || methodInfo.isBroCallback() || methodInfo.isBroBridge())
+            return null;
+
         return new VmStackTrace(classInfo, methodInfo, payload.lineNumber(), payload.fp(), payload.pc() - payload.impl());
     }
 
