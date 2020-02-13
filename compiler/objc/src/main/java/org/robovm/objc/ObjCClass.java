@@ -360,7 +360,21 @@ public final class ObjCClass extends ObjCObject {
         name = name.replace('.', '_');
         return name;
     }
-    
+
+    /**
+     * support for OBJC_CLASS_$_
+     * once data from handle is copied to OBJC_CLASS_$_ there is two class_t struct for same class:
+     * - one in OBJC_CLASS_$_
+     * - second created runtime and pointed by handle
+     * just to have inside RoboVM and external objc one lets replace handle with alias (pointer to OBJC_CLASS_$_)
+     * WARNING: Shall not be called directly
+     */
+    @Deprecated
+    public void replaceHandle(long aliasHandle) {
+        ObjCObject.ObjectOwnershipHelper.replaceHandle(getHandle(), aliasHandle);
+        setHandle(aliasHandle);
+    }
+
     @SuppressWarnings("unchecked")
     private static ObjCClass register(Class<? extends ObjCObject> type, String name) {
         ObjCClass superclass = getByType((Class<? extends ObjCObject>) type.getSuperclass());

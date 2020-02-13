@@ -431,6 +431,17 @@ public abstract class ObjCObject extends NativeObject {
             registerCallbackMethod(cls, dealloc, 0, deallocMethod);
         }
 
+        public static void replaceHandle(long cls, long replacementCls) {
+            synchronized (customClassToNativeSuper) {
+                Long nativeSuper = customClassToNativeSuper.remove(cls);
+                if (nativeSuper == null) {
+                    throw new Error(
+                            "Failed to register alias as class for it is not registered");
+                }
+                customClassToNativeSuper.put(replacementCls, nativeSuper);
+            }
+        }
+
         private static void registerCallbackMethod(long cls, long selector, long newSelector, Method method) {
             long superMethod = ObjCRuntime.class_getInstanceMethod(cls, selector);
             long typeEncoding = ObjCRuntime.method_getTypeEncoding(superMethod);
