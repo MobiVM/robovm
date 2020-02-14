@@ -16,7 +16,7 @@
     <target>framework</target>
 
     <!-- The framework name is defined in robovm.properties. -->
-    <imageName>${symbol_dollar}{framework.name}</imageName>
+    <imageName>${symbol_dollar}{framework.executable}</imageName>
 
     <!-- The Info.plist.xml file will be copied into the framework. -->
     <infoPList>Info.plist.xml</infoPList>
