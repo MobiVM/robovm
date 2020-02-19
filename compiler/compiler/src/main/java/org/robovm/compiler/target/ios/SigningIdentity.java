@@ -34,6 +34,7 @@ public class SigningIdentity implements Comparable<SigningIdentity> {
     private final String name;
     private final String fingerprint;
     public static final SigningIdentity ADHOC = new SigningIdentity("ad-hoc (simulator only)", "-");
+    public static final String REGEX_MATCH_FOR_IOS = "/(?i)iPhone Developer|iOS Development|Apple Development/";
 
     SigningIdentity(String name, String fingerprint) {
         this.name = name;
@@ -91,7 +92,7 @@ public class SigningIdentity implements Comparable<SigningIdentity> {
          *   3) AC2EC9D4D26889649DE4196FBFD54BF5924169F9 "iPhone Distribution: Acme Inc"
          *     3 valid identities found
          */
-        ArrayList<SigningIdentity> ids = new ArrayList<SigningIdentity>();
+        ArrayList<SigningIdentity> ids = new ArrayList<>();
         Pattern pattern = Pattern.compile("^\\d+\\)\\s+([0-9A-F]+)\\s+\"([^\"]*)\"\\s*(.*)");
         for (String line : securityOutput.split("\n")) {
             line = line.trim();

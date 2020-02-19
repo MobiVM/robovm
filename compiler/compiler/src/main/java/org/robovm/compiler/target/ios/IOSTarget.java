@@ -1051,12 +1051,12 @@ public class IOSTarget extends AbstractTarget {
 
                 if (signIdentity == null && provisioningProfile == null) {
                     // both identity and provisioningProfile are set to auto, start with picking profile s
-                    Pair<SigningIdentity, ProvisioningProfile> pair = ProvisioningProfile.find(ProvisioningProfile.list(), SigningIdentity.list("/(?i)iPhone Developer|iOS Development/"), bundleId);
+                    Pair<SigningIdentity, ProvisioningProfile> pair = ProvisioningProfile.find(ProvisioningProfile.list(), SigningIdentity.list(SigningIdentity.REGEX_MATCH_FOR_IOS), bundleId);
                     signIdentity = pair.getLeft();
                     provisioningProfile = pair.getRight();
                 } else if (signIdentity == null) {
                     // provisioning profile was specified, need to find a signing identity that matches it
-                    signIdentity = SigningIdentity.find(SigningIdentity.list(), "/(?i)iPhone Developer|iOS Development/", provisioningProfile);
+                    signIdentity = SigningIdentity.find(SigningIdentity.list(), SigningIdentity.REGEX_MATCH_FOR_IOS, provisioningProfile);
                 } else if (provisioningProfile == null) {
                     // find profile that matches identity and bundle id
                     provisioningProfile = ProvisioningProfile.find(ProvisioningProfile.list(), signIdentity, bundleId);
