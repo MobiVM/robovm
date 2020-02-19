@@ -21,6 +21,7 @@ import com.intellij.ide.util.projectWizard.ModuleWizardStep;
 import com.intellij.ide.util.projectWizard.WizardContext;
 import com.intellij.openapi.externalSystem.importing.ImportSpecBuilder;
 import com.intellij.openapi.externalSystem.model.ExternalSystemDataKeys;
+import com.intellij.openapi.externalSystem.service.execution.ExternalSystemJdkUtil;
 import com.intellij.openapi.externalSystem.settings.AbstractExternalSystemSettings;
 import com.intellij.openapi.externalSystem.util.ExternalSystemApiUtil;
 import com.intellij.openapi.externalSystem.util.ExternalSystemUtil;
@@ -32,6 +33,8 @@ import com.intellij.openapi.options.ConfigurationException;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.roots.ContentEntry;
 import com.intellij.openapi.roots.LanguageLevelModuleExtension;
+import com.intellij.openapi.roots.LanguageLevelModuleExtensionImpl;
+import com.intellij.openapi.roots.LanguageLevelProjectExtension;
 import com.intellij.openapi.roots.ModifiableRootModel;
 import com.intellij.openapi.roots.ProjectRootManager;
 import com.intellij.openapi.roots.SourceFolder;
@@ -225,12 +228,20 @@ public class RoboVmModuleBuilder extends JavaModuleBuilder {
                 gradleSettings.setDistributionType(DistributionType.WRAPPED);
                 gradleSettings.setExternalProjectPath(contentRoot);
                 gradleSettings.setResolveModulePerSourceSet(false);
+                // use internal JDK otherwise gradle will use RoboVM one and will not able to import project
+                gradleSettings.setGradleJvm(ExternalSystemJdkUtil.USE_INTERNAL_JAVA);
 
                 //noinspection rawtypes
                 AbstractExternalSystemSettings settings = ExternalSystemApiUtil.getSettings(rootModel.getProject(), GradleConstants.SYSTEM_ID);
                 project.putUserData(ExternalSystemDataKeys.NEWLY_CREATED_PROJECT, Boolean.TRUE);
                 //noinspection unchecked
                 settings.linkProject(gradleSettings);
+
+                // force java8
+                LanguageLevelProjectExtension projectLangModel = LanguageLevelProjectExtension.getInstance(project);
+                projectLangModel.setLanguageLevel(LanguageLevel.JDK_1_8);
+                LanguageLevelModuleExtensionImpl moduleLangModel = LanguageLevelModuleExtensionImpl.getInstance(module);
+                moduleLangModel.setLanguageLevel(LanguageLevel.JDK_1_8);
 
                 FileDocumentManager.getInstance().saveAllDocuments();
                 ImportSpecBuilder builder = new ImportSpecBuilder(rootModel.getProject(), GradleConstants.SYSTEM_ID);
