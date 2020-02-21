@@ -15,7 +15,7 @@ import org.robovm.rt.VM;
 @CustomClass("${appName}Demo")
 public class ${appName}Demo extends NSObject {
     /*
-     * IMPORTANT NOTE: avoid givinig method a name that begins with “alloc”, “new”, “copy”, or “mutableCopy”
+     * IMPORTANT NOTE: avoid giving method a name that begins with “alloc”, “new”, “copy”, or “mutableCopy”
      * (for example newCalculator) as ARC at native side will consider this object to be owned by native code
      * and will not retain it. If object is not retained anywhere at Java side this will cause EXC_BAD_ACCESS as
      * not retained Java objects are subject for Garbage Collection.
