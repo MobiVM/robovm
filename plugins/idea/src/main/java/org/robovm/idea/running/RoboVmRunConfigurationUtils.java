@@ -49,7 +49,7 @@ public final class RoboVmRunConfigurationUtils {
     public static ProvisioningProfile getProvisioningProfile(RoboVmRunConfiguration config) {
         ProvisioningProfile result;
         String profile = config.getProvisioningProfile();
-        EntryType entryType = config.getSimulatorType();
+        EntryType entryType = config.getProvisioningProfileType();
         if (entryType == null) {
             // legacy, lookup by profile name
             if (!RoboVmRunConfiguration.AUTO_PROVISIONING_PROFILE.equals(profile))
@@ -69,7 +69,7 @@ public final class RoboVmRunConfigurationUtils {
     public static DeviceType getSimulator(RoboVmRunConfiguration config) {
         DeviceType result;
         String simulator = config.getSimulator();
-        EntryType entryType = config.getSigningIdentityType();
+        EntryType entryType = config.getSimulatorType();
         if (entryType == null) {
             // legacy, lookup by simulator name
             result = DeviceType.listDeviceTypes().stream()
