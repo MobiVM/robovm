@@ -133,6 +133,11 @@ import org.robovm.apple.audiotoolbox.*;
     @Property(selector = "availableHDRModes")
     public static native AVPlayerHDRMode getAvailableHDRModes();
     /**
+     * @since Available in iOS 13.4 and later.
+     */
+    @Property(selector = "eligibleForHDRPlayback")
+    public static native boolean isEligibleForHDRPlayback();
+    /**
      * @since Available in iOS 12.0 and later.
      */
     @Property(selector = "preventsDisplaySleepDuringVideoPlayback")
@@ -177,6 +182,16 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @GlobalValue(symbol="AVPlayerAvailableHDRModesDidChangeNotification", optional=true)
     public static native String AvailableHDRModesDidChangeNotification();
+    @Library("AVFoundation")
+    public static class Notifications {
+        static { Bro.bind(Notifications.class); }
+
+        /**
+         * @since Available in iOS 13.4 and later.
+         */
+        @GlobalValue(symbol="AVPlayerEligibleForHDRPlaybackDidChangeNotification", optional=true)
+        public static native NSString EligibleForHDRPlaybackDidChange();
+    }
     
     @Method(selector = "initWithURL:")
     protected native @Pointer long init(NSURL URL);
