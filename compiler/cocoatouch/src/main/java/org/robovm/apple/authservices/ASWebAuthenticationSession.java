@@ -73,6 +73,11 @@ import org.robovm.apple.coregraphics.*;
      */
     @Property(selector = "setPrefersEphemeralWebBrowserSession:")
     public native void setPrefersEphemeralWebBrowserSession(boolean v);
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    @Property(selector = "canStart")
+    public native boolean canStart();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
