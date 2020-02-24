@@ -64,6 +64,8 @@ classes:
                 name: reloadExtension
             '-getEnabledStatusForExtensionWithIdentifier:completionHandler:':
                 name: getEnabledStatusForExtension
+            '-openSettingsWithCompletionHandler:':
+                name: openSettings
     CXCallDirectoryProvider: #since 10.0
         methods:
             '-beginRequestWithExtensionContext:':

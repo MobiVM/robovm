@@ -60,5 +60,10 @@ import org.robovm.apple.avfoundation.*;
     public native void reloadExtension(String identifier, @Block VoidBlock1<NSError> completion);
     @Method(selector = "getEnabledStatusForExtensionWithIdentifier:completionHandler:")
     public native void getEnabledStatusForExtension(String identifier, @Block VoidBlock2<CXCallDirectoryEnabledStatus, NSError> completion);
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    @Method(selector = "openSettingsWithCompletionHandler:")
+    public native void openSettings(@Block VoidBlock1<NSError> completion);
     /*</methods>*/
 }
