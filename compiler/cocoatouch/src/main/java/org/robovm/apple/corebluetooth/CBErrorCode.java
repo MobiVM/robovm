@@ -67,7 +67,15 @@ public enum /*<name>*/CBErrorCode/*</name>*/ implements NSErrorCode {
     /**
      * @since Available in iOS 12.0 and later.
      */
-    OperationNotSupported(13L);
+    OperationNotSupported(13L),
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    PeerRemovedPairingInformation(14L),
+    /**
+     * @since Available in iOS 13.3 and later.
+     */
+    EncryptionTimedOut(15L);
     /*</values>*/
 
     /*<bind>*/
