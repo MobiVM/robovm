@@ -70,7 +70,11 @@ public enum /*<name>*/INMediaItemType/*</name>*/ implements ValuedEnum {
     /**
      * @since Available in iOS 13.0 and later.
      */
-    Music(18L);
+    Music(18L),
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    AlgorithmicRadioStation(19L);
     /*</values>*/
 
     /*<bind>*/

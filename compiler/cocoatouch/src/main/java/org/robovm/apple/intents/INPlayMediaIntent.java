@@ -63,26 +63,14 @@ import org.robovm.apple.corelocation.*;
     public INPlayMediaIntent(NSArray<INMediaItem> mediaItems, INMediaItem mediaContainer, NSNumber playShuffled, INPlaybackRepeatMode playbackRepeatMode, NSNumber resumePlayback) { super((SkipInit) null); initObject(init(mediaItems, mediaContainer, playShuffled, playbackRepeatMode, resumePlayback)); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 12.0 and later.
-     */
     @Property(selector = "mediaItems")
     public native NSArray<INMediaItem> getMediaItems();
     @Property(selector = "mediaContainer")
     public native INMediaItem getMediaContainer();
-    /**
-     * @since Available in iOS 12.0 and later.
-     */
     @Property(selector = "playShuffled")
     public native NSNumber getPlayShuffled();
-    /**
-     * @since Available in iOS 12.0 and later.
-     */
     @Property(selector = "playbackRepeatMode")
     public native INPlaybackRepeatMode getPlaybackRepeatMode();
-    /**
-     * @since Available in iOS 12.0 and later.
-     */
     @Property(selector = "resumePlayback")
     public native NSNumber getResumePlayback();
     /**
