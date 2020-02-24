@@ -1,5 +1,5 @@
 package: org.robovm.apple.classkit
-include: [foundation.yaml]
+include: [foundation, coregraphics]
 library: ClassKit
 framework: ClassKit
 clang_args: ['-x', 'objective-c']
