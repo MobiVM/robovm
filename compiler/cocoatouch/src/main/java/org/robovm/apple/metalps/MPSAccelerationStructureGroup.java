@@ -33,30 +33,32 @@ import org.robovm.apple.metal.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 12.0 and later.
+ */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSImageKeypointData/*</name>*/ 
-    extends /*<extends>*/Struct<MPSImageKeypointData>/*</extends>*/ 
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSAccelerationStructureGroup/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class MPSImageKeypointDataPtr extends Ptr<MPSImageKeypointData, MPSImageKeypointDataPtr> {}/*</ptr>*/
-    /*<bind>*/
-    /*</bind>*/
+    /*<ptr>*/public static class MPSAccelerationStructureGroupPtr extends Ptr<MPSAccelerationStructureGroup, MPSAccelerationStructureGroupPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(MPSAccelerationStructureGroup.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MPSImageKeypointData() {}
-    public MPSImageKeypointData(VectorShort2 keypointCoordinate, float keypointColorValue) {
-        this.setKeypointCoordinate(keypointCoordinate);
-        this.setKeypointColorValue(keypointColorValue);
-    }
+    protected MPSAccelerationStructureGroup() {}
+    protected MPSAccelerationStructureGroup(Handle h, long handle) { super(h, handle); }
+    protected MPSAccelerationStructureGroup(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithDevice:")
+    public MPSAccelerationStructureGroup(MTLDevice device) { super((SkipInit) null); initObject(init(device)); }
     /*</constructors>*/
-    /*<properties>*//*</properties>*/
-    /*<members>*/
-    @StructMember(0) public native @ByVal VectorShort2 getKeypointCoordinate();
-    @StructMember(0) public native MPSImageKeypointData setKeypointCoordinate(@ByVal VectorShort2 keypointCoordinate);
-    @StructMember(1) public native float getKeypointColorValue();
-    @StructMember(1) public native MPSImageKeypointData setKeypointColorValue(float keypointColorValue);
-    /*</members>*/
-    /*<methods>*//*</methods>*/
+    /*<properties>*/
+    @Property(selector = "device")
+    public native MTLDevice getDevice();
+    /*</properties>*/
+    /*<members>*//*</members>*/
+    /*<methods>*/
+    @Method(selector = "initWithDevice:")
+    protected native @Pointer long init(MTLDevice device);
+    /*</methods>*/
 }

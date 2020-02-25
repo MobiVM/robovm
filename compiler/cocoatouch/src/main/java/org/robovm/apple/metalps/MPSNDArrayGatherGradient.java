@@ -33,30 +33,34 @@ import org.robovm.apple.metal.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 13.0 and later.
+ */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSImageKeypointData/*</name>*/ 
-    extends /*<extends>*/Struct<MPSImageKeypointData>/*</extends>*/ 
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSNDArrayGatherGradient/*</name>*/ 
+    extends /*<extends>*/MPSNDArrayBinaryPrimaryGradientKernel/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class MPSImageKeypointDataPtr extends Ptr<MPSImageKeypointData, MPSImageKeypointDataPtr> {}/*</ptr>*/
-    /*<bind>*/
-    /*</bind>*/
+    /*<ptr>*/public static class MPSNDArrayGatherGradientPtr extends Ptr<MPSNDArrayGatherGradient, MPSNDArrayGatherGradientPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(MPSNDArrayGatherGradient.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MPSImageKeypointData() {}
-    public MPSImageKeypointData(VectorShort2 keypointCoordinate, float keypointColorValue) {
-        this.setKeypointCoordinate(keypointCoordinate);
-        this.setKeypointColorValue(keypointColorValue);
-    }
+    public MPSNDArrayGatherGradient() {}
+    protected MPSNDArrayGatherGradient(Handle h, long handle) { super(h, handle); }
+    protected MPSNDArrayGatherGradient(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithDevice:")
+    public MPSNDArrayGatherGradient(MTLDevice device) { super(device); }
+    @Method(selector = "initWithCoder:device:")
+    public MPSNDArrayGatherGradient(NSCoder coder, MTLDevice device) { super(coder, device); }
+    @Method(selector = "initWithCoder:")
+    public MPSNDArrayGatherGradient(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
-    /*<properties>*//*</properties>*/
-    /*<members>*/
-    @StructMember(0) public native @ByVal VectorShort2 getKeypointCoordinate();
-    @StructMember(0) public native MPSImageKeypointData setKeypointCoordinate(@ByVal VectorShort2 keypointCoordinate);
-    @StructMember(1) public native float getKeypointColorValue();
-    @StructMember(1) public native MPSImageKeypointData setKeypointColorValue(float keypointColorValue);
-    /*</members>*/
-    /*<methods>*//*</methods>*/
+    /*<properties>*/
+    
+    /*</properties>*/
+    /*<members>*//*</members>*/
+    /*<methods>*/
+    
+    /*</methods>*/
 }

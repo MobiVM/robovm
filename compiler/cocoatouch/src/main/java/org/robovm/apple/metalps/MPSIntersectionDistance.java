@@ -36,27 +36,24 @@ import org.robovm.apple.metal.*;
 
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSImageKeypointData/*</name>*/ 
-    extends /*<extends>*/Struct<MPSImageKeypointData>/*</extends>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSIntersectionDistance/*</name>*/ 
+    extends /*<extends>*/Struct<MPSIntersectionDistance>/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class MPSImageKeypointDataPtr extends Ptr<MPSImageKeypointData, MPSImageKeypointDataPtr> {}/*</ptr>*/
+    /*<ptr>*/public static class MPSIntersectionDistancePtr extends Ptr<MPSIntersectionDistance, MPSIntersectionDistancePtr> {}/*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MPSImageKeypointData() {}
-    public MPSImageKeypointData(VectorShort2 keypointCoordinate, float keypointColorValue) {
-        this.setKeypointCoordinate(keypointCoordinate);
-        this.setKeypointColorValue(keypointColorValue);
+    public MPSIntersectionDistance() {}
+    public MPSIntersectionDistance(float distance) {
+        this.setDistance(distance);
     }
     /*</constructors>*/
     /*<properties>*//*</properties>*/
     /*<members>*/
-    @StructMember(0) public native @ByVal VectorShort2 getKeypointCoordinate();
-    @StructMember(0) public native MPSImageKeypointData setKeypointCoordinate(@ByVal VectorShort2 keypointCoordinate);
-    @StructMember(1) public native float getKeypointColorValue();
-    @StructMember(1) public native MPSImageKeypointData setKeypointColorValue(float keypointColorValue);
+    @StructMember(0) public native float getDistance();
+    @StructMember(0) public native MPSIntersectionDistance setDistance(float distance);
     /*</members>*/
     /*<methods>*//*</methods>*/
 }

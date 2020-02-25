@@ -36,27 +36,30 @@ import org.robovm.apple.metal.*;
 
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSImageKeypointData/*</name>*/ 
-    extends /*<extends>*/Struct<MPSImageKeypointData>/*</extends>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSIntersectionDistancePrimitiveIndexCoordinates/*</name>*/ 
+    extends /*<extends>*/Struct<MPSIntersectionDistancePrimitiveIndexCoordinates>/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class MPSImageKeypointDataPtr extends Ptr<MPSImageKeypointData, MPSImageKeypointDataPtr> {}/*</ptr>*/
+    /*<ptr>*/public static class MPSIntersectionDistancePrimitiveIndexCoordinatesPtr extends Ptr<MPSIntersectionDistancePrimitiveIndexCoordinates, MPSIntersectionDistancePrimitiveIndexCoordinatesPtr> {}/*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MPSImageKeypointData() {}
-    public MPSImageKeypointData(VectorShort2 keypointCoordinate, float keypointColorValue) {
-        this.setKeypointCoordinate(keypointCoordinate);
-        this.setKeypointColorValue(keypointColorValue);
+    public MPSIntersectionDistancePrimitiveIndexCoordinates() {}
+    public MPSIntersectionDistancePrimitiveIndexCoordinates(float distance, int primitiveIndex, VectorFloat2 coordinates) {
+        this.setDistance(distance);
+        this.setPrimitiveIndex(primitiveIndex);
+        this.setCoordinates(coordinates);
     }
     /*</constructors>*/
     /*<properties>*//*</properties>*/
     /*<members>*/
-    @StructMember(0) public native @ByVal VectorShort2 getKeypointCoordinate();
-    @StructMember(0) public native MPSImageKeypointData setKeypointCoordinate(@ByVal VectorShort2 keypointCoordinate);
-    @StructMember(1) public native float getKeypointColorValue();
-    @StructMember(1) public native MPSImageKeypointData setKeypointColorValue(float keypointColorValue);
+    @StructMember(0) public native float getDistance();
+    @StructMember(0) public native MPSIntersectionDistancePrimitiveIndexCoordinates setDistance(float distance);
+    @StructMember(1) public native int getPrimitiveIndex();
+    @StructMember(1) public native MPSIntersectionDistancePrimitiveIndexCoordinates setPrimitiveIndex(int primitiveIndex);
+    @StructMember(2) public native @ByVal VectorFloat2 getCoordinates();
+    @StructMember(2) public native MPSIntersectionDistancePrimitiveIndexCoordinates setCoordinates(@ByVal VectorFloat2 coordinates);
     /*</members>*/
     /*<methods>*//*</methods>*/
 }

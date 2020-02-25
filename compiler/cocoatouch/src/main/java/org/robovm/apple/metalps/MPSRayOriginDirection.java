@@ -36,27 +36,27 @@ import org.robovm.apple.metal.*;
 
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSImageKeypointData/*</name>*/ 
-    extends /*<extends>*/Struct<MPSImageKeypointData>/*</extends>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSRayOriginDirection/*</name>*/ 
+    extends /*<extends>*/Struct<MPSRayOriginDirection>/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class MPSImageKeypointDataPtr extends Ptr<MPSImageKeypointData, MPSImageKeypointDataPtr> {}/*</ptr>*/
+    /*<ptr>*/public static class MPSRayOriginDirectionPtr extends Ptr<MPSRayOriginDirection, MPSRayOriginDirectionPtr> {}/*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MPSImageKeypointData() {}
-    public MPSImageKeypointData(VectorShort2 keypointCoordinate, float keypointColorValue) {
-        this.setKeypointCoordinate(keypointCoordinate);
-        this.setKeypointColorValue(keypointColorValue);
+    public MPSRayOriginDirection() {}
+    public MPSRayOriginDirection(VectorFloat3 origin, VectorFloat3 direction) {
+        this.setOrigin(origin);
+        this.setDirection(direction);
     }
     /*</constructors>*/
     /*<properties>*//*</properties>*/
     /*<members>*/
-    @StructMember(0) public native @ByVal VectorShort2 getKeypointCoordinate();
-    @StructMember(0) public native MPSImageKeypointData setKeypointCoordinate(@ByVal VectorShort2 keypointCoordinate);
-    @StructMember(1) public native float getKeypointColorValue();
-    @StructMember(1) public native MPSImageKeypointData setKeypointColorValue(float keypointColorValue);
+    @StructMember(0) public native @ByVal VectorFloat3 getOrigin();
+    @StructMember(0) public native MPSRayOriginDirection setOrigin(@ByVal VectorFloat3 origin);
+    @StructMember(1) public native @ByVal VectorFloat3 getDirection();
+    @StructMember(1) public native MPSRayOriginDirection setDirection(@ByVal VectorFloat3 direction);
     /*</members>*/
     /*<methods>*//*</methods>*/
 }

@@ -2,7 +2,7 @@ package: org.robovm.apple.metalps
 include: [foundation, coregraphics, metal]
 library: MetalPerformanceShaders
 framework: MetalPerformanceShaders
-internal_frameworks: [MPSNeuralNetwork, MPSCore, MPSImage, MPSMatrix]
+internal_frameworks: [MPSCore, MPSMatrix, MPSNeuralNetwork, MPSImage, MPSNDArray, MPSRayIntersector]
 clang_args: ['-x', 'objective-c']
 headers:
     - /System/Library/Frameworks/MetalPerformanceShaders.framework/Headers/MetalPerformanceShaders.h
@@ -63,6 +63,20 @@ enums:
     MPSMatrixRandomDistribution: {}
     MPSCNNConvolutionWeightsLayout: {}
     MPSDeviceOptions: {}
+    # ios13.4 bindings bellow (also missing frameworks added)
+    MPSAccelerationStructureUsage: {} #since 12.0
+    MPSAccelerationStructureStatus: {} #since 12.0
+    MPSPolygonType: {} #since 13.0
+    MPSTransformType: {} #since 12.0
+    MPSTemporalWeighting: {} #since 13.0
+    MPSIntersectionType: {} #since 12.0
+    MPSTriangleIntersectionTestType: {} #since 12.0
+    MPSBoundingBoxIntersectionTestType: {} #since 12.0
+    MPSRayMaskOptions: {prefix: MPSRayMaskOption} #since 12.0
+    MPSRayDataType: {} #since 12.0
+    MPSIntersectionDataType: {} #since 12.0
+    MPSRayMaskOperator: {} #since 13.0
+
 classes:
     # structs
     MPSOrigin: {}
@@ -85,6 +99,20 @@ classes:
     MPSCustomKernelInfo: {}
     MPSIntegerDivisionParams: {}
     MPSImageKeypointData: {}
+    #ios13.4
+    MPSNDArrayOffsets: {}
+    MPSNDArraySizes: {}
+    MPSPackedFloat3: { exclude: true } # manually written
+    MPSAxisAlignedBoundingBox: {}
+    MPSRayOriginDirection: {}
+    MPSRayPackedOriginDirection: {}
+    MPSRayOriginMinDistanceDirectionMaxDistance: {}
+    MPSRayOriginMaskDirectionMaxDistance: {}
+    MPSIntersectionDistance: {}
+    MPSIntersectionDistancePrimitiveIndex: {}
+    MPSIntersectionDistancePrimitiveIndexCoordinates: {}
+    MPSIntersectionDistancePrimitiveIndexInstanceIndex: {}
+    MPSIntersectionDistancePrimitiveIndexInstanceIndexCoordinates: {}
 
     # classes
     MPSBinaryImageKernel: #since 9.0
@@ -964,6 +992,10 @@ classes:
             '-encodeRegressionToCommandBuffer:sourceTexture:guidanceTexture:weightsTexture:destinationCoefficientsTexture:':
                 name: encodeRegression
             '-encodeReconstructionToCommandBuffer:guidanceTexture:coefficientsTexture:destinationTexture:':
+                name: encodeReconstruction
+            '-encodeRegressionToCommandBuffer:sourceTexture:guidanceTexture:weightsTexture:destinationCoefficientsTextureA:destinationCoefficientsTextureB:':
+                name: encodeRegression
+            '-encodeReconstructionToCommandBuffer:guidanceTexture:coefficientsTextureA:coefficientsTextureB:destinationTexture:':
                 name: encodeReconstruction
     MPSImageHistogram: #since 9.0
         methods:
@@ -1935,6 +1967,159 @@ classes:
             '+temporaryNDArrayWithCommandBuffer:descriptor:':
                 name : create
                 constructor: true
+    # ios 13.4 bindings
+    MPSAccelerationStructure: #since 12.0
+        methods:
+            '-initWithGroup:':
+                name: init
+            '-initWithCoder:group:':
+                name: init
+            '-rebuildWithCompletionHandler:':
+                name: rebuild
+            '-copyWithZone:group:':
+                name: copy
+            '-encodeWithCoder:':
+                name: encode
+    MPSAccelerationStructureGroup: #since 12.0
+        methods:
+            '-initWithDevice:':
+                name: init
+    MPSInstanceAccelerationStructure: {} #since 12.0
+    MPSNDArrayBinaryKernel: #since 13.0
+        methods:
+            '-encodeToCommandBuffer:primarySourceArray:secondarySourceArray:':
+                name: encode
+            '-encodeToCommandBuffer:primarySourceArray:secondarySourceArray:destinationArray:':
+                name: encode
+            '-encodeToCommandBuffer:primarySourceArray:secondarySourceArray:resultState:outputStateIsTemporary:':
+                name: encode
+            '-encodeToCommandBuffer:primarySourceArray:secondarySourceArray:resultState:destinationArray:':
+                name: encode
+    MPSNDArrayBinaryPrimaryGradientKernel: #since 13.0
+        methods:
+            '-encodeToCommandBuffer:primarySourceArray:secondarySourceArray:sourceGradient:gradientState:':
+                name: encode
+            '-encodeToCommandBuffer:primarySourceArray:secondarySourceArray:sourceGradient:gradientState:destinationArray:':
+                name: encode
+    MPSNDArrayBinarySecondaryGradientKernel: #since 13.0
+        methods:
+            '-encodeToCommandBuffer:primarySourceArray:secondarySourceArray:sourceGradient:gradientState:':
+                name: encode
+            '-encodeToCommandBuffer:primarySourceArray:secondarySourceArray:sourceGradient:gradientState:destinationArray:':
+                name: encode
+    MPSNDArrayGather: {} #since 13.0
+    MPSNDArrayGatherGradient: {} #since 13.0
+    MPSNDArrayGatherGradientState: {} #since 13.0
+    MPSNDArrayGradientState: {} #since 13.0
+    MPSNDArrayMatrixMultiplication: {} #since 13.0
+    MPSNDArrayMultiaryBase: #since 13.0
+        methods:
+            '-initWithDevice:sourceCount:':
+                name: init
+            '-encodeWithCoder:':
+                name: encode
+            '-resultStateForSourceArrays:sourceStates:destinationArray:':
+                name: getResultState
+            '-destinationArrayDescriptorForSourceArrays:sourceState:':
+                name: getDestinationArrayDescriptor
+    MPSNDArrayMultiaryGradientKernel: #since 13.0
+        methods:
+            '-initWithDevice:sourceCount:sourceGradientIndex:':
+                name: init
+            '-encodeToCommandBuffer:sourceArrays:sourceGradient:gradientState:':
+                name: encode
+            '-encodeToCommandBuffer:sourceArrays:sourceGradient:gradientState:destinationArray:':
+                name: encode
+    MPSNDArrayMultiaryKernel: #since 13.0
+        methods:
+            '-encodeToCommandBuffer:sourceArrays:':
+                name: encode
+            '-encodeToCommandBuffer:sourceArrays:destinationArray:':
+                name: encode
+            '-encodeToCommandBuffer:sourceArrays:resultState:outputStateIsTemporary:':
+                name: encode
+            '-encodeToCommandBuffer:sourceArrays:resultState:destinationArray:':
+                name: encode
+    MPSNDArrayStridedSlice: {} #since 13.0
+    MPSNDArrayStridedSliceGradient: {} #since 13.0
+    MPSNDArrayUnaryGradientKernel: #since 13.0
+        methods:
+            '-encodeToCommandBuffer:sourceArray:sourceGradient:gradientState:':
+                name: encode
+            '-encodeToCommandBuffer:sourceArray:sourceGradient:gradientState:destinationArray:':
+                name: encode
+    MPSNDArrayUnaryKernel: #since 13.0
+        methods:
+            '-encodeToCommandBuffer:sourceArray:':
+                name: encode
+            '-encodeToCommandBuffer:sourceArray:destinationArray:':
+                name: encode
+            '-encodeToCommandBuffer:sourceArray:resultState:outputStateIsTemporary:':
+                name: encode
+            '-encodeToCommandBuffer:sourceArray:resultState:destinationArray:':
+                name: encode
+    MPSPolygonAccelerationStructure: {} #since 13.0
+    MPSPolygonBuffer: #since 13.0
+        methods:
+            '-initWithCoder:':
+                name: init
+            '-copyWithZone:':
+                name: copy
+    MPSQuadrilateralAccelerationStructure: {} #since 13.0
+    MPSRayIntersector: #since 12.0
+        methods:
+            '-encodeWithCoder:':
+                name: encode
+            '-encodeIntersectionToCommandBuffer:intersectionType:rayBuffer:rayBufferOffset:intersectionBuffer:intersectionBufferOffset:rayCount:accelerationStructure:':
+                name: encodeIntersection
+            '-encodeIntersectionToCommandBuffer:intersectionType:rayBuffer:rayBufferOffset:intersectionBuffer:intersectionBufferOffset:rayCountBuffer:rayCountBufferOffset:accelerationStructure:':
+                name: encodeIntersection
+            '-encodeIntersectionToCommandBuffer:intersectionType:rayBuffer:rayBufferOffset:rayIndexBuffer:rayIndexBufferOffset:intersectionBuffer:intersectionBufferOffset:rayIndexCount:accelerationStructure:':
+                name: encodeIntersection
+            '-encodeIntersectionToCommandBuffer:intersectionType:rayBuffer:rayBufferOffset:rayIndexBuffer:rayIndexBufferOffset:intersectionBuffer:intersectionBufferOffset:rayIndexCountBuffer:rayIndexCountBufferOffset:accelerationStructure:':
+                name: encodeIntersection
+            '-encodeIntersectionToCommandBuffer:intersectionType:rayTexture:intersectionTexture:accelerationStructure:':
+                name: encodeIntersection
+    MPSSVGF: #since 13.0
+        methods:
+            '-encodeWithCoder:':
+                name: encode
+            '-encodeReprojectionToCommandBuffer:sourceTexture:previousTexture:destinationTexture:previousLuminanceMomentsTexture:destinationLuminanceMomentsTexture:previousFrameCountTexture:destinationFrameCountTexture:motionVectorTexture:depthNormalTexture:previousDepthNormalTexture:':
+                name: encodeReprojection
+            '-encodeReprojectionToCommandBuffer:sourceTexture:previousTexture:destinationTexture:previousLuminanceMomentsTexture:destinationLuminanceMomentsTexture:sourceTexture2:previousTexture2:destinationTexture2:previousLuminanceMomentsTexture2:destinationLuminanceMomentsTexture2:previousFrameCountTexture:destinationFrameCountTexture:motionVectorTexture:depthNormalTexture:previousDepthNormalTexture:':
+                name: encodeReprojectionToCommandBuffer$sourceTexture$previousTexture$destinationTexture$previousLuminanceMomentsTexture$destinationLuminanceMomentsTexture$sourceTexture2$previousTexture2$destinationTexture2$previousLuminanceMomentsTexture2$destinationLuminanceMomentsTexture2$previousFrameCountTexture$destinationFrameCountTexture$motionVectorTexture$depthNormalTexture$previousDepthNormalTexture$
+            '-encodeVarianceEstimationToCommandBuffer:sourceTexture:luminanceMomentsTexture:destinationTexture:frameCountTexture:depthNormalTexture:':
+                name: encodeVarianceEstimation
+            '-encodeVarianceEstimationToCommandBuffer:sourceTexture:luminanceMomentsTexture:destinationTexture:sourceTexture2:luminanceMomentsTexture2:destinationTexture2:frameCountTexture:depthNormalTexture:':
+                name: encodeVarianceEstimation
+            '-encodeBilateralFilterToCommandBuffer:stepDistance:sourceTexture:destinationTexture:depthNormalTexture:':
+                name: encodeBilateralFilter
+            '-encodeBilateralFilterToCommandBuffer:stepDistance:sourceTexture:destinationTexture:sourceTexture2:destinationTexture2:depthNormalTexture:':
+                name: encodeBilateralFilter
+    MPSSVGFDefaultTextureAllocator: #since 13.0
+        methods:
+            '-initWithDevice:':
+                name: init
+            '-textureWithPixelFormat:width:height:':
+                name: allocateTexture
+    MPSSVGFDenoiser: #since 13.0
+        methods:
+            '-initWithDevice:':
+                name: init
+            '-initWithSVGF:textureAllocator:':
+                name: init
+            '-encodeToCommandBuffer:sourceTexture:motionVectorTexture:depthNormalTexture:previousDepthNormalTexture:':
+                name: encode
+            '-encodeToCommandBuffer:sourceTexture:destinationTexture:sourceTexture2:destinationTexture2:motionVectorTexture:depthNormalTexture:previousDepthNormalTexture:':
+                name: encode
+    MPSTemporalAA: #since 13.0
+        methods:
+            '-encodeWithCoder:':
+                name: encode
+            '-encodeToCommandBuffer:sourceTexture:previousTexture:destinationTexture:motionVectorTexture:depthTexture:':
+                name: encode
+    MPSTriangleAccelerationStructure: {} #since 12.0
+
 protocols:
     MPSCNNBatchNormalizationDataSource: #since 11.3
         methods:
@@ -2018,23 +2203,60 @@ protocols:
         methods:
             '-scalarWeightForSourceImage:destinationImage:':
                 name: getScalarWeightForSourceImage
+    MPSSVGFTextureAllocator: #since 13.0
+        skip_adapter: true
+        methods:
+            '-textureWithPixelFormat:width:height:':
+                name: allocateTexture
 functions:
+    MPSImageBatch(.*):
+        class: MPSImageBatch
+        name: '#{g[0].downcase_first}'
+    MPSStateBatch(.*):
+        class: MPSStateBatch
+        name: '#{g[0].downcase_first}'
+    MPS(GetImageType):
+        class: MPSImage
+        name: '#{g[0].downcase_first}'
+    MPS(SupportsMTLDevice):
+        class: MetalPerformanceShaders
+        name: '#{g[0].downcase_first}'
+    MPS(HintTemporaryMemoryHighWaterMark):
+        class: MetalPerformanceShaders
+        name: '#{g[0].downcase_first}'
+    MPS(SetHeapCacheDuration):
+        class: MetalPerformanceShaders
+        name: '#{g[0].downcase_first}'
+    MPS(GetPreferredDevice):
+        class: MetalPerformanceShaders
+        name: '#{g[0].downcase_first}'
 
     # Make sure we don't miss any functions if new ones are introduced in a later version
-    (k?MTL.*):
+    (k?MPS.*):
         class: FIXME
         name: 'Function__#{g[0]}'
 
 values:
+    MPSRectNoClip:
+        class: MetalPerformanceShaders
+        name: getRectNoClip
 
     # Make sure we don't miss any values if new ones are introduced in a later version
-    (k?MTL.*):
+    (k?MPS.*):
         class: FIXME
         name: 'Value__#{g[0]}'
 
 constants:
+    # TODO: excluding these constants for now 
+    MPSKernelTypes_h: {exclude: true}
+    MPSFunctionConstantIndex:  {exclude: true}
+    MPSBatchSizeIndex:  {exclude: true}
+    MPSUserConstantIndex:  {exclude: true}
+    MPSNDArrayConstantIndex:  {exclude: true}
+    MPSMaxTextures:  {exclude: true}
+    MPSIsArrayOfTexturesWritable:  {exclude: true}
 
     # Make sure we don't miss any constants if new ones are introduced in a later version
-    (k?MTL.*):
+    (k?MPS.*):
         class: FIXME
         name: 'Constant__#{g[0]}'

@@ -36,27 +36,35 @@ import org.robovm.apple.metal.*;
 
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSImageKeypointData/*</name>*/ 
-    extends /*<extends>*/Struct<MPSImageKeypointData>/*</extends>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSPackedFloat3/*</name>*/ 
+    extends /*<extends>*/Struct<MPSPackedFloat3>/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class MPSImageKeypointDataPtr extends Ptr<MPSImageKeypointData, MPSImageKeypointDataPtr> {}/*</ptr>*/
+    /*<ptr>*/public static class MPSPackedFloat3Ptr extends Ptr<MPSPackedFloat3, MPSPackedFloat3Ptr> {}/*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MPSImageKeypointData() {}
-    public MPSImageKeypointData(VectorShort2 keypointCoordinate, float keypointColorValue) {
-        this.setKeypointCoordinate(keypointCoordinate);
-        this.setKeypointColorValue(keypointColorValue);
+    public MPSPackedFloat3() {}
+    public MPSPackedFloat3(float x, float y, float z) {
+        this.set(x, y, z);
     }
     /*</constructors>*/
     /*<properties>*//*</properties>*/
     /*<members>*/
-    @StructMember(0) public native @ByVal VectorShort2 getKeypointCoordinate();
-    @StructMember(0) public native MPSImageKeypointData setKeypointCoordinate(@ByVal VectorShort2 keypointCoordinate);
-    @StructMember(1) public native float getKeypointColorValue();
-    @StructMember(1) public native MPSImageKeypointData setKeypointColorValue(float keypointColorValue);
+    @StructMember(0) public native float getX();
+    @StructMember(0) public native MPSPackedFloat3 setX(float x);
+
+    @StructMember(1) public native float getY();
+    @StructMember(1) public native MPSPackedFloat3 setY(float y);
+
+    @StructMember(2) public native float getZ();
+    @StructMember(2) public native MPSPackedFloat3 setZ(float y);
     /*</members>*/
+    public void set(float x, float y, float z) {
+        setX(x);
+        setY(y);
+        setZ(z);
+    }
     /*<methods>*//*</methods>*/
 }

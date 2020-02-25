@@ -36,27 +36,27 @@ import org.robovm.apple.metal.*;
 
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSImageKeypointData/*</name>*/ 
-    extends /*<extends>*/Struct<MPSImageKeypointData>/*</extends>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSAxisAlignedBoundingBox/*</name>*/ 
+    extends /*<extends>*/Struct<MPSAxisAlignedBoundingBox>/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class MPSImageKeypointDataPtr extends Ptr<MPSImageKeypointData, MPSImageKeypointDataPtr> {}/*</ptr>*/
+    /*<ptr>*/public static class MPSAxisAlignedBoundingBoxPtr extends Ptr<MPSAxisAlignedBoundingBox, MPSAxisAlignedBoundingBoxPtr> {}/*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MPSImageKeypointData() {}
-    public MPSImageKeypointData(VectorShort2 keypointCoordinate, float keypointColorValue) {
-        this.setKeypointCoordinate(keypointCoordinate);
-        this.setKeypointColorValue(keypointColorValue);
+    public MPSAxisAlignedBoundingBox() {}
+    public MPSAxisAlignedBoundingBox(VectorFloat3 min, VectorFloat3 max) {
+        this.setMin(min);
+        this.setMax(max);
     }
     /*</constructors>*/
     /*<properties>*//*</properties>*/
     /*<members>*/
-    @StructMember(0) public native @ByVal VectorShort2 getKeypointCoordinate();
-    @StructMember(0) public native MPSImageKeypointData setKeypointCoordinate(@ByVal VectorShort2 keypointCoordinate);
-    @StructMember(1) public native float getKeypointColorValue();
-    @StructMember(1) public native MPSImageKeypointData setKeypointColorValue(float keypointColorValue);
+    @StructMember(0) public native @ByVal VectorFloat3 getMin();
+    @StructMember(0) public native MPSAxisAlignedBoundingBox setMin(@ByVal VectorFloat3 min);
+    @StructMember(1) public native @ByVal VectorFloat3 getMax();
+    @StructMember(1) public native MPSAxisAlignedBoundingBox setMax(@ByVal VectorFloat3 max);
     /*</members>*/
     /*<methods>*//*</methods>*/
 }

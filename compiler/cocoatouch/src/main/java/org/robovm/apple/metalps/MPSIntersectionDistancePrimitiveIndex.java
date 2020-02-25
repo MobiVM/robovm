@@ -36,27 +36,27 @@ import org.robovm.apple.metal.*;
 
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSImageKeypointData/*</name>*/ 
-    extends /*<extends>*/Struct<MPSImageKeypointData>/*</extends>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSIntersectionDistancePrimitiveIndex/*</name>*/ 
+    extends /*<extends>*/Struct<MPSIntersectionDistancePrimitiveIndex>/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class MPSImageKeypointDataPtr extends Ptr<MPSImageKeypointData, MPSImageKeypointDataPtr> {}/*</ptr>*/
+    /*<ptr>*/public static class MPSIntersectionDistancePrimitiveIndexPtr extends Ptr<MPSIntersectionDistancePrimitiveIndex, MPSIntersectionDistancePrimitiveIndexPtr> {}/*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MPSImageKeypointData() {}
-    public MPSImageKeypointData(VectorShort2 keypointCoordinate, float keypointColorValue) {
-        this.setKeypointCoordinate(keypointCoordinate);
-        this.setKeypointColorValue(keypointColorValue);
+    public MPSIntersectionDistancePrimitiveIndex() {}
+    public MPSIntersectionDistancePrimitiveIndex(float distance, int primitiveIndex) {
+        this.setDistance(distance);
+        this.setPrimitiveIndex(primitiveIndex);
     }
     /*</constructors>*/
     /*<properties>*//*</properties>*/
     /*<members>*/
-    @StructMember(0) public native @ByVal VectorShort2 getKeypointCoordinate();
-    @StructMember(0) public native MPSImageKeypointData setKeypointCoordinate(@ByVal VectorShort2 keypointCoordinate);
-    @StructMember(1) public native float getKeypointColorValue();
-    @StructMember(1) public native MPSImageKeypointData setKeypointColorValue(float keypointColorValue);
+    @StructMember(0) public native float getDistance();
+    @StructMember(0) public native MPSIntersectionDistancePrimitiveIndex setDistance(float distance);
+    @StructMember(1) public native int getPrimitiveIndex();
+    @StructMember(1) public native MPSIntersectionDistancePrimitiveIndex setPrimitiveIndex(int primitiveIndex);
     /*</members>*/
     /*<methods>*//*</methods>*/
 }

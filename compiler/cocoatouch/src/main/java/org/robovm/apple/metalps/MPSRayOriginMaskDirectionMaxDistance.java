@@ -36,27 +36,33 @@ import org.robovm.apple.metal.*;
 
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSImageKeypointData/*</name>*/ 
-    extends /*<extends>*/Struct<MPSImageKeypointData>/*</extends>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSRayOriginMaskDirectionMaxDistance/*</name>*/ 
+    extends /*<extends>*/Struct<MPSRayOriginMaskDirectionMaxDistance>/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class MPSImageKeypointDataPtr extends Ptr<MPSImageKeypointData, MPSImageKeypointDataPtr> {}/*</ptr>*/
+    /*<ptr>*/public static class MPSRayOriginMaskDirectionMaxDistancePtr extends Ptr<MPSRayOriginMaskDirectionMaxDistance, MPSRayOriginMaskDirectionMaxDistancePtr> {}/*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MPSImageKeypointData() {}
-    public MPSImageKeypointData(VectorShort2 keypointCoordinate, float keypointColorValue) {
-        this.setKeypointCoordinate(keypointCoordinate);
-        this.setKeypointColorValue(keypointColorValue);
+    public MPSRayOriginMaskDirectionMaxDistance() {}
+    public MPSRayOriginMaskDirectionMaxDistance(MPSPackedFloat3 origin, int mask, MPSPackedFloat3 direction, float maxDistance) {
+        this.setOrigin(origin);
+        this.setMask(mask);
+        this.setDirection(direction);
+        this.setMaxDistance(maxDistance);
     }
     /*</constructors>*/
     /*<properties>*//*</properties>*/
     /*<members>*/
-    @StructMember(0) public native @ByVal VectorShort2 getKeypointCoordinate();
-    @StructMember(0) public native MPSImageKeypointData setKeypointCoordinate(@ByVal VectorShort2 keypointCoordinate);
-    @StructMember(1) public native float getKeypointColorValue();
-    @StructMember(1) public native MPSImageKeypointData setKeypointColorValue(float keypointColorValue);
+    @StructMember(0) public native @ByVal MPSPackedFloat3 getOrigin();
+    @StructMember(0) public native MPSRayOriginMaskDirectionMaxDistance setOrigin(@ByVal MPSPackedFloat3 origin);
+    @StructMember(1) public native int getMask();
+    @StructMember(1) public native MPSRayOriginMaskDirectionMaxDistance setMask(int mask);
+    @StructMember(2) public native @ByVal MPSPackedFloat3 getDirection();
+    @StructMember(2) public native MPSRayOriginMaskDirectionMaxDistance setDirection(@ByVal MPSPackedFloat3 direction);
+    @StructMember(3) public native float getMaxDistance();
+    @StructMember(3) public native MPSRayOriginMaskDirectionMaxDistance setMaxDistance(float maxDistance);
     /*</members>*/
     /*<methods>*//*</methods>*/
 }

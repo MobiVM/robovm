@@ -33,30 +33,49 @@ import org.robovm.apple.metal.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 13.0 and later.
+ */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSImageKeypointData/*</name>*/ 
-    extends /*<extends>*/Struct<MPSImageKeypointData>/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
+public enum /*<name>*/MPSRayMaskOperator/*</name>*/ implements ValuedEnum {
+    /*<values>*/
+    And(0L),
+    NotAnd(1L),
+    Or(2L),
+    NotOr(3L),
+    Xor(4L),
+    NotXor(5L),
+    LessThan(6L),
+    LessThanOrEqualTo(7L),
+    GreaterThan(8L),
+    GreaterThanOrEqualTo(9L),
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    Equal(10L),
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    NotEqual(11L);
+    /*</values>*/
 
-    /*<ptr>*/public static class MPSImageKeypointDataPtr extends Ptr<MPSImageKeypointData, MPSImageKeypointDataPtr> {}/*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*/
-    public MPSImageKeypointData() {}
-    public MPSImageKeypointData(VectorShort2 keypointCoordinate, float keypointColorValue) {
-        this.setKeypointCoordinate(keypointCoordinate);
-        this.setKeypointColorValue(keypointColorValue);
-    }
-    /*</constructors>*/
-    /*<properties>*//*</properties>*/
-    /*<members>*/
-    @StructMember(0) public native @ByVal VectorShort2 getKeypointCoordinate();
-    @StructMember(0) public native MPSImageKeypointData setKeypointCoordinate(@ByVal VectorShort2 keypointCoordinate);
-    @StructMember(1) public native float getKeypointColorValue();
-    @StructMember(1) public native MPSImageKeypointData setKeypointColorValue(float keypointColorValue);
-    /*</members>*/
     /*<methods>*//*</methods>*/
+
+    private final long n;
+
+    private /*<name>*/MPSRayMaskOperator/*</name>*/(long n) { this.n = n; }
+    public long value() { return n; }
+    public static /*<name>*/MPSRayMaskOperator/*</name>*/ valueOf(long n) {
+        for (/*<name>*/MPSRayMaskOperator/*</name>*/ v : values()) {
+            if (v.n == n) {
+                return v;
+            }
+        }
+        throw new IllegalArgumentException("No constant with value " + n + " found in " 
+            + /*<name>*/MPSRayMaskOperator/*</name>*/.class.getName());
+    }
 }

@@ -33,30 +33,34 @@ import org.robovm.apple.metal.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 12.0 and later.
+ */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSImageKeypointData/*</name>*/ 
-    extends /*<extends>*/Struct<MPSImageKeypointData>/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+/*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
+public final class /*<name>*/MPSRayMaskOptions/*</name>*/ extends Bits</*<name>*/MPSRayMaskOptions/*</name>*/> {
+    /*<values>*/
+    public static final MPSRayMaskOptions None = new MPSRayMaskOptions(0L);
+    public static final MPSRayMaskOptions Primitive = new MPSRayMaskOptions(1L);
+    public static final MPSRayMaskOptions Instance = new MPSRayMaskOptions(2L);
+    /*</values>*/
 
-    /*<ptr>*/public static class MPSImageKeypointDataPtr extends Ptr<MPSImageKeypointData, MPSImageKeypointDataPtr> {}/*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*/
-    public MPSImageKeypointData() {}
-    public MPSImageKeypointData(VectorShort2 keypointCoordinate, float keypointColorValue) {
-        this.setKeypointCoordinate(keypointCoordinate);
-        this.setKeypointColorValue(keypointColorValue);
-    }
-    /*</constructors>*/
-    /*<properties>*//*</properties>*/
-    /*<members>*/
-    @StructMember(0) public native @ByVal VectorShort2 getKeypointCoordinate();
-    @StructMember(0) public native MPSImageKeypointData setKeypointCoordinate(@ByVal VectorShort2 keypointCoordinate);
-    @StructMember(1) public native float getKeypointColorValue();
-    @StructMember(1) public native MPSImageKeypointData setKeypointColorValue(float keypointColorValue);
-    /*</members>*/
     /*<methods>*//*</methods>*/
+
+    private static final /*<name>*/MPSRayMaskOptions/*</name>*/[] values = _values(/*<name>*/MPSRayMaskOptions/*</name>*/.class);
+
+    public /*<name>*/MPSRayMaskOptions/*</name>*/(long value) { super(value); }
+    private /*<name>*/MPSRayMaskOptions/*</name>*/(long value, long mask) { super(value, mask); }
+    protected /*<name>*/MPSRayMaskOptions/*</name>*/ wrap(long value, long mask) {
+        return new /*<name>*/MPSRayMaskOptions/*</name>*/(value, mask);
+    }
+    protected /*<name>*/MPSRayMaskOptions/*</name>*/[] _values() {
+        return values;
+    }
+    public static /*<name>*/MPSRayMaskOptions/*</name>*/[] values() {
+        return values.clone();
+    }
 }
