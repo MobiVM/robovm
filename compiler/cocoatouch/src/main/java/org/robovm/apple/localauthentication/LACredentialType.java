@@ -39,7 +39,11 @@ import org.robovm.apple.security.*;
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/LACredentialType/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    ApplicationPassword(0L);
+    ApplicationPassword(0L),
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    SmartCardPIN(-3L);
     /*</values>*/
 
     /*<bind>*/
