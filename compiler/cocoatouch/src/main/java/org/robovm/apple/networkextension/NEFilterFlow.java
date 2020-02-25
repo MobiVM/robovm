@@ -29,6 +29,7 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.security.*;
+import org.robovm.apple.network.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -77,6 +78,11 @@ import org.robovm.apple.security.*;
      */
     @Property(selector = "direction")
     public native NETrafficDirection getDirection();
+    /**
+     * @since Available in iOS 13.1 and later.
+     */
+    @Property(selector = "identifier")
+    public native NSUUID getIdentifier();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

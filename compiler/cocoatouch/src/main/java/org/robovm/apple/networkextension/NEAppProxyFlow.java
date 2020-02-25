@@ -29,6 +29,7 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.security.*;
+import org.robovm.apple.network.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -55,6 +56,16 @@ import org.robovm.apple.security.*;
      */
     @Property(selector = "metaData")
     public native NEFlowMetaData getMetaData();
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    @Property(selector = "networkInterface")
+    public native NWInterface getNetworkInterface();
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    @Property(selector = "setNetworkInterface:")
+    public native void setNetworkInterface(NWInterface v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
