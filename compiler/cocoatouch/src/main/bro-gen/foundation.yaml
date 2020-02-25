@@ -95,6 +95,14 @@ generic_typedefs:
     'NSString *': NSString
 
 structdefs:
+    vector_char16: 'VectorChar16'
+    vector_uchar16: 'VectorChar16'
+    vector_ushort2: 'VectorShort2'
+    vector_short2: 'VectorShort2'
+    vector_ushort3: 'VectorShort3'
+    vector_short3: 'VectorShort3'
+    vector_ushort4: 'VectorShort4'
+    vector_short4: 'VectorShort4'
     vector_uint2: 'VectorInt2'
     vector_int2: 'VectorInt2'
     vector_uint3: 'VectorInt3'
