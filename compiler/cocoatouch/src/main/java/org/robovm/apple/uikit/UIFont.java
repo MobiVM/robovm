@@ -127,7 +127,7 @@ import org.robovm.apple.linkpresentation.*;
     @Method(selector = "monospacedDigitSystemFontOfSize:weight:")
     public static native UIFont getMonospacedDigitSystemFont(@MachineSizedFloat double fontSize, @MachineSizedFloat double weight);
     /**
-     * @since Available in iOS 12.0 and later.
+     * @since Available in iOS 13.0 and later.
      */
     @Method(selector = "monospacedSystemFontOfSize:weight:")
     public static native UIFont getMonospacedSystemFont(@MachineSizedFloat double fontSize, @MachineSizedFloat double weight);

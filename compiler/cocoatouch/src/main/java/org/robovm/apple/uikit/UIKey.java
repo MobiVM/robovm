@@ -43,42 +43,39 @@ import org.robovm.apple.linkpresentation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 9.0 and later.
+ * @since Available in iOS 13.4 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/UIPress/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/UIKey/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSCoding/*</implements>*/ {
 
-    /*<ptr>*/public static class UIPressPtr extends Ptr<UIPress, UIPressPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(UIPress.class); }/*</bind>*/
+    /*<ptr>*/public static class UIKeyPtr extends Ptr<UIKey, UIKeyPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(UIKey.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public UIPress() {}
-    protected UIPress(Handle h, long handle) { super(h, handle); }
-    protected UIPress(SkipInit skipInit) { super(skipInit); }
+    public UIKey() {}
+    protected UIKey(Handle h, long handle) { super(h, handle); }
+    protected UIKey(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public UIKey(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "timestamp")
-    public native double getTimestamp();
-    @Property(selector = "phase")
-    public native UIPressPhase getPhase();
-    @Property(selector = "type")
-    public native UIPressType getType();
-    @Property(selector = "window")
-    public native UIWindow getWindow();
-    @Property(selector = "responder")
-    public native UIResponder getResponder();
-    @Property(selector = "gestureRecognizers")
-    public native NSArray<UIGestureRecognizer> getGestureRecognizers();
-    @Property(selector = "force")
-    public native @MachineSizedFloat double getForce();
-    @Property(selector = "key")
-    public native UIKey getKey();
+    @Property(selector = "characters")
+    public native String getCharacters();
+    @Property(selector = "charactersIgnoringModifiers")
+    public native String getCharactersIgnoringModifiers();
+    @Property(selector = "modifierFlags")
+    public native UIKeyModifierFlags getModifierFlags();
+    @Property(selector = "keyCode")
+    public native UIKeyboardHIDUsage getKeyCode();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

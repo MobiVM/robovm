@@ -98,6 +98,21 @@ import org.robovm.apple.linkpresentation.*;
     public native @MachineSizedSInt long getMinuteInterval();
     @Property(selector = "setMinuteInterval:")
     public native void setMinuteInterval(@MachineSizedSInt long v);
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    @Property(selector = "preferredDatePickerStyle")
+    public native UIDatePickerStyle getPreferredDatePickerStyle();
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    @Property(selector = "setPreferredDatePickerStyle:")
+    public native void setPreferredDatePickerStyle(UIDatePickerStyle v);
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    @Property(selector = "datePickerStyle")
+    public native UIDatePickerStyle getDatePickerStyle();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

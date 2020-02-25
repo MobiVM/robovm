@@ -43,42 +43,33 @@ import org.robovm.apple.linkpresentation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 9.0 and later.
+ * @since Available in iOS 13.4 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/UIPress/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+public enum /*<name>*/UIDatePickerStyle/*</name>*/ implements ValuedEnum {
+    /*<values>*/
+    Automatic(0L),
+    Wheels(1L),
+    Compact(2L);
+    /*</values>*/
 
-    /*<ptr>*/public static class UIPressPtr extends Ptr<UIPress, UIPressPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(UIPress.class); }/*</bind>*/
+    /*<bind>*/
+    /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*/
-    public UIPress() {}
-    protected UIPress(Handle h, long handle) { super(h, handle); }
-    protected UIPress(SkipInit skipInit) { super(skipInit); }
-    /*</constructors>*/
-    /*<properties>*/
-    @Property(selector = "timestamp")
-    public native double getTimestamp();
-    @Property(selector = "phase")
-    public native UIPressPhase getPhase();
-    @Property(selector = "type")
-    public native UIPressType getType();
-    @Property(selector = "window")
-    public native UIWindow getWindow();
-    @Property(selector = "responder")
-    public native UIResponder getResponder();
-    @Property(selector = "gestureRecognizers")
-    public native NSArray<UIGestureRecognizer> getGestureRecognizers();
-    @Property(selector = "force")
-    public native @MachineSizedFloat double getForce();
-    @Property(selector = "key")
-    public native UIKey getKey();
-    /*</properties>*/
-    /*<members>*//*</members>*/
-    /*<methods>*/
-    
-    /*</methods>*/
+    /*<methods>*//*</methods>*/
+
+    private final long n;
+
+    private /*<name>*/UIDatePickerStyle/*</name>*/(long n) { this.n = n; }
+    public long value() { return n; }
+    public static /*<name>*/UIDatePickerStyle/*</name>*/ valueOf(long n) {
+        for (/*<name>*/UIDatePickerStyle/*</name>*/ v : values()) {
+            if (v.n == n) {
+                return v;
+            }
+        }
+        throw new IllegalArgumentException("No constant with value " + n + " found in " 
+            + /*<name>*/UIDatePickerStyle/*</name>*/.class.getName());
+    }
 }
