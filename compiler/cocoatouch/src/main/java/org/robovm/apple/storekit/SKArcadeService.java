@@ -32,7 +32,9 @@ import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 13.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("StoreKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SKArcadeService/*</name>*/ 
@@ -52,10 +54,19 @@ import org.robovm.apple.uikit.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
     @Method(selector = "registerArcadeAppWithRandomFromLib:randomFromLibLength:resultHandler:")
     public static native void registerArcadeApp(NSData randomFromLib, int randomFromLibLength, @Block VoidBlock5<NSData, Integer, NSData, Integer, NSError> resultHandler);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
     @Method(selector = "arcadeSubscriptionStatusWithNonce:resultHandler:")
     public static native void getArcadeSubscriptionStatus(long nonce, @Block VoidBlock5<NSData, Integer, NSData, Integer, NSError> resultHandler);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
     @Method(selector = "repairArcadeApp")
     public static native void repairArcadeApp();
     /*</methods>*/

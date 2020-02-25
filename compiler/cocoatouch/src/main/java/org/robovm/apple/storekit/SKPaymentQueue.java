@@ -88,6 +88,11 @@ import org.robovm.apple.uikit.*;
     public native void addTransactionObserver(SKPaymentTransactionObserver observer);
     @Method(selector = "removeTransactionObserver:")
     public native void removeTransactionObserver(SKPaymentTransactionObserver observer);
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    @Method(selector = "showPriceConsentIfNeeded")
+    public native void showPriceConsentIfNeeded();
     @Method(selector = "defaultQueue")
     public static native SKPaymentQueue getDefaultQueue();
     @Method(selector = "canMakePayments")

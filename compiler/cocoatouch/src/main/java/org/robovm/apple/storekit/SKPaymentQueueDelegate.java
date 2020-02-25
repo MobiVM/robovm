@@ -52,6 +52,11 @@ import org.robovm.apple.uikit.*;
      */
     @Method(selector = "paymentQueue:shouldContinueTransaction:inStorefront:")
     boolean shouldContinueTransaction(SKPaymentQueue paymentQueue, SKPaymentTransaction transaction, SKStorefront newStorefront);
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    @Method(selector = "paymentQueueShouldShowPriceConsent:")
+    boolean paymentQueueShouldShowPriceConsent(SKPaymentQueue paymentQueue);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/
