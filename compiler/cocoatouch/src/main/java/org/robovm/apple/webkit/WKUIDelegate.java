@@ -91,13 +91,13 @@ import org.robovm.apple.security.*;
     /**
      * @since Available in iOS 13.0 and later.
      */
-    @Method(selector = "webView:contextMenuForElement:willCommitWithAnimator:")
-    void getContextMenu(WKWebView webView, WKContextMenuElementInfo elementInfo, UIContextMenuInteractionCommitAnimating animator);
+    @Method(selector = "webView:contextMenuWillPresentForElement:")
+    void contextMenuWillPresent(WKWebView webView, WKContextMenuElementInfo elementInfo);
     /**
      * @since Available in iOS 13.0 and later.
      */
-    @Method(selector = "webView:contextMenuWillPresentForElement:")
-    void contextMenuWillPresent(WKWebView webView, WKContextMenuElementInfo elementInfo);
+    @Method(selector = "webView:contextMenuForElement:willCommitWithAnimator:")
+    void getContextMenu(WKWebView webView, WKContextMenuElementInfo elementInfo, UIContextMenuInteractionCommitAnimating animator);
     /**
      * @since Available in iOS 13.0 and later.
      */
