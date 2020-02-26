@@ -336,13 +336,17 @@ import org.robovm.apple.uikit.*;
     @GlobalValue(symbol="kCGColorSpaceExtendedLinearDisplayP3", optional=true)
     public static native String ExtendedLinearDisplayP3();
     /**
-     * @since Available in iOS 12.0 and later.
+     * @since Available in iOS 13.0 and later.
+     * @deprecated No longer supported
      */
+    @Deprecated
     @GlobalValue(symbol="kCGColorSpaceITUR_2020_PQ_EOTF", optional=true)
     public static native String ITUR_2020_PQ_EOTF();
     /**
      * @since Available in iOS 13.0 and later.
+     * @deprecated No longer supported
      */
+    @Deprecated
     @GlobalValue(symbol="kCGColorSpaceDisplayP3_PQ_EOTF", optional=true)
     public static native String DisplayP3_PQ_EOTF();
     /**
@@ -445,7 +449,9 @@ import org.robovm.apple.uikit.*;
     public native boolean isWideGamutRGB();
     /**
      * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 13.4. No longer supported
      */
+    @Deprecated
     @Bridge(symbol="CGColorSpaceIsHDR", optional=true)
     public native boolean isHDR();
     /**

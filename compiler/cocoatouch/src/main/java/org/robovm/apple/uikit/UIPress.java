@@ -74,6 +74,8 @@ import org.robovm.apple.linkpresentation.*;
     public native NSArray<UIGestureRecognizer> getGestureRecognizers();
     @Property(selector = "force")
     public native @MachineSizedFloat double getForce();
+    @Property(selector = "key")
+    public native UIKey getKey();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -143,7 +143,12 @@ classes:
                 name: activateVoiceControlState
     CPWindow: {} #since 12.0
     CPTemplateApplicationScene: {} #since 13.0
-
+    CPDashboardButton: #since 13.4
+        methods:
+            '-initWithTitleVariants:subtitleVariants:image:handler:':
+                name: init
+    CPDashboardController: {} #since 13.4
+    CPTemplateApplicationDashboardScene: {} #since 13.4
 protocols:
     CPApplicationDelegate: #since 12.0
         methods:
@@ -224,6 +229,13 @@ protocols:
                 name: didSelectNavigationAlert
             '-templateApplicationScene:didSelectManeuver:':
                 name: didSelectManeuver
+    CPTemplateApplicationDashboardSceneDelegate: #since 13.4
+        methods:
+            '-templateApplicationDashboardScene:didConnectDashboardController:toWindow:':
+                name: didConnectDashboardController
+            '-templateApplicationDashboardScene:didDisconnectDashboardController:fromWindow:':
+                name: didDisconnectDashboardController
+
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (k?CP.*):
@@ -237,7 +249,9 @@ values:
     CPTemplateApplicationSceneSessionRoleApplication:
         class: CPTemplateApplicationScene
         name: getSceneSessionRole
-
+    CPTemplateApplicationDashboardSceneSessionRoleApplication:
+        class: CPTemplateApplicationDashboardScene
+        name: getSceneSessionRole
 
     # Make sure we don't miss any values if new ones are introduced in a later version
     (k?CP.*):

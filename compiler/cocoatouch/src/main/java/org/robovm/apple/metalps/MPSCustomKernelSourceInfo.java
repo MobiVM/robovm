@@ -36,7 +36,7 @@ import org.robovm.apple.metal.*;
 
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSCustomKernelSourceInfo/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSCustomKernelSourceInfo/*</name>*/
     extends /*<extends>*/Struct<MPSCustomKernelSourceInfo>/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
@@ -46,7 +46,7 @@ import org.robovm.apple.metal.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MPSCustomKernelSourceInfo() {}
-    public MPSCustomKernelSourceInfo(FunctionPtr kernelOrigin, FunctionPtr kernelPhase, FunctionPtr kernelSize, FunctionPtr offset, FunctionPtr stride, FunctionPtr dilationRate, short featureChannelOffset, short featureChannels, short imageArrayOffset, short imageArraySize) {
+    public MPSCustomKernelSourceInfo(VectorShort2 kernelOrigin, VectorShort2 kernelPhase, VectorShort2 kernelSize, VectorShort2 offset, VectorShort2 stride, VectorShort2 dilationRate, short featureChannelOffset, short featureChannels, short imageArrayOffset, short imageArraySize) {
         this.setKernelOrigin(kernelOrigin);
         this.setKernelPhase(kernelPhase);
         this.setKernelSize(kernelSize);
@@ -61,18 +61,18 @@ import org.robovm.apple.metal.*;
     /*</constructors>*/
     /*<properties>*//*</properties>*/
     /*<members>*/
-    @StructMember(0) public native FunctionPtr getKernelOrigin();
-    @StructMember(0) public native MPSCustomKernelSourceInfo setKernelOrigin(FunctionPtr kernelOrigin);
-    @StructMember(1) public native FunctionPtr getKernelPhase();
-    @StructMember(1) public native MPSCustomKernelSourceInfo setKernelPhase(FunctionPtr kernelPhase);
-    @StructMember(2) public native FunctionPtr getKernelSize();
-    @StructMember(2) public native MPSCustomKernelSourceInfo setKernelSize(FunctionPtr kernelSize);
-    @StructMember(3) public native FunctionPtr getOffset();
-    @StructMember(3) public native MPSCustomKernelSourceInfo setOffset(FunctionPtr offset);
-    @StructMember(4) public native FunctionPtr getStride();
-    @StructMember(4) public native MPSCustomKernelSourceInfo setStride(FunctionPtr stride);
-    @StructMember(5) public native FunctionPtr getDilationRate();
-    @StructMember(5) public native MPSCustomKernelSourceInfo setDilationRate(FunctionPtr dilationRate);
+    @StructMember(0) public native @ByVal VectorShort2 getKernelOrigin();
+    @StructMember(0) public native MPSCustomKernelSourceInfo setKernelOrigin(@ByVal VectorShort2 kernelOrigin);
+    @StructMember(1) public native @ByVal VectorShort2 getKernelPhase();
+    @StructMember(1) public native MPSCustomKernelSourceInfo setKernelPhase(@ByVal VectorShort2 kernelPhase);
+    @StructMember(2) public native @ByVal VectorShort2 getKernelSize();
+    @StructMember(2) public native MPSCustomKernelSourceInfo setKernelSize(@ByVal VectorShort2 kernelSize);
+    @StructMember(3) public native @ByVal VectorShort2 getOffset();
+    @StructMember(3) public native MPSCustomKernelSourceInfo setOffset(@ByVal VectorShort2 offset);
+    @StructMember(4) public native @ByVal VectorShort2 getStride();
+    @StructMember(4) public native MPSCustomKernelSourceInfo setStride(@ByVal VectorShort2 stride);
+    @StructMember(5) public native @ByVal VectorShort2 getDilationRate();
+    @StructMember(5) public native MPSCustomKernelSourceInfo setDilationRate(@ByVal VectorShort2 dilationRate);
     @StructMember(6) public native short getFeatureChannelOffset();
     @StructMember(6) public native MPSCustomKernelSourceInfo setFeatureChannelOffset(short featureChannelOffset);
     @StructMember(7) public native short getFeatureChannels();

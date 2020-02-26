@@ -1,0 +1,47 @@
+package: org.robovm.apple.automaticac
+include: [foundation]
+library: AutomaticAssessmentConfiguration
+framework: AutomaticAssessmentConfiguration
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/AutomaticAssessmentConfiguration.framework/Headers/AutomaticAssessmentConfiguration-Swift.h
+typedefs: {}
+    
+enums:
+
+classes:
+    AEAssessmentConfiguration: {} #since 13.4
+    AEAssessmentSession: #since 13.4
+        methods:
+            '-initWithConfiguration:':
+                name: init
+protocols:
+    AEAssessmentSessionDelegate: #since 13.4
+        methods:
+            '-assessmentSessionDidBegin:':
+                name: didBegin
+            '-assessmentSessionDidFailToBegin:error:':
+                name: didFailToBegin
+            '-assessmentSessionDidInterrupt:error:':
+                name: didInterrupt
+            '-assessmentSessionDidEnd:':
+                name: didEnd
+functions:
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (k?AE.*):
+        class: FixMe
+        name: 'Function__#{g[0]}'
+
+values:
+
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (k?AE.*):
+        class: FixMe
+        name: 'Value__#{g[0]}'
+
+constants:
+
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (k?AE.*):
+        class: FixMe
+        name: 'Constant__#{g[0]}'

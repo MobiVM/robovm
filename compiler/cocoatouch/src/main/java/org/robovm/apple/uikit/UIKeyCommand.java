@@ -148,6 +148,80 @@ import org.robovm.apple.linkpresentation.*;
     public static native String RightArrow();
     @GlobalValue(symbol="UIKeyInputEscape", optional=true)
     public static native String Escape();
+    @GlobalValue(symbol="UIKeyInputPageUp", optional=true)
+    public static native String PageUp();
+    @GlobalValue(symbol="UIKeyInputPageDown", optional=true)
+    public static native String PageDown();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @GlobalValue(symbol="UIKeyInputHome", optional=true)
+    public static native String Home();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @GlobalValue(symbol="UIKeyInputEnd", optional=true)
+    public static native String End();
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    @GlobalValue(symbol="UIKeyInputF1", optional=true)
+    public static native String F1();
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    @GlobalValue(symbol="UIKeyInputF2", optional=true)
+    public static native String F2();
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    @GlobalValue(symbol="UIKeyInputF3", optional=true)
+    public static native String F3();
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    @GlobalValue(symbol="UIKeyInputF4", optional=true)
+    public static native String F4();
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    @GlobalValue(symbol="UIKeyInputF5", optional=true)
+    public static native String F5();
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    @GlobalValue(symbol="UIKeyInputF6", optional=true)
+    public static native String F6();
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    @GlobalValue(symbol="UIKeyInputF7", optional=true)
+    public static native String F7();
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    @GlobalValue(symbol="UIKeyInputF8", optional=true)
+    public static native String F8();
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    @GlobalValue(symbol="UIKeyInputF9", optional=true)
+    public static native String F9();
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    @GlobalValue(symbol="UIKeyInputF10", optional=true)
+    public static native String F10();
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    @GlobalValue(symbol="UIKeyInputF11", optional=true)
+    public static native String F11();
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    @GlobalValue(symbol="UIKeyInputF12", optional=true)
+    public static native String F12();
     
     @Method(selector = "initWithCoder:")
     protected native @Pointer long init(NSCoder coder);

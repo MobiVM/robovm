@@ -97,6 +97,8 @@ classes:
                 name: init
             '-initWithCoordinate:altitude:horizontalAccuracy:verticalAccuracy:course:speed:timestamp:':
                 name: init
+            '-initWithCoordinate:altitude:horizontalAccuracy:verticalAccuracy:course:courseAccuracy:speed:speedAccuracy:timestamp:':
+                name: init
             '-getDistanceFrom:':
                 exclude: true
             '-distanceFromLocation:':

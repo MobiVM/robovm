@@ -46,7 +46,7 @@ import org.robovm.apple.metal.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MPSCustomKernelInfo() {}
-    public MPSCustomKernelInfo(FunctionPtr clipOrigin, FunctionPtr clipSize, short destinationFeatureChannels, short destImageArraySize, short sourceImageCount, short threadgroupSize, short subbatchIndex, short subbatchStride, MPSIntegerDivisionParams idiv) {
+    public MPSCustomKernelInfo(VectorShort4 clipOrigin, VectorShort4 clipSize, short destinationFeatureChannels, short destImageArraySize, short sourceImageCount, short threadgroupSize, short subbatchIndex, short subbatchStride, MPSIntegerDivisionParams idiv) {
         this.setClipOrigin(clipOrigin);
         this.setClipSize(clipSize);
         this.setDestinationFeatureChannels(destinationFeatureChannels);
@@ -60,10 +60,10 @@ import org.robovm.apple.metal.*;
     /*</constructors>*/
     /*<properties>*//*</properties>*/
     /*<members>*/
-    @StructMember(0) public native FunctionPtr getClipOrigin();
-    @StructMember(0) public native MPSCustomKernelInfo setClipOrigin(FunctionPtr clipOrigin);
-    @StructMember(1) public native FunctionPtr getClipSize();
-    @StructMember(1) public native MPSCustomKernelInfo setClipSize(FunctionPtr clipSize);
+    @StructMember(0) public native @ByVal VectorShort4 getClipOrigin();
+    @StructMember(0) public native MPSCustomKernelInfo setClipOrigin(@ByVal VectorShort4 clipOrigin);
+    @StructMember(1) public native @ByVal VectorShort4 getClipSize();
+    @StructMember(1) public native MPSCustomKernelInfo setClipSize(@ByVal VectorShort4 clipSize);
     @StructMember(2) public native short getDestinationFeatureChannels();
     @StructMember(2) public native MPSCustomKernelInfo setDestinationFeatureChannels(short destinationFeatureChannels);
     @StructMember(3) public native short getDestImageArraySize();

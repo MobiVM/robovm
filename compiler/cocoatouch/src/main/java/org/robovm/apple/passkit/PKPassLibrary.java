@@ -143,6 +143,11 @@ import org.robovm.apple.contacts.*;
     @Deprecated
     @Method(selector = "activatePaymentPass:withActivationCode:completion:")
     public native void activatePaymentPass(PKPaymentPass paymentPass, String activationCode, @Block VoidBlock2<Boolean, NSError> completion);
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    @Method(selector = "signData:withPaymentPass:completion:")
+    public native void signData(NSData signData, PKPaymentPass paymentPass, @Block VoidBlock3<NSData, NSData, NSError> completion);
     @Method(selector = "isPassLibraryAvailable")
     public static native boolean isPassLibraryAvailable();
     /**

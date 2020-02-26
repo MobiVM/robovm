@@ -73,7 +73,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "transposeDimension:withDimension:")
     public native void transposeDimension(@MachineSizedUInt long dimensionIndex, @MachineSizedUInt long dimensionIndex2);
     @Method(selector = "dimensionOrder")
-    public native FunctionPtr dimensionOrder();
+    public native @ByVal VectorChar16 dimensionOrder();
     @Method(selector = "reshapeWithDimensionCount:dimensionSizes:")
     public native void reshape(@MachineSizedUInt long numberOfDimensions, MachineSizedUIntPtr dimensionSizes);
     @Method(selector = "reshapeWithShape:")

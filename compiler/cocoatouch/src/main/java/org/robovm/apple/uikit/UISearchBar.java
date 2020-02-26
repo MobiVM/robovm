@@ -88,6 +88,11 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     public native boolean showsBookmarkButton();
     @Property(selector = "setShowsBookmarkButton:")
     public native void setShowsBookmarkButton(boolean v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "searchTextField")
+    public native UISearchTextField getSearchTextField();
     @Property(selector = "showsCancelButton")
     public native boolean showsCancelButton();
     @Property(selector = "setShowsCancelButton:")
@@ -153,8 +158,6 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     public native @ByVal UIOffset getSearchTextPositionAdjustment();
     @Property(selector = "setSearchTextPositionAdjustment:")
     public native void setSearchTextPositionAdjustment(@ByVal UIOffset v);
-    @Property(selector = "searchTextField")
-    public native UISearchTextField getSearchTextField();
     @Property(selector = "barPosition")
     public native UIBarPosition getBarPosition();
     @Property(selector = "autocapitalizationType")

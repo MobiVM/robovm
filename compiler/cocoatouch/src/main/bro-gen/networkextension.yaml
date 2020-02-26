@@ -1,5 +1,5 @@
 package: org.robovm.apple.networkextension
-include: [foundation.yaml, security.yaml]
+include: [foundation, security, network]
 library: NetworkExtension
 framework: NetworkExtension
 clang_args: ['-x', 'objective-c']
@@ -76,6 +76,8 @@ classes:
                 name: startFilter
             '-stopFilterWithReason:completionHandler:':
                 name: stopFilter
+            '-updateFlow:withVerdict:forDirection:':
+                name: updateFlow
     NEFilterDataProvider:
         methods:
             '-handleInboundDataFromFlow:readBytesStartOffset:readBytes:':

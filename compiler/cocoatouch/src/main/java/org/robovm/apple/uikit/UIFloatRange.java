@@ -58,10 +58,6 @@ import org.robovm.apple.linkpresentation.*;
         this.setMinimum(minimum);
         this.setMaximum(maximum);
     }
-    
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
     /*</constructors>*/
     /*<properties>*//*</properties>*/
     /*<members>*/
@@ -82,6 +78,9 @@ import org.robovm.apple.linkpresentation.*;
     @GlobalValue(symbol="UIFloatRangeInfinite", optional=true)
     public static native @ByVal UIFloatRange Infinite();
     
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
     public boolean isInfinite() { return isInfinite(this); }
     /**
      * @since Available in iOS 9.0 and later.

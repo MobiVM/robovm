@@ -3566,6 +3566,11 @@ values:
         class: AVMovie
         name: referenceRestrictionsKey
         type: NSString
+    AVPlayer(.*)Notification:
+        class: AVPlayer
+        static_class: Notifications
+        name: '#{g[0]}'
+        type: NSString
 
 
     # Make sure we don't miss any values if new ones are introduced in a later version

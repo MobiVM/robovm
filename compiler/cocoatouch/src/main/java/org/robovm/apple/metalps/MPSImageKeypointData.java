@@ -46,15 +46,15 @@ import org.robovm.apple.metal.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MPSImageKeypointData() {}
-    public MPSImageKeypointData(FunctionPtr keypointCoordinate, float keypointColorValue) {
+    public MPSImageKeypointData(VectorShort2 keypointCoordinate, float keypointColorValue) {
         this.setKeypointCoordinate(keypointCoordinate);
         this.setKeypointColorValue(keypointColorValue);
     }
     /*</constructors>*/
     /*<properties>*//*</properties>*/
     /*<members>*/
-    @StructMember(0) public native FunctionPtr getKeypointCoordinate();
-    @StructMember(0) public native MPSImageKeypointData setKeypointCoordinate(FunctionPtr keypointCoordinate);
+    @StructMember(0) public native @ByVal VectorShort2 getKeypointCoordinate();
+    @StructMember(0) public native MPSImageKeypointData setKeypointCoordinate(@ByVal VectorShort2 keypointCoordinate);
     @StructMember(1) public native float getKeypointColorValue();
     @StructMember(1) public native MPSImageKeypointData setKeypointColorValue(float keypointColorValue);
     /*</members>*/

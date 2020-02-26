@@ -56,7 +56,7 @@ enums:
     CMMetadataIdentifierErrorCode: { first: kCMMetadataIdentifierError_AllocationFailed }
     CMMetadataDataTypeRegistryErrorCode: { first: kCMMetadataDataTypeRegistryError_AllocationFailed }
     CMPersistentTrackID: {first: kCMPersistentTrackID_Invalid, prefix: kCMPersistentTrackID_}
-
+    CMMemoryPoolError: {prefix: kCMMemoryPoolError_, first: kCMMemoryPoolError_AllocationFailed} #since 6.0
 classes:
     # Opaque Types
     CMAttachmentBearer:

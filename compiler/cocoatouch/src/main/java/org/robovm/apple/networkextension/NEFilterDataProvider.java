@@ -29,6 +29,7 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.security.*;
+import org.robovm.apple.network.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -89,5 +90,10 @@ import org.robovm.apple.security.*;
      */
     @Method(selector = "handleRulesChanged")
     public native void handleRulesChanged();
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    @Method(selector = "updateFlow:withVerdict:forDirection:")
+    public native void updateFlow(NEFilterSocketFlow flow, NEFilterDataVerdict verdict, NETrafficDirection direction);
     /*</methods>*/
 }

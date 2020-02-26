@@ -90,6 +90,9 @@ import org.robovm.apple.metal.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    @Bridge(symbol="MPSGetImageType", optional=true)
+    public native MPSImageType getImageType();
+    
     @Method(selector = "initWithDevice:imageDescriptor:")
     protected native @Pointer long init(MTLDevice device, MPSImageDescriptor imageDescriptor);
     @Method(selector = "initWithParentImage:sliceRange:featureChannels:")

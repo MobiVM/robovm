@@ -106,6 +106,8 @@ classes:
                 name: endAutomaticPassPresentationSuppression
             '+isPaymentPassActivationAvailable':
                 name: isDevicePaymentPassActivationAvailable
+            '-signData:withPaymentPass:completion:':
+                name: signData
     PKPayment: # DONE
         properties:
             'billingAddress':

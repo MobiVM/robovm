@@ -58,7 +58,7 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "successWithResolvedCallRecordTypeOptions:")
     public static native INCallRecordTypeOptionsResolutionResult success(INCallRecordTypeOptions resolvedCallRecordTypeOptions);
     /**
-     * @since Available in iOS 10.0 and later.
+     * @since Available in iOS 11.0 and later.
      * @deprecated Deprecated in iOS 11.0. Use +successWithResolvedCallRecordTypeOptions:
      */
     @Deprecated
@@ -67,7 +67,7 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "confirmationRequiredWithCallRecordTypeOptionsToConfirm:")
     public static native INCallRecordTypeOptionsResolutionResult confirmationRequired(INCallRecordTypeOptions callRecordTypeOptionsToConfirm);
     /**
-     * @since Available in iOS 10.0 and later.
+     * @since Available in iOS 11.0 and later.
      * @deprecated Deprecated in iOS 11.0. Use +confirmationRequiredWithCallRecordTypeOptionsToConfirm:
      */
     @Deprecated
