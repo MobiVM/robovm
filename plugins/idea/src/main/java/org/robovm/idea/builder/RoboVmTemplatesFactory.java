@@ -65,11 +65,12 @@ public class RoboVmTemplatesFactory extends ProjectTemplatesFactory {
                 new RoboVmProjectTemplate("RoboVM iOS Framework", "A basic iOS framework template ", new RoboVmModuleBuilder("ios-framework",
                         new HashMap<String, String>(){{
                             put("appNameLabel", "Framework Name");
-                            put("appIdLabel", "Framework Id");
-                            put("mainClassName", "MyFramework");
-                            put("packageName", "com.mycompany.myframework");
                             put("appName", "MyFramework");
+                            put("appIdLabel", "Framework Id");
                             put("appId", "com.mycompany.myframework");
+                            put("packageName", "com.mycompany.myframework");
+                            put("mainClassNameLabel", ""); // hide as not used for framework target
+                            put("mainClassName", "");      // hide as not used for framework target
                         }})),
                 new RoboVmProjectTemplate("RoboVM Console App", "A console app for Mac OS X or Linux", new RoboVmModuleBuilder("console")),
         };

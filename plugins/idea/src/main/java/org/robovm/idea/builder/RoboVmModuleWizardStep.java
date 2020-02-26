@@ -84,12 +84,16 @@ public class RoboVmModuleWizardStep extends ModuleWizardStep {
     }
 
     private void applyCustomTitle(String title, JLabel label) {
-        if (title != null)
+        if (title != null) {
             label.setText(title);
+            label.setVisible(!title.isEmpty());
+        }
     }
 
     private void applyCustomValue(String value, JTextField field) {
-        if (value != null)
+        if (value != null) {
             field.setText(value);
+            field.setVisible(!value.isEmpty());
+        }
     }
 }

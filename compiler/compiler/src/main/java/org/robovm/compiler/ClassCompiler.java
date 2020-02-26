@@ -64,6 +64,7 @@ import org.robovm.compiler.llvm.Variable;
 import org.robovm.compiler.llvm.VariableRef;
 import org.robovm.compiler.plugin.CompilerPlugin;
 import org.robovm.compiler.plugin.debug.DebuggerDebugObjectFileInfo;
+import org.robovm.compiler.plugin.objc.ObjCMemberPlugin;
 import org.robovm.compiler.trampoline.Checkcast;
 import org.robovm.compiler.trampoline.Instanceof;
 import org.robovm.compiler.trampoline.Invoke;
@@ -225,7 +226,8 @@ public class ClassCompiler {
     private final GlobalValueMethodCompiler globalValueMethodCompiler;
     private final AttributesEncoder attributesEncoder;
     private final TrampolineCompiler trampolineResolver;
-    
+    private final ObjCMemberPlugin.MethodCompiler objcMethodCompiler;
+
     private final ByteArrayOutputStream output = new ByteArrayOutputStream(256 * 1024);
     
     public ClassCompiler(Config config) {
@@ -238,6 +240,7 @@ public class ClassCompiler {
         this.globalValueMethodCompiler = new GlobalValueMethodCompiler(config);
         this.attributesEncoder = new AttributesEncoder();
         this.trampolineResolver = new TrampolineCompiler(config);
+        this.objcMethodCompiler = new ObjCMemberPlugin.MethodCompiler(config);
     }
     
     public boolean mustCompile(Clazz clazz) {
@@ -890,6 +893,8 @@ public class ClassCompiler {
                 function = structMember(method);
             } else if (method.isNative()) {
                 function = nativeMethod(method);
+            } else if (objcMethodCompiler.willCompile(method)) {
+                function = objcPublishMethod(method);
             } else if (!method.isAbstract()) {
                 function = method(method);
             }
@@ -1585,6 +1590,10 @@ public class ClassCompiler {
 
     private Function globalValueMethod(SootMethod method) {
         return compileMethod(globalValueMethodCompiler, method);
+    }
+
+    private Function objcPublishMethod(SootMethod method) {
+        return compileMethod(objcMethodCompiler, method);
     }
 
     private Function method(SootMethod method) {
