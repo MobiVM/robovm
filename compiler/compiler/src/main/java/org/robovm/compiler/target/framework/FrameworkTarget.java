@@ -120,12 +120,15 @@ public class FrameworkTarget extends AbstractTarget {
 	protected List<String> getTargetExportedSymbols() {
 		return Arrays.asList("JNI_*", "rvmInstantiateFramework");
 	}
-	
-	private String getMinimumOSVersion() {
-		NSObject minimumOSVersion = config.getInfoPList().getDictionary().objectForKey("MinimumOSVersion");
-		if (minimumOSVersion != null)
-			return minimumOSVersion.toString();
-		return "8.0";
+
+	protected String getMinimumOSVersion() {
+		if (config.getIosInfoPList() != null) {
+			String minVersion = config.getIosInfoPList().getMinimumOSVersion();
+			if (minVersion != null) {
+				return minVersion;
+			}
+		}
+		return config.getOs().getMinVersion();
 	}
 
 	@Override
@@ -202,7 +205,7 @@ public class FrameworkTarget extends AbstractTarget {
 		
 		NSDictionary infoPlist = config.getInfoPList().getDictionary();
 		if (infoPlist.objectForKey("MinimumOSVersion") == null)
-			infoPlist.put("MinimumOSVersion", "8.0");
+			infoPlist.put("MinimumOSVersion", config.getOs().getMinVersion());
 		
 		File infoPlistBin = new File(frameworkDir, "Info.plist");
 		config.getLogger().info("Installing Info.plist to: %s", infoPlistBin);
