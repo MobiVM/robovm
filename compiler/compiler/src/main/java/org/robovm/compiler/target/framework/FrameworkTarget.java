@@ -121,13 +121,10 @@ public class FrameworkTarget extends AbstractTarget {
 		return Arrays.asList("JNI_*", "rvmInstantiateFramework");
 	}
 
-	protected String getMinimumOSVersion() {
-		if (config.getIosInfoPList() != null) {
-			String minVersion = config.getIosInfoPList().getMinimumOSVersion();
-			if (minVersion != null) {
-				return minVersion;
-			}
-		}
+	private String getMinimumOSVersion() {
+		NSObject minimumOSVersion = config.getInfoPList().getDictionary().objectForKey("MinimumOSVersion");
+		if (minimumOSVersion != null)
+			return minimumOSVersion.toString();
 		return config.getOs().getMinVersion();
 	}
 
