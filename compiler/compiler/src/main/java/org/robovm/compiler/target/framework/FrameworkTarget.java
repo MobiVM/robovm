@@ -122,9 +122,9 @@ public class FrameworkTarget extends AbstractTarget {
 	}
 
 	private String getMinimumOSVersion() {
-		NSObject minimumOSVersion = config.getInfoPList().getDictionary().objectForKey("MinimumOSVersion");
+		String minimumOSVersion = config.getInfoPList().getMinimumOSVersion();
 		if (minimumOSVersion != null)
-			return minimumOSVersion.toString();
+			return minimumOSVersion;
 		return config.getOs().getMinVersion();
 	}
 
