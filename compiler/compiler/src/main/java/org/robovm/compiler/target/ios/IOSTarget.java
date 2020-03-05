@@ -276,7 +276,7 @@ public class IOSTarget extends AbstractTarget {
         int majorVersionNumber = -1;
         try {
             majorVersionNumber = Integer.parseInt(minVersion.substring(0, minVersion.indexOf('.')));
-            int minMajorSupportedVersion = Integer.parseInt(minVersion.substring(0, config.getOs().getMinVersion().indexOf('.')));
+            int minMajorSupportedVersion = Integer.parseInt(config.getOs().getMinVersion().substring(0, config.getOs().getMinVersion().indexOf('.')));
 
             if (majorVersionNumber < minMajorSupportedVersion) {
                 throw new CompilerException("MinimumOSVersion of " + minVersion + " is not supported. "
@@ -937,7 +937,7 @@ public class IOSTarget extends AbstractTarget {
 
         if (dict.objectForKey("MinimumOSVersion") == null) {
             // This is required
-            dict.put("MinimumOSVersion", "6.0");
+            dict.put("MinimumOSVersion", config.getOs().getMinVersion());
         }
 
         customizeInfoPList(dict);
