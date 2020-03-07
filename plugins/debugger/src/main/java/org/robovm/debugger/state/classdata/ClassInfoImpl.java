@@ -214,7 +214,7 @@ public class ClassInfoImpl extends ClassInfo {
             MethodInfo methodInfo = new MethodInfo();
             methods[idx] = methodInfo;
             methodInfo.readMethodInfo(reader);
-            if (methodInfo.isBridge() || methodInfo.isBroCallback() || methodInfo.isBroCallback() || methodInfo.isBroBridge()) {
+            if (methodInfo.isBridge() || methodInfo.isBroCallback() || methodInfo.isBroBridge()) {
                 // mark bridge and callbacks as native just to keep debugger away from attempts to get information about
                 // these methods(line tables etc)
                 methodInfo.markAsNative();

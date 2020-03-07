@@ -23,7 +23,7 @@ import org.robovm.compiler.clazz.Clazz;
 import org.robovm.compiler.config.Config;
 import org.robovm.compiler.config.OS;
 import org.robovm.compiler.llvm.Alloca;
-import org.robovm.compiler.llvm.ArrayType;
+import org.robovm.compiler.llvm.ArrayConstantBuilder;
 import org.robovm.compiler.llvm.BasicBlock;
 import org.robovm.compiler.llvm.Call;
 import org.robovm.compiler.llvm.Constant;
@@ -337,11 +337,29 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
             }
         }
 
+        if (hookInstructionLines.isEmpty()) {
+            // there was no hook instructions identified, no need to bpTable, debug info and locals information
+            return;
+        }
+
         // instrument hooks call, there is known line range, create global for method breakpoints
         int arraySize = ((methodEndLineNumber - methodLineNumber + 1) + 7) / 8;
-        // global value to this array (without values as zeroinit)
-        Global bpTable = new Global(Symbols.bptableSymbol(method), Linkage.internal,
-                new ZeroInitializer(new ArrayType(arraySize, Type.I8)));
+        // use same data to tell debugger what lines are available for break points:
+        // idea is to set all not available (not instrumented) line with bit set to 1
+        // these bits will not be used for hooks as there is no corresponding injection
+        // but debugger will be able to read it and respond to JDWP
+        byte[] bpTableValue = new byte[arraySize];
+        // set all lines as breakpoint armed
+        Arrays.fill(bpTableValue, (byte)0xff);
+        for (Integer line : hookInstructionLines.keySet()) {
+            // reset armed for valid lines
+            int lineOffset = line - methodLineNumber;
+            int idx = lineOffset >> 3;
+            int mask = ~(1 << (lineOffset & 7));
+            bpTableValue[idx] &= mask;
+        }
+        // global value to this array
+        Global bpTable = new Global(Symbols.bptableSymbol(method), Linkage.internal, new ArrayConstantBuilder(Type.I8).add(bpTableValue).build());
         mb.addGlobal(bpTable);
         // cast to byte pointer
         ConstantBitcast bpTableRef = new ConstantBitcast(bpTable.ref(), Type.I8_PTR);

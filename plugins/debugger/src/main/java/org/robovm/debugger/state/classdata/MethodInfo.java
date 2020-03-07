@@ -166,11 +166,11 @@ public class MethodInfo extends BaseModifiersInfo {
         return spFpAlign;
     }
 
-    boolean isBroCallback() {
+    public boolean isBroCallback() {
         return (flags & ClassDataConsts.methodinfo.BRO_CALLBACK) != 0;
     }
 
-    boolean isBroBridge() {
+    public boolean isBroBridge() {
         return (flags & ClassDataConsts.methodinfo.BRO_BRIDGE) != 0;
     }
 
