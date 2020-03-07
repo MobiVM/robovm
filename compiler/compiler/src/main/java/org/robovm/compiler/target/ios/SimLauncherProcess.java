@@ -37,6 +37,8 @@ import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import static org.apache.commons.exec.Executor.INVALID_EXITVALUE;
+
 /**
  * {@link Process} implementation which runs an app on a simulator using an
  * simctl
@@ -129,6 +131,10 @@ public class SimLauncherProcess extends Process implements Launcher {
                     exitCode = 0;
                 } catch (ExecuteException e) {
                     exitCode = e.getExitValue();
+                    // if process is interrupted Apache Excutor will use this constant, replace with 0 otherwise
+                    // -559038737 looks odd in console output
+                    if (exitCode == INVALID_EXITVALUE)
+                        exitCode = 0;
                 } catch (Throwable t) {
                     log.error("AppLauncher failed with an exception:", t.getMessage());
                     t.printStackTrace(new PrintStream(new ErrorOutputStream(log), true));

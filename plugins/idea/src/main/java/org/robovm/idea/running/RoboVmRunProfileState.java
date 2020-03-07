@@ -100,24 +100,10 @@ public class RoboVmRunProfileState extends CommandLineState {
             if (launchParameters instanceof IOSSimulatorLaunchParameters) {
                 IOSSimulatorLaunchParameters simParams = (IOSSimulatorLaunchParameters) launchParameters;
                 // finding exact simulator to run at
-                DeviceType exactType = null;
-                DeviceType bestType = null;
-                int bestTypeVersion = -1;
-                for (DeviceType type : DeviceType.listDeviceTypes()) {
-                    if (type.getDeviceName().equals(runConfig.getSimulatorName()) && type.getVersion().versionCode == runConfig.getSimulatorSdk()) {
-                        exactType = type;
-                        break;
-                    } else if (type.getDeviceName().equals(runConfig.getSimulatorName()) && type.getVersion().versionCode > bestTypeVersion) {
-                        bestType = type;
-                        bestTypeVersion = type.getVersion().versionCode;
-                    }
-                }
+                DeviceType exactType = RoboVmRunConfigurationUtils.getSimulator(runConfig);
                 if (exactType == null)
-                    exactType = bestType;
-                if (exactType != null)
-                    simParams.setDeviceType(exactType);
-                else
-                    throw new ExecutionException("Simulator type is not set!");
+                    throw new ExecutionException("Simulator type is not set or is not available anymore!");
+                simParams.setDeviceType(exactType);
             }
         }
     }

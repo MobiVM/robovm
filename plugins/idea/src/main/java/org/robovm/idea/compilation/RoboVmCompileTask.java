@@ -50,8 +50,8 @@ import org.robovm.compiler.target.ios.SigningIdentity;
 import org.robovm.idea.RoboVmPlugin;
 import org.robovm.idea.actions.CreateFrameworkAction;
 import org.robovm.idea.actions.CreateIpaAction;
-import org.robovm.idea.running.RoboVmIOSRunConfigurationSettingsEditor;
 import org.robovm.idea.running.RoboVmRunConfiguration;
+import org.robovm.idea.running.RoboVmRunConfigurationUtils;
 import org.robovm.idea.utils.RoboFileUtils;
 
 import java.io.File;
@@ -246,7 +246,7 @@ public class RoboVmCompileTask implements CompileTask {
                 arch = runConfig.getDeviceArch();
             } else if (runConfig.getTargetType() == RoboVmRunConfiguration.TargetType.Simulator) {
                 os = OS.ios;
-                arch = runConfig.getSimArch();
+                arch = runConfig.getSimulatorArch();
             } else {
                 os = OS.getDefaultOS();
                 arch = Arch.getDefaultArch();
@@ -455,18 +455,8 @@ public class RoboVmCompileTask implements CompileTask {
         if (runConfig.getTargetType() == RoboVmRunConfiguration.TargetType.Device) {
             // configure device build
             builder.targetType(IOSTarget.TYPE);
-            String signingId = runConfig.getSigningIdentity();
-            String profile = runConfig.getProvisioningProfile();
-            if (RoboVmIOSRunConfigurationSettingsEditor.SKIP_SIGNING.equals(signingId)) {
-                builder.iosSkipSigning(true);
-            } else {
-                if (signingId != null && !RoboVmIOSRunConfigurationSettingsEditor.AUTO_SIGNING_IDENTITY.equals(signingId)) {
-                    builder.iosSignIdentity(SigningIdentity.find(SigningIdentity.list(), signingId));
-                }
-                if (profile != null && !RoboVmIOSRunConfigurationSettingsEditor.AUTO_PROVISIONING_PROFILE.equals(profile)) {
-                    builder.iosProvisioningProfile(ProvisioningProfile.find(ProvisioningProfile.list(), profile));
-                }
-            }
+            builder.iosSignIdentity(RoboVmRunConfigurationUtils.getIdentity(runConfig));
+            builder.iosProvisioningProfile(RoboVmRunConfigurationUtils.getProvisioningProfile(runConfig));
         } else if (runConfig.getTargetType() == RoboVmRunConfiguration.TargetType.Simulator) {
             builder.targetType(IOSTarget.TYPE);
         } else if (runConfig.getTargetType() == RoboVmRunConfiguration.TargetType.Console) {

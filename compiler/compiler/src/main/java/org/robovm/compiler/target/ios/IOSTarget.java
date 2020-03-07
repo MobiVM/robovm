@@ -356,7 +356,7 @@ public class IOSTarget extends AbstractTarget {
             if (config.isIosSkipSigning()) {
                 config.getLogger().warn("Skipping code signing. The resulting app will "
                         + "be unsigned and will not run on unjailbroken devices");
-                ldid(entitlementsPList, installDir);
+                codesignApp(SigningIdentity.ADHOC, getOrCreateEntitlementsPList(false, getBundleId()), installDir);
             } else {
                 // Copy the provisioning profile
                 copyProvisioningProfile(provisioningProfile, installDir);
@@ -392,7 +392,7 @@ public class IOSTarget extends AbstractTarget {
             if (config.isIosSkipSigning()) {
                 config.getLogger().warn("Skiping code signing. The resulting app will "
                         + "be unsigned and will not run on unjailbroken devices");
-                ldid(getOrCreateEntitlementsPList(true, getBundleId()), appDir);
+                codesignApp(SigningIdentity.ADHOC, getOrCreateEntitlementsPList(true, getBundleId()), appDir);
             } else {
                 copyProvisioningProfile(provisioningProfile, appDir);
                 boolean getTaskAllow = provisioningProfile.getType() == Type.Development;
@@ -567,21 +567,6 @@ public class IOSTarget extends AbstractTarget {
         }
         executor.args(args);
         executor.exec();
-    }
-
-    private void ldid(File entitlementsPList, File appDir) throws IOException {
-        File executableFile = new File(appDir, getExecutable());
-        config.getLogger().info("Pseudo-signing %s", executableFile.getAbsolutePath());
-        List<Object> args = new ArrayList<>();
-        if (entitlementsPList != null) {
-            args.add("-S" + entitlementsPList.getAbsolutePath());
-        } else {
-            args.add("-S");
-        }
-        args.add(executableFile);
-        new Executor(config.getLogger(), new File(config.getHome().getBinDir(), "ldid"))
-                .args(args)
-                .exec();
     }
 
     /**
@@ -1066,12 +1051,12 @@ public class IOSTarget extends AbstractTarget {
 
                 if (signIdentity == null && provisioningProfile == null) {
                     // both identity and provisioningProfile are set to auto, start with picking profile s
-                    Pair<SigningIdentity, ProvisioningProfile> pair = ProvisioningProfile.find(ProvisioningProfile.list(), SigningIdentity.list("/(?i)iPhone Developer|iOS Development/"), bundleId);
+                    Pair<SigningIdentity, ProvisioningProfile> pair = ProvisioningProfile.find(ProvisioningProfile.list(), SigningIdentity.list(SigningIdentity.REGEX_MATCH_FOR_IOS), bundleId);
                     signIdentity = pair.getLeft();
                     provisioningProfile = pair.getRight();
                 } else if (signIdentity == null) {
                     // provisioning profile was specified, need to find a signing identity that matches it
-                    signIdentity = SigningIdentity.find(SigningIdentity.list(), "/(?i)iPhone Developer|iOS Development/", provisioningProfile);
+                    signIdentity = SigningIdentity.find(SigningIdentity.list(), SigningIdentity.REGEX_MATCH_FOR_IOS, provisioningProfile);
                 } else if (provisioningProfile == null) {
                     // find profile that matches identity and bundle id
                     provisioningProfile = ProvisioningProfile.find(ProvisioningProfile.list(), signIdentity, bundleId);
