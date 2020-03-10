@@ -50,10 +50,10 @@ import org.robovm.apple.foundation.*;
     /*<methods>*/
     @NotImplemented("assessmentSessionDidBegin:")
     public void didBegin(AEAssessmentSession session) {}
-    @NotImplemented("assessmentSessionDidFailToBegin:error:")
-    public void didFailToBegin(AEAssessmentSession session, NSError error) {}
-    @NotImplemented("assessmentSessionDidInterrupt:error:")
-    public void didInterrupt(AEAssessmentSession session, NSError error) {}
+    @NotImplemented("assessmentSession:failedToBeginWithError:")
+    public void failedToBegin(AEAssessmentSession session, NSError error) {}
+    @NotImplemented("assessmentSession:wasInterruptedWithError:")
+    public void wasInterrupted(AEAssessmentSession session, NSError error) {}
     @NotImplemented("assessmentSessionDidEnd:")
     public void didEnd(AEAssessmentSession session) {}
     /*</methods>*/

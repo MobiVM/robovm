@@ -50,10 +50,10 @@ import org.robovm.apple.foundation.*;
     /*<methods>*/
     @Method(selector = "assessmentSessionDidBegin:")
     void didBegin(AEAssessmentSession session);
-    @Method(selector = "assessmentSessionDidFailToBegin:error:")
-    void didFailToBegin(AEAssessmentSession session, NSError error);
-    @Method(selector = "assessmentSessionDidInterrupt:error:")
-    void didInterrupt(AEAssessmentSession session, NSError error);
+    @Method(selector = "assessmentSession:failedToBeginWithError:")
+    void failedToBegin(AEAssessmentSession session, NSError error);
+    @Method(selector = "assessmentSession:wasInterruptedWithError:")
+    void wasInterrupted(AEAssessmentSession session, NSError error);
     @Method(selector = "assessmentSessionDidEnd:")
     void didEnd(AEAssessmentSession session);
     /*</methods>*/
