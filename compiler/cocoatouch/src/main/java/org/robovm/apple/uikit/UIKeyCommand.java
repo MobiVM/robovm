@@ -153,12 +153,12 @@ import org.robovm.apple.linkpresentation.*;
     @GlobalValue(symbol="UIKeyInputPageDown", optional=true)
     public static native String PageDown();
     /**
-     * @since Available in iOS 13.0 and later.
+     * @since Available in iOS 13.4 and later.
      */
     @GlobalValue(symbol="UIKeyInputHome", optional=true)
     public static native String Home();
     /**
-     * @since Available in iOS 13.0 and later.
+     * @since Available in iOS 13.4 and later.
      */
     @GlobalValue(symbol="UIKeyInputEnd", optional=true)
     public static native String End();

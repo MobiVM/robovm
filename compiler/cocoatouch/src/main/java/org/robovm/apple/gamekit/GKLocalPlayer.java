@@ -91,6 +91,11 @@ import org.robovm.apple.uikit.*;
     public native void setDefaultLeaderboardIdentifier(String leaderboardIdentifier, @Block VoidBlock1<NSError> completionHandler);
     @Method(selector = "loadDefaultLeaderboardIdentifierWithCompletionHandler:")
     public native void loadDefaultLeaderboardIdentifier(@Block VoidBlock2<NSString, NSError> completionHandler);
+    /**
+     * @since Available in iOS 13.5 and later.
+     */
+    @Method(selector = "fetchItemsForIdentityVerificationSignature:")
+    public native void fetchItemsForIdentityVerificationSignature(@Block VoidBlock5<NSURL, NSData, NSData, Long, NSError> completionHandler);
     @Method(selector = "registerListener:")
     public native void registerListener(GKLocalPlayerListener listener);
     @Method(selector = "unregisterListener:")
@@ -122,7 +127,7 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "loadFriendPlayersWithCompletionHandler:")
     public native void loadFriendPlayers(@Block VoidBlock2<NSArray<GKPlayer>, NSError> completionHandler);
     /**
-     * @deprecated API deprecated. Use fetchItemsForIdentityVerificationSignature: and the teamPlayerID value to verify a user identity.
+     * @deprecated Deprecated in iOS 13.5. API deprecated. Use fetchItemsForIdentityVerificationSignature: and the teamPlayerID value to verify a user identity.
      */
     @Deprecated
     @Method(selector = "generateIdentityVerificationSignatureWithCompletionHandler:")

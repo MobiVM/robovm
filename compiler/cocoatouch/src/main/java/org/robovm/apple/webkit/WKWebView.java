@@ -114,20 +114,6 @@ import org.robovm.apple.security.*;
     @Property(selector = "scrollView")
     public native UIScrollView getScrollView();
     /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @Property(selector = "pageZoom")
-    public native @MachineSizedFloat double getPageZoom();
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @Property(selector = "setPageZoom:")
-    public native void setPageZoom(@MachineSizedFloat double v);
-    @Property(selector = "mediaType")
-    public native String getMediaType();
-    @Property(selector = "setMediaType:")
-    public native void setMediaType(String v);
-    /**
      * @since Available in iOS 9.0 and later.
      * @deprecated Deprecated in iOS 10.0. Use serverTrust
      */
@@ -174,21 +160,6 @@ import org.robovm.apple.security.*;
      */
     @Method(selector = "takeSnapshotWithConfiguration:completionHandler:")
     public native void takeSnapshot(WKSnapshotConfiguration snapshotConfiguration, @Block VoidBlock2<UIImage, NSError> completionHandler);
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @Method(selector = "createPDFWithConfiguration:completionHandler:")
-    public native void createPDF(WKPDFConfiguration pdfConfiguration, @Block VoidBlock2<NSData, NSError> completionHandler);
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @Method(selector = "createWebArchiveDataWithCompletionHandler:")
-    public native void createWebArchiveData(@Block VoidBlock2<NSData, NSError> completionHandler);
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @Method(selector = "findString:withConfiguration:completionHandler:")
-    public native void findString(String string, WKFindConfiguration configuration, @Block VoidBlock1<WKFindResult> completionHandler);
     /**
      * @since Available in iOS 11.0 and later.
      */
