@@ -34,30 +34,40 @@ import org.robovm.apple.contacts.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 13.4 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("PassKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/PKPaymentPass/*</name>*/ 
-    extends /*<extends>*/PKSecureElementPass/*</extends>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/PKSecureElementPass/*</name>*/ 
+    extends /*<extends>*/PKPass/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class PKPaymentPassPtr extends Ptr<PKPaymentPass, PKPaymentPassPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(PKPaymentPass.class); }/*</bind>*/
+    /*<ptr>*/public static class PKSecureElementPassPtr extends Ptr<PKSecureElementPass, PKSecureElementPassPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(PKSecureElementPass.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public PKPaymentPass() {}
-    protected PKPaymentPass(Handle h, long handle) { super(h, handle); }
-    protected PKPaymentPass(SkipInit skipInit) { super(skipInit); }
+    public PKSecureElementPass() {}
+    protected PKSecureElementPass(Handle h, long handle) { super(h, handle); }
+    protected PKSecureElementPass(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithData:error:")
-    public PKPaymentPass(NSData data) throws NSErrorException { super(data); }
+    public PKSecureElementPass(NSData data) throws NSErrorException { super(data); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @deprecated Use [PKSecureElementPass passActivationState] instead
-     */
-    @Deprecated
-    @Property(selector = "activationState")
-    public native PKPaymentPassActivationState getActivationState();
+    @Property(selector = "primaryAccountIdentifier")
+    public native String getPrimaryAccountIdentifier();
+    @Property(selector = "primaryAccountNumberSuffix")
+    public native String getPrimaryAccountNumberSuffix();
+    @Property(selector = "deviceAccountIdentifier")
+    public native String getDeviceAccountIdentifier();
+    @Property(selector = "deviceAccountNumberSuffix")
+    public native String getDeviceAccountNumberSuffix();
+    @Property(selector = "passActivationState")
+    public native PKSecureElementPassActivationState getPassActivationState();
+    @Property(selector = "devicePassIdentifier")
+    public native String getDevicePassIdentifier();
+    @Property(selector = "pairedTerminalIdentifier")
+    public native String getPairedTerminalIdentifier();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

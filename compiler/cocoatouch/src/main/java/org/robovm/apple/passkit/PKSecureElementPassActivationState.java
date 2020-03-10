@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -34,35 +34,36 @@ import org.robovm.apple.contacts.*;
 /*</imports>*/
 
 /*<javadoc>*/
+/**
+ * @since Available in iOS 13.4 and later.
+ */
 /*</javadoc>*/
-/*<annotations>*/@Library("PassKit") @StronglyLinked/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/PKPassKitError/*</name>*/ 
-    extends /*<extends>*/NSError/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+public enum /*<name>*/PKSecureElementPassActivationState/*</name>*/ implements ValuedEnum {
+    /*<values>*/
+    Activated(0L),
+    RequiresActivation(1L),
+    Activating(2L),
+    Suspended(3L),
+    Deactivated(4L);
+    /*</values>*/
 
-    protected PKPassKitError(SkipInit skipInit) {
-        super(skipInit);
-    }
-    
-    /*<ptr>*/
-    /*</ptr>*/
-    /*<bind>*/static { Bro.bind(PKPassKitError.class); }/*</bind>*/
+    /*<bind>*/
+    /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*//*</constructors>*/
-    /*<properties>*//*</properties>*/
-    /*<members>*//*</members>*/
-    @Override
-    public PKPassKitErrorCode getErrorCode() {
-        PKPassKitErrorCode code = null;
-        try {
-            code = PKPassKitErrorCode.valueOf(getCode());
-        } catch (IllegalArgumentException e) {
-            // ignore
+    /*<methods>*//*</methods>*/
+
+    private final long n;
+
+    private /*<name>*/PKSecureElementPassActivationState/*</name>*/(long n) { this.n = n; }
+    public long value() { return n; }
+    public static /*<name>*/PKSecureElementPassActivationState/*</name>*/ valueOf(long n) {
+        for (/*<name>*/PKSecureElementPassActivationState/*</name>*/ v : values()) {
+            if (v.n == n) {
+                return v;
+            }
         }
-        return code;
+        throw new IllegalArgumentException("No constant with value " + n + " found in " 
+            + /*<name>*/PKSecureElementPassActivationState/*</name>*/.class.getName());
     }
-    /*<methods>*/
-    @GlobalValue(symbol="PKPassKitErrorDomain", optional=true)
-    public static native String getClassDomain();
-    /*</methods>*/
 }

@@ -34,38 +34,44 @@ import org.robovm.apple.contacts.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 13.4 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Library("PassKit")/*</annotations>*/
-public enum /*<name>*/PKPassKitErrorCode/*</name>*/ implements NSErrorCode {
+public enum /*<name>*/PKAddSecureElementPassErrorCode/*</name>*/ implements NSErrorCode {
     /*<values>*/
-    UnknownError(-1L),
-    InvalidDataError(1L),
-    UnsupportedVersionError(2L),
-    InvalidSignature(3L),
-    NotEntitledError(4L);
+    UnknownError(0L),
+    UserCanceledError(1L),
+    UnavailableError(2L),
+    InvalidConfigurationError(3L),
+    DeviceNotSupportedError(4L),
+    DeviceNotReadyError(5L);
     /*</values>*/
 
-    /*<bind>*/static { Bro.bind(PKPassKitErrorCode.class); }/*</bind>*/
+    /*<bind>*/static { Bro.bind(PKAddSecureElementPassErrorCode.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @GlobalValue(symbol="PKPassKitErrorDomain", optional=true)
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    @GlobalValue(symbol="PKAddSecureElementPassErrorDomain", optional=true)
     public static native String getClassDomain();
     /*</methods>*/
 
     private final long n;
 
-    private /*<name>*/PKPassKitErrorCode/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/PKAddSecureElementPassErrorCode/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/PKPassKitErrorCode/*</name>*/ valueOf(long n) {
-        for (/*<name>*/PKPassKitErrorCode/*</name>*/ v : values()) {
+    public static /*<name>*/PKAddSecureElementPassErrorCode/*</name>*/ valueOf(long n) {
+        for (/*<name>*/PKAddSecureElementPassErrorCode/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in "
-            + /*<name>*/PKPassKitErrorCode/*</name>*/.class.getName());
+            + /*<name>*/PKAddSecureElementPassErrorCode/*</name>*/.class.getName());
     }
 
     // bind wrap to include it in compilation as long as nserror enum is used 
@@ -76,7 +82,7 @@ public enum /*<name>*/PKPassKitErrorCode/*</name>*/ implements NSErrorCode {
 
         @Override public NSErrorCode getErrorCode() {
              try {
-                 return  /*<name>*/PKPassKitErrorCode/*</name>*/.valueOf(getCode());
+                 return  /*<name>*/PKAddSecureElementPassErrorCode/*</name>*/.valueOf(getCode());
              } catch (IllegalArgumentException e) {
                  return null;
              }
@@ -84,7 +90,7 @@ public enum /*<name>*/PKPassKitErrorCode/*</name>*/ implements NSErrorCode {
 
         public static String getClassDomain() {
             /** must be incerted in value section */
-            return /*<name>*/PKPassKitErrorCode/*</name>*/.getClassDomain();
+            return /*<name>*/PKAddSecureElementPassErrorCode/*</name>*/.getClassDomain();
         }
     }
 }
