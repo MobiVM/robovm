@@ -172,6 +172,10 @@ classes:
                         type: NSArray<MKMapItem>
                     launchOptions:
                         type: MKLaunchOptions
+            '-openInMapsWithLaunchOptions:fromScene:completionHandler:':
+                name: openInMaps
+            '+openMapsWithItems:launchOptions:fromScene:completionHandler:':
+                name: openMaps
     MKMapSnapshot: # DONE
         methods:
             '-pointForCoordinate:':
