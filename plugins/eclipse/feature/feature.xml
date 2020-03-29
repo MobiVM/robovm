@@ -2,7 +2,7 @@
 <feature
       id="org.robovm.eclipse.feature"
       label="RoboVM for Eclipse"
-      version="2.3.9.202003290315"
+      version="2.3.10.qualifier"
       provider-name="RoboVM AB">
 
    <description url="http://www.robovm.com">
