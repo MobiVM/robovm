@@ -172,9 +172,21 @@ import org.robovm.apple.coregraphics.*;
     public static final CGImagePropertyExif LensModel = new CGImagePropertyExif("LensModel");
     public static final CGImagePropertyExif LensSerialNumber = new CGImagePropertyExif("LensSerialNumber");
     public static final CGImagePropertyExif Gamma = new CGImagePropertyExif("Gamma");
+    /**
+     * @since Available in iOS 13.1 and later.
+     */
+    public static final CGImagePropertyExif CompositeImage = new CGImagePropertyExif("CompositeImage");
+    /**
+     * @since Available in iOS 13.1 and later.
+     */
+    public static final CGImagePropertyExif SourceImageNumberOfCompositeImage = new CGImagePropertyExif("SourceImageNumberOfCompositeImage");
+    /**
+     * @since Available in iOS 13.1 and later.
+     */
+    public static final CGImagePropertyExif SourceExposureTimesOfCompositeImage = new CGImagePropertyExif("SourceExposureTimesOfCompositeImage");
     /*</constants>*/
     
-    private static /*<name>*/CGImagePropertyExif/*</name>*/[] values = new /*<name>*/CGImagePropertyExif/*</name>*/[] {/*<value_list>*/ExposureTime, FNumber, ExposureProgram, SpectralSensitivity, ISOSpeedRatings, OECF, SensitivityType, StandardOutputSensitivity, RecommendedExposureIndex, ISOSpeed, ISOSpeedLatitudeyyy, ISOSpeedLatitudezzz, Version, DateTimeOriginal, DateTimeDigitized, OffsetTime, OffsetTimeOriginal, OffsetTimeDigitized, ComponentsConfiguration, CompressedBitsPerPixel, ShutterSpeedValue, ApertureValue, BrightnessValue, ExposureBiasValue, MaxApertureValue, SubjectDistance, MeteringMode, LightSource, Flash, FocalLength, SubjectArea, MakerNote, UserComment, SubsecTime, SubsecTimeOriginal, SubsecTimeDigitized, FlashPixVersion, ColorSpace, PixelXDimension, PixelYDimension, RelatedSoundFile, FlashEnergy, SpatialFrequencyResponse, FocalPlaneXResolution, FocalPlaneYResolution, FocalPlaneResolutionUnit, SubjectLocation, ExposureIndex, SensingMethod, FileSource, SceneType, CFAPattern, CustomRendered, ExposureMode, WhiteBalance, DigitalZoomRatio, FocalLenIn35mmFilm, SceneCaptureType, GainControl, Contrast, Saturation, Sharpness, DeviceSettingDescription, SubjectDistRange, ImageUniqueID, CameraOwnerName, BodySerialNumber, LensSpecification, LensMake, LensModel, LensSerialNumber, Gamma/*</value_list>*/};
+    private static /*<name>*/CGImagePropertyExif/*</name>*/[] values = new /*<name>*/CGImagePropertyExif/*</name>*/[] {/*<value_list>*/ExposureTime, FNumber, ExposureProgram, SpectralSensitivity, ISOSpeedRatings, OECF, SensitivityType, StandardOutputSensitivity, RecommendedExposureIndex, ISOSpeed, ISOSpeedLatitudeyyy, ISOSpeedLatitudezzz, Version, DateTimeOriginal, DateTimeDigitized, OffsetTime, OffsetTimeOriginal, OffsetTimeDigitized, ComponentsConfiguration, CompressedBitsPerPixel, ShutterSpeedValue, ApertureValue, BrightnessValue, ExposureBiasValue, MaxApertureValue, SubjectDistance, MeteringMode, LightSource, Flash, FocalLength, SubjectArea, MakerNote, UserComment, SubsecTime, SubsecTimeOriginal, SubsecTimeDigitized, FlashPixVersion, ColorSpace, PixelXDimension, PixelYDimension, RelatedSoundFile, FlashEnergy, SpatialFrequencyResponse, FocalPlaneXResolution, FocalPlaneYResolution, FocalPlaneResolutionUnit, SubjectLocation, ExposureIndex, SensingMethod, FileSource, SceneType, CFAPattern, CustomRendered, ExposureMode, WhiteBalance, DigitalZoomRatio, FocalLenIn35mmFilm, SceneCaptureType, GainControl, Contrast, Saturation, Sharpness, DeviceSettingDescription, SubjectDistRange, ImageUniqueID, CameraOwnerName, BodySerialNumber, LensSpecification, LensMake, LensModel, LensSerialNumber, Gamma, CompositeImage, SourceImageNumberOfCompositeImage, SourceExposureTimesOfCompositeImage/*</value_list>*/};
     
     /*<name>*/CGImagePropertyExif/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -353,6 +365,21 @@ import org.robovm.apple.coregraphics.*;
         public static native CFString LensSerialNumber();
         @GlobalValue(symbol="kCGImagePropertyExifGamma", optional=true)
         public static native CFString Gamma();
+        /**
+         * @since Available in iOS 13.1 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyExifCompositeImage", optional=true)
+        public static native CFString CompositeImage();
+        /**
+         * @since Available in iOS 13.1 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyExifSourceImageNumberOfCompositeImage", optional=true)
+        public static native CFString SourceImageNumberOfCompositeImage();
+        /**
+         * @since Available in iOS 13.1 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyExifSourceExposureTimesOfCompositeImage", optional=true)
+        public static native CFString SourceExposureTimesOfCompositeImage();
         /*</values>*/
     }
 }

@@ -4,10 +4,11 @@ library: AutomaticAssessmentConfiguration
 framework: AutomaticAssessmentConfiguration
 clang_args: ['-x', 'objective-c']
 headers:
-    - /System/Library/Frameworks/AutomaticAssessmentConfiguration.framework/Headers/AutomaticAssessmentConfiguration-Swift.h
+    - /System/Library/Frameworks/AutomaticAssessmentConfiguration.framework/Headers/AutomaticAssessmentConfiguration.h
 typedefs: {}
     
 enums:
+    AEAssessmentErrorCode: {prefix: AEAssessmentError, nserror: true}
 
 classes:
     AEAssessmentConfiguration: {} #since 13.4
@@ -20,12 +21,12 @@ protocols:
         methods:
             '-assessmentSessionDidBegin:':
                 name: didBegin
-            '-assessmentSessionDidFailToBegin:error:':
-                name: didFailToBegin
-            '-assessmentSessionDidInterrupt:error:':
-                name: didInterrupt
             '-assessmentSessionDidEnd:':
                 name: didEnd
+            '-assessmentSession:failedToBeginWithError:':
+                name: failedToBegin
+            '-assessmentSession:wasInterruptedWithError:':
+                name: wasInterrupted
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (k?AE.*):
@@ -33,6 +34,9 @@ functions:
         name: 'Function__#{g[0]}'
 
 values:
+    AEAssessmentErrorDomain:
+        class: AEAssessmentErrorCode
+        name: getClassDomain
 
     # Make sure we don't miss any values if new ones are introduced in a later version
     (k?AE.*):

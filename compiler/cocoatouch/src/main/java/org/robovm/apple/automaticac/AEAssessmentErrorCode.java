@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.robovm.apple.passkit;
+package org.robovm.apple.automaticac;
 
 /*<imports>*/
 import java.io.*;
@@ -28,44 +28,40 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
-import org.robovm.apple.uikit.*;
-import org.robovm.apple.addressbook.*;
-import org.robovm.apple.contacts.*;
 /*</imports>*/
 
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Library("PassKit")/*</annotations>*/
-public enum /*<name>*/PKPassKitErrorCode/*</name>*/ implements NSErrorCode {
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Library("AutomaticAssessmentConfiguration")/*</annotations>*/
+public enum /*<name>*/AEAssessmentErrorCode/*</name>*/ implements NSErrorCode {
     /*<values>*/
-    UnknownError(-1L),
-    InvalidDataError(1L),
-    UnsupportedVersionError(2L),
-    InvalidSignature(3L),
-    NotEntitledError(4L);
+    Unknown(1L);
     /*</values>*/
 
-    /*<bind>*/static { Bro.bind(PKPassKitErrorCode.class); }/*</bind>*/
+    /*<bind>*/static { Bro.bind(AEAssessmentErrorCode.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @GlobalValue(symbol="PKPassKitErrorDomain", optional=true)
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    @GlobalValue(symbol="AEAssessmentErrorDomain", optional=true)
     public static native String getClassDomain();
     /*</methods>*/
 
     private final long n;
 
-    private /*<name>*/PKPassKitErrorCode/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/AEAssessmentErrorCode/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/PKPassKitErrorCode/*</name>*/ valueOf(long n) {
-        for (/*<name>*/PKPassKitErrorCode/*</name>*/ v : values()) {
+    public static /*<name>*/AEAssessmentErrorCode/*</name>*/ valueOf(long n) {
+        for (/*<name>*/AEAssessmentErrorCode/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in "
-            + /*<name>*/PKPassKitErrorCode/*</name>*/.class.getName());
+            + /*<name>*/AEAssessmentErrorCode/*</name>*/.class.getName());
     }
 
     // bind wrap to include it in compilation as long as nserror enum is used 
@@ -76,7 +72,7 @@ public enum /*<name>*/PKPassKitErrorCode/*</name>*/ implements NSErrorCode {
 
         @Override public NSErrorCode getErrorCode() {
              try {
-                 return  /*<name>*/PKPassKitErrorCode/*</name>*/.valueOf(getCode());
+                 return  /*<name>*/AEAssessmentErrorCode/*</name>*/.valueOf(getCode());
              } catch (IllegalArgumentException e) {
                  return null;
              }
@@ -84,7 +80,7 @@ public enum /*<name>*/PKPassKitErrorCode/*</name>*/ implements NSErrorCode {
 
         public static String getClassDomain() {
             /** must be incerted in value section */
-            return /*<name>*/PKPassKitErrorCode/*</name>*/.getClassDomain();
+            return /*<name>*/AEAssessmentErrorCode/*</name>*/.getClassDomain();
         }
     }
 }

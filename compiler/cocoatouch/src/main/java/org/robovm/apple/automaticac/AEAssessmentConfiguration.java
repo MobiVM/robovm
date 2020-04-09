@@ -35,7 +35,7 @@ import org.robovm.apple.foundation.*;
  * @since Available in iOS 13.4 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("AutomaticAssessmentConfiguration") @NativeClass("_TtC32AutomaticAssessmentConfiguration25AEAssessmentConfiguration")/*</annotations>*/
+/*<annotations>*/@Library("AutomaticAssessmentConfiguration") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AEAssessmentConfiguration/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {

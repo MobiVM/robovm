@@ -47,12 +47,24 @@ import org.robovm.apple.foundation.*;
     protected HKSampleType(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
     @Property(selector = "isMaximumDurationRestricted")
     public native boolean isMaximumDurationRestricted();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
     @Property(selector = "maximumAllowedDuration")
     public native double getMaximumAllowedDuration();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
     @Property(selector = "isMinimumDurationRestricted")
     public native boolean isMinimumDurationRestricted();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
     @Property(selector = "minimumAllowedDuration")
     public native double getMinimumAllowedDuration();
     /*</properties>*/

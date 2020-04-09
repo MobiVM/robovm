@@ -112,10 +112,20 @@ import org.robovm.apple.dispatch.*;
     protected native @Pointer long init(MKPlacemark placemark);
     @Method(selector = "openInMapsWithLaunchOptions:")
     public native boolean openInMaps(MKLaunchOptions launchOptions);
+    /**
+     * @since Available in iOS 13.2 and later.
+     */
+    @Method(selector = "openInMapsWithLaunchOptions:fromScene:completionHandler:")
+    public native void openInMaps(NSDictionary<NSString, ?> launchOptions, UIScene scene, @Block VoidBooleanBlock completion);
     @Method(selector = "mapItemForCurrentLocation")
     public static native MKMapItem getMapItemForCurrentLocation();
     @Method(selector = "openMapsWithItems:launchOptions:")
     public static native boolean openMaps(NSArray<MKMapItem> mapItems, MKLaunchOptions launchOptions);
+    /**
+     * @since Available in iOS 13.2 and later.
+     */
+    @Method(selector = "openMapsWithItems:launchOptions:fromScene:completionHandler:")
+    public static native void openMaps(NSArray<MKMapItem> mapItems, NSDictionary<NSString, ?> launchOptions, UIScene scene, @Block VoidBooleanBlock completion);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

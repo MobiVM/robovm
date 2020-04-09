@@ -337,18 +337,28 @@ import org.robovm.apple.uikit.*;
     public static native String ExtendedLinearDisplayP3();
     /**
      * @since Available in iOS 13.0 and later.
-     * @deprecated No longer supported
+     * @deprecated Deprecated in iOS 14.0. No longer supported
      */
     @Deprecated
     @GlobalValue(symbol="kCGColorSpaceITUR_2020_PQ_EOTF", optional=true)
     public static native String ITUR_2020_PQ_EOTF();
     /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @GlobalValue(symbol="kCGColorSpaceITUR_2020_PQ", optional=true)
+    public static native String ITUR_2020_PQ();
+    /**
      * @since Available in iOS 13.0 and later.
-     * @deprecated No longer supported
+     * @deprecated Deprecated in iOS 14.0. No longer supported
      */
     @Deprecated
     @GlobalValue(symbol="kCGColorSpaceDisplayP3_PQ_EOTF", optional=true)
     public static native String DisplayP3_PQ_EOTF();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @GlobalValue(symbol="kCGColorSpaceDisplayP3_PQ", optional=true)
+    public static native String DisplayP3_PQ();
     /**
      * @since Available in iOS 13.0 and later.
      */

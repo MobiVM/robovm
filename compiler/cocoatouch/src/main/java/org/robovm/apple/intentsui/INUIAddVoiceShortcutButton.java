@@ -47,13 +47,11 @@ import org.robovm.apple.uikit.*;
     /*<bind>*/static { ObjCRuntime.bind(INUIAddVoiceShortcutButton.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public INUIAddVoiceShortcutButton() {}
+    protected INUIAddVoiceShortcutButton() {}
     protected INUIAddVoiceShortcutButton(Handle h, long handle) { super(h, handle); }
     protected INUIAddVoiceShortcutButton(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithStyle:")
     public INUIAddVoiceShortcutButton(INUIAddVoiceShortcutButtonStyle style) { super((SkipInit) null); initObject(init(style)); }
-    @Method(selector = "initWithFrame:")
-    public INUIAddVoiceShortcutButton(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
     public INUIAddVoiceShortcutButton(NSCoder coder) { super(coder); }
     /*</constructors>*/

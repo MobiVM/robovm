@@ -90,10 +90,5 @@ import org.robovm.apple.network.*;
      */
     @Method(selector = "handleRulesChanged")
     public native void handleRulesChanged();
-    /**
-     * @since Available in iOS 13.4 and later.
-     */
-    @Method(selector = "updateFlow:withVerdict:forDirection:")
-    public native void updateFlow(NEFilterSocketFlow flow, NEFilterDataVerdict verdict, NETrafficDirection direction);
     /*</methods>*/
 }
