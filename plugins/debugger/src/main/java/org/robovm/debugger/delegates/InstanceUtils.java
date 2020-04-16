@@ -37,7 +37,7 @@ import org.robovm.debugger.state.instances.VmThread;
 import org.robovm.debugger.state.instances.VmThreadGroup;
 import org.robovm.debugger.utils.Converter;
 import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
-import org.robovm.debugger.utils.bytebuffer.ByteBufferReader;
+import org.robovm.debugger.utils.bytebuffer.DataBufferReader;
 
 import java.nio.ByteOrder;
 import java.util.ArrayList;
@@ -58,7 +58,7 @@ public class InstanceUtils {
     /**
      * maps class ref id to resolved instantiator
      */
-    private Map<Long, Instantiator> instantiatorForClassRefId = new HashMap<>();
+    private final Map<Long, Instantiator> instantiatorForClassRefId = new HashMap<>();
 
 
     /**
@@ -210,7 +210,7 @@ public class InstanceUtils {
      */
     public Object getMemoryValue(long objectPtr, ClassInfo ci, ByteBufferPacket jdwpOutput) {
         ValueManipulator valueManipulator;
-        delegates.runtime().deviceMemoryReader().setAddress(objectPtr);
+        delegates.runtime().deviceMemoryReader().setPosition(objectPtr);
         if (ci != null && ci.isPrimitive()) {
             ClassInfoPrimitiveImpl primitiveInfo = (ClassInfoPrimitiveImpl) ci;
             valueManipulator = primitiveInfo.manipulator();
@@ -295,8 +295,7 @@ public class InstanceUtils {
      * @param fromJdpw if not null value shall be picked here using manipulator
      * @throws DebuggerException if something wrong
      */
-    @SuppressWarnings("unchecked")
-    private void setFieldValue(long objectPtr, ClassInfo ci, FieldInfo fi, Object value, ByteBufferReader fromJdpw) throws DebuggerException {
+    private void setFieldValue(long objectPtr, ClassInfo ci, FieldInfo fi, Object value, DataBufferReader fromJdpw) throws DebuggerException {
         String signature = fi.signature();
         // is resolved already ?
         ClassInfo fieldTypeInfo = fi.typeInfo();
@@ -326,7 +325,7 @@ public class InstanceUtils {
      * @param value if there is value itself
      * @param fromJdpw if specified then manipulator will pick value from jdwp payload
      */
-    public void setMemoryValue(long objectPtr, ClassInfo ci, Object value, ByteBufferReader fromJdpw) {
+    public void setMemoryValue(long objectPtr, ClassInfo ci, Object value, DataBufferReader fromJdpw) {
         // can write data now
         ValueManipulator valueManipulator;
         if (ci != null && ci.isPrimitive()) {
@@ -571,12 +570,12 @@ public class InstanceUtils {
                 // there is one trick. data is being written as jvalue which is 8 bytes long
                 // so while writing we have to do back in force
                 // refer to method.c/setArgs for details
-                int pos = argsBuffer.position();
+                long pos = argsBuffer.position();
                 argsBuffer.writeLong(0);
                 argsBuffer.setPosition(pos);
                 valueManipulator.writeToDevice(argsBuffer, value);
                 // move pos to end of buf
-                argsBuffer.setPosition(argsBuffer.size());
+                argsBuffer.setPosition(argsBuffer.limit());
             }
         }
 
@@ -593,7 +592,7 @@ public class InstanceUtils {
         if (specReturnType == null)
             returnType = (byte) ("<init>".equals(methodInfo.name()) ? 'L' : 'V');
         else if (specReturnType.isPrimitive())
-            returnType = (byte) callspec.returnType.signature().charAt(0);
+            returnType = (byte) specReturnType.signature().charAt(0);
         else
             returnType = 'L'; // array or object
 
@@ -749,7 +748,7 @@ public class InstanceUtils {
             }
         }
 
-        return new MethodInfo.CallSpec(retType, argumentTypes.toArray(new ClassInfo[argumentTypes.size()]));
+        return new MethodInfo.CallSpec(retType, argumentTypes.toArray(new ClassInfo[0]));
     }
 
     /**

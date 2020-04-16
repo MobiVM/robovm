@@ -17,13 +17,15 @@ package org.robovm.debugger.state.classdata;
 
 import org.robovm.compiler.plugin.debug.DebuggerDebugMethodInfo;
 import org.robovm.compiler.plugin.debug.DebuggerDebugObjectFileInfo;
+import org.robovm.compiler.plugin.debug.DebuggerDebugVariableInfo;
 import org.robovm.debugger.DebuggerException;
 import org.robovm.debugger.state.refid.RefIdHolder;
 import org.robovm.debugger.utils.Converter;
-import org.robovm.debugger.utils.bytebuffer.ByteBufferMemoryReader;
+import org.robovm.debugger.utils.bytebuffer.DataBufferReader;
 import org.robovm.debugger.utils.macho.MachOConsts;
+import org.robovm.llvm.debuginfo.DwarfDebugVariableInfo;
 
-import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 
 /**
  * @author Demyan Kimitsa
@@ -82,7 +84,7 @@ public class ClassInfoImpl extends ClassInfo {
         super(Type.CLASS);
     }
 
-    void readClassInfoHeader(ByteBufferMemoryReader reader) {
+    void readClassInfoHeader(DataBufferReader reader) {
         int pointerSize = reader.pointerSize();
 
         //    Class* clazz;
@@ -91,7 +93,7 @@ public class ClassInfoImpl extends ClassInfo {
         flags = reader.readInt32();
         //    const char* className;
         long ptr = reader.readPointer(true);
-        className = reader.readStringZAtPtr(ptr);
+        className = reader.readStringZ(ptr);
         signature = "L" + className + ";";
 
         if (hasError()) {
@@ -100,7 +102,7 @@ public class ClassInfoImpl extends ClassInfo {
 //            ptr = reader.readPointer(true);
 //            String errorMessage = null;
 //            if (ptr != 0) {
-//                errorMessage = reader.readStringZAtPtr(ptr);
+//                errorMessage = reader.readStringZ(ptr);
 //            }
 //            System.out.println("!Class " + className + " has error " + errorType + " due " + errorMessage);
             return;
@@ -120,14 +122,14 @@ public class ClassInfoImpl extends ClassInfo {
         // refer to classinfo.c/readClassInfo for some magic details
 
         // save position to continue once loadData is called
-        endOfHeaderPos = reader.address();
+        endOfHeaderPos = reader.position();
 
         // read little bit more to get super class name
         if (!isInterface()) {
             reader.skip(2 + 2 + 2); // interfaceCount +  fieldCount +  methodCount
             long superNamePtr = reader.readPointer();
             if (superNamePtr != 0) {
-                superclassName = reader.readStringZAtPtr(superNamePtr);
+                superclassName = reader.readStringZ(superNamePtr);
                 superclassSignature = "L" + superclassName + ";";
             }
         }
@@ -146,8 +148,8 @@ public class ClassInfoImpl extends ClassInfo {
         debugInfo = readDebugInfo(loader);
 
 
-        ByteBufferMemoryReader reader = loader.reader;
-        reader.setAddress(endOfHeaderPos);
+        DataBufferReader reader = loader.reader;
+        reader.setPosition(endOfHeaderPos);
         int interfaceCount = reader.readInt16();
         int fieldCount = reader.readInt16();
         int methodCount = reader.readInt16();
@@ -166,7 +168,7 @@ public class ClassInfoImpl extends ClassInfo {
         interfaces = new ClassInfo[interfaceCount];
         for (int idx = 0; idx < interfaceCount; idx++) {
             long ptr = reader.readPointer();
-            String interfaceSignature = "L" + reader.readStringZAtPtr(ptr) + ";";
+            String interfaceSignature = "L" + reader.readStringZ(ptr) + ";";
             interfaces[idx] = loader.classInfoBySignature(interfaceSignature);
             if (interfaces[idx] == null)
                 throw new DebuggerException("Interface '" + interfaceSignature + "' not found in " + className);
@@ -189,12 +191,11 @@ public class ClassInfoImpl extends ClassInfo {
         }
 
         // read value
-        loader.reader.setAddress(addr);
-        ByteBuffer buffer = loader.reader.sliceToByteBuffer();
-        return DebuggerDebugObjectFileInfo.readDebugInfo(buffer);
+        loader.reader.setPosition(addr);
+        return readDebugInfo(loader.reader.slice());
     }
 
-    private void readFields(ByteBufferMemoryReader reader, int fieldCount, RefIdHolder<FieldInfo> fieldRefIdHolder) {
+    private void readFields(DataBufferReader reader, int fieldCount, RefIdHolder<FieldInfo> fieldRefIdHolder) {
         // refer: bc.c#loadFields
         // refer: classinfo.c#readFieldInfo
         fields = new FieldInfo[fieldCount];
@@ -205,7 +206,7 @@ public class ClassInfoImpl extends ClassInfo {
         }
     }
 
-    private void readMethods(ByteBufferMemoryReader reader, int methodCount, ClassInfoLoader loader) {
+    private void readMethods(DataBufferReader reader, int methodCount, ClassInfoLoader loader) {
         // refer: bc.c#loadMethod
         // refer: classinfo.c#readMethodInfo
         RefIdHolder<MethodInfo> methodsRefIdHolder = loader.methodsRefIdHolder;
@@ -240,10 +241,10 @@ public class ClassInfoImpl extends ClassInfo {
                         String spFpOffsetSymbol = "[J]" + className.replace('/', '.') + "." + methodInfo.name() + methodInfo.signature() + ".spfpoffset";
                         long spFpOffsetAddr = loader.appFileLoader.resolveSymbol(spFpOffsetSymbol);
                         if (spFpOffsetAddr != -1) {
-                            long oldAddr = reader.address();
-                            reader.setAddress(spFpOffsetAddr);
+                            long oldAddr = reader.position();
+                            reader.setPosition(spFpOffsetAddr);
                             int spFpOffsetValue = reader.readInt32();
-                            reader.setAddress(oldAddr);
+                            reader.setPosition(oldAddr);
                             // unpack values -- here is how it is set in
                             // bellow are original comments from patch
                             //
@@ -270,7 +271,7 @@ public class ClassInfoImpl extends ClassInfo {
                 } else {
                     // there is no debug info and it will not be possible to work with this method, so mark it as native
                     // to keep debugger away from it
-                    methodInfo.markAsNative();;
+                    methodInfo.markAsNative();
                 }
             }
             methodsRefIdHolder.addObject(methodInfo);
@@ -341,5 +342,90 @@ public class ClassInfoImpl extends ClassInfo {
         }
 
         return sourceFile;
+    }
+
+
+    // TODO: FIXME:
+    // this part was moved from Compiler module to utilize DataBufferReader for parsing
+    // move to proper place
+    /**
+     * de-serializes from buffer
+     */
+    public static DebuggerDebugObjectFileInfo readDebugInfo(DataBufferReader buffer) {
+        // big endian, as data was written with DataOutputStream which is big endian only
+        buffer.setByteOrder(ByteOrder.BIG_ENDIAN);
+
+        // read source file name
+        String sourceFile = buffer.readStringWithLen();
+
+        // read methods
+        int methodCount = buffer.readInt32();
+        DebuggerDebugMethodInfo.RawData [] methods = new DebuggerDebugMethodInfo.RawData[methodCount];
+        for (int methodIdx = 0; methodIdx < methodCount; methodIdx++){
+            // read method start and end lines
+            int methodStartLine = buffer.readInt32();
+            int methodEndLine = buffer.readInt32();
+
+            // read method name
+            String methodSignature = buffer.readStringWithLen();
+
+            // read variables
+            int count = buffer.readInt32();
+            DebuggerDebugVariableInfo[] variables = new DebuggerDebugVariableInfo[count];
+            for (int idx = 0; idx < count; idx++) {
+                // read name
+                String varName = buffer.readStringWithLen();
+
+                // variable type signature
+                String varSignature = buffer.readStringWithLen();
+
+                // get flags
+                int flags = (buffer.readByte() & 0xFF);
+
+                // get scope
+                int varStartLine = buffer.readInt32();
+                int varEndLine = buffer.readInt32();
+
+                variables[idx] = new DebuggerDebugVariableInfo(varName, varSignature, (flags & 1) == 1,
+                        varStartLine, varEndLine);
+            }
+
+            // read allocas
+            count = buffer.readInt32();
+            DwarfDebugVariableInfo[] allocas = new DwarfDebugVariableInfo[count];
+            for (int idx = 0; idx < count; idx++) {
+                // read register and offset
+                int register = buffer.readInt32();
+                int offset = buffer.readInt32();
+                allocas[idx] = new DwarfDebugVariableInfo(register, offset);
+            }
+
+            // read slices
+            count = buffer.readInt32();
+            int [][] slices = new int[count][];
+            for (int idx = 0; idx < count; idx++) {
+                int sliceSize = buffer.readInt32();
+                int[] slice = new int[sliceSize];
+                slices[idx] = slice;
+                for (int i = 0; i < sliceSize; i++)
+                    slice[i] = buffer.readInt32();
+            }
+
+            // read offsets list and corresponding slice index list
+            count = buffer.readInt32();
+            int[] offsets = new int[count];
+            int[] offsetSliceIndexes = new int[count];
+            for (int idx = 0; idx < count; idx++) {
+                offsets[idx] = buffer.readInt32();
+            }
+            for (int idx = 0; idx < count; idx++) {
+                offsetSliceIndexes[idx] = buffer.readInt32();
+            }
+
+            methods[methodIdx] = new DebuggerDebugMethodInfo.RawData(methodSignature, methodStartLine, methodEndLine, variables,
+                    allocas, offsets, offsetSliceIndexes, slices);
+        }
+
+        return new DebuggerDebugObjectFileInfo(sourceFile, methods);
     }
 }

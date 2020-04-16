@@ -16,7 +16,7 @@
 package org.robovm.debugger.state.classdata;
 
 import org.robovm.debugger.utils.Converter;
-import org.robovm.debugger.utils.bytebuffer.ByteBufferMemoryReader;
+import org.robovm.debugger.utils.bytebuffer.DataBufferReader;
 
 /**
  * @author Demyan Kimitsa
@@ -41,10 +41,10 @@ public class FieldInfo extends BaseModifiersInfo {
     private int offset;
     private ClassInfo typeInfo;
 
-    public void readFieldInfo(ByteBufferMemoryReader reader) {
+    public void readFieldInfo(DataBufferReader reader) {
         flags = reader.readInt16();
 
-        name = reader.readStringZAtPtr(reader.readPointer());
+        name = reader.readStringZ(reader.readPointer());
 
         if ((flags >> 12) != 0) {
             switch ((flags >> 12) & 0xf) {
@@ -58,7 +58,7 @@ public class FieldInfo extends BaseModifiersInfo {
                 case ClassDataConsts.desc.Z: signature = "Z"; break;
             }
         } else {
-            signature = reader.readStringZAtPtr(reader.readPointer());
+            signature = reader.readStringZ(reader.readPointer());
         }
 
         offset = reader.readInt32();

@@ -16,8 +16,6 @@
 package org.robovm.debugger.jdwp.handlers.eventrequest.events;
 
 import org.robovm.debugger.jdwp.JdwpConsts;
-import org.robovm.debugger.state.classdata.ClassInfo;
-import org.robovm.debugger.state.classdata.ClassInfoImpl;
 import org.robovm.debugger.state.instances.VmInstance;
 import org.robovm.debugger.state.instances.VmStackTrace;
 import org.robovm.debugger.state.instances.VmThread;

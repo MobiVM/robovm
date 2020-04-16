@@ -217,8 +217,10 @@ public class DebuggerConfig {
         builder.setLogToConsole(logToConsole);
         builder.setJdwpClienMode(jdwpClienMode);
         builder.setJdwpPort(jdwpPort);
-        builder.setHooksPortFile(hooksPortFile);
-        builder.setHooksPort(hooksPort);
+        if (hooksPortFile != null)
+            builder.setHooksPortFile(hooksPortFile);
+        else if (hooksPort != -1)
+            builder.setHooksPort(hooksPort);
         builder.setStandalone(true);
 
         return builder.build();
@@ -238,7 +240,7 @@ public class DebuggerConfig {
         ps.println("  -arch <name>           The name of the LLVM arch to compile for. Allowed values\n"
                 + "                          are 'auto', 'x86', 'x86_64', 'thumbv7', 'arm64'. Default is\n"
                 + "                         'auto' which means use the LLVM default.");
-        ps.println("  -appfile<file>         The path to compiled application file");
+        ps.println("  -appfile <file>        The path to compiled application file");
         ps.println("  -logdir <dir>          The directory to put log file to. Default is temp dir");
         ps.println("  -verbose               Output log messages to console");
         ps.println("  -jdwpClientMode        Specifies that JDWP server shall connect instead of listening");

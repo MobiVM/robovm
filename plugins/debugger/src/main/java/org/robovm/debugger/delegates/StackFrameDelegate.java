@@ -28,7 +28,6 @@ import org.robovm.debugger.state.classdata.RuntimeClassInfoLoader;
 import org.robovm.debugger.state.instances.VmStackTrace;
 import org.robovm.debugger.state.instances.VmThread;
 import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
-import org.robovm.llvm.debuginfo.DwarfDebugMethodInfo;
 import org.robovm.llvm.debuginfo.DwarfDebugVariableInfo;
 
 import java.util.HashMap;

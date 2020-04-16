@@ -33,7 +33,7 @@ public class JdwpRequestHeader {
 
     public void readFromStream(InputStream is, ByteBufferPacket packet) throws IOException {
         packet.reset();
-        packet.fillFromInputStream(is, 11);
+        packet.writeFromStream(is, 11);
         packet.setPosition(0);
         length = packet.readInt32();
         id = packet.readInt32();

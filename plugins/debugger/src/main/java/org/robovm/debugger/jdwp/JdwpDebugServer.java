@@ -113,8 +113,8 @@ public class JdwpDebugServer implements IJdwpServerApi{
     private final boolean jdwpClientMode;
     private final int jdwpPort;
     private Socket socket;
-    private Map<Integer, IJdwpRequestHandler> handlers = new HashMap<>();
-    private ByteBufferPacket headerBuffer = new ByteBufferPacket();
+    private final Map<Integer, IJdwpRequestHandler> handlers = new HashMap<>();
+    private final ByteBufferPacket headerBuffer;
     private final IJdwpServerDelegate delegate;
     private final AllDelegates delegates;
     private int eventRequestSerial = 0x10000000;
@@ -126,7 +126,7 @@ public class JdwpDebugServer implements IJdwpServerApi{
         this.jdwpClientMode = jdwpClienMode;
         this.jdwpPort = jdwpPort;
 
-        socketThread = delegates.createThread(() -> doSocketWork(), "JDWP server socket thread");
+        socketThread = delegates.createThread(this::doSocketWork, "JDWP server socket thread");
         headerBuffer = new ByteBufferPacket();
         headerBuffer.setByteOrder(ByteOrder.BIG_ENDIAN);
     }
@@ -164,7 +164,7 @@ public class JdwpDebugServer implements IJdwpServerApi{
 
 
             // receive handshake
-            packet.fillFromInputStream(inputStream, JDWP_HANDSHAKE.length());
+            packet.writeFromStream(inputStream, JDWP_HANDSHAKE.length());
             packet.setPosition(0);
             String handshake = packet.readString();
             if (!JDWP_HANDSHAKE.equals(handshake)) {
@@ -184,7 +184,8 @@ public class JdwpDebugServer implements IJdwpServerApi{
                 // read payload if any
                 packet.reset();
                 if (header.payloadSize() != 0) {
-                    packet.fillFromInputStream(inputStream, header.payloadSize());
+                    packet.writeFromStream(inputStream, header.payloadSize());
+                    packet.resetReader();
                 }
 
                 // find handler

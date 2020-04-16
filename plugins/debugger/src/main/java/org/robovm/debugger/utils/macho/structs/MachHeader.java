@@ -15,7 +15,7 @@
  */
 package org.robovm.debugger.utils.macho.structs;
 
-import org.robovm.debugger.utils.bytebuffer.ByteBufferReader;
+import org.robovm.debugger.utils.bytebuffer.DataBufferReader;
 
 /**
  * @author Demyan Kimitsa
@@ -31,14 +31,14 @@ public class MachHeader {
     private long reserved;
     private boolean is64b;
 
-    public MachHeader(ByteBufferReader reader, boolean is64b) {
+    public MachHeader(DataBufferReader reader, boolean is64b) {
         if (is64b)
             read64(reader);
         else
             read32(reader);
     }
 
-    public MachHeader read32(ByteBufferReader reader) {
+    public MachHeader read32(DataBufferReader reader) {
         is64b = false;
 
         //cpu_type_t	cputype;	/* cpu specifier */
@@ -58,7 +58,7 @@ public class MachHeader {
     }
 
 
-    public MachHeader read64(ByteBufferReader reader) {
+    public MachHeader read64(DataBufferReader reader) {
         is64b = true;
 
         //cpu_type_t	cputype;	/* cpu specifier */

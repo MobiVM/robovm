@@ -15,18 +15,14 @@
  */
 package org.robovm.debugger.utils.bytebuffer;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.BufferOverflowException;
 import java.nio.ByteBuffer;
 
 /**
+ * Data Buffer Writer implementation that wraps ByteBuffer
  * @author Demyan Kimitsa
- * Byte buffer that is boxed
  */
-public class ByteBufferPacket extends ByteBufferReader {
+public class ByteBufferPacket extends DataByteBufferReader implements DataBufferWriter {
     private static final int DEFAULT_CAPACITY = 1024;
-
 
     public ByteBufferPacket() {
         this(DEFAULT_CAPACITY, false);
@@ -42,46 +38,30 @@ public class ByteBufferPacket extends ByteBufferReader {
     }
 
     @Override
-    public int position() {
-        return byteBuffer.position();
-    }
-
-    @Override
-    public int size() {
-        return byteBuffer.limit();
-    }
-
-    @Override
-    public void setPosition(int position) {
-        // virtual to real
-        byteBuffer.position(position);
-    }
-
-    @Override
-    protected int byteBufferDataStart() {
-        return 0;
-    }
-
-    @Override
-    public void reset() {
+    public ByteBufferPacket reset() {
         byteBuffer.position(0);
         byteBuffer.limit(0);
+        return this;
     }
 
     @Override
-    public ByteBuffer getByteBuffer() {
-        return byteBuffer;
+    public ByteBufferPacket resetReader() {
+        // just reset the position
+        byteBuffer.position(0);
+        return this;
     }
 
-    private void wants(int bytes) {
+    @Override
+    public void wants(int bytes) {
         // sanity checks that there is enough capacity
         long afterWritePos = byteBuffer.position() + bytes;
         long capacity = byteBuffer.capacity();
         if (afterWritePos > capacity) {
             // make capacity twice bigger that required
-            long requiredCap = (afterWritePos + capacity - 1) / capacity;
-            requiredCap *= capacity * 2;
-            ByteBuffer buffer = ByteBuffer.allocate((int) requiredCap);
+            // (make it aligned to 1024 block boundary)
+            long blocksCount = (afterWritePos + 1024 - 1) / 1024;
+            capacity = 2 * blocksCount * 1024;
+            ByteBuffer buffer = ByteBuffer.allocate((int) capacity);
             // copy old buffer
             int oldPosition = byteBuffer.position();
             byteBuffer.position(0);
@@ -97,113 +77,52 @@ public class ByteBufferPacket extends ByteBufferReader {
             byteBuffer.limit((int) afterWritePos);
     }
 
-
+    @Override
     public ByteBufferPacket writeByte(byte b) {
         wants(1);
         byteBuffer.put(b);
         return this;
     }
 
-    public ByteBufferPacket writeBoolean(boolean b) {
-        wants(1);
-        byteBuffer.put((byte) (b ? 1 : 0));
-        return this;
-    }
-
+    @Override
     public ByteBufferPacket writeInt32(int i) {
         wants(4);
         byteBuffer.putInt(i);
         return this;
     }
 
-    public ByteBufferPacket writeUnsignedInt32(long l) {
-        wants(4);
-        int i = (int) l;
-        byteBuffer.putInt(i);
-        return this;
-    }
-
+    @Override
     public ByteBufferPacket writeInt16(short i) {
         wants(2);
         byteBuffer.putShort(i);
         return this;
     }
 
-    public ByteBufferPacket writeUnsignedInt16(int i) {
-        wants(2);
-        short s = (short) (i & 0xFFFF);
-        byteBuffer.putShort(s);
-        return this;
-    }
-
-    public ByteBufferPacket writeChar16(char c) {
-        return writeUnsignedInt16(c);
-    }
-
+    @Override
     public ByteBufferPacket writeLong(long l) {
         wants(8);
         byteBuffer.putLong(l);
         return this;
     }
 
+    @Override
     public ByteBufferPacket writeFloat(float f) {
         wants(4);
         byteBuffer.putFloat(f);
         return this;
     }
 
+    @Override
     public ByteBufferPacket writeDouble(double d) {
         wants(8);
         byteBuffer.putDouble(d);
         return this;
     }
 
-    public ByteBufferPacket writeString(String s) {
-        byte[] bytes = s.getBytes();
-        wants(bytes.length);
-        byteBuffer.put(bytes);
+    @Override
+    public ByteBufferPacket writeBytes(byte[] bytes, int offset, int length) {
+        wants(length);
+        byteBuffer.put(bytes, offset, length);
         return this;
-    }
-
-    public ByteBufferPacket writeStringWithLen(String s) {
-        byte[] bytes = s.getBytes();
-        wants(bytes.length + 4);
-        byteBuffer.putInt(bytes.length);
-        byteBuffer.put(bytes);
-        return this;
-    }
-
-    public void fillFromInputStream(InputStream is) throws IOException {
-        fillFromInputStream(is, byteBuffer.remaining());
-    }
-
-    public void fillFromInputStream(InputStream is, int count) throws IOException {
-        // will put to byte buffer
-        wants(count);
-        int offset = 0;
-        while (count > 0) {
-            int bytesRead = is.read(byteBuffer.array(), byteBuffer.position() + offset, count);
-            if (bytesRead <= 0)
-                throw new BufferOverflowException();
-            offset += bytesRead;
-            count -= bytesRead;
-        }
-    }
-
-    public void writeBytes(byte[] bytes) {
-        wants(bytes.length);
-        byteBuffer.put(bytes);
-    }
-
-    public void writePacket(ByteBufferPacket packet) {
-        wants(packet.bytesRemaining());
-        byteBuffer.put(packet.getByteBuffer().array(), packet.byteBufferDataStart(), packet.bytesRemaining());
-    }
-
-    public void writePointer(long addr) {
-        if(is64bit)
-            writeLong(addr);
-        else
-            writeUnsignedInt32(addr);
     }
 }

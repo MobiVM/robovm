@@ -18,7 +18,7 @@ package org.robovm.debugger.state.classdata;
 import org.robovm.debugger.jdwp.JdwpConsts;
 import org.robovm.debugger.runtime.ValueManipulator;
 import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
-import org.robovm.debugger.utils.bytebuffer.ByteBufferReader;
+import org.robovm.debugger.utils.bytebuffer.DataBufferReader;
 
 /**
  * @author Demyan Kimitsa
@@ -89,7 +89,7 @@ public class ClassInfoPrimitiveImpl extends ClassInfo {
 
 
     private interface TargetReader {
-        Object read(ByteBufferReader reader);
+        Object read(DataBufferReader reader);
     }
 
     private interface TargetWritter {

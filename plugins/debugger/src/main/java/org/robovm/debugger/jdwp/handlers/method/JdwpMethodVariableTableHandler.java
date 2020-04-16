@@ -22,8 +22,6 @@ import org.robovm.debugger.jdwp.protocol.IJdwpRequestHandler;
 import org.robovm.debugger.state.VmDebuggerState;
 import org.robovm.debugger.state.classdata.MethodInfo;
 import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
-import org.robovm.llvm.debuginfo.DwarfDebugMethodInfo;
-import org.robovm.llvm.debuginfo.DwarfDebugVariableInfo;
 
 /**
  * @author Demyan Kimitsa

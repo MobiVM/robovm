@@ -31,7 +31,7 @@ import org.robovm.debugger.utils.DbgLogger;
 import org.robovm.debugger.utils.DebuggerThread;
 import org.robovm.debugger.utils.IDebuggerToolbox;
 import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
-import org.robovm.debugger.utils.bytebuffer.ByteBufferReader;
+import org.robovm.debugger.utils.bytebuffer.DataBufferReader;
 
 import java.nio.ByteOrder;
 import java.util.List;
@@ -59,7 +59,7 @@ public class AllDelegates implements IJdwpEventDelegate, IJdwpArrayDelegate, IDe
     /**
      * interface to hooks event processor and JDPW event request handler
      */
-    private JdwpEventCenterDelegate events;
+    private final JdwpEventCenterDelegate events;
 
     /**
      * interface to JDPW array API implementation
@@ -69,7 +69,7 @@ public class AllDelegates implements IJdwpEventDelegate, IJdwpArrayDelegate, IDe
     /**
      * interface to thread delegates
      */
-    private ThreadDelegate threads;
+    private final ThreadDelegate threads;
 
     /**
      * API to JDWPServer set once JDWP handshake complete used if not set lot of activities will not happen
@@ -249,7 +249,7 @@ public class AllDelegates implements IJdwpEventDelegate, IJdwpArrayDelegate, IDe
     }
 
     @Override
-    public void jdwpArraySetValue(long arrayId, int index, int length, ByteBufferReader reader) throws DebuggerException {
+    public void jdwpArraySetValue(long arrayId, int index, int length, DataBufferReader reader) throws DebuggerException {
         synchronized (state.centralLock()) {
             arrays.jdwpArraySetValue(arrayId, index, length, reader);
         }

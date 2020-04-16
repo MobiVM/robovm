@@ -15,9 +15,11 @@
  */
 package org.robovm.debugger.utils.macho;
 
-import org.robovm.debugger.utils.bytebuffer.ByteBufferArrayReader;
-import org.robovm.debugger.utils.bytebuffer.ByteBufferMemoryReader;
-import org.robovm.debugger.utils.bytebuffer.ByteBufferReader;
+import org.robovm.debugger.utils.bytebuffer.CompositeDataBufferReader;
+import org.robovm.debugger.utils.bytebuffer.DataBufferArrayReader;
+import org.robovm.debugger.utils.bytebuffer.DataBufferReader;
+import org.robovm.debugger.utils.bytebuffer.DataByteBufferReader;
+import org.robovm.debugger.utils.bytebuffer.NullDataBufferReader;
 import org.robovm.debugger.utils.macho.cmds.SegmentCommand;
 import org.robovm.debugger.utils.macho.cmds.SymtabCommand;
 import org.robovm.debugger.utils.macho.structs.MachHeader;
@@ -37,26 +39,25 @@ import java.util.Map;
 
 /**
  * @author Demyan Kimitsa
- *         Class that retrieves information from Match-O binary format
+ * Class that retrieves information from Match-O binary format
  */
 public class MachOLoader {
-    private final ByteBufferReader rootReader;
+    private final DataBufferReader rootReader;
     private final MachHeader machOHeader;
     private final int machOCpuType;
-    private List<SegmentCommand> segments = new ArrayList<>();
-    private Map<String, Long> symTable = new HashMap<>();
+    private final List<SegmentCommand> segments = new ArrayList<>();
+    private final Map<String, Long> symTable = new HashMap<>();
     private SegmentCommand dataSegment;
 
 
     public MachOLoader(File executable, int cpuType) throws MachOException {
-
         ByteBuffer bb;
         try {
-            bb = new RandomAccessFile(executable, "r").getChannel().map(FileChannel.MapMode.READ_ONLY, 0, executable.length()).asReadOnlyBuffer();
+            bb = new RandomAccessFile(executable, "r").getChannel().map(FileChannel.MapMode.READ_ONLY, 0, executable.length());
         } catch (IOException e) {
             throw new MachOException("Failed to open mach-o file", e);
         }
-        rootReader = ByteBufferReader.wrap(bb);
+        rootReader = new DataByteBufferReader(bb);
         rootReader.setByteOrder(ByteOrder.LITTLE_ENDIAN);
 
         // read architectures
@@ -77,17 +78,17 @@ public class MachOLoader {
         readCommandData(rootReader, machOHeader);
     }
 
-    private MachHeader parseMachHeader(ByteBufferReader reader, long magic) throws MachOException {
+    private MachHeader parseMachHeader(DataBufferReader reader, long magic) throws MachOException {
         if (magic != MachOConsts.MAGIC && magic != MachOConsts.MAGIC_64)
             throw new MachOException("unexpected Mach header MAGIC 0x" + Long.toHexString(magic));
         return new MachHeader(reader, magic == MachOConsts.MAGIC_64);
     }
 
-    private void readCommandData(ByteBufferReader reader, MachHeader header) {
+    private void readCommandData(DataBufferReader reader, MachHeader header) {
         int sectionIdx = 1;
         // read all commands
         for (int idx = 0; idx < header.ncmds(); idx++) {
-            int pos = reader.position();
+            long pos = reader.position();
             int cmd = (int) reader.readUnsignedInt32();
             int cmdsize = (int) reader.readUnsignedInt32();
             if (cmd == MachOConsts.commands.LC_SEGMENT || cmd == MachOConsts.commands.LC_SEGMENT_64) {
@@ -102,9 +103,9 @@ public class MachOLoader {
                     dataSegment = segCmd;
             } else if (cmd == MachOConsts.commands.LC_SYMTAB) {
                 SymtabCommand symtabCommand = new SymtabCommand(reader);
-                ByteBufferReader stringReader = reader.sliceAt((int) symtabCommand.stroff, (int) symtabCommand.strsize);
-                ByteBufferReader nlistReader = reader.sliceAt((int) symtabCommand.symoff, (int) (symtabCommand.nsyms * NList.ITEM_SIZE(header.is64b())));
-                ByteBufferArrayReader<NList> arrayReader = new ByteBufferArrayReader<>(nlistReader,
+                DataBufferReader stringReader = reader.sliceAt(symtabCommand.stroff, (int) symtabCommand.strsize);
+                DataBufferReader nlistReader = reader.sliceAt(symtabCommand.symoff, (int) (symtabCommand.nsyms * NList.ITEM_SIZE(header.is64b())));
+                DataBufferArrayReader<NList> arrayReader = new DataBufferArrayReader<>(nlistReader,
                         NList.ITEM_SIZE(header.is64b()), NList.OBJECT_READER(header.is64b()));
                 for (NList nlist : arrayReader) {
                     if (nlist.isTypeStab()) {
@@ -121,8 +122,8 @@ public class MachOLoader {
                         continue;
 
                     // save offset to NList as there is too much of symbols
-                    String sym = stringReader.readStringZ((int) nlist.n_strx());
-                    symTable.put(sym, nlist.getByteBufferOffset());
+                    String sym = stringReader.readStringZ(nlist.n_strx());
+                    symTable.put(sym, nlist.n_value());
                 }
             }
 
@@ -173,43 +174,43 @@ public class MachOLoader {
         Long nlistAddr = symTable.get("_" + symbolName);
         if (nlistAddr == null)
             return -1;
-
-        rootReader.setPosition(nlistAddr);
-        NList nlist = NList.OBJECT_READER(machOHeader.is64b()).readObject(rootReader, null);
-
-        return nlist.n_value();
+        return nlistAddr;
     }
 
-    public ByteBufferMemoryReader memoryReader() {
+    public DataBufferReader memoryReader() {
         // after test it clear that some data is read from __TEXT section (consts) so need to pick proper sections into
         // list
-        List<ByteBufferMemoryReader.MemoryRegion> regions = new ArrayList<>();
+        List<DataBufferReader> regions = new ArrayList<>();
         for (SegmentCommand segCmd : segments) {
             boolean isText = "__TEXT".equals(segCmd.segname());
             boolean isData = "__DATA".equals(segCmd.segname());
             if (!isText && !isData)
                 continue;
             for (Section sec : segCmd.sections()) {
+                DataBufferReader region = null;
                 if (isText) {
                     // spFpOffset is in text section
                     if (!"__const".equals(sec.sectname()) && !"__text".equals(sec.sectname()))
                         continue;
-                } else if (isData) {
-                    if (!"__const".equals(sec.sectname()) && !"__data".equals(sec.sectname()))
-                        continue;
                 } else {
-                    continue;
+                    // data
+                    if ("__bss".equals(sec.sectname())) {
+                        // zero initialized zeros data goes to __bss so have to read it as well
+                        region = new NullDataBufferReader(sec.addr(), (int) sec.size(), isPatform64Bit());
+                    } else if (!"__const".equals(sec.sectname()) && !"__data".equals(sec.sectname()))
+                        continue;
                 }
 
-                regions.add(new ByteBufferMemoryReader.MemoryRegion(sec.addr(), sec.addr() + sec.size() - 1, (int)sec.offset()));
+                if (region == null)
+                    region = rootReader.sliceAt(sec.offset(), (int) sec.size(), sec.addr(), isPatform64Bit());
+                regions.add(region);
             }
         }
         // not likely to happen but data segment is required
         if (dataSegment == null)
             return null;
 
-        return new ByteBufferMemoryReader(rootReader, 0, rootReader.size(), isPatform64Bit(),
-                regions.toArray(new ByteBufferMemoryReader.MemoryRegion[0]));
+        return new CompositeDataBufferReader(regions.toArray(new DataBufferReader[0]));
     }
 
     public static void main(String[] argv) {

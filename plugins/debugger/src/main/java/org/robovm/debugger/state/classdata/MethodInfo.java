@@ -17,8 +17,7 @@ package org.robovm.debugger.state.classdata;
 
 import org.robovm.compiler.plugin.debug.DebuggerDebugMethodInfo;
 import org.robovm.debugger.utils.Converter;
-import org.robovm.debugger.utils.bytebuffer.ByteBufferMemoryReader;
-import org.robovm.llvm.debuginfo.DwarfDebugMethodInfo;
+import org.robovm.debugger.utils.bytebuffer.DataBufferReader;
 
 /**
  * @author Demyan Kimitsa
@@ -57,11 +56,11 @@ public class MethodInfo extends BaseModifiersInfo {
     private int spFpOffset;
     private int spFpAlign;
 
-    public void readMethodInfo(ByteBufferMemoryReader reader) {
+    public void readMethodInfo(DataBufferReader reader) {
         flags = reader.readInt16();
 
         int vtableIndex = reader.readInt16();
-        name = reader.readStringZAtPtr(reader.readPointer());
+        name = reader.readStringZ(reader.readPointer());
 
         if ((flags & ClassDataConsts.methodinfo.COMPACT_DESC) != 0) {
             switch (reader.readByte()) {
@@ -94,7 +93,7 @@ public class MethodInfo extends BaseModifiersInfo {
                     break;
             }
         } else {
-            desc = reader.readStringZAtPtr(reader.readPointer());
+            desc = reader.readStringZ(reader.readPointer());
         }
 
         if ((flags & ClassDataConsts.methodinfo.ATTRIBUTES) != 0) {

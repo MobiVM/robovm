@@ -19,7 +19,6 @@ import org.robovm.debugger.DebuggerException;
 import org.robovm.debugger.jdwp.JdwpConsts;
 import org.robovm.debugger.jdwp.handlers.objectreference.IJdwpInstanceDelegate;
 import org.robovm.debugger.jdwp.protocol.IJdwpRequestHandler;
-import org.robovm.debugger.state.classdata.ClassInfo;
 import org.robovm.debugger.state.instances.VmStringInstance;
 import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
 

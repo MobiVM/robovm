@@ -15,15 +15,14 @@
  */
 package org.robovm.debugger.utils.macho.structs;
 
-import org.robovm.debugger.utils.bytebuffer.ByteBufferArrayReader;
-import org.robovm.debugger.utils.bytebuffer.ByteBufferReader;
+import org.robovm.debugger.utils.bytebuffer.DataBufferArrayReader;
+import org.robovm.debugger.utils.bytebuffer.DataBufferReader;
 
 /**
  * @author Demyan Kimitsa
  * mach-o section entry definition
  */
 public class Section {
-    private long byteBufferOffset;
     private String sectname;
     private String segname;
     private long addr;
@@ -37,10 +36,7 @@ public class Section {
     private long reserved2;
     private long reserved3;
 
-    private Section read32(ByteBufferReader reader) {
-        // byte buffer offset
-        byteBufferOffset = reader.absolutePosition();
-
+    private Section read32(DataBufferReader reader) {
         //char		sectname[16];	/* name of this section */
         sectname = reader.readString(16);
         //char		segname[16];	/* segment this section goes in */
@@ -67,7 +63,7 @@ public class Section {
         return this;
     }
 
-    private Section read64(ByteBufferReader reader) {
+    private Section read64(DataBufferReader reader) {
         //char		sectname[16];	/* name of this section */
         sectname = reader.readString(16);
         //char		segname[16];	/* segment this section goes in */
@@ -132,21 +128,21 @@ public class Section {
         return flags;
     }
 
-    private static ByteBufferArrayReader.ObjectReader<Section> objectReader32 = new ByteBufferArrayReader.ObjectReader<Section>() {
+    private static DataBufferArrayReader.ObjectReader<Section> objectReader32 = new DataBufferArrayReader.ObjectReader<Section>() {
         @Override
-        public Section readObject(ByteBufferReader reader, Section object) {
+        public Section readObject(DataBufferReader reader, Section object) {
             return object == null ? (new Section()).read32(reader) : object.read32(reader);
         }
     };
 
-    private static ByteBufferArrayReader.ObjectReader<Section> objectReader64 = new ByteBufferArrayReader.ObjectReader<Section>() {
+    private static DataBufferArrayReader.ObjectReader<Section> objectReader64 = new DataBufferArrayReader.ObjectReader<Section>() {
         @Override
-        public Section readObject(ByteBufferReader reader, Section object) {
+        public Section readObject(DataBufferReader reader, Section object) {
             return object == null ? (new Section()).read64(reader) : object.read64(reader);
         }
     };
 
-    public static  ByteBufferArrayReader.ObjectReader<Section> OBJECT_READER(boolean is64b) {
+    public static  DataBufferArrayReader.ObjectReader<Section> OBJECT_READER(boolean is64b) {
         return is64b ? objectReader64 : objectReader32;
     }
 

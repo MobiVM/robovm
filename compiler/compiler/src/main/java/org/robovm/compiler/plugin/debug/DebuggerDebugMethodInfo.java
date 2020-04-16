@@ -117,7 +117,7 @@ public class DebuggerDebugMethodInfo {
     }
 
     // data for serialization of object
-    static class RawData {
+    public static class RawData {
         final String signature;
 
         // variables -- contains generic information about variables as in Java debug info
@@ -140,7 +140,7 @@ public class DebuggerDebugMethodInfo {
         final int startLine;
         final int finalLine;
 
-        RawData(String methodName, int startLine, int finalLine, DebuggerDebugVariableInfo[] variables, DwarfDebugVariableInfo[] allocas,
+        public RawData(String methodName, int startLine, int finalLine, DebuggerDebugVariableInfo[] variables, DwarfDebugVariableInfo[] allocas,
                        int[] offsets, int[] offsetSliceIndexes, int[][] slices) {
             this.signature = methodName;
             this.startLine = startLine;

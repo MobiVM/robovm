@@ -15,8 +15,8 @@
  */
 package org.robovm.debugger.utils.macho.structs;
 
-import org.robovm.debugger.utils.bytebuffer.ByteBufferArrayReader;
-import org.robovm.debugger.utils.bytebuffer.ByteBufferReader;
+import org.robovm.debugger.utils.bytebuffer.DataBufferArrayReader;
+import org.robovm.debugger.utils.bytebuffer.DataBufferReader;
 import org.robovm.debugger.utils.macho.MachOConsts;
 
 /**
@@ -24,17 +24,13 @@ import org.robovm.debugger.utils.macho.MachOConsts;
  * nlist structure definition
  */
 public class NList {
-    private long byteBufferOffset;
     private long n_strx;
     private byte n_type;
     private byte n_sect;
     private int n_desc;
     private long n_value;
 
-    private NList read64(ByteBufferReader reader) {
-        // byte buffer offset
-        byteBufferOffset = reader.absolutePosition();
-
+    private NList read64(DataBufferReader reader) {
         //uint32_t n_strx;	/* index into the string table */
         n_strx = reader.readUnsignedInt32();
         //uint8_t n_type;		/* type flag, see below */
@@ -49,10 +45,7 @@ public class NList {
         return this;
     }
 
-    private NList read32(ByteBufferReader reader) {
-        // byte buffer offset
-        byteBufferOffset = reader.absolutePosition();
-
+    private NList read32(DataBufferReader reader) {
         //uint32_t n_strx;	/* index into the string table */
         n_strx = reader.readUnsignedInt32();
         //uint8_t n_type;		/* type flag, see below */
@@ -65,10 +58,6 @@ public class NList {
         n_value = reader.readUnsignedInt32();
 
         return this;
-    }
-
-    public long getByteBufferOffset() {
-        return byteBufferOffset;
     }
 
     public long n_strx() {
@@ -127,13 +116,13 @@ public class NList {
         return (n_type & MachOConsts.nlist.N_TYPE) == MachOConsts.nlist.N_TYPE_INDR;
     }
 
-    private static ByteBufferArrayReader.ObjectReader<NList> objectReader32 = (reader, object) ->
+    private static DataBufferArrayReader.ObjectReader<NList> objectReader32 = (reader, object) ->
             object == null ? (new NList()).read32(reader) : object.read32(reader);
 
-    private static ByteBufferArrayReader.ObjectReader<NList> objectReader64 = (reader, object) ->
+    private static DataBufferArrayReader.ObjectReader<NList> objectReader64 = (reader, object) ->
             object == null ? (new NList()).read64(reader) : object.read64(reader);
 
-    public static  ByteBufferArrayReader.ObjectReader<NList> OBJECT_READER(boolean is64b) {
+    public static  DataBufferArrayReader.ObjectReader<NList> OBJECT_READER(boolean is64b) {
         return is64b ? objectReader64 : objectReader32;
     }
 
