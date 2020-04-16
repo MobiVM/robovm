@@ -21,31 +21,31 @@ import java.nio.ByteBuffer;
  * Data Buffer Writer implementation that wraps ByteBuffer
  * @author Demyan Kimitsa
  */
-public class ByteBufferPacket extends DataByteBufferReader implements DataBufferWriter {
+public class DataByteBufferWriter extends DataByteBufferReader implements DataBufferReaderWriter {
     private static final int DEFAULT_CAPACITY = 1024;
 
-    public ByteBufferPacket() {
+    public DataByteBufferWriter() {
         this(DEFAULT_CAPACITY, false);
     }
 
-    public ByteBufferPacket(boolean is64Bit) {
+    public DataByteBufferWriter(boolean is64Bit) {
         this(DEFAULT_CAPACITY, is64Bit);
     }
 
-    public ByteBufferPacket(int capacity, boolean is64Bit) {
+    public DataByteBufferWriter(int capacity, boolean is64Bit) {
         super(ByteBuffer.allocate(capacity), is64Bit);
         reset();
     }
 
     @Override
-    public ByteBufferPacket reset() {
+    public DataByteBufferWriter reset() {
         byteBuffer.position(0);
         byteBuffer.limit(0);
         return this;
     }
 
     @Override
-    public ByteBufferPacket resetReader() {
+    public DataByteBufferWriter resetReader() {
         // just reset the position
         byteBuffer.position(0);
         return this;
@@ -78,49 +78,49 @@ public class ByteBufferPacket extends DataByteBufferReader implements DataBuffer
     }
 
     @Override
-    public ByteBufferPacket writeByte(byte b) {
+    public DataByteBufferWriter writeByte(byte b) {
         wants(1);
         byteBuffer.put(b);
         return this;
     }
 
     @Override
-    public ByteBufferPacket writeInt32(int i) {
+    public DataByteBufferWriter writeInt32(int i) {
         wants(4);
         byteBuffer.putInt(i);
         return this;
     }
 
     @Override
-    public ByteBufferPacket writeInt16(short i) {
+    public DataByteBufferWriter writeInt16(short i) {
         wants(2);
         byteBuffer.putShort(i);
         return this;
     }
 
     @Override
-    public ByteBufferPacket writeLong(long l) {
+    public DataByteBufferWriter writeLong(long l) {
         wants(8);
         byteBuffer.putLong(l);
         return this;
     }
 
     @Override
-    public ByteBufferPacket writeFloat(float f) {
+    public DataByteBufferWriter writeFloat(float f) {
         wants(4);
         byteBuffer.putFloat(f);
         return this;
     }
 
     @Override
-    public ByteBufferPacket writeDouble(double d) {
+    public DataByteBufferWriter writeDouble(double d) {
         wants(8);
         byteBuffer.putDouble(d);
         return this;
     }
 
     @Override
-    public ByteBufferPacket writeBytes(byte[] bytes, int offset, int length) {
+    public DataByteBufferWriter writeBytes(byte[] bytes, int offset, int length) {
         wants(length);
         byteBuffer.put(bytes, offset, length);
         return this;

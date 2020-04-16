@@ -21,7 +21,8 @@ import org.robovm.debugger.state.VmDebuggerState;
 import org.robovm.debugger.state.instances.VmStackTrace;
 import org.robovm.debugger.state.instances.VmThread;
 import org.robovm.debugger.utils.Converter;
-import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
+import org.robovm.debugger.utils.bytebuffer.DataBufferReader;
+import org.robovm.debugger.utils.bytebuffer.DataBufferWriter;
 
 /**
  * @author Demyan Kimitsa
@@ -35,7 +36,7 @@ public class JdwpThreadFramesHandler implements IJdwpRequestHandler {
     }
 
     @Override
-    public short handle(ByteBufferPacket payload, ByteBufferPacket output) {
+    public short handle(DataBufferReader payload, DataBufferWriter output) {
         long threadId = payload.readLong();
         int startFrame = payload.readInt32();
         int length = payload.readInt32();

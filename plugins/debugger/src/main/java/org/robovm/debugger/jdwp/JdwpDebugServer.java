@@ -90,7 +90,9 @@ import org.robovm.debugger.jdwp.protocol.IJdwpRequestHandler;
 import org.robovm.debugger.jdwp.protocol.JdwpRequestHeader;
 import org.robovm.debugger.state.VmDebuggerState;
 import org.robovm.debugger.utils.DbgLogger;
-import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
+import org.robovm.debugger.utils.bytebuffer.DataBufferReader;
+import org.robovm.debugger.utils.bytebuffer.DataBufferReaderWriter;
+import org.robovm.debugger.utils.bytebuffer.DataByteBufferWriter;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -114,7 +116,7 @@ public class JdwpDebugServer implements IJdwpServerApi{
     private final int jdwpPort;
     private Socket socket;
     private final Map<Integer, IJdwpRequestHandler> handlers = new HashMap<>();
-    private final ByteBufferPacket headerBuffer;
+    private final DataBufferReaderWriter headerBuffer;
     private final IJdwpServerDelegate delegate;
     private final AllDelegates delegates;
     private int eventRequestSerial = 0x10000000;
@@ -127,7 +129,7 @@ public class JdwpDebugServer implements IJdwpServerApi{
         this.jdwpPort = jdwpPort;
 
         socketThread = delegates.createThread(this::doSocketWork, "JDWP server socket thread");
-        headerBuffer = new ByteBufferPacket();
+        headerBuffer = new DataByteBufferWriter();
         headerBuffer.setByteOrder(ByteOrder.BIG_ENDIAN);
     }
 
@@ -157,8 +159,8 @@ public class JdwpDebugServer implements IJdwpServerApi{
             InputStream inputStream = socket.getInputStream();
 
             JdwpRequestHeader header = new JdwpRequestHeader();
-            ByteBufferPacket packet = new ByteBufferPacket();
-            ByteBufferPacket outPacket = new ByteBufferPacket();
+            DataBufferReaderWriter packet = new DataByteBufferWriter();
+            DataBufferReaderWriter outPacket = new DataByteBufferWriter();
             // and data sent via JDWP should be in big-endian format.
             packet.setByteOrder(ByteOrder.BIG_ENDIAN);
 
@@ -214,7 +216,7 @@ public class JdwpDebugServer implements IJdwpServerApi{
     }
 
 
-    private void sendResponse(int id, short errorCode, ByteBufferPacket payload) throws IOException {
+    private void sendResponse(int id, short errorCode, DataBufferReader payload) throws IOException {
         synchronized (socket) {
             headerBuffer.reset();
             headerBuffer.writeInt32(11 + payload.size());
@@ -228,7 +230,7 @@ public class JdwpDebugServer implements IJdwpServerApi{
     }
 
     @Override
-    public void sendEvent(byte suspendPolicy, int eventsCount, ByteBufferPacket payload) {
+    public void sendEvent(byte suspendPolicy, int eventsCount, DataBufferReader payload) {
         synchronized (socket) {
             headerBuffer.reset();
             headerBuffer.writeInt32(11 + 5 + payload.size());

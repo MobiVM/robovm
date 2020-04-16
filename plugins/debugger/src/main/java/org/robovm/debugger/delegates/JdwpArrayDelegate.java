@@ -27,8 +27,9 @@ import org.robovm.debugger.state.instances.VmArrayInstance;
 import org.robovm.debugger.state.instances.VmThread;
 import org.robovm.debugger.utils.Converter;
 import org.robovm.debugger.utils.DataUtils;
-import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
 import org.robovm.debugger.utils.bytebuffer.DataBufferReader;
+import org.robovm.debugger.utils.bytebuffer.DataBufferReaderWriter;
+import org.robovm.debugger.utils.bytebuffer.DataBufferWriter;
 
 import java.nio.ByteOrder;
 import java.nio.charset.StandardCharsets;
@@ -63,7 +64,7 @@ public class JdwpArrayDelegate implements IJdwpArrayDelegate {
     }
 
     @Override
-    public void jdwpArrayGetValue(long arrayId, int index, int length, ByteBufferPacket writer) throws DebuggerException {
+    public void jdwpArrayGetValue(long arrayId, int index, int length, DataBufferWriter writer) throws DebuggerException {
         VmArrayInstance instance;
         try {
             instance = delegates.state().referenceRefIdHolder().instanceById(arrayId);
@@ -134,7 +135,7 @@ public class JdwpArrayDelegate implements IJdwpArrayDelegate {
             throw new DebuggerException(JdwpConsts.Error.INVALID_LENGTH);
 
         // read a memory block from device
-        ByteBufferPacket packet = delegates.sharedTargetPacket();
+        DataBufferReaderWriter packet = delegates.sharedTargetPacket();
         packet.reset();
         long destAddr;
         ValueManipulator manipulator;

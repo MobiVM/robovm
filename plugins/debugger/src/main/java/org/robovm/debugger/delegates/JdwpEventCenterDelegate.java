@@ -45,7 +45,8 @@ import org.robovm.debugger.state.instances.VmInstance;
 import org.robovm.debugger.state.instances.VmStackTrace;
 import org.robovm.debugger.state.instances.VmThread;
 import org.robovm.debugger.utils.DbgLogger;
-import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
+import org.robovm.debugger.utils.bytebuffer.DataBufferReaderWriter;
+import org.robovm.debugger.utils.bytebuffer.DataByteBufferWriter;
 
 import java.nio.ByteOrder;
 import java.util.ArrayList;
@@ -61,7 +62,7 @@ import java.util.function.Predicate;
  * Delegate that handles events from hooks.c and also event requests from JDWP
  */
 public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
-    private DbgLogger log = DbgLogger.get(this.getClass().getSimpleName());
+    private final DbgLogger log = DbgLogger.get(this.getClass().getSimpleName());
 
     // all delegates and logic parts
     private final AllDelegates delegates;
@@ -69,7 +70,7 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
     /**
      * list of event request ids that that went to target/simulator
      */
-    private Set<Integer> requestIdsInTarget = new HashSet<>();
+    private final Set<Integer> requestIdsInTarget = new HashSet<>();
 
     /**
      * thread that is reading events from hooks interface
@@ -79,18 +80,18 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
     /**
      * Byte buffer payload to deliver event to JDWP
      */
-    private final ByteBufferPacket jdwpEventPayload;
+    private final DataBufferReaderWriter jdwpEventPayload;
 
     /**
      * queue to keep events from hooks channel
      */
-    private LinkedBlockingQueue<HooksEventPayload> hooksEventsQueue = new LinkedBlockingQueue<>();
+    private final LinkedBlockingQueue<HooksEventPayload> hooksEventsQueue = new LinkedBlockingQueue<>();
 
     // counter of request set
     private int jdwpEventRequestCounter = 100;
 
     // list of active event filters as received from JDWP
-    private List<JdwpEventRequest> jdwpEventRequests = new ArrayList<>();
+    private final List<JdwpEventRequest> jdwpEventRequests = new ArrayList<>();
 
     /** local flag that VM was resumed */
     private boolean vmStartedNotified;
@@ -102,7 +103,7 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
     public JdwpEventCenterDelegate(AllDelegates delegates) {
         this.delegates = delegates;
 
-        jdwpEventPayload = new ByteBufferPacket();
+        jdwpEventPayload = new DataByteBufferWriter();
         jdwpEventPayload.setByteOrder(ByteOrder.BIG_ENDIAN);
     }
 
@@ -112,7 +113,7 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
      */
     public void onConnectedToTarget() {
         // start thread to listen for events
-        this.hooksEventsThread = delegates.toolBox().createThread(() -> processEventsCycle(), "EventCenterThread");
+        this.hooksEventsThread = delegates.toolBox().createThread(this::processEventsCycle, "EventCenterThread");
 
         // there is a need to resume VM and do other things with target itself
         // do this in entry of that tread as it is not allowed here -- as this callback is being called from
@@ -720,7 +721,7 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
         if (result.size() == 0)
             log.error(HookConsts.commandToString(eventId) + ": Empty callstack!");
 
-        return result.toArray(new VmStackTrace[result.size()]);
+        return result.toArray(new VmStackTrace[0]);
     }
 
     private VmStackTrace convertStackTrace(int eventId, HooksCallStackEntry payload) {

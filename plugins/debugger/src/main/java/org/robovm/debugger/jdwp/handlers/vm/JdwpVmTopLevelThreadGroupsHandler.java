@@ -20,7 +20,8 @@ import org.robovm.debugger.jdwp.protocol.IJdwpRequestHandler;
 import org.robovm.debugger.state.VmDebuggerState;
 import org.robovm.debugger.state.instances.VmThread;
 import org.robovm.debugger.state.instances.VmThreadGroup;
-import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
+import org.robovm.debugger.utils.bytebuffer.DataBufferReader;
+import org.robovm.debugger.utils.bytebuffer.DataBufferWriter;
 
 import java.util.HashSet;
 import java.util.List;
@@ -39,7 +40,7 @@ public class JdwpVmTopLevelThreadGroupsHandler implements IJdwpRequestHandler {
     }
 
     @Override
-    public short handle(ByteBufferPacket payload, ByteBufferPacket output) {
+    public short handle(DataBufferReader payload, DataBufferWriter output) {
         synchronized (state.centralLock()) {
             // write dummy len to rewrite later as actual amount of items is not known yet
             output.writeInt32(0);

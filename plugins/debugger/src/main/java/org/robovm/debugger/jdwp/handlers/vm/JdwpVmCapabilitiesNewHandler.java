@@ -17,7 +17,8 @@ package org.robovm.debugger.jdwp.handlers.vm;
 
 import org.robovm.debugger.jdwp.JdwpConsts;
 import org.robovm.debugger.jdwp.protocol.IJdwpRequestHandler;
-import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
+import org.robovm.debugger.utils.bytebuffer.DataBufferReader;
+import org.robovm.debugger.utils.bytebuffer.DataBufferWriter;
 
 /**
  * @author Demyan Kimitsa
@@ -27,7 +28,7 @@ import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
  */
 public class JdwpVmCapabilitiesNewHandler implements IJdwpRequestHandler {
     @Override
-    public short handle(ByteBufferPacket payload, ByteBufferPacket output) {
+    public short handle(DataBufferReader payload, DataBufferWriter output) {
         //canWatchFieldModification: Can the VM watch field modification, and therefore can it send the Modification
         // Watchpoint Event?
         output.writeBoolean(false);

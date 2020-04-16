@@ -27,7 +27,8 @@ import org.robovm.debugger.state.classdata.ClassInfoLoader;
 import org.robovm.debugger.state.classdata.RuntimeClassInfoLoader;
 import org.robovm.debugger.state.instances.VmStackTrace;
 import org.robovm.debugger.state.instances.VmThread;
-import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
+import org.robovm.debugger.utils.bytebuffer.DataBufferReader;
+import org.robovm.debugger.utils.bytebuffer.DataBufferWriter;
 import org.robovm.llvm.debuginfo.DwarfDebugVariableInfo;
 
 import java.util.HashMap;
@@ -51,7 +52,7 @@ public class StackFrameDelegate implements IJdwpStackFrameDelegate {
      * reads frame local variables
      */
     @Override
-    public void getFrameValues(long threadId, long frameId, int[] varIndexes, byte[] varTags, ByteBufferPacket output) {
+    public void getFrameValues(long threadId, long frameId, int[] varIndexes, byte[] varTags, DataBufferWriter output) {
         VmDebuggerState state = delegates.state();
         // get variables just to validate that these are there and cast is working
         VmThread thread = state.referenceRefIdHolder().instanceById(threadId);
@@ -132,7 +133,7 @@ public class StackFrameDelegate implements IJdwpStackFrameDelegate {
      * gets frame local variable by its name (actually to get this value only)
      */
     @Override
-    public void getFrameVariable(long threadId, long frameId, String variableName, ByteBufferPacket output) {
+    public void getFrameVariable(long threadId, long frameId, String variableName, DataBufferWriter output) {
         VmDebuggerState state = delegates.state();
         // get variables just to validate that these are there and cast is working
         VmThread thread = state.referenceRefIdHolder().instanceById(threadId);
@@ -195,7 +196,7 @@ public class StackFrameDelegate implements IJdwpStackFrameDelegate {
      * @param count    number of frame values to set
      */
     @Override
-    public void setFrameValues(long threadId, long frameId, ByteBufferPacket fromJdpw, int count) {
+    public void setFrameValues(long threadId, long frameId, DataBufferReader fromJdpw, int count) {
         VmDebuggerState state = delegates.state();
         // get variables just to validate that these are there and cast is working
         VmThread thread = state.referenceRefIdHolder().instanceById(threadId);

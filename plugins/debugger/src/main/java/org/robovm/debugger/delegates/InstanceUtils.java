@@ -36,8 +36,10 @@ import org.robovm.debugger.state.instances.VmStringInstance;
 import org.robovm.debugger.state.instances.VmThread;
 import org.robovm.debugger.state.instances.VmThreadGroup;
 import org.robovm.debugger.utils.Converter;
-import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
 import org.robovm.debugger.utils.bytebuffer.DataBufferReader;
+import org.robovm.debugger.utils.bytebuffer.DataBufferReaderWriter;
+import org.robovm.debugger.utils.bytebuffer.DataBufferWriter;
+import org.robovm.debugger.utils.bytebuffer.DataByteBufferWriter;
 
 import java.nio.ByteOrder;
 import java.util.ArrayList;
@@ -178,7 +180,7 @@ public class InstanceUtils {
      * @return fields value
      */
     @SuppressWarnings("unchecked")
-    private <T> T getFieldValue(long objectPtr, ClassInfo ci, FieldInfo fi, ByteBufferPacket jdwpOutput) throws DebuggerException {
+    private <T> T getFieldValue(long objectPtr, ClassInfo ci, FieldInfo fi, DataBufferWriter jdwpOutput) throws DebuggerException {
         String signature = fi.signature();
         // is resolved already ?
         ClassInfo fieldTypeInfo = fi.typeInfo();
@@ -208,7 +210,7 @@ public class InstanceUtils {
      * @param jdwpOutput if not null -- also outputs data to buffer packet
      * @return object read
      */
-    public Object getMemoryValue(long objectPtr, ClassInfo ci, ByteBufferPacket jdwpOutput) {
+    public Object getMemoryValue(long objectPtr, ClassInfo ci, DataBufferWriter jdwpOutput) {
         ValueManipulator valueManipulator;
         delegates.runtime().deviceMemoryReader().setPosition(objectPtr);
         if (ci != null && ci.isPrimitive()) {
@@ -232,7 +234,7 @@ public class InstanceUtils {
      * @param ci class info of data (null if it is object)
      * @param jdwpOutput if not null -- also outputs data to buffer packet
      */
-    public void getDefaultValue(ClassInfo ci, ByteBufferPacket jdwpOutput) {
+    public void getDefaultValue(ClassInfo ci, DataBufferWriter jdwpOutput) {
         ValueManipulator valueManipulator;
         if (ci != null && ci.isPrimitive()) {
             ClassInfoPrimitiveImpl primitiveInfo = (ClassInfoPrimitiveImpl) ci;
@@ -251,7 +253,7 @@ public class InstanceUtils {
      * @param isStatic tells that static fields has to be read
      * @param packet JDPW packet buffer to put JDPW data
      */
-    public void jdwpFieldGetValues(long objectOrClassId, long[] fields, boolean isStatic, ByteBufferPacket packet) {
+    public void jdwpFieldGetValues(long objectOrClassId, long[] fields, boolean isStatic, DataBufferWriter packet) {
         ClassInfo ci;
         long baseDataPointer;
         if (isStatic) {
@@ -339,7 +341,7 @@ public class InstanceUtils {
         if (fromJdpw != null)
             value = valueManipulator.readFromJdwp(fromJdpw);
 
-        ByteBufferPacket packet = delegates.sharedTargetPacket();
+        DataBufferReaderWriter packet = delegates.sharedTargetPacket();
         packet.reset();
         valueManipulator.writeToDevice(packet, value);
 
@@ -347,7 +349,7 @@ public class InstanceUtils {
         delegates.hooksApi().writeMemory(objectPtr, packet);
     }
 
-    public void jdwpFieldSetValues(long objectOrClassId, int fieldsCount, boolean isStatic, ByteBufferPacket payload) {
+    public void jdwpFieldSetValues(long objectOrClassId, int fieldsCount, boolean isStatic, DataBufferReader payload) {
         ClassInfo ci;
         long baseDataPointer;
         if (isStatic) {
@@ -502,7 +504,7 @@ public class InstanceUtils {
      * invokes the method of class or instance
      */
     public void jdwpInvokeMethod(long objectOrClassId, long threadId, long methodId, boolean isStatic,
-                                 boolean singleThread, Object[] args, ByteBufferPacket output) {
+                                 boolean singleThread, Object[] args, DataBufferWriter output) {
 
         // get thread
         VmThread thread = delegates.state().referenceRefIdHolder().instanceById(threadId);
@@ -544,12 +546,12 @@ public class InstanceUtils {
         if (args.length != callspec.arguments.length)
             throw new DebuggerException(JdwpConsts.Error.INVALID_METHODID);
 
-        ByteBufferPacket argsBuffer = null;
+        DataBufferReaderWriter argsBuffer = null;
         if (args.length > 0) {
             // write values to special buffer
             // intentionally marked as 64 to save pointers as longs
             // refer to method.c/setArgs for details of how array/object data is fetched
-            argsBuffer = new ByteBufferPacket(args.length * 8, true);
+            argsBuffer = new DataByteBufferWriter(args.length * 8, true);
             argsBuffer.setByteOrder(ByteOrder.LITTLE_ENDIAN);
             for (int idx = 0; idx < args.length; idx++) {
                 // write using class spec
@@ -617,7 +619,7 @@ public class InstanceUtils {
             // now is a trick of how to make different types from long without checking types
             // write it to buffer and then read it back using manipulator
             if (argsBuffer == null) {
-                argsBuffer = new ByteBufferPacket(8, true);
+                argsBuffer = new DataByteBufferWriter(8, true);
                 argsBuffer.setByteOrder(ByteOrder.LITTLE_ENDIAN);
             } else {
                 argsBuffer.reset();

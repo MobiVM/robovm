@@ -13,14 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.robovm.debugger.jdwp;
-
-import org.robovm.debugger.utils.bytebuffer.DataBufferReader;
+package org.robovm.debugger.utils.bytebuffer;
 
 /**
+ * Interface that combines both reader and writer
  * @author Demyan Kimitsa
- * Api that application can use to work with server
  */
-public interface IJdwpServerApi {
-    void sendEvent(byte suspendPolicy, int eventsCount, DataBufferReader payload);
+public interface DataBufferReaderWriter extends DataBufferReader, DataBufferWriter {
 }

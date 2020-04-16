@@ -17,7 +17,8 @@ package org.robovm.debugger.jdwp.handlers.referencetype;
 
 import org.robovm.debugger.jdwp.JdwpConsts;
 import org.robovm.debugger.jdwp.protocol.IJdwpRequestHandler;
-import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
+import org.robovm.debugger.utils.bytebuffer.DataBufferReader;
+import org.robovm.debugger.utils.bytebuffer.DataBufferWriter;
 
 /**
  * @author Demyan Kimitsa
@@ -26,7 +27,7 @@ import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
  */
 public class JdwpRefTypeClassLoaderHandler implements IJdwpRequestHandler {
     @Override
-    public short handle(ByteBufferPacket payload, ByteBufferPacket output) {
+    public short handle(DataBufferReader payload, DataBufferWriter output) {
         // loaded by the system class loader, the returned object ID is null
         output.writeLong(0);
         return JdwpConsts.Error.NONE;

@@ -15,7 +15,8 @@
  */
 package org.robovm.debugger.jdwp.handlers.stackframe;
 
-import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
+import org.robovm.debugger.utils.bytebuffer.DataBufferReader;
+import org.robovm.debugger.utils.bytebuffer.DataBufferWriter;
 
 /**
  * @author Demyan Kimitsa
@@ -30,7 +31,7 @@ public interface IJdwpStackFrameDelegate {
      * @param varTags array of variable tags
      * @param output to write variables to
      */
-    void getFrameValues(long threadId, long frameId, int[] varIndexes, byte[] varTags, ByteBufferPacket output);
+    void getFrameValues(long threadId, long frameId, int[] varIndexes, byte[] varTags, DataBufferWriter output);
 
     /**
      * sets frame local variables to values
@@ -39,7 +40,7 @@ public interface IJdwpStackFrameDelegate {
      * @param payload JDWP byte packet with data to pick
      * @param count number of frame values to set
      */
-    void setFrameValues(long threadId, long frameId, ByteBufferPacket payload, int count);
+    void setFrameValues(long threadId, long frameId, DataBufferReader payload, int count);
 
     /**
      * gets frame local variable by its name (actually to get this value only)
@@ -48,5 +49,5 @@ public interface IJdwpStackFrameDelegate {
      * @param variableName of variable to fetch
      * @param output to write variable to
      */
-    void getFrameVariable(long threadId, long frameId, String variableName, ByteBufferPacket output);
+    void getFrameVariable(long threadId, long frameId, String variableName, DataBufferWriter output);
 }

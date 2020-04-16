@@ -24,8 +24,9 @@ import org.robovm.debugger.hooks.payloads.HooksThreadEventPayload;
 import org.robovm.debugger.hooks.payloads.HooksThreadStoppedEventPayload;
 import org.robovm.debugger.utils.DbgLogger;
 import org.robovm.debugger.utils.IDebuggerToolbox;
-import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
 import org.robovm.debugger.utils.bytebuffer.DataBufferReader;
+import org.robovm.debugger.utils.bytebuffer.DataBufferReaderWriter;
+import org.robovm.debugger.utils.bytebuffer.DataByteBufferWriter;
 
 import java.io.File;
 import java.io.IOException;
@@ -51,7 +52,7 @@ public class HooksChannel implements IHooksApi {
     private IHooksConnection hooksConnection;
     private long reqIdCounter = 100;
     private final Map<Long, HookReqHolder> requestsInProgress = new HashMap<>();
-    private final ByteBufferPacket headerBuffer;
+    private final DataBufferReaderWriter headerBuffer;
     private final IHooksEventsHandler eventsHandler;
 
     public HooksChannel(IDebuggerToolbox toolbox, boolean is64bit, IHooksConnection connection, IHooksEventsHandler eventsHandler) {
@@ -60,7 +61,7 @@ public class HooksChannel implements IHooksApi {
         this.eventsHandler = eventsHandler;
         this.socketThread = toolbox.createThread(this::doSocketWork, "HooksChannel socket thread");
 
-        headerBuffer = new ByteBufferPacket();
+        headerBuffer = new DataByteBufferWriter();
         headerBuffer.setByteOrder(ByteOrder.BIG_ENDIAN);
     }
 
@@ -87,7 +88,7 @@ public class HooksChannel implements IHooksApi {
             OutputStream outputStream = hooksConnection.getOutputStream();
 
             // read handshake
-            ByteBufferPacket buffer = new ByteBufferPacket(is64bit);
+            DataByteBufferWriter buffer = new DataByteBufferWriter(is64bit);
             buffer.setByteOrder(ByteOrder.BIG_ENDIAN);
             buffer.writeFromStream(inputStream, 8);
             buffer.setPosition(0);
@@ -150,7 +151,7 @@ public class HooksChannel implements IHooksApi {
     }
 
 
-    private HooksCmdResponse sendCommand(byte cmd, ByteBufferPacket payload) {
+    private HooksCmdResponse sendCommand(byte cmd, DataBufferReader payload) {
         if (Thread.currentThread().getId() == socketThread.getId())
             throw new DebuggerException("Send command should not be invoked from response listening thread due blocking of last");
 
@@ -188,7 +189,7 @@ public class HooksChannel implements IHooksApi {
     @Override
     public byte[] readMemory(long addr, int numBytes) {
 //        log.debug("readMemory @" + Long.toHexString(addr) + ", " + numBytes);
-        ByteBufferPacket packet = new ByteBufferPacket();
+        DataBufferReaderWriter packet = new DataByteBufferWriter();
         packet.writeLong(addr);
         packet.writeInt32(numBytes);
 
@@ -198,7 +199,7 @@ public class HooksChannel implements IHooksApi {
 
     @Override
     public String readCString(long addr) {
-        ByteBufferPacket packet = new ByteBufferPacket();
+        DataBufferReaderWriter packet = new DataByteBufferWriter();
         packet.writeLong(addr);
         HooksCmdResponse resp = sendCommand(HookConsts.commands.READ_CSTRING, packet);
         return resp.result();
@@ -206,7 +207,7 @@ public class HooksChannel implements IHooksApi {
 
     @Override
     public void writeMemory(long addr, byte[] data) {
-        ByteBufferPacket packet = new ByteBufferPacket();
+        DataBufferReaderWriter packet = new DataByteBufferWriter();
         packet.writeLong(addr);
         packet.writeInt32(data.length);
         packet.writeBytes(data);
@@ -215,7 +216,7 @@ public class HooksChannel implements IHooksApi {
 
     @Override
     public void writeMemory(long addr, DataBufferReader data) {
-        ByteBufferPacket packet = new ByteBufferPacket();
+        DataBufferReaderWriter packet = new DataByteBufferWriter();
         packet.writeLong(addr);
         packet.writeInt32(data.size());
         packet.writeFromReader(data.resetReader());
@@ -224,7 +225,7 @@ public class HooksChannel implements IHooksApi {
 
     @Override
     public void andBits(long addr, byte mask) {
-        ByteBufferPacket packet = new ByteBufferPacket();
+        DataBufferReaderWriter packet = new DataByteBufferWriter();
         packet.writeLong(addr);
         packet.writeByte(mask);
         sendCommand(HookConsts.commands.WRITE_AND_BITS, packet);
@@ -233,7 +234,7 @@ public class HooksChannel implements IHooksApi {
 
     @Override
     public void orBits(long addr, byte mask) {
-        ByteBufferPacket packet = new ByteBufferPacket();
+        DataBufferReaderWriter packet = new DataByteBufferWriter();
         packet.writeLong(addr);
         packet.writeByte(mask);
         sendCommand(HookConsts.commands.WRITE_OR_BITS, packet);
@@ -241,23 +242,22 @@ public class HooksChannel implements IHooksApi {
 
     @Override
     public long allocate(int numBytes) {
-        ByteBufferPacket packet = new ByteBufferPacket();
+        DataBufferReaderWriter packet = new DataByteBufferWriter();
         packet.writeInt32(numBytes);
         HooksCmdResponse resp = sendCommand(HookConsts.commands.ALLOCATE, packet);
         return resp.result();
-
     }
 
     @Override
     public void free(long addr) {
-        ByteBufferPacket packet = new ByteBufferPacket();
+        DataBufferReaderWriter packet = new DataByteBufferWriter();
         packet.writeLong(addr);
         sendCommand(HookConsts.commands.FREE, packet);
     }
 
     @Override
     public void classFilter(boolean isSet, String className) {
-        ByteBufferPacket packet = new ByteBufferPacket();
+        DataBufferReaderWriter packet = new DataByteBufferWriter();
         packet.writeByte((byte) (isSet ? -1 : 0));
         packet.writeStringWithLen(className);
         sendCommand(HookConsts.commands.CLASS_FILTER, packet);
@@ -265,21 +265,21 @@ public class HooksChannel implements IHooksApi {
 
     @Override
     public void threadSuspend(long thread) {
-        ByteBufferPacket packet = new ByteBufferPacket();
+        DataBufferReaderWriter packet = new DataByteBufferWriter();
         packet.writeLong(thread);
         sendCommand(HookConsts.commands.THREAD_SUSPEND, packet);
     }
 
     @Override
     public void threadResume(long thread) {
-        ByteBufferPacket packet = new ByteBufferPacket();
+        DataBufferReaderWriter packet = new DataByteBufferWriter();
         packet.writeLong(thread);
         sendCommand(HookConsts.commands.THREAD_RESUME, packet);
     }
 
     @Override
     public void threadStep(long thread, long pcLow, long pcHigh, long pcLow2, long pcHigh2) {
-        ByteBufferPacket packet = new ByteBufferPacket();
+        DataBufferReaderWriter packet = new DataByteBufferWriter();
         packet.writeLong(thread);
         packet.writeLong(pcLow);
         packet.writeLong(pcHigh);
@@ -290,7 +290,7 @@ public class HooksChannel implements IHooksApi {
 
     @Override
     public HooksCmdResponse threadInvoke(long thread, long classOrObjectPtr, String methodName, String descriptor,
-                                         boolean isClassMethod, byte returnType, ByteBufferPacket arguments) {
+                                         boolean isClassMethod, byte returnType, DataBufferReader arguments) {
         long argumentsPtr = 0;
         // if there are arguments -- allocate memory and write them there
         if (arguments != null) {
@@ -298,7 +298,7 @@ public class HooksChannel implements IHooksApi {
             writeMemory(argumentsPtr, arguments);
         }
 
-        ByteBufferPacket packet = new ByteBufferPacket();
+        DataBufferReaderWriter packet = new DataByteBufferWriter();
         packet.writeLong(thread);
         packet.writeLong(classOrObjectPtr);
         packet.writeStringWithLen(methodName);
@@ -317,7 +317,7 @@ public class HooksChannel implements IHooksApi {
     }
 
     @Override
-    public HooksCmdResponse newInstance(long thread, long classOrObjectPtr, String methodName, String descriptor, ByteBufferPacket arguments) {
+    public HooksCmdResponse newInstance(long thread, long classOrObjectPtr, String methodName, String descriptor, DataBufferReader arguments) {
         long argumentsPtr = 0;
         // if there are arguments -- allocate memory and write them there
         if (arguments != null) {
@@ -325,7 +325,7 @@ public class HooksChannel implements IHooksApi {
             writeMemory(argumentsPtr, arguments);
         }
 
-        ByteBufferPacket packet = new ByteBufferPacket();
+        DataBufferReaderWriter packet = new DataByteBufferWriter();
         packet.writeLong(thread);
         packet.writeLong(classOrObjectPtr);
         packet.writeStringWithLen(methodName);
@@ -343,7 +343,7 @@ public class HooksChannel implements IHooksApi {
 
     @Override
     public HooksCmdResponse newString(long thread, String s) {
-        ByteBufferPacket packet = new ByteBufferPacket();
+        DataBufferReaderWriter packet = new DataByteBufferWriter();
         packet.writeLong(thread);
         byte[] bytes = s.getBytes();
         packet.writeInt32(bytes.length);
@@ -353,7 +353,7 @@ public class HooksChannel implements IHooksApi {
 
     @Override
     public HooksCmdResponse newArray(long thread, int arrayLength, String elementName) {
-        ByteBufferPacket packet = new ByteBufferPacket();
+        DataBufferReaderWriter packet = new DataByteBufferWriter();
         packet.writeLong(thread);
         packet.writeInt32(arrayLength);
         byte[] bytes = elementName.getBytes();

@@ -17,14 +17,15 @@ package org.robovm.debugger.jdwp.handlers.objectreference;
 
 import org.robovm.debugger.jdwp.JdwpConsts;
 import org.robovm.debugger.jdwp.protocol.IJdwpRequestHandler;
-import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
+import org.robovm.debugger.utils.bytebuffer.DataBufferReader;
+import org.robovm.debugger.utils.bytebuffer.DataBufferWriter;
 
 /**
  * @author Demyan Kimitsa
  */
 public class JdwpObjRefEnableCollectionHandler implements IJdwpRequestHandler{
     @Override
-    public short handle(ByteBufferPacket payload, ByteBufferPacket output) {
+    public short handle(DataBufferReader payload, DataBufferWriter output) {
         // this handler does nothing just makes debuggers happy
         return JdwpConsts.Error.NONE;
     }

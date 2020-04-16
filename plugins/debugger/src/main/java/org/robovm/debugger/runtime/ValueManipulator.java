@@ -17,8 +17,8 @@ package org.robovm.debugger.runtime;
 
 import org.robovm.debugger.DebuggerException;
 import org.robovm.debugger.jdwp.JdwpConsts;
-import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
 import org.robovm.debugger.utils.bytebuffer.DataBufferReader;
+import org.robovm.debugger.utils.bytebuffer.DataBufferWriter;
 
 /**
  * @author Demyan Kimitsa
@@ -31,12 +31,12 @@ public class ValueManipulator {
     }
 
     protected interface Writer {
-        void write(ByteBufferPacket writer, Object o);
+        void write(DataBufferWriter writer, Object o);
     }
 
     // writes zeroes in case value is missing
     protected interface UndefinedWriter {
-        void write(ByteBufferPacket writer);
+        void write(DataBufferWriter writer);
     }
 
     protected interface ArrayReader {
@@ -91,15 +91,15 @@ public class ValueManipulator {
         return fromJdwp.read(reader);
     }
 
-    public void writeToDevice(ByteBufferPacket writer, Object o) {
+    public void writeToDevice(DataBufferWriter writer, Object o) {
         toDevice.write(writer, o);
     }
 
-    public void writeToJdwp(ByteBufferPacket writer, Object o) {
+    public void writeToJdwp(DataBufferWriter writer, Object o) {
         toJdwp.write(writer, o);
     }
 
-    public void writeDefaultToJdwp(ByteBufferPacket writer) {
+    public void writeDefaultToJdwp(DataBufferWriter writer) {
         toJdwpDefault.write(writer);
     }
 

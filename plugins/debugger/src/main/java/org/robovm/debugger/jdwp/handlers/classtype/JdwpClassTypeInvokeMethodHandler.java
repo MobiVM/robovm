@@ -19,7 +19,8 @@ import org.robovm.debugger.DebuggerException;
 import org.robovm.debugger.jdwp.JdwpConsts;
 import org.robovm.debugger.jdwp.handlers.objectreference.IJdwpInstanceDelegate;
 import org.robovm.debugger.jdwp.protocol.IJdwpRequestHandler;
-import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
+import org.robovm.debugger.utils.bytebuffer.DataBufferReader;
+import org.robovm.debugger.utils.bytebuffer.DataBufferWriter;
 
 /**
  * @author Demyan Kimitsa
@@ -33,7 +34,7 @@ public class JdwpClassTypeInvokeMethodHandler implements IJdwpRequestHandler {
     }
 
     @Override
-    public short handle(ByteBufferPacket payload, ByteBufferPacket output) {
+    public short handle(DataBufferReader payload, DataBufferWriter output) {
         long classId = payload.readLong();
         long threadId = payload.readLong();
         long methodId = payload.readLong();
@@ -75,7 +76,7 @@ public class JdwpClassTypeInvokeMethodHandler implements IJdwpRequestHandler {
         return "ClassType(3).InvokeMethod(3)";
     }
 
-    public static void readTaggedArguments(byte[] tags, Object[] args, ByteBufferPacket payload) {
+    public static void readTaggedArguments(byte[] tags, Object[] args, DataBufferReader payload) {
         for (int idx = 0; idx < args.length; idx ++) {
             byte tag = payload.readByte();
             Object v;
