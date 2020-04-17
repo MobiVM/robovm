@@ -768,4 +768,15 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
     private int allocateJdwpEventRequestId() {
         return jdwpEventRequestCounter++;
     }
+
+    /**
+     * thread about to be resumed. Hook server cancels all stepping. resume stepping if
+     * there is active one
+     */
+    public void restepBeforeResume(VmThread thread) {
+        if (activeStepRequest != null && activeStepRequest.thread().refId() == thread.refId()) {
+            // step again
+            delegates.runtime().restep(activeStepRequest);
+        }
+    }
 }

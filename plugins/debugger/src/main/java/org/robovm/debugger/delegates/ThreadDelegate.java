@@ -57,8 +57,8 @@ public class ThreadDelegate implements IJdwpThreadDelegate {
     @Override
     public void jdwpResumeThread(long threadId) throws DebuggerException {
         VmThread thread = getThread(threadId);
-        if (thread == null)
-            throw new DebuggerException(JdwpConsts.Error.INVALID_THREAD);
+        // if thread is stopped -- all stepping is canceled, try to resume active stepping if it active
+        delegates.events().restepBeforeResume(thread);
         resumeThread(thread);
     }
 
