@@ -15,9 +15,9 @@ public class NullDataBufferReader implements DataBufferReader {
     final long bottomLimit, limit;
     long position;
 
-    public NullDataBufferReader(long bottomLimit, long limit, boolean is64bit) {
+    public NullDataBufferReader(long bottomLimit, long size, boolean is64bit) {
         this.bottomLimit = bottomLimit;
-        this.limit = limit;
+        this.limit = bottomLimit + size;
         this.is64bit = is64bit;
     }
 
