@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -55,11 +57,8 @@ public final class /*<name>*/NSLayoutFormatOptions/*</name>*/ extends Bits</*<na
     public static final NSLayoutFormatOptions AlignAllCenterX = new NSLayoutFormatOptions(512L);
     public static final NSLayoutFormatOptions AlignAllCenterY = new NSLayoutFormatOptions(1024L);
     public static final NSLayoutFormatOptions AlignAllLastBaseline = new NSLayoutFormatOptions(2048L);
-    public static final NSLayoutFormatOptions AlignAllBaseline = new NSLayoutFormatOptions(2048L);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final NSLayoutFormatOptions AlignAllFirstBaseline = new NSLayoutFormatOptions(4096L);
+    public static final NSLayoutFormatOptions AlignAllBaseline = new NSLayoutFormatOptions(2048L);
     public static final NSLayoutFormatOptions AlignmentMask = new NSLayoutFormatOptions(65535L);
     public static final NSLayoutFormatOptions DirectionLeadingToTrailing = new NSLayoutFormatOptions(0L);
     public static final NSLayoutFormatOptions DirectionLeftToRight = new NSLayoutFormatOptions(65536L);

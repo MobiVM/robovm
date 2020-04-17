@@ -97,13 +97,7 @@ import org.robovm.apple.audiotoolbox.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final AVAudioSessionLocation Upper = new AVAudioSessionLocation("Upper");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final AVAudioSessionLocation Lower = new AVAudioSessionLocation("Lower");
     /*</constants>*/
     
@@ -130,14 +124,8 @@ import org.robovm.apple.audiotoolbox.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="AVAudioSessionLocationUpper", optional=true)
         public static native NSString Upper();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="AVAudioSessionLocationLower", optional=true)
         public static native NSString Lower();
         /*</values>*/

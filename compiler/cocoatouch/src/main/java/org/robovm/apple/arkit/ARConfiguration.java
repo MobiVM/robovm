@@ -88,9 +88,23 @@ import org.robovm.apple.imageio.*;
     public native boolean providesAudioData();
     @Property(selector = "setProvidesAudioData:")
     public native void setProvidesAudioData(boolean v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "frameSemantics")
+    public native ARFrameSemantics getFrameSemantics();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setFrameSemantics:")
+    public native void setFrameSemantics(ARFrameSemantics v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "supportsFrameSemantics:")
+    public static native boolean supportsFrameSemantics(ARFrameSemantics frameSemantics);
     /*</methods>*/
 }

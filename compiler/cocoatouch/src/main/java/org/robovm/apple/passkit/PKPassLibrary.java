@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -34,9 +34,7 @@ import org.robovm.apple.contacts.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 6.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("PassKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/PKPassLibrary/*</name>*/ 
@@ -71,7 +69,7 @@ import org.robovm.apple.contacts.*;
             });
         }
     }
-    
+
     /*<ptr>*/public static class PKPassLibraryPtr extends Ptr<PKPassLibrary, PKPassLibraryPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(PKPassLibrary.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
@@ -81,13 +79,19 @@ import org.robovm.apple.contacts.*;
     protected PKPassLibrary(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    @Property(selector = "isSecureElementPassActivationAvailable")
+    public native boolean isSecureElementPassActivationAvailable();
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    @Property(selector = "remoteSecureElementPasses")
+    public native NSArray<PKSecureElementPass> getRemoteSecureElementPasses();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @GlobalValue(symbol="PKPassLibraryDidChangeNotification", optional=true)
     public static native NSString DidChangeNotification();
     /**
@@ -98,21 +102,22 @@ import org.robovm.apple.contacts.*;
     
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Use -[PKPassLibrary isSecureElementPassActivationAvailable] instead
      */
+    @Deprecated
     @Method(selector = "isPaymentPassActivationAvailable")
     public native boolean isPaymentPassActivationAvailable();
     @Method(selector = "passes")
     public native NSArray<PKPass> getPasses();
     @Method(selector = "passWithPassTypeIdentifier:serialNumber:")
     public native PKPass getPass(String identifier, String serialNumber);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "passesOfType:")
     public native NSArray<PKPass> getPassesOfType(PKPassType passType);
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Use -[PKPassLibrary remoteSecureElementPasses] instead
      */
+    @Deprecated
     @Method(selector = "remotePaymentPasses")
     public native NSArray<PKPass> getRemotePaymentPasses();
     @Method(selector = "removePass:")
@@ -121,9 +126,6 @@ import org.robovm.apple.contacts.*;
     public native boolean containsPass(PKPass pass);
     @Method(selector = "replacePassWithPass:")
     public native boolean replacePass(PKPass pass);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "addPasses:withCompletionHandler:")
     public native void addPasses(NSArray<PKPass> passes, @Block VoidBlock1<PKPassLibraryAddPassesStatus> completion);
     /**
@@ -133,34 +135,55 @@ import org.robovm.apple.contacts.*;
     public native void openPaymentSetup();
     /**
      * @since Available in iOS 10.0 and later.
+     * @deprecated Use -[PKPassLibrary remoteSecureElementPasses] instead
      */
+    @Deprecated
     @Method(selector = "presentPaymentPass:")
     public native void presentPaymentPass(PKPaymentPass pass);
     /**
-     * @since Available in iOS 9.0 and later.
+     * @since Available in iOS 13.4 and later.
      */
+    @Method(selector = "presentSecureElementPass:")
+    public native void presentSecureElementPass(PKSecureElementPass pass);
+    /**
+     * @since Available in iOS 9.0 and later.
+     * @deprecated Use -[PKPassLibrary canAddSecureElementPassWithPrimaryAccountIdentifier] instead
+     */
+    @Deprecated
     @Method(selector = "canAddPaymentPassWithPrimaryAccountIdentifier:")
     public native boolean canAddPaymentPass(String primaryAccountIdentifier);
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    @Method(selector = "canAddSecureElementPassWithPrimaryAccountIdentifier:")
+    public native boolean canAddSecureElementPass(String primaryAccountIdentifier);
     /**
      * @since Available in iOS 10.1 and later.
      */
     @Method(selector = "canAddFelicaPass")
     public native boolean canAddFelicaPass();
     /**
-     * @since Available in iOS 8.0 and later.
+     * @deprecated Use activateSecureElementPass:withActivationData:completion: instead
      */
+    @Deprecated
     @Method(selector = "activatePaymentPass:withActivationData:completion:")
     public native void activatePaymentPass(PKPaymentPass paymentPass, NSData activationData, @Block VoidBlock2<Boolean, NSError> completion);
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 9.0. Use activatePaymentPass:withActivationData:completion: instead
      */
     @Deprecated
     @Method(selector = "activatePaymentPass:withActivationCode:completion:")
     public native void activatePaymentPass(PKPaymentPass paymentPass, String activationCode, @Block VoidBlock2<Boolean, NSError> completion);
     /**
-     * @since Available in iOS 6.0 and later.
+     * @since Available in iOS 13.4 and later.
      */
+    @Method(selector = "activateSecureElementPass:withActivationData:completion:")
+    public native void activateSecureElementPass(PKSecureElementPass secureElementPass, NSData activationData, @Block VoidBlock2<Boolean, NSError> completion);
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    @Method(selector = "signData:withSecureElementPass:completion:")
+    public native void signData(NSData signData, PKSecureElementPass secureElementPass, @Block VoidBlock3<NSData, NSData, NSError> completion);
     @Method(selector = "isPassLibraryAvailable")
     public static native boolean isPassLibraryAvailable();
     /**
@@ -179,7 +202,6 @@ import org.robovm.apple.contacts.*;
     @Method(selector = "isSuppressingAutomaticPassPresentation")
     public static native boolean isSuppressingAutomaticPassPresentation();
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 9.0. Use -[PKPassLibrary isPaymentPassActivationAvailable] instead
      */
     @Deprecated

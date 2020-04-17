@@ -29,6 +29,8 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corespotlight.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -56,13 +58,7 @@ public enum /*<name>*/NSAttributeType/*</name>*/ implements ValuedEnum {
      * @since Available in iOS 11.0 and later.
      */
     URI(1200L),
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     Transformable(1800L),
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     ObjectID(2000L);
     /*</values>*/
 

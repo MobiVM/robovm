@@ -24,35 +24,30 @@ import com.intellij.openapi.options.ConfigurationException;
 import com.intellij.openapi.options.SettingsEditor;
 import com.intellij.openapi.vfs.VirtualFile;
 import org.jetbrains.annotations.NotNull;
-import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.target.ConsoleTarget;
-import org.robovm.compiler.target.ios.DeviceType;
-import org.robovm.compiler.target.ios.ProvisioningProfile;
-import org.robovm.compiler.target.ios.SigningIdentity;
 import org.robovm.idea.RoboVmPlugin;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
 public class RoboVmConsoleRunConfigurationSettingsEditor extends SettingsEditor<RoboVmRunConfiguration> {
-    private JComboBox module;
+    private JComboBox<String> module;
     private JPanel panel;
     private JTextArea args;
     private JTextField workingDir;
     private JButton browseButton;
 
     @Override
-    protected void resetEditorFrom(RoboVmRunConfiguration config) {
+    protected void resetEditorFrom(@NotNull RoboVmRunConfiguration config) {
         populateControls(config);
     }
 
     @Override
-    protected void applyEditorTo(RoboVmRunConfiguration config) throws ConfigurationException {
-        config.setModuleName(module.getSelectedItem() != null ? module.getSelectedItem().toString() : "");
+    protected void applyEditorTo(@NotNull RoboVmRunConfiguration config) throws ConfigurationException {
+        if (module.getSelectedItem() == null)
+            throw new ConfigurationException("RoboVM module is not specified!");
+        config.setModuleName(module.getSelectedItem().toString());
         config.setTargetType(RoboVmRunConfiguration.TargetType.Console);
         config.setArguments(args.getText());
         config.setWorkingDir(workingDir.getText());
@@ -68,12 +63,7 @@ public class RoboVmConsoleRunConfigurationSettingsEditor extends SettingsEditor<
         // populate with RoboVM Sdk modules
         this.module.removeAllItems();
         List<Module> roboVmModules = RoboVmPlugin.getRoboVmModules(config.getProject(), ConsoleTarget.TYPE);
-        Collections.sort(roboVmModules, new Comparator<Module>() {
-            @Override
-            public int compare(Module o1, Module o2) {
-                return o1.getName().compareTo(o2.getName());
-            }
-        });
+        roboVmModules.sort(Comparator.comparing(Module::getName));
         for(Module module: roboVmModules) {
             this.module.addItem(module.getName());
             if(module.getName().equals(config.getModuleName())) {
@@ -87,24 +77,21 @@ public class RoboVmConsoleRunConfigurationSettingsEditor extends SettingsEditor<
             dir = config.getProject().getBasePath();
         }
         this.workingDir.setText(dir);
-        this.browseButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                FileChooserDialog fileChooser = FileChooserFactory.getInstance()
-                        .createFileChooser(new FileChooserDescriptor(true, false, false, false, false, false) {
-                            @Override
-                            public boolean isFileVisible(VirtualFile file, boolean showHiddenFiles) {
-                                return file.isDirectory();
-                            }
-                            @Override
-                            public boolean isFileSelectable(VirtualFile file) {
-                                return file.isDirectory();
-                            }
-                        }, null, panel);
-                VirtualFile[] dir = fileChooser.choose(config.getProject());
-                if(dir != null && dir.length > 0) {
-                    workingDir.setText(dir[0].getCanonicalPath());
-                }
+        this.browseButton.addActionListener(e -> {
+            FileChooserDialog fileChooser = FileChooserFactory.getInstance()
+                    .createFileChooser(new FileChooserDescriptor(true, false, false, false, false, false) {
+                        @Override
+                        public boolean isFileVisible(VirtualFile file, boolean showHiddenFiles) {
+                            return file.isDirectory();
+                        }
+                        @Override
+                        public boolean isFileSelectable(VirtualFile file) {
+                            return file.isDirectory();
+                        }
+                    }, null, panel);
+            VirtualFile[] dir1 = fileChooser.choose(config.getProject());
+            if(dir1.length > 0) {
+                workingDir.setText(dir1[0].getCanonicalPath());
             }
         });
     }

@@ -63,6 +63,11 @@ import org.robovm.apple.uikit.*;
     public native GCControllerButtonInput getButtonA();
     @Property(selector = "buttonX")
     public native GCControllerButtonInput getButtonX();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "buttonMenu")
+    public native GCControllerButtonInput getButtonMenu();
     @Property(selector = "reportsAbsoluteDpadValues")
     public native boolean isReportsAbsoluteDpadValues();
     @Property(selector = "setReportsAbsoluteDpadValues:")
@@ -74,7 +79,16 @@ import org.robovm.apple.uikit.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @deprecated Deprecated in iOS 13.0. GCMicroGamepadSnapshot has been deprecated, use [GCController capture] instead
+     */
+    @Deprecated
     @Method(selector = "saveSnapshot")
     public native GCMicroGamepadSnapshot saveSnapshot();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "setStateFromMicroGamepad:")
+    public native void setStateFromMicroGamepad(GCMicroGamepad microGamepad);
     /*</methods>*/
 }

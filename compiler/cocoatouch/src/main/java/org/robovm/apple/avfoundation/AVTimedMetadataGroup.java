@@ -41,9 +41,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.3 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVTimedMetadataGroup/*</name>*/ 
@@ -59,9 +57,6 @@ import org.robovm.apple.audiotoolbox.*;
     protected AVTimedMetadataGroup(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithItems:timeRange:")
     public AVTimedMetadataGroup(NSArray<AVMetadataItem> items, @ByVal CMTimeRange timeRange) { super((SkipInit) null); initObject(init(items, timeRange)); }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "initWithSampleBuffer:")
     public AVTimedMetadataGroup(CMSampleBuffer sampleBuffer) { super((SkipInit) null); initObject(init(sampleBuffer)); }
     /*</constructors>*/
@@ -75,14 +70,8 @@ import org.robovm.apple.audiotoolbox.*;
     /*<methods>*/
     @Method(selector = "initWithItems:timeRange:")
     protected native @Pointer long init(NSArray<AVMetadataItem> items, @ByVal CMTimeRange timeRange);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "initWithSampleBuffer:")
     protected native @Pointer long init(CMSampleBuffer sampleBuffer);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @WeaklyLinked
     @Method(selector = "copyFormatDescription")
     public native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CMFormatDescription getFormatDescription();

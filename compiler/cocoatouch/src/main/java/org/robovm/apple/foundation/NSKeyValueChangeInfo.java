@@ -137,9 +137,6 @@ import org.robovm.apple.dispatch.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public boolean isNotificationSentPriorToChange() {
         if (has(Keys.NotificationIsPrior())) {
             NSNumber val = (NSNumber) get(Keys.NotificationIsPrior());
@@ -161,9 +158,6 @@ import org.robovm.apple.dispatch.*;
         public static native NSString Old();
         @GlobalValue(symbol="NSKeyValueChangeIndexesKey", optional=true)
         public static native NSString Indexes();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="NSKeyValueChangeNotificationIsPriorKey", optional=true)
         public static native NSString NotificationIsPrior();
     }

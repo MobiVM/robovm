@@ -168,24 +168,12 @@ import org.robovm.apple.audiotoolbox.*;
         return lastTimeRange;
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Bridge(symbol="MTAudioProcessingTapGetTypeID", optional=true)
     public static native @MachineSizedUInt long getClassTypeID();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Bridge(symbol="MTAudioProcessingTapCreate", optional=true)
     protected static native OSStatus create(CFAllocator allocator, MTAudioProcessingTapCallbacksStruct callbacks, MTAudioProcessingTapCreationFlags flags, MTAudioProcessingTap.MTAudioProcessingTapPtr tapOut);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Bridge(symbol="MTAudioProcessingTapGetStorage", optional=true)
     protected native @Pointer long getStorage();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Bridge(symbol="MTAudioProcessingTapGetSourceAudio", optional=true)
     protected native OSStatus getSourceAudio0(@MachineSizedSInt long numberFrames, AudioBufferList bufferListInOut, MTAudioProcessingTapMutableFlags flagsOut, CMTimeRange timeRangeOut, MachineSizedSIntPtr numberFramesOut);
     /*</methods>*/

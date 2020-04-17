@@ -36,12 +36,11 @@ import org.robovm.apple.imageio.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.metal.*;
 import org.robovm.apple.iosurface.*;
+import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 5.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreImage") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CIDetector/*</name>*/ 
@@ -66,19 +65,10 @@ import org.robovm.apple.iosurface.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "featuresInImage:")
     public native NSArray<CIFeature> findFeatures(CIImage image);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "featuresInImage:options:")
     public native NSArray<CIFeature> findFeatures(CIImage image, CIDetectorFeatureOptions options);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "detectorOfType:context:options:")
     protected static native @Pointer long init(CIDetectorType type, CIContext context, CIDetectorOptions options);
     /*</methods>*/

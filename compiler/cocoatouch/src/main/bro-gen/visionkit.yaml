@@ -1,0 +1,47 @@
+package: org.robovm.apple.visionkit
+include: [foundation, uikit]
+library: VisionKit
+framework: VisionKit
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/VisionKit.framework/Headers/VisionKit.h
+
+private_typedefs:
+
+typedefs:
+
+enums:
+
+typed_enums:
+
+classes:
+    VNDocumentCameraScan: {} #since 13.0
+    VNDocumentCameraViewController: {} #since 13.0
+
+protocols:
+    VNDocumentCameraViewControllerDelegate: #since 13.0
+        methods:
+            '-documentCameraViewControllerDidCancel:':
+                name: didCancel
+            '-documentCameraViewController:didFinishWithScan:':
+                name: didFinish
+            '-documentCameraViewController:didFailWithError:':
+                name: didFail
+
+functions:
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (k?VN.*):
+        class: FixMe
+        name: 'Function__#{g[0]}'
+
+values:
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (k?VN.*):
+        class: FixMe
+        name: 'Value__#{g[0]}'
+
+constants:
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (k?VN.*):
+        class: FixMe
+        name: 'Constant__#{g[0]}'

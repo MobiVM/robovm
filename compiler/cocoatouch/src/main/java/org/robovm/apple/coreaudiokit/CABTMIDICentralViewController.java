@@ -34,9 +34,7 @@ import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreAudioKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CABTMIDICentralViewController/*</name>*/ 
@@ -55,7 +53,7 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "initWithNibName:bundle:")
     public CABTMIDICentralViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
     @Method(selector = "initWithCoder:")
-    public CABTMIDICentralViewController(NSCoder decoder) { super(decoder); }
+    public CABTMIDICentralViewController(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     

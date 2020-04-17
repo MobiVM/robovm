@@ -92,17 +92,8 @@ import org.robovm.apple.metal.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public static final CALineJoin Miter = new CALineJoin("Miter");
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public static final CALineJoin Round = new CALineJoin("Round");
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public static final CALineJoin Bevel = new CALineJoin("Bevel");
     /*</constants>*/
     
@@ -129,19 +120,10 @@ import org.robovm.apple.metal.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 3.0 and later.
-         */
         @GlobalValue(symbol="kCALineJoinMiter", optional=true)
         public static native NSString Miter();
-        /**
-         * @since Available in iOS 3.0 and later.
-         */
         @GlobalValue(symbol="kCALineJoinRound", optional=true)
         public static native NSString Round();
-        /**
-         * @since Available in iOS 3.0 and later.
-         */
         @GlobalValue(symbol="kCALineJoinBevel", optional=true)
         public static native NSString Bevel();
         /*</values>*/

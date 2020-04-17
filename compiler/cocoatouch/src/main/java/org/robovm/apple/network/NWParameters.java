@@ -35,7 +35,7 @@ import org.robovm.apple.security.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*/@Library("Network") @NativeProtocolProxy("OS_nw_parameters")/*</annotations>*/
+/*<annotations>*/@Library("Network") @NativeClass("NSObject")/*</annotations>*/
 /*<visibility>*/public final/*</visibility>*/ class /*<name>*/NWParameters/*</name>*/ 
     extends /*<extends>*/NWObject/*</extends>*/ 
     /*<implements>*/implements NSObjectProtocol/*</implements>*/ {
@@ -44,6 +44,11 @@ import org.robovm.apple.security.*;
     /*<bind>*/static { ObjCRuntime.bind(NWParameters.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    public NWParameters() { super((Handle) null, create());  }
+    
     
     /*</constructors>*/
     /*<properties>*/
@@ -76,7 +81,7 @@ import org.robovm.apple.security.*;
      * @since Available in iOS 12.0 and later.
      */
     @Bridge(symbol="nw_parameters_create", optional=true)
-    public static native NWParameters create();
+    private static native @Pointer long create();
     /**
      * @since Available in iOS 12.0 and later.
      */
@@ -142,6 +147,16 @@ import org.robovm.apple.security.*;
      */
     @Bridge(symbol="nw_parameters_get_prohibit_expensive", optional=true)
     public native boolean getProhibitExpensive();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="nw_parameters_set_prohibit_constrained", optional=true)
+    public native void setProhibitConstrained(boolean prohibit_constrained);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="nw_parameters_get_prohibit_constrained", optional=true)
+    public native boolean getProhibitConstrained();
     /**
      * @since Available in iOS 12.0 and later.
      */

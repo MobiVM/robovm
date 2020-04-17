@@ -36,7 +36,6 @@ import org.robovm.apple.avkit.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 6.0 and later.
  * @deprecated Deprecated in iOS 10.0.
  */
 /*</javadoc>*/

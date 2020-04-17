@@ -105,6 +105,11 @@ import org.robovm.apple.audiotoolbox.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "semanticSegmentationMatteForType:")
+    public native AVSemanticSegmentationMatte semanticSegmentationMatteForType(AVSemanticSegmentationMatteType semanticSegmentationMatteType);
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "fileDataRepresentation")
@@ -116,7 +121,7 @@ import org.robovm.apple.audiotoolbox.*;
     public native NSData fileDataRepresentation(AVCapturePhotoFileDataRepresentationCustomizer customizer);
     /**
      * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 12.0. Use fileDataRepresentationWithCustomizer: instead
+     * @deprecated Deprecated in iOS 12.0. Use fileDataRepresentationWithCustomizer:
      */
     @Deprecated
     @Method(selector = "fileDataRepresentationWithReplacementMetadata:replacementEmbeddedThumbnailPhotoFormat:replacementEmbeddedThumbnailPixelBuffer:replacementDepthData:")

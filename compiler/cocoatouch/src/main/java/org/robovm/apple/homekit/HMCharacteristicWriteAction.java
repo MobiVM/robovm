@@ -32,19 +32,18 @@ import org.robovm.apple.corelocation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("HomeKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/HMCharacteristicWriteAction/*</name>*/ <T extends NSObject> 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/HMCharacteristicWriteAction<T extends NSObject>/*</name>*/
     extends /*<extends>*/HMAction/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class HMCharacteristicWriteActionPtr extends Ptr<HMCharacteristicWriteAction, HMCharacteristicWriteActionPtr> {}/*</ptr>*/
+    /*<ptr>*/public static class HMCharacteristicWriteActionPtr<T extends NSObject> extends Ptr<HMCharacteristicWriteAction<T>, HMCharacteristicWriteActionPtr<T>> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(HMCharacteristicWriteAction.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
+    protected HMCharacteristicWriteAction() {}
     protected HMCharacteristicWriteAction(Handle h, long handle) { super(h, handle); }
     protected HMCharacteristicWriteAction(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCharacteristic:targetValue:")

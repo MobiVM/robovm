@@ -35,9 +35,7 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 3.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("MapKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MKPinAnnotationView/*</name>*/ 
@@ -74,14 +72,12 @@ import org.robovm.apple.dispatch.*;
     @Property(selector = "setAnimatesDrop:")
     public native void setAnimatesDrop(boolean v);
     /**
-     * @since Available in iOS 3.0 and later.
      * @deprecated Deprecated in iOS 9.0. Use pinTintColor instead
      */
     @Deprecated
     @Property(selector = "pinColor")
     public native MKPinAnnotationColor getPinColor();
     /**
-     * @since Available in iOS 3.0 and later.
      * @deprecated Deprecated in iOS 9.0. Use pinTintColor instead
      */
     @Deprecated

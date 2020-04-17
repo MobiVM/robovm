@@ -33,9 +33,7 @@ import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 7.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("GameController") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GCExtendedGamepad/*</name>*/ 
@@ -67,6 +65,16 @@ import org.robovm.apple.uikit.*;
     public native GCControllerButtonInput getButtonX();
     @Property(selector = "buttonY")
     public native GCControllerButtonInput getButtonY();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "buttonMenu")
+    public native GCControllerButtonInput getButtonMenu();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "buttonOptions")
+    public native GCControllerButtonInput getButtonOptions();
     @Property(selector = "leftThumbstick")
     public native GCControllerDirectionPad getLeftThumbstick();
     @Property(selector = "rightThumbstick")
@@ -92,7 +100,16 @@ import org.robovm.apple.uikit.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @deprecated Deprecated in iOS 13.0. GCExtendedGamepadSnapshot has been deprecated, use [GCController capture] instead
+     */
+    @Deprecated
     @Method(selector = "saveSnapshot")
     public native GCExtendedGamepadSnapshot saveSnapshot();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "setStateFromExtendedGamepad:")
+    public native void setStateFromExtendedGamepad(GCExtendedGamepad extendedGamepad);
     /*</methods>*/
 }

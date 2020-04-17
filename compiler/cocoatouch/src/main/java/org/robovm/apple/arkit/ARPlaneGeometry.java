@@ -58,7 +58,7 @@ import org.robovm.apple.imageio.*;
     protected ARPlaneGeometry(Handle h, long handle) { super(h, handle); }
     protected ARPlaneGeometry(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public ARPlaneGeometry(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public ARPlaneGeometry(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "vertexCount")
@@ -85,6 +85,6 @@ import org.robovm.apple.imageio.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

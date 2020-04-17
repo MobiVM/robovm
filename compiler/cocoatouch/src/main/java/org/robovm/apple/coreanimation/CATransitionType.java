@@ -92,21 +92,9 @@ import org.robovm.apple.metal.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CATransitionType Fade = new CATransitionType("Fade");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CATransitionType MoveIn = new CATransitionType("MoveIn");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CATransitionType Push = new CATransitionType("Push");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CATransitionType Reveal = new CATransitionType("Reveal");
     /*</constants>*/
     
@@ -133,24 +121,12 @@ import org.robovm.apple.metal.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCATransitionFade", optional=true)
         public static native NSString Fade();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCATransitionMoveIn", optional=true)
         public static native NSString MoveIn();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCATransitionPush", optional=true)
         public static native NSString Push();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCATransitionReveal", optional=true)
         public static native NSString Reveal();
         /*</values>*/

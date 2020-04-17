@@ -46,14 +46,8 @@ import org.robovm.apple.corefoundation.*;
     /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     @Bridge(symbol="MIDIGetDriverIORunLoop", optional=true)
     public static native CFRunLoop getIORunLoop();
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     @Bridge(symbol="MIDIGetDriverDeviceList", optional=true)
     public native MIDIDeviceList getDeviceList();
     /*</methods>*/

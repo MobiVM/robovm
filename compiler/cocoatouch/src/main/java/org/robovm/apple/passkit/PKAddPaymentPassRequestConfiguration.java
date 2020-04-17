@@ -97,6 +97,16 @@ import org.robovm.apple.contacts.*;
     @Property(selector = "setPaymentNetwork:")
     public native void setPaymentNetwork(String v);
     /**
+     * @since Available in iOS 12.3 and later.
+     */
+    @Property(selector = "productIdentifiers")
+    public native NSSet<NSString> getProductIdentifiers();
+    /**
+     * @since Available in iOS 12.3 and later.
+     */
+    @Property(selector = "setProductIdentifiers:")
+    public native void setProductIdentifiers(NSSet<NSString> v);
+    /**
      * @since Available in iOS 10.1 and later.
      */
     @Property(selector = "requiresFelicaSecureElement")

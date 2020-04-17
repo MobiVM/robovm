@@ -89,49 +89,22 @@ import org.robovm.apple.audiotoolbox.*;
         return ptr.get();
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Bridge(symbol="CMClockGetTypeID", optional=true)
     public static native @MachineSizedUInt long getClassTypeID();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Bridge(symbol="CMClockGetHostTimeClock", optional=true)
     public static native CMClock getHostTimeClock();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Bridge(symbol="CMClockConvertHostTimeToSystemUnits", optional=true)
     public static native long convertHostTimeToSystemUnits(@ByVal CMTime hostTime);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Bridge(symbol="CMClockMakeHostTimeFromSystemUnits", optional=true)
     public static native @ByVal CMTime createHostTimeFromSystemUnits(long hostTime);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Bridge(symbol="CMClockGetTime", optional=true)
     public native @ByVal CMTime getTime();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Bridge(symbol="CMClockGetAnchorTime", optional=true)
     protected native OSStatus getAnchorTime0(CMTime.CMTimePtr clockTimeOut, CMTime.CMTimePtr referenceClockTimeOut);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Bridge(symbol="CMClockMightDrift", optional=true)
     public native boolean mightDrift(CMClock otherClock);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Bridge(symbol="CMClockInvalidate", optional=true)
     public native void invalidate();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Bridge(symbol="CMAudioClockCreate", optional=true)
     protected static native OSStatus createAudioClock0(CFAllocator allocator, CMClock.CMClockPtr clockOut);
     /*</methods>*/

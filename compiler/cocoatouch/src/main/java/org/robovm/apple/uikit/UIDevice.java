@@ -37,12 +37,12 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 2.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIDevice/*</name>*/ 
@@ -115,56 +115,26 @@ import org.robovm.apple.intents.*;
     public native String getSystemVersion();
     @Property(selector = "orientation")
     public native UIDeviceOrientation getOrientation();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "identifierForVendor")
     public native NSUUID getIdentifierForVendor();
     @Property(selector = "isGeneratingDeviceOrientationNotifications")
     public native boolean generatesDeviceOrientationNotifications();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "isBatteryMonitoringEnabled")
     public native boolean isBatteryMonitoringEnabled();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "setBatteryMonitoringEnabled:")
     public native void setBatteryMonitoringEnabled(boolean v);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "batteryState")
     public native UIDeviceBatteryState getBatteryState();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "batteryLevel")
     public native float getBatteryLevel();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "isProximityMonitoringEnabled")
     public native boolean isProximityMonitoringEnabled();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "setProximityMonitoringEnabled:")
     public native void setProximityMonitoringEnabled(boolean v);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "proximityState")
     public native boolean isProximityState();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "isMultitaskingSupported")
     public native boolean isMultitaskingSupported();
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Property(selector = "userInterfaceIdiom")
     public native UIUserInterfaceIdiom getUserInterfaceIdiom();
     /*</properties>*/
@@ -172,19 +142,10 @@ import org.robovm.apple.intents.*;
     /*<methods>*/
     @GlobalValue(symbol="UIDeviceOrientationDidChangeNotification", optional=true)
     public static native NSString OrientationDidChangeNotification();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @GlobalValue(symbol="UIDeviceBatteryStateDidChangeNotification", optional=true)
     public static native NSString BatteryStateDidChangeNotification();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @GlobalValue(symbol="UIDeviceBatteryLevelDidChangeNotification", optional=true)
     public static native NSString BatteryLevelDidChangeNotification();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @GlobalValue(symbol="UIDeviceProximityStateDidChangeNotification", optional=true)
     public static native NSString ProximityStateDidChangeNotification();
     
@@ -192,9 +153,6 @@ import org.robovm.apple.intents.*;
     public native void beginGeneratingDeviceOrientationNotifications();
     @Method(selector = "endGeneratingDeviceOrientationNotifications")
     public native void endGeneratingDeviceOrientationNotifications();
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     @Method(selector = "playInputClick")
     public native void playInputClick();
     /*</methods>*/

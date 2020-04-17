@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -98,21 +100,9 @@ import org.robovm.apple.intents.*;
     /*<constants>*/
     public static final UIAccessibilityNotification ScreenChangedNotification = new UIAccessibilityNotification("ScreenChangedNotification");
     public static final UIAccessibilityNotification LayoutChangedNotification = new UIAccessibilityNotification("LayoutChangedNotification");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final UIAccessibilityNotification AnnouncementNotification = new UIAccessibilityNotification("AnnouncementNotification");
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     public static final UIAccessibilityNotification PageScrolledNotification = new UIAccessibilityNotification("PageScrolledNotification");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final UIAccessibilityNotification PauseAssistiveTechnologyNotification = new UIAccessibilityNotification("PauseAssistiveTechnologyNotification");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final UIAccessibilityNotification ResumeAssistiveTechnologyNotification = new UIAccessibilityNotification("ResumeAssistiveTechnologyNotification");
     /*</constants>*/
     
@@ -143,24 +133,12 @@ import org.robovm.apple.intents.*;
         public static native int ScreenChangedNotification();
         @GlobalValue(symbol="UIAccessibilityLayoutChangedNotification", optional=true)
         public static native int LayoutChangedNotification();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="UIAccessibilityAnnouncementNotification", optional=true)
         public static native int AnnouncementNotification();
-        /**
-         * @since Available in iOS 4.2 and later.
-         */
         @GlobalValue(symbol="UIAccessibilityPageScrolledNotification", optional=true)
         public static native int PageScrolledNotification();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="UIAccessibilityPauseAssistiveTechnologyNotification", optional=true)
         public static native int PauseAssistiveTechnologyNotification();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="UIAccessibilityResumeAssistiveTechnologyNotification", optional=true)
         public static native int ResumeAssistiveTechnologyNotification();
         /*</values>*/

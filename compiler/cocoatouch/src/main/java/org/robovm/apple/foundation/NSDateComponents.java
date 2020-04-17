@@ -56,27 +56,15 @@ import org.robovm.apple.dispatch.*;
     protected NSDateComponents(Handle h, long handle) { super(h, handle); }
     protected NSDateComponents(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public NSDateComponents(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public NSDateComponents(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "calendar")
     public native NSCalendar getCalendar();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "setCalendar:")
     public native void setCalendar(NSCalendar v);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "timeZone")
     public native NSTimeZone getTimeZone();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "setTimeZone:")
     public native void setTimeZone(NSTimeZone v);
     @Property(selector = "era")
@@ -107,14 +95,8 @@ import org.robovm.apple.dispatch.*;
     public native @MachineSizedSInt long getSecond();
     @Property(selector = "setSecond:")
     public native void setSecond(@MachineSizedSInt long v);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "nanosecond")
     public native @MachineSizedSInt long getNanosecond();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setNanosecond:")
     public native void setNanosecond(@MachineSizedSInt long v);
     @Property(selector = "weekday")
@@ -125,64 +107,28 @@ import org.robovm.apple.dispatch.*;
     public native @MachineSizedSInt long getWeekdayOrdinal();
     @Property(selector = "setWeekdayOrdinal:")
     public native void setWeekdayOrdinal(@MachineSizedSInt long v);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "quarter")
     public native @MachineSizedSInt long getQuarter();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "setQuarter:")
     public native void setQuarter(@MachineSizedSInt long v);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "weekOfMonth")
     public native @MachineSizedSInt long getWeekOfMonth();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setWeekOfMonth:")
     public native void setWeekOfMonth(@MachineSizedSInt long v);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "weekOfYear")
     public native @MachineSizedSInt long getWeekOfYear();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setWeekOfYear:")
     public native void setWeekOfYear(@MachineSizedSInt long v);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "yearForWeekOfYear")
     public native @MachineSizedSInt long getYearForWeekOfYear();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setYearForWeekOfYear:")
     public native void setYearForWeekOfYear(@MachineSizedSInt long v);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "isLeapMonth")
     public native boolean isLeapMonth();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "setLeapMonth:")
     public native void setLeapMonth(boolean v);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "date")
     public native NSDate getDate();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "isValidDate")
     public native boolean isValidDate();
     @Property(selector = "supportsSecureCoding")
@@ -197,37 +143,26 @@ import org.robovm.apple.dispatch.*;
     }
     /*<methods>*/
     /**
-     * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. Use -weekOfMonth or -weekOfYear, depending on which you mean
      */
     @Deprecated
     @Method(selector = "week")
     public native @MachineSizedSInt long getWeek();
     /**
-     * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. Use -setWeekOfMonth: or -setWeekOfYear:, depending on which you mean
      */
     @Deprecated
     @Method(selector = "setWeek:")
     public native void setWeek(@MachineSizedSInt long v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "setValue:forComponent:")
     protected native void setValue(@MachineSizedSInt long value, NSCalendarUnit unit);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "valueForComponent:")
     public native @MachineSizedSInt long getValue(NSCalendarUnit unit);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "isValidDateInCalendar:")
     public native boolean isValidDateInCalendar(NSCalendar calendar);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

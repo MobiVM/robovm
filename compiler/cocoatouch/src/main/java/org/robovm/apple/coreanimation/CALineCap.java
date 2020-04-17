@@ -92,17 +92,8 @@ import org.robovm.apple.metal.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public static final CALineCap Butt = new CALineCap("Butt");
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public static final CALineCap Round = new CALineCap("Round");
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public static final CALineCap Square = new CALineCap("Square");
     /*</constants>*/
     
@@ -129,19 +120,10 @@ import org.robovm.apple.metal.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 3.0 and later.
-         */
         @GlobalValue(symbol="kCALineCapButt", optional=true)
         public static native NSString Butt();
-        /**
-         * @since Available in iOS 3.0 and later.
-         */
         @GlobalValue(symbol="kCALineCapRound", optional=true)
         public static native NSString Round();
-        /**
-         * @since Available in iOS 3.0 and later.
-         */
         @GlobalValue(symbol="kCALineCapSquare", optional=true)
         public static native NSString Square();
         /*</values>*/

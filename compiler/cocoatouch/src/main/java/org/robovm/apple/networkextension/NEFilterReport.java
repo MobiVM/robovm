@@ -29,6 +29,7 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.security.*;
+import org.robovm.apple.network.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -49,13 +50,34 @@ import org.robovm.apple.security.*;
     protected NEFilterReport(Handle h, long handle) { super(h, handle); }
     protected NEFilterReport(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public NEFilterReport(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public NEFilterReport(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Property(selector = "flow")
     public native NEFilterFlow getFlow();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Property(selector = "action")
     public native NEFilterAction getAction();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "event")
+    public native NEFilterReportEvent getEvent();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "bytesInboundCount")
+    public native @MachineSizedUInt long getBytesInboundCount();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "bytesOutboundCount")
+    public native @MachineSizedUInt long getBytesOutboundCount();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
@@ -64,6 +86,6 @@ import org.robovm.apple.security.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

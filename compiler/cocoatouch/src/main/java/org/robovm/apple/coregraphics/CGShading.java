@@ -48,19 +48,10 @@ import org.robovm.apple.uikit.*;
     /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGShadingGetTypeID", optional=true)
     public static native @MachineSizedUInt long getClassTypeID();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGShadingCreateAxial", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGShading createAxial(CGColorSpace space, @ByVal CGPoint start, @ByVal CGPoint end, CGFunction function, boolean extendStart, boolean extendEnd);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGShadingCreateRadial", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGShading createRadial(CGColorSpace space, @ByVal CGPoint start, @MachineSizedFloat double startRadius, @ByVal CGPoint end, @MachineSizedFloat double endRadius, CGFunction function, boolean extendStart, boolean extendEnd);
     /*</methods>*/

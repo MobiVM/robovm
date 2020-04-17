@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -82,15 +84,13 @@ import org.robovm.apple.intents.*;
     @NotImplemented("textView:shouldInteractWithTextAttachment:inRange:interaction:")
     public boolean shouldInteractWithTextAttachment(UITextView textView, NSTextAttachment textAttachment, @ByVal NSRange characterRange, UITextItemInteraction interaction) { return false; }
     /**
-     * @since Available in iOS 7.0 and later.
-     * @deprecated Deprecated in iOS 10.0. Use textView:shouldInteractWithURL:inRange:forInteractionType: instead
+     * @deprecated Deprecated in iOS 10.0. Use textView:shouldInteractWithURL:inRange:forInteractionType:
      */
     @Deprecated
     @NotImplemented("textView:shouldInteractWithURL:inRange:")
     public boolean shouldInteractWithURL(UITextView textView, NSURL URL, @ByVal NSRange characterRange) { return false; }
     /**
-     * @since Available in iOS 7.0 and later.
-     * @deprecated Deprecated in iOS 10.0. Use textView:shouldInteractWithTextAttachment:inRange:forInteractionType: instead
+     * @deprecated Deprecated in iOS 10.0. Use textView:shouldInteractWithTextAttachment:inRange:forInteractionType:
      */
     @Deprecated
     @NotImplemented("textView:shouldInteractWithTextAttachment:inRange:")

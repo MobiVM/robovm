@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -52,46 +54,22 @@ import org.robovm.apple.intents.*;
     /*</bind>*/
     /*<constants>*//*</constants>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "accessibilityCustomActions")
     NSArray<UIAccessibilityCustomAction> getAccessibilityCustomActions();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setAccessibilityCustomActions:")
     void setAccessibilityCustomActions(NSArray<UIAccessibilityCustomAction> v);
     /*</properties>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "accessibilityActivate")
     boolean activate();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "accessibilityIncrement")
     void increment();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "accessibilityDecrement")
     void decrement();
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     @Method(selector = "accessibilityScroll:")
     boolean scroll(UIAccessibilityScrollDirection direction);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "accessibilityPerformEscape")
     boolean performEscape();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "accessibilityPerformMagicTap")
     boolean performMagicTap();
     /*</methods>*/

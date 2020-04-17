@@ -91,13 +91,18 @@ import org.robovm.apple.uikit.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public static final CTFontManagerErrorUserInfoKey FontURLs = new CTFontManagerErrorUserInfoKey("FontURLs");
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final CTFontManagerErrorUserInfoKey FontDescriptors = new CTFontManagerErrorUserInfoKey("FontDescriptors");
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final CTFontManagerErrorUserInfoKey FontAssetName = new CTFontManagerErrorUserInfoKey("FontAssetName");
     /*</constants>*/
     
-    private static /*<name>*/CTFontManagerErrorUserInfoKey/*</name>*/[] values = new /*<name>*/CTFontManagerErrorUserInfoKey/*</name>*/[] {/*<value_list>*/FontURLs/*</value_list>*/};
+    private static /*<name>*/CTFontManagerErrorUserInfoKey/*</name>*/[] values = new /*<name>*/CTFontManagerErrorUserInfoKey/*</name>*/[] {/*<value_list>*/FontURLs, FontDescriptors, FontAssetName/*</value_list>*/};
     
     /*<name>*/CTFontManagerErrorUserInfoKey/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -120,11 +125,18 @@ import org.robovm.apple.uikit.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 3.2 and later.
-         */
         @GlobalValue(symbol="kCTFontManagerErrorFontURLsKey", optional=true)
         public static native NSString FontURLs();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="kCTFontManagerErrorFontDescriptorsKey", optional=true)
+        public static native NSString FontDescriptors();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="kCTFontManagerErrorFontAssetNameKey", optional=true)
+        public static native NSString FontAssetName();
         /*</values>*/
     }
 }

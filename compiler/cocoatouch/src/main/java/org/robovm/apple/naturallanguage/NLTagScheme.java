@@ -116,9 +116,13 @@ import org.robovm.apple.coreml.*;
      * @since Available in iOS 12.0 and later.
      */
     public static final NLTagScheme Script = new NLTagScheme("Script");
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final NLTagScheme SentimentScore = new NLTagScheme("SentimentScore");
     /*</constants>*/
     
-    private static /*<name>*/NLTagScheme/*</name>*/[] values = new /*<name>*/NLTagScheme/*</name>*/[] {/*<value_list>*/TokenType, LexicalClass, NameType, NameTypeOrLexicalClass, Lemma, Language, Script/*</value_list>*/};
+    private static /*<name>*/NLTagScheme/*</name>*/[] values = new /*<name>*/NLTagScheme/*</name>*/[] {/*<value_list>*/TokenType, LexicalClass, NameType, NameTypeOrLexicalClass, Lemma, Language, Script, SentimentScore/*</value_list>*/};
     
     /*<name>*/NLTagScheme/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -176,6 +180,11 @@ import org.robovm.apple.coreml.*;
          */
         @GlobalValue(symbol="NLTagSchemeScript", optional=true)
         public static native NSString Script();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="NLTagSchemeSentimentScore", optional=true)
+        public static native NSString SentimentScore();
         /*</values>*/
     }
 }

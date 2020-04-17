@@ -137,12 +137,7 @@ public abstract class AbstractLaunchConfigurationDelegate extends AbstractJavaLa
 
             monitor.subTask("Creating build configuration");
             Config.Builder configBuilder;
-            try {
-                configBuilder = new Config.Builder();
-            } catch (IOException e) {
-                throw new CoreException(new Status(IStatus.ERROR, RoboVMPlugin.PLUGIN_ID,
-                        "Launch failed. Check the RoboVM console for more information.", e));
-            }
+            configBuilder = new Config.Builder();
             configBuilder.logger(RoboVMPlugin.getConsoleLogger());
 
             File projectRoot = getJavaProject(configuration).getProject().getLocation().toFile();

@@ -63,6 +63,16 @@ import org.robovm.apple.imageio.*;
     public native double getTimestamp();
     @Property(selector = "capturedImage")
     public native CVPixelBuffer getCapturedImage();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "cameraGrainTexture")
+    public native MTLTexture getCameraGrainTexture();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "cameraGrainIntensity")
+    public native float getCameraGrainIntensity();
     @Property(selector = "capturedDepthData")
     public native AVDepthData getCapturedDepthData();
     @Property(selector = "capturedDepthDataTimestamp")
@@ -80,11 +90,31 @@ import org.robovm.apple.imageio.*;
      */
     @Property(selector = "worldMappingStatus")
     public native ARWorldMappingStatus getWorldMappingStatus();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "segmentationBuffer")
+    public native CVPixelBuffer getSegmentationBuffer();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "estimatedDepthData")
+    public native CVPixelBuffer getEstimatedDepthData();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "detectedBody")
+    public native ARBody2D getDetectedBody();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "hitTest:types:")
     public native NSArray<ARHitTestResult> hitTest(@ByVal CGPoint point, ARHitTestResultType types);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "raycastQueryFromPoint:allowingTarget:alignment:")
+    public native ARRaycastQuery raycastQueryFromPoint(@ByVal CGPoint point, ARRaycastTarget target, ARRaycastTargetAlignment alignment);
     @Method(selector = "displayTransformForOrientation:viewportSize:")
     public native @ByVal CGAffineTransform displayTransform(UIInterfaceOrientation orientation, @ByVal CGSize viewportSize);
     /*</methods>*/

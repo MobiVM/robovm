@@ -37,12 +37,12 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 2.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UINavigationItem/*</name>*/ 
@@ -82,34 +82,16 @@ import org.robovm.apple.intents.*;
     public native boolean hidesBackButton();
     @Property(selector = "setHidesBackButton:")
     public native void setHidesBackButton(boolean v);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "leftBarButtonItems")
     public native NSArray<UIBarButtonItem> getLeftBarButtonItems();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setLeftBarButtonItems:")
     public native void setLeftBarButtonItems(NSArray<UIBarButtonItem> v);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "rightBarButtonItems")
     public native NSArray<UIBarButtonItem> getRightBarButtonItems();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setRightBarButtonItems:")
     public native void setRightBarButtonItems(NSArray<UIBarButtonItem> v);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "leftItemsSupplementBackButton")
     public native boolean leftItemsSupplementBackButton();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setLeftItemsSupplementBackButton:")
     public native void setLeftItemsSupplementBackButton(boolean v);
     @Property(selector = "leftBarButtonItem")
@@ -150,6 +132,36 @@ import org.robovm.apple.intents.*;
      */
     @Property(selector = "setHidesSearchBarWhenScrolling:")
     public native void setHidesSearchBarWhenScrolling(boolean v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "standardAppearance")
+    public native UINavigationBarAppearance getStandardAppearance();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setStandardAppearance:")
+    public native void setStandardAppearance(UINavigationBarAppearance v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "compactAppearance")
+    public native UINavigationBarAppearance getCompactAppearance();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setCompactAppearance:")
+    public native void setCompactAppearance(UINavigationBarAppearance v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "scrollEdgeAppearance")
+    public native UINavigationBarAppearance getScrollEdgeAppearance();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setScrollEdgeAppearance:")
+    public native void setScrollEdgeAppearance(UINavigationBarAppearance v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -159,14 +171,8 @@ import org.robovm.apple.intents.*;
     protected native @Pointer long init(NSCoder coder);
     @Method(selector = "setHidesBackButton:animated:")
     public native void setHidesBackButton(boolean hidesBackButton, boolean animated);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "setLeftBarButtonItems:animated:")
     public native void setLeftBarButtonItems(NSArray<UIBarButtonItem> items, boolean animated);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "setRightBarButtonItems:animated:")
     public native void setRightBarButtonItems(NSArray<UIBarButtonItem> items, boolean animated);
     @Method(selector = "setLeftBarButtonItem:animated:")

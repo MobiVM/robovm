@@ -5,19 +5,6 @@ framework: Photos
 clang_args: ['-x', 'objective-c']
 headers:
     - /System/Library/Frameworks/Photos.framework/Headers/Photos.h
-private_typedefs: 
-    'void (^)(PHContentEditingInput *, NSDictionary *)': '@Block VoidBlock2<PHContentEditingInput, NSDictionary<NSString, NSObject>>' # TODO marshal dictionary to PHContentEditingInputRequestResult
-    'BOOL (^)(PHAdjustmentData *)': '@Block Block1<PHAdjustmentData, Boolean>'
-    'void (^)(double, BOOL *)': '@Block VoidBlock2<Double, BooleanPtr>'
-    'void (^)(NSUInteger, NSUInteger)': '@Block("(@MachineSizedUInt,@MachineSizedUInt)") VoidBlock2<Long, Long>'
-    'void (^)(UIImage *, NSDictionary *)': '@Block VoidBlock2<UIImage, NSDictionary<NSString, NSObject>>' # TODO marshal dictionary to PHImageRequestResult
-    'void (^)(NSData *, NSString *, UIImageOrientation, NSDictionary *)': '@Block VoidBlock4<NSData, String, UIImageOrientation, NSDictionary<NSString, NSObject>>' # TODO marshal dictionary to PHImageRequestResult
-    'void (^)(AVPlayerItem *, NSDictionary *)': '@Block VoidBlock2<AVPlayerItem, NSDictionary<NSString, NSObject>>' # TODO marshal dictionary to PHImageRequestResult
-    'void (^)(AVAssetExportSession *, NSDictionary *)': '@Block VoidBlock2<AVAssetExportSession, NSDictionary<NSString, NSObject>>' # TODO marshal dictionary to PHImageRequestResult
-    'void (^)(AVAsset *, AVAudioMix *, NSDictionary *)': '@Block VoidBlock3<AVAsset, AVAudioMix, NSDictionary<NSString, NSObject>>' # TODO marshal dictionary to PHImageRequestResult
-    'void (^)(BOOL, NSError *)': '@Block VoidBlock2<Boolean, NSError>'
-    'void (^)(PHAuthorizationStatus)': '@Block VoidBlock1<PHAuthorizationStatus>'
-    
 enums:
     PHAssetResourceType: {}
     PHAssetSourceType: {}
@@ -39,7 +26,7 @@ enums:
     PHVideoRequestOptionsDeliveryMode: {}
     PHLivePhotoFrameType: {}
     PHAssetPlaybackStyle: {} #since 11.0
-
+    PHPhotosError: {nserror: true, prefix: PHPhotosError, first: PHPhotosErrorInvalid} #since 13.0
 classes:
     PHLivePhotoRequestOptions: {}
     PHLivePhoto:
@@ -63,38 +50,27 @@ classes:
                 trim_after_first_colon: true
             '+fetchAssetsInAssetCollection:options:':
                 trim_after_first_colon: true
-                return_type: PHFetchResult<PHAsset>
             '+fetchAssetsWithMediaType:options:':
                 trim_after_first_colon: true
-                return_type: PHFetchResult<PHAsset>
             '+fetchAssetsWithLocalIdentifiers:options:':
                 trim_after_first_colon: true
-                return_type: PHFetchResult<PHAsset>
                 parameters:
                     identifiers:
                         type: List<String>
                         marshaler: NSArray.AsStringListMarshaler
             '+fetchKeyAssetsInAssetCollection:options:':
                 trim_after_first_colon: true
-                return_type: PHFetchResult<PHAsset>
             '+fetchAssetsWithBurstIdentifier:options:':
                 trim_after_first_colon: true
-                return_type: PHFetchResult<PHAsset>
             '+fetchAssetsWithOptions:':
                 name: fetchAssets
-                return_type: PHFetchResult<PHAsset>
             '+fetchAssetsWithALAssetURLs:options:':
                 trim_after_first_colon: true
-                return_type: PHFetchResult<PHAsset>
-                parameters:
-                    assetURLs:
-                        type: NSArray<NSURL>
             '-requestContentEditingInputWithOptions:completionHandler:':
                 name: requestContentEditingInput
             '-cancelContentEditingInputRequest:':
                 trim_after_first_colon: true
     PHAssetChangeRequest: # DONE
-        skip_handle_constructor: false
         properties:
             'location':
                 annotations: ['@WeaklyLinked']
@@ -135,41 +111,26 @@ classes:
         methods:
             '+fetchAssetCollectionsWithLocalIdentifiers:options:':
                 trim_after_first_colon: true
-                return_type: PHFetchResult<PHAssetCollection>
                 parameters:
                     identifiers:
                         type: List<String>
                         marshaler: NSArray.AsStringListMarshaler
             '+fetchAssetCollectionsWithType:subtype:options:':
                 trim_after_first_colon: true
-                return_type: PHFetchResult<PHAssetCollection>
             '+fetchAssetCollectionsContainingAsset:withType:options:':
                 trim_after_first_colon: true
-                return_type: PHFetchResult<PHAssetCollection>
             '+fetchAssetCollectionsWithALAssetGroupURLs:options:':
                 trim_after_first_colon: true
-                return_type: PHFetchResult<PHAssetCollection>
-                parameters:
-                    assetGroupURLs:
-                        type: NSArray<NSURL>
             '+fetchMomentsInMomentList:options:':
                 trim_after_first_colon: true
-                return_type: PHFetchResult<PHAssetCollection>
             '+fetchMomentsWithOptions:':
                 name: fetchMoments
-                return_type: PHFetchResult<PHAssetCollection>
             '+transientAssetCollectionWithAssets:title:':
                 name: createTransientAssetCollection
                 constructor: true
-                parameters:
-                    assets:
-                        type: NSArray<PHAsset>
             '+transientAssetCollectionWithAssetFetchResult:title:':
                 name: createTransientAssetCollection
                 constructor: true
-                parameters:
-                    fetchResult:
-                        type: PHFetchResult<PHAsset>
     PHAssetCollectionChangeRequest: # DONE
         methods:
             '-addAssets:':
@@ -194,14 +155,10 @@ classes:
             '+changeRequestForAssetCollection:assets:':
                 name: create
                 constructor: true
-                parameters:
-                    assets:
-                        type: PHFetchResult<PHAsset>
     PHAssetResource: # DONE
         methods:
             '+assetResourcesForAsset:':
                 name: getAssetResources
-                return_type: NSArray<PHAssetResource>
     PHAssetResourceCreationOptions: {} # DONE
     PHAssetResourceManager: # DONE
         methods:
@@ -218,30 +175,15 @@ classes:
         methods:
             '-startCachingImagesForAssets:targetSize:contentMode:options:':
                 trim_after_first_colon: true
-                parameters:
-                    assets:
-                        type: NSArray<PHAsset>
             '-stopCachingImagesForAssets:targetSize:contentMode:options:':
                 trim_after_first_colon: true
-                parameters:
-                    assets:
-                        type: NSArray<PHAsset>
     PHChange: # DONE
         methods:
             '-changeDetailsForObject:':
                 name: getChangeDetailsForObject
-                return_type: '<T extends PHObject> PHObjectChangeDetails<T>'
-                parameters:
-                    object:
-                        type: T
             '-changeDetailsForFetchResult:':
                 name: getChangeDetailsForFetchResult
-                return_type: '<T extends PHObject> PHFetchResultChangeDetails<T>'
-                parameters:
-                    object:
-                        type: PHFetchResult<T>
     PHCollection: # DONE
-        skip_handle_constructor: false
         properties:
             '(canContainAssets|canContainCollections)':
                 omit_prefix: true
@@ -250,10 +192,8 @@ classes:
                 trim_after_first_colon: true
             '+fetchCollectionsInCollectionList:options:':
                 trim_after_first_colon: true
-                return_type: PHFetchResult<PHCollection>
             '+fetchTopLevelUserCollectionsWithOptions:':
                 name: fetchTopLevelUserCollections
-                return_type: PHFetchResult<PHCollection>
     PHCollectionList: # DONE
         properties:
             'localizedLocationNames':
@@ -262,35 +202,24 @@ classes:
         methods:
             '+fetchCollectionListsContainingCollection:options:':
                 trim_after_first_colon: true
-                return_type: PHFetchResult<PHCollectionList>
             '+fetchCollectionListsWithLocalIdentifiers:options:':
                 trim_after_first_colon: true
-                return_type: PHFetchResult<PHCollectionList>
                 parameters:
                     identifiers:
                         type: List<String>
                         marshaler: NSArray.AsStringListMarshaler
             '+fetchCollectionListsWithType:subtype:options:':
                 trim_after_first_colon: true
-                return_type: PHFetchResult<PHCollectionList>
             '+fetchMomentListsWithSubtype:containingMoment:options:':
                 name: fetchMomentListsWithSubtypeContainingMoment
-                return_type: PHFetchResult<PHCollectionList>
             '+fetchMomentListsWithSubtype:options:':
                 trim_after_first_colon: true
-                return_type: PHFetchResult<PHCollectionList>
             '+transientCollectionListWithCollections:title:':
                 name: createTransientCollectionList
                 constructor: true
-                parameters:
-                    collections:
-                        type: NSArray<PHCollection>
             '+transientCollectionListWithCollectionsFetchResult:title:':
                 name: createTransientCollectionList
                 constructor: true
-                parameters:
-                    fetchResult:
-                        type: PHFetchResult<PHCollectionList>
     PHCollectionListChangeRequest: # DONE
         methods:
             '-addChildCollections:':
@@ -329,8 +258,6 @@ classes:
                 name: init
     PHFetchOptions: # DONE
         properties:
-            'sortDescriptors':
-                type: NSArray<NSSortDescriptor>
             'includeHiddenAssets':
                 name: includesHiddenAssets
             'includeAllBurstAssets':
@@ -343,46 +270,29 @@ classes:
             'firstObject':
                 name: first
                 omit_prefix: true
-                type: T
             'lastObject':
                 name: last
                 omit_prefix: true
-                type: T
         methods:
             '-objectAtIndex:':
                 name: get
-                return_type: T
             '-objectAtIndexedSubscript:':
                 exclude: true
             '-containsObject:':
                 name: contains
-                parameters:
-                    anObject:
-                        type: T
             '-indexOfObject.*':
                 name: indexOf
-                parameters:
-                    anObject:
-                        type: T
             '-objectsAtIndexes:':
                 name: getAll
-                return_type: NSArray<T>
             '-enumerateObjects.*':
                 name: enumerateObjects0
                 visibility: protected
-                parameters:
-                    block:
-                        type: '@Block("(,@MachineSizedUInt,)") VoidBlock3<NSObject, Long, BooleanPtr>'
             '-countOfAssetsWithMediaType:':
                 name: getCountOfAssetsWithMediaType
     PHFetchResultChangeDetails: # DONE
         properties:
             '(hasIncrementalChanges|hasMoves)':
                 omit_prefix: true
-            '(removedObjects|insertedObjects|changedObjects)':
-                type: NSArray<T>
-            'fetchResult.*':
-                type: PHFetchResult<T>
         methods:
             '-enumerateMovesWithBlock:':
                 name: enumerateMoves
@@ -390,13 +300,6 @@ classes:
                 name: create
                 constructor: true
                 return_type: '@Pointer <T extends PHObject> long'
-                parameters:
-                    fromResult:
-                        type: PHFetchResult<T>
-                    toResult:
-                        type: PHFetchResult<T>
-                    changedObjects:
-                        type: NSArray<T>
     PHImageManager: # DONE
         methods:
             '-requestImageForAsset:targetSize:contentMode:options:resultHandler:':
@@ -419,19 +322,15 @@ classes:
             '-requestAVAssetForVideo:options:resultHandler:':
                 trim_after_first_colon: true
                 annotations: ['@WeaklyLinked']
+            '-requestImageDataAndOrientationForAsset:options:resultHandler:':
+                name: requestImageDataAndOrientationForAsset
             '+defaultManager':
                 property: true
-    PHImageRequestOptions: # DONE
-        properties:
-            'progressHandler':
-                type: '@Block VoidBlock4<Double, NSError, BooleanPtr, NSDictionary<?, ?>>'
-    PHObject: # DONE
-        skip_handle_constructor: false
+    PHImageRequestOptions: {} # DONE
+    PHObject: {} # DONE
     PHObjectPlaceholder: {} # DONE
     PHObjectChangeDetails: # DONE
         properties:
-            '(objectBeforeChanges|objectAfterChanges)':
-                type: T
             '(assetContentChanged|objectWasDeleted)':
                 omit_prefix: true
     PHPhotoLibrary: # DONE
@@ -451,10 +350,7 @@ classes:
                 property: true
             '+requestAuthorization:':
                 trim_after_first_colon: true
-    PHVideoRequestOptions: # DONE
-        properties:
-            'progressHandler':
-                type: '@Block VoidBlock3<Double, NSError, BooleanPtr>'
+    PHVideoRequestOptions: {} # DONE
     PHLivePhotoEditingContext:
         methods:
             '-initWithLivePhotoEditingInput:':
@@ -463,7 +359,7 @@ classes:
                 name: prepareLivePhotoForPlayback
             '-saveLivePhotoToOutput:options:completionHandler:':
                 name: saveLivePhoto
-
+    PHChangeRequest: {} #since 13.0
 protocols:
     PHLivePhotoFrame: {}
 
@@ -471,6 +367,10 @@ protocols:
         methods:
             '-photoLibraryDidChange:':
                 name: didChange
+    PHPhotoLibraryAvailabilityObserver:  #since 13.0
+        methods:
+            '-photoLibraryDidBecomeUnavailable:':
+                name: didBecomeUnavailable
 
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version
@@ -525,6 +425,10 @@ values:
     PHLivePhoto(.*):
         class: PHLivePhoto
         name: '#{g[0]}'
+
+    PHPhotosErrorDomain:
+        class: PHPhotosError
+        name: getClassDomain
 
     # Make sure we don't miss any values if new ones are introduced in a later version
     (k?PH.*):

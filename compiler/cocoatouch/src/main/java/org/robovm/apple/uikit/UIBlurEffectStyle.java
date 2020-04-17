@@ -37,12 +37,12 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/UIBlurEffectStyle/*</name>*/ implements ValuedEnum {
@@ -57,7 +57,67 @@ public enum /*<name>*/UIBlurEffectStyle/*</name>*/ implements ValuedEnum {
     /**
      * @since Available in iOS 10.0 and later.
      */
-    Prominent(5L);
+    Prominent(5L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    SystemUltraThinMaterial(6L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    SystemThinMaterial(7L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    SystemMaterial(8L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    SystemThickMaterial(9L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    SystemChromeMaterial(10L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    SystemUltraThinMaterialLight(11L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    SystemThinMaterialLight(12L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    SystemMaterialLight(13L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    SystemThickMaterialLight(14L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    SystemChromeMaterialLight(15L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    SystemUltraThinMaterialDark(16L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    SystemThinMaterialDark(17L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    SystemMaterialDark(18L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    SystemThickMaterialDark(19L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    SystemChromeMaterialDark(20L);
     /*</values>*/
 
     /*<bind>*/

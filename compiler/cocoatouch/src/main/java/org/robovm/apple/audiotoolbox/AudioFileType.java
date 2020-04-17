@@ -59,7 +59,8 @@ public enum /*<name>*/AudioFileType/*</name>*/ implements ValuedEnum {
     _3GP(862417008L),
     _3GP2(862416946L),
     AMR(1634562662L),
-    FLAC(1718378851L);
+    FLAC(1718378851L),
+    LATMInLOAS(1819238771L);
     /*</values>*/
 
     /*<bind>*/

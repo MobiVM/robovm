@@ -39,11 +39,11 @@ import org.robovm.apple.uikit.*;
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("GameplayKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/GKMeshGraph/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/GKMeshGraph<NodeType extends GKGraphNode2D>/*</name>*/ 
     extends /*<extends>*/GKGraph/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class GKMeshGraphPtr extends Ptr<GKMeshGraph, GKMeshGraphPtr> {}/*</ptr>*/
+    /*<ptr>*/public static class GKMeshGraphPtr<NodeType extends GKGraphNode2D> extends Ptr<GKMeshGraph<NodeType>, GKMeshGraphPtr<NodeType>> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(GKMeshGraph.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
@@ -80,7 +80,7 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "removeObstacles:")
     public native void removeObstacles(NSArray<GKPolygonObstacle> obstacles);
     @Method(selector = "connectNodeUsingObstacles:")
-    public native void connectNodeUsingObstacles(GKGraphNode2D node);
+    public native void connectNodeUsingObstacles(NodeType node);
     @Method(selector = "triangulate")
     public native void triangulate();
     @Method(selector = "triangleAtIndex:")

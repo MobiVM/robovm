@@ -51,12 +51,24 @@ import org.robovm.apple.imageio.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*//*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
     @NotImplemented("image")
     public CIImage getImage() { return null; }
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
     @NotImplemented("time")
     public @ByVal CMTime getTime() { return null; }
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
     @NotImplemented("type")
     public PHLivePhotoFrameType getType() { return null; }
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
     @NotImplemented("renderScale")
     public @MachineSizedFloat double getRenderScale() { return 0; }
     /*</properties>*/

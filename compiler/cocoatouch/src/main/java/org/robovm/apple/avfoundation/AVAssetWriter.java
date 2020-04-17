@@ -41,9 +41,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.1 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVAssetWriter/*</name>*/ 
@@ -85,14 +83,8 @@ import org.robovm.apple.audiotoolbox.*;
     public native boolean shouldOptimizeForNetworkUse();
     @Property(selector = "setShouldOptimizeForNetworkUse:")
     public native void setShouldOptimizeForNetworkUse(boolean v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "directoryForTemporaryFiles")
     public native NSURL getDirectoryForTemporaryFiles();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setDirectoryForTemporaryFiles:")
     public native void setDirectoryForTemporaryFiles(NSURL v);
     @Property(selector = "inputs")
@@ -105,19 +97,10 @@ import org.robovm.apple.audiotoolbox.*;
     public native @ByVal CMTime getOverallDurationHint();
     @Property(selector = "setOverallDurationHint:")
     public native void setOverallDurationHint(@ByVal CMTime v);
-    /**
-     * @since Available in iOS 4.3 and later.
-     */
     @Property(selector = "movieTimeScale")
     public native int getMovieTimeScale();
-    /**
-     * @since Available in iOS 4.3 and later.
-     */
     @Property(selector = "setMovieTimeScale:")
     public native void setMovieTimeScale(int v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "inputGroups")
     public native NSArray<AVAssetWriterInputGroup> getInputGroups();
     /*</properties>*/
@@ -149,19 +132,10 @@ import org.robovm.apple.audiotoolbox.*;
     public native void endSession(@ByVal CMTime endTime);
     @Method(selector = "cancelWriting")
     public native void cancelWriting();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "finishWritingWithCompletionHandler:")
     public native void finishWriting(@Block Runnable handler);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "canAddInputGroup:")
     public native boolean canAddInputGroup(AVAssetWriterInputGroup inputGroup);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "addInputGroup:")
     public native void addInputGroup(AVAssetWriterInputGroup inputGroup);
     /*</methods>*/

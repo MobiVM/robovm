@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -58,16 +58,19 @@ import org.robovm.apple.contacts.*;
     }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "passType")
     public native PKPassType getPassType();
     /**
-     * @since Available in iOS 8.0 and later.
+     * @deprecated Use -[PKPass secureElementPass] instead
      */
+    @Deprecated
     @Property(selector = "paymentPass")
     public native PKPaymentPass getPaymentPass();
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    @Property(selector = "secureElementPass")
+    public native PKSecureElementPass getSecureElementPass();
     @Property(selector = "serialNumber")
     public native String getSerialNumber();
     @Property(selector = "passTypeIdentifier")
@@ -86,9 +89,6 @@ import org.robovm.apple.contacts.*;
     public native String getOrganizationName();
     @Property(selector = "relevantDate")
     public native NSDate getRelevantDate();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "userInfo")
     public native NSDictionary<?, ?> getUserInfo();
     @Property(selector = "passURL")

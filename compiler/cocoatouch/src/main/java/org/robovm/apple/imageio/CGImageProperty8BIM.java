@@ -88,13 +88,7 @@ import org.robovm.apple.coregraphics.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImageProperty8BIM LayerNames = new CGImageProperty8BIM("LayerNames");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final CGImageProperty8BIM Version = new CGImageProperty8BIM("Version");
     /*</constants>*/
     
@@ -121,14 +115,8 @@ import org.robovm.apple.coregraphics.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImageProperty8BIMLayerNames", optional=true)
         public static native CFString LayerNames();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="kCGImageProperty8BIMVersion", optional=true)
         public static native CFString Version();
         /*</values>*/

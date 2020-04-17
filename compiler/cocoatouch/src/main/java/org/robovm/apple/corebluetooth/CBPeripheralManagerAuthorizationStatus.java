@@ -34,10 +34,10 @@ import org.robovm.apple.dispatch.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 7.0 and later.
+ * @deprecated Deprecated in iOS 13.0. Use CBManagerAuthorization instead
  */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Deprecated/*</annotations>*/
 public enum /*<name>*/CBPeripheralManagerAuthorizationStatus/*</name>*/ implements ValuedEnum {
     /*<values>*/
     NotDetermined(0L),

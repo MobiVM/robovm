@@ -32,9 +32,7 @@ import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.1 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("GameKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GKPlayer/*</name>*/ 
@@ -50,11 +48,16 @@ import org.robovm.apple.uikit.*;
     protected GKPlayer(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "playerID")
-    public native String getPlayerID();
     /**
-     * @since Available in iOS 6.0 and later.
+     * @since Available in iOS 12.4 and later.
      */
+    @Property(selector = "gamePlayerID")
+    public native String getGamePlayerID();
+    /**
+     * @since Available in iOS 12.4 and later.
+     */
+    @Property(selector = "teamPlayerID")
+    public native String getTeamPlayerID();
     @Property(selector = "displayName")
     public native String getDisplayName();
     @Property(selector = "alias")
@@ -65,18 +68,28 @@ import org.robovm.apple.uikit.*;
     @Property(selector = "guestIdentifier")
     public native String getGuestIdentifier();
     /**
-     * @since Available in iOS 4.1 and later.
      * @deprecated Deprecated in iOS 8.0. use -[GKLocalPlayer loadFriendPlayers...]
      */
     @Deprecated
     @Property(selector = "isFriend")
     public native boolean isFriend();
+    /**
+     * @deprecated Deprecated in iOS 13.0. use the teamPlayerID property to identify a player
+     */
+    @Deprecated
+    @Property(selector = "playerID")
+    public native String getPlayerID();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @GlobalValue(symbol="GKPlayerDidChangeNotificationName", optional=true)
     public static native NSString DidChangeNotification();
     
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "scopedIDsArePersistent")
+    public native boolean scopedIDsArePersistent();
     @Method(selector = "loadPlayersForIdentifiers:withCompletionHandler:")
     public static native void loadPlayers(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> identifiers, @Block VoidBlock2<NSArray<GKPlayer>, NSError> completionHandler);
     /**
@@ -84,9 +97,6 @@ import org.robovm.apple.uikit.*;
      */
     @Method(selector = "anonymousGuestPlayerWithIdentifier:")
     public static native GKPlayer getAnonymousGuestPlayer(String guestIdentifier);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "loadPhotoForSize:withCompletionHandler:")
     public native void loadPhoto(GKPhotoSize size, @Block VoidBlock2<UIImage, NSError> completionHandler);
     /*</methods>*/

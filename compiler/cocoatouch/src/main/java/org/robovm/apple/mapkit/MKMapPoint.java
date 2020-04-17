@@ -73,33 +73,15 @@ import org.robovm.apple.dispatch.*;
         return String.format("{%.1f, %.1f}", getX(), getY());
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="MKMapPointForCoordinate", optional=true)
     private static native @Pointer long create(@ByVal CLLocationCoordinate2D coordinate);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CLLocationCoordinate2D toCoordinate() { return toCoordinate(this); }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="MKCoordinateForMapPoint", optional=true)
     private static native @ByVal CLLocationCoordinate2D toCoordinate(@ByVal MKMapPoint mapPoint);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="MKMetersPerMapPointAtLatitude", optional=true)
     public static native double getMetersPerMapPoint(double latitude);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="MKMapPointsPerMeterAtLatitude", optional=true)
     public static native double getMapPointsPerMeter(double latitude);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="MKMetersBetweenMapPoints", optional=true)
     public static native double getMetersBetween(@ByVal MKMapPoint a, @ByVal MKMapPoint b);
     /*</methods>*/

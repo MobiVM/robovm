@@ -35,9 +35,7 @@ import org.robovm.apple.mapkit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("EventKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/EKRecurrenceDayOfWeek/*</name>*/ 
@@ -55,7 +53,7 @@ import org.robovm.apple.mapkit.*;
     public EKRecurrenceDayOfWeek(EKWeekday dayOfTheWeek, @MachineSizedSInt long weekNumber) { super((SkipInit) null); initObject(init(dayOfTheWeek, weekNumber)); }
     public EKRecurrenceDayOfWeek(EKWeekday dayOfTheWeek) { super((Handle) null, create(dayOfTheWeek)); retain(getHandle()); }
     @Method(selector = "initWithCoder:")
-    public EKRecurrenceDayOfWeek(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public EKRecurrenceDayOfWeek(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "dayOfTheWeek")
@@ -74,6 +72,6 @@ import org.robovm.apple.mapkit.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

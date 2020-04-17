@@ -37,11 +37,12 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 2.0 and later.
  * @deprecated Deprecated in iOS 12.0. No longer supported; please adopt WKWebView.
  */
 /*</javadoc>*/
@@ -60,16 +61,13 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithFrame:")
     public UIWebView(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public UIWebView(NSCoder decoder) { super(decoder); }
+    public UIWebView(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "delegate")
     public native UIWebViewDelegate getDelegate();
     @Property(selector = "setDelegate:", strongRef = true)
     public native void setDelegate(UIWebViewDelegate v);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "scrollView")
     public native UIScrollView getScrollView();
     @Property(selector = "request")
@@ -84,109 +82,46 @@ import org.robovm.apple.intents.*;
     public native boolean isScalesPageToFit();
     @Property(selector = "setScalesPageToFit:")
     public native void setScalesPageToFit(boolean v);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "dataDetectorTypes")
     public native UIDataDetectorTypes getDataDetectorTypes();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "setDataDetectorTypes:")
     public native void setDataDetectorTypes(UIDataDetectorTypes v);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "allowsInlineMediaPlayback")
     public native boolean allowsInlineMediaPlayback();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "setAllowsInlineMediaPlayback:")
     public native void setAllowsInlineMediaPlayback(boolean v);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "mediaPlaybackRequiresUserAction")
     public native boolean isMediaPlaybackRequiresUserAction();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "setMediaPlaybackRequiresUserAction:")
     public native void setMediaPlaybackRequiresUserAction(boolean v);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "mediaPlaybackAllowsAirPlay")
     public native boolean isMediaPlaybackAllowsAirPlay();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setMediaPlaybackAllowsAirPlay:")
     public native void setMediaPlaybackAllowsAirPlay(boolean v);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "suppressesIncrementalRendering")
     public native boolean suppressesIncrementalRendering();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "setSuppressesIncrementalRendering:")
     public native void setSuppressesIncrementalRendering(boolean v);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "keyboardDisplayRequiresUserAction")
     public native boolean isKeyboardDisplayRequiresUserAction();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "setKeyboardDisplayRequiresUserAction:")
     public native void setKeyboardDisplayRequiresUserAction(boolean v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "paginationMode")
     public native UIWebPaginationMode getPaginationMode();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setPaginationMode:")
     public native void setPaginationMode(UIWebPaginationMode v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "paginationBreakingMode")
     public native UIWebPaginationBreakingMode getPaginationBreakingMode();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setPaginationBreakingMode:")
     public native void setPaginationBreakingMode(UIWebPaginationBreakingMode v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "pageLength")
     public native @MachineSizedFloat double getPageLength();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setPageLength:")
     public native void setPageLength(@MachineSizedFloat double v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "gapBetweenPages")
     public native @MachineSizedFloat double getGapBetweenPages();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setGapBetweenPages:")
     public native void setGapBetweenPages(@MachineSizedFloat double v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "pageCount")
     public native @MachineSizedUInt long getPageCount();
     /**
@@ -230,16 +165,10 @@ import org.robovm.apple.intents.*;
     public native String evaluateJavaScript(String script);
     @Method(selector = "scrollViewDidScroll:")
     public native void didScroll(UIScrollView scrollView);
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Method(selector = "scrollViewDidZoom:")
     public native void didZoom(UIScrollView scrollView);
     @Method(selector = "scrollViewWillBeginDragging:")
     public native void willBeginDragging(UIScrollView scrollView);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "scrollViewWillEndDragging:withVelocity:targetContentOffset:")
     public native void willEndDragging(UIScrollView scrollView, @ByVal CGPoint velocity, CGPoint targetContentOffset);
     @Method(selector = "scrollViewDidEndDragging:willDecelerate:")
@@ -252,9 +181,6 @@ import org.robovm.apple.intents.*;
     public native void didEndScrollingAnimation(UIScrollView scrollView);
     @Method(selector = "viewForZoomingInScrollView:")
     public native UIView getViewForZooming(UIScrollView scrollView);
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Method(selector = "scrollViewWillBeginZooming:withView:")
     public native void willBeginZooming(UIScrollView scrollView, UIView view);
     @Method(selector = "scrollViewDidEndZooming:withView:atScale:")

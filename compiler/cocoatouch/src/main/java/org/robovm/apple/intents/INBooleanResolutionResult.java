@@ -56,8 +56,8 @@ import org.robovm.apple.corelocation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "successWithResolvedValue:")
-    public static native INBooleanResolutionResult successWithResolvedValue(boolean resolvedValue);
+    public static native INBooleanResolutionResult success(boolean resolvedValue);
     @Method(selector = "confirmationRequiredWithValueToConfirm:")
-    public static native INBooleanResolutionResult confirmationRequiredWithValueToConfirm(NSNumber valueToConfirm);
+    public static native INBooleanResolutionResult confirmationRequired(NSNumber valueToConfirm);
     /*</methods>*/
 }

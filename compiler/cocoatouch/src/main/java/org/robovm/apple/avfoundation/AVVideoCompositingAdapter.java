@@ -74,5 +74,15 @@ import org.robovm.apple.audiotoolbox.*;
     public void startVideoCompositionRequest(AVAsynchronousVideoCompositionRequest asyncVideoCompositionRequest) {}
     @NotImplemented("cancelAllPendingVideoCompositionRequests")
     public void cancelAllPendingVideoCompositionRequests() {}
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("anticipateRenderingUsingHint:")
+    public void anticipateRenderingUsingHint(AVVideoCompositionRenderHint renderHint) {}
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("prerollForRenderingUsingHint:")
+    public void prerollForRenderingUsingHint(AVVideoCompositionRenderHint renderHint) {}
     /*</methods>*/
 }

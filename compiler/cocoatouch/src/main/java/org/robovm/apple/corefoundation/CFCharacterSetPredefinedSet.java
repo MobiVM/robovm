@@ -54,9 +54,6 @@ public enum /*<name>*/CFCharacterSetPredefinedSet/*</name>*/ implements ValuedEn
     Punctuation(11L),
     CapitalizedLetter(13L),
     Symbol(14L),
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     Newline(15L),
     Illegal(12L);
     /*</values>*/

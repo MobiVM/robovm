@@ -33,9 +33,7 @@ import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 7.1 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("MediaPlayer") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPFeedbackCommand/*</name>*/ 
@@ -59,14 +57,8 @@ import org.robovm.apple.coregraphics.*;
     public native String getLocalizedTitle();
     @Property(selector = "setLocalizedTitle:")
     public native void setLocalizedTitle(String v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "localizedShortTitle")
     public native String getLocalizedShortTitle();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setLocalizedShortTitle:")
     public native void setLocalizedShortTitle(String v);
     /*</properties>*/

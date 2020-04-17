@@ -38,13 +38,11 @@ import org.robovm.apple.imageio.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("Photos") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/PHAssetChangeRequest/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
+    extends /*<extends>*/PHChangeRequest/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class PHAssetChangeRequestPtr extends Ptr<PHAssetChangeRequest, PHAssetChangeRequestPtr> {}/*</ptr>*/
@@ -52,7 +50,6 @@ import org.robovm.apple.imageio.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public PHAssetChangeRequest() {}
-    @Deprecated protected PHAssetChangeRequest(long handle) { super(handle); }
     protected PHAssetChangeRequest(Handle h, long handle) { super(h, handle); }
     protected PHAssetChangeRequest(SkipInit skipInit) { super(skipInit); }
     public PHAssetChangeRequest(PHAsset asset) { super((Handle) null, create(asset)); retain(getHandle()); }

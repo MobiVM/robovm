@@ -34,9 +34,7 @@ import org.robovm.apple.fileprovider.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("CloudKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CKLocationSortDescriptor/*</name>*/ 
@@ -59,9 +57,6 @@ import org.robovm.apple.fileprovider.*;
     public CKLocationSortDescriptor(String key, boolean ascending) { super(key, ascending); }
     @Method(selector = "initWithKey:ascending:selector:")
     public CKLocationSortDescriptor(String key, boolean ascending, Selector selector) { super(key, ascending, selector); }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "initWithKey:ascending:comparator:")
     public CKLocationSortDescriptor(String key, boolean ascending, @Block Block2<NSObject, NSObject, NSComparisonResult> cmptr) { super(key, ascending, cmptr); }
     /*</constructors>*/

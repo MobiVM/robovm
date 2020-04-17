@@ -54,35 +54,74 @@ import org.robovm.apple.imageio.*;
     protected PHLivePhotoEditingContext() {}
     protected PHLivePhotoEditingContext(Handle h, long handle) { super(h, handle); }
     protected PHLivePhotoEditingContext(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
     @Method(selector = "initWithLivePhotoEditingInput:")
     public PHLivePhotoEditingContext(PHContentEditingInput livePhotoInput) { super((SkipInit) null); initObject(init(livePhotoInput)); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
     @Property(selector = "fullSizeImage")
     public native CIImage getFullSizeImage();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
     @Property(selector = "duration")
     public native @ByVal CMTime getDuration();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
     @Property(selector = "photoTime")
     public native @ByVal CMTime getPhotoTime();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
     @Property(selector = "frameProcessor")
     public native @Block Block2<PHLivePhotoFrame, NSError.NSErrorPtr, CIImage> getFrameProcessor();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
     @Property(selector = "setFrameProcessor:")
     public native void setFrameProcessor(@Block Block2<PHLivePhotoFrame, NSError.NSErrorPtr, CIImage> v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
     @Property(selector = "audioVolume")
     public native float getAudioVolume();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
     @Property(selector = "setAudioVolume:")
     public native void setAudioVolume(float v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
     @Property(selector = "orientation")
     public native CGImagePropertyOrientation getOrientation();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
     @Method(selector = "initWithLivePhotoEditingInput:")
     protected native @Pointer long init(PHContentEditingInput livePhotoInput);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
     @Method(selector = "prepareLivePhotoForPlaybackWithTargetSize:options:completionHandler:")
     public native void prepareLivePhotoForPlayback(@ByVal CGSize targetSize, NSDictionary<NSString, ?> options, @Block VoidBlock2<PHLivePhoto, NSError> handler);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
     @Method(selector = "saveLivePhotoToOutput:options:completionHandler:")
     public native void saveLivePhoto(PHContentEditingOutput output, NSDictionary<NSString, ?> options, @Block VoidBlock2<Boolean, NSError> handler);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
     @Method(selector = "cancel")
     public native void cancel();
     /*</methods>*/

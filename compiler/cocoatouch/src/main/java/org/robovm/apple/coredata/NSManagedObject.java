@@ -29,12 +29,12 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corespotlight.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 3.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreData") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSManagedObject/*</name>*/ 
@@ -57,9 +57,6 @@ import org.robovm.apple.corespotlight.*;
     public NSManagedObject(NSManagedObjectContext moc) { super((SkipInit) null); initObject(init(moc)); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "contextShouldIgnoreUnmodeledPropertyChanges")
     public static native boolean isContextShouldIgnoreUnmodeledPropertyChanges();
     @Property(selector = "managedObjectContext")
@@ -74,21 +71,12 @@ import org.robovm.apple.corespotlight.*;
     public native boolean isUpdated();
     @Property(selector = "isDeleted")
     public native boolean isDeleted();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "hasChanges")
     public native boolean hasChanges();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "hasPersistentChangedValues")
     public native boolean hasPersistentChangedValues();
     @Property(selector = "isFault")
     public native boolean isFault();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "faultingState")
     public native @MachineSizedUInt long getFaultingState();
     /*</properties>*/
@@ -117,9 +105,6 @@ import org.robovm.apple.corespotlight.*;
      */
     @Method(selector = "initWithContext:")
     protected native @Pointer long init(NSManagedObjectContext moc);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "hasFaultForRelationshipNamed:")
     public native boolean hasFaultForRelationship(String key);
     /**
@@ -143,23 +128,14 @@ import org.robovm.apple.corespotlight.*;
     public native void awakeFromFetch();
     @Method(selector = "awakeFromInsert")
     public native void awakeFromInsert();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "awakeFromSnapshotEvents:")
     public native void awakeFromSnapshotEvents(NSSnapshotEventType flags);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "prepareForDeletion")
     public native void prepareForDeletion();
     @Method(selector = "willSave")
     public native void willSave();
     @Method(selector = "didSave")
     public native void didSave();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "willTurnIntoFault")
     public native void willTurnIntoFault();
     @Method(selector = "didTurnIntoFault")
@@ -176,9 +152,6 @@ import org.robovm.apple.corespotlight.*;
     public native NSDictionary<NSString, ?> getCommittedValues(NSArray<NSString> keys);
     @Method(selector = "changedValues")
     public native NSDictionary<NSString, ?> getChangedValues();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "changedValuesForCurrentEvent")
     public native NSDictionary<NSString, ?> getChangedValuesForCurrentEvent();
     private boolean validateValue(NSObject value, String key) throws NSErrorException {

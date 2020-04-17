@@ -37,11 +37,12 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 8.0 and later.
  * @deprecated Deprecated in iOS 11.0. UIDocumentMenuViewController is deprecated. Use UIDocumentPickerViewController directly.
  */
 /*</javadoc>*/
@@ -62,7 +63,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithURL:inMode:")
     public UIDocumentMenuViewController(NSURL url, UIDocumentPickerMode mode) { super((SkipInit) null); initObject(init(url, mode)); }
     @Method(selector = "initWithCoder:")
-    public UIDocumentMenuViewController(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public UIDocumentMenuViewController(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     @Method(selector = "initWithNibName:bundle:")
     public UIDocumentMenuViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
     /*</constructors>*/
@@ -79,7 +80,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithURL:inMode:")
     protected native @Pointer long init(NSURL url, UIDocumentPickerMode mode);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     @Method(selector = "addOptionWithTitle:image:order:handler:")
     public native void addOption(String title, UIImage image, UIDocumentMenuOrder order, @Block Runnable handler);
     /*</methods>*/

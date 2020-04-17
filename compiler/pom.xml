@@ -1,171 +1,33 @@
 <?xml version="1.0"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
-  <modelVersion>4.0.0</modelVersion>
+    <modelVersion>4.0.0</modelVersion>
 
-  <parent>
-    <groupId>com.mobidevelop.robovm</groupId>
-    <artifactId>robovm-parent</artifactId>
-    <version>2.3.10-SNAPSHOT</version>
-  </parent>
-  
-  <artifactId>robovm-compiler-parent</artifactId>
-  <name>RoboVM Compiler Parent</name>
-  <packaging>pom</packaging>
-  <url>http://github.com/MobiVM/robovm</url>
-  <description>
-    The RoboVM compiler translates Java bytecode into native ARM or x86 code. Apps run directly on the CPU.
-    No interpreter or virtual machine involved.
-  </description>
-  <inceptionYear>2012</inceptionYear>
+    <parent>
+        <groupId>com.mobidevelop.robovm</groupId>
+        <artifactId>robovm-parent</artifactId>
+        <version>2.3.10-SNAPSHOT</version>
+    </parent>
 
-  <dependencies>
-  </dependencies>
-  <dependencyManagement>
-    <dependencies>
-      <dependency>
-        <groupId>commons-io</groupId>
-        <artifactId>commons-io</artifactId>
-        <version>2.4</version>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.commons</groupId>
-        <artifactId>commons-exec</artifactId>
-        <version>1.0.1</version>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.commons</groupId>
-        <artifactId>commons-lang3</artifactId>
-        <version>3.3.2</version>
-      </dependency>
-      <dependency>
-        <groupId>com.googlecode.plist</groupId>
-        <artifactId>dd-plist</artifactId>
-        <version>1.16</version>
-      </dependency>
-      <dependency>
-        <groupId>junit</groupId>
-        <artifactId>junit</artifactId>
-        <version>4.12</version>
-        <scope>test</scope>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
+    <artifactId>robovm-compiler-parent</artifactId>
+    <name>RoboVM Compiler Parent</name>
+    <packaging>pom</packaging>
+    <url>http://github.com/MobiVM/robovm</url>
+    <description>
+        The RoboVM compiler translates Java bytecode into native ARM or x86 code. Apps run directly on the CPU.
+        No interpreter or virtual machine involved.
+    </description>
+    <inceptionYear>2012</inceptionYear>
 
-  <profiles>
-    <profile>
-      <id>doclint-java8-disable</id>
-      <activation>
-        <jdk>[1.8,)</jdk>
-      </activation>
-      <properties>
-        <javadoc.opts>-Xdoclint:none</javadoc.opts>
-      </properties>
-    </profile>
-  </profiles>
-
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-release-plugin</artifactId>
-        <version>2.5.1</version>
-        <configuration>
-          <remoteTagging>true</remoteTagging>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-gpg-plugin</artifactId>
-        <version>1.5</version>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>2.3.2</version>
-        <configuration>
-          <source>1.7</source>
-          <target>1.7</target>
-          <debug>true</debug>
-          <optimize>true</optimize>
-          <showDeprecations>true</showDeprecations>
-          <encoding>UTF-8</encoding>
-        </configuration>
-      </plugin>
-      <plugin>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <version>2.11</version>
-        <configuration>
-          <includes>
-            <include>**/*Test.java</include>
-          </includes>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-jar-plugin</artifactId>
-        <version>2.4</version>
-        <inherited>true</inherited>
-        <configuration>
-          <archive>                   
-            <manifest>
-              <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-              <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
-            </manifest>
-          </archive>
-        </configuration>
-      </plugin>
-    </plugins>
-    <pluginManagement>
-      <plugins>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-source-plugin</artifactId>
-          <version>2.2.1</version>
-          <executions>
-            <execution>
-              <id>attach-sources</id>
-              <goals>
-                <goal>jar</goal>
-              </goals>
-            </execution>
-          </executions>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-javadoc-plugin</artifactId>
-          <version>2.9</version>
-          <configuration>
-            <additionalparam>${javadoc.opts}</additionalparam>
-          </configuration>
-        </plugin>
-      </plugins>
-    </pluginManagement>
-  </build>
-  
-  <repositories>
-  </repositories>
-
-  <pluginRepositories>
-    <pluginRepository>
-      <id>maven.org</id>
-      <url>https://repo1.maven.org/maven2/</url>
-      <releases><enabled>true</enabled></releases>
-    </pluginRepository>
-    <pluginRepository>
-      <id>Codehaus repository</id>
-      <url>http://repository.codehaus.org/</url>
-    </pluginRepository>
-  </pluginRepositories>
-  
-  <modules>
-    <module>llvm</module>
-    <module>libimobiledevice</module>
-    <module>compiler</module>
-    <module>rt</module>
-    <module>cacerts</module>
-    <module>objc</module>
-    <module>cocoatouch</module>
-  </modules>
+    <modules>
+        <module>llvm</module>
+        <module>libimobiledevice</module>
+        <module>compiler</module>
+        <module>rt</module>
+        <module>cacerts</module>
+        <module>objc</module>
+        <module>cocoatouch</module>
+    </modules>
 </project>
 

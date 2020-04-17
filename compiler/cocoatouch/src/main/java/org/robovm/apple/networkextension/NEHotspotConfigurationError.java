@@ -29,6 +29,7 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.security.*;
+import org.robovm.apple.network.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -36,8 +37,8 @@ import org.robovm.apple.security.*;
  * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/NEHotspotConfigurationError/*</name>*/ implements ValuedEnum {
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Library("NetworkExtension")/*</annotations>*/
+public enum /*<name>*/NEHotspotConfigurationError/*</name>*/ implements NSErrorCode {
     /*<values>*/
     Invalid(0L),
     InvalidSSID(1L),
@@ -53,13 +54,20 @@ public enum /*<name>*/NEHotspotConfigurationError/*</name>*/ implements ValuedEn
     Unknown(11L),
     JoinOnceNotSupported(12L),
     AlreadyAssociated(13L),
-    ApplicationIsNotInForeground(14L);
+    ApplicationIsNotInForeground(14L),
+    InvalidSSIDPrefix(15L);
     /*</values>*/
 
-    /*<bind>*/
-    /*</bind>*/
+    /*<bind>*/static { Bro.bind(NEHotspotConfigurationError.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<methods>*//*</methods>*/
+    /*<members>*//*</members>*/
+    /*<methods>*/
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @GlobalValue(symbol="NEHotspotConfigurationErrorDomain", optional=true)
+    public static native String getClassDomain();
+    /*</methods>*/
 
     private final long n;
 
@@ -71,7 +79,27 @@ public enum /*<name>*/NEHotspotConfigurationError/*</name>*/ implements ValuedEn
                 return v;
             }
         }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
+        throw new IllegalArgumentException("No constant with value " + n + " found in "
             + /*<name>*/NEHotspotConfigurationError/*</name>*/.class.getName());
+    }
+
+    // bind wrap to include it in compilation as long as nserror enum is used 
+    static { Bro.bind(NSErrorWrap.class); }
+    @StronglyLinked
+    public static class NSErrorWrap extends NSError {
+        protected NSErrorWrap(SkipInit skipInit) {super(skipInit);}
+
+        @Override public NSErrorCode getErrorCode() {
+             try {
+                 return  /*<name>*/NEHotspotConfigurationError/*</name>*/.valueOf(getCode());
+             } catch (IllegalArgumentException e) {
+                 return null;
+             }
+         }
+
+        public static String getClassDomain() {
+            /** must be incerted in value section */
+            return /*<name>*/NEHotspotConfigurationError/*</name>*/.getClassDomain();
+        }
     }
 }

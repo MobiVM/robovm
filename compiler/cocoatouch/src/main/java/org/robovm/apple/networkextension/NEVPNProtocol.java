@@ -29,12 +29,11 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.security.*;
+import org.robovm.apple.network.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("NetworkExtension") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NEVPNProtocol/*</name>*/ 
@@ -49,37 +48,19 @@ import org.robovm.apple.security.*;
     protected NEVPNProtocol(Handle h, long handle) { super(h, handle); }
     protected NEVPNProtocol(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public NEVPNProtocol(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public NEVPNProtocol(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "serverAddress")
     public native String getServerAddress();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setServerAddress:")
     public native void setServerAddress(String v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "username")
     public native String getUsername();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setUsername:")
     public native void setUsername(String v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "passwordReference")
     public native NSData getPasswordReference();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setPasswordReference:")
     public native void setPasswordReference(NSData v);
     /**
@@ -92,34 +73,16 @@ import org.robovm.apple.security.*;
      */
     @Property(selector = "setIdentityReference:")
     public native void setIdentityReference(NSData v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "identityData")
     public native NSData getIdentityData();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setIdentityData:")
     public native void setIdentityData(NSData v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "identityDataPassword")
     public native String getIdentityDataPassword();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setIdentityDataPassword:")
     public native void setIdentityDataPassword(String v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "disconnectOnSleep")
     public native boolean disconnectsOnSleep();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setDisconnectOnSleep:")
     public native void setDisconnectsOnSleep(boolean v);
     /**
@@ -140,6 +103,6 @@ import org.robovm.apple.security.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

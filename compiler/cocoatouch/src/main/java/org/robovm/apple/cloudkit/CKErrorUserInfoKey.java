@@ -90,25 +90,10 @@ import org.robovm.apple.fileprovider.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final CKErrorUserInfoKey PartialErrorsByItemID = new CKErrorUserInfoKey("PartialErrorsByItemID");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final CKErrorUserInfoKey AncestorRecord = new CKErrorUserInfoKey("AncestorRecord");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final CKErrorUserInfoKey ServerRecord = new CKErrorUserInfoKey("ServerRecord");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final CKErrorUserInfoKey ClientRecord = new CKErrorUserInfoKey("ClientRecord");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final CKErrorUserInfoKey RetryAfter = new CKErrorUserInfoKey("RetryAfter");
     /*</constants>*/
     
@@ -135,29 +120,14 @@ import org.robovm.apple.fileprovider.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="CKPartialErrorsByItemIDKey", optional=true)
         public static native NSString PartialErrorsByItemID();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="CKRecordChangedErrorAncestorRecordKey", optional=true)
         public static native NSString AncestorRecord();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="CKRecordChangedErrorServerRecordKey", optional=true)
         public static native NSString ServerRecord();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="CKRecordChangedErrorClientRecordKey", optional=true)
         public static native NSString ClientRecord();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="CKErrorRetryAfterKey", optional=true)
         public static native NSString RetryAfter();
         /*</values>*/

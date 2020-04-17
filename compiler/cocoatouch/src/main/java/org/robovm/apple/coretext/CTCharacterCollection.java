@@ -41,37 +41,31 @@ import org.robovm.apple.uikit.*;
 public enum /*<name>*/CTCharacterCollection/*</name>*/ implements ValuedEnum {
     /*<values>*/
     /**
-     * @since Available in iOS 3.2 and later.
      * @deprecated Deprecated in iOS 9.0. Deprecated
      */
     @Deprecated
     IdentityMapping(0L),
     /**
-     * @since Available in iOS 3.2 and later.
      * @deprecated Deprecated in iOS 9.0. Deprecated
      */
     @Deprecated
     AdobeCNS1(1L),
     /**
-     * @since Available in iOS 3.2 and later.
      * @deprecated Deprecated in iOS 9.0. Deprecated
      */
     @Deprecated
     AdobeGB1(2L),
     /**
-     * @since Available in iOS 3.2 and later.
      * @deprecated Deprecated in iOS 9.0. Deprecated
      */
     @Deprecated
     AdobeJapan1(3L),
     /**
-     * @since Available in iOS 3.2 and later.
      * @deprecated Deprecated in iOS 9.0. Deprecated
      */
     @Deprecated
     AdobeJapan2(4L),
     /**
-     * @since Available in iOS 3.2 and later.
      * @deprecated Deprecated in iOS 9.0. Deprecated
      */
     @Deprecated

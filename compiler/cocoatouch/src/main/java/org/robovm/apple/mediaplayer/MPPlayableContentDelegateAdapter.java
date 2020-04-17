@@ -50,9 +50,6 @@ import org.robovm.apple.coregraphics.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 7.1 and later.
-     */
     @NotImplemented("playableContentManager:initiatePlaybackOfContentItemAtIndexPath:completionHandler:")
     public void initiatePlayback(MPPlayableContentManager contentManager, NSIndexPath indexPath, @Block VoidBlock1<NSError> completionHandler) {}
     /**

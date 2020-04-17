@@ -52,7 +52,7 @@ public final class /*<name>*/WKDataDetectorTypes/*</name>*/ extends Bits</*<name
     public static final WKDataDetectorTypes All = new WKDataDetectorTypes(Bro.IS_32BIT ? 0xffffffffL : 0xffffffffffffffffL);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use WKDataDetectorTypeLookupSuggestion
      */
     @Deprecated
     public static final WKDataDetectorTypes SpotlightSuggestion = new WKDataDetectorTypes(64L);

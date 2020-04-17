@@ -47,40 +47,23 @@ import org.robovm.apple.uikit.*;
     
     /*</properties>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 4.1 and later.
-     */
     @Method(selector = "matchmakerViewControllerWasCancelled:")
     void wasCancelled(GKMatchmakerViewController viewController);
-    /**
-     * @since Available in iOS 4.1 and later.
-     */
     @Method(selector = "matchmakerViewController:didFailWithError:")
     void didFail(GKMatchmakerViewController viewController, NSError error);
-    /**
-     * @since Available in iOS 4.1 and later.
-     */
     @Method(selector = "matchmakerViewController:didFindMatch:")
     void didFindMatch(GKMatchmakerViewController viewController, GKMatch match);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "matchmakerViewController:didFindHostedPlayers:")
     void didFindHostedPlayers(GKMatchmakerViewController viewController, NSArray<GKPlayer> players);
     /**
-     * @since Available in iOS 4.1 and later.
      * @deprecated Deprecated in iOS 8.0. use matchmakerViewController:didFindHostedPlayers:
      */
     @Deprecated
     @Method(selector = "matchmakerViewController:didFindPlayers:")
     void didFindPlayers(GKMatchmakerViewController viewController, @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> playerIDs);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "matchmakerViewController:hostedPlayerDidAccept:")
     void hostedPlayerDidAccept(GKMatchmakerViewController viewController, GKPlayer player);
     /**
-     * @since Available in iOS 5.0 and later.
      * @deprecated Deprecated in iOS 8.0. use matchmakerViewController:hostedPlayerDidAccept:
      */
     @Deprecated

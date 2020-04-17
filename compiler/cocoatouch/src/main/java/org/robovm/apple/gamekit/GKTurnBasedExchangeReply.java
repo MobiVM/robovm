@@ -32,9 +32,7 @@ import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 7.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("GameKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GKTurnBasedExchangeReply/*</name>*/ 
@@ -56,9 +54,6 @@ import org.robovm.apple.uikit.*;
     public native String getMessage();
     @Property(selector = "data")
     public native NSData getData();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "replyDate")
     public native NSDate getReplyDate();
     /*</properties>*/

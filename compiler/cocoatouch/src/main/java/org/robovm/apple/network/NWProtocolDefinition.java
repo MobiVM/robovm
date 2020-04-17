@@ -35,7 +35,7 @@ import org.robovm.apple.security.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*/@Library("Network") @NativeProtocolProxy("OS_nw_protocol_definition")/*</annotations>*/
+/*<annotations>*/@Library("Network") @NativeClass("NSObject")/*</annotations>*/
 /*<visibility>*/public final/*</visibility>*/ class /*<name>*/NWProtocolDefinition/*</name>*/ 
     extends /*<extends>*/NWObject/*</extends>*/ 
     /*<implements>*/implements NSObjectProtocol/*</implements>*/ {
@@ -57,25 +57,35 @@ import org.robovm.apple.security.*;
     @Bridge(symbol="nw_protocol_definition_is_equal", optional=true)
     public native boolean isEqual(NWProtocolDefinition definition2);
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="nw_framer_protocol_create_message", optional=true)
+    public native NWFramerMessage createFramerMessage();
+    /**
      * @since Available in iOS 12.0 and later.
      */
     @Bridge(symbol="nw_protocol_copy_ip_definition", optional=true)
-    public static native NWProtocolDefinition copyipDefinition();
+    public static native NWProtocolDefinition copyIpDefinition();
     /**
      * @since Available in iOS 12.0 and later.
      */
     @Bridge(symbol="nw_protocol_copy_tcp_definition", optional=true)
-    public static native NWProtocolDefinition copytcpDefinition();
+    public static native NWProtocolDefinition copyTcpDefinition();
     /**
      * @since Available in iOS 12.0 and later.
      */
     @Bridge(symbol="nw_protocol_copy_tls_definition", optional=true)
-    public static native NWProtocolDefinition copytlsDefinition();
+    public static native NWProtocolDefinition copyTlsDefinition();
     /**
      * @since Available in iOS 12.0 and later.
      */
     @Bridge(symbol="nw_protocol_copy_udp_definition", optional=true)
-    public static native NWProtocolDefinition copyudpDefinition();
+    public static native NWProtocolDefinition copyUdpDefinition();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="nw_protocol_copy_ws_definition", optional=true)
+    public static native NWProtocolDefinition copyWsDefinition();
     
     
     /*</methods>*/

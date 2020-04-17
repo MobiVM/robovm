@@ -58,7 +58,7 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "initWithResponse:data:userInfo:storagePolicy:")
     public NSCachedURLResponse(NSURLResponse response, NSData data, NSDictionary<?, ?> userInfo, NSURLCacheStoragePolicy storagePolicy) { super((SkipInit) null); initObject(init(response, data, userInfo, storagePolicy)); }
     @Method(selector = "initWithCoder:")
-    public NSCachedURLResponse(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public NSCachedURLResponse(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "response")
@@ -81,6 +81,6 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

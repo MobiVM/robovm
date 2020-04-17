@@ -118,9 +118,6 @@ import org.robovm.apple.audiotoolbox.*;
     }
     
 
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public short getTop() {
         if (has(Keys.Top())) {
             CFNumber val = get(Keys.Top(), CFNumber.class);
@@ -128,16 +125,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CMTextFormatDescriptionRect setTop(short top) {
         set(Keys.Top(), CFNumber.valueOf(top));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public short getLeft() {
         if (has(Keys.Left())) {
             CFNumber val = get(Keys.Left(), CFNumber.class);
@@ -145,16 +136,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CMTextFormatDescriptionRect setLeft(short left) {
         set(Keys.Left(), CFNumber.valueOf(left));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public short getBottom() {
         if (has(Keys.Bottom())) {
             CFNumber val = get(Keys.Bottom(), CFNumber.class);
@@ -162,16 +147,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CMTextFormatDescriptionRect setBottom(short bottom) {
         set(Keys.Bottom(), CFNumber.valueOf(bottom));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public short getRight() {
         if (has(Keys.Right())) {
             CFNumber val = get(Keys.Right(), CFNumber.class);
@@ -179,9 +158,6 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CMTextFormatDescriptionRect setRight(short right) {
         set(Keys.Right(), CFNumber.valueOf(right));
         return this;
@@ -192,24 +168,12 @@ import org.robovm.apple.audiotoolbox.*;
     @Library("CoreMedia")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCMTextFormatDescriptionRect_Top", optional=true)
         public static native CFString Top();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCMTextFormatDescriptionRect_Left", optional=true)
         public static native CFString Left();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCMTextFormatDescriptionRect_Bottom", optional=true)
         public static native CFString Bottom();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCMTextFormatDescriptionRect_Right", optional=true)
         public static native CFString Right();
     }

@@ -92,25 +92,10 @@ import org.robovm.apple.metal.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CAMediaTimingFunctionName Linear = new CAMediaTimingFunctionName("Linear");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CAMediaTimingFunctionName EaseIn = new CAMediaTimingFunctionName("EaseIn");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CAMediaTimingFunctionName EaseOut = new CAMediaTimingFunctionName("EaseOut");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CAMediaTimingFunctionName EaseInEaseOut = new CAMediaTimingFunctionName("EaseInEaseOut");
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public static final CAMediaTimingFunctionName Default = new CAMediaTimingFunctionName("Default");
     /*</constants>*/
     
@@ -137,29 +122,14 @@ import org.robovm.apple.metal.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCAMediaTimingFunctionLinear", optional=true)
         public static native NSString Linear();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCAMediaTimingFunctionEaseIn", optional=true)
         public static native NSString EaseIn();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCAMediaTimingFunctionEaseOut", optional=true)
         public static native NSString EaseOut();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCAMediaTimingFunctionEaseInEaseOut", optional=true)
         public static native NSString EaseInEaseOut();
-        /**
-         * @since Available in iOS 3.0 and later.
-         */
         @GlobalValue(symbol="kCAMediaTimingFunctionDefault", optional=true)
         public static native NSString Default();
         /*</values>*/

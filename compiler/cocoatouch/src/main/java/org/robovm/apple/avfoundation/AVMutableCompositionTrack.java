@@ -41,9 +41,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVMutableCompositionTrack/*</name>*/ 
@@ -59,6 +57,16 @@ import org.robovm.apple.audiotoolbox.*;
     protected AVMutableCompositionTrack(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "isEnabled")
+    public native boolean isEnabled();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setEnabled:")
+    public native void setEnabled(boolean v);
     @Property(selector = "naturalTimeScale")
     public native int getNaturalTimeScale();
     @Property(selector = "setNaturalTimeScale:")
@@ -94,18 +102,12 @@ import org.robovm.apple.audiotoolbox.*;
     }
     @Method(selector = "insertTimeRange:ofTrack:atTime:error:")
     private native boolean insertTimeRange(@ByVal CMTimeRange timeRange, AVAssetTrack track, @ByVal CMTime startTime, NSError.NSErrorPtr outError);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public boolean insertTimeRanges(@org.robovm.rt.bro.annotation.Marshaler(CMTimeRange.AsValuedListMarshaler.class) List<CMTimeRange> timeRanges, NSArray<AVAssetTrack> tracks, @ByVal CMTime startTime) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        boolean result = insertTimeRanges(timeRanges, tracks, startTime, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        return result;
     }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "insertTimeRanges:ofTracks:atTime:error:")
     private native boolean insertTimeRanges(@org.robovm.rt.bro.annotation.Marshaler(CMTimeRange.AsValuedListMarshaler.class) List<CMTimeRange> timeRanges, NSArray<AVAssetTrack> tracks, @ByVal CMTime startTime, NSError.NSErrorPtr outError);
     @Method(selector = "insertEmptyTimeRange:")
@@ -132,5 +134,10 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Method(selector = "removeTrackAssociationToTrack:type:")
     public native void removeTrackAssociation(AVCompositionTrack compositionTrack, String trackAssociationType);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "replaceFormatDescription:withFormatDescription:")
+    public native void replaceFormatDescription(CMFormatDescription originalFormatDescription, CMFormatDescription replacementFormatDescription);
     /*</methods>*/
 }

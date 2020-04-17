@@ -7,7 +7,7 @@ headers:
     - /System/Library/Frameworks/Contacts.framework/Headers/Contacts.h
     - /System/Library/Frameworks/Contacts.framework/Headers/ContactsDefines.h
 typedefs:
-    CNKeyDescriptor: String
+    CNKeyDescriptor: NSObject # including NSString
 private_typedefs:
     ValueType: NSObject
     
@@ -161,6 +161,12 @@ classes:
                 property: true
             '+authorizationStatusForEntityType:':
                 name: getAuthorizationStatusForEntityType
+            '-enumeratorForContactFetchRequest:error:':
+                name: getEnumeratorForContactFetchReques
+                throws: NSErrorException
+            '-enumeratorForChangeHistoryFetchRequest:error:':
+                name: getEnumeratorForChangeHistoryFetchRequest
+                throws: NSErrorException
     CNContactVCardSerialization: # DONE
         methods:
             '+descriptorForRequiredKeys':
@@ -213,6 +219,10 @@ classes:
             '+localizedStringForService:':
                 name: getLocalizedService
     CNLabeledValue: # DONE
+        template_parameters:
+            ValueType:
+                name: T
+                type: "" # as class does internal transformations, e.g. String->NSString
         properties:
             'value':
                 name: value0
@@ -226,15 +236,12 @@ classes:
                 visibility: private
             '-labeledValueBySettingLabel:':
                 name: setLabel
-                return_type: CNLabeledValue<T>
             '-labeledValueBySettingValue:':
                 name: setValue
                 visibility: private
-                return_type: CNLabeledValue<T>
             '-labeledValueBySettingLabel:value:':
                 name: setLabelAndValue
                 visibility: private
-                return_type: CNLabeledValue<T>
             '+localizedStringForLabel:':
                 name: getLocalizedLabel
     CNMutableContact: # DONE
@@ -311,8 +318,23 @@ classes:
                         type: CNSocialProfilePropertyKey
             '+localizedStringForService:':
                 name: getLocalizedService
-
+    CNChangeHistoryAddContactEvent: {} #since 13.0
+    CNChangeHistoryAddGroupEvent: {} #since 13.0
+    CNChangeHistoryAddMemberToGroupEvent: {} #since 13.0
+    CNChangeHistoryAddSubgroupToGroupEvent: {} #since 13.0
+    CNChangeHistoryDeleteContactEvent: {} #since 13.0
+    CNChangeHistoryDeleteGroupEvent: {} #since 13.0
+    CNChangeHistoryDropEverythingEvent: {} #since 13.0
+    CNChangeHistoryEvent: {} #since 13.0
+    CNChangeHistoryFetchRequest: {} #since 13.0
+    CNChangeHistoryRemoveMemberFromGroupEvent: {} #since 13.0
+    CNChangeHistoryRemoveSubgroupFromGroupEvent: {} #since 13.0
+    CNChangeHistoryUpdateContactEvent: {} #since 13.0
+    CNChangeHistoryUpdateGroupEvent: {} #since 13.0
+    CNFetchRequest: {} #since 13.0
+    CNFetchResult: {} #since 13.0
 protocols:
+    CNChangeHistoryEventVisitor: {} #since 13.0
     # CNKeyDescriptor: ignored # DONE
 
 functions:

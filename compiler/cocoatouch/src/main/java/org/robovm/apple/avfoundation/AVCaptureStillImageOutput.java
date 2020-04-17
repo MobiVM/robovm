@@ -42,7 +42,6 @@ import org.robovm.apple.audiotoolbox.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 4.0 and later.
  * @deprecated Deprecated in iOS 10.0. Use AVCapturePhotoOutput instead.
  */
 /*</javadoc>*/
@@ -82,43 +81,21 @@ import org.robovm.apple.audiotoolbox.*;
     public native @org.robovm.rt.bro.annotation.Marshaler(CVPixelFormatType.AsListMarshaler.class) List<CVPixelFormatType> getAvailableImageDataCVPixelFormatTypes();
     @Property(selector = "availableImageDataCodecTypes")
     public native @org.robovm.rt.bro.annotation.Marshaler(CMVideoCodecType.AsListMarshaler.class) List<CMVideoCodecType> getAvailableImageDataCodecTypes();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "isStillImageStabilizationSupported")
     public native boolean isStillImageStabilizationSupported();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "automaticallyEnablesStillImageStabilizationWhenAvailable")
     public native boolean automaticallyEnablesStillImageStabilizationWhenAvailable();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setAutomaticallyEnablesStillImageStabilizationWhenAvailable:")
     public native void setAutomaticallyEnablesStillImageStabilizationWhenAvailable(boolean v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "isStillImageStabilizationActive")
     public native boolean isStillImageStabilizationActive();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "isHighResolutionStillImageOutputEnabled")
     public native boolean isHighResolutionStillImageOutputEnabled();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setHighResolutionStillImageOutputEnabled:")
     public native void setHighResolutionStillImageOutputEnabled(boolean v);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "isCapturingStillImage")
     public native boolean isCapturingStillImage();
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 10.0. Use AVCapturePhotoOutput maxBracketedCapturePhotoCount instead.
      */
     @Deprecated
@@ -155,14 +132,12 @@ import org.robovm.apple.audiotoolbox.*;
     @Method(selector = "jpegStillImageNSDataRepresentation:")
     public static native NSData createJPEGStillImageNSDataRepresentation(CMSampleBuffer jpegSampleBuffer);
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 10.0. Use AVCapturePhotoOutput setPreparedPhotoSettingsArray:completionHandler: instead.
      */
     @Deprecated
     @Method(selector = "prepareToCaptureStillImageBracketFromConnection:withSettingsArray:completionHandler:")
     public native void prepareToCaptureStillImageBracket(AVCaptureConnection connection, NSArray<AVCaptureBracketedStillImageSettings> settings, @Block VoidBlock2<Boolean, NSError> handler);
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 10.0. Use AVCapturePhotoOutput capturePhotoWithSettings:delegate: instead.
      */
     @Deprecated

@@ -68,9 +68,6 @@ import org.robovm.apple.dispatch.*;
     /*<methods>*/
     @Bridge(symbol="MKCoordinateRegionMakeWithDistance", optional=true)
     private static native @Pointer long create(@ByVal CLLocationCoordinate2D centerCoordinate, double latitudinalMeters, double longitudinalMeters);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="MKCoordinateRegionForMapRect", optional=true)
     private static native @Pointer long create(@ByVal MKMapRect rect);
     /*</methods>*/

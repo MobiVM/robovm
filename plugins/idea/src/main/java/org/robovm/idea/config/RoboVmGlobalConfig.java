@@ -18,7 +18,6 @@ package org.robovm.idea.config;
 
 import com.intellij.ide.util.PropertiesComponent;
 import com.intellij.openapi.options.Configurable;
-import com.intellij.openapi.options.ConfigurationException;
 import org.jetbrains.annotations.Nls;
 import org.jetbrains.annotations.Nullable;
 
@@ -59,7 +58,7 @@ public class RoboVmGlobalConfig implements Configurable {
     }
 
     @Override
-    public void apply() throws ConfigurationException {
+    public void apply() {
         modified = false;
     }
 
@@ -73,8 +72,8 @@ public class RoboVmGlobalConfig implements Configurable {
 
     public static boolean isCompileOnSave() {
         // dkimitsa: forced to return false as compile on saved is not required for new xcode pluggin
-        return false;
 //        return PropertiesComponent.getInstance().getBoolean(ROBOVM_COMPILE_ON_SAVE, true);
+        return false;
     }
 
     public void setCompileOnSave(boolean isCompileOnSave) {

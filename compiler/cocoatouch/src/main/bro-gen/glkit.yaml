@@ -35,27 +35,35 @@ classes:
         annotations: ['@WeaklyLinked']
 
     # Structs
-    GLKMatrix2:
+    _GLKMatrix2:
+        name: GLKMatrix2
         autoMember$1: {exclude: true}
-    GLKMatrix3:
+    _GLKMatrix3:
+        name: GLKMatrix3
         autoMember$1: {exclude: true}
-    GLKMatrix4:
+    _GLKMatrix4:
+        name: GLKMatrix4
         autoMember$1: {exclude: true}
-    GLKQuaternion:
+    _GLKQuaternion:
+        name: GLKQuaternion
         autoMember$1: {exclude: true}
         autoMember$2: {exclude: true}
-    GLKVector2:
+    _GLKVector2:
+        name: GLKVector2
         autoMember$1: {exclude: true}
         autoMember$2: {exclude: true}
-    GLKVector3:
+    _GLKVector3:
+        name: GLKVector3
         autoMember$1: {exclude: true}
         autoMember$2: {exclude: true}
         autoMember$3: {exclude: true}
-    GLKVector4:
+    _GLKVector4:
+        name: GLKVector4
         autoMember$1: {exclude: true}
         autoMember$2: {exclude: true}
         autoMember$3: {exclude: true}
-    GLKVertexAttributeParameters: {}
+    _GLKVertexAttributeParameters:
+        name: GLKVertexAttributeParameters
 
     GLKBaseEffect: # DONE
         properties:

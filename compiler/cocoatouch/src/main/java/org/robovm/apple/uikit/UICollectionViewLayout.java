@@ -37,12 +37,12 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 6.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UICollectionViewLayout/*</name>*/ 
@@ -57,16 +57,13 @@ import org.robovm.apple.intents.*;
     protected UICollectionViewLayout(Handle h, long handle) { super(h, handle); }
     protected UICollectionViewLayout(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public UICollectionViewLayout(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public UICollectionViewLayout(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "collectionView")
     public native UICollectionView getCollectionView();
     @Property(selector = "layoutAttributesClass")
     public static native Class<? extends UICollectionViewLayoutAttributes> getLayoutAttributesClass();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "invalidationContextClass")
     public static native Class<? extends UICollectionViewLayoutInvalidationContext> getInvalidationContextClass();
     @Property(selector = "collectionViewContentSize")
@@ -79,12 +76,9 @@ import org.robovm.apple.intents.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     @Method(selector = "invalidateLayout")
     public native void invalidateLayout();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "invalidateLayoutWithContext:")
     public native void invalidateLayout(UICollectionViewLayoutInvalidationContext context);
     @Method(selector = "registerClass:forDecorationViewOfKind:")
@@ -103,26 +97,14 @@ import org.robovm.apple.intents.*;
     public native UICollectionViewLayoutAttributes getLayoutAttributesForDecorationView(String elementKind, NSIndexPath indexPath);
     @Method(selector = "shouldInvalidateLayoutForBoundsChange:")
     public native boolean shouldInvalidateLayoutForBoundsChange(@ByVal CGRect newBounds);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "invalidationContextForBoundsChange:")
     public native UICollectionViewLayoutInvalidationContext getInvalidationContextForBoundsChange(@ByVal CGRect newBounds);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "shouldInvalidateLayoutForPreferredLayoutAttributes:withOriginalAttributes:")
     public native boolean shouldInvalidateLayoutForPreferredLayoutAttributes(UICollectionViewLayoutAttributes preferredAttributes, UICollectionViewLayoutAttributes originalAttributes);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "invalidationContextForPreferredLayoutAttributes:withOriginalAttributes:")
     public native UICollectionViewLayoutInvalidationContext getInvalidationContextForPreferredLayoutAttributes(UICollectionViewLayoutAttributes preferredAttributes, UICollectionViewLayoutAttributes originalAttributes);
     @Method(selector = "targetContentOffsetForProposedContentOffset:withScrollingVelocity:")
     public native @ByVal CGPoint getTargetContentOffset(@ByVal CGPoint proposedContentOffset, @ByVal CGPoint velocity);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "targetContentOffsetForProposedContentOffset:")
     public native @ByVal CGPoint getTargetContentOffset(@ByVal CGPoint proposedContentOffset);
     @Method(selector = "prepareForCollectionViewUpdates:")
@@ -133,19 +115,10 @@ import org.robovm.apple.intents.*;
     public native void prepareForAnimatedBoundsChange(@ByVal CGRect oldBounds);
     @Method(selector = "finalizeAnimatedBoundsChange")
     public native void finalizeAnimatedBoundsChange();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "prepareForTransitionToLayout:")
     public native void prepareForTransitionToLayout(UICollectionViewLayout newLayout);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "prepareForTransitionFromLayout:")
     public native void prepareForTransitionFromLayout(UICollectionViewLayout oldLayout);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "finalizeLayoutTransition")
     public native void finalizeLayoutTransition();
     @Method(selector = "initialLayoutAttributesForAppearingItemAtIndexPath:")
@@ -160,24 +133,12 @@ import org.robovm.apple.intents.*;
     public native UICollectionViewLayoutAttributes getInitialLayoutAttributesForAppearingDecorationElement(String elementKind, NSIndexPath decorationIndexPath);
     @Method(selector = "finalLayoutAttributesForDisappearingDecorationElementOfKind:atIndexPath:")
     public native UICollectionViewLayoutAttributes getFinalLayoutAttributesForDisappearingDecorationElement(String elementKind, NSIndexPath decorationIndexPath);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "indexPathsToDeleteForSupplementaryViewOfKind:")
     public native NSArray<NSIndexPath> getIndexPathsToDeleteForSupplementaryView(String elementKind);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "indexPathsToDeleteForDecorationViewOfKind:")
     public native NSArray<NSIndexPath> getIndexPathsToDeleteForDecorationView(String elementKind);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "indexPathsToInsertForSupplementaryViewOfKind:")
     public native NSArray<NSIndexPath> getIndexPathsToInsertForSupplementaryView(String elementKind);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "indexPathsToInsertForDecorationViewOfKind:")
     public native NSArray<NSIndexPath> getIndexPathsToInsertForDecorationView(String elementKind);
     /**

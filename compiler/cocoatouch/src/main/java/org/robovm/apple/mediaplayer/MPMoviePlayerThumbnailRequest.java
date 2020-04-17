@@ -104,7 +104,6 @@ import org.robovm.apple.coregraphics.*;
     
 
     /**
-     * @since Available in iOS 3.2 and later.
      * @deprecated Deprecated in iOS 9.0. Use AVFoundation.
      */
     @Deprecated
@@ -116,7 +115,6 @@ import org.robovm.apple.coregraphics.*;
         return null;
     }
     /**
-     * @since Available in iOS 3.2 and later.
      * @deprecated Deprecated in iOS 9.0. Use AVFoundation.
      */
     @Deprecated
@@ -128,7 +126,6 @@ import org.robovm.apple.coregraphics.*;
         return 0;
     }
     /**
-     * @since Available in iOS 3.2 and later.
      * @deprecated Deprecated in iOS 9.0. Use AVFoundation.
      */
     @Deprecated
@@ -146,21 +143,18 @@ import org.robovm.apple.coregraphics.*;
     public static class Keys {
         static { Bro.bind(Keys.class); }
         /**
-         * @since Available in iOS 3.2 and later.
          * @deprecated Deprecated in iOS 9.0. Use AVFoundation.
          */
         @Deprecated
         @GlobalValue(symbol="MPMoviePlayerThumbnailImageKey", optional=true)
         public static native NSString Image();
         /**
-         * @since Available in iOS 3.2 and later.
          * @deprecated Deprecated in iOS 9.0. Use AVFoundation.
          */
         @Deprecated
         @GlobalValue(symbol="MPMoviePlayerThumbnailTimeKey", optional=true)
         public static native NSString Time();
         /**
-         * @since Available in iOS 3.2 and later.
          * @deprecated Deprecated in iOS 9.0. Use AVFoundation.
          */
         @Deprecated

@@ -88,45 +88,18 @@ import org.robovm.apple.coregraphics.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final CGImageMetadataPrefix Exif = new CGImageMetadataPrefix("Exif");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final CGImageMetadataPrefix ExifAux = new CGImageMetadataPrefix("ExifAux");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final CGImageMetadataPrefix ExifEX = new CGImageMetadataPrefix("ExifEX");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final CGImageMetadataPrefix DublinCore = new CGImageMetadataPrefix("DublinCore");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final CGImageMetadataPrefix IPTCCore = new CGImageMetadataPrefix("IPTCCore");
     /**
      * @since Available in iOS 11.3 and later.
      */
     public static final CGImageMetadataPrefix IPTCExtension = new CGImageMetadataPrefix("IPTCExtension");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final CGImageMetadataPrefix Photoshop = new CGImageMetadataPrefix("Photoshop");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final CGImageMetadataPrefix TIFF = new CGImageMetadataPrefix("TIFF");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final CGImageMetadataPrefix XMPBasic = new CGImageMetadataPrefix("XMPBasic");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final CGImageMetadataPrefix XMPRights = new CGImageMetadataPrefix("XMPRights");
     /*</constants>*/
     
@@ -153,29 +126,14 @@ import org.robovm.apple.coregraphics.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kCGImageMetadataPrefixExif", optional=true)
         public static native CFString Exif();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kCGImageMetadataPrefixExifAux", optional=true)
         public static native CFString ExifAux();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kCGImageMetadataPrefixExifEX", optional=true)
         public static native CFString ExifEX();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kCGImageMetadataPrefixDublinCore", optional=true)
         public static native CFString DublinCore();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kCGImageMetadataPrefixIPTCCore", optional=true)
         public static native CFString IPTCCore();
         /**
@@ -183,24 +141,12 @@ import org.robovm.apple.coregraphics.*;
          */
         @GlobalValue(symbol="kCGImageMetadataPrefixIPTCExtension", optional=true)
         public static native CFString IPTCExtension();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kCGImageMetadataPrefixPhotoshop", optional=true)
         public static native CFString Photoshop();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kCGImageMetadataPrefixTIFF", optional=true)
         public static native CFString TIFF();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kCGImageMetadataPrefixXMPBasic", optional=true)
         public static native CFString XMPBasic();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kCGImageMetadataPrefixXMPRights", optional=true)
         public static native CFString XMPRights();
         /*</values>*/

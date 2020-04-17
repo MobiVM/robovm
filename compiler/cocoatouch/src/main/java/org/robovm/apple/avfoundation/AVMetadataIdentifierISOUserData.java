@@ -97,17 +97,11 @@ import org.robovm.apple.audiotoolbox.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifierISOUserData Copyright = new AVMetadataIdentifierISOUserData("Copyright");
     /**
      * @since Available in iOS 10.0 and later.
      */
     public static final AVMetadataIdentifierISOUserData Date = new AVMetadataIdentifierISOUserData("Date");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifierISOUserData TaggedCharacteristic = new AVMetadataIdentifierISOUserData("TaggedCharacteristic");
     /*</constants>*/
     
@@ -134,9 +128,6 @@ import org.robovm.apple.audiotoolbox.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifierISOUserDataCopyright", optional=true)
         public static native NSString Copyright();
         /**
@@ -144,9 +135,6 @@ import org.robovm.apple.audiotoolbox.*;
          */
         @GlobalValue(symbol="AVMetadataIdentifierISOUserDataDate", optional=true)
         public static native NSString Date();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifierISOUserDataTaggedCharacteristic", optional=true)
         public static native NSString TaggedCharacteristic();
         /*</values>*/

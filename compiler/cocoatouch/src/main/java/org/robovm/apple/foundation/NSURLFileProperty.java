@@ -95,25 +95,10 @@ import org.robovm.apple.dispatch.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final NSURLFileProperty FileSize = new NSURLFileProperty("FileSize");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final NSURLFileProperty FileAllocatedSize = new NSURLFileProperty("FileAllocatedSize");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final NSURLFileProperty TotalFileSize = new NSURLFileProperty("TotalFileSize");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final NSURLFileProperty TotalFileAllocatedSize = new NSURLFileProperty("TotalFileAllocatedSize");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final NSURLFileProperty IsAliasFile = new NSURLFileProperty("IsAliasFile");
     /*</constants>*/
     
@@ -140,29 +125,14 @@ import org.robovm.apple.dispatch.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="NSURLFileSizeKey", optional=true)
         public static native NSString FileSize();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="NSURLFileAllocatedSizeKey", optional=true)
         public static native NSString FileAllocatedSize();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="NSURLTotalFileSizeKey", optional=true)
         public static native NSString TotalFileSize();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="NSURLTotalFileAllocatedSizeKey", optional=true)
         public static native NSString TotalFileAllocatedSize();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="NSURLIsAliasFileKey", optional=true)
         public static native NSString IsAliasFile();
         /*</values>*/

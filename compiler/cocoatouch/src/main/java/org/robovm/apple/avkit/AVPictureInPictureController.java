@@ -55,6 +55,16 @@ import org.robovm.apple.iad.*;
     public AVPictureInPictureController(AVPlayerLayer playerLayer) { super((SkipInit) null); initObject(init(playerLayer)); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "pictureInPictureButtonStartImage")
+    public static native UIImage getPictureInPictureButtonStartImage();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "pictureInPictureButtonStopImage")
+    public static native UIImage getPictureInPictureButtonStopImage();
     @Property(selector = "playerLayer")
     public native AVPlayerLayer getPlayerLayer();
     @Property(selector = "delegate")

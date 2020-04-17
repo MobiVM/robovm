@@ -92,19 +92,10 @@ import org.robovm.apple.audiotoolbox.*;
         return ptr.get();
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Bridge(symbol="CMClosedCaptionFormatDescriptionCreateFromBigEndianClosedCaptionDescriptionData", optional=true)
     private static native OSStatus createFromBigEndianClosedCaptionDescriptionData0(CFAllocator allocator, BytePtr closedCaptionDescriptionData, @MachineSizedUInt long size, String flavor, CMClosedCaptionFormatDescription.CMClosedCaptionFormatDescriptionPtr formatDescriptionOut);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Bridge(symbol="CMClosedCaptionFormatDescriptionCreateFromBigEndianClosedCaptionDescriptionBlockBuffer", optional=true)
     private static native OSStatus createFromBigEndianClosedCaptionDescriptionBlockBuffer0(CFAllocator allocator, CMBlockBuffer closedCaptionDescriptionBlockBuffer, String flavor, CMClosedCaptionFormatDescription.CMClosedCaptionFormatDescriptionPtr formatDescriptionOut);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Bridge(symbol="CMClosedCaptionFormatDescriptionCopyAsBigEndianClosedCaptionDescriptionBlockBuffer", optional=true)
     private static native OSStatus copyAsBigEndianClosedCaptionDescriptionBlockBuffer0(CFAllocator allocator, CMClosedCaptionFormatDescription closedCaptionFormatDescription, String flavor, CMBlockBuffer.CMBlockBufferPtr blockBufferOut);
     /*</methods>*/

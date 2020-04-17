@@ -29,12 +29,12 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corespotlight.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 3.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreData") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSPersistentStoreCoordinator/*</name>*/ 
@@ -46,7 +46,7 @@ import org.robovm.apple.corespotlight.*;
          * @since Available in iOS 7.0 and later.
          */
         public static NSObject observeStoresWillChange(NSPersistentStoreCoordinator object, final VoidBlock2<NSPersistentStoreCoordinator, NSPersistentStoreCoordinatorChangeNotification> block) {
-            return NSNotificationCenter.getDefaultCenter().addObserver(StoresWillChangeNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
+            return NSNotificationCenter.getDefaultCenter().addObserver(NotificationKeys.CoordinatorStoresWillChange(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
                     NSDictionary<?, ?> userInfo = a.getUserInfo();
@@ -62,7 +62,7 @@ import org.robovm.apple.corespotlight.*;
          * @since Available in iOS 3.0 and later.
          */
         public static NSObject observeStoresDidChange(NSPersistentStoreCoordinator object, final VoidBlock2<NSPersistentStoreCoordinator, NSPersistentStoreCoordinatorChangeNotification> block) {
-            return NSNotificationCenter.getDefaultCenter().addObserver(StoresDidChangeNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
+            return NSNotificationCenter.getDefaultCenter().addObserver(NotificationKeys.CoordinatorStoresDidChange(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
                     NSDictionary<?, ?> userInfo = a.getUserInfo();
@@ -78,7 +78,7 @@ import org.robovm.apple.corespotlight.*;
          * @since Available in iOS 3.0 and later.
          */
         public static NSObject observeWillRemoveStore(NSPersistentStoreCoordinator object, final VoidBlock1<NSPersistentStoreCoordinator> block) {
-            return NSNotificationCenter.getDefaultCenter().addObserver(WillRemoveStoreNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
+            return NSNotificationCenter.getDefaultCenter().addObserver(NotificationKeys.CoordinatorWillRemoveStore(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
                     block.invoke((NSPersistentStoreCoordinator)a.getObject());
@@ -89,7 +89,7 @@ import org.robovm.apple.corespotlight.*;
          * @since Available in iOS 5.0 and later.
          */
         public static NSObject observeDidImportUbiquitousContentChanges(NSPersistentStoreCoordinator object, final VoidBlock2<NSPersistentStoreCoordinator, NSNotification> block) {
-            return NSNotificationCenter.getDefaultCenter().addObserver(WillRemoveStoreNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
+            return NSNotificationCenter.getDefaultCenter().addObserver(NotificationKeys.DidImportUbiquitousContentChanges(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
                     block.invoke((NSPersistentStoreCoordinator)a.getObject(), a);
@@ -113,19 +113,10 @@ import org.robovm.apple.corespotlight.*;
     public native NSManagedObjectModel getManagedObjectModel();
     @Property(selector = "persistentStores")
     public native NSArray<NSPersistentStore> getPersistentStores();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "name")
     public native String getName();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setName:")
     public native void setName(String v);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "registeredStoreTypes")
     public static native NSDictionary<NSString, NSPersistentStore> getRegisteredStoreTypes();
     /*</properties>*/
@@ -188,32 +179,32 @@ import org.robovm.apple.corespotlight.*;
     }
     /*<methods>*/
     /**
-     * @since Available in iOS 7.0 and later.
-     */
-    @GlobalValue(symbol="NSPersistentStoreCoordinatorStoresWillChangeNotification", optional=true)
-    public static native NSString StoresWillChangeNotification();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
-    @GlobalValue(symbol="NSPersistentStoreCoordinatorStoresDidChangeNotification", optional=true)
-    public static native NSString StoresDidChangeNotification();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
-    @GlobalValue(symbol="NSPersistentStoreCoordinatorWillRemoveStoreNotification", optional=true)
-    public static native NSString WillRemoveStoreNotification();
-    /**
      * @since Available in iOS 11.0 and later.
      */
     @GlobalValue(symbol="NSCoreDataCoreSpotlightExporter", optional=true)
     public static native String CoreSpotlightExporter();
-    /**
-     * @since Available in iOS 5.0 and later.
-     * @deprecated Deprecated in iOS 10.0. Please see the release notes and Core Data documentation.
-     */
-    @Deprecated
-    @GlobalValue(symbol="NSPersistentStoreDidImportUbiquitousContentChangesNotification", optional=true)
-    public static native NSString DidImportUbiquitousContentChangesNotification();
+    @Library("CoreData")
+    public static class NotificationKeys {
+        static { Bro.bind(NotificationKeys.class); }
+
+        @GlobalValue(symbol="NSPersistentStoreCoordinatorStoresWillChangeNotification", optional=true)
+        public static native NSString CoordinatorStoresWillChange();
+        @GlobalValue(symbol="NSPersistentStoreCoordinatorStoresDidChangeNotification", optional=true)
+        public static native NSString CoordinatorStoresDidChange();
+        @GlobalValue(symbol="NSPersistentStoreCoordinatorWillRemoveStoreNotification", optional=true)
+        public static native NSString CoordinatorWillRemoveStore();
+        /**
+         * @since Available in iOS 12.0 and later.
+         */
+        @GlobalValue(symbol="NSPersistentStoreRemoteChangeNotification", optional=true)
+        public static native NSString RemoteChange();
+        /**
+         * @deprecated Deprecated in iOS 10.0. Please see the release notes and Core Data documentation.
+         */
+        @Deprecated
+        @GlobalValue(symbol="NSPersistentStoreDidImportUbiquitousContentChangesNotification", optional=true)
+        public static native NSString DidImportUbiquitousContentChanges();
+    }
     
     @Method(selector = "initWithManagedObjectModel:")
     protected native @Pointer long init(NSManagedObjectModel model);
@@ -221,9 +212,6 @@ import org.robovm.apple.corespotlight.*;
     public native NSPersistentStore getPersistentStoreForURL(NSURL URL);
     @Method(selector = "URLForPersistentStore:")
     public native NSURL getURLForPersistentStore(NSPersistentStore store);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "setURL:forPersistentStore:")
     public native boolean setURLForPersistentStore(NSURL url, NSPersistentStore store);
     public NSPersistentStore addPersistentStore(String storeType, String configuration, NSURL storeURL, NSPersistentStoreOptions options) throws NSErrorException {
@@ -253,18 +241,12 @@ import org.robovm.apple.corespotlight.*;
     public native NSDictionary<NSString, ?> getMetadataForPersistentStore(NSPersistentStore store);
     @Method(selector = "managedObjectIDForURIRepresentation:")
     public native NSManagedObjectID getManagedObjectIDForURIRepresentation(NSURL url);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public NSObject executeRequest(NSPersistentStoreRequest request, NSManagedObjectContext context) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        NSObject result = executeRequest(request, context, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        return result;
     }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "executeRequest:withContext:error:")
     private native NSObject executeRequest(NSPersistentStoreRequest request, NSManagedObjectContext context, NSError.NSErrorPtr error);
     public NSPersistentStore migratePersistentStore(NSPersistentStore store, NSURL URL, NSPersistentStoreOptions options, String storeType) throws NSErrorException {
@@ -303,72 +285,52 @@ import org.robovm.apple.corespotlight.*;
      */
     @Method(selector = "replacePersistentStoreAtURL:destinationOptions:withPersistentStoreFromURL:sourceOptions:storeType:error:")
     private native boolean replacePersistentStore(NSURL destinationURL, NSPersistentStoreOptions destinationOptions, NSURL sourceURL, NSPersistentStoreOptions sourceOptions, String storeType, NSError.NSErrorPtr error);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "performBlock:")
     public native void performBlock(@Block Runnable block);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "performBlockAndWait:")
     public native void performBlockAndWait(@Block Runnable block);
     /**
-     * @since Available in iOS 3.0 and later.
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "currentPersistentHistoryTokenFromStores:")
+    public native NSPersistentHistoryToken currentPersistentHistoryTokenFromStores(NSArray<?> stores);
+    /**
      * @deprecated Deprecated in iOS 8.0. Use -performBlockAndWait: instead
      */
     @Deprecated
     @Method(selector = "lock")
     public native void lock();
     /**
-     * @since Available in iOS 3.0 and later.
      * @deprecated Deprecated in iOS 8.0. Use -performBlockAndWait: instead
      */
     @Deprecated
     @Method(selector = "unlock")
     public native void unlock();
     /**
-     * @since Available in iOS 3.0 and later.
      * @deprecated Deprecated in iOS 8.0. Use -performBlock: instead
      */
     @Deprecated
     @Method(selector = "tryLock")
     public native boolean tryLock();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "registerStoreClass:forStoreType:")
     public static native void registerStoreClassForType(Class<? extends NSPersistentStore> storeClass, String storeType);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static NSPersistentStoreMetadata getMetadataForPersistentStoreType(String storeType, NSURL url, NSPersistentStoreOptions options) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        NSPersistentStoreMetadata result = getMetadataForPersistentStoreType(storeType, url, options, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        return result;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "metadataForPersistentStoreOfType:URL:options:error:")
     private static native NSPersistentStoreMetadata getMetadataForPersistentStoreType(String storeType, NSURL url, NSPersistentStoreOptions options, NSError.NSErrorPtr error);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static boolean setMetadataForPersistentStoreType(NSPersistentStoreMetadata metadata, String storeType, NSURL url, NSPersistentStoreOptions options) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        boolean result = setMetadataForPersistentStoreType(metadata, storeType, url, options, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        return result;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "setMetadata:forPersistentStoreOfType:URL:options:error:")
     private static native boolean setMetadataForPersistentStoreType(NSPersistentStoreMetadata metadata, String storeType, NSURL url, NSPersistentStoreOptions options, NSError.NSErrorPtr error);
     /**
-     * @since Available in iOS 3.0 and later.
      * @deprecated Deprecated in iOS 9.0. Use -metadataForPersistentStoreOfType:URL:options:error: and pass in an options dictionary matching addPersistentStoreWithType
      */
     @Deprecated
@@ -379,14 +341,12 @@ import org.robovm.apple.corespotlight.*;
        return result;
     }
     /**
-     * @since Available in iOS 3.0 and later.
      * @deprecated Deprecated in iOS 9.0. Use -metadataForPersistentStoreOfType:URL:options:error: and pass in an options dictionary matching addPersistentStoreWithType
      */
     @Deprecated
     @Method(selector = "metadataForPersistentStoreOfType:URL:error:")
     private static native NSPersistentStoreMetadata getMetadataForPersistentStoreType(String storeType, NSURL url, NSError.NSErrorPtr error);
     /**
-     * @since Available in iOS 3.0 and later.
      * @deprecated Deprecated in iOS 9.0. Use  -setMetadata:forPersistentStoreOfType:URL:options:error: and pass in an options dictionary matching addPersistentStoreWithType
      */
     @Deprecated
@@ -397,14 +357,12 @@ import org.robovm.apple.corespotlight.*;
        return result;
     }
     /**
-     * @since Available in iOS 3.0 and later.
      * @deprecated Deprecated in iOS 9.0. Use  -setMetadata:forPersistentStoreOfType:URL:options:error: and pass in an options dictionary matching addPersistentStoreWithType
      */
     @Deprecated
     @Method(selector = "setMetadata:forPersistentStoreOfType:URL:error:")
     private static native boolean setMetadataForPersistentStoreType(NSPersistentStoreMetadata metadata, String storeType, NSURL url, NSError.NSErrorPtr error);
     /**
-     * @since Available in iOS 5.0 and later.
      * @deprecated Deprecated in iOS 10.0. Please see the release notes and Core Data documentation.
      */
     @Deprecated
@@ -415,7 +373,6 @@ import org.robovm.apple.corespotlight.*;
        return result;
     }
     /**
-     * @since Available in iOS 5.0 and later.
      * @deprecated Deprecated in iOS 10.0. Please see the release notes and Core Data documentation.
      */
     @Deprecated

@@ -34,10 +34,10 @@ import org.robovm.apple.uikit.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 7.0 and later.
+ * @deprecated Deprecated in iOS 13.0. GCGamepad has been deprecated, use GCExtendedGamepad instead
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("GameController") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("GameController") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GCGamepadSnapshot/*</name>*/ 
     extends /*<extends>*/GCGamepad/*</extends>*/ 
     /*<implements>*//*</implements>*/ {

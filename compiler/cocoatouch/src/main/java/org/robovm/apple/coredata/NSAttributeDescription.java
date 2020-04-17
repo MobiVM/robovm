@@ -29,12 +29,12 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corespotlight.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 3.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreData") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSAttributeDescription/*</name>*/ 
@@ -62,31 +62,26 @@ import org.robovm.apple.corespotlight.*;
     public native NSObject getDefaultValue();
     @Property(selector = "setDefaultValue:")
     public native void setDefaultValue(NSObject v);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "versionHash")
     public native NSData getVersionHash();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "valueTransformerName")
     public native String getValueTransformerName();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "setValueTransformerName:")
     public native void setValueTransformerName(String v);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "allowsExternalBinaryDataStorage")
     public native boolean allowsExternalBinaryDataStorage();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setAllowsExternalBinaryDataStorage:")
     public native void setAllowsExternalBinaryDataStorage(boolean v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "preservesValueInHistoryOnDeletion")
+    public native boolean preservesValueInHistoryOnDeletion();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setPreservesValueInHistoryOnDeletion:")
+    public native void setPreservesValueInHistoryOnDeletion(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

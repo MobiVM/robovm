@@ -35,9 +35,7 @@ import org.robovm.apple.mapkit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("EventKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/EKEvent/*</name>*/ 
@@ -99,7 +97,6 @@ import org.robovm.apple.mapkit.*;
     @Property(selector = "birthdayContactIdentifier")
     public native String getBirthdayContactIdentifier();
     /**
-     * @since Available in iOS 5.0 and later.
      * @deprecated Deprecated in iOS 9.0. Use birthdayContactIdentifier instead
      */
     @Deprecated

@@ -28,6 +28,7 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -51,6 +52,11 @@ import org.robovm.apple.foundation.*;
     public CLSContext(CLSContextType type, String identifier, String title) { super((SkipInit) null); initObject(init(type, identifier, title)); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    @Property(selector = "identifierPath")
+    public native NSArray<NSString> getIdentifierPath();
     @Property(selector = "identifier")
     public native String getIdentifier();
     /**
@@ -65,6 +71,16 @@ import org.robovm.apple.foundation.*;
     public native void setUniversalLinkURL(NSURL v);
     @Property(selector = "type")
     public native CLSContextType getType();
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    @Property(selector = "customTypeName")
+    public native String getCustomTypeName();
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    @Property(selector = "setCustomTypeName:")
+    public native void setCustomTypeName(String v);
     @Property(selector = "title")
     public native String getTitle();
     @Property(selector = "setTitle:")
@@ -77,6 +93,26 @@ import org.robovm.apple.foundation.*;
     public native String getTopic();
     @Property(selector = "setTopic:")
     public native void setTopic(String v);
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    @Property(selector = "summary")
+    public native String getSummary();
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    @Property(selector = "setSummary:")
+    public native void setSummary(String v);
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    @Property(selector = "thumbnail")
+    public native CGImage getThumbnail();
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    @Property(selector = "setThumbnail:")
+    public native void setThumbnail(CGImage v);
     @Property(selector = "isActive")
     public native boolean isActive();
     @Property(selector = "parent")

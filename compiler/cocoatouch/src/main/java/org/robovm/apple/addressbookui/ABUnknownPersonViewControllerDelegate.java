@@ -50,9 +50,6 @@ import org.robovm.apple.addressbook.*;
     /*<methods>*/
     @Method(selector = "unknownPersonViewController:didResolveToPerson:")
     void didResolveToPerson(ABUnknownPersonViewController unknownCardViewController, ABPerson person);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "unknownPersonViewController:shouldPerformDefaultActionForPerson:property:identifier:")
     boolean shouldPerformDefaultAction(ABUnknownPersonViewController personViewController, ABPerson person, ABProperty property, int identifier);
     /*</methods>*/

@@ -33,9 +33,7 @@ import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 5.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("MediaPlayer") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPNowPlayingInfoCenter/*</name>*/ 
@@ -55,8 +53,14 @@ import org.robovm.apple.coregraphics.*;
     public native MPNowPlayingInfo getNowPlayingInfo();
     @Property(selector = "setNowPlayingInfo:")
     public native void setNowPlayingInfo(MPNowPlayingInfo v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
     @Property(selector = "playbackState")
     public native MPNowPlayingPlaybackState getPlaybackState();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
     @Property(selector = "setPlaybackState:")
     public native void setPlaybackState(MPNowPlayingPlaybackState v);
     /*</properties>*/

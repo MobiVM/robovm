@@ -40,7 +40,7 @@ import org.robovm.apple.metal.*;
 /*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSCNNConvolutionNode/*</name>*/ 
     extends /*<extends>*/MPSNNFilterNode/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements MPSNNTrainableNode/*</implements>*/ {
 
     /*<ptr>*/public static class MPSCNNConvolutionNodePtr extends Ptr<MPSCNNConvolutionNode, MPSCNNConvolutionNodePtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(MPSCNNConvolutionNode.class); }/*</bind>*/
@@ -53,6 +53,16 @@ import org.robovm.apple.metal.*;
     public MPSCNNConvolutionNode(MPSNNImageNode sourceNode, MPSCNNConvolutionDataSource weights) { super((SkipInit) null); initObject(init(sourceNode, weights)); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "trainingStyle")
+    public native MPSNNTrainingStyle getTrainingStyle();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setTrainingStyle:")
+    public native void setTrainingStyle(MPSNNTrainingStyle v);
     /**
      * @since Available in iOS 12.0 and later.
      */

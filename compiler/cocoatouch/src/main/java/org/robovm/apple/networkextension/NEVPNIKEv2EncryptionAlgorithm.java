@@ -29,12 +29,11 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.security.*;
+import org.robovm.apple.network.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/NEVPNIKEv2EncryptionAlgorithm/*</name>*/ implements ValuedEnum {
@@ -50,7 +49,11 @@ public enum /*<name>*/NEVPNIKEv2EncryptionAlgorithm/*</name>*/ implements Valued
     /**
      * @since Available in iOS 8.3 and later.
      */
-    AES256GCM(6L);
+    AES256GCM(6L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    ChaCha20Poly1305(7L);
     /*</values>*/
 
     /*<bind>*/

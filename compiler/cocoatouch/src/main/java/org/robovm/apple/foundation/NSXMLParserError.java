@@ -65,9 +65,6 @@ import org.robovm.apple.dispatch.*;
         return code;
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @GlobalValue(symbol="NSXMLParserErrorDomain", optional=true)
     public static native String getClassDomain();
     /*</methods>*/

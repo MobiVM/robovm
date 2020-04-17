@@ -37,12 +37,12 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 7.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIInterpolatingMotionEffect/*</name>*/ 
@@ -59,7 +59,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithKeyPath:type:")
     public UIInterpolatingMotionEffect(String keyPath, UIInterpolatingMotionEffectType type) { super((SkipInit) null); initObject(init(keyPath, type)); }
     @Method(selector = "initWithCoder:")
-    public UIInterpolatingMotionEffect(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public UIInterpolatingMotionEffect(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "keyPath")
@@ -80,6 +80,6 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithKeyPath:type:")
     protected native @Pointer long init(String keyPath, UIInterpolatingMotionEffectType type);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

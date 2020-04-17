@@ -34,7 +34,7 @@ import org.robovm.apple.uikit.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 9.0 and later.
- * @deprecated Deprecated in iOS 10.0.
+ * @deprecated Deprecated in iOS 10.0. Use SFErrorCode
  */
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Deprecated/*</annotations>*/
@@ -42,19 +42,19 @@ public enum /*<name>*/SFContentBlockerErrorCode/*</name>*/ implements NSErrorCod
     /*<values>*/
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use SFErrorNoExtensionFound
      */
     @Deprecated
     NoExtensionFound(1L),
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use SFErrorNoAttachmentFound
      */
     @Deprecated
     NoAttachmentFound(2L),
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use SFErrorLoadingInterrupted
      */
     @Deprecated
     LoadingInterrupted(3L);

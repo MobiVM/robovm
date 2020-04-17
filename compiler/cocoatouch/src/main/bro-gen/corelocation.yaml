@@ -30,7 +30,22 @@ classes:
             'notifyEntryStateOnDisplay':
                 name: notifiesEntryStateOnDisplay
         methods:
-            '-init.*':
+            '-initWithUUID:identifier:':
+                static_constructor_name: createUsingUUID
+                name: createUsingUUID0
+            '-initWithUUID:major:identifier:':
+                static_constructor_name: createUsingUUID
+                name: createUsingUUID0
+            '-initWithUUID:major:minor:identifier:':
+                static_constructor_name: createUsingUUID
+                name: createUsingUUID0
+            '-initWithBeaconIdentityConstraint:identifier:':
+                name: init
+            '-initWithProximityUUID:identifier:':
+                name: init
+            '-initWithProximityUUID:major:identifier:':
+                name: init
+            '-initWithProximityUUID:major:minor:identifier:':
                 name: init
             '-peripheralDataWithMeasuredPower:':
                 name: getPeripheralData
@@ -38,10 +53,10 @@ classes:
                 annotations: ['@WeaklyLinked']
     CLCircularRegion: # DONE
         methods:
+            '-initWithCenter:radius:identifier:':
+                name: init
             '-initCircularRegionWithCenter:radius:identifier:':
                 exclude: true # as this method is deprecated and conflicts with initWithCenter:radius:identifier:
-            '-init.*':
-                name: init
             '-containsCoordinate:': # Overrides a method in CLRegion
                 exclude: true
     CLFloor: {} # DONE
@@ -76,7 +91,13 @@ classes:
             'description':
                 exclude: true
         methods:
-            '-init.*':
+            '-initWithLatitude:longitude:':
+                name: init
+            '-initWithCoordinate:altitude:horizontalAccuracy:verticalAccuracy:timestamp:':
+                name: init
+            '-initWithCoordinate:altitude:horizontalAccuracy:verticalAccuracy:course:speed:timestamp:':
+                name: init
+            '-initWithCoordinate:altitude:horizontalAccuracy:verticalAccuracy:course:courseAccuracy:speed:speedAccuracy:timestamp:':
                 name: init
             '-getDistanceFrom:':
                 exclude: true
@@ -127,7 +148,6 @@ classes:
             '-allowDeferredLocationUpdatesUntilTraveled:timeout:':
                 name: allowDeferredLocationUpdatesUntil
     CLPlacemark: # DONE
-        skip_def_constructor: true
         properties:
             'areasOfInterest':
                 type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String>'
@@ -136,7 +156,7 @@ classes:
                 type: ABPersonAddress
                 annotations: ['@WeaklyLinked']
         methods:
-            '-init.*':
+            '-initWithPlacemark:':
                 name: init
     CLRegion: # DONE
         properties:
@@ -145,12 +165,19 @@ classes:
             'notifyOnExit':
                 name: notifiesOnExit
         methods:
-            '-init.*':
+            '-initCircularRegionWithCenter:radius:identifier:':
                 name: init
             '-containsCoordinate:':
                 trim_after_first_colon: true
     CLVisit: {} # DONE
-
+    CLBeaconIdentityConstraint: #since 13.0
+        methods:
+            '-initWithUUID:':
+                name: init
+            '-initWithUUID:major:':
+                name: init
+            '-initWithUUID:major:minor:':
+                name: init
 protocols:
     CLLocationManagerDelegate: # DONE
         methods:
@@ -191,7 +218,10 @@ protocols:
                 name: didFinishDeferredUpdates
             '-locationManager:didVisit:':
                 name: didVisit
-
+            '-locationManager:didRangeBeacons:satisfyingConstraint:':
+                name: didRangeBeacons
+            '-locationManager:didFailRangingBeaconsForConstraint:error:':
+                name: didFailRangingBeacons
 functions:
     CLLocationCoordinate2DMake:
         exclude: true

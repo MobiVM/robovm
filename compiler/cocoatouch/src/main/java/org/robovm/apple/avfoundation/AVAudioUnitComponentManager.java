@@ -66,6 +66,12 @@ import org.robovm.apple.audiotoolbox.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @GlobalValue(symbol="AVAudioUnitComponentManagerRegistrationsChangedNotification", optional=true)
+    public static native NSString registrationsChangedNotification();
+    
     @Method(selector = "componentsMatchingPredicate:")
     public native NSArray<AVAudioUnitComponent> getComponentsMatchingPredicate(NSPredicate predicate);
     @Method(selector = "componentsPassingTest:")

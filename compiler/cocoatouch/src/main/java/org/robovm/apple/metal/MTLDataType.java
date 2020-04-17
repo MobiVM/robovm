@@ -32,9 +32,7 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/MTLDataType/*</name>*/ implements ValuedEnum {
@@ -172,6 +170,14 @@ public enum /*<name>*/MTLDataType/*</name>*/ implements ValuedEnum {
      * @since Available in iOS 11.0 and later.
      */
     RGB9E5Float(77L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    RenderPipeline(78L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    ComputePipeline(79L),
     /**
      * @since Available in iOS 12.0 and later.
      */

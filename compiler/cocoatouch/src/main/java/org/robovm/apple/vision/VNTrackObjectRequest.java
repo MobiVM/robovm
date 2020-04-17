@@ -48,7 +48,10 @@ import org.robovm.apple.imageio.*;
 
     /*<ptr>*/public static class VNTrackObjectRequestPtr extends Ptr<VNTrackObjectRequest, VNTrackObjectRequestPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(VNTrackObjectRequest.class); }/*</bind>*/
-    /*<constants>*//*</constants>*/
+    /*<constants>*/
+    public static final int Revision1 = 1;
+    public static final int Revision2 = 2;
+    /*</constants>*/
     /*<constructors>*/
     protected VNTrackObjectRequest() {}
     protected VNTrackObjectRequest(Handle h, long handle) { super(h, handle); }
@@ -63,12 +66,6 @@ import org.robovm.apple.imageio.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 12.0 and later.
-     */
-    @GlobalValue(symbol="VNTrackObjectRequestRevision1", optional=true)
-    public static native @MachineSizedUInt long getRevision1();
-    
     @Method(selector = "initWithDetectedObjectObservation:")
     protected native @Pointer long init(VNDetectedObjectObservation observation);
     @Method(selector = "initWithDetectedObjectObservation:completionHandler:")

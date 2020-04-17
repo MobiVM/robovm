@@ -58,7 +58,7 @@ import org.robovm.apple.contacts.*;
     @Method(selector = "initWithFrame:")
     public PKPaymentButton(@ByVal org.robovm.apple.coregraphics.CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public PKPaymentButton(NSCoder decoder) { super(decoder); }
+    public PKPaymentButton(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     /**

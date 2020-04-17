@@ -31,9 +31,7 @@ import org.robovm.apple.foundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("HealthKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/HKHealthStore/*</name>*/ 
@@ -86,7 +84,7 @@ import org.robovm.apple.foundation.*;
      * @since Available in iOS 12.0 and later.
      */
     @Method(selector = "getRequestStatusForAuthorizationToShareTypes:readTypes:completion:")
-    public native void getRequestStatus(NSSet<HKSampleType> typesToShare, NSSet<?> typesToRead, @Block VoidBlock2<HKAuthorizationRequestStatus, NSError> completion);
+    public native void getRequestStatus(NSSet<HKSampleType> typesToShare, NSSet<HKObjectType> typesToRead, @Block VoidBlock2<HKAuthorizationRequestStatus, NSError> completion);
     /**
      * @since Available in iOS 9.0 and later.
      */
@@ -125,8 +123,7 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "splitTotalEnergy:startDate:endDate:resultsHandler:")
     public native void splitTotalEnergy(HKQuantity totalEnergy, NSDate startDate, NSDate endDate, @Block VoidBlock3<HKQuantity, HKQuantity, NSError> resultsHandler);
     /**
-     * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use dateOfBirthComponentsWithError:
      */
     @Deprecated
     public NSDate getDateOfBirth() throws NSErrorException {
@@ -136,8 +133,7 @@ import org.robovm.apple.foundation.*;
        return result;
     }
     /**
-     * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use dateOfBirthComponentsWithError:
      */
     @Deprecated
     @Method(selector = "dateOfBirthWithError:")

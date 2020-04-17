@@ -37,12 +37,12 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 3.1 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIVideoEditorController/*</name>*/ 
@@ -56,9 +56,6 @@ import org.robovm.apple.intents.*;
     public UIVideoEditorController() {}
     protected UIVideoEditorController(Handle h, long handle) { super(h, handle); }
     protected UIVideoEditorController(SkipInit skipInit) { super(skipInit); }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "initWithNavigationBarClass:toolbarClass:")
     public UIVideoEditorController(Class<? extends UINavigationBar> navigationBarClass, Class<? extends UIToolbar> toolbarClass) { super(navigationBarClass, toolbarClass); }
     @Method(selector = "initWithRootViewController:")
@@ -94,9 +91,6 @@ import org.robovm.apple.intents.*;
         return canEditVideo(file.getAbsolutePath());
     }    
     /*<methods>*/
-    /**
-     * @since Available in iOS 3.1 and later.
-     */
     @Method(selector = "canEditVideoAtPath:")
     protected static native boolean canEditVideo(String videoPath);
     /*</methods>*/

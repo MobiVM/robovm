@@ -50,7 +50,7 @@ import org.robovm.apple.corelocation.*;
     protected INRideStatus(Handle h, long handle) { super(h, handle); }
     protected INRideStatus(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public INRideStatus(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public INRideStatus(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "rideIdentifier")
@@ -127,6 +127,6 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

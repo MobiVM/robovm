@@ -718,21 +718,16 @@ import org.robovm.apple.dispatch.*;
     public native String appendPathComponent(String str);
     @Method(selector = "stringByAppendingPathExtension:")
     public native String appendPathExtension(String str);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "stringByAddingPercentEncodingWithAllowedCharacters:")
     public native String addPercentEncoding(NSCharacterSet allowedCharacters);
     /**
-     * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use -stringByAddingPercentEncodingWithAllowedCharacters: instead, which always uses the recommended UTF-8 encoding, and which encodes for a specific URL component or subcomponent since each URL component or subcomponent has different rules for what characters are valid.
      */
     @Deprecated
     @Method(selector = "stringByAddingPercentEscapesUsingEncoding:")
     public native String addPercentEscapes(NSStringEncoding enc);
     /**
-     * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use -stringByRemovingPercentEncoding instead, which always uses the recommended UTF-8 encoding.
      */
     @Deprecated
     @Method(selector = "stringByReplacingPercentEscapesUsingEncoding:")

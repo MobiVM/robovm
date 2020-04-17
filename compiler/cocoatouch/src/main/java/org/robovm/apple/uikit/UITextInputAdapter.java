@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -107,16 +109,13 @@ import org.robovm.apple.intents.*;
     @NotImplemented("characterRangeByExtendingPosition:inDirection:")
     public UITextRange getCharacterRange(UITextPosition position, UITextLayoutDirection direction) { return null; }
     @NotImplemented("baseWritingDirectionForPosition:inDirection:")
-    public UITextWritingDirection getBaseWritingDirection(UITextPosition position, UITextStorageDirection direction) { return null; }
+    public NSWritingDirection getBaseWritingDirection(UITextPosition position, UITextStorageDirection direction) { return null; }
     @NotImplemented("setBaseWritingDirection:forRange:")
-    public void setBaseWritingDirection(UITextWritingDirection writingDirection, UITextRange range) {}
+    public void setBaseWritingDirection(NSWritingDirection writingDirection, UITextRange range) {}
     @NotImplemented("firstRectForRange:")
     public @ByVal CGRect getFirstRect(UITextRange range) { return null; }
     @NotImplemented("caretRectForPosition:")
     public @ByVal CGRect getCaretRect(UITextPosition position) { return null; }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @NotImplemented("selectionRectsForRange:")
     public NSArray<UITextSelectionRect> getSelectionRects(UITextRange range) { return null; }
     @NotImplemented("closestPositionToPoint:")
@@ -125,9 +124,6 @@ import org.robovm.apple.intents.*;
     public UITextPosition getClosestPosition(@ByVal CGPoint point, UITextRange range) { return null; }
     @NotImplemented("characterRangeAtPoint:")
     public UITextRange getCharacterRange(@ByVal CGPoint point) { return null; }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @NotImplemented("shouldChangeTextInRange:replacementText:")
     public boolean shouldChangeText(UITextRange range, String text) { return false; }
     @NotImplemented("textStylingAtPosition:inDirection:")
@@ -146,6 +142,14 @@ import org.robovm.apple.intents.*;
     public @ByVal CGRect getDictationResultPlaceholderFrame(NSObject placeholder) { return null; }
     @NotImplemented("removeDictationResultPlaceholder:willInsertResult:")
     public void removeDictationResultPlaceholder(NSObject placeholder, boolean willInsertResult) {}
+    @NotImplemented("insertText:alternatives:style:")
+    public void insertText(String text, NSArray<NSString> alternatives, UITextAlternativeStyle style) {}
+    @NotImplemented("setAttributedMarkedText:selectedRange:")
+    public void setAttributedMarkedText(NSAttributedString markedText, @ByVal NSRange selectedRange) {}
+    @NotImplemented("insertTextPlaceholderWithSize:")
+    public UITextPlaceholder insertTextPlaceholder(@ByVal CGSize size) { return null; }
+    @NotImplemented("removeTextPlaceholder:")
+    public void removeTextPlaceholder(UITextPlaceholder textPlaceholder) {}
     /**
      * @since Available in iOS 9.0 and later.
      */

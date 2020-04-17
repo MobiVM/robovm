@@ -29,12 +29,12 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corespotlight.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 3.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreData") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSManagedObjectModel/*</name>*/ 
@@ -51,7 +51,7 @@ import org.robovm.apple.corespotlight.*;
     @Method(selector = "initWithContentsOfURL:")
     public NSManagedObjectModel(NSURL url) { super((SkipInit) null); initObject(init(url)); }
     @Method(selector = "initWithCoder:")
-    public NSManagedObjectModel(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public NSManagedObjectModel(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "entitiesByName")
@@ -66,24 +66,12 @@ import org.robovm.apple.corespotlight.*;
     public native NSDictionary<NSString, NSString> getLocalizationDictionary();
     @Property(selector = "setLocalizationDictionary:")
     public native void setLocalizationDictionary(NSDictionary<NSString, NSString> v);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "fetchRequestTemplatesByName")
     public native NSDictionary<NSString, NSFetchRequest> getFetchRequestTemplatesByName();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "versionIdentifiers")
     public native NSSet<?> getVersionIdentifiers();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "setVersionIdentifiers:")
     public native void setVersionIdentifiers(NSSet<?> v);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "entityVersionHashesByName")
     public native NSDictionary<NSString, NSData> getEntityVersionHashesByName();
     /*</properties>*/
@@ -101,28 +89,19 @@ import org.robovm.apple.corespotlight.*;
     public native NSFetchRequest getFetchRequestTemplate(String name);
     @Method(selector = "fetchRequestFromTemplateWithName:substitutionVariables:")
     public native NSFetchRequest getFetchRequestTemplate(String name, NSDictionary<NSString, ?> variables);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "isConfiguration:compatibleWithStoreMetadata:")
     public native boolean isConfigurationCompatibleWithStoreMetadata(String configuration, NSPersistentStoreMetadata metadata);
     @Method(selector = "mergedModelFromBundles:")
     public static native NSManagedObjectModel createFromBundles(NSArray<NSBundle> bundles);
     @Method(selector = "modelByMergingModels:")
     public static native NSManagedObjectModel createByMergingModels(NSArray<NSManagedObjectModel> models);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "mergedModelFromBundles:forStoreMetadata:")
     public static native NSManagedObjectModel createFromBundles(NSArray<NSBundle> bundles, NSPersistentStoreMetadata metadata);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "modelByMergingModels:forStoreMetadata:")
     public static native NSManagedObjectModel createByMergingModels(NSArray<NSManagedObjectModel> models, NSPersistentStoreMetadata metadata);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

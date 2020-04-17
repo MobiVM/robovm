@@ -112,9 +112,6 @@ import org.robovm.apple.audiotoolbox.*;
     }
     
 
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public long getNamespace() {
         if (has(Keys.Namespace())) {
             CFNumber val = get(Keys.Namespace(), CFNumber.class);
@@ -122,16 +119,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CMMetadataFormatDescriptionKey setNamespace(long namespace) {
         set(Keys.Namespace(), CFNumber.valueOf(namespace));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public NSData getValue() {
         if (has(Keys.Value())) {
             NSData val = get(Keys.Value(), NSData.class);
@@ -139,16 +130,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CMMetadataFormatDescriptionKey setValue(NSData value) {
         set(Keys.Value(), value);
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public long getLocalID() {
         if (has(Keys.LocalID())) {
             CFNumber val = get(Keys.LocalID(), CFNumber.class);
@@ -156,16 +141,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CMMetadataFormatDescriptionKey setLocalID(long localID) {
         set(Keys.LocalID(), CFNumber.valueOf(localID));
         return this;
     }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public NSData getDataType() {
         if (has(Keys.DataType())) {
             NSData val = get(Keys.DataType(), NSData.class);
@@ -173,16 +152,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public CMMetadataFormatDescriptionKey setDataType(NSData dataType) {
         set(Keys.DataType(), dataType);
         return this;
     }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public long getDataTypeNamespace() {
         if (has(Keys.DataTypeNamespace())) {
             CFNumber val = get(Keys.DataTypeNamespace(), CFNumber.class);
@@ -190,16 +163,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public CMMetadataFormatDescriptionKey setDataTypeNamespace(long dataTypeNamespace) {
         set(Keys.DataTypeNamespace(), CFNumber.valueOf(dataTypeNamespace));
         return this;
     }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public NSDictionary<NSData, NSNumber> getConformingDataTypes() {
         if (has(Keys.ConformingDataTypes())) {
             NSDictionary<NSData, NSNumber> val = get(Keys.ConformingDataTypes(), NSDictionary.class);
@@ -207,16 +174,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public CMMetadataFormatDescriptionKey setConformingDataTypes(NSDictionary<NSData, NSNumber> conformingDataTypes) {
         set(Keys.ConformingDataTypes(), conformingDataTypes);
         return this;
     }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public String getLanguageTag() {
         if (has(Keys.LanguageTag())) {
             CFString val = get(Keys.LanguageTag(), CFString.class);
@@ -224,9 +185,6 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public CMMetadataFormatDescriptionKey setLanguageTag(String languageTag) {
         set(Keys.LanguageTag(), new CFString(languageTag));
         return this;
@@ -237,39 +195,18 @@ import org.robovm.apple.audiotoolbox.*;
     @Library("CoreMedia")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCMMetadataFormatDescriptionKey_Namespace", optional=true)
         public static native CFString Namespace();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCMMetadataFormatDescriptionKey_Value", optional=true)
         public static native CFString Value();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCMMetadataFormatDescriptionKey_LocalID", optional=true)
         public static native CFString LocalID();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="kCMMetadataFormatDescriptionKey_DataType", optional=true)
         public static native CFString DataType();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="kCMMetadataFormatDescriptionKey_DataTypeNamespace", optional=true)
         public static native CFString DataTypeNamespace();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="kCMMetadataFormatDescriptionKey_ConformingDataTypes", optional=true)
         public static native CFString ConformingDataTypes();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="kCMMetadataFormatDescriptionKey_LanguageTag", optional=true)
         public static native CFString LanguageTag();
         /**

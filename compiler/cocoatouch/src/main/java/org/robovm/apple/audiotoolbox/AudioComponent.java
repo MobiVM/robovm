@@ -97,9 +97,6 @@ import org.robovm.apple.uikit.*;
         return ptr.get();
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @GlobalValue(symbol="kAudioComponentRegistrationsChangedNotification", optional=true)
     public static native NSString RegistrationsChangedNotification();
     /**
@@ -108,40 +105,27 @@ import org.robovm.apple.uikit.*;
     @GlobalValue(symbol="kAudioComponentInstanceInvalidationNotification", optional=true)
     public static native NSString InstanceInvalidationNotification();
     
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioComponentFindNext", optional=true)
     public static native AudioComponent findNext(AudioComponent inComponent, AudioComponentDescription inDesc);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioComponentCount", optional=true)
     public static native int count(AudioComponentDescription inDesc);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioComponentCopyName", optional=true)
     protected native OSStatus getName0(CFString.CFStringPtr outName);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioComponentGetDescription", optional=true)
     protected native OSStatus getDescription0(AudioComponentDescription.AudioComponentDescriptionPtr desc);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioComponentGetVersion", optional=true)
     protected native OSStatus getVersion0(IntPtr outVersion);
     /**
-     * @since Available in iOS 7.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Inter-App Audio API is deprecated in favor of Audio Units
      */
+    @Deprecated
     @WeaklyLinked
     @Bridge(symbol="AudioComponentGetIcon", optional=true)
     public native UIImage getIcon(float desiredPointSize);
     /**
-     * @since Available in iOS 7.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Inter-App Audio API is deprecated in favor of Audio Units
      */
+    @Deprecated
     @Bridge(symbol="AudioComponentGetLastActiveTime", optional=true)
     public native double getLastActiveTime();
     /*</methods>*/

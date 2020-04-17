@@ -44,6 +44,10 @@ public enum /*<name>*/AudioQueuePitchAlgorithm/*</name>*/ implements ValuedEnum 
     Spectral(1936745827L),
     TimeDomain(1953064047L),
     Varispeed(1987276900L),
+    /**
+     * @deprecated Deprecated in iOS 13.0. Low Quality Zero Latency algorithm is now Deprecated. Please choose from other available options
+     */
+    @Deprecated
     LowQualityZeroLatency(1819376236L);
     /*</values>*/
 

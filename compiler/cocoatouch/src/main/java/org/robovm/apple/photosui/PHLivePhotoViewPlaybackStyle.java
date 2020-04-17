@@ -40,8 +40,17 @@ import org.robovm.apple.uikit.*;
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/PHLivePhotoViewPlaybackStyle/*</name>*/ implements ValuedEnum {
     /*<values>*/
+    /**
+     * @since Available in iOS 9.1 and later.
+     */
     Undefined(0L),
+    /**
+     * @since Available in iOS 9.1 and later.
+     */
     Full(1L),
+    /**
+     * @since Available in iOS 9.1 and later.
+     */
     Hint(2L);
     /*</values>*/
 

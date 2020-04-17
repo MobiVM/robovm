@@ -62,7 +62,7 @@ import org.robovm.apple.metal.*;
     public SKTexture(NSData pixelData, @ByVal CGSize size, boolean flipped) { super((Handle) null, create(pixelData, size, flipped)); retain(getHandle()); }
     public SKTexture(NSData pixelData, @ByVal CGSize size, int rowLength, int alignment) { super((Handle) null, create(pixelData, size, rowLength, alignment)); retain(getHandle()); }
     @Method(selector = "initWithCoder:")
-    public SKTexture(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public SKTexture(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "filteringMode")
@@ -81,14 +81,8 @@ import org.robovm.apple.metal.*;
     @WeaklyLinked
     @Method(selector = "textureByApplyingCIFilter:")
     public native SKTexture newTextureByApplyingCIFilter(CIFilter filter);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "textureByGeneratingNormalMap")
     public native SKTexture newTextureByGeneratingNormalMap();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "textureByGeneratingNormalMapWithSmoothness:contrast:")
     public native SKTexture newTextureByGeneratingNormalMap(@MachineSizedFloat double smoothness, @MachineSizedFloat double contrast);
     @Method(selector = "textureRect")
@@ -106,14 +100,8 @@ import org.robovm.apple.metal.*;
     protected static native @Pointer long create(String name);
     @Method(selector = "textureWithRect:inTexture:")
     protected static native @Pointer long create(@ByVal CGRect rect, SKTexture texture);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "textureVectorNoiseWithSmoothness:size:")
     public static native SKTexture createVectorNoise(@MachineSizedFloat double smoothness, @ByVal CGSize size);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "textureNoiseWithSmoothness:size:grayscale:")
     public static native SKTexture createNoise(@MachineSizedFloat double smoothness, @ByVal CGSize size, boolean grayscale);
     @Method(selector = "textureWithCGImage:")
@@ -131,6 +119,6 @@ import org.robovm.apple.metal.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

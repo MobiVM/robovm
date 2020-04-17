@@ -64,7 +64,11 @@ public enum /*<name>*/PHAssetResourceType/*</name>*/ implements ValuedEnum {
     /**
      * @since Available in iOS 10.0 and later.
      */
-    AdjustmentBasePairedVideo(11L);
+    AdjustmentBasePairedVideo(11L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    AdjustmentBaseVideo(12L);
     /*</values>*/
 
     public static class AsListMarshaler {

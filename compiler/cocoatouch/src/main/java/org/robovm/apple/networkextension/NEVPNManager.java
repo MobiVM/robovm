@@ -29,12 +29,11 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.security.*;
+import org.robovm.apple.network.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("NetworkExtension") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NEVPNManager/*</name>*/ 
@@ -64,46 +63,26 @@ import org.robovm.apple.security.*;
     protected NEVPNManager(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "onDemandRules")
     public native NSArray<NEOnDemandRule> getOnDemandRules();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setOnDemandRules:")
     public native void setOnDemandRules(NSArray<NEOnDemandRule> v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "isOnDemandEnabled")
     public native boolean isOnDemandEnabled();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setOnDemandEnabled:")
     public native void setOnDemandEnabled(boolean v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "localizedDescription")
     public native String getLocalizedDescription();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setLocalizedDescription:")
     public native void setLocalizedDescription(String v);
     /**
-     * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use protocolConfiguration instead
      */
     @Deprecated
     @Property(selector = "protocol")
     public native NEVPNProtocol getProtocol();
     /**
-     * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use protocolConfiguration instead
      */
     @Deprecated
     @Property(selector = "setProtocol:")
@@ -118,48 +97,24 @@ import org.robovm.apple.security.*;
      */
     @Property(selector = "setProtocolConfiguration:")
     public native void setProtocolConfiguration(NEVPNProtocol v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "connection")
     public native NEVPNConnection getConnection();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "isEnabled")
     public native boolean isEnabled();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setEnabled:")
     public native void setEnabled(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @GlobalValue(symbol="NEVPNConfigurationChangeNotification", optional=true)
     public static native NSString ConfigurationChangeNotification();
     
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "loadFromPreferencesWithCompletionHandler:")
     public native void loadFromPreferences(@Block VoidBlock1<NSError> completionHandler);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "removeFromPreferencesWithCompletionHandler:")
     public native void removeFromPreferences(@Block VoidBlock1<NSError> completionHandler);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "saveToPreferencesWithCompletionHandler:")
     public native void saveToPreferences(@Block VoidBlock1<NSError> completionHandler);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "sharedManager")
     public static native NEVPNManager getSharedManager();
     /*</methods>*/

@@ -35,9 +35,7 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 7.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("MapKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MKMapSnapshot/*</name>*/ 
@@ -55,6 +53,11 @@ import org.robovm.apple.dispatch.*;
     /*<properties>*/
     @Property(selector = "image")
     public native UIImage getImage();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "traitCollection")
+    public native UITraitCollection getTraitCollection();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

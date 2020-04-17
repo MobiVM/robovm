@@ -54,48 +54,18 @@ public enum /*<name>*/NSSearchPathDirectory/*</name>*/ implements ValuedEnum {
     DocumentationDirectory(8L),
     DocumentDirectory(9L),
     CoreServiceDirectory(10L),
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     AutosavedInformationDirectory(11L),
     DesktopDirectory(12L),
     CachesDirectory(13L),
     ApplicationSupportDirectory(14L),
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     DownloadsDirectory(15L),
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     InputMethodsDirectory(16L),
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     MoviesDirectory(17L),
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     MusicDirectory(18L),
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     PicturesDirectory(19L),
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     PrinterDescriptionDirectory(20L),
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     SharedPublicDirectory(21L),
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     PreferencePanesDirectory(22L),
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     ItemReplacementDirectory(99L),
     AllApplicationsDirectory(100L),
     AllLibrariesDirectory(101L),

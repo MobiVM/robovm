@@ -17,6 +17,7 @@ enums:
     CPTimeRemainingColor: {} #since 12.0
     CPTripEstimateStyle: {} #since 12.0
     CPLimitableUserInterface: {} #since 12.0
+    CPContentStyle: {} #since 13.0
 
 classes:
     CPActionSheetTemplate: #since 12.0
@@ -98,6 +99,8 @@ classes:
         methods:
             '-initWithTitleVariants:subtitleVariants:imageSet:primaryAction:secondaryAction:duration:':
                 name: init
+            '-initWithTitleVariants:subtitleVariants:image:primaryAction:secondaryAction:duration:':
+                name: init
             '-updateTitleVariants:subtitleVariants:':
                 trim_after_first_colon: true
     CPNavigationSession: #since 12.0
@@ -139,7 +142,13 @@ classes:
             '-activateVoiceControlStateWithIdentifier:':
                 name: activateVoiceControlState
     CPWindow: {} #since 12.0
-
+    CPTemplateApplicationScene: {} #since 13.0
+    CPDashboardButton: #since 13.4
+        methods:
+            '-initWithTitleVariants:subtitleVariants:image:handler:':
+                name: init
+    CPDashboardController: {} #since 13.4
+    CPTemplateApplicationDashboardScene: {} #since 13.4
 protocols:
     CPApplicationDelegate: #since 12.0
         methods:
@@ -208,6 +217,24 @@ protocols:
         methods:
             '-sessionConfiguration:limitedUserInterfacesChanged:':
                 name: limitedUserInterfacesChanged
+            '-sessionConfiguration:contentStyleChanged:':
+                name: contentStyleChanged
+    CPTemplateApplicationSceneDelegate: #since 13.0
+        methods:
+            '-templateApplicationScene:didConnectInterfaceController:toWindow:':
+                name: didConnectInterfaceController
+            '-templateApplicationScene:didDisconnectInterfaceController:fromWindow:':
+                name: didDisconnectInterfaceController
+            '-templateApplicationScene:didSelectNavigationAlert:':
+                name: didSelectNavigationAlert
+            '-templateApplicationScene:didSelectManeuver:':
+                name: didSelectManeuver
+    CPTemplateApplicationDashboardSceneDelegate: #since 13.4
+        methods:
+            '-templateApplicationDashboardScene:didConnectDashboardController:toWindow:':
+                name: didConnectDashboardController
+            '-templateApplicationDashboardScene:didDisconnectDashboardController:fromWindow:':
+                name: didDisconnectDashboardController
 
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version
@@ -219,7 +246,12 @@ values:
     CPMaximumListItemImageSize:
         class: CPListItem
         name: getMaximumListItemImageSize
-
+    CPTemplateApplicationSceneSessionRoleApplication:
+        class: CPTemplateApplicationScene
+        name: getSceneSessionRole
+    CPTemplateApplicationDashboardSceneSessionRoleApplication:
+        class: CPTemplateApplicationDashboardScene
+        name: getSceneSessionRole
 
     # Make sure we don't miss any values if new ones are introduced in a later version
     (k?CP.*):

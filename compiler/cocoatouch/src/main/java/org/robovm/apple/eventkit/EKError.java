@@ -63,9 +63,6 @@ import org.robovm.apple.mapkit.*;
         return code;
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @GlobalValue(symbol="EKErrorDomain", optional=true)
     public static native String getClassDomain();
     /*</methods>*/

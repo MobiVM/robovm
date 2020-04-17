@@ -53,7 +53,7 @@ import org.robovm.apple.mapkit.*;
     @Method(selector = "initWithDistanceRemaining:timeRemaining:")
     public CPTravelEstimates(NSMeasurement<NSUnitLength> distance, double time) { super((SkipInit) null); initObject(init(distance, time)); }
     @Method(selector = "initWithCoder:")
-    public CPTravelEstimates(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public CPTravelEstimates(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "distanceRemaining")
@@ -70,6 +70,6 @@ import org.robovm.apple.mapkit.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

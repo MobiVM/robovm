@@ -41,9 +41,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 7.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVCaptureDeviceFormat/*</name>*/ 
@@ -70,7 +68,6 @@ import org.robovm.apple.audiotoolbox.*;
     @Property(selector = "isVideoBinned")
     public native boolean isVideoBinned();
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 8.0. Use isVideoStabilizationModeSupported: instead.
      */
     @Deprecated
@@ -80,39 +77,28 @@ import org.robovm.apple.audiotoolbox.*;
     public native @MachineSizedFloat double getVideoMaxZoomFactor();
     @Property(selector = "videoZoomFactorUpscaleThreshold")
     public native @MachineSizedFloat double getVideoZoomFactorUpscaleThreshold();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "minExposureDuration")
     public native @ByVal CMTime getMinExposureDuration();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "maxExposureDuration")
     public native @ByVal CMTime getMaxExposureDuration();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "minISO")
     public native float getMinISO();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "maxISO")
     public native float getMaxISO();
     /**
-     * @since Available in iOS 8.0 and later.
+     * @since Available in iOS 13.0 and later.
      */
+    @Property(selector = "isGlobalToneMappingSupported")
+    public native boolean isGlobalToneMappingSupported();
     @Property(selector = "isVideoHDRSupported")
     public native boolean isVideoHDRSupported();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "highResolutionStillImageDimensions")
     public native @ByVal CMVideoDimensions getHighResolutionStillImageDimensions();
     /**
-     * @since Available in iOS 8.0 and later.
+     * @since Available in iOS 13.0 and later.
      */
+    @Property(selector = "isHighestPhotoQualitySupported")
+    public native boolean isHighestPhotoQualitySupported();
     @Property(selector = "autoFocusSystem")
     public native AVCaptureAutoFocusSystem getAutoFocusSystem();
     /**
@@ -145,12 +131,19 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "isPortraitEffectsMatteStillImageDeliverySupported")
     public native boolean isPortraitEffectsMatteStillImageDeliverySupported();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "isMultiCamSupported")
+    public native boolean isMultiCamSupported();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "geometricDistortionCorrectedVideoFieldOfView")
+    public native float getGeometricDistortionCorrectedVideoFieldOfView();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "isVideoStabilizationModeSupported:")
     public native boolean isVideoStabilizationModeSupported(AVCaptureVideoStabilizationMode videoStabilizationMode);
     /*</methods>*/

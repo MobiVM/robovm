@@ -32,9 +32,7 @@ import org.robovm.apple.corelocation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 @ForceLinkClass(HMError.class)
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
@@ -172,14 +170,26 @@ public enum /*<name>*/HMErrorCode/*</name>*/ implements NSErrorCode {
     IncompatibleAccessory(93L),
     /**
      * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use HMErrorCodeNoCompatibleHomeHub
      */
     @Deprecated
     IncompatibleHomeHub(92L),
     /**
      * @since Available in iOS 12.0 and later.
      */
-    ObjectWithSimilarNameExists(95L);
+    ObjectWithSimilarNameExists(95L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    OwnershipFailure(96L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    MaximumAccessoriesOfTypeInHome(97L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    WiFiCredentialGenerationFailed(98L);
     /*</values>*/
 
     /*<bind>*/

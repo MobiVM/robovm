@@ -49,6 +49,7 @@ public final class /*<name>*/ARSessionRunOptions/*</name>*/ extends Bits</*<name
     public static final ARSessionRunOptions None = new ARSessionRunOptions(0L);
     public static final ARSessionRunOptions ResetTracking = new ARSessionRunOptions(1L);
     public static final ARSessionRunOptions RemoveExistingAnchors = new ARSessionRunOptions(2L);
+    public static final ARSessionRunOptions StopTrackedRaycasts = new ARSessionRunOptions(4L);
     /*</values>*/
 
     /*<bind>*/

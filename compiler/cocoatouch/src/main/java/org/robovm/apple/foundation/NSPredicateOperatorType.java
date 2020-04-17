@@ -56,13 +56,7 @@ public enum /*<name>*/NSPredicateOperatorType/*</name>*/ implements ValuedEnum {
     EndsWith(9L),
     In(10L),
     CustomSelector(11L),
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     Contains(99L),
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     Between(100L);
     /*</values>*/
 

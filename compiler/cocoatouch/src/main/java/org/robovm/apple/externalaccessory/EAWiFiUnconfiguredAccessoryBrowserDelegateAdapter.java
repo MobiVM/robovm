@@ -50,24 +50,12 @@ import org.robovm.apple.uikit.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @NotImplemented("accessoryBrowser:didUpdateState:")
     public void didUpdateState(EAWiFiUnconfiguredAccessoryBrowser browser, EAWiFiUnconfiguredAccessoryBrowserState state) {}
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @NotImplemented("accessoryBrowser:didFindUnconfiguredAccessories:")
     public void didFindUnconfiguredAccessories(EAWiFiUnconfiguredAccessoryBrowser browser, NSSet<EAWiFiUnconfiguredAccessory> accessories) {}
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @NotImplemented("accessoryBrowser:didRemoveUnconfiguredAccessories:")
     public void didRemoveUnconfiguredAccessories(EAWiFiUnconfiguredAccessoryBrowser browser, NSSet<EAWiFiUnconfiguredAccessory> accessories) {}
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @NotImplemented("accessoryBrowser:didFinishConfiguringAccessory:withStatus:")
     public void didFinishConfiguringAccessory(EAWiFiUnconfiguredAccessoryBrowser browser, EAWiFiUnconfiguredAccessory accessory, EAWiFiUnconfiguredAccessoryConfigurationStatus status) {}
     /*</methods>*/

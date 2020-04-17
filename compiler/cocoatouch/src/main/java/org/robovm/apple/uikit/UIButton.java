@@ -37,12 +37,12 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 2.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIButton/*</name>*/ 
@@ -60,7 +60,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithFrame:")
     public UIButton(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public UIButton(NSCoder decoder) { super(decoder); }
+    public UIButton(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "contentEdgeInsets")
@@ -91,14 +91,8 @@ import org.robovm.apple.intents.*;
     public native boolean showsTouchWhenHighlighted();
     @Property(selector = "setShowsTouchWhenHighlighted:")
     public native void setShowsTouchWhenHighlighted(boolean v);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "tintColor")
     public native UIColor getTintColor();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setTintColor:")
     public native void setTintColor(UIColor v);
     @Property(selector = "buttonType")
@@ -114,18 +108,14 @@ import org.robovm.apple.intents.*;
     @Property(selector = "currentBackgroundImage")
     public native UIImage getCurrentBackgroundImage();
     /**
-     * @since Available in iOS 6.0 and later.
+     * @since Available in iOS 13.0 and later.
      */
+    @Property(selector = "currentPreferredSymbolConfiguration")
+    public native UIImageSymbolConfiguration getCurrentPreferredSymbolConfiguration();
     @Property(selector = "currentAttributedTitle")
     public native NSAttributedString getCurrentAttributedTitle();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "titleLabel")
     public native UILabel getTitleLabel();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "imageView")
     public native UIImageView getImageView();
     /**
@@ -156,8 +146,10 @@ import org.robovm.apple.intents.*;
     @Method(selector = "setBackgroundImage:forState:")
     public native void setBackgroundImage(UIImage image, UIControlState state);
     /**
-     * @since Available in iOS 6.0 and later.
+     * @since Available in iOS 13.0 and later.
      */
+    @Method(selector = "setPreferredSymbolConfiguration:forImageInState:")
+    public native void setPreferredSymbolConfiguration(UIImageSymbolConfiguration configuration, UIControlState state);
     @Method(selector = "setAttributedTitle:forState:")
     public native void setAttributedTitle(NSAttributedString title, UIControlState state);
     @Method(selector = "titleForState:")
@@ -171,8 +163,10 @@ import org.robovm.apple.intents.*;
     @Method(selector = "backgroundImageForState:")
     public native UIImage getBackgroundImage(UIControlState state);
     /**
-     * @since Available in iOS 6.0 and later.
+     * @since Available in iOS 13.0 and later.
      */
+    @Method(selector = "preferredSymbolConfigurationForImageInState:")
+    public native UIImageSymbolConfiguration preferredSymbolConfigurationForImageInState(UIControlState state);
     @Method(selector = "attributedTitleForState:")
     public native NSAttributedString getAttributedTitle(UIControlState state);
     @Method(selector = "backgroundRectForBounds:")
@@ -185,5 +179,10 @@ import org.robovm.apple.intents.*;
     public native @ByVal CGRect getImageRect(@ByVal CGRect contentRect);
     @Method(selector = "buttonWithType:")
     protected static native @Pointer long create0(UIButtonType buttonType);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "systemButtonWithImage:target:action:")
+    public static native UIButton getSystemButtonWithImage(UIImage image, NSObject target, Selector action);
     /*</methods>*/
 }

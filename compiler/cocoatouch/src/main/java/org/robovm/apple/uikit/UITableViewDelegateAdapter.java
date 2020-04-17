@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -59,29 +61,14 @@ import org.robovm.apple.intents.*;
     /*<methods>*/
     @NotImplemented("tableView:willDisplayCell:forRowAtIndexPath:")
     public void willDisplayCell(UITableView tableView, UITableViewCell cell, NSIndexPath indexPath) {}
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @NotImplemented("tableView:willDisplayHeaderView:forSection:")
     public void willDisplayHeaderView(UITableView tableView, UIView view, @MachineSizedSInt long section) {}
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @NotImplemented("tableView:willDisplayFooterView:forSection:")
     public void willDisplayFooterView(UITableView tableView, UIView view, @MachineSizedSInt long section) {}
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @NotImplemented("tableView:didEndDisplayingCell:forRowAtIndexPath:")
     public void didEndDisplayingCell(UITableView tableView, UITableViewCell cell, NSIndexPath indexPath) {}
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @NotImplemented("tableView:didEndDisplayingHeaderView:forSection:")
     public void didEndDisplayingHeaderView(UITableView tableView, UIView view, @MachineSizedSInt long section) {}
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @NotImplemented("tableView:didEndDisplayingFooterView:forSection:")
     public void didEndDisplayingFooterView(UITableView tableView, UIView view, @MachineSizedSInt long section) {}
     @NotImplemented("tableView:heightForRowAtIndexPath:")
@@ -90,19 +77,10 @@ import org.robovm.apple.intents.*;
     public @MachineSizedFloat double getHeightForHeader(UITableView tableView, @MachineSizedSInt long section) { return 0; }
     @NotImplemented("tableView:heightForFooterInSection:")
     public @MachineSizedFloat double getHeightForFooter(UITableView tableView, @MachineSizedSInt long section) { return 0; }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @NotImplemented("tableView:estimatedHeightForRowAtIndexPath:")
     public @MachineSizedFloat double getEstimatedHeightForRow(UITableView tableView, NSIndexPath indexPath) { return 0; }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @NotImplemented("tableView:estimatedHeightForHeaderInSection:")
     public @MachineSizedFloat double getEstimatedHeightForHeader(UITableView tableView, @MachineSizedSInt long section) { return 0; }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @NotImplemented("tableView:estimatedHeightForFooterInSection:")
     public @MachineSizedFloat double getEstimatedHeightForFooter(UITableView tableView, @MachineSizedSInt long section) { return 0; }
     @NotImplemented("tableView:viewForHeaderInSection:")
@@ -111,45 +89,28 @@ import org.robovm.apple.intents.*;
     public UIView getViewForFooter(UITableView tableView, @MachineSizedSInt long section) { return null; }
     @NotImplemented("tableView:accessoryButtonTappedForRowWithIndexPath:")
     public void accessoryButtonTapped(UITableView tableView, NSIndexPath indexPath) {}
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @NotImplemented("tableView:shouldHighlightRowAtIndexPath:")
     public boolean shouldHighlightRow(UITableView tableView, NSIndexPath indexPath) { return false; }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @NotImplemented("tableView:didHighlightRowAtIndexPath:")
     public void didHighlightRow(UITableView tableView, NSIndexPath indexPath) {}
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @NotImplemented("tableView:didUnhighlightRowAtIndexPath:")
     public void didUnhighlightRow(UITableView tableView, NSIndexPath indexPath) {}
     @NotImplemented("tableView:willSelectRowAtIndexPath:")
     public NSIndexPath willSelectRow(UITableView tableView, NSIndexPath indexPath) { return null; }
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @NotImplemented("tableView:willDeselectRowAtIndexPath:")
     public NSIndexPath willDeselectRow(UITableView tableView, NSIndexPath indexPath) { return null; }
     @NotImplemented("tableView:didSelectRowAtIndexPath:")
     public void didSelectRow(UITableView tableView, NSIndexPath indexPath) {}
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @NotImplemented("tableView:didDeselectRowAtIndexPath:")
     public void didDeselectRow(UITableView tableView, NSIndexPath indexPath) {}
     @NotImplemented("tableView:editingStyleForRowAtIndexPath:")
     public UITableViewCellEditingStyle getEditingStyleForRow(UITableView tableView, NSIndexPath indexPath) { return null; }
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @NotImplemented("tableView:titleForDeleteConfirmationButtonForRowAtIndexPath:")
     public String getTitleForDeleteConfirmationButton(UITableView tableView, NSIndexPath indexPath) { return null; }
     /**
-     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use tableView:trailingSwipeActionsConfigurationForRowAtIndexPath:
      */
+    @Deprecated
     @NotImplemented("tableView:editActionsForRowAtIndexPath:")
     public NSArray<UITableViewRowAction> getEditActionsForRow(UITableView tableView, NSIndexPath indexPath) { return null; }
     /**
@@ -173,18 +134,21 @@ import org.robovm.apple.intents.*;
     @NotImplemented("tableView:indentationLevelForRowAtIndexPath:")
     public @MachineSizedSInt long getIndentationLevelForRow(UITableView tableView, NSIndexPath indexPath) { return 0; }
     /**
-     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use tableView:contextMenuConfigurationForRowAtIndexPath:point:
      */
+    @Deprecated
     @NotImplemented("tableView:shouldShowMenuForRowAtIndexPath:")
     public boolean shouldShowMenuForRow(UITableView tableView, NSIndexPath indexPath) { return false; }
     /**
-     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use tableView:contextMenuConfigurationForRowAtIndexPath:point:
      */
+    @Deprecated
     @NotImplemented("tableView:canPerformAction:forRowAtIndexPath:withSender:")
     public boolean canPerformAction(UITableView tableView, Selector action, NSIndexPath indexPath, NSObject sender) { return false; }
     /**
-     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use tableView:contextMenuConfigurationForRowAtIndexPath:
      */
+    @Deprecated
     @NotImplemented("tableView:performAction:forRowAtIndexPath:withSender:")
     public void performActionForRow(UITableView tableView, Selector action, NSIndexPath indexPath, NSObject sender) {}
     /**
@@ -212,5 +176,40 @@ import org.robovm.apple.intents.*;
      */
     @NotImplemented("tableView:shouldSpringLoadRowAtIndexPath:withContext:")
     public boolean shouldSpringLoadRow(UITableView tableView, NSIndexPath indexPath, UISpringLoadedInteractionContext context) { return false; }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("tableView:shouldBeginMultipleSelectionInteractionAtIndexPath:")
+    public boolean shouldBeginMultipleSelectionInteraction(UITableView tableView, NSIndexPath indexPath) { return false; }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("tableView:didBeginMultipleSelectionInteractionAtIndexPath:")
+    public void didBeginMultipleSelectionInteraction(UITableView tableView, NSIndexPath indexPath) {}
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("tableViewDidEndMultipleSelectionInteraction:")
+    public void tableViewDidEndMultipleSelectionInteraction(UITableView tableView) {}
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("tableView:contextMenuConfigurationForRowAtIndexPath:point:")
+    public UIContextMenuConfiguration getContextMenuConfiguration(UITableView tableView, NSIndexPath indexPath, @ByVal CGPoint point) { return null; }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("tableView:previewForHighlightingContextMenuWithConfiguration:")
+    public UITargetedPreview getPreviewForHighlightingContextMenu(UITableView tableView, UIContextMenuConfiguration configuration) { return null; }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("tableView:previewForDismissingContextMenuWithConfiguration:")
+    public UITargetedPreview getPreviewForDismissingContextMenu(UITableView tableView, UIContextMenuConfiguration configuration) { return null; }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("tableView:willPerformPreviewActionForMenuWithConfiguration:animator:")
+    public void willPerformPreviewAction(UITableView tableView, UIContextMenuConfiguration configuration, UIContextMenuInteractionCommitAnimating animator) {}
     /*</methods>*/
 }

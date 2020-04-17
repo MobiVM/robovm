@@ -38,16 +38,14 @@ import org.robovm.apple.imageio.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("Photos") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/PHFetchResultChangeDetails/*</name>*/ <T extends PHObject>
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/PHFetchResultChangeDetails<T extends PHObject>/*</name>*/
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class PHFetchResultChangeDetailsPtr extends Ptr<PHFetchResultChangeDetails, PHFetchResultChangeDetailsPtr> {}/*</ptr>*/
+    /*<ptr>*/public static class PHFetchResultChangeDetailsPtr<T extends PHObject> extends Ptr<PHFetchResultChangeDetails<T>, PHFetchResultChangeDetailsPtr<T>> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(PHFetchResultChangeDetails.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/

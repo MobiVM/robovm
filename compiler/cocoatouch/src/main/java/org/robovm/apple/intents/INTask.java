@@ -49,10 +49,15 @@ import org.robovm.apple.corelocation.*;
     public INTask() {}
     protected INTask(Handle h, long handle) { super(h, handle); }
     protected INTask(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "initWithTitle:status:taskType:spatialEventTrigger:temporalEventTrigger:createdDateComponents:modifiedDateComponents:identifier:priority:")
+    public INTask(INSpeakableString title, INTaskStatus status, INTaskType taskType, INSpatialEventTrigger spatialEventTrigger, INTemporalEventTrigger temporalEventTrigger, NSDateComponents createdDateComponents, NSDateComponents modifiedDateComponents, String identifier, INTaskPriority priority) { super((SkipInit) null); initObject(init(title, status, taskType, spatialEventTrigger, temporalEventTrigger, createdDateComponents, modifiedDateComponents, identifier, priority)); }
     @Method(selector = "initWithTitle:status:taskType:spatialEventTrigger:temporalEventTrigger:createdDateComponents:modifiedDateComponents:identifier:")
     public INTask(INSpeakableString title, INTaskStatus status, INTaskType taskType, INSpatialEventTrigger spatialEventTrigger, INTemporalEventTrigger temporalEventTrigger, NSDateComponents createdDateComponents, NSDateComponents modifiedDateComponents, String identifier) { super((SkipInit) null); initObject(init(title, status, taskType, spatialEventTrigger, temporalEventTrigger, createdDateComponents, modifiedDateComponents, identifier)); }
     @Method(selector = "initWithCoder:")
-    public INTask(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public INTask(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "title")
@@ -71,16 +76,26 @@ import org.robovm.apple.corelocation.*;
     public native String getIdentifier();
     @Property(selector = "taskType")
     public native INTaskType getTaskType();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "priority")
+    public native INTaskPriority getPriority();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "initWithTitle:status:taskType:spatialEventTrigger:temporalEventTrigger:createdDateComponents:modifiedDateComponents:identifier:priority:")
+    protected native @Pointer long init(INSpeakableString title, INTaskStatus status, INTaskType taskType, INSpatialEventTrigger spatialEventTrigger, INTemporalEventTrigger temporalEventTrigger, NSDateComponents createdDateComponents, NSDateComponents modifiedDateComponents, String identifier, INTaskPriority priority);
     @Method(selector = "initWithTitle:status:taskType:spatialEventTrigger:temporalEventTrigger:createdDateComponents:modifiedDateComponents:identifier:")
     protected native @Pointer long init(INSpeakableString title, INTaskStatus status, INTaskType taskType, INSpatialEventTrigger spatialEventTrigger, INTemporalEventTrigger temporalEventTrigger, NSDateComponents createdDateComponents, NSDateComponents modifiedDateComponents, String identifier);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

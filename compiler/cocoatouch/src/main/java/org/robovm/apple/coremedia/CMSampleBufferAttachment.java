@@ -112,9 +112,6 @@ import org.robovm.apple.audiotoolbox.*;
     }
     
 
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public boolean shouldResetDecoderBeforeDecoding() {
         if (has(CMSampleBufferAttachmentKey.ResetDecoderBeforeDecoding)) {
             CFBoolean val = get(CMSampleBufferAttachmentKey.ResetDecoderBeforeDecoding, CFBoolean.class);
@@ -122,16 +119,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CMSampleBufferAttachment setShouldResetDecoderBeforeDecoding(boolean shouldResetDecoderBeforeDecoding) {
         set(CMSampleBufferAttachmentKey.ResetDecoderBeforeDecoding, CFBoolean.valueOf(shouldResetDecoderBeforeDecoding));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public boolean shouldDrainAfterDecoding() {
         if (has(CMSampleBufferAttachmentKey.DrainAfterDecoding)) {
             CFBoolean val = get(CMSampleBufferAttachmentKey.DrainAfterDecoding, CFBoolean.class);
@@ -139,16 +130,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CMSampleBufferAttachment setShouldDrainAfterDecoding(boolean shouldDrainAfterDecoding) {
         set(CMSampleBufferAttachmentKey.DrainAfterDecoding, CFBoolean.valueOf(shouldDrainAfterDecoding));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public Map<String, NSObject> getShouldPostNotificationWhenConsumed() {
         if (has(CMSampleBufferAttachmentKey.PostNotificationWhenConsumed)) {
             CFDictionary val = get(CMSampleBufferAttachmentKey.PostNotificationWhenConsumed, CFDictionary.class);
@@ -157,16 +142,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CMSampleBufferAttachment setShouldPostNotificationWhenConsumed(Map<String, NSObject> shouldPostNotificationWhenConsumed) {
         set(CMSampleBufferAttachmentKey.PostNotificationWhenConsumed, CFDictionary.fromStringMap(shouldPostNotificationWhenConsumed));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public boolean shouldResumeOutput() {
         if (has(CMSampleBufferAttachmentKey.ResumeOutput)) {
             CFBoolean val = get(CMSampleBufferAttachmentKey.ResumeOutput, CFBoolean.class);
@@ -174,16 +153,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CMSampleBufferAttachment setShouldResumeOutput(boolean shouldResumeOutput) {
         set(CMSampleBufferAttachmentKey.ResumeOutput, CFBoolean.valueOf(shouldResumeOutput));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public long getTransitionID() {
         if (has(CMSampleBufferAttachmentKey.TransitionID)) {
             CFNumber val = get(CMSampleBufferAttachmentKey.TransitionID, CFNumber.class);
@@ -191,16 +164,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CMSampleBufferAttachment setTransitionID(long transitionID) {
         set(CMSampleBufferAttachmentKey.TransitionID, CFNumber.valueOf(transitionID));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CMTime getTrimDurationAtStart() {
         if (has(CMSampleBufferAttachmentKey.TrimDurationAtStart)) {
             CFDictionary val = get(CMSampleBufferAttachmentKey.TrimDurationAtStart, CFDictionary.class);
@@ -209,16 +176,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CMSampleBufferAttachment setTrimDurationAtStart(CMTime trimDurationAtStart) {
         set(CMSampleBufferAttachmentKey.TrimDurationAtStart, trimDurationAtStart.asDictionary(null).as(CFDictionary.class));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CMTime getTrimDurationAtEnd() {
         if (has(CMSampleBufferAttachmentKey.TrimDurationAtEnd)) {
             CFDictionary val = get(CMSampleBufferAttachmentKey.TrimDurationAtEnd, CFDictionary.class);
@@ -227,16 +188,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CMSampleBufferAttachment setTrimDurationAtEnd(CMTime trimDurationAtEnd) {
         set(CMSampleBufferAttachmentKey.TrimDurationAtEnd, trimDurationAtEnd.asDictionary(null).as(CFDictionary.class));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public double getSpeedMultiplier() {
         if (has(CMSampleBufferAttachmentKey.SpeedMultiplier)) {
             CFNumber val = get(CMSampleBufferAttachmentKey.SpeedMultiplier, CFNumber.class);
@@ -244,16 +199,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CMSampleBufferAttachment setSpeedMultiplier(double speedMultiplier) {
         set(CMSampleBufferAttachmentKey.SpeedMultiplier, CFNumber.valueOf(speedMultiplier));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public boolean shouldRevers() {
         if (has(CMSampleBufferAttachmentKey.Reverse)) {
             CFBoolean val = get(CMSampleBufferAttachmentKey.Reverse, CFBoolean.class);
@@ -261,16 +210,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CMSampleBufferAttachment setShouldRevers(boolean shouldRevers) {
         set(CMSampleBufferAttachmentKey.Reverse, CFBoolean.valueOf(shouldRevers));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public boolean fillsDiscontinuitiesWithSilence() {
         if (has(CMSampleBufferAttachmentKey.FillDiscontinuitiesWithSilence)) {
             CFBoolean val = get(CMSampleBufferAttachmentKey.FillDiscontinuitiesWithSilence, CFBoolean.class);
@@ -278,16 +221,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CMSampleBufferAttachment setFillsDiscontinuitiesWithSilence(boolean fillsDiscontinuitiesWithSilence) {
         set(CMSampleBufferAttachmentKey.FillDiscontinuitiesWithSilence, CFBoolean.valueOf(fillsDiscontinuitiesWithSilence));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public boolean isEmptyMedia() {
         if (has(CMSampleBufferAttachmentKey.EmptyMedia)) {
             CFBoolean val = get(CMSampleBufferAttachmentKey.EmptyMedia, CFBoolean.class);
@@ -295,16 +232,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CMSampleBufferAttachment setEmptyMedia(boolean emptyMedia) {
         set(CMSampleBufferAttachmentKey.EmptyMedia, CFBoolean.valueOf(emptyMedia));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public boolean isPermanentEmptyMedia() {
         if (has(CMSampleBufferAttachmentKey.PermanentEmptyMedia)) {
             CFBoolean val = get(CMSampleBufferAttachmentKey.PermanentEmptyMedia, CFBoolean.class);
@@ -312,16 +243,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CMSampleBufferAttachment setPermanentEmptyMedia(boolean permanentEmptyMedia) {
         set(CMSampleBufferAttachmentKey.PermanentEmptyMedia, CFBoolean.valueOf(permanentEmptyMedia));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public boolean displaysEmptyMediaImmediately() {
         if (has(CMSampleBufferAttachmentKey.DisplayEmptyMediaImmediately)) {
             CFBoolean val = get(CMSampleBufferAttachmentKey.DisplayEmptyMediaImmediately, CFBoolean.class);
@@ -329,16 +254,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CMSampleBufferAttachment setDisplaysEmptyMediaImmediately(boolean displaysEmptyMediaImmediately) {
         set(CMSampleBufferAttachmentKey.DisplayEmptyMediaImmediately, CFBoolean.valueOf(displaysEmptyMediaImmediately));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public boolean isEndsPreviousSampleDuration() {
         if (has(CMSampleBufferAttachmentKey.EndsPreviousSampleDuration)) {
             CFBoolean val = get(CMSampleBufferAttachmentKey.EndsPreviousSampleDuration, CFBoolean.class);
@@ -346,16 +265,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CMSampleBufferAttachment setEndsPreviousSampleDuration(boolean endsPreviousSampleDuration) {
         set(CMSampleBufferAttachmentKey.EndsPreviousSampleDuration, CFBoolean.valueOf(endsPreviousSampleDuration));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public NSURL getSampleReferenceURL() {
         if (has(CMSampleBufferAttachmentKey.SampleReferenceURL)) {
             NSURL val = get(CMSampleBufferAttachmentKey.SampleReferenceURL, NSURL.class);
@@ -363,16 +276,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CMSampleBufferAttachment setSampleReferenceURL(NSURL sampleReferenceURL) {
         set(CMSampleBufferAttachmentKey.SampleReferenceURL, sampleReferenceURL);
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public long getSampleReferenceByteOffset() {
         if (has(CMSampleBufferAttachmentKey.SampleReferenceByteOffset)) {
             CFNumber val = get(CMSampleBufferAttachmentKey.SampleReferenceByteOffset, CFNumber.class);
@@ -380,16 +287,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CMSampleBufferAttachment setSampleReferenceByteOffset(long sampleReferenceByteOffset) {
         set(CMSampleBufferAttachmentKey.SampleReferenceByteOffset, CFNumber.valueOf(sampleReferenceByteOffset));
         return this;
     }
-    /**
-     * @since Available in iOS 4.3 and later.
-     */
     public long getGradualDecoderRefresh() {
         if (has(CMSampleBufferAttachmentKey.GradualDecoderRefresh)) {
             CFNumber val = get(CMSampleBufferAttachmentKey.GradualDecoderRefresh, CFNumber.class);
@@ -397,16 +298,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 4.3 and later.
-     */
     public CMSampleBufferAttachment setGradualDecoderRefresh(long gradualDecoderRefresh) {
         set(CMSampleBufferAttachmentKey.GradualDecoderRefresh, CFNumber.valueOf(gradualDecoderRefresh));
         return this;
     }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public CMSampleBufferDroppedFrameReason getDroppedFrameReason() {
         if (has(CMSampleBufferAttachmentKey.DroppedFrameReason)) {
             CFString val = get(CMSampleBufferAttachmentKey.DroppedFrameReason, CFString.class);
@@ -414,16 +309,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public CMSampleBufferAttachment setDroppedFrameReason(CMSampleBufferDroppedFrameReason droppedFrameReason) {
         set(CMSampleBufferAttachmentKey.DroppedFrameReason, droppedFrameReason.value());
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public CMSampleBufferDroppedFrameReasonInfo getDroppedFrameReasonInfo() {
         if (has(CMSampleBufferAttachmentKey.DroppedFrameReasonInfo)) {
             CFString val = get(CMSampleBufferAttachmentKey.DroppedFrameReasonInfo, CFString.class);
@@ -431,9 +320,6 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public CMSampleBufferAttachment setDroppedFrameReasonInfo(CMSampleBufferDroppedFrameReasonInfo droppedFrameReasonInfo) {
         set(CMSampleBufferAttachmentKey.DroppedFrameReasonInfo, droppedFrameReasonInfo.value());
         return this;

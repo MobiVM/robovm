@@ -103,9 +103,6 @@ import org.robovm.apple.dispatch.*;
     }
     
 
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public NSArray<CBPeripheral> getPeripherals() {
         if (has(Keys.Peripherals())) {
             NSArray<CBPeripheral> val = (NSArray<CBPeripheral>) get(Keys.Peripherals());
@@ -113,9 +110,6 @@ import org.robovm.apple.dispatch.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public NSArray<CBUUID> getScanServices() {
         if (has(Keys.ScanServices())) {
             NSArray<CBUUID> val = (NSArray<CBUUID>) get(Keys.ScanServices());
@@ -123,9 +117,6 @@ import org.robovm.apple.dispatch.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public CBCentralManagerScanOptions getScanOptions() {
         if (has(Keys.ScanOptions())) {
             NSDictionary val = (NSDictionary) get(Keys.ScanOptions());
@@ -139,19 +130,10 @@ import org.robovm.apple.dispatch.*;
     @Library("CoreBluetooth")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="CBCentralManagerRestoredStatePeripheralsKey", optional=true)
         public static native NSString Peripherals();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="CBCentralManagerRestoredStateScanServicesKey", optional=true)
         public static native NSString ScanServices();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="CBCentralManagerRestoredStateScanOptionsKey", optional=true)
         public static native NSString ScanOptions();
     }

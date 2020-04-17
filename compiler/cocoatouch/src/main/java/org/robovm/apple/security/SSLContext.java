@@ -417,321 +417,379 @@ import org.robovm.apple.dispatch.*;
     }
     /*<methods>*/
     /**
-     * @since Available in iOS 5.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. No longer supported. Use Network.framework.
      */
     @Deprecated
     @GlobalValue(symbol="kSSLSessionConfig_default", optional=true)
     public static native String kSSLSessionConfig_default();
     /**
-     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 13.0. No longer supported. Use Network.framework.
      */
+    @Deprecated
     @GlobalValue(symbol="kSSLSessionConfig_ATSv1", optional=true)
     public static native String kSSLSessionConfig_ATSv1();
     /**
-     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 13.0. No longer supported. Use Network.framework.
      */
+    @Deprecated
     @GlobalValue(symbol="kSSLSessionConfig_ATSv1_noPFS", optional=true)
     public static native String kSSLSessionConfig_ATSv1_noPFS();
     /**
-     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 13.0. No longer supported. Use Network.framework.
      */
+    @Deprecated
     @GlobalValue(symbol="kSSLSessionConfig_standard", optional=true)
     public static native String kSSLSessionConfig_standard();
     /**
-     * @since Available in iOS 5.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. No longer supported. Use Network.framework.
      */
     @Deprecated
     @GlobalValue(symbol="kSSLSessionConfig_RC4_fallback", optional=true)
     public static native String kSSLSessionConfig_RC4_fallback();
     /**
-     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 13.0. No longer supported. Use Network.framework.
      */
+    @Deprecated
     @GlobalValue(symbol="kSSLSessionConfig_TLSv1_fallback", optional=true)
     public static native String kSSLSessionConfig_TLSv1_fallback();
     /**
-     * @since Available in iOS 5.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. No longer supported. Use Network.framework.
      */
     @Deprecated
     @GlobalValue(symbol="kSSLSessionConfig_TLSv1_RC4_fallback", optional=true)
     public static native String kSSLSessionConfig_TLSv1_RC4_fallback();
     /**
-     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 13.0. No longer supported. Use Network.framework.
      */
+    @Deprecated
     @GlobalValue(symbol="kSSLSessionConfig_legacy", optional=true)
     public static native String kSSLSessionConfig_legacy();
     /**
-     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 13.0. No longer supported. Use Network.framework.
      */
+    @Deprecated
     @GlobalValue(symbol="kSSLSessionConfig_legacy_DHE", optional=true)
     public static native String kSSLSessionConfig_legacy_DHE();
     /**
-     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 13.0. No longer supported. Use Network.framework.
      */
+    @Deprecated
     @GlobalValue(symbol="kSSLSessionConfig_anonymous", optional=true)
     public static native String kSSLSessionConfig_anonymous();
     /**
-     * @since Available in iOS 5.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. No longer supported. Use Network.framework.
      */
     @Deprecated
     @GlobalValue(symbol="kSSLSessionConfig_3DES_fallback", optional=true)
     public static native String kSSLSessionConfig_3DES_fallback();
     /**
-     * @since Available in iOS 5.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. No longer supported. Use Network.framework.
      */
     @Deprecated
     @GlobalValue(symbol="kSSLSessionConfig_TLSv1_3DES_fallback", optional=true)
     public static native String kSSLSessionConfig_TLSv1_3DES_fallback();
     
     /**
-     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 13.0. No longer supported. Use Network.framework.
      */
+    @Deprecated
     @Bridge(symbol="SSLContextGetTypeID", optional=true)
     public static native @MachineSizedUInt long getClassTypeID();
     /**
-     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 13.0. No longer supported. Use Network.framework.
      */
+    @Deprecated
     @Bridge(symbol="SSLCreateContext", optional=true)
     protected static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) SSLContext create0(CFAllocator alloc, SSLProtocolSide protocolSide, SSLConnectionType connectionType);
     /**
-     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 13.0. No longer supported. Use Network.framework.
      */
+    @Deprecated
     @Bridge(symbol="SSLGetSessionState", optional=true)
     protected native OSStatus getSessionState0(IntPtr state);
     /**
-     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 13.0. No longer supported. Use Network.framework.
      */
+    @Deprecated
     @Bridge(symbol="SSLSetSessionOption", optional=true)
     protected native OSStatus setSessionOption0(SSLSessionOption option, boolean value);
     /**
-     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 13.0. No longer supported. Use Network.framework.
      */
+    @Deprecated
     @Bridge(symbol="SSLGetSessionOption", optional=true)
     protected native OSStatus getSessionOption0(SSLSessionOption option, BooleanPtr value);
     /**
-     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 13.0. No longer supported. Use Network.framework.
      */
+    @Deprecated
     @Bridge(symbol="SSLSetIOFuncs", optional=true)
     protected native OSStatus setIOFunctions0(FunctionPtr readFunc, FunctionPtr writeFunc);
     /**
      * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 13.0. No longer supported. Use Network.framework.
      */
+    @Deprecated
     @Bridge(symbol="SSLSetSessionConfig", optional=true)
     protected native OSStatus setSessionConfig0(String config);
     /**
-     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 13.0. No longer supported. Use Network.framework.
      */
+    @Deprecated
     @Bridge(symbol="SSLSetProtocolVersionMin", optional=true)
     protected native OSStatus setMinProtocolVersion0(SSLProtocol minVersion);
     /**
-     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 13.0. No longer supported. Use Network.framework.
      */
+    @Deprecated
     @Bridge(symbol="SSLGetProtocolVersionMin", optional=true)
     protected native OSStatus getMinProtocolVersion0(IntPtr minVersion);
     /**
-     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 13.0. No longer supported. Use Network.framework.
      */
+    @Deprecated
     @Bridge(symbol="SSLSetProtocolVersionMax", optional=true)
     protected native OSStatus setMaxProtocolVersion0(SSLProtocol maxVersion);
     /**
-     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 13.0. No longer supported. Use Network.framework.
      */
+    @Deprecated
     @Bridge(symbol="SSLGetProtocolVersionMax", optional=true)
     protected native OSStatus getMaxProtocolVersion0(IntPtr maxVersion);
     /**
-     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 13.0. No longer supported. Use Network.framework.
      */
+    @Deprecated
     @Bridge(symbol="SSLSetCertificate", optional=true)
     protected native OSStatus setCertificate0(CFArray certRefs);
     /**
-     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 13.0. No longer supported. Use Network.framework.
      */
+    @Deprecated
     @Bridge(symbol="SSLSetConnection", optional=true)
     protected native OSStatus setConnection0(VoidPtr connection);
     /**
-     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 13.0. No longer supported. Use Network.framework.
      */
+    @Deprecated
     @Bridge(symbol="SSLGetConnection", optional=true)
     protected native OSStatus getConnection0(VoidPtr.VoidPtrPtr connection);
     /**
-     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 13.0. No longer supported. Use Network.framework.
      */
+    @Deprecated
     @Bridge(symbol="SSLSetPeerDomainName", optional=true)
     protected native OSStatus setPeerDomainName0(@Pointer long peerName, @MachineSizedUInt long peerNameLen);
     /**
-     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 13.0. No longer supported. Use Network.framework.
      */
+    @Deprecated
     @Bridge(symbol="SSLGetPeerDomainNameLength", optional=true)
     protected native OSStatus getPeerDomainNameLength0(MachineSizedUIntPtr peerNameLen);
     /**
-     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 13.0. No longer supported. Use Network.framework.
      */
+    @Deprecated
     @Bridge(symbol="SSLGetPeerDomainName", optional=true)
     protected native OSStatus getPeerDomainName0(BytePtr peerName, MachineSizedUIntPtr peerNameLen);
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 13.0. No longer supported. Use Network.framework.
      */
-    @Bridge(symbol="SSLCopyRequestedPeerName", optional=true)
-    protected native OSStatus copyRequestedPeerName0(BytePtr peerName, MachineSizedUIntPtr peerNameLen);
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
+    @Deprecated
     @Bridge(symbol="SSLCopyRequestedPeerNameLength", optional=true)
     protected native OSStatus copyRequestedPeerNameLength0(MachineSizedUIntPtr peerNameLen);
     /**
-     * @since Available in iOS 5.0 and later.
+     * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 13.0. No longer supported. Use Network.framework.
      */
+    @Deprecated
+    @Bridge(symbol="SSLCopyRequestedPeerName", optional=true)
+    protected native OSStatus copyRequestedPeerName0(BytePtr peerName, MachineSizedUIntPtr peerNameLen);
+    /**
+     * @deprecated Deprecated in iOS 13.0. No longer supported. Use Network.framework.
+     */
+    @Deprecated
     @Bridge(symbol="SSLSetDatagramHelloCookie", optional=true)
     protected native OSStatus setDatagramHelloCookie0(@Pointer long cookie, @MachineSizedUInt long cookieLen);
     /**
-     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 13.0. No longer supported. Use Network.framework.
      */
+    @Deprecated
     @Bridge(symbol="SSLSetMaxDatagramRecordSize", optional=true)
     protected native OSStatus setMaxDatagramRecordSize0(@MachineSizedUInt long maxSize);
     /**
-     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 13.0. No longer supported. Use Network.framework.
      */
+    @Deprecated
     @Bridge(symbol="SSLGetMaxDatagramRecordSize", optional=true)
     protected native OSStatus getMaxDatagramRecordSize0(MachineSizedUIntPtr maxSize);
     /**
-     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 13.0. No longer supported. Use Network.framework.
      */
+    @Deprecated
     @Bridge(symbol="SSLGetNegotiatedProtocolVersion", optional=true)
     protected native OSStatus getNegotiatedProtocolVersion0(IntPtr protocol);
     /**
-     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 13.0. No longer supported. Use Network.framework.
      */
+    @Deprecated
     @Bridge(symbol="SSLGetNumberSupportedCiphers", optional=true)
     protected native OSStatus getNumberSupportedCiphers0(MachineSizedUIntPtr numCiphers);
     /**
-     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 13.0. No longer supported. Use Network.framework.
      */
+    @Deprecated
     @Bridge(symbol="SSLGetSupportedCiphers", optional=true)
     protected native OSStatus getSupportedCiphers0(ShortPtr ciphers, MachineSizedUIntPtr numCiphers);
     /**
-     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 13.0. No longer supported. Use Network.framework.
      */
-    @Bridge(symbol="SSLSetEnabledCiphers", optional=true)
-    protected native OSStatus setEnabledCiphers0(@Pointer long ciphers, @MachineSizedUInt long numCiphers);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
+    @Deprecated
     @Bridge(symbol="SSLGetNumberEnabledCiphers", optional=true)
     protected native OSStatus getNumberEnabledCiphers0(MachineSizedUIntPtr numCiphers);
     /**
-     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 13.0. No longer supported. Use Network.framework.
      */
+    @Deprecated
+    @Bridge(symbol="SSLSetEnabledCiphers", optional=true)
+    protected native OSStatus setEnabledCiphers0(@Pointer long ciphers, @MachineSizedUInt long numCiphers);
+    /**
+     * @deprecated Deprecated in iOS 13.0. No longer supported. Use Network.framework.
+     */
+    @Deprecated
     @Bridge(symbol="SSLGetEnabledCiphers", optional=true)
     protected native OSStatus getEnabledCiphers0(ShortPtr ciphers, MachineSizedUIntPtr numCiphers);
     /**
      * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 13.0. No longer supported. Use Network.framework.
      */
+    @Deprecated
     @Bridge(symbol="SSLSetSessionTicketsEnabled", optional=true)
     protected native OSStatus setSessionTicketsEnabled0(boolean enabled);
     /**
-     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 13.0. No longer supported. Use Network.framework.
      */
+    @Deprecated
     @Bridge(symbol="SSLCopyPeerTrust", optional=true)
     protected native OSStatus getPeerTrust0(SecTrust.SecTrustPtr trust);
     /**
-     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 13.0. No longer supported. Use Network.framework.
      */
+    @Deprecated
     @Bridge(symbol="SSLSetPeerID", optional=true)
     protected native OSStatus setPeerID0(@Pointer long peerID, @MachineSizedUInt long peerIDLen);
     /**
-     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 13.0. No longer supported. Use Network.framework.
      */
+    @Deprecated
     @Bridge(symbol="SSLGetPeerID", optional=true)
     protected native OSStatus getPeerID0(BytePtr.BytePtrPtr peerID, MachineSizedUIntPtr peerIDLen);
     /**
-     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 13.0. No longer supported. Use Network.framework.
      */
+    @Deprecated
     @Bridge(symbol="SSLGetNegotiatedCipher", optional=true)
     protected native OSStatus getNegotiatedCipher0(ShortPtr cipherSuite);
     /**
      * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 13.0. No longer supported. Use Network.framework.
      */
+    @Deprecated
     @Bridge(symbol="SSLSetALPNProtocols", optional=true)
     protected native OSStatus setALPNProtocols0(NSArray<?> protocols);
     /**
      * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 13.0. No longer supported. Use Network.framework.
      */
+    @Deprecated
     @Bridge(symbol="SSLCopyALPNProtocols", optional=true)
     protected native OSStatus getALPNProtocols0(NSArray.NSArrayPtr<NSData> protocols);
     /**
      * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 13.0. No longer supported. Use Network.framework.
      */
+    @Deprecated
     @Bridge(symbol="SSLSetOCSPResponse", optional=true)
     protected native OSStatus setOCSPResponse0(NSData response);
     /**
-     * @since Available in iOS 5.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. No longer supported. Use Network.framework.
      */
     @Deprecated
     @Bridge(symbol="SSLSetEncryptionCertificate", optional=true)
     protected native OSStatus setEncryptionCertificate0(CFArray certRefs);
     /**
-     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 13.0. No longer supported. Use Network.framework.
      */
+    @Deprecated
     @Bridge(symbol="SSLSetClientSideAuthenticate", optional=true)
     protected native OSStatus setClientSideAuthenticate0(SSLAuthenticate auth);
     /**
-     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 13.0. No longer supported. Use Network.framework.
      */
+    @Deprecated
     @Bridge(symbol="SSLAddDistinguishedName", optional=true)
     protected native OSStatus addDistinguishedName0(@Pointer long derDN, @MachineSizedUInt long derDNLen);
     /**
-     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 13.0. No longer supported. Use Network.framework.
      */
+    @Deprecated
     @Bridge(symbol="SSLCopyDistinguishedNames", optional=true)
     protected native OSStatus getDistinguishedNames0(NSArray.NSArrayPtr<NSData> names);
     /**
-     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 13.0. No longer supported. Use Network.framework.
      */
+    @Deprecated
     @Bridge(symbol="SSLGetClientCertificateState", optional=true)
     protected native OSStatus getClientCertificateState0(IntPtr clientState);
     /**
-     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 13.0. No longer supported. Use Network.framework.
      */
+    @Deprecated
     @Bridge(symbol="SSLHandshake", optional=true)
     protected native OSStatus handshake0();
     /**
      * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 13.0. No longer supported. Use Network.framework.
      */
+    @Deprecated
     @Bridge(symbol="SSLReHandshake", optional=true)
     protected native OSStatus reHandshake0();
     /**
-     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 13.0. No longer supported. Use Network.framework.
      */
+    @Deprecated
     @Bridge(symbol="SSLWrite", optional=true)
     protected native OSStatus write0(@Pointer long data, @MachineSizedUInt long dataLength, MachineSizedUIntPtr processed);
     /**
-     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 13.0. No longer supported. Use Network.framework.
      */
+    @Deprecated
     @Bridge(symbol="SSLRead", optional=true)
     protected native OSStatus read0(BytePtr data, @MachineSizedUInt long dataLength, MachineSizedUIntPtr processed);
     /**
-     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 13.0. No longer supported. Use Network.framework.
      */
+    @Deprecated
     @Bridge(symbol="SSLGetBufferedReadSize", optional=true)
-    protected native OSStatus getBufferedReadSize0(MachineSizedUIntPtr bufSize);
+    protected native OSStatus getBufferedReadSize0(MachineSizedUIntPtr bufferSize);
     /**
-     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 13.0. No longer supported. Use Network.framework.
      */
+    @Deprecated
     @Bridge(symbol="SSLGetDatagramWriteSize", optional=true)
     protected native OSStatus getDatagramWriteSize0(MachineSizedUIntPtr bufSize);
     /**
-     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 13.0. No longer supported. Use Network.framework.
      */
+    @Deprecated
     @Bridge(symbol="SSLClose", optional=true)
     protected native OSStatus closeContext0();
     /**
      * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 13.0. No longer supported. Use Network.framework.
      */
+    @Deprecated
     @Bridge(symbol="SSLSetError", optional=true)
     protected native OSStatus setError0(OSStatus status);
     /*</methods>*/

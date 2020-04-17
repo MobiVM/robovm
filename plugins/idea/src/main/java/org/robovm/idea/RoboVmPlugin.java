@@ -22,7 +22,6 @@ import com.intellij.execution.ui.ConsoleView;
 import com.intellij.execution.ui.ConsoleViewContentType;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.compiler.CompileScope;
-import com.intellij.openapi.compiler.CompileTask;
 import com.intellij.openapi.compiler.CompilerManager;
 import com.intellij.openapi.module.Module;
 import com.intellij.openapi.module.ModuleManager;
@@ -35,14 +34,14 @@ import com.intellij.openapi.roots.OrderEnumerator;
 import com.intellij.openapi.roots.OrderRootType;
 import com.intellij.openapi.ui.MessageType;
 import com.intellij.openapi.vfs.VirtualFile;
-import com.intellij.openapi.vfs.VirtualFileAdapter;
-import com.intellij.openapi.vfs.VirtualFileEvent;
-import com.intellij.openapi.vfs.VirtualFileListener;
 import com.intellij.openapi.vfs.VirtualFileManager;
+import com.intellij.openapi.vfs.newvfs.BulkFileListener;
+import com.intellij.openapi.vfs.newvfs.events.VFileEvent;
 import com.intellij.openapi.wm.ToolWindow;
 import com.intellij.openapi.wm.ToolWindowAnchor;
 import com.intellij.openapi.wm.ToolWindowManager;
 import com.intellij.ui.content.Content;
+import com.intellij.util.PlatformUtils;
 import com.intellij.util.ui.UIUtil;
 import org.apache.commons.compress.archivers.ArchiveEntry;
 import org.apache.commons.compress.archivers.tar.TarArchiveInputStream;
@@ -57,10 +56,10 @@ import org.robovm.compiler.log.Logger;
 import org.robovm.idea.compilation.RoboVmCompileTask;
 import org.robovm.idea.config.RoboVmGlobalConfig;
 import org.robovm.idea.sdk.RoboVmSdkType;
+import org.robovm.idea.utils.RoboFileUtils;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
@@ -68,8 +67,8 @@ import java.io.StringWriter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -88,11 +87,11 @@ public class RoboVmPlugin {
     }
 
     static {
-        if(System.getProperty("os.name").contains("Mac")) {
+        if (System.getProperty("os.name").contains("Mac")) {
             os = OS.MacOsX;
-        } else if(System.getProperty("os.name").contains("Windows")) {
+        } else if (System.getProperty("os.name").contains("Windows")) {
             os = OS.Windows;
-        } else if(System.getProperty("os.name").contains("Linux")) {
+        } else if (System.getProperty("os.name").contains("Linux")) {
             os = OS.Linux;
         }
     }
@@ -101,8 +100,7 @@ public class RoboVmPlugin {
     private static OS os;
     static volatile Map<Project, ConsoleView> consoleViews = new ConcurrentHashMap<>();
     static volatile Map<Project, ToolWindow> toolWindows = new ConcurrentHashMap<>();
-    static volatile Map<Project, VirtualFileListener> fileListeners = new ConcurrentHashMap<>();
-    static final List<UnprintedMessage> unprintedMessages = new ArrayList<UnprintedMessage>();
+    static final List<UnprintedMessage> unprintedMessages = new ArrayList<>();
 
     /**
      * Formatter for the time stamp printed by the logger
@@ -111,97 +109,6 @@ public class RoboVmPlugin {
 
     public static OS getOs() {
         return os;
-    }
-
-    public static String getBestAndroidSdkVersion() {
-        int androidSdkVersion = 0;
-        File androidSdkDir = getBestAndroidSdkDir();
-        if(androidSdkDir == null) {
-            return "23";
-        }
-        File platformsDir = new File(androidSdkDir, "platforms");
-        for(File file: platformsDir.listFiles()) {
-            String[] tokens = file.getName().split("-");
-            if(tokens.length == 2) {
-                try {
-                    int version = Integer.parseInt(tokens[1]);
-                    if(version > androidSdkVersion) {
-                        androidSdkVersion = version;
-                    }
-                } catch(NumberFormatException e) {
-                    // nothing we can do
-                }
-            }
-        }
-        if(androidSdkVersion == 0) {
-            return "23";
-        } else {
-            return Integer.toString(androidSdkVersion);
-        }
-    }
-
-    public static String getBestAndroidBuildToolsVersion() {
-        int androidBuildToolsVersion = 0;
-        String androidBuildToolsVersionString = "";
-        File androidSdkDir = getBestAndroidSdkDir();
-        if(androidSdkDir == null) {
-            return "23.0.1";
-        }
-        File platformsDir = new File(androidSdkDir, "build-tools");
-        for(File file: platformsDir.listFiles()) {
-            String[] tokens = file.getName().split("\\.");
-            if(tokens.length == 3) {
-                try {
-                    int version = Integer.parseInt(tokens[0]) * 1000 * 1000 +
-                                  Integer.parseInt(tokens[1]) * 1000 +
-                                  Integer.parseInt(tokens[2]);
-                    if(version > androidBuildToolsVersion) {
-                        androidBuildToolsVersion = version;
-                        androidBuildToolsVersionString = file.getName();
-                    }
-                } catch(NumberFormatException e) {
-                    // nothing we can do
-                }
-            }
-        }
-        if(androidBuildToolsVersion == 0) {
-            return "23.0.1";
-        } else {
-            return androidBuildToolsVersionString;
-        }
-    }
-
-    public static File getBestAndroidSdkDir() {
-        Sdk bestSdk = null;
-        for (Sdk sdk : ProjectJdkTable.getInstance().getAllJdks()) {
-            if (sdk.getSdkType().getName().equals("Android SDK")) {
-                if(sdk.getHomePath().contains("/Library/RoboVM/")) {
-                    return new File(sdk.getHomePath());
-                } else {
-                    bestSdk = sdk;
-                }
-            }
-        }
-        return new File(bestSdk.getHomePath());
-    }
-
-
-    public static boolean isAndroidSdkInstalled(String sdkDir) {
-        File sdk = new File(sdkDir, os == OS.Windows? "tools/android.bat": "tools/android");
-        return sdk.exists();
-    }
-
-    public static boolean isAndroidSdkSetup() {
-        for (Sdk sdk : ProjectJdkTable.getInstance().getAllJdks()) {
-            if (sdk.getSdkType().getName().equals("Android SDK")) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public static boolean areAndroidComponentsInstalled(String sdkDir) {
-        return new File(sdkDir, "platforms").list().length > 0;
     }
 
     static class UnprintedMessage {
@@ -215,17 +122,14 @@ public class RoboVmPlugin {
     }
 
     public static void logBalloon(final Project project, final MessageType messageType, final String message) {
-        UIUtil.invokeLaterIfNeeded(new Runnable() {
-            @Override
-            public void run() {
-                if (project != null) {
-                    // this may throw an exception, see #88. It appears to be a timing
-                    // issue
-                    try {
-                        ToolWindowManager.getInstance(project).notifyByBalloon(ROBOVM_TOOLWINDOW_ID, MessageType.ERROR, message);
-                    } catch (Throwable t) {
-                        logError(project, message, t);
-                    }
+        UIUtil.invokeLaterIfNeeded(() -> {
+            if (project != null) {
+                // this may throw an exception, see #88. It appears to be a timing
+                // issue
+                try {
+                    ToolWindowManager.getInstance(project).notifyByBalloon(ROBOVM_TOOLWINDOW_ID, messageType, message);
+                } catch (Throwable t) {
+                    logError(project, message, t);
                 }
             }
         });
@@ -248,7 +152,8 @@ public class RoboVmPlugin {
         PrintWriter writer = new PrintWriter(stringWriter);
         t.printStackTrace(writer);
         log(project, ConsoleViewContentType.ERROR_OUTPUT, "[ERROR] %s\n%s", s, stringWriter.toString());
-        logBalloon(project, MessageType.ERROR, s);
+        if (showBalloon)
+            logBalloon(project, MessageType.ERROR, s);
     }
 
     public static void logWarn(Project project, String format, Object... args) {
@@ -261,23 +166,20 @@ public class RoboVmPlugin {
 
     private static void log(final Project project, final ConsoleViewContentType type, String format, Object... args) {
         final String s = String.format(format, args) + "\n";
-        UIUtil.invokeLaterIfNeeded(new Runnable() {
-            @Override
-            public void run() {
-                ConsoleView consoleView = project == null ? null : consoleViews.get(project);
-                if (consoleView != null) {
-                    for (UnprintedMessage unprinted : unprintedMessages) {
-                        consoleView.print(unprinted.string, unprinted.type);
-                    }
-                    unprintedMessages.clear();
-                    consoleView.print(s, type);
+        UIUtil.invokeLaterIfNeeded(() -> {
+            ConsoleView consoleView = project == null ? null : consoleViews.get(project);
+            if (consoleView != null) {
+                for (UnprintedMessage unprinted : unprintedMessages) {
+                    consoleView.print(unprinted.string, unprinted.type);
+                }
+                unprintedMessages.clear();
+                consoleView.print(s, type);
+            } else {
+                unprintedMessages.add(new UnprintedMessage(s, type));
+                if (type == ConsoleViewContentType.ERROR_OUTPUT) {
+                    System.err.print(s);
                 } else {
-                    unprintedMessages.add(new UnprintedMessage(s, type));
-                    if (type == ConsoleViewContentType.ERROR_OUTPUT) {
-                        System.err.print(s);
-                    } else {
-                        System.out.print(s);
-                    }
+                    System.out.print(s);
                 }
             }
         });
@@ -308,76 +210,59 @@ public class RoboVmPlugin {
     }
 
     public static void initializeProject(final Project project) {
-        // setup a compile task if there isn't one yet
-        boolean found = false;
-        for (CompileTask task : CompilerManager.getInstance(project).getAfterTasks()) {
-            if (task instanceof RoboVmCompileTask) {
-                found = true;
-                break;
-            }
-        }
-        if (!found) {
-            CompilerManager.getInstance(project).addAfterTask(new RoboVmCompileTask());
-        }
-
         // initialize our tool window to which we
         // log all messages
-        UIUtil.invokeLaterIfNeeded(new Runnable() {
-            @Override
-            public void run() {
-                if (project.isDisposed()) {
-                    return;
-                }
-                ToolWindow toolWindow = ToolWindowManager.getInstance(project).registerToolWindow(ROBOVM_TOOLWINDOW_ID, false, ToolWindowAnchor.BOTTOM, project, true);
-                ConsoleView consoleView = TextConsoleBuilderFactory.getInstance().createBuilder(project).getConsole();
-                Content content = toolWindow.getContentManager().getFactory().createContent(consoleView.getComponent(), "Console", true);
-                toolWindow.getContentManager().addContent(content);
-                toolWindow.setIcon(RoboVmIcons.ROBOVM_SMALL);
-                consoleViews.put(project, consoleView);
-                toolWindows.put(project, toolWindow);
-                logInfo(project, "RoboVM plugin initialized");
+        UIUtil.invokeLaterIfNeeded(() -> {
+            if (project.isDisposed()) {
+                return;
             }
+            ToolWindow toolWindow = ToolWindowManager.getInstance(project).registerToolWindow(ROBOVM_TOOLWINDOW_ID, false, ToolWindowAnchor.BOTTOM, project, true);
+            ConsoleView consoleView = TextConsoleBuilderFactory.getInstance().createBuilder(project).getConsole();
+            Content content = toolWindow.getContentManager().getFactory().createContent(consoleView.getComponent(), "Console", true);
+            toolWindow.getContentManager().addContent(content);
+            toolWindow.setIcon(RoboVmIcons.ROBOVM_SMALL);
+            consoleViews.put(project, consoleView);
+            toolWindows.put(project, toolWindow);
+            logInfo(project, "RoboVM plugin initialized");
         });
 
         // initialize virtual file change listener so we can
         // trigger recompiles on file saves
-        VirtualFileListener listener = new VirtualFileAdapter() {
+        BulkFileListener listener = new BulkFileListener() {
             @Override
-            public void contentsChanged(@NotNull VirtualFileEvent event) {
-                compileIfChanged(event, project);
+            public void after(@NotNull List<? extends VFileEvent> events) {
+                // handle the events
+                compileIfChanged(events, project);
             }
         };
-        VirtualFileManager.getInstance().addVirtualFileListener(listener);
-        fileListeners.put(project, listener);
+        project.getMessageBus().connect().subscribe(VirtualFileManager.VFS_CHANGES, listener);
     }
 
-    private static void compileIfChanged(VirtualFileEvent event, final Project project) {
-        if(!RoboVmGlobalConfig.isCompileOnSave()) {
+    private static void compileIfChanged(List<? extends VFileEvent> events, final Project project) {
+        if (!RoboVmGlobalConfig.isCompileOnSave()) {
             return;
         }
-        VirtualFile file = event.getFile();
-        Module module = null;
-        for(Module m: ModuleManager.getInstance(project).getModules()) {
-            if(ModuleRootManager.getInstance(m).getFileIndex().isInContent(file)) {
-                module = m;
-                break;
-            }
-        }
 
-        if(module != null) {
-            if(isRoboVmModule(module)) {
-                final Module foundModule = module;
-                OrderEntry orderEntry = ModuleRootManager.getInstance(module).getFileIndex().getOrderEntryForFile(file);
-                if(orderEntry != null && orderEntry.getFiles(OrderRootType.SOURCES).length != 0) {
-                    ApplicationManager.getApplication().invokeLater(new Runnable() {
-                        @Override
-                        public void run() {
-                            if(!CompilerManager.getInstance(project).isCompilationActive()) {
-                                CompileScope scope = CompilerManager.getInstance(project).createModuleCompileScope(foundModule, true);
+        // find out if RoboVM module was changed
+        for (VFileEvent event : events) {
+            VirtualFile file = event.getFile();
+            if (file == null)
+                continue;
+
+            for (Module module : ModuleManager.getInstance(project).getModules()) {
+                if (ModuleRootManager.getInstance(module).getFileIndex().isInContent(file) && isRoboVmModule(module)) {
+                    OrderEntry orderEntry = ModuleRootManager.getInstance(module).getFileIndex().getOrderEntryForFile(file);
+                    if (orderEntry != null && orderEntry.getFiles(OrderRootType.SOURCES).length != 0) {
+                        ApplicationManager.getApplication().invokeLater(() -> {
+                            if (!CompilerManager.getInstance(project).isCompilationActive()) {
+                                CompileScope scope = CompilerManager.getInstance(project).createModuleCompileScope(module, true);
                                 CompilerManager.getInstance(project).compile(scope, null);
                             }
-                        }
-                    });
+                        });
+                    }
+
+                    // processed
+                    return;
                 }
             }
         }
@@ -390,7 +275,6 @@ public class RoboVmPlugin {
         }
         toolWindows.remove(project);
         ToolWindowManager.getInstance(project).unregisterToolWindow(ROBOVM_TOOLWINDOW_ID);
-        VirtualFileManager.getInstance().removeVirtualFileListener(fileListeners.remove(project));
     }
 
     public static void extractSdk() {
@@ -408,8 +292,7 @@ public class RoboVmPlugin {
     }
 
     public static File getSdkHome() {
-        File sdkHome = new File(getSdkHomeBase(), "robovm-" + Version.getVersion());
-        return sdkHome;
+        return new File(getSdkHomeBase(), "robovm-" + Version.getVersion());
     }
 
     public static File getSdkHomeBase() {
@@ -418,8 +301,8 @@ public class RoboVmPlugin {
 
     public static Sdk getSdk() {
         RoboVmSdkType sdkType = new RoboVmSdkType();
-        for(Sdk sdk: ProjectJdkTable.getInstance().getAllJdks()) {
-            if(sdkType.suggestSdkName(null, null).equals(sdk.getName())) {
+        for (Sdk sdk : ProjectJdkTable.getInstance().getAllJdks()) {
+            if (sdkType.suggestSdkName(null, null).equals(sdk.getName())) {
                 return sdk;
             }
         }
@@ -428,34 +311,26 @@ public class RoboVmPlugin {
 
     private static void extractArchive(String archive, File dest) {
         archive = "/" + archive;
-        TarArchiveInputStream in = null;
-        try {
+        try (TarArchiveInputStream in = new TarArchiveInputStream(new GZIPInputStream(RoboVmPlugin.class.getResourceAsStream(archive)))) {
             boolean filesWereUpdated = false;
-            in = new TarArchiveInputStream(new GZIPInputStream(RoboVmPlugin.class.getResourceAsStream(archive)));
-            ArchiveEntry entry = null;
+            ArchiveEntry entry;
             while ((entry = in.getNextEntry()) != null) {
                 File f = new File(dest, entry.getName());
                 if (entry.isDirectory()) {
-                    f.mkdirs();
+                    RoboFileUtils.mkdirs(f);
                 } else {
                     // skip extracting if file looks to be same as in archive (ts and size matches)
                     if (f.exists() && f.lastModified() == entry.getLastModifiedDate().getTime() && f.length() == entry.getSize()) {
                         continue;
                     }
-                    f.getParentFile().mkdirs();
-                    OutputStream out = null;
-                    try {
-                        out = new FileOutputStream(f);
+                    RoboFileUtils.mkdirs(f.getParentFile());
+                    try (OutputStream out = new FileOutputStream(f)) {
                         IOUtils.copy(in, out);
-                        IOUtils.closeQuietly(out);
-                        out = null;
-                        // set last modification time stamp as it was inside tar otherwise
-                        // robovm will see new time stamp and will rebuild all classes that were inside jar
-                        f.setLastModified(entry.getLastModifiedDate().getTime());
-                    } finally {
-                        if (out != null)
-                            IOUtils.closeQuietly(out);
                     }
+
+                    // set last modification time stamp as it was inside tar otherwise
+                    // robovm will see new time stamp and will rebuild all classes that were inside jar
+                    RoboFileUtils.setLastModified(f, entry.getLastModifiedDate().getTime());
 
                     // mark that there was a change to SDK files
                     filesWereUpdated = true;
@@ -472,14 +347,12 @@ public class RoboVmPlugin {
                 }
             }
 
-            for (File file : new File(getSdkHome(), "bin").listFiles()) {
-                file.setExecutable(true);
+            for (File file : RoboFileUtils.listFiles(new File(getSdkHome(), "bin"))) {
+                RoboFileUtils.setExecutable(file, true);
             }
         } catch (Throwable t) {
             logError(null, "Couldn't extract SDK to %s", dest.getAbsolutePath());
             throw new RuntimeException("Couldn't extract SDK to " + dest.getAbsolutePath(), t);
-        } finally {
-            IOUtils.closeQuietly(in);
         }
     }
 
@@ -487,29 +360,26 @@ public class RoboVmPlugin {
      * @return all sdk runtime libraries and their source jars
      */
     public static List<File> getSdkLibraries() {
-        List<File> libs = new ArrayList<File>();
+        List<File> libs = new ArrayList<>();
 
         Config.Home home = getRoboVmHome();
         if (home.isDev()) {
             // ROBOVM_DEV_ROOT has been set (rtPath points to $ROBOVM_DEV_ROOT/rt/target/robovm-rt-<version>.jar).
             File rootDir = home.getRtPath().getParentFile().getParentFile().getParentFile();
-            libs.add(new File(rootDir, "objc/target/robovm-objc-" + Version.getVersion() +  ".jar"));
-            libs.add(new File(rootDir, "objc/target/robovm-objc-" + Version.getVersion() +  "-sources.jar"));
-            libs.add(new File(rootDir, "cocoatouch/target/robovm-cocoatouch-" + Version.getVersion() +  ".jar"));
-            libs.add(new File(rootDir, "cocoatouch/target/robovm-cocoatouch-" + Version.getVersion() +  "-sources.jar"));
-            libs.add(new File(rootDir, "rt/target/robovm-rt-" + Version.getVersion() +  ".jar"));
-            libs.add(new File(rootDir, "rt/target/robovm-rt-" + Version.getVersion() +  "-sources.jar"));
-            libs.add(new File(rootDir, "cacerts/full/target/robovm-cacerts-full-" + Version.getVersion() +  ".jar"));
+            libs.add(new File(rootDir, "objc/target/robovm-objc-" + Version.getVersion() + ".jar"));
+            libs.add(new File(rootDir, "objc/target/robovm-objc-" + Version.getVersion() + "-sources.jar"));
+            libs.add(new File(rootDir, "cocoatouch/target/robovm-cocoatouch-" + Version.getVersion() + ".jar"));
+            libs.add(new File(rootDir, "cocoatouch/target/robovm-cocoatouch-" + Version.getVersion() + "-sources.jar"));
+            libs.add(new File(rootDir, "rt/target/robovm-rt-" + Version.getVersion() + ".jar"));
+            libs.add(new File(rootDir, "rt/target/robovm-rt-" + Version.getVersion() + "-sources.jar"));
+            libs.add(new File(rootDir, "cacerts/full/target/robovm-cacerts-full-" + Version.getVersion() + ".jar"));
         } else {
             // normal run
             File libsDir = new File(getSdkHome(), "lib");
-            for (File file : libsDir.listFiles(new FilenameFilter() {
-                @Override
-                public boolean accept(File dir, String name) {
-                    return name.endsWith(".jar") && !name.contains("cacerts");
-                }
-            })) {
-                libs.add(file);
+            try {
+                libs.addAll(Arrays.asList(RoboFileUtils.listFiles(libsDir, (dir, name) -> name.endsWith(".jar") && !name.contains("cacerts"))));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
         }
         return libs;
@@ -520,13 +390,7 @@ public class RoboVmPlugin {
      */
     public static List<File> getSdkLibrariesWithoutSources() {
         List<File> libs = getSdkLibraries();
-        Iterator<File> iter = libs.iterator();
-        while(iter.hasNext()) {
-            File file = iter.next();
-            if(file.getName().endsWith("-sources.jar") || file.getName().endsWith("-javadoc.jar")) {
-                iter.remove();
-            }
-        }
+        libs.removeIf(file -> file.getName().endsWith("-sources.jar") || file.getName().endsWith("-javadoc.jar"));
         return libs;
     }
 
@@ -535,20 +399,14 @@ public class RoboVmPlugin {
      */
     public static List<File> getSdkLibrarySources() {
         List<File> libs = getSdkLibraries();
-        Iterator<File> iter = libs.iterator();
-        while(iter.hasNext()) {
-            File file = iter.next();
-            if(!file.getName().endsWith("-sources.jar")) {
-                iter.remove();
-            }
-        }
+        libs.removeIf(file -> !file.getName().endsWith("-sources.jar"));
         return libs;
     }
 
     public static Config.Home getRoboVmHome() {
         try {
             return Config.Home.find();
-        } catch(Throwable t) {
+        } catch (Throwable t) {
             return new Config.Home(getSdkHome());
         }
     }
@@ -558,7 +416,7 @@ public class RoboVmPlugin {
     }
 
     public static List<Module> getRoboVmModules(Project project, String targetType) {
-        List<Module> validModules = new ArrayList<Module>();
+        List<Module> validModules = new ArrayList<>();
         for (Module module : ModuleManager.getInstance(project).getModules()) {
             if (!isRoboVmModule(module))
                 continue;
@@ -570,7 +428,7 @@ public class RoboVmPlugin {
                 if (config == null)
                     continue;
                 if (!targetType.equals(config.getTargetType()))
-                    continue;;
+                    continue;
             }
             validModules.add(module);
         }
@@ -579,10 +437,9 @@ public class RoboVmPlugin {
 
     public static boolean isRoboVmModule(Module module) {
         // HACK! to identify if the module uses a robovm sdk
-        if (ModuleRootManager.getInstance(module).getSdk() != null) {
-            if (ModuleRootManager.getInstance(module).getSdk().getSdkType().getName().toLowerCase().contains("robovm")) {
-                return true;
-            }
+        Sdk sdk = ModuleRootManager.getInstance(module).getSdk();
+        if (sdk != null && sdk.getSdkType().getName().toLowerCase().contains("robovm")) {
+            return true;
         }
 
         // check if there's any RoboVM RT libs in the classpath
@@ -594,8 +451,8 @@ public class RoboVmPlugin {
         }
 
         // check if there's a robovm.xml file in the root of the module
-        for(VirtualFile file: ModuleRootManager.getInstance(module).getContentRoots()) {
-            if(file.findChild("robovm.xml") != null) {
+        for (VirtualFile file : ModuleRootManager.getInstance(module).getContentRoots()) {
+            if (file.findChild("robovm.xml") != null) {
                 return true;
             }
         }
@@ -604,8 +461,8 @@ public class RoboVmPlugin {
     }
 
     public static Config loadRawModuleConfig(Module module) {
-        for(VirtualFile file: ModuleRootManager.getInstance(module).getContentRoots()) {
-            if(file.findChild("robovm.xml") != null) {
+        for (VirtualFile file : ModuleRootManager.getInstance(module).getContentRoots()) {
+            if (file.findChild("robovm.xml") != null) {
                 try {
                     File contentRoot = new File(file.getPath());
                     return Config.loadRawConfig(contentRoot);
@@ -619,18 +476,11 @@ public class RoboVmPlugin {
 
 
     public static void focusToolWindow(final Project project) {
-        UIUtil.invokeLaterIfNeeded(new Runnable() {
-            @Override
-            public void run() {
-                ToolWindow toolWindow = toolWindows.get(project);
-                if(toolWindow != null) {
-                    toolWindow.show(new Runnable() {
-                        @Override
-                        public void run() {
-
-                        }
-                    });
-                }
+        UIUtil.invokeLaterIfNeeded(() -> {
+            ToolWindow toolWindow = toolWindows.get(project);
+            if (toolWindow != null) {
+                toolWindow.show(() -> {
+                });
             }
         });
     }
@@ -667,7 +517,7 @@ public class RoboVmPlugin {
 
     public static File getModuleClassesDir(String moduleBaseDir) {
         File classesDir = new File(moduleBaseDir, "robovm-build/classes/");
-        if(!classesDir.exists()) {
+        if (!classesDir.exists()) {
             if (!classesDir.mkdirs()) {
                 throw new RuntimeException("Couldn't create classes dir '" + classesDir.getAbsolutePath() + "'");
             }
@@ -723,5 +573,12 @@ public class RoboVmPlugin {
 
     public static boolean isBootClasspathLibrary(File path) {
         return path.getName().startsWith("robovm-rt");
+    }
+
+    /**
+     * finds out if plugin is running in android studio
+     */
+    public static boolean isAndroidStudio() {
+        return "AndroidStudio".equals(PlatformUtils.getPlatformPrefix());
     }
 }

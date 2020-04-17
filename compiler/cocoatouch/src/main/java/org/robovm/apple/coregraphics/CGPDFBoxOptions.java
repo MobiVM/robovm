@@ -108,9 +108,6 @@ import org.robovm.apple.uikit.*;
     }
     
 
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public CGRect getMediaBox() {
         if (has(Keys.MediaBox())) {
             NSData val = get(Keys.MediaBox(), NSData.class);
@@ -118,16 +115,10 @@ import org.robovm.apple.uikit.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public CGPDFBoxOptions setMediaBox(CGRect mediaBox) {
         set(Keys.MediaBox(), new NSData(mediaBox));
         return this;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public CGRect getCropBox() {
         if (has(Keys.CropBox())) {
             NSData val = get(Keys.CropBox(), NSData.class);
@@ -135,16 +126,10 @@ import org.robovm.apple.uikit.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public CGPDFBoxOptions setCropBox(CGRect cropBox) {
         set(Keys.CropBox(), new NSData(cropBox));
         return this;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public CGRect getBleedBox() {
         if (has(Keys.BleedBox())) {
             NSData val = get(Keys.BleedBox(), NSData.class);
@@ -152,16 +137,10 @@ import org.robovm.apple.uikit.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public CGPDFBoxOptions setBleedBox(CGRect bleedBox) {
         set(Keys.BleedBox(), new NSData(bleedBox));
         return this;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public CGRect getTrimBox() {
         if (has(Keys.TrimBox())) {
             NSData val = get(Keys.TrimBox(), NSData.class);
@@ -169,16 +148,10 @@ import org.robovm.apple.uikit.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public CGPDFBoxOptions setTrimBox(CGRect trimBox) {
         set(Keys.TrimBox(), new NSData(trimBox));
         return this;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public CGRect getArtBox() {
         if (has(Keys.ArtBox())) {
             NSData val = get(Keys.ArtBox(), NSData.class);
@@ -186,9 +159,6 @@ import org.robovm.apple.uikit.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public CGPDFBoxOptions setArtBox(CGRect artBox) {
         set(Keys.ArtBox(), new NSData(artBox));
         return this;
@@ -199,29 +169,14 @@ import org.robovm.apple.uikit.*;
     @Library("CoreGraphics")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCGPDFContextMediaBox", optional=true)
         public static native CFString MediaBox();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCGPDFContextCropBox", optional=true)
         public static native CFString CropBox();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCGPDFContextBleedBox", optional=true)
         public static native CFString BleedBox();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCGPDFContextTrimBox", optional=true)
         public static native CFString TrimBox();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCGPDFContextArtBox", optional=true)
         public static native CFString ArtBox();
     }

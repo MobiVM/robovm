@@ -35,9 +35,7 @@ import org.robovm.apple.avkit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 7.1 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("iAd") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/ADClient/*</name>*/ 
@@ -57,14 +55,12 @@ import org.robovm.apple.avkit.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @since Available in iOS 7.1 and later.
      * @deprecated Deprecated in iOS 9.0. Use requestAttributionDetailsWithBlock instead.
      */
     @Deprecated
     @Method(selector = "determineAppInstallationAttributionWithCompletionHandler:")
     public native void determineAppInstallationAttribution(@Block VoidBooleanBlock completionHandler);
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 9.0. Use requestAttributionDetailsWithBlock instead.
      */
     @Deprecated
@@ -76,13 +72,11 @@ import org.robovm.apple.avkit.*;
     @Method(selector = "requestAttributionDetailsWithBlock:")
     public native void requestAttributionDetails(@Block VoidBlock2<NSDictionary<?, ?>, NSError> completionHandler);
     /**
-     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 13.0.
      */
+    @Deprecated
     @Method(selector = "addClientToSegments:replaceExisting:")
     public native void addClientToSegments(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> segmentIdentifiers, boolean replaceExisting);
-    /**
-     * @since Available in iOS 7.1 and later.
-     */
     @Method(selector = "sharedClient")
     public static native ADClient getSharedClient();
     /*</methods>*/

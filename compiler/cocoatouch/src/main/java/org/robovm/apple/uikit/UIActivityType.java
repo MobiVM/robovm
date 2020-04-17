@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -54,74 +56,32 @@ import org.robovm.apple.intents.*;
     /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @GlobalValue(symbol="UIActivityTypePostToFacebook", optional=true)
     public static native String PostToFacebook();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @GlobalValue(symbol="UIActivityTypePostToTwitter", optional=true)
     public static native String PostToTwitter();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @GlobalValue(symbol="UIActivityTypePostToWeibo", optional=true)
     public static native String PostToWeibo();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @GlobalValue(symbol="UIActivityTypeMessage", optional=true)
     public static native String Message();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @GlobalValue(symbol="UIActivityTypeMail", optional=true)
     public static native String Mail();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @GlobalValue(symbol="UIActivityTypePrint", optional=true)
     public static native String Print();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @GlobalValue(symbol="UIActivityTypeCopyToPasteboard", optional=true)
     public static native String CopyToPasteboard();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @GlobalValue(symbol="UIActivityTypeAssignToContact", optional=true)
     public static native String AssignToContact();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @GlobalValue(symbol="UIActivityTypeSaveToCameraRoll", optional=true)
     public static native String SaveToCameraRoll();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @GlobalValue(symbol="UIActivityTypeAddToReadingList", optional=true)
     public static native String AddToReadingList();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @GlobalValue(symbol="UIActivityTypePostToFlickr", optional=true)
     public static native String PostToFlickr();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @GlobalValue(symbol="UIActivityTypePostToVimeo", optional=true)
     public static native String PostToVimeo();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @GlobalValue(symbol="UIActivityTypePostToTencentWeibo", optional=true)
     public static native String PostToTencentWeibo();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @GlobalValue(symbol="UIActivityTypeAirDrop", optional=true)
     public static native String AirDrop();
     /**

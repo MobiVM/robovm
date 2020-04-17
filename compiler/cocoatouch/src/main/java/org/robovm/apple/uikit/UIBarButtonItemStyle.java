@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -47,7 +49,6 @@ public enum /*<name>*/UIBarButtonItemStyle/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Plain(0L),
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 8.0. Use UIBarButtonItemStylePlain when minimum deployment target is iOS7 or later
      */
     @Deprecated

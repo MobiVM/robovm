@@ -86,29 +86,14 @@ import org.robovm.apple.dispatch.*;
     public native String getGloballyUniqueString();
     @Property(selector = "operatingSystemVersionString")
     public native String getOperatingSystemVersionString();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "operatingSystemVersion")
     public native @ByVal NSOperatingSystemVersion getOperatingSystemVersion();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Property(selector = "processorCount")
     public native @MachineSizedUInt long getProcessorCount();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Property(selector = "activeProcessorCount")
     public native @MachineSizedUInt long getActiveProcessorCount();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Property(selector = "physicalMemory")
     public native long getPhysicalMemory();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "systemUptime")
     public native double getSystemUptime();
     /**
@@ -121,6 +106,11 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "isLowPowerModeEnabled")
     public native boolean isLowPowerModeEnabled();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "isMacCatalystApp")
+    public native boolean isMacCatalystApp();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -136,37 +126,23 @@ import org.robovm.apple.dispatch.*;
     public static native NSString PowerStateDidChangeNotification();
     
     /**
-     * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. -operatingSystem always returns NSMACHOperatingSystem, use -operatingSystemVersion or -isOperatingSystemAtLeastVersion: instead
      */
     @Deprecated
     @Method(selector = "operatingSystem")
     public native NSOperatingSystem getOperatingSystem();
     /**
-     * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. -operatingSystemName always returns NSMACHOperatingSystem, use -operatingSystemVersionString instead
      */
     @Deprecated
     @Method(selector = "operatingSystemName")
     public native String getOperatingSystemName();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "isOperatingSystemAtLeastVersion:")
     public native boolean isOperatingSystemAtLeastVersion(@ByVal NSOperatingSystemVersion version);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "beginActivityWithOptions:reason:")
     public native NSObject beginActivity(NSActivityOptions options, String reason);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "endActivity:")
     public native void endActivity(NSObject activity);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "performActivityWithOptions:reason:usingBlock:")
     public native void performActivity(NSActivityOptions options, String reason, @Block Runnable block);
     /**

@@ -31,6 +31,7 @@ import java.util.Arrays;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.robovm.compiler.ClassPathUtils;
 import org.robovm.compiler.ModuleBuilder;
 import org.robovm.compiler.clazz.Clazz;
 import org.robovm.compiler.clazz.Dependency;
@@ -49,8 +50,8 @@ public class AnnotationImplPluginTest {
     @BeforeClass
     public static void initialize() throws IOException {
         Builder builder = new Builder();
-        for (String p : System.getProperty("sun.boot.class.path").split(File.pathSeparator)) {
-            builder.addBootClasspathEntry(new File(p));
+        for (File p : ClassPathUtils.getBcPaths()) {
+            builder.addBootClasspathEntry(p);
         }
         for (String p : System.getProperty("java.class.path").split(File.pathSeparator)) {
             builder.addClasspathEntry(new File(p));
@@ -306,11 +307,10 @@ public class AnnotationImplPluginTest {
         assertSame(annotation.annotationType(), impl1.annotationType());
         
         // We cannot require that toString() returns the same string as the ref
-        // impl does. We lay out members as they occur in the annotation definition
-        // while the ref impl orders them differently. We can however check that the
-        // number of chars and the sum of all chars are the same.
-        assertEquals(annotation.toString().length(), impl1.toString().length());
-        assertEquals(sum(annotation.toString()), sum(impl1.toString()));
+        // impl does.
+        // dkimitsa: this test removed as JDK12 produces quite different toString(), examples:
+        // class1=java.lang.Integer.class vs class1=class java.lang.Integer
+        // strings1={"c", "b", "a"})      vs strings1=[c, b, a]
     }
 
     @Test
@@ -321,15 +321,7 @@ public class AnnotationImplPluginTest {
         assertTrue(impl.anno1() instanceof Anno1);
         assertTrue(impl.anno2() instanceof Anno2);
     }
-    
-    private int sum(String s) {
-        int sum = 0;
-        for (int i = 0; i < s.length(); i++) {
-            sum += s.charAt(i);
-        }
-        return sum;
-    }
-    
+
     private void setAnnotationMemberValue(Object anno, String memberName, Object value) throws Exception {
         Field f = anno.getClass().getDeclaredField("m$" + memberName);
         f.setAccessible(true);

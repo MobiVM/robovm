@@ -9,6 +9,7 @@ typedefs: {}
     
 enums:
     AVKitError: {name: AVKitErrorCode}
+    AVAudioSessionRouteSelection: {} #since 13.0
 
 classes:
     AVKitError: # DONE
@@ -60,6 +61,10 @@ protocols:
                 name: shouldAutomaticallyDismissAtPictureInPictureStart
             '-playerViewController:restoreUserInterfaceForPictureInPictureStopWithCompletionHandler:':
                 name: restoreUserInterfaceForPictureInPictureStop
+            '-playerViewController:willBeginFullScreenPresentationWithAnimationCoordinator:':
+                name: willBeginFullScreenPresentation
+            '-playerViewController:willEndFullScreenPresentationWithAnimationCoordinator:':
+                name: willEndFullScreenPresentation
     AVRoutePickerViewDelegate:
         methods:
             '-routePickerViewWillBeginPresentingRoutes:':

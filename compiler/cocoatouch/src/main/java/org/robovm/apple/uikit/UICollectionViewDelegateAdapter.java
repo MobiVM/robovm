@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -71,24 +73,30 @@ import org.robovm.apple.intents.*;
     public void didSelectItem(UICollectionView collectionView, NSIndexPath indexPath) {}
     @NotImplemented("collectionView:didDeselectItemAtIndexPath:")
     public void didDeselectItem(UICollectionView collectionView, NSIndexPath indexPath) {}
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @NotImplemented("collectionView:willDisplayCell:forItemAtIndexPath:")
     public void willDisplayCell(UICollectionView collectionView, UICollectionViewCell cell, NSIndexPath indexPath) {}
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @NotImplemented("collectionView:willDisplaySupplementaryView:forElementKind:atIndexPath:")
     public void willDisplaySupplementaryView(UICollectionView collectionView, UICollectionReusableView view, String elementKind, NSIndexPath indexPath) {}
     @NotImplemented("collectionView:didEndDisplayingCell:forItemAtIndexPath:")
     public void didEndDisplayingCell(UICollectionView collectionView, UICollectionViewCell cell, NSIndexPath indexPath) {}
     @NotImplemented("collectionView:didEndDisplayingSupplementaryView:forElementOfKind:atIndexPath:")
     public void didEndDisplayingSupplementaryView(UICollectionView collectionView, UICollectionReusableView view, String elementKind, NSIndexPath indexPath) {}
+    /**
+     * @deprecated Deprecated in iOS 13.0. Use collectionView:contextMenuConfigurationForRowAtIndexPath:
+     */
+    @Deprecated
     @NotImplemented("collectionView:shouldShowMenuForItemAtIndexPath:")
     public boolean shouldShowMenuForItem(UICollectionView collectionView, NSIndexPath indexPath) { return false; }
+    /**
+     * @deprecated Deprecated in iOS 13.0. Use collectionView:contextMenuConfigurationForRowAtIndexPath:
+     */
+    @Deprecated
     @NotImplemented("collectionView:canPerformAction:forItemAtIndexPath:withSender:")
     public boolean canPerformAction(UICollectionView collectionView, Selector action, NSIndexPath indexPath, NSObject sender) { return false; }
+    /**
+     * @deprecated Deprecated in iOS 13.0. Use collectionView:contextMenuConfigurationForRowAtIndexPath:
+     */
+    @Deprecated
     @NotImplemented("collectionView:performAction:forItemAtIndexPath:withSender:")
     public void performAction(UICollectionView collectionView, Selector action, NSIndexPath indexPath, NSObject sender) {}
     @NotImplemented("collectionView:transitionLayoutForOldLayout:newLayout:")
@@ -128,5 +136,40 @@ import org.robovm.apple.intents.*;
      */
     @NotImplemented("collectionView:shouldSpringLoadItemAtIndexPath:withContext:")
     public boolean shouldSpringLoadItem(UICollectionView collectionView, NSIndexPath indexPath, UISpringLoadedInteractionContext context) { return false; }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("collectionView:shouldBeginMultipleSelectionInteractionAtIndexPath:")
+    public boolean shouldBeginMultipleSelectionInteraction(UICollectionView collectionView, NSIndexPath indexPath) { return false; }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("collectionView:didBeginMultipleSelectionInteractionAtIndexPath:")
+    public void didBeginMultipleSelectionInteraction(UICollectionView collectionView, NSIndexPath indexPath) {}
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("collectionViewDidEndMultipleSelectionInteraction:")
+    public void collectionViewDidEndMultipleSelectionInteraction(UICollectionView collectionView) {}
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("collectionView:contextMenuConfigurationForItemAtIndexPath:point:")
+    public UIContextMenuConfiguration getContextMenuConfiguration(UICollectionView collectionView, NSIndexPath indexPath, @ByVal CGPoint point) { return null; }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("collectionView:previewForHighlightingContextMenuWithConfiguration:")
+    public UITargetedPreview getPreviewForHighlightingContextMenu(UICollectionView collectionView, UIContextMenuConfiguration configuration) { return null; }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("collectionView:previewForDismissingContextMenuWithConfiguration:")
+    public UITargetedPreview getPreviewForDismissingContextMenu(UICollectionView collectionView, UIContextMenuConfiguration configuration) { return null; }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("collectionView:willPerformPreviewActionForMenuWithConfiguration:animator:")
+    public void willPerformPreviewAction(UICollectionView collectionView, UIContextMenuConfiguration configuration, UIContextMenuInteractionCommitAnimating animator) {}
     /*</methods>*/
 }

@@ -62,6 +62,7 @@ LsetStackArgsDone:
     blx  r9
 
     @ Restore sp to what it was before we pushed the stack args
-    sub sp, r7, #4
+    sub r7, r7, #4
+    mov sp, r7
 
     pop {r4, r7, pc}

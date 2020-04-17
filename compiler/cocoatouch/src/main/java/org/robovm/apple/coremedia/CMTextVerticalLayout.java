@@ -90,13 +90,7 @@ import org.robovm.apple.audiotoolbox.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final CMTextVerticalLayout LeftToRight = new CMTextVerticalLayout("LeftToRight");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final CMTextVerticalLayout RightToLeft = new CMTextVerticalLayout("RightToLeft");
     /*</constants>*/
     
@@ -123,14 +117,8 @@ import org.robovm.apple.audiotoolbox.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kCMTextVerticalLayout_LeftToRight", optional=true)
         public static native CFString LeftToRight();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kCMTextVerticalLayout_RightToLeft", optional=true)
         public static native CFString RightToLeft();
         /*</values>*/

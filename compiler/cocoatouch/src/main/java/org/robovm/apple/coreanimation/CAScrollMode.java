@@ -92,21 +92,9 @@ import org.robovm.apple.metal.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CAScrollMode None = new CAScrollMode("None");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CAScrollMode Vertically = new CAScrollMode("Vertically");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CAScrollMode Horizontally = new CAScrollMode("Horizontally");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CAScrollMode Both = new CAScrollMode("Both");
     /*</constants>*/
     
@@ -133,24 +121,12 @@ import org.robovm.apple.metal.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCAScrollNone", optional=true)
         public static native NSString None();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCAScrollVertically", optional=true)
         public static native NSString Vertically();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCAScrollHorizontally", optional=true)
         public static native NSString Horizontally();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCAScrollBoth", optional=true)
         public static native NSString Both();
         /*</values>*/

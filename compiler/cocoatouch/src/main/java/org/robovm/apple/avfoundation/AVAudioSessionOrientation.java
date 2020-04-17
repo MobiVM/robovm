@@ -97,29 +97,11 @@ import org.robovm.apple.audiotoolbox.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final AVAudioSessionOrientation Top = new AVAudioSessionOrientation("Top");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final AVAudioSessionOrientation Bottom = new AVAudioSessionOrientation("Bottom");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final AVAudioSessionOrientation Front = new AVAudioSessionOrientation("Front");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final AVAudioSessionOrientation Back = new AVAudioSessionOrientation("Back");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVAudioSessionOrientation Left = new AVAudioSessionOrientation("Left");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVAudioSessionOrientation Right = new AVAudioSessionOrientation("Right");
     /*</constants>*/
     
@@ -146,34 +128,16 @@ import org.robovm.apple.audiotoolbox.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="AVAudioSessionOrientationTop", optional=true)
         public static native NSString Top();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="AVAudioSessionOrientationBottom", optional=true)
         public static native NSString Bottom();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="AVAudioSessionOrientationFront", optional=true)
         public static native NSString Front();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="AVAudioSessionOrientationBack", optional=true)
         public static native NSString Back();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVAudioSessionOrientationLeft", optional=true)
         public static native NSString Left();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVAudioSessionOrientationRight", optional=true)
         public static native NSString Right();
         /*</values>*/

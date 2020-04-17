@@ -585,65 +585,29 @@ import org.robovm.apple.audiotoolbox.*;
     @Bridge(symbol="CMSampleBufferGetImageBuffer", optional=true)
     public native CVPixelBuffer getPixelBuffer();
     /*<methods>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @GlobalValue(symbol="kCMSampleBufferNotification_DataBecameReady", optional=true)
     public static native NSString DataBecameReadyNotification();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @GlobalValue(symbol="kCMSampleBufferNotification_DataFailed", optional=true)
     public static native NSString DataFailedNotification();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @GlobalValue(symbol="kCMSampleBufferNotificationParameter_OSStatus", optional=true)
     protected static native NSString OSStatusNotificationParameter();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @GlobalValue(symbol="kCMSampleBufferConduitNotification_InhibitOutputUntil", optional=true)
     public static native NSString InhibitOutputUntilConduitNotification();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @GlobalValue(symbol="kCMSampleBufferConduitNotificationParameter_ResumeTag", optional=true)
     protected static native NSString ResumeTagConduitNotificationParameter();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @GlobalValue(symbol="kCMSampleBufferConduitNotification_ResetOutput", optional=true)
     public static native NSString ResetOutputConduitNotification();
-    /**
-     * @since Available in iOS 4.3 and later.
-     */
     @GlobalValue(symbol="kCMSampleBufferConduitNotification_UpcomingOutputPTSRangeChanged", optional=true)
     public static native NSString UpcomingOutputPTSRangeChangedConduitNotification();
-    /**
-     * @since Available in iOS 4.3 and later.
-     */
     @GlobalValue(symbol="kCMSampleBufferConduitNotificationParameter_UpcomingOutputPTSRangeMayOverlapQueuedOutputPTSRange", optional=true)
     protected static native NSString UpcomingOutputPTSRangeMayOverlapQueuedOutputPTSRangeConduitNotificationParameter();
-    /**
-     * @since Available in iOS 4.3 and later.
-     */
     @GlobalValue(symbol="kCMSampleBufferConduitNotificationParameter_MinUpcomingOutputPTS", optional=true)
     protected static native NSString MinUpcomingOutputPTSConduitNotificationParameter();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @GlobalValue(symbol="kCMSampleBufferConduitNotificationParameter_MaxUpcomingOutputPTS", optional=true)
     protected static native NSString MaxUpcomingOutputPTSConduitNotificationParameter();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @GlobalValue(symbol="kCMSampleBufferConsumerNotification_BufferConsumed", optional=true)
     public static native NSString BufferConsumedConsumerNotification();
     
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @WeaklyLinked
     @Bridge(symbol="CMSampleBufferCreate", optional=true)
     protected static native OSStatus create0(CFAllocator allocator, CMBlockBuffer dataBuffer, boolean dataReady, FunctionPtr makeDataReadyCallback, @Pointer long makeDataReadyRefcon, CMFormatDescription formatDescription, @MachineSizedSInt long numSamples, @MachineSizedSInt long numSampleTimingEntries, CMSampleTimingInfo sampleTimingArray, @MachineSizedSInt long numSampleSizeEntries, MachineSizedUIntPtr sampleSizeArray, CMSampleBuffer.CMSampleBufferPtr sampleBufferOut);
@@ -653,15 +617,9 @@ import org.robovm.apple.audiotoolbox.*;
     @WeaklyLinked
     @Bridge(symbol="CMSampleBufferCreateWithMakeDataReadyHandler", optional=true)
     protected static native OSStatus createWithMakeDataReadyHandler0(CFAllocator allocator, CMBlockBuffer dataBuffer, boolean dataReady, CMFormatDescription formatDescription, @MachineSizedSInt long numSamples, @MachineSizedSInt long numSampleTimingEntries, CMSampleTimingInfo sampleTimingArray, @MachineSizedSInt long numSampleSizeEntries, MachineSizedUIntPtr sampleSizeArray, CMSampleBuffer.CMSampleBufferPtr sampleBufferOut, @Block Block1<CMSampleBuffer, OSStatus> makeDataReadyHandler);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @WeaklyLinked
     @Bridge(symbol="CMSampleBufferCreateReady", optional=true)
     protected static native OSStatus createReady0(CFAllocator allocator, CMBlockBuffer dataBuffer, CMFormatDescription formatDescription, @MachineSizedSInt long numSamples, @MachineSizedSInt long numSampleTimingEntries, CMSampleTimingInfo sampleTimingArray, @MachineSizedSInt long numSampleSizeEntries, MachineSizedUIntPtr sampleSizeArray, CMSampleBuffer.CMSampleBufferPtr sampleBufferOut);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @WeaklyLinked
     @Bridge(symbol="CMAudioSampleBufferCreateWithPacketDescriptions", optional=true)
     protected static native OSStatus createAudioSampleBuffer0(CFAllocator allocator, CMBlockBuffer dataBuffer, boolean dataReady, FunctionPtr makeDataReadyCallback, @Pointer long makeDataReadyRefcon, CMFormatDescription formatDescription, @MachineSizedSInt long numSamples, @ByVal CMTime presentationTimeStamp, AudioStreamPacketDescription packetDescriptions, CMSampleBuffer.CMSampleBufferPtr sampleBufferOut);
@@ -671,15 +629,9 @@ import org.robovm.apple.audiotoolbox.*;
     @WeaklyLinked
     @Bridge(symbol="CMAudioSampleBufferCreateWithPacketDescriptionsAndMakeDataReadyHandler", optional=true)
     protected static native OSStatus createAudioSampleBuffer0(CFAllocator allocator, CMBlockBuffer dataBuffer, boolean dataReady, CMFormatDescription formatDescription, @MachineSizedSInt long numSamples, @ByVal CMTime presentationTimeStamp, AudioStreamPacketDescription packetDescriptions, CMSampleBuffer.CMSampleBufferPtr sampleBufferOut, @Block Block1<CMSampleBuffer, OSStatus> makeDataReadyHandler);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @WeaklyLinked
     @Bridge(symbol="CMAudioSampleBufferCreateReadyWithPacketDescriptions", optional=true)
     protected static native OSStatus createAudioSampleBuffer0(CFAllocator allocator, CMBlockBuffer dataBuffer, CMFormatDescription formatDescription, @MachineSizedSInt long numSamples, @ByVal CMTime presentationTimeStamp, AudioStreamPacketDescription packetDescriptions, CMSampleBuffer.CMSampleBufferPtr sampleBufferOut);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @WeaklyLinked
     @Bridge(symbol="CMSampleBufferCreateForImageBuffer", optional=true)
     protected static native OSStatus createForImageBuffer0(CFAllocator allocator, CVImageBuffer imageBuffer, boolean dataReady, FunctionPtr makeDataReadyCallback, @Pointer long makeDataReadyRefcon, CMVideoFormatDescription formatDescription, CMSampleTimingInfo sampleTiming, CMSampleBuffer.CMSampleBufferPtr sampleBufferOut);
@@ -689,212 +641,92 @@ import org.robovm.apple.audiotoolbox.*;
     @WeaklyLinked
     @Bridge(symbol="CMSampleBufferCreateForImageBufferWithMakeDataReadyHandler", optional=true)
     protected static native OSStatus createForImageBufferWithMakeDataReadyHandler0(CFAllocator allocator, CVImageBuffer imageBuffer, boolean dataReady, CMVideoFormatDescription formatDescription, CMSampleTimingInfo sampleTiming, CMSampleBuffer.CMSampleBufferPtr sampleBufferOut, @Block Block1<CMSampleBuffer, OSStatus> makeDataReadyHandler);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @WeaklyLinked
     @Bridge(symbol="CMSampleBufferCreateReadyWithImageBuffer", optional=true)
     protected static native OSStatus createReadyWithImageBuffer0(CFAllocator allocator, CVImageBuffer imageBuffer, CMVideoFormatDescription formatDescription, CMSampleTimingInfo sampleTiming, CMSampleBuffer.CMSampleBufferPtr sampleBufferOut);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @WeaklyLinked
     @Bridge(symbol="CMSampleBufferCreateCopy", optional=true)
     protected static native OSStatus createCopy0(CFAllocator allocator, CMSampleBuffer sbuf, CMSampleBuffer.CMSampleBufferPtr sampleBufferOut);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @WeaklyLinked
     @Bridge(symbol="CMSampleBufferCreateCopyWithNewTiming", optional=true)
     protected static native OSStatus createCopyWithNewTiming0(CFAllocator allocator, CMSampleBuffer originalSBuf, @MachineSizedSInt long numSampleTimingEntries, CMSampleTimingInfo sampleTimingArray, CMSampleBuffer.CMSampleBufferPtr sampleBufferOut);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMSampleBufferCopySampleBufferForRange", optional=true)
     protected static native OSStatus createForRange0(CFAllocator allocator, CMSampleBuffer sbuf, @ByVal CFRange sampleRange, CMSampleBuffer.CMSampleBufferPtr sampleBufferOut);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMSampleBufferGetTypeID", optional=true)
     public static native @MachineSizedUInt long getClassTypeID();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMSampleBufferSetDataBuffer", optional=true)
     protected native OSStatus setDataBuffer0(CMBlockBuffer dataBuffer);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMSampleBufferGetDataBuffer", optional=true)
     public native CMBlockBuffer getDataBuffer();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @WeaklyLinked
     @Bridge(symbol="CMSampleBufferGetImageBuffer", optional=true)
     public native CVImageBuffer getImageBuffer();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @WeaklyLinked
     @Bridge(symbol="CMSampleBufferSetDataBufferFromAudioBufferList", optional=true)
     protected native OSStatus setAudioBufferList0(CFAllocator blockBufferStructureAllocator, CFAllocator blockBufferBlockAllocator, CMSampleBufferFlags flags, AudioBufferList bufferList);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @WeaklyLinked
     @Bridge(symbol="CMSampleBufferGetAudioBufferListWithRetainedBlockBuffer", optional=true)
     protected native OSStatus getAudioBufferList0(MachineSizedUIntPtr bufferListSizeNeededOut, AudioBufferList bufferListOut, @MachineSizedUInt long bufferListSize, CFAllocator blockBufferStructureAllocator, CFAllocator blockBufferBlockAllocator, CMSampleBufferFlags flags, CMBlockBuffer.CMBlockBufferPtr blockBufferOut);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @WeaklyLinked
     @Bridge(symbol="CMSampleBufferGetAudioStreamPacketDescriptions", optional=true)
     protected native OSStatus getAudioStreamPacketDescriptions0(@MachineSizedUInt long packetDescriptionsSize, AudioStreamPacketDescription packetDescriptionsOut, MachineSizedUIntPtr packetDescriptionsSizeNeededOut);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @WeaklyLinked
     @Bridge(symbol="CMSampleBufferCopyPCMDataIntoAudioBufferList", optional=true)
     protected native OSStatus copyPCMDataIntoAudioBufferList0(int frameOffset, int numFrames, AudioBufferList bufferList);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMSampleBufferSetDataReady", optional=true)
     protected native OSStatus setDataReady0();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMSampleBufferDataIsReady", optional=true)
     public native boolean isDataReady();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Bridge(symbol="CMSampleBufferSetDataFailed", optional=true)
     protected native OSStatus setDataFailed0(OSStatus status);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Bridge(symbol="CMSampleBufferHasDataFailed", optional=true)
     protected native boolean hasDataFailed0(IntPtr statusOut);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMSampleBufferMakeDataReady", optional=true)
     protected native OSStatus makeDataReady0();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMSampleBufferTrackDataReadiness", optional=true)
     protected native OSStatus trackDataReadiness0(CMSampleBuffer sampleBufferToTrack);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMSampleBufferInvalidate", optional=true)
     protected native OSStatus invalidate0();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMSampleBufferSetInvalidateCallback", optional=true)
     protected native OSStatus setInvalidateCallback0(FunctionPtr invalidateCallback, long invalidateRefCon);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Bridge(symbol="CMSampleBufferSetInvalidateHandler", optional=true)
     protected native OSStatus setInvalidateHandler0(@Block VoidBlock1<CMSampleBuffer> invalidateHandler);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMSampleBufferIsValid", optional=true)
     public native boolean isValid();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMSampleBufferGetNumSamples", optional=true)
     public native @MachineSizedSInt long getNumSamples();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMSampleBufferGetDuration", optional=true)
     public native @ByVal CMTime getDuration();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMSampleBufferGetPresentationTimeStamp", optional=true)
     public native @ByVal CMTime getPresentationTimeStamp();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMSampleBufferGetDecodeTimeStamp", optional=true)
     public native @ByVal CMTime getDecodeTimeStamp();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMSampleBufferGetOutputDuration", optional=true)
     public native @ByVal CMTime getOutputDuration();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMSampleBufferGetOutputPresentationTimeStamp", optional=true)
     public native @ByVal CMTime getOutputPresentationTimeStamp();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMSampleBufferSetOutputPresentationTimeStamp", optional=true)
     protected native OSStatus setOutputPresentationTimeStamp0(@ByVal CMTime outputPresentationTimeStamp);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMSampleBufferGetOutputDecodeTimeStamp", optional=true)
     public native @ByVal CMTime getOutputDecodeTimeStamp();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMSampleBufferGetSampleTimingInfoArray", optional=true)
     protected native OSStatus getSampleTimingInfoArray0(@MachineSizedSInt long numSampleTimingEntries, CMSampleTimingInfo timingArrayOut, MachineSizedSIntPtr timingArrayEntriesNeededOut);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMSampleBufferGetOutputSampleTimingInfoArray", optional=true)
     protected native OSStatus getOutputSampleTimingInfoArray0(@MachineSizedSInt long timingArrayEntries, CMSampleTimingInfo timingArrayOut, MachineSizedSIntPtr timingArrayEntriesNeededOut);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMSampleBufferGetSampleTimingInfo", optional=true)
     protected native OSStatus getSampleTimingInfo0(@MachineSizedSInt long sampleIndex, CMSampleTimingInfo timingInfoOut);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMSampleBufferGetSampleSizeArray", optional=true)
     protected native OSStatus getSampleSizeArray0(@MachineSizedSInt long sizeArrayEntries, MachineSizedUIntPtr sizeArrayOut, MachineSizedSIntPtr sizeArrayEntriesNeededOut);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMSampleBufferGetSampleSize", optional=true)
     public native @MachineSizedUInt long getSampleSize(@MachineSizedSInt long sampleIndex);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMSampleBufferGetTotalSampleSize", optional=true)
     public native @MachineSizedUInt long getTotalSampleSize();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMSampleBufferGetFormatDescription", optional=true)
     public native CMFormatDescription getFormatDescription();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMSampleBufferGetSampleAttachmentsArray", optional=true)
     public native @org.robovm.rt.bro.annotation.Marshaler(CMSampleAttachment.AsListMarshaler.class) List<CMSampleAttachment> getSampleAttachments(boolean createIfNecessary);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CMSampleBufferCallForEachSample", optional=true)
     protected native OSStatus callForEachSample0(FunctionPtr callback, @Pointer long refcon);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Bridge(symbol="CMSampleBufferCallBlockForEachSample", optional=true)
     protected native OSStatus callForEachSample0(@Block Block2<CMSampleBuffer, Long, OSStatus> handler);
     /*</methods>*/

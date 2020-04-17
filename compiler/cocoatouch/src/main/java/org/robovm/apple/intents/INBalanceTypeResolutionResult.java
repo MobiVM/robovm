@@ -56,8 +56,8 @@ import org.robovm.apple.corelocation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "successWithResolvedBalanceType:")
-    public static native INBalanceTypeResolutionResult successWithResolvedBalanceType(INBalanceType resolvedBalanceType);
+    public static native INBalanceTypeResolutionResult success(INBalanceType resolvedBalanceType);
     @Method(selector = "confirmationRequiredWithBalanceTypeToConfirm:")
-    public static native INBalanceTypeResolutionResult confirmationRequiredWithBalanceTypeToConfirm(INBalanceType balanceTypeToConfirm);
+    public static native INBalanceTypeResolutionResult confirmationRequired(INBalanceType balanceTypeToConfirm);
     /*</methods>*/
 }

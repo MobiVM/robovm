@@ -37,17 +37,17 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 7.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSTextContainer/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NSCoding, NSTextLayoutOrientationProvider/*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding, NSTextLayoutOrientationProvider/*</implements>*/ {
 
     /*<ptr>*/public static class NSTextContainerPtr extends Ptr<NSTextContainer, NSTextContainerPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NSTextContainer.class); }/*</bind>*/
@@ -56,9 +56,6 @@ import org.robovm.apple.intents.*;
     public NSTextContainer() {}
     protected NSTextContainer(Handle h, long handle) { super(h, handle); }
     protected NSTextContainer(SkipInit skipInit) { super(skipInit); }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "initWithSize:")
     public NSTextContainer(@ByVal CGSize size) { super((SkipInit) null); initObject(init(size)); }
     @Method(selector = "initWithCoder:")
@@ -69,48 +66,24 @@ import org.robovm.apple.intents.*;
     public native NSLayoutManager getLayoutManager();
     @Property(selector = "setLayoutManager:", strongRef = true)
     public native void setLayoutManager(NSLayoutManager v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "size")
     public native @ByVal CGSize getSize();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setSize:")
     public native void setSize(@ByVal CGSize v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "exclusionPaths")
     public native NSArray<UIBezierPath> getExclusionPaths();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setExclusionPaths:")
     public native void setExclusionPaths(NSArray<UIBezierPath> v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "lineBreakMode")
     public native NSLineBreakMode getLineBreakMode();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setLineBreakMode:")
     public native void setLineBreakMode(NSLineBreakMode v);
     @Property(selector = "lineFragmentPadding")
     public native @MachineSizedFloat double getLineFragmentPadding();
     @Property(selector = "setLineFragmentPadding:")
     public native void setLineFragmentPadding(@MachineSizedFloat double v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "maximumNumberOfLines")
     public native @MachineSizedUInt long getMaximumNumberOfLines();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setMaximumNumberOfLines:")
     public native void setMaximumNumberOfLines(@MachineSizedUInt long v);
     /**
@@ -126,17 +99,13 @@ import org.robovm.apple.intents.*;
     public native boolean heightTracksTextView();
     @Property(selector = "setHeightTracksTextView:")
     public native void setHeightTracksTextView(boolean v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     @Property(selector = "layoutOrientation")
     public native NSTextLayoutOrientation getLayoutOrientation();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "initWithSize:")
     protected native @Pointer long init(@ByVal CGSize size);
     @Method(selector = "initWithCoder:")
@@ -146,9 +115,6 @@ import org.robovm.apple.intents.*;
      */
     @Method(selector = "replaceLayoutManager:")
     public native void replaceLayoutManager(NSLayoutManager newLayoutManager);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "lineFragmentRectForProposedRect:atIndex:writingDirection:remainingRect:")
     public native @ByVal CGRect getLineFragmentRect(@ByVal CGRect proposedRect, @MachineSizedUInt long characterIndex, NSWritingDirection baseWritingDirection, CGRect remainingRect);
     @Method(selector = "encodeWithCoder:")

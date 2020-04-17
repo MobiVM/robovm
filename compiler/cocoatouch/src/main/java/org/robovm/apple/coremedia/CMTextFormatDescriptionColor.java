@@ -118,9 +118,6 @@ import org.robovm.apple.audiotoolbox.*;
     }
     
 
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public short getRed() {
         if (has(Keys.Red())) {
             CFNumber val = get(Keys.Red(), CFNumber.class);
@@ -128,16 +125,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CMTextFormatDescriptionColor setRed(short red) {
         set(Keys.Red(), CFNumber.valueOf(red));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public short getGreen() {
         if (has(Keys.Green())) {
             CFNumber val = get(Keys.Green(), CFNumber.class);
@@ -145,16 +136,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CMTextFormatDescriptionColor setGreen(short green) {
         set(Keys.Green(), CFNumber.valueOf(green));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public short getBlue() {
         if (has(Keys.Blue())) {
             CFNumber val = get(Keys.Blue(), CFNumber.class);
@@ -162,16 +147,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CMTextFormatDescriptionColor setBlue(short blue) {
         set(Keys.Blue(), CFNumber.valueOf(blue));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public short getAlpha() {
         if (has(Keys.Alpha())) {
             CFNumber val = get(Keys.Alpha(), CFNumber.class);
@@ -179,9 +158,6 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CMTextFormatDescriptionColor setAlpha(short alpha) {
         set(Keys.Alpha(), CFNumber.valueOf(alpha));
         return this;
@@ -192,24 +168,12 @@ import org.robovm.apple.audiotoolbox.*;
     @Library("CoreMedia")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCMTextFormatDescriptionColor_Red", optional=true)
         public static native CFString Red();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCMTextFormatDescriptionColor_Green", optional=true)
         public static native CFString Green();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCMTextFormatDescriptionColor_Blue", optional=true)
         public static native CFString Blue();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCMTextFormatDescriptionColor_Alpha", optional=true)
         public static native CFString Alpha();
     }

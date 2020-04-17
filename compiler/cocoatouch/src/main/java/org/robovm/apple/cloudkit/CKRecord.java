@@ -34,9 +34,7 @@ import org.robovm.apple.fileprovider.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("CloudKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CKRecord/*</name>*/ 
@@ -57,7 +55,7 @@ import org.robovm.apple.fileprovider.*;
     @Method(selector = "initWithRecordType:zoneID:")
     public CKRecord(String recordType, CKRecordZoneID zoneID) { super((SkipInit) null); initObject(init(recordType, zoneID)); }
     @Method(selector = "initWithCoder:")
-    public CKRecord(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public CKRecord(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "recordType")
@@ -170,6 +168,6 @@ import org.robovm.apple.fileprovider.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

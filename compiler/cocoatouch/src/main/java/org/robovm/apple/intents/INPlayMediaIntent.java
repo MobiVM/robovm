@@ -49,6 +49,16 @@ import org.robovm.apple.corelocation.*;
     public INPlayMediaIntent() {}
     protected INPlayMediaIntent(Handle h, long handle) { super(h, handle); }
     protected INPlayMediaIntent(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "initWithMediaItems:mediaContainer:playShuffled:playbackRepeatMode:resumePlayback:playbackQueueLocation:playbackSpeed:mediaSearch:")
+    public INPlayMediaIntent(NSArray<INMediaItem> mediaItems, INMediaItem mediaContainer, NSNumber playShuffled, INPlaybackRepeatMode playbackRepeatMode, NSNumber resumePlayback, INPlaybackQueueLocation playbackQueueLocation, NSNumber playbackSpeed, INMediaSearch mediaSearch) { super((SkipInit) null); initObject(init(mediaItems, mediaContainer, playShuffled, playbackRepeatMode, resumePlayback, playbackQueueLocation, playbackSpeed, mediaSearch)); }
+    /**
+     * @since Available in iOS 12.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use the designated initializer instead
+     */
+    @Deprecated
     @Method(selector = "initWithMediaItems:mediaContainer:playShuffled:playbackRepeatMode:resumePlayback:")
     public INPlayMediaIntent(NSArray<INMediaItem> mediaItems, INMediaItem mediaContainer, NSNumber playShuffled, INPlaybackRepeatMode playbackRepeatMode, NSNumber resumePlayback) { super((SkipInit) null); initObject(init(mediaItems, mediaContainer, playShuffled, playbackRepeatMode, resumePlayback)); }
     /*</constructors>*/
@@ -63,9 +73,34 @@ import org.robovm.apple.corelocation.*;
     public native INPlaybackRepeatMode getPlaybackRepeatMode();
     @Property(selector = "resumePlayback")
     public native NSNumber getResumePlayback();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "playbackQueueLocation")
+    public native INPlaybackQueueLocation getPlaybackQueueLocation();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "playbackSpeed")
+    public native NSNumber getPlaybackSpeed();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "mediaSearch")
+    public native INMediaSearch getMediaSearch();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "initWithMediaItems:mediaContainer:playShuffled:playbackRepeatMode:resumePlayback:playbackQueueLocation:playbackSpeed:mediaSearch:")
+    protected native @Pointer long init(NSArray<INMediaItem> mediaItems, INMediaItem mediaContainer, NSNumber playShuffled, INPlaybackRepeatMode playbackRepeatMode, NSNumber resumePlayback, INPlaybackQueueLocation playbackQueueLocation, NSNumber playbackSpeed, INMediaSearch mediaSearch);
+    /**
+     * @since Available in iOS 12.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use the designated initializer instead
+     */
+    @Deprecated
     @Method(selector = "initWithMediaItems:mediaContainer:playShuffled:playbackRepeatMode:resumePlayback:")
     protected native @Pointer long init(NSArray<INMediaItem> mediaItems, INMediaItem mediaContainer, NSNumber playShuffled, INPlaybackRepeatMode playbackRepeatMode, NSNumber resumePlayback);
     /*</methods>*/

@@ -33,9 +33,7 @@ import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 3.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("MediaPlayer") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPMediaPlaylist/*</name>*/ 
@@ -53,24 +51,12 @@ import org.robovm.apple.coregraphics.*;
     public MPMediaPlaylist(NSArray<MPMediaItem> items) { super(items); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "persistentID")
     public native long getPersistentID();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "name")
     public native String getName();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "playlistAttributes")
     public native MPMediaPlaylistAttribute getPlaylistAttributes();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "seedItems")
     public native NSArray<MPMediaItem> getSeedItems();
     /**

@@ -77,28 +77,76 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "availableRawPhotoFileTypes")
     public native NSArray<NSString> getAvailableRawPhotoFileTypes();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "maxPhotoQualityPrioritization")
+    public native AVCapturePhotoQualityPrioritization getMaxPhotoQualityPrioritization();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setMaxPhotoQualityPrioritization:")
+    public native void setMaxPhotoQualityPrioritization(AVCapturePhotoQualityPrioritization v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use maxPhotoQualityPrioritization
+     */
+    @Deprecated
     @Property(selector = "isStillImageStabilizationSupported")
     public native boolean isStillImageStabilizationSupported();
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use maxPhotoQualityPrioritization
+     */
+    @Deprecated
     @Property(selector = "isStillImageStabilizationScene")
     public native boolean isStillImageStabilizationScene();
     /**
-     * @since Available in iOS 10.2 and later.
+     * @since Available in iOS 13.0 and later.
      */
+    @Property(selector = "isVirtualDeviceFusionSupported")
+    public native boolean isVirtualDeviceFusionSupported();
+    /**
+     * @since Available in iOS 10.2 and later.
+     * @deprecated Deprecated in iOS 13.0. Use virtualDeviceFusionSupported
+     */
+    @Deprecated
     @Property(selector = "isDualCameraFusionSupported")
     public native boolean isDualCameraFusionSupported();
     /**
-     * @since Available in iOS 11.0 and later.
+     * @since Available in iOS 13.0 and later.
      */
+    @Property(selector = "isVirtualDeviceConstituentPhotoDeliverySupported")
+    public native boolean isVirtualDeviceConstituentPhotoDeliverySupported();
+    /**
+     * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use virtualDeviceConstituentPhotoDeliverySupported
+     */
+    @Deprecated
     @Property(selector = "isDualCameraDualPhotoDeliverySupported")
     public native boolean isDualCameraDualPhotoDeliverySupported();
     /**
-     * @since Available in iOS 11.0 and later.
+     * @since Available in iOS 13.0 and later.
      */
+    @Property(selector = "isVirtualDeviceConstituentPhotoDeliveryEnabled")
+    public native boolean isVirtualDeviceConstituentPhotoDeliveryEnabled();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setVirtualDeviceConstituentPhotoDeliveryEnabled:")
+    public native void setVirtualDeviceConstituentPhotoDeliveryEnabled(boolean v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use virtualDeviceConstituentPhotoDeliveryEnabled
+     */
+    @Deprecated
     @Property(selector = "isDualCameraDualPhotoDeliveryEnabled")
     public native boolean isDualCameraDualPhotoDeliveryEnabled();
     /**
      * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use virtualDeviceConstituentPhotoDeliveryEnabled
      */
+    @Deprecated
     @Property(selector = "setDualCameraDualPhotoDeliveryEnabled:")
     public native void setDualCameraDualPhotoDeliveryEnabled(boolean v);
     /**
@@ -176,6 +224,21 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "setPortraitEffectsMatteDeliveryEnabled:")
     public native void setPortraitEffectsMatteDeliveryEnabled(boolean v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "availableSemanticSegmentationMatteTypes")
+    public native NSArray<NSString> getAvailableSemanticSegmentationMatteTypes();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "enabledSemanticSegmentationMatteTypes")
+    public native NSArray<NSString> getEnabledSemanticSegmentationMatteTypes();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setEnabledSemanticSegmentationMatteTypes:")
+    public native void setEnabledSemanticSegmentationMatteTypes(NSArray<NSString> v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -202,14 +265,14 @@ import org.robovm.apple.audiotoolbox.*;
     protected static native @Pointer long create();
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0. Use -[AVCapturePhoto fileDataRepresentation] instead.
+     * @deprecated Deprecated in iOS 11.0. Use -[AVCapturePhoto fileDataRepresentation]
      */
     @Deprecated
     @Method(selector = "JPEGPhotoDataRepresentationForJPEGSampleBuffer:previewPhotoSampleBuffer:")
     public static native NSData JPEGPhotoDataRepresentationForJPEGSampleBuffer(CMSampleBuffer JPEGSampleBuffer, CMSampleBuffer previewPhotoSampleBuffer);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0. Use -[AVCapturePhoto fileDataRepresentation] instead.
+     * @deprecated Deprecated in iOS 11.0. Use -[AVCapturePhoto fileDataRepresentation]
      */
     @Deprecated
     @Method(selector = "DNGPhotoDataRepresentationForRawSampleBuffer:previewPhotoSampleBuffer:")

@@ -29,6 +29,10 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corevideo.*;
+import org.robovm.apple.coregraphics.*;
+import org.robovm.apple.imageio.*;
+import org.robovm.apple.vision.*;
+import org.robovm.apple.metal.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -47,7 +51,15 @@ public enum /*<name>*/MLModelError/*</name>*/ implements NSErrorCode {
     /**
      * @since Available in iOS 12.0 and later.
      */
-    CustomModel(5L);
+    CustomModel(5L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    Update(6L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    Parameters(7L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(MLModelError.class); }/*</bind>*/

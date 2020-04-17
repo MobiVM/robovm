@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -76,5 +77,31 @@ import org.robovm.apple.uikit.*;
     }
     
     /*<methods>*/
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @GlobalValue(symbol="kCGPDFTagPropertyActualText", optional=true)
+    public static native String kCGPDFTagPropertyActualText();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @GlobalValue(symbol="kCGPDFTagPropertyAlternativeText", optional=true)
+    public static native String kCGPDFTagPropertyAlternativeText();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @GlobalValue(symbol="kCGPDFTagPropertyTitleText", optional=true)
+    public static native String kCGPDFTagPropertyTitleText();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @GlobalValue(symbol="kCGPDFTagPropertyLanguageText", optional=true)
+    public static native String kCGPDFTagPropertyLanguageText();
+    
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="CGPDFTagTypeGetName", optional=true)
+    public static native BytePtr cGPDFTagTypeGetName(CGPDFTagType tagType);
     /*</methods>*/
 }

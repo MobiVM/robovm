@@ -29,6 +29,8 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corespotlight.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -49,6 +51,16 @@ import org.robovm.apple.corespotlight.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("controller:didChangeContentWithSnapshot:")
+    public void didChangeContent(NSFetchedResultsController controller, NSDiffableDataSourceSnapshot<NSString, NSManagedObjectID> snapshot) {}
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("controller:didChangeContentWithDifference:")
+    public void didChangeContent(NSFetchedResultsController controller, NSOrderedCollectionDifference<NSManagedObjectID> diff) {}
     @NotImplemented("controller:didChangeObject:atIndexPath:forChangeType:newIndexPath:")
     public void didChangeObject(NSFetchedResultsController controller, NSObject anObject, NSIndexPath indexPath, NSFetchedResultsChangeType type, NSIndexPath newIndexPath) {}
     @NotImplemented("controller:didChangeSection:atIndex:forChangeType:")
@@ -57,9 +69,6 @@ import org.robovm.apple.corespotlight.*;
     public void willChangeContent(NSFetchedResultsController controller) {}
     @NotImplemented("controllerDidChangeContent:")
     public void didChangeContent(NSFetchedResultsController controller) {}
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @NotImplemented("controller:sectionIndexTitleForSectionName:")
     public String getSectionIndexTitle(NSFetchedResultsController controller, String sectionName) { return null; }
     /*</methods>*/

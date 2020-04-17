@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -57,23 +59,14 @@ import org.robovm.apple.intents.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @NotImplemented("pageViewController:willTransitionToViewControllers:")
     public void willTransition(UIPageViewController pageViewController, NSArray<UIViewController> pendingViewControllers) {}
     @NotImplemented("pageViewController:didFinishAnimating:previousViewControllers:transitionCompleted:")
     public void didFinishAnimating(UIPageViewController pageViewController, boolean finished, NSArray<UIViewController> previousViewControllers, boolean completed) {}
     @NotImplemented("pageViewController:spineLocationForInterfaceOrientation:")
     public UIPageViewControllerSpineLocation getSpineLocation(UIPageViewController pageViewController, UIInterfaceOrientation orientation) { return null; }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @NotImplemented("pageViewControllerSupportedInterfaceOrientations:")
     public UIInterfaceOrientationMask getSupportedInterfaceOrientations(UIPageViewController pageViewController) { return null; }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @NotImplemented("pageViewControllerPreferredInterfaceOrientationForPresentation:")
     public UIInterfaceOrientation getPreferredInterfaceOrientation(UIPageViewController pageViewController) { return null; }
     /*</methods>*/

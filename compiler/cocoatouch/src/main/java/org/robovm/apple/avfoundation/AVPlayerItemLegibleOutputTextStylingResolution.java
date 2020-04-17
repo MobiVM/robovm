@@ -97,13 +97,7 @@ import org.robovm.apple.audiotoolbox.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final AVPlayerItemLegibleOutputTextStylingResolution Default = new AVPlayerItemLegibleOutputTextStylingResolution("Default");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final AVPlayerItemLegibleOutputTextStylingResolution SourceAndRulesOnly = new AVPlayerItemLegibleOutputTextStylingResolution("SourceAndRulesOnly");
     /*</constants>*/
     
@@ -130,14 +124,8 @@ import org.robovm.apple.audiotoolbox.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="AVPlayerItemLegibleOutputTextStylingResolutionDefault", optional=true)
         public static native NSString Default();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="AVPlayerItemLegibleOutputTextStylingResolutionSourceAndRulesOnly", optional=true)
         public static native NSString SourceAndRulesOnly();
         /*</values>*/

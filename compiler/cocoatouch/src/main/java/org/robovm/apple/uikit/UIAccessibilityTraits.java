@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -104,9 +106,6 @@ import org.robovm.apple.intents.*;
     protected static native long ButtonValue();
     @GlobalValue(symbol="UIAccessibilityTraitLink", optional=true)
     protected static native long LinkValue();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @GlobalValue(symbol="UIAccessibilityTraitHeader", optional=true)
     protected static native long HeaderValue();
     @GlobalValue(symbol="UIAccessibilityTraitSearchField", optional=true)
@@ -127,24 +126,12 @@ import org.robovm.apple.intents.*;
     protected static native long NotEnabledValue();
     @GlobalValue(symbol="UIAccessibilityTraitUpdatesFrequently", optional=true)
     protected static native long UpdatesFrequentlyValue();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @GlobalValue(symbol="UIAccessibilityTraitStartsMediaSession", optional=true)
     protected static native long StartsMediaSessionValue();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @GlobalValue(symbol="UIAccessibilityTraitAdjustable", optional=true)
     protected static native long AdjustableValue();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @GlobalValue(symbol="UIAccessibilityTraitAllowsDirectInteraction", optional=true)
     protected static native long AllowsDirectInteractionValue();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @GlobalValue(symbol="UIAccessibilityTraitCausesPageTurn", optional=true)
     protected static native long CausesPageTurnValue();
     /**

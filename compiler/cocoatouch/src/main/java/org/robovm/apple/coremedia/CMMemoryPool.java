@@ -52,29 +52,14 @@ import org.robovm.apple.audiotoolbox.*;
     /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Bridge(symbol="CMMemoryPoolGetTypeID", optional=true)
     public static native @MachineSizedUInt long getClassTypeID();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Bridge(symbol="CMMemoryPoolCreate", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CMMemoryPool create(CMMemoryPoolOptions options);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Bridge(symbol="CMMemoryPoolGetAllocator", optional=true)
     public native CFAllocator getAllocator();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Bridge(symbol="CMMemoryPoolFlush", optional=true)
     public native void flush();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Bridge(symbol="CMMemoryPoolInvalidate", optional=true)
     public native void invalidate();
     /*</methods>*/

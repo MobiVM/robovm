@@ -65,6 +65,10 @@ import org.robovm.apple.metal.*;
     public native @MachineSizedUInt long getCount();
     @Property(selector = "transpose")
     public native boolean isTranspose();
+    @Property(selector = "resultMatrixOrigin")
+    public native @ByVal MTLOrigin getResultMatrixOrigin();
+    @Property(selector = "setResultMatrixOrigin:")
+    public native void setResultMatrixOrigin(@ByVal MTLOrigin v);
     @Property(selector = "neuronParameterA")
     public native float getNeuronParameterA();
     @Property(selector = "neuronParameterB")

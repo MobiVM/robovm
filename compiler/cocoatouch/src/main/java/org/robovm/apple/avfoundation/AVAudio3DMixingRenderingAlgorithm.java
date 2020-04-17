@@ -41,9 +41,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/AVAudio3DMixingRenderingAlgorithm/*</name>*/ implements ValuedEnum {
@@ -53,7 +51,11 @@ public enum /*<name>*/AVAudio3DMixingRenderingAlgorithm/*</name>*/ implements Va
     HRTF(2L),
     SoundField(3L),
     StereoPassThrough(5L),
-    HRTFHQ(6L);
+    HRTFHQ(6L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    Auto(7L);
     /*</values>*/
 
     public static class AsListMarshaler {

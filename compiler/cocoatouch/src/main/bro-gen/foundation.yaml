@@ -88,13 +88,21 @@ typedefs:
     # bellow defines to fight current typedef expand issue
     NSURLResourceKey: NSString
     NSAttributedStringKey: NSString
-    NSFileProviderServiceName : NSString
+    NSFileProviderServiceName: NSString
     NSUserActivityPersistentIdentifier: NSString # since ios12
 
 generic_typedefs:
     'NSString *': NSString
 
 structdefs:
+    vector_char16: 'VectorChar16'
+    vector_uchar16: 'VectorChar16'
+    vector_ushort2: 'VectorShort2'
+    vector_short2: 'VectorShort2'
+    vector_ushort3: 'VectorShort3'
+    vector_short3: 'VectorShort3'
+    vector_ushort4: 'VectorShort4'
+    vector_short4: 'VectorShort4'
     vector_uint2: 'VectorInt2'
     vector_int2: 'VectorInt2'
     vector_uint3: 'VectorInt3'
@@ -109,7 +117,7 @@ structdefs:
     simd_float4: 'VectorFloat4'
     simd_quatf: 'VectorFloat4'
     vector_double4: 'VectorDouble4'
-    simd_quatd: 'VectorFloat4'
+    simd_quatd: 'VectorDouble4'
     matrix_float2x2: 'MatrixFloat2x4'
     matrix_float3x2: 'MatrixFloat3x4'
     matrix_float4x2: 'MatrixFloat4x4'
@@ -124,9 +132,6 @@ structdefs:
     matrix_double4x4: 'MatrixDouble4x4'
 
 private_typedefs:
-    ObjectType: NSObject
-    KeyType: NSObject
-    UnitType: T
     'void (^)(id _Nullable, NSRange, BOOL * _Nonnull)': '@Block("(,@ByVal,)") VoidBlock3<NSObject, NSRange, BooleanPtr>'
     'void (^)(id, NSUInteger, BOOL *)': '@Block("(,@MachineSizedUInt,)") VoidBlock3<NSObject, Long, BooleanPtr>'
     'void (^)(NSDictionary<NSString *,id> * _Nonnull, NSRange, BOOL * _Nonnull)': '@Block("(,@ByVal,)") VoidBlock3<NSDictionary<NSString, ?>, NSRange, BooleanPtr>'
@@ -244,6 +249,17 @@ enums:
     NSURLSessionMultipathServiceType: {} #since 11.0
     NSURLSessionDelayedRequestDisposition: {prefix: NSURLSessionDelayedRequest} #since 11.0
 
+    NSCollectionChangeType: {prefix: NSCollectionChange} #since 13.0
+    NSOrderedCollectionDifferenceCalculationOptions: {prefix: NSOrderedCollectionDifferenceCalculation} #since 13.0
+    NSDataCompressionAlgorithm: {} #since 13.0
+    NSRelativeDateTimeFormatterStyle: {} #since 13.0
+    NSRelativeDateTimeFormatterUnitsStyle: {} #since 13.0
+    NSURLErrorNetworkUnavailableReason: {} #since 13.0
+    NSURLSessionWebSocketMessageType: {} #since 13.0
+    NSURLSessionWebSocketCloseCode: {} #since 13.0
+    IGNORED1: {first: NS_UnknownByteOrder, exclude: true}  # ignored same as constants
+    IGNORED2: {first: NSWrapCalendarComponents, exclude: true} # deprecated
+    NSTextCheckingTypes: {prefix: NSTextChecking, name: NSTextCheckingTypes}
 categories:
     NSErrorRecoveryAttempting@NSObject: {protocol: true}
 
@@ -353,7 +369,7 @@ classes:
                 name: removeObserver
             '+.*': {exclude: true}
             '-.*': {exclude: true}
-    NSAssertionHandler: {exclude : true}
+    NSAssertionHandler: {exclude: true}
     NSAttributedString: # DONE
         annotations: ['@WeaklyLinked']
         properties:
@@ -518,6 +534,8 @@ classes:
             '+stringFromByteCount:countStyle:':
                 name: format
             '-stringFromByteCount:':
+                name: format
+            '+stringFromMeasurement:countStyle:':
                 name: format
     NSCache: # DONE
         methods:
@@ -988,6 +1006,8 @@ classes:
                 return_type: NSDecimalNumberHandler
     NSDictionary: # DONE
         protocols: [NSPropertyList, NSFastEnumeration, 'Map<K, V>']
+        template_parameters:
+            ObjectType: V
         properties:
             'count':
                 visibility: protected
@@ -1258,6 +1278,27 @@ classes:
                     modes:
                         type: List<String>
                         marshaler: NSArray.AsStringListMarshaler
+            '-readDataToEndOfFileAndReturnError:':
+                name: readDataToEndOfFileEx
+                throws: NSErrorException
+            '-readDataUpToLength:error:':
+                name: readDataUpToLengthEx
+                throws: NSErrorException
+            '-writeData:error:':
+                name: writeDataEx
+                throws: NSErrorException
+            '-getOffset:error:':
+                name: getOffsetEx
+                throws: NSErrorException
+            '-seekToEndReturningOffset:error:':
+                name: seekToEndReturningOffsetEx
+                throws: NSErrorException
+            '-seekToOffset:error:':
+                name: seekToOffsetEx
+                throws: NSErrorException
+            '-truncateAtOffset:error:':
+                name: truncateAtOffsetEx
+                throws: NSErrorException
     NSFileManager: # DONE
         properties:
             'delegate':
@@ -2121,6 +2162,8 @@ classes:
             '+portWith.*':
                 exclude: true
     NSMapTable: # DONE
+        template_parameters:
+            ObjectType: V
         properties:
             '(keyPointerFunctions|valuePointerFunctions)':
                 exclude: true
@@ -2176,6 +2219,8 @@ classes:
             '-getObjectValue:forString:errorDescription:':
                 exclude: true
     NSMeasurement: # DONE
+        template_parameters:
+            UnitType: T
         methods:
             '-initWithDoubleValue:unit:':
                 name: init
@@ -2398,6 +2443,8 @@ classes:
             '-.*': {exclude: true}
     NSMutableDictionary: # DONE
         skip_def_constructor: true
+        template_parameters:
+            ObjectType: V
         methods:
             '-setObject:forKey:':
                 trim_after_first_colon: true
@@ -3969,6 +4016,8 @@ classes:
                 name: newStreamTask
             '+sharedSession':
                 property: true
+            '+new':
+                exclude: true
             '+sessionWithConfiguration:':
                 name: create
                 constructor: true
@@ -3993,6 +4042,12 @@ classes:
                 name: newHTTPGetDataTask
             '-dataTaskWithHTTPGetRequest:completionHandler:':
                 name: newHTTPGetDataTask
+            '-webSocketTaskWithURL:':
+                name: newWebSocket
+            '-webSocketTaskWithURL:protocols:':
+                name: newWebSocket
+            '-webSocketTaskWithRequest:':
+                name: newWebSocket
     NSURLSessionConfiguration: # DONE
         properties:
             '(TLSMinimumSupportedProtocol|TLSMaximumSupportedProtocol)':
@@ -4022,7 +4077,12 @@ classes:
                 name: getBackgroundSessionConfiguration7 # deprecated
             '+backgroundSessionConfigurationWithIdentifier:':
                 name: getBackgroundSessionConfiguration
-    NSURLSessionDataTask: {} # DONE
+            '+new':
+                exclude: true
+    NSURLSessionDataTask:
+        methods:
+            '+new':
+                exclude: true
     NSURLSessionDownloadTask: # DONE
         methods:
             '-cancelByProducingResumeData:':
@@ -4036,9 +4096,19 @@ classes:
                         type: '@Block VoidBlock3<NSData, Boolean, NSError>'
             '-writeData:timeout:completionHandler:':
                 name: writeData
-    NSURLSessionTask: {} # DONE
-    NSURLSessionTaskMetrics: {} # DONE
-    NSURLSessionTaskTransactionMetrics: {} # DONE
+    NSURLSessionTask:
+        methods:
+            '+new':
+                scope: global
+                exclude: true
+    NSURLSessionTaskMetrics:
+        methods:
+            '+new':
+                exclude: true
+    NSURLSessionTaskTransactionMetrics:
+        methods:
+            '+new':
+                exclude: true
     NSURLSessionUploadTask: {} # DONE
     NSUserActivity: # DONE
         properties:
@@ -4274,6 +4344,59 @@ classes:
                 name: init
             '+queryItemWithName:value:':
                 exclude: true
+    # iOS13 bindings
+    NSListFormatter: {} #since 13.0
+    NSOrderedCollectionChange: #since 13.0
+        methods:
+            '-initWithObject:type:index:':
+                name: init
+            '-initWithObject:type:index:associatedIndex:':
+                name: init
+            '+changeWithObject:type:index:':
+                exclude: true
+            '+changeWithObject:type:index:associatedIndex:':
+                exclude: true
+    NSOrderedCollectionDifference: #since 13.0
+        methods:
+            '-initWithChanges:':
+                name: init
+            '-initWithInsertIndexes:insertedObjects:removeIndexes:removedObjects:additionalChanges:':
+                name: init
+            '-initWithInsertIndexes:insertedObjects:removeIndexes:removedObjects:':
+                name: init
+            '-differenceByTransformingChangesWithBlock:':
+                name: getDifferenceByTransformingChanges
+    NSRelativeDateTimeFormatter: #since 13.0
+        methods:
+            '-localizedStringForDate:relativeToDate:':
+                name: getLocalizedStringForDate
+    NSURLSessionWebSocketMessage: #since 13.0
+        methods:
+            '-initWithData:':
+                name: init
+            '-initWithString:':
+                name: init
+    NSURLSessionWebSocketTask: #since 13.0
+        methods:
+            '-sendMessage:completionHandler:':
+                name: sendMessage
+            '-receiveMessageWithCompletionHandler:':
+                name: receiveMessage
+            '-sendPingWithPongReceiveHandler:':
+                name: sendPing
+            '-cancelWithCloseCode:reason:':
+                name: cancel
+    NSUnitInformationStorage: {} #since 13.0
+
+    # classes that are not used in binding
+    NSFileSecurity: {exclude: true}
+    NSConstantString: {exclude: true}
+    NSPurgeableData: {exclude: true}
+    NSSimpleCString: {exclude: true}
+    NSXPCCoder: {exclude: true}
+    NSSecureUnarchiveFromDataTransformer: {exclude: true} #since 12.0
+
+
 
 protocols:
     NSCacheDelegate: # DONE
@@ -4703,7 +4826,12 @@ protocols:
                 name: remoteObjectProxy
             '-synchronousRemoteObjectProxyWithErrorHandler:':
                 name: synchronousRemoteObjectProxy
-
+    NSURLSessionWebSocketDelegate: #since 13.0
+        methods:
+            '-URLSession:webSocketTask:didOpenWithProtocol:':
+                name: didOpen
+            '-URLSession:webSocketTask:didCloseWithCode:reason:':
+                name: didClose
 functions:
     NSAllocateObject:
         exclude: true
@@ -4937,7 +5065,7 @@ values:
         name: '#{g[0]}'
         type: NSString
         extends: NSErrorUserInfoKey
-    NSURLError(BackgroundTaskCancelledReason)Key:
+    NSURLError(BackgroundTaskCancelledReason|NetworkUnavailableReason)Key:
         enum: NSURLSessionErrorUserInfoKey
         name: '#{g[0]}'
         type: NSString

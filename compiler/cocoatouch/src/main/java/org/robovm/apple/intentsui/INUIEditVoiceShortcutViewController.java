@@ -47,15 +47,13 @@ import org.robovm.apple.uikit.*;
     /*<bind>*/static { ObjCRuntime.bind(INUIEditVoiceShortcutViewController.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public INUIEditVoiceShortcutViewController() {}
+    protected INUIEditVoiceShortcutViewController() {}
     protected INUIEditVoiceShortcutViewController(Handle h, long handle) { super(h, handle); }
     protected INUIEditVoiceShortcutViewController(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithVoiceShortcut:")
     public INUIEditVoiceShortcutViewController(INVoiceShortcut voiceShortcut) { super((SkipInit) null); initObject(init(voiceShortcut)); }
-    @Method(selector = "initWithNibName:bundle:")
-    public INUIEditVoiceShortcutViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
     @Method(selector = "initWithCoder:")
-    public INUIEditVoiceShortcutViewController(NSCoder decoder) { super(decoder); }
+    public INUIEditVoiceShortcutViewController(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "delegate")

@@ -50,7 +50,7 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "initWithName:")
     public CNContactRelation(String name) { super((SkipInit) null); initObject(init(name)); }
     @Method(selector = "initWithCoder:")
-    public CNContactRelation(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public CNContactRelation(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "name")
@@ -65,6 +65,6 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

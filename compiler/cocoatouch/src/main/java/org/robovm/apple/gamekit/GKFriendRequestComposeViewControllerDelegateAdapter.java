@@ -50,7 +50,6 @@ import org.robovm.apple.uikit.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @since Available in iOS 4.2 and later.
      * @deprecated Deprecated in iOS 10.0.
      */
     @Deprecated

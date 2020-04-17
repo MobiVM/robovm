@@ -126,9 +126,6 @@ import org.robovm.apple.corefoundation.*;
     @StructMember(24) public native MIDIThruConnectionParams setReserved3(@Array({4}) ShortBuffer reserved3);
     /*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     @Bridge(symbol="MIDIThruConnectionParamsInitialize", optional=true)
     public native void initialize();
     /*</methods>*/

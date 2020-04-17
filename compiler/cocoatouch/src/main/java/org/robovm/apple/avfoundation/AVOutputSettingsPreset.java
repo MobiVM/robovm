@@ -97,21 +97,9 @@ import org.robovm.apple.audiotoolbox.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final AVOutputSettingsPreset Size640x480 = new AVOutputSettingsPreset("Size640x480");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final AVOutputSettingsPreset Size960x540 = new AVOutputSettingsPreset("Size960x540");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final AVOutputSettingsPreset Size1280x720 = new AVOutputSettingsPreset("Size1280x720");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final AVOutputSettingsPreset Size1920x1080 = new AVOutputSettingsPreset("Size1920x1080");
     /**
      * @since Available in iOS 9.0 and later.
@@ -122,12 +110,20 @@ import org.robovm.apple.audiotoolbox.*;
      */
     public static final AVOutputSettingsPreset SizeHEVC1920x1080 = new AVOutputSettingsPreset("SizeHEVC1920x1080");
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final AVOutputSettingsPreset SizeHEVC1920x1080WithAlpha = new AVOutputSettingsPreset("SizeHEVC1920x1080WithAlpha");
+    /**
      * @since Available in iOS 11.0 and later.
      */
     public static final AVOutputSettingsPreset SizeHEVC3840x2160 = new AVOutputSettingsPreset("SizeHEVC3840x2160");
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final AVOutputSettingsPreset SizeHEVC3840x2160WithAlpha = new AVOutputSettingsPreset("SizeHEVC3840x2160WithAlpha");
     /*</constants>*/
     
-    private static /*<name>*/AVOutputSettingsPreset/*</name>*/[] values = new /*<name>*/AVOutputSettingsPreset/*</name>*/[] {/*<value_list>*/Size640x480, Size960x540, Size1280x720, Size1920x1080, Size3840x2160, SizeHEVC1920x1080, SizeHEVC3840x2160/*</value_list>*/};
+    private static /*<name>*/AVOutputSettingsPreset/*</name>*/[] values = new /*<name>*/AVOutputSettingsPreset/*</name>*/[] {/*<value_list>*/Size640x480, Size960x540, Size1280x720, Size1920x1080, Size3840x2160, SizeHEVC1920x1080, SizeHEVC1920x1080WithAlpha, SizeHEVC3840x2160, SizeHEVC3840x2160WithAlpha/*</value_list>*/};
     
     /*<name>*/AVOutputSettingsPreset/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -150,24 +146,12 @@ import org.robovm.apple.audiotoolbox.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="AVOutputSettingsPreset640x480", optional=true)
         public static native NSString Size640x480();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="AVOutputSettingsPreset960x540", optional=true)
         public static native NSString Size960x540();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="AVOutputSettingsPreset1280x720", optional=true)
         public static native NSString Size1280x720();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="AVOutputSettingsPreset1920x1080", optional=true)
         public static native NSString Size1920x1080();
         /**
@@ -181,10 +165,20 @@ import org.robovm.apple.audiotoolbox.*;
         @GlobalValue(symbol="AVOutputSettingsPresetHEVC1920x1080", optional=true)
         public static native NSString SizeHEVC1920x1080();
         /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="AVOutputSettingsPresetHEVC1920x1080WithAlpha", optional=true)
+        public static native NSString SizeHEVC1920x1080WithAlpha();
+        /**
          * @since Available in iOS 11.0 and later.
          */
         @GlobalValue(symbol="AVOutputSettingsPresetHEVC3840x2160", optional=true)
         public static native NSString SizeHEVC3840x2160();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="AVOutputSettingsPresetHEVC3840x2160WithAlpha", optional=true)
+        public static native NSString SizeHEVC3840x2160WithAlpha();
         /*</values>*/
     }
 }

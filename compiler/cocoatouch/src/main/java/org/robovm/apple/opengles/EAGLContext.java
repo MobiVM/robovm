@@ -32,7 +32,6 @@ import org.robovm.apple.foundation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 2.0 and later.
  * @deprecated Deprecated in iOS 12.0. OpenGLES API deprecated. (Define GLES_SILENCE_DEPRECATION to silence these warnings)
  */
 /*</javadoc>*/
@@ -58,24 +57,12 @@ import org.robovm.apple.foundation.*;
     public native EAGLRenderingAPI getAPI();
     @Property(selector = "sharegroup")
     public native EAGLSharegroup getSharegroup();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "debugLabel")
     public native String getDebugLabel();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "setDebugLabel:")
     public native void setDebugLabel(String v);
-    /**
-     * @since Available in iOS 7.1 and later.
-     */
     @Property(selector = "isMultiThreaded")
     public native boolean isMultiThreaded();
-    /**
-     * @since Available in iOS 7.1 and later.
-     */
     @Property(selector = "setMultiThreaded:")
     public native void setMultiThreaded(boolean v);
     /*</properties>*/

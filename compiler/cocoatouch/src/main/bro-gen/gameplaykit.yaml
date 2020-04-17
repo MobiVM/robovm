@@ -71,6 +71,8 @@ classes:
             '-updateWithDeltaTime:':
                 name: update
     GKComponentSystem: # DONE
+        template_parameters:
+            ComponentType: T
         skip_def_constructor: true
         properties:
             'componentClass':

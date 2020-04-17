@@ -1,129 +1,109 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
-  <modelVersion>4.0.0</modelVersion>
+    <modelVersion>4.0.0</modelVersion>
 
-  <prerequisites>
-    <maven>3.0</maven>
-  </prerequisites>
+    <groupId>com.mobidevelop.robovm</groupId>
+    <version>2.3.10-SNAPSHOT</version>
+    <artifactId>org.robovm.eclipse.parent</artifactId>
+    <name>RoboVM for Eclipse</name>
+    <packaging>pom</packaging>
 
-  <groupId>com.mobidevelop.robovm</groupId>
-  <artifactId>org.robovm.eclipse.parent</artifactId>
-  <version>2.3.10-SNAPSHOT</version>
-  <name>RoboVM for Eclipse</name>
-  <packaging>pom</packaging>
+    <scm>
+        <url>https://github.com/MobiVM/robovm</url>
+        <connection>scm:git:git://github.com/MobiVM/robovm.git</connection>
+        <developerConnection>scm:git:git@github.com:mobidevelop/robovm.git</developerConnection>
+    </scm>
 
-  <scm>
-    <url>https://github.com/MobiVM/robovm</url>
-    <connection>scm:git:git://github.com/MobiVM/robovm.git</connection>
-    <developerConnection>scm:git:git@github.com:mobidevelop/robovm.git</developerConnection>
-  </scm>
+    <issueManagement>
+        <system>GitHub</system>
+        <url>https://github.com/MobiVM/robovm/issues</url>
+    </issueManagement>
 
-  <issueManagement>
-    <system>GitHub</system>
-    <url>https://github.com/MobiVM/robovm/issues</url>
-  </issueManagement>
+    <licenses>
+        <license>
+            <name>GNU General Public License, version 2</name>
+            <url>http://www.gnu.org/licenses/gpl-2.0.html</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
 
-  <licenses>
-    <license>
-      <name>GNU General Public License, version 2</name>
-      <url>http://www.gnu.org/licenses/gpl-2.0.html</url>
-      <distribution>repo</distribution>
-    </license>
-  </licenses>
+    <properties>
+        <robovm.version>2.3.10-SNAPSHOT</robovm.version>
+        <tycho.version>1.5.1</tycho.version>
+        <eclipse-site>https://download.eclipse.org/releases/photon</eclipse-site>
+    </properties>
 
-  <properties>
-    <robovm.version>2.3.9-SNAPSHOT</robovm.version>
-    <tycho.version>0.20.0</tycho.version>
-    <tycho-extras.version>0.20.0</tycho-extras.version>
-    <eclipse-site>http://download.eclipse.org/releases/indigo</eclipse-site>
-  </properties>
+    <repositories>
+        <repository>
+            <id>eclipse</id>
+            <url>${eclipse-site}</url>
+            <layout>p2</layout>
+        </repository>
 
-  <repositories>
-    <repository>
-      <id>eclipse</id>
-      <url>${eclipse-site}</url>
-      <layout>p2</layout>
-    </repository>
-  </repositories>
-  
-  <profiles>
-    <profile>
-      <id>sign</id>
-      <!-- To sign plug-ins and features, run: mvn -Psign -Dkeystore=<path>
-        -Dstorepass=*** -Dalias=<keyalias> clean install -->
-      <build>
-        <pluginManagement>
-          <plugins>
+        <repository>
+            <id>sonatype-nexus-snapshots</id>
+            <name>Sonatype Nexus Snapshots</name>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+    <build>
+        <plugins>
+            <!-- compiler: produce Java8 code everywhere by default -->
             <plugin>
-              <groupId>org.apache.maven.plugins</groupId>
-              <artifactId>maven-jar-plugin</artifactId>
-              <version>2.4</version>
-              <executions>
-                <execution>
-                  <goals>
-                    <goal>sign</goal>
-                  </goals>
-                </execution>
-              </executions>
-              <configuration>
-                <verify>true</verify>
-                <jarPath>${project.build.directory}/${project.build.finalName}.jar</jarPath>
-              </configuration>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <release>8</release>
+                    <debug>true</debug>
+                    <optimize>true</optimize>
+                    <encoding>UTF-8</encoding>
+                </configuration>
             </plugin>
-          </plugins>
-        </pluginManagement>
-      </build>
-    </profile>
-  </profiles>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.1.2</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                            <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+                        </manifest>
+                        <manifestEntries>
+                            <!-- need to keep it this way, as MobiVM uses build number Z (from X.Y.Z) as release version -->
+                            <Specification-Version>${project.version}</Specification-Version>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.eclipse.tycho</groupId>
+                <artifactId>tycho-maven-plugin</artifactId>
+                <version>${tycho.version}</version>
+                <extensions>true</extensions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>3.0.0-M1</version>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-release-plugin</artifactId>
-        <version>2.0</version>
-        <configuration>
-          <remoteTagging>true</remoteTagging>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>2.3.2</version>
-        <configuration>
-          <source>1.6</source>
-          <target>1.6</target>
-          <debug>true</debug>
-          <optimize>true</optimize>
-          <showDeprecation>true</showDeprecation>
-          <encoding>UTF-8</encoding>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-jar-plugin</artifactId>
-        <version>2.4</version>
-      </plugin>
-      <plugin>
-        <groupId>org.eclipse.tycho</groupId>
-        <artifactId>tycho-maven-plugin</artifactId>
-        <version>${tycho.version}</version>
-        <extensions>true</extensions>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-deploy-plugin</artifactId>
-        <version>2.8.2</version>
-        <configuration>
-          <skip>true</skip>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
-
-  <modules>
-    <module>ui</module>
-    <module>feature</module>
-    <module>update-site</module>
-  </modules>
+    <modules>
+        <module>ui</module>
+        <module>feature</module>
+        <module>update-site</module>
+    </modules>
 </project>

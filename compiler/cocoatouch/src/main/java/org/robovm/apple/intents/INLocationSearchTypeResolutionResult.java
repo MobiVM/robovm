@@ -56,8 +56,8 @@ import org.robovm.apple.corelocation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "successWithResolvedLocationSearchType:")
-    public static native INLocationSearchTypeResolutionResult successWithResolvedLocationSearchType(INLocationSearchType resolvedLocationSearchType);
+    public static native INLocationSearchTypeResolutionResult success(INLocationSearchType resolvedLocationSearchType);
     @Method(selector = "confirmationRequiredWithLocationSearchTypeToConfirm:")
-    public static native INLocationSearchTypeResolutionResult confirmationRequiredWithLocationSearchTypeToConfirm(INLocationSearchType locationSearchTypeToConfirm);
+    public static native INLocationSearchTypeResolutionResult confirmationRequired(INLocationSearchType locationSearchTypeToConfirm);
     /*</methods>*/
 }

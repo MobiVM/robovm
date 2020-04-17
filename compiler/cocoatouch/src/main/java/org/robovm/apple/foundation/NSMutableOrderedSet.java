@@ -39,13 +39,11 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 5.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/NSMutableOrderedSet/*</name>*/ <T extends NSObject>
-    extends /*<extends>*/NSOrderedSet/*</extends>*/ <T>
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/NSMutableOrderedSet<T extends NSObject>/*</name>*/
+    extends /*<extends>*/NSOrderedSet<T>/*</extends>*/
     /*<implements>*//*</implements>*/ {
 
     public static class NSMutableOrderedSetPtr<T extends NSObject> extends Ptr<NSMutableOrderedSet<T>, NSMutableOrderedSetPtr<T>> {}
@@ -140,16 +138,16 @@ import org.robovm.apple.dispatch.*;
 
     /*<methods>*/
     @Method(selector = "insertObject:atIndex:")
-    protected native void insertObject(NSObject object, @MachineSizedUInt long idx);
+    protected native void insertObject(T object, @MachineSizedUInt long idx);
     @Method(selector = "removeObjectAtIndex:")
     protected native void removeObject(@MachineSizedUInt long idx);
     @Method(selector = "replaceObjectAtIndex:withObject:")
-    protected native void replaceObject(@MachineSizedUInt long idx, NSObject object);
+    protected native void replaceObject(@MachineSizedUInt long idx, T object);
     @Method(selector = "initWithCapacity:")
     protected native @Pointer long init(@MachineSizedUInt long numItems);
     @Method(selector = "removeAllObjects")
     protected native void removeAllObjects();
     @Method(selector = "removeObject:")
-    protected native void removeObject(NSObject object);
+    protected native void removeObject(T object);
     /*</methods>*/
 }

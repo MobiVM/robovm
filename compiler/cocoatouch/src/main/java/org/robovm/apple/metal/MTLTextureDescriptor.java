@@ -32,9 +32,7 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MTLTextureDescriptor/*</name>*/ 
@@ -107,6 +105,16 @@ import org.robovm.apple.dispatch.*;
     @Property(selector = "setStorageMode:")
     public native void setStorageMode(MTLStorageMode v);
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "hazardTrackingMode")
+    public native MTLHazardTrackingMode getHazardTrackingMode();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setHazardTrackingMode:")
+    public native void setHazardTrackingMode(MTLHazardTrackingMode v);
+    /**
      * @since Available in iOS 9.0 and later.
      */
     @Property(selector = "usage")
@@ -126,6 +134,16 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "setAllowGPUOptimizedContents:")
     public native void setAllowGPUOptimizedContents(boolean v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "swizzle")
+    public native @ByVal MTLTextureSwizzleChannels getSwizzle();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setSwizzle:")
+    public native void setSwizzle(@ByVal MTLTextureSwizzleChannels v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

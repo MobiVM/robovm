@@ -55,7 +55,7 @@ import org.robovm.apple.avfoundation.*;
     protected SCNNode(Handle h, long handle) { super(h, handle); }
     protected SCNNode(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public SCNNode(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public SCNNode(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "name")
@@ -400,7 +400,7 @@ import org.robovm.apple.avfoundation.*;
     public native UIFocusItemContainer getFocusItemContainer();
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Deprecated in iOS 10.0. Use -preferredFocusEnvironments instead.
+     * @deprecated Deprecated in iOS 10.0. Use preferredFocusEnvironments
      */
     @Deprecated
     @Property(selector = "preferredFocusedView")
@@ -474,12 +474,12 @@ import org.robovm.apple.avfoundation.*;
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "convertVector:toNode:")
-    public native @ByVal SCNVector3 convertVector(@ByVal SCNVector3 vector, SCNNode node);
+    public native @ByVal SCNVector3 convertVectorToNode(@ByVal SCNVector3 vector, SCNNode node);
     /**
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "convertVector:fromNode:")
-    public native @ByVal SCNVector3 convertVector$fromNode$(@ByVal SCNVector3 vector, SCNNode node);
+    public native @ByVal SCNVector3 convertVectorFromNode(@ByVal SCNVector3 vector, SCNNode node);
     @Method(selector = "convertTransform:toNode:")
     public native @ByVal SCNMatrix4 convertTransformToNode(@ByVal SCNMatrix4 transform, SCNNode node);
     @Method(selector = "convertTransform:fromNode:")
@@ -499,7 +499,7 @@ import org.robovm.apple.avfoundation.*;
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "lookAt:up:localFront:")
-    public native void lookAt$up$localFront$(@ByVal SCNVector3 worldTarget, @ByVal SCNVector3 worldUp, @ByVal SCNVector3 localFront);
+    public native void lookAt(@ByVal SCNVector3 worldTarget, @ByVal SCNVector3 worldUp, @ByVal SCNVector3 localFront);
     /**
      * @since Available in iOS 11.0 and later.
      */
@@ -594,7 +594,7 @@ import org.robovm.apple.avfoundation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     @Method(selector = "addAnimation:forKey:")
     public native void addAnimation(SCNAnimation animation, String key);
     /**
@@ -617,28 +617,24 @@ import org.robovm.apple.avfoundation.*;
     @Method(selector = "removeAnimationForKey:blendOutDuration:")
     public native void removeAnimationForKey(String key, @MachineSizedFloat double duration);
     /**
-     * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use -removeAnimationForKey:blendOutDuration:
      */
     @Deprecated
     @Method(selector = "removeAnimationForKey:fadeOutDuration:")
     public native void removeAnimation(String key, @MachineSizedFloat double duration);
     /**
-     * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use -animationPlayerForKey:
      */
     @Deprecated
     @Method(selector = "animationForKey:")
     public native CAAnimation getAnimation(String key);
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 11.0. Use -[SCNAnimationPlayer setPaused:] instead
      */
     @Deprecated
     @Method(selector = "pauseAnimationForKey:")
     public native void pauseAnimation(String key);
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 11.0. Use -[SCNAnimationPlayer setPaused:] instead
      */
     @Deprecated
@@ -652,7 +648,6 @@ import org.robovm.apple.avfoundation.*;
     @Method(selector = "setSpeed:forAnimationKey:")
     public native void setSpeed(@MachineSizedFloat double speed, String key);
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 11.0. Use -[SCNAnimationPlayer paused] instead
      */
     @Deprecated
@@ -678,6 +673,9 @@ import org.robovm.apple.avfoundation.*;
     public native void setBoundingBox(SCNVector3.SCNVector3Ptr min, SCNVector3.SCNVector3Ptr max);
     @Method(selector = "getBoundingSphereCenter:radius:")
     public native boolean getBoundingSphere(SCNVector3.SCNVector3Ptr center, MachineSizedFloatPtr radius);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
     @Method(selector = "didHintFocusMovement:")
     public native void didHintFocusMovement(UIFocusMovementHint hint);
     @Method(selector = "setNeedsFocusUpdate")

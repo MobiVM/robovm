@@ -32,9 +32,7 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("Metal") @NativeProtocolProxy/*</annotations>*/
 /*<visibility>*/public final/*</visibility>*/ class /*<name>*/MTLDevice/*</name>*/ 
@@ -60,6 +58,11 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "maxThreadsPerThreadgroup")
     public native @ByVal MTLSize getMaxThreadsPerThreadgroup();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "hasUnifiedMemory")
+    public native boolean hasUnifiedMemory();
     /**
      * @since Available in iOS 11.0 and later.
      */
@@ -95,6 +98,14 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "areProgrammableSamplePositionsSupported")
     public native boolean isProgrammableSamplePositionsSupported();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "sparseTileSizeInBytes")
+    public native @MachineSizedUInt long getSparseTileSizeInBytes();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
     @Property(selector = "maxBufferLength")
     public native @MachineSizedUInt long getMaxBufferLength();
     /*</properties>*/
@@ -118,9 +129,6 @@ import org.robovm.apple.dispatch.*;
         return newComputePipelineState(computeFunction, options, (MTLComputePipelineReflection.MTLComputePipelineReflectionPtr)null);
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Bridge(symbol="MTLCreateSystemDefaultDevice", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(NSObject.NoRetainMarshaler.class) MTLDevice getSystemDefaultDevice();
     
@@ -158,6 +166,16 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "newTextureWithDescriptor:iosurface:plane:")
     public native MTLTexture newTexture(MTLTextureDescriptor descriptor, org.robovm.apple.iosurface.IOSurface iosurface, @MachineSizedUInt long plane);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "newSharedTextureWithDescriptor:")
+    public native MTLTexture newSharedTexture(MTLTextureDescriptor descriptor);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "newSharedTextureWithHandle:")
+    public native MTLTexture newSharedTexture(MTLSharedTextureHandle sharedHandle);
     @Method(selector = "newSamplerStateWithDescriptor:")
     public native MTLSamplerState newSamplerState(MTLSamplerDescriptor descriptor);
     @Method(selector = "newDefaultLibrary")
@@ -285,6 +303,11 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "supportsFeatureSet:")
     public native boolean supportsFeatureSet(MTLFeatureSet featureSet);
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "supportsFamily:")
+    public native boolean supportsFamily(MTLGPUFamily gpuFamily);
+    /**
      * @since Available in iOS 9.0 and later.
      */
     @Method(selector = "supportsTextureSampleCount:")
@@ -329,6 +352,16 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "newArgumentEncoderWithArguments:")
     public native MTLArgumentEncoder newArgumentEncoder(NSArray<MTLArgumentDescriptor> arguments);
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "supportsRasterizationRateMapWithLayerCount:")
+    public native boolean supportsRasterizationRateMap(@MachineSizedUInt long layerCount);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "newRasterizationRateMapWithDescriptor:")
+    public native MTLRasterizationRateMap newRasterizationRateMap(MTLRasterizationRateMapDescriptor descriptor);
+    /**
      * @since Available in iOS 12.0 and later.
      */
     @Method(selector = "newIndirectCommandBufferWithDescriptor:maxCommandCount:options:")
@@ -348,5 +381,25 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "newSharedEventWithHandle:")
     public native MTLSharedEvent newSharedEvent(MTLSharedEventHandle sharedEventHandle);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "sparseTileSizeWithTextureType:pixelFormat:sampleCount:")
+    public native @ByVal MTLSize sparseTileSizeWithTextureType(MTLTextureType textureType, MTLPixelFormat pixelFormat, @MachineSizedUInt long sampleCount);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "convertSparsePixelRegions:toTileRegions:withTileSize:alignmentMode:numRegions:")
+    public native void convertSparsePixelRegions(MTLRegion pixelRegions, MTLRegion tileRegions, @ByVal MTLSize tileSize, MTLSparseTextureRegionAlignmentMode mode, @MachineSizedUInt long numRegions);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "convertSparseTileRegions:toPixelRegions:withTileSize:numRegions:")
+    public native void convertSparseTileRegions(MTLRegion tileRegions, MTLRegion pixelRegions, @ByVal MTLSize tileSize, @MachineSizedUInt long numRegions);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "supportsVertexAmplificationCount:")
+    public native boolean supportsVertexAmplificationCount(@MachineSizedUInt long count);
     /*</methods>*/
 }

@@ -118,7 +118,7 @@ public class FrameworkTarget extends AbstractTarget {
 
 	@Override
 	protected List<String> getTargetExportedSymbols() {
-		return Arrays.asList("JNI_*", "rvmInstantiateFramework");
+		return Arrays.asList("JNI_*", "rvmInstantiateFramework", "OBJC_CLASS_$_*");
 	}
 
 	private String getMinimumOSVersion() {
@@ -134,10 +134,15 @@ public class FrameworkTarget extends AbstractTarget {
 		
 		ccArgs.add("-stdlib=libc++");
 		
-		if (isDeviceArch(arch))
+		if (isDeviceArch(arch)) {
 			ccArgs.add("-miphoneos-version-min=" + getMinimumOSVersion());
-		else
+			if (config.isEnableBitcode()) {
+				// tells clang to keep bitcode while linking
+				ccArgs.add("-fembed-bitcode");
+			}
+		} else {
 			ccArgs.add("-mios-simulator-version-min=" + getMinimumOSVersion());
+		}
 		
 		ccArgs.add("-isysroot");
 		ccArgs.add(sdk.getRoot().getAbsolutePath());
@@ -199,7 +204,12 @@ public class FrameworkTarget extends AbstractTarget {
 			config.getLogger().info("Striping framework binary: %s", frameworkBinaryFile);
 			new Executor(config.getLogger(), "xcrun").args("strip", "-x", frameworkBinaryFile).exec();
 		}
-		
+		// remove bitcode to minimize binary size if not required
+		if (!config.isEnableBitcode()) {
+			config.getLogger().info("Striping bitcode from binary: %s", frameworkBinaryFile);
+			stripBitcode(frameworkBinaryFile);
+		}
+
 		NSDictionary infoPlist = config.getInfoPList().getDictionary();
 		if (infoPlist.objectForKey("MinimumOSVersion") == null)
 			infoPlist.put("MinimumOSVersion", config.getOs().getMinVersion());

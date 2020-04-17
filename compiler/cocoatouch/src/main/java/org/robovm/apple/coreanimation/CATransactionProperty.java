@@ -92,21 +92,9 @@ import org.robovm.apple.metal.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CATransactionProperty AnimationDuration = new CATransactionProperty("AnimationDuration");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CATransactionProperty DisableActions = new CATransactionProperty("DisableActions");
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public static final CATransactionProperty AnimationTimingFunction = new CATransactionProperty("AnimationTimingFunction");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CATransactionProperty CompletionBlock = new CATransactionProperty("CompletionBlock");
     /*</constants>*/
     
@@ -133,24 +121,12 @@ import org.robovm.apple.metal.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCATransactionAnimationDuration", optional=true)
         public static native NSString AnimationDuration();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCATransactionDisableActions", optional=true)
         public static native NSString DisableActions();
-        /**
-         * @since Available in iOS 3.0 and later.
-         */
         @GlobalValue(symbol="kCATransactionAnimationTimingFunction", optional=true)
         public static native NSString AnimationTimingFunction();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCATransactionCompletionBlock", optional=true)
         public static native NSString CompletionBlock();
         /*</values>*/

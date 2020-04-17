@@ -29,11 +29,12 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corespotlight.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 7.0 and later.
  * @deprecated Deprecated in iOS 10.0. Please see the release notes and Core Data documentation.
  */
 /*</javadoc>*/

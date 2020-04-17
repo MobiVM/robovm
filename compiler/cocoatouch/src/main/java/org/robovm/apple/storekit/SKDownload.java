@@ -32,9 +32,7 @@ import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 6.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("StoreKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SKDownload/*</name>*/ 
@@ -56,58 +54,39 @@ import org.robovm.apple.uikit.*;
     @Property(selector = "state")
     public native SKDownloadState getState();
     /**
-     * @since Available in iOS 6.0 and later.
-     * @deprecated Deprecated in iOS 12.0. Use [SKDownload state] instead
+     * @deprecated Deprecated in iOS 12.0. Use -[SKDownload state]
      */
     @Deprecated
     @Property(selector = "downloadState")
     public native SKDownloadState getDownloadState();
     /**
-     * @since Available in iOS 6.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use -[SKDownload expectedContentLength]
      */
+    @Deprecated
     @Property(selector = "contentLength")
     public native long getContentLength();
     /**
-     * @since Available in iOS 6.0 and later.
+     * @since Available in iOS 13.0 and later.
      */
+    @Property(selector = "expectedContentLength")
+    public native long getExpectedContentLength();
     @Property(selector = "contentIdentifier")
     public native String getContentIdentifier();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "contentURL")
     public native NSURL getContentURL();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "contentVersion")
     public native String getContentVersion();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "error")
     public native NSError getError();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "progress")
     public native float getProgress();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "timeRemaining")
     public native double getTimeRemaining();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "transaction")
     public native SKPaymentTransaction getTransaction();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @GlobalValue(symbol="SKDownloadTimeRemainingUnknown", optional=true)
     public static native double getRemainingTimeUnknown();
     

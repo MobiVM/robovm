@@ -37,12 +37,12 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 2.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UITabBarController/*</name>*/ 
@@ -59,7 +59,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithNibName:bundle:")
     public UITabBarController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
     @Method(selector = "initWithCoder:")
-    public UITabBarController(NSCoder decoder) { super(decoder); }
+    public UITabBarController(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "viewControllers")
@@ -80,9 +80,6 @@ import org.robovm.apple.intents.*;
     public native NSArray<UIViewController> getCustomizableViewControllers();
     @Property(selector = "setCustomizableViewControllers:")
     public native void setCustomizableViewControllers(NSArray<UIViewController> v);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "tabBar")
     public native UITabBar getTabBar();
     @Property(selector = "delegate")

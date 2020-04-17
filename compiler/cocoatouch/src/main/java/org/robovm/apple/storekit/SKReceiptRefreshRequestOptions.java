@@ -107,9 +107,6 @@ import org.robovm.apple.uikit.*;
     }
     
 
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public boolean isExpired() {
         if (has(Keys.IsExpired())) {
             NSNumber val = (NSNumber) get(Keys.IsExpired());
@@ -117,16 +114,10 @@ import org.robovm.apple.uikit.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public SKReceiptRefreshRequestOptions setExpired(boolean expired) {
         set(Keys.IsExpired(), NSNumber.valueOf(expired));
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public boolean isRevoked() {
         if (has(Keys.IsRevoked())) {
             NSNumber val = (NSNumber) get(Keys.IsRevoked());
@@ -134,16 +125,10 @@ import org.robovm.apple.uikit.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public SKReceiptRefreshRequestOptions setRevoked(boolean revoked) {
         set(Keys.IsRevoked(), NSNumber.valueOf(revoked));
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public boolean isVolumePurchase() {
         if (has(Keys.IsVolumePurchase())) {
             NSNumber val = (NSNumber) get(Keys.IsVolumePurchase());
@@ -151,9 +136,6 @@ import org.robovm.apple.uikit.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public SKReceiptRefreshRequestOptions setVolumePurchase(boolean volumePurchase) {
         set(Keys.IsVolumePurchase(), NSNumber.valueOf(volumePurchase));
         return this;
@@ -164,19 +146,10 @@ import org.robovm.apple.uikit.*;
     @Library("StoreKit")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="SKReceiptPropertyIsExpired", optional=true)
         public static native NSString IsExpired();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="SKReceiptPropertyIsRevoked", optional=true)
         public static native NSString IsRevoked();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="SKReceiptPropertyIsVolumePurchase", optional=true)
         public static native NSString IsVolumePurchase();
     }

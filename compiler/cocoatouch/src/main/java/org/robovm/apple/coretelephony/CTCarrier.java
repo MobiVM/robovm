@@ -32,9 +32,7 @@ import org.robovm.apple.corefoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreTelephony") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CTCarrier/*</name>*/ 
@@ -50,29 +48,14 @@ import org.robovm.apple.corefoundation.*;
     protected CTCarrier(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "carrierName")
     public native String getCarrierName();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "mobileCountryCode")
     public native String getMobileCountryCode();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "mobileNetworkCode")
     public native String getMobileNetworkCode();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "isoCountryCode")
     public native String getIsoCountryCode();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "allowsVOIP")
     public native boolean allowsVOIP();
     /*</properties>*/

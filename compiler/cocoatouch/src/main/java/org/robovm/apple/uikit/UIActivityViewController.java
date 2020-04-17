@@ -37,12 +37,12 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 6.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIActivityViewController/*</name>*/ 
@@ -79,27 +79,19 @@ import org.robovm.apple.intents.*;
     }
     /*<properties>*/
     /**
-     * @since Available in iOS 6.0 and later.
-     * @deprecated Deprecated in iOS 8.0. Use completionWithItemsHandler instead.
+     * @deprecated Deprecated in iOS 8.0. Use completionWithItemsHandler
      */
     @Deprecated
     @Property(selector = "completionHandler")
     public native @Block VoidBlock2<String, Boolean> getCompletionHandler();
     /**
-     * @since Available in iOS 6.0 and later.
-     * @deprecated Deprecated in iOS 8.0. Use completionWithItemsHandler instead.
+     * @deprecated Deprecated in iOS 8.0. Use completionWithItemsHandler
      */
     @Deprecated
     @Property(selector = "setCompletionHandler:")
     public native void setCompletionHandler(@Block VoidBlock2<String, Boolean> v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "completionWithItemsHandler")
     public native @Block VoidBlock4<String, Boolean, NSArray<NSObject>, NSError> getCompletionWithItemsHandler();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setCompletionWithItemsHandler:")
     public native void setCompletionWithItemsHandler(@Block VoidBlock4<String, Boolean, NSArray<NSObject>, NSError> v);
     @Property(selector = "excludedActivityTypes")

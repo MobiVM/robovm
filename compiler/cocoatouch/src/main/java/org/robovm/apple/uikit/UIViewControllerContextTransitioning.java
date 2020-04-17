@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -62,9 +64,6 @@ import org.robovm.apple.intents.*;
     boolean isTransitionWasCancelled();
     @Property(selector = "presentationStyle")
     UIModalPresentationStyle getPresentationStyle();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "targetTransform")
     @ByVal CGAffineTransform getTargetTransform();
     /*</properties>*/
@@ -84,9 +83,6 @@ import org.robovm.apple.intents.*;
     void completeTransition(boolean didComplete);
     @Method(selector = "viewControllerForKey:")
     UIViewController getViewController(UITransitionContextViewControllerType key);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "viewForKey:")
     UIView getView(UITransitionContextViewType key);
     @Method(selector = "initialFrameForViewController:")

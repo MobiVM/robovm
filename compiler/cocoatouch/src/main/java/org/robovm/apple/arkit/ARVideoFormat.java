@@ -59,6 +59,11 @@ import org.robovm.apple.imageio.*;
     protected ARVideoFormat(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "captureDevicePosition")
+    public native AVCaptureDevicePosition getCaptureDevicePosition();
     @Property(selector = "imageResolution")
     public native @ByVal CGSize getImageResolution();
     @Property(selector = "framesPerSecond")

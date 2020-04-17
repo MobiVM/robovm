@@ -91,31 +91,26 @@ import org.robovm.apple.accounts.*;
 
     /*<constants>*/
     /**
-     * @since Available in iOS 6.0 and later.
      * @deprecated Deprecated in iOS 11.0.
      */
     @Deprecated
     public static final SLServiceType Twitter = new SLServiceType("Twitter");
     /**
-     * @since Available in iOS 6.0 and later.
      * @deprecated Deprecated in iOS 11.0.
      */
     @Deprecated
     public static final SLServiceType Facebook = new SLServiceType("Facebook");
     /**
-     * @since Available in iOS 6.0 and later.
      * @deprecated Deprecated in iOS 11.0.
      */
     @Deprecated
     public static final SLServiceType SinaWeibo = new SLServiceType("SinaWeibo");
     /**
-     * @since Available in iOS 6.0 and later.
      * @deprecated Deprecated in iOS 11.0.
      */
     @Deprecated
     public static final SLServiceType TencentWeibo = new SLServiceType("TencentWeibo");
     /**
-     * @since Available in iOS 6.0 and later.
      * @deprecated Deprecated in iOS 11.0.
      */
     @Deprecated
@@ -146,35 +141,30 @@ import org.robovm.apple.accounts.*;
 
         /*<values>*/
         /**
-         * @since Available in iOS 6.0 and later.
          * @deprecated Deprecated in iOS 11.0.
          */
         @Deprecated
         @GlobalValue(symbol="SLServiceTypeTwitter", optional=true)
         public static native NSString Twitter();
         /**
-         * @since Available in iOS 6.0 and later.
          * @deprecated Deprecated in iOS 11.0.
          */
         @Deprecated
         @GlobalValue(symbol="SLServiceTypeFacebook", optional=true)
         public static native NSString Facebook();
         /**
-         * @since Available in iOS 6.0 and later.
          * @deprecated Deprecated in iOS 11.0.
          */
         @Deprecated
         @GlobalValue(symbol="SLServiceTypeSinaWeibo", optional=true)
         public static native NSString SinaWeibo();
         /**
-         * @since Available in iOS 6.0 and later.
          * @deprecated Deprecated in iOS 11.0.
          */
         @Deprecated
         @GlobalValue(symbol="SLServiceTypeTencentWeibo", optional=true)
         public static native NSString TencentWeibo();
         /**
-         * @since Available in iOS 6.0 and later.
          * @deprecated Deprecated in iOS 11.0.
          */
         @Deprecated

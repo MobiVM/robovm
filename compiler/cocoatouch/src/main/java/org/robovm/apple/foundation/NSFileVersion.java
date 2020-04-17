@@ -39,9 +39,7 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 5.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSFileVersion/*</name>*/ 
@@ -78,14 +76,8 @@ import org.robovm.apple.dispatch.*;
     public native boolean isResolved();
     @Property(selector = "setResolved:")
     public native void setResolved(boolean v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "hasLocalContents")
     public native boolean hasLocalContents();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "hasThumbnail")
     public native boolean hasThumbnail();
     /*</properties>*/
@@ -113,9 +105,6 @@ import org.robovm.apple.dispatch.*;
     public static native NSArray<NSFileVersion> getOtherItemVersionsAtURL(NSURL url);
     @Method(selector = "unresolvedConflictVersionsOfItemAtURL:")
     public static native NSArray<NSFileVersion> getUnresolvedConflictItemVersionsAtURL(NSURL url);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "getNonlocalVersionsOfItemAtURL:completionHandler:")
     public static native void getNonlocalItemVersionsAtURL(NSURL url, @Block VoidBlock2<NSArray<NSFileVersion>, NSError> completionHandler);
     @Method(selector = "versionOfItemAtURL:forPersistentIdentifier:")

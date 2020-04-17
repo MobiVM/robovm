@@ -312,9 +312,6 @@ import org.robovm.apple.dispatch.*;
         set(NSFileAttribute.Busy, NSNumber.valueOf(busy));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public NSFileProtection getProtection() {
         if (has(NSFileAttribute.ProtectionKey)) {
             NSString val = (NSString) get(NSFileAttribute.ProtectionKey);
@@ -322,9 +319,6 @@ import org.robovm.apple.dispatch.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public NSFileAttributes setProtection(NSFileProtection protection) {
         set(NSFileAttribute.ProtectionKey, protection.value());
         return this;

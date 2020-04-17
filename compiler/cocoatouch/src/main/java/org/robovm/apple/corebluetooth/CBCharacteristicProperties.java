@@ -47,13 +47,7 @@ public final class /*<name>*/CBCharacteristicProperties/*</name>*/ extends Bits<
     public static final CBCharacteristicProperties Indicate = new CBCharacteristicProperties(32L);
     public static final CBCharacteristicProperties AuthenticatedSignedWrites = new CBCharacteristicProperties(64L);
     public static final CBCharacteristicProperties ExtendedProperties = new CBCharacteristicProperties(128L);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public static final CBCharacteristicProperties NotifyEncryptionRequired = new CBCharacteristicProperties(256L);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public static final CBCharacteristicProperties IndicateEncryptionRequired = new CBCharacteristicProperties(512L);
     /*</values>*/
 

@@ -49,6 +49,10 @@ public final class /*<name>*/UNNotificationCategoryOptions/*</name>*/ extends Bi
      * @since Available in iOS 11.0 and later.
      */
     public static final UNNotificationCategoryOptions HiddenPreviewsShowSubtitle = new UNNotificationCategoryOptions(8L);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final UNNotificationCategoryOptions AllowAnnouncement = new UNNotificationCategoryOptions(16L);
     /*</values>*/
 
     /*<bind>*/

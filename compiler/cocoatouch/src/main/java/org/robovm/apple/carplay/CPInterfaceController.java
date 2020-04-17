@@ -56,6 +56,16 @@ import org.robovm.apple.mapkit.*;
     public native CPInterfaceControllerDelegate getDelegate();
     @Property(selector = "setDelegate:", strongRef = true)
     public native void setDelegate(CPInterfaceControllerDelegate v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "prefersDarkUserInterfaceStyle")
+    public native boolean prefersDarkUserInterfaceStyle();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setPrefersDarkUserInterfaceStyle:")
+    public native void setPrefersDarkUserInterfaceStyle(boolean v);
     @Property(selector = "presentedTemplate")
     public native CPTemplate getPresentedTemplate();
     @Property(selector = "rootTemplate")

@@ -63,6 +63,21 @@ import org.robovm.apple.uikit.*;
      */
     @Method(selector = "previewController:transitionViewForPreviewItem:")
     UIView getTransitionViewForPreviewItem(QLPreviewController controller, QLPreviewItem item);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "previewController:editingModeForPreviewItem:")
+    QLPreviewItemEditingMode getEditingMode(QLPreviewController controller, QLPreviewItem previewItem);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "previewController:didUpdateContentsOfPreviewItem:")
+    void didUpdateContentsOfPreviewItem(QLPreviewController controller, QLPreviewItem previewItem);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "previewController:didSaveEditedCopyOfPreviewItem:atURL:")
+    void didSaveEditedCopyOfPreviewItem(QLPreviewController controller, QLPreviewItem previewItem, NSURL modifiedContentsURL);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

@@ -97,13 +97,7 @@ import org.robovm.apple.audiotoolbox.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMetadataKeyISOUserData Copyright = new AVMetadataKeyISOUserData("Copyright");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataKeyISOUserData TaggedCharacteristic = new AVMetadataKeyISOUserData("TaggedCharacteristic");
     /**
      * @since Available in iOS 10.0 and later.
@@ -134,14 +128,8 @@ import org.robovm.apple.audiotoolbox.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataISOUserDataKeyCopyright", optional=true)
         public static native NSString Copyright();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataISOUserDataKeyTaggedCharacteristic", optional=true)
         public static native NSString TaggedCharacteristic();
         /**

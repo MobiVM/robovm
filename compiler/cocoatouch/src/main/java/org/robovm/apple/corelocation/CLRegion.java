@@ -34,9 +34,7 @@ import org.robovm.apple.contacts.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreLocation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CLRegion/*</name>*/ 
@@ -51,53 +49,35 @@ import org.robovm.apple.contacts.*;
     protected CLRegion(Handle h, long handle) { super(h, handle); }
     protected CLRegion(SkipInit skipInit) { super(skipInit); }
     /**
-     * @since Available in iOS 4.0 and later.
      * @deprecated Deprecated in iOS 7.0. Please see CLCircularRegion
      */
     @Deprecated
     @Method(selector = "initCircularRegionWithCenter:radius:identifier:")
     public CLRegion(@ByVal CLLocationCoordinate2D center, double radius, String identifier) { super((SkipInit) null); initObject(init(center, radius, identifier)); }
     @Method(selector = "initWithCoder:")
-    public CLRegion(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public CLRegion(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     /**
-     * @since Available in iOS 4.0 and later.
      * @deprecated Deprecated in iOS 7.0. Please see CLCircularRegion
      */
     @Deprecated
     @Property(selector = "center")
     public native @ByVal CLLocationCoordinate2D getCenter();
     /**
-     * @since Available in iOS 4.0 and later.
      * @deprecated Deprecated in iOS 7.0. Please see CLCircularRegion
      */
     @Deprecated
     @Property(selector = "radius")
     public native double getRadius();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "identifier")
     public native String getIdentifier();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "notifyOnEntry")
     public native boolean notifiesOnEntry();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setNotifyOnEntry:")
     public native void setNotifiesOnEntry(boolean v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "notifyOnExit")
     public native boolean notifiesOnExit();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setNotifyOnExit:")
     public native void setNotifiesOnExit(boolean v);
     @Property(selector = "supportsSecureCoding")
@@ -106,14 +86,12 @@ import org.robovm.apple.contacts.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @since Available in iOS 4.0 and later.
      * @deprecated Deprecated in iOS 7.0. Please see CLCircularRegion
      */
     @Deprecated
     @Method(selector = "initCircularRegionWithCenter:radius:identifier:")
     protected native @Pointer long init(@ByVal CLLocationCoordinate2D center, double radius, String identifier);
     /**
-     * @since Available in iOS 4.0 and later.
      * @deprecated Deprecated in iOS 7.0. Please see CLCircularRegion
      */
     @Deprecated
@@ -122,6 +100,6 @@ import org.robovm.apple.contacts.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

@@ -50,6 +50,11 @@ import org.robovm.apple.corelocation.*;
     protected INMessage(Handle h, long handle) { super(h, handle); }
     protected INMessage(SkipInit skipInit) { super(skipInit); }
     /**
+     * @since Available in iOS 13.2 and later.
+     */
+    @Method(selector = "initWithIdentifier:conversationIdentifier:content:dateSent:sender:recipients:groupName:messageType:serviceName:")
+    public INMessage(String identifier, String conversationIdentifier, String content, NSDate dateSent, INPerson sender, NSArray<INPerson> recipients, INSpeakableString groupName, INMessageType messageType, String serviceName) { super((SkipInit) null); initObject(init(identifier, conversationIdentifier, content, dateSent, sender, recipients, groupName, messageType, serviceName)); }
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "initWithIdentifier:conversationIdentifier:content:dateSent:sender:recipients:groupName:messageType:")
@@ -62,7 +67,7 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "initWithIdentifier:content:dateSent:sender:recipients:")
     public INMessage(String identifier, String content, NSDate dateSent, INPerson sender, NSArray<INPerson> recipients) { super((SkipInit) null); initObject(init(identifier, content, dateSent, sender, recipients)); }
     @Method(selector = "initWithCoder:")
-    public INMessage(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public INMessage(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "identifier")
@@ -90,11 +95,21 @@ import org.robovm.apple.corelocation.*;
      */
     @Property(selector = "messageType")
     public native INMessageType getMessageType();
+    /**
+     * @since Available in iOS 13.2 and later.
+     */
+    @Property(selector = "serviceName")
+    public native String getServiceName();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 13.2 and later.
+     */
+    @Method(selector = "initWithIdentifier:conversationIdentifier:content:dateSent:sender:recipients:groupName:messageType:serviceName:")
+    protected native @Pointer long init(String identifier, String conversationIdentifier, String content, NSDate dateSent, INPerson sender, NSArray<INPerson> recipients, INSpeakableString groupName, INMessageType messageType, String serviceName);
     /**
      * @since Available in iOS 11.0 and later.
      */
@@ -110,6 +125,6 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

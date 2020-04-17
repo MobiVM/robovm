@@ -16,15 +16,17 @@
  */
 package org.robovm.idea.running;
 
-import com.intellij.execution.ExecutionException;
 import com.intellij.execution.Executor;
-import com.intellij.execution.RunManager;
-import com.intellij.execution.RunnerAndConfigurationSettings;
-import com.intellij.execution.configurations.*;
+import com.intellij.execution.configurations.ConfigurationFactory;
+import com.intellij.execution.configurations.ConfigurationType;
+import com.intellij.execution.configurations.ModuleBasedConfiguration;
+import com.intellij.execution.configurations.RunConfiguration;
+import com.intellij.execution.configurations.RunConfigurationWithSuppressedDefaultDebugAction;
+import com.intellij.execution.configurations.RunProfileState;
+import com.intellij.execution.configurations.RunProfileWithCompileBeforeLaunchOption;
 import com.intellij.execution.runners.ExecutionEnvironment;
 import com.intellij.execution.runners.RunConfigurationWithSuppressedDefaultRunAction;
 import com.intellij.openapi.module.Module;
-import com.intellij.openapi.module.ModuleManager;
 import com.intellij.openapi.options.SettingsEditor;
 import com.intellij.openapi.util.InvalidDataException;
 import com.intellij.openapi.util.JDOMExternalizerUtil;
@@ -37,25 +39,38 @@ import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.config.Config;
 import org.robovm.idea.RoboVmPlugin;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 public class RoboVmRunConfiguration extends ModuleBasedConfiguration<RoboVmRunConfigurationSettings, Element> implements RunConfigurationWithSuppressedDefaultDebugAction, RunConfigurationWithSuppressedDefaultRunAction, RunProfileWithCompileBeforeLaunchOption {
-    public static enum TargetType {
+    public static final String AUTO_SIGNING_IDENTITY_LEGACY = "Auto (matches 'iPhone Developer|iOS Development')";
+    public static final String AUTO_SIGNING_IDENTITY = "Auto (matches 'iPhone Developer|iOS Development|Apple Development')";
+    public static final String AUTO_PROVISIONING_PROFILE = "Auto";
+
+    public enum TargetType {
         Simulator,
         Device,
         Console
     }
 
+    // Specifies mode of signing identity, provisioning profile or simulator entry
+    // null if legacy
+    public enum EntryType {
+        ID,     // corresponding *name field contains identifier
+        AUTO,   // auto (signing identity, provisioning profile or iphone sim)
+        AUTO2   // auto iPad simulator
+    }
+
     private TargetType targetType;
     private Arch deviceArch;
+    private EntryType signingIdentityType;
     private String signingIdentity;
+    private EntryType provisioningProfileType;
     private String provisioningProfile;
-    private Arch simArch;
-    private String simulatorName;
+    private Arch simulatorArch;
+    private EntryType simulatorType;
+    private String simulator;
     private int simulatorSdk;
-    private String moduleName;
     private String arguments;
     private String workingDir;
 
@@ -72,12 +87,20 @@ public class RoboVmRunConfiguration extends ModuleBasedConfiguration<RoboVmRunCo
     public RoboVmRunConfiguration(ConfigurationType type, String name, RoboVmRunConfigurationSettings configurationModule, ConfigurationFactory factory) {
         super(name, configurationModule, factory);
         this.type = type;
-
+        this.setDefaultValues();
     }
 
-    @Override
-    public ModuleBasedConfiguration clone() {
-        return super.clone();
+    private void setDefaultValues() {
+        if (type instanceof RoboVmIOSConfigurationType) {
+            targetType = TargetType.Device;
+            deviceArch = Arch.arm64;
+            signingIdentityType = EntryType.AUTO;
+            provisioningProfileType = EntryType.AUTO;
+            simulatorType = EntryType.AUTO;
+            simulatorArch = Arch.x86_64;
+        } else if (type instanceof RoboVmConsoleConfigurationType) {
+            targetType = TargetType.Console;
+        }
     }
 
     @Override
@@ -88,7 +111,7 @@ public class RoboVmRunConfiguration extends ModuleBasedConfiguration<RoboVmRunCo
     @NotNull
     @Override
     public SettingsEditor<? extends RunConfiguration> getConfigurationEditor() {
-        if(type instanceof RoboVmIOSConfigurationType) {
+        if (type instanceof RoboVmIOSConfigurationType) {
             return new RoboVmIOSRunConfigurationSettingsEditor();
         } else {
             return new RoboVmConsoleRunConfigurationSettingsEditor();
@@ -97,54 +120,46 @@ public class RoboVmRunConfiguration extends ModuleBasedConfiguration<RoboVmRunCo
 
     @Nullable
     @Override
-    public RunProfileState getState(@NotNull Executor executor, @NotNull ExecutionEnvironment environment) throws ExecutionException {
+    public RunProfileState getState(@NotNull Executor executor, @NotNull ExecutionEnvironment environment) {
         return new RoboVmRunProfileState(environment);
     }
 
     @Override
-    public void readExternal(Element element) throws InvalidDataException {
+    public void readExternal(@NotNull Element element) throws InvalidDataException {
         super.readExternal(element);
 
-        readModule(element);
-        moduleName = JDOMExternalizerUtil.readField(element, "moduleName");
-        String targetTypeStr = JDOMExternalizerUtil.readField(element, "targetType");
-        targetType = targetTypeStr.length() == 0? null: TargetType.valueOf(targetTypeStr);
-        String deviceArchStr = JDOMExternalizerUtil.readField(element, "deviceArch");
-        deviceArch = deviceArchStr.length() == 0? null: Arch.valueOf(deviceArchStr);
+        targetType = valueOf(TargetType.class, JDOMExternalizerUtil.readField(element, "targetType"));
+        deviceArch = valueOf(Arch.class, JDOMExternalizerUtil.readField(element, "deviceArch"));
+        signingIdentityType = valueOf(EntryType.class, JDOMExternalizerUtil.readField(element, "signingIdentityType"));
         signingIdentity = JDOMExternalizerUtil.readField(element, "signingIdentity");
+        provisioningProfileType = valueOf(EntryType.class, JDOMExternalizerUtil.readField(element, "provisioningProfileType"));
         provisioningProfile = JDOMExternalizerUtil.readField(element, "provisioningProfile");
-        String simArchStr = JDOMExternalizerUtil.readField(element, "simArch");
-        simArch = simArchStr.length() == 0? null: Arch.valueOf(simArchStr);
-        simulatorName = JDOMExternalizerUtil.readField(element, "simulatorName");
-        String simSdkString = JDOMExternalizerUtil.readField(element, "simulatorSdk");
-        simulatorSdk = -1;
-        try {
-            if (simSdkString != null)
-                simulatorSdk = Integer.parseInt(simSdkString);
-        } catch (Throwable ignored) {
-        }
-        arguments = JDOMExternalizerUtil.readField(element, "arguments");
-        if(arguments == null) arguments = "";
-        workingDir = JDOMExternalizerUtil.readField(element, "workingDir");
-        if(workingDir == null) workingDir = "";
+        simulatorType = valueOf(EntryType.class, JDOMExternalizerUtil.readField(element, "simulatorType"));
+        simulator = JDOMExternalizerUtil.readField(element, "simulatorName");
+        simulatorArch = valueOf(Arch.class, JDOMExternalizerUtil.readField(element, "simArch"));
+        simulatorSdk = parseInt(JDOMExternalizerUtil.readField(element, "simulatorSdk"), -1);
+        arguments = JDOMExternalizerUtil.readField(element, "arguments", "");
+        workingDir = JDOMExternalizerUtil.readField(element, "workingDir", "");
+
+        validateAndFix();
     }
 
     @Override
-    public void writeExternal(Element element) throws WriteExternalException {
+    public void writeExternal(@NotNull Element element) throws WriteExternalException {
         super.writeExternal(element);
 
-        setModuleName(moduleName);
-        writeModule(element);
-        JDOMExternalizerUtil.writeField(element, "moduleName", moduleName);
-        JDOMExternalizerUtil.writeField(element, "targetType", targetType == null? null: targetType.toString());
-        JDOMExternalizerUtil.writeField(element, "deviceArch", deviceArch == null? null: deviceArch.toString());
+        JDOMExternalizerUtil.writeField(element, "targetType", toStringOrNull(targetType));
+        JDOMExternalizerUtil.writeField(element, "deviceArch", toStringOrNull(deviceArch));
+        JDOMExternalizerUtil.writeField(element, "signingIdentityType", toStringOrNull(signingIdentityType));
         JDOMExternalizerUtil.writeField(element, "signingIdentity", signingIdentity);
+        JDOMExternalizerUtil.writeField(element, "provisioningProfileType", toStringOrNull(provisioningProfileType));
         JDOMExternalizerUtil.writeField(element, "provisioningProfile", provisioningProfile);
-        JDOMExternalizerUtil.writeField(element, "simArch", simArch == null? null: simArch.toString());
-        JDOMExternalizerUtil.writeField(element, "simulatorName", simulatorName);
+        JDOMExternalizerUtil.writeField(element, "simArch", toStringOrNull(simulatorArch));
+        JDOMExternalizerUtil.writeField(element, "simulatorType", toStringOrNull(simulatorType));
+        JDOMExternalizerUtil.writeField(element, "simulatorName", simulator);
         JDOMExternalizerUtil.writeField(element, "simulatorSdk", Integer.toString(simulatorSdk));
-        JDOMExternalizerUtil.writeField(element, "arguments", arguments == null? "": arguments);
-        JDOMExternalizerUtil.writeField(element, "workingDir", workingDir == null? "": workingDir);
+        JDOMExternalizerUtil.writeField(element, "arguments", arguments);
+        JDOMExternalizerUtil.writeField(element, "workingDir", workingDir);
     }
 
     public void setDeviceArch(Arch deviceArch) {
@@ -155,12 +170,28 @@ public class RoboVmRunConfiguration extends ModuleBasedConfiguration<RoboVmRunCo
         return deviceArch;
     }
 
+    public EntryType getSigningIdentityType() {
+        return signingIdentityType;
+    }
+
+    public void setSigningIdentityType(EntryType signingIdentityType) {
+        this.signingIdentityType = signingIdentityType;
+    }
+
     public void setSigningIdentity(String signingIdentity) {
         this.signingIdentity = signingIdentity;
     }
 
     public String getSigningIdentity() {
         return signingIdentity;
+    }
+
+    public EntryType getProvisioningProfileType() {
+        return provisioningProfileType;
+    }
+
+    public void setProvisioningProfileType(EntryType provisioningProfileType) {
+        this.provisioningProfileType = provisioningProfileType;
     }
 
     public void setProvisioningProfile(String provisioningProfile) {
@@ -171,20 +202,28 @@ public class RoboVmRunConfiguration extends ModuleBasedConfiguration<RoboVmRunCo
         return provisioningProfile;
     }
 
-    public void setSimArch(Arch simArch) {
-        this.simArch = simArch;
+    public void setSimulatorArch(Arch simulatorArch) {
+        this.simulatorArch = simulatorArch;
     }
 
-    public Arch getSimArch() {
-        return simArch;
+    public Arch getSimulatorArch() {
+        return simulatorArch;
     }
 
-    public void setSimulatorName(String simulatorName) {
-        this.simulatorName = simulatorName;
+    public EntryType getSimulatorType() {
+        return simulatorType;
     }
 
-    public String getSimulatorName() {
-        return simulatorName;
+    public void setSimulatorType(EntryType simulatorType) {
+        this.simulatorType = simulatorType;
+    }
+
+    public void setSimulator(String simulator) {
+        this.simulator = simulator;
+    }
+
+    public String getSimulator() {
+        return simulator;
     }
 
     public int getSimulatorSdk() {
@@ -195,18 +234,8 @@ public class RoboVmRunConfiguration extends ModuleBasedConfiguration<RoboVmRunCo
         this.simulatorSdk = simulatorSdk;
     }
 
-    public void setModuleName(String moduleName) {
-        this.moduleName = moduleName;
-        for (Module module : ModuleManager.getInstance(getConfigurationModule().getProject()).getModules()) {
-            if(module.getName().equals(moduleName)) {
-                setModule(module);
-                break;
-            }
-        }
-    }
-
     public String getModuleName() {
-        return moduleName;
+        return getConfigurationModule().getModuleName();
     }
 
     public boolean isDebug() {
@@ -271,5 +300,48 @@ public class RoboVmRunConfiguration extends ModuleBasedConfiguration<RoboVmRunCo
 
     public void setWorkingDir(String workingDir) {
         this.workingDir = workingDir;
+    }
+
+    /**
+     * validates possibly wrong values and tries to fix
+     */
+    private void validateAndFix() {
+        if (type instanceof RoboVmIOSConfigurationType) {
+            if (targetType != TargetType.Device && targetType != TargetType.Simulator)
+                targetType = TargetType.Device;
+
+            if (simulatorType == EntryType.AUTO || simulatorType == EntryType.AUTO2)
+                simulatorArch = Arch.x86_64;
+
+            // migrate simulator to new code if legacy found
+            if (AUTO_SIGNING_IDENTITY_LEGACY.equals(simulator))
+                simulator = AUTO_SIGNING_IDENTITY;
+        } else if (type instanceof RoboVmConsoleConfigurationType) {
+            // MacOsX console target
+            targetType = TargetType.Console;
+        }
+    }
+
+    //
+    // Helpers
+    //
+    private <T extends Enum<T>> T valueOf(Class<T> enumType, String name) {
+        try {
+            return Enum.valueOf(enumType, name);
+        } catch (IllegalArgumentException ignored){
+            return null;
+        }
+    }
+
+    private int parseInt(String value, int defaultValue) {
+        try {
+            return Integer.parseInt(value);
+        } catch (Throwable ignored) {
+            return defaultValue;
+        }
+    }
+
+    private String toStringOrNull(Object v) {
+        return v != null ? v.toString() : null;
     }
 }

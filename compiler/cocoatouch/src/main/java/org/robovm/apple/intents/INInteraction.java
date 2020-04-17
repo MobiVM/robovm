@@ -52,7 +52,7 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "initWithIntent:response:")
     public INInteraction(INIntent intent, INIntentResponse response) { super((SkipInit) null); initObject(init(intent, response)); }
     @Method(selector = "initWithCoder:")
-    public INInteraction(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public INInteraction(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "intent")
@@ -85,9 +85,9 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "initWithIntent:response:")
     protected native @Pointer long init(INIntent intent, INIntentResponse response);
     @Method(selector = "donateInteractionWithCompletion:")
-    public native void donateInteractionWithCompletion(@Block VoidBlock1<NSError> completion);
+    public native void donateInteraction(@Block VoidBlock1<NSError> completion);
     @Method(selector = "deleteAllInteractionsWithCompletion:")
-    public static native void deleteAllInteractionsWithCompletion(@Block VoidBlock1<NSError> completion);
+    public static native void deleteAllInteractions(@Block VoidBlock1<NSError> completion);
     @Method(selector = "deleteInteractionsWithIdentifiers:completion:")
     public static native void deleteInteractions(NSArray<NSString> identifiers, @Block VoidBlock1<NSError> completion);
     @Method(selector = "deleteInteractionsWithGroupIdentifier:completion:")
@@ -100,6 +100,6 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -55,80 +57,46 @@ import org.robovm.apple.intents.*;
     
     /*</properties>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "splitViewController:willChangeToDisplayMode:")
     void willChangeToDisplayMode(UISplitViewController svc, UISplitViewControllerDisplayMode displayMode);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "targetDisplayModeForActionInSplitViewController:")
     UISplitViewControllerDisplayMode getTargetDisplayMode(UISplitViewController svc);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "splitViewController:showViewController:sender:")
     boolean showViewController(UISplitViewController splitViewController, UIViewController vc, NSObject sender);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "splitViewController:showDetailViewController:sender:")
     boolean showDetailViewController(UISplitViewController splitViewController, UIViewController vc, NSObject sender);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "primaryViewControllerForCollapsingSplitViewController:")
     UIViewController getPrimaryViewControllerForCollapsing(UISplitViewController splitViewController);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "primaryViewControllerForExpandingSplitViewController:")
     UIViewController getPrimaryViewControllerForExpanding(UISplitViewController splitViewController);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "splitViewController:collapseSecondaryViewController:ontoPrimaryViewController:")
     boolean collapseSecondaryViewController(UISplitViewController splitViewController, UIViewController secondaryViewController, UIViewController primaryViewController);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "splitViewController:separateSecondaryViewControllerFromPrimaryViewController:")
     UIViewController separateSecondaryViewController(UISplitViewController splitViewController, UIViewController primaryViewController);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "splitViewControllerSupportedInterfaceOrientations:")
     UIInterfaceOrientationMask getSupportedInterfaceOrientations(UISplitViewController splitViewController);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "splitViewControllerPreferredInterfaceOrientationForPresentation:")
     UIInterfaceOrientation getPreferredInterfaceOrientation(UISplitViewController splitViewController);
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 8.0. Use splitViewController:willChangeToDisplayMode: and displayModeButtonItem instead
      */
     @Deprecated
     @Method(selector = "splitViewController:willHideViewController:withBarButtonItem:forPopoverController:")
     void willHideViewController(UISplitViewController svc, UIViewController aViewController, UIBarButtonItem barButtonItem, UIPopoverController pc);
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 8.0. Use splitViewController:willChangeToDisplayMode: and displayModeButtonItem instead
      */
     @Deprecated
     @Method(selector = "splitViewController:willShowViewController:invalidatingBarButtonItem:")
     void willShowViewController(UISplitViewController svc, UIViewController aViewController, UIBarButtonItem barButtonItem);
     /**
-     * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 8.0. Use splitViewController:willChangeToDisplayMode: instead
+     * @deprecated Deprecated in iOS 8.0. Use splitViewController:willChangeToDisplayMode:
      */
     @Deprecated
     @Method(selector = "splitViewController:popoverController:willPresentViewController:")
     void willPresentViewController(UISplitViewController svc, UIPopoverController pc, UIViewController aViewController);
     /**
-     * @since Available in iOS 5.0 and later.
-     * @deprecated Deprecated in iOS 8.0. Use preferredDisplayMode instead
+     * @deprecated Deprecated in iOS 8.0. Use preferredDisplayMode
      */
     @Deprecated
     @Method(selector = "splitViewController:shouldHideViewController:inOrientation:")

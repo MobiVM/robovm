@@ -37,12 +37,12 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 6.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSMutableParagraphStyle/*</name>*/ 
@@ -110,24 +110,12 @@ import org.robovm.apple.intents.*;
     public native float getHyphenationFactor();
     @Property(selector = "setHyphenationFactor:")
     public native void setHyphenationFactor(float v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "tabStops")
     public native NSArray<NSTextTab> getTabStops();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setTabStops:")
     public native void setTabStops(NSArray<NSTextTab> v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "defaultTabInterval")
     public native @MachineSizedFloat double getDefaultTabInterval();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setDefaultTabInterval:")
     public native void setDefaultTabInterval(@MachineSizedFloat double v);
     /**

@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -32,31 +32,58 @@ import org.robovm.apple.security.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/*</javadoc>*/
-/*<annotations>*/@Library("LocalAuthentication") @StronglyLinked/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/LAError/*</name>*/ 
-    extends /*<extends>*/NSError/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
 
-    protected LAError(SkipInit skipInit) {
-        super(skipInit);
-    }
-    
-    /*<ptr>*/public static class LAErrorPtr extends Ptr<LAError, LAErrorPtr> {}/*</ptr>*/
+/*</javadoc>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Library("LocalAuthentication")/*</annotations>*/
+public enum /*<name>*/LAError/*</name>*/ implements NSErrorCode {
+    /*<values>*/
+    AuthenticationFailed(-1L),
+    UserCancel(-2L),
+    UserFallback(-3L),
+    SystemCancel(-4L),
+    PasscodeNotSet(-5L),
+    /**
+     * @deprecated Deprecated in iOS 11.0. use LAErrorBiometryNotAvailable
+     */
+    @Deprecated
+    TouchIDNotAvailable(-6L),
+    /**
+     * @deprecated Deprecated in iOS 11.0. use LAErrorBiometryNotEnrolled
+     */
+    @Deprecated
+    TouchIDNotEnrolled(-7L),
+    /**
+     * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 11.0. use LAErrorBiometryLockout
+     */
+    @Deprecated
+    TouchIDLockout(-8L),
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    AppCancel(-9L),
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    InvalidContext(-10L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    BiometryNotAvailable(-6L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    BiometryNotEnrolled(-7L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    BiometryLockout(-8L),
+    NotInteractive(-1004L);
+    /*</values>*/
+
     /*<bind>*/static { Bro.bind(LAError.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
-    @Override
-    public LAErrorCode getErrorCode() {
-        LAErrorCode code = null;
-        try {
-            code = LAErrorCode.valueOf(getCode());
-        } catch (IllegalArgumentException e) {
-            // ignore
-        }
-        return code;
-    }
     /*<methods>*/
     /**
      * @since Available in iOS 8.3 and later.
@@ -64,4 +91,38 @@ import org.robovm.apple.security.*;
     @GlobalValue(symbol="LAErrorDomain", optional=true)
     public static native String getClassDomain();
     /*</methods>*/
+
+    private final long n;
+
+    private /*<name>*/LAError/*</name>*/(long n) { this.n = n; }
+    public long value() { return n; }
+    public static /*<name>*/LAError/*</name>*/ valueOf(long n) {
+        for (/*<name>*/LAError/*</name>*/ v : values()) {
+            if (v.n == n) {
+                return v;
+            }
+        }
+        throw new IllegalArgumentException("No constant with value " + n + " found in "
+            + /*<name>*/LAError/*</name>*/.class.getName());
+    }
+
+    // bind wrap to include it in compilation as long as nserror enum is used 
+    static { Bro.bind(NSErrorWrap.class); }
+    @StronglyLinked
+    public static class NSErrorWrap extends NSError {
+        protected NSErrorWrap(SkipInit skipInit) {super(skipInit);}
+
+        @Override public NSErrorCode getErrorCode() {
+             try {
+                 return  /*<name>*/LAError/*</name>*/.valueOf(getCode());
+             } catch (IllegalArgumentException e) {
+                 return null;
+             }
+         }
+
+        public static String getClassDomain() {
+            /** must be incerted in value section */
+            return /*<name>*/LAError/*</name>*/.getClassDomain();
+        }
+    }
 }

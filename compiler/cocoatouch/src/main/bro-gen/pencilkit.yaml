@@ -1,0 +1,75 @@
+package: org.robovm.apple.pencilkit
+include: [foundation, uikit, coregraphics]
+library: PencilKit
+framework: PencilKit
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/PencilKit.framework/Headers/PencilKit.h
+
+private_typedefs:
+
+typedefs:
+
+enums:
+    PKEraserType: {}
+
+typed_enums:
+    PKInkType:
+        enum: PKInkType
+        type: NSString
+        prefix: PKInkType
+
+
+classes:
+    PKCanvasView: {} #since 13.0
+    PKDrawing: #since 13.0
+        methods:
+            '-initWithData:error:':
+                name: init
+                throws: NSErrorException
+            '-imageFromRect:scale:':
+                name: getImageFromRect
+    PKEraserTool: #since 13.0
+        methods:
+            '-initWithEraserType:':
+                name: init
+    PKInkingTool: #since 13.0
+        methods:
+            '-initWithInkType:color:width:':
+                name: init
+            '-initWithInkType:color:':
+                name: init
+            '+convertColor:fromUserInterfaceStyle:to:':
+                name: convertColor
+    PKLassoTool: {} #since 13.0
+    PKTool: {} #since 13.0
+    PKToolPicker: #since 13.0
+        methods:
+            '-setVisible:forFirstResponder:':
+                name: setVisible
+protocols:
+    PKCanvasViewDelegate: {} #since 13.0
+    PKToolPickerObserver: {} #since 13.0
+
+functions:
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (k?PK.*):
+        class: FixMe
+        name: 'Function__#{g[0]}'
+
+values:
+    PKAppleDrawingTypeIdentifier:
+        class: PKDrawing
+        type: String
+        name: getAppleDrawingTypeIdentifier
+
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (k?PK.*):
+        class: FixMe
+        name: 'Value__#{g[0]}'
+
+constants:
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (k?PK.*):
+        class: FixMe
+        name: 'Constant__#{g[0]}'

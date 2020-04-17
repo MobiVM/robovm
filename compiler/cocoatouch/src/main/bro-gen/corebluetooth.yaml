@@ -20,7 +20,24 @@ enums:
     CBPeripheralManagerState: { exclude: true }
     CBPeripheralManagerConnectionLatency: {}
     CBManagerState: {}
+    CBManagerAuthorization: {} #since 13.0
+    CBConnectionEvent: {}
+    CBCentralManagerFeature: {} #since 13.0
 
+typed_enums:
+    # ios13
+    CBConnectionEventMatchingOption:
+        dictionary: CBConnectionEventMatchingOptions
+        type: NSString
+        CBConnectionEventMatchingOption(.*):
+            name: '#{g[0]}'
+        methods:
+            ServiceUUIDs:
+                name: 'serviceUUIDs'
+                type: 'NSArray<CBUUID>'
+            PeripheralUUIDs:
+                name: 'peripheralUUIDs'
+                type: 'NSArray<NSUUID>'
 classes:
     CBError:
         extends: NSError
@@ -32,7 +49,10 @@ classes:
     CBATTRequest: {} # DONE
     CBAttribute: {} # DONE
     CBCentral: {} # DONE
-    CBManager: {} # DONE
+    CBManager:
+        properties:
+            '+authorization':
+                getter: authorization
     CBCentralManager: # DONE
         extends: NSObject # TODO: this added intentionally, super CBManager is ios10 only
         methods:
@@ -78,6 +98,8 @@ classes:
                         type: CBConnectPeripheralOptions
             '-cancelPeripheralConnection:':
                 trim_after_first_colon: true
+            '-registerForConnectionEventsWithOptions:':
+                name: registerForConnectionEvents
     CBCharacteristic: # DONE
         properties:
             'descriptors':
@@ -245,6 +267,10 @@ protocols:
                 name: didFailToConnectPeripheral
             '-centralManager:didDisconnectPeripheral:error:':
                 name: didDisconnectPeripheral
+            '-centralManager:connectionEventDidOccur:forPeripheral:':
+                name: connectionEventDidOccur
+            '-centralManager:didUpdateANCSAuthorizationForPeripheral:':
+                name: didUpdateANCSAuthorization
     CBPeripheralDelegate: # DONE
         methods:
             '-peripheralDidUpdateName:':
@@ -280,6 +306,8 @@ protocols:
                 name: didReadRSSI
             '-peripheral:didOpenL2CAPChannel:error:':
                 name: didOpenL2CAPChannel
+            '-peripheralIsReadyToSendWriteWithoutResponse:':
+                name: peripheralIsReadyToSendWrite
     CBPeripheralManagerDelegate: # DONE
         methods:
             '-peripheralManagerDidUpdateState:':
@@ -350,6 +378,14 @@ values:
                 type: boolean
             NotifyOnNotification:
                 name: notifiesOnNotification
+                type: boolean
+    CBConnectPeripheralOption(.*):
+        dictionary: CBConnectPeripheralOptions
+        name: '#{g[0]}'
+        type: NSString
+        methods:
+            RequiresANCS:
+                name: requiresANCS
                 type: boolean
     CBCentralManagerOption(.*)Key:
         dictionary: CBCentralManagerOptions

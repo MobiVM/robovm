@@ -414,19 +414,8 @@ values:
         type: NSString
 
     # CALayer
-    kCAGravity(.*):
-        enum: CAGravity
-        name: '#{g[0]}'
-        type: NSString
-    kCAFilter(.*):
-        enum: CAFilter
-        name: '#{g[0]}'
-        type: NSString
     kCA(OnOrderIn|OnOrderOut|Transition):
         class: CAActionIdentifier
-        name: '#{g[0]}'
-    kCAContentsFormat(.*):
-        class: CALayerContentsFormat
         name: '#{g[0]}'
 
     # CAMediaTiming
@@ -502,7 +491,32 @@ values:
         class: CoreAnimation
         name: '#{g[0]}'
 
+typed_enums:
+    # CALayer
+    CALayerContentsGravity:
+        enum: CAGravity
+        type: NSString
+        kCAGravity(.*):
+            name: '#{g[0]}'
+    CALayerContentsFilter:
+        enum: CAFilter
+        type: NSString
+        kCAFilter(.*):
+            name: '#{g[0]}'
+    CALayerContentsFormat:
+        enum: CALayerContentsFormat
+        type: NSString
+        kCAContentsFormat(.*):
+            name: '#{g[0]}'
+    CALayerCornerCurve:
+        enum: CALayerCornerCurve
+        type: NSString
+        kCACornerCurve(.*):
+            name: '#{g[0]}'
+
 constants:
+    CA_TEST:
+        exclude: true
     CA_WARN_DEPRECATED:
         exclude: true
 

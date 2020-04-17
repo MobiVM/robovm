@@ -88,33 +88,20 @@ import org.robovm.apple.dispatch.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final SecAttrAccessible WhenUnlocked = new SecAttrAccessible("WhenUnlocked");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final SecAttrAccessible AfterFirstUnlock = new SecAttrAccessible("AfterFirstUnlock");
     /**
-     * @since Available in iOS 4.0 and later.
+     * @deprecated Deprecated in iOS 12.0. Use an accessibility level that provides some user protection, such as kSecAttrAccessibleAfterFirstUnlock
      */
+    @Deprecated
     public static final SecAttrAccessible Always = new SecAttrAccessible("Always");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final SecAttrAccessible WhenPasscodeSetThisDeviceOnly = new SecAttrAccessible("WhenPasscodeSetThisDeviceOnly");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final SecAttrAccessible WhenUnlockedThisDeviceOnly = new SecAttrAccessible("WhenUnlockedThisDeviceOnly");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final SecAttrAccessible AfterFirstUnlockThisDeviceOnly = new SecAttrAccessible("AfterFirstUnlockThisDeviceOnly");
     /**
-     * @since Available in iOS 4.0 and later.
+     * @deprecated Deprecated in iOS 12.0. Use an accessibility level that provides some user protection, such as kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly
      */
+    @Deprecated
     public static final SecAttrAccessible AlwaysThisDeviceOnly = new SecAttrAccessible("AlwaysThisDeviceOnly");
     /*</constants>*/
     
@@ -141,39 +128,26 @@ import org.robovm.apple.dispatch.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kSecAttrAccessibleWhenUnlocked", optional=true)
         public static native CFType WhenUnlocked();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kSecAttrAccessibleAfterFirstUnlock", optional=true)
         public static native CFType AfterFirstUnlock();
         /**
-         * @since Available in iOS 4.0 and later.
+         * @deprecated Deprecated in iOS 12.0. Use an accessibility level that provides some user protection, such as kSecAttrAccessibleAfterFirstUnlock
          */
+        @Deprecated
         @GlobalValue(symbol="kSecAttrAccessibleAlways", optional=true)
         public static native CFType Always();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly", optional=true)
         public static native CFType WhenPasscodeSetThisDeviceOnly();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kSecAttrAccessibleWhenUnlockedThisDeviceOnly", optional=true)
         public static native CFType WhenUnlockedThisDeviceOnly();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly", optional=true)
         public static native CFType AfterFirstUnlockThisDeviceOnly();
         /**
-         * @since Available in iOS 4.0 and later.
+         * @deprecated Deprecated in iOS 12.0. Use an accessibility level that provides some user protection, such as kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly
          */
+        @Deprecated
         @GlobalValue(symbol="kSecAttrAccessibleAlwaysThisDeviceOnly", optional=true)
         public static native CFType AlwaysThisDeviceOnly();
         /*</values>*/

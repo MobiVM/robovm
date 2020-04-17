@@ -33,7 +33,6 @@ import org.robovm.apple.uikit.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 5.0 and later.
  * @deprecated Deprecated in iOS 7.0. Use registerListener on GKLocalPlayer with an object that implements the GKTurnBasedEventListener protocol
  */
 /*</javadoc>*/
@@ -51,28 +50,24 @@ import org.robovm.apple.uikit.*;
     /*</properties>*/
     /*<methods>*/
     /**
-     * @since Available in iOS 5.0 and later.
      * @deprecated Deprecated in iOS 7.0.
      */
     @Deprecated
     @Method(selector = "handleInviteFromGameCenter:")
     void handleInvite(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> playersToInvite);
     /**
-     * @since Available in iOS 6.0 and later.
      * @deprecated Deprecated in iOS 7.0.
      */
     @Deprecated
     @Method(selector = "handleTurnEventForMatch:didBecomeActive:")
     void handleTurnEvent(GKTurnBasedMatch match, boolean didBecomeActive);
     /**
-     * @since Available in iOS 5.0 and later.
      * @deprecated Deprecated in iOS 7.0.
      */
     @Deprecated
     @Method(selector = "handleTurnEventForMatch:")
     void handleTurnEvent(GKTurnBasedMatch match);
     /**
-     * @since Available in iOS 6.0 and later.
      * @deprecated Deprecated in iOS 7.0.
      */
     @Deprecated

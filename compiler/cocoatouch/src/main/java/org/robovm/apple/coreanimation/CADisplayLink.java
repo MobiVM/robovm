@@ -36,9 +36,7 @@ import org.robovm.apple.metal.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 3.1 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("QuartzCore") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CADisplayLink/*</name>*/ 
@@ -99,14 +97,12 @@ import org.robovm.apple.metal.*;
     @Property(selector = "setPaused:")
     public native void setPaused(boolean v);
     /**
-     * @since Available in iOS 3.1 and later.
      * @deprecated Deprecated in iOS 10.0. preferredFramesPerSecond
      */
     @Deprecated
     @Property(selector = "frameInterval")
     public native @MachineSizedSInt long getFrameInterval();
     /**
-     * @since Available in iOS 3.1 and later.
      * @deprecated Deprecated in iOS 10.0. preferredFramesPerSecond
      */
     @Deprecated

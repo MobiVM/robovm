@@ -127,9 +127,6 @@ import org.robovm.apple.audiotoolbox.*;
         set(Keys.AudioQuality(), NSNumber.valueOf(audioQuality.value()));
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public AVAudioQuality getAudioQualityForVBR() {
         if (has(Keys.AudioQualityForVBR())) {
             NSNumber val = (NSNumber) get(Keys.AudioQualityForVBR());
@@ -137,9 +134,6 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public AVAudioEncoderSettings setAudioQualityForVBR(AVAudioQuality audioQualityForVBR) {
         set(Keys.AudioQualityForVBR(), NSNumber.valueOf(audioQualityForVBR.value()));
         return this;
@@ -155,9 +149,6 @@ import org.robovm.apple.audiotoolbox.*;
         set(Keys.BitRate(), NSNumber.valueOf(bitRate));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public int getBitRatePerChannel() {
         if (has(Keys.BitRatePerChannel())) {
             NSNumber val = (NSNumber) get(Keys.BitRatePerChannel());
@@ -165,16 +156,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public AVAudioEncoderSettings setBitRatePerChannel(int bitRatePerChannel) {
         set(Keys.BitRatePerChannel(), NSNumber.valueOf(bitRatePerChannel));
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public AVAudioBitRateStrategy getBitRateStrategy() {
         if (has(Keys.BitRateStrategy())) {
             NSString val = (NSString) get(Keys.BitRateStrategy());
@@ -182,9 +167,6 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public AVAudioEncoderSettings setBitRateStrategy(AVAudioBitRateStrategy bitRateStrategy) {
         set(Keys.BitRateStrategy(), bitRateStrategy.value());
         return this;
@@ -208,21 +190,12 @@ import org.robovm.apple.audiotoolbox.*;
         static { Bro.bind(Keys.class); }
         @GlobalValue(symbol="AVEncoderAudioQualityKey", optional=true)
         public static native NSString AudioQuality();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="AVEncoderAudioQualityForVBRKey", optional=true)
         public static native NSString AudioQualityForVBR();
         @GlobalValue(symbol="AVEncoderBitRateKey", optional=true)
         public static native NSString BitRate();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVEncoderBitRatePerChannelKey", optional=true)
         public static native NSString BitRatePerChannel();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="AVEncoderBitRateStrategyKey", optional=true)
         public static native NSString BitRateStrategy();
         @GlobalValue(symbol="AVEncoderBitDepthHintKey", optional=true)

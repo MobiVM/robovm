@@ -91,17 +91,8 @@ import org.robovm.apple.coretext.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final CFURLUbiquitousItemDownloadingStatus NotDownloaded = new CFURLUbiquitousItemDownloadingStatus("NotDownloaded");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final CFURLUbiquitousItemDownloadingStatus Downloaded = new CFURLUbiquitousItemDownloadingStatus("Downloaded");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final CFURLUbiquitousItemDownloadingStatus Current = new CFURLUbiquitousItemDownloadingStatus("Current");
     /*</constants>*/
     
@@ -128,19 +119,10 @@ import org.robovm.apple.coretext.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kCFURLUbiquitousItemDownloadingStatusNotDownloaded", optional=true)
         public static native CFString NotDownloaded();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kCFURLUbiquitousItemDownloadingStatusDownloaded", optional=true)
         public static native CFString Downloaded();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kCFURLUbiquitousItemDownloadingStatusCurrent", optional=true)
         public static native CFString Current();
         /*</values>*/

@@ -1,0 +1,40 @@
+package: org.robovm.apple.healthkitui
+include: [foundation, healthkit, uikit, coregraphics]
+library: HealthKitUI
+framework: HealthKitUI
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/HealthKitUI.framework/Headers/HealthKitUI.h
+
+private_typedefs:
+
+typedefs:
+
+enums:
+
+typed_enums:
+
+classes:
+    HKActivityRingView: #since 9.3
+        methods:
+            '-setActivitySummary:animated:':
+                name: setActivitySummary
+protocols:
+
+functions:
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (k?HK.*):
+        class: FixMe
+        name: 'Function__#{g[0]}'
+
+values:
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (k?HK.*):
+        class: FixMe
+        name: 'Value__#{g[0]}'
+
+constants:
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (k?HK.*):
+        class: FixMe
+        name: 'Constant__#{g[0]}'

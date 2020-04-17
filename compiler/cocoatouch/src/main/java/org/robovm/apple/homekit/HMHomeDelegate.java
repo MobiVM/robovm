@@ -32,9 +32,7 @@ import org.robovm.apple.corelocation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ interface /*<name>*/HMHomeDelegate/*</name>*/ 
@@ -117,6 +115,11 @@ import org.robovm.apple.corelocation.*;
      */
     @Method(selector = "home:didUpdateHomeHubState:")
     void didUpdateHomeHubState(HMHome home, HMHomeHubState homeHubState);
+    /**
+     * @since Available in iOS 13.2 and later.
+     */
+    @Method(selector = "homeDidUpdateSupportedFeatures:")
+    void didUpdateSupportedFeatures(HMHome home);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

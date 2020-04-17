@@ -33,9 +33,7 @@ import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.2 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("MediaPlayer") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPMediaEntity/*</name>*/ 
@@ -50,12 +48,9 @@ import org.robovm.apple.coregraphics.*;
     protected MPMediaEntity(Handle h, long handle) { super(h, handle); }
     protected MPMediaEntity(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public MPMediaEntity(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public MPMediaEntity(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "persistentID")
     public native long getPersistentID();
     @Property(selector = "supportsSecureCoding")
@@ -89,9 +84,6 @@ import org.robovm.apple.coregraphics.*;
         });
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "enumerateValuesForProperties:usingBlock:")
     protected native void enumerateValues(NSSet<NSString> properties, @Block VoidBlock3<NSString, NSObject, BooleanPtr> block);
     @Method(selector = "valueForProperty:")
@@ -101,6 +93,6 @@ import org.robovm.apple.coregraphics.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

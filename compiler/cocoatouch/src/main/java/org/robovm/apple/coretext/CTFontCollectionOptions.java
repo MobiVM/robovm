@@ -110,9 +110,6 @@ import org.robovm.apple.uikit.*;
     }
     
 
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public boolean removesDuplicates() {
         if (has(Keys.RemoveDuplicates())) {
             CFBoolean val = get(Keys.RemoveDuplicates(), CFBoolean.class);
@@ -120,9 +117,6 @@ import org.robovm.apple.uikit.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public CTFontCollectionOptions setRemovesDuplicates(boolean removesDuplicates) {
         set(Keys.RemoveDuplicates(), CFBoolean.valueOf(removesDuplicates));
         return this;
@@ -133,9 +127,6 @@ import org.robovm.apple.uikit.*;
     @Library("CoreText")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 3.2 and later.
-         */
         @GlobalValue(symbol="kCTFontCollectionRemoveDuplicatesOption", optional=true)
         public static native CFString RemoveDuplicates();
     }

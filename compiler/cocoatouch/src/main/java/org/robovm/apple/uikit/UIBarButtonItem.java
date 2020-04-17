@@ -37,12 +37,12 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 2.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIBarButtonItem/*</name>*/
@@ -127,12 +127,9 @@ import org.robovm.apple.intents.*;
     protected UIBarButtonItem(Handle h, long handle) { super(h, handle); }
     protected UIBarButtonItem(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public UIBarButtonItem(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public UIBarButtonItem(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     @Method(selector = "initWithImage:style:target:action:")
     public UIBarButtonItem(UIImage image, UIBarButtonItemStyle style, NSObject target, Selector action) { super((SkipInit) null); initObject(init(image, style, target, action)); }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "initWithImage:landscapeImagePhone:style:target:action:")
     public UIBarButtonItem(UIImage image, UIImage landscapeImagePhone, UIBarButtonItemStyle style, NSObject target, Selector action) { super((SkipInit) null); initObject(init(image, landscapeImagePhone, style, target, action)); }
     @Method(selector = "initWithTitle:style:target:action:")
@@ -179,14 +176,8 @@ import org.robovm.apple.intents.*;
     public native NSObject getTarget();
     @Property(selector = "setTarget:", strongRef = true)
     public native void setTarget(NSObject v);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "tintColor")
     public native UIColor getTintColor();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setTintColor:")
     public native void setTintColor(UIColor v);
     /**
@@ -208,12 +199,9 @@ import org.robovm.apple.intents.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     @Method(selector = "initWithImage:style:target:action:")
     protected native @Pointer long init(UIImage image, UIBarButtonItemStyle style, NSObject target, Selector action);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "initWithImage:landscapeImagePhone:style:target:action:")
     protected native @Pointer long init(UIImage image, UIImage landscapeImagePhone, UIBarButtonItemStyle style, NSObject target, Selector action);
     @Method(selector = "initWithTitle:style:target:action:")
@@ -222,74 +210,32 @@ import org.robovm.apple.intents.*;
     protected native @Pointer long init(UIBarButtonSystemItem systemItem, NSObject target, Selector action);
     @Method(selector = "initWithCustomView:")
     protected native @Pointer long init(UIView customView);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "setBackgroundImage:forState:barMetrics:")
     public native void setBackgroundImage(UIImage backgroundImage, UIControlState state, UIBarMetrics barMetrics);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "backgroundImageForState:barMetrics:")
     public native UIImage getBackgroundImage(UIControlState state, UIBarMetrics barMetrics);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "setBackgroundImage:forState:style:barMetrics:")
     public native void setBackgroundImage(UIImage backgroundImage, UIControlState state, UIBarButtonItemStyle style, UIBarMetrics barMetrics);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "backgroundImageForState:style:barMetrics:")
     public native UIImage getBackgroundImage(UIControlState state, UIBarButtonItemStyle style, UIBarMetrics barMetrics);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "setBackgroundVerticalPositionAdjustment:forBarMetrics:")
     public native void setBackgroundVerticalPositionAdjustment(@MachineSizedFloat double adjustment, UIBarMetrics barMetrics);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "backgroundVerticalPositionAdjustmentForBarMetrics:")
     public native @MachineSizedFloat double getBackgroundVerticalPositionAdjustment(UIBarMetrics barMetrics);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "setTitlePositionAdjustment:forBarMetrics:")
     public native void setTitlePositionAdjustment(@ByVal UIOffset adjustment, UIBarMetrics barMetrics);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "titlePositionAdjustmentForBarMetrics:")
     public native @ByVal UIOffset getTitlePositionAdjustment(UIBarMetrics barMetrics);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "setBackButtonBackgroundImage:forState:barMetrics:")
     public native void setBackButtonBackgroundImage(UIImage backgroundImage, UIControlState state, UIBarMetrics barMetrics);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "backButtonBackgroundImageForState:barMetrics:")
     public native UIImage getBackButtonBackgroundImage(UIControlState state, UIBarMetrics barMetrics);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "setBackButtonTitlePositionAdjustment:forBarMetrics:")
     public native void setBackButtonTitlePositionAdjustment(@ByVal UIOffset adjustment, UIBarMetrics barMetrics);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "backButtonTitlePositionAdjustmentForBarMetrics:")
     public native @ByVal UIOffset getBackButtonTitlePositionAdjustment(UIBarMetrics barMetrics);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "setBackButtonBackgroundVerticalPositionAdjustment:forBarMetrics:")
     public native void setBackButtonBackgroundVerticalPositionAdjustment(@MachineSizedFloat double adjustment, UIBarMetrics barMetrics);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "backButtonBackgroundVerticalPositionAdjustmentForBarMetrics:")
     public native @MachineSizedFloat double getBackButtonBackgroundVerticalPositionAdjustment(UIBarMetrics barMetrics);
     /*</methods>*/

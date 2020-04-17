@@ -66,25 +66,18 @@ import org.robovm.apple.iosurface.*;
      */
     @GlobalValue(symbol="kCVMetalTextureUsage", optional=true)
     public static native CFString textureUsage();
-    
     /**
-     * @since Available in iOS 8.0 and later.
+     * @since Available in iOS 13.0 and later.
      */
+    @GlobalValue(symbol="kCVMetalTextureStorageMode", optional=true)
+    public static native CFString storageMode();
+    
     @Bridge(symbol="CVMetalTextureGetTypeID", optional=true)
     public static native @MachineSizedUInt long getClassTypeID();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Bridge(symbol="CVMetalTextureGetTexture", optional=true)
     public native MTLTexture getTexture();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Bridge(symbol="CVMetalTextureIsFlipped", optional=true)
     public native boolean isFlipped();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Bridge(symbol="CVMetalTextureGetCleanTexCoords", optional=true)
     protected native void getCleanTexCoords(FloatPtr lowerLeft, FloatPtr lowerRight, FloatPtr upperRight, FloatPtr upperLeft);
     /*</methods>*/

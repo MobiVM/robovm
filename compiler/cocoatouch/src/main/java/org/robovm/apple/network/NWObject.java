@@ -32,17 +32,25 @@ import org.robovm.apple.dispatch.*;
 import org.robovm.apple.security.*;
 /*</imports>*/
 
-/*<annotations>*/@Library("Network")
-class NWObject extends NSObject {
+/*<javadoc>*/
+/*</javadoc>*/
+/*<annotations>*/@Library("Network") @NativeClass("NSObject")/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/NWObject/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
 
-    public void nwArcRetain() {
-        nwArcRetain(this.getHandle());
+    /*<ptr>*/
+    /*</ptr>*/
+    /*<bind>*/static { Bro.bind(NWObject.class); }/*</bind>*/
+    /*<constants>*//*</constants>*/
+    protected NWObject() {}
+
+    public NWObject(Handle h, long handle) {
+        super(h, handle);
     }
-
-    public void nwArcRelease() {
-        nwArcRelease(this.getHandle());
-    }
-
+    /*<constructors>*//*</constructors>*/
+    /*<properties>*//*</properties>*/
+    /*<members>*//*</members>*/
     /*<methods>*/
     /**
      * @since Available in iOS 12.0 and later.

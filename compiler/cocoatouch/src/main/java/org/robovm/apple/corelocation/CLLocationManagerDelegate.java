@@ -49,81 +49,54 @@ import org.robovm.apple.contacts.*;
     
     /*</properties>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "locationManager:didUpdateLocations:")
     void didUpdateLocations(CLLocationManager manager, NSArray<CLLocation> locations);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "locationManager:didUpdateHeading:")
     void didUpdateHeading(CLLocationManager manager, CLHeading newHeading);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "locationManagerShouldDisplayHeadingCalibration:")
     boolean shouldDisplayHeadingCalibration(CLLocationManager manager);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "locationManager:didDetermineState:forRegion:")
     void didDetermineState(CLLocationManager manager, CLRegionState state, CLRegion region);
     /**
-     * @since Available in iOS 7.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use locationManager:didRangeBeacons:satisfyingConstraint:
      */
+    @Deprecated
     @Method(selector = "locationManager:didRangeBeacons:inRegion:")
     void didRangeBeacons(CLLocationManager manager, NSArray<CLBeacon> beacons, CLBeaconRegion region);
     /**
-     * @since Available in iOS 7.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use locationManager:didFailRangingBeaconsForConstraint:error:
      */
+    @Deprecated
     @Method(selector = "locationManager:rangingBeaconsDidFailForRegion:withError:")
     void rangingBeaconsDidFail(CLLocationManager manager, CLBeaconRegion region, NSError error);
     /**
-     * @since Available in iOS 4.0 and later.
+     * @since Available in iOS 13.0 and later.
      */
+    @Method(selector = "locationManager:didRangeBeacons:satisfyingConstraint:")
+    void didRangeBeacons(CLLocationManager manager, NSArray<CLBeacon> beacons, CLBeaconIdentityConstraint beaconConstraint);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "locationManager:didFailRangingBeaconsForConstraint:error:")
+    void didFailRangingBeacons(CLLocationManager manager, CLBeaconIdentityConstraint beaconConstraint, NSError error);
     @Method(selector = "locationManager:didEnterRegion:")
     void didEnterRegion(CLLocationManager manager, CLRegion region);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "locationManager:didExitRegion:")
     void didExitRegion(CLLocationManager manager, CLRegion region);
     @Method(selector = "locationManager:didFailWithError:")
     void didFail(CLLocationManager manager, NSError error);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "locationManager:monitoringDidFailForRegion:withError:")
     void monitoringDidFail(CLLocationManager manager, CLRegion region, NSError error);
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     @Method(selector = "locationManager:didChangeAuthorizationStatus:")
     void didChangeAuthorizationStatus(CLLocationManager manager, CLAuthorizationStatus status);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "locationManager:didStartMonitoringForRegion:")
     void didStartMonitoring(CLLocationManager manager, CLRegion region);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "locationManagerDidPauseLocationUpdates:")
     void didPauseLocationUpdates(CLLocationManager manager);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "locationManagerDidResumeLocationUpdates:")
     void didResumeLocationUpdates(CLLocationManager manager);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "locationManager:didFinishDeferredUpdatesWithError:")
     void didFinishDeferredUpdates(CLLocationManager manager, NSError error);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "locationManager:didVisit:")
     void didVisit(CLLocationManager manager, CLVisit visit);
     /*</methods>*/

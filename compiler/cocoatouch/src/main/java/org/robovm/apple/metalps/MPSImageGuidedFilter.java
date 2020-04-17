@@ -82,5 +82,15 @@ import org.robovm.apple.metal.*;
     public native void encodeRegression(MTLCommandBuffer commandBuffer, MTLTexture sourceTexture, MTLTexture guidanceTexture, MTLTexture weightsTexture, MTLTexture destinationCoefficientsTexture);
     @Method(selector = "encodeReconstructionToCommandBuffer:guidanceTexture:coefficientsTexture:destinationTexture:")
     public native void encodeReconstruction(MTLCommandBuffer commandBuffer, MTLTexture guidanceTexture, MTLTexture coefficientsTexture, MTLTexture destinationTexture);
+    /**
+     * @since Available in iOS 13.2 and later.
+     */
+    @Method(selector = "encodeRegressionToCommandBuffer:sourceTexture:guidanceTexture:weightsTexture:destinationCoefficientsTextureA:destinationCoefficientsTextureB:")
+    public native void encodeRegression(MTLCommandBuffer commandBuffer, MTLTexture sourceTexture, MTLTexture guidanceTexture, MTLTexture weightsTexture, MTLTexture destinationCoefficientsTextureA, MTLTexture destinationCoefficientsTextureB);
+    /**
+     * @since Available in iOS 13.2 and later.
+     */
+    @Method(selector = "encodeReconstructionToCommandBuffer:guidanceTexture:coefficientsTextureA:coefficientsTextureB:destinationTexture:")
+    public native void encodeReconstruction(MTLCommandBuffer commandBuffer, MTLTexture guidanceTexture, MTLTexture coefficientsTextureA, MTLTexture coefficientsTextureB, MTLTexture destinationTexture);
     /*</methods>*/
 }

@@ -116,9 +116,6 @@ import org.robovm.apple.audiotoolbox.*;
     }
     
 
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public AVVideoCodecType getCodec() {
         if (has(Keys.Codec())) {
             NSString val = (NSString) get(Keys.Codec());
@@ -126,16 +123,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public AVVideoSettings setCodec(AVVideoCodecType codec) {
         set(Keys.Codec(), codec.value());
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public long getWidth() {
         if (has(Keys.Width())) {
             NSNumber val = (NSNumber) get(Keys.Width());
@@ -143,16 +134,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public AVVideoSettings setWidth(long width) {
         set(Keys.Width(), NSNumber.valueOf(width));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public long getHeight() {
         if (has(Keys.Height())) {
             NSNumber val = (NSNumber) get(Keys.Height());
@@ -160,16 +145,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public AVVideoSettings setHeight(long height) {
         set(Keys.Height(), NSNumber.valueOf(height));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public AVVideoCleanAperture getCleanAperture() {
         if (has(Keys.CleanAperture())) {
             NSDictionary val = (NSDictionary) get(Keys.CleanAperture());
@@ -177,16 +156,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public AVVideoSettings setCleanAperture(AVVideoCleanAperture cleanAperture) {
         set(Keys.CleanAperture(), cleanAperture.getDictionary());
         return this;
     }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public AVVideoScalingMode getScalingMode() {
         if (has(Keys.ScalingMode())) {
             NSString val = (NSString) get(Keys.ScalingMode());
@@ -194,16 +167,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public AVVideoSettings setScalingMode(AVVideoScalingMode scalingMode) {
         set(Keys.ScalingMode(), scalingMode.value());
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public boolean allowsFrameReordering() {
         if (has(Keys.AllowFrameReordering())) {
             NSNumber val = (NSNumber) get(Keys.AllowFrameReordering());
@@ -211,16 +178,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public AVVideoSettings setAllowsFrameReordering(boolean allowsFrameReordering) {
         set(Keys.AllowFrameReordering(), NSNumber.valueOf(allowsFrameReordering));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public AVVideoProfileLevel getProfileLevel() {
         if (has(Keys.ProfileLevel())) {
             NSString val = (NSString) get(Keys.ProfileLevel());
@@ -228,16 +189,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public AVVideoSettings setProfileLevel(AVVideoProfileLevel profileLevel) {
         set(Keys.ProfileLevel(), profileLevel.value());
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public AVVideoH264EntropyMode getH264EntropyMode() {
         if (has(Keys.H264EntropyMode())) {
             NSString val = (NSString) get(Keys.H264EntropyMode());
@@ -245,16 +200,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public AVVideoSettings setH264EntropyMode(AVVideoH264EntropyMode h264EntropyMode) {
         set(Keys.H264EntropyMode(), h264EntropyMode.value());
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public double getExpectedSourceFrameRate() {
         if (has(Keys.ExpectedSourceFrameRate())) {
             NSNumber val = (NSNumber) get(Keys.ExpectedSourceFrameRate());
@@ -262,16 +211,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public AVVideoSettings setExpectedSourceFrameRate(double expectedSourceFrameRate) {
         set(Keys.ExpectedSourceFrameRate(), NSNumber.valueOf(expectedSourceFrameRate));
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public double getAverageNonDroppableFrameRate() {
         if (has(Keys.AverageNonDroppableFrameRate())) {
             NSNumber val = (NSNumber) get(Keys.AverageNonDroppableFrameRate());
@@ -279,9 +222,6 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public AVVideoSettings setAverageNonDroppableFrameRate(double averageNonDroppableFrameRate) {
         set(Keys.AverageNonDroppableFrameRate(), NSNumber.valueOf(averageNonDroppableFrameRate));
         return this;
@@ -313,34 +253,16 @@ import org.robovm.apple.audiotoolbox.*;
     @Library("AVFoundation")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVVideoCodecKey", optional=true)
         public static native NSString Codec();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVVideoWidthKey", optional=true)
         public static native NSString Width();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVVideoHeightKey", optional=true)
         public static native NSString Height();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVVideoPixelAspectRatioKey", optional=true)
         public static native NSString PixelAspectRatio();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVVideoCleanApertureKey", optional=true)
         public static native NSString CleanAperture();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="AVVideoScalingModeKey", optional=true)
         public static native NSString ScalingMode();
         /**
@@ -368,34 +290,16 @@ import org.robovm.apple.audiotoolbox.*;
          */
         @GlobalValue(symbol="AVVideoAllowWideColorKey", optional=true)
         public static native NSString AllowWideColor();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVVideoCompressionPropertiesKey", optional=true)
         public static native NSString CompressionProperties();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="AVVideoAllowFrameReorderingKey", optional=true)
         public static native NSString AllowFrameReordering();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVVideoProfileLevelKey", optional=true)
         public static native NSString ProfileLevel();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="AVVideoH264EntropyModeKey", optional=true)
         public static native NSString H264EntropyMode();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="AVVideoExpectedSourceFrameRateKey", optional=true)
         public static native NSString ExpectedSourceFrameRate();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="AVVideoAverageNonDroppableFrameRateKey", optional=true)
         public static native NSString AverageNonDroppableFrameRate();
     }

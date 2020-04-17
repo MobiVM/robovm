@@ -56,22 +56,22 @@ import org.robovm.apple.corelocation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "successWithResolvedPaymentStatus:")
-    public static native INPaymentStatusResolutionResult successWithResolvedPaymentStatus(INPaymentStatus resolvedPaymentStatus);
+    public static native INPaymentStatusResolutionResult success(INPaymentStatus resolvedPaymentStatus);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use +successWithResolvedPaymentStatus:
      */
     @Deprecated
     @Method(selector = "successWithResolvedValue:")
-    public static native INPaymentStatusResolutionResult successWithResolvedValue(INPaymentStatus resolvedValue);
+    public static native INPaymentStatusResolutionResult successValue(INPaymentStatus resolvedValue);
     @Method(selector = "confirmationRequiredWithPaymentStatusToConfirm:")
-    public static native INPaymentStatusResolutionResult confirmationRequiredWithPaymentStatusToConfirm(INPaymentStatus paymentStatusToConfirm);
+    public static native INPaymentStatusResolutionResult confirmationRequired(INPaymentStatus paymentStatusToConfirm);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use +confirmationRequiredWithPaymentStatusToConfirm:
      */
     @Deprecated
     @Method(selector = "confirmationRequiredWithValueToConfirm:")
-    public static native INPaymentStatusResolutionResult confirmationRequiredWithValueToConfirm(INPaymentStatus valueToConfirm);
+    public static native INPaymentStatusResolutionResult confirmationRequiredForValue(INPaymentStatus valueToConfirm);
     /*</methods>*/
 }

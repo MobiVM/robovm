@@ -41,12 +41,10 @@ import org.robovm.apple.foundation.NSSet.NSSetPtr;
 import org.robovm.apple.foundation.NSSet.SetAdapter;
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 6.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/NSHashTable/*</name>*/ <T extends NSObject>
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/NSHashTable<T extends NSObject>/*</name>*/
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*/implements NSSecureCoding, NSFastEnumeration/*</implements>*/, Set<T> {
     
@@ -62,7 +60,7 @@ import org.robovm.apple.foundation.NSSet.SetAdapter;
         @Override
         public boolean contains(Object o) {
             if (o instanceof NSObject) {
-                return set.isMember((NSObject) o) != null;
+                return set.isMember((U) o) != null;
             }
             return false;
         }
@@ -117,7 +115,7 @@ import org.robovm.apple.foundation.NSSet.SetAdapter;
     @Method(selector = "initWithOptions:capacity:")
     public NSHashTable(NSHashTableOptions options, @MachineSizedUInt long initialCapacity) { super((SkipInit) null); initObject(init(options, initialCapacity)); }
     @Method(selector = "initWithCoder:")
-    public NSHashTable(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public NSHashTable(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     
     private static void checkNull(Object o) {
@@ -212,17 +210,17 @@ import org.robovm.apple.foundation.NSSet.SetAdapter;
     @Method(selector = "initWithOptions:capacity:")
     protected native @Pointer long init(NSHashTableOptions options, @MachineSizedUInt long initialCapacity);
     @Method(selector = "member:")
-    protected native NSObject isMember(NSObject object);
+    protected native T isMember(T object);
     @Method(selector = "objectEnumerator")
     private native NSEnumerator<T> getObjectEnumerator();
     @Method(selector = "addObject:")
-    private native void addObject(NSObject object);
+    private native void addObject(T object);
     @Method(selector = "removeObject:")
-    private native void removeObject(NSObject object);
+    private native void removeObject(T object);
     @Method(selector = "removeAllObjects")
     private native void removeAllObjects();
     @Method(selector = "containsObject:")
-    private native boolean containsObject(NSObject anObject);
+    private native boolean containsObject(T anObject);
     @Method(selector = "intersectsHashTable:")
     public native boolean intersects(NSHashTable<T> other);
     @Method(selector = "isEqualToHashTable:")
@@ -238,6 +236,6 @@ import org.robovm.apple.foundation.NSSet.SetAdapter;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

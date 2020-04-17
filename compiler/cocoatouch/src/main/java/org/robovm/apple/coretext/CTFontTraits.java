@@ -110,9 +110,6 @@ import org.robovm.apple.uikit.*;
     }
     
 
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public CTFontSymbolicTraits getSymbolicTrait() {
         if (has(Keys.SymbolicTrait())) {
             CFNumber val = get(Keys.SymbolicTrait(), CFNumber.class);
@@ -120,16 +117,10 @@ import org.robovm.apple.uikit.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public CTFontTraits setSymbolicTrait(CTFontSymbolicTraits symbolicTrait) {
         set(Keys.SymbolicTrait(), CFNumber.valueOf(symbolicTrait.value()));
         return this;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public float getWeightTrait() {
         if (has(Keys.WeightTrait())) {
             CFNumber val = get(Keys.WeightTrait(), CFNumber.class);
@@ -137,16 +128,10 @@ import org.robovm.apple.uikit.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public CTFontTraits setWeightTrait(float weightTrait) {
         set(Keys.WeightTrait(), CFNumber.valueOf(weightTrait));
         return this;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public float getWidthTrait() {
         if (has(Keys.WidthTrait())) {
             CFNumber val = get(Keys.WidthTrait(), CFNumber.class);
@@ -154,16 +139,10 @@ import org.robovm.apple.uikit.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public CTFontTraits setWidthTrait(float widthTrait) {
         set(Keys.WidthTrait(), CFNumber.valueOf(widthTrait));
         return this;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public float getSlantTrait() {
         if (has(Keys.SlantTrait())) {
             CFNumber val = get(Keys.SlantTrait(), CFNumber.class);
@@ -171,9 +150,6 @@ import org.robovm.apple.uikit.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public CTFontTraits setSlantTrait(float slantTrait) {
         set(Keys.SlantTrait(), CFNumber.valueOf(slantTrait));
         return this;
@@ -184,24 +160,12 @@ import org.robovm.apple.uikit.*;
     @Library("CoreText")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 3.2 and later.
-         */
         @GlobalValue(symbol="kCTFontSymbolicTrait", optional=true)
         public static native CFString SymbolicTrait();
-        /**
-         * @since Available in iOS 3.2 and later.
-         */
         @GlobalValue(symbol="kCTFontWeightTrait", optional=true)
         public static native CFString WeightTrait();
-        /**
-         * @since Available in iOS 3.2 and later.
-         */
         @GlobalValue(symbol="kCTFontWidthTrait", optional=true)
         public static native CFString WidthTrait();
-        /**
-         * @since Available in iOS 3.2 and later.
-         */
         @GlobalValue(symbol="kCTFontSlantTrait", optional=true)
         public static native CFString SlantTrait();
     }

@@ -48,7 +48,7 @@ import org.robovm.apple.imageio.*;
 /*<annotations>*/@Library("ARKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/ARSKView/*</name>*/ 
     extends /*<extends>*/SKView/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements ARSessionProviding/*</implements>*/ {
 
     /*<ptr>*/public static class ARSKViewPtr extends Ptr<ARSKView, ARSKViewPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(ARSKView.class); }/*</bind>*/
@@ -60,7 +60,7 @@ import org.robovm.apple.imageio.*;
     @Method(selector = "initWithFrame:")
     public ARSKView(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public ARSKView(NSCoder decoder) { super(decoder); }
+    public ARSKView(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "delegate")

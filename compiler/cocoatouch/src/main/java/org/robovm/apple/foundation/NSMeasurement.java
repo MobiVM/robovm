@@ -44,11 +44,11 @@ import org.robovm.apple.dispatch.*;
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/NSMeasurement/*</name>*/ <T extends NSUnit>
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/NSMeasurement<T extends NSUnit>/*</name>*/
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
-    /*<ptr>*/public static class NSMeasurementPtr extends Ptr<NSMeasurement, NSMeasurementPtr> {}/*</ptr>*/
+    /*<ptr>*/public static class NSMeasurementPtr<T extends NSUnit> extends Ptr<NSMeasurement<T>, NSMeasurementPtr<T>> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NSMeasurement.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
@@ -58,7 +58,7 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "initWithDoubleValue:unit:")
     public NSMeasurement(double doubleValue, T unit) { super((SkipInit) null); initObject(init(doubleValue, unit)); }
     @Method(selector = "initWithCoder:")
-    public NSMeasurement(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public NSMeasurement(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "unit")
@@ -83,6 +83,6 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

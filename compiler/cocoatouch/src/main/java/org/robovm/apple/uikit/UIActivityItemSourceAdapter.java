@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -67,5 +69,10 @@ import org.robovm.apple.intents.*;
     public String getDataTypeIdentifier(UIActivityViewController activityViewController, String activityType) { return null; }
     @NotImplemented("activityViewController:thumbnailImageForActivityType:suggestedSize:")
     public UIImage getThumbnailImage(UIActivityViewController activityViewController, String activityType, @ByVal CGSize size) { return null; }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("activityViewControllerLinkMetadata:")
+    public LPLinkMetadata activityViewControllerLinkMetadata(UIActivityViewController activityViewController) { return null; }
     /*</methods>*/
 }

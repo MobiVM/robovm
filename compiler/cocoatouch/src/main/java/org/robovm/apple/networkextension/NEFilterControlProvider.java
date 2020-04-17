@@ -29,6 +29,7 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.security.*;
+import org.robovm.apple.network.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -88,10 +89,5 @@ import org.robovm.apple.security.*;
      */
     @Method(selector = "notifyRulesChanged")
     public native void notifyRulesChanged();
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
-    @Method(selector = "handleReport:")
-    public native void handleReport(NEFilterReport report);
     /*</methods>*/
 }

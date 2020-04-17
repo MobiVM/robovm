@@ -88,285 +88,105 @@ import org.robovm.apple.coregraphics.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyExif ExposureTime = new CGImagePropertyExif("ExposureTime");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyExif FNumber = new CGImagePropertyExif("FNumber");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyExif ExposureProgram = new CGImagePropertyExif("ExposureProgram");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyExif SpectralSensitivity = new CGImagePropertyExif("SpectralSensitivity");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyExif ISOSpeedRatings = new CGImagePropertyExif("ISOSpeedRatings");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyExif OECF = new CGImagePropertyExif("OECF");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final CGImagePropertyExif SensitivityType = new CGImagePropertyExif("SensitivityType");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final CGImagePropertyExif StandardOutputSensitivity = new CGImagePropertyExif("StandardOutputSensitivity");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final CGImagePropertyExif RecommendedExposureIndex = new CGImagePropertyExif("RecommendedExposureIndex");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final CGImagePropertyExif ISOSpeed = new CGImagePropertyExif("ISOSpeed");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final CGImagePropertyExif ISOSpeedLatitudeyyy = new CGImagePropertyExif("ISOSpeedLatitudeyyy");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final CGImagePropertyExif ISOSpeedLatitudezzz = new CGImagePropertyExif("ISOSpeedLatitudezzz");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyExif Version = new CGImagePropertyExif("Version");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyExif DateTimeOriginal = new CGImagePropertyExif("DateTimeOriginal");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyExif DateTimeDigitized = new CGImagePropertyExif("DateTimeDigitized");
     /**
-     * @since Available in iOS 4.0 and later.
+     * @since Available in iOS 13.0 and later.
      */
+    public static final CGImagePropertyExif OffsetTime = new CGImagePropertyExif("OffsetTime");
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final CGImagePropertyExif OffsetTimeOriginal = new CGImagePropertyExif("OffsetTimeOriginal");
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final CGImagePropertyExif OffsetTimeDigitized = new CGImagePropertyExif("OffsetTimeDigitized");
     public static final CGImagePropertyExif ComponentsConfiguration = new CGImagePropertyExif("ComponentsConfiguration");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyExif CompressedBitsPerPixel = new CGImagePropertyExif("CompressedBitsPerPixel");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyExif ShutterSpeedValue = new CGImagePropertyExif("ShutterSpeedValue");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyExif ApertureValue = new CGImagePropertyExif("ApertureValue");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyExif BrightnessValue = new CGImagePropertyExif("BrightnessValue");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyExif ExposureBiasValue = new CGImagePropertyExif("ExposureBiasValue");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyExif MaxApertureValue = new CGImagePropertyExif("MaxApertureValue");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyExif SubjectDistance = new CGImagePropertyExif("SubjectDistance");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyExif MeteringMode = new CGImagePropertyExif("MeteringMode");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyExif LightSource = new CGImagePropertyExif("LightSource");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyExif Flash = new CGImagePropertyExif("Flash");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyExif FocalLength = new CGImagePropertyExif("FocalLength");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyExif SubjectArea = new CGImagePropertyExif("SubjectArea");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyExif MakerNote = new CGImagePropertyExif("MakerNote");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyExif UserComment = new CGImagePropertyExif("UserComment");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyExif SubsecTime = new CGImagePropertyExif("SubsecTime");
     /**
      * @since Available in iOS 10.0 and later.
      */
     public static final CGImagePropertyExif SubsecTimeOriginal = new CGImagePropertyExif("SubsecTimeOriginal");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyExif SubsecTimeDigitized = new CGImagePropertyExif("SubsecTimeDigitized");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyExif FlashPixVersion = new CGImagePropertyExif("FlashPixVersion");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyExif ColorSpace = new CGImagePropertyExif("ColorSpace");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyExif PixelXDimension = new CGImagePropertyExif("PixelXDimension");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyExif PixelYDimension = new CGImagePropertyExif("PixelYDimension");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyExif RelatedSoundFile = new CGImagePropertyExif("RelatedSoundFile");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyExif FlashEnergy = new CGImagePropertyExif("FlashEnergy");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyExif SpatialFrequencyResponse = new CGImagePropertyExif("SpatialFrequencyResponse");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyExif FocalPlaneXResolution = new CGImagePropertyExif("FocalPlaneXResolution");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyExif FocalPlaneYResolution = new CGImagePropertyExif("FocalPlaneYResolution");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyExif FocalPlaneResolutionUnit = new CGImagePropertyExif("FocalPlaneResolutionUnit");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyExif SubjectLocation = new CGImagePropertyExif("SubjectLocation");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyExif ExposureIndex = new CGImagePropertyExif("ExposureIndex");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyExif SensingMethod = new CGImagePropertyExif("SensingMethod");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyExif FileSource = new CGImagePropertyExif("FileSource");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyExif SceneType = new CGImagePropertyExif("SceneType");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyExif CFAPattern = new CGImagePropertyExif("CFAPattern");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyExif CustomRendered = new CGImagePropertyExif("CustomRendered");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyExif ExposureMode = new CGImagePropertyExif("ExposureMode");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyExif WhiteBalance = new CGImagePropertyExif("WhiteBalance");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyExif DigitalZoomRatio = new CGImagePropertyExif("DigitalZoomRatio");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyExif FocalLenIn35mmFilm = new CGImagePropertyExif("FocalLenIn35mmFilm");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyExif SceneCaptureType = new CGImagePropertyExif("SceneCaptureType");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyExif GainControl = new CGImagePropertyExif("GainControl");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyExif Contrast = new CGImagePropertyExif("Contrast");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyExif Saturation = new CGImagePropertyExif("Saturation");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyExif Sharpness = new CGImagePropertyExif("Sharpness");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyExif DeviceSettingDescription = new CGImagePropertyExif("DeviceSettingDescription");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyExif SubjectDistRange = new CGImagePropertyExif("SubjectDistRange");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyExif ImageUniqueID = new CGImagePropertyExif("ImageUniqueID");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final CGImagePropertyExif CameraOwnerName = new CGImagePropertyExif("CameraOwnerName");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final CGImagePropertyExif BodySerialNumber = new CGImagePropertyExif("BodySerialNumber");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final CGImagePropertyExif LensSpecification = new CGImagePropertyExif("LensSpecification");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final CGImagePropertyExif LensMake = new CGImagePropertyExif("LensMake");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final CGImagePropertyExif LensModel = new CGImagePropertyExif("LensModel");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final CGImagePropertyExif LensSerialNumber = new CGImagePropertyExif("LensSerialNumber");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CGImagePropertyExif Gamma = new CGImagePropertyExif("Gamma");
+    /**
+     * @since Available in iOS 13.1 and later.
+     */
+    public static final CGImagePropertyExif CompositeImage = new CGImagePropertyExif("CompositeImage");
+    /**
+     * @since Available in iOS 13.1 and later.
+     */
+    public static final CGImagePropertyExif SourceImageNumberOfCompositeImage = new CGImagePropertyExif("SourceImageNumberOfCompositeImage");
+    /**
+     * @since Available in iOS 13.1 and later.
+     */
+    public static final CGImagePropertyExif SourceExposureTimesOfCompositeImage = new CGImagePropertyExif("SourceExposureTimesOfCompositeImage");
     /*</constants>*/
     
-    private static /*<name>*/CGImagePropertyExif/*</name>*/[] values = new /*<name>*/CGImagePropertyExif/*</name>*/[] {/*<value_list>*/ExposureTime, FNumber, ExposureProgram, SpectralSensitivity, ISOSpeedRatings, OECF, SensitivityType, StandardOutputSensitivity, RecommendedExposureIndex, ISOSpeed, ISOSpeedLatitudeyyy, ISOSpeedLatitudezzz, Version, DateTimeOriginal, DateTimeDigitized, ComponentsConfiguration, CompressedBitsPerPixel, ShutterSpeedValue, ApertureValue, BrightnessValue, ExposureBiasValue, MaxApertureValue, SubjectDistance, MeteringMode, LightSource, Flash, FocalLength, SubjectArea, MakerNote, UserComment, SubsecTime, SubsecTimeOriginal, SubsecTimeDigitized, FlashPixVersion, ColorSpace, PixelXDimension, PixelYDimension, RelatedSoundFile, FlashEnergy, SpatialFrequencyResponse, FocalPlaneXResolution, FocalPlaneYResolution, FocalPlaneResolutionUnit, SubjectLocation, ExposureIndex, SensingMethod, FileSource, SceneType, CFAPattern, CustomRendered, ExposureMode, WhiteBalance, DigitalZoomRatio, FocalLenIn35mmFilm, SceneCaptureType, GainControl, Contrast, Saturation, Sharpness, DeviceSettingDescription, SubjectDistRange, ImageUniqueID, CameraOwnerName, BodySerialNumber, LensSpecification, LensMake, LensModel, LensSerialNumber, Gamma/*</value_list>*/};
+    private static /*<name>*/CGImagePropertyExif/*</name>*/[] values = new /*<name>*/CGImagePropertyExif/*</name>*/[] {/*<value_list>*/ExposureTime, FNumber, ExposureProgram, SpectralSensitivity, ISOSpeedRatings, OECF, SensitivityType, StandardOutputSensitivity, RecommendedExposureIndex, ISOSpeed, ISOSpeedLatitudeyyy, ISOSpeedLatitudezzz, Version, DateTimeOriginal, DateTimeDigitized, OffsetTime, OffsetTimeOriginal, OffsetTimeDigitized, ComponentsConfiguration, CompressedBitsPerPixel, ShutterSpeedValue, ApertureValue, BrightnessValue, ExposureBiasValue, MaxApertureValue, SubjectDistance, MeteringMode, LightSource, Flash, FocalLength, SubjectArea, MakerNote, UserComment, SubsecTime, SubsecTimeOriginal, SubsecTimeDigitized, FlashPixVersion, ColorSpace, PixelXDimension, PixelYDimension, RelatedSoundFile, FlashEnergy, SpatialFrequencyResponse, FocalPlaneXResolution, FocalPlaneYResolution, FocalPlaneResolutionUnit, SubjectLocation, ExposureIndex, SensingMethod, FileSource, SceneType, CFAPattern, CustomRendered, ExposureMode, WhiteBalance, DigitalZoomRatio, FocalLenIn35mmFilm, SceneCaptureType, GainControl, Contrast, Saturation, Sharpness, DeviceSettingDescription, SubjectDistRange, ImageUniqueID, CameraOwnerName, BodySerialNumber, LensSpecification, LensMake, LensModel, LensSerialNumber, Gamma, CompositeImage, SourceImageNumberOfCompositeImage, SourceExposureTimesOfCompositeImage/*</value_list>*/};
     
     /*<name>*/CGImagePropertyExif/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -389,159 +209,81 @@ import org.robovm.apple.coregraphics.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyExifExposureTime", optional=true)
         public static native CFString ExposureTime();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyExifFNumber", optional=true)
         public static native CFString FNumber();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyExifExposureProgram", optional=true)
         public static native CFString ExposureProgram();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyExifSpectralSensitivity", optional=true)
         public static native CFString SpectralSensitivity();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyExifISOSpeedRatings", optional=true)
         public static native CFString ISOSpeedRatings();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyExifOECF", optional=true)
         public static native CFString OECF();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyExifSensitivityType", optional=true)
         public static native CFString SensitivityType();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyExifStandardOutputSensitivity", optional=true)
         public static native CFString StandardOutputSensitivity();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyExifRecommendedExposureIndex", optional=true)
         public static native CFString RecommendedExposureIndex();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyExifISOSpeed", optional=true)
         public static native CFString ISOSpeed();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyExifISOSpeedLatitudeyyy", optional=true)
         public static native CFString ISOSpeedLatitudeyyy();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyExifISOSpeedLatitudezzz", optional=true)
         public static native CFString ISOSpeedLatitudezzz();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyExifVersion", optional=true)
         public static native CFString Version();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyExifDateTimeOriginal", optional=true)
         public static native CFString DateTimeOriginal();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyExifDateTimeDigitized", optional=true)
         public static native CFString DateTimeDigitized();
         /**
-         * @since Available in iOS 4.0 and later.
+         * @since Available in iOS 13.0 and later.
          */
+        @GlobalValue(symbol="kCGImagePropertyExifOffsetTime", optional=true)
+        public static native CFString OffsetTime();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyExifOffsetTimeOriginal", optional=true)
+        public static native CFString OffsetTimeOriginal();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyExifOffsetTimeDigitized", optional=true)
+        public static native CFString OffsetTimeDigitized();
         @GlobalValue(symbol="kCGImagePropertyExifComponentsConfiguration", optional=true)
         public static native CFString ComponentsConfiguration();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyExifCompressedBitsPerPixel", optional=true)
         public static native CFString CompressedBitsPerPixel();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyExifShutterSpeedValue", optional=true)
         public static native CFString ShutterSpeedValue();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyExifApertureValue", optional=true)
         public static native CFString ApertureValue();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyExifBrightnessValue", optional=true)
         public static native CFString BrightnessValue();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyExifExposureBiasValue", optional=true)
         public static native CFString ExposureBiasValue();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyExifMaxApertureValue", optional=true)
         public static native CFString MaxApertureValue();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyExifSubjectDistance", optional=true)
         public static native CFString SubjectDistance();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyExifMeteringMode", optional=true)
         public static native CFString MeteringMode();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyExifLightSource", optional=true)
         public static native CFString LightSource();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyExifFlash", optional=true)
         public static native CFString Flash();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyExifFocalLength", optional=true)
         public static native CFString FocalLength();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyExifSubjectArea", optional=true)
         public static native CFString SubjectArea();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyExifMakerNote", optional=true)
         public static native CFString MakerNote();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyExifUserComment", optional=true)
         public static native CFString UserComment();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyExifSubsecTime", optional=true)
         public static native CFString SubsecTime();
         /**
@@ -549,191 +291,95 @@ import org.robovm.apple.coregraphics.*;
          */
         @GlobalValue(symbol="kCGImagePropertyExifSubsecTimeOriginal", optional=true)
         public static native CFString SubsecTimeOriginal();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyExifSubsecTimeDigitized", optional=true)
         public static native CFString SubsecTimeDigitized();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyExifFlashPixVersion", optional=true)
         public static native CFString FlashPixVersion();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyExifColorSpace", optional=true)
         public static native CFString ColorSpace();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyExifPixelXDimension", optional=true)
         public static native CFString PixelXDimension();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyExifPixelYDimension", optional=true)
         public static native CFString PixelYDimension();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyExifRelatedSoundFile", optional=true)
         public static native CFString RelatedSoundFile();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyExifFlashEnergy", optional=true)
         public static native CFString FlashEnergy();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyExifSpatialFrequencyResponse", optional=true)
         public static native CFString SpatialFrequencyResponse();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyExifFocalPlaneXResolution", optional=true)
         public static native CFString FocalPlaneXResolution();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyExifFocalPlaneYResolution", optional=true)
         public static native CFString FocalPlaneYResolution();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyExifFocalPlaneResolutionUnit", optional=true)
         public static native CFString FocalPlaneResolutionUnit();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyExifSubjectLocation", optional=true)
         public static native CFString SubjectLocation();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyExifExposureIndex", optional=true)
         public static native CFString ExposureIndex();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyExifSensingMethod", optional=true)
         public static native CFString SensingMethod();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyExifFileSource", optional=true)
         public static native CFString FileSource();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyExifSceneType", optional=true)
         public static native CFString SceneType();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyExifCFAPattern", optional=true)
         public static native CFString CFAPattern();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyExifCustomRendered", optional=true)
         public static native CFString CustomRendered();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyExifExposureMode", optional=true)
         public static native CFString ExposureMode();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyExifWhiteBalance", optional=true)
         public static native CFString WhiteBalance();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyExifDigitalZoomRatio", optional=true)
         public static native CFString DigitalZoomRatio();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyExifFocalLenIn35mmFilm", optional=true)
         public static native CFString FocalLenIn35mmFilm();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyExifSceneCaptureType", optional=true)
         public static native CFString SceneCaptureType();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyExifGainControl", optional=true)
         public static native CFString GainControl();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyExifContrast", optional=true)
         public static native CFString Contrast();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyExifSaturation", optional=true)
         public static native CFString Saturation();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyExifSharpness", optional=true)
         public static native CFString Sharpness();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyExifDeviceSettingDescription", optional=true)
         public static native CFString DeviceSettingDescription();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyExifSubjectDistRange", optional=true)
         public static native CFString SubjectDistRange();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyExifImageUniqueID", optional=true)
         public static native CFString ImageUniqueID();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyExifCameraOwnerName", optional=true)
         public static native CFString CameraOwnerName();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyExifBodySerialNumber", optional=true)
         public static native CFString BodySerialNumber();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyExifLensSpecification", optional=true)
         public static native CFString LensSpecification();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyExifLensMake", optional=true)
         public static native CFString LensMake();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyExifLensModel", optional=true)
         public static native CFString LensModel();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyExifLensSerialNumber", optional=true)
         public static native CFString LensSerialNumber();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCGImagePropertyExifGamma", optional=true)
         public static native CFString Gamma();
+        /**
+         * @since Available in iOS 13.1 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyExifCompositeImage", optional=true)
+        public static native CFString CompositeImage();
+        /**
+         * @since Available in iOS 13.1 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyExifSourceImageNumberOfCompositeImage", optional=true)
+        public static native CFString SourceImageNumberOfCompositeImage();
+        /**
+         * @since Available in iOS 13.1 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyExifSourceExposureTimesOfCompositeImage", optional=true)
+        public static native CFString SourceExposureTimesOfCompositeImage();
         /*</values>*/
     }
 }

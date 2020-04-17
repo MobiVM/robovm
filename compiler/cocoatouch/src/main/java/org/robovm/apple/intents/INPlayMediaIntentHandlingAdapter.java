@@ -54,5 +54,35 @@ import org.robovm.apple.corelocation.*;
     public void handlePlayMedia(INPlayMediaIntent intent, @Block VoidBlock1<INPlayMediaIntentResponse> completion) {}
     @NotImplemented("confirmPlayMedia:completion:")
     public void confirmPlayMedia(INPlayMediaIntent intent, @Block VoidBlock1<INPlayMediaIntentResponse> completion) {}
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("resolveMediaItemsForPlayMedia:withCompletion:")
+    public void resolveMediaItemsForPlayMedia(INPlayMediaIntent intent, @Block VoidBlock1<NSArray<INPlayMediaMediaItemResolutionResult>> completion) {}
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("resolvePlayShuffledForPlayMedia:withCompletion:")
+    public void resolvePlayShuffledForPlayMedia(INPlayMediaIntent intent, @Block VoidBlock1<INBooleanResolutionResult> completion) {}
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("resolvePlaybackRepeatModeForPlayMedia:withCompletion:")
+    public void resolvePlaybackRepeatModeForPlayMedia(INPlayMediaIntent intent, @Block VoidBlock1<INPlaybackRepeatModeResolutionResult> completion) {}
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("resolveResumePlaybackForPlayMedia:withCompletion:")
+    public void resolveResumePlaybackForPlayMedia(INPlayMediaIntent intent, @Block VoidBlock1<INBooleanResolutionResult> completion) {}
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("resolvePlaybackQueueLocationForPlayMedia:withCompletion:")
+    public void resolvePlaybackQueueLocationForPlayMedia(INPlayMediaIntent intent, @Block VoidBlock1<INPlaybackQueueLocationResolutionResult> completion) {}
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("resolvePlaybackSpeedForPlayMedia:withCompletion:")
+    public void resolvePlaybackSpeedForPlayMedia(INPlayMediaIntent intent, @Block VoidBlock1<INPlayMediaPlaybackSpeedResolutionResult> completion) {}
     /*</methods>*/
 }

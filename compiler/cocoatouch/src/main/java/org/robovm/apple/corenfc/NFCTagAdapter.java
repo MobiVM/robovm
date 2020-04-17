@@ -54,6 +54,25 @@ import org.robovm.apple.dispatch.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("asNFCISO15693Tag")
+    public NFCISO15693Tag asNFCISO15693Tag() { return null; }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("asNFCISO7816Tag")
+    public NFCISO7816Tag asNFCISO7816Tag() { return null; }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("asNFCFeliCaTag")
+    public NFCFeliCaTag asNFCFeliCaTag() { return null; }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("asNFCMiFareTag")
+    public NFCMiFareTag asNFCMiFareTag() { return null; }
     /*</methods>*/
 }

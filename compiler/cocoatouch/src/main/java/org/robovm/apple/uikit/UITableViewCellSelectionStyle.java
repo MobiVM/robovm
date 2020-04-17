@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -48,9 +50,6 @@ public enum /*<name>*/UITableViewCellSelectionStyle/*</name>*/ implements Valued
     None(0L),
     Blue(1L),
     Gray(2L),
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     Default(3L);
     /*</values>*/
 

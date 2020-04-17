@@ -104,9 +104,6 @@ import org.robovm.apple.contacts.*;
     }
     
 
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public NSArray<PKPass> getAddedPasses() {
         if (has(Keys.AddedPasses())) {
             NSArray<PKPass> val = (NSArray<PKPass>) get(Keys.AddedPasses());
@@ -114,9 +111,6 @@ import org.robovm.apple.contacts.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public NSArray<PKPass> getReplacementPasses() {
         if (has(Keys.ReplacementPasses())) {
             NSArray<PKPass> val = (NSArray<PKPass>) get(Keys.ReplacementPasses());
@@ -145,19 +139,10 @@ import org.robovm.apple.contacts.*;
     @Library("PassKit")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 6.0 and later.
-         */
         @GlobalValue(symbol="PKPassLibraryAddedPassesUserInfoKey", optional=true)
         public static native NSString AddedPasses();
-        /**
-         * @since Available in iOS 6.0 and later.
-         */
         @GlobalValue(symbol="PKPassLibraryReplacementPassesUserInfoKey", optional=true)
         public static native NSString ReplacementPasses();
-        /**
-         * @since Available in iOS 6.0 and later.
-         */
         @GlobalValue(symbol="PKPassLibraryRemovedPassInfosUserInfoKey", optional=true)
         public static native NSString RemovedPassInfos();
     }

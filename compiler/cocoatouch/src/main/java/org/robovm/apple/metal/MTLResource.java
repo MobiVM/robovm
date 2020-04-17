@@ -32,9 +32,7 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ interface /*<name>*/MTLResource/*</name>*/ 
@@ -60,10 +58,25 @@ import org.robovm.apple.dispatch.*;
     @Property(selector = "storageMode")
     MTLStorageMode getStorageMode();
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "hazardTrackingMode")
+    MTLHazardTrackingMode getHazardTrackingMode();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "resourceOptions")
+    MTLResourceOptions getResourceOptions();
+    /**
      * @since Available in iOS 10.0 and later.
      */
     @Property(selector = "heap")
     MTLHeap getHeap();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "heapOffset")
+    @MachineSizedUInt long getHeapOffset();
     /**
      * @since Available in iOS 11.0 and later.
      */

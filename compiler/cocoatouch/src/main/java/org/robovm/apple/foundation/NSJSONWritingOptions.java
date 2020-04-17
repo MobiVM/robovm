@@ -39,9 +39,7 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 5.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
 public final class /*<name>*/NSJSONWritingOptions/*</name>*/ extends Bits</*<name>*/NSJSONWritingOptions/*</name>*/> {
@@ -52,6 +50,11 @@ public final class /*<name>*/NSJSONWritingOptions/*</name>*/ extends Bits</*<nam
      * @since Available in iOS 11.0 and later.
      */
     public static final NSJSONWritingOptions SortedKeys = new NSJSONWritingOptions(2L);
+    public static final NSJSONWritingOptions FragmentsAllowed = new NSJSONWritingOptions(4L);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final NSJSONWritingOptions WithoutEscapingSlashes = new NSJSONWritingOptions(8L);
     /*</values>*/
 
     private static final /*<name>*/NSJSONWritingOptions/*</name>*/[] values = _values(/*<name>*/NSJSONWritingOptions/*</name>*/.class);

@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -110,9 +112,6 @@ import org.robovm.apple.intents.*;
     }
     
 
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public String getType() {
         if (has(Keys.Type())) {
             NSString val = (NSString) get(Keys.Type());
@@ -126,9 +125,6 @@ import org.robovm.apple.intents.*;
     @Library("UIKit")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="UIApplicationLaunchOptionsUserActivityTypeKey", optional=true)
         public static native NSString Type();
     }

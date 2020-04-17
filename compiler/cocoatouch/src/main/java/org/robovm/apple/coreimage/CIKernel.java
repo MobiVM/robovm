@@ -36,12 +36,11 @@ import org.robovm.apple.imageio.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.metal.*;
 import org.robovm.apple.iosurface.*;
+import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreImage") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CIKernel/*</name>*/ 
@@ -57,9 +56,6 @@ import org.robovm.apple.iosurface.*;
     protected CIKernel(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "name")
     public native String getName();
     /*</properties>*/
@@ -70,20 +66,15 @@ import org.robovm.apple.iosurface.*;
      */
     @Method(selector = "setROISelector:")
     public native void setROISelector(Selector method);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "applyWithExtent:roiCallback:arguments:")
     public native CIImage apply(@ByVal CGRect extent, @Block("@ByVal (,@ByVal)") Block2<Integer, CGRect, CGRect> callback, NSArray<?> args);
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 12.0. Core Image Kernel Language API deprecated. (Define CI_SILENCE_GL_DEPRECATION to silence these warnings)
      */
     @Deprecated
     @Method(selector = "kernelsWithString:")
     public static native NSArray<CIKernel> createKernels(String string);
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 12.0. Core Image Kernel Language API deprecated. (Define CI_SILENCE_GL_DEPRECATION to silence these warnings)
      */
     @Deprecated

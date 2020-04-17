@@ -36,7 +36,10 @@ enums:
     SecErrorCode: { first: errSecSuccess }
     SecKeyOperationType: {}
     SSLCiphersuiteGroup: {prefix: kSSLCiphersuiteGroup}
-
+    #enums:
+    tls_protocol_version_t: {prefix: tls_protocol_version_, name: TlsProtocolVersion }
+    tls_ciphersuite_t: {prefix: tls_ciphersuite_, name: TlsCiphersuite }
+    tls_ciphersuite_group_t: {prefix: tls_ciphersuite_group_, name: TlsCiphersuiteGroup, tls_ciphersuite_group_default: _default }
 classes:
     __SecAccessControl:
         name: SecAccessControl
@@ -269,7 +272,7 @@ functions:
     SecPolicy(.*):
         class: SecPolicy
         name: '#{g[0]}'
- 
+
     # SecRandom
     SecRandomCopy(Bytes):
         class: SecRandom
@@ -489,7 +492,7 @@ functions:
         visibility: protected
         parameters:
             cookie:
-                type: '@Pointer long'    
+                type: '@Pointer long'
     SSL(.*):
         class: SSLContext
         name: '#{g[0]}0'
@@ -519,6 +522,9 @@ functions:
         class: SecArcIdentity
         name: '#{g[0]}'
 
+    sec_protocol_metadata_(.*)_(.*)_(.*)_(.*)_(.*):
+        class: SecArcProtocolMetadata
+        name: '#{g[0]}#{g[1].camelize}#{g[2].camelize}#{g[3].camelize}#{g[4].camelize}'
     sec_protocol_metadata_(.*)_(.*)_(.*)_(.*):
         class: SecArcProtocolMetadata
         name: '#{g[0]}#{g[1].camelize}#{g[2].camelize}#{g[3].camelize}'
@@ -532,6 +538,12 @@ functions:
         class: SecArcProtocolMetadata
         name: '#{g[0]}'
 
+    sec_protocol_options_(.*)_(.*)_(.*)_(.*)_(.*)_(.*):
+        class: SecArcProtocolOptions
+        name: '#{g[0]}#{g[1].camelize}#{g[2].camelize}#{g[3].camelize}#{g[4].camelize}#{g[5].camelize}'
+    sec_protocol_options_(.*)_(.*)_(.*)_(.*)_(.*):
+        class: SecArcProtocolOptions
+        name: '#{g[0]}#{g[1].camelize}#{g[2].camelize}#{g[3].camelize}#{g[4].camelize}'
     sec_protocol_options_(.*)_(.*)_(.*)_(.*):
         class: SecArcProtocolOptions
         name: '#{g[0]}#{g[1].camelize}#{g[2].camelize}#{g[3].camelize}'
@@ -644,11 +656,11 @@ values:
             PersistentRef:
                 name: shouldReturnPersistent
                 type: boolean
-    kSecValue(.*): 
+    kSecValue(.*):
         dictionary: SecValue
         name: '#{g[0]}'
         type: CFType
-        methods: 
+        methods:
             Data:
                 type: NSData
             Ref:
@@ -734,7 +746,7 @@ values:
                 type: int
             Path:
                 type: String
-            Subject: 
+            Subject:
                 type: NSData # read-only
             Issuer:
                 type: NSData # read-only
@@ -791,7 +803,7 @@ values:
             UseAuthenticationContext:
                 name: useAuthenticationContext
                 type: 'org.robovm.apple.localauthentication.LAContext'
-    kSec(UseItemList|UseOperationPrompt|UseNoAuthenticationUI|UseAuthenticationUI|UseAuthenticationContext):
+    kSec(UseItemList|UseOperationPrompt|UseNoAuthenticationUI|UseAuthenticationUI|UseAuthenticationContext|UseDataProtectionKeychain):
         dictionary: SecAttributes
         name: '#{g[0]}'
         type: CFType
@@ -830,7 +842,7 @@ values:
         enum: SecPolicyIdentifier
         name: '#{g[0]}'
         type: CFType
-    
+
     # SecRandom
     kSecRandom(Default):
         class: SecRandom

@@ -91,17 +91,8 @@ import org.robovm.apple.iosurface.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CVImageBufferChromaSubsampling _420 = new CVImageBufferChromaSubsampling("_420");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CVImageBufferChromaSubsampling _422 = new CVImageBufferChromaSubsampling("_422");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CVImageBufferChromaSubsampling _411 = new CVImageBufferChromaSubsampling("_411");
     /*</constants>*/
     
@@ -128,19 +119,10 @@ import org.robovm.apple.iosurface.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVImageBufferChromaSubsampling_420", optional=true)
         public static native CFString _420();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVImageBufferChromaSubsampling_422", optional=true)
         public static native CFString _422();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVImageBufferChromaSubsampling_411", optional=true)
         public static native CFString _411();
         /*</values>*/

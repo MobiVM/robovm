@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -61,7 +63,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithTypeIdentifiersForAcceptingClass:")
     public UIPasteConfiguration(Class<?> aClass) { super((SkipInit) null); initObject(init(aClass)); }
     @Method(selector = "initWithCoder:")
-    public UIPasteConfiguration(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public UIPasteConfiguration(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "acceptableTypeIdentifiers")
@@ -84,6 +86,6 @@ import org.robovm.apple.intents.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

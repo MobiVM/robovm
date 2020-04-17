@@ -36,6 +36,7 @@ import org.robovm.apple.imageio.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.metal.*;
 import org.robovm.apple.iosurface.*;
+import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -125,9 +126,6 @@ import org.robovm.apple.iosurface.*;
         set(Keys.ColorSpace(), colorSpace);
         return this;
     }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @WeaklyLinked
     public CGImageProperties getProperties() {
         if (has(Keys.Properties())) {
@@ -136,9 +134,6 @@ import org.robovm.apple.iosurface.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @WeaklyLinked
     public CIImageOptions setProperties(CGImageProperties properties) {
         set(Keys.Properties(), properties.getDictionary());
@@ -157,9 +152,6 @@ import org.robovm.apple.iosurface.*;
          */
         @GlobalValue(symbol="kCIImageNearestSampling", optional=true)
         public static native CFString NearestSampling();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="kCIImageProperties", optional=true)
         public static native CFString Properties();
         /**
@@ -182,6 +174,31 @@ import org.robovm.apple.iosurface.*;
          */
         @GlobalValue(symbol="kCIImageAuxiliaryPortraitEffectsMatte", optional=true)
         public static native CFString AuxiliaryPortraitEffectsMatte();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="kCIImageAuxiliarySemanticSegmentationSkinMatte", optional=true)
+        public static native CFString AuxiliarySemanticSegmentationSkinMatte();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="kCIImageAuxiliarySemanticSegmentationHairMatte", optional=true)
+        public static native CFString AuxiliarySemanticSegmentationHairMatte();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="kCIImageAuxiliarySemanticSegmentationTeethMatte", optional=true)
+        public static native CFString AuxiliarySemanticSegmentationTeethMatte();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="kCIImageProviderTileSize", optional=true)
+        public static native CFString ProviderTileSize();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="kCIImageProviderUserInfo", optional=true)
+        public static native CFString ProviderUserInfo();
     }
     /*</keys>*/
 }

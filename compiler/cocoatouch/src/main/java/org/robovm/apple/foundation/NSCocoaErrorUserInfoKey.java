@@ -102,9 +102,6 @@ import org.robovm.apple.dispatch.*;
     public static final NSCocoaErrorUserInfoKey LocalizedRecoveryOptions = new NSCocoaErrorUserInfoKey("LocalizedRecoveryOptions");
     public static final NSCocoaErrorUserInfoKey RecoveryAttempter = new NSCocoaErrorUserInfoKey("RecoveryAttempter");
     public static final NSCocoaErrorUserInfoKey HelpAnchor = new NSCocoaErrorUserInfoKey("HelpAnchor");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final NSCocoaErrorUserInfoKey DebugDescription = new NSCocoaErrorUserInfoKey("DebugDescription");
     /**
      * @since Available in iOS 11.0 and later.
@@ -152,9 +149,6 @@ import org.robovm.apple.dispatch.*;
         public static native NSString RecoveryAttempter();
         @GlobalValue(symbol="NSHelpAnchorErrorKey", optional=true)
         public static native NSString HelpAnchor();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="NSDebugDescriptionErrorKey", optional=true)
         public static native NSString DebugDescription();
         /**

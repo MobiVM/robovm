@@ -4,6 +4,7 @@
     <version>${project.version}</version>
     <vendor email="robovm@mobidevelop.com" url="http://github.com/mobidevelop/robovm">mobidevelop</vendor>
 
+    <depends optional="true" config-file="">org.jetbrains.idea.maven</depends>
     <depends>org.jetbrains.plugins.gradle</depends>
 
     <idea-version since-build="141.177"/>
@@ -19,6 +20,9 @@
     ]]>
     </change-notes>
 
+    <extensions defaultExtensionNs="org.jetbrains.plugins.gradle">
+        <projectResolve implementation="org.robovm.idea.gradle.RoboVMGradleProjectResolver"/>
+    </extensions>
     <extensions defaultExtensionNs="com.intellij">
         <configurationType implementation="org.robovm.idea.running.RoboVmIOSConfigurationType"/>
         <configurationType implementation="org.robovm.idea.running.RoboVmConsoleConfigurationType"/>
@@ -26,6 +30,8 @@
         <projectTemplatesFactory implementation="org.robovm.idea.builder.RoboVmTemplatesFactory"/>
         <sdkType implementation="org.robovm.idea.sdk.RoboVmSdkType"/>
         <buildProcess.parametersProvider implementation="org.robovm.idea.components.RoboVmBuildProcessParametersProvider"/>
+        <compiler.task execute="AFTER" implementation="org.robovm.idea.compilation.RoboVmCompileTask"/>
+        <stepsBeforeRunProvider implementation="org.robovm.idea.running.RoboVmBeforeRunTaskProvider"/>
         <!-- dkimitsa: removed as it is not required for open source xcode integration -->
         <!--<applicationConfigurable implementation="org.robovm.idea.config.RoboVmGlobalConfig"></applicationConfigurable>-->
     </extensions>
@@ -50,7 +56,7 @@
 
     <actions>
         <group id="org.robovm.idea.Menu" text="RoboVM" description="RoboVM Menu">
-            <add-to-group group-id="MainMenu" anchor="after" relative-to-action="ToolsMenu" />
+            <add-to-group group-id="MainMenu" anchor="after" relative-to-action="ToolsMenu"/>
 
             <action id="org.robovm.idea.create-ipa" class="org.robovm.idea.actions.CreateIpaAction" text="Create IPA"
                     description="Create an IPA for App Store or ad-hoc distribution"/>
@@ -74,7 +80,6 @@
         </group>
 
     </actions>
-
 
 
 </idea-plugin>

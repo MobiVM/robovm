@@ -43,14 +43,12 @@ public enum /*<name>*/AudioConverterProperty/*</name>*/ implements ValuedEnum {
     /*<values>*/
     MinimumInputBufferSize(1835623027L),
     MinimumOutputBufferSize(1836016243L),
-    MaximumInputBufferSize(2020172403L),
     MaximumInputPacketSize(2020175987L),
     MaximumOutputPacketSize(2020569203L),
     CalculateInputBufferSize(1667850867L),
     CalculateOutputBufferSize(1668244083L),
     InputCodecParameters(1768121456L),
     OutputCodecParameters(1868784752L),
-    SampleRateConverterAlgorithm(1936876393L),
     SampleRateConverterComplexity(1936876385L),
     SampleRateConverterQuality(1936876401L),
     SampleRateConverterInitialPhase(1936876400L),
@@ -74,6 +72,8 @@ public enum /*<name>*/AudioConverterProperty/*</name>*/ implements ValuedEnum {
     Settings(1633906803L),
     BitDepthHint(1633903204L),
     FormatList(1718383476L),
+    PropertyMaximumInputBufferSize(2020172403L),
+    SampleRateConverterAlgorithm(1936876393L),
     CanResumeFromInterruption(1668441705L);
     /*</values>*/
 

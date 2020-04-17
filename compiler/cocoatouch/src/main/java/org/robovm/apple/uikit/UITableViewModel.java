@@ -15,11 +15,13 @@
  */
 package org.robovm.apple.uikit;
 
+import org.robovm.apple.coregraphics.CGPoint;
 import org.robovm.apple.foundation.NSArray;
 import org.robovm.apple.foundation.NSIndexPath;
 import org.robovm.apple.foundation.NSObject;
 import org.robovm.objc.Selector;
 import org.robovm.objc.annotation.NotImplemented;
+import org.robovm.rt.bro.annotation.ByVal;
 import org.robovm.rt.bro.annotation.MachineSizedFloat;
 import org.robovm.rt.bro.annotation.MachineSizedSInt;
 
@@ -195,4 +197,44 @@ public class UITableViewModel extends UIScrollViewDelegateAdapter implements UIT
     public UISwipeActionsConfiguration getTrailingSwipeActionsConfigurationForRow(UITableView tableView, NSIndexPath indexPath) { return null; }
     @NotImplemented("tableView:shouldSpringLoadRowAtIndexPath:withContext:")
     public boolean shouldSpringLoadRow(UITableView tableView, NSIndexPath indexPath, UISpringLoadedInteractionContext context) { return false; }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("tableView:shouldBeginMultipleSelectionInteractionAtIndexPath:")
+    public boolean shouldBeginMultipleSelectionInteraction(UITableView tableView, NSIndexPath indexPath) { return false; }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("tableView:didBeginMultipleSelectionInteractionAtIndexPath:")
+    public void didBeginMultipleSelectionInteraction(UITableView tableView, NSIndexPath indexPath) {}
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("tableViewDidEndMultipleSelectionInteraction:")
+    public void tableViewDidEndMultipleSelectionInteraction(UITableView tableView) {}
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("tableView:contextMenuConfigurationForRowAtIndexPath:point:")
+    public UIContextMenuConfiguration getContextMenuConfiguration(UITableView tableView, NSIndexPath indexPath, @ByVal CGPoint point) { return null; }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("tableView:previewForHighlightingContextMenuWithConfiguration:")
+    public UITargetedPreview getPreviewForHighlightingContextMenu(UITableView tableView, UIContextMenuConfiguration configuration) { return null; }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("tableView:previewForDismissingContextMenuWithConfiguration:")
+    public UITargetedPreview getPreviewForDismissingContextMenu(UITableView tableView, UIContextMenuConfiguration configuration) { return null; }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("tableView:willPerformPreviewActionForMenuWithConfiguration:animator:")
+    public void willPerformPreviewAction(UITableView tableView, UIContextMenuConfiguration configuration, UIContextMenuInteractionCommitAnimating animator) {}
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("tableView:willCommitMenuWithAnimator:")
+    public void willCommitMenu(UITableView tableView, UIContextMenuInteractionCommitAnimating animator) {}
 }

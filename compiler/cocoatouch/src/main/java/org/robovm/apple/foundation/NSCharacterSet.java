@@ -57,7 +57,7 @@ import org.robovm.apple.dispatch.*;
     protected NSCharacterSet(Handle h, long handle) { super(h, handle); }
     protected NSCharacterSet(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public NSCharacterSet(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public NSCharacterSet(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     public NSCharacterSet(@ByVal NSRange aRange) { super((Handle) null, create(aRange)); retain(getHandle()); }
     public NSCharacterSet(String aString) { super((Handle) null, create(aString)); retain(getHandle()); }
     public NSCharacterSet(NSData data) { super((Handle) null, create(data)); retain(getHandle()); }
@@ -100,43 +100,22 @@ import org.robovm.apple.dispatch.*;
     public static native NSCharacterSet getCapitalizedLetterCharacterSet();
     @Property(selector = "symbolCharacterSet")
     public static native NSCharacterSet getSymbolCharacterSet();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Property(selector = "newlineCharacterSet")
     public static native NSCharacterSet getNewlineCharacterSet();
     @Property(selector = "bitmapRepresentation")
     public native NSData getBitmapRepresentation();
     @Property(selector = "invertedSet")
     public native NSCharacterSet getInvertedSet();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "URLUserAllowedCharacterSet")
     public static native NSCharacterSet getURLUserAllowedCharacterSet();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "URLPasswordAllowedCharacterSet")
     public static native NSCharacterSet getURLPasswordAllowedCharacterSet();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "URLHostAllowedCharacterSet")
     public static native NSCharacterSet getURLHostAllowedCharacterSet();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "URLPathAllowedCharacterSet")
     public static native NSCharacterSet getURLPathAllowedCharacterSet();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "URLQueryAllowedCharacterSet")
     public static native NSCharacterSet getURLQueryAllowedCharacterSet();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "URLFragmentAllowedCharacterSet")
     public static native NSCharacterSet getURLFragmentAllowedCharacterSet();
     @Property(selector = "supportsSecureCoding")
@@ -145,7 +124,7 @@ import org.robovm.apple.dispatch.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
+    protected native @Pointer long init(NSCoder coder);
     @Method(selector = "characterIsMember:")
     public native boolean isMember(short aCharacter);
     @Method(selector = "longCharacterIsMember:")

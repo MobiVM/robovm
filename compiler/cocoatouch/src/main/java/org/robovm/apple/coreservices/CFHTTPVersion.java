@@ -87,17 +87,8 @@ import org.robovm.apple.corefoundation.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CFHTTPVersion Version1_0 = new CFHTTPVersion("Version1_0");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CFHTTPVersion Version1_1 = new CFHTTPVersion("Version1_1");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final CFHTTPVersion Version2_0 = new CFHTTPVersion("Version2_0");
     /*</constants>*/
     
@@ -124,19 +115,10 @@ import org.robovm.apple.corefoundation.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCFHTTPVersion1_0", optional=true)
         public static native CFString Version1_0();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCFHTTPVersion1_1", optional=true)
         public static native CFString Version1_1();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="kCFHTTPVersion2_0", optional=true)
         public static native CFString Version2_0();
         /*</values>*/

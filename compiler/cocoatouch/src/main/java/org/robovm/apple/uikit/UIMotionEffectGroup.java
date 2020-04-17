@@ -37,12 +37,12 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 7.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIMotionEffectGroup/*</name>*/ 
@@ -57,7 +57,7 @@ import org.robovm.apple.intents.*;
     protected UIMotionEffectGroup(Handle h, long handle) { super(h, handle); }
     protected UIMotionEffectGroup(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public UIMotionEffectGroup(NSCoder aDecoder) { super(aDecoder); }
+    public UIMotionEffectGroup(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "motionEffects")

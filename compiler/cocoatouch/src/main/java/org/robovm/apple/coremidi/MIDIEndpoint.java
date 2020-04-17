@@ -86,34 +86,16 @@ import org.robovm.apple.corefoundation.*;
         return ptr.get();
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     @Bridge(symbol="MIDIEndpointGetEntity", optional=true)
     protected native MIDIError getEntity(MIDIEntity.MIDIEntityPtr outEntity);
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     @Bridge(symbol="MIDIDestinationCreate", optional=true)
     protected static native MIDIError createDestination(MIDIClient client, String name, FunctionPtr readProc, @Pointer long refCon, MIDIEndpoint.MIDIEndpointPtr outDest);
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     @Bridge(symbol="MIDISourceCreate", optional=true)
     protected static native MIDIError createSource(MIDIClient client, String name, MIDIEndpoint.MIDIEndpointPtr outSrc);
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     @Bridge(symbol="MIDIEndpointDispose", optional=true)
     public native MIDIError dispose();
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     @Bridge(symbol="MIDIReceived", optional=true)
     public native MIDIError received(MIDIPacketList pktlist);
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     @Bridge(symbol="MIDIEndpointSetRefCons", optional=true)
     protected native MIDIError setRefCons(@Pointer long ref1, @Pointer long ref2);
     /*</methods>*/

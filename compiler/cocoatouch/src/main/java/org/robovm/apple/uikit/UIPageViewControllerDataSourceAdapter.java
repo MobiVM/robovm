@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -61,14 +63,8 @@ import org.robovm.apple.intents.*;
     public UIViewController getViewControllerBefore(UIPageViewController pageViewController, UIViewController viewController) { return null; }
     @NotImplemented("pageViewController:viewControllerAfterViewController:")
     public UIViewController getViewControllerAfter(UIPageViewController pageViewController, UIViewController viewController) { return null; }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @NotImplemented("presentationCountForPageViewController:")
     public @MachineSizedSInt long getPresentationCount(UIPageViewController pageViewController) { return 0; }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @NotImplemented("presentationIndexForPageViewController:")
     public @MachineSizedSInt long getPresentationIndex(UIPageViewController pageViewController) { return 0; }
     /*</methods>*/

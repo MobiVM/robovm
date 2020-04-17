@@ -37,14 +37,14 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 import org.robovm.apple.corefoundation.CFDictionary;
 import org.robovm.apple.coremedia.CMTextMarkupAttributes;
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 2.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UISearchBar/*</name>*/ 
@@ -61,7 +61,7 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     @Method(selector = "initWithFrame:")
     public UISearchBar(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
     @Method(selector = "initWithCoder:")
-    public UISearchBar(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public UISearchBar(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "barStyle")
@@ -88,28 +88,21 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     public native boolean showsBookmarkButton();
     @Property(selector = "setShowsBookmarkButton:")
     public native void setShowsBookmarkButton(boolean v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "searchTextField")
+    public native UISearchTextField getSearchTextField();
     @Property(selector = "showsCancelButton")
     public native boolean showsCancelButton();
     @Property(selector = "setShowsCancelButton:")
     public native void setShowsCancelButton(boolean v);
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Property(selector = "showsSearchResultsButton")
     public native boolean showsSearchResultsButton();
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Property(selector = "setShowsSearchResultsButton:")
     public native void setShowsSearchResultsButton(boolean v);
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Property(selector = "isSearchResultsButtonSelected")
     public native boolean isSearchResultsButtonSelected();
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Property(selector = "setSearchResultsButtonSelected:")
     public native void setSearchResultsButtonSelected(boolean v);
     /**
@@ -121,108 +114,48 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     public native UIColor getTintColor();
     @Property(selector = "setTintColor:")
     public native void setTintColor(UIColor v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "barTintColor")
     public native UIColor getBarTintColor();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setBarTintColor:")
     public native void setBarTintColor(UIColor v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "searchBarStyle")
     public native UISearchBarStyle getSearchBarStyle();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setSearchBarStyle:")
     public native void setSearchBarStyle(UISearchBarStyle v);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "isTranslucent")
     public native boolean isTranslucent();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "setTranslucent:")
     public native void setTranslucent(boolean v);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "scopeButtonTitles")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getScopeButtonTitles();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "setScopeButtonTitles:")
     public native void setScopeButtonTitles(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> v);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "selectedScopeButtonIndex")
     public native @MachineSizedSInt long getSelectedScopeButtonIndex();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "setSelectedScopeButtonIndex:")
     public native void setSelectedScopeButtonIndex(@MachineSizedSInt long v);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "showsScopeBar")
     public native boolean showsScopeBar();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "setShowsScopeBar:")
     public native void setShowsScopeBar(boolean v);
     @Property(selector = "inputAccessoryView")
     public native UIView getInputAccessoryView();
     @Property(selector = "setInputAccessoryView:")
     public native void setInputAccessoryView(UIView v);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "backgroundImage")
     public native UIImage getBackgroundImage();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setBackgroundImage:")
     public native void setBackgroundImage(UIImage v);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "scopeBarBackgroundImage")
     public native UIImage getScopeBarBackgroundImage();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setScopeBarBackgroundImage:")
     public native void setScopeBarBackgroundImage(UIImage v);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "searchFieldBackgroundPositionAdjustment")
     public native @ByVal UIOffset getSearchFieldBackgroundPositionAdjustment();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setSearchFieldBackgroundPositionAdjustment:")
     public native void setSearchFieldBackgroundPositionAdjustment(@ByVal UIOffset v);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "searchTextPositionAdjustment")
     public native @ByVal UIOffset getSearchTextPositionAdjustment();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setSearchTextPositionAdjustment:")
     public native void setSearchTextPositionAdjustment(@ByVal UIOffset v);
     @Property(selector = "barPosition")
@@ -235,14 +168,8 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     public native UITextAutocorrectionType getAutocorrectionType();
     @Property(selector = "setAutocorrectionType:")
     public native void setAutocorrectionType(UITextAutocorrectionType v);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "spellCheckingType")
     public native UITextSpellCheckingType getSpellCheckingType();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setSpellCheckingType:")
     public native void setSpellCheckingType(UITextSpellCheckingType v);
     /**
@@ -379,80 +306,40 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     @Method(selector = "initWithFrame:")
     protected native @Pointer long init(@ByVal CGRect frame);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
+    protected native @Pointer long init(NSCoder coder);
     @Method(selector = "setShowsCancelButton:animated:")
     public native void setShowsCancelButton(boolean showsCancelButton, boolean animated);
     /**
-     * @since Available in iOS 7.0 and later.
+     * @since Available in iOS 13.0 and later.
      */
+    @Method(selector = "setShowsScopeBar:animated:")
+    public native void setShowsScopeBar(boolean show, boolean animate);
     @Method(selector = "setBackgroundImage:forBarPosition:barMetrics:")
     public native void setBackgroundImage(UIImage backgroundImage, UIBarPosition barPosition, UIBarMetrics barMetrics);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "backgroundImageForBarPosition:barMetrics:")
     public native UIImage getBackgroundImage(UIBarPosition barPosition, UIBarMetrics barMetrics);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "setSearchFieldBackgroundImage:forState:")
     public native void setSearchFieldBackgroundImage(UIImage backgroundImage, UIControlState state);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "searchFieldBackgroundImageForState:")
     public native UIImage getSearchFieldBackgroundImage(UIControlState state);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "setImage:forSearchBarIcon:state:")
     public native void setImageForSearchBarIcon(UIImage iconImage, UISearchBarIcon icon, UIControlState state);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "imageForSearchBarIcon:state:")
     public native UIImage getImageForSearchBarIcon(UISearchBarIcon icon, UIControlState state);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "setScopeBarButtonBackgroundImage:forState:")
     public native void setScopeBarButtonBackgroundImage(UIImage backgroundImage, UIControlState state);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "scopeBarButtonBackgroundImageForState:")
     public native UIImage getScopeBarButtonBackgroundImage(UIControlState state);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "setScopeBarButtonDividerImage:forLeftSegmentState:rightSegmentState:")
     public native void setScopeBarButtonDividerImage(UIImage dividerImage, UIControlState leftState, UIControlState rightState);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "scopeBarButtonDividerImageForLeftSegmentState:rightSegmentState:")
     public native UIImage getScopeBarButtonDividerImage(UIControlState leftState, UIControlState rightState);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "setScopeBarButtonTitleTextAttributes:forState:")
     public native void setScopeBarButtonTitleTextAttributesDictionary(NSDictionary<NSString, ?> attributes, UIControlState state);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "scopeBarButtonTitleTextAttributesForState:")
     public native NSDictionary<NSString, ?> getScopeBarButtonTitleTextAttributesDictionary(UIControlState state);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "setPositionAdjustment:forSearchBarIcon:")
     public native void setPositionAdjustmentForSearchBarIcon(@ByVal UIOffset adjustment, UISearchBarIcon icon);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "positionAdjustmentForSearchBarIcon:")
     public native @ByVal UIOffset getPositionAdjustmentForSearchBarIcon(UISearchBarIcon icon);
     /*</methods>*/

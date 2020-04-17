@@ -104,9 +104,6 @@ import org.robovm.apple.contacts.*;
     }
     
 
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public String getPassTypeIdentifier() {
         if (has(Keys.PassTypeIdentifier())) {
             NSString val = (NSString) get(Keys.PassTypeIdentifier());
@@ -114,9 +111,6 @@ import org.robovm.apple.contacts.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public String getSerialNumber() {
         if (has(Keys.SerialNumber())) {
             NSString val = (NSString) get(Keys.SerialNumber());
@@ -130,14 +124,8 @@ import org.robovm.apple.contacts.*;
     @Library("PassKit")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 6.0 and later.
-         */
         @GlobalValue(symbol="PKPassLibraryPassTypeIdentifierUserInfoKey", optional=true)
         public static native NSString PassTypeIdentifier();
-        /**
-         * @since Available in iOS 6.0 and later.
-         */
         @GlobalValue(symbol="PKPassLibrarySerialNumberUserInfoKey", optional=true)
         public static native NSString SerialNumber();
     }

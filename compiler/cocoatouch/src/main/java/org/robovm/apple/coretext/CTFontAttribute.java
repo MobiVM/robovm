@@ -90,105 +90,37 @@ import org.robovm.apple.uikit.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public static final CTFontAttribute URL = new CTFontAttribute("URL");
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public static final CTFontAttribute Name = new CTFontAttribute("Name");
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public static final CTFontAttribute DisplayName = new CTFontAttribute("DisplayName");
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public static final CTFontAttribute FamilyName = new CTFontAttribute("FamilyName");
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public static final CTFontAttribute StyleName = new CTFontAttribute("StyleName");
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public static final CTFontAttribute Traits = new CTFontAttribute("Traits");
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public static final CTFontAttribute Variation = new CTFontAttribute("Variation");
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public static final CTFontAttribute Size = new CTFontAttribute("Size");
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public static final CTFontAttribute Matrix = new CTFontAttribute("Matrix");
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public static final CTFontAttribute CascadeList = new CTFontAttribute("CascadeList");
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public static final CTFontAttribute CharacterSet = new CTFontAttribute("CharacterSet");
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public static final CTFontAttribute Languages = new CTFontAttribute("Languages");
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public static final CTFontAttribute BaselineAdjust = new CTFontAttribute("BaselineAdjust");
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public static final CTFontAttribute MacintoshEncodings = new CTFontAttribute("MacintoshEncodings");
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public static final CTFontAttribute Features = new CTFontAttribute("Features");
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public static final CTFontAttribute FeatureSettings = new CTFontAttribute("FeatureSettings");
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public static final CTFontAttribute FixedAdvance = new CTFontAttribute("FixedAdvance");
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public static final CTFontAttribute Orientation = new CTFontAttribute("Orientation");
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public static final CTFontAttribute Format = new CTFontAttribute("Format");
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public static final CTFontAttribute RegistrationScope = new CTFontAttribute("RegistrationScope");
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public static final CTFontAttribute Priority = new CTFontAttribute("Priority");
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public static final CTFontAttribute Enabled = new CTFontAttribute("Enabled");
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public static final CTFontAttribute Downloadable = new CTFontAttribute("Downloadable");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final CTFontAttribute Downloaded = new CTFontAttribute("Downloaded");
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final CTFontAttribute RegistrationUserInfo = new CTFontAttribute("RegistrationUserInfo");
     /*</constants>*/
     
-    private static /*<name>*/CTFontAttribute/*</name>*/[] values = new /*<name>*/CTFontAttribute/*</name>*/[] {/*<value_list>*/URL, Name, DisplayName, FamilyName, StyleName, Traits, Variation, Size, Matrix, CascadeList, CharacterSet, Languages, BaselineAdjust, MacintoshEncodings, Features, FeatureSettings, FixedAdvance, Orientation, Format, RegistrationScope, Priority, Enabled, Downloadable, Downloaded/*</value_list>*/};
+    private static /*<name>*/CTFontAttribute/*</name>*/[] values = new /*<name>*/CTFontAttribute/*</name>*/[] {/*<value_list>*/URL, Name, DisplayName, FamilyName, StyleName, Traits, Variation, Size, Matrix, CascadeList, CharacterSet, Languages, BaselineAdjust, MacintoshEncodings, Features, FeatureSettings, FixedAdvance, Orientation, Format, RegistrationScope, Priority, Enabled, Downloadable, Downloaded, RegistrationUserInfo/*</value_list>*/};
     
     /*<name>*/CTFontAttribute/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -211,126 +143,59 @@ import org.robovm.apple.uikit.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 3.2 and later.
-         */
         @GlobalValue(symbol="kCTFontURLAttribute", optional=true)
         public static native CFString URL();
-        /**
-         * @since Available in iOS 3.2 and later.
-         */
         @GlobalValue(symbol="kCTFontNameAttribute", optional=true)
         public static native CFString Name();
-        /**
-         * @since Available in iOS 3.2 and later.
-         */
         @GlobalValue(symbol="kCTFontDisplayNameAttribute", optional=true)
         public static native CFString DisplayName();
-        /**
-         * @since Available in iOS 3.2 and later.
-         */
         @GlobalValue(symbol="kCTFontFamilyNameAttribute", optional=true)
         public static native CFString FamilyName();
-        /**
-         * @since Available in iOS 3.2 and later.
-         */
         @GlobalValue(symbol="kCTFontStyleNameAttribute", optional=true)
         public static native CFString StyleName();
-        /**
-         * @since Available in iOS 3.2 and later.
-         */
         @GlobalValue(symbol="kCTFontTraitsAttribute", optional=true)
         public static native CFString Traits();
-        /**
-         * @since Available in iOS 3.2 and later.
-         */
         @GlobalValue(symbol="kCTFontVariationAttribute", optional=true)
         public static native CFString Variation();
-        /**
-         * @since Available in iOS 3.2 and later.
-         */
         @GlobalValue(symbol="kCTFontSizeAttribute", optional=true)
         public static native CFString Size();
-        /**
-         * @since Available in iOS 3.2 and later.
-         */
         @GlobalValue(symbol="kCTFontMatrixAttribute", optional=true)
         public static native CFString Matrix();
-        /**
-         * @since Available in iOS 3.2 and later.
-         */
         @GlobalValue(symbol="kCTFontCascadeListAttribute", optional=true)
         public static native CFString CascadeList();
-        /**
-         * @since Available in iOS 3.2 and later.
-         */
         @GlobalValue(symbol="kCTFontCharacterSetAttribute", optional=true)
         public static native CFString CharacterSet();
-        /**
-         * @since Available in iOS 3.2 and later.
-         */
         @GlobalValue(symbol="kCTFontLanguagesAttribute", optional=true)
         public static native CFString Languages();
-        /**
-         * @since Available in iOS 3.2 and later.
-         */
         @GlobalValue(symbol="kCTFontBaselineAdjustAttribute", optional=true)
         public static native CFString BaselineAdjust();
-        /**
-         * @since Available in iOS 3.2 and later.
-         */
         @GlobalValue(symbol="kCTFontMacintoshEncodingsAttribute", optional=true)
         public static native CFString MacintoshEncodings();
-        /**
-         * @since Available in iOS 3.2 and later.
-         */
         @GlobalValue(symbol="kCTFontFeaturesAttribute", optional=true)
         public static native CFString Features();
-        /**
-         * @since Available in iOS 3.2 and later.
-         */
         @GlobalValue(symbol="kCTFontFeatureSettingsAttribute", optional=true)
         public static native CFString FeatureSettings();
-        /**
-         * @since Available in iOS 3.2 and later.
-         */
         @GlobalValue(symbol="kCTFontFixedAdvanceAttribute", optional=true)
         public static native CFString FixedAdvance();
-        /**
-         * @since Available in iOS 3.2 and later.
-         */
         @GlobalValue(symbol="kCTFontOrientationAttribute", optional=true)
         public static native CFString Orientation();
-        /**
-         * @since Available in iOS 3.2 and later.
-         */
         @GlobalValue(symbol="kCTFontFormatAttribute", optional=true)
         public static native CFString Format();
-        /**
-         * @since Available in iOS 3.2 and later.
-         */
         @GlobalValue(symbol="kCTFontRegistrationScopeAttribute", optional=true)
         public static native CFString RegistrationScope();
-        /**
-         * @since Available in iOS 3.2 and later.
-         */
         @GlobalValue(symbol="kCTFontPriorityAttribute", optional=true)
         public static native CFString Priority();
-        /**
-         * @since Available in iOS 3.2 and later.
-         */
         @GlobalValue(symbol="kCTFontEnabledAttribute", optional=true)
         public static native CFString Enabled();
-        /**
-         * @since Available in iOS 6.0 and later.
-         */
         @GlobalValue(symbol="kCTFontDownloadableAttribute", optional=true)
         public static native CFString Downloadable();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kCTFontDownloadedAttribute", optional=true)
         public static native CFString Downloaded();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="kCTFontRegistrationUserInfoAttribute", optional=true)
+        public static native CFString RegistrationUserInfo();
         /*</values>*/
     }
 }

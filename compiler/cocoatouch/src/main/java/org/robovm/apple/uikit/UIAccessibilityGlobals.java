@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -58,19 +60,10 @@ import org.robovm.apple.intents.*;
         postNotification(notification.value(), argument);
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @GlobalValue(symbol="UIAccessibilityAnnouncementDidFinishNotification", optional=true)
     public static native NSString AnnouncementDidFinishNotification();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @GlobalValue(symbol="UIAccessibilityAnnouncementKeyStringValue", optional=true)
     public static native NSString AnnouncementKeyStringValue();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @GlobalValue(symbol="UIAccessibilityAnnouncementKeyWasSuccessful", optional=true)
     public static native NSString AnnouncementKeyWasSuccessful();
     /**
@@ -78,9 +71,6 @@ import org.robovm.apple.intents.*;
      */
     @GlobalValue(symbol="UIAccessibilityElementFocusedNotification", optional=true)
     public static native NSString ElementFocusedNotification();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @GlobalValue(symbol="UIAccessibilityNotificationSwitchControlIdentifier", optional=true)
     public static native String SwitchControlIdentifier();
     /**
@@ -89,8 +79,7 @@ import org.robovm.apple.intents.*;
     @GlobalValue(symbol="UIAccessibilityNotificationVoiceOverIdentifier", optional=true)
     public static native String VoiceOverIdentifier();
     /**
-     * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use UIAccessibilityVoiceOverStatusDidChangeNotification
      */
     @Deprecated
     @GlobalValue(symbol="UIAccessibilityVoiceOverStatusChanged", optional=true)
@@ -100,64 +89,33 @@ import org.robovm.apple.intents.*;
      */
     @GlobalValue(symbol="UIAccessibilityVoiceOverStatusDidChangeNotification", optional=true)
     public static native NSString VoiceOverStatusDidChangeNotification();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @GlobalValue(symbol="UIAccessibilityMonoAudioStatusDidChangeNotification", optional=true)
     public static native NSString MonoAudioStatusDidChangeNotification();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @GlobalValue(symbol="UIAccessibilityClosedCaptioningStatusDidChangeNotification", optional=true)
     public static native NSString ClosedCaptioningStatusDidChangeNotification();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @GlobalValue(symbol="UIAccessibilityInvertColorsStatusDidChangeNotification", optional=true)
     public static native NSString InvertColorsStatusDidChangeNotification();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @GlobalValue(symbol="UIAccessibilityGuidedAccessStatusDidChangeNotification", optional=true)
     public static native NSString GuidedAccessStatusDidChangeNotification();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @GlobalValue(symbol="UIAccessibilityBoldTextStatusDidChangeNotification", optional=true)
     public static native NSString BoldTextStatusDidChangeNotification();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @GlobalValue(symbol="UIAccessibilityGrayscaleStatusDidChangeNotification", optional=true)
     public static native NSString GrayscaleStatusDidChangeNotification();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @GlobalValue(symbol="UIAccessibilityReduceTransparencyStatusDidChangeNotification", optional=true)
     public static native NSString ReduceTransparencyStatusDidChangeNotification();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @GlobalValue(symbol="UIAccessibilityReduceMotionStatusDidChangeNotification", optional=true)
     public static native NSString ReduceMotionStatusDidChangeNotification();
     /**
-     * @since Available in iOS 8.0 and later.
+     * @since Available in iOS 13.0 and later.
      */
+    @GlobalValue(symbol="UIAccessibilityVideoAutoplayStatusDidChangeNotification", optional=true)
+    public static native NSString VideoAutoplayStatusDidChangeNotification();
     @GlobalValue(symbol="UIAccessibilityDarkerSystemColorsStatusDidChangeNotification", optional=true)
     public static native NSString DarkerSystemColorsStatusDidChangeNotification();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @GlobalValue(symbol="UIAccessibilitySwitchControlStatusDidChangeNotification", optional=true)
     public static native NSString SwitchControlStatusDidChangeNotification();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @GlobalValue(symbol="UIAccessibilitySpeakSelectionStatusDidChangeNotification", optional=true)
     public static native NSString SpeakSelectionStatusDidChangeNotification();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @GlobalValue(symbol="UIAccessibilitySpeakScreenStatusDidChangeNotification", optional=true)
     public static native NSString SpeakScreenStatusDidChangeNotification();
     /**
@@ -171,29 +129,27 @@ import org.robovm.apple.intents.*;
     @GlobalValue(symbol="UIAccessibilityAssistiveTouchStatusDidChangeNotification", optional=true)
     public static native NSString AssistiveTouchStatusDidChangeNotification();
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @GlobalValue(symbol="UIAccessibilityShouldDifferentiateWithoutColorDidChangeNotification", optional=true)
+    public static native NSString ShouldDifferentiateWithoutColorDidChangeNotification();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @GlobalValue(symbol="UIAccessibilityOnOffSwitchLabelsDidChangeNotification", optional=true)
+    public static native NSString OnOffSwitchLabelsDidChangeNotification();
+    /**
      * @since Available in iOS 10.0 and later.
      */
     @GlobalValue(symbol="UIAccessibilityHearingDevicePairedEarDidChangeNotification", optional=true)
     public static native NSString HearingDevicePairedEarDidChangeNotification();
     
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="UIAccessibilityZoomFocusChanged", optional=true)
     public static native void zoomFocusChanged(UIAccessibilityZoomType type, @ByVal CGRect frame, UIView view);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="UIAccessibilityRegisterGestureConflictWithZoom", optional=true)
     public static native void registerGestureConflictWithZoom();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Bridge(symbol="UIAccessibilityConvertFrameToScreenCoordinates", optional=true)
     public static native @ByVal CGRect convertFrameToScreenCoordinates(@ByVal CGRect rect, UIView view);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Bridge(symbol="UIAccessibilityConvertPathToScreenCoordinates", optional=true)
     public static native UIBezierPath convertPathToScreenCoordinates(UIBezierPath path, UIView view);
     /**
@@ -203,69 +159,35 @@ import org.robovm.apple.intents.*;
     public static native NSObject getFocusedElement(String assistiveTechnologyIdentifier);
     @Bridge(symbol="UIAccessibilityPostNotification", optional=true)
     protected static native void postNotification(int notification, NSObject argument);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="UIAccessibilityIsVoiceOverRunning", optional=true)
     public static native boolean isVoiceOverRunning();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="UIAccessibilityIsMonoAudioEnabled", optional=true)
     public static native boolean isMonoAudioEnabled();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="UIAccessibilityIsClosedCaptioningEnabled", optional=true)
     public static native boolean isClosedCaptioningEnabled();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Bridge(symbol="UIAccessibilityIsInvertColorsEnabled", optional=true)
     public static native boolean isInvertColorsEnabled();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Bridge(symbol="UIAccessibilityIsGuidedAccessEnabled", optional=true)
     public static native boolean isGuidedAccessEnabled();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Bridge(symbol="UIAccessibilityIsBoldTextEnabled", optional=true)
     public static native boolean isBoldTextEnabled();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Bridge(symbol="UIAccessibilityIsGrayscaleEnabled", optional=true)
     public static native boolean isGrayscaleEnabled();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Bridge(symbol="UIAccessibilityIsReduceTransparencyEnabled", optional=true)
     public static native boolean isReduceTransparencyEnabled();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Bridge(symbol="UIAccessibilityIsReduceMotionEnabled", optional=true)
     public static native boolean isReduceMotionEnabled();
     /**
-     * @since Available in iOS 8.0 and later.
+     * @since Available in iOS 13.0 and later.
      */
+    @Bridge(symbol="UIAccessibilityIsVideoAutoplayEnabled", optional=true)
+    public static native boolean isVideoAutoplayEnabled();
     @Bridge(symbol="UIAccessibilityDarkerSystemColorsEnabled", optional=true)
     public static native boolean areDarkerSystemColorsEnabled();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Bridge(symbol="UIAccessibilityIsSwitchControlRunning", optional=true)
     public static native boolean isSwitchControlRunning();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Bridge(symbol="UIAccessibilityIsSpeakSelectionEnabled", optional=true)
     public static native boolean isSpeakSelectionEnabled();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Bridge(symbol="UIAccessibilityIsSpeakScreenEnabled", optional=true)
     public static native boolean isSpeakScreenEnabled();
     /**
@@ -279,8 +201,15 @@ import org.robovm.apple.intents.*;
     @Bridge(symbol="UIAccessibilityIsAssistiveTouchRunning", optional=true)
     public static native boolean isAssistiveTouchRunning();
     /**
-     * @since Available in iOS 7.0 and later.
+     * @since Available in iOS 13.0 and later.
      */
+    @Bridge(symbol="UIAccessibilityShouldDifferentiateWithoutColor", optional=true)
+    public static native boolean shouldDifferentiateWithoutColor();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="UIAccessibilityIsOnOffSwitchLabelsEnabled", optional=true)
+    public static native boolean isOnOffSwitchLabelsEnabled();
     @Bridge(symbol="UIAccessibilityRequestGuidedAccessSession", optional=true)
     public static native void requestGuidedAccessSession(boolean enable, @Block VoidBooleanBlock completionHandler);
     /**

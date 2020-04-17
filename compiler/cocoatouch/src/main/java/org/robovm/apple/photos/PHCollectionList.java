@@ -38,9 +38,7 @@ import org.robovm.apple.imageio.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("Photos") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/PHCollectionList/*</name>*/ 
@@ -55,7 +53,7 @@ import org.robovm.apple.imageio.*;
     protected PHCollectionList(Handle h, long handle) { super(h, handle); }
     protected PHCollectionList(SkipInit skipInit) { super(skipInit); }
     public PHCollectionList(NSArray<PHCollection> collections, String title) { super((Handle) null, createTransientCollectionList(collections, title)); retain(getHandle()); }
-    public PHCollectionList(PHFetchResult<PHCollectionList> fetchResult, String title) { super((Handle) null, createTransientCollectionList(fetchResult, title)); retain(getHandle()); }
+    public PHCollectionList(PHFetchResult<PHCollection> fetchResult, String title) { super((Handle) null, createTransientCollectionList(fetchResult, title)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "collectionListType")
@@ -77,13 +75,21 @@ import org.robovm.apple.imageio.*;
     public static native PHFetchResult<PHCollectionList> fetchCollectionListsWithLocalIdentifiers(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> identifiers, PHFetchOptions options);
     @Method(selector = "fetchCollectionListsWithType:subtype:options:")
     public static native PHFetchResult<PHCollectionList> fetchCollectionListsWithType(PHCollectionListType collectionListType, PHCollectionListSubtype subtype, PHFetchOptions options);
+    /**
+     * @deprecated Deprecated in iOS 13.0. Will be removed in a future release
+     */
+    @Deprecated
     @Method(selector = "fetchMomentListsWithSubtype:containingMoment:options:")
     public static native PHFetchResult<PHCollectionList> fetchMomentListsWithSubtypeContainingMoment(PHCollectionListSubtype momentListSubtype, PHAssetCollection moment, PHFetchOptions options);
+    /**
+     * @deprecated Deprecated in iOS 13.0. Will be removed in a future release
+     */
+    @Deprecated
     @Method(selector = "fetchMomentListsWithSubtype:options:")
     public static native PHFetchResult<PHCollectionList> fetchMomentListsWithSubtype(PHCollectionListSubtype momentListSubtype, PHFetchOptions options);
     @Method(selector = "transientCollectionListWithCollections:title:")
     protected static native @Pointer long createTransientCollectionList(NSArray<PHCollection> collections, String title);
     @Method(selector = "transientCollectionListWithCollectionsFetchResult:title:")
-    protected static native @Pointer long createTransientCollectionList(PHFetchResult<PHCollectionList> fetchResult, String title);
+    protected static native @Pointer long createTransientCollectionList(PHFetchResult<PHCollection> fetchResult, String title);
     /*</methods>*/
 }

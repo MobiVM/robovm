@@ -60,7 +60,7 @@ import org.robovm.apple.imageio.*;
     @Method(selector = "initWithArchiveURL:error:")
     public ARReferenceObject(NSURL url, NSError.NSErrorPtr error) { super((SkipInit) null); initObject(init(url, error)); }
     @Method(selector = "initWithCoder:")
-    public ARReferenceObject(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public ARReferenceObject(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "name")
@@ -73,6 +73,11 @@ import org.robovm.apple.imageio.*;
     public native @ByVal VectorFloat3 getExtent();
     @Property(selector = "scale")
     public native @ByVal VectorFloat3 getScale();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "resourceGroupName")
+    public native String getResourceGroupName();
     @Property(selector = "rawFeaturePoints")
     public native ARPointCloud getRawFeaturePoints();
     @Property(selector = "supportsSecureCoding")
@@ -99,6 +104,6 @@ import org.robovm.apple.imageio.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

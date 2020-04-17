@@ -32,9 +32,7 @@ import org.robovm.apple.corelocation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("HomeKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/HMHome/*</name>*/ 
@@ -70,12 +68,16 @@ import org.robovm.apple.corelocation.*;
     @Property(selector = "accessories")
     public native NSArray<HMAccessory> getAccessories();
     /**
+     * @since Available in iOS 13.2 and later.
+     */
+    @Property(selector = "supportsAddingNetworkRouter")
+    public native boolean supportsAddingNetworkRouter();
+    /**
      * @since Available in iOS 9.0 and later.
      */
     @Property(selector = "currentUser")
     public native HMUser getCurrentUser();
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 9.0. No longer supported.
      */
     @Deprecated
@@ -122,15 +124,13 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "manageUsersWithCompletionHandler:")
     public native void manageUsers(@Block VoidBlock1<NSError> completion);
     /**
-     * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use -manageUsersWithCompletionHandler:
      */
     @Deprecated
     @Method(selector = "addUserWithCompletionHandler:")
     public native void addUser(@Block VoidBlock2<HMUser, NSError> completion);
     /**
-     * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use -manageUsersWithCompletionHandler:
      */
     @Deprecated
     @Method(selector = "removeUser:completionHandler:")

@@ -29,6 +29,8 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corespotlight.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -102,9 +104,6 @@ import org.robovm.apple.corespotlight.*;
     }
     
 
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public NSSet<NSManagedObject> getInsertedObjects() {
         if (has(Keys.InsertedObjects())) {
             NSSet<NSManagedObject> val = (NSSet<NSManagedObject>) get(Keys.InsertedObjects());
@@ -112,9 +111,6 @@ import org.robovm.apple.corespotlight.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public NSSet<NSManagedObject> getUpdatedObjects() {
         if (has(Keys.UpdatedObjects())) {
             NSSet<NSManagedObject> val = (NSSet<NSManagedObject>) get(Keys.UpdatedObjects());
@@ -122,9 +118,6 @@ import org.robovm.apple.corespotlight.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public NSSet<NSManagedObject> getDeletedObjects() {
         if (has(Keys.DeletedObjects())) {
             NSSet<NSManagedObject> val = (NSSet<NSManagedObject>) get(Keys.DeletedObjects());
@@ -132,9 +125,6 @@ import org.robovm.apple.corespotlight.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public NSSet<NSManagedObject> getRefreshedObjects() {
         if (has(Keys.RefreshedObjects())) {
             NSSet<NSManagedObject> val = (NSSet<NSManagedObject>) get(Keys.RefreshedObjects());
@@ -142,9 +132,6 @@ import org.robovm.apple.corespotlight.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public NSSet<NSManagedObject> getInvalidatedObjects() {
         if (has(Keys.InvalidatedObjects())) {
             NSSet<NSManagedObject> val = (NSSet<NSManagedObject>) get(Keys.InvalidatedObjects());
@@ -152,9 +139,6 @@ import org.robovm.apple.corespotlight.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public NSArray<NSManagedObjectID> getAllInvalidatedObjects() {
         if (has(Keys.InvalidatedAllObjects())) {
             NSArray<NSManagedObjectID> val = (NSArray<NSManagedObjectID>) get(Keys.InvalidatedAllObjects());
@@ -168,34 +152,16 @@ import org.robovm.apple.corespotlight.*;
     @Library("CoreData")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 3.0 and later.
-         */
         @GlobalValue(symbol="NSInsertedObjectsKey", optional=true)
         public static native NSString InsertedObjects();
-        /**
-         * @since Available in iOS 3.0 and later.
-         */
         @GlobalValue(symbol="NSUpdatedObjectsKey", optional=true)
         public static native NSString UpdatedObjects();
-        /**
-         * @since Available in iOS 3.0 and later.
-         */
         @GlobalValue(symbol="NSDeletedObjectsKey", optional=true)
         public static native NSString DeletedObjects();
-        /**
-         * @since Available in iOS 3.0 and later.
-         */
         @GlobalValue(symbol="NSRefreshedObjectsKey", optional=true)
         public static native NSString RefreshedObjects();
-        /**
-         * @since Available in iOS 3.0 and later.
-         */
         @GlobalValue(symbol="NSInvalidatedObjectsKey", optional=true)
         public static native NSString InvalidatedObjects();
-        /**
-         * @since Available in iOS 3.0 and later.
-         */
         @GlobalValue(symbol="NSInvalidatedAllObjectsKey", optional=true)
         public static native NSString InvalidatedAllObjects();
     }

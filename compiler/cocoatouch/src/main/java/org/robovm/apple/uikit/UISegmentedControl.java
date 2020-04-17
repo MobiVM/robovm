@@ -37,14 +37,14 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 import org.robovm.apple.corefoundation.CFDictionary;
 import org.robovm.apple.coremedia.CMTextMarkupAttributes;
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 2.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UISegmentedControl/*</name>*/ 
@@ -65,7 +65,7 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     @Method(selector = "initWithFrame:")
     public UISegmentedControl(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public UISegmentedControl(NSCoder decoder) { super(decoder); }
+    public UISegmentedControl(NSCoder coder) { super(coder); }
     /*</constructors>*/
     public UISegmentedControl(String... items) {
         super((SkipInit) null);
@@ -77,14 +77,12 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     }
     /*<properties>*/
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 7.0. The segmentedControlStyle property no longer has any effect
      */
     @Deprecated
     @Property(selector = "segmentedControlStyle")
     public native UISegmentedControlStyle getControlStyle();
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 7.0. The segmentedControlStyle property no longer has any effect
      */
     @Deprecated
@@ -96,24 +94,24 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     public native void setMomentary(boolean v);
     @Property(selector = "numberOfSegments")
     public native @MachineSizedUInt long getNumberOfSegments();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "apportionsSegmentWidthsByContent")
     public native boolean apportionsSegmentWidthsByContent();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setApportionsSegmentWidthsByContent:")
     public native void setApportionsSegmentWidthsByContent(boolean v);
     @Property(selector = "selectedSegmentIndex")
     public native @MachineSizedSInt long getSelectedSegment();
     @Property(selector = "setSelectedSegmentIndex:")
     public native void setSelectedSegment(@MachineSizedSInt long v);
-    @Property(selector = "tintColor")
-    public native UIColor getTintColor();
-    @Property(selector = "setTintColor:")
-    public native void setTintColor(UIColor v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "selectedSegmentTintColor")
+    public native UIColor getSelectedSegmentTintColor();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setSelectedSegmentTintColor:")
+    public native void setSelectedSegmentTintColor(UIColor v);
     /**
      * @since Available in iOS 11.0 and later.
      */
@@ -215,44 +213,20 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     public native void setEnabled(boolean enabled, @MachineSizedUInt long segment);
     @Method(selector = "isEnabledForSegmentAtIndex:")
     public native boolean isEnabled(@MachineSizedUInt long segment);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "setBackgroundImage:forState:barMetrics:")
     public native void setBackgroundImage(UIImage backgroundImage, UIControlState state, UIBarMetrics barMetrics);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "backgroundImageForState:barMetrics:")
     public native UIImage getBackgroundImage(UIControlState state, UIBarMetrics barMetrics);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "setDividerImage:forLeftSegmentState:rightSegmentState:barMetrics:")
     public native void setDividerImage(UIImage dividerImage, UIControlState leftState, UIControlState rightState, UIBarMetrics barMetrics);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "dividerImageForLeftSegmentState:rightSegmentState:barMetrics:")
     public native UIImage getDividerImage(UIControlState leftState, UIControlState rightState, UIBarMetrics barMetrics);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "setTitleTextAttributes:forState:")
     public native void setTitleTextAttributesDictionary(NSDictionary<NSString, ?> attributes, UIControlState state);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "titleTextAttributesForState:")
     public native NSDictionary<NSString, ?> getTitleTextAttributesDictionary(UIControlState state);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "setContentPositionAdjustment:forSegmentType:barMetrics:")
     public native void setContentPositionAdjustment(@ByVal UIOffset adjustment, UISegmentedControlSegment leftCenterRightOrAlone, UIBarMetrics barMetrics);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "contentPositionAdjustmentForSegmentType:barMetrics:")
     public native @ByVal UIOffset getContentPositionAdjustment(UISegmentedControlSegment leftCenterRightOrAlone, UIBarMetrics barMetrics);
     /*</methods>*/

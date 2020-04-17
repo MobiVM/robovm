@@ -37,11 +37,12 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 4.0 and later.
  * @deprecated Deprecated in iOS 10.0. Use UserNotifications Framework's UNNotificationRequest
  */
 /*</javadoc>*/
@@ -58,7 +59,7 @@ import org.robovm.apple.intents.*;
     protected UILocalNotification(Handle h, long handle) { super(h, handle); }
     protected UILocalNotification(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public UILocalNotification(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public UILocalNotification(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "fireDate")
@@ -77,26 +78,14 @@ import org.robovm.apple.intents.*;
     public native NSCalendar getRepeatCalendar();
     @Property(selector = "setRepeatCalendar:")
     public native void setRepeatCalendar(NSCalendar v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @WeaklyLinked
     @Property(selector = "region")
     public native CLRegion getRegion();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @WeaklyLinked
     @Property(selector = "setRegion:")
     public native void setRegion(CLRegion v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "regionTriggersOnce")
     public native boolean regionTriggersOnce();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setRegionTriggersOnce:")
     public native void setRegionTriggersOnce(boolean v);
     @Property(selector = "alertBody")
@@ -137,21 +126,14 @@ import org.robovm.apple.intents.*;
     public native NSDictionary<?, ?> getUserInfo();
     @Property(selector = "setUserInfo:")
     public native void setUserInfo(NSDictionary<?, ?> v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "category")
     public native String getCategory();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setCategory:")
     public native void setCategory(String v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @since Available in iOS 4.0 and later.
      * @deprecated Deprecated in iOS 10.0. Use UserNotifications Framework's +[UNNotificationSound defaultSound]
      */
     @Deprecated
@@ -159,7 +141,7 @@ import org.robovm.apple.intents.*;
     public static native String getDefaultSoundName();
     
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     /*</methods>*/

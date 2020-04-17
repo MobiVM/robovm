@@ -56,7 +56,7 @@ import org.robovm.apple.metal.*;
     public MPSCNNConvolution(MTLDevice device, MPSCNNConvolutionDataSource weights) { super((SkipInit) null); initObject(init(device, weights)); }
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use Please use  -initWithDevice:convolutionDescriptor:weights: instead.
      */
     @Deprecated
     @Method(selector = "initWithDevice:convolutionDescriptor:kernelWeights:biasTerms:flags:")
@@ -82,35 +82,35 @@ import org.robovm.apple.metal.*;
     public native @MachineSizedUInt long getSubPixelScaleFactor();
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use A MPSCNNNeuron is much too heavy for this purpose. Please set fusedNeuronDescriptor property of convolution descriptor instead.
      */
     @Deprecated
     @Property(selector = "neuron")
     public native MPSCNNNeuron getNeuron();
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 12.0.
+     * @deprecated Deprecated in iOS 12.0. Use fusedNeuronDesciptor instead.
      */
     @Deprecated
     @Property(selector = "neuronType")
     public native MPSCNNNeuronType getNeuronType();
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 12.0.
+     * @deprecated Deprecated in iOS 12.0. Use fusedNeuronDesciptor instead.
      */
     @Deprecated
     @Property(selector = "neuronParameterA")
     public native float getNeuronParameterA();
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 12.0.
+     * @deprecated Deprecated in iOS 12.0. Use fusedNeuronDesciptor instead.
      */
     @Deprecated
     @Property(selector = "neuronParameterB")
     public native float getNeuronParameterB();
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 12.0.
+     * @deprecated Deprecated in iOS 12.0. Use fusedNeuronDesciptor instead.
      */
     @Deprecated
     @Property(selector = "neuronParameterC")
@@ -142,7 +142,7 @@ import org.robovm.apple.metal.*;
     protected native @Pointer long init(MTLDevice device, MPSCNNConvolutionDataSource weights);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use Please use  -initWithDevice:convolutionDescriptor:weights: instead.
      */
     @Deprecated
     @Method(selector = "initWithDevice:convolutionDescriptor:kernelWeights:biasTerms:flags:")
@@ -179,7 +179,7 @@ import org.robovm.apple.metal.*;
     public native void reloadWeightsAndBiasesFromDataSource();
     /**
      * @since Available in iOS 11.3 and later.
-     * @deprecated Deprecated in iOS 12.0.
+     * @deprecated Deprecated in iOS 12.0. Use Please use -reloadWeightsAndBiasesFromDataSource instead.
      */
     @Deprecated
     @Method(selector = "reloadWeightsAndBiasesWithDataSource:")

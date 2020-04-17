@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -34,13 +34,11 @@ import org.robovm.apple.contacts.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("PassKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/PKPaymentPass/*</name>*/ 
-    extends /*<extends>*/PKPass/*</extends>*/ 
+    extends /*<extends>*/PKSecureElementPass/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class PKPaymentPassPtr extends Ptr<PKPaymentPass, PKPaymentPassPtr> {}/*</ptr>*/
@@ -54,14 +52,10 @@ import org.robovm.apple.contacts.*;
     public PKPaymentPass(NSData data) throws NSErrorException { super(data); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "primaryAccountIdentifier")
-    public native String getPrimaryAccountIdentifier();
-    @Property(selector = "primaryAccountNumberSuffix")
-    public native String getPrimaryAccountNumberSuffix();
-    @Property(selector = "deviceAccountIdentifier")
-    public native String getDeviceAccountIdentifier();
-    @Property(selector = "deviceAccountNumberSuffix")
-    public native String getDeviceAccountNumberSuffix();
+    /**
+     * @deprecated Use [PKSecureElementPass passActivationState] instead
+     */
+    @Deprecated
     @Property(selector = "activationState")
     public native PKPaymentPassActivationState getActivationState();
     /*</properties>*/

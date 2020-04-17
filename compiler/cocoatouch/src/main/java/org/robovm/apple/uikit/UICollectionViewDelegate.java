@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -69,24 +71,30 @@ import org.robovm.apple.intents.*;
     void didSelectItem(UICollectionView collectionView, NSIndexPath indexPath);
     @Method(selector = "collectionView:didDeselectItemAtIndexPath:")
     void didDeselectItem(UICollectionView collectionView, NSIndexPath indexPath);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "collectionView:willDisplayCell:forItemAtIndexPath:")
     void willDisplayCell(UICollectionView collectionView, UICollectionViewCell cell, NSIndexPath indexPath);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "collectionView:willDisplaySupplementaryView:forElementKind:atIndexPath:")
     void willDisplaySupplementaryView(UICollectionView collectionView, UICollectionReusableView view, String elementKind, NSIndexPath indexPath);
     @Method(selector = "collectionView:didEndDisplayingCell:forItemAtIndexPath:")
     void didEndDisplayingCell(UICollectionView collectionView, UICollectionViewCell cell, NSIndexPath indexPath);
     @Method(selector = "collectionView:didEndDisplayingSupplementaryView:forElementOfKind:atIndexPath:")
     void didEndDisplayingSupplementaryView(UICollectionView collectionView, UICollectionReusableView view, String elementKind, NSIndexPath indexPath);
+    /**
+     * @deprecated Deprecated in iOS 13.0. Use collectionView:contextMenuConfigurationForRowAtIndexPath:
+     */
+    @Deprecated
     @Method(selector = "collectionView:shouldShowMenuForItemAtIndexPath:")
     boolean shouldShowMenuForItem(UICollectionView collectionView, NSIndexPath indexPath);
+    /**
+     * @deprecated Deprecated in iOS 13.0. Use collectionView:contextMenuConfigurationForRowAtIndexPath:
+     */
+    @Deprecated
     @Method(selector = "collectionView:canPerformAction:forItemAtIndexPath:withSender:")
     boolean canPerformAction(UICollectionView collectionView, Selector action, NSIndexPath indexPath, NSObject sender);
+    /**
+     * @deprecated Deprecated in iOS 13.0. Use collectionView:contextMenuConfigurationForRowAtIndexPath:
+     */
+    @Deprecated
     @Method(selector = "collectionView:performAction:forItemAtIndexPath:withSender:")
     void performAction(UICollectionView collectionView, Selector action, NSIndexPath indexPath, NSObject sender);
     @Method(selector = "collectionView:transitionLayoutForOldLayout:newLayout:")
@@ -126,6 +134,41 @@ import org.robovm.apple.intents.*;
      */
     @Method(selector = "collectionView:shouldSpringLoadItemAtIndexPath:withContext:")
     boolean shouldSpringLoadItem(UICollectionView collectionView, NSIndexPath indexPath, UISpringLoadedInteractionContext context);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "collectionView:shouldBeginMultipleSelectionInteractionAtIndexPath:")
+    boolean shouldBeginMultipleSelectionInteraction(UICollectionView collectionView, NSIndexPath indexPath);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "collectionView:didBeginMultipleSelectionInteractionAtIndexPath:")
+    void didBeginMultipleSelectionInteraction(UICollectionView collectionView, NSIndexPath indexPath);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "collectionViewDidEndMultipleSelectionInteraction:")
+    void collectionViewDidEndMultipleSelectionInteraction(UICollectionView collectionView);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "collectionView:contextMenuConfigurationForItemAtIndexPath:point:")
+    UIContextMenuConfiguration getContextMenuConfiguration(UICollectionView collectionView, NSIndexPath indexPath, @ByVal CGPoint point);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "collectionView:previewForHighlightingContextMenuWithConfiguration:")
+    UITargetedPreview getPreviewForHighlightingContextMenu(UICollectionView collectionView, UIContextMenuConfiguration configuration);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "collectionView:previewForDismissingContextMenuWithConfiguration:")
+    UITargetedPreview getPreviewForDismissingContextMenu(UICollectionView collectionView, UIContextMenuConfiguration configuration);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "collectionView:willPerformPreviewActionForMenuWithConfiguration:animator:")
+    void willPerformPreviewAction(UICollectionView collectionView, UIContextMenuConfiguration configuration, UIContextMenuInteractionCommitAnimating animator);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

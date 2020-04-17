@@ -65,9 +65,6 @@ import org.robovm.apple.audiotoolbox.*;
     @StructMember(2) public native CMSampleTimingInfo setDecodeTimeStamp(@ByVal CMTime decodeTimeStamp);
     /*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @GlobalValue(symbol="kCMTimingInfoInvalid", optional=true)
     public static native @ByVal CMSampleTimingInfo Invalid();
     /*</methods>*/

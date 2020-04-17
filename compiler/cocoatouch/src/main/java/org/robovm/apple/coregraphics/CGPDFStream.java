@@ -63,14 +63,8 @@ import org.robovm.apple.uikit.*;
         return CGPDFDataFormat.valueOf(ptr.get());
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGPDFStreamGetDictionary", optional=true)
     public native CGPDFDictionary getDictionary();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGPDFStreamCopyData", optional=true)
     private native @org.robovm.rt.bro.annotation.Marshaler(NSObject.NoRetainMarshaler.class) NSData getData(IntPtr format);
     /*</methods>*/

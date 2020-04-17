@@ -56,29 +56,14 @@ import org.robovm.apple.audiotoolbox.*;
     
     /*</properties>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "resourceLoader:shouldWaitForLoadingOfRequestedResource:")
     boolean shouldWaitForLoadingOfRequestedResource(AVAssetResourceLoader resourceLoader, AVAssetResourceLoadingRequest loadingRequest);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "resourceLoader:shouldWaitForRenewalOfRequestedResource:")
     boolean shouldWaitForRenewalOfRequestedResource(AVAssetResourceLoader resourceLoader, AVAssetResourceRenewalRequest renewalRequest);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "resourceLoader:didCancelLoadingRequest:")
     void didCancelLoadingRequest(AVAssetResourceLoader resourceLoader, AVAssetResourceLoadingRequest loadingRequest);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "resourceLoader:shouldWaitForResponseToAuthenticationChallenge:")
     boolean shouldWaitForResponseToAuthenticationChallenge(AVAssetResourceLoader resourceLoader, NSURLAuthenticationChallenge authenticationChallenge);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "resourceLoader:didCancelAuthenticationChallenge:")
     void didCancelAuthenticationChallenge(AVAssetResourceLoader resourceLoader, NSURLAuthenticationChallenge authenticationChallenge);
     /*</methods>*/

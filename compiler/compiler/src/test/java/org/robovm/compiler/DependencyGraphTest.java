@@ -55,8 +55,8 @@ public class DependencyGraphTest {
         Options.v().set_include_all(true);
         Options.v().set_print_tags_in_output(true);
         Options.v().set_allow_phantom_refs(true);
-        Options.v().set_soot_classpath(System.getProperty("sun.boot.class.path") +
-                ":" + System.getProperty("java.class.path"));
+        Options.v().set_soot_classpath(ClassPathUtils.getBcPath() +
+                File.pathSeparator + System.getProperty("java.class.path"));
         Scene.v().loadNecessaryClasses();
     }
 
@@ -66,8 +66,8 @@ public class DependencyGraphTest {
                 .home(new FakeHome())
                 .skipRuntimeLib(true)
                 .skipLinking(true);
-        for (String path : System.getProperty("sun.boot.class.path").split(File.pathSeparator)) {
-            builder.addBootClasspathEntry(new File(path));
+        for (File path : ClassPathUtils.getBcPaths()) {
+            builder.addBootClasspathEntry(path);
         }
         for (String path : System.getProperty("java.class.path").split(File.pathSeparator)) {
             builder.addClasspathEntry(new File(path));

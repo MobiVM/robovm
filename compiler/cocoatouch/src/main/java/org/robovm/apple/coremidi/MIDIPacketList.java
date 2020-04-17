@@ -51,14 +51,8 @@ import org.robovm.apple.corefoundation.*;
     @StructMember(1) public native MIDIPacketList setPacket(@Array({1}) MIDIPacket packet);
     /*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     @Bridge(symbol="MIDIPacketListInit", optional=true)
     public native MIDIPacket init();
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     @Bridge(symbol="MIDIPacketListAdd", optional=true)
     protected native MIDIPacket add(@MachineSizedUInt long listSize, MIDIPacket curPacket, long time, @MachineSizedUInt long nData, BytePtr data);
     /*</methods>*/

@@ -59,7 +59,36 @@ import org.robovm.apple.imageio.*;
     public ARFaceTrackingConfiguration() { super((Handle) null, create()); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
-    
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "supportedNumberOfTrackedFaces")
+    public static native @MachineSizedSInt long getSupportedNumberOfTrackedFaces();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "maximumNumberOfTrackedFaces")
+    public native @MachineSizedSInt long getMaximumNumberOfTrackedFaces();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setMaximumNumberOfTrackedFaces:")
+    public native void setMaximumNumberOfTrackedFaces(@MachineSizedSInt long v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "supportsWorldTracking")
+    public static native boolean supportsWorldTracking();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "isWorldTrackingEnabled")
+    public native boolean isWorldTrackingEnabled();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setWorldTrackingEnabled:")
+    public native void setWorldTrackingEnabled(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

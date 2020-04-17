@@ -55,7 +55,7 @@ import org.robovm.apple.metal.*;
     protected SKPhysicsBody(Handle h, long handle) { super(h, handle); }
     protected SKPhysicsBody(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public SKPhysicsBody(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public SKPhysicsBody(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "isDynamic")
@@ -70,14 +70,8 @@ import org.robovm.apple.metal.*;
     public native boolean allowsRotation();
     @Property(selector = "setAllowsRotation:")
     public native void setAllowsRotation(boolean v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "pinned")
     public native boolean isPinned();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setPinned:")
     public native void setPinned(boolean v);
     @Property(selector = "isResting")
@@ -88,14 +82,8 @@ import org.robovm.apple.metal.*;
     public native @MachineSizedFloat double getFriction();
     @Property(selector = "setFriction:")
     public native void setFriction(@MachineSizedFloat double v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "charge")
     public native @MachineSizedFloat double getCharge();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setCharge:")
     public native void setCharge(@MachineSizedFloat double v);
     @Property(selector = "restitution")
@@ -124,14 +112,8 @@ import org.robovm.apple.metal.*;
     public native boolean isAffectedByGravity();
     @Property(selector = "setAffectedByGravity:")
     public native void setAffectedByGravity(boolean v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "fieldBitMask")
     public native int getFieldBitMask();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setFieldBitMask:")
     public native void setFieldBitMask(int v);
     @Property(selector = "categoryBitMask")
@@ -195,14 +177,8 @@ import org.robovm.apple.metal.*;
     public static native SKPhysicsBody createEdgeLoop(CGPath path);
     @Method(selector = "bodyWithEdgeLoopFromRect:")
     public static native SKPhysicsBody createEdgeLoop(@ByVal CGRect rect);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "bodyWithTexture:size:")
     public static native SKPhysicsBody createWithTexture(SKTexture texture, @ByVal CGSize size);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "bodyWithTexture:alphaThreshold:size:")
     public static native SKPhysicsBody createWithTexture(SKTexture texture, float alphaThreshold, @ByVal CGSize size);
     @Method(selector = "bodyWithBodies:")
@@ -210,6 +186,6 @@ import org.robovm.apple.metal.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

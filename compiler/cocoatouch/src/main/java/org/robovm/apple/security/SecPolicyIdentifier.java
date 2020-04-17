@@ -88,57 +88,24 @@ import org.robovm.apple.dispatch.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final SecPolicyIdentifier AppleX509Basic = new SecPolicyIdentifier("AppleX509Basic");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final SecPolicyIdentifier AppleSSL = new SecPolicyIdentifier("AppleSSL");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final SecPolicyIdentifier AppleSMIME = new SecPolicyIdentifier("AppleSMIME");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final SecPolicyIdentifier AppleEAP = new SecPolicyIdentifier("AppleEAP");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final SecPolicyIdentifier AppleIPsec = new SecPolicyIdentifier("AppleIPsec");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final SecPolicyIdentifier AppleCodeSigning = new SecPolicyIdentifier("AppleCodeSigning");
     /**
      * @since Available in iOS 9.0 and later.
      */
     public static final SecPolicyIdentifier MacAppStoreReceipt = new SecPolicyIdentifier("MacAppStoreReceipt");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final SecPolicyIdentifier AppleIDValidation = new SecPolicyIdentifier("AppleIDValidation");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final SecPolicyIdentifier AppleTimeStamping = new SecPolicyIdentifier("AppleTimeStamping");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final SecPolicyIdentifier AppleRevocation = new SecPolicyIdentifier("AppleRevocation");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final SecPolicyIdentifier ApplePassbookSigning = new SecPolicyIdentifier("ApplePassbookSigning");
     /**
      * @since Available in iOS 9.0 and later.
      */
     public static final SecPolicyIdentifier ApplePayIssuerEncryption = new SecPolicyIdentifier("ApplePayIssuerEncryption");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final SecPolicyIdentifier TeamIdentifier = new SecPolicyIdentifier("TeamIdentifier");
     /*</constants>*/
     
@@ -165,34 +132,16 @@ import org.robovm.apple.dispatch.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kSecPolicyAppleX509Basic", optional=true)
         public static native CFType AppleX509Basic();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kSecPolicyAppleSSL", optional=true)
         public static native CFType AppleSSL();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kSecPolicyAppleSMIME", optional=true)
         public static native CFType AppleSMIME();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kSecPolicyAppleEAP", optional=true)
         public static native CFType AppleEAP();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kSecPolicyAppleIPsec", optional=true)
         public static native CFType AppleIPsec();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kSecPolicyAppleCodeSigning", optional=true)
         public static native CFType AppleCodeSigning();
         /**
@@ -200,24 +149,12 @@ import org.robovm.apple.dispatch.*;
          */
         @GlobalValue(symbol="kSecPolicyMacAppStoreReceipt", optional=true)
         public static native CFType MacAppStoreReceipt();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kSecPolicyAppleIDValidation", optional=true)
         public static native CFType AppleIDValidation();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kSecPolicyAppleTimeStamping", optional=true)
         public static native CFType AppleTimeStamping();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kSecPolicyAppleRevocation", optional=true)
         public static native CFType AppleRevocation();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kSecPolicyApplePassbookSigning", optional=true)
         public static native CFType ApplePassbookSigning();
         /**
@@ -225,9 +162,6 @@ import org.robovm.apple.dispatch.*;
          */
         @GlobalValue(symbol="kSecPolicyApplePayIssuerEncryption", optional=true)
         public static native CFType ApplePayIssuerEncryption();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kSecPolicyTeamIdentifier", optional=true)
         public static native CFType TeamIdentifier();
         /*</values>*/

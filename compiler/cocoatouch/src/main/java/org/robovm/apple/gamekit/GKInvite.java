@@ -32,9 +32,7 @@ import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.1 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("GameKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GKInvite/*</name>*/ 
@@ -50,13 +48,9 @@ import org.robovm.apple.uikit.*;
     protected GKInvite(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "sender")
     public native GKPlayer getSender();
     /**
-     * @since Available in iOS 4.1 and later.
      * @deprecated Deprecated in iOS 8.0. use sender
      */
     @Deprecated
@@ -64,14 +58,8 @@ import org.robovm.apple.uikit.*;
     public native String getInviter();
     @Property(selector = "isHosted")
     public native boolean isHosted();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "playerGroup")
     public native @MachineSizedUInt long getPlayerGroup();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "playerAttributes")
     public native int getPlayerAttributes();
     /*</properties>*/

@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -50,7 +52,11 @@ public enum /*<name>*/UIAccessibilityContainerType/*</name>*/ implements ValuedE
     None(0L),
     DataTable(1L),
     List(2L),
-    Landmark(3L);
+    Landmark(3L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    SemanticGroup(4L);
     /*</values>*/
 
     /*<bind>*/

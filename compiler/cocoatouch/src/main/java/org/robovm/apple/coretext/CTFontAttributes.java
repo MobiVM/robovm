@@ -110,9 +110,6 @@ import org.robovm.apple.uikit.*;
     }
     
 
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public NSURL getURL() {
         if (has(CTFontAttribute.URL)) {
             NSURL val = get(CTFontAttribute.URL, NSURL.class);
@@ -120,16 +117,10 @@ import org.robovm.apple.uikit.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public CTFontAttributes setURL(NSURL uRL) {
         set(CTFontAttribute.URL, uRL);
         return this;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public String getName() {
         if (has(CTFontAttribute.Name)) {
             CFString val = get(CTFontAttribute.Name, CFString.class);
@@ -137,16 +128,10 @@ import org.robovm.apple.uikit.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public CTFontAttributes setName(String name) {
         set(CTFontAttribute.Name, new CFString(name));
         return this;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public String getDisplayName() {
         if (has(CTFontAttribute.DisplayName)) {
             CFString val = get(CTFontAttribute.DisplayName, CFString.class);
@@ -154,16 +139,10 @@ import org.robovm.apple.uikit.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public CTFontAttributes setDisplayName(String displayName) {
         set(CTFontAttribute.DisplayName, new CFString(displayName));
         return this;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public String getStyleName() {
         if (has(CTFontAttribute.StyleName)) {
             CFString val = get(CTFontAttribute.StyleName, CFString.class);
@@ -171,16 +150,10 @@ import org.robovm.apple.uikit.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public CTFontAttributes setStyleName(String styleName) {
         set(CTFontAttribute.StyleName, new CFString(styleName));
         return this;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public CTFontTraits getTraits() {
         if (has(CTFontAttribute.Traits)) {
             CFDictionary val = get(CTFontAttribute.Traits, CFDictionary.class);
@@ -188,16 +161,10 @@ import org.robovm.apple.uikit.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public CTFontAttributes setTraits(CTFontTraits traits) {
         set(CTFontAttribute.Traits, traits.getDictionary());
         return this;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public CTFontVariationAxes getVariationAxes() {
         if (has(CTFontAttribute.Variation)) {
             CFDictionary val = get(CTFontAttribute.Variation, CFDictionary.class);
@@ -205,16 +172,10 @@ import org.robovm.apple.uikit.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public CTFontAttributes setVariationAxes(CTFontVariationAxes variationAxes) {
         set(CTFontAttribute.Variation, variationAxes.getDictionary());
         return this;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public float getSize() {
         if (has(CTFontAttribute.Size)) {
             CFNumber val = get(CTFontAttribute.Size, CFNumber.class);
@@ -222,16 +183,10 @@ import org.robovm.apple.uikit.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public CTFontAttributes setSize(float size) {
         set(CTFontAttribute.Size, CFNumber.valueOf(size));
         return this;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public CGAffineTransform getMatrix() {
         if (has(CTFontAttribute.Matrix)) {
             NSData val = get(CTFontAttribute.Matrix, NSData.class);
@@ -239,16 +194,10 @@ import org.robovm.apple.uikit.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public CTFontAttributes setMatrix(CGAffineTransform matrix) {
         set(CTFontAttribute.Matrix, new NSData(matrix));
         return this;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public List<CTFontDescriptor> getCascadeList() {
         if (has(CTFontAttribute.CascadeList)) {
             CFArray val = get(CTFontAttribute.CascadeList, CFArray.class);
@@ -256,16 +205,10 @@ import org.robovm.apple.uikit.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public CTFontAttributes setCascadeList(List<CTFontDescriptor> cascadeList) {
         set(CTFontAttribute.CascadeList, CFArray.create(cascadeList));
         return this;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public NSCharacterSet getCharacterSet() {
         if (has(CTFontAttribute.CharacterSet)) {
             NSCharacterSet val = get(CTFontAttribute.CharacterSet, NSCharacterSet.class);
@@ -273,16 +216,10 @@ import org.robovm.apple.uikit.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public CTFontAttributes setCharacterSet(NSCharacterSet characterSet) {
         set(CTFontAttribute.CharacterSet, characterSet);
         return this;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public List<String> getLanguages() {
         if (has(CTFontAttribute.Languages)) {
             CFArray val = get(CTFontAttribute.Languages, CFArray.class);
@@ -290,16 +227,10 @@ import org.robovm.apple.uikit.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public CTFontAttributes setLanguages(List<String> languages) {
         set(CTFontAttribute.Languages, CFArray.fromStrings(languages));
         return this;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public float getBaselineAdjust() {
         if (has(CTFontAttribute.BaselineAdjust)) {
             CFNumber val = get(CTFontAttribute.BaselineAdjust, CFNumber.class);
@@ -307,16 +238,10 @@ import org.robovm.apple.uikit.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public CTFontAttributes setBaselineAdjust(float baselineAdjust) {
         set(CTFontAttribute.BaselineAdjust, CFNumber.valueOf(baselineAdjust));
         return this;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public long getMacintoshEncodings() {
         if (has(CTFontAttribute.MacintoshEncodings)) {
             CFNumber val = get(CTFontAttribute.MacintoshEncodings, CFNumber.class);
@@ -324,16 +249,10 @@ import org.robovm.apple.uikit.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public CTFontAttributes setMacintoshEncodings(long macintoshEncodings) {
         set(CTFontAttribute.MacintoshEncodings, CFNumber.valueOf(macintoshEncodings));
         return this;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public float getFixedAdvance() {
         if (has(CTFontAttribute.FixedAdvance)) {
             CFNumber val = get(CTFontAttribute.FixedAdvance, CFNumber.class);
@@ -341,16 +260,10 @@ import org.robovm.apple.uikit.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public CTFontAttributes setFixedAdvance(float fixedAdvance) {
         set(CTFontAttribute.FixedAdvance, CFNumber.valueOf(fixedAdvance));
         return this;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public CTFontOrientation getOrientation() {
         if (has(CTFontAttribute.Orientation)) {
             CFNumber val = get(CTFontAttribute.Orientation, CFNumber.class);
@@ -358,16 +271,10 @@ import org.robovm.apple.uikit.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public CTFontAttributes setOrientation(CTFontOrientation orientation) {
         set(CTFontAttribute.Orientation, CFNumber.valueOf(orientation.value()));
         return this;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public CTFontFormat getFormat() {
         if (has(CTFontAttribute.Format)) {
             CFNumber val = get(CTFontAttribute.Format, CFNumber.class);
@@ -375,16 +282,10 @@ import org.robovm.apple.uikit.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public CTFontAttributes setFormat(CTFontFormat format) {
         set(CTFontAttribute.Format, CFNumber.valueOf(format.value()));
         return this;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public CTFontManagerScope getRegistrationScope() {
         if (has(CTFontAttribute.RegistrationScope)) {
             CFNumber val = get(CTFontAttribute.RegistrationScope, CFNumber.class);
@@ -392,16 +293,10 @@ import org.robovm.apple.uikit.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public CTFontAttributes setRegistrationScope(CTFontManagerScope registrationScope) {
         set(CTFontAttribute.RegistrationScope, CFNumber.valueOf(registrationScope.value()));
         return this;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public CTFontPriority getPriority() {
         if (has(CTFontAttribute.Priority)) {
             CFNumber val = get(CTFontAttribute.Priority, CFNumber.class);
@@ -409,16 +304,10 @@ import org.robovm.apple.uikit.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public CTFontAttributes setPriority(CTFontPriority priority) {
         set(CTFontAttribute.Priority, CFNumber.valueOf(priority.value()));
         return this;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public boolean isEnabled() {
         if (has(CTFontAttribute.Enabled)) {
             CFBoolean val = get(CTFontAttribute.Enabled, CFBoolean.class);
@@ -426,16 +315,10 @@ import org.robovm.apple.uikit.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public CTFontAttributes setEnabled(boolean enabled) {
         set(CTFontAttribute.Enabled, CFBoolean.valueOf(enabled));
         return this;
     }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public boolean isDownloadable() {
         if (has(CTFontAttribute.Downloadable)) {
             CFBoolean val = get(CTFontAttribute.Downloadable, CFBoolean.class);
@@ -443,16 +326,10 @@ import org.robovm.apple.uikit.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public CTFontAttributes setDownloadable(boolean downloadable) {
         set(CTFontAttribute.Downloadable, CFBoolean.valueOf(downloadable));
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public boolean isDownloaded() {
         if (has(CTFontAttribute.Downloaded)) {
             CFBoolean val = get(CTFontAttribute.Downloaded, CFBoolean.class);
@@ -460,9 +337,6 @@ import org.robovm.apple.uikit.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public CTFontAttributes setDownloaded(boolean downloaded) {
         set(CTFontAttribute.Downloaded, CFBoolean.valueOf(downloaded));
         return this;

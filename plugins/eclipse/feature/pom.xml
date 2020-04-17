@@ -1,63 +1,64 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
-  <modelVersion>4.0.0</modelVersion>
+    <modelVersion>4.0.0</modelVersion>
 
-  <parent>
-    <groupId>com.mobidevelop.robovm</groupId>
-    <artifactId>org.robovm.eclipse.parent</artifactId>
-    <version>2.3.10-SNAPSHOT</version>
-  </parent>
+    <parent>
+        <groupId>com.mobidevelop.robovm</groupId>
+        <artifactId>org.robovm.eclipse.parent</artifactId>
+        <version>2.3.10-SNAPSHOT</version>
+    </parent>
 
-  <artifactId>org.robovm.eclipse.feature</artifactId>
-  <name>RoboVM for Eclipse Feature</name>
-  <packaging>eclipse-feature</packaging>
+    <artifactId>org.robovm.eclipse.feature</artifactId>
+    <name>RoboVM for Eclipse Feature</name>
+    <packaging>eclipse-feature</packaging>
 
-  <properties>
-    <licenseTxtURL>file://${basedir}/../LICENSE.txt</licenseTxtURL>
-    <licenseURL>http://www.gnu.org/licenses/gpl-2.0.html</licenseURL>
-  </properties>
+    <properties>
+        <licenseTxtURL>file://${basedir}/../LICENSE.txt</licenseTxtURL>
+        <licenseURL>http://www.gnu.org/licenses/gpl-2.0.html</licenseURL>
+    </properties>
 
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-jar-plugin</artifactId>
-      </plugin>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+            </plugin>
 
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-antrun-plugin</artifactId>
-        <version>1.7</version>
-        <executions>
-          <execution>
-            <id>create-feature-properties</id>
-            <phase>validate</phase>
-            <configuration>
-              <target>
-                <fail message="The properties licenseTxtURL and licenseURL must be specified">
-                  <condition>
-                    <or>
-                      <equals arg1="${licenseTxtURL}" arg2="unknown"/>
-                      <equals arg1="${licenseURL}" arg2="unknown"/>
-                    </or>
-                  </condition>
-                </fail>
-                <echo message="Downloading license text from ${licenseTxtURL}"/>
-                <loadresource property="license">
-                  <url url="${licenseTxtURL}"/>
-                </loadresource>
-                <propertyfile file="${basedir}/feature.properties">
-                  <entry key="licenseURL" value="${licenseURL}"/>
-                  <entry key="license" value="${license}"/>
-                </propertyfile>
-              </target>
-            </configuration>
-            <goals>
-              <goal>run</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
-  </build>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.8</version>
+                <executions>
+                    <execution>
+                        <id>create-feature-properties</id>
+                        <phase>validate</phase>
+                        <configuration>
+                            <target>
+                                <fail message="The properties licenseTxtURL and licenseURL must be specified">
+                                    <condition>
+                                        <or>
+                                            <equals arg1="${licenseTxtURL}" arg2="unknown"/>
+                                            <equals arg1="${licenseURL}" arg2="unknown"/>
+                                        </or>
+                                    </condition>
+                                </fail>
+                                <echo message="Downloading license text from ${licenseTxtURL}"/>
+                                <loadresource property="license">
+                                    <url url="${licenseTxtURL}"/>
+                                </loadresource>
+                                <propertyfile file="${basedir}/feature.properties">
+                                    <entry key="licenseURL" value="${licenseURL}"/>
+                                    <entry key="license" value="${license}"/>
+                                </propertyfile>
+                            </target>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>

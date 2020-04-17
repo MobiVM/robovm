@@ -34,9 +34,7 @@ import org.robovm.apple.contacts.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 2.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreLocation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CLLocation/*</name>*/ 
@@ -54,13 +52,15 @@ import org.robovm.apple.contacts.*;
     public CLLocation(double latitude, double longitude) { super((SkipInit) null); initObject(init(latitude, longitude)); }
     @Method(selector = "initWithCoordinate:altitude:horizontalAccuracy:verticalAccuracy:timestamp:")
     public CLLocation(@ByVal CLLocationCoordinate2D coordinate, double altitude, double hAccuracy, double vAccuracy, NSDate timestamp) { super((SkipInit) null); initObject(init(coordinate, altitude, hAccuracy, vAccuracy, timestamp)); }
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     @Method(selector = "initWithCoordinate:altitude:horizontalAccuracy:verticalAccuracy:course:speed:timestamp:")
     public CLLocation(@ByVal CLLocationCoordinate2D coordinate, double altitude, double hAccuracy, double vAccuracy, double course, double speed, NSDate timestamp) { super((SkipInit) null); initObject(init(coordinate, altitude, hAccuracy, vAccuracy, course, speed, timestamp)); }
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    @Method(selector = "initWithCoordinate:altitude:horizontalAccuracy:verticalAccuracy:course:courseAccuracy:speed:speedAccuracy:timestamp:")
+    public CLLocation(@ByVal CLLocationCoordinate2D coordinate, double altitude, double hAccuracy, double vAccuracy, double course, double courseAccuracy, double speed, double speedAccuracy, NSDate timestamp) { super((SkipInit) null); initObject(init(coordinate, altitude, hAccuracy, vAccuracy, course, courseAccuracy, speed, speedAccuracy, timestamp)); }
     @Method(selector = "initWithCoder:")
-    public CLLocation(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public CLLocation(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "coordinate")
@@ -71,21 +71,22 @@ import org.robovm.apple.contacts.*;
     public native double getHorizontalAccuracy();
     @Property(selector = "verticalAccuracy")
     public native double getVerticalAccuracy();
-    /**
-     * @since Available in iOS 2.2 and later.
-     */
     @Property(selector = "course")
     public native double getCourse();
     /**
-     * @since Available in iOS 2.2 and later.
+     * @since Available in iOS 13.4 and later.
      */
+    @Property(selector = "courseAccuracy")
+    public native double getCourseAccuracy();
     @Property(selector = "speed")
     public native double getSpeed();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "speedAccuracy")
+    public native double getSpeedAccuracy();
     @Property(selector = "timestamp")
     public native NSDate getTimestamp();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "floor")
     public native CLFloor getFloor();
     @Property(selector = "supportsSecureCoding")
@@ -93,9 +94,6 @@ import org.robovm.apple.contacts.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @GlobalValue(symbol="CLLocationDistanceMax", optional=true)
     public static native double getLocationDistanceMax();
     
@@ -103,19 +101,18 @@ import org.robovm.apple.contacts.*;
     protected native @Pointer long init(double latitude, double longitude);
     @Method(selector = "initWithCoordinate:altitude:horizontalAccuracy:verticalAccuracy:timestamp:")
     protected native @Pointer long init(@ByVal CLLocationCoordinate2D coordinate, double altitude, double hAccuracy, double vAccuracy, NSDate timestamp);
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     @Method(selector = "initWithCoordinate:altitude:horizontalAccuracy:verticalAccuracy:course:speed:timestamp:")
     protected native @Pointer long init(@ByVal CLLocationCoordinate2D coordinate, double altitude, double hAccuracy, double vAccuracy, double course, double speed, NSDate timestamp);
     /**
-     * @since Available in iOS 3.2 and later.
+     * @since Available in iOS 13.4 and later.
      */
+    @Method(selector = "initWithCoordinate:altitude:horizontalAccuracy:verticalAccuracy:course:courseAccuracy:speed:speedAccuracy:timestamp:")
+    protected native @Pointer long init(@ByVal CLLocationCoordinate2D coordinate, double altitude, double hAccuracy, double vAccuracy, double course, double courseAccuracy, double speed, double speedAccuracy, NSDate timestamp);
     @Method(selector = "distanceFromLocation:")
     public native double getDistanceTo(CLLocation location);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

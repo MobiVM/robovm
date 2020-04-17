@@ -97,97 +97,28 @@ import org.robovm.apple.audiotoolbox.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMetadataKeyCommon Title = new AVMetadataKeyCommon("Title");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMetadataKeyCommon Creator = new AVMetadataKeyCommon("Creator");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMetadataKeyCommon Subject = new AVMetadataKeyCommon("Subject");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMetadataKeyCommon Description = new AVMetadataKeyCommon("Description");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMetadataKeyCommon Publisher = new AVMetadataKeyCommon("Publisher");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMetadataKeyCommon Contributor = new AVMetadataKeyCommon("Contributor");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMetadataKeyCommon CreationDate = new AVMetadataKeyCommon("CreationDate");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMetadataKeyCommon LastModifiedDate = new AVMetadataKeyCommon("LastModifiedDate");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMetadataKeyCommon Type = new AVMetadataKeyCommon("Type");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMetadataKeyCommon Format = new AVMetadataKeyCommon("Format");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMetadataKeyCommon Identifier = new AVMetadataKeyCommon("Identifier");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMetadataKeyCommon Source = new AVMetadataKeyCommon("Source");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMetadataKeyCommon Language = new AVMetadataKeyCommon("Language");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMetadataKeyCommon Relation = new AVMetadataKeyCommon("Relation");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMetadataKeyCommon Location = new AVMetadataKeyCommon("Location");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMetadataKeyCommon Copyrights = new AVMetadataKeyCommon("Copyrights");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMetadataKeyCommon AlbumName = new AVMetadataKeyCommon("AlbumName");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMetadataKeyCommon Author = new AVMetadataKeyCommon("Author");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMetadataKeyCommon Artist = new AVMetadataKeyCommon("Artist");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMetadataKeyCommon Artwork = new AVMetadataKeyCommon("Artwork");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMetadataKeyCommon Make = new AVMetadataKeyCommon("Make");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMetadataKeyCommon Model = new AVMetadataKeyCommon("Model");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMetadataKeyCommon Software = new AVMetadataKeyCommon("Software");
     /*</constants>*/
     
@@ -214,119 +145,50 @@ import org.robovm.apple.audiotoolbox.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataCommonKeyTitle", optional=true)
         public static native NSString Title();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataCommonKeyCreator", optional=true)
         public static native NSString Creator();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataCommonKeySubject", optional=true)
         public static native NSString Subject();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataCommonKeyDescription", optional=true)
         public static native NSString Description();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataCommonKeyPublisher", optional=true)
         public static native NSString Publisher();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataCommonKeyContributor", optional=true)
         public static native NSString Contributor();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataCommonKeyCreationDate", optional=true)
         public static native NSString CreationDate();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataCommonKeyLastModifiedDate", optional=true)
         public static native NSString LastModifiedDate();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataCommonKeyType", optional=true)
         public static native NSString Type();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataCommonKeyFormat", optional=true)
         public static native NSString Format();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataCommonKeyIdentifier", optional=true)
         public static native NSString Identifier();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataCommonKeySource", optional=true)
         public static native NSString Source();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataCommonKeyLanguage", optional=true)
         public static native NSString Language();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataCommonKeyRelation", optional=true)
         public static native NSString Relation();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataCommonKeyLocation", optional=true)
         public static native NSString Location();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataCommonKeyCopyrights", optional=true)
         public static native NSString Copyrights();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataCommonKeyAlbumName", optional=true)
         public static native NSString AlbumName();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataCommonKeyAuthor", optional=true)
         public static native NSString Author();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataCommonKeyArtist", optional=true)
         public static native NSString Artist();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataCommonKeyArtwork", optional=true)
         public static native NSString Artwork();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataCommonKeyMake", optional=true)
         public static native NSString Make();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataCommonKeyModel", optional=true)
         public static native NSString Model();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataCommonKeySoftware", optional=true)
         public static native NSString Software();
         /*</values>*/

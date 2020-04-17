@@ -52,14 +52,19 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithDevice:resultImage:resultImageIsNeeded:")
     public MPSNNGraph(MTLDevice device, MPSNNImageNode resultImage, boolean resultIsNeeded) { super((SkipInit) null); initObject(init(device, resultImage, resultIsNeeded)); }
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "initWithDevice:resultImages:resultsAreNeeded:")
+    public MPSNNGraph(MTLDevice device, NSArray<MPSNNImageNode> resultImages, BooleanPtr areResultsNeeded) { super((SkipInit) null); initObject(init(device, resultImages, areResultsNeeded)); }
+    /**
      * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 11.3.
+     * @deprecated Deprecated in iOS 11.3. Use Please use -initWithDevice:resultImage:resultIsNeeded: instead. Without this information, too much or too little work may occur. Results may be undefined.
      */
     @Deprecated
     @Method(selector = "initWithDevice:resultImage:")
     public MPSNNGraph(MTLDevice device, MPSNNImageNode resultImage) { super((SkipInit) null); initObject(init(device, resultImage)); }
     @Method(selector = "initWithCoder:device:")
-    public MPSNNGraph(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
+    public MPSNNGraph(NSCoder decoder, MTLDevice device) { super((SkipInit) null); initObject(init(decoder, device)); }
     @Method(selector = "initWithCoder:")
     public MPSNNGraph(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
@@ -94,14 +99,19 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithDevice:resultImage:resultImageIsNeeded:")
     protected native @Pointer long init(MTLDevice device, MPSNNImageNode resultImage, boolean resultIsNeeded);
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "initWithDevice:resultImages:resultsAreNeeded:")
+    protected native @Pointer long init(MTLDevice device, NSArray<MPSNNImageNode> resultImages, BooleanPtr areResultsNeeded);
+    /**
      * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 11.3.
+     * @deprecated Deprecated in iOS 11.3. Use Please use -initWithDevice:resultImage:resultIsNeeded: instead. Without this information, too much or too little work may occur. Results may be undefined.
      */
     @Deprecated
     @Method(selector = "initWithDevice:resultImage:")
     protected native @Pointer long init(MTLDevice device, MPSNNImageNode resultImage);
     @Method(selector = "initWithCoder:device:")
-    protected native @Pointer long init(NSCoder aDecoder, MTLDevice device);
+    protected native @Pointer long init(NSCoder decoder, MTLDevice device);
     @Method(selector = "reloadFromDataSources")
     public native void reloadFromDataSources();
     @Method(selector = "encodeToCommandBuffer:sourceImages:sourceStates:intermediateImages:destinationStates:")

@@ -35,7 +35,7 @@ import org.robovm.apple.security.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*/@Library("Network") @NativeProtocolProxy("OS_nw_connection")/*</annotations>*/
+/*<annotations>*/@Library("Network") @NativeClass("NSObject")/*</annotations>*/
 /*<visibility>*/public final/*</visibility>*/ class /*<name>*/NWConnection/*</name>*/ 
     extends /*<extends>*/NWObject/*</extends>*/ 
     /*<implements>*/implements NSObjectProtocol/*</implements>*/ {
@@ -44,12 +44,31 @@ import org.robovm.apple.security.*;
     /*<bind>*/static { ObjCRuntime.bind(NWConnection.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    public NWConnection(NWEndpoint endpoint, NWParameters parameters) { super((Handle) null, create(endpoint, parameters));  }
+    
     
     /*</constructors>*/
     /*<properties>*/
     
     /*</properties>*/
     /*<members>*//*</members>*/
+
+    // manually added wrappers
+    public String copyDescription() {
+        long ptr = copyDescription0();
+        if (ptr != 0) {
+            String res = StringMarshalers.AsAsciiZMarshaler.toObject(String.class, ptr, 0);
+            // nw_connection_copy_description returns pointer that The caller must call free() on the string.
+            VM.free(ptr);
+            return res;
+        } else {
+            return null;
+        }
+    }
+
     /*<methods>*/
     /**
      * @since Available in iOS 12.0 and later.
@@ -61,7 +80,7 @@ import org.robovm.apple.security.*;
      * @since Available in iOS 12.0 and later.
      */
     @Bridge(symbol="nw_connection_create", optional=true)
-    public static native NWConnection create(NWEndpoint endpoint, NWParameters parameters);
+    private static native @Pointer long create(NWEndpoint endpoint, NWParameters parameters);
     /**
      * @since Available in iOS 12.0 and later.
      */
@@ -146,7 +165,7 @@ import org.robovm.apple.security.*;
      * @since Available in iOS 12.0 and later.
      */
     @Bridge(symbol="nw_connection_copy_description", optional=true)
-    public native BytePtr copyDescription();
+    protected native @Pointer long copyDescription0();
     /**
      * @since Available in iOS 12.0 and later.
      */
@@ -162,6 +181,16 @@ import org.robovm.apple.security.*;
      */
     @Bridge(symbol="nw_connection_get_maximum_datagram_size", optional=true)
     public native int getMaximumDatagramSize();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="nw_connection_access_establishment_report", optional=true)
+    public native void accessEstablishmentReport(DispatchQueue queue, @Block VoidBlock1<NWEstablishmentReport> access_block);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="nw_connection_create_new_data_transfer_report", optional=true)
+    public native NWDataTransferReport createNewDataTransferReport();
     
     
     /*</methods>*/

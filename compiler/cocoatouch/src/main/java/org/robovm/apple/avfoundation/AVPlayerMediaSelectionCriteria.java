@@ -41,9 +41,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 7.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVPlayerMediaSelectionCriteria/*</name>*/ 
@@ -59,16 +57,31 @@ import org.robovm.apple.audiotoolbox.*;
     protected AVPlayerMediaSelectionCriteria(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithPreferredLanguages:preferredMediaCharacteristics:")
     public AVPlayerMediaSelectionCriteria(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> preferredLanguages, @org.robovm.rt.bro.annotation.Marshaler(AVMediaCharacteristic.AsListMarshaler.class) List<AVMediaCharacteristic> preferredMediaCharacteristics) { super((SkipInit) null); initObject(init(preferredLanguages, preferredMediaCharacteristics)); }
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "initWithPrincipalMediaCharacteristics:preferredLanguages:preferredMediaCharacteristics:")
+    public AVPlayerMediaSelectionCriteria(NSArray<NSString> principalMediaCharacteristics, NSArray<NSString> preferredLanguages, NSArray<NSString> preferredMediaCharacteristics) { super((SkipInit) null); initObject(init(principalMediaCharacteristics, preferredLanguages, preferredMediaCharacteristics)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "preferredLanguages")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getPreferredLanguages();
     @Property(selector = "preferredMediaCharacteristics")
     public native @org.robovm.rt.bro.annotation.Marshaler(AVMediaCharacteristic.AsListMarshaler.class) List<AVMediaCharacteristic> getPreferredMediaCharacteristics();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "principalMediaCharacteristics")
+    public native NSArray<NSString> getPrincipalMediaCharacteristics();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithPreferredLanguages:preferredMediaCharacteristics:")
     protected native @Pointer long init(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> preferredLanguages, @org.robovm.rt.bro.annotation.Marshaler(AVMediaCharacteristic.AsListMarshaler.class) List<AVMediaCharacteristic> preferredMediaCharacteristics);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "initWithPrincipalMediaCharacteristics:preferredLanguages:preferredMediaCharacteristics:")
+    protected native @Pointer long init(NSArray<NSString> principalMediaCharacteristics, NSArray<NSString> preferredLanguages, NSArray<NSString> preferredMediaCharacteristics);
     /*</methods>*/
 }

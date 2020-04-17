@@ -37,12 +37,12 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 2.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UITableView/*</name>*/ 
@@ -69,7 +69,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithFrame:style:")
     public UITableView(@ByVal CGRect frame, UITableViewStyle style) { super((SkipInit) null); initObject(init(frame, style)); }
     @Method(selector = "initWithCoder:")
-    public UITableView(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public UITableView(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     @Method(selector = "initWithFrame:")
     public UITableView(@ByVal CGRect frame) { super(frame); }
     /*</constructors>*/
@@ -126,44 +126,20 @@ import org.robovm.apple.intents.*;
     public native @MachineSizedFloat double getSectionFooterHeight();
     @Property(selector = "setSectionFooterHeight:")
     public native void setSectionFooterHeight(@MachineSizedFloat double v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "estimatedRowHeight")
     public native @MachineSizedFloat double getEstimatedRowHeight();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setEstimatedRowHeight:")
     public native void setEstimatedRowHeight(@MachineSizedFloat double v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "estimatedSectionHeaderHeight")
     public native @MachineSizedFloat double getEstimatedSectionHeaderHeight();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setEstimatedSectionHeaderHeight:")
     public native void setEstimatedSectionHeaderHeight(@MachineSizedFloat double v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "estimatedSectionFooterHeight")
     public native @MachineSizedFloat double getEstimatedSectionFooterHeight();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setEstimatedSectionFooterHeight:")
     public native void setEstimatedSectionFooterHeight(@MachineSizedFloat double v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "separatorInset")
     public native @ByVal UIEdgeInsets getSeparatorInset();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setSeparatorInset:")
     public native void setSeparatorInset(@ByVal UIEdgeInsets v);
     /**
@@ -176,14 +152,8 @@ import org.robovm.apple.intents.*;
      */
     @Property(selector = "setSeparatorInsetReference:")
     public native void setSeparatorInsetReference(UITableViewSeparatorInsetReference v);
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Property(selector = "backgroundView")
     public native UIView getBackgroundView();
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Property(selector = "setBackgroundView:")
     public native void setBackgroundView(UIView v);
     @Property(selector = "numberOfSections")
@@ -201,79 +171,40 @@ import org.robovm.apple.intents.*;
     public native boolean isEditing();
     @Property(selector = "setEditing:")
     public native void setEditing(boolean v);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "allowsSelection")
     public native boolean allowsSelection();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "setAllowsSelection:")
     public native void setAllowsSelection(boolean v);
     @Property(selector = "allowsSelectionDuringEditing")
     public native boolean allowsSelectionDuringEditing();
     @Property(selector = "setAllowsSelectionDuringEditing:")
     public native void setAllowsSelectionDuringEditing(boolean v);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "allowsMultipleSelection")
     public native boolean allowsMultipleSelection();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setAllowsMultipleSelection:")
     public native void setAllowsMultipleSelection(boolean v);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "allowsMultipleSelectionDuringEditing")
     public native boolean allowsMultipleSelectionDuringEditing();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setAllowsMultipleSelectionDuringEditing:")
     public native void setAllowsMultipleSelectionDuringEditing(boolean v);
     @Property(selector = "indexPathForSelectedRow")
     public native NSIndexPath getIndexPathForSelectedRow();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "indexPathsForSelectedRows")
     public native NSArray<NSIndexPath> getIndexPathsForSelectedRows();
     @Property(selector = "sectionIndexMinimumDisplayRowCount")
     public native @MachineSizedSInt long getSectionIndexMinimumDisplayRowCount();
     @Property(selector = "setSectionIndexMinimumDisplayRowCount:")
     public native void setSectionIndexMinimumDisplayRowCount(@MachineSizedSInt long v);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "sectionIndexColor")
     public native UIColor getSectionIndexColor();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "setSectionIndexColor:")
     public native void setSectionIndexColor(UIColor v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "sectionIndexBackgroundColor")
     public native UIColor getSectionIndexBackgroundColor();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setSectionIndexBackgroundColor:")
     public native void setSectionIndexBackgroundColor(UIColor v);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "sectionIndexTrackingBackgroundColor")
     public native UIColor getSectionIndexTrackingBackgroundColor();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "setSectionIndexTrackingBackgroundColor:")
     public native void setSectionIndexTrackingBackgroundColor(UIColor v);
     @Property(selector = "separatorStyle")
@@ -284,14 +215,8 @@ import org.robovm.apple.intents.*;
     public native UIColor getSeparatorColor();
     @Property(selector = "setSeparatorColor:")
     public native void setSeparatorColor(UIColor v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "separatorEffect")
     public native UIVisualEffect getSeparatorEffect();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setSeparatorEffect:")
     public native void setSeparatorEffect(UIVisualEffect v);
     /**
@@ -384,14 +309,8 @@ import org.robovm.apple.intents.*;
         return model;
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @GlobalValue(symbol="UITableViewIndexSearch", optional=true)
     public static native String getIndexSearch();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @GlobalValue(symbol="UITableViewAutomaticDimension", optional=true)
     public static native @MachineSizedFloat double getAutomaticDimension();
     @GlobalValue(symbol="UITableViewSelectionDidChangeNotification", optional=true)
@@ -400,7 +319,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithFrame:style:")
     protected native @Pointer long init(@ByVal CGRect frame, UITableViewStyle style);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     @Method(selector = "numberOfRowsInSection:")
     public native @MachineSizedSInt long getNumberOfRowsInSection(@MachineSizedSInt long section);
     @Method(selector = "rectForSection:")
@@ -419,14 +338,8 @@ import org.robovm.apple.intents.*;
     public native NSArray<NSIndexPath> getIndexPathsForRowsInRect(@ByVal CGRect rect);
     @Method(selector = "cellForRowAtIndexPath:")
     public native UITableViewCell getCellForRow(NSIndexPath indexPath);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "headerViewForSection:")
     public native UITableViewHeaderFooterView getHeaderViewForSection(@MachineSizedSInt long section);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "footerViewForSection:")
     public native UITableViewHeaderFooterView getFooterViewForSection(@MachineSizedSInt long section);
     @Method(selector = "scrollToRowAtIndexPath:atScrollPosition:animated:")
@@ -446,35 +359,20 @@ import org.robovm.apple.intents.*;
     public native void insertSections(NSIndexSet sections, UITableViewRowAnimation animation);
     @Method(selector = "deleteSections:withRowAnimation:")
     public native void deleteSections(NSIndexSet sections, UITableViewRowAnimation animation);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "reloadSections:withRowAnimation:")
     public native void reloadSections(NSIndexSet sections, UITableViewRowAnimation animation);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "moveSection:toSection:")
     public native void moveSection(@MachineSizedSInt long section, @MachineSizedSInt long newSection);
     @Method(selector = "insertRowsAtIndexPaths:withRowAnimation:")
     public native void insertRows(NSArray<NSIndexPath> indexPaths, UITableViewRowAnimation animation);
     @Method(selector = "deleteRowsAtIndexPaths:withRowAnimation:")
     public native void deleteRows(NSArray<NSIndexPath> indexPaths, UITableViewRowAnimation animation);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "reloadRowsAtIndexPaths:withRowAnimation:")
     public native void reloadRows(NSArray<NSIndexPath> indexPaths, UITableViewRowAnimation animation);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "moveRowAtIndexPath:toIndexPath:")
     public native void moveRow(NSIndexPath indexPath, NSIndexPath newIndexPath);
     @Method(selector = "reloadData")
     public native void reloadData();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "reloadSectionIndexTitles")
     public native void reloadSectionIndexTitles();
     @Method(selector = "setEditing:animated:")
@@ -485,34 +383,16 @@ import org.robovm.apple.intents.*;
     public native void deselectRow(NSIndexPath indexPath, boolean animated);
     @Method(selector = "dequeueReusableCellWithIdentifier:")
     public native UITableViewCell dequeueReusableCell(String identifier);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "dequeueReusableCellWithIdentifier:forIndexPath:")
     public native UITableViewCell dequeueReusableCell(String identifier, NSIndexPath indexPath);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "dequeueReusableHeaderFooterViewWithIdentifier:")
     public native UITableViewHeaderFooterView dequeueReusableHeaderFooterView(String identifier);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "registerNib:forCellReuseIdentifier:")
     public native void registerReusableCellNib(UINib nib, String identifier);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "registerClass:forCellReuseIdentifier:")
     public native void registerReusableCellClass(Class<? extends UITableViewCell> cellClass, String identifier);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "registerNib:forHeaderFooterViewReuseIdentifier:")
     public native void registerReusableHeaderFooterViewNib(UINib nib, String identifier);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "registerClass:forHeaderFooterViewReuseIdentifier:")
     public native void registerReusableHeaderFooterViewClass(Class<? extends UITableViewHeaderFooterView> aClass, String identifier);
     @Method(selector = "presentationSectionIndexForDataSourceSectionIndex:")

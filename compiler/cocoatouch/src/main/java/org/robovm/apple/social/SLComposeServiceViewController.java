@@ -34,9 +34,7 @@ import org.robovm.apple.accounts.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("Social") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SLComposeServiceViewController/*</name>*/ 
@@ -53,7 +51,7 @@ import org.robovm.apple.accounts.*;
     @Method(selector = "initWithNibName:bundle:")
     public SLComposeServiceViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
     @Method(selector = "initWithCoder:")
-    public SLComposeServiceViewController(NSCoder decoder) { super(decoder); }
+    public SLComposeServiceViewController(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "textView")
@@ -122,31 +120,23 @@ import org.robovm.apple.accounts.*;
     @Method(selector = "textView:shouldInteractWithTextAttachment:inRange:interaction:")
     public native boolean shouldInteractWithTextAttachment(UITextView textView, NSTextAttachment textAttachment, @ByVal NSRange characterRange, UITextItemInteraction interaction);
     /**
-     * @since Available in iOS 7.0 and later.
-     * @deprecated Deprecated in iOS 10.0. Use textView:shouldInteractWithURL:inRange:forInteractionType: instead
+     * @deprecated Deprecated in iOS 10.0. Use textView:shouldInteractWithURL:inRange:forInteractionType:
      */
     @Deprecated
     @Method(selector = "textView:shouldInteractWithURL:inRange:")
     public native boolean shouldInteractWithURL(UITextView textView, NSURL URL, @ByVal NSRange characterRange);
     /**
-     * @since Available in iOS 7.0 and later.
-     * @deprecated Deprecated in iOS 10.0. Use textView:shouldInteractWithTextAttachment:inRange:forInteractionType: instead
+     * @deprecated Deprecated in iOS 10.0. Use textView:shouldInteractWithTextAttachment:inRange:forInteractionType:
      */
     @Deprecated
     @Method(selector = "textView:shouldInteractWithTextAttachment:inRange:")
     public native boolean shouldInteractWithTextAttachment(UITextView textView, NSTextAttachment textAttachment, @ByVal NSRange characterRange);
     @Method(selector = "scrollViewDidScroll:")
     public native void didScroll(UIScrollView scrollView);
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Method(selector = "scrollViewDidZoom:")
     public native void didZoom(UIScrollView scrollView);
     @Method(selector = "scrollViewWillBeginDragging:")
     public native void willBeginDragging(UIScrollView scrollView);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "scrollViewWillEndDragging:withVelocity:targetContentOffset:")
     public native void willEndDragging(UIScrollView scrollView, @ByVal CGPoint velocity, CGPoint targetContentOffset);
     @Method(selector = "scrollViewDidEndDragging:willDecelerate:")
@@ -159,9 +149,6 @@ import org.robovm.apple.accounts.*;
     public native void didEndScrollingAnimation(UIScrollView scrollView);
     @Method(selector = "viewForZoomingInScrollView:")
     public native UIView getViewForZooming(UIScrollView scrollView);
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Method(selector = "scrollViewWillBeginZooming:withView:")
     public native void willBeginZooming(UIScrollView scrollView, UIView view);
     @Method(selector = "scrollViewDidEndZooming:withView:atScale:")

@@ -17,17 +17,35 @@
 package org.robovm.compiler.plugin.objc;
 
 import org.apache.commons.lang3.StringUtils;
+import org.robovm.compiler.AbstractMethodCompiler;
 import org.robovm.compiler.Annotations;
-import org.robovm.compiler.Annotations.*;
+import org.robovm.compiler.Annotations.Visibility;
 import org.robovm.compiler.CompilerException;
+import org.robovm.compiler.Functions;
+import org.robovm.compiler.Linker;
 import org.robovm.compiler.MarshalerLookup.MarshalSite;
 import org.robovm.compiler.MarshalerLookup.MarshalerMethod;
 import org.robovm.compiler.ModuleBuilder;
 import org.robovm.compiler.Types;
 import org.robovm.compiler.clazz.Clazz;
 import org.robovm.compiler.config.Config;
+import org.robovm.compiler.llvm.Bitcast;
+import org.robovm.compiler.llvm.BooleanConstant;
+import org.robovm.compiler.llvm.Call;
+import org.robovm.compiler.llvm.ConstantGetelementptr;
+import org.robovm.compiler.llvm.Function;
+import org.robovm.compiler.llvm.Global;
+import org.robovm.compiler.llvm.IntegerConstant;
+import org.robovm.compiler.llvm.Inttoptr;
+import org.robovm.compiler.llvm.PointerType;
+import org.robovm.compiler.llvm.Ptrtoint;
+import org.robovm.compiler.llvm.Ret;
+import org.robovm.compiler.llvm.StructureType;
+import org.robovm.compiler.llvm.Variable;
+import org.robovm.compiler.llvm.ZeroInitializer;
 import org.robovm.compiler.plugin.AbstractCompilerPlugin;
 import org.robovm.compiler.plugin.CompilerPlugin;
+import org.robovm.compiler.target.framework.FrameworkTarget;
 import org.robovm.compiler.util.generic.SootMethodType;
 import soot.Body;
 import soot.BooleanType;
@@ -58,6 +76,7 @@ import soot.jimple.InvokeExpr;
 import soot.jimple.InvokeStmt;
 import soot.jimple.Jimple;
 import soot.jimple.JimpleBody;
+import soot.jimple.LongConstant;
 import soot.jimple.NopStmt;
 import soot.jimple.NullConstant;
 import soot.jimple.StaticInvokeExpr;
@@ -77,8 +96,24 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
-import static org.robovm.compiler.Annotations.*;
-import static soot.Modifier.*;
+import static org.robovm.compiler.Annotations.BRIDGE;
+import static org.robovm.compiler.Annotations.CALLBACK;
+import static org.robovm.compiler.Annotations.MARSHALER;
+import static org.robovm.compiler.Annotations.addRuntimeVisibleAnnotation;
+import static org.robovm.compiler.Annotations.copyParameterAnnotations;
+import static org.robovm.compiler.Annotations.getAnnotation;
+import static org.robovm.compiler.Annotations.hasAnnotation;
+import static org.robovm.compiler.Annotations.hasMachineSizedFloatAnnotation;
+import static org.robovm.compiler.Annotations.hasMachineSizedSIntAnnotation;
+import static org.robovm.compiler.Annotations.hasMachineSizedUIntAnnotation;
+import static org.robovm.compiler.Annotations.hasParameterAnnotation;
+import static org.robovm.compiler.Annotations.hasPointerAnnotation;
+import static org.robovm.compiler.Annotations.readBooleanElem;
+import static org.robovm.compiler.Annotations.readStringElem;
+import static soot.Modifier.FINAL;
+import static soot.Modifier.NATIVE;
+import static soot.Modifier.PRIVATE;
+import static soot.Modifier.STATIC;
 
 /**
  * {@link CompilerPlugin} which transforms Objective-C methods and properties to @Bridge
@@ -135,6 +170,7 @@ public class ObjCMemberPlugin extends AbstractCompilerPlugin {
     private SootMethodRef org_robovm_objc_ObjCObject_getSuper = null;
     private SootFieldRef org_robovm_objc_ObjCObject_customClass = null;
     private SootMethodRef org_robovm_objc_ObjCClass_getByType = null;
+    private SootMethodRef org_robovm_objc_ObjCClass_replaceHandle = null;
     private SootMethodRef org_robovm_objc_ObjCRuntime_bind = null;
     private SootMethodRef org_robovm_objc_ObjCObject_updateStrongRef = null;
     private SootMethodRef org_robovm_objc_ObjCExtensions_updateStrongRef = null;
@@ -191,7 +227,7 @@ public class ObjCMemberPlugin extends AbstractCompilerPlugin {
         SootMethod m = new SootMethod((isCallback ? "$cb$" : "$m$") + selectorName.replace(':', '$'),
                 paramTypes, method.getReturnType(), STATIC | PRIVATE | (isCallback ? 0 : NATIVE));
         copyAnnotations(annotatedMethod, m, extensions);
-        
+
         createGenericSignatureForMsgSend(annotatedMethod, m, paramTypes, extensions);
 
         return m;
@@ -314,7 +350,7 @@ public class ObjCMemberPlugin extends AbstractCompilerPlugin {
                 );
     }
 
-    private void addObjCClassField(SootClass sootClass) {
+    private void addObjCClassField(SootClass sootClass, boolean exportClass) {
         Jimple j = Jimple.v();
 
         SootMethod clinit = getOrCreateStaticInitializer(sootClass);
@@ -330,7 +366,7 @@ public class ObjCMemberPlugin extends AbstractCompilerPlugin {
         sootClass.addField(f);
 
         units.insertBefore(
-                Arrays.<Unit> asList(
+                Arrays.asList(
                         j.newAssignStmt(
                                 objCClass,
                                 j.newStaticInvokeExpr(
@@ -341,7 +377,23 @@ public class ObjCMemberPlugin extends AbstractCompilerPlugin {
                                 objCClass)
                 ),
                 units.getLast()
-                );
+        );
+        if (exportClass) {
+            // register and copy OBJC_CLASS_$_${CustomClassName} global variable, this will allow such classes be visible
+            // from native code
+            // $ $objCClass.handle and pass it to registration
+            SootMethod exposeObjcClassMethod = createPublishObjcClassMethod(sootClass);
+            Local objCClassHandle = Jimple.v().newLocal("$objCClassHandle", LongType.v());
+            body.getLocals().add(objCClassHandle);
+            units.insertBefore(
+                    Arrays.asList(
+                            j.newAssignStmt(objCClassHandle, j.newSpecialInvokeExpr(objCClass, this.org_robovm_rt_bro_NativeObject_getHandle)),
+                            j.newAssignStmt(objCClassHandle, j.newStaticInvokeExpr(exposeObjcClassMethod.makeRef(), objCClassHandle)),
+                            j.newInvokeStmt(j.newSpecialInvokeExpr(objCClass, org_robovm_objc_ObjCClass_replaceHandle, objCClassHandle))
+                    ),
+                    units.getLast()
+            );
+        }
     }
 
     private void registerSelectors(SootClass sootClass, Set<String> selectors) {
@@ -360,7 +412,7 @@ public class ObjCMemberPlugin extends AbstractCompilerPlugin {
             sootClass.addField(f);
 
             units.insertBefore(
-                    Arrays.<Unit> asList(
+                    Arrays.asList(
                             j.newAssignStmt(
                                     sel,
                                     j.newStaticInvokeExpr(
@@ -410,19 +462,19 @@ public class ObjCMemberPlugin extends AbstractCompilerPlugin {
                 Scene.v().makeMethodRef(
                         org_robovm_objc_Selector,
                         "register",
-                        Arrays.<Type> asList(java_lang_String.getType()),
+                        Arrays.asList(java_lang_String.getType()),
                         org_robovm_objc_Selector.getType(), true);
         org_robovm_objc_ObjCObject_getSuper =
                 Scene.v().makeMethodRef(
                         org_robovm_objc_ObjCObject,
                         "getSuper",
-                        Collections.<Type> emptyList(),
+                        Collections.emptyList(),
                         org_robovm_objc_ObjCSuper.getType(), false);
         org_robovm_objc_ObjCObject_updateStrongRef =
                 Scene.v().makeMethodRef(
                         org_robovm_objc_ObjCObject,
                         "updateStrongRef",
-                        Arrays.<Type> asList(
+                        Arrays.asList(
                                 java_lang_Object.getType(),
                                 java_lang_Object.getType()),
                         VoidType.v(), false);
@@ -430,13 +482,19 @@ public class ObjCMemberPlugin extends AbstractCompilerPlugin {
                 Scene.v().makeMethodRef(
                         org_robovm_objc_ObjCClass,
                         "getByType",
-                        Arrays.<Type> asList(java_lang_Class.getType()),
+                        Arrays.asList(java_lang_Class.getType()),
                         org_robovm_objc_ObjCClass.getType(), true);
+        org_robovm_objc_ObjCClass_replaceHandle =
+                Scene.v().makeMethodRef(
+                        org_robovm_objc_ObjCClass,
+                        "replaceHandle",
+                        Arrays.asList(LongType.v()),
+                        VoidType.v(), false);
         org_robovm_objc_ObjCRuntime_bind =
                 Scene.v().makeMethodRef(
                         org_robovm_objc_ObjCRuntime,
                         "bind",
-                        Arrays.<Type> asList(java_lang_Class.getType()),
+                        Arrays.asList(java_lang_Class.getType()),
                         VoidType.v(), true);
         org_robovm_objc_ObjCObject_customClass =
                 Scene.v().makeFieldRef(
@@ -446,7 +504,7 @@ public class ObjCMemberPlugin extends AbstractCompilerPlugin {
                 Scene.v().makeMethodRef(
                         org_robovm_objc_ObjCExtensions,
                         "updateStrongRef",
-                        Arrays.<Type> asList(
+                        Arrays.asList(
                                 org_robovm_objc_ObjCObject.getType(),
                                 java_lang_Object.getType(),
                                 java_lang_Object.getType()),
@@ -455,39 +513,39 @@ public class ObjCMemberPlugin extends AbstractCompilerPlugin {
                 Scene.v().makeMethodRef(
                         org_robovm_objc_ObjCObject,
                         "getPeerObject",
-                        Arrays.<Type> asList(LongType.v()),
+                        Arrays.asList(LongType.v()),
                         this.org_robovm_objc_ObjCObject.getType(), true);
         org_robovm_objc_ObjCObject_retainCustomObjectFromCb =
                 Scene.v().makeMethodRef(
                         org_robovm_objc_ObjCObject,
                         "retainCustomObjectFromCb",
-                        Arrays.<Type> asList(LongType.v()),
+                        Arrays.asList(LongType.v()),
                         VoidType.v(), true);
         org_robovm_rt_bro_NativeObject_setHandle =
                 Scene.v().makeMethodRef(
                         org_robovm_rt_bro_NativeObject,
                         "setHandle",
-                        Arrays.<Type> asList(
+                        Arrays.asList(
                                 LongType.v()),
                         VoidType.v(), false);
         org_robovm_rt_bro_NativeObject_getHandle =
                 Scene.v().makeMethodRef(
                         org_robovm_rt_bro_NativeObject,
                         "getHandle",
-                        Collections.<Type>emptyList(),
+                        Collections.emptyList(),
                         LongType.v(), false);
         org_robovm_apple_foundation_NSObject_forceSkipInit =
                 Scene.v().makeMethodRef(
                         org_robovm_apple_foundation_NSObject,
                         "forceSkipInit",
-                        Collections.<Type>emptyList(),
+                        Collections.emptyList(),
                         VoidType.v(), false);
         java_lang_NoSuchMethodError = r.makeClassRef("java.lang.NoSuchMethodError");
         java_lang_NoSuchMethodError_init =
                 Scene.v().makeMethodRef(
                         java_lang_NoSuchMethodError,
                         "<init>",
-                        Arrays.<Type> asList(java_lang_String.getType()),
+                        Arrays.asList(java_lang_String.getType()),
                         VoidType.v(), false);
         initialized = true;
     }
@@ -586,6 +644,14 @@ public class ObjCMemberPlugin extends AbstractCompilerPlugin {
         return !hasAnnotation(cls, NATIVE_CLASS) && !hasAnnotation(cls, NATIVE_PROTOCOL_PROXY) && isNSObject(cls.getType());
     }
 
+    private static String getCustomClassName(SootClass cls) {
+        AnnotationTag annotation = getAnnotation(cls, CUSTOM_CLASS);
+        String name = annotation != null ? readStringElem(annotation, "value", "").trim() : null;
+        if (name == null || name.isEmpty())
+            name = "j_" + cls.getName().replace('.', '_');
+        return name;
+    }
+
     @Override
     public void beforeClass(Config config, Clazz clazz, ModuleBuilder moduleBuilder) {
         init(config);
@@ -619,10 +685,15 @@ public class ObjCMemberPlugin extends AbstractCompilerPlugin {
 
             addBindCall(sootClass);
             if (!extensions) {
-                addObjCClassField(sootClass);
+                addObjCClassField(sootClass, customClass);
             }
             registerSelectors(sootClass, selectors);
         }
+    }
+
+    @Override
+    public void beforeLinker(Config config, Linker linker, Set<Clazz> classes) {
+        preloadClassesForFramework(config, linker, classes);
     }
 
     private static <E> List<E> l(E head, List<E> tail) {
@@ -779,7 +850,7 @@ public class ObjCMemberPlugin extends AbstractCompilerPlugin {
         units.add(jimple.newInvokeStmt(jimple.newSpecialInvokeExpr(thiz, constructor.makeRef(), args.subList(2, args.size()))));
 
         // call after marshaled to retain native part
-        SootMethod afterMarshaled = findMethod(sootClass, "afterMarshaled", Arrays.<Type> asList(IntType.v()), VoidType.v(), true);
+        SootMethod afterMarshaled = findMethod(sootClass, "afterMarshaled", Arrays.asList(IntType.v()), VoidType.v(), true);
         units.add(jimple.newInvokeStmt(jimple.newSpecialInvokeExpr(thiz, afterMarshaled.makeRef(), IntConstant.v(0))));
 
         // notify objc object to keep reference to this java side
@@ -850,11 +921,11 @@ public class ObjCMemberPlugin extends AbstractCompilerPlugin {
         units.add(jimple.newAssignStmt(self, jimple.newSpecialInvokeExpr(thiz, initMethod.makeRef(), args.subList(2, args.size()))));
 
         // associate java object with native handle
-        SootMethod initObject = findMethod(sootClass, "initObject", Arrays.<Type> asList(LongType.v()), VoidType.v(), true);
+        SootMethod initObject = findMethod(sootClass, "initObject", Arrays.asList(LongType.v()), VoidType.v(), true);
         units.add(jimple.newInvokeStmt(jimple.newSpecialInvokeExpr(thiz, initObject.makeRef(), self)));
 
         // call after marshaled to retain native part
-        SootMethod afterMarshaled = findMethod(sootClass, "afterMarshaled", Arrays.<Type> asList(IntType.v()), VoidType.v(), true);
+        SootMethod afterMarshaled = findMethod(sootClass, "afterMarshaled", Arrays.asList(IntType.v()), VoidType.v(), true);
         units.add(jimple.newInvokeStmt(jimple.newSpecialInvokeExpr(thiz, afterMarshaled.makeRef(), IntConstant.v(0))));
 
         // notify objc object to keep reference to this java side
@@ -1058,8 +1129,8 @@ public class ObjCMemberPlugin extends AbstractCompilerPlugin {
                     extensions);
             return;
         }
-        
-        if (!method.isStatic() && !method.isNative() && !method.isAbstract() && !method.isPrivate() 
+
+        if (!method.isStatic() && !method.isNative() && !method.isAbstract() && !method.isPrivate()
                 && isCustomClass(sootClass) && !hasAnnotation(method, NOT_IMPLEMENTED)) {
             /*
              * Create a @Callback for this method if it overrides a
@@ -1191,7 +1262,7 @@ public class ObjCMemberPlugin extends AbstractCompilerPlugin {
                 String package2 = subMethod.getDeclaringClass().getPackageName();
                 return package1.equals(package2);
             }
-            
+
             /*
              * superMethod is public or protected. subMethod must be overriding
              * superMethod or else it would violate the JVM spec since an
@@ -1243,9 +1314,9 @@ public class ObjCMemberPlugin extends AbstractCompilerPlugin {
                         + " must take 0 arguments and must not return void. " + getAnnotationName(annotation)
                         + " setter methods must take 1 argument and return void.");
             }
-            throw new CompilerException("Objective-C " + getAnnotationName(annotation) + " method " + method 
+            throw new CompilerException("Objective-C " + getAnnotationName(annotation) + " method " + method
                     + " in extension class does not have a supported signature. " + getAnnotationName(annotation)
-                    + " getter methods in extension classes" + " must take 1 argument (the 'this' reference) and " 
+                    + " getter methods in extension classes" + " must take 1 argument (the 'this' reference) and "
                     + "must not return void. " + getAnnotationName(annotation) + " setter methods in extension classes "
                     + "must take 2 arguments (first is the 'this' reference) and return void.");
         }
@@ -1477,7 +1548,7 @@ public class ObjCMemberPlugin extends AbstractCompilerPlugin {
                         new MarshalSite(method, 0));
                 if (isNSObject$Marshaler_toNative(param0MarshalerMethod.getMethod())) {
                     // self uses the default marshaler
-                    List<Type> paramTypes = Arrays.<Type> asList(org_robovm_apple_foundation_NSObject.getType(),
+                    List<Type> paramTypes = Arrays.asList(org_robovm_apple_foundation_NSObject.getType(),
                             org_robovm_objc_Selector.getType());
                     if (method.getReturnType() == VoidType.v() || method.getReturnType() instanceof PrimType) {
                         // Primitive return type or void
@@ -1518,7 +1589,7 @@ public class ObjCMemberPlugin extends AbstractCompilerPlugin {
                         new MarshalSite(method, 0));
                 if (isNSObject$Marshaler_toNative(param0MarshalerMethod.getMethod())) {
                     // self uses the default marshaler
-                    List<Type> paramTypes = Arrays.<Type> asList(org_robovm_apple_foundation_NSObject.getType(),
+                    List<Type> paramTypes = Arrays.asList(org_robovm_apple_foundation_NSObject.getType(),
                             org_robovm_objc_Selector.getType(), method.getParameterType(2));
                     if (method.getParameterType(2) instanceof PrimType) {
                         // Arg is a primitive
@@ -1530,7 +1601,7 @@ public class ObjCMemberPlugin extends AbstractCompilerPlugin {
                                 new MarshalSite(method, 2));
                         if (isNSObject$Marshaler_toNative(param2MarshalerMethod.getMethod())) {
                             // Arg is an NSObject using the default marshaler
-                            paramTypes = Arrays.<Type> asList(org_robovm_apple_foundation_NSObject.getType(),
+                            paramTypes = Arrays.asList(org_robovm_apple_foundation_NSObject.getType(),
                                     org_robovm_objc_Selector.getType(), org_robovm_apple_foundation_NSObject.getType());
                             return Scene.v().makeMethodRef(org_robovm_objc_$M, "objc_msgSend_object",
                                     paramTypes, method.getReturnType(), true);
@@ -1550,7 +1621,7 @@ public class ObjCMemberPlugin extends AbstractCompilerPlugin {
         }
         return method.makeRef();
     }
-    
+
     /**
      * Takes a method returned by
      * {@link #getMsgSendSuperMethod(String, SootMethod)} and returns a
@@ -1611,7 +1682,7 @@ public class ObjCMemberPlugin extends AbstractCompilerPlugin {
                             new MarshalSite(method, 2));
                     if (isNSObject$Marshaler_toNative(param2MarshalerMethod.getMethod())) {
                         // Arg is an NSObject using the default marshaler
-                        List<Type> paramTypes = Arrays.<Type> asList(org_robovm_objc_ObjCSuper.getType(),
+                        List<Type> paramTypes = Arrays.asList(org_robovm_objc_ObjCSuper.getType(),
                                 org_robovm_objc_Selector.getType(), org_robovm_apple_foundation_NSObject.getType());
                         return Scene.v().makeMethodRef(org_robovm_objc_$M, "objc_msgSendSuper_object",
                                 paramTypes, method.getReturnType(), true);
@@ -1667,7 +1738,7 @@ public class ObjCMemberPlugin extends AbstractCompilerPlugin {
         Jimple j = Jimple.v();
 
         boolean usingGenericInstanceMethod = false;
-        
+
         SootMethod msgSendMethod = getMsgSendMethod(selectorName, method, extensions);
         /*
          * Add the method even if we might remove it later to make marshaler
@@ -1682,7 +1753,7 @@ public class ObjCMemberPlugin extends AbstractCompilerPlugin {
              * msgSendMethod from the class.
              */
             sootClass.removeMethod(msgSendMethod);
-            
+
             /*
              * Can we use a generic <name>_instance method from $M? If we can we
              * won't have to make a call to objc_msgSendSuper.
@@ -1920,4 +1991,93 @@ public class ObjCMemberPlugin extends AbstractCompilerPlugin {
         addRuntimeVisibleAnnotation(method, annotationTag);
     }
 
+    static SootMethod createPublishObjcClassMethod(SootClass sootClass) {
+        // empty method to copy data from $objCClass.getHandle to OBJC_CLASS_$_ClassName
+        // long $publishObjClass(long handle)
+        SootMethod m = new SootMethod("$publishObjClass", Collections.singletonList(LongType.v()), LongType.v(), STATIC | PRIVATE );
+        Body body = Jimple.v().newBody(m);
+        body.getUnits().add(Jimple.v().newReturnStmt(LongConstant.v(0)));
+        m.setActiveBody(body);
+        sootClass.addMethod(m);
+        return m;
+    }
+
+    private void preloadClassesForFramework(Config config, Linker linker, Set<Clazz> classes) {
+        if (FrameworkTarget.TYPE.equals(config.getTargetType())) {
+            // for framework target it is required to make list of @CustomClasses to be preloaded
+            // once framework is loaded
+            // generate byte array of zero terminated string for frameworksupport.m class
+            StringBuilder sb = new StringBuilder();
+            for (Clazz clazz : classes) {
+                if (!hasAnnotation(clazz.getSootClass(), CUSTOM_CLASS))
+                    continue;
+                sb.append(clazz.getInternalName()).append('\0');
+            }
+            if (sb.length() != 0) {
+                byte[] data = sb.append('\0').toString().getBytes();
+                linker.addBcGlobalData("_bcFrameworkPreloadClasses", data);
+            }
+        }
+    }
+
+    public static class MethodCompiler extends AbstractMethodCompiler {
+        // structure to expose CustomClasses to objc side
+        // check https://opensource.apple.com/source/objc4/objc4-437/runtime/objc-runtime-new.h for details
+        // typedef struct class_t {
+        //    struct class_t *isa;
+        //    struct class_t *superclass;
+        //    Cache cache;
+        //    IMP *vtable;
+        //    class_rw_t *data;
+        // } class_t;
+        static StructureType objc_class_type = new StructureType(
+                org.robovm.compiler.llvm.Type.I8_PTR,
+                org.robovm.compiler.llvm.Type.I8_PTR,
+                org.robovm.compiler.llvm.Type.I8_PTR,
+                org.robovm.compiler.llvm.Type.I8_PTR,
+                org.robovm.compiler.llvm.Type.I8_PTR);
+
+        public MethodCompiler(Config config) {
+            super(config);
+        }
+
+        public boolean willCompile(SootMethod method) {
+            return "$publishObjClass".equals(method.getName()) && Annotations.hasAnnotation(method.getDeclaringClass(), ObjCMemberPlugin.CUSTOM_CLASS);
+        }
+
+        @Override
+        protected Function doCompile(ModuleBuilder moduleBuilder, SootMethod method) {
+            return publishObjClass(moduleBuilder, method);
+        }
+
+        private Function publishObjClass(ModuleBuilder moduleBuilder, SootMethod method) {
+            Function fn = createMethodFunction(method);
+            moduleBuilder.addFunction(fn);
+
+            // synthetic method `private static void publishObjClass(long objcClassHandle)` added in bind call
+            // implementing function:
+            // 1. adding OBJC_CLASS_$_${CustomClassName} global to allow linking with this class
+            // 2. code to memcpy class_t (objcClassHandle) to this global
+            // add global OBJC_CLASS_$_${CustomClassName} , it will allow
+            String objClassName = "OBJC_CLASS_$_" + getCustomClassName(method.getDeclaringClass());
+            Global OBJC_CLASS = new Global(objClassName, new ZeroInitializer(objc_class_type), false);
+            moduleBuilder.addGlobal(OBJC_CLASS);
+            // generate memcpy(OBJC_CLASS_$_${CustomClassName}, objcClassHandle, sizeof(class_t))
+            Variable dest = new Variable("dest", org.robovm.compiler.llvm.Type.I8_PTR);
+            Variable src = new Variable("src", org.robovm.compiler.llvm.Type.I8_PTR);
+            Variable sizeof = new Variable("sizeof", org.robovm.compiler.llvm.Type.I32);
+            fn.add(new Bitcast(dest, OBJC_CLASS.ref(), dest.getType()));
+            fn.add(new Inttoptr(src, fn.getParameterRef(1), dest.getType()));
+            fn.add(new Ptrtoint(sizeof,
+                    new ConstantGetelementptr(new org.robovm.compiler.llvm.NullConstant(new PointerType(objc_class_type)), 1),
+                    org.robovm.compiler.llvm.Type.I32));
+            fn.add(new Call(Functions.LLVM_MEMCPY, dest.ref(), src.ref(), sizeof.ref(), new IntegerConstant(1), BooleanConstant.TRUE));
+
+            // return back pointer to OBJC_CLASS_$_${CustomClassName}
+            Variable ret = new Variable("ret", org.robovm.compiler.llvm.Type.I64);
+            fn.add(new Ptrtoint(ret, dest.ref(), ret.getType()));
+            fn.add(new Ret(ret.ref()));
+            return fn;
+        }
+    }
 }

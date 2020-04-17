@@ -91,85 +91,28 @@ import org.robovm.apple.iosurface.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CVPixelBufferAttribute PixelFormatType = new CVPixelBufferAttribute("PixelFormatType");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CVPixelBufferAttribute MemoryAllocator = new CVPixelBufferAttribute("MemoryAllocator");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CVPixelBufferAttribute Width = new CVPixelBufferAttribute("Width");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CVPixelBufferAttribute Height = new CVPixelBufferAttribute("Height");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CVPixelBufferAttribute ExtendedPixelsLeft = new CVPixelBufferAttribute("ExtendedPixelsLeft");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CVPixelBufferAttribute ExtendedPixelsTop = new CVPixelBufferAttribute("ExtendedPixelsTop");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CVPixelBufferAttribute ExtendedPixelsRight = new CVPixelBufferAttribute("ExtendedPixelsRight");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CVPixelBufferAttribute ExtendedPixelsBottom = new CVPixelBufferAttribute("ExtendedPixelsBottom");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CVPixelBufferAttribute BytesPerRowAlignment = new CVPixelBufferAttribute("BytesPerRowAlignment");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CVPixelBufferAttribute CGBitmapContextCompatibility = new CVPixelBufferAttribute("CGBitmapContextCompatibility");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CVPixelBufferAttribute CGImageCompatibility = new CVPixelBufferAttribute("CGImageCompatibility");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CVPixelBufferAttribute OpenGLCompatibility = new CVPixelBufferAttribute("OpenGLCompatibility");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CVPixelBufferAttribute PlaneAlignment = new CVPixelBufferAttribute("PlaneAlignment");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CVPixelBufferAttribute IOSurfaceProperties = new CVPixelBufferAttribute("IOSurfaceProperties");
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public static final CVPixelBufferAttribute OpenGLESCompatibility = new CVPixelBufferAttribute("OpenGLESCompatibility");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final CVPixelBufferAttribute MetalCompatibility = new CVPixelBufferAttribute("MetalCompatibility");
     /**
      * @since Available in iOS 9.0 and later.
      */
     public static final CVPixelBufferAttribute OpenGLESTextureCacheCompatibility = new CVPixelBufferAttribute("OpenGLESTextureCacheCompatibility");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CVPixelBufferAttribute IOSurfaceCoreAnimationCompatibility = new CVPixelBufferAttribute("IOSurfaceCoreAnimationCompatibility");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final CVPixelBufferAttribute IOSurfaceOpenGLESTextureCompatibility = new CVPixelBufferAttribute("IOSurfaceOpenGLESTextureCompatibility");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final CVPixelBufferAttribute IOSurfaceOpenGLESFBOCompatibility = new CVPixelBufferAttribute("IOSurfaceOpenGLESFBOCompatibility");
     /*</constants>*/
     
@@ -196,84 +139,36 @@ import org.robovm.apple.iosurface.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVPixelBufferPixelFormatTypeKey", optional=true)
         public static native CFString PixelFormatType();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVPixelBufferMemoryAllocatorKey", optional=true)
         public static native CFString MemoryAllocator();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVPixelBufferWidthKey", optional=true)
         public static native CFString Width();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVPixelBufferHeightKey", optional=true)
         public static native CFString Height();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVPixelBufferExtendedPixelsLeftKey", optional=true)
         public static native CFString ExtendedPixelsLeft();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVPixelBufferExtendedPixelsTopKey", optional=true)
         public static native CFString ExtendedPixelsTop();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVPixelBufferExtendedPixelsRightKey", optional=true)
         public static native CFString ExtendedPixelsRight();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVPixelBufferExtendedPixelsBottomKey", optional=true)
         public static native CFString ExtendedPixelsBottom();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVPixelBufferBytesPerRowAlignmentKey", optional=true)
         public static native CFString BytesPerRowAlignment();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVPixelBufferCGBitmapContextCompatibilityKey", optional=true)
         public static native CFString CGBitmapContextCompatibility();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVPixelBufferCGImageCompatibilityKey", optional=true)
         public static native CFString CGImageCompatibility();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVPixelBufferOpenGLCompatibilityKey", optional=true)
         public static native CFString OpenGLCompatibility();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVPixelBufferPlaneAlignmentKey", optional=true)
         public static native CFString PlaneAlignment();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVPixelBufferIOSurfacePropertiesKey", optional=true)
         public static native CFString IOSurfaceProperties();
-        /**
-         * @since Available in iOS 6.0 and later.
-         */
         @GlobalValue(symbol="kCVPixelBufferOpenGLESCompatibilityKey", optional=true)
         public static native CFString OpenGLESCompatibility();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="kCVPixelBufferMetalCompatibilityKey", optional=true)
         public static native CFString MetalCompatibility();
         /**
@@ -281,19 +176,10 @@ import org.robovm.apple.iosurface.*;
          */
         @GlobalValue(symbol="kCVPixelBufferOpenGLESTextureCacheCompatibilityKey", optional=true)
         public static native CFString OpenGLESTextureCacheCompatibility();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVPixelBufferIOSurfaceCoreAnimationCompatibilityKey", optional=true)
         public static native CFString IOSurfaceCoreAnimationCompatibility();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="kCVPixelBufferIOSurfaceOpenGLESTextureCompatibilityKey", optional=true)
         public static native CFString IOSurfaceOpenGLESTextureCompatibility();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="kCVPixelBufferIOSurfaceOpenGLESFBOCompatibilityKey", optional=true)
         public static native CFString IOSurfaceOpenGLESFBOCompatibility();
         /*</values>*/

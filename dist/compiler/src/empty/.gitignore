@@ -1,0 +1,4 @@
+# Empty directory used as basedir when generating empty javadoc and sources jar
+# files. These empty files are requred when deployin release artifacts to mvn
+*
+!.gitignore

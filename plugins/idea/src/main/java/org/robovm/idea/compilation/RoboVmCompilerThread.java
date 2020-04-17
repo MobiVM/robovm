@@ -22,7 +22,7 @@ import com.intellij.openapi.progress.ProgressIndicator;
 import org.robovm.compiler.AppCompiler;
 
 /**
- * {@link Thread} which calls {@link AppCompiler#compile()} and waits for it
+ * {@link Thread} which calls AppCompiler#compile() and waits for it
  * to finish.
  */
 public class RoboVmCompilerThread extends Thread {
@@ -41,7 +41,7 @@ public class RoboVmCompilerThread extends Thread {
         while (isAlive() && !monitor.isCanceled()) {
             join(3000);
         }
-        if (isAlive() && monitor.isCanceled()) {
+        if (isAlive()) {
             interrupt();
             join(3000);
         }

@@ -41,9 +41,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 6.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVAssetResourceLoadingRequest/*</name>*/ 
@@ -63,39 +61,18 @@ import org.robovm.apple.audiotoolbox.*;
     public native NSURLRequest getRequest();
     @Property(selector = "isFinished")
     public native boolean isFinished();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "isCancelled")
     public native boolean isCancelled();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "contentInformationRequest")
     public native AVAssetResourceLoadingContentInformationRequest getContentInformationRequest();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "dataRequest")
     public native AVAssetResourceLoadingDataRequest getDataRequest();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "response")
     public native NSURLResponse getResponse();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setResponse:")
     public native void setResponse(NSURLResponse v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "redirect")
     public native NSURLRequest getRedirect();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setRedirect:")
     public native void setRedirect(NSURLRequest v);
     /**
@@ -106,9 +83,6 @@ import org.robovm.apple.audiotoolbox.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "finishLoading")
     public native void finishLoading();
     @Method(selector = "finishLoadingWithError:")
@@ -136,8 +110,7 @@ import org.robovm.apple.audiotoolbox.*;
     @Method(selector = "persistentContentKeyFromKeyVendorResponse:options:error:")
     private native NSData getPersistentContentKey(NSData keyVendorResponse, AVAssetResourceLoadingRequestOptions options, NSError.NSErrorPtr outError);
     /**
-     * @since Available in iOS 6.0 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. No longer supported
      */
     @Deprecated
     @Method(selector = "finishLoadingWithResponse:data:redirect:")

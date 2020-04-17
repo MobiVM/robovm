@@ -34,9 +34,7 @@ import org.robovm.apple.fileprovider.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("CloudKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CKServerChangeToken/*</name>*/ 
@@ -51,7 +49,7 @@ import org.robovm.apple.fileprovider.*;
     protected CKServerChangeToken(Handle h, long handle) { super(h, handle); }
     protected CKServerChangeToken(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public CKServerChangeToken(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public CKServerChangeToken(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "supportsSecureCoding")
@@ -62,6 +60,6 @@ import org.robovm.apple.fileprovider.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

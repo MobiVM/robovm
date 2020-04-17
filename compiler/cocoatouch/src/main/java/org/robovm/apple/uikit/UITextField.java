@@ -37,14 +37,14 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 import org.robovm.apple.corefoundation.CFDictionary;
 import org.robovm.apple.coremedia.CMTextMarkupAttributes;
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 2.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UITextField/*</name>*/ 
@@ -87,7 +87,7 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     @Method(selector = "initWithFrame:")
     public UITextField(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public UITextField(NSCoder decoder) { super(decoder); }
+    public UITextField(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /**
      * @since Available in iOS 7.0 and later.
@@ -210,14 +210,8 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     public native String getText();
     @Property(selector = "setText:")
     public native void setText(String v);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "attributedText")
     public native NSAttributedString getAttributedText();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "setAttributedText:")
     public native void setAttributedText(NSAttributedString v);
     @Property(selector = "textColor")
@@ -236,28 +230,16 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     public native UITextBorderStyle getBorderStyle();
     @Property(selector = "setBorderStyle:")
     public native void setBorderStyle(UITextBorderStyle v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "defaultTextAttributes")
     public native NSDictionary<NSString, ?> getDefaultTextAttributesDictionary();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setDefaultTextAttributes:")
     public native void setDefaultTextAttributesDictionary(NSDictionary<NSString, ?> v);
     @Property(selector = "placeholder")
     public native String getPlaceholder();
     @Property(selector = "setPlaceholder:")
     public native void setPlaceholder(String v);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "attributedPlaceholder")
     public native NSAttributedString getAttributedPlaceholder();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "setAttributedPlaceholder:")
     public native void setAttributedPlaceholder(NSAttributedString v);
     @Property(selector = "clearsOnBeginEditing")
@@ -286,24 +268,12 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     public native void setDisabledBackground(UIImage v);
     @Property(selector = "isEditing")
     public native boolean isEditing();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "allowsEditingTextAttributes")
     public native boolean allowsEditingTextAttributes();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "setAllowsEditingTextAttributes:")
     public native void setAllowsEditingTextAttributes(boolean v);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "typingAttributes")
     public native NSDictionary<NSString, ?> getTypingAttributesDictionary();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "setTypingAttributes:")
     public native void setTypingAttributesDictionary(NSDictionary<NSString, ?> v);
     @Property(selector = "clearButtonMode")
@@ -334,14 +304,8 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     public native UIView getInputAccessoryView();
     @Property(selector = "setInputAccessoryView:")
     public native void setInputAccessoryView(UIView v);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "clearsOnInsertion")
     public native boolean clearsOnInsertion();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "setClearsOnInsertion:")
     public native void setClearsOnInsertion(boolean v);
     @Property(selector = "selectedTextRange")
@@ -382,14 +346,8 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     public native UITextAutocorrectionType getAutocorrectionType();
     @Property(selector = "setAutocorrectionType:")
     public native void setAutocorrectionType(UITextAutocorrectionType v);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "spellCheckingType")
     public native UITextSpellCheckingType getSpellCheckingType();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setSpellCheckingType:")
     public native void setSpellCheckingType(UITextSpellCheckingType v);
     /**
@@ -550,16 +508,13 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     @Method(selector = "characterRangeByExtendingPosition:inDirection:")
     public native UITextRange getCharacterRange(UITextPosition position, UITextLayoutDirection direction);
     @Method(selector = "baseWritingDirectionForPosition:inDirection:")
-    public native UITextWritingDirection getBaseWritingDirection(UITextPosition position, UITextStorageDirection direction);
+    public native NSWritingDirection getBaseWritingDirection(UITextPosition position, UITextStorageDirection direction);
     @Method(selector = "setBaseWritingDirection:forRange:")
-    public native void setBaseWritingDirection(UITextWritingDirection writingDirection, UITextRange range);
+    public native void setBaseWritingDirection(NSWritingDirection writingDirection, UITextRange range);
     @Method(selector = "firstRectForRange:")
     public native @ByVal CGRect getFirstRect(UITextRange range);
     @Method(selector = "caretRectForPosition:")
     public native @ByVal CGRect getCaretRect(UITextPosition position);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "selectionRectsForRange:")
     public native NSArray<UITextSelectionRect> getSelectionRects(UITextRange range);
     @Method(selector = "closestPositionToPoint:")
@@ -568,9 +523,6 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     public native UITextPosition getClosestPosition(@ByVal CGPoint point, UITextRange range);
     @Method(selector = "characterRangeAtPoint:")
     public native UITextRange getCharacterRange(@ByVal CGPoint point);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "shouldChangeTextInRange:replacementText:")
     public native boolean shouldChangeText(UITextRange range, String text);
     @Method(selector = "textStylingAtPosition:inDirection:")
@@ -589,6 +541,14 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     public native @ByVal CGRect getDictationResultPlaceholderFrame(NSObject placeholder);
     @Method(selector = "removeDictationResultPlaceholder:willInsertResult:")
     public native void removeDictationResultPlaceholder(NSObject placeholder, boolean willInsertResult);
+    @Method(selector = "insertText:alternatives:style:")
+    public native void insertText(String text, NSArray<NSString> alternatives, UITextAlternativeStyle style);
+    @Method(selector = "setAttributedMarkedText:selectedRange:")
+    public native void setAttributedMarkedText(NSAttributedString markedText, @ByVal NSRange selectedRange);
+    @Method(selector = "insertTextPlaceholderWithSize:")
+    public native UITextPlaceholder insertTextPlaceholder(@ByVal CGSize size);
+    @Method(selector = "removeTextPlaceholder:")
+    public native void removeTextPlaceholder(UITextPlaceholder textPlaceholder);
     /**
      * @since Available in iOS 9.0 and later.
      */

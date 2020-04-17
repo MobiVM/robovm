@@ -89,97 +89,28 @@ import org.robovm.apple.addressbook.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final ABPersonPredicateKeyPath NamePrefix = new ABPersonPredicateKeyPath("NamePrefix");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final ABPersonPredicateKeyPath GivenName = new ABPersonPredicateKeyPath("GivenName");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final ABPersonPredicateKeyPath MiddleName = new ABPersonPredicateKeyPath("MiddleName");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final ABPersonPredicateKeyPath FamilyName = new ABPersonPredicateKeyPath("FamilyName");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final ABPersonPredicateKeyPath NameSuffix = new ABPersonPredicateKeyPath("NameSuffix");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final ABPersonPredicateKeyPath PreviousFamilyName = new ABPersonPredicateKeyPath("PreviousFamilyName");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final ABPersonPredicateKeyPath Nickname = new ABPersonPredicateKeyPath("Nickname");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final ABPersonPredicateKeyPath PhoneticGivenName = new ABPersonPredicateKeyPath("PhoneticGivenName");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final ABPersonPredicateKeyPath PhoneticMiddleName = new ABPersonPredicateKeyPath("PhoneticMiddleName");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final ABPersonPredicateKeyPath PhoneticFamilyName = new ABPersonPredicateKeyPath("PhoneticFamilyName");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final ABPersonPredicateKeyPath OrganizationName = new ABPersonPredicateKeyPath("OrganizationName");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final ABPersonPredicateKeyPath DepartmentName = new ABPersonPredicateKeyPath("DepartmentName");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final ABPersonPredicateKeyPath JobTitle = new ABPersonPredicateKeyPath("JobTitle");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final ABPersonPredicateKeyPath Birthday = new ABPersonPredicateKeyPath("Birthday");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final ABPersonPredicateKeyPath Note = new ABPersonPredicateKeyPath("Note");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final ABPersonPredicateKeyPath PhoneNumbers = new ABPersonPredicateKeyPath("PhoneNumbers");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final ABPersonPredicateKeyPath EmailAddresses = new ABPersonPredicateKeyPath("EmailAddresses");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final ABPersonPredicateKeyPath UrlAddresses = new ABPersonPredicateKeyPath("UrlAddresses");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final ABPersonPredicateKeyPath Dates = new ABPersonPredicateKeyPath("Dates");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final ABPersonPredicateKeyPath InstantMessageAddresses = new ABPersonPredicateKeyPath("InstantMessageAddresses");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final ABPersonPredicateKeyPath RelatedNames = new ABPersonPredicateKeyPath("RelatedNames");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final ABPersonPredicateKeyPath SocialProfiles = new ABPersonPredicateKeyPath("SocialProfiles");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final ABPersonPredicateKeyPath PostalAddresses = new ABPersonPredicateKeyPath("PostalAddresses");
     /*</constants>*/
     
@@ -206,119 +137,50 @@ import org.robovm.apple.addressbook.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="ABPersonNamePrefixProperty", optional=true)
         public static native NSString NamePrefix();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="ABPersonGivenNameProperty", optional=true)
         public static native NSString GivenName();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="ABPersonMiddleNameProperty", optional=true)
         public static native NSString MiddleName();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="ABPersonFamilyNameProperty", optional=true)
         public static native NSString FamilyName();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="ABPersonNameSuffixProperty", optional=true)
         public static native NSString NameSuffix();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="ABPersonPreviousFamilyNameProperty", optional=true)
         public static native NSString PreviousFamilyName();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="ABPersonNicknameProperty", optional=true)
         public static native NSString Nickname();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="ABPersonPhoneticGivenNameProperty", optional=true)
         public static native NSString PhoneticGivenName();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="ABPersonPhoneticMiddleNameProperty", optional=true)
         public static native NSString PhoneticMiddleName();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="ABPersonPhoneticFamilyNameProperty", optional=true)
         public static native NSString PhoneticFamilyName();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="ABPersonOrganizationNameProperty", optional=true)
         public static native NSString OrganizationName();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="ABPersonDepartmentNameProperty", optional=true)
         public static native NSString DepartmentName();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="ABPersonJobTitleProperty", optional=true)
         public static native NSString JobTitle();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="ABPersonBirthdayProperty", optional=true)
         public static native NSString Birthday();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="ABPersonNoteProperty", optional=true)
         public static native NSString Note();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="ABPersonPhoneNumbersProperty", optional=true)
         public static native NSString PhoneNumbers();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="ABPersonEmailAddressesProperty", optional=true)
         public static native NSString EmailAddresses();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="ABPersonUrlAddressesProperty", optional=true)
         public static native NSString UrlAddresses();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="ABPersonDatesProperty", optional=true)
         public static native NSString Dates();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="ABPersonInstantMessageAddressesProperty", optional=true)
         public static native NSString InstantMessageAddresses();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="ABPersonRelatedNamesProperty", optional=true)
         public static native NSString RelatedNames();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="ABPersonSocialProfilesProperty", optional=true)
         public static native NSString SocialProfiles();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="ABPersonPostalAddressesProperty", optional=true)
         public static native NSString PostalAddresses();
         /*</values>*/

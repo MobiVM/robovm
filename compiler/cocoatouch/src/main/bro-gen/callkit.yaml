@@ -1,0 +1,202 @@
+package: org.robovm.apple.callkit
+include: [foundation, dispatch, avfoundation]
+library: CallKit
+framework: CallKit
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/CallKit.framework/Headers/CallKit.h
+
+private_typedefs:
+
+typedefs:
+
+enums:
+    CXErrorCode: {} #since 10.0
+    CXErrorCodeIncomingCallError: {} #since 10.0
+    CXErrorCodeRequestTransactionError: {} #since 10.0
+    CXErrorCodeCallDirectoryManagerError: {} #since 10.0
+    CXHandleType: {} #since 10.0
+    CXPlayDTMFCallActionType: {} #since 10.0
+    CXCallEndedReason: {} #since 10.0
+    CXCallDirectoryEnabledStatus: {} #since 10.0
+
+typed_enums:
+
+classes:
+    CXAction: #since 10.0
+        methods:
+            '-initWithCoder:':
+                name: init
+    CXAnswerCallAction: #since 10.0
+        methods:
+            '-fulfillWithDateConnected:':
+                name: fulfill
+    CXCall: {} #since 10.0
+    CXCallAction: #since 10.0
+        methods:
+            '-initWithCallUUID:':
+                name: init
+    CXCallController: #since 10.0
+        methods:
+            '-initWithQueue:':
+                name: init
+            '-requestTransaction:completion:':
+                name: requestTransaction
+            '-requestTransactionWithActions:completion:':
+                name: requestTransaction
+            '-requestTransactionWithAction:completion:':
+                name: requestTransaction
+    CXCallDirectoryExtensionContext: #since 10.0
+        methods:
+            '-addBlockingEntryWithNextSequentialPhoneNumber:':
+                name: addBlockingEntry
+            '-removeBlockingEntryWithPhoneNumber:':
+                name: removeBlockingEntry
+            '-addIdentificationEntryWithNextSequentialPhoneNumber:label:':
+                name: addIdentificationEntry
+            '-removeIdentificationEntryWithPhoneNumber:':
+                name: removeIdentificationEntry
+            '-completeRequestWithCompletionHandler:':
+                name: completeReques
+    CXCallDirectoryManager: #since 10.0
+        methods:
+            '-reloadExtensionWithIdentifier:completionHandler:':
+                name: reloadExtension
+            '-getEnabledStatusForExtensionWithIdentifier:completionHandler:':
+                name: getEnabledStatusForExtension
+            '-openSettingsWithCompletionHandler:':
+                name: openSettings
+    CXCallDirectoryProvider: #since 10.0
+        methods:
+            '-beginRequestWithExtensionContext:':
+                name: beginRequest
+    CXCallObserver: #since 10.0
+        methods:
+            '-setDelegate:queue:':
+                name: setDelegate
+    CXCallUpdate: {} #since 10.0
+    CXEndCallAction: #since 10.0
+        methods:
+            '-fulfillWithDateEnded:':
+                name: fulfill
+    CXHandle: #since 10.0
+        methods:
+            '-initWithType:value:':
+                name: init
+    CXPlayDTMFCallAction: #since 10.0
+        methods:
+            '-initWithCallUUID:digits:type:':
+                name: init
+    CXProvider: #since 10.0
+        methods:
+            '-initWithConfiguration:':
+                name: init
+            '-setDelegate:queue:':
+                name: setDelegate
+            '-reportNewIncomingCallWithUUID:update:completion:':
+                name: reportNewIncomingCall
+            '-reportCallWithUUID:updated:':
+                name: reportCall
+            '-reportCallWithUUID:endedAtDate:reason:':
+                name: reportCall
+            '-reportOutgoingCallWithUUID:startedConnectingAtDate:':
+                name: reportOutgoingStartedCall
+            '-reportOutgoingCallWithUUID:connectedAtDate:':
+                name: reportOutgoingConnectedCall
+            '-pendingCallActionsOfClass:withCallUUID:':
+                name: getPendingCallActionsOfClass
+    CXProviderConfiguration: #since 10.0
+        methods:
+            '-initWithLocalizedName:':
+                name: init
+    CXSetGroupCallAction: #since 10.0
+        methods:
+            '-initWithCallUUID:callUUIDToGroupWith:':
+                name: init
+    CXSetHeldCallAction: #since 10.0
+        methods:
+            '-initWithCallUUID:onHold:':
+                name: init
+    CXSetMutedCallAction: #since 10.0
+        methods:
+            '-initWithCallUUID:muted:':
+                name: init
+    CXStartCallAction: #since 10.0
+        properties:
+            handle:
+                name: getCallHandle
+        methods:
+            '-initWithCallUUID:handle:':
+                name: init
+            '-fulfillWithDateStarted:':
+                name: fulfill
+    CXTransaction: #since 10.0
+        methods:
+            '-initWithActions:':
+                name: init
+            '-initWithAction:':
+                name: init
+
+protocols:
+    CXCallDirectoryExtensionContextDelegate: #since 10.0
+        methods:
+            '-requestFailedForExtensionContext:withError:':
+                name: requestFailed
+    CXCallObserverDelegate: #since 10.0
+        methods:
+            '-callObserver:callChanged:':
+                name: callChanged
+    CXProviderDelegate: #since 10.0
+        methods:
+            '-provider:executeTransaction:':
+                name: executeTransaction
+            '-provider:performStartCallAction:':
+                name: performStartCallAction
+            '-provider:performAnswerCallAction:':
+                name: performAnswerCallAction
+            '-provider:performEndCallAction:':
+                name: performEndCallAction
+            '-provider:performSetHeldCallAction:':
+                name: performSetHeldCallAction
+            '-provider:performSetMutedCallAction:':
+                name: performSetMutedCallAction
+            '-provider:performSetGroupCallAction:':
+                name: performSetGroupCallAction
+            '-provider:performPlayDTMFCallAction:':
+                name: performPlayDTMFCallAction
+            '-provider:timedOutPerformingAction:':
+                name: timedOutPerformingAction
+            '-provider:didActivateAudioSession:':
+                name: didActivateAudioSession
+            '-provider:didDeactivateAudioSession:':
+                name: didDeactivateAudioSession
+functions:
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (k?CX.*):
+        class: FixMe
+        name: 'Function__#{g[0]}'
+
+values:
+    CXErrorDomain:
+        class: CXErrorCode
+        name: getClassDomain
+    CXErrorDomainIncomingCall:
+        class: CXErrorCodeIncomingCallError
+        name: getClassDomain
+    CXErrorDomainRequestTransaction:
+        class: CXErrorCodeRequestTransactionError
+        name: getClassDomain
+    CXErrorDomainCallDirectoryManager:
+        class: CXErrorCodeCallDirectoryManagerError
+        name: getClassDomain
+
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (k?CX.*):
+        class: FixMe
+        name: 'Value__#{g[0]}'
+
+constants:
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (k?CX.*):
+        class: FixMe
+        name: 'Constant__#{g[0]}'

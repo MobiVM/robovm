@@ -39,7 +39,7 @@ import org.robovm.apple.modelio.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*/@Library("GLKit")/*</annotations>*/
+/*<annotations>*//*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GLKVector3/*</name>*/ 
     extends /*<extends>*/Struct<GLKVector3>/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -59,81 +59,356 @@ import org.robovm.apple.modelio.*;
     @StructMember(0) public native GLKVector3 setV(@Array({3}) FloatBuffer v);
     /*</members>*/
     /*<methods>*/
-    @Bridge(symbol="GLKVector3Make", optional=true)
-    public static native @ByVal GLKVector3 create(float x, float y, float z);
-    @Bridge(symbol="GLKVector3MakeWithArray", optional=true)
-    public static native @ByVal GLKVector3 create(@Array({3}) FloatBuffer values);
-    public GLKVector3 negate() { return negate(this); }
-    @Bridge(symbol="GLKVector3Negate", optional=true)
-    private static native @ByVal GLKVector3 negate(@ByVal GLKVector3 vector);
+
+    //
+    // manually added methods  as apple moved these from global to static inline
+    //
+    /**
+     * ported from GLKVector3Make
+     */
+    public static GLKVector3 create(float x, float y, float z) {
+        float[] v = {x, y, z};
+        return create(v);
+    }
+
+    /**
+     * ported from GLKVector3MakeWithArray
+     */
+    public static GLKVector3 create(float[] values) {
+        return new GLKVector3(FloatBuffer.wrap(values));
+    }
+
+    /**
+     * ported from GLKVector3Negate
+     */
+    public GLKVector3 negate() {
+        float[] v = { -getV().get(0), -getV().get(1), -getV().get(2) };
+        return create(v);
+    }
+
     public GLKVector3 add(GLKVector3 vectorRight) { return add(this, vectorRight); }
-    @Bridge(symbol="GLKVector3Add", optional=true)
-    private static native @ByVal GLKVector3 add(@ByVal GLKVector3 vectorLeft, @ByVal GLKVector3 vectorRight);
+    /**
+     * ported from GLKVector3Add
+     */
+    public static GLKVector3 add(GLKVector3 vectorLeft, GLKVector3 vectorRight) {
+        float[] vectorLeft_v = new float[3];
+        float[] vectorRight_v = new float[3];
+        vectorLeft.getV().get(vectorLeft_v);
+        vectorRight.getV().get(vectorRight_v);
+
+        float[] v = {
+                vectorLeft_v[0] + vectorRight_v[0],
+                vectorLeft_v[1] + vectorRight_v[1],
+                vectorLeft_v[2] + vectorRight_v[2] };
+        return create(v);
+    }
+
     public GLKVector3 subtract(GLKVector3 vectorRight) { return subtract(this, vectorRight); }
-    @Bridge(symbol="GLKVector3Subtract", optional=true)
-    private static native @ByVal GLKVector3 subtract(@ByVal GLKVector3 vectorLeft, @ByVal GLKVector3 vectorRight);
+    /**
+     * ported from GLKVector3Subtract
+     */
+    public static GLKVector3 subtract(GLKVector3 vectorLeft, GLKVector3 vectorRight) {
+        float[] vectorLeft_v = new float[3];
+        float[] vectorRight_v = new float[3];
+        vectorLeft.getV().get(vectorLeft_v);
+        vectorRight.getV().get(vectorRight_v);
+
+        float[] v = {
+                vectorLeft_v[0] - vectorRight_v[0],
+                vectorLeft_v[1] - vectorRight_v[1],
+                vectorLeft_v[2] - vectorRight_v[2] };
+        return create(v);
+    }
+
     public GLKVector3 multiply(GLKVector3 vectorRight) { return multiply(this, vectorRight); }
-    @Bridge(symbol="GLKVector3Multiply", optional=true)
-    private static native @ByVal GLKVector3 multiply(@ByVal GLKVector3 vectorLeft, @ByVal GLKVector3 vectorRight);
+    /**
+     * ported from GLKVector3Multiply
+     */
+    public static GLKVector3 multiply(GLKVector3 vectorLeft, GLKVector3 vectorRight) {
+        float[] vectorLeft_v = new float[3];
+        float[] vectorRight_v = new float[3];
+        vectorLeft.getV().get(vectorLeft_v);
+        vectorRight.getV().get(vectorRight_v);
+
+        float[] v = {
+                vectorLeft_v[0] * vectorRight_v[0],
+                vectorLeft_v[1] * vectorRight_v[1],
+                vectorLeft_v[2] * vectorRight_v[2] };
+        return create(v);
+    }
+
     public GLKVector3 divide(GLKVector3 vectorRight) { return divide(this, vectorRight); }
-    @Bridge(symbol="GLKVector3Divide", optional=true)
-    private static native @ByVal GLKVector3 divide(@ByVal GLKVector3 vectorLeft, @ByVal GLKVector3 vectorRight);
-    public GLKVector3 addScalar(float value) { return addScalar(this, value); }
-    @Bridge(symbol="GLKVector3AddScalar", optional=true)
-    private static native @ByVal GLKVector3 addScalar(@ByVal GLKVector3 vector, float value);
-    public GLKVector3 subtractScalar(float value) { return subtractScalar(this, value); }
-    @Bridge(symbol="GLKVector3SubtractScalar", optional=true)
-    private static native @ByVal GLKVector3 subtractScalar(@ByVal GLKVector3 vector, float value);
-    public GLKVector3 multiplyScalar(float value) { return multiplyScalar(this, value); }
-    @Bridge(symbol="GLKVector3MultiplyScalar", optional=true)
-    private static native @ByVal GLKVector3 multiplyScalar(@ByVal GLKVector3 vector, float value);
-    public GLKVector3 divideScalar(float value) { return divideScalar(this, value); }
-    @Bridge(symbol="GLKVector3DivideScalar", optional=true)
-    private static native @ByVal GLKVector3 divideScalar(@ByVal GLKVector3 vector, float value);
+    /**
+     * ported from GLKVector3Divide
+     */
+    public static GLKVector3 divide(GLKVector3 vectorLeft, GLKVector3 vectorRight) {
+        float[] vectorLeft_v = new float[3];
+        float[] vectorRight_v = new float[3];
+        vectorLeft.getV().get(vectorLeft_v);
+        vectorRight.getV().get(vectorRight_v);
+
+        float[] v = {
+                vectorLeft_v[0] / vectorRight_v[0],
+                vectorLeft_v[1] / vectorRight_v[1],
+                vectorLeft_v[2] / vectorRight_v[2] };
+        return create(v);
+    }
+
+    /**
+     * ported from GLKVector3AddScalar
+     */
+    public GLKVector3 addScalar(float value) {
+        float[] vectorLeft_v = new float[3];
+        this.getV().get(vectorLeft_v);
+
+        float[] v = {
+                vectorLeft_v[0] + value,
+                vectorLeft_v[1] + value,
+                vectorLeft_v[2] + value };
+        return create(v);
+    }
+
+    /**
+     * ported from GLKVector3SubtractScalar
+     */
+    public GLKVector3 subtractScalar(float value) {
+        float[] vectorLeft_v = new float[3];
+        this.getV().get(vectorLeft_v);
+
+        float[] v = {
+                vectorLeft_v[0] - value,
+                vectorLeft_v[1] - value,
+                vectorLeft_v[2] - value };
+        return create(v);
+    }
+
+    /**
+     * ported from GLKVector3MultiplyScalar
+     */
+    public GLKVector3 multiplyScalar(float value) {
+        float[] vectorLeft_v = new float[3];
+        this.getV().get(vectorLeft_v);
+
+        float[] v = {
+                vectorLeft_v[0] * value,
+                vectorLeft_v[1] * value,
+                vectorLeft_v[2] * value };
+        return create(v);
+    }
+
+    /**
+     * ported from GLKVector3DivideScalar
+     */
+    public GLKVector3 divideScalar(float value) {
+        float[] vectorLeft_v = new float[3];
+        this.getV().get(vectorLeft_v);
+
+        float[] v = {
+                vectorLeft_v[0] / value,
+                vectorLeft_v[1] / value,
+                vectorLeft_v[2] / value };
+        return create(v);
+    }
+
     public GLKVector3 maximum(GLKVector3 vectorRight) { return maximum(this, vectorRight); }
-    @Bridge(symbol="GLKVector3Maximum", optional=true)
-    private static native @ByVal GLKVector3 maximum(@ByVal GLKVector3 vectorLeft, @ByVal GLKVector3 vectorRight);
+    /**
+     * ported from GLKVector3Maximum
+     */
+    public static GLKVector3 maximum(GLKVector3 vectorLeft, GLKVector3 vectorRight) {
+        float[] vectorLeft_v = new float[3];
+        float[] vectorRight_v = new float[3];
+        vectorLeft.getV().get(vectorLeft_v);
+        vectorRight.getV().get(vectorRight_v);
+        GLKVector3 max = vectorLeft.copy();
+        if (vectorRight_v[0] > vectorLeft_v[0])
+            max.getV().put(0, vectorRight_v[0]);
+        if (vectorRight_v[1] > vectorLeft_v[1])
+            max.getV().put(1, vectorRight_v[1]);
+        if (vectorRight_v[2] > vectorLeft_v[2])
+            max.getV().put(2, vectorRight_v[2]);
+        return max;
+    }
+
     public GLKVector3 minimum(GLKVector3 vectorRight) { return minimum(this, vectorRight); }
-    @Bridge(symbol="GLKVector3Minimum", optional=true)
-    private static native @ByVal GLKVector3 minimum(@ByVal GLKVector3 vectorLeft, @ByVal GLKVector3 vectorRight);
+    /**
+     * ported from GLKVector3Minimum
+     */
+    public static GLKVector3 minimum(GLKVector3 vectorLeft, GLKVector3 vectorRight) {
+        float[] vectorLeft_v = new float[3];
+        float[] vectorRight_v = new float[3];
+        vectorLeft.getV().get(vectorLeft_v);
+        vectorRight.getV().get(vectorRight_v);
+        GLKVector3 min = vectorLeft.copy();
+        if (vectorRight_v[0] < vectorLeft_v[0])
+            min.getV().put(0, vectorRight_v[0]);
+        if (vectorRight_v[1] < vectorLeft_v[1])
+            min.getV().put(1, vectorRight_v[1]);
+        if (vectorRight_v[2] < vectorLeft_v[2])
+            min.getV().put(2, vectorRight_v[2]);
+        return min;
+    }
+
+    /**
+     * ported from GLKVector3AllEqualToVector3
+     */
     public boolean allEqualToVector3(GLKVector3 vectorRight) { return allEqualToVector3(this, vectorRight); }
-    @Bridge(symbol="GLKVector3AllEqualToVector3", optional=true)
-    private static native boolean allEqualToVector3(@ByVal GLKVector3 vectorLeft, @ByVal GLKVector3 vectorRight);
-    public boolean allEqualToScalar(float value) { return allEqualToScalar(this, value); }
-    @Bridge(symbol="GLKVector3AllEqualToScalar", optional=true)
-    private static native boolean allEqualToScalar(@ByVal GLKVector3 vector, float value);
+    /**
+     * ported from GLKVector3AllEqualToVector3
+     */
+    public static boolean allEqualToVector3(GLKVector3 vectorLeft, GLKVector3 vectorRight) {
+        float[] vectorLeft_v = new float[3];
+        float[] vectorRight_v = new float[3];
+        vectorLeft.getV().get(vectorLeft_v);
+        vectorRight.getV().get(vectorRight_v);
+        boolean compare = false;
+        if (vectorLeft_v[0] == vectorRight_v[0] &&
+                vectorLeft_v[1] == vectorRight_v[1] &&
+                vectorLeft_v[2] == vectorRight_v[2])
+            compare = true;
+        return compare;
+    }
+
+    /**
+     * ported from GLKVector3AllEqualToScalar
+     */
+    public boolean allEqualToScalar(float value) {
+        boolean compare = false;
+        if (getV().get(0) == value && getV().get(1) == value && getV().get(2) == value)
+            compare = true;
+        return compare;
+    }
+
     public boolean allGreaterThanVector3(GLKVector3 vectorRight) { return allGreaterThanVector3(this, vectorRight); }
-    @Bridge(symbol="GLKVector3AllGreaterThanVector3", optional=true)
-    private static native boolean allGreaterThanVector3(@ByVal GLKVector3 vectorLeft, @ByVal GLKVector3 vectorRight);
-    public boolean allGreaterThanScalar(float value) { return allGreaterThanScalar(this, value); }
-    @Bridge(symbol="GLKVector3AllGreaterThanScalar", optional=true)
-    private static native boolean allGreaterThanScalar(@ByVal GLKVector3 vector, float value);
+    /**
+     * ported from GLKVector3AllGreaterThanVector3
+     */
+    public static boolean allGreaterThanVector3(GLKVector3 vectorLeft, GLKVector3 vectorRight) {
+        float[] vectorLeft_v = new float[3];
+        float[] vectorRight_v = new float[3];
+        vectorLeft.getV().get(vectorLeft_v);
+        vectorRight.getV().get(vectorRight_v);
+        boolean compare = false;
+        if (vectorLeft_v[0] > vectorRight_v[0] &&
+                vectorLeft_v[1] > vectorRight_v[1] &&
+                vectorLeft_v[2] > vectorRight_v[2])
+            compare = true;
+        return compare;
+    }
+
+    /**
+     * ported from GLKVector3AllGreaterThanScalar
+     */
+    public boolean allGreaterThanScalar(float value) {
+        boolean compare = false;
+        if (getV().get(0) > value && getV().get(1) > value && getV().get(2) > value)
+            compare = true;
+        return compare;
+    }
+
     public boolean allGreaterThanOrEqualToVector3(GLKVector3 vectorRight) { return allGreaterThanOrEqualToVector3(this, vectorRight); }
-    @Bridge(symbol="GLKVector3AllGreaterThanOrEqualToVector3", optional=true)
-    private static native boolean allGreaterThanOrEqualToVector3(@ByVal GLKVector3 vectorLeft, @ByVal GLKVector3 vectorRight);
-    public boolean allGreaterThanOrEqualToScalar(float value) { return allGreaterThanOrEqualToScalar(this, value); }
-    @Bridge(symbol="GLKVector3AllGreaterThanOrEqualToScalar", optional=true)
-    private static native boolean allGreaterThanOrEqualToScalar(@ByVal GLKVector3 vector, float value);
-    public GLKVector3 normalize() { return normalize(this); }
-    @Bridge(symbol="GLKVector3Normalize", optional=true)
-    private static native @ByVal GLKVector3 normalize(@ByVal GLKVector3 vector);
+    /**
+     * ported from GLKVector3AllGreaterThanOrEqualToVector3
+     */
+    public static boolean allGreaterThanOrEqualToVector3(GLKVector3 vectorLeft, GLKVector3 vectorRight) {
+        float[] vectorLeft_v = new float[3];
+        float[] vectorRight_v = new float[3];
+        vectorLeft.getV().get(vectorLeft_v);
+        vectorRight.getV().get(vectorRight_v);
+        boolean compare = false;
+        if (vectorLeft_v[0] >= vectorRight_v[0] &&
+                vectorLeft_v[1] >= vectorRight_v[1] &&
+                vectorLeft_v[2] >= vectorRight_v[2])
+            compare = true;
+        return compare;
+    }
+
+    /**
+     * ported from GLKVector3AllGreaterThanOrEqualToScalar
+     */
+    public boolean allGreaterThanOrEqualToScalar(float value) {
+        boolean compare = false;
+        if (getV().get(0) >= value && getV().get(1) >= value && getV().get(2) >= value)
+            compare = true;
+        return compare;
+    }
+
+    /**
+     * ported from GLKVector3Normalize
+     */
+    public GLKVector3 normalize() {
+        float scale = 1.0f / this.length();
+        float[] v = { getV().get(0) * scale, getV().get(1) * scale, getV().get(2) * scale };
+        return create(v);
+    }
+
     public float dotProduct(GLKVector3 vectorRight) { return dotProduct(this, vectorRight); }
-    @Bridge(symbol="GLKVector3DotProduct", optional=true)
-    private static native float dotProduct(@ByVal GLKVector3 vectorLeft, @ByVal GLKVector3 vectorRight);
-    public float length() { return length(this); }
-    @Bridge(symbol="GLKVector3Length", optional=true)
-    private static native float length(@ByVal GLKVector3 vector);
+    /**
+     * ported from GLKVector3DotProduct
+     */
+    public static float dotProduct(GLKVector3 vectorLeft, GLKVector3 vectorRight) {
+        float[] vectorLeft_v = new float[3];
+        float[] vectorRight_v = new float[3];
+        vectorLeft.getV().get(vectorLeft_v);
+        vectorRight.getV().get(vectorRight_v);
+        return vectorLeft_v[0] * vectorRight_v[0] + vectorLeft_v[1] * vectorRight_v[1] + vectorLeft_v[2] * vectorRight_v[2];
+    }
+
+    /**
+     * ported from GLKVector3Length
+     */
+    public float length() {
+        float[] vector_v = new float[3];
+        this.getV().get(vector_v);
+        return (float) Math.sqrt(vector_v[0] * vector_v[0] + vector_v[1] * vector_v[1] + vector_v[2] * vector_v[2]);
+    }
+
     public float distance(GLKVector3 vectorEnd) { return distance(this, vectorEnd); }
-    @Bridge(symbol="GLKVector3Distance", optional=true)
-    private static native float distance(@ByVal GLKVector3 vectorStart, @ByVal GLKVector3 vectorEnd);
+    /**
+     * ported from GLKVector3Distance
+     */
+    public static float distance(GLKVector3 vectorStart, GLKVector3 vectorEnd) {
+        return subtract(vectorEnd, vectorStart).length();
+    }
+
     public GLKVector3 lerp(GLKVector3 vectorEnd, float t) { return lerp(this, vectorEnd, t); }
-    @Bridge(symbol="GLKVector3Lerp", optional=true)
-    private static native @ByVal GLKVector3 lerp(@ByVal GLKVector3 vectorStart, @ByVal GLKVector3 vectorEnd, float t);
+    /**
+     * ported from GLKVector3Lerp
+     */
+    public static GLKVector3 lerp(GLKVector3 vectorStart, GLKVector3 vectorEnd, float t) {
+        float[] vectorStart_v = new float[3];
+        float[] vectorEnd_v = new float[3];
+        vectorStart.getV().get(vectorStart_v);
+        vectorEnd.getV().get(vectorEnd_v);
+        float[] v = {
+                vectorStart_v[0] + ((vectorEnd_v[0] - vectorStart_v[0]) * t),
+                vectorStart_v[1] + ((vectorEnd_v[1] - vectorStart_v[1]) * t),
+                vectorStart_v[2] + ((vectorEnd_v[2] - vectorStart_v[2]) * t) };
+        return create(v);
+    }
+
     public GLKVector3 crossProduct(GLKVector3 vectorRight) { return crossProduct(this, vectorRight); }
-    @Bridge(symbol="GLKVector3CrossProduct", optional=true)
-    private static native @ByVal GLKVector3 crossProduct(@ByVal GLKVector3 vectorLeft, @ByVal GLKVector3 vectorRight);
+    /**
+     * ported from GLKVector3CrossProduct
+     */
+    public static GLKVector3 crossProduct(GLKVector3 vectorLeft, GLKVector3 vectorRight) {
+        float[] vectorLeft_v = new float[3];
+        float[] vectorRight_v = new float[3];
+        vectorLeft.getV().get(vectorLeft_v);
+        vectorRight.getV().get(vectorRight_v);
+        float[] v = {
+                vectorLeft_v[1] * vectorRight_v[2] - vectorLeft_v[2] * vectorRight_v[1],
+                vectorLeft_v[2] * vectorRight_v[0] - vectorLeft_v[0] * vectorRight_v[2],
+                vectorLeft_v[0] * vectorRight_v[1] - vectorLeft_v[1] * vectorRight_v[0] };
+        return create(v);
+    }
+
     public GLKVector3 project(GLKVector3 projectionVector) { return project(this, projectionVector); }
-    @Bridge(symbol="GLKVector3Project", optional=true)
-    private static native @ByVal GLKVector3 project(@ByVal GLKVector3 vectorToProject, @ByVal GLKVector3 projectionVector);
-    /*</methods>*/
+    /**
+     * ported from GLKVector3Project
+     */
+    public static GLKVector3 project(GLKVector3 vectorToProject, GLKVector3 projectionVector) {
+        float scale = dotProduct(projectionVector, vectorToProject) / dotProduct(projectionVector, projectionVector);
+        GLKVector3 v = projectionVector.multiplyScalar(scale);
+        return v;
+    }
 }

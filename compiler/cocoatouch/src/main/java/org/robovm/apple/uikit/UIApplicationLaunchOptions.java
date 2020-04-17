@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -115,9 +117,6 @@ import org.robovm.apple.intents.*;
     }
     
 
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public NSURL getURL() {
         if (has(Keys.URL())) {
             NSURL val = (NSURL) get(Keys.URL());
@@ -125,16 +124,10 @@ import org.robovm.apple.intents.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public UIApplicationLaunchOptions setURL(NSURL uRL) {
         set(Keys.URL(), uRL);
         return this;
     }
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public String getSourceApplication() {
         if (has(Keys.SourceApplication())) {
             NSString val = (NSString) get(Keys.SourceApplication());
@@ -142,15 +135,11 @@ import org.robovm.apple.intents.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public UIApplicationLaunchOptions setSourceApplication(String sourceApplication) {
         set(Keys.SourceApplication(), new NSString(sourceApplication));
         return this;
     }
     /**
-     * @since Available in iOS 4.0 and later.
      * @deprecated Deprecated in iOS 10.0. Use UserNotifications Framework's -[UNUserNotificationCenterDelegate didReceiveNotificationResponse:withCompletionHandler:]
      */
     @Deprecated
@@ -162,7 +151,6 @@ import org.robovm.apple.intents.*;
         return null;
     }
     /**
-     * @since Available in iOS 4.0 and later.
      * @deprecated Deprecated in iOS 10.0. Use UserNotifications Framework's -[UNUserNotificationCenterDelegate didReceiveNotificationResponse:withCompletionHandler:]
      */
     @Deprecated
@@ -170,9 +158,6 @@ import org.robovm.apple.intents.*;
         set(Keys.LocalNotification(), localNotification);
         return this;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public NSObject getAnnotation() {
         if (has(Keys.Annotation())) {
             NSObject val = (NSObject) get(Keys.Annotation());
@@ -180,16 +165,10 @@ import org.robovm.apple.intents.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public UIApplicationLaunchOptions setAnnotation(NSObject annotation) {
         set(Keys.Annotation(), annotation);
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public boolean isLocationStart() {
         if (has(Keys.Location())) {
             NSNumber val = (NSNumber) get(Keys.Location());
@@ -197,16 +176,10 @@ import org.robovm.apple.intents.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public UIApplicationLaunchOptions setLocationStart(boolean locationStart) {
         set(Keys.Location(), NSNumber.valueOf(locationStart));
         return this;
     }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public List<String> getNewsstandDownloadIdentifiers() {
         if (has(Keys.NewsstandDownloads())) {
             NSArray<NSString> val = (NSArray<NSString>) get(Keys.NewsstandDownloads());
@@ -214,16 +187,10 @@ import org.robovm.apple.intents.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public UIApplicationLaunchOptions setNewsstandDownloadIdentifiers(List<String> newsstandDownloadIdentifiers) {
         set(Keys.NewsstandDownloads(), NSArray.fromStrings(newsstandDownloadIdentifiers));
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public List<String> getBluetoothCentralIdentifiers() {
         if (has(Keys.BluetoothCentrals())) {
             NSArray<NSString> val = (NSArray<NSString>) get(Keys.BluetoothCentrals());
@@ -231,16 +198,10 @@ import org.robovm.apple.intents.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public UIApplicationLaunchOptions setBluetoothCentralIdentifiers(List<String> bluetoothCentralIdentifiers) {
         set(Keys.BluetoothCentrals(), NSArray.fromStrings(bluetoothCentralIdentifiers));
         return this;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public List<String> getBluetoothPeripheralIdentifiers() {
         if (has(Keys.BluetoothPeripherals())) {
             NSArray<NSString> val = (NSArray<NSString>) get(Keys.BluetoothPeripherals());
@@ -248,9 +209,6 @@ import org.robovm.apple.intents.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public UIApplicationLaunchOptions setBluetoothPeripheralIdentifiers(List<String> bluetoothPeripheralIdentifiers) {
         set(Keys.BluetoothPeripherals(), NSArray.fromStrings(bluetoothPeripheralIdentifiers));
         return this;
@@ -272,9 +230,6 @@ import org.robovm.apple.intents.*;
         set(Keys.ShortcutItem(), shortcutItem);
         return this;
     }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public UIApplicationLaunchOptionsUserActivityInfo getUserActivityInfo() {
         if (has(Keys.UserActivityDictionary())) {
             NSDictionary val = (NSDictionary) get(Keys.UserActivityDictionary());
@@ -282,9 +237,6 @@ import org.robovm.apple.intents.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public UIApplicationLaunchOptions setUserActivityInfo(UIApplicationLaunchOptionsUserActivityInfo userActivityInfo) {
         set(Keys.UserActivityDictionary(), userActivityInfo.getDictionary());
         return this;
@@ -305,51 +257,26 @@ import org.robovm.apple.intents.*;
     @Library("UIKit")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 3.0 and later.
-         */
         @GlobalValue(symbol="UIApplicationLaunchOptionsURLKey", optional=true)
         public static native NSString URL();
-        /**
-         * @since Available in iOS 3.0 and later.
-         */
         @GlobalValue(symbol="UIApplicationLaunchOptionsSourceApplicationKey", optional=true)
         public static native NSString SourceApplication();
-        /**
-         * @since Available in iOS 3.0 and later.
-         */
         @GlobalValue(symbol="UIApplicationLaunchOptionsRemoteNotificationKey", optional=true)
         public static native NSString RemoteNotification();
         /**
-         * @since Available in iOS 4.0 and later.
          * @deprecated Deprecated in iOS 10.0. Use UserNotifications Framework's -[UNUserNotificationCenterDelegate didReceiveNotificationResponse:withCompletionHandler:]
          */
         @Deprecated
         @GlobalValue(symbol="UIApplicationLaunchOptionsLocalNotificationKey", optional=true)
         public static native NSString LocalNotification();
-        /**
-         * @since Available in iOS 3.2 and later.
-         */
         @GlobalValue(symbol="UIApplicationLaunchOptionsAnnotationKey", optional=true)
         public static native NSString Annotation();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="UIApplicationLaunchOptionsLocationKey", optional=true)
         public static native NSString Location();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="UIApplicationLaunchOptionsNewsstandDownloadsKey", optional=true)
         public static native NSString NewsstandDownloads();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="UIApplicationLaunchOptionsBluetoothCentralsKey", optional=true)
         public static native NSString BluetoothCentrals();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="UIApplicationLaunchOptionsBluetoothPeripheralsKey", optional=true)
         public static native NSString BluetoothPeripherals();
         /**
@@ -357,9 +284,6 @@ import org.robovm.apple.intents.*;
          */
         @GlobalValue(symbol="UIApplicationLaunchOptionsShortcutItemKey", optional=true)
         public static native NSString ShortcutItem();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="UIApplicationLaunchOptionsUserActivityDictionaryKey", optional=true)
         public static native NSString UserActivityDictionary();
         /**

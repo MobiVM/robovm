@@ -52,9 +52,6 @@ import org.robovm.apple.avkit.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @NotImplemented("bannerViewWillLoadAd:")
     public void willLoadAd(ADBannerView banner) {}
     @NotImplemented("bannerViewDidLoadAd:")

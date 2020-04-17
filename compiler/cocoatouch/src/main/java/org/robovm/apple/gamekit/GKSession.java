@@ -33,7 +33,6 @@ import org.robovm.apple.uikit.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 3.0 and later.
  * @deprecated Deprecated in iOS 7.0. Use MCSession from the MultipeerConnectivity framework instead
  */
 /*</javadoc>*/
@@ -50,7 +49,6 @@ import org.robovm.apple.uikit.*;
     protected GKSession(Handle h, long handle) { super(h, handle); }
     protected GKSession(SkipInit skipInit) { super(skipInit); }
     /**
-     * @since Available in iOS 3.0 and later.
      * @deprecated Deprecated in iOS 7.0.
      */
     @Deprecated
@@ -59,14 +57,12 @@ import org.robovm.apple.uikit.*;
     /*</constructors>*/
     /*<properties>*/
     /**
-     * @since Available in iOS 3.0 and later.
      * @deprecated Deprecated in iOS 7.0.
      */
     @Deprecated
     @Property(selector = "delegate")
     public native GKSessionDelegate getDelegate();
     /**
-     * @since Available in iOS 3.0 and later.
      * @deprecated Deprecated in iOS 7.0.
      */
     @Deprecated
@@ -77,7 +73,6 @@ import org.robovm.apple.uikit.*;
     @Property(selector = "displayName")
     public native String getDisplayName();
     /**
-     * @since Available in iOS 3.0 and later.
      * @deprecated Deprecated in iOS 7.0.
      */
     @Deprecated
@@ -97,7 +92,6 @@ import org.robovm.apple.uikit.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @since Available in iOS 3.0 and later.
      * @deprecated Deprecated in iOS 7.0.
      */
     @Deprecated
@@ -106,7 +100,6 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "displayNameForPeer:")
     public native String getDisplayName(String peerID);
     /**
-     * @since Available in iOS 3.0 and later.
      * @deprecated Deprecated in iOS 7.0.
      */
     @Deprecated
@@ -117,14 +110,12 @@ import org.robovm.apple.uikit.*;
        return result;
     }
     /**
-     * @since Available in iOS 3.0 and later.
      * @deprecated Deprecated in iOS 7.0.
      */
     @Deprecated
     @Method(selector = "sendData:toPeers:withDataMode:error:")
     private native boolean sendData(NSData data, @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> peers, GKSendDataMode mode, NSError.NSErrorPtr error);
     /**
-     * @since Available in iOS 3.0 and later.
      * @deprecated Deprecated in iOS 7.0.
      */
     @Deprecated
@@ -135,7 +126,6 @@ import org.robovm.apple.uikit.*;
        return result;
     }
     /**
-     * @since Available in iOS 3.0 and later.
      * @deprecated Deprecated in iOS 7.0.
      */
     @Deprecated
@@ -162,7 +152,6 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "disconnectFromAllPeers")
     public native void disconnectFromAllPeers();
     /**
-     * @since Available in iOS 3.0 and later.
      * @deprecated Deprecated in iOS 7.0.
      */
     @Deprecated

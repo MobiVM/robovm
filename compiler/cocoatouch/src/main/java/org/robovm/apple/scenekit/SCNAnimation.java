@@ -59,7 +59,7 @@ import org.robovm.apple.avfoundation.*;
     public SCNAnimation(NSURL animationUrl) { super((Handle) null, create(animationUrl)); retain(getHandle()); }
     public SCNAnimation(CAAnimation caAnimation) { super((Handle) null, create(caAnimation)); retain(getHandle()); }
     @Method(selector = "initWithCoder:")
-    public SCNAnimation(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public SCNAnimation(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "duration")
@@ -152,6 +152,6 @@ import org.robovm.apple.avfoundation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

@@ -53,6 +53,18 @@ import org.robovm.apple.dispatch.*;
     /*<properties>*/
     @Property(selector = "state")
     public native CBManagerState getState();
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 13.1. Use CBManager.authorization
+     */
+    @Deprecated
+    @Property(selector = "authorization")
+    public native CBManagerAuthorization getAuthorization();
+    /**
+     * @since Available in iOS 13.1 and later.
+     */
+    @Property(selector = "authorization")
+    public static native CBManagerAuthorization authorization();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

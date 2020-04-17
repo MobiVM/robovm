@@ -29,6 +29,7 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.security.*;
+import org.robovm.apple.network.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -54,7 +55,7 @@ import org.robovm.apple.security.*;
     @Method(selector = "initWithAddresses:subnetMasks:")
     public NEIPv4Settings(NSArray<NSString> addresses, NSArray<NSString> subnetMasks) { super((SkipInit) null); initObject(init(addresses, subnetMasks)); }
     @Method(selector = "initWithCoder:")
-    public NEIPv4Settings(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public NEIPv4Settings(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     /**
@@ -100,6 +101,6 @@ import org.robovm.apple.security.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

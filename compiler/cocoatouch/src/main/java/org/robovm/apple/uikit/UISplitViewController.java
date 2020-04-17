@@ -37,12 +37,12 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 3.2 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UISplitViewController/*</name>*/ 
@@ -59,7 +59,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithNibName:bundle:")
     public UISplitViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
     @Method(selector = "initWithCoder:")
-    public UISplitViewController(NSCoder decoder) { super(decoder); }
+    public UISplitViewController(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "viewControllers")
@@ -70,74 +70,32 @@ import org.robovm.apple.intents.*;
     public native UISplitViewControllerDelegate getDelegate();
     @Property(selector = "setDelegate:", strongRef = true)
     public native void setDelegate(UISplitViewControllerDelegate v);
-    /**
-     * @since Available in iOS 5.1 and later.
-     */
     @Property(selector = "presentsWithGesture")
     public native boolean presentsWithGesture();
-    /**
-     * @since Available in iOS 5.1 and later.
-     */
     @Property(selector = "setPresentsWithGesture:")
     public native void setPresentsWithGesture(boolean v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "isCollapsed")
     public native boolean isCollapsed();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "preferredDisplayMode")
     public native UISplitViewControllerDisplayMode getPreferredDisplayMode();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setPreferredDisplayMode:")
     public native void setPreferredDisplayMode(UISplitViewControllerDisplayMode v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "displayMode")
     public native UISplitViewControllerDisplayMode getDisplayMode();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "displayModeButtonItem")
     public native UIBarButtonItem getDisplayModeButtonItem();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "preferredPrimaryColumnWidthFraction")
     public native @MachineSizedFloat double getPreferredPrimaryColumnWidthFraction();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setPreferredPrimaryColumnWidthFraction:")
     public native void setPreferredPrimaryColumnWidthFraction(@MachineSizedFloat double v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "minimumPrimaryColumnWidth")
     public native @MachineSizedFloat double getMinimumPrimaryColumnWidth();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setMinimumPrimaryColumnWidth:")
     public native void setMinimumPrimaryColumnWidth(@MachineSizedFloat double v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "maximumPrimaryColumnWidth")
     public native @MachineSizedFloat double getMaximumPrimaryColumnWidth();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setMaximumPrimaryColumnWidth:")
     public native void setMaximumPrimaryColumnWidth(@MachineSizedFloat double v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "primaryColumnWidth")
     public native @MachineSizedFloat double getPrimaryColumnWidth();
     /**
@@ -150,23 +108,24 @@ import org.robovm.apple.intents.*;
      */
     @Property(selector = "setPrimaryEdge:")
     public native void setPrimaryEdge(UISplitViewControllerPrimaryEdge v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "primaryBackgroundStyle")
+    public native UISplitViewControllerBackgroundStyle getPrimaryBackgroundStyle();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setPrimaryBackgroundStyle:")
+    public native void setPrimaryBackgroundStyle(UISplitViewControllerBackgroundStyle v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @GlobalValue(symbol="UISplitViewControllerAutomaticDimension", optional=true)
     public static native @MachineSizedFloat double getAutomaticDimension();
     
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "showViewController:sender:")
     public native void showViewController(UIViewController vc, NSObject sender);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "showDetailViewController:sender:")
     public native void showDetailViewController(UIViewController vc, NSObject sender);
     /*</methods>*/

@@ -70,9 +70,6 @@ import org.robovm.apple.dispatch.*;
     @StructMember(1) public native MKMapSize setHeight(double height);
     /*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @GlobalValue(symbol="MKMapSizeWorld", optional=true)
     public static native @ByVal MKMapSize World();
     /*</methods>*/

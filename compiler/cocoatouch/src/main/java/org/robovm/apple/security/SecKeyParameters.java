@@ -108,9 +108,6 @@ import org.robovm.apple.dispatch.*;
     }
     
 
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public SecAttributes getPrivateAttributes() {
         if (has(Keys.PrivateAttributes())) {
             CFDictionary val = get(Keys.PrivateAttributes(), CFDictionary.class);
@@ -118,16 +115,10 @@ import org.robovm.apple.dispatch.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public SecKeyParameters setPrivateAttributes(SecAttributes privateAttributes) {
         set(Keys.PrivateAttributes(), privateAttributes.getDictionary());
         return this;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public SecAttributes getPublicAttributes() {
         if (has(Keys.PublicAttributes())) {
             CFDictionary val = get(Keys.PublicAttributes(), CFDictionary.class);
@@ -135,9 +126,6 @@ import org.robovm.apple.dispatch.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public SecKeyParameters setPublicAttributes(SecAttributes publicAttributes) {
         set(Keys.PublicAttributes(), publicAttributes.getDictionary());
         return this;
@@ -148,14 +136,8 @@ import org.robovm.apple.dispatch.*;
     @Library("Security")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kSecPrivateKeyAttrs", optional=true)
         public static native CFType PrivateAttributes();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kSecPublicKeyAttrs", optional=true)
         public static native CFType PublicAttributes();
     }

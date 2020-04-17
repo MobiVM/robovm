@@ -37,12 +37,12 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 2.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIResponder/*</name>*/ 
@@ -67,24 +67,17 @@ import org.robovm.apple.intents.*;
     public native boolean canResignFirstResponder();
     @Property(selector = "isFirstResponder")
     public native boolean isFirstResponder();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "undoManager")
     public native NSUndoManager getUndoManager();
     /**
-     * @since Available in iOS 7.0 and later.
+     * @since Available in iOS 13.0 and later.
      */
+    @Property(selector = "editingInteractionConfiguration")
+    public native UIEditingInteractionConfiguration getEditingInteractionConfiguration();
     @Property(selector = "keyCommands")
     public native NSArray<UIKeyCommand> getKeyCommands();
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Property(selector = "inputView")
     public native UIView getInputView();
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Property(selector = "inputAccessoryView")
     public native UIView getInputAccessoryView();
     /**
@@ -92,36 +85,28 @@ import org.robovm.apple.intents.*;
      */
     @Property(selector = "inputAssistantItem")
     public native UITextInputAssistantItem getInputAssistantItem();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "inputViewController")
     public native UIInputViewController getInputViewController();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "inputAccessoryViewController")
     public native UIInputViewController getInputAccessoryViewController();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "textInputMode")
     public native UITextInputMode getTextInputMode();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "textInputContextIdentifier")
     public native String getTextInputContextIdentifier();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "userActivity")
     public native NSUserActivity getUserActivity();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setUserActivity:")
     public native void setUserActivity(NSUserActivity v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "activityItemsConfiguration")
+    public native UIActivityItemsConfigurationReading getActivityItemsConfiguration();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setActivityItemsConfiguration:")
+    public native void setActivityItemsConfiguration(UIActivityItemsConfigurationReading v);
     @Property(selector = "isAccessibilityElement")
     public native boolean isAccessibilityElement();
     @Property(selector = "setIsAccessibilityElement:")
@@ -176,70 +161,74 @@ import org.robovm.apple.intents.*;
     public native @ByVal CGRect getAccessibilityFrame();
     @Property(selector = "setAccessibilityFrame:")
     public native void setAccessibilityFrame(@ByVal CGRect v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "accessibilityPath")
     public native UIBezierPath getAccessibilityPath();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setAccessibilityPath:")
     public native void setAccessibilityPath(UIBezierPath v);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "accessibilityActivationPoint")
     public native @ByVal CGPoint getAccessibilityActivationPoint();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setAccessibilityActivationPoint:")
     public native void setAccessibilityActivationPoint(@ByVal CGPoint v);
     @Property(selector = "accessibilityLanguage")
     public native String getAccessibilityLanguage();
     @Property(selector = "setAccessibilityLanguage:")
     public native void setAccessibilityLanguage(String v);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "accessibilityElementsHidden")
     public native boolean areAccessibilityElementsHidden();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setAccessibilityElementsHidden:")
     public native void setAccessibilityElementsHidden(boolean v);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "accessibilityViewIsModal")
     public native boolean isAccessibilityViewModal();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setAccessibilityViewIsModal:")
     public native void setAccessibilityViewModal(boolean v);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "shouldGroupAccessibilityChildren")
     public native boolean shouldGroupAccessibilityChildren();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "setShouldGroupAccessibilityChildren:")
     public native void setShouldGroupAccessibilityChildren(boolean v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "accessibilityNavigationStyle")
     public native UIAccessibilityNavigationStyle getAccessibilityNavigationStyle();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setAccessibilityNavigationStyle:")
     public native void setAccessibilityNavigationStyle(UIAccessibilityNavigationStyle v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "accessibilityRespondsToUserInteraction")
+    public native boolean isAccessibilityRespondsToUserInteraction();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setAccessibilityRespondsToUserInteraction:")
+    public native void setAccessibilityRespondsToUserInteraction(boolean v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "accessibilityUserInputLabels")
+    public native NSArray<NSString> getAccessibilityUserInputLabels();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setAccessibilityUserInputLabels:")
+    public native void setAccessibilityUserInputLabels(NSArray<NSString> v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "accessibilityAttributedUserInputLabels")
+    public native NSArray<NSAttributedString> getAccessibilityAttributedUserInputLabels();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setAccessibilityAttributedUserInputLabels:")
+    public native void setAccessibilityAttributedUserInputLabels(NSArray<NSAttributedString> v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "accessibilityTextualContext")
+    public native String getAccessibilityTextualContext();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setAccessibilityTextualContext:")
+    public native void setAccessibilityTextualContext(String v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -280,54 +269,28 @@ import org.robovm.apple.intents.*;
      */
     @Method(selector = "pressesCancelled:withEvent:")
     public native void pressesCancelled(NSSet<UIPress> presses, UIPressesEvent event);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "motionBegan:withEvent:")
     public native void motionBegan(UIEventSubtype motion, UIEvent event);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "motionEnded:withEvent:")
     public native void motionEnded(UIEventSubtype motion, UIEvent event);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "motionCancelled:withEvent:")
     public native void motionCancelled(UIEventSubtype motion, UIEvent event);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "remoteControlReceivedWithEvent:")
     public native void remoteControlReceived(UIEvent event);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "canPerformAction:withSender:")
     public native boolean canPerformAction(Selector action, NSObject sender);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "targetForAction:withSender:")
     public native NSObject getActionTarget(Selector action, NSObject sender);
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
+    @Method(selector = "buildMenuWithBuilder:")
+    public native void buildMenu(UIMenuBuilder builder);
+    @Method(selector = "validateCommand:")
+    public native void validateCommand(UICommand command);
     @Method(selector = "reloadInputViews")
     public native void reloadInputViews();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "clearTextInputContextIdentifier:")
     public static native void clearTextInputContextIdentifier(String identifier);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "updateUserActivityState:")
     public native void updateUserActivityState(NSUserActivity activity);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "restoreUserActivityState:")
     public native void restoreUserActivityState(NSUserActivity activity);
     /*</methods>*/

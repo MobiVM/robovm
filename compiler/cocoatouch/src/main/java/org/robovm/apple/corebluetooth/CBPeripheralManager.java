@@ -33,9 +33,7 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 6.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreBluetooth") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CBPeripheralManager/*</name>*/ 
@@ -52,9 +50,6 @@ import org.robovm.apple.dispatch.*;
     @WeaklyLinked
     @Method(selector = "initWithDelegate:queue:")
     public CBPeripheralManager(CBPeripheralManagerDelegate delegate, DispatchQueue queue) { super((SkipInit) null); initObject(init(delegate, queue)); }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @WeaklyLinked
     @Method(selector = "initWithDelegate:queue:options:")
     public CBPeripheralManager(CBPeripheralManagerDelegate delegate, DispatchQueue queue, CBPeripheralManagerOptions options) { super((SkipInit) null); initObject(init(delegate, queue, options)); }
@@ -74,9 +69,6 @@ import org.robovm.apple.dispatch.*;
     @WeaklyLinked
     @Method(selector = "initWithDelegate:queue:")
     protected native @Pointer long init(CBPeripheralManagerDelegate delegate, DispatchQueue queue);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @WeaklyLinked
     @Method(selector = "initWithDelegate:queue:options:")
     protected native @Pointer long init(CBPeripheralManagerDelegate delegate, DispatchQueue queue, CBPeripheralManagerOptions options);
@@ -107,8 +99,9 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "unpublishL2CAPChannel:")
     public native void unpublishL2CAPChannel(short PSM);
     /**
-     * @since Available in iOS 7.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use CBManagerAuthorization instead
      */
+    @Deprecated
     @Method(selector = "authorizationStatus")
     public static native CBPeripheralManagerAuthorizationStatus authorizationStatus();
     /*</methods>*/

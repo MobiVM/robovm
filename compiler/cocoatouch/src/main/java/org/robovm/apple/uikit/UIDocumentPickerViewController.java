@@ -37,12 +37,12 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIDocumentPickerViewController/*</name>*/ 
@@ -59,7 +59,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithDocumentTypes:inMode:")
     public UIDocumentPickerViewController(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> allowedUTIs, UIDocumentPickerMode mode) { super((SkipInit) null); initObject(init(allowedUTIs, mode)); }
     @Method(selector = "initWithCoder:")
-    public UIDocumentPickerViewController(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public UIDocumentPickerViewController(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     @Method(selector = "initWithURL:inMode:")
     public UIDocumentPickerViewController(NSURL url, UIDocumentPickerMode mode) { super((SkipInit) null); initObject(init(url, mode)); }
     /**
@@ -87,13 +87,33 @@ import org.robovm.apple.intents.*;
      */
     @Property(selector = "setAllowsMultipleSelection:")
     public native void setAllowsMultipleSelection(boolean v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "shouldShowFileExtensions")
+    public native boolean shouldShowFileExtensions();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setShouldShowFileExtensions:")
+    public native void setShouldShowFileExtensions(boolean v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "directoryURL")
+    public native NSURL getDirectoryURL();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setDirectoryURL:")
+    public native void setDirectoryURL(NSURL v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithDocumentTypes:inMode:")
     protected native @Pointer long init(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> allowedUTIs, UIDocumentPickerMode mode);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     @Method(selector = "initWithURL:inMode:")
     protected native @Pointer long init(NSURL url, UIDocumentPickerMode mode);
     /**

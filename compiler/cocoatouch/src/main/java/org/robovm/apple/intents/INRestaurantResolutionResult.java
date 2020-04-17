@@ -56,10 +56,10 @@ import org.robovm.apple.corelocation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "successWithResolvedRestaurant:")
-    public static native INRestaurantResolutionResult successWithResolvedRestaurant(INRestaurant resolvedRestaurant);
+    public static native INRestaurantResolutionResult success(INRestaurant resolvedRestaurant);
     @Method(selector = "disambiguationWithRestaurantsToDisambiguate:")
-    public static native INRestaurantResolutionResult disambiguationWithRestaurantsToDisambiguate(NSArray<INRestaurant> restaurantsToDisambiguate);
+    public static native INRestaurantResolutionResult disambiguation(NSArray<INRestaurant> restaurantsToDisambiguate);
     @Method(selector = "confirmationRequiredWithRestaurantToConfirm:")
-    public static native INRestaurantResolutionResult confirmationRequiredWithRestaurantToConfirm(INRestaurant restaurantToConfirm);
+    public static native INRestaurantResolutionResult confirmationRequired(INRestaurant restaurantToConfirm);
     /*</methods>*/
 }

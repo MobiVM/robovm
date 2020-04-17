@@ -35,9 +35,7 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 7.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("MapKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MKOverlayPathRenderer/*</name>*/ 
@@ -87,6 +85,16 @@ import org.robovm.apple.dispatch.*;
     public native NSArray<NSNumber> getLineDashPattern();
     @Property(selector = "setLineDashPattern:")
     public native void setLineDashPattern(NSArray<NSNumber> v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "shouldRasterize")
+    public native boolean shouldRasterize();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setShouldRasterize:")
+    public native void setShouldRasterize(boolean v);
     @Property(selector = "path")
     public native CGPath getPath();
     @Property(selector = "setPath:")

@@ -111,9 +111,6 @@ import org.robovm.apple.iosurface.*;
     }
     
 
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public long getMaximumTextureAge() {
         if (has(Keys.MaximumTextureAge())) {
             CFNumber val = get(Keys.MaximumTextureAge(), CFNumber.class);
@@ -121,9 +118,6 @@ import org.robovm.apple.iosurface.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public CVMetalTextureCacheAttributes setMaximumTextureAge(long maximumTextureAge) {
         set(Keys.MaximumTextureAge(), CFNumber.valueOf(maximumTextureAge));
         return this;
@@ -134,9 +128,6 @@ import org.robovm.apple.iosurface.*;
     @Library("CoreVideo")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="kCVMetalTextureCacheMaximumTextureAgeKey", optional=true)
         public static native CFString MaximumTextureAge();
     }

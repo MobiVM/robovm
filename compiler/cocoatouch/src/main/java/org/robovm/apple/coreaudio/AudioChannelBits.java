@@ -56,6 +56,15 @@ public final class /*<name>*/AudioChannelBits/*</name>*/ extends Bits</*<name>*/
     public static final AudioChannelBits TopBackLeft = new AudioChannelBits(32768L);
     public static final AudioChannelBits TopBackCenter = new AudioChannelBits(65536L);
     public static final AudioChannelBits TopBackRight = new AudioChannelBits(131072L);
+    public static final AudioChannelBits LeftTopFront = new AudioChannelBits(4096L);
+    public static final AudioChannelBits CenterTopFront = new AudioChannelBits(8192L);
+    public static final AudioChannelBits RightTopFront = new AudioChannelBits(16384L);
+    public static final AudioChannelBits LeftTopMiddle = new AudioChannelBits(2097152L);
+    public static final AudioChannelBits CenterTopMiddle = new AudioChannelBits(2048L);
+    public static final AudioChannelBits RightTopMiddle = new AudioChannelBits(8388608L);
+    public static final AudioChannelBits LeftTopRear = new AudioChannelBits(16777216L);
+    public static final AudioChannelBits CenterTopRear = new AudioChannelBits(33554432L);
+    public static final AudioChannelBits RightTopRear = new AudioChannelBits(67108864L);
     /*</values>*/
 
     /*<bind>*/

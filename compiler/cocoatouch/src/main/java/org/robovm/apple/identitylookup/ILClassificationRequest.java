@@ -49,7 +49,7 @@ import org.robovm.apple.uikit.*;
     protected ILClassificationRequest(Handle h, long handle) { super(h, handle); }
     protected ILClassificationRequest(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public ILClassificationRequest(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public ILClassificationRequest(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "supportsSecureCoding")
@@ -60,6 +60,6 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

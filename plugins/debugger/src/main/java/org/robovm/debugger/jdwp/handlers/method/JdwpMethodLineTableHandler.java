@@ -57,11 +57,36 @@ public class JdwpMethodLineTableHandler implements IJdwpRequestHandler {
             output.writeLong(startLine); // start code index
             output.writeLong(finalLine); // end code index
 
-            output.writeInt32(finalLine - startLine + 1); // count map entrie
+            // read bptable from mach-o executable, it contains bits set where lines are not available
+            int arraySize = ((finalLine - startLine + 1) + 7) / 8;
+            state.appFileDataMemoryReader().setAddress(methodInfo.bpTableAddr());
+            byte[] bpTable = state.appFileDataMemoryReader().readBytes(arraySize);
+
+            int savedCntPos = output.position();
+            output.writeInt32(0); // count map entries -- will be set once calculated
+            int cnt = 0;
+            int idx = 0;
+            byte mask = 0;
             for (int lineNo = startLine; lineNo <= finalLine; lineNo++) {
-                output.writeLong(lineNo); // code index
-                output.writeInt32(lineNo); // line number
+                // pick mask from bp table each 8 bits
+                if ((idx & 7) == 0)
+                    mask = bpTable[idx >> 3];
+
+                if ((mask & 1) == 0) {
+                    // line is available
+                    output.writeLong(lineNo); // code index
+                    output.writeInt32(lineNo); // line number
+                    cnt += 1;
+                }
+
+                idx += 1;
+                mask >>= 1;
             }
+
+            // update cnt
+            output.setPosition(savedCntPos);
+            output.writeInt32(cnt);
+            output.setPosition(output.size());
 
             return JdwpConsts.Error.NONE;
         }

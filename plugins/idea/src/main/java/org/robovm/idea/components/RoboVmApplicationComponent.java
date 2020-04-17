@@ -16,27 +16,24 @@
  */
 package org.robovm.idea.components;
 
+import com.intellij.debugger.settings.DebuggerSettings;
 import com.intellij.ide.util.PropertiesComponent;
-import com.intellij.openapi.application.ApplicationManager;
-import com.intellij.openapi.application.ex.ApplicationManagerEx;
 import com.intellij.openapi.components.ApplicationComponent;
-import com.intellij.openapi.components.StoragePathMacros;
-import com.intellij.openapi.module.Module;
-import com.intellij.openapi.module.ModuleManager;
 import com.intellij.openapi.projectRoots.Sdk;
-import com.intellij.openapi.roots.ModuleRootManager;
-import com.intellij.openapi.vfs.VirtualFile;
-import com.intellij.openapi.vfs.VirtualFileAdapter;
-import com.intellij.openapi.vfs.VirtualFileEvent;
-import com.intellij.openapi.vfs.VirtualFileManager;
+import com.intellij.ui.classFilter.ClassFilter;
 import org.jetbrains.annotations.NotNull;
-import org.robovm.compiler.config.OS;
 import org.robovm.compiler.util.ToolchainUtil;
 import org.robovm.idea.RoboVmPlugin;
-import org.robovm.idea.components.setupwizard.*;
+import org.robovm.idea.components.setupwizard.JdkSetupDialog;
+import org.robovm.idea.components.setupwizard.NoXcodeSetupDialog;
+import org.robovm.idea.components.setupwizard.XcodeSetupDialog;
 import org.robovm.idea.sdk.RoboVmSdkType;
 
-import java.io.IOException;
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.BiPredicate;
 
 /**
  * Call on app startup, responsible for extracting/updating the RoboVM SDK and
@@ -49,9 +46,15 @@ public class RoboVmApplicationComponent implements ApplicationComponent {
     public void initComponent() {
         displaySetupWizard();
         RoboVmPlugin.extractSdk();
+        setupDebugger();
     }
 
     private void displaySetupWizard() {
+        // build with gradle plugin will try to run plugin and it will fail on any attempt to show dialogue.
+        // skip any wizards if there is no graphics environment
+        if (GraphicsEnvironment.isHeadless())
+            return;
+
         // uncomment for debugging
         // PropertiesComponent.getInstance().unsetValue(ROBOVM_HAS_SHOWN_ANDROID_WIZARD);
         // PropertiesComponent.getInstance().unsetValue(ROBOVM_HAS_SHOWN_LICENSE_WIZARD);
@@ -59,7 +62,7 @@ public class RoboVmApplicationComponent implements ApplicationComponent {
         // make sure a JDK is configured
         Sdk jdk = RoboVmSdkType.findBestJdk();
         if (jdk == null) {
-            new JdkSetupDialog().show();
+            new JdkSetupDialog().setVisible(true);
         }
 
         // make sure Xcode is installed
@@ -71,14 +74,48 @@ public class RoboVmApplicationComponent implements ApplicationComponent {
             try {
                 ToolchainUtil.findXcodePath();
             } catch (Throwable e) {
-                new XcodeSetupDialog().show();
+                new XcodeSetupDialog().setVisible(true);
             }
         } else {
             if(!PropertiesComponent.getInstance().getBoolean(ROBOVM_HAS_SHOWN_NO_XCODE_WIZARD, false)) {
-                new NoXcodeSetupDialog().show();
+                new NoXcodeSetupDialog().setVisible(true);
                 PropertiesComponent.getInstance().setValue(ROBOVM_HAS_SHOWN_NO_XCODE_WIZARD, "true");
             }
         }
+    }
+
+    /**
+     ** setup stepping filters to disable enter into dalvik.* and libcore.* classes
+     */
+    private void setupDebugger() {
+        // tests if filter is configured
+        BiPredicate<ClassFilter[], String> patternConfiguredPredicate = (classFilters, pattern) -> {
+            for (ClassFilter filter : classFilters) {
+                // exact match
+                String fp = filter.getPattern();
+                if (fp.equals(pattern))
+                    return true;
+                // match as low level pattern
+                if (fp.endsWith(".*") && pattern.startsWith(fp.substring(0, fp.length() - 1)))
+                    return true;
+            }
+            return false;
+        };
+
+        String[] robovmFilters = {"dalvik.*", "libcore.*"};
+        ClassFilter[] filters = DebuggerSettings.getInstance().getSteppingFilters();
+        List<ClassFilter> modifiedFilters = null;
+        for (String pattern : robovmFilters) {
+            if (patternConfiguredPredicate.test(filters, pattern))
+                continue;
+            // not configured
+            if (modifiedFilters == null)
+                modifiedFilters =new ArrayList<>(Arrays.asList(filters));
+            modifiedFilters.add(new ClassFilter(pattern));
+        }
+
+        if (modifiedFilters != null)
+            DebuggerSettings.getInstance().setSteppingFilters(modifiedFilters.toArray(new ClassFilter[0]));
     }
 
     @Override

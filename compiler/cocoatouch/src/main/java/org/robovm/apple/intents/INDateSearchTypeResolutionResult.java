@@ -56,8 +56,8 @@ import org.robovm.apple.corelocation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "successWithResolvedDateSearchType:")
-    public static native INDateSearchTypeResolutionResult successWithResolvedDateSearchType(INDateSearchType resolvedDateSearchType);
+    public static native INDateSearchTypeResolutionResult success(INDateSearchType resolvedDateSearchType);
     @Method(selector = "confirmationRequiredWithDateSearchTypeToConfirm:")
-    public static native INDateSearchTypeResolutionResult confirmationRequiredWithDateSearchTypeToConfirm(INDateSearchType dateSearchTypeToConfirm);
+    public static native INDateSearchTypeResolutionResult confirmationRequired(INDateSearchType dateSearchTypeToConfirm);
     /*</methods>*/
 }

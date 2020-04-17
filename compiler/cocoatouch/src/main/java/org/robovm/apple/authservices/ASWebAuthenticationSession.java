@@ -29,6 +29,7 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -52,7 +53,31 @@ import org.robovm.apple.uikit.*;
     public ASWebAuthenticationSession(NSURL URL, String callbackURLScheme, @Block VoidBlock2<NSURL, NSError> completionHandler) { super((SkipInit) null); initObject(init(URL, callbackURLScheme, completionHandler)); }
     /*</constructors>*/
     /*<properties>*/
-    
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "presentationContextProvider")
+    public native ASWebAuthenticationPresentationContextProviding getPresentationContextProvider();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setPresentationContextProvider:", strongRef = true)
+    public native void setPresentationContextProvider(ASWebAuthenticationPresentationContextProviding v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "prefersEphemeralWebBrowserSession")
+    public native boolean prefersEphemeralWebBrowserSession();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setPrefersEphemeralWebBrowserSession:")
+    public native void setPrefersEphemeralWebBrowserSession(boolean v);
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    @Property(selector = "canStart")
+    public native boolean canStart();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

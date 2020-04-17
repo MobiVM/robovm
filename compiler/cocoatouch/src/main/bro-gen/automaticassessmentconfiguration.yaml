@@ -1,0 +1,51 @@
+package: org.robovm.apple.automaticac
+include: [foundation]
+library: AutomaticAssessmentConfiguration
+framework: AutomaticAssessmentConfiguration
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/AutomaticAssessmentConfiguration.framework/Headers/AutomaticAssessmentConfiguration.h
+typedefs: {}
+    
+enums:
+    AEAssessmentErrorCode: {prefix: AEAssessmentError, nserror: true}
+
+classes:
+    AEAssessmentConfiguration: {} #since 13.4
+    AEAssessmentSession: #since 13.4
+        methods:
+            '-initWithConfiguration:':
+                name: init
+protocols:
+    AEAssessmentSessionDelegate: #since 13.4
+        methods:
+            '-assessmentSessionDidBegin:':
+                name: didBegin
+            '-assessmentSessionDidEnd:':
+                name: didEnd
+            '-assessmentSession:failedToBeginWithError:':
+                name: failedToBegin
+            '-assessmentSession:wasInterruptedWithError:':
+                name: wasInterrupted
+functions:
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (k?AE.*):
+        class: FixMe
+        name: 'Function__#{g[0]}'
+
+values:
+    AEAssessmentErrorDomain:
+        class: AEAssessmentErrorCode
+        name: getClassDomain
+
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (k?AE.*):
+        class: FixMe
+        name: 'Value__#{g[0]}'
+
+constants:
+
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (k?AE.*):
+        class: FixMe
+        name: 'Constant__#{g[0]}'

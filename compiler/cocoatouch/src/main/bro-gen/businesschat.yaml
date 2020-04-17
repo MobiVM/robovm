@@ -1,0 +1,50 @@
+package: org.robovm.apple.businesschat
+include: [foundation, uikit, coregraphics]
+library: BusinessChat
+framework: BusinessChat
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/BusinessChat.framework/Headers/BusinessChat.h
+
+private_typedefs:
+
+typedefs:
+
+enums:
+    BCChatButtonStyle: {} #since 11.3
+
+typed_enums:
+    BCParameterName:
+        class: BCParameterName
+        type: NSString
+        prefix: BCParameterName
+
+classes:
+    BCChatAction: #since 11.3
+        methods:
+            '+openTranscript:intentParameters:':
+                name: openTranscript
+    BCChatButton: #since 11.3
+        methods:
+            '-initWithStyle:':
+                name: init
+protocols:
+
+functions:
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (k?BC.*):
+        class: FixMe
+        name: 'Function__#{g[0]}'
+
+values:
+
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (k?BC.*):
+        class: FixMe
+        name: 'Value__#{g[0]}'
+
+constants:
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (k?BC.*):
+        class: FixMe
+        name: 'Constant__#{g[0]}'

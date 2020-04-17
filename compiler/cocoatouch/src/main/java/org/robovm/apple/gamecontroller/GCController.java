@@ -33,9 +33,7 @@ import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 7.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("GameController") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GCController/*</name>*/ 
@@ -69,8 +67,16 @@ import org.robovm.apple.uikit.*;
     protected GCController(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @deprecated Deprecated in iOS 13.0. controllerPausedHandler has been deprecated. Use the Menu button found on the controller's profile, if it exists.
+     */
+    @Deprecated
     @Property(selector = "controllerPausedHandler")
     public native @Block VoidBlock1<GCController> getControllerPausedHandler();
+    /**
+     * @deprecated Deprecated in iOS 13.0. controllerPausedHandler has been deprecated. Use the Menu button found on the controller's profile, if it exists.
+     */
+    @Deprecated
     @Property(selector = "setControllerPausedHandler:")
     public native void setControllerPausedHandler(@Block VoidBlock1<GCController> v);
     @Property(selector = "handlerQueue")
@@ -79,21 +85,32 @@ import org.robovm.apple.uikit.*;
     public native void setHandlerQueue(DispatchQueue v);
     @Property(selector = "vendorName")
     public native String getVendorName();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "productCategory")
+    public native String getProductCategory();
     @Property(selector = "isAttachedToDevice")
     public native boolean isAttachedToDevice();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "isSnapshot")
+    public native boolean isSnapshot();
     @Property(selector = "playerIndex")
     public native GCControllerPlayerIndex getPlayerIndex();
     @Property(selector = "setPlayerIndex:")
     public native void setPlayerIndex(GCControllerPlayerIndex v);
+    /**
+     * @deprecated Deprecated in iOS 10.0. Use -extendedGamepad
+     */
+    @Deprecated
     @Property(selector = "gamepad")
     public native GCGamepad getGamepad();
     @Property(selector = "microGamepad")
     public native GCMicroGamepad getMicroGamepad();
     @Property(selector = "extendedGamepad")
     public native GCExtendedGamepad getExtendedGamepad();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "motion")
     public native GCMotion getMotion();
     /*</properties>*/
@@ -104,11 +121,26 @@ import org.robovm.apple.uikit.*;
     @GlobalValue(symbol="GCControllerDidDisconnectNotification", optional=true)
     public static native NSString DidDisconnectNotification();
     
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "capture")
+    public native GCController capture();
     @Method(selector = "controllers")
     public static native NSArray<GCController> getControllers();
     @Method(selector = "startWirelessControllerDiscoveryWithCompletionHandler:")
     public static native void startWirelessControllerDiscovery(@Block Runnable completionHandler);
     @Method(selector = "stopWirelessControllerDiscovery")
     public static native void stopWirelessControllerDiscovery();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "controllerWithMicroGamepad")
+    public static native GCController controllerWithMicroGamepad();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "controllerWithExtendedGamepad")
+    public static native GCController controllerWithExtendedGamepad();
     /*</methods>*/
 }

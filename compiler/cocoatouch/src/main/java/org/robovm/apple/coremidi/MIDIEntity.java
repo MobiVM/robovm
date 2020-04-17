@@ -50,34 +50,16 @@ import org.robovm.apple.corefoundation.*;
         return ptr.get();
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     @Bridge(symbol="MIDIEntityGetNumberOfSources", optional=true)
     public native @MachineSizedUInt long getNumberOfSources();
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     @Bridge(symbol="MIDIEntityGetSource", optional=true)
     public native MIDIEndpoint getSource(@MachineSizedUInt long sourceIndex0);
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     @Bridge(symbol="MIDIEntityGetNumberOfDestinations", optional=true)
     public native @MachineSizedUInt long getNumberOfDestinations();
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     @Bridge(symbol="MIDIEntityGetDestination", optional=true)
     public native MIDIEndpoint getDestination(@MachineSizedUInt long destIndex0);
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     @Bridge(symbol="MIDIEntityGetDevice", optional=true)
     protected native MIDIError getDevice(MIDIDevice.MIDIDevicePtr outDevice);
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     @Bridge(symbol="MIDIEntityAddOrRemoveEndpoints", optional=true)
     public native MIDIError addOrRemoveEndpoints(@MachineSizedUInt long numSourceEndpoints, @MachineSizedUInt long numDestinationEndpoints);
     /*</methods>*/

@@ -147,12 +147,12 @@ import org.robovm.apple.metal.*;
      * @since Available in iOS 11.3 and later.
      */
     @Method(selector = "encodeBatchToCommandBuffer:sourceImages:destinationImages:")
-    public native void encodeBatch(MTLCommandBuffer commandBuffer, NSArray<MPSImage> sourceImages, NSArray<MPSImage> destinationImages);
+    public native void encodeBatch0(MTLCommandBuffer commandBuffer, NSArray<MPSImage> sourceImages, NSArray<MPSImage> destinationImages);
     /**
      * @since Available in iOS 11.3 and later.
      */
     @Method(selector = "encodeBatchToCommandBuffer:sourceImages:destinationStates:destinationImages:")
-    public native void encodeBatch(MTLCommandBuffer commandBuffer, NSArray<MPSImage> sourceImages, NSArray<? extends MPSState> destinationStates, NSArray<MPSImage> destinationImages);
+    public native void encodeBatch0(MTLCommandBuffer commandBuffer, NSArray<MPSImage> sourceImages, NSArray<? extends MPSState> destinationStates, NSArray<MPSImage> destinationImages);
     /**
      * @since Available in iOS 11.0 and later.
      */
@@ -192,7 +192,7 @@ import org.robovm.apple.metal.*;
      * @since Available in iOS 11.3 and later.
      */
     @Method(selector = "temporaryResultStateBatchForCommandBuffer:sourceImage:sourceStates:destinationImage:")
-    public native NSArray<? extends MPSState> getTemporaryResultState(MTLCommandBuffer commandBuffer, NSArray<MPSImage> sourceImage, NSArray<NSArray<? extends MPSState>> sourceStates, NSArray<MPSImage> destinationImage);
+    public native NSArray<? extends MPSState> getTemporaryResultStateBatch(MTLCommandBuffer commandBuffer, NSArray<MPSImage> sourceImage, NSArray<NSArray<? extends MPSState>> sourceStates, NSArray<MPSImage> destinationImage);
     /**
      * @since Available in iOS 11.3 and later.
      */
@@ -208,5 +208,15 @@ import org.robovm.apple.metal.*;
      */
     @Method(selector = "destinationImageDescriptorForSourceImages:sourceStates:")
     public native MPSImageDescriptor getDestinationImageDescriptor(NSArray<MPSImage> sourceImages, NSArray<MPSState> sourceStates);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "encodingStorageSizeForSourceImage:sourceStates:destinationImage:")
+    public native @MachineSizedUInt long getEncodingStorageSize(MPSImage sourceImage, NSArray<MPSState> sourceStates, MPSImage destinationImage);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "batchEncodingStorageSizeForSourceImage:sourceStates:destinationImage:")
+    public native @MachineSizedUInt long getBatchEncodingStorageSize(NSArray<MPSImage> sourceImage, NSArray<NSArray<? extends MPSState>> sourceStates, NSArray<MPSImage> destinationImage);
     /*</methods>*/
 }

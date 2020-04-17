@@ -93,6 +93,11 @@ import org.robovm.apple.coregraphics.*;
     public NSPersonNameComponents getOwnerNameComponents() { return null; }
     @NotImplemented("mostRecentEditorNameComponents")
     public NSPersonNameComponents getMostRecentEditorNameComponents() { return null; }
+    /**
+     * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 13.0. itemVersion
+     */
+    @Deprecated
     @NotImplemented("versionIdentifier")
     public NSData getVersionIdentifier() { return null; }
     @NotImplemented("userInfo")

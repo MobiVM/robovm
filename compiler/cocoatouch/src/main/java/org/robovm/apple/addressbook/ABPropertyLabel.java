@@ -71,21 +71,18 @@ import org.robovm.apple.corefoundation.*;
     }
     /*<methods>*/
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 9.0. use CNLabelWork
      */
     @Deprecated
     @GlobalValue(symbol="kABWorkLabel", optional=true)
     protected static native CFString WorkLabel();
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 9.0. use CNLabelHome
      */
     @Deprecated
     @GlobalValue(symbol="kABHomeLabel", optional=true)
     protected static native CFString HomeLabel();
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 9.0. use CNLabelOther
      */
     @Deprecated

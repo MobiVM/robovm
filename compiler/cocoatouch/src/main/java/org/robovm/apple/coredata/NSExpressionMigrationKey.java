@@ -29,6 +29,8 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corespotlight.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -88,29 +90,11 @@ import org.robovm.apple.corespotlight.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public static final NSExpressionMigrationKey ManagerKey = new NSExpressionMigrationKey("ManagerKey");
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public static final NSExpressionMigrationKey SourceObjectKey = new NSExpressionMigrationKey("SourceObjectKey");
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public static final NSExpressionMigrationKey DestinationObjectKey = new NSExpressionMigrationKey("DestinationObjectKey");
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public static final NSExpressionMigrationKey EntityMappingKey = new NSExpressionMigrationKey("EntityMappingKey");
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public static final NSExpressionMigrationKey PropertyMappingKey = new NSExpressionMigrationKey("PropertyMappingKey");
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public static final NSExpressionMigrationKey EntityPolicyKey = new NSExpressionMigrationKey("EntityPolicyKey");
     /*</constants>*/
     
@@ -137,34 +121,16 @@ import org.robovm.apple.corespotlight.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 3.0 and later.
-         */
         @GlobalValue(symbol="NSMigrationManagerKey", optional=true)
         public static native NSString ManagerKey();
-        /**
-         * @since Available in iOS 3.0 and later.
-         */
         @GlobalValue(symbol="NSMigrationSourceObjectKey", optional=true)
         public static native NSString SourceObjectKey();
-        /**
-         * @since Available in iOS 3.0 and later.
-         */
         @GlobalValue(symbol="NSMigrationDestinationObjectKey", optional=true)
         public static native NSString DestinationObjectKey();
-        /**
-         * @since Available in iOS 3.0 and later.
-         */
         @GlobalValue(symbol="NSMigrationEntityMappingKey", optional=true)
         public static native NSString EntityMappingKey();
-        /**
-         * @since Available in iOS 3.0 and later.
-         */
         @GlobalValue(symbol="NSMigrationPropertyMappingKey", optional=true)
         public static native NSString PropertyMappingKey();
-        /**
-         * @since Available in iOS 3.0 and later.
-         */
         @GlobalValue(symbol="NSMigrationEntityPolicyKey", optional=true)
         public static native NSString EntityPolicyKey();
         /*</values>*/

@@ -88,11 +88,7 @@ abstract public class AbstractRoboVMTask extends DefaultTask {
         getLogger().info("Building RoboVM app for: " + os + " (" + arch + ")");
 
         Config.Builder builder;
-        try {
-            builder = new Config.Builder();
-        } catch (IOException e) {
-            throw new GradleException(e.getMessage(), e);
-        }
+        builder = new Config.Builder();
 
         configure(builder).os(os).arch(arch).targetType(targetType);
 
@@ -221,6 +217,9 @@ abstract public class AbstractRoboVMTask extends DefaultTask {
 
         if (extension.isDumpIntermediates())
             builder.dumpIntermediates(true);
+
+        if (extension.isEnableBitcode())
+            builder.enableBitcode(true);
 
         builder.clearClasspathEntries();
 

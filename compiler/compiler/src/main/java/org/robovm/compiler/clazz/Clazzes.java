@@ -31,6 +31,7 @@ import org.robovm.compiler.config.Config;
 
 import soot.Scene;
 import soot.SootClass;
+import soot.SourceLocator;
 import soot.options.Options;
 
 /**
@@ -68,6 +69,14 @@ public class Clazzes {
 
     private void addPaths(List<File> files, List<Path> cp, Set<File> seen, boolean inBootclasspath) throws IOException {
         for (File file : files) {
+            if (SourceLocator.DUMMY_CLASSPATH_JDK9_FS.equals(file.getPath()) && !seen.contains(file)) {
+                // java9 runtime: add special mark to allow recognize it latter when providing soot CP
+                Path p = new Java9RuntimePath(file, this, cp.size(), inBootclasspath);
+                cp.add(p);
+                seen.add(file);
+                continue;
+            }
+
             if (!file.exists()) {
                 config.getLogger().warn("Classpath entry %s does not exist", file);
                 continue;
@@ -178,12 +187,19 @@ public class Clazzes {
             if (sb.length() > 0) {
                 sb.append(File.pathSeparator);
             }
-            try {
-                sb.append(path.getFile().getCanonicalPath());
-                sb.append(File.pathSeparator);
-                sb.append(clazzes.config.getGeneratedClassDir(path).getCanonicalPath());
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+
+            if (path instanceof Java9RuntimePath) {
+                // special hack for specifying Java9+ RT
+                sb.append(path.getFile().getPath());
+                // skipping generatedClassDir here as support is only for UT and it will not produce any native code
+            } else {
+                try {
+                    sb.append(path.getFile().getCanonicalPath());
+                    sb.append(File.pathSeparator);
+                    sb.append(clazzes.config.getGeneratedClassDir(path).getCanonicalPath());
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             }
         }
         return sb.toString();

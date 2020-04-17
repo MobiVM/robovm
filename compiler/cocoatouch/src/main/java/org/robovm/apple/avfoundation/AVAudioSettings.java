@@ -185,9 +185,6 @@ import org.robovm.apple.audiotoolbox.*;
         set(Keys.NumberOfChannels(), NSNumber.valueOf(numberOfChannels));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public boolean isLinearPCMNonInterleaved() {
         if (has(Keys.IsNonInterleaved())) {
             NSNumber val = (NSNumber) get(Keys.IsNonInterleaved());
@@ -195,16 +192,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public AVAudioSettings setLinearPCMNonInterleaved(boolean linearPCMNonInterleaved) {
         set(Keys.IsNonInterleaved(), NSNumber.valueOf(linearPCMNonInterleaved));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @WeaklyLinked
     public AudioChannelLayout getChannelLayout() {
         if (has(Keys.ChannelLayout())) {
@@ -213,9 +204,6 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @WeaklyLinked
     public AVAudioSettings setChannelLayout(AudioChannelLayout channelLayout) {
         set(Keys.ChannelLayout(), new NSData(channelLayout));
@@ -239,14 +227,8 @@ import org.robovm.apple.audiotoolbox.*;
         public static native NSString IsBigEndianKey();
         @GlobalValue(symbol="AVLinearPCMIsFloatKey", optional=true)
         public static native NSString IsFloatKey();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVLinearPCMIsNonInterleaved", optional=true)
         public static native NSString IsNonInterleaved();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVChannelLayoutKey", optional=true)
         public static native NSString ChannelLayout();
     }

@@ -52,7 +52,7 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "initWithKeyName:searchable:searchableByDefault:unique:multiValued:")
     public CSCustomAttributeKey(String keyName, boolean searchable, boolean searchableByDefault, boolean unique, boolean multiValued) { super((SkipInit) null); initObject(init(keyName, searchable, searchableByDefault, unique, multiValued)); }
     @Method(selector = "initWithCoder:")
-    public CSCustomAttributeKey(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public CSCustomAttributeKey(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "keyName")
@@ -77,6 +77,6 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

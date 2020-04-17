@@ -88,7 +88,13 @@ enums:
     AVCaptureSystemPressureFactors: {} #since 11.1
     AVAudioSessionActivationOptions: {prefix: AVAudioSessionActivationOption}
     AVAudioSessionPromptStyle: {}
-
+    # ios13
+    AVAudio3DMixingSourceMode: {} #since 13.0
+    AVAudio3DMixingPointSourceInHeadMode: {} #since 13.0
+    AVAudioEnvironmentOutputType: {} #since 13.0
+    AVSpeechSynthesisVoiceGender: {} #since 13.0
+    AVCapturePhotoQualityPrioritization: {} #since 13.0
+    AVMovieWritingOptions: {prefix: AVMovieWriting} #since 13.0
 typed_enums:
     AVAssetDownloadedAssetEvictionPriority:
         enum: AVAssetDownloadedAssetEvictionPriority
@@ -109,7 +115,11 @@ typed_enums:
     AVVideoCodecType:
         enum: AVVideoCodecType
         type: NSString
-
+    AVSemanticSegmentationMatteType:
+        enum: AVSemanticSegmentationMatteType
+        type: NSString
+        AVSemanticSegmentationMatteType(.*):
+            name: '#{g[0]}'
 categories:
     NSValueAVFoundationExtensions: # DONE
         methods:
@@ -280,6 +290,10 @@ classes:
                         type: AVAssetExportPreset
             '+exportSessionWithAsset:presetName:':
                 exclude: true
+            '-estimateMaximumDurationWithCompletionHandler:':
+                name: estimateMaximumDuration
+            '-estimateOutputFileLengthWithCompletionHandler:':
+                name: estimateOutputFileLength
     AVAssetImageGenerator: # DONE
         properties:
             'apertureMode':
@@ -771,6 +785,10 @@ classes:
         properties:
             'audioUnit':
                 annotations: ['@WeaklyLinked']
+        methods:
+            '-setVoiceProcessingEnabled:error:':
+                name: setVoiceProcessingEnabled
+                throws: NSErrorException
     AVAudioInputNode: #since 8.0
         methods:
             '-setManualRenderingInputPCMFormat:inputBlock:':
@@ -1006,6 +1024,9 @@ classes:
                 throws: NSErrorException
             '-setAggregatedIOPreference:error:':
                 trim_after_first_colon: true
+                throws: NSErrorException
+            '-setAllowHapticsAndSystemSoundsDuringRecording:error:':
+                name: setAllowHapticsAndSystemSoundsDuringRecording
                 throws: NSErrorException
     AVAudioSessionChannelDescription: {} # DONE
     AVAudioSessionDataSourceDescription: # DONE
@@ -1298,6 +1319,8 @@ classes:
                 name: convertDeviceWhiteBalanceGainsToTemperatureAndTintValues
             '-deviceWhiteBalanceGainsForTemperatureAndTintValues:':
                 name: convertTemperatureAndTintValuesToDeviceWhiteBalanceGains
+            '+extrinsicMatrixFromDevice:toDevice:':
+                name: getExtrinsicMatrix
     AVCaptureDeviceFormat: # DONE
         properties:
             'mediaType':
@@ -1314,6 +1337,8 @@ classes:
                 throws: NSErrorException
             '+deviceInputWithDevice:error:':
                 exclude: true
+            '-portsWithMediaType:sourceDeviceType:sourceDevicePosition:':
+                name: getPorts
     AVCaptureDeviceInputSource: {} # DONE
     AVCaptureFileOutput: # DONE
         methods:
@@ -1878,6 +1903,8 @@ classes:
                 name: addTrackAssociation
             '-removeTrackAssociationToTrack:type:':
                 name: removeTrackAssociation
+            '-replaceFormatDescription:withFormatDescription:':
+                name: replaceFormatDescription
     AVMutableDateRangeMetadataGroup: # DONE
         properties:
             'items':
@@ -1926,6 +1953,9 @@ classes:
                     applier:
                         name: ciFiltersApplier
                         type: '@Block VoidBlock1<AVAsynchronousCIImageFilteringRequest>'
+            '+videoCompositionWithPropertiesOfAsset:prototypeInstruction:':
+                name: create
+                constructor: true
     AVMutableVideoCompositionInstruction: # DONE
         properties:
             'layerInstructions':
@@ -2191,6 +2221,8 @@ classes:
                         type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String>'
                     preferredMediaCharacteristics:
                         type: '@org.robovm.rt.bro.annotation.Marshaler(AVMediaCharacteristic.AsListMarshaler.class) List<AVMediaCharacteristic>'
+            '-initWithPrincipalMediaCharacteristics:preferredLanguages:preferredMediaCharacteristics:':
+                name: init
     AVQueuePlayer: # DONE
         methods:
             '-initWithItems:':
@@ -2244,6 +2276,8 @@ classes:
                 name: stopSpeaking
             '-pauseSpeakingAtBoundary:':
                 name: pauseSpeaking
+            '-writeUtterance:toBufferCallback:':
+                name: writeUtterance
     AVSpeechUtterance: # DONE
         methods:
             '-initWithString:':
@@ -2472,6 +2506,9 @@ classes:
             '+contentKeyResponseWithFairPlayStreamingKeyResponseData:':
                 constructor: true
                 name: create
+            '+contentKeyResponseWithAuthorizationTokenData:':
+                constructor: false
+                name: createUsingAuthTokenData
     AVContentKeySession:
         methods:
             '-setDelegate:queue:':
@@ -2571,6 +2608,108 @@ classes:
                 constructor: true
                 throws: NSErrorException
                 name: create
+    # ios13
+    AVAudioSinkNode: #since 13.0
+        methods:
+            '-initWithReceiverBlock:':
+                name: init
+    AVAudioSourceNode: #since 13.0
+        methods:
+            '-initWithRenderBlock:':
+                name: init
+            '-initWithFormat:renderBlock:':
+                name: init
+    AVCaptureMultiCamSession: {} #since 13.0
+    AVCompositionTrackFormatDescriptionReplacement: {} #since 13.0
+    AVFragmentedMovie: {} #since 13.0
+    AVFragmentedMovieMinder: #since 13.0
+        methods:
+            '-initWithMovie:mindingInterval:':
+                name: init
+            '+fragmentedMovieMinderWithMovie:mindingInterval:':
+                exclude: true
+    AVFragmentedMovieTrack: {} #since 13.0
+    AVMediaDataStorage: #since 13.0
+        methods:
+            '-initWithURL:options:':
+                name: init
+    AVMovie: #since 13.0
+        methods:
+            '-initWithURL:options:':
+                name: init
+            '-initWithData:options:':
+                name: init
+            '+movieWithURL:options:':
+                exclude: true
+            '+movieWithData:options:':
+                exclude: true
+            '-movieHeaderWithFileType:error:':
+                name: getMmovieHeader
+            '-writeMovieHeaderToURL:fileType:options:error:':
+                name: writeMovieHeader
+            '-isCompatibleWithFileType:':
+                name: isCompatibleWithFileType
+        properties:
+            'tracks':
+                type: 'NSArray<? extends AVMovieTrack>' # to allow subclasses to overload
+    AVMovieTrack: {} #since 13.0
+    AVMutableMovie: #since 13.0
+        methods:
+            '-initWithURL:options:error:':
+                name: init
+                # throws: NSErrorException -- can't use as slashes with AVMovie one
+            '-initWithData:options:error:':
+                name: init
+                # throws: NSErrorException -- can't use as slashes with AVMovie one
+            '-initWithSettingsFromMovie:options:error:':
+                name: init
+                throws: NSErrorException
+            '+movieWithURL:options:error:':
+                exclude: true
+            '+movieWithData:options:error:':
+                exclude: true
+            '+movieWithSettingsFromMovie:options:error:':
+                exclude: true
+            '-insertTimeRange:ofAsset:atTime:copySampleData:error:':
+                name: insertTimeRange
+            '-scaleTimeRange:toDuration:':
+                name: scaleTimeRange
+            '-mutableTrackCompatibleWithTrack:':
+                name: mutableTrackCompatibleWithTrack
+            '-addMutableTrackWithMediaType:copySettingsFromTrack:options:':
+                name: addMutableTrack
+            '-addMutableTracksCopyingSettingsFromTracks:options:':
+                name: addMutableTracksCopyingSettings
+    AVMutableMovieTrack: #since 13.0
+        methods:
+            '-insertTimeRange:ofTrack:atTime:copySampleData:error:':
+                name: insertTimeRange
+            '-scaleTimeRange:toDuration:':
+                name: scaleTimeRange
+            '-addTrackAssociationToTrack:type:':
+                name: addTrackAssociationToTrack
+            '-removeTrackAssociationToTrack:type:':
+                name: removeTrackAssociationToTrack
+            '-replaceFormatDescription:withFormatDescription:':
+                name: replaceFormatDescription
+            '-appendSampleBuffer:decodeTime:presentationTime:error:':
+                name: appendSampleBuffer
+            '-insertMediaTimeRange:intoTimeRange:':
+                name: insertMediaTimeRange
+    AVSemanticSegmentationMatte: #since 13.0
+        methods:
+            '-semanticSegmentationMatteByReplacingSemanticSegmentationMatteWithPixelBuffer:error:':
+                name: semanticSegmentationMatteByReplacingSemanticSegmentationMatte
+                throws: NSErrorException
+            '+semanticSegmentationMatteFromImageSourceAuxiliaryDataType:dictionaryRepresentation:error:':
+                name: semanticSegmentationMatteFromImageSourceAuxiliaryDataType
+    AVVideoCompositionRenderHint: {} #since 13.0
+    AVMetadataBodyObject: {} #since 13.0
+    AVMetadataCatBodyObject: {} #since 13.0
+    AVMetadataDogBodyObject: {} #since 13.0
+    AVMetadataHumanBodyObject: {} #since 13.0
+    AVMetadataSalientObject: {} #since 13.0
+
 protocols:
     AVCapturePhotoCaptureDelegate:
         methods:
@@ -2824,6 +2963,8 @@ protocols:
         methods:
             '-replacementEmbeddedThumbnailPixelBufferWithPhotoFormat:forPhoto:':
                 name: replacementEmbeddedThumbnailPixelBuffer
+            '-replacementSemanticSegmentationMatteOfType:forPhoto:':
+                name: replacementSemanticSegmentationMatteOfType
 
 functions:
     AVMake(RectWithAspectRatioInsideRect):
@@ -3406,6 +3547,31 @@ values:
     AVSampleBufferAudioRendererFlushTimeKey:
         class: AVSampleBufferAudioRenderer
         name: FlushTimeKey
+    #ios13
+    AVAudioUnitComponentManagerRegistrationsChangedNotification:
+        class: AVAudioUnitComponentManager
+        name: registrationsChangedNotification
+        type: NSString
+    AVFragmentedMovieTrack(.*)Notification:
+        class: AVFragmentedMovieTrack
+        static_class: Notifications
+        name: '#{g[0]}'
+        type: NSString
+    AVFragmentedMovie(.*)Notification:
+        class: AVFragmentedMovie
+        static_class: Notifications
+        name: '#{g[0]}'
+        type: NSString
+    AVMovieReferenceRestrictionsKey:
+        class: AVMovie
+        name: referenceRestrictionsKey
+        type: NSString
+    AVPlayer(.*)Notification:
+        class: AVPlayer
+        static_class: Notifications
+        name: '#{g[0]}'
+        type: NSString
+
 
     # Make sure we don't miss any values if new ones are introduced in a later version
     (k?AV.*):

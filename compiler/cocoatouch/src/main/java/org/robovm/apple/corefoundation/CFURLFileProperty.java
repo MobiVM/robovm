@@ -91,33 +91,12 @@ import org.robovm.apple.coretext.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CFURLFileProperty IsMountTrigger = new CFURLFileProperty("IsMountTrigger");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final CFURLFileProperty FileResourceType = new CFURLFileProperty("FileResourceType");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CFURLFileProperty FileSize = new CFURLFileProperty("FileSize");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CFURLFileProperty FileAllocatedSize = new CFURLFileProperty("FileAllocatedSize");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final CFURLFileProperty TotalFileSize = new CFURLFileProperty("TotalFileSize");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final CFURLFileProperty TotalFileAllocatedSize = new CFURLFileProperty("TotalFileAllocatedSize");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CFURLFileProperty IsAliasFile = new CFURLFileProperty("IsAliasFile");
     /*</constants>*/
     
@@ -144,39 +123,18 @@ import org.robovm.apple.coretext.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCFURLIsMountTriggerKey", optional=true)
         public static native CFString IsMountTrigger();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="kCFURLFileResourceTypeKey", optional=true)
         public static native CFString FileResourceType();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCFURLFileSizeKey", optional=true)
         public static native CFString FileSize();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCFURLFileAllocatedSizeKey", optional=true)
         public static native CFString FileAllocatedSize();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="kCFURLTotalFileSizeKey", optional=true)
         public static native CFString TotalFileSize();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="kCFURLTotalFileAllocatedSizeKey", optional=true)
         public static native CFString TotalFileAllocatedSize();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCFURLIsAliasFileKey", optional=true)
         public static native CFString IsAliasFile();
         /*</values>*/

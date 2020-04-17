@@ -39,16 +39,13 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
 public final class /*<name>*/NSURLBookmarkCreationOptions/*</name>*/ extends Bits</*<name>*/NSURLBookmarkCreationOptions/*</name>*/> {
     /*<values>*/
     public static final NSURLBookmarkCreationOptions None = new NSURLBookmarkCreationOptions(0L);
     /**
-     * @since Available in iOS 4.0 and later.
      * @deprecated Deprecated in iOS 7.0. Not supported
      */
     @Deprecated

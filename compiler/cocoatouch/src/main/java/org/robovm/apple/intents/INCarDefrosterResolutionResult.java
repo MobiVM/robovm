@@ -56,22 +56,22 @@ import org.robovm.apple.corelocation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "successWithResolvedCarDefroster:")
-    public static native INCarDefrosterResolutionResult successWithResolvedCarDefroster(INCarDefroster resolvedCarDefroster);
+    public static native INCarDefrosterResolutionResult success(INCarDefroster resolvedCarDefroster);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use +successWithResolvedCarDefroster:
      */
     @Deprecated
     @Method(selector = "successWithResolvedValue:")
-    public static native INCarDefrosterResolutionResult successWithResolvedValue(INCarDefroster resolvedValue);
+    public static native INCarDefrosterResolutionResult successValue(INCarDefroster resolvedValue);
     @Method(selector = "confirmationRequiredWithCarDefrosterToConfirm:")
-    public static native INCarDefrosterResolutionResult confirmationRequiredWithCarDefrosterToConfirm(INCarDefroster carDefrosterToConfirm);
+    public static native INCarDefrosterResolutionResult confirmationRequired(INCarDefroster carDefrosterToConfirm);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use +confirmationRequiredWithCarDefrosterToConfirm:
      */
     @Deprecated
     @Method(selector = "confirmationRequiredWithValueToConfirm:")
-    public static native INCarDefrosterResolutionResult confirmationRequiredWithValueToConfirm(INCarDefroster valueToConfirm);
+    public static native INCarDefrosterResolutionResult confirmationRequiredForValue(INCarDefroster valueToConfirm);
     /*</methods>*/
 }

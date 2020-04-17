@@ -32,9 +32,7 @@ import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("FileProvider") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSFileProviderExtension/*</name>*/ 
@@ -51,15 +49,13 @@ import org.robovm.apple.coregraphics.*;
     /*</constructors>*/
     /*<properties>*/
     /**
-     * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use NSFileProviderManager -providerIdentifier
      */
     @Deprecated
     @Property(selector = "providerIdentifier")
     public native String getProviderIdentifier();
     /**
-     * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use NSFileProviderManager -documentStorageURL
      */
     @Deprecated
     @Property(selector = "documentStorageURL")
@@ -69,10 +65,6 @@ import org.robovm.apple.coregraphics.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "URLForItemWithPersistentIdentifier:")
-    public native NSURL getURLForItem(NSString identifier);
-    @Method(selector = "persistentIdentifierForItemAtURL:")
-    public native NSString persistentIdentifierForItemAtURL(NSURL url);
     /**
      * @since Available in iOS 11.0 and later.
      */
@@ -87,6 +79,10 @@ import org.robovm.apple.coregraphics.*;
      */
     @Method(selector = "itemForIdentifier:error:")
     private native NSFileProviderItem itemForIdentifier(NSString identifier, NSError.NSErrorPtr error);
+    @Method(selector = "URLForItemWithPersistentIdentifier:")
+    public native NSURL getURLForItem(NSString identifier);
+    @Method(selector = "persistentIdentifierForItemAtURL:")
+    public native NSString persistentIdentifierForItemAtURL(NSURL url);
     @Method(selector = "providePlaceholderAtURL:completionHandler:")
     public native void providePlaceholderAtURL(NSURL url, @Block VoidBlock1<NSError> completionHandler);
     @Method(selector = "startProvidingItemAtURL:completionHandler:")
@@ -96,69 +92,37 @@ import org.robovm.apple.coregraphics.*;
     @Method(selector = "itemChangedAtURL:")
     public native void itemChangedAtURL(NSURL url);
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 11.0. Use the corresponding method on NSFileProviderManager instead
      */
     @Deprecated
     @Method(selector = "writePlaceholderAtURL:withMetadata:error:")
     public static native boolean writePlaceholder(NSURL placeholderURL, NSDictionary<NSString, ?> metadata, NSError.NSErrorPtr error);
     /**
-     * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use NSFileProviderManager +placeholderURLForURL:
      */
     @Deprecated
     @Method(selector = "placeholderURLForURL:")
     public static native NSURL placeholderURLForURL(NSURL url);
     @Method(selector = "enumeratorForContainerItemIdentifier:error:")
     public native NSFileProviderEnumerator enumeratorForContainer(NSString containerItemIdentifier, NSError.NSErrorPtr error);
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
     @Method(selector = "importDocumentAtURL:toParentItemIdentifier:completionHandler:")
     public native void importDocumentAtURL(NSURL fileURL, NSString parentItemIdentifier, @Block VoidBlock2<NSFileProviderItem, NSError> completionHandler);
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
     @Method(selector = "createDirectoryWithName:inParentItemIdentifier:completionHandler:")
     public native void createDirectory(String directoryName, NSString parentItemIdentifier, @Block VoidBlock2<NSFileProviderItem, NSError> completionHandler);
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
     @Method(selector = "renameItemWithIdentifier:toName:completionHandler:")
     public native void renameItem(NSString itemIdentifier, String itemName, @Block VoidBlock2<NSFileProviderItem, NSError> completionHandler);
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
     @Method(selector = "reparentItemWithIdentifier:toParentItemWithIdentifier:newName:completionHandler:")
     public native void reparentItem(NSString itemIdentifier, NSString parentItemIdentifier, String newName, @Block VoidBlock2<NSFileProviderItem, NSError> completionHandler);
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
     @Method(selector = "trashItemWithIdentifier:completionHandler:")
     public native void trashItem(NSString itemIdentifier, @Block VoidBlock2<NSFileProviderItem, NSError> completionHandler);
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
     @Method(selector = "untrashItemWithIdentifier:toParentItemIdentifier:completionHandler:")
     public native void untrashItem(NSString itemIdentifier, NSString parentItemIdentifier, @Block VoidBlock2<NSFileProviderItem, NSError> completionHandler);
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
     @Method(selector = "deleteItemWithIdentifier:completionHandler:")
     public native void deleteItem(NSString itemIdentifier, @Block VoidBlock1<NSError> completionHandler);
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
     @Method(selector = "setLastUsedDate:forItemIdentifier:completionHandler:")
     public native void setLastUsedDate(NSDate lastUsedDate, NSString itemIdentifier, @Block VoidBlock2<NSFileProviderItem, NSError> completionHandler);
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
     @Method(selector = "setTagData:forItemIdentifier:completionHandler:")
     public native void setTagData(NSData tagData, NSString itemIdentifier, @Block VoidBlock2<NSFileProviderItem, NSError> completionHandler);
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
     @Method(selector = "setFavoriteRank:forItemIdentifier:completionHandler:")
     public native void setFavoriteRank(NSNumber favoriteRank, NSString itemIdentifier, @Block VoidBlock2<NSFileProviderItem, NSError> completionHandler);
     /**

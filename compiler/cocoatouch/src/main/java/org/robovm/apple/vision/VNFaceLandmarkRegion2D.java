@@ -57,6 +57,11 @@ import org.robovm.apple.imageio.*;
     /*<properties>*/
     @Property(selector = "normalizedPoints")
     public native CGPoint getNormalizedPoints();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "precisionEstimatesPerPoint")
+    public native NSArray<NSNumber> getPrecisionEstimatesPerPoint();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

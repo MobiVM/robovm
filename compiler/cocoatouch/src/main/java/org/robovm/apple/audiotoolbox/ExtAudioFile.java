@@ -200,64 +200,28 @@ import org.robovm.apple.uikit.*;
         setProperty(id, new DoublePtr(value));
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 2.1 and later.
-     */
     @Bridge(symbol="ExtAudioFileOpenURL", optional=true)
     protected static native OSStatus openURL0(NSURL inURL, ExtAudioFile.ExtAudioFilePtr outExtAudioFile);
-    /**
-     * @since Available in iOS 2.1 and later.
-     */
     @Bridge(symbol="ExtAudioFileWrapAudioFileID", optional=true)
     protected static native OSStatus wrapAudioFile0(AudioFile inFileID, boolean inForWriting, ExtAudioFile.ExtAudioFilePtr outExtAudioFile);
-    /**
-     * @since Available in iOS 2.1 and later.
-     */
     @Bridge(symbol="ExtAudioFileCreateWithURL", optional=true)
     protected static native OSStatus create0(NSURL inURL, AudioFileType inFileType, AudioStreamBasicDescription inStreamDesc, AudioChannelLayout inChannelLayout, AudioFileFlags inFlags, ExtAudioFile.ExtAudioFilePtr outExtAudioFile);
-    /**
-     * @since Available in iOS 2.1 and later.
-     */
     @Bridge(symbol="ExtAudioFileDispose", optional=true)
     protected native OSStatus dispose0();
-    /**
-     * @since Available in iOS 2.1 and later.
-     */
     @Bridge(symbol="ExtAudioFileRead", optional=true)
     protected native OSStatus read0(IntPtr ioNumberFrames, AudioBufferList ioData);
-    /**
-     * @since Available in iOS 2.1 and later.
-     */
     @Bridge(symbol="ExtAudioFileWrite", optional=true)
     protected native OSStatus write0(int inNumberFrames, AudioBufferList ioData);
-    /**
-     * @since Available in iOS 2.1 and later.
-     */
     @Bridge(symbol="ExtAudioFileWriteAsync", optional=true)
     protected native OSStatus writeAsync0(int inNumberFrames, AudioBufferList ioData);
-    /**
-     * @since Available in iOS 2.1 and later.
-     */
     @Bridge(symbol="ExtAudioFileSeek", optional=true)
     protected native OSStatus seek0(long inFrameOffset);
-    /**
-     * @since Available in iOS 2.1 and later.
-     */
     @Bridge(symbol="ExtAudioFileTell", optional=true)
     protected native OSStatus tell0(LongPtr outFrameOffset);
-    /**
-     * @since Available in iOS 2.1 and later.
-     */
     @Bridge(symbol="ExtAudioFileGetPropertyInfo", optional=true)
     protected native OSStatus getPropertyInfo0(ExtAudioFileProperty inPropertyID, IntPtr outSize, BooleanPtr outWritable);
-    /**
-     * @since Available in iOS 2.1 and later.
-     */
     @Bridge(symbol="ExtAudioFileGetProperty", optional=true)
     protected native OSStatus getProperty0(ExtAudioFileProperty inPropertyID, IntPtr ioPropertyDataSize, VoidPtr outPropertyData);
-    /**
-     * @since Available in iOS 2.1 and later.
-     */
     @Bridge(symbol="ExtAudioFileSetProperty", optional=true)
     protected native OSStatus setProperty0(ExtAudioFileProperty inPropertyID, int inPropertyDataSize, VoidPtr inPropertyData);
     /*</methods>*/

@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -56,43 +58,37 @@ import org.robovm.apple.intents.*;
     /*</properties>*/
     /*<methods>*/
     /**
-     * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 8.3.
+     * @deprecated Deprecated in iOS 8.3. Use UIAlertController instead.
      */
     @Deprecated
     @Method(selector = "actionSheet:clickedButtonAtIndex:")
     void clicked(UIActionSheet actionSheet, @MachineSizedSInt long buttonIndex);
     /**
-     * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 8.3.
+     * @deprecated Deprecated in iOS 8.3. Use UIAlertController instead.
      */
     @Deprecated
     @Method(selector = "actionSheetCancel:")
     void cancel(UIActionSheet actionSheet);
     /**
-     * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 8.3.
+     * @deprecated Deprecated in iOS 8.3. Use UIAlertController instead.
      */
     @Deprecated
     @Method(selector = "willPresentActionSheet:")
     void willPresent(UIActionSheet actionSheet);
     /**
-     * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 8.3.
+     * @deprecated Deprecated in iOS 8.3. Use UIAlertController instead.
      */
     @Deprecated
     @Method(selector = "didPresentActionSheet:")
     void didPresent(UIActionSheet actionSheet);
     /**
-     * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 8.3.
+     * @deprecated Deprecated in iOS 8.3. Use UIAlertController instead.
      */
     @Deprecated
     @Method(selector = "actionSheet:willDismissWithButtonIndex:")
     void willDismiss(UIActionSheet actionSheet, @MachineSizedSInt long buttonIndex);
     /**
-     * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 8.3.
+     * @deprecated Deprecated in iOS 8.3. Use UIAlertController instead.
      */
     @Deprecated
     @Method(selector = "actionSheet:didDismissWithButtonIndex:")

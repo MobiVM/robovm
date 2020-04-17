@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -59,12 +61,16 @@ import org.robovm.apple.intents.*;
     /*<methods>*/
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use UIContextMenuInteraction
      */
+    @Deprecated
     @NotImplemented("previewingContext:viewControllerForLocation:")
     public UIViewController getViewControllerForLocation(UIViewControllerPreviewing previewingContext, @ByVal CGPoint location) { return null; }
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use UIContextMenuInteraction
      */
+    @Deprecated
     @NotImplemented("previewingContext:commitViewController:")
     public void commitViewController(UIViewControllerPreviewing previewingContext, UIViewController viewControllerToCommit) {}
     /*</methods>*/

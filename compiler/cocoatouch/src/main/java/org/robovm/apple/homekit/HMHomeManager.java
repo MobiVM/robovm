@@ -32,9 +32,7 @@ import org.robovm.apple.corelocation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("HomeKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/HMHomeManager/*</name>*/ 
@@ -54,6 +52,11 @@ import org.robovm.apple.corelocation.*;
     public native HMHomeManagerDelegate getDelegate();
     @Property(selector = "setDelegate:", strongRef = true)
     public native void setDelegate(HMHomeManagerDelegate v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "authorizationStatus")
+    public native HMHomeManagerAuthorizationStatus getAuthorizationStatus();
     @Property(selector = "primaryHome")
     public native HMHome getPrimaryHome();
     @Property(selector = "homes")

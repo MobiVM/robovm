@@ -70,6 +70,11 @@ import org.robovm.apple.metal.*;
     public native MTLBuffer getGradientForBiases();
     @Property(selector = "convolution")
     public native MPSCNNConvolution getConvolution();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "gradientForWeightsLayout")
+    public native MPSCNNConvolutionWeightsLayout getGradientForWeightsLayout();
     @Property(selector = "sourceWidth")
     public native @MachineSizedUInt long getSourceWidth();
     @Property(selector = "sourceHeight")

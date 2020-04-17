@@ -50,7 +50,7 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "initWithUrlString:username:userIdentifier:service:")
     public CNSocialProfile(String urlString, String username, String userIdentifier, String service) { super((SkipInit) null); initObject(init(urlString, username, userIdentifier, service)); }
     @Method(selector = "initWithCoder:")
-    public CNSocialProfile(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public CNSocialProfile(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     public CNSocialProfile(String urlString, String username, String userIdentifier, CNSocialProfileService service) {
         super((SkipInit) null);
@@ -82,6 +82,6 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

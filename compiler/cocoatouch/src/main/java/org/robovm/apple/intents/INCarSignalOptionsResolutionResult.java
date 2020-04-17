@@ -56,22 +56,22 @@ import org.robovm.apple.corelocation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "successWithResolvedCarSignalOptions:")
-    public static native INCarSignalOptionsResolutionResult successWithResolvedCarSignalOptions(INCarSignalOptions resolvedCarSignalOptions);
+    public static native INCarSignalOptionsResolutionResult success(INCarSignalOptions resolvedCarSignalOptions);
     /**
      * @since Available in iOS 10.3 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use +successWithResolvedCarSignalOptions:
      */
     @Deprecated
     @Method(selector = "successWithResolvedValue:")
-    public static native INCarSignalOptionsResolutionResult successWithResolvedValue(INCarSignalOptions resolvedValue);
+    public static native INCarSignalOptionsResolutionResult successValue(INCarSignalOptions resolvedValue);
     @Method(selector = "confirmationRequiredWithCarSignalOptionsToConfirm:")
-    public static native INCarSignalOptionsResolutionResult confirmationRequiredWithCarSignalOptionsToConfirm(INCarSignalOptions carSignalOptionsToConfirm);
+    public static native INCarSignalOptionsResolutionResult confirmationRequired(INCarSignalOptions carSignalOptionsToConfirm);
     /**
      * @since Available in iOS 10.3 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use +confirmationRequiredWithCarSignalOptionsToConfirm:
      */
     @Deprecated
     @Method(selector = "confirmationRequiredWithValueToConfirm:")
-    public static native INCarSignalOptionsResolutionResult confirmationRequiredWithValueToConfirm(INCarSignalOptions valueToConfirm);
+    public static native INCarSignalOptionsResolutionResult confirmationRequiredForValue(INCarSignalOptions valueToConfirm);
     /*</methods>*/
 }

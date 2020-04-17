@@ -65,5 +65,20 @@ import org.robovm.apple.uikit.*;
      */
     @NotImplemented("previewController:transitionViewForPreviewItem:")
     public UIView getTransitionViewForPreviewItem(QLPreviewController controller, QLPreviewItem item) { return null; }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("previewController:editingModeForPreviewItem:")
+    public QLPreviewItemEditingMode getEditingMode(QLPreviewController controller, QLPreviewItem previewItem) { return null; }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("previewController:didUpdateContentsOfPreviewItem:")
+    public void didUpdateContentsOfPreviewItem(QLPreviewController controller, QLPreviewItem previewItem) {}
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("previewController:didSaveEditedCopyOfPreviewItem:atURL:")
+    public void didSaveEditedCopyOfPreviewItem(QLPreviewController controller, QLPreviewItem previewItem, NSURL modifiedContentsURL) {}
     /*</methods>*/
 }

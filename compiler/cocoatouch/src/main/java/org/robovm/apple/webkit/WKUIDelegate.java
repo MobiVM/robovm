@@ -64,19 +64,45 @@ import org.robovm.apple.security.*;
     void runJavaScriptTextInputPanel(WKWebView webView, String prompt, String defaultText, WKFrameInfo frame, @Block VoidBlock1<NSString> completionHandler);
     /**
      * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use webView:contextMenuConfigurationForElement:completionHandler:
      */
+    @Deprecated
     @Method(selector = "webView:shouldPreviewElement:")
     boolean shouldPreviewElement(WKWebView webView, WKPreviewElementInfo elementInfo);
     /**
      * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use webView:contextMenuConfigurationForElement:completionHandler:
      */
+    @Deprecated
     @Method(selector = "webView:previewingViewControllerForElement:defaultActions:")
     UIViewController getPreviewingViewControllerForElement(WKWebView webView, WKPreviewElementInfo elementInfo, NSArray<?> previewActions);
     /**
      * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use webView:contextMenuForElement:willCommitWithAnimator:
      */
+    @Deprecated
     @Method(selector = "webView:commitPreviewingViewController:")
     void commitPreviewingViewController(WKWebView webView, UIViewController previewingViewController);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "webView:contextMenuConfigurationForElement:completionHandler:")
+    void getContextMenuConfiguration(WKWebView webView, WKContextMenuElementInfo elementInfo, @Block VoidBlock1<UIContextMenuConfiguration> completionHandler);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "webView:contextMenuWillPresentForElement:")
+    void contextMenuWillPresent(WKWebView webView, WKContextMenuElementInfo elementInfo);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "webView:contextMenuForElement:willCommitWithAnimator:")
+    void getContextMenu(WKWebView webView, WKContextMenuElementInfo elementInfo, UIContextMenuInteractionCommitAnimating animator);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "webView:contextMenuDidEndForElement:")
+    void contextMenuDidEnd(WKWebView webView, WKContextMenuElementInfo elementInfo);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

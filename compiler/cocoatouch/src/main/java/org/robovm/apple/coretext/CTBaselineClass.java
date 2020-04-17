@@ -90,29 +90,11 @@ import org.robovm.apple.uikit.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public static final CTBaselineClass Roman = new CTBaselineClass("Roman");
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public static final CTBaselineClass IdeographicCentered = new CTBaselineClass("IdeographicCentered");
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public static final CTBaselineClass IdeographicLow = new CTBaselineClass("IdeographicLow");
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public static final CTBaselineClass IdeographicHigh = new CTBaselineClass("IdeographicHigh");
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public static final CTBaselineClass Hanging = new CTBaselineClass("Hanging");
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public static final CTBaselineClass Math = new CTBaselineClass("Math");
     /*</constants>*/
     
@@ -139,34 +121,16 @@ import org.robovm.apple.uikit.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 6.0 and later.
-         */
         @GlobalValue(symbol="kCTBaselineClassRoman", optional=true)
         public static native CFString Roman();
-        /**
-         * @since Available in iOS 6.0 and later.
-         */
         @GlobalValue(symbol="kCTBaselineClassIdeographicCentered", optional=true)
         public static native CFString IdeographicCentered();
-        /**
-         * @since Available in iOS 6.0 and later.
-         */
         @GlobalValue(symbol="kCTBaselineClassIdeographicLow", optional=true)
         public static native CFString IdeographicLow();
-        /**
-         * @since Available in iOS 6.0 and later.
-         */
         @GlobalValue(symbol="kCTBaselineClassIdeographicHigh", optional=true)
         public static native CFString IdeographicHigh();
-        /**
-         * @since Available in iOS 6.0 and later.
-         */
         @GlobalValue(symbol="kCTBaselineClassHanging", optional=true)
         public static native CFString Hanging();
-        /**
-         * @since Available in iOS 6.0 and later.
-         */
         @GlobalValue(symbol="kCTBaselineClassMath", optional=true)
         public static native CFString Math();
         /*</values>*/

@@ -93,12 +93,12 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     protected native @Pointer long init(NSCoder decoder, MTLDevice device);
     @Method(selector = "encodeToCommandBuffer:sourceImage:labels:destinationImage:")
-    public native void encodeToCommandBuffer(MTLCommandBuffer commandBuffer, MPSImage sourceImage, MPSCNNLossLabels labels, MPSImage destinationImage);
+    public native void encode(MTLCommandBuffer commandBuffer, MPSImage sourceImage, MPSCNNLossLabels labels, MPSImage destinationImage);
     @Method(selector = "encodeToCommandBuffer:sourceImage:labels:")
-    public native MPSImage encodeToCommandBuffer(MTLCommandBuffer commandBuffer, MPSImage sourceImage, MPSCNNLossLabels labels);
+    public native MPSImage encode(MTLCommandBuffer commandBuffer, MPSImage sourceImage, MPSCNNLossLabels labels);
     @Method(selector = "encodeBatchToCommandBuffer:sourceImages:labels:destinationImages:")
-    public native void encodeBatchToCommandBuffer(MTLCommandBuffer commandBuffer, NSArray<MPSImage> sourceImage, NSArray <MPSCNNLossLabels> labels, NSArray<MPSImage> destinationImage);
+    public native void encodeBatch(MTLCommandBuffer commandBuffer, NSArray<MPSImage> sourceImage, NSArray<MPSCNNLossLabels> labels, NSArray<MPSImage> destinationImage);
     @Method(selector = "encodeBatchToCommandBuffer:sourceImages:labels:")
-    public native NSArray<MPSImage> encodeBatchToCommandBuffer(MTLCommandBuffer commandBuffer, NSArray<MPSImage> sourceImage, NSArray <MPSCNNLossLabels> labels);
+    public native NSArray<MPSImage> encodeBatch(MTLCommandBuffer commandBuffer, NSArray<MPSImage> sourceImage, NSArray<MPSCNNLossLabels> labels);
     /*</methods>*/
 }

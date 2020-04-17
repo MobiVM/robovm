@@ -111,9 +111,6 @@ import org.robovm.apple.coretext.*;
     }
     
 
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public String getHost() {
         if (has(Keys.ProxyHost())) {
             CFString val = get(Keys.ProxyHost(), CFString.class);
@@ -121,16 +118,10 @@ import org.robovm.apple.coretext.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public CFStreamSocketSOCKSProxy setHost(String host) {
         set(Keys.ProxyHost(), new CFString(host));
         return this;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public int getPort() {
         if (has(Keys.ProxyPort())) {
             CFNumber val = get(Keys.ProxyPort(), CFNumber.class);
@@ -138,16 +129,10 @@ import org.robovm.apple.coretext.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public CFStreamSocketSOCKSProxy setPort(int port) {
         set(Keys.ProxyPort(), CFNumber.valueOf(port));
         return this;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public CFStreamSocketSOCKSVersion getVersion() {
         if (has(Keys.Version())) {
             CFString val = get(Keys.Version(), CFString.class);
@@ -155,16 +140,10 @@ import org.robovm.apple.coretext.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public CFStreamSocketSOCKSProxy setVersion(CFStreamSocketSOCKSVersion version) {
         set(Keys.Version(), version.value());
         return this;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public String getUser() {
         if (has(Keys.User())) {
             CFString val = get(Keys.User(), CFString.class);
@@ -172,16 +151,10 @@ import org.robovm.apple.coretext.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public CFStreamSocketSOCKSProxy setUser(String user) {
         set(Keys.User(), new CFString(user));
         return this;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public String getPassword() {
         if (has(Keys.Password())) {
             CFString val = get(Keys.Password(), CFString.class);
@@ -189,9 +162,6 @@ import org.robovm.apple.coretext.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public CFStreamSocketSOCKSProxy setPassword(String password) {
         set(Keys.Password(), new CFString(password));
         return this;
@@ -202,29 +172,14 @@ import org.robovm.apple.coretext.*;
     @Library("CoreFoundation")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCFStreamPropertySOCKSProxyHost", optional=true)
         public static native CFString ProxyHost();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCFStreamPropertySOCKSProxyPort", optional=true)
         public static native CFString ProxyPort();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCFStreamPropertySOCKSVersion", optional=true)
         public static native CFString Version();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCFStreamPropertySOCKSUser", optional=true)
         public static native CFString User();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCFStreamPropertySOCKSPassword", optional=true)
         public static native CFString Password();
     }

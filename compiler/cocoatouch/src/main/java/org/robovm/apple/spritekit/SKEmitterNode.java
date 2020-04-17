@@ -259,28 +259,24 @@ import org.robovm.apple.metal.*;
     @Property(selector = "setParticleRenderOrder:")
     public native void setParticleRenderOrder(SKParticleRenderOrder v);
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 8.0.
      */
     @Deprecated
     @Property(selector = "particleZPositionRange")
     public native @MachineSizedFloat double getParticleZPositionRange();
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 8.0.
      */
     @Deprecated
     @Property(selector = "setParticleZPositionRange:")
     public native void setParticleZPositionRange(@MachineSizedFloat double v);
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 8.0.
      */
     @Deprecated
     @Property(selector = "particleZPositionSpeed")
     public native @MachineSizedFloat double getParticleZPositionSpeed();
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 8.0.
      */
     @Deprecated

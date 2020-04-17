@@ -56,22 +56,22 @@ import org.robovm.apple.corelocation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "successWithResolvedAccountType:")
-    public static native INAccountTypeResolutionResult successWithResolvedAccountType(INAccountType resolvedAccountType);
+    public static native INAccountTypeResolutionResult success(INAccountType resolvedAccountType);
     /**
-     * @since Available in iOS 10.3 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 11.0. Use +successWithResolvedAccountType:
      */
     @Deprecated
     @Method(selector = "successWithResolvedValue:")
-    public static native INAccountTypeResolutionResult successWithResolvedValue(INAccountType resolvedValue);
+    public static native INAccountTypeResolutionResult successValue(INAccountType resolvedValue);
     @Method(selector = "confirmationRequiredWithAccountTypeToConfirm:")
-    public static native INAccountTypeResolutionResult confirmationRequiredWithAccountTypeToConfirm(INAccountType accountTypeToConfirm);
+    public static native INAccountTypeResolutionResult confirmationRequired(INAccountType accountTypeToConfirm);
     /**
-     * @since Available in iOS 10.3 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 11.0. Use +confirmationRequiredWithAccountTypeToConfirm:
      */
     @Deprecated
     @Method(selector = "confirmationRequiredWithValueToConfirm:")
-    public static native INAccountTypeResolutionResult confirmationRequiredWithValueToConfirm(INAccountType valueToConfirm);
+    public static native INAccountTypeResolutionResult confirmationRequiredForValue(INAccountType valueToConfirm);
     /*</methods>*/
 }

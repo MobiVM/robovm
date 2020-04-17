@@ -92,49 +92,16 @@ import org.robovm.apple.metal.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public static final CAValueFunctionName RotateX = new CAValueFunctionName("RotateX");
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public static final CAValueFunctionName RotateY = new CAValueFunctionName("RotateY");
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public static final CAValueFunctionName RotateZ = new CAValueFunctionName("RotateZ");
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public static final CAValueFunctionName Scale = new CAValueFunctionName("Scale");
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public static final CAValueFunctionName ScaleX = new CAValueFunctionName("ScaleX");
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public static final CAValueFunctionName ScaleY = new CAValueFunctionName("ScaleY");
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public static final CAValueFunctionName ScaleZ = new CAValueFunctionName("ScaleZ");
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public static final CAValueFunctionName Translate = new CAValueFunctionName("Translate");
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public static final CAValueFunctionName TranslateX = new CAValueFunctionName("TranslateX");
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public static final CAValueFunctionName TranslateY = new CAValueFunctionName("TranslateY");
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public static final CAValueFunctionName TranslateZ = new CAValueFunctionName("TranslateZ");
     /*</constants>*/
     
@@ -161,59 +128,26 @@ import org.robovm.apple.metal.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 3.0 and later.
-         */
         @GlobalValue(symbol="kCAValueFunctionRotateX", optional=true)
         public static native NSString RotateX();
-        /**
-         * @since Available in iOS 3.0 and later.
-         */
         @GlobalValue(symbol="kCAValueFunctionRotateY", optional=true)
         public static native NSString RotateY();
-        /**
-         * @since Available in iOS 3.0 and later.
-         */
         @GlobalValue(symbol="kCAValueFunctionRotateZ", optional=true)
         public static native NSString RotateZ();
-        /**
-         * @since Available in iOS 3.0 and later.
-         */
         @GlobalValue(symbol="kCAValueFunctionScale", optional=true)
         public static native NSString Scale();
-        /**
-         * @since Available in iOS 3.0 and later.
-         */
         @GlobalValue(symbol="kCAValueFunctionScaleX", optional=true)
         public static native NSString ScaleX();
-        /**
-         * @since Available in iOS 3.0 and later.
-         */
         @GlobalValue(symbol="kCAValueFunctionScaleY", optional=true)
         public static native NSString ScaleY();
-        /**
-         * @since Available in iOS 3.0 and later.
-         */
         @GlobalValue(symbol="kCAValueFunctionScaleZ", optional=true)
         public static native NSString ScaleZ();
-        /**
-         * @since Available in iOS 3.0 and later.
-         */
         @GlobalValue(symbol="kCAValueFunctionTranslate", optional=true)
         public static native NSString Translate();
-        /**
-         * @since Available in iOS 3.0 and later.
-         */
         @GlobalValue(symbol="kCAValueFunctionTranslateX", optional=true)
         public static native NSString TranslateX();
-        /**
-         * @since Available in iOS 3.0 and later.
-         */
         @GlobalValue(symbol="kCAValueFunctionTranslateY", optional=true)
         public static native NSString TranslateY();
-        /**
-         * @since Available in iOS 3.0 and later.
-         */
         @GlobalValue(symbol="kCAValueFunctionTranslateZ", optional=true)
         public static native NSString TranslateZ();
         /*</values>*/

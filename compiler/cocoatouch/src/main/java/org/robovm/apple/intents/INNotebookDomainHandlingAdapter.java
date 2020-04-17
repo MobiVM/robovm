@@ -62,14 +62,39 @@ import org.robovm.apple.corelocation.*;
     public void handleAddTasks(INAddTasksIntent intent, @Block VoidBlock1<INAddTasksIntentResponse> completion) {}
     @NotImplemented("confirmAddTasks:completion:")
     public void confirmAddTasks(INAddTasksIntent intent, @Block VoidBlock1<INAddTasksIntentResponse> completion) {}
+    /**
+     * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 13.0. resolveTargetTaskListForAddTasks:withCompletion: is deprecated. Use resolveTargetTaskListForAddTasks:completion: instead
+     */
+    @Deprecated
     @NotImplemented("resolveTargetTaskListForAddTasks:withCompletion:")
     public void resolveTargetTaskListForAddTasks(INAddTasksIntent intent, @Block VoidBlock1<INTaskListResolutionResult> completion) {}
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("resolveTargetTaskListForAddTasks:completion:")
+    public void resolveTargetTaskList(INAddTasksIntent intent, @Block VoidBlock1<INAddTasksTargetTaskListResolutionResult> completion) {}
     @NotImplemented("resolveTaskTitlesForAddTasks:withCompletion:")
     public void resolveTaskTitlesForAddTasks(INAddTasksIntent intent, @Block VoidBlock1<NSArray<INSpeakableStringResolutionResult>> completion) {}
     @NotImplemented("resolveSpatialEventTriggerForAddTasks:withCompletion:")
     public void resolveSpatialEventTriggerForAddTasks(INAddTasksIntent intent, @Block VoidBlock1<INSpatialEventTriggerResolutionResult> completion) {}
+    /**
+     * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 13.0. resolveTemporalEventTriggerForAddTasks:withCompletion: is deprecated. Use resolveTemporalEventTriggerForAddTasks:completion: instead
+     */
+    @Deprecated
     @NotImplemented("resolveTemporalEventTriggerForAddTasks:withCompletion:")
     public void resolveTemporalEventTriggerForAddTasks(INAddTasksIntent intent, @Block VoidBlock1<INTemporalEventTriggerResolutionResult> completion) {}
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("resolveTemporalEventTriggerForAddTasks:completion:")
+    public void resolveTemporalEventTrigger(INAddTasksIntent intent, @Block VoidBlock1<INAddTasksTemporalEventTriggerResolutionResult> completion) {}
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("resolvePriorityForAddTasks:withCompletion:")
+    public void resolvePriorityForAddTasks(INAddTasksIntent intent, @Block VoidBlock1<INTaskPriorityResolutionResult> completion) {}
     @NotImplemented("handleCreateTaskList:completion:")
     public void handleCreateTaskList(INCreateTaskListIntent intent, @Block VoidBlock1<INCreateTaskListIntentResponse> completion) {}
     @NotImplemented("confirmCreateTaskList:completion:")
@@ -86,12 +111,32 @@ import org.robovm.apple.corelocation.*;
     public void confirmSetTaskAttribute(INSetTaskAttributeIntent intent, @Block VoidBlock1<INSetTaskAttributeIntentResponse> completion) {}
     @NotImplemented("resolveTargetTaskForSetTaskAttribute:withCompletion:")
     public void resolveTargetTaskForSetTaskAttribute(INSetTaskAttributeIntent intent, @Block VoidBlock1<INTaskResolutionResult> completion) {}
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("resolveTaskTitleForSetTaskAttribute:withCompletion:")
+    public void resolveTaskTitleForSetTaskAttribute(INSetTaskAttributeIntent intent, @Block VoidBlock1<INSpeakableStringResolutionResult> completion) {}
     @NotImplemented("resolveStatusForSetTaskAttribute:withCompletion:")
     public void resolveStatusForSetTaskAttribute(INSetTaskAttributeIntent intent, @Block VoidBlock1<INTaskStatusResolutionResult> completion) {}
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("resolvePriorityForSetTaskAttribute:withCompletion:")
+    public void resolvePriorityForSetTaskAttribute(INSetTaskAttributeIntent intent, @Block VoidBlock1<INTaskPriorityResolutionResult> completion) {}
     @NotImplemented("resolveSpatialEventTriggerForSetTaskAttribute:withCompletion:")
     public void resolveSpatialEventTriggerForSetTaskAttribute(INSetTaskAttributeIntent intent, @Block VoidBlock1<INSpatialEventTriggerResolutionResult> completion) {}
+    /**
+     * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 13.0. resolveTemporalEventTriggerForSetTaskAttribute:withCompletion: is deprecated. Use resolveTemporalEventTriggerForSetTaskAttribute:completion: instead
+     */
+    @Deprecated
     @NotImplemented("resolveTemporalEventTriggerForSetTaskAttribute:withCompletion:")
     public void resolveTemporalEventTriggerForSetTaskAttribute(INSetTaskAttributeIntent intent, @Block VoidBlock1<INTemporalEventTriggerResolutionResult> completion) {}
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("resolveTemporalEventTriggerForSetTaskAttribute:completion:")
+    public void resolveTemporalEventTrigger(INSetTaskAttributeIntent intent, @Block VoidBlock1<INSetTaskAttributeTemporalEventTriggerResolutionResult> completion) {}
     @NotImplemented("handleSearchForNotebookItems:completion:")
     public void handleSearchForNotebookItems(INSearchForNotebookItemsIntent intent, @Block VoidBlock1<INSearchForNotebookItemsIntentResponse> completion) {}
     @NotImplemented("confirmSearchForNotebookItems:completion:")
@@ -112,5 +157,15 @@ import org.robovm.apple.corelocation.*;
     public void resolveDateTimeForSearchForNotebookItems(INSearchForNotebookItemsIntent intent, @Block VoidBlock1<INDateComponentsRangeResolutionResult> completion) {}
     @NotImplemented("resolveDateSearchTypeForSearchForNotebookItems:withCompletion:")
     public void resolveDateSearchTypeForSearchForNotebookItems(INSearchForNotebookItemsIntent intent, @Block VoidBlock1<INDateSearchTypeResolutionResult> completion) {}
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("resolveTemporalEventTriggerTypesForSearchForNotebookItems:withCompletion:")
+    public void resolveTemporalEventTriggerTypesForSearchForNotebookItems(INSearchForNotebookItemsIntent intent, @Block VoidBlock1<INTemporalEventTriggerTypeOptionsResolutionResult> completion) {}
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("resolveTaskPriorityForSearchForNotebookItems:withCompletion:")
+    public void resolveTaskPriorityForSearchForNotebookItems(INSearchForNotebookItemsIntent intent, @Block VoidBlock1<INTaskPriorityResolutionResult> completion) {}
     /*</methods>*/
 }

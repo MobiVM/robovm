@@ -101,70 +101,37 @@ import org.robovm.apple.corefoundation.*;
         unscheduleFromRunLoop(runLoop, runLoopMode.value().toString());
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CFNetServiceBrowserGetTypeID", optional=true)
     public static native @MachineSizedUInt long getClassTypeID();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CFNetServiceBrowserCreate", optional=true)
     private static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CFNetServiceBrowser create(CFAllocator alloc, FunctionPtr clientCB, CFNetServiceClientContext clientContext);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CFNetServiceBrowserInvalidate", optional=true)
     public native void invalidate();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public boolean searchForDomains(boolean registrationDomains) throws CFStreamErrorException {
        CFStreamError.CFStreamErrorPtr ptr = new CFStreamError.CFStreamErrorPtr();
        boolean result = searchForDomains(registrationDomains, ptr);
        if (ptr.get() != null) { throw new CFStreamErrorException(ptr.get()); }
        return result;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CFNetServiceBrowserSearchForDomains", optional=true)
     private native boolean searchForDomains(boolean registrationDomains, CFStreamError.CFStreamErrorPtr error);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public boolean searchForServices(String domain, String serviceType) throws CFStreamErrorException {
        CFStreamError.CFStreamErrorPtr ptr = new CFStreamError.CFStreamErrorPtr();
        boolean result = searchForServices(domain, serviceType, ptr);
        if (ptr.get() != null) { throw new CFStreamErrorException(ptr.get()); }
        return result;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CFNetServiceBrowserSearchForServices", optional=true)
     private native boolean searchForServices(String domain, String serviceType, CFStreamError.CFStreamErrorPtr error);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public void stopSearch() throws CFStreamErrorException {
        CFStreamError.CFStreamErrorPtr ptr = new CFStreamError.CFStreamErrorPtr();
        stopSearch(ptr);
        if (ptr.get() != null) { throw new CFStreamErrorException(ptr.get()); }
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CFNetServiceBrowserStopSearch", optional=true)
     private native void stopSearch(CFStreamError.CFStreamErrorPtr error);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CFNetServiceBrowserScheduleWithRunLoop", optional=true)
     public native void scheduleInRunLoop(CFRunLoop runLoop, String runLoopMode);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CFNetServiceBrowserUnscheduleFromRunLoop", optional=true)
     public native void unscheduleFromRunLoop(CFRunLoop runLoop, String runLoopMode);
     /*</methods>*/

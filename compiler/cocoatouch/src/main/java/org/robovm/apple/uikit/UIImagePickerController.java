@@ -37,12 +37,12 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 2.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIImagePickerController/*</name>*/ 
@@ -56,9 +56,6 @@ import org.robovm.apple.intents.*;
     public UIImagePickerController() {}
     protected UIImagePickerController(Handle h, long handle) { super(h, handle); }
     protected UIImagePickerController(SkipInit skipInit) { super(skipInit); }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "initWithNavigationBarClass:toolbarClass:")
     public UIImagePickerController(Class<? extends UINavigationBar> navigationBarClass, Class<? extends UIToolbar> toolbarClass) { super(navigationBarClass, toolbarClass); }
     @Method(selector = "initWithRootViewController:")
@@ -81,14 +78,8 @@ import org.robovm.apple.intents.*;
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getMediaTypes();
     @Property(selector = "setMediaTypes:")
     public native void setMediaTypes(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> v);
-    /**
-     * @since Available in iOS 3.1 and later.
-     */
     @Property(selector = "allowsEditing")
     public native boolean allowsEditing();
-    /**
-     * @since Available in iOS 3.1 and later.
-     */
     @Property(selector = "setAllowsEditing:")
     public native void setAllowsEditing(boolean v);
     /**
@@ -101,24 +92,12 @@ import org.robovm.apple.intents.*;
      */
     @Property(selector = "setImageExportPreset:")
     public native void setImageExportPreset(UIImagePickerControllerImageURLExportPreset v);
-    /**
-     * @since Available in iOS 3.1 and later.
-     */
     @Property(selector = "videoMaximumDuration")
     public native double getVideoMaximumDuration();
-    /**
-     * @since Available in iOS 3.1 and later.
-     */
     @Property(selector = "setVideoMaximumDuration:")
     public native void setVideoMaximumDuration(double v);
-    /**
-     * @since Available in iOS 3.1 and later.
-     */
     @Property(selector = "videoQuality")
     public native UIImagePickerControllerQualityType getVideoQuality();
-    /**
-     * @since Available in iOS 3.1 and later.
-     */
     @Property(selector = "setVideoQuality:")
     public native void setVideoQuality(UIImagePickerControllerQualityType v);
     /**
@@ -131,101 +110,47 @@ import org.robovm.apple.intents.*;
      */
     @Property(selector = "setVideoExportPreset:")
     public native void setVideoExportPreset(String v);
-    /**
-     * @since Available in iOS 3.1 and later.
-     */
     @Property(selector = "showsCameraControls")
     public native boolean showsCameraControls();
-    /**
-     * @since Available in iOS 3.1 and later.
-     */
     @Property(selector = "setShowsCameraControls:")
     public native void setShowsCameraControls(boolean v);
-    /**
-     * @since Available in iOS 3.1 and later.
-     */
     @Property(selector = "cameraOverlayView")
     public native UIView getCameraOverlayView();
-    /**
-     * @since Available in iOS 3.1 and later.
-     */
     @Property(selector = "setCameraOverlayView:")
     public native void setCameraOverlayView(UIView v);
-    /**
-     * @since Available in iOS 3.1 and later.
-     */
     @Property(selector = "cameraViewTransform")
     public native @ByVal CGAffineTransform getCameraViewTransform();
-    /**
-     * @since Available in iOS 3.1 and later.
-     */
     @Property(selector = "setCameraViewTransform:")
     public native void setCameraViewTransform(@ByVal CGAffineTransform v);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "cameraCaptureMode")
     public native UIImagePickerControllerCameraCaptureMode getCameraCaptureMode();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "setCameraCaptureMode:")
     public native void setCameraCaptureMode(UIImagePickerControllerCameraCaptureMode v);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "cameraDevice")
     public native UIImagePickerControllerCameraDevice getCameraDevice();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "setCameraDevice:")
     public native void setCameraDevice(UIImagePickerControllerCameraDevice v);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "cameraFlashMode")
     public native UIImagePickerControllerCameraFlashMode getCameraFlashMode();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "setCameraFlashMode:")
     public native void setCameraFlashMode(UIImagePickerControllerCameraFlashMode v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 3.1 and later.
-     */
     @Method(selector = "takePicture")
     public native void takePicture();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "startVideoCapture")
     public native boolean startVideoCapture();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "stopVideoCapture")
     public native void stopVideoCapture();
     @Method(selector = "isSourceTypeAvailable:")
     public static native boolean isSourceTypeAvailable(UIImagePickerControllerSourceType sourceType);
     @Method(selector = "availableMediaTypesForSourceType:")
     public static native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getAvailableMediaTypes(UIImagePickerControllerSourceType sourceType);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "isCameraDeviceAvailable:")
     public static native boolean isCameraDeviceAvailable(UIImagePickerControllerCameraDevice cameraDevice);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "isFlashAvailableForCameraDevice:")
     public static native boolean isFlashAvailableForCameraDevice(UIImagePickerControllerCameraDevice cameraDevice);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "availableCaptureModesForCameraDevice:")
     public static native @org.robovm.rt.bro.annotation.Marshaler(UIImagePickerControllerCameraCaptureMode.AsListMarshaler.class) List<UIImagePickerControllerCameraCaptureMode> getAvailableCaptureModes(UIImagePickerControllerCameraDevice cameraDevice);
     /*</methods>*/

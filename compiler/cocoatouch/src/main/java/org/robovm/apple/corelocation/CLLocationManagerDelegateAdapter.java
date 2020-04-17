@@ -51,81 +51,54 @@ import org.robovm.apple.contacts.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @NotImplemented("locationManager:didUpdateLocations:")
     public void didUpdateLocations(CLLocationManager manager, NSArray<CLLocation> locations) {}
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @NotImplemented("locationManager:didUpdateHeading:")
     public void didUpdateHeading(CLLocationManager manager, CLHeading newHeading) {}
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @NotImplemented("locationManagerShouldDisplayHeadingCalibration:")
     public boolean shouldDisplayHeadingCalibration(CLLocationManager manager) { return false; }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @NotImplemented("locationManager:didDetermineState:forRegion:")
     public void didDetermineState(CLLocationManager manager, CLRegionState state, CLRegion region) {}
     /**
-     * @since Available in iOS 7.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use locationManager:didRangeBeacons:satisfyingConstraint:
      */
+    @Deprecated
     @NotImplemented("locationManager:didRangeBeacons:inRegion:")
     public void didRangeBeacons(CLLocationManager manager, NSArray<CLBeacon> beacons, CLBeaconRegion region) {}
     /**
-     * @since Available in iOS 7.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use locationManager:didFailRangingBeaconsForConstraint:error:
      */
+    @Deprecated
     @NotImplemented("locationManager:rangingBeaconsDidFailForRegion:withError:")
     public void rangingBeaconsDidFail(CLLocationManager manager, CLBeaconRegion region, NSError error) {}
     /**
-     * @since Available in iOS 4.0 and later.
+     * @since Available in iOS 13.0 and later.
      */
+    @NotImplemented("locationManager:didRangeBeacons:satisfyingConstraint:")
+    public void didRangeBeacons(CLLocationManager manager, NSArray<CLBeacon> beacons, CLBeaconIdentityConstraint beaconConstraint) {}
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("locationManager:didFailRangingBeaconsForConstraint:error:")
+    public void didFailRangingBeacons(CLLocationManager manager, CLBeaconIdentityConstraint beaconConstraint, NSError error) {}
     @NotImplemented("locationManager:didEnterRegion:")
     public void didEnterRegion(CLLocationManager manager, CLRegion region) {}
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @NotImplemented("locationManager:didExitRegion:")
     public void didExitRegion(CLLocationManager manager, CLRegion region) {}
     @NotImplemented("locationManager:didFailWithError:")
     public void didFail(CLLocationManager manager, NSError error) {}
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @NotImplemented("locationManager:monitoringDidFailForRegion:withError:")
     public void monitoringDidFail(CLLocationManager manager, CLRegion region, NSError error) {}
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     @NotImplemented("locationManager:didChangeAuthorizationStatus:")
     public void didChangeAuthorizationStatus(CLLocationManager manager, CLAuthorizationStatus status) {}
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @NotImplemented("locationManager:didStartMonitoringForRegion:")
     public void didStartMonitoring(CLLocationManager manager, CLRegion region) {}
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @NotImplemented("locationManagerDidPauseLocationUpdates:")
     public void didPauseLocationUpdates(CLLocationManager manager) {}
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @NotImplemented("locationManagerDidResumeLocationUpdates:")
     public void didResumeLocationUpdates(CLLocationManager manager) {}
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @NotImplemented("locationManager:didFinishDeferredUpdatesWithError:")
     public void didFinishDeferredUpdates(CLLocationManager manager, NSError error) {}
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @NotImplemented("locationManager:didVisit:")
     public void didVisit(CLLocationManager manager, CLVisit visit) {}
     /*</methods>*/

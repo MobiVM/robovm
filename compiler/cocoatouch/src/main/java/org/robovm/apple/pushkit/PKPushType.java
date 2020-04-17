@@ -47,13 +47,15 @@ import org.robovm.apple.dispatch.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @since Available in iOS 8.0 and later.
+     * @since Available in iOS 9.0 and later.
      */
     @GlobalValue(symbol="PKPushTypeVoIP", optional=true)
     public static native String VoIP();
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Complication pushes are supported directly on watchOS now, so this should no longer be used on iOS.
      */
+    @Deprecated
     @GlobalValue(symbol="PKPushTypeComplication", optional=true)
     public static native String Complication();
     /**

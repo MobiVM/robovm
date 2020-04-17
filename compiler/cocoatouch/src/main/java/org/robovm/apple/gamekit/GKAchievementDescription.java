@@ -32,9 +32,7 @@ import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.1 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("GameKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GKAchievementDescription/*</name>*/ 
@@ -49,14 +47,11 @@ import org.robovm.apple.uikit.*;
     protected GKAchievementDescription(Handle h, long handle) { super(h, handle); }
     protected GKAchievementDescription(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public GKAchievementDescription(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public GKAchievementDescription(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "identifier")
     public native String getIdentifier();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "groupIdentifier")
     public native String getGroupIdentifier();
     @Property(selector = "title")
@@ -69,13 +64,9 @@ import org.robovm.apple.uikit.*;
     public native @MachineSizedSInt long getMaximumPoints();
     @Property(selector = "isHidden")
     public native boolean isHidden();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "isReplayable")
     public native boolean isReplayable();
     /**
-     * @since Available in iOS 4.1 and later.
      * @deprecated Deprecated in iOS 7.0. Use loadImageWithCompletionHandler: instead
      */
     @Deprecated
@@ -97,6 +88,6 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

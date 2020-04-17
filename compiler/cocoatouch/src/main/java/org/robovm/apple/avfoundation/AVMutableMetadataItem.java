@@ -41,9 +41,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVMutableMetadataItem/*</name>*/ 
@@ -59,24 +57,12 @@ import org.robovm.apple.audiotoolbox.*;
     protected AVMutableMetadataItem(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "identifier")
     public native AVMetadataIdentifier getIdentifier();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setIdentifier:")
     public native void setIdentifier(AVMetadataIdentifier v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "extendedLanguageTag")
     public native String getExtendedLanguageTag();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setExtendedLanguageTag:")
     public native void setExtendedLanguageTag(String v);
     @Property(selector = "locale")
@@ -87,24 +73,12 @@ import org.robovm.apple.audiotoolbox.*;
     public native @ByVal CMTime getTime();
     @Property(selector = "setTime:")
     public native void setTime(@ByVal CMTime v);
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     @Property(selector = "duration")
     public native @ByVal CMTime getDuration();
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     @Property(selector = "setDuration:")
     public native void setDuration(@ByVal CMTime v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "dataType")
     public native CMMetadataDataType getDataType();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setDataType:")
     public native void setDataType(CMMetadataDataType v);
     @Property(selector = "value")

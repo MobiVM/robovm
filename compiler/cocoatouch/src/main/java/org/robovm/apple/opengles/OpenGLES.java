@@ -61,7 +61,6 @@ import org.robovm.apple.foundation.*;
     
     /*<methods>*/
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 12.0. OpenGLES API deprecated. (Define GLES_SILENCE_DEPRECATION to silence these warnings)
      */
     @Deprecated

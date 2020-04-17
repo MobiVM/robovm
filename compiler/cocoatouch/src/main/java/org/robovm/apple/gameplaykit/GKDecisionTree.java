@@ -57,7 +57,7 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "initWithURL:error:")
     public GKDecisionTree(NSURL url, NSError error) { super((SkipInit) null); initObject(init(url, error)); }
     @Method(selector = "initWithCoder:")
-    public GKDecisionTree(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public GKDecisionTree(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "rootNode")
@@ -84,6 +84,6 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

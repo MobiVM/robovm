@@ -62,18 +62,18 @@ import org.robovm.apple.coregraphics.*;
     @Method(selector = "setFloatQuaternionArray:count:atTime:")
     public native void setFloatQuaternionArray(VectorFloat4 array, @MachineSizedUInt long count, double time);
     @Method(selector = "setDoubleQuaternionArray:count:atTime:")
-    public native void setDoubleQuaternionArray(VectorFloat4 array, @MachineSizedUInt long count, double time);
+    public native void setDoubleQuaternionArray(VectorDouble4 array, @MachineSizedUInt long count, double time);
     @Method(selector = "getFloatQuaternionArray:maxCount:atTime:")
     public native @MachineSizedUInt long getFloatQuaternionArray(VectorFloat4 array, @MachineSizedUInt long maxCount, double time);
     @Method(selector = "getDoubleQuaternionArray:maxCount:atTime:")
-    public native @MachineSizedUInt long getDoubleQuaternionArray(VectorFloat4 array, @MachineSizedUInt long maxCount, double time);
+    public native @MachineSizedUInt long getDoubleQuaternionArray(VectorDouble4 array, @MachineSizedUInt long maxCount, double time);
     @Method(selector = "resetWithFloatQuaternionArray:count:atTimes:count:")
     public native void resetWithFloatQuaternionArray(VectorFloat4 valuesArray, @MachineSizedUInt long valuesCount, DoublePtr timesArray, @MachineSizedUInt long timesCount);
     @Method(selector = "resetWithDoubleQuaternionArray:count:atTimes:count:")
-    public native void resetWithDoubleQuaternionArray(VectorFloat4 valuesArray, @MachineSizedUInt long valuesCount, DoublePtr timesArray, @MachineSizedUInt long timesCount);
+    public native void resetWithDoubleQuaternionArray(VectorDouble4 valuesArray, @MachineSizedUInt long valuesCount, DoublePtr timesArray, @MachineSizedUInt long timesCount);
     @Method(selector = "getFloatQuaternionArray:maxCount:")
     public native @MachineSizedUInt long getFloatQuaternionArray(VectorFloat4 valuesArray, @MachineSizedUInt long maxCount);
     @Method(selector = "getDoubleQuaternionArray:maxCount:")
-    public native @MachineSizedUInt long getDoubleQuaternionArray(VectorFloat4 valuesArray, @MachineSizedUInt long maxCount);
+    public native @MachineSizedUInt long getDoubleQuaternionArray(VectorDouble4 valuesArray, @MachineSizedUInt long maxCount);
     /*</methods>*/
 }

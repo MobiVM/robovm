@@ -29,6 +29,7 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.security.*;
+import org.robovm.apple.network.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -80,7 +81,7 @@ import org.robovm.apple.security.*;
     public native NWUDPSession createUDPSession(NWEndpoint remoteEndpoint, NWHostEndpoint localEndpoint);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 12.0.
+     * @deprecated Deprecated in iOS 12.0. Use UILocalNotification
      */
     @Deprecated
     @Method(selector = "displayMessage:completionHandler:")

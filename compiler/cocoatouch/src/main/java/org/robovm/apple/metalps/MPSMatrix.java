@@ -51,6 +51,11 @@ import org.robovm.apple.metal.*;
     protected MPSMatrix(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithBuffer:descriptor:")
     public MPSMatrix(MTLBuffer buffer, MPSMatrixDescriptor descriptor) { super((SkipInit) null); initObject(init(buffer, descriptor)); }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "initWithBuffer:offset:descriptor:")
+    public MPSMatrix(MTLBuffer buffer, @MachineSizedUInt long offset, MPSMatrixDescriptor descriptor) { super((SkipInit) null); initObject(init(buffer, offset, descriptor)); }
     @Method(selector = "initWithDevice:descriptor:")
     public MPSMatrix(MTLDevice device, MPSMatrixDescriptor descriptor) { super((SkipInit) null); initObject(init(device, descriptor)); }
     /*</constructors>*/
@@ -75,6 +80,11 @@ import org.robovm.apple.metal.*;
      */
     @Property(selector = "matrixBytes")
     public native @MachineSizedUInt long getMatrixBytes();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "offset")
+    public native @MachineSizedUInt long getOffset();
     @Property(selector = "data")
     public native MTLBuffer getData();
     /*</properties>*/
@@ -82,6 +92,11 @@ import org.robovm.apple.metal.*;
     /*<methods>*/
     @Method(selector = "initWithBuffer:descriptor:")
     protected native @Pointer long init(MTLBuffer buffer, MPSMatrixDescriptor descriptor);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "initWithBuffer:offset:descriptor:")
+    protected native @Pointer long init(MTLBuffer buffer, @MachineSizedUInt long offset, MPSMatrixDescriptor descriptor);
     @Method(selector = "initWithDevice:descriptor:")
     protected native @Pointer long init(MTLDevice device, MPSMatrixDescriptor descriptor);
     /**

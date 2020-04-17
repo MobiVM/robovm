@@ -97,17 +97,8 @@ import org.robovm.apple.audiotoolbox.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVAssetImageGeneratorApertureMode CleanAperture = new AVAssetImageGeneratorApertureMode("CleanAperture");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVAssetImageGeneratorApertureMode ProductionAperture = new AVAssetImageGeneratorApertureMode("ProductionAperture");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVAssetImageGeneratorApertureMode EncodedPixels = new AVAssetImageGeneratorApertureMode("EncodedPixels");
     /*</constants>*/
     
@@ -134,19 +125,10 @@ import org.robovm.apple.audiotoolbox.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVAssetImageGeneratorApertureModeCleanAperture", optional=true)
         public static native NSString CleanAperture();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVAssetImageGeneratorApertureModeProductionAperture", optional=true)
         public static native NSString ProductionAperture();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVAssetImageGeneratorApertureModeEncodedPixels", optional=true)
         public static native NSString EncodedPixels();
         /*</values>*/

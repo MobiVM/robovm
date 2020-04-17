@@ -31,9 +31,7 @@ import org.robovm.apple.foundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("HealthKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/HKUnit/*</name>*/ 
@@ -50,7 +48,7 @@ import org.robovm.apple.foundation.*;
     protected HKUnit(Handle h, long handle) { super(h, handle); }
     protected HKUnit(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public HKUnit(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public HKUnit(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "unitString")
@@ -137,6 +135,11 @@ import org.robovm.apple.foundation.*;
     public static native HKUnit centimeterOfWater();
     @Method(selector = "atmosphereUnit")
     public static native HKUnit atmosphere();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "decibelAWeightedSoundPressureLevelUnit")
+    public static native HKUnit decibelAWeightedSoundPressureLevel();
     @Method(selector = "secondUnitWithMetricPrefix:")
     public static native HKUnit second(HKMetricPrefix prefix);
     @Method(selector = "secondUnit")
@@ -164,8 +167,7 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "largeCalorieUnit")
     public static native HKUnit largeCalorie();
     /**
-     * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use smallCalorieUnit or largeCalorieUnit, depending on which you mean
      */
     @Deprecated
     @Method(selector = "calorieUnit")
@@ -189,6 +191,11 @@ import org.robovm.apple.foundation.*;
     public static native HKUnit count();
     @Method(selector = "percentUnit")
     public static native HKUnit percent();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "decibelHearingLevelUnit")
+    public static native HKUnit decibelHearingLevel();
     @Method(selector = "unitMultipliedByUnit:")
     public native HKUnit multiplyBy(HKUnit unit);
     @Method(selector = "unitDividedByUnit:")
@@ -197,9 +204,19 @@ import org.robovm.apple.foundation.*;
     public native HKUnit raiseToPower(@MachineSizedSInt long power);
     @Method(selector = "reciprocalUnit")
     public native HKUnit reciprocalUnit();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "hertzUnitWithMetricPrefix:")
+    public static native HKUnit hertz(HKMetricPrefix prefix);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "hertzUnit")
+    public static native HKUnit hertz();
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

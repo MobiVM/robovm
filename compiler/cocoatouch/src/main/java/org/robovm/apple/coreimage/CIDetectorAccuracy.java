@@ -36,6 +36,7 @@ import org.robovm.apple.imageio.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.metal.*;
 import org.robovm.apple.iosurface.*;
+import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -95,13 +96,7 @@ import org.robovm.apple.iosurface.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final CIDetectorAccuracy Low = new CIDetectorAccuracy("Low");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final CIDetectorAccuracy High = new CIDetectorAccuracy("High");
     /*</constants>*/
     
@@ -128,14 +123,8 @@ import org.robovm.apple.iosurface.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="CIDetectorAccuracyLow", optional=true)
         public static native NSString Low();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="CIDetectorAccuracyHigh", optional=true)
         public static native NSString High();
         /*</values>*/

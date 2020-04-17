@@ -55,17 +55,8 @@ public final class /*<name>*/NSTextCheckingType/*</name>*/ extends Bits</*<name>
     public static final NSTextCheckingType Dash = new NSTextCheckingType(128L);
     public static final NSTextCheckingType Replacement = new NSTextCheckingType(256L);
     public static final NSTextCheckingType Correction = new NSTextCheckingType(512L);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final NSTextCheckingType RegularExpression = new NSTextCheckingType(1024L);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final NSTextCheckingType PhoneNumber = new NSTextCheckingType(2048L);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final NSTextCheckingType TransitInformation = new NSTextCheckingType(4096L);
     /*</values>*/
 

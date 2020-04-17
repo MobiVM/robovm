@@ -46,8 +46,9 @@ import org.robovm.apple.foundation.*;
     /*</constructors>*/
     /*<properties>*/
     /**
-     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use Remote notifications Background Modes instead: https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/pushing_updates_to_your_app_silently
      */
+    @Deprecated
     @Property(selector = "newsstandAssetDownload")
     public static native NKAssetDownload getNewsstandAssetDownload(NSURLConnection thiz);
     /*</properties>*/

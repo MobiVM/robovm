@@ -56,12 +56,32 @@ import org.robovm.apple.corelocation.*;
     void confirmSetTaskAttribute(INSetTaskAttributeIntent intent, @Block VoidBlock1<INSetTaskAttributeIntentResponse> completion);
     @Method(selector = "resolveTargetTaskForSetTaskAttribute:withCompletion:")
     void resolveTargetTaskForSetTaskAttribute(INSetTaskAttributeIntent intent, @Block VoidBlock1<INTaskResolutionResult> completion);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "resolveTaskTitleForSetTaskAttribute:withCompletion:")
+    void resolveTaskTitleForSetTaskAttribute(INSetTaskAttributeIntent intent, @Block VoidBlock1<INSpeakableStringResolutionResult> completion);
     @Method(selector = "resolveStatusForSetTaskAttribute:withCompletion:")
     void resolveStatusForSetTaskAttribute(INSetTaskAttributeIntent intent, @Block VoidBlock1<INTaskStatusResolutionResult> completion);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "resolvePriorityForSetTaskAttribute:withCompletion:")
+    void resolvePriorityForSetTaskAttribute(INSetTaskAttributeIntent intent, @Block VoidBlock1<INTaskPriorityResolutionResult> completion);
     @Method(selector = "resolveSpatialEventTriggerForSetTaskAttribute:withCompletion:")
     void resolveSpatialEventTriggerForSetTaskAttribute(INSetTaskAttributeIntent intent, @Block VoidBlock1<INSpatialEventTriggerResolutionResult> completion);
+    /**
+     * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 13.0. resolveTemporalEventTriggerForSetTaskAttribute:withCompletion: is deprecated. Use resolveTemporalEventTriggerForSetTaskAttribute:completion: instead
+     */
+    @Deprecated
     @Method(selector = "resolveTemporalEventTriggerForSetTaskAttribute:withCompletion:")
     void resolveTemporalEventTriggerForSetTaskAttribute(INSetTaskAttributeIntent intent, @Block VoidBlock1<INTemporalEventTriggerResolutionResult> completion);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "resolveTemporalEventTriggerForSetTaskAttribute:completion:")
+    void resolveTemporalEventTrigger(INSetTaskAttributeIntent intent, @Block VoidBlock1<INSetTaskAttributeTemporalEventTriggerResolutionResult> completion);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

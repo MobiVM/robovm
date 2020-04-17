@@ -39,9 +39,7 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 5.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSLinguisticTagger/*</name>*/ 
@@ -55,26 +53,14 @@ import org.robovm.apple.dispatch.*;
     public NSLinguisticTagger() {}
     protected NSLinguisticTagger(Handle h, long handle) { super(h, handle); }
     protected NSLinguisticTagger(SkipInit skipInit) { super(skipInit); }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "initWithTagSchemes:options:")
     public NSLinguisticTagger(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsListMarshaler.class) List<NSLinguisticTagScheme> tagSchemes, NSLinguisticTaggerOptions opts) { super((SkipInit) null); initObject(init(tagSchemes, opts)); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "tagSchemes")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsListMarshaler.class) List<NSLinguisticTagScheme> getTagSchemes();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "string")
     public native String getString();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setString:")
     public native void setString(String v);
     /**
@@ -121,24 +107,12 @@ import org.robovm.apple.dispatch.*;
         return list;
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "initWithTagSchemes:options:")
     protected native @Pointer long init(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsListMarshaler.class) List<NSLinguisticTagScheme> tagSchemes, NSLinguisticTaggerOptions opts);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "setOrthography:range:")
     public native void setOrthography(NSOrthography orthography, @ByVal NSRange range);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "orthographyAtIndex:effectiveRange:")
     public native NSOrthography getOrthography(@MachineSizedUInt long charIndex, NSRange effectiveRange);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "stringEditedInRange:changeInLength:")
     public native void stringEditedInRange(@ByVal NSRange newRange, @MachineSizedSInt long delta);
     /**
@@ -146,9 +120,6 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "tokenRangeAtIndex:unit:")
     public native @ByVal NSRange tokenRangeAtIndex(@MachineSizedUInt long charIndex, NSLinguisticTaggerUnit unit);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "sentenceRangeForRange:")
     public native @ByVal NSRange getSentenceRange(@ByVal NSRange range);
     /**
@@ -165,35 +136,20 @@ import org.robovm.apple.dispatch.*;
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "tagsInRange:unit:scheme:options:tokenRanges:")
-    public native NSArray<?> tagsInRange(@ByVal NSRange range, NSLinguisticTaggerUnit unit, String scheme, NSLinguisticTaggerOptions options, NSArray.NSArrayPtr<?> tokenRanges);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
+    public native NSArray<NSString> tagsInRange(@ByVal NSRange range, NSLinguisticTaggerUnit unit, String scheme, NSLinguisticTaggerOptions options, NSArray.NSArrayPtr<?> tokenRanges);
     @Method(selector = "enumerateTagsInRange:scheme:options:usingBlock:")
     public native void enumerateTagsInRange(@ByVal NSRange range, NSLinguisticTagScheme tagScheme, NSLinguisticTaggerOptions opts, @Block("(,@ByVal,@ByVal,)") VoidBlock4<NSLinguisticTag, NSRange, NSRange, BooleanPtr> block);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "tagAtIndex:scheme:tokenRange:sentenceRange:")
     public native String getTag(@MachineSizedUInt long charIndex, String scheme, NSRange tokenRange, NSRange sentenceRange);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "tagsInRange:scheme:options:tokenRanges:")
     protected native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsListMarshaler.class) List<NSLinguisticTag> getTags(@ByVal NSRange range, NSLinguisticTagScheme tagScheme, NSLinguisticTaggerOptions opts, NSArray.NSArrayPtr<?> tokenRanges);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "possibleTagsAtIndex:scheme:tokenRange:sentenceRange:scores:")
     protected native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsListMarshaler.class) List<NSLinguisticTag> getPossibleTags(@MachineSizedUInt long charIndex, NSLinguisticTagScheme tagScheme, NSRange tokenRange, NSRange sentenceRange, NSArray.NSArrayPtr<?> scores);
     /**
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "availableTagSchemesForUnit:language:")
-    public static native NSArray<?> availableTagSchemesForUnit(NSLinguisticTaggerUnit unit, String language);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
+    public static native NSArray<NSString> availableTagSchemesForUnit(NSLinguisticTaggerUnit unit, String language);
     @Method(selector = "availableTagSchemesForLanguage:")
     public static native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsListMarshaler.class) List<NSLinguisticTagScheme> getAvailableTagSchemes(String language);
     /**
@@ -210,7 +166,7 @@ import org.robovm.apple.dispatch.*;
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "tagsForString:range:unit:scheme:options:orthography:tokenRanges:")
-    public static native NSArray<?> tagsForString(String string, @ByVal NSRange range, NSLinguisticTaggerUnit unit, String scheme, NSLinguisticTaggerOptions options, NSOrthography orthography, NSArray.NSArrayPtr<?> tokenRanges);
+    public static native NSArray<NSString> tagsForString(String string, @ByVal NSRange range, NSLinguisticTaggerUnit unit, String scheme, NSLinguisticTaggerOptions options, NSOrthography orthography, NSArray.NSArrayPtr<?> tokenRanges);
     /**
      * @since Available in iOS 11.0 and later.
      */

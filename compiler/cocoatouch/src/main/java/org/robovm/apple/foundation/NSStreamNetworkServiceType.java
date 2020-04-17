@@ -95,21 +95,9 @@ import org.robovm.apple.dispatch.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final NSStreamNetworkServiceType VoIP = new NSStreamNetworkServiceType("VoIP");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final NSStreamNetworkServiceType Video = new NSStreamNetworkServiceType("Video");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final NSStreamNetworkServiceType Background = new NSStreamNetworkServiceType("Background");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final NSStreamNetworkServiceType Voice = new NSStreamNetworkServiceType("Voice");
     /**
      * @since Available in iOS 10.0 and later.
@@ -140,24 +128,12 @@ import org.robovm.apple.dispatch.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="NSStreamNetworkServiceTypeVoIP", optional=true)
         public static native NSString VoIP();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="NSStreamNetworkServiceTypeVideo", optional=true)
         public static native NSString Video();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="NSStreamNetworkServiceTypeBackground", optional=true)
         public static native NSString Background();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="NSStreamNetworkServiceTypeVoice", optional=true)
         public static native NSString Voice();
         /**

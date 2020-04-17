@@ -48,7 +48,7 @@ import org.robovm.apple.foundation.*;
     protected CMPedometerEvent(Handle h, long handle) { super(h, handle); }
     protected CMPedometerEvent(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public CMPedometerEvent(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public CMPedometerEvent(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "date")
@@ -63,6 +63,6 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

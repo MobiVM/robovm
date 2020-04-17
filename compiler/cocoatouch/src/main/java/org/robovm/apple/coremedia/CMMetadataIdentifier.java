@@ -92,25 +92,24 @@ import org.robovm.apple.audiotoolbox.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final CMMetadataIdentifier QuickTimeMetadataLocation_ISO6709 = new CMMetadataIdentifier("QuickTimeMetadataLocation_ISO6709");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final CMMetadataIdentifier QuickTimeMetadataDirection_Facing = new CMMetadataIdentifier("QuickTimeMetadataDirection_Facing");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final CMMetadataIdentifier QuickTimeMetadataPreferredAffineTransform = new CMMetadataIdentifier("QuickTimeMetadataPreferredAffineTransform");
     /**
      * @since Available in iOS 9.0 and later.
      */
     public static final CMMetadataIdentifier QuickTimeMetadataVideoOrientation = new CMMetadataIdentifier("QuickTimeMetadataVideoOrientation");
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final CMMetadataIdentifier QuickTimeMetadataLivePhotoStillImageTransform = new CMMetadataIdentifier("QuickTimeMetadataLivePhotoStillImageTransform");
+    /**
+     * @since Available in iOS 13.2 and later.
+     */
+    public static final CMMetadataIdentifier QuickTimeMetadataLivePhotoStillImageTransformReferenceDimensions = new CMMetadataIdentifier("QuickTimeMetadataLivePhotoStillImageTransformReferenceDimensions");
     /*</constants>*/
     
-    private static /*<name>*/CMMetadataIdentifier/*</name>*/[] values = new /*<name>*/CMMetadataIdentifier/*</name>*/[] {/*<value_list>*/QuickTimeMetadataLocation_ISO6709, QuickTimeMetadataDirection_Facing, QuickTimeMetadataPreferredAffineTransform, QuickTimeMetadataVideoOrientation/*</value_list>*/};
+    private static /*<name>*/CMMetadataIdentifier/*</name>*/[] values = new /*<name>*/CMMetadataIdentifier/*</name>*/[] {/*<value_list>*/QuickTimeMetadataLocation_ISO6709, QuickTimeMetadataDirection_Facing, QuickTimeMetadataPreferredAffineTransform, QuickTimeMetadataVideoOrientation, QuickTimeMetadataLivePhotoStillImageTransform, QuickTimeMetadataLivePhotoStillImageTransformReferenceDimensions/*</value_list>*/};
     
     /*<name>*/CMMetadataIdentifier/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -205,24 +204,12 @@ import org.robovm.apple.audiotoolbox.*;
 
     
     /*<methods>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Bridge(symbol="CMMetadataCreateIdentifierForKeyAndKeySpace", optional=true)
     protected static native OSStatus createIdentifier0(CFAllocator allocator, CFType key, String keySpace, CFString.CFStringPtr identifierOut);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Bridge(symbol="CMMetadataCreateKeyFromIdentifier", optional=true)
     protected static native OSStatus createKey0(CFAllocator allocator, String identifier, CFType.CFTypePtr keyOut);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Bridge(symbol="CMMetadataCreateKeyFromIdentifierAsCFData", optional=true)
     protected static native OSStatus createKeyAsData0(CFAllocator allocator, String identifier, NSData.NSDataPtr keyOut);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Bridge(symbol="CMMetadataCreateKeySpaceFromIdentifier", optional=true)
     protected static native OSStatus createKeySpace0(CFAllocator allocator, String identifier, CFString.CFStringPtr keySpaceOut);
     /*</methods>*/
@@ -232,19 +219,10 @@ import org.robovm.apple.audiotoolbox.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="kCMMetadataIdentifier_QuickTimeMetadataLocation_ISO6709", optional=true)
         public static native CFString QuickTimeMetadataLocation_ISO6709();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="kCMMetadataIdentifier_QuickTimeMetadataDirection_Facing", optional=true)
         public static native CFString QuickTimeMetadataDirection_Facing();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="kCMMetadataIdentifier_QuickTimeMetadataPreferredAffineTransform", optional=true)
         public static native CFString QuickTimeMetadataPreferredAffineTransform();
         /**
@@ -252,6 +230,16 @@ import org.robovm.apple.audiotoolbox.*;
          */
         @GlobalValue(symbol="kCMMetadataIdentifier_QuickTimeMetadataVideoOrientation", optional=true)
         public static native CFString QuickTimeMetadataVideoOrientation();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="kCMMetadataIdentifier_QuickTimeMetadataLivePhotoStillImageTransform", optional=true)
+        public static native CFString QuickTimeMetadataLivePhotoStillImageTransform();
+        /**
+         * @since Available in iOS 13.2 and later.
+         */
+        @GlobalValue(symbol="kCMMetadataIdentifier_QuickTimeMetadataLivePhotoStillImageTransformReferenceDimensions", optional=true)
+        public static native CFString QuickTimeMetadataLivePhotoStillImageTransformReferenceDimensions();
         /*</values>*/
     }
 }

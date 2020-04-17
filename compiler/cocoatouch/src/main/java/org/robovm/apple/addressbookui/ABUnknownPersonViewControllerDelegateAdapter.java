@@ -52,9 +52,6 @@ import org.robovm.apple.addressbook.*;
     /*<methods>*/
     @NotImplemented("unknownPersonViewController:didResolveToPerson:")
     public void didResolveToPerson(ABUnknownPersonViewController unknownCardViewController, ABPerson person) {}
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @NotImplemented("unknownPersonViewController:shouldPerformDefaultActionForPerson:property:identifier:")
     public boolean shouldPerformDefaultAction(ABUnknownPersonViewController personViewController, ABPerson person, ABProperty property, int identifier) { return false; }
     /*</methods>*/

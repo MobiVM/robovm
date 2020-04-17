@@ -34,9 +34,7 @@ import org.robovm.apple.contacts.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("PassKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/PKPaymentRequest/*</name>*/ 
@@ -80,22 +78,20 @@ import org.robovm.apple.contacts.*;
      * @since Available in iOS 11.0 and later.
      */
     @Property(selector = "requiredBillingContactFields")
-    public native NSSet<?> getRequiredBillingContactFields();
+    public native NSSet<NSString> getRequiredBillingContactFields();
     /**
      * @since Available in iOS 11.0 and later.
      */
     @Property(selector = "setRequiredBillingContactFields:")
-    public native void setRequiredBillingContactFields(NSSet<?> v);
+    public native void setRequiredBillingContactFields(NSSet<NSString> v);
     /**
-     * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use requiredBillingContactFields
      */
     @Deprecated
     @Property(selector = "requiredBillingAddressFields")
     public native PKAddressField getRequiredBillingAddressFields();
     /**
-     * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use requiredBillingContactFields
      */
     @Deprecated
     @Property(selector = "setRequiredBillingAddressFields:")
@@ -114,22 +110,20 @@ import org.robovm.apple.contacts.*;
      * @since Available in iOS 11.0 and later.
      */
     @Property(selector = "requiredShippingContactFields")
-    public native NSSet<?> getRequiredShippingContactFields();
+    public native NSSet<NSString> getRequiredShippingContactFields();
     /**
      * @since Available in iOS 11.0 and later.
      */
     @Property(selector = "setRequiredShippingContactFields:")
-    public native void setRequiredShippingContactFields(NSSet<?> v);
+    public native void setRequiredShippingContactFields(NSSet<NSString> v);
     /**
-     * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use requiredShippingContactFields
      */
     @Deprecated
     @Property(selector = "requiredShippingAddressFields")
     public native PKAddressField getRequiredShippingAddressFields();
     /**
-     * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use requiredShippingContactFields
      */
     @Deprecated
     @Property(selector = "setRequiredShippingAddressFields:")
@@ -173,29 +167,25 @@ import org.robovm.apple.contacts.*;
     @Property(selector = "setSupportedCountries:")
     public native void setSupportedCountries(NSSet<NSString> v);
     /**
-     * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. ABRecordRef has been deprecated, and does not support all available address properties. You should migrate to shippingContact.
      */
     @Deprecated
     @Property(selector = "shippingAddress")
     public native ABRecord getShippingAddress();
     /**
-     * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. ABRecordRef has been deprecated, and does not support all available address properties. You should migrate to shippingContact.
      */
     @Deprecated
     @Property(selector = "setShippingAddress:", strongRef = true)
     public native void setShippingAddress(ABRecord v);
     /**
-     * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. ABRecordRef has been deprecated, and does not support all available address properties. You should migrate to billingContact.
      */
     @Deprecated
     @Property(selector = "billingAddress")
     public native ABRecord getBillingAddress();
     /**
-     * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. ABRecordRef has been deprecated, and does not support all available address properties. You should migrate to billingContact.
      */
     @Deprecated
     @Property(selector = "setBillingAddress:", strongRef = true)
@@ -207,7 +197,7 @@ import org.robovm.apple.contacts.*;
      * @since Available in iOS 10.0 and later.
      */
     @Method(selector = "availableNetworks")
-    public static native NSArray<?> availableNetworks();
+    public static native NSArray<NSString> availableNetworks();
     /**
      * @since Available in iOS 11.0 and later.
      */

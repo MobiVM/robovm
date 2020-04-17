@@ -95,21 +95,9 @@ import org.robovm.apple.dispatch.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final NSURLErrorUserInfoKey KeysOfUnsetValues = new NSURLErrorUserInfoKey("KeysOfUnsetValues");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final NSURLErrorUserInfoKey FailingURL = new NSURLErrorUserInfoKey("FailingURL");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final NSURLErrorUserInfoKey FailingURLString = new NSURLErrorUserInfoKey("FailingURLString");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final NSURLErrorUserInfoKey FailingURLPeerTrust = new NSURLErrorUserInfoKey("FailingURLPeerTrust");
     /*</constants>*/
     
@@ -136,24 +124,12 @@ import org.robovm.apple.dispatch.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="NSURLKeysOfUnsetValuesKey", optional=true)
         public static native NSString KeysOfUnsetValues();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="NSURLErrorFailingURLErrorKey", optional=true)
         public static native NSString FailingURL();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="NSURLErrorFailingURLStringErrorKey", optional=true)
         public static native NSString FailingURLString();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="NSURLErrorFailingURLPeerTrustErrorKey", optional=true)
         public static native NSString FailingURLPeerTrust();
         /*</values>*/

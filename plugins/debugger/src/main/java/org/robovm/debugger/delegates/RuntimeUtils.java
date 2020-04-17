@@ -23,6 +23,7 @@ import org.robovm.debugger.state.instances.VmThread;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.function.Predicate;
 
 /**
  * @author Demyan Kimitsa
@@ -119,7 +120,7 @@ public class RuntimeUtils {
      * @param thread to step
      * @param depth of step, {@link org.robovm.debugger.jdwp.JdwpConsts.StepDepth}
      */
-    public RuntimeStepReference step(VmThread thread, int depth) {
+    public RuntimeStepReference step(VmThread thread, int depth, Predicate<VmStackTrace> stackTraceValidator) {
         long pclow;
         long pchigh;
         long pclow2;
@@ -137,7 +138,7 @@ public class RuntimeUtils {
             // find out previous not native entry
             VmStackTrace prevStackEntry = null;
             for (int idx = 1; idx < stack.length; idx++) {
-                if (stack[idx].methodInfo().isNative())
+                if (stack[idx].methodInfo().isNative() || !stackTraceValidator.test(stack[idx]))
                     continue;
                 prevStackEntry = stack[idx];
                 break;

@@ -213,39 +213,18 @@ import org.robovm.apple.uikit.*;
         }
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioFileStreamOpen", optional=true)
     protected static native OSStatus open0(@Pointer long inClientData, FunctionPtr inPropertyListenerProc, FunctionPtr inPacketsProc, AudioFileType inFileTypeHint, AudioFileStream.AudioFileStreamPtr outAudioFileStream);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioFileStreamParseBytes", optional=true)
     protected native OSStatus parseBytes0(int inDataByteSize, @Pointer long inData, AudioFileStreamParseFlags inFlags);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioFileStreamSeek", optional=true)
     protected native OSStatus seek0(long inPacketOffset, LongPtr outDataByteOffset, AudioFileStreamMutableSeekFlags ioFlags);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioFileStreamGetPropertyInfo", optional=true)
     protected native OSStatus getPropertyInfo0(AudioFileStreamProperty inPropertyID, IntPtr outPropertyDataSize, BooleanPtr outWritable);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioFileStreamGetProperty", optional=true)
     protected native OSStatus getProperty0(AudioFileStreamProperty inPropertyID, IntPtr ioPropertyDataSize, VoidPtr outPropertyData);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioFileStreamSetProperty", optional=true)
     protected native OSStatus setProperty0(AudioFileStreamProperty inPropertyID, int inPropertyDataSize, VoidPtr inPropertyData);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioFileStreamClose", optional=true)
     protected native OSStatus close0();
     /*</methods>*/

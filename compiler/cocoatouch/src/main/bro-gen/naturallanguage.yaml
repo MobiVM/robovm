@@ -12,7 +12,8 @@ enums:
     NLTokenUnit: {}
     NLTokenizerAttributes: {prefix: NLTokenizerAttribute}
     NLTaggerOptions: {prefix: NLTagger}
-
+    NLDistanceType: {}
+    NLTaggerAssetsResult: {}
 typed_enums:
     NLLanguage:
         enum: NLLanguage
@@ -64,13 +65,60 @@ classes:
                 trim_after_first_colon: true
             '+availableTagSchemesForUnit:language:':
                 name: getAvailableTagSchemes
+            '-setGazetteers:forTagScheme:':
+                name: setGazetteers
+            '+requestAssetsForLanguage:tagScheme:completionHandler:':
+                name: requestAssets
     NLTokenizer: #since 12.0
         methods:
             '-initWithUnit:':
                 name: init
             '-enumerateTokensInRange:usingBlock:':
                 name: enumerateTokens
-
+    NLEmbedding: #since 13.0
+        methods:
+            '-distanceBetweenString:andString:distanceType:':
+                name: getDistance
+            '-enumerateNeighborsForString:maximumCount:distanceType:usingBlock:':
+                name: enumerateNeighbors
+            '-enumerateNeighborsForString:maximumCount:maximumDistance:distanceType:usingBlock:':
+                name: enumerateNeighbors
+            '-neighborsForString:maximumCount:distanceType:':
+                name: getNeighborsForString
+            '-neighborsForString:maximumCount:maximumDistance:distanceType:':
+                name: getNeighborsForString
+            '-getVector:forString:':
+                name: getVector
+            '-enumerateNeighborsForVector:maximumCount:distanceType:usingBlock:':
+                name: enumerateNeighbors
+            '-enumerateNeighborsForVector:maximumCount:maximumDistance:distanceType:usingBlock:':
+                name: enumerateNeighbors
+            '-neighborsForVector:maximumCount:distanceType:':
+                name: getNeighbors
+            '-neighborsForVector:maximumCount:maximumDistance:distanceType:':
+                name: getNeighbors
+            '+wordEmbeddingForLanguage:revision:':
+                name: getWordEmbedding
+            '+embeddingWithContentsOfURL:error:':
+                name: create
+                constructor: true
+                throws: NSErrorException
+            '+writeEmbeddingForDictionary:language:revision:toURL:error:':
+                name: create
+                constructor: true
+                throws: NSErrorException
+    NLGazetteer: #since 13.0
+        methods:
+            '-initWithContentsOfURL:error:':
+                name: init
+            '-initWithData:error:':
+                name: init
+            '-initWithDictionary:language:error:':
+                name: init
+            '+gazetteerWithContentsOfURL:error:':
+                exclude: true
+            '+writeGazetteerForDictionary:language:toURL:error:':
+                exclude: true
 protocols: {}
 
 functions:

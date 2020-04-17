@@ -41,9 +41,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 7.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVOutputSettingsAssistant/*</name>*/ 
@@ -78,22 +76,13 @@ import org.robovm.apple.audiotoolbox.*;
     public native @ByVal CMTime getSourceVideoAverageFrameDuration();
     @Property(selector = "setSourceVideoAverageFrameDuration:")
     public native void setSourceVideoAverageFrameDuration(@ByVal CMTime v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "sourceVideoMinFrameDuration")
     public native @ByVal CMTime getSourceVideoMinFrameDuration();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setSourceVideoMinFrameDuration:")
     public native void setSourceVideoMinFrameDuration(@ByVal CMTime v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "availableOutputSettingsPresets")
     public static native @org.robovm.rt.bro.annotation.Marshaler(AVOutputSettingsPreset.AsListMarshaler.class) List<AVOutputSettingsPreset> getAvailableOutputSettingsPresets();
     @Method(selector = "outputSettingsAssistantWithPreset:")

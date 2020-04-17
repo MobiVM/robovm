@@ -52,6 +52,11 @@ import org.robovm.apple.security.*;
     /*<methods>*/
     @Method(selector = "webView:decidePolicyForNavigationAction:decisionHandler:")
     void decidePolicyForNavigationAction(WKWebView webView, WKNavigationAction navigationAction, @Block VoidBlock1<WKNavigationActionPolicy> decisionHandler);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "webView:decidePolicyForNavigationAction:preferences:decisionHandler:")
+    void decidePolicyForNavigationAction(WKWebView webView, WKNavigationAction navigationAction, WKWebpagePreferences preferences, @Block VoidBlock2<WKNavigationActionPolicy, WKWebpagePreferences> decisionHandler);
     @Method(selector = "webView:decidePolicyForNavigationResponse:decisionHandler:")
     void decidePolicyForNavigationResponse(WKWebView webView, WKNavigationResponse navigationResponse, @Block VoidBlock1<WKNavigationResponsePolicy> decisionHandler);
     @Method(selector = "webView:didStartProvisionalNavigation:")

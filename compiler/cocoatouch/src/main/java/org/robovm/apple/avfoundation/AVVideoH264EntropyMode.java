@@ -97,13 +97,7 @@ import org.robovm.apple.audiotoolbox.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final AVVideoH264EntropyMode CAVLC = new AVVideoH264EntropyMode("CAVLC");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final AVVideoH264EntropyMode CABAC = new AVVideoH264EntropyMode("CABAC");
     /*</constants>*/
     
@@ -130,14 +124,8 @@ import org.robovm.apple.audiotoolbox.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="AVVideoH264EntropyModeCAVLC", optional=true)
         public static native NSString CAVLC();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="AVVideoH264EntropyModeCABAC", optional=true)
         public static native NSString CABAC();
         /*</values>*/

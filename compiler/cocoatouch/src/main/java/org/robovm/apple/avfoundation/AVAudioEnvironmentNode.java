@@ -41,9 +41,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVAudioEnvironmentNode/*</name>*/ 
@@ -59,6 +57,16 @@ import org.robovm.apple.audiotoolbox.*;
     protected AVAudioEnvironmentNode(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "outputType")
+    public native AVAudioEnvironmentOutputType getOutputType();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setOutputType:")
+    public native void setOutputType(AVAudioEnvironmentOutputType v);
     @Property(selector = "outputVolume")
     public native float getOutputVolume();
     @Property(selector = "setOutputVolume:")
@@ -95,6 +103,26 @@ import org.robovm.apple.audiotoolbox.*;
     public native AVAudio3DMixingRenderingAlgorithm getRenderingAlgorithm();
     @Property(selector = "setRenderingAlgorithm:")
     public native void setRenderingAlgorithm(AVAudio3DMixingRenderingAlgorithm v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "sourceMode")
+    public native AVAudio3DMixingSourceMode getSourceMode();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setSourceMode:")
+    public native void setSourceMode(AVAudio3DMixingSourceMode v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "pointSourceInHeadMode")
+    public native AVAudio3DMixingPointSourceInHeadMode getPointSourceInHeadMode();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setPointSourceInHeadMode:")
+    public native void setPointSourceInHeadMode(AVAudio3DMixingPointSourceInHeadMode v);
     @Property(selector = "rate")
     public native float getRate();
     @Property(selector = "setRate:")

@@ -22,6 +22,7 @@ import java.io.File;
 import java.io.FilterInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
@@ -131,13 +132,12 @@ public class AppCompilerTest {
     }
     
     private static Clazzes createClazzes(final Path... paths) throws Exception {
-        File home = new File(System.getProperty("java.home"));
         Config cfg = new Config() {
         };
         Clazzes clazzes = new Clazzes(
                 cfg,
-                Collections.nCopies(1, new File(new File(home, "lib"), "rt.jar")),
-                Collections.<File>emptyList()
+                ClassPathUtils.getBcPaths(),
+                Collections.emptyList()
         ) {
             @Override
             public List<Path> getPaths() {
@@ -201,7 +201,7 @@ public class AppCompilerTest {
         @Override
         public InputStream open(String file) throws IOException {
             if (this.file.equals(file)) {
-                ByteArrayInputStream is = new ByteArrayInputStream(this.content.getBytes("UTF-8"));
+                ByteArrayInputStream is = new ByteArrayInputStream(this.content.getBytes(StandardCharsets.UTF_8));
                 return new FilterInputStream(is) {
                     @Override
                     public synchronized int read(byte[] b, int off, int len) throws IOException {

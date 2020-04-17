@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -57,70 +59,36 @@ import org.robovm.apple.intents.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @NotImplemented("cut:")
     public void cut(NSObject sender) {}
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @NotImplemented("copy:")
     public void copy(NSObject sender) {}
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @NotImplemented("paste:")
     public void paste(NSObject sender) {}
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @NotImplemented("select:")
     public void select(NSObject sender) {}
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @NotImplemented("selectAll:")
     public void selectAll(NSObject sender) {}
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @NotImplemented("delete:")
     public void delete(NSObject sender) {}
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @NotImplemented("makeTextWritingDirectionLeftToRight:")
     public void makeTextWritingDirectionLeftToRight(NSObject sender) {}
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @NotImplemented("makeTextWritingDirectionRightToLeft:")
     public void makeTextWritingDirectionRightToLeft(NSObject sender) {}
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @NotImplemented("toggleBoldface:")
     public void toggleBoldface(NSObject sender) {}
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @NotImplemented("toggleItalics:")
     public void toggleItalics(NSObject sender) {}
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @NotImplemented("toggleUnderline:")
     public void toggleUnderline(NSObject sender) {}
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @NotImplemented("increaseSize:")
     public void increaseSize(NSObject sender) {}
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @NotImplemented("decreaseSize:")
     public void decreaseSize(NSObject sender) {}
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("updateTextAttributesWithConversionHandler:")
+    public void updateTextAttributes(@Block Block1<NSDictionary<NSString, ?>, NSDictionary<NSString, ?>> conversionHandler) {}
     /*</methods>*/
 }

@@ -54,7 +54,7 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "initWithFrame:")
     public MSStickerView(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public MSStickerView(NSCoder decoder) { super(decoder); }
+    public MSStickerView(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "sticker")

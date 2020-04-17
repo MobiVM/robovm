@@ -170,59 +170,26 @@ import org.robovm.apple.uikit.*;
         return null;
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGPDFArrayGetCount", optional=true)
     public native @MachineSizedUInt long size();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGPDFArrayGetObject", optional=true)
     private native boolean getObject(@MachineSizedUInt long index, CGPDFObject.CGPDFObjectPtr value);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGPDFArrayGetNull", optional=true)
     public native boolean isNull(@MachineSizedUInt long index);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGPDFArrayGetBoolean", optional=true)
     private native boolean getBoolean(@MachineSizedUInt long index, BooleanPtr value);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGPDFArrayGetInteger", optional=true)
     private native boolean getInteger(@MachineSizedUInt long index, MachineSizedSIntPtr value);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGPDFArrayGetNumber", optional=true)
     private native boolean getNumber(@MachineSizedUInt long index, MachineSizedFloatPtr value);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGPDFArrayGetName", optional=true)
     private native boolean getName(@MachineSizedUInt long index, BytePtr.BytePtrPtr value);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGPDFArrayGetString", optional=true)
     private native boolean getString(@MachineSizedUInt long index, CGPDFString.CGPDFStringPtr value);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGPDFArrayGetArray", optional=true)
     private native boolean getArray(@MachineSizedUInt long index, CGPDFArray.CGPDFArrayPtr value);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGPDFArrayGetDictionary", optional=true)
     private native boolean getDictionary(@MachineSizedUInt long index, CGPDFDictionary.CGPDFDictionaryPtr value);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="CGPDFArrayGetStream", optional=true)
     private native boolean getStream(@MachineSizedUInt long index, CGPDFStream.CGPDFStreamPtr value);
     /**

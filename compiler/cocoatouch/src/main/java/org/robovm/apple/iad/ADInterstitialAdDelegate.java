@@ -35,9 +35,11 @@ import org.robovm.apple.avkit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @deprecated Deprecated in iOS 10.0.
+ */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
+/*<annotations>*/@Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ interface /*<name>*/ADInterstitialAdDelegate/*</name>*/ 
     /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
 
@@ -54,9 +56,6 @@ import org.robovm.apple.avkit.*;
     void didUnload(ADInterstitialAd interstitialAd);
     @Method(selector = "interstitialAd:didFailWithError:")
     void didFail(ADInterstitialAd interstitialAd, NSError error);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "interstitialAdWillLoad:")
     void willLoad(ADInterstitialAd interstitialAd);
     @Method(selector = "interstitialAdDidLoad:")

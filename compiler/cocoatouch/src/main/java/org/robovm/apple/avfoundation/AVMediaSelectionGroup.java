@@ -41,9 +41,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 5.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVMediaSelectionGroup/*</name>*/ 
@@ -61,9 +59,6 @@ import org.robovm.apple.audiotoolbox.*;
     /*<properties>*/
     @Property(selector = "options")
     public native NSArray<AVMediaSelectionOption> getOptions();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "defaultOption")
     public native AVMediaSelectionOption getDefaultOption();
     @Property(selector = "allowsEmptySelection")
@@ -75,9 +70,6 @@ import org.robovm.apple.audiotoolbox.*;
     public native AVMediaSelectionOption getMediaSelectionOption(NSPropertyList plist);
     @Method(selector = "playableMediaSelectionOptionsFromArray:")
     public static native NSArray<AVMediaSelectionOption> filterPlayableMediaSelectionOptions(NSArray<AVMediaSelectionOption> mediaSelectionOptions);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "mediaSelectionOptionsFromArray:filteredAndSortedAccordingToPreferredLanguages:")
     public static native NSArray<AVMediaSelectionOption> filterMediaSelectionOptionsByPreferredLanguages(NSArray<AVMediaSelectionOption> mediaSelectionOptions, @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> preferredLanguages);
     @Method(selector = "mediaSelectionOptionsFromArray:withLocale:")

@@ -97,53 +97,17 @@ import org.robovm.apple.audiotoolbox.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVVideoProfileLevel H264Baseline30 = new AVVideoProfileLevel("H264Baseline30");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVVideoProfileLevel H264Baseline31 = new AVVideoProfileLevel("H264Baseline31");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final AVVideoProfileLevel H264Baseline41 = new AVVideoProfileLevel("H264Baseline41");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final AVVideoProfileLevel H264BaselineAutoLevel = new AVVideoProfileLevel("H264BaselineAutoLevel");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVVideoProfileLevel H264Main30 = new AVVideoProfileLevel("H264Main30");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVVideoProfileLevel H264Main31 = new AVVideoProfileLevel("H264Main31");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final AVVideoProfileLevel H264Main32 = new AVVideoProfileLevel("H264Main32");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final AVVideoProfileLevel H264Main41 = new AVVideoProfileLevel("H264Main41");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final AVVideoProfileLevel H264MainAutoLevel = new AVVideoProfileLevel("H264MainAutoLevel");
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public static final AVVideoProfileLevel H264High40 = new AVVideoProfileLevel("H264High40");
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public static final AVVideoProfileLevel H264High41 = new AVVideoProfileLevel("H264High41");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final AVVideoProfileLevel H264HighAutoLevel = new AVVideoProfileLevel("H264HighAutoLevel");
     /*</constants>*/
     
@@ -170,64 +134,28 @@ import org.robovm.apple.audiotoolbox.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVVideoProfileLevelH264Baseline30", optional=true)
         public static native NSString H264Baseline30();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVVideoProfileLevelH264Baseline31", optional=true)
         public static native NSString H264Baseline31();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="AVVideoProfileLevelH264Baseline41", optional=true)
         public static native NSString H264Baseline41();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="AVVideoProfileLevelH264BaselineAutoLevel", optional=true)
         public static native NSString H264BaselineAutoLevel();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVVideoProfileLevelH264Main30", optional=true)
         public static native NSString H264Main30();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVVideoProfileLevelH264Main31", optional=true)
         public static native NSString H264Main31();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="AVVideoProfileLevelH264Main32", optional=true)
         public static native NSString H264Main32();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="AVVideoProfileLevelH264Main41", optional=true)
         public static native NSString H264Main41();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="AVVideoProfileLevelH264MainAutoLevel", optional=true)
         public static native NSString H264MainAutoLevel();
-        /**
-         * @since Available in iOS 6.0 and later.
-         */
         @GlobalValue(symbol="AVVideoProfileLevelH264High40", optional=true)
         public static native NSString H264High40();
-        /**
-         * @since Available in iOS 6.0 and later.
-         */
         @GlobalValue(symbol="AVVideoProfileLevelH264High41", optional=true)
         public static native NSString H264High41();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="AVVideoProfileLevelH264HighAutoLevel", optional=true)
         public static native NSString H264HighAutoLevel();
         /*</values>*/

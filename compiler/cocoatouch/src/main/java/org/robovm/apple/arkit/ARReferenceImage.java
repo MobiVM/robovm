@@ -69,9 +69,19 @@ import org.robovm.apple.imageio.*;
     public native void setName(String v);
     @Property(selector = "physicalSize")
     public native @ByVal CGSize getPhysicalSize();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "resourceGroupName")
+    public native String getResourceGroupName();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "validateWithCompletionHandler:")
+    public native void validate(@Block VoidBlock1<NSError> completionHandler);
     @Method(selector = "initWithCGImage:orientation:physicalWidth:")
     protected native @Pointer long init(CGImage image, CGImagePropertyOrientation orientation, @MachineSizedFloat double physicalWidth);
     @Method(selector = "initWithPixelBuffer:orientation:physicalWidth:")

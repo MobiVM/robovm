@@ -97,197 +97,53 @@ import org.robovm.apple.audiotoolbox.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifieriTunesMetadata Album = new AVMetadataIdentifieriTunesMetadata("Album");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifieriTunesMetadata Artist = new AVMetadataIdentifieriTunesMetadata("Artist");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifieriTunesMetadata UserComment = new AVMetadataIdentifieriTunesMetadata("UserComment");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifieriTunesMetadata CoverArt = new AVMetadataIdentifieriTunesMetadata("CoverArt");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifieriTunesMetadata Copyright = new AVMetadataIdentifieriTunesMetadata("Copyright");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifieriTunesMetadata ReleaseDate = new AVMetadataIdentifieriTunesMetadata("ReleaseDate");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifieriTunesMetadata EncodedBy = new AVMetadataIdentifieriTunesMetadata("EncodedBy");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifieriTunesMetadata PredefinedGenre = new AVMetadataIdentifieriTunesMetadata("PredefinedGenre");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifieriTunesMetadata UserGenre = new AVMetadataIdentifieriTunesMetadata("UserGenre");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifieriTunesMetadata SongName = new AVMetadataIdentifieriTunesMetadata("SongName");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifieriTunesMetadata TrackSubTitle = new AVMetadataIdentifieriTunesMetadata("TrackSubTitle");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifieriTunesMetadata EncodingTool = new AVMetadataIdentifieriTunesMetadata("EncodingTool");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifieriTunesMetadata Composer = new AVMetadataIdentifieriTunesMetadata("Composer");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifieriTunesMetadata AlbumArtist = new AVMetadataIdentifieriTunesMetadata("AlbumArtist");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifieriTunesMetadata AccountKind = new AVMetadataIdentifieriTunesMetadata("AccountKind");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifieriTunesMetadata AppleID = new AVMetadataIdentifieriTunesMetadata("AppleID");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifieriTunesMetadata ArtistID = new AVMetadataIdentifieriTunesMetadata("ArtistID");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifieriTunesMetadata SongID = new AVMetadataIdentifieriTunesMetadata("SongID");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifieriTunesMetadata DiscCompilation = new AVMetadataIdentifieriTunesMetadata("DiscCompilation");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifieriTunesMetadata DiscNumber = new AVMetadataIdentifieriTunesMetadata("DiscNumber");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifieriTunesMetadata GenreID = new AVMetadataIdentifieriTunesMetadata("GenreID");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifieriTunesMetadata Grouping = new AVMetadataIdentifieriTunesMetadata("Grouping");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifieriTunesMetadata PlaylistID = new AVMetadataIdentifieriTunesMetadata("PlaylistID");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifieriTunesMetadata ContentRating = new AVMetadataIdentifieriTunesMetadata("ContentRating");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifieriTunesMetadata BeatsPerMin = new AVMetadataIdentifieriTunesMetadata("BeatsPerMin");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifieriTunesMetadata TrackNumber = new AVMetadataIdentifieriTunesMetadata("TrackNumber");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifieriTunesMetadata ArtDirector = new AVMetadataIdentifieriTunesMetadata("ArtDirector");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifieriTunesMetadata Arranger = new AVMetadataIdentifieriTunesMetadata("Arranger");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifieriTunesMetadata Author = new AVMetadataIdentifieriTunesMetadata("Author");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifieriTunesMetadata Lyrics = new AVMetadataIdentifieriTunesMetadata("Lyrics");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifieriTunesMetadata Acknowledgement = new AVMetadataIdentifieriTunesMetadata("Acknowledgement");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifieriTunesMetadata Conductor = new AVMetadataIdentifieriTunesMetadata("Conductor");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifieriTunesMetadata Description = new AVMetadataIdentifieriTunesMetadata("Description");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifieriTunesMetadata Director = new AVMetadataIdentifieriTunesMetadata("Director");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifieriTunesMetadata EQ = new AVMetadataIdentifieriTunesMetadata("EQ");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifieriTunesMetadata LinerNotes = new AVMetadataIdentifieriTunesMetadata("LinerNotes");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifieriTunesMetadata RecordCompany = new AVMetadataIdentifieriTunesMetadata("RecordCompany");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifieriTunesMetadata OriginalArtist = new AVMetadataIdentifieriTunesMetadata("OriginalArtist");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifieriTunesMetadata PhonogramRights = new AVMetadataIdentifieriTunesMetadata("PhonogramRights");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifieriTunesMetadata Producer = new AVMetadataIdentifieriTunesMetadata("Producer");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifieriTunesMetadata Performer = new AVMetadataIdentifieriTunesMetadata("Performer");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifieriTunesMetadata Publisher = new AVMetadataIdentifieriTunesMetadata("Publisher");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifieriTunesMetadata SoundEngineer = new AVMetadataIdentifieriTunesMetadata("SoundEngineer");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifieriTunesMetadata Soloist = new AVMetadataIdentifieriTunesMetadata("Soloist");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifieriTunesMetadata Credits = new AVMetadataIdentifieriTunesMetadata("Credits");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifieriTunesMetadata Thanks = new AVMetadataIdentifieriTunesMetadata("Thanks");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifieriTunesMetadata OnlineExtras = new AVMetadataIdentifieriTunesMetadata("OnlineExtras");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataIdentifieriTunesMetadata ExecProducer = new AVMetadataIdentifieriTunesMetadata("ExecProducer");
     /*</constants>*/
     
@@ -314,244 +170,100 @@ import org.robovm.apple.audiotoolbox.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifieriTunesMetadataAlbum", optional=true)
         public static native NSString Album();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifieriTunesMetadataArtist", optional=true)
         public static native NSString Artist();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifieriTunesMetadataUserComment", optional=true)
         public static native NSString UserComment();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifieriTunesMetadataCoverArt", optional=true)
         public static native NSString CoverArt();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifieriTunesMetadataCopyright", optional=true)
         public static native NSString Copyright();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifieriTunesMetadataReleaseDate", optional=true)
         public static native NSString ReleaseDate();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifieriTunesMetadataEncodedBy", optional=true)
         public static native NSString EncodedBy();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifieriTunesMetadataPredefinedGenre", optional=true)
         public static native NSString PredefinedGenre();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifieriTunesMetadataUserGenre", optional=true)
         public static native NSString UserGenre();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifieriTunesMetadataSongName", optional=true)
         public static native NSString SongName();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifieriTunesMetadataTrackSubTitle", optional=true)
         public static native NSString TrackSubTitle();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifieriTunesMetadataEncodingTool", optional=true)
         public static native NSString EncodingTool();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifieriTunesMetadataComposer", optional=true)
         public static native NSString Composer();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifieriTunesMetadataAlbumArtist", optional=true)
         public static native NSString AlbumArtist();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifieriTunesMetadataAccountKind", optional=true)
         public static native NSString AccountKind();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifieriTunesMetadataAppleID", optional=true)
         public static native NSString AppleID();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifieriTunesMetadataArtistID", optional=true)
         public static native NSString ArtistID();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifieriTunesMetadataSongID", optional=true)
         public static native NSString SongID();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifieriTunesMetadataDiscCompilation", optional=true)
         public static native NSString DiscCompilation();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifieriTunesMetadataDiscNumber", optional=true)
         public static native NSString DiscNumber();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifieriTunesMetadataGenreID", optional=true)
         public static native NSString GenreID();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifieriTunesMetadataGrouping", optional=true)
         public static native NSString Grouping();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifieriTunesMetadataPlaylistID", optional=true)
         public static native NSString PlaylistID();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifieriTunesMetadataContentRating", optional=true)
         public static native NSString ContentRating();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifieriTunesMetadataBeatsPerMin", optional=true)
         public static native NSString BeatsPerMin();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifieriTunesMetadataTrackNumber", optional=true)
         public static native NSString TrackNumber();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifieriTunesMetadataArtDirector", optional=true)
         public static native NSString ArtDirector();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifieriTunesMetadataArranger", optional=true)
         public static native NSString Arranger();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifieriTunesMetadataAuthor", optional=true)
         public static native NSString Author();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifieriTunesMetadataLyrics", optional=true)
         public static native NSString Lyrics();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifieriTunesMetadataAcknowledgement", optional=true)
         public static native NSString Acknowledgement();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifieriTunesMetadataConductor", optional=true)
         public static native NSString Conductor();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifieriTunesMetadataDescription", optional=true)
         public static native NSString Description();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifieriTunesMetadataDirector", optional=true)
         public static native NSString Director();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifieriTunesMetadataEQ", optional=true)
         public static native NSString EQ();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifieriTunesMetadataLinerNotes", optional=true)
         public static native NSString LinerNotes();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifieriTunesMetadataRecordCompany", optional=true)
         public static native NSString RecordCompany();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifieriTunesMetadataOriginalArtist", optional=true)
         public static native NSString OriginalArtist();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifieriTunesMetadataPhonogramRights", optional=true)
         public static native NSString PhonogramRights();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifieriTunesMetadataProducer", optional=true)
         public static native NSString Producer();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifieriTunesMetadataPerformer", optional=true)
         public static native NSString Performer();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifieriTunesMetadataPublisher", optional=true)
         public static native NSString Publisher();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifieriTunesMetadataSoundEngineer", optional=true)
         public static native NSString SoundEngineer();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifieriTunesMetadataSoloist", optional=true)
         public static native NSString Soloist();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifieriTunesMetadataCredits", optional=true)
         public static native NSString Credits();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifieriTunesMetadataThanks", optional=true)
         public static native NSString Thanks();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifieriTunesMetadataOnlineExtras", optional=true)
         public static native NSString OnlineExtras();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataIdentifieriTunesMetadataExecProducer", optional=true)
         public static native NSString ExecProducer();
         /*</values>*/

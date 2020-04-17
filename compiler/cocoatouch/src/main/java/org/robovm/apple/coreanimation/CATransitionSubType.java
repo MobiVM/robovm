@@ -92,21 +92,9 @@ import org.robovm.apple.metal.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CATransitionSubType FromRight = new CATransitionSubType("FromRight");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CATransitionSubType FromLeft = new CATransitionSubType("FromLeft");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CATransitionSubType FromTop = new CATransitionSubType("FromTop");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CATransitionSubType FromBottom = new CATransitionSubType("FromBottom");
     /*</constants>*/
     
@@ -133,24 +121,12 @@ import org.robovm.apple.metal.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCATransitionFromRight", optional=true)
         public static native NSString FromRight();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCATransitionFromLeft", optional=true)
         public static native NSString FromLeft();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCATransitionFromTop", optional=true)
         public static native NSString FromTop();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCATransitionFromBottom", optional=true)
         public static native NSString FromBottom();
         /*</values>*/

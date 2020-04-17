@@ -29,6 +29,7 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.security.*;
+import org.robovm.apple.network.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -54,7 +55,7 @@ import org.robovm.apple.security.*;
     @Method(selector = "initWithData:protocolFamily:")
     public NEPacket(NSData data, byte protocolFamily) { super((SkipInit) null); initObject(init(data, protocolFamily)); }
     @Method(selector = "initWithCoder:")
-    public NEPacket(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public NEPacket(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     /**
@@ -85,6 +86,6 @@ import org.robovm.apple.security.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

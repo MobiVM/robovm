@@ -35,7 +35,7 @@ import org.robovm.apple.security.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*/@Library("Network") @NativeProtocolProxy("OS_nw_advertise_descriptor")/*</annotations>*/
+/*<annotations>*/@Library("Network") @NativeClass("NSObject")/*</annotations>*/
 /*<visibility>*/public final/*</visibility>*/ class /*<name>*/NWAdvertiseDescriptor/*</name>*/ 
     extends /*<extends>*/NWObject/*</extends>*/ 
     /*<implements>*/implements NSObjectProtocol/*</implements>*/ {
@@ -44,6 +44,11 @@ import org.robovm.apple.security.*;
     /*<bind>*/static { ObjCRuntime.bind(NWAdvertiseDescriptor.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    public NWAdvertiseDescriptor(String name, String type, String domain) { super((Handle) null, createBonjourService(name, type, domain));  }
+    
     
     /*</constructors>*/
     /*<properties>*/
@@ -55,7 +60,7 @@ import org.robovm.apple.security.*;
      * @since Available in iOS 12.0 and later.
      */
     @Bridge(symbol="nw_advertise_descriptor_create_bonjour_service", optional=true)
-    public static native NWAdvertiseDescriptor createBonjourService(BytePtr name, BytePtr type, BytePtr domain);
+    private static native @Pointer long createBonjourService(@org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class) String name, @org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class) String type, @org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class) String domain);
     /**
      * @since Available in iOS 12.0 and later.
      */
@@ -71,6 +76,16 @@ import org.robovm.apple.security.*;
      */
     @Bridge(symbol="nw_advertise_descriptor_get_no_auto_rename", optional=true)
     public native boolean getNoAutoRename();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="nw_advertise_descriptor_set_txt_record_object", optional=true)
+    public native void setTxtRecordObject(NWTxtRecord txt_record);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="nw_advertise_descriptor_copy_txt_record_object", optional=true)
+    public native NWTxtRecord copyTxtRecordObject();
     
     
     /*</methods>*/

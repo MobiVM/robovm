@@ -34,9 +34,7 @@ import org.robovm.apple.security.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("WebKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/WKPreferences/*</name>*/ 
@@ -51,7 +49,7 @@ import org.robovm.apple.security.*;
     protected WKPreferences(Handle h, long handle) { super(h, handle); }
     protected WKPreferences(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public WKPreferences(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public WKPreferences(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "minimumFontSize")
@@ -66,6 +64,24 @@ import org.robovm.apple.security.*;
     public native boolean javaScriptCanOpenWindowsAutomatically();
     @Property(selector = "setJavaScriptCanOpenWindowsAutomatically:")
     public native void setJavaScriptCanOpenWindowsAutomatically(boolean v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "isFraudulentWebsiteWarningEnabled")
+    public native boolean isFraudulentWebsiteWarningEnabled();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setFraudulentWebsiteWarningEnabled:")
+    public native void setFraudulentWebsiteWarningEnabled(boolean v);
+    @Property(selector = "javaEnabled")
+    public native boolean isJavaEnabled();
+    @Property(selector = "setJavaEnabled:")
+    public native void setJavaEnabled(boolean v);
+    @Property(selector = "plugInsEnabled")
+    public native boolean isPlugInsEnabled();
+    @Property(selector = "setPlugInsEnabled:")
+    public native void setPlugInsEnabled(boolean v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
@@ -74,6 +90,6 @@ import org.robovm.apple.security.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

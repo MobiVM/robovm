@@ -97,29 +97,11 @@ import org.robovm.apple.audiotoolbox.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final AVTrackAssociationType AudioFallback = new AVTrackAssociationType("AudioFallback");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final AVTrackAssociationType ChapterList = new AVTrackAssociationType("ChapterList");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final AVTrackAssociationType ForcedSubtitlesOnly = new AVTrackAssociationType("ForcedSubtitlesOnly");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final AVTrackAssociationType SelectionFollower = new AVTrackAssociationType("SelectionFollower");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final AVTrackAssociationType Timecode = new AVTrackAssociationType("Timecode");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVTrackAssociationType MetadataReferent = new AVTrackAssociationType("MetadataReferent");
     /*</constants>*/
     
@@ -146,34 +128,16 @@ import org.robovm.apple.audiotoolbox.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="AVTrackAssociationTypeAudioFallback", optional=true)
         public static native NSString AudioFallback();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="AVTrackAssociationTypeChapterList", optional=true)
         public static native NSString ChapterList();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="AVTrackAssociationTypeForcedSubtitlesOnly", optional=true)
         public static native NSString ForcedSubtitlesOnly();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="AVTrackAssociationTypeSelectionFollower", optional=true)
         public static native NSString SelectionFollower();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="AVTrackAssociationTypeTimecode", optional=true)
         public static native NSString Timecode();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVTrackAssociationTypeMetadataReferent", optional=true)
         public static native NSString MetadataReferent();
         /*</values>*/

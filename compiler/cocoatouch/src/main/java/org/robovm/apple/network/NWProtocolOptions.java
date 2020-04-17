@@ -35,7 +35,7 @@ import org.robovm.apple.security.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*/@Library("Network") @NativeProtocolProxy("OS_nw_protocol_options")/*</annotations>*/
+/*<annotations>*/@Library("Network") @NativeClass("NSObject")/*</annotations>*/
 /*<visibility>*/public final/*</visibility>*/ class /*<name>*/NWProtocolOptions/*</name>*/ 
     extends /*<extends>*/NWObject/*</extends>*/ 
     /*<implements>*/implements NSObjectProtocol/*</implements>*/ {
@@ -56,6 +56,11 @@ import org.robovm.apple.security.*;
      */
     @Bridge(symbol="nw_protocol_options_copy_definition", optional=true)
     public native NWProtocolDefinition copyDefinition();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="nw_framer_create_options", optional=true)
+    public static native NWProtocolOptions createFramerOptions(NWProtocolDefinition framer_definition);
     /**
      * @since Available in iOS 12.0 and later.
      */
@@ -81,6 +86,11 @@ import org.robovm.apple.security.*;
      */
     @Bridge(symbol="nw_ip_options_set_calculate_receive_time", optional=true)
     public native void setIpCalculateReceiveTime(boolean calculate_receive_time);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="nw_ip_options_set_local_address_preference", optional=true)
+    public native void setIpLocalAddressPreference(NWIpLocalAddressPreference preference);
     /**
      * @since Available in iOS 12.0 and later.
      */
@@ -181,6 +191,41 @@ import org.robovm.apple.security.*;
      */
     @Bridge(symbol="nw_udp_options_set_prefer_no_checksum", optional=true)
     public native void setUdpPreferNoChecksum(boolean prefer_no_checksum);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="nw_ws_create_options", optional=true)
+    public static native NWProtocolOptions createWsOptions(NWWsVersion version);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="nw_ws_options_add_additional_header", optional=true)
+    public native void addAdditionalHeader(@org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class) String name, @org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class) String value);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="nw_ws_options_add_subprotocol", optional=true)
+    public native void addSubprotocol(@org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class) String subprotocol);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="nw_ws_options_set_auto_reply_ping", optional=true)
+    public native void setWsAutoReplyPing(boolean auto_reply_ping);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="nw_ws_options_set_skip_handshake", optional=true)
+    public native void setWsSkipHandshake(boolean skip_handshake);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="nw_ws_options_set_maximum_message_size", optional=true)
+    public native void setWsMaximumMessageSize(@MachineSizedUInt long maximum_message_size);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="nw_ws_options_set_client_request_handler", optional=true)
+    public native void setWsClientRequestHandler(DispatchQueue client_queue, @Block Block1<NWWsRequest, NWWsResponse> handler);
     
     
     /*</methods>*/

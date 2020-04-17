@@ -111,9 +111,6 @@ import org.robovm.apple.iosurface.*;
     }
     
 
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CGColorSpace getCGColorSpace() {
         if (has(CVImageBufferAttribute.CGColorSpace)) {
             CGColorSpace val = get(CVImageBufferAttribute.CGColorSpace, CGColorSpace.class);
@@ -121,16 +118,10 @@ import org.robovm.apple.iosurface.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CVImageBufferAttributes setCGColorSpace(CGColorSpace cGColorSpace) {
         set(CVImageBufferAttribute.CGColorSpace, cGColorSpace);
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CVImageBufferCleanAperture getCleanAperture() {
         if (has(CVImageBufferAttribute.CleanAperture)) {
             CFDictionary val = get(CVImageBufferAttribute.CleanAperture, CFDictionary.class);
@@ -138,16 +129,10 @@ import org.robovm.apple.iosurface.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CVImageBufferAttributes setCleanAperture(CVImageBufferCleanAperture cleanAperture) {
         set(CVImageBufferAttribute.CleanAperture, cleanAperture.getDictionary());
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CVImageBufferCleanAperture getPreferredCleanAperture() {
         if (has(CVImageBufferAttribute.PreferredCleanAperture)) {
             CFDictionary val = get(CVImageBufferAttribute.PreferredCleanAperture, CFDictionary.class);
@@ -155,16 +140,10 @@ import org.robovm.apple.iosurface.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CVImageBufferAttributes setPreferredCleanAperture(CVImageBufferCleanAperture preferredCleanAperture) {
         set(CVImageBufferAttribute.PreferredCleanAperture, preferredCleanAperture.getDictionary());
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public int getFieldCount() {
         if (has(CVImageBufferAttribute.FieldCount)) {
             CFNumber val = get(CVImageBufferAttribute.FieldCount, CFNumber.class);
@@ -172,16 +151,10 @@ import org.robovm.apple.iosurface.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CVImageBufferAttributes setFieldCount(int fieldCount) {
         set(CVImageBufferAttribute.FieldCount, CFNumber.valueOf(fieldCount));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CVImageBufferFieldDetail getFieldDetail() {
         if (has(CVImageBufferAttribute.FieldDetail)) {
             CFString val = get(CVImageBufferAttribute.FieldDetail, CFString.class);
@@ -189,16 +162,10 @@ import org.robovm.apple.iosurface.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CVImageBufferAttributes setFieldDetail(CVImageBufferFieldDetail fieldDetail) {
         set(CVImageBufferAttribute.FieldDetail, fieldDetail.value());
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CVImageBufferPixelAspectRatio getPixelAspectRatio() {
         if (has(CVImageBufferAttribute.PixelAspectRatio)) {
             CFDictionary val = get(CVImageBufferAttribute.PixelAspectRatio, CFDictionary.class);
@@ -206,16 +173,10 @@ import org.robovm.apple.iosurface.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CVImageBufferAttributes setPixelAspectRatio(CVImageBufferPixelAspectRatio pixelAspectRatio) {
         set(CVImageBufferAttribute.PixelAspectRatio, pixelAspectRatio.getDictionary());
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CVImageBufferDisplayDimensions getDisplayDimensions() {
         if (has(CVImageBufferAttribute.DisplayDimensions)) {
             CFDictionary val = get(CVImageBufferAttribute.DisplayDimensions, CFDictionary.class);
@@ -223,16 +184,10 @@ import org.robovm.apple.iosurface.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CVImageBufferAttributes setDisplayDimensions(CVImageBufferDisplayDimensions displayDimensions) {
         set(CVImageBufferAttribute.DisplayDimensions, displayDimensions.getDictionary());
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public double getGammaLevel() {
         if (has(CVImageBufferAttribute.GammaLevel)) {
             CFNumber val = get(CVImageBufferAttribute.GammaLevel, CFNumber.class);
@@ -240,16 +195,10 @@ import org.robovm.apple.iosurface.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CVImageBufferAttributes setGammaLevel(double gammaLevel) {
         set(CVImageBufferAttribute.GammaLevel, CFNumber.valueOf(gammaLevel));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public NSData getICCProfile() {
         if (has(CVImageBufferAttribute.ICCProfile)) {
             NSData val = get(CVImageBufferAttribute.ICCProfile, NSData.class);
@@ -257,16 +206,10 @@ import org.robovm.apple.iosurface.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CVImageBufferAttributes setICCProfile(NSData iCCProfile) {
         set(CVImageBufferAttribute.ICCProfile, iCCProfile);
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CVImageBufferYCbCrMatrix getYCbCrMatrix() {
         if (has(CVImageBufferAttribute.YCbCrMatrix)) {
             CFString val = get(CVImageBufferAttribute.YCbCrMatrix, CFString.class);
@@ -274,16 +217,10 @@ import org.robovm.apple.iosurface.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CVImageBufferAttributes setYCbCrMatrix(CVImageBufferYCbCrMatrix yCbCrMatrix) {
         set(CVImageBufferAttribute.YCbCrMatrix, yCbCrMatrix.value());
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CVImageBufferColorPrimaries getColorPrimaries() {
         if (has(CVImageBufferAttribute.ColorPrimaries)) {
             CFString val = get(CVImageBufferAttribute.ColorPrimaries, CFString.class);
@@ -291,16 +228,10 @@ import org.robovm.apple.iosurface.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CVImageBufferAttributes setColorPrimaries(CVImageBufferColorPrimaries colorPrimaries) {
         set(CVImageBufferAttribute.ColorPrimaries, colorPrimaries.value());
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CVImageBufferTransferFunction getTransferFunction() {
         if (has(CVImageBufferAttribute.TransferFunction)) {
             CFString val = get(CVImageBufferAttribute.TransferFunction, CFString.class);
@@ -308,16 +239,10 @@ import org.robovm.apple.iosurface.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CVImageBufferAttributes setTransferFunction(CVImageBufferTransferFunction transferFunction) {
         set(CVImageBufferAttribute.TransferFunction, transferFunction.value());
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CVImageBufferChromaLocation getChromaLocationTopField() {
         if (has(CVImageBufferAttribute.ChromaLocationTopField)) {
             CFString val = get(CVImageBufferAttribute.ChromaLocationTopField, CFString.class);
@@ -325,16 +250,10 @@ import org.robovm.apple.iosurface.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CVImageBufferAttributes setChromaLocationTopField(CVImageBufferChromaLocation chromaLocationTopField) {
         set(CVImageBufferAttribute.ChromaLocationTopField, chromaLocationTopField.value());
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CVImageBufferChromaLocation getChromaLocationBottomField() {
         if (has(CVImageBufferAttribute.ChromaLocationBottomField)) {
             CFString val = get(CVImageBufferAttribute.ChromaLocationBottomField, CFString.class);
@@ -342,16 +261,10 @@ import org.robovm.apple.iosurface.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CVImageBufferAttributes setChromaLocationBottomField(CVImageBufferChromaLocation chromaLocationBottomField) {
         set(CVImageBufferAttribute.ChromaLocationBottomField, chromaLocationBottomField.value());
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CVImageBufferChromaSubsampling getChromaSubsampling() {
         if (has(CVImageBufferAttribute.ChromaSubsampling)) {
             CFString val = get(CVImageBufferAttribute.ChromaSubsampling, CFString.class);
@@ -359,16 +272,10 @@ import org.robovm.apple.iosurface.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CVImageBufferAttributes setChromaSubsampling(CVImageBufferChromaSubsampling chromaSubsampling) {
         set(CVImageBufferAttribute.ChromaSubsampling, chromaSubsampling.value());
         return this;
     }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public boolean isAlphaChannelOpaque() {
         if (has(CVImageBufferAttribute.AlphaChannelIsOpaque)) {
             CFBoolean val = get(CVImageBufferAttribute.AlphaChannelIsOpaque, CFBoolean.class);
@@ -376,11 +283,25 @@ import org.robovm.apple.iosurface.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public CVImageBufferAttributes setAlphaChannelOpaque(boolean alphaChannelOpaque) {
         set(CVImageBufferAttribute.AlphaChannelIsOpaque, CFBoolean.valueOf(alphaChannelOpaque));
+        return this;
+    }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public CVImageBufferAlphaChannelMode getAlphaChannelMode() {
+        if (has(CVImageBufferAttribute.AlphaChannelMode)) {
+            CFString val = get(CVImageBufferAttribute.AlphaChannelMode, CFString.class);
+            return CVImageBufferAlphaChannelMode.valueOf(val);
+        }
+        return null;
+    }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public CVImageBufferAttributes setAlphaChannelMode(CVImageBufferAlphaChannelMode alphaChannelMode) {
+        set(CVImageBufferAttribute.AlphaChannelMode, alphaChannelMode.value());
         return this;
     }
     /*</methods>*/

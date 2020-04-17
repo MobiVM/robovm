@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -53,14 +55,8 @@ import org.robovm.apple.intents.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*//*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @NotImplemented("accessibilityIdentifier")
     public String getAccessibilityIdentifier() { return null; }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @NotImplemented("setAccessibilityIdentifier:")
     public void setAccessibilityIdentifier(String v) {}
     /*</properties>*/

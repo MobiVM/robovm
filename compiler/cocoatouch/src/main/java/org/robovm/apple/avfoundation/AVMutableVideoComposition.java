@@ -41,9 +41,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVMutableVideoComposition/*</name>*/ 
@@ -57,24 +55,19 @@ import org.robovm.apple.audiotoolbox.*;
     public AVMutableVideoComposition() {}
     protected AVMutableVideoComposition(Handle h, long handle) { super(h, handle); }
     protected AVMutableVideoComposition(SkipInit skipInit) { super(skipInit); }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public AVMutableVideoComposition(AVAsset asset) { super((Handle) null, create(asset)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public AVMutableVideoComposition(AVAsset asset, AVVideoCompositionInstruction prototypeInstruction) { super((Handle) null, create(asset, prototypeInstruction)); retain(getHandle()); }
     /**
      * @since Available in iOS 9.0 and later.
      */
     public AVMutableVideoComposition(AVAsset asset, @Block VoidBlock1<AVAsynchronousCIImageFilteringRequest> ciFiltersApplier) { super((Handle) null, create(asset, ciFiltersApplier)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "customVideoCompositorClass")
     public native Class<? extends AVVideoCompositing> getCustomVideoCompositorClass();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setCustomVideoCompositorClass:")
     public native void setCustomVideoCompositorClass(Class<? extends AVVideoCompositing> v);
     @Property(selector = "frameDuration")
@@ -95,14 +88,8 @@ import org.robovm.apple.audiotoolbox.*;
     public native @ByVal CGSize getRenderSize();
     @Property(selector = "setRenderSize:")
     public native void setRenderSize(@ByVal CGSize v);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "renderScale")
     public native float getRenderScale();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "setRenderScale:")
     public native void setRenderScale(float v);
     @Property(selector = "instructions")
@@ -146,11 +133,13 @@ import org.robovm.apple.audiotoolbox.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "videoCompositionWithPropertiesOfAsset:")
     protected static native @Pointer long create(AVAsset asset);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "videoCompositionWithPropertiesOfAsset:prototypeInstruction:")
+    protected static native @Pointer long create(AVAsset asset, AVVideoCompositionInstruction prototypeInstruction);
     /**
      * @since Available in iOS 9.0 and later.
      */

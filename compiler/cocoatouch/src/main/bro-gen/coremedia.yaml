@@ -56,7 +56,7 @@ enums:
     CMMetadataIdentifierErrorCode: { first: kCMMetadataIdentifierError_AllocationFailed }
     CMMetadataDataTypeRegistryErrorCode: { first: kCMMetadataDataTypeRegistryError_AllocationFailed }
     CMPersistentTrackID: {first: kCMPersistentTrackID_Invalid, prefix: kCMPersistentTrackID_}
-
+    CMMemoryPoolError: {prefix: kCMMemoryPoolError_, first: kCMMemoryPoolError_AllocationFailed} #since 6.0
 classes:
     # Opaque Types
     CMAttachmentBearer:
@@ -1343,6 +1343,10 @@ values:
         class: CMVideoFormatDescription
         name: 'FieldDetail#{g[0]}'
         type: CFString
+    kCMFormatDescriptionAlphaChannelMode_(.*):
+        class: CMVideoFormatDescription
+        name: 'AlphaChannelMode#{g[0]}'
+        type: CFString
 
     # Make sure we don't miss any values if new ones are introduced in a later version
     (k?CM.*):
@@ -1361,6 +1365,8 @@ constants:
         name: '#{g[0]}'
 
     kCMPersistentTrackID_Invalid:
+        exclude: true
+    CMITEMCOUNT_MAX:
         exclude: true
 
     # Make sure we don't miss any constants if new ones are introduced in a later version

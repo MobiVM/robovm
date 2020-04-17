@@ -57,7 +57,23 @@ public enum /*<name>*/RPRecordingErrorCode/*</name>*/ implements NSErrorCode {
     FailedApplicationConnectionInterrupted(-5815L),
     FailedNoMatchingApplicationContext(-5816L),
     FailedMediaServicesFailure(-5817L),
-    VideoMixingFailure(-5818L);
+    VideoMixingFailure(-5818L),
+    BroadcastSetupFailed(-5819L),
+    FailedToObtainURL(-5820L),
+    FailedIncorrectTimeStamps(-5821L),
+    FailedToProcessFirstSample(-5822L),
+    FailedAssetWriterFailedToSave(-5823L),
+    FailedNoAssetWriter(-5824L),
+    FailedAssetWriterInWrongState(-5825L),
+    FailedAssetWriterExportFailed(-5826L),
+    FailedToRemoveFile(-5827L),
+    FailedAssetWriterExportCanceled(-5828L),
+    AttemptToStopNonRecording(-5829L),
+    AttemptToStartInRecordingState(-5830L),
+    PhotoFailure(-5831L),
+    RecordingInvalidSession(-5832L),
+    FailedToStartCaptureStack(-5833L),
+    CodeSuccessful(0L);
     /*</values>*/
 
     /*<bind>*/

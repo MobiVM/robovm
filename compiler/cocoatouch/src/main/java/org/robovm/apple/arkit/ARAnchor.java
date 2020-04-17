@@ -67,7 +67,7 @@ import org.robovm.apple.imageio.*;
     @Method(selector = "initWithAnchor:")
     public ARAnchor(ARAnchor anchor) { super((SkipInit) null); initObject(initWithAnchor(anchor)); }
     @Method(selector = "initWithCoder:")
-    public ARAnchor(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public ARAnchor(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "identifier")
@@ -77,6 +77,11 @@ import org.robovm.apple.imageio.*;
      */
     @Property(selector = "name")
     public native String getName();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "sessionIdentifier")
+    public native NSUUID getSessionIdentifier();
     @Property(selector = "transform")
     public native @ByVal MatrixFloat4x4 getTransform();
     @Property(selector = "supportsSecureCoding")
@@ -96,6 +101,6 @@ import org.robovm.apple.imageio.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

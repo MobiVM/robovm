@@ -58,7 +58,7 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "initWithURL:cachePolicy:timeoutInterval:")
     public NSURLRequest(NSURL URL, NSURLRequestCachePolicy cachePolicy, double timeoutInterval) { super((SkipInit) null); initObject(init(URL, cachePolicy, timeoutInterval)); }
     @Method(selector = "initWithCoder:")
-    public NSURLRequest(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public NSURLRequest(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "supportsSecureCoding")
@@ -71,16 +71,20 @@ import org.robovm.apple.dispatch.*;
     public native double getTimeoutInterval();
     @Property(selector = "mainDocumentURL")
     public native NSURL getMainDocumentURL();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "networkServiceType")
     public native NSURLRequestNetworkServiceType getNetworkServiceType();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "allowsCellularAccess")
     public native boolean allowsCellularAccess();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "allowsExpensiveNetworkAccess")
+    public native boolean allowsExpensiveNetworkAccess();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "allowsConstrainedNetworkAccess")
+    public native boolean allowsConstrainedNetworkAccess();
     @Property(selector = "HTTPMethod")
     public native String getHTTPMethod();
     @Property(selector = "allHTTPHeaderFields")
@@ -91,9 +95,6 @@ import org.robovm.apple.dispatch.*;
     public native NSInputStream getHTTPBodyStream();
     @Property(selector = "HTTPShouldHandleCookies")
     public native boolean shouldHandleHTTPCookies();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "HTTPShouldUsePipelining")
     public native boolean shouldUseHTTPPipelining();
     /*</properties>*/
@@ -164,6 +165,6 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

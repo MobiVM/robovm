@@ -38,10 +38,11 @@ import java.util.Set;
  */
 public class DeviceType implements Comparable<DeviceType> {
     public static final String IOS_VERSION_PREFIX = "com.apple.CoreSimulator.SimRuntime.iOS-";
-    public static final String PREFERRED_IPHONE_SIM_NAME = "iPhone 6";
+    public static final String PREFERRED_IPHONE_SIM_NAME = "iPhone 8";
     public static final String PREFERRED_IPAD_SIM_NAME = "iPad Air";
 
     public static final String[] ONLY_32BIT_DEVICES = {"iPhone 4", "iPhone 4s", "iPhone 5", "iPhone 5c", "iPad 2"};
+    public static final Version ONLY_64BIT_IOS_VERSION = new Version(11, 0, 0);
 
     public enum DeviceFamily {
         iPhone,
@@ -147,14 +148,15 @@ public class DeviceType implements Comparable<DeviceType> {
 
                     if (isAvailable) {
                         final String deviceName = device.get("name").toString();
+                        final Version version = Version.parse(versionKey);
                         Set<Arch> archs = new HashSet<>();
-                        archs.add(Arch.x86);
-                        if (!Arrays.asList(ONLY_32BIT_DEVICES).contains(deviceName)) {
+                        if (!Arrays.asList(ONLY_32BIT_DEVICES).contains(deviceName))
                             archs.add(Arch.x86_64);
-                        }
+                        if (!version.isSameOrBetter(ONLY_64BIT_IOS_VERSION))
+                            archs.add(Arch.x86);
 
                         types.add(new DeviceType(deviceName, device.get("udid").toString(),
-                                device.get("state").toString(), Version.parse(versionKey), archs));
+                                device.get("state").toString(), version, archs));
                     }
                 }
             }
@@ -241,9 +243,9 @@ public class DeviceType implements Comparable<DeviceType> {
         if (deviceName == null && family == null) {
             family = DeviceFamily.iPhone;
         }
-        String preferredDeciveName = PREFERRED_IPHONE_SIM_NAME;
+        String preferredDeviceName = PREFERRED_IPHONE_SIM_NAME;
         if (family == DeviceFamily.iPad) {
-            preferredDeciveName = PREFERRED_IPAD_SIM_NAME;
+            preferredDeviceName = PREFERRED_IPAD_SIM_NAME;
         }
 
 
@@ -258,7 +260,7 @@ public class DeviceType implements Comparable<DeviceType> {
                 // match for specified device
                 if (exact == null || (version == null && type.version.versionCode > exact.version.versionCode))
                     exact = type;
-            } else if (deviceName == null && type.getDeviceName().equals(preferredDeciveName)) {
+            } else if (deviceName == null && type.getDeviceName().equals(preferredDeviceName)) {
                 // match for preferable device
                 if (bestDefault == null || (version == null && type.version.versionCode > bestDefault.version.versionCode))
                     bestDefault = type;
@@ -292,11 +294,11 @@ public class DeviceType implements Comparable<DeviceType> {
     public static class Version {
         public final int major, minor, revision, versionCode;
 
-        public Version(int major, int minor, int revision, int versionCode) {
+        public Version(int major, int minor, int revision) {
             this.major = major;
             this.minor = minor;
             this.revision = revision;
-            this.versionCode = versionCode;
+            this.versionCode = (major << 16) | (minor << 8) | revision;
         }
 
         static Version parse(String v) {
@@ -304,8 +306,7 @@ public class DeviceType implements Comparable<DeviceType> {
             int major = Integer.parseInt(parts[0]);
             int minor = parts.length >= 2 ? Integer.parseInt(parts[1]) : 0;
             int revision = parts.length >= 3 ? Integer.parseInt(parts[2]) : 0;
-            int versionCode = (major << 16) | (minor << 8) | revision;
-            return new Version(major, minor, revision, versionCode);
+            return new Version(major, minor, revision);
         }
 
         @Override

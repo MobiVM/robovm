@@ -29,12 +29,11 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.security.*;
+import org.robovm.apple.network.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("NetworkExtension") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NEOnDemandRuleEvaluateConnection/*</name>*/ 
@@ -50,14 +49,8 @@ import org.robovm.apple.security.*;
     protected NEOnDemandRuleEvaluateConnection(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "connectionRules")
     public native NSArray<NEEvaluateConnectionRule> getConnectionRules();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setConnectionRules:")
     public native void setConnectionRules(NSArray<NEEvaluateConnectionRule> v);
     /*</properties>*/

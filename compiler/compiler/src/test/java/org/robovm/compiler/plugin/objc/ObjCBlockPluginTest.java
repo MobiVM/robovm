@@ -20,6 +20,7 @@ import static org.junit.Assert.*;
 import static org.robovm.compiler.Annotations.*;
 import static org.robovm.compiler.plugin.objc.ObjCBlockPlugin.*;
 
+import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Arrays;
@@ -27,6 +28,7 @@ import java.util.Arrays;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.robovm.compiler.ClassPathUtils;
 import org.robovm.compiler.CompilerException;
 import org.robovm.compiler.Types;
 import org.robovm.compiler.util.generic.SootClassType;
@@ -57,8 +59,8 @@ public class ObjCBlockPluginTest {
         Options.v().set_include_all(true);
         Options.v().set_print_tags_in_output(true);
         Options.v().set_allow_phantom_refs(true);
-        Options.v().set_soot_classpath(System.getProperty("sun.boot.class.path") + 
-                ":" + System.getProperty("java.class.path"));
+        Options.v().set_soot_classpath(ClassPathUtils.getBcPath() +
+                File.pathSeparator + System.getProperty("java.class.path"));
         Scene.v().loadNecessaryClasses();
     }
     
@@ -210,20 +212,18 @@ public class ObjCBlockPluginTest {
                 BOOLEAN);
     }
 
-    @Test(expected = CompilerException.class)
+    @Test
     public void testResolveTargetMethodSignatureGenericWithUnresolvedIndirectTypeVariable() throws Exception {
-        SootMethod target = toSootClass(F.class).getMethodByName("run");
-        SootMethod m = toSootClass(Runners.class).getMethodByName("runner7");
-        SootMethodType mType = new SootMethodType(m);
-        ObjCBlockPlugin.resolveTargetMethodSignature(m, target, mType.getGenericParameterTypes()[0]);
+        testResolveTargetMethodSignature("runner7",
+                classNameToType("java.lang.Object"), classNameToType("java.lang.Integer"),
+                classNameToType("java.lang.Integer"), BOOLEAN);
     }
 
-    @Test(expected = CompilerException.class)
+    @Test
     public void testResolveTargetMethodSignatureGenericWithUnresolvedDirectTypeVariable() throws Exception {
-        SootMethod target = toSootClass(F.class).getMethodByName("run");
-        SootMethod m = toSootClass(Runners.class).getMethodByName("runner8");
-        SootMethodType mType = new SootMethodType(m);
-        ObjCBlockPlugin.resolveTargetMethodSignature(m, target, mType.getGenericParameterTypes()[0]);
+        testResolveTargetMethodSignature("runner8",
+                classNameToType("java.lang.Object"), classNameToType("java.lang.Integer"),
+                classNameToType("java.lang.Number"), BOOLEAN);
     }
 
     @Test

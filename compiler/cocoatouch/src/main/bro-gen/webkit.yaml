@@ -20,6 +20,7 @@ enums:
     WKSelectionGranularity: {}
     WKDataDetectorTypes: {}
     WKAudiovisualMediaTypes: {}
+    WKContentMode: {} #since 13.0
 
 classes:
     WKError:
@@ -147,6 +148,12 @@ classes:
                         type: '@Block VoidBlock2<NSObject, NSError>' # TODO change NSObject type to correct type???
             '-takeSnapshotWithConfiguration:completionHandler:':
                 name: takeSnapshot
+            '-createPDFWithConfiguration:completionHandler:':
+                name: createPDF
+            '-createWebArchiveDataWithCompletionHandler:':
+                name: createWebArchiveData
+            '-findString:withConfiguration:completionHandler:':
+                name: findString
     WKPreviewElementInfo: {}
     WKContentRuleList: {} #since 11.0
     WKContentRuleListStore: #since 11.0
@@ -167,7 +174,11 @@ classes:
             '-deleteCookie:completionHandler:':
                 trim_after_first_colon: true
     WKSnapshotConfiguration: {} #since 11.0
-
+    WKContextMenuElementInfo: {} #since 13.0
+    WKWebpagePreferences: {} #since 13.0
+    WKFindConfiguration: {} #since 13.0
+    WKFindResult: {} #since 13.0
+    WKPDFConfiguration: {} #since 13.0
 protocols:
     WKNavigationDelegate: # DONE
         methods:
@@ -191,6 +202,8 @@ protocols:
                 name: didReceiveAuthenticationChallenge
             '-webViewWebContentProcessDidTerminate:':
                 name: webContentProcessDidTerminate
+            '-webView:decidePolicyForNavigationAction:preferences:decisionHandler:':
+                name: decidePolicyForNavigationAction
     WKScriptMessageHandler: # DONE
         methods:
             '-userContentController:didReceiveScriptMessage:':
@@ -213,6 +226,14 @@ protocols:
                 name: getPreviewingViewControllerForElement
             '-webView:commitPreviewingViewController:':
                 name: commitPreviewingViewController
+            '-webView:contextMenuConfigurationForElement:completionHandler:':
+                name: getContextMenuConfiguration
+            '-webView:contextMenuForElement:willCommitWithAnimator:':
+                name: getContextMenu
+            '-webView:contextMenuWillPresentForElement:':
+                name: contextMenuWillPresent
+            '-webView:contextMenuDidEndForElement:':
+                name: contextMenuDidEnd
     WKHTTPCookieStoreObserver: {} #since 11.0
     WKPreviewActionItem: {} #since 10.0
     WKURLSchemeHandler: #since 11.0

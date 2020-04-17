@@ -1,5 +1,5 @@
 package: org.robovm.apple.coredata
-include: [foundation, corespotlight]
+include: [foundation, corespotlight, cloudkit, uikit]
 library: CoreData
 framework: CoreData
 clang_args: ['-x', 'objective-c']
@@ -29,6 +29,8 @@ enums:
     NSFetchIndexElementType: {} #since 11.0
     NSPersistentHistoryResultType: {} #since 11.0
     NSPersistentHistoryChangeType: {} #since 11.0
+    NSBatchInsertRequestResultType: {} #since 13.0
+    NSPersistentCloudKitContainerSchemaInitializationOptions: {}
 
 classes:
     NSSQLiteError:
@@ -787,12 +789,40 @@ classes:
         methods:
             '-initWithProperty:collationType:':
                 name: init
-    NSPersistentHistoryChange: {} #since 11.0
-    NSPersistentHistoryChangeRequest: {} #since 11.0
+    NSPersistentHistoryChange: #since 11.0
+        methods:
+            '+entityDescriptionWithContext:':
+                name: getEntityDescription
+    NSPersistentHistoryChangeRequest: #since 11.0
+        methods:
+            '+fetchHistoryWithFetchRequest:':
+                name: fetchHistory
     NSPersistentHistoryResult: {} #since 11.0
     NSPersistentHistoryToken: {} #since 11.0
-    NSPersistentHistoryTransaction: {} #since 11.0
-
+    NSPersistentHistoryTransaction: #since 11.0
+        methods:
+            '+entityDescriptionWithContext:':
+                name: getEntityDescription
+    #ios13
+    NSBatchInsertRequest: #since 13.0
+        methods:
+            '-initWithEntityName:objects:':
+                name: init
+            '-initWithEntity:objects:':
+                name: init
+            '+batchInsertRequestWithEntityName:objects:':
+                exclude: true
+    NSBatchInsertResult: {} #since 13.0
+    NSDerivedAttributeDescription: {} #since 13.0
+    NSPersistentCloudKitContainer: #since 13.0
+        methods:
+            '-initializeCloudKitSchemaWithOptions:error:':
+                name: initializeCloudKitSchema
+                throws: NSErrorException
+    NSPersistentCloudKitContainerOptions: #since 13.0
+        methods:
+            '-initWithContainerIdentifier:':
+                name: init
 protocols:
     NSFetchedResultsControllerDelegate: # DONE
         methods:
@@ -806,6 +836,10 @@ protocols:
                 name: didChangeContent
             '-controller:sectionIndexTitleForSectionName:':
                 name: getSectionIndexTitle
+            '-controller:didChangeContentWithSnapshot:':
+                name: didChangeContent
+            '-controller:didChangeContentWithDifference:':
+                name: didChangeContent
     NSFetchedResultsSectionInfo: # DONE
         properties:
             'objects':
@@ -838,12 +872,9 @@ values:
         extends: NSErrorUserInfoKey
 
     # NSPersistentStoreCoordinator
-    NSPersistentStoreCoordinator(.*Notification):
+    NSPersistentStore(.*)Notification:
         class: NSPersistentStoreCoordinator
-        name: '#{g[0]}'
-        type: NSString
-    NSPersistentStore(DidImportUbiquitousContentChangesNotification):
-        class: NSPersistentStoreCoordinator
+        static_class: NotificationKeys
         name: '#{g[0]}'
         type: NSString
     NSCoreDataCoreSpotlightExporter:
@@ -969,6 +1000,10 @@ values:
     NSPersistentHistoryTrackingKey:
         dictionary: NSPersistentStoreOptions
         name: HistoryTrackingKey
+        type: NSString
+    NSPersistentHistoryTokenKey:
+        dictionary: NSPersistentStoreOptions
+        name: HistoryTokenKey
         type: NSString
     NSBinaryStoreInsecureDecodingCompatibilityOption:
         dictionary: NSPersistentStoreOptions

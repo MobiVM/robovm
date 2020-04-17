@@ -92,21 +92,9 @@ import org.robovm.apple.metal.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final CAEmitterMode Points = new CAEmitterMode("Points");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final CAEmitterMode Outline = new CAEmitterMode("Outline");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final CAEmitterMode Surface = new CAEmitterMode("Surface");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final CAEmitterMode Volume = new CAEmitterMode("Volume");
     /*</constants>*/
     
@@ -133,24 +121,12 @@ import org.robovm.apple.metal.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="kCAEmitterLayerPoints", optional=true)
         public static native NSString Points();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="kCAEmitterLayerOutline", optional=true)
         public static native NSString Outline();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="kCAEmitterLayerSurface", optional=true)
         public static native NSString Surface();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="kCAEmitterLayerVolume", optional=true)
         public static native NSString Volume();
         /*</values>*/

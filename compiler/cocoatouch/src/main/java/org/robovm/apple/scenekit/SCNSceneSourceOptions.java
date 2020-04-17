@@ -149,7 +149,6 @@ import org.robovm.apple.avfoundation.*;
         return this;
     }
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 11.0. No longer supported
      */
     @Deprecated
@@ -161,7 +160,6 @@ import org.robovm.apple.avfoundation.*;
         return false;
     }
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 11.0. No longer supported
      */
     @Deprecated
@@ -226,7 +224,6 @@ import org.robovm.apple.avfoundation.*;
         @GlobalValue(symbol="SCNSceneSourceFlattenSceneKey", optional=true)
         public static native NSString FlattenScene();
         /**
-         * @since Available in iOS 8.0 and later.
          * @deprecated Deprecated in iOS 11.0. No longer supported
          */
         @Deprecated

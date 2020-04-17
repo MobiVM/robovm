@@ -66,9 +66,6 @@ import org.robovm.apple.dispatch.*;
         return list;
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="SecPKCS12Import", optional=true)
     protected static native OSStatus importPKCS120(NSData pkcs12_data, SecImportExportOptions options, CFArray.CFArrayPtr items);
     /*</methods>*/

@@ -29,12 +29,12 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corespotlight.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 3.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreData") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSPersistentStore/*</name>*/ 
@@ -114,9 +114,6 @@ import org.robovm.apple.corespotlight.*;
     }
     @Method(selector = "setMetadata:forPersistentStoreWithURL:error:")
     private static native boolean setMetadataForPersistentStore(NSPersistentStoreMetadata metadata, NSURL url, NSError.NSErrorPtr error);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "migrationManagerClass")
     public static native Class<? extends NSMigrationManager> getMigrationManagerClass();
     /*</methods>*/

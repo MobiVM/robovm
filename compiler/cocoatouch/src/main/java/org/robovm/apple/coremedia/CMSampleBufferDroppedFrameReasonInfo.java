@@ -90,9 +90,6 @@ import org.robovm.apple.audiotoolbox.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final CMSampleBufferDroppedFrameReasonInfo CameraModeSwitch = new CMSampleBufferDroppedFrameReasonInfo("CameraModeSwitch");
     /*</constants>*/
     
@@ -119,9 +116,6 @@ import org.robovm.apple.audiotoolbox.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kCMSampleBufferDroppedFrameReasonInfo_CameraModeSwitch", optional=true)
         public static native CFString CameraModeSwitch();
         /*</values>*/

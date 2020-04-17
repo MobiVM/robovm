@@ -64,6 +64,13 @@ values:
         name: 'Values_#{g[0]}'
 
 constants:
+    IOSURFACE_REF_H:
+        exclude: true
+    IOSURFACE_OBJC_H:
+        exclude: true
+    kIOSurfaceSuccess:
+        class: IOSurface
+        name: successCode
 
     # Make sure we don't miss any constants if new ones are introduced in a later CoreFoundation
     (k?IO.*):

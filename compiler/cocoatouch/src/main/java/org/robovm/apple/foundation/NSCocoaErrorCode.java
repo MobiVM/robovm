@@ -54,160 +54,55 @@ public enum /*<name>*/NSCocoaErrorCode/*</name>*/ implements NSErrorCode {
     FileReadNoSuchFile(260L),
     FileReadInapplicableStringEncoding(261L),
     FileReadUnsupportedScheme(262L),
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     FileReadTooLarge(263L),
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     FileReadUnknownStringEncoding(264L),
     FileWriteUnknown(512L),
     FileWriteNoPermission(513L),
     FileWriteInvalidFileName(514L),
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     FileWriteFileExists(516L),
     FileWriteInapplicableStringEncoding(517L),
     FileWriteUnsupportedScheme(518L),
     FileWriteOutOfSpace(640L),
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     FileWriteVolumeReadOnly(642L),
     KeyValueValidation(1024L),
     Formatting(2048L),
     UserCancelled(3072L),
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     FeatureUnsupported(3328L),
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     ExecutableNotLoadable(3584L),
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     ExecutableArchitectureMismatch(3585L),
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     ExecutableRuntimeMismatch(3586L),
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     ExecutableLoad(3587L),
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     ExecutableLink(3588L),
     FileErrorMinimum(0L),
     FileErrorMaximum(1023L),
     ValidationErrorMinimum(1024L),
     ValidationErrorMaximum(2047L),
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     ExecutableErrorMinimum(3584L),
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     ExecutableErrorMaximum(3839L),
     FormattingErrorMinimum(2048L),
     FormattingErrorMaximum(2559L),
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     PropertyListReadCorrupt(3840L),
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     PropertyListReadUnknownVersion(3841L),
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     PropertyListReadStream(3842L),
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     PropertyListWriteStream(3851L),
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     PropertyListWriteInvalid(3852L),
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     PropertyListErrorMinimum(3840L),
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     PropertyListErrorMaximum(4095L),
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     XPCConnectionInterrupted(4097L),
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     XPCConnectionInvalid(4099L),
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     XPCConnectionReplyInvalid(4101L),
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     XPCConnectionErrorMinimum(4096L),
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     XPCConnectionErrorMaximum(4224L),
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     UbiquitousFileUnavailable(4353L),
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     UbiquitousFileNotUploadedDueToQuota(4354L),
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     UbiquitousFileUbiquityServerNotAvailable(4355L),
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     UbiquitousFileErrorMinimum(4352L),
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     UbiquitousFileErrorMaximum(4607L),
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     UserActivityHandoffFailed(4608L),
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     UserActivityConnectionUnavailable(4609L),
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     UserActivityRemoteApplicationTimedOut(4610L),
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     UserActivityHandoffUserInfoTooLarge(4611L),
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     UserActivityErrorMinimum(4608L),
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     UserActivityErrorMaximum(4863L),
     /**
      * @since Available in iOS 9.0 and later.
@@ -280,7 +175,23 @@ public enum /*<name>*/NSCocoaErrorCode/*</name>*/ implements NSErrorCode {
     /**
      * @since Available in iOS 10.0 and later.
      */
-    CloudSharingErrorMaximum(5375L);
+    CloudSharingErrorMaximum(5375L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    CompressionFailed(5376L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    DecompressionFailed(5377L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    CompressionErrorMinimum(5376L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    CompressionErrorMaximum(5503L);
     /*</values>*/
 
     /*<bind>*/

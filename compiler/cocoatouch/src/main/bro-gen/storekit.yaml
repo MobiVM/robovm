@@ -6,8 +6,6 @@ clang_args: ['-x', 'objective-c']
 headers:
     - /System/Library/Frameworks/StoreKit.framework/Headers/StoreKit.h
     - /System/Library/Frameworks/StoreKit.framework/Headers/StoreKitDefines.h
-typedefs:
-    'void (^)(BOOL, NSError *)': '@Block VoidBlock2<Boolean, NSError>'
 
 enums:
     SKDownloadState: {}
@@ -148,6 +146,13 @@ classes:
         methods:
             '-initWithIdentifier:keyIdentifier:nonce:signature:timestamp:':
                 name: init
+    SKStorefront: {} #since 13.0
+    SKArcadeService:
+        methods:
+            '+registerArcadeAppWithRandomFromLib:randomFromLibLength:resultHandler:':
+                name: registerArcadeApp
+            '+arcadeSubscriptionStatusWithNonce:resultHandler:':
+                name: getArcadeSubscriptionStatus
 protocols:
     SKCloudServiceSetupViewControllerDelegate:
         methods:
@@ -194,7 +199,10 @@ protocols:
         methods:
             '-productViewControllerDidFinish:':
                 name: didFinish
-
+    SKPaymentQueueDelegate:
+        methods:
+            '-paymentQueue:shouldContinueTransaction:inStorefront:':
+                name: shouldContinueTransaction
 functions:
     SK(TerminateForInvalidReceipt):
         class: SKReceiptRefreshRequest

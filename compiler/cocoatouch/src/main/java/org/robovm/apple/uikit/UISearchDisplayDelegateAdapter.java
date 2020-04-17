@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -58,84 +60,72 @@ import org.robovm.apple.intents.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @since Available in iOS 3.0 and later.
      * @deprecated Deprecated in iOS 8.0.
      */
     @Deprecated
     @NotImplemented("searchDisplayControllerWillBeginSearch:")
     public void willBeginSearch(UISearchDisplayController controller) {}
     /**
-     * @since Available in iOS 3.0 and later.
      * @deprecated Deprecated in iOS 8.0.
      */
     @Deprecated
     @NotImplemented("searchDisplayControllerDidBeginSearch:")
     public void didBeginSearch(UISearchDisplayController controller) {}
     /**
-     * @since Available in iOS 3.0 and later.
      * @deprecated Deprecated in iOS 8.0.
      */
     @Deprecated
     @NotImplemented("searchDisplayControllerWillEndSearch:")
     public void willEndSearch(UISearchDisplayController controller) {}
     /**
-     * @since Available in iOS 3.0 and later.
      * @deprecated Deprecated in iOS 8.0.
      */
     @Deprecated
     @NotImplemented("searchDisplayControllerDidEndSearch:")
     public void didEndSearch(UISearchDisplayController controller) {}
     /**
-     * @since Available in iOS 3.0 and later.
      * @deprecated Deprecated in iOS 8.0.
      */
     @Deprecated
     @NotImplemented("searchDisplayController:didLoadSearchResultsTableView:")
     public void didLoadSearchResults(UISearchDisplayController controller, UITableView tableView) {}
     /**
-     * @since Available in iOS 3.0 and later.
      * @deprecated Deprecated in iOS 8.0.
      */
     @Deprecated
     @NotImplemented("searchDisplayController:willUnloadSearchResultsTableView:")
     public void willUnloadSearchResults(UISearchDisplayController controller, UITableView tableView) {}
     /**
-     * @since Available in iOS 3.0 and later.
      * @deprecated Deprecated in iOS 8.0.
      */
     @Deprecated
     @NotImplemented("searchDisplayController:willShowSearchResultsTableView:")
     public void willShowSearchResults(UISearchDisplayController controller, UITableView tableView) {}
     /**
-     * @since Available in iOS 3.0 and later.
      * @deprecated Deprecated in iOS 8.0.
      */
     @Deprecated
     @NotImplemented("searchDisplayController:didShowSearchResultsTableView:")
     public void didShowSearchResults(UISearchDisplayController controller, UITableView tableView) {}
     /**
-     * @since Available in iOS 3.0 and later.
      * @deprecated Deprecated in iOS 8.0.
      */
     @Deprecated
     @NotImplemented("searchDisplayController:willHideSearchResultsTableView:")
     public void willHideSearchResults(UISearchDisplayController controller, UITableView tableView) {}
     /**
-     * @since Available in iOS 3.0 and later.
      * @deprecated Deprecated in iOS 8.0.
      */
     @Deprecated
     @NotImplemented("searchDisplayController:didHideSearchResultsTableView:")
     public void didHideSearchResults(UISearchDisplayController controller, UITableView tableView) {}
     /**
-     * @since Available in iOS 3.0 and later.
      * @deprecated Deprecated in iOS 8.0.
      */
     @Deprecated
     @NotImplemented("searchDisplayController:shouldReloadTableForSearchString:")
     public boolean shouldReloadForSearchString(UISearchDisplayController controller, String searchString) { return false; }
     /**
-     * @since Available in iOS 3.0 and later.
      * @deprecated Deprecated in iOS 8.0.
      */
     @Deprecated

@@ -77,6 +77,11 @@ import org.robovm.apple.dispatch.*;
     public static native NSUnitFrequency getMicrohertz();
     @Property(selector = "nanohertz")
     public static native NSUnitFrequency getNanohertz();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "framesPerSecond")
+    public static native NSUnitFrequency getFramesPerSecond();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

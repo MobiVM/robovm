@@ -109,6 +109,16 @@ import org.robovm.apple.foundation.*;
      */
     @Property(selector = "setSummaryArgumentCount:")
     public native void setSummaryArgumentCount(@MachineSizedUInt long v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "targetContentIdentifier")
+    public native String getTargetContentIdentifier();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setTargetContentIdentifier:")
+    public native void setTargetContentIdentifier(String v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

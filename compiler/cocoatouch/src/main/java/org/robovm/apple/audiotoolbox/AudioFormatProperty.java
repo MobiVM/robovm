@@ -52,6 +52,7 @@ public enum /*<name>*/AudioFormatProperty/*</name>*/ implements ValuedEnum {
     FirstPlayableFormatFromList(1718642284L),
     FormatIsVBR(1719034482L),
     FormatIsExternallyFramed(1717925990L),
+    FormatEmploysDependentPackets(1717855600L),
     FormatIsEncrypted(1668446576L),
     Encoders(1635149166L),
     Decoders(1635148901L),
@@ -105,14 +106,8 @@ public enum /*<name>*/AudioFormatProperty/*</name>*/ implements ValuedEnum {
         return data;
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioFormatGetPropertyInfo", optional=true)
     protected static native OSStatus getPropertyInfo0(AudioFormatProperty inPropertyID, int inSpecifierSize, VoidPtr inSpecifier, IntPtr outPropertyDataSize);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioFormatGetProperty", optional=true)
     protected static native OSStatus getProperty0(AudioFormatProperty inPropertyID, int inSpecifierSize, VoidPtr inSpecifier, IntPtr ioPropertyDataSize, VoidPtr outPropertyData);
     /*</methods>*/

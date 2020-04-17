@@ -36,6 +36,7 @@ import org.robovm.apple.imageio.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.metal.*;
 import org.robovm.apple.iosurface.*;
+import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -143,6 +144,26 @@ import org.robovm.apple.iosurface.*;
          */
         @GlobalValue(symbol="kCIImageRepresentationPortraitEffectsMatteImage", optional=true)
         public static native NSString PortraitEffectsMatteImage();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="kCIImageRepresentationAVSemanticSegmentationMattes", optional=true)
+        public static native NSString AVSemanticSegmentationMattes();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="kCIImageRepresentationSemanticSegmentationSkinMatteImage", optional=true)
+        public static native NSString SemanticSegmentationSkinMatteImage();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="kCIImageRepresentationSemanticSegmentationHairMatteImage", optional=true)
+        public static native NSString SemanticSegmentationHairMatteImage();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="kCIImageRepresentationSemanticSegmentationTeethMatteImage", optional=true)
+        public static native NSString SemanticSegmentationTeethMatteImage();
     }
     /*</keys>*/
 }

@@ -50,28 +50,15 @@ public final class /*<name>*/CFCalendarUnit/*</name>*/ extends Bits</*<name>*/CF
     public static final CFCalendarUnit Minute = new CFCalendarUnit(64L);
     public static final CFCalendarUnit Second = new CFCalendarUnit(128L);
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 8.0. Use kCFCalendarUnitWeekOfYear or kCFCalendarUnitWeekOfMonth instead
      */
     @Deprecated
     public static final CFCalendarUnit Week = new CFCalendarUnit(256L);
     public static final CFCalendarUnit Weekday = new CFCalendarUnit(512L);
     public static final CFCalendarUnit WeekdayOrdinal = new CFCalendarUnit(1024L);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CFCalendarUnit Quarter = new CFCalendarUnit(2048L);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final CFCalendarUnit WeekOfMonth = new CFCalendarUnit(4096L);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final CFCalendarUnit WeekOfYear = new CFCalendarUnit(8192L);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final CFCalendarUnit YearForWeekOfYear = new CFCalendarUnit(16384L);
     /*</values>*/
 

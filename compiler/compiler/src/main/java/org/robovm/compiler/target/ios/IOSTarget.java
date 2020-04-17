@@ -30,6 +30,7 @@ import org.apache.commons.io.filefilter.AndFileFilter;
 import org.apache.commons.io.filefilter.PrefixFileFilter;
 import org.apache.commons.io.filefilter.RegexFileFilter;
 import org.apache.commons.io.filefilter.SuffixFileFilter;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.tuple.Pair;
 import org.robovm.compiler.CompilerException;
 import org.robovm.compiler.config.AppExtension;
@@ -292,6 +293,10 @@ public class IOSTarget extends AbstractTarget {
             if (config.isDebug()) {
                 ccArgs.add("-Wl,-no_pie");
             }
+            if (config.isEnableBitcode()) {
+                // tells clang to keep bitcode while linking
+                ccArgs.add("-fembed-bitcode");
+            }
         } else {
             ccArgs.add("-mios-simulator-version-min=" + minVersion);
             if (config.getArch() == Arch.x86 || config.isDebug()) {
@@ -316,6 +321,19 @@ public class IOSTarget extends AbstractTarget {
         libArgs.add("-rpath");
         libArgs.add("-Xlinker");
         libArgs.add("@loader_path/Frameworks");
+
+        if (!isDeviceArch(arch)) {
+            // add simulated entitlement to allow Security framework to work on simulator
+            File simEntitlement = createSimulatedEntitlementsPList(getBundleId());
+            ccArgs.add("-Xlinker");
+            ccArgs.add("-sectcreate");
+            ccArgs.add("-Xlinker");
+            ccArgs.add("__TEXT");
+            ccArgs.add("-Xlinker");
+            ccArgs.add("__entitlements");
+            ccArgs.add("-Xlinker");
+            ccArgs.add(simEntitlement.getAbsolutePath());
+        }
         
         super.doBuild(outFile, ccArgs, objectFiles, libArgs);
     }
@@ -329,11 +347,16 @@ public class IOSTarget extends AbstractTarget {
             // LLDB can't resolve the DWARF info
             if (!config.isDebug()) {
                 strip(installDir, getExecutable());
-            }            
+            }
+            // remove bitcode to minimize binary size if not required
+            if (!config.isEnableBitcode()) {
+                config.getLogger().info("Striping bitcode from binary: %s", new File(installDir, getExecutable()));
+                stripBitcode(new File(installDir, getExecutable()));
+            }
             if (config.isIosSkipSigning()) {
                 config.getLogger().warn("Skipping code signing. The resulting app will "
                         + "be unsigned and will not run on unjailbroken devices");
-                ldid(entitlementsPList, installDir);
+                codesignApp(SigningIdentity.ADHOC, getOrCreateEntitlementsPList(false, getBundleId()), installDir);
             } else {
                 // Copy the provisioning profile
                 copyProvisioningProfile(provisioningProfile, installDir);
@@ -369,7 +392,7 @@ public class IOSTarget extends AbstractTarget {
             if (config.isIosSkipSigning()) {
                 config.getLogger().warn("Skiping code signing. The resulting app will "
                         + "be unsigned and will not run on unjailbroken devices");
-                ldid(getOrCreateEntitlementsPList(true, getBundleId()), appDir);
+                codesignApp(SigningIdentity.ADHOC, getOrCreateEntitlementsPList(true, getBundleId()), appDir);
             } else {
                 copyProvisioningProfile(provisioningProfile, appDir);
                 boolean getTaskAllow = provisioningProfile.getType() == Type.Development;
@@ -385,6 +408,9 @@ public class IOSTarget extends AbstractTarget {
                 signFrameworks(SigningIdentity.ADHOC, appDir);
                 signAppExtensions(SigningIdentity.ADHOC, appDir, true);
             }
+            // sign the app
+            // NB: it is not required as app can run without it but Xcode does this
+            codesignApp(SigningIdentity.ADHOC, createEntitlementsPList(true), appDir);
         }
     }
 
@@ -530,6 +556,10 @@ public class IOSTarget extends AbstractTarget {
         if (verbose) {
             args.add("--verbose");
         }
+        if (identity == SigningIdentity.ADHOC) {
+            // don't contact time server in case of adhoc signing to save time
+            args.add("--timestamp=none");
+        }
         args.add(target);
         Executor executor = new Executor(config.getLogger(), "codesign");
         if (allocate) {
@@ -539,19 +569,43 @@ public class IOSTarget extends AbstractTarget {
         executor.exec();
     }
 
-    private void ldid(File entitlementsPList, File appDir) throws IOException {
-        File executableFile = new File(appDir, getExecutable());
-        config.getLogger().info("Pseudo-signing %s", executableFile.getAbsolutePath());
-        List<Object> args = new ArrayList<>();
-        if (entitlementsPList != null) {
-            args.add("-S" + entitlementsPList.getAbsolutePath());
-        } else {
-            args.add("-S");
+    /**
+     * creates simple entitlement plist from scratch that only containts get-task-allow
+     * used to sign binary for simulator
+     */
+    private File createEntitlementsPList(boolean getTaskAllow) throws IOException {
+        try {
+            File destFile = new File(config.getTmpDir(), "Entitlements.plist");
+            NSDictionary dict = new NSDictionary();
+            dict.put("com.apple.security.get-task-allow", getTaskAllow);
+            PropertyListParser.saveAsXML(dict, destFile);
+            return destFile;
+        } catch (IOException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
-        args.add(executableFile);
-        new Executor(config.getLogger(), new File(config.getHome().getBinDir(), "ldid"))
-                .args(args)
-                .exec();
+    }
+
+    /**
+     * Creates simulated entitlements for simulator run. These are not used for signing
+     * but just put as __TEXT __entitlements section
+     */
+    private File createSimulatedEntitlementsPList(String bundleId) throws IOException {
+        try {
+            // generate random group id as there is no one real available when compiling for simulator
+            String groupId = RandomStringUtils.randomAlphanumeric(10).toUpperCase();
+            File destFile = new File(config.getTmpDir(), "Entitlements-Simulated.plist");
+            NSDictionary dict = new NSDictionary();
+            dict.put("application-identifier", groupId + "." + bundleId);
+            dict.put("keychain-access-groups", new NSArray(new NSString(groupId + "." + bundleId)));
+            PropertyListParser.saveAsXML(dict, destFile);
+            return destFile;
+        } catch (IOException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private File getOrCreateEntitlementsPList(boolean getTaskAllow, String bundleId) throws IOException {
@@ -997,12 +1051,12 @@ public class IOSTarget extends AbstractTarget {
 
                 if (signIdentity == null && provisioningProfile == null) {
                     // both identity and provisioningProfile are set to auto, start with picking profile s
-                    Pair<SigningIdentity, ProvisioningProfile> pair = ProvisioningProfile.find(ProvisioningProfile.list(), SigningIdentity.list("/(?i)iPhone Developer|iOS Development/"), bundleId);
+                    Pair<SigningIdentity, ProvisioningProfile> pair = ProvisioningProfile.find(ProvisioningProfile.list(), SigningIdentity.list(SigningIdentity.REGEX_MATCH_FOR_IOS), bundleId);
                     signIdentity = pair.getLeft();
                     provisioningProfile = pair.getRight();
                 } else if (signIdentity == null) {
                     // provisioning profile was specified, need to find a signing identity that matches it
-                    signIdentity = SigningIdentity.find(SigningIdentity.list(), "/(?i)iPhone Developer|iOS Development/", provisioningProfile);
+                    signIdentity = SigningIdentity.find(SigningIdentity.list(), SigningIdentity.REGEX_MATCH_FOR_IOS, provisioningProfile);
                 } else if (provisioningProfile == null) {
                     // find profile that matches identity and bundle id
                     provisioningProfile = ProvisioningProfile.find(ProvisioningProfile.list(), signIdentity, bundleId);

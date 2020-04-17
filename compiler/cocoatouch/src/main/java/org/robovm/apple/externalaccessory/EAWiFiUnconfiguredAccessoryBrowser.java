@@ -33,9 +33,7 @@ import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("ExternalAccessory") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/EAWiFiUnconfiguredAccessoryBrowser/*</name>*/ 
@@ -49,9 +47,6 @@ import org.robovm.apple.uikit.*;
     public EAWiFiUnconfiguredAccessoryBrowser() {}
     protected EAWiFiUnconfiguredAccessoryBrowser(Handle h, long handle) { super(h, handle); }
     protected EAWiFiUnconfiguredAccessoryBrowser(SkipInit skipInit) { super(skipInit); }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @WeaklyLinked
     @Method(selector = "initWithDelegate:queue:")
     public EAWiFiUnconfiguredAccessoryBrowser(EAWiFiUnconfiguredAccessoryBrowserDelegate delegate, DispatchQueue queue) { super((SkipInit) null); initObject(init(delegate, queue)); }
@@ -66,25 +61,13 @@ import org.robovm.apple.uikit.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @WeaklyLinked
     @Method(selector = "initWithDelegate:queue:")
     protected native @Pointer long init(EAWiFiUnconfiguredAccessoryBrowserDelegate delegate, DispatchQueue queue);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "startSearchingForUnconfiguredAccessoriesMatchingPredicate:")
     public native void startSearchingForUnconfiguredAccessories(NSPredicate predicate);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "stopSearchingForUnconfiguredAccessories")
     public native void stopSearchingForUnconfiguredAccessories();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @WeaklyLinked
     @Method(selector = "configureAccessory:withConfigurationUIOnViewController:")
     public native void configureAccessory(EAWiFiUnconfiguredAccessory accessory, UIViewController viewController);

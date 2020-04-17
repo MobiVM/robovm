@@ -37,14 +37,14 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 import org.robovm.rt.annotation.WeaklyLinked;
 import org.robovm.apple.spritekit.SKNode;
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 2.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UITouch/*</name>*/ 
@@ -71,23 +71,14 @@ import org.robovm.apple.spritekit.SKNode;
      */
     @Property(selector = "type")
     public native UITouchType getType();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "majorRadius")
     public native @MachineSizedFloat double getMajorRadius();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "majorRadiusTolerance")
     public native @MachineSizedFloat double getMajorRadiusTolerance();
     @Property(selector = "window")
     public native UIWindow getWindow();
     @Property(selector = "view")
     public native UIView getView();
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Property(selector = "gestureRecognizers")
     public native NSArray<UIGestureRecognizer> getGestureRecognizers();
     /**

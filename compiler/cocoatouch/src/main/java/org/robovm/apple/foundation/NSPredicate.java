@@ -39,9 +39,7 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 3.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSPredicate/*</name>*/ 
@@ -57,12 +55,9 @@ import org.robovm.apple.dispatch.*;
     protected NSPredicate(SkipInit skipInit) { super(skipInit); }
     public NSPredicate(String predicateFormat, NSArray<?> arguments) { super((Handle) null, create(predicateFormat, arguments)); retain(getHandle()); }
     public NSPredicate(boolean value) { super((Handle) null, create(value)); retain(getHandle()); }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public NSPredicate(@Block Block2<NSObject, NSDictionary<NSString, ?>, Boolean> block) { super((Handle) null, create(block)); retain(getHandle()); }
     @Method(selector = "initWithCoder:")
-    public NSPredicate(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public NSPredicate(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     public NSPredicate(String predicateFormat, Object... arguments) {
         super(create(predicateFormat, arguments));
@@ -119,28 +114,19 @@ import org.robovm.apple.dispatch.*;
     public native NSPredicate newPredicate(NSDictionary<NSString, ?> variables);
     @Method(selector = "evaluateWithObject:")
     public native boolean evaluate(NSObject object);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "evaluateWithObject:substitutionVariables:")
     public native boolean evaluate(NSObject object, NSDictionary<NSString, ?> variables);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "allowEvaluation")
     public native void allowEvaluation();
     @Method(selector = "predicateWithFormat:argumentArray:")
     protected static native @Pointer long create(String predicateFormat, NSArray<?> arguments);
     @Method(selector = "predicateWithValue:")
     protected static native @Pointer long create(boolean value);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "predicateWithBlock:")
     protected static native @Pointer long create(@Block Block2<NSObject, NSDictionary<NSString, ?>, Boolean> block);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

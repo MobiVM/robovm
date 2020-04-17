@@ -112,9 +112,6 @@ import org.robovm.apple.audiotoolbox.*;
     }
     
 
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public boolean isNotSync() {
         if (has(CMSampleAttachmentKey.NotSync)) {
             CFBoolean val = get(CMSampleAttachmentKey.NotSync, CFBoolean.class);
@@ -122,16 +119,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CMSampleAttachment setNotSync(boolean notSync) {
         set(CMSampleAttachmentKey.NotSync, CFBoolean.valueOf(notSync));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public boolean isPartialSync() {
         if (has(CMSampleAttachmentKey.PartialSync)) {
             CFBoolean val = get(CMSampleAttachmentKey.PartialSync, CFBoolean.class);
@@ -139,16 +130,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CMSampleAttachment setPartialSync(boolean partialSync) {
         set(CMSampleAttachmentKey.PartialSync, CFBoolean.valueOf(partialSync));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public boolean hasRedundantCoding() {
         if (has(CMSampleAttachmentKey.HasRedundantCoding)) {
             CFBoolean val = get(CMSampleAttachmentKey.HasRedundantCoding, CFBoolean.class);
@@ -156,16 +141,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CMSampleAttachment setHasRedundantCoding(boolean hasRedundantCoding) {
         set(CMSampleAttachmentKey.HasRedundantCoding, CFBoolean.valueOf(hasRedundantCoding));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public boolean isDependedOnByOthers() {
         if (has(CMSampleAttachmentKey.IsDependedOnByOthers)) {
             CFBoolean val = get(CMSampleAttachmentKey.IsDependedOnByOthers, CFBoolean.class);
@@ -173,16 +152,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CMSampleAttachment setIsDependedOnByOthers(boolean isDependedOnByOthers) {
         set(CMSampleAttachmentKey.IsDependedOnByOthers, CFBoolean.valueOf(isDependedOnByOthers));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public boolean dependsOnOthers() {
         if (has(CMSampleAttachmentKey.DependsOnOthers)) {
             CFBoolean val = get(CMSampleAttachmentKey.DependsOnOthers, CFBoolean.class);
@@ -190,16 +163,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CMSampleAttachment setDependsOnOthers(boolean dependsOnOthers) {
         set(CMSampleAttachmentKey.DependsOnOthers, CFBoolean.valueOf(dependsOnOthers));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public boolean allowsEarlierDisplayTimes() {
         if (has(CMSampleAttachmentKey.EarlierDisplayTimesAllowed)) {
             CFBoolean val = get(CMSampleAttachmentKey.EarlierDisplayTimesAllowed, CFBoolean.class);
@@ -207,16 +174,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CMSampleAttachment setAllowsEarlierDisplayTimes(boolean allowsEarlierDisplayTimes) {
         set(CMSampleAttachmentKey.EarlierDisplayTimesAllowed, CFBoolean.valueOf(allowsEarlierDisplayTimes));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public boolean displaysImmediately() {
         if (has(CMSampleAttachmentKey.DisplayImmediately)) {
             CFBoolean val = get(CMSampleAttachmentKey.DisplayImmediately, CFBoolean.class);
@@ -224,16 +185,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CMSampleAttachment setDisplaysImmediately(boolean displaysImmediately) {
         set(CMSampleAttachmentKey.DisplayImmediately, CFBoolean.valueOf(displaysImmediately));
         return this;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public boolean doesNotDisplay() {
         if (has(CMSampleAttachmentKey.DoNotDisplay)) {
             CFBoolean val = get(CMSampleAttachmentKey.DoNotDisplay, CFBoolean.class);
@@ -241,9 +196,6 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CMSampleAttachment setDoesNotDisplay(boolean doesNotDisplay) {
         set(CMSampleAttachmentKey.DoNotDisplay, CFBoolean.valueOf(doesNotDisplay));
         return this;

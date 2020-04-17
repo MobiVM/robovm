@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -45,8 +47,28 @@ import org.robovm.apple.intents.*;
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/UIActivityIndicatorViewStyle/*</name>*/ implements ValuedEnum {
     /*<values>*/
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    Medium(100L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    Large(101L),
+    /**
+     * @deprecated Deprecated in iOS 13.0. Use UIActivityIndicatorViewStyleLarge
+     */
+    @Deprecated
     WhiteLarge(0L),
+    /**
+     * @deprecated Deprecated in iOS 13.0. Use UIActivityIndicatorViewStyleMedium
+     */
+    @Deprecated
     White(1L),
+    /**
+     * @deprecated Deprecated in iOS 13.0. Use UIActivityIndicatorViewStyleMedium
+     */
+    @Deprecated
     Gray(2L);
     /*</values>*/
 

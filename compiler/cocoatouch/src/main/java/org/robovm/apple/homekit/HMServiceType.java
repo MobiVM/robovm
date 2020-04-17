@@ -88,41 +88,14 @@ import org.robovm.apple.corelocation.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final HMServiceType Lightbulb = new HMServiceType("Lightbulb");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final HMServiceType Switch = new HMServiceType("Switch");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final HMServiceType Thermostat = new HMServiceType("Thermostat");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final HMServiceType GarageDoorOpener = new HMServiceType("GarageDoorOpener");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final HMServiceType AccessoryInformation = new HMServiceType("AccessoryInformation");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final HMServiceType Fan = new HMServiceType("Fan");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final HMServiceType Outlet = new HMServiceType("Outlet");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final HMServiceType LockMechanism = new HMServiceType("LockMechanism");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final HMServiceType LockManagement = new HMServiceType("LockManagement");
     /**
      * @since Available in iOS 9.0 and later.
@@ -281,49 +254,22 @@ import org.robovm.apple.corelocation.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="HMServiceTypeLightbulb", optional=true)
         public static native NSString Lightbulb();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="HMServiceTypeSwitch", optional=true)
         public static native NSString Switch();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="HMServiceTypeThermostat", optional=true)
         public static native NSString Thermostat();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="HMServiceTypeGarageDoorOpener", optional=true)
         public static native NSString GarageDoorOpener();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="HMServiceTypeAccessoryInformation", optional=true)
         public static native NSString AccessoryInformation();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="HMServiceTypeFan", optional=true)
         public static native NSString Fan();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="HMServiceTypeOutlet", optional=true)
         public static native NSString Outlet();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="HMServiceTypeLockMechanism", optional=true)
         public static native NSString LockMechanism();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="HMServiceTypeLockManagement", optional=true)
         public static native NSString LockManagement();
         /**

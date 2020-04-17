@@ -49,10 +49,26 @@ import org.robovm.apple.dispatch.*;
     
     /*</properties>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Method(selector = "readerSession:didInvalidateWithError:")
     void didInvalidateWithError(NFCNDEFReaderSession session, NSError error);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Method(selector = "readerSession:didDetectNDEFs:")
     void didDetectNDEFs(NFCNDEFReaderSession session, NSArray<NFCNDEFMessage> messages);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "readerSession:didDetectTags:")
+    void didDetectTags(NFCNDEFReaderSession session, NSArray<?> tags);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "readerSessionDidBecomeActive:")
+    void readerSessionDidBecomeActive(NFCNDEFReaderSession session);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

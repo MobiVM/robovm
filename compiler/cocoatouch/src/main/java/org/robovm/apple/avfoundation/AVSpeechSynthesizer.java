@@ -41,9 +41,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 7.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVSpeechSynthesizer/*</name>*/ 
@@ -77,11 +75,36 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "setOutputChannels:")
     public native void setOutputChannels(NSArray<AVAudioSessionChannelDescription> v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "usesApplicationAudioSession")
+    public native boolean usesApplicationAudioSession();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setUsesApplicationAudioSession:")
+    public native void setUsesApplicationAudioSession(boolean v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "mixToTelephonyUplink")
+    public native boolean isMixToTelephonyUplink();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setMixToTelephonyUplink:")
+    public native void setMixToTelephonyUplink(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "speakUtterance:")
     public native void enqueueSpeakUtterance(AVSpeechUtterance utterance);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "writeUtterance:toBufferCallback:")
+    public native void writeUtterance(AVSpeechUtterance utterance, @Block VoidBlock1<AVAudioBuffer> bufferCallback);
     @Method(selector = "stopSpeakingAtBoundary:")
     public native boolean stopSpeaking(AVSpeechBoundary boundary);
     @Method(selector = "pauseSpeakingAtBoundary:")

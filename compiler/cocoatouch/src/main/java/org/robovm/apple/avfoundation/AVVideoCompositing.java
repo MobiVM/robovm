@@ -41,9 +41,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 7.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ interface /*<name>*/AVVideoCompositing/*</name>*/ 
@@ -74,6 +72,16 @@ import org.robovm.apple.audiotoolbox.*;
     void startVideoCompositionRequest(AVAsynchronousVideoCompositionRequest asyncVideoCompositionRequest);
     @Method(selector = "cancelAllPendingVideoCompositionRequests")
     void cancelAllPendingVideoCompositionRequests();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "anticipateRenderingUsingHint:")
+    void anticipateRenderingUsingHint(AVVideoCompositionRenderHint renderHint);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "prerollForRenderingUsingHint:")
+    void prerollForRenderingUsingHint(AVVideoCompositionRenderHint renderHint);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

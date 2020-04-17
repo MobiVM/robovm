@@ -52,7 +52,7 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "initWithType:name:identificationHint:icon:")
     public INPaymentMethod(INPaymentMethodType type, String name, String identificationHint, INImage icon) { super((SkipInit) null); initObject(init(type, name, identificationHint, icon)); }
     @Method(selector = "initWithCoder:")
-    public INPaymentMethod(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public INPaymentMethod(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "type")
@@ -75,6 +75,6 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

@@ -62,16 +62,6 @@ import org.robovm.apple.modelio.*;
     @GlobalValue(symbol="GLKQuaternionIdentity", optional=true)
     public static native @ByVal GLKQuaternion Identity();
     
-    @Bridge(symbol="GLKQuaternionMake", optional=true)
-    public static native @ByVal GLKQuaternion create(float x, float y, float z, float w);
-    @Bridge(symbol="GLKQuaternionMakeWithVector3", optional=true)
-    public static native @ByVal GLKQuaternion create(@ByVal GLKVector3 vector, float scalar);
-    @Bridge(symbol="GLKQuaternionMakeWithArray", optional=true)
-    public static native @ByVal GLKQuaternion create(@Array({4}) FloatBuffer values);
-    @Bridge(symbol="GLKQuaternionMakeWithAngleAndAxis", optional=true)
-    public static native @ByVal GLKQuaternion createRotation(float radians, float x, float y, float z);
-    @Bridge(symbol="GLKQuaternionMakeWithAngleAndVector3Axis", optional=true)
-    public static native @ByVal GLKQuaternion createRotation(float radians, @ByVal GLKVector3 axisVector);
     @Bridge(symbol="GLKQuaternionMakeWithMatrix3", optional=true)
     public static native @ByVal GLKQuaternion create(@ByVal GLKMatrix3 matrix);
     @Bridge(symbol="GLKQuaternionMakeWithMatrix4", optional=true)
@@ -82,41 +72,193 @@ import org.robovm.apple.modelio.*;
     public GLKVector3 axis() { return axis(this); }
     @Bridge(symbol="GLKQuaternionAxis", optional=true)
     private static native @ByVal GLKVector3 axis(@ByVal GLKQuaternion quaternion);
-    public GLKQuaternion add(GLKQuaternion quaternionRight) { return add(this, quaternionRight); }
-    @Bridge(symbol="GLKQuaternionAdd", optional=true)
-    private static native @ByVal GLKQuaternion add(@ByVal GLKQuaternion quaternionLeft, @ByVal GLKQuaternion quaternionRight);
-    public GLKQuaternion subtract(GLKQuaternion quaternionRight) { return subtract(this, quaternionRight); }
-    @Bridge(symbol="GLKQuaternionSubtract", optional=true)
-    private static native @ByVal GLKQuaternion subtract(@ByVal GLKQuaternion quaternionLeft, @ByVal GLKQuaternion quaternionRight);
-    public GLKQuaternion multiply(GLKQuaternion quaternionRight) { return multiply(this, quaternionRight); }
-    @Bridge(symbol="GLKQuaternionMultiply", optional=true)
-    private static native @ByVal GLKQuaternion multiply(@ByVal GLKQuaternion quaternionLeft, @ByVal GLKQuaternion quaternionRight);
     public GLKQuaternion slerp(GLKQuaternion quaternionEnd, float t) { return slerp(this, quaternionEnd, t); }
     @Bridge(symbol="GLKQuaternionSlerp", optional=true)
     private static native @ByVal GLKQuaternion slerp(@ByVal GLKQuaternion quaternionStart, @ByVal GLKQuaternion quaternionEnd, float t);
-    public float length() { return length(this); }
-    @Bridge(symbol="GLKQuaternionLength", optional=true)
-    private static native float length(@ByVal GLKQuaternion quaternion);
-    public GLKQuaternion conjugate() { return conjugate(this); }
-    @Bridge(symbol="GLKQuaternionConjugate", optional=true)
-    private static native @ByVal GLKQuaternion conjugate(@ByVal GLKQuaternion quaternion);
-    public GLKQuaternion invert() { return invert(this); }
-    @Bridge(symbol="GLKQuaternionInvert", optional=true)
-    private static native @ByVal GLKQuaternion invert(@ByVal GLKQuaternion quaternion);
-    public GLKQuaternion normalize() { return normalize(this); }
-    @Bridge(symbol="GLKQuaternionNormalize", optional=true)
-    private static native @ByVal GLKQuaternion normalize(@ByVal GLKQuaternion quaternion);
-    public GLKVector3 rotateVector3(GLKVector3 vector) { return rotateVector3(this, vector); }
-    @Bridge(symbol="GLKQuaternionRotateVector3", optional=true)
-    private static native @ByVal GLKVector3 rotateVector3(@ByVal GLKQuaternion quaternion, @ByVal GLKVector3 vector);
     public void rotateVector3Array(GLKVector3 vectors, @MachineSizedUInt long vectorCount) { rotateVector3Array(this, vectors, vectorCount); }
     @Bridge(symbol="GLKQuaternionRotateVector3Array", optional=true)
     private static native void rotateVector3Array(@ByVal GLKQuaternion quaternion, GLKVector3 vectors, @MachineSizedUInt long vectorCount);
-    public GLKVector4 rotateVector4(GLKVector4 vector) { return rotateVector4(this, vector); }
-    @Bridge(symbol="GLKQuaternionRotateVector4", optional=true)
-    private static native @ByVal GLKVector4 rotateVector4(@ByVal GLKQuaternion quaternion, @ByVal GLKVector4 vector);
     public void rotateVector4Array(GLKVector4 vectors, @MachineSizedUInt long vectorCount) { rotateVector4Array(this, vectors, vectorCount); }
     @Bridge(symbol="GLKQuaternionRotateVector4Array", optional=true)
     private static native void rotateVector4Array(@ByVal GLKQuaternion quaternion, GLKVector4 vectors, @MachineSizedUInt long vectorCount);
     /*</methods>*/
+
+    //
+    // manually added methods  as apple moved these from global to static inline
+    //
+    /**
+     * ported from GLKQuaternionMake
+     */
+    public static GLKQuaternion create(float x, float y, float z, float w) {
+        float[] v = {x, y, z, w};
+        return create(v);
+    }
+
+    /**
+     * ported from GLKQuaternionMakeWithVector3
+     */
+    public static GLKQuaternion create(GLKVector3 vector, float scalar) {
+        float[] v = {vector.getV().get(0), vector.getV().get(1), vector.getV().get(2), scalar};
+        return create(v);
+    }
+
+    /**
+     * ported from GLKQuaternionMakeWithArray
+     */
+    public static GLKQuaternion create(float[] values) {
+        return new GLKQuaternion(FloatBuffer.wrap(values));
+    }
+
+    /**
+     * ported from GLKQuaternionMakeWithAngleAndAxis
+     */
+    public static GLKQuaternion createRotation(float radians, float x, float y, float z) {
+        float halfAngle = radians * 0.5f;
+        float scale = (float) Math.sin(halfAngle);
+        float[] q = { scale * x, scale * y, scale * z, (float) Math.cos(halfAngle)};
+        return create(q);
+
+    }
+
+    /**
+     * ported from GLKQuaternionMakeWithAngleAndVector3Axis
+     */
+    public static GLKQuaternion createRotation(float radians, GLKVector3 axisVector) {
+        return createRotation(radians, axisVector.getV().get(0), axisVector.getV().get(1), axisVector.getV().get(2));
+    }
+
+    public GLKQuaternion add(GLKQuaternion quaternionRight) { return add(this, quaternionRight); }
+    /**
+     * ported from GLKQuaternionAdd
+     */
+    public static GLKQuaternion add(GLKQuaternion quaternionLeft, GLKQuaternion quaternionRight) {
+        float[] quaternionLeft_q = new float[4];
+        float[] quaternionRight_q = new float[4];
+        quaternionLeft.getQ().get(quaternionLeft_q);
+        quaternionRight.getQ().get(quaternionRight_q);
+
+        float[] q = {
+                quaternionLeft_q[0] + quaternionRight_q[0],
+                quaternionLeft_q[1] + quaternionRight_q[1],
+                quaternionLeft_q[2] + quaternionRight_q[2],
+                quaternionLeft_q[3] + quaternionRight_q[3] };
+        return create(q);
+    }
+
+    public GLKQuaternion subtract(GLKQuaternion quaternionRight) { return subtract(this, quaternionRight); }
+    /**
+     * ported from GLKQuaternionSubtract
+     */
+    public static GLKQuaternion subtract(GLKQuaternion quaternionLeft, GLKQuaternion quaternionRight) {
+        float[] quaternionLeft_q = new float[4];
+        float[] quaternionRight_q = new float[4];
+        quaternionLeft.getQ().get(quaternionLeft_q);
+        quaternionRight.getQ().get(quaternionRight_q);
+
+        float[] q = {
+                quaternionLeft_q[0] - quaternionRight_q[0],
+                quaternionLeft_q[1] - quaternionRight_q[1],
+                quaternionLeft_q[2] - quaternionRight_q[2],
+                quaternionLeft_q[3] - quaternionRight_q[3] };
+        return create(q);
+    }
+
+    public GLKQuaternion multiply(GLKQuaternion quaternionRight) { return multiply(this, quaternionRight); }
+    /**
+     * ported from GLKQuaternionMultiply
+     */
+    public static GLKQuaternion multiply(GLKQuaternion quaternionLeft, GLKQuaternion quaternionRight) {
+        float[] quaternionLeft_q = new float[4];
+        float[] quaternionRight_q = new float[4];
+        quaternionLeft.getQ().get(quaternionLeft_q);
+        quaternionRight.getQ().get(quaternionRight_q);
+
+        float[] q = {
+                quaternionLeft_q[3] * quaternionRight_q[0] +
+                quaternionLeft_q[0] * quaternionRight_q[3] +
+                quaternionLeft_q[1] * quaternionRight_q[2] -
+                quaternionLeft_q[2] * quaternionRight_q[1],
+
+                quaternionLeft_q[3] * quaternionRight_q[1] +
+                quaternionLeft_q[1] * quaternionRight_q[3] +
+                quaternionLeft_q[2] * quaternionRight_q[0] -
+                quaternionLeft_q[0] * quaternionRight_q[2],
+
+                quaternionLeft_q[3] * quaternionRight_q[2] +
+                quaternionLeft_q[2] * quaternionRight_q[3] +
+                quaternionLeft_q[0] * quaternionRight_q[1] -
+                quaternionLeft_q[1] * quaternionRight_q[0],
+
+                quaternionLeft_q[3] * quaternionRight_q[3] -
+                quaternionLeft_q[0] * quaternionRight_q[0] -
+                quaternionLeft_q[1] * quaternionRight_q[1] -
+                quaternionLeft_q[2] * quaternionRight_q[2] };
+        return create(q);
+    }
+
+    /**
+     * ported from GLKQuaternionLength
+     */
+    public float length() {
+        float[] quaternion_q = new float[4];
+        this.getQ().get(quaternion_q);
+        return (float) Math.sqrt(quaternion_q[0] * quaternion_q[0] +
+                quaternion_q[1] * quaternion_q[1] +
+                quaternion_q[2] * quaternion_q[2] +
+                quaternion_q[3] * quaternion_q[3]);
+    }
+
+    /**
+     * ported from GLKQuaternionConjugate
+     */
+    public GLKQuaternion conjugate() {
+        float[] q = { -getQ().get(0), -getQ().get(1), -getQ().get(2), getQ().get(3) };
+        return create(q);
+    }
+
+    /**
+     * ported from GLKQuaternionInvert
+     */
+    public GLKQuaternion invert() {
+        float[] quaternion_q = new float[4];
+        this.getQ().get(quaternion_q);
+        float scale = 1.0f / (
+                quaternion_q[0] * quaternion_q[0] +
+                quaternion_q[1] * quaternion_q[1] +
+                quaternion_q[2] * quaternion_q[2] +
+                quaternion_q[3] * quaternion_q[3]);
+        float[] q = { -quaternion_q[0] * scale, -quaternion_q[1] * scale, -quaternion_q[2] * scale, quaternion_q[3] * scale };
+        return create(q);
+    }
+
+    /**
+     * ported from GLKQuaternionNormalize
+     */
+    public GLKQuaternion normalize() {
+        float[] quaternion_q = new float[4];
+        this.getQ().get(quaternion_q);
+        float scale = 1.0f / this.length();
+        float[] q = { quaternion_q[0] * scale, quaternion_q[1] * scale, quaternion_q[2] * scale, quaternion_q[3] * scale };
+        return create(q);
+    }
+
+    /**
+     * ported from GLKQuaternionRotateVector3
+     */
+    public GLKVector3 rotateVector3(GLKVector3 vector) {
+        GLKQuaternion rotatedQuaternion = create(vector, 0.0f);
+        rotatedQuaternion = this.multiply(rotatedQuaternion).multiply(this.invert());
+
+        return GLKVector3.create(rotatedQuaternion.getQ().get(0), rotatedQuaternion.getQ().get(1), rotatedQuaternion.getQ().get(2));
+    }
+
+    /**
+     * ported from GLKQuaternionRotateVector4
+     */
+    public GLKVector4 rotateVector4(GLKVector4 vector) {
+        GLKQuaternion rotatedQuaternion = create(vector.getV().get(0), vector.getV().get(1), vector.getV().get(2), 0.0f);
+        rotatedQuaternion = this.multiply(rotatedQuaternion).multiply(this.invert());
+
+        return GLKVector4.create(rotatedQuaternion.getQ().get(0), rotatedQuaternion.getQ().get(1), rotatedQuaternion.getQ().get(2), rotatedQuaternion.getQ().get(3));
+    }
 }

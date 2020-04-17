@@ -36,9 +36,7 @@ import org.robovm.apple.metal.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 2.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("QuartzCore") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CALayer/*</name>*/ 
@@ -56,7 +54,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithLayer:")
     public CALayer(CALayer layer) { super((SkipInit) null); initObject(init(layer)); }
     @Method(selector = "initWithCoder:")
-    public CALayer(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public CALayer(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "bounds")
@@ -129,14 +127,8 @@ import org.robovm.apple.metal.*;
     public native CAGravity getContentsGravity();
     @Property(selector = "setContentsGravity:")
     public native void setContentsGravity(CAGravity v);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "contentsScale")
     public native @MachineSizedFloat double getContentsScale();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "setContentsScale:")
     public native void setContentsScale(@MachineSizedFloat double v);
     @Property(selector = "contentsCenter")
@@ -147,12 +139,12 @@ import org.robovm.apple.metal.*;
      * @since Available in iOS 10.0 and later.
      */
     @Property(selector = "contentsFormat")
-    public native String getContentsFormat();
+    public native CALayerContentsFormat getContentsFormat();
     /**
      * @since Available in iOS 10.0 and later.
      */
     @Property(selector = "setContentsFormat:")
-    public native void setContentsFormat(String v);
+    public native void setContentsFormat(CALayerContentsFormat v);
     @Property(selector = "minificationFilter")
     public native CAFilter getMinificationFilter();
     @Property(selector = "setMinificationFilter:")
@@ -173,28 +165,16 @@ import org.robovm.apple.metal.*;
     public native boolean needsDisplayOnBoundsChange();
     @Property(selector = "setNeedsDisplayOnBoundsChange:")
     public native void setNeedsDisplayOnBoundsChange(boolean v);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "drawsAsynchronously")
     public native boolean drawsAsynchronously();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "setDrawsAsynchronously:")
     public native void setDrawsAsynchronously(boolean v);
     @Property(selector = "edgeAntialiasingMask")
     public native CAEdgeAntialiasingMask getEdgeAntialiasingMask();
     @Property(selector = "setEdgeAntialiasingMask:")
     public native void setEdgeAntialiasingMask(CAEdgeAntialiasingMask v);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Property(selector = "allowsEdgeAntialiasing")
     public native boolean allowsEdgeAntialiasing();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Property(selector = "setAllowsEdgeAntialiasing:")
     public native void setAllowsEdgeAntialiasing(boolean v);
     @Property(selector = "backgroundColor")
@@ -215,6 +195,16 @@ import org.robovm.apple.metal.*;
      */
     @Property(selector = "setMaskedCorners:")
     public native void setMaskedCorners(CACornerMask v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "cornerCurve")
+    public native CALayerCornerCurve getCornerCurve();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setCornerCurve:")
+    public native void setCornerCurve(CALayerCornerCurve v);
     @Property(selector = "borderWidth")
     public native @MachineSizedFloat double getBorderWidth();
     @Property(selector = "setBorderWidth:")
@@ -227,14 +217,8 @@ import org.robovm.apple.metal.*;
     public native float getOpacity();
     @Property(selector = "setOpacity:")
     public native void setOpacity(float v);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Property(selector = "allowsGroupOpacity")
     public native boolean allowsGroupOpacity();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Property(selector = "setAllowsGroupOpacity:")
     public native void setAllowsGroupOpacity(boolean v);
     @WeaklyLinked
@@ -420,6 +404,11 @@ import org.robovm.apple.metal.*;
     public static native NSObject getDefaultValue(String key);
     @Method(selector = "needsDisplayForKey:")
     public static native boolean needsDisplay(String key);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "cornerCurveExpansionFactor:")
+    public static native @MachineSizedFloat double cornerCurveExpansionFactor(CALayerCornerCurve curve);
     @Method(selector = "defaultActionForKey:")
     public static native CAAction getDefaultAction(String event);
     @Method(selector = "scrollPoint:")
@@ -429,6 +418,6 @@ import org.robovm.apple.metal.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

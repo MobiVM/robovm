@@ -107,9 +107,6 @@ import org.robovm.apple.corefoundation.*;
     }
     
 
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public String getUsername() {
         if (has(Keys.Username())) {
             CFString val = get(Keys.Username(), CFString.class);
@@ -117,16 +114,10 @@ import org.robovm.apple.corefoundation.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public CFHTTPAuthenticationCredentials setUsername(String username) {
         set(Keys.Username(), new CFString(username));
         return this;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public String getPassword() {
         if (has(Keys.Password())) {
             CFString val = get(Keys.Password(), CFString.class);
@@ -134,16 +125,10 @@ import org.robovm.apple.corefoundation.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public CFHTTPAuthenticationCredentials setPassword(String password) {
         set(Keys.Password(), new CFString(password));
         return this;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public String getAccountDomain() {
         if (has(Keys.AccountDomain())) {
             CFString val = get(Keys.AccountDomain(), CFString.class);
@@ -151,9 +136,6 @@ import org.robovm.apple.corefoundation.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public CFHTTPAuthenticationCredentials setAccountDomain(String accountDomain) {
         set(Keys.AccountDomain(), new CFString(accountDomain));
         return this;
@@ -164,19 +146,10 @@ import org.robovm.apple.corefoundation.*;
     @Library("CFNetwork")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCFHTTPAuthenticationUsername", optional=true)
         public static native CFString Username();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCFHTTPAuthenticationPassword", optional=true)
         public static native CFString Password();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCFHTTPAuthenticationAccountDomain", optional=true)
         public static native CFString AccountDomain();
     }

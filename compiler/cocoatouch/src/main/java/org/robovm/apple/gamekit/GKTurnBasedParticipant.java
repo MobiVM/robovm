@@ -32,9 +32,7 @@ import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 5.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("GameKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GKTurnBasedParticipant/*</name>*/ 
@@ -50,9 +48,6 @@ import org.robovm.apple.uikit.*;
     protected GKTurnBasedParticipant(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "player")
     public native GKPlayer getPlayer();
     @Property(selector = "lastTurnDate")
@@ -63,13 +58,9 @@ import org.robovm.apple.uikit.*;
     public native GKTurnBasedMatchOutcome getMatchOutcome();
     @Property(selector = "setMatchOutcome:")
     public native void setMatchOutcome(GKTurnBasedMatchOutcome v);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "timeoutDate")
     public native NSDate getTimeoutDate();
     /**
-     * @since Available in iOS 5.0 and later.
      * @deprecated Deprecated in iOS 8.0. use player
      */
     @Deprecated

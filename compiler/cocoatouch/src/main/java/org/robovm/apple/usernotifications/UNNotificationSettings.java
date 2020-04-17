@@ -48,7 +48,7 @@ import org.robovm.apple.foundation.*;
     protected UNNotificationSettings(Handle h, long handle) { super(h, handle); }
     protected UNNotificationSettings(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public UNNotificationSettings(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public UNNotificationSettings(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "authorizationStatus")
@@ -82,6 +82,11 @@ import org.robovm.apple.foundation.*;
      */
     @Property(selector = "providesAppNotificationSettings")
     public native boolean providesAppNotificationSettings();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "announcementSetting")
+    public native UNNotificationSetting getAnnouncementSetting();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
@@ -90,6 +95,6 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

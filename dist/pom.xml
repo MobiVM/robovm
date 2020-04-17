@@ -8,7 +8,6 @@
     <version>2.3.10-SNAPSHOT</version>
   </parent>
 
-  <groupId>com.mobidevelop.robovm</groupId>
   <artifactId>robovm-dist-parent</artifactId>
   <name>RoboVM Distribution</name>
   <packaging>pom</packaging>  
@@ -30,37 +29,7 @@
       <plugins>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-jar-plugin</artifactId>
-          <version>2.4</version>
-          <inherited>true</inherited>
-          <configuration>
-            <archive>
-              <manifest>
-                <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-                <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
-              </manifest>
-            </archive>
-          </configuration>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-release-plugin</artifactId>
-          <version>2.5.1</version>
-          <configuration>
-            <!-- Workaround for an issue in Maven's release plugin. It doesn't 
-                 pass -Darguments here if a profile (like sonatype's) sets 
-                 <arguments> in the release plugin config. We also set the same
-                  config properties as sonatype's pom does since our configuration 
-                  overwrites theirs. -->
-            <mavenExecutorId>forked-path</mavenExecutorId>
-            <useReleaseProfile>false</useReleaseProfile>
-            <arguments>-Psonatype-oss-release ${release.arguments}</arguments>
-          </configuration>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-antrun-plugin</artifactId>
-          <version>1.7</version>
           <executions>
             <execution>
               <id>create-license-txt</id>
@@ -72,7 +41,7 @@
                       <equals arg1="${licenseTxtURL}" arg2="unknown" />
                     </condition>
                   </fail>
-                  <property name="licenseFile" value="${basedir}/target/LICENSE.txt" />
+                  <property name="licenseFile" value="${project.build.directory}/LICENSE.txt" />
                   <echo message="Downloading license text from ${licenseTxtURL} to ${licenseFile}" />
                   <loadresource property="license">
                     <url url="${licenseTxtURL}" />

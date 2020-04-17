@@ -87,17 +87,8 @@ import org.robovm.apple.foundation.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final HKWorkoutSortIdentifier Duration = new HKWorkoutSortIdentifier("Duration");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final HKWorkoutSortIdentifier TotalDistance = new HKWorkoutSortIdentifier("TotalDistance");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final HKWorkoutSortIdentifier TotalEnergyBurned = new HKWorkoutSortIdentifier("TotalEnergyBurned");
     /**
      * @since Available in iOS 10.0 and later.
@@ -132,19 +123,10 @@ import org.robovm.apple.foundation.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="HKWorkoutSortIdentifierDuration", optional=true)
         public static native NSString Duration();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="HKWorkoutSortIdentifierTotalDistance", optional=true)
         public static native NSString TotalDistance();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="HKWorkoutSortIdentifierTotalEnergyBurned", optional=true)
         public static native NSString TotalEnergyBurned();
         /**

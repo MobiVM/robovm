@@ -53,19 +53,10 @@ import org.robovm.apple.dispatch.*;
     /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @GlobalValue(symbol="NSURLSessionTaskPriorityDefault", optional=true)
     public static native float Default();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @GlobalValue(symbol="NSURLSessionTaskPriorityLow", optional=true)
     public static native float Low();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @GlobalValue(symbol="NSURLSessionTaskPriorityHigh", optional=true)
     public static native float High();
     /*</methods>*/

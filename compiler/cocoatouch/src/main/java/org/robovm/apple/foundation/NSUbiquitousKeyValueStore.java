@@ -39,9 +39,7 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 5.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSUbiquitousKeyValueStore/*</name>*/ 
@@ -118,19 +116,10 @@ import org.robovm.apple.dispatch.*;
         return asDictionary().asStringMap();
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @GlobalValue(symbol="NSUbiquitousKeyValueStoreDidChangeExternallyNotification", optional=true)
     public static native NSString DidChangeExternallyNotification();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @GlobalValue(symbol="NSUbiquitousKeyValueStoreChangeReasonKey", optional=true)
     protected static native NSString ChangeReasonKey();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @GlobalValue(symbol="NSUbiquitousKeyValueStoreChangedKeysKey", optional=true)
     protected static native NSString ChangedKeysKey();
     

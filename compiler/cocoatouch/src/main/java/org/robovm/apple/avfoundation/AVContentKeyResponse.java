@@ -75,5 +75,10 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Method(selector = "contentKeyResponseWithClearKeyData:initializationVector:")
     protected static native @Pointer long create(NSData keyData, NSData initializationVector);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "contentKeyResponseWithAuthorizationTokenData:")
+    public static native AVContentKeyResponse createUsingAuthTokenData(NSData authorizationTokenData);
     /*</methods>*/
 }

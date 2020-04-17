@@ -58,24 +58,12 @@ import org.robovm.apple.audiotoolbox.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @NotImplemented("videoComposition:shouldContinueValidatingAfterFindingInvalidValueForKey:")
     public boolean shouldContinueValidatingAfterFindingInvalidValue(AVVideoComposition videoComposition, String key) { return false; }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @NotImplemented("videoComposition:shouldContinueValidatingAfterFindingEmptyTimeRange:")
     public boolean shouldContinueValidatingAfterFindingEmptyTimeRange(AVVideoComposition videoComposition, @ByVal CMTimeRange timeRange) { return false; }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @NotImplemented("videoComposition:shouldContinueValidatingAfterFindingInvalidTimeRangeInInstruction:")
     public boolean shouldContinueValidatingAfterFindingInvalidTimeRange(AVVideoComposition videoComposition, AVVideoCompositionInstruction videoCompositionInstruction) { return false; }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @NotImplemented("videoComposition:shouldContinueValidatingAfterFindingInvalidTrackIDInInstruction:layerInstruction:asset:")
     public boolean shouldContinueValidatingAfterFindingInvalidTrackID(AVVideoComposition videoComposition, AVVideoCompositionInstruction videoCompositionInstruction, AVVideoCompositionLayerInstruction layerInstruction, AVAsset asset) { return false; }
     /*</methods>*/

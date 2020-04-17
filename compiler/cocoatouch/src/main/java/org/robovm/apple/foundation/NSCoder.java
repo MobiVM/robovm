@@ -59,14 +59,8 @@ import org.robovm.apple.dispatch.*;
     public native int getSystemVersion();
     @Property(selector = "allowsKeyedCoding")
     public native boolean allowsKeyedCoding();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "requiresSecureCoding")
     public native boolean requiresSecureCoding();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "allowedClasses")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsListMarshaler.class) List<ObjCClass> getAllowedClasses();
     /**
@@ -351,19 +345,10 @@ import org.robovm.apple.dispatch.*;
     protected native double decodeDouble0(String key);
     @Method(selector = "decodeBytesForKey:returnedLength:")
     protected native BytePtr decodeBytes0(String key, MachineSizedUIntPtr lengthp);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Method(selector = "encodeInteger:forKey:")
     protected native void encodeInteger0(@MachineSizedSInt long value, String key);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Method(selector = "decodeIntegerForKey:")
     protected native @MachineSizedSInt long decodeInteger0(String key);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "decodeObjectOfClass:forKey:")
     protected native NSObject decodeObject0(Class<? extends NSObject> aClass, String key);
     /**
@@ -380,9 +365,6 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "decodeTopLevelObjectOfClass:forKey:error:")
     private native NSObject decodeTopLevelObject(Class<? extends NSObject> aClass, String key, NSError.NSErrorPtr error);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "decodeObjectOfClasses:forKey:")
     protected native NSObject decodeObject0(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsListMarshaler.class) List<ObjCClass> classes, String key);
     /**
@@ -399,9 +381,6 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "decodeTopLevelObjectOfClasses:forKey:error:")
     private native NSObject decodeTopLevelObject(NSSet<?> classes, String key, NSError.NSErrorPtr error);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "decodePropertyListForKey:")
     protected native NSObject decodePropertyList0(String key);
     /**

@@ -177,74 +177,32 @@ import org.robovm.apple.uikit.*;
         return ptr.get();
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="NewMusicPlayer", optional=true)
     protected static native OSStatus create0(MusicPlayer.MusicPlayerPtr outPlayer);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="DisposeMusicPlayer", optional=true)
     protected native OSStatus dispose0();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="MusicPlayerSetSequence", optional=true)
     protected native OSStatus setSequence0(MusicSequence inSequence);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="MusicPlayerGetSequence", optional=true)
     protected native OSStatus getSequence0(MusicSequence.MusicSequencePtr outSequence);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="MusicPlayerSetTime", optional=true)
     protected native OSStatus setTime0(double inTime);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="MusicPlayerGetTime", optional=true)
     protected native OSStatus getTime0(DoublePtr outTime);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="MusicPlayerGetHostTimeForBeats", optional=true)
     protected native OSStatus getHostTimeForBeats0(double inBeats, LongPtr outHostTime);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="MusicPlayerGetBeatsForHostTime", optional=true)
     protected native OSStatus getBeatsForHostTime0(long inHostTime, DoublePtr outBeats);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="MusicPlayerPreroll", optional=true)
     protected native OSStatus preroll0();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="MusicPlayerStart", optional=true)
     protected native OSStatus start0();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="MusicPlayerStop", optional=true)
     protected native OSStatus stop0();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="MusicPlayerIsPlaying", optional=true)
     protected native OSStatus isPlaying0(BooleanPtr outIsPlaying);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="MusicPlayerSetPlayRateScalar", optional=true)
     protected native OSStatus setPlayRateScalar0(double inScaleRate);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="MusicPlayerGetPlayRateScalar", optional=true)
     protected native OSStatus getPlayRateScalar0(DoublePtr outScaleRate);
     /*</methods>*/

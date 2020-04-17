@@ -29,6 +29,7 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.security.*;
+import org.robovm.apple.network.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -68,8 +69,26 @@ import org.robovm.apple.security.*;
      */
     @Method(selector = "initWithHS20Settings:eapSettings:")
     public NEHotspotConfiguration(NEHotspotHS20Settings hs20Settings, NEHotspotEAPSettings eapSettings) { super((SkipInit) null); initObject(init(hs20Settings, eapSettings)); }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "initWithSSIDPrefix:")
+    public static  NEHotspotConfiguration createUsingSSID(String SSIDPrefix) {
+       NEHotspotConfiguration res = new NEHotspotConfiguration((SkipInit) null);
+       res.initObject(res.initUsingSSID(SSIDPrefix));
+       return res;
+    }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "initWithSSIDPrefix:passphrase:isWEP:")
+    public static  NEHotspotConfiguration createUsingSSID(String SSIDPrefix, String passphrase, boolean isWEP) {
+       NEHotspotConfiguration res = new NEHotspotConfiguration((SkipInit) null);
+       res.initObject(res.initUsingSSID(SSIDPrefix, passphrase, isWEP));
+       return res;
+    }
     @Method(selector = "initWithCoder:")
-    public NEHotspotConfiguration(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public NEHotspotConfiguration(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     /**
@@ -77,6 +96,11 @@ import org.robovm.apple.security.*;
      */
     @Property(selector = "SSID")
     public native String getSSID();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "SSIDPrefix")
+    public native String getSSIDPrefix();
     /**
      * @since Available in iOS 11.0 and later.
      */
@@ -97,6 +121,16 @@ import org.robovm.apple.security.*;
      */
     @Property(selector = "setLifeTimeInDays:")
     public native void setLifeTimeInDays(NSNumber v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "hidden")
+    public native boolean isHidden();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setHidden:")
+    public native void setHidden(boolean v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
@@ -122,9 +156,19 @@ import org.robovm.apple.security.*;
      */
     @Method(selector = "initWithHS20Settings:eapSettings:")
     protected native @Pointer long init(NEHotspotHS20Settings hs20Settings, NEHotspotEAPSettings eapSettings);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "initWithSSIDPrefix:")
+    protected native @Pointer long initUsingSSID(String SSIDPrefix);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "initWithSSIDPrefix:passphrase:isWEP:")
+    protected native @Pointer long initUsingSSID(String SSIDPrefix, String passphrase, boolean isWEP);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

@@ -34,9 +34,7 @@ import org.robovm.apple.contacts.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 7.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreLocation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CLBeaconRegion/*</name>*/ 
@@ -50,14 +48,57 @@ import org.robovm.apple.contacts.*;
     public CLBeaconRegion() {}
     protected CLBeaconRegion(Handle h, long handle) { super(h, handle); }
     protected CLBeaconRegion(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "initWithUUID:identifier:")
+    public static  CLBeaconRegion createUsingUUID(NSUUID uuid, String identifier) {
+       CLBeaconRegion res = new CLBeaconRegion((SkipInit) null);
+       res.initObject(res.createUsingUUID0(uuid, identifier));
+       return res;
+    }
+    /**
+     * @deprecated Deprecated in iOS 13.0. Use -initWithUUID:identifier:
+     */
+    @Deprecated
     @Method(selector = "initWithProximityUUID:identifier:")
     public CLBeaconRegion(NSUUID proximityUUID, String identifier) { super((SkipInit) null); initObject(init(proximityUUID, identifier)); }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "initWithUUID:major:identifier:")
+    public static  CLBeaconRegion createUsingUUID(NSUUID uuid, short major, String identifier) {
+       CLBeaconRegion res = new CLBeaconRegion((SkipInit) null);
+       res.initObject(res.createUsingUUID0(uuid, major, identifier));
+       return res;
+    }
+    /**
+     * @deprecated Deprecated in iOS 13.0. Use -initWithUUID:major:identifier:
+     */
+    @Deprecated
     @Method(selector = "initWithProximityUUID:major:identifier:")
     public CLBeaconRegion(NSUUID proximityUUID, short major, String identifier) { super((SkipInit) null); initObject(init(proximityUUID, major, identifier)); }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "initWithUUID:major:minor:identifier:")
+    public static  CLBeaconRegion createUsingUUID(NSUUID uuid, short major, short minor, String identifier) {
+       CLBeaconRegion res = new CLBeaconRegion((SkipInit) null);
+       res.initObject(res.createUsingUUID0(uuid, major, minor, identifier));
+       return res;
+    }
+    /**
+     * @deprecated Deprecated in iOS 13.0. Use -initWithUUID:major:identifier:
+     */
+    @Deprecated
     @Method(selector = "initWithProximityUUID:major:minor:identifier:")
     public CLBeaconRegion(NSUUID proximityUUID, short major, short minor, String identifier) { super((SkipInit) null); initObject(init(proximityUUID, major, minor, identifier)); }
     /**
-     * @since Available in iOS 4.0 and later.
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "initWithBeaconIdentityConstraint:identifier:")
+    public CLBeaconRegion(CLBeaconIdentityConstraint beaconIdentityConstraint, String identifier) { super((SkipInit) null); initObject(init(beaconIdentityConstraint, identifier)); }
+    /**
      * @deprecated Deprecated in iOS 7.0. Please see CLCircularRegion
      */
     @Deprecated
@@ -65,6 +106,20 @@ import org.robovm.apple.contacts.*;
     public CLBeaconRegion(@ByVal CLLocationCoordinate2D center, double radius, String identifier) { super(center, radius, identifier); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "beaconIdentityConstraint")
+    public native CLBeaconIdentityConstraint getBeaconIdentityConstraint();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "UUID")
+    public native NSUUID getUUID();
+    /**
+     * @deprecated Deprecated in iOS 13.0. Use -UUID
+     */
+    @Deprecated
     @Property(selector = "proximityUUID")
     public native NSUUID getProximityUUID();
     @Property(selector = "major")
@@ -78,12 +133,44 @@ import org.robovm.apple.contacts.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "initWithUUID:identifier:")
+    protected native @Pointer long createUsingUUID0(NSUUID uuid, String identifier);
+    /**
+     * @deprecated Deprecated in iOS 13.0. Use -initWithUUID:identifier:
+     */
+    @Deprecated
     @Method(selector = "initWithProximityUUID:identifier:")
     protected native @Pointer long init(NSUUID proximityUUID, String identifier);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "initWithUUID:major:identifier:")
+    protected native @Pointer long createUsingUUID0(NSUUID uuid, short major, String identifier);
+    /**
+     * @deprecated Deprecated in iOS 13.0. Use -initWithUUID:major:identifier:
+     */
+    @Deprecated
     @Method(selector = "initWithProximityUUID:major:identifier:")
     protected native @Pointer long init(NSUUID proximityUUID, short major, String identifier);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "initWithUUID:major:minor:identifier:")
+    protected native @Pointer long createUsingUUID0(NSUUID uuid, short major, short minor, String identifier);
+    /**
+     * @deprecated Deprecated in iOS 13.0. Use -initWithUUID:major:identifier:
+     */
+    @Deprecated
     @Method(selector = "initWithProximityUUID:major:minor:identifier:")
     protected native @Pointer long init(NSUUID proximityUUID, short major, short minor, String identifier);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "initWithBeaconIdentityConstraint:identifier:")
+    protected native @Pointer long init(CLBeaconIdentityConstraint beaconIdentityConstraint, String identifier);
     @WeaklyLinked
     @Method(selector = "peripheralDataWithMeasuredPower:")
     public native CBAdvertisementData getPeripheralData(NSNumber measuredPower);

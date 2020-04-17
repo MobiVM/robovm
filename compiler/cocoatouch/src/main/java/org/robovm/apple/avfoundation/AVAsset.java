@@ -41,9 +41,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVAsset/*</name>*/ 
@@ -105,44 +103,31 @@ import org.robovm.apple.audiotoolbox.*;
     public native float getPreferredVolume();
     @Property(selector = "preferredTransform")
     public native @ByVal CGAffineTransform getPreferredTransform();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "minimumTimeOffsetFromLive")
+    public native @ByVal CMTime getMinimumTimeOffsetFromLive();
     @Property(selector = "providesPreciseDurationAndTiming")
     public native boolean providesPreciseDurationAndTiming();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "referenceRestrictions")
     public native AVAssetReferenceRestrictions getReferenceRestrictions();
     @Property(selector = "tracks")
     public native NSArray<? extends AVAssetTrack> getTracks();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "trackGroups")
     public native NSArray<AVAssetTrackGroup> getTrackGroups();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "creationDate")
     public native AVMetadataItem getCreationDate();
     @Property(selector = "lyrics")
     public native String getLyrics();
     @Property(selector = "commonMetadata")
     public native NSArray<AVMetadataItem> getCommonMetadata();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "metadata")
     public native NSArray<AVMetadataItem> getMetadata();
     @Property(selector = "availableMetadataFormats")
     public native @org.robovm.rt.bro.annotation.Marshaler(AVMetadataFormat.AsListMarshaler.class) List<AVMetadataFormat> getAvailableMetadataFormats();
-    /**
-     * @since Available in iOS 4.3 and later.
-     */
     @Property(selector = "availableChapterLocales")
     public native NSArray<NSLocale> getAvailableChapterLocales();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "availableMediaCharacteristicsWithMediaSelectionOptions")
     public native @org.robovm.rt.bro.annotation.Marshaler(AVMediaCharacteristic.AsListMarshaler.class) List<AVMediaCharacteristic> getAvailableMediaCharacteristicsWithMediaSelectionOptions();
     /**
@@ -155,9 +140,6 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "allMediaSelections")
     public native NSArray<AVMediaSelection> getAllMediaSelections();
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     @Property(selector = "hasProtectedContent")
     public native boolean hasProtectedContent();
     /**
@@ -175,29 +157,14 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "overallDurationHint")
     public native @ByVal CMTime getOverallDurationHint();
-    /**
-     * @since Available in iOS 4.3 and later.
-     */
     @Property(selector = "isPlayable")
     public native boolean isPlayable();
-    /**
-     * @since Available in iOS 4.3 and later.
-     */
     @Property(selector = "isExportable")
     public native boolean isExportable();
-    /**
-     * @since Available in iOS 4.3 and later.
-     */
     @Property(selector = "isReadable")
     public native boolean isReadable();
-    /**
-     * @since Available in iOS 4.3 and later.
-     */
     @Property(selector = "isComposable")
     public native boolean isComposable();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "isCompatibleWithSavedPhotosAlbum")
     public native boolean isCompatibleWithSavedPhotosAlbum();
     /**
@@ -260,19 +227,10 @@ import org.robovm.apple.audiotoolbox.*;
     public native NSArray<AVAssetTrack> getTracksWithCharacteristic(AVMediaCharacteristic mediaCharacteristic);
     @Method(selector = "metadataForFormat:")
     public native NSArray<AVMetadataItem> getMetadata(AVMetadataFormat format);
-    /**
-     * @since Available in iOS 4.3 and later.
-     */
     @Method(selector = "chapterMetadataGroupsWithTitleLocale:containingItemsWithCommonKeys:")
     public native NSArray<AVTimedMetadataGroup> getChapterMetadataGroupsContainingItemsWithCommonKeys(NSLocale locale, @org.robovm.rt.bro.annotation.Marshaler(AVMetadataKey.AsListMarshaler.class) List<AVMetadataKey> commonKeys);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "chapterMetadataGroupsBestMatchingPreferredLanguages:")
     public native NSArray<AVTimedMetadataGroup> getChapterMetadataGroupsBestMatchingPreferredLanguages(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> preferredLanguages);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "mediaSelectionGroupForMediaCharacteristic:")
     public native AVMediaSelectionGroup getMediaSelectionGroup(AVMediaCharacteristic mediaCharacteristic);
     @Method(selector = "unusedTrackID")

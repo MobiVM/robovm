@@ -61,7 +61,7 @@ import org.robovm.apple.avfoundation.*;
     @Method(selector = "initWithURL:")
     public SCNAudioSource(NSURL url) { super((SkipInit) null); initObject(init(url)); }
     @Method(selector = "initWithCoder:")
-    public SCNAudioSource(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public SCNAudioSource(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "isPositional")
@@ -104,6 +104,6 @@ import org.robovm.apple.avfoundation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

@@ -112,9 +112,6 @@ import org.robovm.apple.audiotoolbox.*;
     }
     
 
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CMTimeCodeFormatDescriptionSourceReferenceName getSourceReferenceName() {
         if (has(Keys.SourceReferenceName())) {
             CFDictionary val = get(Keys.SourceReferenceName(), CFDictionary.class);
@@ -122,9 +119,6 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CMTimeCodeFormatDescriptionExtension setSourceReferenceName(CMTimeCodeFormatDescriptionSourceReferenceName sourceReferenceName) {
         set(Keys.SourceReferenceName(), sourceReferenceName.getDictionary());
         return this;
@@ -135,9 +129,6 @@ import org.robovm.apple.audiotoolbox.*;
     @Library("CoreMedia")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCMTimeCodeFormatDescriptionExtension_SourceReferenceName", optional=true)
         public static native CFString SourceReferenceName();
     }

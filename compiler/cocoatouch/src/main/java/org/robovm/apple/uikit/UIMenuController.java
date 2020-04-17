@@ -37,12 +37,12 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 3.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIMenuController/*</name>*/ 
@@ -126,24 +126,12 @@ import org.robovm.apple.intents.*;
     public native boolean isMenuVisible();
     @Property(selector = "setMenuVisible:")
     public native void setMenuVisible(boolean v);
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Property(selector = "arrowDirection")
     public native UIMenuControllerArrowDirection getArrowDirection();
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Property(selector = "setArrowDirection:")
     public native void setArrowDirection(UIMenuControllerArrowDirection v);
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Property(selector = "menuItems")
     private native NSArray<UIMenuItem> getMenuItems0();
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Property(selector = "setMenuItems:")
     private native void setMenuItems0(NSArray<UIMenuItem> v);
     @Property(selector = "menuFrame")
@@ -179,10 +167,33 @@ import org.robovm.apple.intents.*;
     @GlobalValue(symbol="UIMenuControllerMenuFrameDidChangeNotification", optional=true)
     public static native NSString MenuFrameDidChangeNotification();
     
+    /**
+     * @deprecated Deprecated in iOS 13.0. Use showMenuFromView:rect: or hideMenuFromView: instead.
+     */
+    @Deprecated
     @Method(selector = "setMenuVisible:animated:")
     public native void setMenuVisible(boolean menuVisible, boolean animated);
+    /**
+     * @deprecated Deprecated in iOS 13.0. Use showMenuFromView:rect: instead.
+     */
+    @Deprecated
     @Method(selector = "setTargetRect:inView:")
     public native void setTargetRect(@ByVal CGRect targetRect, UIView targetView);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "showMenuFromView:rect:")
+    public native void showMenu(UIView targetView, @ByVal CGRect targetRect);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "hideMenuFromView:")
+    public native void hideMenuFromView(UIView targetView);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "hideMenu")
+    public native void hideMenu();
     @Method(selector = "update")
     public native void update();
     /*</methods>*/

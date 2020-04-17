@@ -74,6 +74,26 @@ import org.robovm.apple.coreanimation.*;
     public native boolean isFramebufferOnly();
     @Property(selector = "setFramebufferOnly:")
     public native void setFramebufferOnly(boolean v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "depthStencilAttachmentTextureUsage")
+    public native MTLTextureUsage getDepthStencilAttachmentTextureUsage();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setDepthStencilAttachmentTextureUsage:")
+    public native void setDepthStencilAttachmentTextureUsage(MTLTextureUsage v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "multisampleColorAttachmentTextureUsage")
+    public native MTLTextureUsage getMultisampleColorAttachmentTextureUsage();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setMultisampleColorAttachmentTextureUsage:")
+    public native void setMultisampleColorAttachmentTextureUsage(MTLTextureUsage v);
     @Property(selector = "presentsWithTransaction")
     public native boolean presentsWithTransaction();
     @Property(selector = "setPresentsWithTransaction:")
@@ -124,6 +144,13 @@ import org.robovm.apple.coreanimation.*;
     public native @ByVal CGSize getDrawableSize();
     @Property(selector = "setDrawableSize:")
     public native void setDrawableSize(@ByVal CGSize v);
+    @Property(selector = "preferredDrawableSize")
+    public native @ByVal CGSize getPreferredDrawableSize();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "preferredDevice")
+    public native MTLDevice getPreferredDevice();
     @Property(selector = "isPaused")
     public native boolean isPaused();
     @Property(selector = "setPaused:")

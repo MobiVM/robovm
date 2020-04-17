@@ -50,8 +50,14 @@ import org.robovm.apple.uikit.*;
     protected SKProductSubscriptionPeriod(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 11.2 and later.
+     */
     @Property(selector = "numberOfUnits")
     public native @MachineSizedUInt long getNumberOfUnits();
+    /**
+     * @since Available in iOS 11.2 and later.
+     */
     @Property(selector = "unit")
     public native SKProductPeriodUnit getUnit();
     /*</properties>*/

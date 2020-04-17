@@ -37,12 +37,12 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIAccessibilityCustomAction/*</name>*/ 
@@ -63,6 +63,16 @@ import org.robovm.apple.intents.*;
      */
     @Method(selector = "initWithAttributedName:target:selector:")
     public UIAccessibilityCustomAction(NSAttributedString attributedName, NSObject target, Selector selector) { super((SkipInit) null); initObject(init(attributedName, target, selector)); }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "initWithName:actionHandler:")
+    public UIAccessibilityCustomAction(String name, @Block Block1<UIAccessibilityCustomAction, Boolean> actionHandler) { super((SkipInit) null); initObject(init(name, actionHandler)); }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "initWithAttributedName:actionHandler:")
+    public UIAccessibilityCustomAction(NSAttributedString attributedName, @Block Block1<UIAccessibilityCustomAction, Boolean> actionHandler) { super((SkipInit) null); initObject(init(attributedName, actionHandler)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "name")
@@ -87,6 +97,16 @@ import org.robovm.apple.intents.*;
     public native Selector getSelector();
     @Property(selector = "setSelector:", strongRef = true)
     public native void setSelector(Selector v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "actionHandler")
+    public native @Block Block1<UIAccessibilityCustomAction, Boolean> getActionHandler();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setActionHandler:")
+    public native void setActionHandler(@Block Block1<UIAccessibilityCustomAction, Boolean> v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -97,5 +117,15 @@ import org.robovm.apple.intents.*;
      */
     @Method(selector = "initWithAttributedName:target:selector:")
     protected native @Pointer long init(NSAttributedString attributedName, NSObject target, Selector selector);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "initWithName:actionHandler:")
+    protected native @Pointer long init(String name, @Block Block1<UIAccessibilityCustomAction, Boolean> actionHandler);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "initWithAttributedName:actionHandler:")
+    protected native @Pointer long init(NSAttributedString attributedName, @Block Block1<UIAccessibilityCustomAction, Boolean> actionHandler);
     /*</methods>*/
 }

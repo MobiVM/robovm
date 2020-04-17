@@ -46,9 +46,6 @@ public final class /*<name>*/NSNetServiceOptions/*</name>*/ extends Bits</*<name
     /*<values>*/
     public static final NSNetServiceOptions None = new NSNetServiceOptions(0L);
     public static final NSNetServiceOptions NoAutoRename = new NSNetServiceOptions(1L);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final NSNetServiceOptions ListenForConnections = new NSNetServiceOptions(2L);
     /*</values>*/
 

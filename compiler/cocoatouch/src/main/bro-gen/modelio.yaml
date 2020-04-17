@@ -566,8 +566,24 @@ classes:
                 trim_after_first_colon: true
             '-animatedValueWithName:':
                 name: getAnimatedValue
+            '-addOrientOp:inverse:':
+                name: addOrientOp
     MDLTransformTranslateOp: {} #since 11.0
-
+    MDLAnimatedQuaternion: #since 12.0
+        methods:
+            '-setFloatQuaternion:atTime:':
+                name: setFloatQuaternion
+            '-setDoubleQuaternion:atTime:':
+                name: setDoubleQuaternion
+            '-resetWithFloatQuaternionArray:atTimes:count:':
+                name: reset
+            '-resetWithDoubleQuaternionArray:atTimes:count:':
+                name: reset
+            '-getFloatQuaternionArray:maxCount:':
+                name: getFloatQuaternionArray
+            '-getDoubleQuaternionArray:maxCount:':
+                name: getDoubleQuaternionArray
+    MDLTransformOrientOp: {} #since 12.0
 protocols:
     MDLLightProbeIrradianceDataSource:
         skip_adapter: true

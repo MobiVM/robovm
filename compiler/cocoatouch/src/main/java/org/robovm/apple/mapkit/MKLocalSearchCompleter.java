@@ -61,10 +61,40 @@ import org.robovm.apple.dispatch.*;
     public native @ByVal MKCoordinateRegion getRegion();
     @Property(selector = "setRegion:")
     public native void setRegion(@ByVal MKCoordinateRegion v);
+    /**
+     * @since Available in iOS 9.3 and later.
+     * @deprecated Deprecated in iOS 13.0. Use resultTypes
+     */
+    @Deprecated
     @Property(selector = "filterType")
     public native MKSearchCompletionFilterType getFilterType();
+    /**
+     * @since Available in iOS 9.3 and later.
+     * @deprecated Deprecated in iOS 13.0. Use resultTypes
+     */
+    @Deprecated
     @Property(selector = "setFilterType:")
     public native void setFilterType(MKSearchCompletionFilterType v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "resultTypes")
+    public native MKLocalSearchCompleterResultType getResultTypes();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setResultTypes:")
+    public native void setResultTypes(MKLocalSearchCompleterResultType v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "pointOfInterestFilter")
+    public native MKPointOfInterestFilter getPointOfInterestFilter();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setPointOfInterestFilter:")
+    public native void setPointOfInterestFilter(MKPointOfInterestFilter v);
     @Property(selector = "delegate")
     public native MKLocalSearchCompleterDelegate getDelegate();
     @Property(selector = "setDelegate:", strongRef = true)

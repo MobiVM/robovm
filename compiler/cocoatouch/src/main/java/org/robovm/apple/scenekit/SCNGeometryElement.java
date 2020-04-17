@@ -55,7 +55,7 @@ import org.robovm.apple.avfoundation.*;
     protected SCNGeometryElement(Handle h, long handle) { super(h, handle); }
     protected SCNGeometryElement(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public SCNGeometryElement(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public SCNGeometryElement(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "data")
@@ -116,6 +116,6 @@ import org.robovm.apple.avfoundation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

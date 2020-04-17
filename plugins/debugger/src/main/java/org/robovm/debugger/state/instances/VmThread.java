@@ -24,12 +24,12 @@ import org.robovm.debugger.state.classdata.ClassInfo;
 public class VmThread extends VmInstance {
 
     public enum Status {
-        SUPENDED,
+        SUSPENDED,
         RUNNING
     }
 
     /** native (not java) thread object pointer */
-    private final long threadPtr;
+    private long threadPtr;
 
     /** thread name */
     private final String name;
@@ -79,6 +79,10 @@ public class VmThread extends VmInstance {
 
     public long threadPtr() {
         return threadPtr;
+    }
+
+    public void attach(long threadPtr) {
+        this.threadPtr = threadPtr;
     }
 
     public VmStackTrace[] stack() {

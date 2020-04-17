@@ -39,9 +39,6 @@ import org.robovm.apple.dispatch.*;
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/CBATTErrorCode/*</name>*/ implements NSErrorCode {
     /*<values>*/
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     Success(0L),
     InvalidHandle(1L),
     ReadNotPermitted(2L),

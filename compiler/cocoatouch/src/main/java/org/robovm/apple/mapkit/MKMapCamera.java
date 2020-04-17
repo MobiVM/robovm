@@ -35,9 +35,7 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 7.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("MapKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MKMapCamera/*</name>*/ 
@@ -57,13 +55,23 @@ import org.robovm.apple.dispatch.*;
      */
     public MKMapCamera(@ByVal CLLocationCoordinate2D centerCoordinate, double distance, @MachineSizedFloat double pitch, double heading) { super((Handle) null, create(centerCoordinate, distance, pitch, heading)); retain(getHandle()); }
     @Method(selector = "initWithCoder:")
-    public MKMapCamera(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public MKMapCamera(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "centerCoordinate")
     public native @ByVal CLLocationCoordinate2D getCenterCoordinate();
     @Property(selector = "setCenterCoordinate:")
     public native void setCenterCoordinate(@ByVal CLLocationCoordinate2D v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "centerCoordinateDistance")
+    public native double getCenterCoordinateDistance();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setCenterCoordinateDistance:")
+    public native void setCenterCoordinateDistance(double v);
     @Property(selector = "heading")
     public native double getHeading();
     @Property(selector = "setHeading:")
@@ -72,8 +80,16 @@ import org.robovm.apple.dispatch.*;
     public native @MachineSizedFloat double getPitch();
     @Property(selector = "setPitch:")
     public native void setPitch(@MachineSizedFloat double v);
+    /**
+     * @deprecated Use centerCoordinateDistance
+     */
+    @Deprecated
     @Property(selector = "altitude")
     public native double getAltitude();
+    /**
+     * @deprecated Use centerCoordinateDistance
+     */
+    @Deprecated
     @Property(selector = "setAltitude:")
     public native void setAltitude(double v);
     @Property(selector = "supportsSecureCoding")
@@ -91,6 +107,6 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

@@ -38,7 +38,7 @@ import org.robovm.apple.uikit.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
+/*<annotations>*/@Packed(1)/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CAFRegionChunk/*</name>*/ 
     extends /*<extends>*/Struct<CAFRegionChunk>/*</extends>*/ 
     /*<implements>*//*</implements>*/ {

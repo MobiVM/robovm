@@ -40,45 +40,15 @@ import org.robovm.apple.dispatch.*;
 public enum /*<name>*/CBErrorCode/*</name>*/ implements NSErrorCode {
     /*<values>*/
     Unknown(0L),
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     InvalidParameters(1L),
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     InvalidHandle(2L),
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     NotConnected(3L),
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     OutOfSpace(4L),
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     OperationCancelled(5L),
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     ConnectionTimeout(6L),
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     PeripheralDisconnected(7L),
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     UUIDNotAllowed(8L),
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     AlreadyAdvertising(9L),
-    /**
-     * @since Available in iOS 7.1 and later.
-     */
     ConnectionFailed(10L),
     /**
      * @since Available in iOS 9.0 and later.
@@ -97,7 +67,15 @@ public enum /*<name>*/CBErrorCode/*</name>*/ implements NSErrorCode {
     /**
      * @since Available in iOS 12.0 and later.
      */
-    OperationNotSupported(13L);
+    OperationNotSupported(13L),
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    PeerRemovedPairingInformation(14L),
+    /**
+     * @since Available in iOS 13.3 and later.
+     */
+    EncryptionTimedOut(15L);
     /*</values>*/
 
     /*<bind>*/

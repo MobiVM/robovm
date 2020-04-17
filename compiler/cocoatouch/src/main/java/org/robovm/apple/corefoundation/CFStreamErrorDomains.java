@@ -50,14 +50,8 @@ import org.robovm.apple.coretext.*;
     /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @GlobalValue(symbol="kCFStreamErrorDomainSOCKS", optional=true)
     public static native int SOCKS();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @GlobalValue(symbol="kCFStreamErrorDomainSSL", optional=true)
     public static native int SSL();
     /*</methods>*/

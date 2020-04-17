@@ -1,5 +1,5 @@
 package: org.robovm.apple.coreimage
-include: [foundation.yaml, corefoundation.yaml, coregraphics.yaml, opengles.yaml, corevideo.yaml, imageio.yaml, uikit.yaml, metal.yaml, iosurface]
+include: [foundation, corefoundation, coregraphics, opengles, corevideo, imageio, uikit, metal, iosurface, avfoundation]
 library: CoreImage
 framework: CoreImage
 clang_args: ['-x', 'objective-c']
@@ -112,6 +112,8 @@ classes:
             '-depthBlurEffectFilterForImageData:options:':
                 name: depthBlurEffectFilter
             '-depthBlurEffectFilterForImage:disparityImage:portraitEffectsMatte:orientation:options:':
+                name: depthBlurEffectFilter
+            '-depthBlurEffectFilterForImage:disparityImage:portraitEffectsMatte:hairSemanticSegmentation:orientation:options:':
                 name: depthBlurEffectFilter
     CIDetector: # DONE
         methods:
@@ -276,6 +278,8 @@ classes:
     CIBlendKernel: #since 11.0
         methods:
             '-applyWithForeground:background:':
+                name: apply
+            '-applyWithForeground:background:colorSpace:':
                 name: apply
     CIDataMatrixCodeDescriptor: #since 11.0
         methods:

@@ -50,7 +50,8 @@ import org.robovm.apple.metal.*;
     protected MPSCNNNormalizationMeanAndVarianceState(Handle h, long handle) { super(h, handle); }
     protected MPSCNNNormalizationMeanAndVarianceState(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithMean:variance:")
-    public MPSCNNNormalizationMeanAndVarianceState(MTLBuffer mean, MTLBuffer variance) { super((SkipInit) null); initObject(initWithMean$variance$(mean, variance)); }
+    public MPSCNNNormalizationMeanAndVarianceState(MTLBuffer mean, MTLBuffer variance) { super((SkipInit) null); initObject(init(mean, variance)); }
+    public MPSCNNNormalizationMeanAndVarianceState(MTLCommandBuffer commandBuffer, @MachineSizedUInt long numberOfFeatureChannels) { super((Handle) null, create(commandBuffer, numberOfFeatureChannels)); retain(getHandle()); }
     @Method(selector = "initWithDevice:bufferSize:")
     public MPSCNNNormalizationMeanAndVarianceState(MTLDevice device, @MachineSizedUInt long bufferSize) { super(device, bufferSize); }
     @Method(selector = "initWithDevice:textureDescriptor:")
@@ -74,8 +75,8 @@ import org.robovm.apple.metal.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithMean:variance:")
-    protected native @Pointer long initWithMean$variance$(MTLBuffer mean, MTLBuffer variance);
+    protected native @Pointer long init(MTLBuffer mean, MTLBuffer variance);
     @Method(selector = "temporaryStateWithCommandBuffer:numberOfFeatureChannels:")
-    public static native MPSCNNNormalizationMeanAndVarianceState temporaryStateWithCommandBuffer$numberOfFeatureChannels$(MTLCommandBuffer commandBuffer, @MachineSizedUInt long numberOfFeatureChannels);
+    protected static native @Pointer long create(MTLCommandBuffer commandBuffer, @MachineSizedUInt long numberOfFeatureChannels);
     /*</methods>*/
 }

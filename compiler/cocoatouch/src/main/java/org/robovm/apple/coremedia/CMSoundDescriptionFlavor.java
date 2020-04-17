@@ -90,21 +90,9 @@ import org.robovm.apple.audiotoolbox.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final CMSoundDescriptionFlavor QuickTimeMovie = new CMSoundDescriptionFlavor("QuickTimeMovie");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final CMSoundDescriptionFlavor QuickTimeMovieV2 = new CMSoundDescriptionFlavor("QuickTimeMovieV2");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final CMSoundDescriptionFlavor ISOFamily = new CMSoundDescriptionFlavor("ISOFamily");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final CMSoundDescriptionFlavor _3GPFamily = new CMSoundDescriptionFlavor("_3GPFamily");
     /*</constants>*/
     
@@ -131,24 +119,12 @@ import org.robovm.apple.audiotoolbox.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="kCMSoundDescriptionFlavor_QuickTimeMovie", optional=true)
         public static native CFString QuickTimeMovie();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="kCMSoundDescriptionFlavor_QuickTimeMovieV2", optional=true)
         public static native CFString QuickTimeMovieV2();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="kCMSoundDescriptionFlavor_ISOFamily", optional=true)
         public static native CFString ISOFamily();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="kCMSoundDescriptionFlavor_3GPFamily", optional=true)
         public static native CFString _3GPFamily();
         /*</values>*/

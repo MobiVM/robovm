@@ -124,25 +124,10 @@ import org.robovm.apple.coretext.*;
     public static final CFNumberFormatterProperty NegativeSuffix = new CFNumberFormatterProperty("NegativeSuffix");
     public static final CFNumberFormatterProperty PerMillSymbol = new CFNumberFormatterProperty("PerMillSymbol");
     public static final CFNumberFormatterProperty InternationalCurrencySymbol = new CFNumberFormatterProperty("InternationalCurrencySymbol");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CFNumberFormatterProperty CurrencyGroupingSeparator = new CFNumberFormatterProperty("CurrencyGroupingSeparator");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CFNumberFormatterProperty IsLenient = new CFNumberFormatterProperty("IsLenient");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CFNumberFormatterProperty UseSignificantDigits = new CFNumberFormatterProperty("UseSignificantDigits");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CFNumberFormatterProperty MinSignificantDigits = new CFNumberFormatterProperty("MinSignificantDigits");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CFNumberFormatterProperty MaxSignificantDigits = new CFNumberFormatterProperty("MaxSignificantDigits");
     /*</constants>*/
     
@@ -235,29 +220,14 @@ import org.robovm.apple.coretext.*;
         public static native CFString PerMillSymbol();
         @GlobalValue(symbol="kCFNumberFormatterInternationalCurrencySymbol", optional=true)
         public static native CFString InternationalCurrencySymbol();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCFNumberFormatterCurrencyGroupingSeparator", optional=true)
         public static native CFString CurrencyGroupingSeparator();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCFNumberFormatterIsLenient", optional=true)
         public static native CFString IsLenient();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCFNumberFormatterUseSignificantDigits", optional=true)
         public static native CFString UseSignificantDigits();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCFNumberFormatterMinSignificantDigits", optional=true)
         public static native CFString MinSignificantDigits();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCFNumberFormatterMaxSignificantDigits", optional=true)
         public static native CFString MaxSignificantDigits();
         /*</values>*/

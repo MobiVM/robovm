@@ -37,12 +37,12 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 2.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIDatePicker/*</name>*/ 
@@ -59,7 +59,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithFrame:")
     public UIDatePicker(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public UIDatePicker(NSCoder decoder) { super(decoder); }
+    public UIDatePicker(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "datePickerMode")
@@ -98,6 +98,21 @@ import org.robovm.apple.intents.*;
     public native @MachineSizedSInt long getMinuteInterval();
     @Property(selector = "setMinuteInterval:")
     public native void setMinuteInterval(@MachineSizedSInt long v);
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    @Property(selector = "preferredDatePickerStyle")
+    public native UIDatePickerStyle getPreferredDatePickerStyle();
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    @Property(selector = "setPreferredDatePickerStyle:")
+    public native void setPreferredDatePickerStyle(UIDatePickerStyle v);
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    @Property(selector = "datePickerStyle")
+    public native UIDatePickerStyle getDatePickerStyle();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

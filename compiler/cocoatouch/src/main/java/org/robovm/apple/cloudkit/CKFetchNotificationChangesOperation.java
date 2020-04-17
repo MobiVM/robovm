@@ -35,8 +35,7 @@ import org.robovm.apple.fileprovider.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 8.0 and later.
- * @deprecated Deprecated in iOS 11.0.
+ * @deprecated Deprecated in iOS 11.0. Instead of iterating notifications to enumerate changed record zones, use CKDatabaseSubscription, CKFetchDatabaseChangesOperation, and CKFetchRecordZoneChangesOperation
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("CloudKit") @NativeClass @Deprecated/*</annotations>*/

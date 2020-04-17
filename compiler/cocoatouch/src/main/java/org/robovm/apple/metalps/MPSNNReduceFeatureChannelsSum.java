@@ -51,11 +51,8 @@ import org.robovm.apple.metal.*;
     protected MPSNNReduceFeatureChannelsSum(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithDevice:")
     public MPSNNReduceFeatureChannelsSum(MTLDevice device) { super((SkipInit) null); initObject(init(device)); }
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
     @Method(selector = "initWithCoder:device:")
-    public MPSNNReduceFeatureChannelsSum(NSCoder decoder, MTLDevice device) { super(decoder, device); }
+    public MPSNNReduceFeatureChannelsSum(NSCoder decoder, MTLDevice device) { super((SkipInit) null); initObject(init(decoder, device)); }
     @Method(selector = "initWithCoder:")
     public MPSNNReduceFeatureChannelsSum(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
@@ -69,5 +66,7 @@ import org.robovm.apple.metal.*;
     /*<methods>*/
     @Method(selector = "initWithDevice:")
     protected native @Pointer long init(MTLDevice device);
+    @Method(selector = "initWithCoder:device:")
+    protected native @Pointer long init(NSCoder decoder, MTLDevice device);
     /*</methods>*/
 }

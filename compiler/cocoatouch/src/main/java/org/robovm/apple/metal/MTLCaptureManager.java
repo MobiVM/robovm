@@ -63,10 +63,44 @@ import org.robovm.apple.dispatch.*;
     public native MTLCaptureScope newCaptureScope(MTLDevice device);
     @Method(selector = "newCaptureScopeWithCommandQueue:")
     public native MTLCaptureScope newCaptureScope(MTLCommandQueue commandQueue);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "supportsDestination:")
+    public native boolean supportsDestination(MTLCaptureDestination destination);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public boolean startCapture(MTLCaptureDescriptor descriptor) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       boolean result = startCapture(descriptor, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "startCaptureWithDescriptor:error:")
+    private native boolean startCapture(MTLCaptureDescriptor descriptor, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use startCaptureWithDescriptor:error: instead
+     */
+    @Deprecated
     @Method(selector = "startCaptureWithDevice:")
     public native void startCapture(MTLDevice device);
+    /**
+     * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use startCaptureWithDescriptor:error: instead
+     */
+    @Deprecated
     @Method(selector = "startCaptureWithCommandQueue:")
     public native void startCapture(MTLCommandQueue commandQueue);
+    /**
+     * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use startCaptureWithDescriptor:error: instead
+     */
+    @Deprecated
     @Method(selector = "startCaptureWithScope:")
     public native void startCapture(MTLCaptureScope captureScope);
     @Method(selector = "stopCapture")

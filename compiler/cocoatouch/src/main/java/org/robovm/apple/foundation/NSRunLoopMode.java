@@ -96,9 +96,6 @@ import org.robovm.apple.dispatch.*;
 
     /*<constants>*/
     public static final NSRunLoopMode Default = new NSRunLoopMode("Default");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final NSRunLoopMode Common = new NSRunLoopMode("Common");
     /*</constants>*/
     
@@ -127,9 +124,6 @@ import org.robovm.apple.dispatch.*;
         /*<values>*/
         @GlobalValue(symbol="NSDefaultRunLoopMode", optional=true)
         public static native NSString Default();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="NSRunLoopCommonModes", optional=true)
         public static native NSString Common();
         /*</values>*/

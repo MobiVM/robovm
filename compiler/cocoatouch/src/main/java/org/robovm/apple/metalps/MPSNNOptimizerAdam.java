@@ -80,12 +80,42 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithDevice:beta1:beta2:epsilon:timeStep:optimizerDescriptor:")
     protected native @Pointer long init(MTLDevice device, double beta1, double beta2, float epsilon, @MachineSizedUInt long timeStep, MPSNNOptimizerDescriptor optimizerDescriptor);
     @Method(selector = "encodeToCommandBuffer:inputGradientVector:inputValuesVector:inputMomentumVector:inputVelocityVector:resultValuesVector:")
-    public native void encodeToCommandBuffer(MTLCommandBuffer commandBuffer, MPSVector inputGradientVector, MPSVector inputValuesVector, MPSVector inputMomentumVector, MPSVector inputVelocityVector, MPSVector resultValuesVector);
+    public native void encode(MTLCommandBuffer commandBuffer, MPSVector inputGradientVector, MPSVector inputValuesVector, MPSVector inputMomentumVector, MPSVector inputVelocityVector, MPSVector resultValuesVector);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "encodeToCommandBuffer:inputGradientMatrix:inputValuesMatrix:inputMomentumMatrix:inputVelocityMatrix:resultValuesMatrix:")
+    public native void encode(MTLCommandBuffer commandBuffer, MPSMatrix inputGradientMatrix, MPSMatrix inputValuesMatrix, MPSMatrix inputMomentumMatrix, MPSMatrix inputVelocityMatrix, MPSMatrix resultValuesMatrix);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "encodeToCommandBuffer:inputGradientVector:inputValuesVector:inputMomentumVector:inputVelocityVector:maximumVelocityVector:resultValuesVector:")
+    public native void encode(MTLCommandBuffer commandBuffer, MPSVector inputGradientVector, MPSVector inputValuesVector, MPSVector inputMomentumVector, MPSVector inputVelocityVector, MPSVector maximumVelocityVector, MPSVector resultValuesVector);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "encodeToCommandBuffer:inputGradientMatrix:inputValuesMatrix:inputMomentumMatrix:inputVelocityMatrix:maximumVelocityMatrix:resultValuesMatrix:")
+    public native void encode(MTLCommandBuffer commandBuffer, MPSMatrix inputGradientMatrix, MPSMatrix inputValuesMatrix, MPSMatrix inputMomentumMatrix, MPSMatrix inputVelocityMatrix, MPSMatrix maximumVelocityMatrix, MPSMatrix resultValuesMatrix);
     @Method(selector = "encodeToCommandBuffer:convolutionGradientState:convolutionSourceState:inputMomentumVectors:inputVelocityVectors:resultState:")
-    public native void encodeToCommandBuffer(MTLCommandBuffer commandBuffer, MPSCNNConvolutionGradientState convolutionGradientState, MPSCNNConvolutionWeightsAndBiasesState convolutionSourceState, NSArray<MPSVector> inputMomentumVectors, NSArray<MPSVector> inputVelocityVectors, MPSCNNConvolutionWeightsAndBiasesState resultState);
+    public native void encode(MTLCommandBuffer commandBuffer, MPSCNNConvolutionGradientState convolutionGradientState, MPSCNNConvolutionWeightsAndBiasesState convolutionSourceState, NSArray<MPSVector> inputMomentumVectors, NSArray<MPSVector> inputVelocityVectors, MPSCNNConvolutionWeightsAndBiasesState resultState);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "encodeToCommandBuffer:convolutionGradientState:convolutionSourceState:inputMomentumVectors:inputVelocityVectors:maximumVelocityVectors:resultState:")
+    public native void encode(MTLCommandBuffer commandBuffer, MPSCNNConvolutionGradientState convolutionGradientState, MPSCNNConvolutionWeightsAndBiasesState convolutionSourceState, NSArray<MPSVector> inputMomentumVectors, NSArray<MPSVector> inputVelocityVectors, NSArray<MPSVector> maximumVelocityVectors, MPSCNNConvolutionWeightsAndBiasesState resultState);
     @Method(selector = "encodeToCommandBuffer:batchNormalizationState:inputMomentumVectors:inputVelocityVectors:resultState:")
-    public native void encodeToCommandBuffer(MTLCommandBuffer commandBuffer, MPSCNNBatchNormalizationState batchNormalizationState, NSArray<MPSVector> inputMomentumVectors, NSArray<MPSVector> inputVelocityVectors, MPSCNNNormalizationGammaAndBetaState resultState);
+    public native void encode(MTLCommandBuffer commandBuffer, MPSCNNBatchNormalizationState batchNormalizationState, NSArray<MPSVector> inputMomentumVectors, NSArray<MPSVector> inputVelocityVectors, MPSCNNNormalizationGammaAndBetaState resultState);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "encodeToCommandBuffer:batchNormalizationState:inputMomentumVectors:inputVelocityVectors:maximumVelocityVectors:resultState:")
+    public native void encode(MTLCommandBuffer commandBuffer, MPSCNNBatchNormalizationState batchNormalizationState, NSArray<MPSVector> inputMomentumVectors, NSArray<MPSVector> inputVelocityVectors, NSArray<MPSVector> maximumVelocityVectors, MPSCNNNormalizationGammaAndBetaState resultState);
     @Method(selector = "encodeToCommandBuffer:batchNormalizationGradientState:batchNormalizationSourceState:inputMomentumVectors:inputVelocityVectors:resultState:")
-    public native void encodeToCommandBuffer(MTLCommandBuffer commandBuffer, MPSCNNBatchNormalizationState batchNormalizationGradientState, MPSCNNBatchNormalizationState batchNormalizationSourceState, NSArray<MPSVector> inputMomentumVectors, NSArray<MPSVector> inputVelocityVectors, MPSCNNNormalizationGammaAndBetaState resultState);
+    public native void encode(MTLCommandBuffer commandBuffer, MPSCNNBatchNormalizationState batchNormalizationGradientState, MPSCNNBatchNormalizationState batchNormalizationSourceState, NSArray<MPSVector> inputMomentumVectors, NSArray<MPSVector> inputVelocityVectors, MPSCNNNormalizationGammaAndBetaState resultState);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "encodeToCommandBuffer:batchNormalizationGradientState:batchNormalizationSourceState:inputMomentumVectors:inputVelocityVectors:maximumVelocityVectors:resultState:")
+    public native void encode(MTLCommandBuffer commandBuffer, MPSCNNBatchNormalizationState batchNormalizationGradientState, MPSCNNBatchNormalizationState batchNormalizationSourceState, NSArray<MPSVector> inputMomentumVectors, NSArray<MPSVector> inputVelocityVectors, NSArray<MPSVector> maximumVelocityVectors, MPSCNNNormalizationGammaAndBetaState resultState);
     /*</methods>*/
 }

@@ -51,7 +51,7 @@ import org.robovm.apple.security.*;
     protected WKWebsiteDataStore(Handle h, long handle) { super(h, handle); }
     protected WKWebsiteDataStore(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public WKWebsiteDataStore(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public WKWebsiteDataStore(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "isPersistent")
@@ -81,6 +81,6 @@ import org.robovm.apple.security.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

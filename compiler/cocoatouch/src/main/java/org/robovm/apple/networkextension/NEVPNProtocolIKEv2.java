@@ -29,12 +29,11 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.security.*;
+import org.robovm.apple.network.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("NetworkExtension") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NEVPNProtocolIKEv2/*</name>*/ 
@@ -50,34 +49,16 @@ import org.robovm.apple.security.*;
     protected NEVPNProtocolIKEv2(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "deadPeerDetectionRate")
     public native NEVPNIKEv2DeadPeerDetectionRate getDeadPeerDetectionRate();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setDeadPeerDetectionRate:")
     public native void setDeadPeerDetectionRate(NEVPNIKEv2DeadPeerDetectionRate v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "serverCertificateIssuerCommonName")
     public native String getServerCertificateIssuerCommonName();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setServerCertificateIssuerCommonName:")
     public native void setServerCertificateIssuerCommonName(String v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "serverCertificateCommonName")
     public native String getServerCertificateCommonName();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setServerCertificateCommonName:")
     public native void setServerCertificateCommonName(String v);
     /**
@@ -100,14 +81,8 @@ import org.robovm.apple.security.*;
      */
     @Property(selector = "setUseConfigurationAttributeInternalIPSubnet:")
     public native void setUseConfigurationAttributeInternalIPSubnet(boolean v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "IKESecurityAssociationParameters")
     public native NEVPNIKEv2SecurityAssociationParameters getIKESecurityAssociationParameters();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "childSecurityAssociationParameters")
     public native NEVPNIKEv2SecurityAssociationParameters getChildSecurityAssociationParameters();
     /**
@@ -180,6 +155,16 @@ import org.robovm.apple.security.*;
      */
     @Property(selector = "setMaximumTLSVersion:")
     public native void setMaximumTLSVersion(NEVPNIKEv2TLSVersion v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "enableFallback")
+    public native boolean isEnableFallback();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setEnableFallback:")
+    public native void setEnableFallback(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

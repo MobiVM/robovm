@@ -34,9 +34,7 @@ import org.robovm.apple.contacts.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("PassKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/PKPaymentAuthorizationViewController/*</name>*/ 
@@ -55,7 +53,7 @@ import org.robovm.apple.contacts.*;
     @Method(selector = "initWithNibName:bundle:")
     public PKPaymentAuthorizationViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
     @Method(selector = "initWithCoder:")
-    public PKPaymentAuthorizationViewController(NSCoder decoder) { super(decoder); }
+    public PKPaymentAuthorizationViewController(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "delegate")

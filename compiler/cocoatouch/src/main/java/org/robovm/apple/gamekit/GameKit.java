@@ -48,14 +48,14 @@ import org.robovm.apple.uikit.*;
     /*<methods>*/
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 12.0.
+     * @deprecated Deprecated in iOS 12.0. GKGameSession is deprecated, use real-time and turn-based matchmaking APIs instead.
      */
     @Deprecated
     @GlobalValue(symbol="GKGameSessionErrorDomain", optional=true)
     public static native String Value__GKGameSessionErrorDomain();
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 12.0.
+     * @deprecated Deprecated in iOS 12.0. GKGameSession is deprecated, use real-time and turn-based matchmaking APIs instead.
      */
     @Deprecated
     @GlobalValue(symbol="GKGameSessionErrorDomain", optional=true)

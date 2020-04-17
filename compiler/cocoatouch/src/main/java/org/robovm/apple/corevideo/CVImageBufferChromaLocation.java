@@ -91,33 +91,12 @@ import org.robovm.apple.iosurface.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CVImageBufferChromaLocation Left = new CVImageBufferChromaLocation("Left");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CVImageBufferChromaLocation Center = new CVImageBufferChromaLocation("Center");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CVImageBufferChromaLocation TopLeft = new CVImageBufferChromaLocation("TopLeft");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CVImageBufferChromaLocation Top = new CVImageBufferChromaLocation("Top");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CVImageBufferChromaLocation BottomLeft = new CVImageBufferChromaLocation("BottomLeft");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CVImageBufferChromaLocation Bottom = new CVImageBufferChromaLocation("Bottom");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CVImageBufferChromaLocation DV420 = new CVImageBufferChromaLocation("DV420");
     /*</constants>*/
     
@@ -144,39 +123,18 @@ import org.robovm.apple.iosurface.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVImageBufferChromaLocation_Left", optional=true)
         public static native CFString Left();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVImageBufferChromaLocation_Center", optional=true)
         public static native CFString Center();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVImageBufferChromaLocation_TopLeft", optional=true)
         public static native CFString TopLeft();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVImageBufferChromaLocation_Top", optional=true)
         public static native CFString Top();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVImageBufferChromaLocation_BottomLeft", optional=true)
         public static native CFString BottomLeft();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVImageBufferChromaLocation_Bottom", optional=true)
         public static native CFString Bottom();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVImageBufferChromaLocation_DV420", optional=true)
         public static native CFString DV420();
         /*</values>*/

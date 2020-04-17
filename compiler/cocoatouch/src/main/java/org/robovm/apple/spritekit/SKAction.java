@@ -72,7 +72,7 @@ import org.robovm.apple.metal.*;
      */
     public SKAction(String name, NSURL url, double duration) { super((Handle) null, create(name, url, duration)); retain(getHandle()); }
     @Method(selector = "initWithCoder:")
-    public SKAction(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public SKAction(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "duration")
@@ -83,14 +83,8 @@ import org.robovm.apple.metal.*;
     public native SKActionTimingMode getTimingMode();
     @Property(selector = "setTimingMode:")
     public native void setTimingMode(SKActionTimingMode v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "timingFunction")
     public native @Block Block1<Float, Float> getTimingFunction();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setTimingFunction:")
     public native void setTimingFunction(@Block Block1<Float, Float> v);
     @Property(selector = "speed")
@@ -161,19 +155,10 @@ import org.robovm.apple.metal.*;
     public static native SKAction fadeAlphaBy(@MachineSizedFloat double factor, double duration);
     @Method(selector = "fadeAlphaTo:duration:")
     public static native SKAction fadeAlphaTo(@MachineSizedFloat double alpha, double duration);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "hide")
     public static native SKAction hide();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "unhide")
     public static native SKAction unhide();
-    /**
-     * @since Available in iOS 7.1 and later.
-     */
     @Method(selector = "setTexture:")
     public static native SKAction setTexture(SKTexture texture);
     /**
@@ -181,9 +166,6 @@ import org.robovm.apple.metal.*;
      */
     @Method(selector = "setNormalTexture:")
     public static native SKAction setNormalTexture(SKTexture texture);
-    /**
-     * @since Available in iOS 7.1 and later.
-     */
     @Method(selector = "setTexture:resize:")
     public static native SKAction setTexture(SKTexture texture, boolean resize);
     /**
@@ -211,14 +193,8 @@ import org.robovm.apple.metal.*;
     public static native SKAction colorize(UIColor color, @MachineSizedFloat double colorBlendFactor, double duration);
     @Method(selector = "colorizeWithColorBlendFactor:duration:")
     public static native SKAction colorize(@MachineSizedFloat double colorBlendFactor, double sec);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "falloffTo:duration:")
     public static native SKAction falloffTo(float falloff, double duration);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "falloffBy:duration:")
     public static native SKAction falloffBy(float falloff, double duration);
     @Method(selector = "followPath:duration:")
@@ -233,34 +209,16 @@ import org.robovm.apple.metal.*;
     public static native SKAction speedBy(@MachineSizedFloat double speed, double duration);
     @Method(selector = "speedTo:duration:")
     public static native SKAction speedTo(@MachineSizedFloat double speed, double duration);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "reachTo:rootNode:duration:")
     public static native SKAction reachTo(@ByVal CGPoint position, SKNode root, double duration);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "reachTo:rootNode:velocity:")
     public static native SKAction reachToWithVelocity(@ByVal CGPoint position, SKNode root, @MachineSizedFloat double velocity);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "reachToNode:rootNode:duration:")
     public static native SKAction reachToNode(SKNode node, SKNode root, double sec);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "reachToNode:rootNode:velocity:")
     public static native SKAction reachToNodeWithVelocity(SKNode node, SKNode root, @MachineSizedFloat double velocity);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "strengthTo:duration:")
     public static native SKAction strengthTo(float strength, double duration);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "strengthBy:duration:")
     public static native SKAction strengthBy(float strength, double duration);
     @Method(selector = "waitForDuration:")
@@ -441,6 +399,6 @@ import org.robovm.apple.metal.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

@@ -41,9 +41,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 7.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVAssetResourceLoadingContentInformationRequest/*</name>*/ 
@@ -76,14 +74,8 @@ import org.robovm.apple.audiotoolbox.*;
     public native boolean isByteRangeAccessSupported();
     @Property(selector = "setByteRangeAccessSupported:")
     public native void setByteRangeAccessSupported(boolean v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "renewalDate")
     public native NSDate getRenewalDate();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setRenewalDate:")
     public native void setRenewalDate(NSDate v);
     /*</properties>*/

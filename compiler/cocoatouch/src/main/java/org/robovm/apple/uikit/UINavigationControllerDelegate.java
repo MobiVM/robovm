@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -59,24 +61,12 @@ import org.robovm.apple.intents.*;
     void willShowViewController(UINavigationController navigationController, UIViewController viewController, boolean animated);
     @Method(selector = "navigationController:didShowViewController:animated:")
     void didShowViewController(UINavigationController navigationController, UIViewController viewController, boolean animated);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "navigationControllerSupportedInterfaceOrientations:")
     UIInterfaceOrientationMask getSupportedInterfaceOrientations(UINavigationController navigationController);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "navigationControllerPreferredInterfaceOrientationForPresentation:")
     UIInterfaceOrientation getPreferredInterfaceOrientation(UINavigationController navigationController);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "navigationController:interactionControllerForAnimationController:")
     UIViewControllerInteractiveTransitioning getInteractionController(UINavigationController navigationController, UIViewControllerAnimatedTransitioning animationController);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "navigationController:animationControllerForOperation:fromViewController:toViewController:")
     UIViewControllerAnimatedTransitioning getAnimationController(UINavigationController navigationController, UINavigationControllerOperation operation, UIViewController fromVC, UIViewController toVC);
     /*</methods>*/

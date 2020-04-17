@@ -359,11 +359,12 @@ public abstract class AbstractTarget implements Target {
                                 copyFile(resource, file, destDir);
 
                                 if (isDynamicLibrary(file)) {
-                                    // remove simulator and deprecated archs, also strip bitcode if any
+                                    // remove simulator and deprecated archs, also strip bitcode if not used
                                     if (config.getOs() == OS.ios && config.getArch().isArm()) {
                                         File libFile = new File(destDir, file.getName());
                                         stripExtraArches(libFile);
-                                        stripBitcode(libFile);
+                                        if (!config.isEnableBitcode())
+                                            stripBitcode(libFile);
                                     }
 
                                     // check if this dylib depends on Swift
@@ -420,11 +421,12 @@ public abstract class AbstractTarget implements Target {
                     copyFile(resource, file, destDir);
 
                     if (config.getOs() == OS.ios && config.getArch().isArm()) {
-                        // remove simulator and deprecated archs, also strip bitcode if any
+                        // remove simulator and deprecated archs, also strip bitcode if not used
                         if (isAppExtension(file)) {
                             File libFile = new File(destDir, file.getName());
                             stripExtraArches(libFile);
-                            stripBitcode(libFile);
+                            if (!config.isEnableBitcode())
+                                stripBitcode(libFile);
                         }
                     }
                 }
@@ -510,11 +512,12 @@ public abstract class AbstractTarget implements Target {
 
 			// don't strip if libraries goes to SwiftSupport folder
 			if (strip) {
-                // remove simulator and deprecated archs, also strip bitcode if any
+                // remove simulator and deprecated archs, also strip bitcode if not used
                 if (config.getOs() == OS.ios && config.getArch().isArm()) {
                     File libFile = new File(targetDir, swiftLibrary.getName());
                     stripExtraArches(libFile);
-                    stripBitcode(libFile);
+                    if (!config.isEnableBitcode())
+                        stripBitcode(libFile);
                 }
             }
         }

@@ -528,89 +528,46 @@ import org.robovm.apple.uikit.*;
         OSStatusException.throwIfNecessary(status);
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioUnitInitialize", optional=true)
     protected native OSStatus initialize0();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioUnitUninitialize", optional=true)
     protected native OSStatus uninitialize0();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioUnitGetPropertyInfo", optional=true)
     protected native OSStatus getPropertyInfo0(AUPropertyType inID, AUScope inScope, int inElement, IntPtr outDataSize, BooleanPtr outWritable);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioUnitGetProperty", optional=true)
     protected native OSStatus getProperty0(AUPropertyType inID, AUScope inScope, int inElement, VoidPtr outData, IntPtr ioDataSize);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioUnitSetProperty", optional=true)
     protected native OSStatus setProperty0(AUPropertyType inID, AUScope inScope, int inElement, VoidPtr inData, int inDataSize);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioUnitAddPropertyListener", optional=true)
     protected native OSStatus addPropertyListener0(AUPropertyType inID, FunctionPtr inProc, @Pointer long inProcUserData);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioUnitRemovePropertyListenerWithUserData", optional=true)
     protected native OSStatus removePropertyListener0(AUPropertyType inID, FunctionPtr inProc, @Pointer long inProcUserData);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioUnitAddRenderNotify", optional=true)
     protected native OSStatus addRenderNotify0(FunctionPtr inProc, @Pointer long inProcUserData);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioUnitRemoveRenderNotify", optional=true)
     protected native OSStatus removeRenderNotify0(FunctionPtr inProc, @Pointer long inProcUserData);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioUnitGetParameter", optional=true)
     protected native OSStatus getParameter0(AUParameterType inID, AUScope inScope, int inElement, FloatPtr outValue);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioUnitSetParameter", optional=true)
     protected native OSStatus setParameter0(AUParameterType inID, AUScope inScope, int inElement, float inValue, int inBufferOffsetInFrames);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioUnitRender", optional=true)
     protected native OSStatus render0(AUMutableRenderActionFlags actionFlags, AudioTimeStamp inTimeStamp, int inOutputBusNumber, int inNumberFrames, AudioBufferList ioData);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Bridge(symbol="AudioUnitProcess", optional=true)
     protected native OSStatus process0(AUMutableRenderActionFlags actionFlags, AudioTimeStamp inTimeStamp, int inNumberFrames, AudioBufferList ioData);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Bridge(symbol="AudioUnitProcessMultiple", optional=true)
     protected native OSStatus processMultiple0(AUMutableRenderActionFlags actionFlags, AudioTimeStamp inTimeStamp, int inNumberFrames, int inNumberInputBufferLists, AudioBufferList.AudioBufferListPtr inInputBufferLists, int inNumberOutputBufferLists, AudioBufferList.AudioBufferListPtr ioOutputBufferLists);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioUnitReset", optional=true)
     protected native OSStatus reset0(AUScope inScope, int inElement);
     /**
-     * @since Available in iOS 7.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Inter-App Audio API is deprecated in favor of Audio Units
      */
+    @Deprecated
     @Bridge(symbol="AudioOutputUnitPublish", optional=true)
     protected static native OSStatus publishOutput0(AudioComponentDescription inDesc, String inName, int inVersion, AudioUnit inOutputUnit);
     /**
-     * @since Available in iOS 7.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Inter-App Audio API is deprecated in favor of Audio Units
      */
+    @Deprecated
     @WeaklyLinked
     @Bridge(symbol="AudioOutputUnitGetHostIcon", optional=true)
     public native UIImage getOutputHostIcon(float desiredPointSize);
@@ -624,14 +581,8 @@ import org.robovm.apple.uikit.*;
      */
     @Bridge(symbol="AudioUnitExtensionCopyComponentList", optional=true)
     protected static native NSArray<?> extensionCopyComponentList0(String extensionIdentifier);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioOutputUnitStart", optional=true)
     protected native OSStatus startOutput0();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioOutputUnitStop", optional=true)
     protected native OSStatus stopOutput0();
     /*</methods>*/

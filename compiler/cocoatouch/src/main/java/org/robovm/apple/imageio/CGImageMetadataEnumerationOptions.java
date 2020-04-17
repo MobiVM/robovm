@@ -108,9 +108,6 @@ import org.robovm.apple.coregraphics.*;
     }
     
 
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public boolean enumeratesRecursively() {
         if (has(Keys.EnumerateRecursively())) {
             CFBoolean val = get(Keys.EnumerateRecursively(), CFBoolean.class);
@@ -118,9 +115,6 @@ import org.robovm.apple.coregraphics.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public CGImageMetadataEnumerationOptions setEnumeratesRecursively(boolean enumeratesRecursively) {
         set(Keys.EnumerateRecursively(), CFBoolean.valueOf(enumeratesRecursively));
         return this;
@@ -131,9 +125,6 @@ import org.robovm.apple.coregraphics.*;
     @Library("ImageIO")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kCGImageMetadataEnumerateRecursively", optional=true)
         public static native CFString EnumerateRecursively();
     }

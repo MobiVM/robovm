@@ -91,25 +91,10 @@ import org.robovm.apple.foundation.*;
      * @since Available in iOS 9.3 and later.
      */
     public static final HKPredicateKeyPath DateComponents = new HKPredicateKeyPath("DateComponents");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final HKPredicateKeyPath UUID = new HKPredicateKeyPath("UUID");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final HKPredicateKeyPath Source = new HKPredicateKeyPath("Source");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final HKPredicateKeyPath Metadata = new HKPredicateKeyPath("Metadata");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final HKPredicateKeyPath Correlation = new HKPredicateKeyPath("Correlation");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final HKPredicateKeyPath Workout = new HKPredicateKeyPath("Workout");
     /**
      * @since Available in iOS 9.0 and later.
@@ -119,29 +104,11 @@ import org.robovm.apple.foundation.*;
      * @since Available in iOS 9.0 and later.
      */
     public static final HKPredicateKeyPath SourceRevision = new HKPredicateKeyPath("SourceRevision");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final HKPredicateKeyPath StartDate = new HKPredicateKeyPath("StartDate");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final HKPredicateKeyPath EndDate = new HKPredicateKeyPath("EndDate");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final HKPredicateKeyPath WorkoutDuration = new HKPredicateKeyPath("WorkoutDuration");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final HKPredicateKeyPath WorkoutTotalDistance = new HKPredicateKeyPath("WorkoutTotalDistance");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final HKPredicateKeyPath WorkoutTotalEnergyBurned = new HKPredicateKeyPath("WorkoutTotalEnergyBurned");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final HKPredicateKeyPath WorkoutType = new HKPredicateKeyPath("WorkoutType");
     /**
      * @since Available in iOS 10.0 and later.
@@ -167,9 +134,6 @@ import org.robovm.apple.foundation.*;
      * @since Available in iOS 10.0 and later.
      */
     public static final HKPredicateKeyPath CustodianName = new HKPredicateKeyPath("CustodianName");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final HKPredicateKeyPath CategoryValue = new HKPredicateKeyPath("CategoryValue");
     /**
      * @since Available in iOS 12.0 and later.
@@ -179,17 +143,46 @@ import org.robovm.apple.foundation.*;
      * @since Available in iOS 12.0 and later.
      */
     public static final HKPredicateKeyPath ClinicalRecordFHIRResourceType = new HKPredicateKeyPath("ClinicalRecordFHIRResourceType");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final HKPredicateKeyPath Quantity = new HKPredicateKeyPath("Quantity");
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final HKPredicateKeyPath Count = new HKPredicateKeyPath("Count");
     /**
      * @since Available in iOS 12.0 and later.
      */
     public static final HKPredicateKeyPath Sum = new HKPredicateKeyPath("Sum");
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final HKPredicateKeyPath Min = new HKPredicateKeyPath("Min");
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final HKPredicateKeyPath Average = new HKPredicateKeyPath("Average");
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final HKPredicateKeyPath Max = new HKPredicateKeyPath("Max");
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final HKPredicateKeyPath MostRecent = new HKPredicateKeyPath("MostRecent");
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final HKPredicateKeyPath MostRecentStartDate = new HKPredicateKeyPath("MostRecentStartDate");
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final HKPredicateKeyPath MostRecentEndDate = new HKPredicateKeyPath("MostRecentEndDate");
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final HKPredicateKeyPath MostRecentDuration = new HKPredicateKeyPath("MostRecentDuration");
     /*</constants>*/
     
-    private static /*<name>*/HKPredicateKeyPath/*</name>*/[] values = new /*<name>*/HKPredicateKeyPath/*</name>*/[] {/*<value_list>*/DateComponents, UUID, Source, Metadata, Correlation, Workout, Device, SourceRevision, StartDate, EndDate, WorkoutDuration, WorkoutTotalDistance, WorkoutTotalEnergyBurned, WorkoutType, WorkoutTotalSwimmingStrokeCount, WorkoutTotalFlightsClimbed, Title, PatientName, AuthorName, CustodianName, CategoryValue, ClinicalRecordFHIRResourceIdentifier, ClinicalRecordFHIRResourceType, Quantity, Sum/*</value_list>*/};
+    private static /*<name>*/HKPredicateKeyPath/*</name>*/[] values = new /*<name>*/HKPredicateKeyPath/*</name>*/[] {/*<value_list>*/DateComponents, UUID, Source, Metadata, Correlation, Workout, Device, SourceRevision, StartDate, EndDate, WorkoutDuration, WorkoutTotalDistance, WorkoutTotalEnergyBurned, WorkoutType, WorkoutTotalSwimmingStrokeCount, WorkoutTotalFlightsClimbed, Title, PatientName, AuthorName, CustodianName, CategoryValue, ClinicalRecordFHIRResourceIdentifier, ClinicalRecordFHIRResourceType, Quantity, Count, Sum, Min, Average, Max, MostRecent, MostRecentStartDate, MostRecentEndDate, MostRecentDuration/*</value_list>*/};
     
     /*<name>*/HKPredicateKeyPath/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -217,29 +210,14 @@ import org.robovm.apple.foundation.*;
          */
         @GlobalValue(symbol="HKPredicateKeyPathDateComponents", optional=true)
         public static native NSString DateComponents();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="HKPredicateKeyPathUUID", optional=true)
         public static native NSString UUID();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="HKPredicateKeyPathSource", optional=true)
         public static native NSString Source();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="HKPredicateKeyPathMetadata", optional=true)
         public static native NSString Metadata();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="HKPredicateKeyPathCorrelation", optional=true)
         public static native NSString Correlation();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="HKPredicateKeyPathWorkout", optional=true)
         public static native NSString Workout();
         /**
@@ -252,34 +230,16 @@ import org.robovm.apple.foundation.*;
          */
         @GlobalValue(symbol="HKPredicateKeyPathSourceRevision", optional=true)
         public static native NSString SourceRevision();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="HKPredicateKeyPathStartDate", optional=true)
         public static native NSString StartDate();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="HKPredicateKeyPathEndDate", optional=true)
         public static native NSString EndDate();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="HKPredicateKeyPathWorkoutDuration", optional=true)
         public static native NSString WorkoutDuration();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="HKPredicateKeyPathWorkoutTotalDistance", optional=true)
         public static native NSString WorkoutTotalDistance();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="HKPredicateKeyPathWorkoutTotalEnergyBurned", optional=true)
         public static native NSString WorkoutTotalEnergyBurned();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="HKPredicateKeyPathWorkoutType", optional=true)
         public static native NSString WorkoutType();
         /**
@@ -312,9 +272,6 @@ import org.robovm.apple.foundation.*;
          */
         @GlobalValue(symbol="HKPredicateKeyPathCDACustodianName", optional=true)
         public static native NSString CustodianName();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="HKPredicateKeyPathCategoryValue", optional=true)
         public static native NSString CategoryValue();
         /**
@@ -327,16 +284,53 @@ import org.robovm.apple.foundation.*;
          */
         @GlobalValue(symbol="HKPredicateKeyPathClinicalRecordFHIRResourceType", optional=true)
         public static native NSString ClinicalRecordFHIRResourceType();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="HKPredicateKeyPathQuantity", optional=true)
         public static native NSString Quantity();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="HKPredicateKeyPathCount", optional=true)
+        public static native NSString Count();
         /**
          * @since Available in iOS 12.0 and later.
          */
         @GlobalValue(symbol="HKPredicateKeyPathSum", optional=true)
         public static native NSString Sum();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="HKPredicateKeyPathMin", optional=true)
+        public static native NSString Min();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="HKPredicateKeyPathAverage", optional=true)
+        public static native NSString Average();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="HKPredicateKeyPathMax", optional=true)
+        public static native NSString Max();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="HKPredicateKeyPathMostRecent", optional=true)
+        public static native NSString MostRecent();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="HKPredicateKeyPathMostRecentStartDate", optional=true)
+        public static native NSString MostRecentStartDate();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="HKPredicateKeyPathMostRecentEndDate", optional=true)
+        public static native NSString MostRecentEndDate();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="HKPredicateKeyPathMostRecentDuration", optional=true)
+        public static native NSString MostRecentDuration();
         /*</values>*/
     }
 }

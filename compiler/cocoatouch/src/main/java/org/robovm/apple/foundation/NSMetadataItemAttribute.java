@@ -95,111 +95,38 @@ import org.robovm.apple.dispatch.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final NSMetadataItemAttribute FSName = new NSMetadataItemAttribute("FSName");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final NSMetadataItemAttribute DisplayName = new NSMetadataItemAttribute("DisplayName");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final NSMetadataItemAttribute URL = new NSMetadataItemAttribute("URL");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final NSMetadataItemAttribute Path = new NSMetadataItemAttribute("Path");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final NSMetadataItemAttribute FSSize = new NSMetadataItemAttribute("FSSize");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final NSMetadataItemAttribute FSCreationDate = new NSMetadataItemAttribute("FSCreationDate");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final NSMetadataItemAttribute FSContentChangeDate = new NSMetadataItemAttribute("FSContentChangeDate");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final NSMetadataItemAttribute ContentType = new NSMetadataItemAttribute("ContentType");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final NSMetadataItemAttribute ContentTypeTree = new NSMetadataItemAttribute("ContentTypeTree");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final NSMetadataItemAttribute IsUbiquitous = new NSMetadataItemAttribute("IsUbiquitous");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final NSMetadataItemAttribute HasUnresolvedConflicts = new NSMetadataItemAttribute("HasUnresolvedConflicts");
     /**
-     * @since Available in iOS 5.0 and later.
      * @deprecated Deprecated in iOS 7.0. Use NSMetadataUbiquitousItemDownloadingStatusKey instead
      */
     @Deprecated
     public static final NSMetadataItemAttribute IsDownloaded = new NSMetadataItemAttribute("IsDownloaded");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final NSMetadataItemAttribute DownloadingStatus = new NSMetadataItemAttribute("DownloadingStatus");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final NSMetadataItemAttribute IsDownloading = new NSMetadataItemAttribute("IsDownloading");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final NSMetadataItemAttribute IsUploaded = new NSMetadataItemAttribute("IsUploaded");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final NSMetadataItemAttribute IsUploading = new NSMetadataItemAttribute("IsUploading");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final NSMetadataItemAttribute PercentDownloaded = new NSMetadataItemAttribute("PercentDownloaded");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final NSMetadataItemAttribute PercentUploaded = new NSMetadataItemAttribute("PercentUploaded");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final NSMetadataItemAttribute DownloadingError = new NSMetadataItemAttribute("DownloadingError");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final NSMetadataItemAttribute UploadingError = new NSMetadataItemAttribute("UploadingError");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final NSMetadataItemAttribute DownloadRequested = new NSMetadataItemAttribute("DownloadRequested");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final NSMetadataItemAttribute IsExternalDocument = new NSMetadataItemAttribute("IsExternalDocument");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final NSMetadataItemAttribute ContainerDisplayName = new NSMetadataItemAttribute("ContainerDisplayName");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final NSMetadataItemAttribute URLInLocalContainer = new NSMetadataItemAttribute("URLInLocalContainer");
     /**
      * @since Available in iOS 10.0 and later.
      */
     public static final NSMetadataItemAttribute IsShared = new NSMetadataItemAttribute("IsShared");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final NSMetadataItemAttribute ContentRelevance = new NSMetadataItemAttribute("ContentRelevance");
     /*</constants>*/
     
@@ -226,126 +153,56 @@ import org.robovm.apple.dispatch.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="NSMetadataItemFSNameKey", optional=true)
         public static native NSString FSName();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="NSMetadataItemDisplayNameKey", optional=true)
         public static native NSString DisplayName();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="NSMetadataItemURLKey", optional=true)
         public static native NSString URL();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="NSMetadataItemPathKey", optional=true)
         public static native NSString Path();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="NSMetadataItemFSSizeKey", optional=true)
         public static native NSString FSSize();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="NSMetadataItemFSCreationDateKey", optional=true)
         public static native NSString FSCreationDate();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="NSMetadataItemFSContentChangeDateKey", optional=true)
         public static native NSString FSContentChangeDate();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="NSMetadataItemContentTypeKey", optional=true)
         public static native NSString ContentType();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="NSMetadataItemContentTypeTreeKey", optional=true)
         public static native NSString ContentTypeTree();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="NSMetadataItemIsUbiquitousKey", optional=true)
         public static native NSString IsUbiquitous();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="NSMetadataUbiquitousItemHasUnresolvedConflictsKey", optional=true)
         public static native NSString HasUnresolvedConflicts();
         /**
-         * @since Available in iOS 5.0 and later.
          * @deprecated Deprecated in iOS 7.0. Use NSMetadataUbiquitousItemDownloadingStatusKey instead
          */
         @Deprecated
         @GlobalValue(symbol="NSMetadataUbiquitousItemIsDownloadedKey", optional=true)
         public static native NSString IsDownloaded();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="NSMetadataUbiquitousItemDownloadingStatusKey", optional=true)
         public static native NSString DownloadingStatus();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="NSMetadataUbiquitousItemIsDownloadingKey", optional=true)
         public static native NSString IsDownloading();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="NSMetadataUbiquitousItemIsUploadedKey", optional=true)
         public static native NSString IsUploaded();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="NSMetadataUbiquitousItemIsUploadingKey", optional=true)
         public static native NSString IsUploading();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="NSMetadataUbiquitousItemPercentDownloadedKey", optional=true)
         public static native NSString PercentDownloaded();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="NSMetadataUbiquitousItemPercentUploadedKey", optional=true)
         public static native NSString PercentUploaded();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="NSMetadataUbiquitousItemDownloadingErrorKey", optional=true)
         public static native NSString DownloadingError();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="NSMetadataUbiquitousItemUploadingErrorKey", optional=true)
         public static native NSString UploadingError();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="NSMetadataUbiquitousItemDownloadRequestedKey", optional=true)
         public static native NSString DownloadRequested();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="NSMetadataUbiquitousItemIsExternalDocumentKey", optional=true)
         public static native NSString IsExternalDocument();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="NSMetadataUbiquitousItemContainerDisplayNameKey", optional=true)
         public static native NSString ContainerDisplayName();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="NSMetadataUbiquitousItemURLInLocalContainerKey", optional=true)
         public static native NSString URLInLocalContainer();
         /**
@@ -353,9 +210,6 @@ import org.robovm.apple.dispatch.*;
          */
         @GlobalValue(symbol="NSMetadataUbiquitousItemIsSharedKey", optional=true)
         public static native NSString IsShared();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="NSMetadataQueryResultContentRelevanceAttribute", optional=true)
         public static native NSString ContentRelevance();
         /*</values>*/

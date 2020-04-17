@@ -352,111 +352,50 @@ import org.robovm.apple.uikit.*;
         return data;
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioFileCreateWithURL", optional=true)
     protected static native OSStatus create0(NSURL inFileRef, AudioFileType inFileType, AudioStreamBasicDescription inFormat, AudioFileFlags inFlags, AudioFile.AudioFilePtr outAudioFile);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioFileOpenURL", optional=true)
     protected static native OSStatus openURL0(NSURL inFileRef, AudioFilePermissions inPermissions, AudioFileType inFileTypeHint, AudioFile.AudioFilePtr outAudioFile);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioFileInitializeWithCallbacks", optional=true)
     protected static native OSStatus initialize0(@Pointer long inClientData, FunctionPtr inReadFunc, FunctionPtr inWriteFunc, FunctionPtr inGetSizeFunc, FunctionPtr inSetSizeFunc, AudioFileType inFileType, AudioStreamBasicDescription inFormat, AudioFileFlags inFlags, AudioFile.AudioFilePtr outAudioFile);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioFileOpenWithCallbacks", optional=true)
     protected static native OSStatus open0(@Pointer long inClientData, FunctionPtr inReadFunc, FunctionPtr inWriteFunc, FunctionPtr inGetSizeFunc, FunctionPtr inSetSizeFunc, AudioFileType inFileTypeHint, AudioFile.AudioFilePtr outAudioFile);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioFileClose", optional=true)
     protected native OSStatus closeFile0();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioFileOptimize", optional=true)
     protected native OSStatus optimize0();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioFileReadBytes", optional=true)
     protected native OSStatus readBytes0(boolean inUseCache, long inStartingByte, IntPtr ioNumBytes, BytePtr outBuffer);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioFileWriteBytes", optional=true)
     protected native OSStatus writeBytes0(boolean inUseCache, long inStartingByte, IntPtr ioNumBytes, @Pointer long inBuffer);
-    /**
-     * @since Available in iOS 2.2 and later.
-     */
     @Bridge(symbol="AudioFileReadPacketData", optional=true)
     protected native OSStatus readPacketData0(boolean inUseCache, IntPtr ioNumBytes, AudioStreamPacketDescription outPacketDescriptions, long inStartingPacket, IntPtr ioNumPackets, VoidPtr outBuffer);
     /**
-     * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 8.0. no longer supported
      */
     @Deprecated
     @Bridge(symbol="AudioFileReadPackets", optional=true)
     protected native OSStatus readPackets0(boolean inUseCache, IntPtr outNumBytes, AudioStreamPacketDescription outPacketDescriptions, long inStartingPacket, IntPtr ioNumPackets, VoidPtr outBuffer);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioFileWritePackets", optional=true)
     protected native OSStatus writePackets0(boolean inUseCache, int inNumBytes, AudioStreamPacketDescription inPacketDescriptions, long inStartingPacket, IntPtr ioNumPackets, VoidPtr inBuffer);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioFileCountUserData", optional=true)
     protected native OSStatus countUserData0(int inUserDataID, IntPtr outNumberItems);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioFileGetUserDataSize", optional=true)
     protected native OSStatus getUserDataSize0(int inUserDataID, int inIndex, IntPtr outUserDataSize);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioFileGetUserData", optional=true)
     protected native OSStatus getUserData0(int inUserDataID, int inIndex, IntPtr ioUserDataSize, VoidPtr outUserData);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioFileSetUserData", optional=true)
     protected native OSStatus setUserData0(int inUserDataID, int inIndex, int inUserDataSize, VoidPtr inUserData);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioFileRemoveUserData", optional=true)
     protected native OSStatus removeUserData0(int inUserDataID, int inIndex);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioFileGetPropertyInfo", optional=true)
     protected native OSStatus getPropertyInfo0(AudioFileProperty inPropertyID, IntPtr outDataSize, IntPtr isWritable);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioFileGetProperty", optional=true)
     protected native OSStatus getProperty0(AudioFileProperty inPropertyID, IntPtr ioDataSize, VoidPtr outPropertyData);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioFileSetProperty", optional=true)
     protected native OSStatus setProperty0(AudioFileProperty inPropertyID, int inDataSize, VoidPtr inPropertyData);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioFileGetGlobalInfoSize", optional=true)
     protected static native OSStatus getGlobalInfoSize0(AudioFileProperty inPropertyID, int inSpecifierSize, VoidPtr inSpecifier, IntPtr outDataSize);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioFileGetGlobalInfo", optional=true)
     protected static native OSStatus getGlobalInfo0(AudioFileProperty inPropertyID, int inSpecifierSize, VoidPtr inSpecifier, IntPtr ioDataSize, VoidPtr outPropertyData);
     /*</methods>*/

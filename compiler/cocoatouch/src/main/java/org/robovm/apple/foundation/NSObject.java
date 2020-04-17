@@ -41,9 +41,7 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 2.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
 @Marshalers({
@@ -147,9 +145,6 @@ import org.robovm.apple.dispatch.*;
     /*<properties>*/
     @Property(selector = "classForCoder")
     public native Class<? extends NSObject> getClassForCoder();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "autoContentAccessingProxy")
     public native NSObject getAutoContentAccessingProxy();
     @Property(selector = "observationInfo")
@@ -431,14 +426,11 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "mutableCopy")
     public native NSObject mutableCopy();
     @Method(selector = "performSelector:withObject:afterDelay:inModes:")
-    public final native void performSelector(Selector aSelector, NSObject anArgument, double delay, NSArray<?> modes);
+    public final native void performSelector(Selector aSelector, NSObject anArgument, double delay, NSArray<NSString> modes);
     @Method(selector = "performSelector:withObject:afterDelay:")
     public final native void performSelector(Selector aSelector, NSObject anArgument, double delay);
     @Method(selector = "addObserver:forKeyPath:options:context:")
     private native void addObserver(NSObject observer, String keyPath, NSKeyValueObservingOptions options, VoidPtr context);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "removeObserver:forKeyPath:context:")
     private native void removeObserver(NSObject observer, String keyPath, VoidPtr context);
     @Method(selector = "willChangeValueForKey:")
@@ -457,19 +449,10 @@ import org.robovm.apple.dispatch.*;
     public final native void performSelectorOnMainThread(Selector aSelector, NSObject arg, boolean wait, NSArray<NSString> array);
     @Method(selector = "performSelectorOnMainThread:withObject:waitUntilDone:")
     public final native void performSelectorOnMainThread(Selector aSelector, NSObject arg, boolean wait);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Method(selector = "performSelector:onThread:withObject:waitUntilDone:modes:")
     public final native void performSelector(Selector aSelector, NSThread thr, NSObject arg, boolean wait, NSArray<NSString> array);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Method(selector = "performSelector:onThread:withObject:waitUntilDone:")
     public final native void performSelector(Selector aSelector, NSThread thr, NSObject arg, boolean wait);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Method(selector = "performSelectorInBackground:withObject:")
     public final native void performSelectorInBackground(Selector aSelector, NSObject arg);
     /*</methods>*/

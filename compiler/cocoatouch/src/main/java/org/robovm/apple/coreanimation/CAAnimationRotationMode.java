@@ -92,13 +92,7 @@ import org.robovm.apple.metal.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CAAnimationRotationMode Auto = new CAAnimationRotationMode("Auto");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CAAnimationRotationMode AutoReverse = new CAAnimationRotationMode("AutoReverse");
     /*</constants>*/
     
@@ -125,14 +119,8 @@ import org.robovm.apple.metal.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCAAnimationRotateAuto", optional=true)
         public static native NSString Auto();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCAAnimationRotateAutoReverse", optional=true)
         public static native NSString AutoReverse();
         /*</values>*/

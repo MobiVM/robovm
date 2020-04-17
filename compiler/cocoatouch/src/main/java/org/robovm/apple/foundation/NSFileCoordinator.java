@@ -39,9 +39,7 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 5.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSFileCoordinator/*</name>*/ 
@@ -61,14 +59,8 @@ import org.robovm.apple.dispatch.*;
     /*<properties>*/
     @Property(selector = "filePresenters")
     public static native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsListMarshaler.class) List<NSFilePresenter> getFilePresenters();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "purposeIdentifier")
     public native String getPurposeIdentifier();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setPurposeIdentifier:")
     public native void setPurposeIdentifier(String v);
     /*</properties>*/
@@ -155,9 +147,6 @@ import org.robovm.apple.dispatch.*;
     /*<methods>*/
     @Method(selector = "initWithFilePresenter:")
     protected native @Pointer long init(NSFilePresenter filePresenterOrNil);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "coordinateAccessWithIntents:queue:byAccessor:")
     public native void coordinateAccessWithIntents(NSArray<NSFileAccessIntent> intents, NSOperationQueue queue, @Block VoidBlock1<NSError> accessor);
     @Method(selector = "coordinateReadingItemAtURL:options:error:byAccessor:")
@@ -170,9 +159,6 @@ import org.robovm.apple.dispatch.*;
     protected native void coordinateWritingItem(NSURL url1, NSFileCoordinatorWritingOptions options1, NSURL url2, NSFileCoordinatorWritingOptions options2, NSError.NSErrorPtr outError, @Block VoidBlock2<NSURL, NSURL> writer);
     @Method(selector = "prepareForReadingItemsAtURLs:options:writingItemsAtURLs:options:error:byAccessor:")
     protected native void prepareForReadingItems(NSArray<NSURL> readingURLs, NSFileCoordinatorReadingOptions readingOptions, NSArray<NSURL> writingURLs, NSFileCoordinatorWritingOptions writingOptions, NSError.NSErrorPtr outError, @Block("(@Block)") VoidBlock1<Runnable> batchAccessor);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "itemAtURL:willMoveToURL:")
     public native void itemAtURLWillMoveToURL(NSURL oldURL, NSURL newURL);
     @Method(selector = "itemAtURL:didMoveToURL:")

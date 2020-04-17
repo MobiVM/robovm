@@ -44,7 +44,7 @@ import org.robovm.apple.corefoundation.*;
     /*<ptr>*/public static class IOSurfacePtr extends Ptr<IOSurface, IOSurfacePtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(IOSurface.class); }/*</bind>*/
     /*<constants>*/
-    public static final int Constants_kIOSurfaceSuccess = 0;
+    public static final int successCode = 0;
     /*</constants>*/
     /*<constructors>*/
     public IOSurface() {}
@@ -53,7 +53,7 @@ import org.robovm.apple.corefoundation.*;
     @Method(selector = "initWithProperties:")
     public IOSurface(NSDictionary<?, ?> properties) { super((SkipInit) null); initObject(init(properties)); }
     @Method(selector = "initWithCoder:")
-    public IOSurface(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public IOSurface(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "allocationSize")
@@ -91,124 +91,52 @@ import org.robovm.apple.corefoundation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Bridge(symbol="IOSurfaceGetTypeID", optional=true)
     public static native @MachineSizedUInt long iOSurfaceGetTypeID();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Bridge(symbol="IOSurfaceCreate", optional=true)
     public static native IOSurface iOSurfaceCreate(NSDictionary properties);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Bridge(symbol="IOSurfaceLookup", optional=true)
     public static native IOSurface iOSurfaceLookup(int csid);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Bridge(symbol="IOSurfaceGetID", optional=true)
     public native int iOSurfaceGetID();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Bridge(symbol="IOSurfaceLock", optional=true)
     public native int iOSurfaceLock(IOSurfaceLockOptions options, IntPtr seed);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Bridge(symbol="IOSurfaceUnlock", optional=true)
     public native int iOSurfaceUnlock(IOSurfaceLockOptions options, IntPtr seed);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Bridge(symbol="IOSurfaceGetAllocSize", optional=true)
     public native @MachineSizedUInt long iOSurfaceGetAllocSize();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Bridge(symbol="IOSurfaceGetWidth", optional=true)
     public native @MachineSizedUInt long iOSurfaceGetWidth();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Bridge(symbol="IOSurfaceGetHeight", optional=true)
     public native @MachineSizedUInt long iOSurfaceGetHeight();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Bridge(symbol="IOSurfaceGetBytesPerElement", optional=true)
     public native @MachineSizedUInt long iOSurfaceGetBytesPerElement();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Bridge(symbol="IOSurfaceGetBytesPerRow", optional=true)
     public native @MachineSizedUInt long iOSurfaceGetBytesPerRow();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Bridge(symbol="IOSurfaceGetBaseAddress", optional=true)
     public native VoidPtr iOSurfaceGetBaseAddress();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Bridge(symbol="IOSurfaceGetElementWidth", optional=true)
     public native @MachineSizedUInt long iOSurfaceGetElementWidth();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Bridge(symbol="IOSurfaceGetElementHeight", optional=true)
     public native @MachineSizedUInt long iOSurfaceGetElementHeight();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Bridge(symbol="IOSurfaceGetPixelFormat", optional=true)
     public native int iOSurfaceGetPixelFormat();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Bridge(symbol="IOSurfaceGetSeed", optional=true)
     public native int iOSurfaceGetSeed();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Bridge(symbol="IOSurfaceGetPlaneCount", optional=true)
     public native @MachineSizedUInt long iOSurfaceGetPlaneCount();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Bridge(symbol="IOSurfaceGetWidthOfPlane", optional=true)
     public native @MachineSizedUInt long iOSurfaceGetWidthOfPlane(@MachineSizedUInt long planeIndex);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Bridge(symbol="IOSurfaceGetHeightOfPlane", optional=true)
     public native @MachineSizedUInt long iOSurfaceGetHeightOfPlane(@MachineSizedUInt long planeIndex);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Bridge(symbol="IOSurfaceGetBytesPerElementOfPlane", optional=true)
     public native @MachineSizedUInt long iOSurfaceGetBytesPerElementOfPlane(@MachineSizedUInt long planeIndex);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Bridge(symbol="IOSurfaceGetBytesPerRowOfPlane", optional=true)
     public native @MachineSizedUInt long iOSurfaceGetBytesPerRowOfPlane(@MachineSizedUInt long planeIndex);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Bridge(symbol="IOSurfaceGetBaseAddressOfPlane", optional=true)
     public native VoidPtr iOSurfaceGetBaseAddressOfPlane(@MachineSizedUInt long planeIndex);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Bridge(symbol="IOSurfaceGetElementWidthOfPlane", optional=true)
     public native @MachineSizedUInt long iOSurfaceGetElementWidthOfPlane(@MachineSizedUInt long planeIndex);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Bridge(symbol="IOSurfaceGetElementHeightOfPlane", optional=true)
     public native @MachineSizedUInt long iOSurfaceGetElementHeightOfPlane(@MachineSizedUInt long planeIndex);
     /**
@@ -246,79 +174,34 @@ import org.robovm.apple.corefoundation.*;
      */
     @Bridge(symbol="IOSurfaceGetSubsampling", optional=true)
     public native IOSurfaceSubsampling iOSurfaceGetSubsampling();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Bridge(symbol="IOSurfaceSetValue", optional=true)
     public native void iOSurfaceSetValue(CFString key, CFType value);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Bridge(symbol="IOSurfaceCopyValue", optional=true)
     public native CFType iOSurfaceCopyValue(CFString key);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Bridge(symbol="IOSurfaceRemoveValue", optional=true)
     public native void iOSurfaceRemoveValue(CFString key);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Bridge(symbol="IOSurfaceSetValues", optional=true)
     public native void iOSurfaceSetValues(NSDictionary keysAndValues);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Bridge(symbol="IOSurfaceCopyAllValues", optional=true)
     public native NSDictionary iOSurfaceCopyAllValues();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Bridge(symbol="IOSurfaceRemoveAllValues", optional=true)
     public native void iOSurfaceRemoveAllValues();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Bridge(symbol="IOSurfaceCreateMachPort", optional=true)
     public native int iOSurfaceCreateMachPort();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Bridge(symbol="IOSurfaceLookupFromMachPort", optional=true)
     public static native IOSurface iOSurfaceLookupFromMachPort(int port);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Bridge(symbol="IOSurfaceGetPropertyMaximum", optional=true)
     public static native @MachineSizedUInt long iOSurfaceGetPropertyMaximum(CFString property);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Bridge(symbol="IOSurfaceGetPropertyAlignment", optional=true)
     public static native @MachineSizedUInt long iOSurfaceGetPropertyAlignment(CFString property);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Bridge(symbol="IOSurfaceAlignProperty", optional=true)
     public static native @MachineSizedUInt long iOSurfaceAlignProperty(CFString property, @MachineSizedUInt long value);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Bridge(symbol="IOSurfaceIncrementUseCount", optional=true)
     public native void iOSurfaceIncrementUseCount();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Bridge(symbol="IOSurfaceDecrementUseCount", optional=true)
     public native void iOSurfaceDecrementUseCount();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Bridge(symbol="IOSurfaceGetUseCount", optional=true)
     public native int iOSurfaceGetUseCount();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Bridge(symbol="IOSurfaceIsInUse", optional=true)
     public native boolean iOSurfaceIsInUse();
     /**
@@ -376,6 +259,6 @@ import org.robovm.apple.corefoundation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

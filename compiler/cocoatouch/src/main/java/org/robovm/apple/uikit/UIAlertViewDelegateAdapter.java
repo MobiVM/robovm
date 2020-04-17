@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -58,50 +60,43 @@ import org.robovm.apple.intents.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use UIAlertController instead.
      */
     @Deprecated
     @NotImplemented("alertView:clickedButtonAtIndex:")
     public void clicked(UIAlertView alertView, @MachineSizedSInt long buttonIndex) {}
     /**
-     * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use UIAlertController instead.
      */
     @Deprecated
     @NotImplemented("alertViewCancel:")
     public void cancel(UIAlertView alertView) {}
     /**
-     * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use UIAlertController instead.
      */
     @Deprecated
     @NotImplemented("willPresentAlertView:")
     public void willPresent(UIAlertView alertView) {}
     /**
-     * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use UIAlertController instead.
      */
     @Deprecated
     @NotImplemented("didPresentAlertView:")
     public void didPresent(UIAlertView alertView) {}
     /**
-     * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use UIAlertController instead.
      */
     @Deprecated
     @NotImplemented("alertView:willDismissWithButtonIndex:")
     public void willDismiss(UIAlertView alertView, @MachineSizedSInt long buttonIndex) {}
     /**
-     * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use UIAlertController instead.
      */
     @Deprecated
     @NotImplemented("alertView:didDismissWithButtonIndex:")
     public void didDismiss(UIAlertView alertView, @MachineSizedSInt long buttonIndex) {}
     /**
-     * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use UIAlertController instead.
      */
     @Deprecated
     @NotImplemented("alertViewShouldEnableFirstOtherButton:")

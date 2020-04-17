@@ -17,17 +17,15 @@
 package org.robovm.idea.running;
 
 import com.intellij.execution.ExecutionException;
-import com.intellij.execution.ExecutionResult;
-import com.intellij.execution.Executor;
+import com.intellij.execution.RunnerAndConfigurationSettings;
 import com.intellij.execution.configurations.CommandLineState;
-import com.intellij.execution.configurations.RunProfileState;
-import com.intellij.execution.process.*;
+import com.intellij.execution.process.ColoredProcessHandler;
+import com.intellij.execution.process.OSProcessHandler;
+import com.intellij.execution.process.ProcessHandler;
+import com.intellij.execution.process.ProcessTerminatedListener;
+import com.intellij.execution.process.SelfKiller;
 import com.intellij.execution.runners.ExecutionEnvironment;
-import com.intellij.execution.runners.ProgramRunner;
-import com.intellij.execution.ui.RunContentDescriptor;
-import com.intellij.util.ReflectionUtil;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import org.robovm.compiler.AppCompiler;
 import org.robovm.compiler.config.Config;
 import org.robovm.compiler.config.OS;
@@ -37,10 +35,13 @@ import org.robovm.compiler.target.ios.IOSSimulatorLaunchParameters;
 import org.robovm.compiler.util.io.Fifos;
 import org.robovm.compiler.util.io.OpenOnReadFileInputStream;
 import org.robovm.idea.RoboVmPlugin;
-import org.robovm.idea.compilation.RoboVmCompileTask;
 
-import java.io.*;
-import java.util.List;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.PipedInputStream;
+import java.io.PipedOutputStream;
 
 public class RoboVmRunProfileState extends CommandLineState {
     public RoboVmRunProfileState(ExecutionEnvironment environment) {
@@ -48,13 +49,15 @@ public class RoboVmRunProfileState extends CommandLineState {
     }
 
     protected ProcessHandler executeRun() throws Throwable {
-        RoboVmRunConfiguration runConfig = (RoboVmRunConfiguration)getEnvironment().getRunnerAndConfigurationSettings().getConfiguration();
+        RunnerAndConfigurationSettings runnerAndConfigurationSettings = getEnvironment().getRunnerAndConfigurationSettings();
+        if (runnerAndConfigurationSettings == null)
+            throw new ExecutionException("RoboVmRunConfiguration is missing");
+        RoboVmRunConfiguration runConfig = (RoboVmRunConfiguration) runnerAndConfigurationSettings.getConfiguration();
         Config config = runConfig.getConfig();
         AppCompiler compiler = runConfig.getCompiler();
         runConfig.setConfig(null);
         runConfig.setCompiler(null);
         RoboVmPlugin.logInfo(getEnvironment().getProject(), "Launching executable");
-        String mainTypeName = config.getMainClass();
 
         LaunchParameters launchParameters = config.getTarget().createLaunchParameters();
         customizeLaunchParameters(runConfig, config, launchParameters);
@@ -85,35 +88,22 @@ public class RoboVmRunProfileState extends CommandLineState {
         return processHandler;
     }
 
-    protected void customizeLaunchParameters(RoboVmRunConfiguration runConfig, Config config, LaunchParameters launchParameters) throws IOException {
+    protected void customizeLaunchParameters(RoboVmRunConfiguration runConfig, Config config, LaunchParameters launchParameters) throws IOException, ExecutionException {
         launchParameters.setStdoutFifo(Fifos.mkfifo("stdout"));
         launchParameters.setStderrFifo(Fifos.mkfifo("stderr"));
 
-        if(config.getOs() != OS.ios) {
-            if(runConfig.getWorkingDir() != null && !runConfig.getWorkingDir().isEmpty()) {
+        if (config.getOs() != OS.ios) {
+            if (runConfig.getWorkingDir() != null && !runConfig.getWorkingDir().isEmpty()) {
                 launchParameters.setWorkingDirectory(new File(runConfig.getWorkingDir()));
             }
         } else {
-            if(launchParameters instanceof IOSSimulatorLaunchParameters) {
-                IOSSimulatorLaunchParameters simParams = (IOSSimulatorLaunchParameters)launchParameters;
+            if (launchParameters instanceof IOSSimulatorLaunchParameters) {
+                IOSSimulatorLaunchParameters simParams = (IOSSimulatorLaunchParameters) launchParameters;
                 // finding exact simulator to run at
-                DeviceType exactType = null;
-                DeviceType bestType = null;
-                int bestTypeVersion = -1;
-                for(DeviceType type: DeviceType.listDeviceTypes()) {
-                    if (type.getDeviceName().equals(runConfig.getSimulatorName()) && type.getVersion().versionCode == runConfig.getSimulatorSdk()) {
-                        exactType = type;
-                        break;
-                    } else if (type.getDeviceName().equals(runConfig.getSimulatorName()) && type.getVersion().versionCode > bestTypeVersion) {
-                        bestType = type;
-                        bestTypeVersion = type.getVersion().versionCode;
-                    }
-                }
+                DeviceType exactType = RoboVmRunConfigurationUtils.getSimulator(runConfig);
                 if (exactType == null)
-                    exactType = bestType;
-                if (exactType != null)
-                    simParams.setDeviceType(exactType);
-                // else FIXME: it is not covered, shall exception be thrown here ???
+                    throw new ExecutionException("Simulator type is not set or is not available anymore!");
+                simParams.setDeviceType(exactType);
             }
         }
     }
@@ -129,7 +119,7 @@ public class RoboVmRunProfileState extends CommandLineState {
             } else {
                 throw new ExecutionException("Unsupported executor " + getEnvironment().getExecutor().getId());
             }
-        } catch(Throwable t) {
+        } catch (Throwable t) {
             RoboVmPlugin.logErrorThrowable(getEnvironment().getProject(), "Couldn't start application", t, true);
             throw new ExecutionException(t);
         }
@@ -142,7 +132,6 @@ public class RoboVmRunProfileState extends CommandLineState {
         private final InputStream errorStream;
         private AppCompiler appCompiler;
         private volatile boolean cleanedUp = false;
-        private int pid;
 
         ProcessProxy(Process target, OutputStream outputStream, InputStream inputStream, InputStream errorStream,
                      AppCompiler appCompiler) {
@@ -154,9 +143,9 @@ public class RoboVmRunProfileState extends CommandLineState {
         }
 
         public void destroy() {
-            synchronized(this) {
-                if(!cleanedUp) {
-                    if(appCompiler != null) {
+            synchronized (this) {
+                if (!cleanedUp) {
+                    if (appCompiler != null) {
                         appCompiler.launchAsyncCleanup();
                         appCompiler = null;
                     }
@@ -166,6 +155,7 @@ public class RoboVmRunProfileState extends CommandLineState {
             target.destroy();
         }
 
+        @SuppressWarnings("EqualsWhichDoesntCheckParameterClass")
         public boolean equals(Object obj) {
             return target.equals(obj);
         }
@@ -215,8 +205,8 @@ public class RoboVmRunProfileState extends CommandLineState {
             try {
                 return target.waitFor();
             } catch (Throwable t) {
-                synchronized(this) {
-                    if(!cleanedUp) {
+                synchronized (this) {
+                    if (!cleanedUp) {
                         if (appCompiler != null) {
                             appCompiler.launchAsyncCleanup();
                         }

@@ -87,7 +87,7 @@ import org.robovm.apple.coretext.CTAttributedStringAttributes;
     @Method(selector = "attributedStringFromContact:defaultAttributes:")
     public native NSAttributedString format(CNContact contact, NSDictionary<?, ?> attributes);
     @Method(selector = "descriptorForRequiredKeysForStyle:")
-    public static native String getDescriptorForRequiredKeys(CNContactFormatterStyle style);
+    public static native NSObject getDescriptorForRequiredKeys(CNContactFormatterStyle style);
     @Method(selector = "stringFromContact:style:")
     public static native String format(CNContact contact, CNContactFormatterStyle style);
     @Method(selector = "attributedStringFromContact:style:defaultAttributes:")

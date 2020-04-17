@@ -5,16 +5,6 @@ framework: HomeKit
 clang_args: ['-x', 'objective-c']
 headers:
     - /System/Library/Frameworks/HomeKit.framework/Headers/HomeKit.h
-typedefs:
-    'void (^)(HMUser *, NSError *)': '@Block VoidBlock2<HMUser, NSError>'
-    'void (^)(HMRoom *, NSError *)': '@Block VoidBlock2<HMRoom, NSError>'
-    'void (^)(HMZone *, NSError *)': '@Block VoidBlock2<HMZone, NSError>'
-    'void (^)(HMServiceGroup *, NSError *)': '@Block VoidBlock2<HMServiceGroup, NSError>'
-    'void (^)(HMActionSet *, NSError *)': '@Block VoidBlock2<HMActionSet, NSError>'
-    'void (^)(HMHome *, NSError *)': '@Block VoidBlock2<HMHome, NSError>'
-private_typedefs:
-    TriggerValueType: T
-    TargetValueType: T
 
 enums:
     HMAccessoryCategoryType: {}
@@ -69,7 +59,7 @@ enums:
     HMCharacteristicValueUsageState: {} #since 11.2
     HMCharacteristicValueValveType: {} #since 11.2
     HMCharacteristicValueConfigurationState: {} #since 11.2
-
+    HMHomeManagerAuthorizationStatus: {} #since 13.0
 classes:
     HMError:
         extends: NSError
@@ -110,14 +100,16 @@ classes:
             '-removeAction:completionHandler:':
                 trim_after_first_colon: true
     HMCharacteristicEvent: # DONE
-        skip_def_constructor: true
+        template_parameters:
+            TriggerValueType: T
         methods:
             '-initWithCharacteristic:triggerValue:':
                 name: init
             '-updateTriggerValue:completionHandler:':
                 trim_after_first_colon: true
     HMCharacteristicWriteAction: # DONE
-        skip_def_constructor: true
+        template_parameters:
+            TargetValueType: T
         methods:
             '-initWithCharacteristic:targetValue:':
                 name: init
@@ -391,14 +383,15 @@ classes:
     HMCharacteristicThresholdRangeEvent: #since 11.0
         methods:
             '-initWithCharacteristic:thresholdRange:':
-                #trim_after_first_colon: true
-                name: initWithCharacteristic$thresholdRange$
+                name: init
     HMDurationEvent: #since 11.0
         methods:
             '-initWithDuration:':
                 name: init
     HMMutableCalendarEvent: {} #since 11.0
-    HMMutableCharacteristicEvent: { skip_def_constructor: true } #since 11.0
+    HMMutableCharacteristicEvent: #since 11.0
+        template_parameters:
+            TriggerValueType: T
     HMMutableCharacteristicThresholdRangeEvent: {} #since 11.0
     HMMutableDurationEvent: {} #since 11.0
     HMMutableLocationEvent: { skip_def_constructor: true } #since 11.0
@@ -427,6 +420,19 @@ classes:
         methods:
             '-initWithURL:':
                 name: init
+            '-initWithURL:ownershipToken:':
+                name: init
+    HMAccessoryOwnershipToken: #since 13.0
+        methods:
+            '-initWithData:':
+                name: init
+    HMAddAccessoryRequest: #since 13.0
+        methods:
+            '-payloadWithOwnershipToken:':
+                name: getPayload
+            '-payloadWithURL:ownershipToken:':
+                name: getPayload
+    HMNetworkConfigurationProfile: {} #since 13.0
 protocols:
     HMAccessoryBrowserDelegate: # DONE
         methods:
@@ -517,6 +523,8 @@ protocols:
                 name: didEncounterError
             '-home:didUpdateHomeHubState:':
                 name: didUpdateHomeHubState
+            '-homeDidUpdateSupportedFeatures:':
+                name: didUpdateSupportedFeatures
 
     HMHomeManagerDelegate: # DONE
         methods:
@@ -528,7 +536,10 @@ protocols:
                 name: didAddHome
             '-homeManager:didRemoveHome:':
                 name: didRemoveHome
-
+            '-homeManager:didUpdateAuthorizationStatus:':
+                name: didUpdateAuthorizationStatus
+            '-homeManager:didReceiveAddAccessoryRequest:':
+                name: didReceiveAddAccessoryRequest
     HMCameraStreamControlDelegate:
         skip_adapter: true
         methods:
@@ -544,6 +555,7 @@ protocols:
                 name: didTakeSnapshot
             '-cameraSnapshotControlDidUpdateMostRecentSnapshot:':
                 name: didUpdateMostRecentSnapshot
+    HMNetworkConfigurationProfileDelegate: {} #since 13.0
 
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version

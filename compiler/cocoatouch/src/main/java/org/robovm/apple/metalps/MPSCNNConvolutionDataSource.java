@@ -83,6 +83,11 @@ import org.robovm.apple.metal.*;
      */
     @Method(selector = "copyWithZone:device:")
     MPSCNNConvolutionDataSource copy(NSZone zone, MTLDevice device);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "weightsLayout")
+    MPSCNNConvolutionWeightsLayout weightsLayout();
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

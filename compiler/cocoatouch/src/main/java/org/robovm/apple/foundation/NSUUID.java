@@ -39,9 +39,7 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 6.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSUUID/*</name>*/ 
@@ -56,7 +54,7 @@ import org.robovm.apple.dispatch.*;
     protected NSUUID(Handle h, long handle) { super(h, handle); }
     protected NSUUID(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public NSUUID(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public NSUUID(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     
     public NSUUID(UUID uuid) {
@@ -107,6 +105,6 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

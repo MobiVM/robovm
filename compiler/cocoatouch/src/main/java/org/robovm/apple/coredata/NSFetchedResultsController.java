@@ -29,19 +29,19 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corespotlight.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 3.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreData") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/NSFetchedResultsController/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/NSFetchedResultsController<ResultType extends NSObject & NSFetchRequestResult>/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class NSFetchedResultsControllerPtr extends Ptr<NSFetchedResultsController, NSFetchedResultsControllerPtr> {}/*</ptr>*/
+    /*<ptr>*/public static class NSFetchedResultsControllerPtr<ResultType extends NSObject & NSFetchRequestResult> extends Ptr<NSFetchedResultsController<ResultType>, NSFetchedResultsControllerPtr<ResultType>> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NSFetchedResultsController.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
@@ -49,11 +49,11 @@ import org.robovm.apple.corespotlight.*;
     protected NSFetchedResultsController(Handle h, long handle) { super(h, handle); }
     protected NSFetchedResultsController(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithFetchRequest:managedObjectContext:sectionNameKeyPath:cacheName:")
-    public NSFetchedResultsController(NSFetchRequest fetchRequest, NSManagedObjectContext context, String sectionNameKeyPath, String name) { super((SkipInit) null); initObject(init(fetchRequest, context, sectionNameKeyPath, name)); }
+    public NSFetchedResultsController(NSFetchRequest<ResultType> fetchRequest, NSManagedObjectContext context, String sectionNameKeyPath, String name) { super((SkipInit) null); initObject(init(fetchRequest, context, sectionNameKeyPath, name)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "fetchRequest")
-    public native NSFetchRequest getFetchRequest();
+    public native NSFetchRequest<ResultType> getFetchRequest();
     @Property(selector = "managedObjectContext")
     public native NSManagedObjectContext getManagedObjectContext();
     @Property(selector = "sectionNameKeyPath")
@@ -74,7 +74,7 @@ import org.robovm.apple.corespotlight.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithFetchRequest:managedObjectContext:sectionNameKeyPath:cacheName:")
-    protected native @Pointer long init(NSFetchRequest fetchRequest, NSManagedObjectContext context, String sectionNameKeyPath, String name);
+    protected native @Pointer long init(NSFetchRequest<ResultType> fetchRequest, NSManagedObjectContext context, String sectionNameKeyPath, String name);
     public boolean performFetch() throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        boolean result = performFetch(ptr);
@@ -84,9 +84,9 @@ import org.robovm.apple.corespotlight.*;
     @Method(selector = "performFetch:")
     private native boolean performFetch(NSError.NSErrorPtr error);
     @Method(selector = "objectAtIndexPath:")
-    public native NSFetchRequestResult getObjectAtIndexPath(NSIndexPath indexPath);
+    public native ResultType getObjectAtIndexPath(NSIndexPath indexPath);
     @Method(selector = "indexPathForObject:")
-    public native NSIndexPath getIndexPathForObject(NSFetchRequestResult object);
+    public native NSIndexPath getIndexPathForObject(ResultType object);
     @Method(selector = "sectionIndexTitleForSectionName:")
     public native String getSectionIndexTitleForSectionName(String sectionName);
     @Method(selector = "sectionForSectionIndexTitle:atIndex:")

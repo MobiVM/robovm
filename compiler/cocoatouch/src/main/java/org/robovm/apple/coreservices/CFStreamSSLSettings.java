@@ -107,9 +107,6 @@ import org.robovm.apple.corefoundation.*;
     }
     
 
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public boolean isValidatesCertificateChain() {
         if (has(Keys.ValidatesCertificateChain())) {
             CFBoolean val = get(Keys.ValidatesCertificateChain(), CFBoolean.class);
@@ -117,16 +114,10 @@ import org.robovm.apple.corefoundation.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public CFStreamSSLSettings setValidatesCertificateChain(boolean validatesCertificateChain) {
         set(Keys.ValidatesCertificateChain(), CFBoolean.valueOf(validatesCertificateChain));
         return this;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public CFStreamSocketSecurityLevel getSecurityLevel() {
         if (has(Keys.Level())) {
             CFString val = get(Keys.Level(), CFString.class);
@@ -134,16 +125,10 @@ import org.robovm.apple.corefoundation.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public CFStreamSSLSettings setSecurityLevel(CFStreamSocketSecurityLevel securityLevel) {
         set(Keys.Level(), securityLevel.value());
         return this;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public String getPeerName() {
         if (has(Keys.PeerName())) {
             CFString val = get(Keys.PeerName(), CFString.class);
@@ -151,16 +136,10 @@ import org.robovm.apple.corefoundation.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public CFStreamSSLSettings setPeerName(String peerName) {
         set(Keys.PeerName(), new CFString(peerName));
         return this;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public NSArray<?> getCertificates() {
         if (has(Keys.Certificates())) {
             NSArray<?> val = get(Keys.Certificates(), NSArray.class);
@@ -168,16 +147,10 @@ import org.robovm.apple.corefoundation.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public CFStreamSSLSettings setCertificates(NSArray<?> certificates) {
         set(Keys.Certificates(), certificates);
         return this;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public boolean isServer() {
         if (has(Keys.IsServer())) {
             CFBoolean val = get(Keys.IsServer(), CFBoolean.class);
@@ -185,9 +158,6 @@ import org.robovm.apple.corefoundation.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public CFStreamSSLSettings setIsServer(boolean isServer) {
         set(Keys.IsServer(), CFBoolean.valueOf(isServer));
         return this;
@@ -198,29 +168,14 @@ import org.robovm.apple.corefoundation.*;
     @Library("CFNetwork")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCFStreamSSLValidatesCertificateChain", optional=true)
         public static native CFString ValidatesCertificateChain();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCFStreamSSLLevel", optional=true)
         public static native CFString Level();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCFStreamSSLPeerName", optional=true)
         public static native CFString PeerName();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCFStreamSSLCertificates", optional=true)
         public static native CFString Certificates();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCFStreamSSLIsServer", optional=true)
         public static native CFString IsServer();
     }

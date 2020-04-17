@@ -91,17 +91,8 @@ import org.robovm.apple.iosurface.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CVImageBufferTransferFunction ITU_R_709_2 = new CVImageBufferTransferFunction("ITU_R_709_2");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CVImageBufferTransferFunction SMPTE_240M_1995 = new CVImageBufferTransferFunction("SMPTE_240M_1995");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CVImageBufferTransferFunction UseGamma = new CVImageBufferTransferFunction("UseGamma");
     /**
      * @since Available in iOS 11.0 and later.
@@ -152,19 +143,10 @@ import org.robovm.apple.iosurface.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVImageBufferTransferFunction_ITU_R_709_2", optional=true)
         public static native CFString ITU_R_709_2();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVImageBufferTransferFunction_SMPTE_240M_1995", optional=true)
         public static native CFString SMPTE_240M_1995();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVImageBufferTransferFunction_UseGamma", optional=true)
         public static native CFString UseGamma();
         /**

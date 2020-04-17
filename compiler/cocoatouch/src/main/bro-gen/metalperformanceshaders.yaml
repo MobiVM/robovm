@@ -2,7 +2,7 @@ package: org.robovm.apple.metalps
 include: [foundation, coregraphics, metal]
 library: MetalPerformanceShaders
 framework: MetalPerformanceShaders
-internal_frameworks: [MPSNeuralNetwork, MPSCore, MPSImage, MPSMatrix]
+internal_frameworks: [MPSCore, MPSMatrix, MPSNeuralNetwork, MPSImage, MPSNDArray, MPSRayIntersector]
 clang_args: ['-x', 'objective-c']
 headers:
     - /System/Library/Frameworks/MetalPerformanceShaders.framework/Headers/MetalPerformanceShaders.h
@@ -19,13 +19,20 @@ private_typedefs:
     MPSCNNArithmeticGradientStateBatch: NSArray<MPSCNNArithmeticGradientState>
     'MPSCNNInstanceNormalizationGradientStateBatch *': NSArray<MPSCNNInstanceNormalizationGradientState>
     MPSCNNInstanceNormalizationGradientStateBatch: NSArray<MPSCNNInstanceNormalizationGradientState>
-    'MPSCNNLossLabelsBatch *': NSArray <MPSCNNLossLabels>
-    MPSCNNLossLabelsBatch: NSArray <MPSCNNLossLabels>
+    'MPSCNNLossLabelsBatch *': NSArray<MPSCNNLossLabels>
+    MPSCNNLossLabelsBatch: NSArray<MPSCNNLossLabels>
+    'MPSCNNConvolutionTransposeGradientStateBatch *': NSArray<MPSCNNConvolutionTransposeGradientState>
+    'MPSCNNConvolutionTransposeGradientStateBatch **': NSArray.NSArrayPtr<MPSCNNConvolutionTransposeGradientState>
+    MPSCNNConvolutionTransposeGradientStateBatch: NSArray<MPSCNNConvolutionTransposeGradientState>
+    'MPSCNNDropoutGradientStateBatch *': NSArray<MPSCNNDropoutGradientState>
+    MPSCNNDropoutGradientStateBatch: NSArray<MPSCNNDropoutGradientState>
+    'MPSCNNGroupNormalizationGradientStateBatch *': NSArray<MPSCNNGroupNormalizationGradientState>
+    MPSCNNGroupNormalizationGradientStateBatch: NSArray<MPSCNNGroupNormalizationGradientState>
 
 enums:
     MPSKernelOptions: {}
     MPSImageEdgeMode: {}
-    MPSImageFeatureChannelFormat: {}
+    MPSImageFeatureChannelFormat: {MPSImageFeatureChannelFormat_reserved0: Reserved0}
     MPSDataType: {}
     MPSPurgeableState: {} #since 8.0
     MPSDataLayout: {} #since 11.0
@@ -51,6 +58,25 @@ enums:
     MPSRNNMatrixId: {}
     MPSNNRegularizationType: {} #since 12.0
     MPSNNComparisonType: {}
+    #ios13
+    MPSAliasingStrategy: {}
+    MPSMatrixRandomDistribution: {}
+    MPSCNNConvolutionWeightsLayout: {}
+    MPSDeviceOptions: {}
+    # ios13.4 bindings bellow (also missing frameworks added)
+    MPSAccelerationStructureUsage: {} #since 12.0
+    MPSAccelerationStructureStatus: {} #since 12.0
+    MPSPolygonType: {} #since 13.0
+    MPSTransformType: {} #since 12.0
+    MPSTemporalWeighting: {} #since 13.0
+    MPSIntersectionType: {} #since 12.0
+    MPSTriangleIntersectionTestType: {} #since 12.0
+    MPSBoundingBoxIntersectionTestType: {} #since 12.0
+    MPSRayMaskOptions: {prefix: MPSRayMaskOption} #since 12.0
+    MPSRayDataType: {} #since 12.0
+    MPSIntersectionDataType: {} #since 12.0
+    MPSRayMaskOperator: {} #since 13.0
+
 classes:
     # structs
     MPSOrigin: {}
@@ -65,6 +91,28 @@ classes:
     MPSMatrixCopyOffsets: {}
     MPSImageKeypointRangeInfo: {}
     MPSImageCoordinate: {}
+    #ios13
+    MPSCustomKernelArgumentCount: {}
+    MPSDimensionSlice: {}
+    MPSImageRegion: {}
+    MPSCustomKernelSourceInfo: {}
+    MPSCustomKernelInfo: {}
+    MPSIntegerDivisionParams: {}
+    MPSImageKeypointData: {}
+    #ios13.4
+    MPSNDArrayOffsets: {}
+    MPSNDArraySizes: {}
+    MPSPackedFloat3: { exclude: true } # manually written
+    MPSAxisAlignedBoundingBox: {}
+    MPSRayOriginDirection: {}
+    MPSRayPackedOriginDirection: {}
+    MPSRayOriginMinDistanceDirectionMaxDistance: {}
+    MPSRayOriginMaskDirectionMaxDistance: {}
+    MPSIntersectionDistance: {}
+    MPSIntersectionDistancePrimitiveIndex: {}
+    MPSIntersectionDistancePrimitiveIndexCoordinates: {}
+    MPSIntersectionDistancePrimitiveIndexInstanceIndex: {}
+    MPSIntersectionDistancePrimitiveIndexInstanceIndexCoordinates: {}
 
     # classes
     MPSBinaryImageKernel: #since 9.0
@@ -189,6 +237,10 @@ classes:
                 name: getTemporaryResultStateBatch
             '-destinationImageDescriptorForSourceImages:sourceStates:':
                 name: getDestinationImageDescriptor
+            '-encodingStorageSizeForPrimaryImage:secondaryImage:sourceStates:destinationImage:':
+                name: encodingStorageSize
+            '-batchEncodingStorageSizeForPrimaryImage:secondaryImage:sourceStates:destinationImage:':
+                name: batchEncodingStorageSize
     MPSCNNConvolution: #since 10.0
         methods:
             '-initWithDevice:weights:':
@@ -243,10 +295,9 @@ classes:
                 name: init
             '+nodeWithSource:weights:':
                 exclude: true
-                name: nodeWithSource$weights$
     MPSCNNConvolutionTranspose: #since 11.0
         methods:
-            '-init.*':
+            '-initWithDevice:weights:':
                 name: init
             '-encodeToCommandBuffer:sourceImage:convolutionGradientState:':
                 name: encode
@@ -256,6 +307,23 @@ classes:
                 name: encode
             '-encodeBatchToCommandBuffer:sourceImages:convolutionGradientStates:destinationImages:':
                 name: encodeBatchConvolutionGradient
+            '-reloadWeightsAndBiasesWithCommandBuffer:state:':
+                name: reloadWeightsAndBiases
+            '-exportWeightsAndBiasesWithCommandBuffer:resultStateCanBeTemporary:':
+                name: exportWeightsAndBiases
+            '-encodeToCommandBuffer:sourceImage:convolutionGradientState:destinationState:destinationStateIsTemporary:':
+                name: encode
+            '-encodeBatchToCommandBuffer:sourceImages:convolutionGradientStates:destinationStates:destinationStateIsTemporary:':
+                name: encodeBatch
+            # following are renamed with ex as clashes with MPSCNNKernel
+            '-resultStateForSourceImage:sourceStates:destinationImage:':
+                name: getResultStateEx
+            '-resultStateBatchForSourceImage:sourceStates:destinationImage:':
+                name: getResultStateBatchEx
+            '-temporaryResultStateForCommandBuffer:sourceImage:sourceStates:destinationImage:':
+                name: getTemporaryResultEx
+            '-temporaryResultStateBatchForCommandBuffer:sourceImage:sourceStates:destinationImage:':
+                name: getTemporaryResultStateBatchEx
     MPSCNNConvolutionTransposeNode: #since 11.0
         methods:
             '-initWithSource:convolutionGradientState:weights:':
@@ -317,6 +385,8 @@ classes:
         methods:
             '-init.*':
                 name: init
+            '-resultStateBatchForSourceImage:sourceStates:destinationImage:':
+                name: getResultStateBatchEx # as clashes with MPSCNNKernel
     MPSCNNDropoutGradient: #since 11.3
         methods:
             '-init.*':
@@ -397,13 +467,19 @@ classes:
             '-encodeToCommandBuffer:sourceImage:destinationState:destinationImage:':
                 name: encode
             '-encodeBatchToCommandBuffer:sourceImages:destinationImages:':
-                name: encodeBatch
+                name: encodeBatch0
             '-encodeBatchToCommandBuffer:sourceImages:destinationStates:destinationImages:':
-                name: encodeBatch
+                name: encodeBatch0
             '-encodeToCommandBuffer:sourceImage:':
                 name: encode
             '-encodeToCommandBuffer:sourceImage:destinationState:destinationStateIsTemporary:':
                 name: encode
+            '-destinationImageDescriptorForSourceImages:sourceStates:':
+                name: getDestinationImageDescriptor
+            '-encodingStorageSizeForSourceImage:sourceStates:destinationImage:':
+                name: getEncodingStorageSize
+            '-batchEncodingStorageSizeForSourceImage:sourceStates:destinationImage:':
+                name: getBatchEncodingStorageSize
             '-encodeBatchToCommandBuffer:sourceImages:':
                 name: encodeBatch
             '-encodeBatchToCommandBuffer:sourceImages:destinationStates:destinationStateIsTemporary:':
@@ -415,9 +491,7 @@ classes:
             '-temporaryResultStateForCommandBuffer:sourceImage:sourceStates:destinationImage:':
                 name: getTemporaryResult
             '-temporaryResultStateBatchForCommandBuffer:sourceImage:sourceStates:destinationImage:':
-                name: getTemporaryResultState
-            '-destinationImageDescriptorForSourceImages:sourceStates:':
-                name: getDestinationImageDescriptor
+                name: getTemporaryResultStateBatch
     MPSCNNLocalContrastNormalization: #since 10.0
         methods:
             '-init.*':
@@ -853,6 +927,8 @@ classes:
                 name: batchRepresentation
             '-subImageWithFeatureChannelRange:':
                 name: subImage
+            '-writeBytes:dataLayout:bytesPerColumn:bytesPerRow:bytesPerImage:region:featureChannelInfo:imageIndex:':
+                name: writeBytes
     MPSImageAdd: {} #since 11.0
     MPSImageAreaMax: #since 9.0
         methods:
@@ -916,6 +992,10 @@ classes:
             '-encodeRegressionToCommandBuffer:sourceTexture:guidanceTexture:weightsTexture:destinationCoefficientsTexture:':
                 name: encodeRegression
             '-encodeReconstructionToCommandBuffer:guidanceTexture:coefficientsTexture:destinationTexture:':
+                name: encodeReconstruction
+            '-encodeRegressionToCommandBuffer:sourceTexture:guidanceTexture:weightsTexture:destinationCoefficientsTextureA:destinationCoefficientsTextureB:':
+                name: encodeRegression
+            '-encodeReconstructionToCommandBuffer:guidanceTexture:coefficientsTextureA:coefficientsTextureB:destinationTexture:':
                 name: encodeReconstruction
     MPSImageHistogram: #since 9.0
         methods:
@@ -1039,7 +1119,6 @@ classes:
             '-encodeToCommandBuffer:copyDescriptor:':
                 name: encode
             '-encodeToCommandBuffer:copyDescriptor:rowPermuteIndices:rowPermuteOffset:columnPermuteIndices:columnPermuteOffset:':
-                #trim_after_first_colon: true
                name: encode
     MPSMatrixCopyDescriptor: #since 11.0
         methods:
@@ -1199,10 +1278,13 @@ classes:
     MPSNNGradientStateNode: {} #since 11.3
     MPSNNGraph: #since 11.0
         methods:
-            '-init.*':
+            '-initWithDevice:resultImage:resultImageIsNeeded:':
+                name: init
+            '-initWithDevice:resultImages:resultsAreNeeded:':
+                name: init
+            '-initWithDevice:resultImage:':
                 name: init
             '-encodeToCommandBuffer:sourceImages:sourceStates:intermediateImages:destinationStates:':
-                #trim_after_first_colon: true
                 name: encode
             '-encodeBatchToCommandBuffer:sourceImages:sourceStates:intermediateImages:destinationStates:':
                 name: encodeBatch
@@ -1215,6 +1297,8 @@ classes:
             '+graphWithDevice:resultImage:resultImageIsNeeded:':
                 exclude: true
             '+graphWithDevice:resultImage:':
+                exclude: true
+            '+graphWithDevice:resultImages:resultsAreNeeded:':
                 exclude: true
     MPSNNImageNode:  #since 11.0
         properties:
@@ -1386,23 +1470,22 @@ classes:
     MPSCNNNormalizationMeanAndVarianceState: #since 12.0
         methods:
             '-initWithMean:variance:':
-                #trim_after_first_colon: true
-                name: initWithMean$variance$
+                name: init
             '+temporaryStateWithCommandBuffer:numberOfFeatureChannels:':
-                #trim_after_first_colon: true
-                name: temporaryStateWithCommandBuffer$numberOfFeatureChannels$
+                name: create
+                constructor: true
     MPSCNNYOLOLoss: #since 12.0
         methods:
             '-initWithDevice:lossDescriptor:':
                 name: init
             '-encodeToCommandBuffer:sourceImage:labels:destinationImage:':
-                trim_after_first_colon: true
+                name: encode
             '-encodeToCommandBuffer:sourceImage:labels:':
-                trim_after_first_colon: true
+                name: encode
             '-encodeBatchToCommandBuffer:sourceImages:labels:destinationImages:':
-                trim_after_first_colon: true
+                name: encodeBatch
             '-encodeBatchToCommandBuffer:sourceImages:labels:':
-                trim_after_first_colon: true
+                name: encodeBatch
     MPSCNNYOLOLossDescriptor: #since 12.0
         methods:
             '+cnnLossDescriptorWithXYLossType:WHLossType:confidenceLossType:classesLossType:reductionType:anchorBoxes:numberOfAnchorBoxes:':
@@ -1422,35 +1505,27 @@ classes:
             '-initWithDevice:histogramInfo:':
                 name: init
             '-encodeToCommandBuffer:sourceTexture:minmaxTexture:histogram:histogramOffset:':
-                trim_after_first_colon: true
-
-
-
-
-
-
-
-
+                name: encode
     MPSMatrixBatchNormalization: #since 12.0
         methods:
             '-setNeuronType:parameterA:parameterB:parameterC:':
                 trim_after_first_colon: true
             '-encodeToCommandBuffer:inputMatrix:meanVector:varianceVector:gammaVector:betaVector:resultMatrix:':
-                trim_after_first_colon: true
+                name: encode
     MPSMatrixBatchNormalizationGradient: #since 12.0
         methods:
             '-setNeuronType:parameterA:parameterB:parameterC:':
                 trim_after_first_colon: true
             '-encodeToCommandBuffer:gradientMatrix:inputMatrix:meanVector:varianceVector:gammaVector:betaVector:resultGradientForDataMatrix:resultGradientForGammaVector:resultGradientForBetaVector:':
-                trim_after_first_colon: true
+                name: encode
     MPSMatrixCopyToImage: #since 12.0
         methods:
             '-initWithDevice:dataLayout:':
                 name: init
             '-encodeToCommandBuffer:sourceMatrix:destinationImage:':
-                trim_after_first_colon: true
+                name: encode
             '-encodeBatchToCommandBuffer:sourceMatrix:destinationImages:':
-                trim_after_first_colon: true
+                name: encodeBatch
     MPSMatrixFullyConnectedGradient: #since 12.0
         methods:
             '-encodeGradientForDataToCommandBuffer:gradientMatrix:weightMatrix:resultGradientForDataMatrix:':
@@ -1465,11 +1540,11 @@ classes:
             '-setNeuronToPReLUWithParametersA:':
                 name: setNeuronToPReLU
             '-encodeToCommandBuffer:gradientMatrix:inputMatrix:biasVector:resultGradientForDataMatrix:resultGradientForBiasVector:':
-                trim_after_first_colon: true
+                name: encode
     MPSMatrixSoftMaxGradient: #since 12.0
         methods:
             '-encodeToCommandBuffer:gradientMatrix:forwardOutputMatrix:resultMatrix:':
-                trim_after_first_colon: true
+                name: encode
     MPSNNCropAndResizeBilinear: #since 12.0
         methods:
             '-initWithDevice:resizeWidth:resizeHeight:numberOfRegions:regions:':
@@ -1482,13 +1557,25 @@ classes:
             '-initWithDevice:beta1:beta2:epsilon:timeStep:optimizerDescriptor:':
                 name: init
             '-encodeToCommandBuffer:inputGradientVector:inputValuesVector:inputMomentumVector:inputVelocityVector:resultValuesVector:':
-                trim_after_first_colon: true
+                name: encode
             '-encodeToCommandBuffer:convolutionGradientState:convolutionSourceState:inputMomentumVectors:inputVelocityVectors:resultState:':
-                trim_after_first_colon: true
+                name: encode
             '-encodeToCommandBuffer:batchNormalizationState:inputMomentumVectors:inputVelocityVectors:resultState:':
-                trim_after_first_colon: true
+                name: encode
             '-encodeToCommandBuffer:batchNormalizationGradientState:batchNormalizationSourceState:inputMomentumVectors:inputVelocityVectors:resultState:':
-                trim_after_first_colon: true
+                name: encode
+            '-encodeToCommandBuffer:inputGradientMatrix:inputValuesMatrix:inputMomentumMatrix:inputVelocityMatrix:resultValuesMatrix:':
+                name: encode
+            '-encodeToCommandBuffer:inputGradientVector:inputValuesVector:inputMomentumVector:inputVelocityVector:maximumVelocityVector:resultValuesVector:':
+                name: encode
+            '-encodeToCommandBuffer:inputGradientMatrix:inputValuesMatrix:inputMomentumMatrix:inputVelocityMatrix:maximumVelocityMatrix:resultValuesMatrix:':
+                name: encode
+            '-encodeToCommandBuffer:convolutionGradientState:convolutionSourceState:inputMomentumVectors:inputVelocityVectors:maximumVelocityVectors:resultState:':
+                name: encode
+            '-encodeToCommandBuffer:batchNormalizationState:inputMomentumVectors:inputVelocityVectors:maximumVelocityVectors:resultState:':
+                name: encode
+            '-encodeToCommandBuffer:batchNormalizationGradientState:batchNormalizationSourceState:inputMomentumVectors:inputVelocityVectors:maximumVelocityVectors:resultState:':
+                name: encode
     MPSNNOptimizerDescriptor: #since 12.0
         methods:
             '-initWithLearningRate:gradientRescale:regularizationType:regularizationScale:':
@@ -1506,13 +1593,15 @@ classes:
             '-initWithDevice:decay:epsilon:optimizerDescriptor:':
                 name: init
             '-encodeToCommandBuffer:inputGradientVector:inputValuesVector:inputSumOfSquaresVector:resultValuesVector:':
-                trim_after_first_colon: true
+                name: encode
             '-encodeToCommandBuffer:convolutionGradientState:convolutionSourceState:inputSumOfSquaresVectors:resultState:':
-                trim_after_first_colon: true
+                name: encode
             '-encodeToCommandBuffer:batchNormalizationState:inputSumOfSquaresVectors:resultState:':
-                trim_after_first_colon: true
+                name: encode
             '-encodeToCommandBuffer:batchNormalizationGradientState:batchNormalizationSourceState:inputSumOfSquaresVectors:resultState:':
-                trim_after_first_colon: true
+                name: encode
+            '-encodeToCommandBuffer:inputGradientMatrix:inputValuesMatrix:inputSumOfSquaresMatrix:resultValuesMatrix:':
+                name: encode
     MPSNNOptimizerStochasticGradientDescent: #since 12.0
         methods:
             '-initWithDevice:learningRate:':
@@ -1520,13 +1609,15 @@ classes:
             '-initWithDevice:momentumScale:useNestrovMomentum:optimizerDescriptor:':
                 name: init
             '-encodeToCommandBuffer:inputGradientVector:inputValuesVector:inputMomentumVector:resultValuesVector:':
-                trim_after_first_colon: true
+                name: encode
             '-encodeToCommandBuffer:convolutionGradientState:convolutionSourceState:inputMomentumVectors:resultState:':
-                trim_after_first_colon: true
+                name: encode
             '-encodeToCommandBuffer:batchNormalizationState:inputMomentumVectors:resultState:':
-                trim_after_first_colon: true
+                name: encode
             '-encodeToCommandBuffer:batchNormalizationGradientState:batchNormalizationSourceState:inputMomentumVectors:resultState:':
-                trim_after_first_colon: true
+                name: encode
+            '-encodeToCommandBuffer:inputGradientMatrix:inputValuesMatrix:inputMomentumMatrix:resultValuesMatrix:':
+                name: encode
     MPSNNReduceFeatureChannelsArgumentMax: {} #since 12.0
     MPSNNReduceFeatureChannelsArgumentMin: {} #since 12.0
     MPSNNResizeBilinear: #since 12.0
@@ -1542,15 +1633,15 @@ classes:
             '-createTemporaryWeightGradientMatrices:dataType:commandBuffer:':
                 trim_after_first_colon: true
             '-encodeCopyWeightsToCommandBuffer:weights:matrixId:matrix:copyFromWeightsToMatrix:matrixOffset:':
-                trim_after_first_colon: true
+                name: encodeCopyWeights
             '-encodeForwardSequenceToCommandBuffer:sourceMatrices:sourceOffsets:destinationMatrices:destinationOffsets:trainingStates:recurrentInputState:recurrentOutputStates:weights:':
-                trim_after_first_colon: true
+                name: encodeForwardSequence
             '-encodeForwardSequenceToCommandBuffer:sourceMatrices:destinationMatrices:trainingStates:weights:':
-                trim_after_first_colon: true
+                name: encodeForwardSequence
             '-encodeGradientSequenceToCommandBuffer:forwardSources:forwardSourceOffsets:sourceGradients:sourceGradientOffsets:destinationGradients:destinationOffsets:weightGradients:trainingStates:recurrentInputState:recurrentOutputStates:weights:':
-                trim_after_first_colon: true
+                name: encodeGradientSequence
             '-encodeGradientSequenceToCommandBuffer:forwardSources:sourceGradients:destinationGradients:weightGradients:trainingStates:weights:':
-                trim_after_first_colon: true
+                name: encodeGradientSequence
     MPSRNNMatrixTrainingState: {} #since 12.0
 
     MPSNNCompare: {} #since 12.1
@@ -1614,6 +1705,420 @@ classes:
                 name: init
             '+nodeWithSource:':
                 exclude: true
+    # ios13
+    MPSCNNConvolutionTransposeGradient: #since 13.0
+        methods:
+            '-initWithDevice:weights:':
+                name: init
+            '-reloadWeightsAndBiasesWithCommandBuffer:state:':
+                name: reloadWeightsAndBiases
+    MPSCNNConvolutionTransposeGradientNode: #since 13.0
+        methods:
+            '-initWithSourceGradient:sourceImage:convolutionTransposeGradientState:weights:':
+                name: init
+            '+nodeWithSourceGradient:sourceImage:convolutionTransposeGradientState:weights:':
+                exclude: true
+    MPSCNNConvolutionTransposeGradientState: {} #since 13.0
+    MPSCNNConvolutionTransposeGradientStateNode: {} #since 13.0
+    MPSCNNFullyConnectedGradientNode: #since 13.0
+        methods:
+            '+nodeWithSourceGradient:sourceImage:convolutionGradientState:weights:':
+                exclude: true
+    MPSCNNGroupNormalization: #since 13.0
+        methods:
+            '-initWithDevice:dataSource:':
+                name: init
+            '-reloadGammaAndBetaWithCommandBuffer:gammaAndBetaState:':
+                name: reloadGammaAndBeta
+    MPSCNNGroupNormalizationGradient: {} #since 13.0
+    MPSCNNGroupNormalizationGradientNode: #since 13.0
+        methods:
+            '-initWithSourceGradient:sourceImage:gradientState:':
+                name: init
+            '+nodeWithSourceGradient:sourceImage:gradientState:':
+                exclude: true
+    MPSCNNGroupNormalizationGradientState: {} #since 13.0
+    MPSCNNGroupNormalizationNode: #since 13.0
+        methods:
+            '-initWithSource:dataSource:':
+                name: init
+            '+nodeWithSource:dataSource:':
+                exclude: true
+    MPSCNNMultiaryKernel: #since 13.0
+        methods:
+            '-initWithDevice:sourceCount:':
+                name: init
+            '-setOffset:atIndex:':
+                name: setOffset
+            '-setSourceFeatureChannelOffset:atIndex:':
+                name: setSourceFeatureChannelOffset
+            '-setSourceFeatureChannelMaxCount:atIndex:':
+                name: setSourceFeatureChannelMaxCount
+            '-setEdgeMode:atIndex:':
+                name: setEdgeMode
+            '-setKernelWidth:atIndex:':
+                name: setKernelWidth
+            '-setKernelHeight:atIndex:':
+                name: setKernelHeight
+            '-setStrideInPixelsX:atIndex:':
+                name: setStrideInPixelsX
+            '-setStrideInPixelsY:atIndex:':
+                name: setStrideInPixelsY
+            '-setDilationRateX:atIndex:':
+                name: setDilationRateX
+            '-setDilationRateY:atIndex:':
+                name: setDilationRateY
+            '-encodeToCommandBuffer:sourceImages:destinationImage:':
+                name: encode
+            '-encodeBatchToCommandBuffer:sourceImages:destinationImages:':
+                name: encodeBatch
+            '-encodeToCommandBuffer:sourceImages:':
+                name: encode
+            '-encodeBatchToCommandBuffer:sourceImages:':
+                name: encodeBatch
+            '-encodeToCommandBuffer:sourceImages:destinationState:destinationStateIsTemporary:':
+                name: encode
+            '-encodeBatchToCommandBuffer:sourceImages:destinationStates:destinationStateIsTemporary:':
+                name: encodeBatch
+            '-resultStateForSourceImages:sourceStates:destinationImage:':
+                name: getResultState
+            '-resultStateBatchForSourceImages:sourceStates:destinationImage:':
+                name: getResultStateBatch
+            '-temporaryResultStateForCommandBuffer:sourceImages:sourceStates:destinationImage:':
+                name: getTemporaryResultState
+            '-temporaryResultStateBatchForCommandBuffer:sourceImages:sourceStates:destinationImage:':
+                name: getTemporaryResultStateBatch
+            '-destinationImageDescriptorForSourceImages:sourceStates:':
+                name: getDestinationImageDescriptor
+    MPSCNNNeuronGeLUNode: #since 13.0
+        methods:
+            '-initWithSource:':
+                name: init
+            '+nodeWithSource:':
+                exclude: true
+    MPSCommandBuffer: #since 13.0
+        methods:
+            '-initWithCommandBuffer:':
+                name: init
+            '+commandBufferWithCommandBuffer:':
+                exclude: true
+    MPSMatrixRandom: #since 13.0
+        methods:
+            '-encodeToCommandBuffer:destinationVector:':
+                name: encode
+            '-encodeToCommandBuffer:destinationMatrix:':
+                name: encode
+    MPSMatrixRandomDistributionDescriptor: #since 13.0
+        methods:
+            '+uniformDistributionDescriptorWithMinimum:maximum:':
+                constructor: true
+                name: create
+    MPSMatrixRandomMTGP32: #since 13.0
+        methods:
+            '-initWithDevice:destinationDataType:seed:distributionDescriptor:':
+                name: init
+            '-initWithDevice:destinationDataType:seed:':
+                name: init
+    MPSMatrixRandomPhilox: #since 13.0
+        methods:
+            '-initWithDevice:destinationDataType:seed:distributionDescriptor:':
+                name: init
+            '-initWithDevice:destinationDataType:seed:':
+                name: init
+    MPSNDArray: #since 13.0
+        methods:
+            '-initWithDevice:descriptor:':
+                name: init
+            '-initWithDevice:scalar:':
+                name: init
+            '-arrayViewWithCommandBuffer:descriptor:aliasing:':
+                name: createArrayView
+            '-exportDataWithCommandBuffer:toBuffer:destinationDataType:offset:rowStrides:':
+                name: exportData
+            '-importDataWithCommandBuffer:fromBuffer:sourceDataType:offset:rowStrides:':
+                name: importData
+            '-exportDataWithCommandBuffer:toImages:offset:':
+                name: exportData
+            '-importDataWithCommandBuffer:fromImages:offset:':
+                name: importData
+            '-readBytes:strideBytes:':
+                name: readBytes
+            '-writeBytes:strideBytes:':
+                name: writeBytes
+    MPSNDArrayDescriptor: #since 13.0
+        methods:
+            '-sliceDimension:withSubrange:':
+                name: sliceDimension
+            '-transposeDimension:withDimension:':
+                name: transposeDimension
+            '-reshapeWithDimensionCount:dimensionSizes:':
+                name: reshape
+            '-reshapeWithShape:':
+                name: reshape
+            '+descriptorWithDataType:dimensionCount:dimensionSizes:':
+                name: create
+                constructor: true
+            '+descriptorWithDataType:shape:':
+                name: create
+                constructor: true
+            '+descriptorWithDataType:dimensionSizes:':
+                name: create
+                constructor: true
+    MPSNNForwardLoss: #since 13.0
+        methods:
+            '-initWithDevice:lossDescriptor:':
+                name: init
+            '-encodeBatchToCommandBuffer:sourceImages:labels:weights:destinationStates:destinationImages:':
+                name: encodeBatch
+            '-encodeBatchToCommandBuffer:sourceImages:labels:weights:destinationStates:destinationStateIsTemporary:':
+                name: encodeBatch
+    MPSNNForwardLossNode: #since 13.0
+        methods:
+            '-initWithSource:labels:weights:lossDescriptor:':
+                name: init
+            '-initWithSource:labels:lossDescriptor:':
+                name: init
+            '-initWithSources:lossDescriptor:':
+                name: init
+            '+nodeWithSource:labels:weights:lossDescriptor:':
+                exclude: true
+            '+nodeWithSource:labels:lossDescriptor:':
+                exclude: true
+            '+nodeWithSources:lossDescriptor:':
+                exclude: true
+            '-gradientFiltersWithSources:':
+                name: gradientFiltersEx # as clashes with MPSNNFilterNOde
+            '-gradientFiltersWithSource:':
+                name: gradientFiltersEx # as clashes with MPSNNFilterNOde
+    MPSNNGramMatrixCalculation: #since 13.0
+        methods:
+            '-initWithDevice:alpha:':
+                name: init
+    MPSNNGramMatrixCalculationGradient: #since 13.0
+        methods:
+            '-initWithDevice:alpha:':
+                name: init
+    MPSNNGramMatrixCalculationGradientNode: #since 13.0
+        methods:
+            '-initWithSourceGradient:sourceImage:gradientState:':
+                name: init
+            '-initWithSourceGradient:sourceImage:gradientState:alpha:':
+                name: init
+            '+nodeWithSourceGradient:sourceImage:gradientState:':
+                exclude: true
+            '+nodeWithSourceGradient:sourceImage:gradientState:alpha:':
+                exclude: true
+    MPSNNGramMatrixCalculationNode: #since 13.0
+        methods:
+            '-initWithSource:':
+                name: init
+            '-initWithSource:alpha:':
+                name: init
+            '+nodeWithSource:':
+                exclude: true
+            '+nodeWithSource:alpha:':
+                exclude: true
+    MPSNNGridSample: {} #since 13.0
+    MPSNNInitialGradient: {} #since 13.0
+    MPSNNInitialGradientNode: #since 13.0
+        methods:
+            '-initWithSource:':
+                name: init
+            '+nodeWithSource:':
+                exclude: true
+    MPSNNLocalCorrelation: #since 13.0
+        methods:
+            '-initWithDevice:windowInX:windowInY:strideInX:strideInY:':
+                name: init
+    MPSNNLossGradient: #since 13.0
+        methods:
+            '-initWithDevice:lossDescriptor:':
+                name: init
+            '-encodeBatchToCommandBuffer:sourceGradients:sourceImages:labels:weights:sourceStates:':
+                name: encodeBatch
+            '-encodeBatchToCommandBuffer:sourceGradients:sourceImages:labels:weights:sourceStates:destinationGradients:':
+                name: encodeBatch
+    MPSNNLossGradientNode: #since 13.0
+        methods:
+            '-initWithSourceGradient:sourceImage:labels:weights:gradientState:lossDescriptor:isLabelsGradientFilter:':
+                name: init
+            '-initWithSourceGradient:sourceImage:labels:gradientState:lossDescriptor:isLabelsGradientFilter:':
+                name: init
+            '-initWithSources:gradientState:lossDescriptor:isLabelsGradientFilter:':
+                name: init
+            '+nodeWithSourceGradient:sourceImage:labels:weights:gradientState:lossDescriptor:isLabelsGradientFilter:':
+                exclude: true
+            '+nodeWithSourceGradient:sourceImage:labels:gradientState:lossDescriptor:isLabelsGradientFilter:':
+                exclude: true
+            '+nodeWithSources:gradientState:lossDescriptor:isLabelsGradientFilter:':
+                exclude: true
+    MPSNNMultiaryGradientState: {} #since 13.0
+    MPSNNMultiaryGradientStateNode: {} #since 13.0
+    MPSPredicate: #since 13.0
+        methods:
+            '-initWithBuffer:offset:':
+                name: init
+            '-initWithDevice:':
+                name: init
+            '+predicateWithBuffer:offset:':
+                exclude: true
+    MPSTemporaryNDArray: #since 13.0
+        methods:
+            '+temporaryNDArrayWithCommandBuffer:descriptor:':
+                name : create
+                constructor: true
+    # ios 13.4 bindings
+    MPSAccelerationStructure: #since 12.0
+        methods:
+            '-initWithGroup:':
+                name: init
+            '-initWithCoder:group:':
+                name: init
+            '-rebuildWithCompletionHandler:':
+                name: rebuild
+            '-copyWithZone:group:':
+                name: copy
+            '-encodeWithCoder:':
+                name: encode
+    MPSAccelerationStructureGroup: #since 12.0
+        methods:
+            '-initWithDevice:':
+                name: init
+    MPSInstanceAccelerationStructure: {} #since 12.0
+    MPSNDArrayBinaryKernel: #since 13.0
+        methods:
+            '-encodeToCommandBuffer:primarySourceArray:secondarySourceArray:':
+                name: encode
+            '-encodeToCommandBuffer:primarySourceArray:secondarySourceArray:destinationArray:':
+                name: encode
+            '-encodeToCommandBuffer:primarySourceArray:secondarySourceArray:resultState:outputStateIsTemporary:':
+                name: encode
+            '-encodeToCommandBuffer:primarySourceArray:secondarySourceArray:resultState:destinationArray:':
+                name: encode
+    MPSNDArrayBinaryPrimaryGradientKernel: #since 13.0
+        methods:
+            '-encodeToCommandBuffer:primarySourceArray:secondarySourceArray:sourceGradient:gradientState:':
+                name: encode
+            '-encodeToCommandBuffer:primarySourceArray:secondarySourceArray:sourceGradient:gradientState:destinationArray:':
+                name: encode
+    MPSNDArrayBinarySecondaryGradientKernel: #since 13.0
+        methods:
+            '-encodeToCommandBuffer:primarySourceArray:secondarySourceArray:sourceGradient:gradientState:':
+                name: encode
+            '-encodeToCommandBuffer:primarySourceArray:secondarySourceArray:sourceGradient:gradientState:destinationArray:':
+                name: encode
+    MPSNDArrayGather: {} #since 13.0
+    MPSNDArrayGatherGradient: {} #since 13.0
+    MPSNDArrayGatherGradientState: {} #since 13.0
+    MPSNDArrayGradientState: {} #since 13.0
+    MPSNDArrayMatrixMultiplication: {} #since 13.0
+    MPSNDArrayMultiaryBase: #since 13.0
+        methods:
+            '-initWithDevice:sourceCount:':
+                name: init
+            '-encodeWithCoder:':
+                name: encode
+            '-resultStateForSourceArrays:sourceStates:destinationArray:':
+                name: getResultState
+            '-destinationArrayDescriptorForSourceArrays:sourceState:':
+                name: getDestinationArrayDescriptor
+    MPSNDArrayMultiaryGradientKernel: #since 13.0
+        methods:
+            '-initWithDevice:sourceCount:sourceGradientIndex:':
+                name: init
+            '-encodeToCommandBuffer:sourceArrays:sourceGradient:gradientState:':
+                name: encode
+            '-encodeToCommandBuffer:sourceArrays:sourceGradient:gradientState:destinationArray:':
+                name: encode
+    MPSNDArrayMultiaryKernel: #since 13.0
+        methods:
+            '-encodeToCommandBuffer:sourceArrays:':
+                name: encode
+            '-encodeToCommandBuffer:sourceArrays:destinationArray:':
+                name: encode
+            '-encodeToCommandBuffer:sourceArrays:resultState:outputStateIsTemporary:':
+                name: encode
+            '-encodeToCommandBuffer:sourceArrays:resultState:destinationArray:':
+                name: encode
+    MPSNDArrayStridedSlice: {} #since 13.0
+    MPSNDArrayStridedSliceGradient: {} #since 13.0
+    MPSNDArrayUnaryGradientKernel: #since 13.0
+        methods:
+            '-encodeToCommandBuffer:sourceArray:sourceGradient:gradientState:':
+                name: encode
+            '-encodeToCommandBuffer:sourceArray:sourceGradient:gradientState:destinationArray:':
+                name: encode
+    MPSNDArrayUnaryKernel: #since 13.0
+        methods:
+            '-encodeToCommandBuffer:sourceArray:':
+                name: encode
+            '-encodeToCommandBuffer:sourceArray:destinationArray:':
+                name: encode
+            '-encodeToCommandBuffer:sourceArray:resultState:outputStateIsTemporary:':
+                name: encode
+            '-encodeToCommandBuffer:sourceArray:resultState:destinationArray:':
+                name: encode
+    MPSPolygonAccelerationStructure: {} #since 13.0
+    MPSPolygonBuffer: #since 13.0
+        methods:
+            '-initWithCoder:':
+                name: init
+            '-copyWithZone:':
+                name: copy
+    MPSQuadrilateralAccelerationStructure: {} #since 13.0
+    MPSRayIntersector: #since 12.0
+        methods:
+            '-encodeWithCoder:':
+                name: encode
+            '-encodeIntersectionToCommandBuffer:intersectionType:rayBuffer:rayBufferOffset:intersectionBuffer:intersectionBufferOffset:rayCount:accelerationStructure:':
+                name: encodeIntersection
+            '-encodeIntersectionToCommandBuffer:intersectionType:rayBuffer:rayBufferOffset:intersectionBuffer:intersectionBufferOffset:rayCountBuffer:rayCountBufferOffset:accelerationStructure:':
+                name: encodeIntersection
+            '-encodeIntersectionToCommandBuffer:intersectionType:rayBuffer:rayBufferOffset:rayIndexBuffer:rayIndexBufferOffset:intersectionBuffer:intersectionBufferOffset:rayIndexCount:accelerationStructure:':
+                name: encodeIntersection
+            '-encodeIntersectionToCommandBuffer:intersectionType:rayBuffer:rayBufferOffset:rayIndexBuffer:rayIndexBufferOffset:intersectionBuffer:intersectionBufferOffset:rayIndexCountBuffer:rayIndexCountBufferOffset:accelerationStructure:':
+                name: encodeIntersection
+            '-encodeIntersectionToCommandBuffer:intersectionType:rayTexture:intersectionTexture:accelerationStructure:':
+                name: encodeIntersection
+    MPSSVGF: #since 13.0
+        methods:
+            '-encodeWithCoder:':
+                name: encode
+            '-encodeReprojectionToCommandBuffer:sourceTexture:previousTexture:destinationTexture:previousLuminanceMomentsTexture:destinationLuminanceMomentsTexture:previousFrameCountTexture:destinationFrameCountTexture:motionVectorTexture:depthNormalTexture:previousDepthNormalTexture:':
+                name: encodeReprojection
+            '-encodeReprojectionToCommandBuffer:sourceTexture:previousTexture:destinationTexture:previousLuminanceMomentsTexture:destinationLuminanceMomentsTexture:sourceTexture2:previousTexture2:destinationTexture2:previousLuminanceMomentsTexture2:destinationLuminanceMomentsTexture2:previousFrameCountTexture:destinationFrameCountTexture:motionVectorTexture:depthNormalTexture:previousDepthNormalTexture:':
+                name: encodeReprojectionToCommandBuffer$sourceTexture$previousTexture$destinationTexture$previousLuminanceMomentsTexture$destinationLuminanceMomentsTexture$sourceTexture2$previousTexture2$destinationTexture2$previousLuminanceMomentsTexture2$destinationLuminanceMomentsTexture2$previousFrameCountTexture$destinationFrameCountTexture$motionVectorTexture$depthNormalTexture$previousDepthNormalTexture$
+            '-encodeVarianceEstimationToCommandBuffer:sourceTexture:luminanceMomentsTexture:destinationTexture:frameCountTexture:depthNormalTexture:':
+                name: encodeVarianceEstimation
+            '-encodeVarianceEstimationToCommandBuffer:sourceTexture:luminanceMomentsTexture:destinationTexture:sourceTexture2:luminanceMomentsTexture2:destinationTexture2:frameCountTexture:depthNormalTexture:':
+                name: encodeVarianceEstimation
+            '-encodeBilateralFilterToCommandBuffer:stepDistance:sourceTexture:destinationTexture:depthNormalTexture:':
+                name: encodeBilateralFilter
+            '-encodeBilateralFilterToCommandBuffer:stepDistance:sourceTexture:destinationTexture:sourceTexture2:destinationTexture2:depthNormalTexture:':
+                name: encodeBilateralFilter
+    MPSSVGFDefaultTextureAllocator: #since 13.0
+        methods:
+            '-initWithDevice:':
+                name: init
+            '-textureWithPixelFormat:width:height:':
+                name: allocateTexture
+    MPSSVGFDenoiser: #since 13.0
+        methods:
+            '-initWithDevice:':
+                name: init
+            '-initWithSVGF:textureAllocator:':
+                name: init
+            '-encodeToCommandBuffer:sourceTexture:motionVectorTexture:depthNormalTexture:previousDepthNormalTexture:':
+                name: encode
+            '-encodeToCommandBuffer:sourceTexture:destinationTexture:sourceTexture2:destinationTexture2:motionVectorTexture:depthNormalTexture:previousDepthNormalTexture:':
+                name: encode
+    MPSTemporalAA: #since 13.0
+        methods:
+            '-encodeWithCoder:':
+                name: encode
+            '-encodeToCommandBuffer:sourceTexture:previousTexture:destinationTexture:motionVectorTexture:depthTexture:':
+                name: encode
+    MPSTriangleAccelerationStructure: {} #since 12.0
 
 protocols:
     MPSCNNBatchNormalizationDataSource: #since 11.3
@@ -1668,24 +2173,90 @@ protocols:
             '-destinationImageDescriptorForSourceImages:sourceStates:forKernel:suggestedDescriptor:':
                 name: getDestinationImageDescriptor
     MPSNNTrainableNode: {}
-
+    MPSCNNGroupNormalizationDataSource: #since 13.0
+        methods:
+            '-updateGammaAndBetaWithCommandBuffer:groupNormalizationStateBatch:':
+                name: updateGammaAndBeta
+            '-updateGammaAndBetaWithGroupNormalizationStateBatch:':
+                name: updateGammaAndBeta
+            '-encodeWithCoder:':
+                name: encode
+            '-initWithCoder:':
+                name: init
+            '-copyWithZone:device:':
+                name: copy
+    MPSHeapProvider:
+        methods:
+            '-newHeapWithDescriptor:':
+                name: createNewHeap
+            '-retireHeap:cacheDelay:':
+                name: retireHeap
+    MPSNDArrayAllocator:
+        methods:
+            '-arrayForCommandBuffer:arrayDescriptor:kernel:':
+                name: getArrayForCommandBuffer
+    MPSNNGramMatrixCallback:
+        methods:
+            '-alphaForSourceImage:destinationImage:':
+                name: getAlphaForSourceImage
+    MPSNNLossCallback:
+        methods:
+            '-scalarWeightForSourceImage:destinationImage:':
+                name: getScalarWeightForSourceImage
+    MPSSVGFTextureAllocator: #since 13.0
+        skip_adapter: true
+        methods:
+            '-textureWithPixelFormat:width:height:':
+                name: allocateTexture
 functions:
+    MPSImageBatch(.*):
+        class: MPSImageBatch
+        name: '#{g[0].downcase_first}'
+    MPSStateBatch(.*):
+        class: MPSStateBatch
+        name: '#{g[0].downcase_first}'
+    MPS(GetImageType):
+        class: MPSImage
+        name: '#{g[0].downcase_first}'
+    MPS(SupportsMTLDevice):
+        class: MetalPerformanceShaders
+        name: '#{g[0].downcase_first}'
+    MPS(HintTemporaryMemoryHighWaterMark):
+        class: MetalPerformanceShaders
+        name: '#{g[0].downcase_first}'
+    MPS(SetHeapCacheDuration):
+        class: MetalPerformanceShaders
+        name: '#{g[0].downcase_first}'
+    MPS(GetPreferredDevice):
+        class: MetalPerformanceShaders
+        name: '#{g[0].downcase_first}'
 
     # Make sure we don't miss any functions if new ones are introduced in a later version
-    (k?MTL.*):
+    (k?MPS.*):
         class: FIXME
         name: 'Function__#{g[0]}'
 
 values:
+    MPSRectNoClip:
+        class: MetalPerformanceShaders
+        name: getRectNoClip
 
     # Make sure we don't miss any values if new ones are introduced in a later version
-    (k?MTL.*):
+    (k?MPS.*):
         class: FIXME
         name: 'Value__#{g[0]}'
 
 constants:
+    # TODO: excluding these constants for now 
+    MPSKernelTypes_h: {exclude: true}
+    MPSFunctionConstantIndex:  {exclude: true}
+    MPSBatchSizeIndex:  {exclude: true}
+    MPSUserConstantIndex:  {exclude: true}
+    MPSNDArrayConstantIndex:  {exclude: true}
+    MPSMaxTextures:  {exclude: true}
+    MPSIsArrayOfTexturesWritable:  {exclude: true}
 
     # Make sure we don't miss any constants if new ones are introduced in a later version
-    (k?MTL.*):
+    (k?MPS.*):
         class: FIXME
         name: 'Constant__#{g[0]}'

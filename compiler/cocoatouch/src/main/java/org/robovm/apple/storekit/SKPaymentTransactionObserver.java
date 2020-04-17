@@ -47,29 +47,14 @@ import org.robovm.apple.uikit.*;
     
     /*</properties>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "paymentQueue:updatedTransactions:")
     void updatedTransactions(SKPaymentQueue queue, NSArray<SKPaymentTransaction> transactions);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "paymentQueue:removedTransactions:")
     void removedTransactions(SKPaymentQueue queue, NSArray<SKPaymentTransaction> transactions);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "paymentQueue:restoreCompletedTransactionsFailedWithError:")
     void restoreCompletedTransactionsFailed(SKPaymentQueue queue, NSError error);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "paymentQueueRestoreCompletedTransactionsFinished:")
     void restoreCompletedTransactionsFinished(SKPaymentQueue queue);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "paymentQueue:updatedDownloads:")
     void updatedDownloads(SKPaymentQueue queue, NSArray<SKDownload> downloads);
     /**
@@ -77,6 +62,11 @@ import org.robovm.apple.uikit.*;
      */
     @Method(selector = "paymentQueue:shouldAddStorePayment:forProduct:")
     boolean shouldAddStorePayment(SKPaymentQueue queue, SKPayment payment, SKProduct product);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "paymentQueueDidChangeStorefront:")
+    void paymentQueueDidChangeStorefront(SKPaymentQueue queue);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

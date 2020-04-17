@@ -36,6 +36,7 @@ import org.robovm.apple.imageio.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.metal.*;
 import org.robovm.apple.iosurface.*;
+import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -136,9 +137,6 @@ import org.robovm.apple.iosurface.*;
         set(Keys.WorkingColorSpace(), workingColorSpace.as(NSObject.class));
         return this;
     }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public CIFormat getWorkingFormat() {
         if (has(Keys.WorkingFormat())) {
             NSNumber val = (NSNumber) get(Keys.WorkingFormat());
@@ -146,9 +144,6 @@ import org.robovm.apple.iosurface.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public CIContextOptions setWorkingFormat(CIFormat workingFormat) {
         set(Keys.WorkingFormat(), NSNumber.valueOf(workingFormat.value()));
         return this;
@@ -164,9 +159,6 @@ import org.robovm.apple.iosurface.*;
         set(Keys.UseSoftwareRenderer(), NSNumber.valueOf(usesSoftwareRenderer));
         return this;
     }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public boolean requestsLowPriority() {
         if (has(Keys.PriorityRequestLow())) {
             NSNumber val = (NSNumber) get(Keys.PriorityRequestLow());
@@ -174,9 +166,6 @@ import org.robovm.apple.iosurface.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public CIContextOptions setRequestsLowPriority(boolean requestsLowPriority) {
         set(Keys.PriorityRequestLow(), NSNumber.valueOf(requestsLowPriority));
         return this;
@@ -191,9 +180,6 @@ import org.robovm.apple.iosurface.*;
         public static native NSString OutputColorSpace();
         @GlobalValue(symbol="kCIContextWorkingColorSpace", optional=true)
         public static native NSString WorkingColorSpace();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="kCIContextWorkingFormat", optional=true)
         public static native NSString WorkingFormat();
         /**
@@ -201,9 +187,6 @@ import org.robovm.apple.iosurface.*;
          */
         @GlobalValue(symbol="kCIContextHighQualityDownsample", optional=true)
         public static native NSString HighQualityDownsample();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="kCIContextOutputPremultiplied", optional=true)
         public static native NSString OutputPremultiplied();
         /**
@@ -213,11 +196,13 @@ import org.robovm.apple.iosurface.*;
         public static native NSString CacheIntermediates();
         @GlobalValue(symbol="kCIContextUseSoftwareRenderer", optional=true)
         public static native NSString UseSoftwareRenderer();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="kCIContextPriorityRequestLow", optional=true)
         public static native NSString PriorityRequestLow();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="kCIContextAllowLowPower", optional=true)
+        public static native NSString AllowLowPower();
     }
     /*</keys>*/
 }

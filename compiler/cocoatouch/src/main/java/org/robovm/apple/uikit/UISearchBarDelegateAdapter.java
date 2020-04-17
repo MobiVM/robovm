@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -67,9 +69,6 @@ import org.robovm.apple.intents.*;
     public void didEndEditing(UISearchBar searchBar) {}
     @NotImplemented("searchBar:textDidChange:")
     public void didChange(UISearchBar searchBar, String searchText) {}
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @NotImplemented("searchBar:shouldChangeTextInRange:replacementText:")
     public boolean shouldChange(UISearchBar searchBar, @ByVal NSRange range, String text) { return false; }
     @NotImplemented("searchBarSearchButtonClicked:")
@@ -78,14 +77,8 @@ import org.robovm.apple.intents.*;
     public void bookmarkButtonClicked(UISearchBar searchBar) {}
     @NotImplemented("searchBarCancelButtonClicked:")
     public void cancelButtonClicked(UISearchBar searchBar) {}
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @NotImplemented("searchBarResultsListButtonClicked:")
     public void resultsListButtonClicked(UISearchBar searchBar) {}
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @NotImplemented("searchBar:selectedScopeButtonIndexDidChange:")
     public void selectedScopeButtonIndexDidChange(UISearchBar searchBar, @MachineSizedSInt long selectedScope) {}
     /*</methods>*/

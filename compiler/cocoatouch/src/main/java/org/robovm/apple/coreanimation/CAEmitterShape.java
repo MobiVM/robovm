@@ -92,29 +92,11 @@ import org.robovm.apple.metal.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final CAEmitterShape Point = new CAEmitterShape("Point");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final CAEmitterShape Line = new CAEmitterShape("Line");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final CAEmitterShape Rectangle = new CAEmitterShape("Rectangle");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final CAEmitterShape Cuboid = new CAEmitterShape("Cuboid");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final CAEmitterShape Circle = new CAEmitterShape("Circle");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final CAEmitterShape Sphere = new CAEmitterShape("Sphere");
     /*</constants>*/
     
@@ -141,34 +123,16 @@ import org.robovm.apple.metal.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="kCAEmitterLayerPoint", optional=true)
         public static native NSString Point();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="kCAEmitterLayerLine", optional=true)
         public static native NSString Line();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="kCAEmitterLayerRectangle", optional=true)
         public static native NSString Rectangle();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="kCAEmitterLayerCuboid", optional=true)
         public static native NSString Cuboid();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="kCAEmitterLayerCircle", optional=true)
         public static native NSString Circle();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="kCAEmitterLayerSphere", optional=true)
         public static native NSString Sphere();
         /*</values>*/

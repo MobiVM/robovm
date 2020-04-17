@@ -97,14 +97,8 @@ import org.robovm.apple.metal.*;
     public native UIColor getBackgroundColor();
     @Property(selector = "setBackgroundColor:")
     public native void setBackgroundColor(UIColor v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "delegate")
     public native SKSceneDelegate getDelegate();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setDelegate:", strongRef = true)
     public native void setDelegate(SKSceneDelegate v);
     @Property(selector = "anchorPoint")
@@ -135,14 +129,8 @@ import org.robovm.apple.metal.*;
     public native void didEvaluateActions();
     @Method(selector = "didSimulatePhysics")
     public native void didSimulatePhysics();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "didApplyConstraints")
     public native void didApplyConstraints();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "didFinishUpdate")
     public native void didFinishUpdate();
     @Method(selector = "didMoveToView:")

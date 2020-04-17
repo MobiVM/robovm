@@ -92,7 +92,7 @@ import org.robovm.apple.metal.*;
     public native MPSCNNBatchNormalizationState getTemporaryResult(MTLCommandBuffer commandBuffer, MPSImage sourceImage, NSArray<MPSState> sourceStates, MPSImage destinationImage);
     /**
      * @since Available in iOS 11.3 and later.
-     * @deprecated Deprecated in iOS 12.0.
+     * @deprecated Deprecated in iOS 12.0. Use Please use -reloadGammaAndBetaFromDataSource and/or -relaodMeanAndVarianceFromDataSource instead.
      */
     @Deprecated
     @Method(selector = "reloadDataSource:")

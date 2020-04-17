@@ -56,20 +56,44 @@ import org.robovm.apple.imageio.*;
     protected PHLivePhotoRequestOptions(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 9.1 and later.
+     */
     @Property(selector = "version")
     public native PHImageRequestOptionsVersion getVersion();
+    /**
+     * @since Available in iOS 9.1 and later.
+     */
     @Property(selector = "setVersion:")
     public native void setVersion(PHImageRequestOptionsVersion v);
+    /**
+     * @since Available in iOS 9.1 and later.
+     */
     @Property(selector = "deliveryMode")
     public native PHImageRequestOptionsDeliveryMode getDeliveryMode();
+    /**
+     * @since Available in iOS 9.1 and later.
+     */
     @Property(selector = "setDeliveryMode:")
     public native void setDeliveryMode(PHImageRequestOptionsDeliveryMode v);
+    /**
+     * @since Available in iOS 9.1 and later.
+     */
     @Property(selector = "isNetworkAccessAllowed")
     public native boolean isNetworkAccessAllowed();
+    /**
+     * @since Available in iOS 9.1 and later.
+     */
     @Property(selector = "setNetworkAccessAllowed:")
     public native void setNetworkAccessAllowed(boolean v);
+    /**
+     * @since Available in iOS 9.1 and later.
+     */
     @Property(selector = "progressHandler")
     public native @Block VoidBlock4<Double, NSError, BooleanPtr, NSDictionary<?, ?>> getProgressHandler();
+    /**
+     * @since Available in iOS 9.1 and later.
+     */
     @Property(selector = "setProgressHandler:")
     public native void setProgressHandler(@Block VoidBlock4<Double, NSError, BooleanPtr, NSDictionary<?, ?>> v);
     /*</properties>*/

@@ -54,7 +54,7 @@ import org.robovm.apple.dispatch.*;
     protected NSURLProtectionSpace(Handle h, long handle) { super(h, handle); }
     protected NSURLProtectionSpace(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public NSURLProtectionSpace(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public NSURLProtectionSpace(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "realm")
@@ -73,14 +73,8 @@ import org.robovm.apple.dispatch.*;
     public native NSURLProtectionSpaceProtocol getProtocol();
     @Property(selector = "authenticationMethod")
     public native NSURLAuthenticationMethod getAuthenticationMethod();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "distinguishedNames")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getDistinguishedNames();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @WeaklyLinked
     @Property(selector = "serverTrust")
     public native SecTrust getServerTrust();
@@ -117,6 +111,6 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

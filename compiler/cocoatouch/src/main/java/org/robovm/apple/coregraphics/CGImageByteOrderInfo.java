@@ -33,9 +33,7 @@ import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 2.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
 public enum /*<name>*/CGImageByteOrderInfo/*</name>*/ implements ValuedEnum {

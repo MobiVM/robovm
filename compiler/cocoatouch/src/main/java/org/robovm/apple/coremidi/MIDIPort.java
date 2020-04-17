@@ -100,9 +100,6 @@ import org.robovm.apple.coremidi.MIDIEndpoint.MIDIEndpointPtr;
         return connectSource(source, localRefconId);
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     @Bridge(symbol="MIDIInputPortCreate", optional=true)
     protected static native MIDIError createInputPort(MIDIClient client, String portName, FunctionPtr readProc, @Pointer long refCon, MIDIPort.MIDIPortPtr outPort);
     /**
@@ -110,24 +107,12 @@ import org.robovm.apple.coremidi.MIDIEndpoint.MIDIEndpointPtr;
      */
     @Bridge(symbol="MIDIInputPortCreateWithBlock", optional=true)
     protected static native MIDIError createInputPort(MIDIClient client, String portName, MIDIPort.MIDIPortPtr outPort, @Block VoidBlock2<MIDIPacketList, Long> readBlock);
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     @Bridge(symbol="MIDIOutputPortCreate", optional=true)
     protected static native MIDIError createOutputPort(MIDIClient client, String portName, MIDIPort.MIDIPortPtr outPort);
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     @Bridge(symbol="MIDIPortDispose", optional=true)
     public native MIDIError dispose();
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     @Bridge(symbol="MIDIPortConnectSource", optional=true)
     protected native MIDIError connectSource(MIDIEndpoint source, @Pointer long connRefCon);
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     @Bridge(symbol="MIDIPortDisconnectSource", optional=true)
     public native MIDIError disconnectSource(MIDIEndpoint source);
     /**

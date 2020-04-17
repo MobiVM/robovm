@@ -29,12 +29,11 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.security.*;
+import org.robovm.apple.network.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("NetworkExtension") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NEVPNIKEv2SecurityAssociationParameters/*</name>*/ 
@@ -49,47 +48,23 @@ import org.robovm.apple.security.*;
     protected NEVPNIKEv2SecurityAssociationParameters(Handle h, long handle) { super(h, handle); }
     protected NEVPNIKEv2SecurityAssociationParameters(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public NEVPNIKEv2SecurityAssociationParameters(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public NEVPNIKEv2SecurityAssociationParameters(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "encryptionAlgorithm")
     public native NEVPNIKEv2EncryptionAlgorithm getEncryptionAlgorithm();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setEncryptionAlgorithm:")
     public native void setEncryptionAlgorithm(NEVPNIKEv2EncryptionAlgorithm v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "integrityAlgorithm")
     public native NEVPNIKEv2IntegrityAlgorithm getIntegrityAlgorithm();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setIntegrityAlgorithm:")
     public native void setIntegrityAlgorithm(NEVPNIKEv2IntegrityAlgorithm v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "diffieHellmanGroup")
     public native NEVPNIKEv2DiffieHellmanGroup getDiffieHellmanGroup();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setDiffieHellmanGroup:")
     public native void setDiffieHellmanGroup(NEVPNIKEv2DiffieHellmanGroup v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "lifetimeMinutes")
     public native int getLifetimeMinutes();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setLifetimeMinutes:")
     public native void setLifetimeMinutes(int v);
     @Property(selector = "supportsSecureCoding")
@@ -100,6 +75,6 @@ import org.robovm.apple.security.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

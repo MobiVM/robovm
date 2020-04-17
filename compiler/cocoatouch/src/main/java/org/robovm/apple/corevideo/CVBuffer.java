@@ -59,39 +59,18 @@ import org.robovm.apple.iosurface.*;
         return CVAttachmentMode.valueOf(ptr.get());
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CVBufferSetAttachment", optional=true)
     protected native void setAttachment(CFString key, CFType value, CVAttachmentMode attachmentMode);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CVBufferGetAttachment", optional=true)
     protected native CFType getAttachment(CFString key, IntPtr attachmentMode);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CVBufferRemoveAttachment", optional=true)
     protected native void removeAttachment(CFString key);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CVBufferRemoveAllAttachments", optional=true)
     protected native void removeAllAttachments();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CVBufferGetAttachments", optional=true)
     protected native NSDictionary getAttachments(CVAttachmentMode attachmentMode);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CVBufferSetAttachments", optional=true)
     protected native void setAttachments(NSDictionary theAttachments, CVAttachmentMode attachmentMode);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CVBufferPropagateAttachments", optional=true)
     protected native void propagateAttachments(CVBuffer destinationBuffer);
     /*</methods>*/

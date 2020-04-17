@@ -39,9 +39,7 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSUserActivity/*</name>*/ 
@@ -128,6 +126,16 @@ import org.robovm.apple.dispatch.*;
     public native NSUserActivityDelegate getDelegate();
     @Property(selector = "setDelegate:", strongRef = true)
     public native void setDelegate(NSUserActivityDelegate v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "targetContentIdentifier")
+    public native String getTargetContentIdentifier();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setTargetContentIdentifier:")
+    public native void setTargetContentIdentifier(String v);
     /**
      * @since Available in iOS 9.0 and later.
      */

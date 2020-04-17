@@ -53,6 +53,11 @@ import org.robovm.apple.metal.*;
     public MPSCNNConvolutionWeightsAndBiasesState(MTLBuffer weights, MTLBuffer biases) { super((SkipInit) null); initObject(init(weights, biases)); }
     @Method(selector = "initWithDevice:cnnConvolutionDescriptor:")
     public MPSCNNConvolutionWeightsAndBiasesState(MTLDevice device, MPSCNNConvolutionDescriptor descriptor) { super((SkipInit) null); initObject(init(device, descriptor)); }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "initWithWeights:weightsOffset:biases:biasesOffset:cnnConvolutionDescriptor:")
+    public MPSCNNConvolutionWeightsAndBiasesState(MTLBuffer weights, @MachineSizedUInt long weightsOffset, MTLBuffer biases, @MachineSizedUInt long biasesOffset, MPSCNNConvolutionDescriptor descriptor) { super((SkipInit) null); initObject(init(weights, weightsOffset, biases, biasesOffset, descriptor)); }
     public MPSCNNConvolutionWeightsAndBiasesState(MTLCommandBuffer commandBuffer, MPSCNNConvolutionDescriptor descriptor) { super((Handle) null, create(commandBuffer, descriptor)); retain(getHandle()); }
     @Method(selector = "initWithDevice:bufferSize:")
     public MPSCNNConvolutionWeightsAndBiasesState(MTLDevice device, @MachineSizedUInt long bufferSize) { super(device, bufferSize); }
@@ -73,6 +78,10 @@ import org.robovm.apple.metal.*;
     public native MTLBuffer getWeights();
     @Property(selector = "biases")
     public native MTLBuffer getBiases();
+    @Property(selector = "weightsOffset")
+    public native @MachineSizedUInt long getWeightsOffset();
+    @Property(selector = "biasesOffset")
+    public native @MachineSizedUInt long getBiasesOffset();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -80,6 +89,11 @@ import org.robovm.apple.metal.*;
     protected native @Pointer long init(MTLBuffer weights, MTLBuffer biases);
     @Method(selector = "initWithDevice:cnnConvolutionDescriptor:")
     protected native @Pointer long init(MTLDevice device, MPSCNNConvolutionDescriptor descriptor);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "initWithWeights:weightsOffset:biases:biasesOffset:cnnConvolutionDescriptor:")
+    protected native @Pointer long init(MTLBuffer weights, @MachineSizedUInt long weightsOffset, MTLBuffer biases, @MachineSizedUInt long biasesOffset, MPSCNNConvolutionDescriptor descriptor);
     @Method(selector = "temporaryCNNConvolutionWeightsAndBiasesStateWithCommandBuffer:cnnConvolutionDescriptor:")
     protected static native @Pointer long create(MTLCommandBuffer commandBuffer, MPSCNNConvolutionDescriptor descriptor);
     /*</methods>*/

@@ -91,17 +91,8 @@ import org.robovm.apple.iosurface.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CVBufferAttribute PropagatedAttachments = new CVBufferAttribute("PropagatedAttachments");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CVBufferAttribute NonPropagatedAttachments = new CVBufferAttribute("NonPropagatedAttachments");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CVBufferAttribute MovieTime = new CVBufferAttribute("MovieTime");
     /*</constants>*/
     
@@ -131,19 +122,10 @@ import org.robovm.apple.iosurface.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVBufferPropagatedAttachmentsKey", optional=true)
         public static native CFString PropagatedAttachments();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVBufferNonPropagatedAttachmentsKey", optional=true)
         public static native CFString NonPropagatedAttachments();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVBufferMovieTimeKey", optional=true)
         public static native CFString MovieTime();
         /*</values>*/

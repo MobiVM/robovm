@@ -116,9 +116,6 @@ import org.robovm.apple.audiotoolbox.*;
     }
     
 
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public boolean prefersPreciseDurationAndTiming() {
         if (has(Keys.PreferPreciseDurationAndTiming())) {
             NSNumber val = (NSNumber) get(Keys.PreferPreciseDurationAndTiming());
@@ -126,16 +123,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public AVURLAssetOptions setPrefersPreciseDurationAndTiming(boolean prefersPreciseDurationAndTiming) {
         set(Keys.PreferPreciseDurationAndTiming(), NSNumber.valueOf(prefersPreciseDurationAndTiming));
         return this;
     }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public AVAssetReferenceRestrictions getReferenceRestrictions() {
         if (has(Keys.ReferenceRestrictions())) {
             NSNumber val = (NSNumber) get(Keys.ReferenceRestrictions());
@@ -143,16 +134,10 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public AVURLAssetOptions setReferenceRestrictions(AVAssetReferenceRestrictions referenceRestrictions) {
         set(Keys.ReferenceRestrictions(), NSNumber.valueOf(referenceRestrictions.value()));
         return this;
     }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public NSArray<NSHTTPCookie> getHTTPCookies() {
         if (has(Keys.HTTPCookies())) {
             NSArray<NSHTTPCookie> val = (NSArray<NSHTTPCookie>) get(Keys.HTTPCookies());
@@ -160,9 +145,6 @@ import org.robovm.apple.audiotoolbox.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public AVURLAssetOptions setHTTPCookies(NSArray<NSHTTPCookie> hTTPCookies) {
         set(Keys.HTTPCookies(), hTTPCookies);
         return this;
@@ -173,19 +155,10 @@ import org.robovm.apple.audiotoolbox.*;
     @Library("AVFoundation")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVURLAssetPreferPreciseDurationAndTimingKey", optional=true)
         public static native NSString PreferPreciseDurationAndTiming();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="AVURLAssetReferenceRestrictionsKey", optional=true)
         public static native NSString ReferenceRestrictions();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVURLAssetHTTPCookiesKey", optional=true)
         public static native NSString HTTPCookies();
         /**
@@ -193,6 +166,16 @@ import org.robovm.apple.audiotoolbox.*;
          */
         @GlobalValue(symbol="AVURLAssetAllowsCellularAccessKey", optional=true)
         public static native NSString AllowsCellularAccess();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="AVURLAssetAllowsExpensiveNetworkAccessKey", optional=true)
+        public static native NSString AllowsExpensiveNetworkAccess();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="AVURLAssetAllowsConstrainedNetworkAccessKey", optional=true)
+        public static native NSString AllowsConstrainedNetworkAccess();
     }
     /*</keys>*/
 }

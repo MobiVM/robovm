@@ -39,15 +39,51 @@ public enum /*<name>*/NFCReaderError/*</name>*/ implements NSErrorCode {
     /*<values>*/
     ReaderErrorUnsupportedFeature(1L),
     ReaderErrorSecurityViolation(2L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    ReaderErrorInvalidParameter(3L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    ReaderErrorInvalidParameterLength(4L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    ReaderErrorParameterOutOfBound(5L),
     ReaderTransceiveErrorTagConnectionLost(100L),
     ReaderTransceiveErrorRetryExceeded(101L),
     ReaderTransceiveErrorTagResponseError(102L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    ReaderTransceiveErrorSessionInvalidated(103L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    ReaderTransceiveErrorTagNotConnected(104L),
     ReaderSessionInvalidationErrorUserCanceled(200L),
     ReaderSessionInvalidationErrorSessionTimeout(201L),
     ReaderSessionInvalidationErrorSessionTerminatedUnexpectedly(202L),
     ReaderSessionInvalidationErrorSystemIsBusy(203L),
     ReaderSessionInvalidationErrorFirstNDEFTagRead(204L),
-    TagCommandConfigurationErrorInvalidParameters(300L);
+    TagCommandConfigurationErrorInvalidParameters(300L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    NdefReaderSessionErrorTagNotWritable(400L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    NdefReaderSessionErrorTagUpdateFailure(401L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    NdefReaderSessionErrorTagSizeTooSmall(402L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    NdefReaderSessionErrorZeroLengthMessage(403L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(NFCReaderError.class); }/*</bind>*/
@@ -64,6 +100,11 @@ public enum /*<name>*/NFCReaderError/*</name>*/ implements NSErrorCode {
      */
     @GlobalValue(symbol="NFCISO15693TagResponseErrorKey", optional=true)
     public static native NSString ISO15693TagResponseErrorKey();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @GlobalValue(symbol="NFCTagResponseUnexpectedLengthErrorKey", optional=true)
+    public static native NSString TagResponseUnexpectedLengthErrorKey();
     /*</methods>*/
 
     private final long n;

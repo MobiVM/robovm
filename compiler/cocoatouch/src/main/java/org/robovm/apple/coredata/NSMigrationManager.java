@@ -29,12 +29,12 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corespotlight.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 3.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreData") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSMigrationManager/*</name>*/ 
@@ -52,14 +52,8 @@ import org.robovm.apple.corespotlight.*;
     public NSMigrationManager(NSManagedObjectModel sourceModel, NSManagedObjectModel destinationModel) { super((SkipInit) null); initObject(init(sourceModel, destinationModel)); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "usesStoreSpecificMigrationManager")
     public native boolean usesStoreSpecificMigrationManager();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setUsesStoreSpecificMigrationManager:")
     public native void setUsesStoreSpecificMigrationManager(boolean v);
     @Property(selector = "mappingModel")

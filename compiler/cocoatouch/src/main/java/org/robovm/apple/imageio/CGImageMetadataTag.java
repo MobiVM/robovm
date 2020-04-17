@@ -72,44 +72,20 @@ import org.robovm.apple.coregraphics.*;
     /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Bridge(symbol="CGImageMetadataTagGetTypeID", optional=true)
     public static native @MachineSizedUInt long getClassTypeID();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Bridge(symbol="CGImageMetadataTagCreate", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGImageMetadataTag create(String xmlns, String prefix, String name, CGImageMetadataType type, CFType value);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Bridge(symbol="CGImageMetadataTagCopyNamespace", optional=true)
     public native @org.robovm.rt.bro.annotation.Marshaler(CFString.AsStringNoRetainMarshaler.class) String getNamespace();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Bridge(symbol="CGImageMetadataTagCopyPrefix", optional=true)
     public native @org.robovm.rt.bro.annotation.Marshaler(CFString.AsStringNoRetainMarshaler.class) String getPrefix();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Bridge(symbol="CGImageMetadataTagCopyName", optional=true)
     public native @org.robovm.rt.bro.annotation.Marshaler(CFString.AsStringNoRetainMarshaler.class) String getName();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Bridge(symbol="CGImageMetadataTagCopyValue", optional=true)
     public native CFType getValue();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Bridge(symbol="CGImageMetadataTagGetType", optional=true)
     public native CGImageMetadataType getType();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Bridge(symbol="CGImageMetadataTagCopyQualifiers", optional=true)
     public native @org.robovm.rt.bro.annotation.Marshaler(CFArray.AsStringListMarshaler.class) List<String> getQualifiers();
     /*</methods>*/

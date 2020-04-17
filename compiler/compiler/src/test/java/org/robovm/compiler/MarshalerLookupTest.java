@@ -62,13 +62,13 @@ public class MarshalerLookupTest {
         Options.v().set_include_all(true);
         Options.v().set_print_tags_in_output(true);
         Options.v().set_allow_phantom_refs(true);
-        Options.v().set_soot_classpath(System.getProperty("sun.boot.class.path") + 
-                ":" + System.getProperty("java.class.path"));
+        Options.v().set_soot_classpath(ClassPathUtils.getBcPath() +
+                File.pathSeparator + System.getProperty("java.class.path"));
         Scene.v().loadNecessaryClasses();
         
         Config.Builder configBuilder = new Config.Builder();
-        for (String p : System.getProperty("sun.boot.class.path").split(File.pathSeparator)) {
-            configBuilder.addBootClasspathEntry(new File(p));
+        for (File p : ClassPathUtils.getBcPaths()) {
+            configBuilder.addBootClasspathEntry(p);
         }
         for (String p : System.getProperty("java.class.path").split(File.pathSeparator)) {
             configBuilder.addClasspathEntry(new File(p));

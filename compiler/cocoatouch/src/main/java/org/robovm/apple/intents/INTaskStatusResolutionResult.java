@@ -56,8 +56,8 @@ import org.robovm.apple.corelocation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "successWithResolvedTaskStatus:")
-    public static native INTaskStatusResolutionResult successWithResolvedTaskStatus(INTaskStatus resolvedTaskStatus);
+    public static native INTaskStatusResolutionResult success(INTaskStatus resolvedTaskStatus);
     @Method(selector = "confirmationRequiredWithTaskStatusToConfirm:")
-    public static native INTaskStatusResolutionResult confirmationRequiredWithTaskStatusToConfirm(INTaskStatus taskStatusToConfirm);
+    public static native INTaskStatusResolutionResult confirmationRequired(INTaskStatus taskStatusToConfirm);
     /*</methods>*/
 }

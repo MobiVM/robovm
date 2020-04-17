@@ -50,9 +50,6 @@ import org.robovm.apple.uikit.*;
     /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Bridge(symbol="CTFramesetterGetTypeID", optional=true)
     public static native @MachineSizedUInt long getClassTypeID();
     /**
@@ -60,24 +57,12 @@ import org.robovm.apple.uikit.*;
      */
     @Bridge(symbol="CTFramesetterCreateWithTypesetter", optional=true)
     public static native CTFramesetter createWithTypesetter(CTTypesetter typesetter);
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Bridge(symbol="CTFramesetterCreateWithAttributedString", optional=true)
-    public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CTFramesetter create(NSAttributedString string);
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
+    public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CTFramesetter create(NSAttributedString attrString);
     @Bridge(symbol="CTFramesetterCreateFrame", optional=true)
     public native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CTFrame createFrame(@ByVal CFRange stringRange, CGPath path, CTFrameAttributes frameAttributes);
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Bridge(symbol="CTFramesetterGetTypesetter", optional=true)
     public native CTTypesetter getTypesetter();
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Bridge(symbol="CTFramesetterSuggestFrameSizeWithConstraints", optional=true)
     public native @ByVal CGSize suggestFrameSize(@ByVal CFRange stringRange, CTFrameAttributes frameAttributes, @ByVal CGSize constraints, CFRange fitRange);
     /*</methods>*/

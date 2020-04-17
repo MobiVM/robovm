@@ -32,9 +32,7 @@ import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.1 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("GameKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GKMatchRequest/*</name>*/ 
@@ -66,69 +64,51 @@ import org.robovm.apple.uikit.*;
     public native int getPlayerAttributes();
     @Property(selector = "setPlayerAttributes:")
     public native void setPlayerAttributes(int v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "recipients")
     public native NSArray<GKPlayer> getRecipients();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setRecipients:")
     public native void setRecipients(NSArray<GKPlayer> v);
     /**
-     * @since Available in iOS 4.1 and later.
      * @deprecated Deprecated in iOS 8.0. use recipients
      */
     @Deprecated
     @Property(selector = "playersToInvite")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getPlayersToInvite();
     /**
-     * @since Available in iOS 4.1 and later.
      * @deprecated Deprecated in iOS 8.0. use recipients
      */
     @Deprecated
     @Property(selector = "setPlayersToInvite:")
     public native void setPlayersToInvite(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> v);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "inviteMessage")
     public native String getInviteMessage();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "setInviteMessage:")
     public native void setInviteMessage(String v);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "defaultNumberOfPlayers")
     public native @MachineSizedUInt long getDefaultNumberOfPlayers();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "setDefaultNumberOfPlayers:")
     public native void setDefaultNumberOfPlayers(@MachineSizedUInt long v);
     /**
-     * @since Available in iOS 8.0 and later.
+     * @since Available in iOS 13.0 and later.
      */
+    @Property(selector = "restrictToAutomatch")
+    public native boolean isRestrictToAutomatch();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setRestrictToAutomatch:")
+    public native void setRestrictToAutomatch(boolean v);
     @Property(selector = "recipientResponseHandler")
     public native @Block VoidBlock2<GKPlayer, GKInviteRecipientResponse> getRecipientResponseHandler();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setRecipientResponseHandler:")
     public native void setRecipientResponseHandler(@Block VoidBlock2<GKPlayer, GKInviteRecipientResponse> v);
     /**
-     * @since Available in iOS 6.0 and later.
      * @deprecated Deprecated in iOS 8.0. use recipientResponseHandler
      */
     @Deprecated
     @Property(selector = "inviteeResponseHandler")
     public native @Block VoidBlock2<NSString, GKInviteRecipientResponse> getInviteeResponseHandler();
     /**
-     * @since Available in iOS 6.0 and later.
      * @deprecated Deprecated in iOS 8.0. use recipientResponseHandler
      */
     @Deprecated
@@ -137,9 +117,6 @@ import org.robovm.apple.uikit.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "maxPlayersAllowedForMatchOfType:")
     public static native @MachineSizedUInt long getMaxPlayersAllowedForMatchType(GKMatchType matchType);
     /*</methods>*/

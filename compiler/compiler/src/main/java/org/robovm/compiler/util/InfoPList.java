@@ -124,13 +124,9 @@ public class InfoPList {
         Properties allProps = new Properties(includeSystemProperties ? System.getProperties() : new Properties());
         allProps.putAll(props);
 
-        Method getDocBuilder = XMLPropertyListParser.class.getDeclaredMethod("getDocBuilder");
-        getDocBuilder.setAccessible(true);
-        Method parseDocument = XMLPropertyListParser.class.getDeclaredMethod("parseDocument", Document.class);
-        parseDocument.setAccessible(true);
-        DocumentBuilder docBuilder = (DocumentBuilder) getDocBuilder.invoke(null);
+        DocumentBuilder docBuilder = XMLPropertyListParser.getDocBuilder();
         Document doc = docBuilder.parse(file);
         replacePropertyRefs(doc, allProps);
-        return (NSObject) parseDocument.invoke(null, doc);
+        return XMLPropertyListParser.parse(doc);
     }
 }

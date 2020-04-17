@@ -46,9 +46,6 @@ public final class /*<name>*/CFSocketFlags/*</name>*/ extends Bits</*<name>*/CFS
     public static final CFSocketFlags AutomaticallyReenableAcceptCallBack = new CFSocketFlags(2L);
     public static final CFSocketFlags AutomaticallyReenableDataCallBack = new CFSocketFlags(3L);
     public static final CFSocketFlags AutomaticallyReenableWriteCallBack = new CFSocketFlags(8L);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CFSocketFlags LeaveErrors = new CFSocketFlags(64L);
     public static final CFSocketFlags CloseOnInvalidate = new CFSocketFlags(128L);
     /*</values>*/

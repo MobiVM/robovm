@@ -17,13 +17,15 @@
 #import <Foundation/Foundation.h>
 #import "jni.h"
 
-static dispatch_once_t once;
-static id instance;
-NSObject* rvmInstantiateFramework(const char *className) {
-    dispatch_once(&once, ^ {
+static JNIEnv *env;
+const char* __attribute__ ((weak)) _bcFrameworkPreloadClasses = NULL;
+
+__attribute__((constructor))
+static void initializer(int argc, char** argv, char** envp) {
+	static dispatch_once_t createVmOnce;
+    dispatch_once(&createVmOnce, ^ {
         JavaVMInitArgs vm_args;
         JavaVM *vm;
-        JNIEnv *env;
         jint res;
 
         /*
@@ -31,16 +33,45 @@ NSObject* rvmInstantiateFramework(const char *className) {
          * which is exported by our framework.
          */
         vm_args.version = JNI_VERSION_1_2;
-        vm_args.nOptions = 0;
-        vm_args.options = NULL;
+        vm_args.nOptions = argc;
+        JavaVMOption options[argc];
+        if (argc) {
+        	for (int idx = 0; idx < argc; idx++) {
+				options[idx].optionString = argv[idx];
+				options[idx].extraInfo = NULL;
+        	}
+        	vm_args.options = options;
+        } else {
+        	vm_args.options = NULL;
+        }
+
         res = JNI_CreateJavaVM(&vm, &env, &vm_args);
         if (res != JNI_OK) {
             [NSException raise:@"JNI_CreateJavaVM() failed" format:@"%d", res];
         }
-        
-        /*
-         * Lookup the root framework Java class that and call its initantiate() method to obtain Object instance
-         */
+
+        // preload classes needed for framework
+        // _bcFrameworkPreloadClasses contains zero terminated strings of classes to preload
+        // it finishes with zero length string
+        if (_bcFrameworkPreloadClasses) {
+        	const char* className = _bcFrameworkPreloadClasses;
+        	while (*className) {
+				jclass cls = (*env)->FindClass(env, className);
+				if (!cls) {
+					[NSException raise:@"Failed to preload class for framework" format:@"classname = %s", className];
+				}
+        		className += strlen(className) + 1;
+        	}
+        }
+    });
+}
+
+// deprecated, for compatibility with old code
+NSObject* rvmInstantiateFramework(const char *className) {
+	static dispatch_once_t createFrameworkInstanceOnce;
+	static id instance;
+    dispatch_once(&createFrameworkInstanceOnce, ^ {
+        // Lookup the root framework Java class that and call its instantiate() method to obtain Object instance
         char *jvmClassName = strdup(className);
         for (char *p = jvmClassName; *p; p++) {
             if (*p == '.')
@@ -52,9 +83,7 @@ NSObject* rvmInstantiateFramework(const char *className) {
             [NSException raise:@"Failed to find class" format:@"classname = %s", className];
         }
         
-        /*
-         * Now lookup and call instantiate method to receive instance of framework class
-         */
+        // lookup and call instantiate method to receive instance of framework class
         jmethodID mid = (*env)->GetStaticMethodID(env, cls, "instantiate", "()Lorg/robovm/apple/foundation/NSObject;");
         if (!mid) {
             [NSException raise:@"Failed to find method initialize()" format:@"classname = %s", className];
@@ -67,9 +96,7 @@ NSObject* rvmInstantiateFramework(const char *className) {
             [NSException raise:@"Call to method initialize() returned NULL object" format:@"classname = %s", className];
         }
         
-        /*
-         * Now fetch pointer to objc object from java, calling NSObject.getHandle() for this
-         */
+        // fetch pointer to objc object from java, calling NSObject.getHandle() for this
         cls = (*env)->FindClass(env, "org/robovm/apple/foundation/NSObject");
         if (!cls) {
             [NSException raise:@"Failed to find class NSObject" format:@""];

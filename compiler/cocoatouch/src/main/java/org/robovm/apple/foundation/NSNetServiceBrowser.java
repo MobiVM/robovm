@@ -59,14 +59,8 @@ import org.robovm.apple.dispatch.*;
     public native NSNetServiceBrowserDelegate getDelegate();
     @Property(selector = "setDelegate:", strongRef = true)
     public native void setDelegate(NSNetServiceBrowserDelegate v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "includesPeerToPeer")
     public native boolean includesPeerToPeer();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setIncludesPeerToPeer:")
     public native void setIncludesPeerToPeer(boolean v);
     /*</properties>*/

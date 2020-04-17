@@ -88,17 +88,8 @@ import org.robovm.apple.corelocation.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final HMCharacteristicProperty SupportsEventNotification = new HMCharacteristicProperty("SupportsEventNotification");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final HMCharacteristicProperty Readable = new HMCharacteristicProperty("Readable");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final HMCharacteristicProperty Writable = new HMCharacteristicProperty("Writable");
     /**
      * @since Available in iOS 9.3 and later.
@@ -129,19 +120,10 @@ import org.robovm.apple.corelocation.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="HMCharacteristicPropertySupportsEventNotification", optional=true)
         public static native NSString SupportsEventNotification();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="HMCharacteristicPropertyReadable", optional=true)
         public static native NSString Readable();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="HMCharacteristicPropertyWritable", optional=true)
         public static native NSString Writable();
         /**

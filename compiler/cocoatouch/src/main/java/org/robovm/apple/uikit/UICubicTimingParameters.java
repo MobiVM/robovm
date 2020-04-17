@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -57,7 +59,7 @@ import org.robovm.apple.intents.*;
     protected UICubicTimingParameters(Handle h, long handle) { super(h, handle); }
     protected UICubicTimingParameters(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public UICubicTimingParameters(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public UICubicTimingParameters(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     @Method(selector = "initWithAnimationCurve:")
     public UICubicTimingParameters(UIViewAnimationCurve curve) { super((SkipInit) null); initObject(init(curve)); }
     @Method(selector = "initWithControlPoint1:controlPoint2:")
@@ -80,7 +82,7 @@ import org.robovm.apple.intents.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
+    protected native @Pointer long init(NSCoder coder);
     @Method(selector = "initWithAnimationCurve:")
     protected native @Pointer long init(UIViewAnimationCurve curve);
     @Method(selector = "initWithControlPoint1:controlPoint2:")

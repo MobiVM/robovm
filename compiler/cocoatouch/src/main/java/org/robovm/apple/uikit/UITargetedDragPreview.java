@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -46,7 +48,7 @@ import org.robovm.apple.intents.*;
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UITargetedDragPreview/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
+    extends /*<extends>*/UITargetedPreview/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class UITargetedDragPreviewPtr extends Ptr<UITargetedDragPreview, UITargetedDragPreviewPtr> {}/*</ptr>*/
@@ -57,11 +59,11 @@ import org.robovm.apple.intents.*;
     protected UITargetedDragPreview(Handle h, long handle) { super(h, handle); }
     protected UITargetedDragPreview(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithView:parameters:target:")
-    public UITargetedDragPreview(UIView view, UIDragPreviewParameters parameters, UIDragPreviewTarget target) { super((SkipInit) null); initObject(init(view, parameters, target)); }
+    public UITargetedDragPreview(UIView view, UIPreviewParameters parameters, UIPreviewTarget target) { super(view, parameters, target); }
     @Method(selector = "initWithView:parameters:")
-    public UITargetedDragPreview(UIView view, UIDragPreviewParameters parameters) { super((SkipInit) null); initObject(init(view, parameters)); }
+    public UITargetedDragPreview(UIView view, UIPreviewParameters parameters) { super(view, parameters); }
     @Method(selector = "initWithView:")
-    public UITargetedDragPreview(UIView view) { super((SkipInit) null); initObject(init(view)); }
+    public UITargetedDragPreview(UIView view) { super(view); }
     /**
      * @since Available in iOS 11.0 and later.
      */
@@ -72,23 +74,10 @@ import org.robovm.apple.intents.*;
     public UITargetedDragPreview(NSURL url, String title, UIDragPreviewTarget target) { super((Handle) null, create(url, title, target)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "target")
-    public native UIDragPreviewTarget getTarget();
-    @Property(selector = "view")
-    public native UIView getView();
-    @Property(selector = "parameters")
-    public native UIDragPreviewParameters getParameters();
-    @Property(selector = "size")
-    public native @ByVal CGSize getSize();
+    
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithView:parameters:target:")
-    protected native @Pointer long init(UIView view, UIDragPreviewParameters parameters, UIDragPreviewTarget target);
-    @Method(selector = "initWithView:parameters:")
-    protected native @Pointer long init(UIView view, UIDragPreviewParameters parameters);
-    @Method(selector = "initWithView:")
-    protected native @Pointer long init(UIView view);
     @Method(selector = "retargetedPreviewWithTarget:")
     public native UITargetedDragPreview retargetedPreview(UIDragPreviewTarget newTarget);
     /**

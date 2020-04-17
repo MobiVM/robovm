@@ -37,12 +37,12 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 5.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIStepper/*</name>*/ 
@@ -59,7 +59,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithFrame:")
     public UIStepper(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public UIStepper(NSCoder decoder) { super(decoder); }
+    public UIStepper(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "isContinuous")
@@ -90,57 +90,23 @@ import org.robovm.apple.intents.*;
     public native double getStepValue();
     @Property(selector = "setStepValue:")
     public native void setStepValue(double v);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
-    @Property(selector = "tintColor")
-    public native UIColor getTintColor();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
-    @Property(selector = "setTintColor:")
-    public native void setTintColor(UIColor v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "setBackgroundImage:forState:")
     public native void setBackgroundImage(UIImage image, UIControlState state);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "backgroundImageForState:")
     public native UIImage getBackgroundImage(UIControlState state);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "setDividerImage:forLeftSegmentState:rightSegmentState:")
     public native void setDividerImage(UIImage image, UIControlState leftState, UIControlState rightState);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "dividerImageForLeftSegmentState:rightSegmentState:")
     public native UIImage getDividerImage(UIControlState leftState, UIControlState rightState);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "setIncrementImage:forState:")
     public native void setIncrementImage(UIImage image, UIControlState state);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "incrementImageForState:")
     public native UIImage getIncrementImage(UIControlState state);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "setDecrementImage:forState:")
     public native void setDecrementImage(UIImage image, UIControlState state);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "decrementImageForState:")
     public native UIImage getDecrementImage(UIControlState state);
     /*</methods>*/

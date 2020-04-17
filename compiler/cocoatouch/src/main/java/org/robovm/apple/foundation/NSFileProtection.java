@@ -95,21 +95,9 @@ import org.robovm.apple.dispatch.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final NSFileProtection None = new NSFileProtection("None");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final NSFileProtection Complete = new NSFileProtection("Complete");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final NSFileProtection CompleteUnlessOpen = new NSFileProtection("CompleteUnlessOpen");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final NSFileProtection CompleteUntilFirstUserAuthentication = new NSFileProtection("CompleteUntilFirstUserAuthentication");
     /*</constants>*/
     
@@ -136,24 +124,12 @@ import org.robovm.apple.dispatch.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="NSFileProtectionNone", optional=true)
         public static native NSString None();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="NSFileProtectionComplete", optional=true)
         public static native NSString Complete();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="NSFileProtectionCompleteUnlessOpen", optional=true)
         public static native NSString CompleteUnlessOpen();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="NSFileProtectionCompleteUntilFirstUserAuthentication", optional=true)
         public static native NSString CompleteUntilFirstUserAuthentication();
         /*</values>*/

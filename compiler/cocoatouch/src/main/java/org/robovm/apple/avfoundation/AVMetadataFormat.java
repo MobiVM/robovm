@@ -97,29 +97,11 @@ import org.robovm.apple.audiotoolbox.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMetadataFormat QuickTimeUserData = new AVMetadataFormat("QuickTimeUserData");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final AVMetadataFormat ISOUserData = new AVMetadataFormat("ISOUserData");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMetadataFormat QuickTimeMetadata = new AVMetadataFormat("QuickTimeMetadata");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMetadataFormat iTunesMetadata = new AVMetadataFormat("iTunesMetadata");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMetadataFormat ID3Metadata = new AVMetadataFormat("ID3Metadata");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final AVMetadataFormat HLSMetadata = new AVMetadataFormat("HLSMetadata");
     /**
      * @since Available in iOS 11.0 and later.
@@ -150,34 +132,16 @@ import org.robovm.apple.audiotoolbox.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataFormatQuickTimeUserData", optional=true)
         public static native NSString QuickTimeUserData();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataFormatISOUserData", optional=true)
         public static native NSString ISOUserData();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataFormatQuickTimeMetadata", optional=true)
         public static native NSString QuickTimeMetadata();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataFormatiTunesMetadata", optional=true)
         public static native NSString iTunesMetadata();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataFormatID3Metadata", optional=true)
         public static native NSString ID3Metadata();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataFormatHLSMetadata", optional=true)
         public static native NSString HLSMetadata();
         /**

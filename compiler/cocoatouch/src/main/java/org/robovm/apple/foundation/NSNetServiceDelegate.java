@@ -70,9 +70,6 @@ import org.robovm.apple.dispatch.*;
     void didStop(NSNetService sender);
     @Method(selector = "netService:didUpdateTXTRecordData:")
     void didUpdateTXTRecordData(NSNetService sender, NSData data);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "netService:didAcceptConnectionWithInputStream:outputStream:")
     void didAcceptConnection(NSNetService sender, NSInputStream inputStream, NSOutputStream outputStream);
     /*</methods>*/

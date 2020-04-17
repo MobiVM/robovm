@@ -24,6 +24,7 @@ import org.robovm.idea.RoboVmIcons;
 import javax.swing.*;
 
 public class RoboVmIOSConfigurationType implements ConfigurationType {
+    @NotNull
     @Override
     public String getDisplayName() {
         return "RoboVM iOS";

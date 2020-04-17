@@ -104,7 +104,8 @@ public enum /*<name>*/CVPixelFormatType/*</name>*/ implements ValuedEnum {
     _444YpCbCr10BiPlanarVideoRange(2016687156L),
     _420YpCbCr10BiPlanarFullRange(2019963440L),
     _422YpCbCr10BiPlanarFullRange(2019963442L),
-    _444YpCbCr10BiPlanarFullRange(2019963956L);
+    _444YpCbCr10BiPlanarFullRange(2019963956L),
+    _420YpCbCr8VideoRange_8A_TriPlanar(1982882104L);
     /*</values>*/
 
     public static class AsListMarshaler {

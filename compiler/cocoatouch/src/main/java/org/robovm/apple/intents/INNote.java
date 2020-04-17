@@ -52,7 +52,7 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "initWithTitle:contents:groupName:createdDateComponents:modifiedDateComponents:identifier:")
     public INNote(INSpeakableString title, NSArray<INNoteContent> contents, INSpeakableString groupName, NSDateComponents createdDateComponents, NSDateComponents modifiedDateComponents, String identifier) { super((SkipInit) null); initObject(init(title, contents, groupName, createdDateComponents, modifiedDateComponents, identifier)); }
     @Method(selector = "initWithCoder:")
-    public INNote(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public INNote(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "title")
@@ -77,6 +77,6 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

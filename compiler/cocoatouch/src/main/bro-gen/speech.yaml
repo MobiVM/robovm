@@ -1,0 +1,72 @@
+package: org.robovm.apple.speech
+include: [foundation, avfoundation, coremedia]
+library: Speech
+framework: Speech
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/Speech.framework/Headers/Speech.h
+
+private_typedefs:
+
+typedefs:
+
+enums:
+    SFSpeechRecognitionTaskHint: {} #since 10.0
+    SFSpeechRecognitionTaskState: {} #since 10.0
+    SFSpeechRecognizerAuthorizationStatus: {} #since 10.0
+
+typed_enums:
+
+classes:
+    SFAcousticFeature: {} #since 13.0
+    SFSpeechAudioBufferRecognitionRequest: {} #since 10.0
+    SFSpeechRecognitionRequest: {} #since 10.0
+    SFSpeechRecognitionResult: {} #since 10.0
+    SFSpeechRecognitionTask: {} #since 10.0
+    SFSpeechRecognizer: #since 10.0
+        methods:
+            '-initWithLocale:':
+                name: init
+            '-recognitionTaskWithRequest:resultHandler:':
+                name: recognitionTask
+            '-recognitionTaskWithRequest:delegate:':
+                name: recognitionTask
+    SFSpeechURLRecognitionRequest: #since 10.0
+        methods:
+            '-initWithURL:':
+                name: init
+    SFTranscription: {} #since 10.0
+    SFTranscriptionSegment: {} #since 10.0
+    SFVoiceAnalytics: {} #since 13.0
+
+protocols:
+    SFSpeechRecognitionTaskDelegate: #since 10.0
+        methods:
+            '-speechRecognitionTask:didHypothesizeTranscription:':
+                name: didHypothesizeTranscription
+            '-speechRecognitionTask:didFinishRecognition:':
+                name: didFinishRecognition
+            '-speechRecognitionTask:didFinishSuccessfully:':
+                name: didFinishSuccessfully
+    SFSpeechRecognizerDelegate: #since 10.0
+        methods:
+            '-speechRecognizer:availabilityDidChange:':
+                name: availabilityDidChange
+
+functions:
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (k?SF.*):
+        class: FixMe
+        name: 'Function__#{g[0]}'
+
+values:
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (k?SF.*):
+        class: FixMe
+        name: 'Value__#{g[0]}'
+
+constants:
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (k?SF.*):
+        class: FixMe
+        name: 'Constant__#{g[0]}'

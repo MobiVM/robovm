@@ -31,7 +31,8 @@ public class RoboVmModuleWizardStep extends ModuleWizardStep {
     private final RoboVmNewModuleEditor editor;
     private final RoboVmModuleBuilder builder;
 
-    public RoboVmModuleWizardStep(RoboVmModuleBuilder builder, WizardContext wizardContext, ModulesProvider modulesProvider,
+    public RoboVmModuleWizardStep(RoboVmModuleBuilder builder, @SuppressWarnings("unused") WizardContext wizardContext,
+                                  @SuppressWarnings("unused") ModulesProvider modulesProvider,
                                   Map<String, String> customValues) {
         super();
         this.editor = new RoboVmNewModuleEditor();
@@ -58,9 +59,9 @@ public class RoboVmModuleWizardStep extends ModuleWizardStep {
         builder.setApplicationName(editor.appName.getText());
         builder.setMainClassName(editor.mainClassName.getText());
         builder.setPackageName(editor.packageName.getText());
-        if(editor.gradleRadioButton.isSelected()) {
+        if (editor.gradleRadioButton.isSelected()) {
             builder.setBuildSystem(RoboVmModuleBuilder.BuildSystem.Gradle);
-        } else if(editor.mavenRadioButton.isSelected()) {
+        } else if (editor.mavenRadioButton.isSelected()) {
             builder.setBuildSystem(RoboVmModuleBuilder.BuildSystem.Maven);
         } else {
             builder.setBuildSystem(RoboVmModuleBuilder.BuildSystem.None);
@@ -83,12 +84,16 @@ public class RoboVmModuleWizardStep extends ModuleWizardStep {
     }
 
     private void applyCustomTitle(String title, JLabel label) {
-        if (title != null)
+        if (title != null) {
             label.setText(title);
+            label.setVisible(!title.isEmpty());
+        }
     }
 
     private void applyCustomValue(String value, JTextField field) {
-        if (value != null)
+        if (value != null) {
             field.setText(value);
+            field.setVisible(!value.isEmpty());
+        }
     }
 }

@@ -35,9 +35,7 @@ import org.robovm.apple.mapkit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("EventKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/EKCalendar/*</name>*/ 
@@ -51,9 +49,6 @@ import org.robovm.apple.mapkit.*;
     public EKCalendar() {}
     protected EKCalendar(Handle h, long handle) { super(h, handle); }
     protected EKCalendar(SkipInit skipInit) { super(skipInit); }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public EKCalendar(EKEntityType entityType, EKEventStore eventStore) { super((Handle) null, create(entityType, eventStore)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
@@ -61,9 +56,6 @@ import org.robovm.apple.mapkit.*;
     public native EKSource getSource();
     @Property(selector = "setSource:")
     public native void setSource(EKSource v);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "calendarIdentifier")
     public native String getCalendarIdentifier();
     @Property(selector = "title")
@@ -74,14 +66,8 @@ import org.robovm.apple.mapkit.*;
     public native EKCalendarType getType();
     @Property(selector = "allowsContentModifications")
     public native boolean allowsContentModifications();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "isSubscribed")
     public native boolean isSubscribed();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "isImmutable")
     public native boolean isImmutable();
     @WeaklyLinked
@@ -92,17 +78,11 @@ import org.robovm.apple.mapkit.*;
     public native void setCGColor(CGColor v);
     @Property(selector = "supportedEventAvailabilities")
     public native EKCalendarEventAvailabilityMask getSupportedEventAvailabilities();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "allowedEntityTypes")
     public native EKEntityMask getAllowedEntityTypes();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "calendarForEntityType:eventStore:")
     protected static native @Pointer long create(EKEntityType entityType, EKEventStore eventStore);
     /*</methods>*/

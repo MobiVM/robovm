@@ -37,12 +37,12 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 6.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UITextSelectionRect/*</name>*/ 
@@ -61,7 +61,7 @@ import org.robovm.apple.intents.*;
     @Property(selector = "rect")
     public native @ByVal CGRect getRect();
     @Property(selector = "writingDirection")
-    public native UITextWritingDirection getWritingDirection();
+    public native NSWritingDirection getWritingDirection();
     @Property(selector = "containsStart")
     public native boolean containsStart();
     @Property(selector = "containsEnd")

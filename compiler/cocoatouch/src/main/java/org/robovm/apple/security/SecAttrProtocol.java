@@ -88,129 +88,36 @@ import org.robovm.apple.dispatch.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final SecAttrProtocol FTP = new SecAttrProtocol("FTP");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final SecAttrProtocol FTPAccount = new SecAttrProtocol("FTPAccount");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final SecAttrProtocol HTTP = new SecAttrProtocol("HTTP");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final SecAttrProtocol IRC = new SecAttrProtocol("IRC");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final SecAttrProtocol NNTP = new SecAttrProtocol("NNTP");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final SecAttrProtocol POP3 = new SecAttrProtocol("POP3");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final SecAttrProtocol SMTP = new SecAttrProtocol("SMTP");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final SecAttrProtocol SOCKS = new SecAttrProtocol("SOCKS");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final SecAttrProtocol IMAP = new SecAttrProtocol("IMAP");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final SecAttrProtocol LDAP = new SecAttrProtocol("LDAP");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final SecAttrProtocol AppleTalk = new SecAttrProtocol("AppleTalk");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final SecAttrProtocol AFP = new SecAttrProtocol("AFP");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final SecAttrProtocol Telnet = new SecAttrProtocol("Telnet");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final SecAttrProtocol SSH = new SecAttrProtocol("SSH");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final SecAttrProtocol FTPS = new SecAttrProtocol("FTPS");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final SecAttrProtocol HTTPS = new SecAttrProtocol("HTTPS");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final SecAttrProtocol HTTPProxy = new SecAttrProtocol("HTTPProxy");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final SecAttrProtocol HTTPSProxy = new SecAttrProtocol("HTTPSProxy");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final SecAttrProtocol FTPProxy = new SecAttrProtocol("FTPProxy");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final SecAttrProtocol SMB = new SecAttrProtocol("SMB");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final SecAttrProtocol RTSP = new SecAttrProtocol("RTSP");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final SecAttrProtocol RTSPProxy = new SecAttrProtocol("RTSPProxy");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final SecAttrProtocol DAAP = new SecAttrProtocol("DAAP");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final SecAttrProtocol EPPC = new SecAttrProtocol("EPPC");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final SecAttrProtocol IPP = new SecAttrProtocol("IPP");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final SecAttrProtocol NNTPS = new SecAttrProtocol("NNTPS");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final SecAttrProtocol LDAPS = new SecAttrProtocol("LDAPS");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final SecAttrProtocol TelnetS = new SecAttrProtocol("TelnetS");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final SecAttrProtocol IMAPS = new SecAttrProtocol("IMAPS");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final SecAttrProtocol IRCS = new SecAttrProtocol("IRCS");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final SecAttrProtocol POP3S = new SecAttrProtocol("POP3S");
     /*</constants>*/
     
@@ -237,159 +144,66 @@ import org.robovm.apple.dispatch.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kSecAttrProtocolFTP", optional=true)
         public static native CFType FTP();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kSecAttrProtocolFTPAccount", optional=true)
         public static native CFType FTPAccount();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kSecAttrProtocolHTTP", optional=true)
         public static native CFType HTTP();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kSecAttrProtocolIRC", optional=true)
         public static native CFType IRC();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kSecAttrProtocolNNTP", optional=true)
         public static native CFType NNTP();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kSecAttrProtocolPOP3", optional=true)
         public static native CFType POP3();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kSecAttrProtocolSMTP", optional=true)
         public static native CFType SMTP();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kSecAttrProtocolSOCKS", optional=true)
         public static native CFType SOCKS();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kSecAttrProtocolIMAP", optional=true)
         public static native CFType IMAP();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kSecAttrProtocolLDAP", optional=true)
         public static native CFType LDAP();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kSecAttrProtocolAppleTalk", optional=true)
         public static native CFType AppleTalk();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kSecAttrProtocolAFP", optional=true)
         public static native CFType AFP();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kSecAttrProtocolTelnet", optional=true)
         public static native CFType Telnet();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kSecAttrProtocolSSH", optional=true)
         public static native CFType SSH();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kSecAttrProtocolFTPS", optional=true)
         public static native CFType FTPS();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kSecAttrProtocolHTTPS", optional=true)
         public static native CFType HTTPS();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kSecAttrProtocolHTTPProxy", optional=true)
         public static native CFType HTTPProxy();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kSecAttrProtocolHTTPSProxy", optional=true)
         public static native CFType HTTPSProxy();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kSecAttrProtocolFTPProxy", optional=true)
         public static native CFType FTPProxy();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kSecAttrProtocolSMB", optional=true)
         public static native CFType SMB();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kSecAttrProtocolRTSP", optional=true)
         public static native CFType RTSP();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kSecAttrProtocolRTSPProxy", optional=true)
         public static native CFType RTSPProxy();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kSecAttrProtocolDAAP", optional=true)
         public static native CFType DAAP();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kSecAttrProtocolEPPC", optional=true)
         public static native CFType EPPC();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kSecAttrProtocolIPP", optional=true)
         public static native CFType IPP();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kSecAttrProtocolNNTPS", optional=true)
         public static native CFType NNTPS();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kSecAttrProtocolLDAPS", optional=true)
         public static native CFType LDAPS();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kSecAttrProtocolTelnetS", optional=true)
         public static native CFType TelnetS();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kSecAttrProtocolIMAPS", optional=true)
         public static native CFType IMAPS();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kSecAttrProtocolIRCS", optional=true)
         public static native CFType IRCS();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kSecAttrProtocolPOP3S", optional=true)
         public static native CFType POP3S();
         /*</values>*/

@@ -29,6 +29,7 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.security.*;
+import org.robovm.apple.network.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -78,5 +79,10 @@ import org.robovm.apple.security.*;
      */
     @Method(selector = "handleNewFlow:")
     public native boolean handleNewFlow(NEAppProxyFlow flow);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "handleNewUDPFlow:initialRemoteEndpoint:")
+    public native boolean handleNewUDPFlow(NEAppProxyUDPFlow flow, NWEndpoint remoteEndpoint);
     /*</methods>*/
 }

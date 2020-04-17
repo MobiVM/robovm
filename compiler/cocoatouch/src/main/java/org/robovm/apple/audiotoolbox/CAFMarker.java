@@ -38,7 +38,7 @@ import org.robovm.apple.uikit.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
+/*<annotations>*/@Packed(1)/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CAFMarker/*</name>*/ 
     extends /*<extends>*/Struct<CAFMarker>/*</extends>*/ 
     /*<implements>*//*</implements>*/ {

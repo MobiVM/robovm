@@ -1,0 +1,61 @@
+package: org.robovm.apple.backgroundtasks
+include: [foundation, dispatch]
+library: BackgroundTasks
+framework: BackgroundTasks
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/BackgroundTasks.framework/Headers/BackgroundTasks.h
+typedefs: {}
+    
+enums:
+    BGTaskSchedulerErrorCode: {nserror: true} #since 13.0
+
+classes:
+    BGAppRefreshTask: {} #since 13.0
+    BGAppRefreshTaskRequest: #since 13.0
+        methods:
+            '-initWithIdentifier:':
+                name: init
+    BGProcessingTask: {} #since 13.0
+    BGProcessingTaskRequest: #since 13.0
+        methods:
+            '-initWithIdentifier:':
+                name: init
+    BGTask: #since 13.0
+        methods:
+            '-setTaskCompletedWithSuccess:':
+                name: setTaskCompleted
+    BGTaskRequest: {} #since 13.0
+    BGTaskScheduler: #since 13.0
+        methods:
+            '-registerForTaskWithIdentifier:usingQueue:launchHandler:':
+                name: registerForTask
+            '-submitTaskRequest:error:':
+                name: submitTaskRequest
+            '-cancelTaskRequestWithIdentifier:':
+                name: cancelTaskRequest
+            '-getPendingTaskRequestsWithCompletionHandler:':
+                name: getPendingTaskRequests
+protocols: {}
+
+functions:
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (k?BG.*):
+        class: !!!FixMe
+        name: 'Function__#{g[0]}'
+
+values:
+    BGTaskSchedulerErrorDomain:
+        class: BGTaskSchedulerErrorCode
+        name: getClassDomain
+
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (k?BG.*):
+        class: !!!FixMe
+        name: 'Value__#{g[0]}'
+
+constants:
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (k?BG.*):
+        class: !!!FixMe
+        name: 'Constant__#{g[0]}'

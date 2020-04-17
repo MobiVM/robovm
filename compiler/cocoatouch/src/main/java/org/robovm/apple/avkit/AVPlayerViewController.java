@@ -35,9 +35,7 @@ import org.robovm.apple.iad.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("AVKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVPlayerViewController/*</name>*/ 
@@ -54,7 +52,7 @@ import org.robovm.apple.iad.*;
     @Method(selector = "initWithNibName:bundle:")
     public AVPlayerViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
     @Method(selector = "initWithCoder:")
-    public AVPlayerViewController(NSCoder decoder) { super(decoder); }
+    public AVPlayerViewController(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "player")
@@ -115,6 +113,16 @@ import org.robovm.apple.iad.*;
      */
     @Property(selector = "setExitsFullScreenWhenPlaybackEnds:")
     public native void setExitsFullScreenWhenPlaybackEnds(boolean v);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "pixelBufferAttributes")
+    public native NSDictionary<NSString, ?> getPixelBufferAttributes();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "setPixelBufferAttributes:")
+    public native void setPixelBufferAttributes(NSDictionary<NSString, ?> v);
     /**
      * @since Available in iOS 9.0 and later.
      */

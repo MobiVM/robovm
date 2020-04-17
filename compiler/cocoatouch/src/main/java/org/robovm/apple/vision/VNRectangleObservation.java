@@ -53,6 +53,10 @@ import org.robovm.apple.imageio.*;
     public VNRectangleObservation() {}
     protected VNRectangleObservation(Handle h, long handle) { super(h, handle); }
     protected VNRectangleObservation(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public VNRectangleObservation(@MachineSizedUInt long requestRevision, @ByVal CGPoint topLeft, @ByVal CGPoint bottomLeft, @ByVal CGPoint bottomRight, @ByVal CGPoint topRight) { super((Handle) null, create(requestRevision, topLeft, bottomLeft, bottomRight, topRight)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "topLeft")
@@ -66,6 +70,10 @@ import org.robovm.apple.imageio.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "rectangleObservationWithRequestRevision:topLeft:bottomLeft:bottomRight:topRight:")
+    protected static native @Pointer long create(@MachineSizedUInt long requestRevision, @ByVal CGPoint topLeft, @ByVal CGPoint bottomLeft, @ByVal CGPoint bottomRight, @ByVal CGPoint topRight);
     /*</methods>*/
 }

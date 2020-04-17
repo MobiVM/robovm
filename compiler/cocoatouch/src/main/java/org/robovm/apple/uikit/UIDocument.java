@@ -37,12 +37,12 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 5.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIDocument/*</name>*/ 
@@ -98,14 +98,8 @@ import org.robovm.apple.intents.*;
     public native boolean hasUnsavedChanges();
     @Property(selector = "savingFileType")
     public native String getSavingFileType();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "userActivity")
     public native NSUserActivity getUserActivity();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setUserActivity:")
     public native void setUserActivity(NSUserActivity v);
     @Property(selector = "presentedItemURL")
@@ -120,14 +114,8 @@ import org.robovm.apple.intents.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @GlobalValue(symbol="UIDocumentStateChangedNotification", optional=true)
     public static native NSString StateChangedNotification();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @GlobalValue(symbol="NSUserActivityDocumentURLKey", optional=true)
     public static native String UserActivityDocumentURLKey();
     
@@ -211,14 +199,8 @@ import org.robovm.apple.intents.*;
     public native void userInteractionNoLongerPermitted(NSError error);
     @Method(selector = "revertToContentsOfURL:completionHandler:")
     public native void revert(NSURL url, @Block VoidBooleanBlock completionHandler);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "updateUserActivityState:")
     public native void updateUserActivityState(NSUserActivity userActivity);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "restoreUserActivityState:")
     public native void restoreUserActivityState(NSUserActivity userActivity);
     @Method(selector = "relinquishPresentedItemToReader:")

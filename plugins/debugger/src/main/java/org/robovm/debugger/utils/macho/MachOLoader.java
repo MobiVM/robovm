@@ -209,7 +209,7 @@ public class MachOLoader {
             return null;
 
         return new ByteBufferMemoryReader(rootReader, 0, rootReader.size(), isPatform64Bit(),
-                regions.toArray(new ByteBufferMemoryReader.MemoryRegion[regions.size()]));
+                regions.toArray(new ByteBufferMemoryReader.MemoryRegion[0]));
     }
 
     public static void main(String[] argv) {

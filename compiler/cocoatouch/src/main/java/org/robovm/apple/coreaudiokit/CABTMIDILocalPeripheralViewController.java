@@ -34,9 +34,7 @@ import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreAudioKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CABTMIDILocalPeripheralViewController/*</name>*/ 
@@ -53,7 +51,7 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "initWithNibName:bundle:")
     public CABTMIDILocalPeripheralViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
     @Method(selector = "initWithCoder:")
-    public CABTMIDILocalPeripheralViewController(NSCoder decoder) { super(decoder); }
+    public CABTMIDILocalPeripheralViewController(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     

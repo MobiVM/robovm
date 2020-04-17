@@ -89,9 +89,6 @@ import org.robovm.apple.coregraphics.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     public static final MPMediaEntityProperty EntityPersistentID = new MPMediaEntityProperty("EntityPersistentID");
     /*</constants>*/
     
@@ -121,9 +118,6 @@ import org.robovm.apple.coregraphics.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 4.2 and later.
-         */
         @GlobalValue(symbol="MPMediaEntityPropertyPersistentID", optional=true)
         public static native NSString EntityPersistentID();
         /*</values>*/

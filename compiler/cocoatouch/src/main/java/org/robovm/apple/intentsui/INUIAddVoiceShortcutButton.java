@@ -47,19 +47,19 @@ import org.robovm.apple.uikit.*;
     /*<bind>*/static { ObjCRuntime.bind(INUIAddVoiceShortcutButton.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public INUIAddVoiceShortcutButton() {}
+    protected INUIAddVoiceShortcutButton() {}
     protected INUIAddVoiceShortcutButton(Handle h, long handle) { super(h, handle); }
     protected INUIAddVoiceShortcutButton(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithStyle:")
     public INUIAddVoiceShortcutButton(INUIAddVoiceShortcutButtonStyle style) { super((SkipInit) null); initObject(init(style)); }
-    @Method(selector = "initWithFrame:")
-    public INUIAddVoiceShortcutButton(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public INUIAddVoiceShortcutButton(NSCoder decoder) { super(decoder); }
+    public INUIAddVoiceShortcutButton(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "style")
     public native INUIAddVoiceShortcutButtonStyle getStyle();
+    @Property(selector = "setStyle:")
+    public native void setStyle(INUIAddVoiceShortcutButtonStyle v);
     @Property(selector = "delegate")
     public native INUIAddVoiceShortcutButtonDelegate getDelegate();
     @Property(selector = "setDelegate:", strongRef = true)
@@ -68,6 +68,16 @@ import org.robovm.apple.uikit.*;
     public native INShortcut getShortcut();
     @Property(selector = "setShortcut:")
     public native void setShortcut(INShortcut v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "cornerRadius")
+    public native @MachineSizedFloat double getCornerRadius();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setCornerRadius:")
+    public native void setCornerRadius(@MachineSizedFloat double v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

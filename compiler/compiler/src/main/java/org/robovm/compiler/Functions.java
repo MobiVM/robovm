@@ -66,7 +66,8 @@ public class Functions {
     public static final FunctionRef BC_THROW_INCOMPATIBLE_CLASS_CHANGE_ERROR = new FunctionRef("_bcThrowIncompatibleClassChangeError", new FunctionType(VOID, ENV_PTR, I8_PTR));
     public static final FunctionRef BC_THROW_ABSTRACT_METHOD_ERROR = new FunctionRef("_bcThrowAbstractMethodError", new FunctionType(VOID, ENV_PTR, I8_PTR));
     public static final FunctionRef BC_THROW_CLASS_CAST_EXCEPTION_ARRAY = new FunctionRef("_bcThrowClassCastExceptionArray", new FunctionType(VOID, ENV_PTR, CLASS_PTR, OBJECT_PTR));
-    
+    public static final FunctionRef BC_THROW_ARRAY_INDEX_OUT_OF_BOUNDS_EXCEPTION = new FunctionRef("_bcThrowArrayIndexOutOfBoundsException", new FunctionType(VOID, ENV_PTR, I32, I32));
+
     public static final FunctionRef BC_NEW_BOOLEAN_ARRAY = new FunctionRef("_bcNewBooleanArray", new FunctionType(OBJECT_PTR, ENV_PTR, I32));
     public static final FunctionRef BC_NEW_BYTE_ARRAY = new FunctionRef("_bcNewByteArray", new FunctionType(OBJECT_PTR, ENV_PTR, I32));
     public static final FunctionRef BC_NEW_CHAR_ARRAY = new FunctionRef("_bcNewCharArray", new FunctionType(OBJECT_PTR, ENV_PTR, I32));

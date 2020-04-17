@@ -1,0 +1,175 @@
+package: org.robovm.apple.imagecapturecore
+include: [foundation, coregraphics, uikit]
+library: ImageCaptureCore
+framework: ImageCaptureCore
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/ImageCaptureCore.framework/Headers/ImageCaptureCore.h
+
+private_typedefs:
+
+typedefs:
+
+enums:
+    ICDeviceType: {} #since 13.0
+    ICEXIFOrientationType: {prefix: ICEXIF}
+    ICReturnCodeOffset: {prefix: ICReturnCode}
+    # merge all errors to singe enum as these share one classDomain
+    ICReturnCode: {nserror: true, prefix: ICReturn}
+    ICLegacyReturnCode: {'ICLegacyReturnCode(.*)Err' : 'Legacy#{g[0]}', merge_with: ICReturnCode}
+    ICReturnThumbnailErrorCode: {prefix: ICReturn, merge_with: ICReturnCode}
+    ICReturnMetadataErrorCode: {prefix: ICReturn, merge_with: ICReturnCode}
+    ICReturnConnectionErrorCode: {prefix: ICReturn, merge_with: ICReturnCode}
+    ICReturnPTPDeviceErrorCode: {prefix: ICReturn, merge_with: ICReturnCode}
+    ICReturnDownloadErrorCode: {prefix: ICReturn, merge_with: ICReturnCode}
+    ICReturnObjectErrorCode: {prefix: ICReturn, merge_with: ICReturnCode}
+typed_enums:
+    # here most of typed value enums are converted just into const classes as this framework has complicated generic usage (like generic in generic) and bro-gen fails here
+    ICDeleteResult:
+        class: ICDeleteResult
+        type: NSString
+        prefix: ICDelete
+    ICDeleteError:
+        class: ICDeleteError
+        type: NSString
+        prefix: ICDeleteError
+    ICCameraItemThumbnailOption:
+        class: ICCameraItemThumbnailOption
+        type: NSString
+        prefix: IC
+    ICDownloadOption:
+        class: ICDownloadOption
+        type: NSString
+        prefix: IC
+    ICDeviceTransport:
+        class: ICDeviceTransport
+        type: NSString
+        prefix: ICTransportType
+    ICDeviceStatus:
+        class: ICDeviceStatus
+        type: NSString
+        prefix: IC
+    ICDeviceCapability:
+        class: ICDeviceCapability
+        type: NSString
+        prefix: IC
+    ICSessionOptions:
+        class: ICSessionOptions
+        type: NSString
+        prefix: IC
+
+classes:
+    ICCameraDevice: #since 13.0
+        methods:
+            '-requestDeleteFiles:deleteFailed:completion:':
+                name: requestDeleteFiles
+            '-requestDownloadFile:options:downloadDelegate:didDownloadSelector:contextInfo:':
+                name: requestDownloadFile
+            '-requestSendPTPCommand:outData:completion:':
+                name: requestSendPTPCommand
+    ICCameraFile: #since 13.0
+        methods:
+            '-requestThumbnailDataWithOptions:completion:':
+                name: requestThumbnailData
+            '-requestMetadataDictionaryWithOptions:completion:':
+                name: requestMetadataDictionary
+            '-requestDownloadWithOptions:completion:':
+                name: requestDownload
+            '-requestReadDataAtOffset:length:completion:':
+                name: requestReadData
+    ICCameraFolder: {} #since 13.0
+    ICCameraItem: {} #since 13.0
+    ICDevice: #since 13.0
+        methods:
+            '-requestOpenSessionWithOptions:completion:':
+                name: requestOpenSession
+            '-requestCloseSessionWithOptions:completion:':
+                name: requestCloseSession
+            '-requestEjectWithCompletion:':
+                name: requestEject
+    ICDeviceBrowser: {} #since 13.0
+
+protocols:
+    ICCameraDeviceDelegate:
+        methods:
+            '-cameraDevice:didAddItems:':
+                name: didAddItems
+            '-cameraDevice:didRemoveItems:':
+                name: didRemoveItems
+            '-cameraDevice:didReceiveThumbnail:forItem:error:':
+                name: didReceiveThumbnail
+            '-cameraDevice:didReceiveMetadata:forItem:error:':
+                name: didReceiveMetadata
+            '-cameraDevice:didRenameItems:':
+                name: didRenameItems
+            '-cameraDevice:didReceivePTPEvent:':
+                name: didReceivePTPEvent
+            '-deviceDidBecomeReadyWithCompleteContentCatalog:':
+                name: deviceDidBecomeReady
+            '-cameraDevice:shouldGetThumbnailOfItem:':
+                name: shouldGetThumbnail
+            '-cameraDevice:shouldGetMetadataOfItem:':
+                name: shouldGetMetadata
+            '-cameraDevice:didCompleteDeleteFilesWithError:':
+                name: didCompleteDeleteFiles
+            '-cameraDevice:didAddItem:':
+                name: didAddItem
+            '-cameraDevice:didRemoveItem:':
+                name: didRemoveItem
+            '-cameraDevice:didReceiveThumbnailForItem:':
+                name: didReceiveThumbnail
+            '-cameraDevice:didReceiveMetadataForItem:':
+                name: didReceiveMetadata
+    ICCameraDeviceDownloadDelegate:
+        methods:
+            '-didDownloadFile:error:options:contextInfo:':
+                name: didDownloadFile
+            '-didReceiveDownloadProgressForFile:downloadedBytes:maxBytes:':
+                name: didReceiveDownloadProgress
+    ICDeviceBrowserDelegate:
+        methods:
+            '-deviceBrowser:didAddDevice:moreComing:':
+                name: didAddDevice
+            '-deviceBrowser:didRemoveDevice:moreGoing:':
+                name: didRemoveDevice
+            '-deviceBrowser:deviceDidChangeName:':
+                name: deviceDidChangeName
+            '-deviceBrowser:deviceDidChangeSharingState:':
+                name: deviceDidChangeSharingState
+    ICDeviceDelegate:
+        methods:
+            '-device:didCloseSessionWithError:':
+                name: didCloseSession
+            '-device:didOpenSessionWithError:':
+                name: didOpenSession
+            '-device:didReceiveStatusInformation:':
+                name: didReceiveStatusInformation
+            '-device:didEncounterError:':
+                name: didEncounterError
+            '-device:didEjectWithError:':
+                name: didEject
+
+functions:
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (k?IC.*):
+        class: FixMe
+        name: 'Function__#{g[0]}'
+
+values:
+    ICErrorDomain:
+        class: ICReturnCode
+        name: getClassDomain
+
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (k?IC.*):
+        class: FixMe
+        name: 'Value__#{g[0]}'
+
+constants:
+    ICRunLoopMode:
+        exclude: true # for now as usage of loop mode was not found in any class
+
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (k?IC.*):
+        class: FixMe
+        name: 'Constant__#{g[0]}'

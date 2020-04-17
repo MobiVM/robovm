@@ -29,12 +29,12 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corespotlight.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 3.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreData") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSEntityDescription/*</name>*/ 
@@ -49,7 +49,7 @@ import org.robovm.apple.corespotlight.*;
     protected NSEntityDescription(Handle h, long handle) { super(h, handle); }
     protected NSEntityDescription(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public NSEntityDescription(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public NSEntityDescription(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "managedObjectModel")
@@ -88,29 +88,14 @@ import org.robovm.apple.corespotlight.*;
     public native NSDictionary<NSString, NSAttributeDescription> getAttributesByName();
     @Property(selector = "relationshipsByName")
     public native NSDictionary<NSString, NSRelationshipDescription> getRelationshipsByName();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "versionHash")
     public native NSData getVersionHash();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "versionHashModifier")
     public native String getVersionHashModifier();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "setVersionHashModifier:")
     public native void setVersionHashModifier(String v);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "renamingIdentifier")
     public native String getRenamingIdentifier();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "setRenamingIdentifier:")
     public native void setRenamingIdentifier(String v);
     /**
@@ -134,14 +119,12 @@ import org.robovm.apple.corespotlight.*;
     @Property(selector = "setUniquenessConstraints:")
     public native void setUniquenessConstraints(NSArray<NSArray<?>> v);
     /**
-     * @since Available in iOS 3.0 and later.
      * @deprecated Deprecated in iOS 11.0. Use NSEntityDescription.indexes instead
      */
     @Deprecated
     @Property(selector = "compoundIndexes")
     public native NSArray<NSArray<?>> getCompoundIndexes();
     /**
-     * @since Available in iOS 3.0 and later.
      * @deprecated Deprecated in iOS 11.0. Use NSEntityDescription.indexes instead
      */
     @Deprecated
@@ -162,9 +145,6 @@ import org.robovm.apple.corespotlight.*;
     /*<methods>*/
     @Method(selector = "relationshipsWithDestinationEntity:")
     public native NSArray<NSRelationshipDescription> getRelationshipsWithDestination(NSEntityDescription entity);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "isKindOfEntity:")
     public native boolean isKindOfEntity(NSEntityDescription entity);
     @Method(selector = "entityForName:inManagedObjectContext:")
@@ -174,6 +154,6 @@ import org.robovm.apple.corespotlight.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

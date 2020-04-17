@@ -39,12 +39,10 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 5.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/NSOrderedSet/*</name>*/ <T extends NSObject>
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/NSOrderedSet<T extends NSObject>/*</name>*/
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*/implements NSFastEnumeration, Set<T>, List<T>/*</implements>*/ {
 
@@ -60,7 +58,7 @@ import org.robovm.apple.dispatch.*;
         @Override
         public boolean contains(Object o) {
             if (o instanceof NSObject) {
-                return set.containsObject((NSObject) o);
+                return set.containsObject((U) o);
             }
             return false;
         }
@@ -104,7 +102,7 @@ import org.robovm.apple.dispatch.*;
         @Override
         public boolean contains(Object o) {
             if (o instanceof NSObject) {
-                return set.containsObject((NSObject) o);
+                return set.containsObject((U) o);
             }
             return false;
         }
@@ -112,7 +110,7 @@ import org.robovm.apple.dispatch.*;
         @Override
         public int indexOf(Object o) {
             if (o instanceof NSObject) {
-                return (int) set.indexOfObject((NSObject) o);
+                return (int) set.indexOfObject((U) o);
             }
             return -1;
         }
@@ -279,18 +277,18 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "objectAtIndex:")
     protected native T getObjectAt(@MachineSizedUInt long idx);
     @Method(selector = "indexOfObject:")
-    protected native @MachineSizedUInt long indexOfObject(NSObject object);
+    protected native @MachineSizedUInt long indexOfObject(T object);
     @Method(selector = "initWithObjects:count:")
     protected native @Pointer long init(@Pointer long objects, @MachineSizedUInt long cnt);
     @Method(selector = "objectsAtIndexes:")
     protected native NSArray<T> getObjectsAt(NSIndexSet indexes);
     @Method(selector = "containsObject:")
-    protected native boolean containsObject(NSObject object);
+    protected native boolean containsObject(T object);
     @Method(selector = "objectEnumerator")
     protected native NSEnumerator<T> objectEnumerator();
     @Method(selector = "initWithOrderedSet:")
-    protected native @Pointer long init(NSOrderedSet<?> set);
+    protected native @Pointer long init(NSOrderedSet<T> set);
     @Method(selector = "initWithArray:")
-    protected native @Pointer long init(NSArray<?> array);
+    protected native @Pointer long init(NSArray<T> array);
     /*</methods>*/
 }

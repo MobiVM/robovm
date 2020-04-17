@@ -32,9 +32,7 @@ import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 6.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("GameKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GKChallenge/*</name>*/ 
@@ -49,31 +47,23 @@ import org.robovm.apple.uikit.*;
     protected GKChallenge(Handle h, long handle) { super(h, handle); }
     protected GKChallenge(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public GKChallenge(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public GKChallenge(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     /**
-     * @since Available in iOS 6.0 and later.
      * @deprecated Deprecated in iOS 8.0. Use issuingPlayer instead
      */
     @Deprecated
     @Property(selector = "issuingPlayerID")
     public native String getIssuingPlayerID();
     /**
-     * @since Available in iOS 6.0 and later.
      * @deprecated Deprecated in iOS 8.0. Use receivingPlayer instead
      */
     @Deprecated
     @Property(selector = "receivingPlayerID")
     public native String getReceivingPlayerID();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "issuingPlayer")
     public native GKPlayer getIssuingPlayer();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "receivingPlayer")
     public native GKPlayer getReceivingPlayer();
     @Property(selector = "state")
@@ -96,6 +86,6 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

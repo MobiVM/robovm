@@ -81,28 +81,24 @@ import org.robovm.apple.avfoundation.*;
     @NotImplemented("removeAnimationForKey:blendOutDuration:")
     public void removeAnimationForKey(String key, @MachineSizedFloat double duration) {}
     /**
-     * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use -removeAnimationForKey:blendOutDuration:
      */
     @Deprecated
     @NotImplemented("removeAnimationForKey:fadeOutDuration:")
     public void removeAnimation(String key, @MachineSizedFloat double duration) {}
     /**
-     * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use -animationPlayerForKey:
      */
     @Deprecated
     @NotImplemented("animationForKey:")
     public CAAnimation getAnimation(String key) { return null; }
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 11.0. Use -[SCNAnimationPlayer setPaused:] instead
      */
     @Deprecated
     @NotImplemented("pauseAnimationForKey:")
     public void pauseAnimation(String key) {}
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 11.0. Use -[SCNAnimationPlayer setPaused:] instead
      */
     @Deprecated
@@ -116,7 +112,6 @@ import org.robovm.apple.avfoundation.*;
     @NotImplemented("setSpeed:forAnimationKey:")
     public void setSpeed(@MachineSizedFloat double speed, String key) {}
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 11.0. Use -[SCNAnimationPlayer paused] instead
      */
     @Deprecated

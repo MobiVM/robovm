@@ -1177,9 +1177,6 @@ static inline char getSuspendedEvent(DebugEnv* debugEnv, jint lineNumberOffset, 
     if (debugEnv->suspended) {
         return EVT_THREAD_SUSPENDED;
     }
-    if (debugEnv->stepping && ((pc >= debugEnv->pclow && pc < debugEnv->pchigh) || (pc >= debugEnv->pclow2 && pc < debugEnv->pchigh2))) {
-        return EVT_THREAD_STEPPED;
-    }
 
     // we only check for breakpoints if we aren't invoking
     // lineNumberOffset may be < 0 if the instrumented unit
@@ -1189,6 +1186,12 @@ static inline char getSuspendedEvent(DebugEnv* debugEnv, jint lineNumberOffset, 
             return EVT_BREAKPOINT;
         }
     }
+
+    // check stepping only after breakpoint check. Otherwise breakpoint in one line loops will be ignored
+    if (debugEnv->stepping && ((pc >= debugEnv->pclow && pc < debugEnv->pchigh) || (pc >= debugEnv->pclow2 && pc < debugEnv->pchigh2))) {
+        return EVT_THREAD_STEPPED;
+    }
+
     return 0;
 }
 

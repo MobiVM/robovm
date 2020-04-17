@@ -61,7 +61,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithRules:")
     public SKTileGroup(NSArray<SKTileGroupRule> rules) { super((SkipInit) null); initObject(init(rules)); }
     @Method(selector = "initWithCoder:")
-    public SKTileGroup(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public SKTileGroup(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "rules")
@@ -86,6 +86,6 @@ import org.robovm.apple.metal.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

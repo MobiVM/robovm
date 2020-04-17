@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -45,17 +47,19 @@ import org.robovm.apple.intents.*;
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/NSLayoutAnchor/*</name>*/ <T extends NSLayoutAnchor<?>>
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/NSLayoutAnchor<T extends NSObject>/*</name>*/
     extends /*<extends>*/NSObject/*</extends>*/
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSCoding/*</implements>*/ {
 
-    /*<ptr>*/public static class NSLayoutAnchorPtr extends Ptr<NSLayoutAnchor, NSLayoutAnchorPtr> {}/*</ptr>*/
+    /*<ptr>*/public static class NSLayoutAnchorPtr<T extends NSObject> extends Ptr<NSLayoutAnchor<T>, NSLayoutAnchorPtr<T>> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NSLayoutAnchor.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSLayoutAnchor() {}
     protected NSLayoutAnchor(Handle h, long handle) { super(h, handle); }
     protected NSLayoutAnchor(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public NSLayoutAnchor(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     
@@ -74,5 +78,9 @@ import org.robovm.apple.intents.*;
     public native NSLayoutConstraint greaterThanOrEqualTo(NSLayoutAnchor<T> anchor, @MachineSizedFloat double c);
     @Method(selector = "constraintLessThanOrEqualToAnchor:constant:")
     public native NSLayoutConstraint lessThanOrEqualTo(NSLayoutAnchor<T> anchor, @MachineSizedFloat double c);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

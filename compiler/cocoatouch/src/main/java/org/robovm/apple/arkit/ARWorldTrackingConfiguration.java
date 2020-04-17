@@ -79,6 +79,16 @@ import org.robovm.apple.imageio.*;
      */
     @Property(selector = "setEnvironmentTexturing:")
     public native void setEnvironmentTexturing(AREnvironmentTexturing v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "wantsHDREnvironmentTextures")
+    public native boolean wantsHDREnvironmentTextures();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setWantsHDREnvironmentTextures:")
+    public native void setWantsHDREnvironmentTextures(boolean v);
     @Property(selector = "planeDetection")
     public native ARPlaneDetection getPlaneDetection();
     @Property(selector = "setPlaneDetection:")
@@ -104,6 +114,16 @@ import org.robovm.apple.imageio.*;
     @Property(selector = "setDetectionImages:")
     public native void setDetectionImages(NSSet<ARReferenceImage> v);
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "automaticImageScaleEstimationEnabled")
+    public native boolean isAutomaticImageScaleEstimationEnabled();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setAutomaticImageScaleEstimationEnabled:")
+    public native void setAutomaticImageScaleEstimationEnabled(boolean v);
+    /**
      * @since Available in iOS 12.0 and later.
      */
     @Property(selector = "maximumNumberOfTrackedImages")
@@ -123,6 +143,31 @@ import org.robovm.apple.imageio.*;
      */
     @Property(selector = "setDetectionObjects:")
     public native void setDetectionObjects(NSSet<ARReferenceObject> v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "isCollaborationEnabled")
+    public native boolean isCollaborationEnabled();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setCollaborationEnabled:")
+    public native void setCollaborationEnabled(boolean v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "supportsUserFaceTracking")
+    public static native boolean supportsUserFaceTracking();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "userFaceTrackingEnabled")
+    public native boolean isUserFaceTrackingEnabled();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setUserFaceTrackingEnabled:")
+    public native void setUserFaceTrackingEnabled(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

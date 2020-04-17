@@ -18,18 +18,16 @@ package org.robovm.idea.actions;
 
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
-import com.intellij.openapi.compiler.CompileContext;
 import com.intellij.openapi.compiler.CompileScope;
-import com.intellij.openapi.compiler.CompileStatusNotification;
 import com.intellij.openapi.compiler.CompilerManager;
 import com.intellij.openapi.module.Module;
+import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.DialogWrapper;
+import com.intellij.openapi.ui.MessageType;
 import com.intellij.openapi.util.Key;
-import org.jetbrains.annotations.Nullable;
 import org.robovm.compiler.config.Arch;
 import org.robovm.idea.RoboVmPlugin;
 
-import javax.swing.*;
 import java.io.File;
 import java.util.List;
 
@@ -37,19 +35,22 @@ public class CreateIpaAction extends AnAction {
     public static final Key<IpaConfig> IPA_CONFIG_KEY = Key.create("IPA_CONFIG");
 
     public void actionPerformed(final AnActionEvent e) {
+        Project project = e.getProject();
+        if (project == null) {
+            RoboVmPlugin.logBalloon(null, MessageType.ERROR, "Oops. Project is missing.");
+            return;
+        }
+
         final CreateIpaDialog dialog = new CreateIpaDialog(e.getProject());
         dialog.show();
-        if(dialog.getExitCode() == DialogWrapper.OK_EXIT_CODE) {
+        if (dialog.getExitCode() == DialogWrapper.OK_EXIT_CODE) {
             // create IPA
             IpaConfig ipaConfig = dialog.getIpaConfig();
-            CompileScope scope = CompilerManager.getInstance(e.getProject()).createModuleCompileScope(ipaConfig.module, true);
+            CompileScope scope = CompilerManager.getInstance(project).createModuleCompileScope(ipaConfig.module, true);
             scope.putUserData(IPA_CONFIG_KEY, ipaConfig);
-            CompilerManager.getInstance(e.getProject()).compile(scope, new CompileStatusNotification() {
-                @Override
-                public void finished(boolean aborted, int errors, int warnings, CompileContext compileContext) {
-                    RoboVmPlugin.logInfo(e.getProject(), "IPA creation complete, %d errors, %d warnings", errors, warnings);
-                }
-            });
+            CompilerManager.getInstance(project).compile(scope, (aborted, errors, warnings, compileContext) ->
+                    RoboVmPlugin.logInfo(project, "IPA creation complete, %d errors, %d warnings", errors, warnings)
+            );
         }
     }
 

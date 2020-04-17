@@ -31,9 +31,7 @@ import org.robovm.apple.foundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("HealthKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/HKStatistics/*</name>*/ 
@@ -48,7 +46,7 @@ import org.robovm.apple.foundation.*;
     protected HKStatistics(Handle h, long handle) { super(h, handle); }
     protected HKStatistics(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public HKStatistics(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public HKStatistics(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "quantityType")
@@ -100,9 +98,19 @@ import org.robovm.apple.foundation.*;
     public native HKQuantity getSumQuantityForSource(HKSource source);
     @Method(selector = "sumQuantity")
     public native HKQuantity getSumQuantity();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "duration")
+    public native HKQuantity duration();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "durationForSource:")
+    public native HKQuantity durationForSource(HKSource source);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

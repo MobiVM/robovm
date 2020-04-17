@@ -62,13 +62,27 @@ import org.robovm.apple.dispatch.*;
     @Bridge(symbol="sec_protocol_metadata_copy_peer_public_key", optional=true)
     public native DispatchData copyPeerPublicKey();
     /**
-     * @since Available in iOS 12.0 and later.
+     * @since Available in iOS 13.0 and later.
      */
+    @Bridge(symbol="sec_protocol_metadata_get_negotiated_tls_protocol_version", optional=true)
+    public native TlsProtocolVersion getNegotiatedTlsProtocolVersion();
+    /**
+     * @since Available in iOS 12.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use sec_protocol_metadata_get_negotiated_tls_protocol_version
+     */
+    @Deprecated
     @Bridge(symbol="sec_protocol_metadata_get_negotiated_protocol_version", optional=true)
     public native SSLProtocol getNegotiatedProtocolVersion();
     /**
      * @since Available in iOS 12.0 and later.
      */
+    @Bridge(symbol="sec_protocol_metadata_get_negotiated_tls_ciphersuite", optional=true)
+    public native TlsCiphersuite getNegotiatedTlsCiphersuite();
+    /**
+     * @since Available in iOS 12.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use sec_protocol_metadata_get_negotiated_tls_ciphersuite
+     */
+    @Deprecated
     @Bridge(symbol="sec_protocol_metadata_get_negotiated_ciphersuite", optional=true)
     public native SSLCipherSuite getNegotiatedCiphersuite();
     /**
@@ -96,6 +110,16 @@ import org.robovm.apple.dispatch.*;
      */
     @Bridge(symbol="sec_protocol_metadata_access_distinguished_names", optional=true)
     public native boolean accessDistinguishedNames(@Block VoidBlock1<DispatchData> handler);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="sec_protocol_metadata_access_pre_shared_keys", optional=true)
+    public native boolean accessPreSharedKeys(@Block VoidBlock2<DispatchData, DispatchData> handler);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Bridge(symbol="sec_protocol_metadata_get_server_name", optional=true)
+    public native BytePtr getServerName();
     /**
      * @since Available in iOS 12.0 and later.
      */

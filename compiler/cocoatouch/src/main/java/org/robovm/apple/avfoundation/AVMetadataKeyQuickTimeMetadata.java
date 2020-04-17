@@ -97,165 +97,45 @@ import org.robovm.apple.audiotoolbox.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMetadataKeyQuickTimeMetadata Author = new AVMetadataKeyQuickTimeMetadata("Author");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMetadataKeyQuickTimeMetadata Comment = new AVMetadataKeyQuickTimeMetadata("Comment");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMetadataKeyQuickTimeMetadata Copyright = new AVMetadataKeyQuickTimeMetadata("Copyright");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMetadataKeyQuickTimeMetadata CreationDate = new AVMetadataKeyQuickTimeMetadata("CreationDate");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMetadataKeyQuickTimeMetadata Director = new AVMetadataKeyQuickTimeMetadata("Director");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMetadataKeyQuickTimeMetadata DisplayName = new AVMetadataKeyQuickTimeMetadata("DisplayName");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMetadataKeyQuickTimeMetadata Information = new AVMetadataKeyQuickTimeMetadata("Information");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMetadataKeyQuickTimeMetadata Keywords = new AVMetadataKeyQuickTimeMetadata("Keywords");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMetadataKeyQuickTimeMetadata Producer = new AVMetadataKeyQuickTimeMetadata("Producer");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMetadataKeyQuickTimeMetadata Publisher = new AVMetadataKeyQuickTimeMetadata("Publisher");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMetadataKeyQuickTimeMetadata Album = new AVMetadataKeyQuickTimeMetadata("Album");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMetadataKeyQuickTimeMetadata Artist = new AVMetadataKeyQuickTimeMetadata("Artist");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMetadataKeyQuickTimeMetadata Artwork = new AVMetadataKeyQuickTimeMetadata("Artwork");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMetadataKeyQuickTimeMetadata Description = new AVMetadataKeyQuickTimeMetadata("Description");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMetadataKeyQuickTimeMetadata Software = new AVMetadataKeyQuickTimeMetadata("Software");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMetadataKeyQuickTimeMetadata Year = new AVMetadataKeyQuickTimeMetadata("Year");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMetadataKeyQuickTimeMetadata Genre = new AVMetadataKeyQuickTimeMetadata("Genre");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMetadataKeyQuickTimeMetadata iXML = new AVMetadataKeyQuickTimeMetadata("iXML");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMetadataKeyQuickTimeMetadata LocationISO6709 = new AVMetadataKeyQuickTimeMetadata("LocationISO6709");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMetadataKeyQuickTimeMetadata Make = new AVMetadataKeyQuickTimeMetadata("Make");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMetadataKeyQuickTimeMetadata Model = new AVMetadataKeyQuickTimeMetadata("Model");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMetadataKeyQuickTimeMetadata Arranger = new AVMetadataKeyQuickTimeMetadata("Arranger");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMetadataKeyQuickTimeMetadata EncodedBy = new AVMetadataKeyQuickTimeMetadata("EncodedBy");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMetadataKeyQuickTimeMetadata OriginalArtist = new AVMetadataKeyQuickTimeMetadata("OriginalArtist");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMetadataKeyQuickTimeMetadata Performer = new AVMetadataKeyQuickTimeMetadata("Performer");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMetadataKeyQuickTimeMetadata Composer = new AVMetadataKeyQuickTimeMetadata("Composer");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMetadataKeyQuickTimeMetadata Credits = new AVMetadataKeyQuickTimeMetadata("Credits");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMetadataKeyQuickTimeMetadata PhonogramRights = new AVMetadataKeyQuickTimeMetadata("PhonogramRights");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMetadataKeyQuickTimeMetadata CameraIdentifier = new AVMetadataKeyQuickTimeMetadata("CameraIdentifier");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final AVMetadataKeyQuickTimeMetadata CameraFrameReadoutTime = new AVMetadataKeyQuickTimeMetadata("CameraFrameReadoutTime");
-    /**
-     * @since Available in iOS 4.3 and later.
-     */
     public static final AVMetadataKeyQuickTimeMetadata Title = new AVMetadataKeyQuickTimeMetadata("Title");
-    /**
-     * @since Available in iOS 4.3 and later.
-     */
     public static final AVMetadataKeyQuickTimeMetadata CollectionUser = new AVMetadataKeyQuickTimeMetadata("CollectionUser");
-    /**
-     * @since Available in iOS 4.3 and later.
-     */
     public static final AVMetadataKeyQuickTimeMetadata RatingUser = new AVMetadataKeyQuickTimeMetadata("RatingUser");
-    /**
-     * @since Available in iOS 4.3 and later.
-     */
     public static final AVMetadataKeyQuickTimeMetadata LocationName = new AVMetadataKeyQuickTimeMetadata("LocationName");
-    /**
-     * @since Available in iOS 4.3 and later.
-     */
     public static final AVMetadataKeyQuickTimeMetadata LocationBody = new AVMetadataKeyQuickTimeMetadata("LocationBody");
-    /**
-     * @since Available in iOS 4.3 and later.
-     */
     public static final AVMetadataKeyQuickTimeMetadata LocationNote = new AVMetadataKeyQuickTimeMetadata("LocationNote");
-    /**
-     * @since Available in iOS 4.3 and later.
-     */
     public static final AVMetadataKeyQuickTimeMetadata LocationRole = new AVMetadataKeyQuickTimeMetadata("LocationRole");
-    /**
-     * @since Available in iOS 4.3 and later.
-     */
     public static final AVMetadataKeyQuickTimeMetadata LocationDate = new AVMetadataKeyQuickTimeMetadata("LocationDate");
-    /**
-     * @since Available in iOS 4.3 and later.
-     */
     public static final AVMetadataKeyQuickTimeMetadata DirectionFacing = new AVMetadataKeyQuickTimeMetadata("DirectionFacing");
-    /**
-     * @since Available in iOS 4.3 and later.
-     */
     public static final AVMetadataKeyQuickTimeMetadata DirectionMotion = new AVMetadataKeyQuickTimeMetadata("DirectionMotion");
     /**
      * @since Available in iOS 9.0 and later.
@@ -286,204 +166,84 @@ import org.robovm.apple.audiotoolbox.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataQuickTimeMetadataKeyAuthor", optional=true)
         public static native NSString Author();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataQuickTimeMetadataKeyComment", optional=true)
         public static native NSString Comment();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataQuickTimeMetadataKeyCopyright", optional=true)
         public static native NSString Copyright();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataQuickTimeMetadataKeyCreationDate", optional=true)
         public static native NSString CreationDate();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataQuickTimeMetadataKeyDirector", optional=true)
         public static native NSString Director();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataQuickTimeMetadataKeyDisplayName", optional=true)
         public static native NSString DisplayName();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataQuickTimeMetadataKeyInformation", optional=true)
         public static native NSString Information();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataQuickTimeMetadataKeyKeywords", optional=true)
         public static native NSString Keywords();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataQuickTimeMetadataKeyProducer", optional=true)
         public static native NSString Producer();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataQuickTimeMetadataKeyPublisher", optional=true)
         public static native NSString Publisher();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataQuickTimeMetadataKeyAlbum", optional=true)
         public static native NSString Album();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataQuickTimeMetadataKeyArtist", optional=true)
         public static native NSString Artist();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataQuickTimeMetadataKeyArtwork", optional=true)
         public static native NSString Artwork();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataQuickTimeMetadataKeyDescription", optional=true)
         public static native NSString Description();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataQuickTimeMetadataKeySoftware", optional=true)
         public static native NSString Software();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataQuickTimeMetadataKeyYear", optional=true)
         public static native NSString Year();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataQuickTimeMetadataKeyGenre", optional=true)
         public static native NSString Genre();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataQuickTimeMetadataKeyiXML", optional=true)
         public static native NSString iXML();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataQuickTimeMetadataKeyLocationISO6709", optional=true)
         public static native NSString LocationISO6709();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataQuickTimeMetadataKeyMake", optional=true)
         public static native NSString Make();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataQuickTimeMetadataKeyModel", optional=true)
         public static native NSString Model();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataQuickTimeMetadataKeyArranger", optional=true)
         public static native NSString Arranger();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataQuickTimeMetadataKeyEncodedBy", optional=true)
         public static native NSString EncodedBy();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataQuickTimeMetadataKeyOriginalArtist", optional=true)
         public static native NSString OriginalArtist();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataQuickTimeMetadataKeyPerformer", optional=true)
         public static native NSString Performer();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataQuickTimeMetadataKeyComposer", optional=true)
         public static native NSString Composer();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataQuickTimeMetadataKeyCredits", optional=true)
         public static native NSString Credits();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataQuickTimeMetadataKeyPhonogramRights", optional=true)
         public static native NSString PhonogramRights();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataQuickTimeMetadataKeyCameraIdentifier", optional=true)
         public static native NSString CameraIdentifier();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="AVMetadataQuickTimeMetadataKeyCameraFrameReadoutTime", optional=true)
         public static native NSString CameraFrameReadoutTime();
-        /**
-         * @since Available in iOS 4.3 and later.
-         */
         @GlobalValue(symbol="AVMetadataQuickTimeMetadataKeyTitle", optional=true)
         public static native NSString Title();
-        /**
-         * @since Available in iOS 4.3 and later.
-         */
         @GlobalValue(symbol="AVMetadataQuickTimeMetadataKeyCollectionUser", optional=true)
         public static native NSString CollectionUser();
-        /**
-         * @since Available in iOS 4.3 and later.
-         */
         @GlobalValue(symbol="AVMetadataQuickTimeMetadataKeyRatingUser", optional=true)
         public static native NSString RatingUser();
-        /**
-         * @since Available in iOS 4.3 and later.
-         */
         @GlobalValue(symbol="AVMetadataQuickTimeMetadataKeyLocationName", optional=true)
         public static native NSString LocationName();
-        /**
-         * @since Available in iOS 4.3 and later.
-         */
         @GlobalValue(symbol="AVMetadataQuickTimeMetadataKeyLocationBody", optional=true)
         public static native NSString LocationBody();
-        /**
-         * @since Available in iOS 4.3 and later.
-         */
         @GlobalValue(symbol="AVMetadataQuickTimeMetadataKeyLocationNote", optional=true)
         public static native NSString LocationNote();
-        /**
-         * @since Available in iOS 4.3 and later.
-         */
         @GlobalValue(symbol="AVMetadataQuickTimeMetadataKeyLocationRole", optional=true)
         public static native NSString LocationRole();
-        /**
-         * @since Available in iOS 4.3 and later.
-         */
         @GlobalValue(symbol="AVMetadataQuickTimeMetadataKeyLocationDate", optional=true)
         public static native NSString LocationDate();
-        /**
-         * @since Available in iOS 4.3 and later.
-         */
         @GlobalValue(symbol="AVMetadataQuickTimeMetadataKeyDirectionFacing", optional=true)
         public static native NSString DirectionFacing();
-        /**
-         * @since Available in iOS 4.3 and later.
-         */
         @GlobalValue(symbol="AVMetadataQuickTimeMetadataKeyDirectionMotion", optional=true)
         public static native NSString DirectionMotion();
         /**

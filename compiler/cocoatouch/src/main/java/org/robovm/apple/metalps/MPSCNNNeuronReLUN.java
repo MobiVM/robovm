@@ -51,7 +51,7 @@ import org.robovm.apple.metal.*;
     protected MPSCNNNeuronReLUN(SkipInit skipInit) { super(skipInit); }
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 12.0.
+     * @deprecated Deprecated in iOS 12.0. Use Please use MPSCNNNeuron initWithDevice:neuronDescriptor.
      */
     @Deprecated
     @Method(selector = "initWithDevice:a:b:")
@@ -73,7 +73,7 @@ import org.robovm.apple.metal.*;
     /*<methods>*/
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 12.0.
+     * @deprecated Deprecated in iOS 12.0. Use Please use MPSCNNNeuron initWithDevice:neuronDescriptor.
      */
     @Deprecated
     @Method(selector = "initWithDevice:a:b:")

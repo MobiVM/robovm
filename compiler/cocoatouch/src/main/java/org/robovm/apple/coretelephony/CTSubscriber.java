@@ -32,9 +32,7 @@ import org.robovm.apple.corefoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 7.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreTelephony") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CTSubscriber/*</name>*/ 
@@ -64,7 +62,6 @@ import org.robovm.apple.corefoundation.*;
     /*</constructors>*/
     /*<properties>*/
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 11.0. Deprecated; returns nil starting in iOS 11.3.
      */
     @Deprecated
@@ -89,8 +86,7 @@ import org.robovm.apple.corefoundation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @since Available in iOS 7.0 and later.
-     * @deprecated Deprecated in iOS 12.1.
+     * @deprecated Deprecated in iOS 12.1. Use -[CTSubscriberDelegate subscriberTokenRefreshed:]
      */
     @Deprecated
     @GlobalValue(symbol="CTSubscriberTokenRefreshed", optional=true)

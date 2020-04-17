@@ -41,9 +41,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVPlayerItem/*</name>*/ 
@@ -136,9 +134,6 @@ import org.robovm.apple.audiotoolbox.*;
     public AVPlayerItem(NSURL URL) { super((SkipInit) null); initObject(init(URL)); }
     @Method(selector = "initWithAsset:")
     public AVPlayerItem(AVAsset asset) { super((SkipInit) null); initObject(init(asset)); }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "initWithAsset:automaticallyLoadedAssetKeys:")
     public AVPlayerItem(AVAsset asset, @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> automaticallyLoadedAssetKeys) { super((SkipInit) null); initObject(init(asset, automaticallyLoadedAssetKeys)); }
     /*</constructors>*/
@@ -151,55 +146,57 @@ import org.robovm.apple.audiotoolbox.*;
     public native AVAsset getAsset();
     @Property(selector = "tracks")
     public native NSArray<AVPlayerItemTrack> getTracks();
-    /**
-     * @since Available in iOS 4.3 and later.
-     */
     @Property(selector = "duration")
     public native @ByVal CMTime getDuration();
     @Property(selector = "presentationSize")
     public native @ByVal CGSize getPresentationSize();
+    /**
+     * @deprecated Deprecated in iOS 13.0. Use AVPlayerItemMetadataOutput to obtain timed metadata
+     */
+    @Deprecated
     @Property(selector = "timedMetadata")
     public native NSArray<AVMetadataItem> getTimedMetadata();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "automaticallyLoadedAssetKeys")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getAutomaticallyLoadedAssetKeys();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "canPlayFastForward")
     public native boolean canPlayFastForward();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "canPlaySlowForward")
     public native boolean canPlaySlowForward();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "canPlayReverse")
     public native boolean canPlayReverse();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "canPlaySlowReverse")
     public native boolean canPlaySlowReverse();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "canPlayFastReverse")
     public native boolean canPlayFastReverse();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "canStepForward")
     public native boolean canStepForward();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "canStepBackward")
     public native boolean canStepBackward();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "configuredTimeOffsetFromLive")
+    public native @ByVal CMTime getConfiguredTimeOffsetFromLive();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setConfiguredTimeOffsetFromLive:")
+    public native void setConfiguredTimeOffsetFromLive(@ByVal CMTime v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "recommendedTimeOffsetFromLive")
+    public native @ByVal CMTime getRecommendedTimeOffsetFromLive();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "automaticallyPreservesTimeOffsetFromLive")
+    public native boolean automaticallyPreservesTimeOffsetFromLive();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setAutomaticallyPreservesTimeOffsetFromLive:")
+    public native void setAutomaticallyPreservesTimeOffsetFromLive(boolean v);
     @Property(selector = "forwardPlaybackEndTime")
     public native @ByVal CMTime getForwardPlaybackEndTime();
     @Property(selector = "setForwardPlaybackEndTime:")
@@ -210,38 +207,20 @@ import org.robovm.apple.audiotoolbox.*;
     public native void setReversePlaybackEndTime(@ByVal CMTime v);
     @Property(selector = "seekableTimeRanges")
     public native @org.robovm.rt.bro.annotation.Marshaler(CMTimeRange.AsValuedListMarshaler.class) List<CMTimeRange> getSeekableTimeRanges();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "timebase")
     public native CMTimebase getTimebase();
     @Property(selector = "videoComposition")
     public native AVVideoComposition getVideoComposition();
     @Property(selector = "setVideoComposition:")
     public native void setVideoComposition(AVVideoComposition v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "customVideoCompositor")
     public native AVVideoCompositing getCustomVideoCompositor();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "seekingWaitsForVideoCompositionRendering")
     public native boolean seekingWaitsForVideoCompositionRendering();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "setSeekingWaitsForVideoCompositionRendering:")
     public native void seekingWaitsForVideoCompositionRendering(boolean v);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "textStyleRules")
     public native NSArray<AVTextStyleRule> getTextStyleRules();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "setTextStyleRules:")
     public native void setTextStyleRules(NSArray<AVTextStyleRule> v);
     /**
@@ -254,16 +233,20 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "setVideoApertureMode:")
     public native void setVideoApertureMode(AVVideoApertureMode v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "audioTimePitchAlgorithm")
     public native String getAudioTimePitchAlgorithm();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setAudioTimePitchAlgorithm:")
     public native void setAudioTimePitchAlgorithm(String v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "isAudioSpatializationAllowed")
+    public native boolean isAudioSpatializationAllowed();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setAudioSpatializationAllowed:")
+    public native void setAudioSpatializationAllowed(boolean v);
     @Property(selector = "audioMix")
     public native AVAudioMix getAudioMix();
     @Property(selector = "setAudioMix:")
@@ -296,14 +279,8 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "setPreferredForwardBufferDuration:")
     public native void setPreferredForwardBufferDuration(double v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "preferredPeakBitRate")
     public native double getPreferredPeakBitRate();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setPreferredPeakBitRate:")
     public native void setPreferredPeakBitRate(double v);
     /**
@@ -321,9 +298,6 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "currentMediaSelection")
     public native AVMediaSelection getCurrentMediaSelection();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "outputs")
     public native NSArray<AVPlayerItemOutput> getOutputs();
     /**
@@ -334,39 +308,28 @@ import org.robovm.apple.audiotoolbox.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @GlobalValue(symbol="AVPlayerItemTimeJumpedNotification", optional=true)
     public static native NSString TimeJumpedNotification();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @GlobalValue(symbol="AVPlayerItemDidPlayToEndTimeNotification", optional=true)
     public static native NSString DidPlayToEndTimeNotification();
-    /**
-     * @since Available in iOS 4.3 and later.
-     */
     @GlobalValue(symbol="AVPlayerItemFailedToPlayToEndTimeNotification", optional=true)
     public static native NSString FailedToPlayToEndTimeNotification();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @GlobalValue(symbol="AVPlayerItemPlaybackStalledNotification", optional=true)
     public static native NSString PlaybackStalledNotification();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @GlobalValue(symbol="AVPlayerItemNewAccessLogEntryNotification", optional=true)
     public static native NSString NewAccessLogEntryNotification();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @GlobalValue(symbol="AVPlayerItemNewErrorLogEntryNotification", optional=true)
     public static native NSString NewErrorLogEntryNotification();
     /**
-     * @since Available in iOS 4.3 and later.
+     * @since Available in iOS 13.0 and later.
      */
+    @GlobalValue(symbol="AVPlayerItemRecommendedTimeOffsetFromLiveDidChangeNotification", optional=true)
+    public static native NSString RecommendedTimeOffsetFromLiveDidChangeNotification();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @GlobalValue(symbol="AVPlayerItemMediaSelectionDidChangeNotification", optional=true)
+    public static native NSString MediaSelectionDidChangeNotification();
     @GlobalValue(symbol="AVPlayerItemFailedToPlayToEndTimeErrorKey", optional=true)
     protected static native NSString FailedToPlayToEndTimeErrorKey();
     
@@ -374,65 +337,32 @@ import org.robovm.apple.audiotoolbox.*;
     protected native @Pointer long init(NSURL URL);
     @Method(selector = "initWithAsset:")
     protected native @Pointer long init(AVAsset asset);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "initWithAsset:automaticallyLoadedAssetKeys:")
     protected native @Pointer long init(AVAsset asset, @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> automaticallyLoadedAssetKeys);
     @Method(selector = "currentTime")
     public native @ByVal CMTime getCurrentTime();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "seekToTime:completionHandler:")
     public native void seekToTime(@ByVal CMTime time, @Block VoidBooleanBlock completionHandler);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "seekToTime:toleranceBefore:toleranceAfter:completionHandler:")
     public native void seekToTime(@ByVal CMTime time, @ByVal CMTime toleranceBefore, @ByVal CMTime toleranceAfter, @Block VoidBooleanBlock completionHandler);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "cancelPendingSeeks")
     public native void cancelPendingSeeks();
     @Method(selector = "currentDate")
     public native NSDate getCurrentDate();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "seekToDate:completionHandler:")
     public native boolean seekToDate(NSDate date, @Block VoidBooleanBlock completionHandler);
     @Method(selector = "stepByCount:")
     public native void stepByCount(@MachineSizedSInt long stepCount);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "selectMediaOption:inMediaSelectionGroup:")
     public native void selectMediaOption(AVMediaSelectionOption mediaSelectionOption, AVMediaSelectionGroup mediaSelectionGroup);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "selectMediaOptionAutomaticallyInMediaSelectionGroup:")
     public native void selectMediaOptionAutomatically(AVMediaSelectionGroup mediaSelectionGroup);
-    /**
-     * @since Available in iOS 4.3 and later.
-     */
     @Method(selector = "accessLog")
     public native AVPlayerItemAccessLog getAccessLog();
-    /**
-     * @since Available in iOS 4.3 and later.
-     */
     @Method(selector = "errorLog")
     public native AVPlayerItemErrorLog getErrorLog();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "addOutput:")
     public native void addOutput(AVPlayerItemOutput output);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "removeOutput:")
     public native void removeOutput(AVPlayerItemOutput output);
     /**
@@ -446,29 +376,25 @@ import org.robovm.apple.audiotoolbox.*;
     @Method(selector = "removeMediaDataCollector:")
     public native void removeMediaDataCollector(AVPlayerItemMediaDataCollector collector);
     /**
-     * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use -seekToTime:completionHandler:, passing nil for the completionHandler if you don't require notification of completion
      */
     @Deprecated
     @Method(selector = "seekToTime:")
     public native void seekToTime(@ByVal CMTime time);
     /**
-     * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use -seekToTime:toleranceBefore:toleranceAfter:completionHandler:, passing nil for the completionHandler if you don't require notification of completion
      */
     @Deprecated
     @Method(selector = "seekToTime:toleranceBefore:toleranceAfter:")
     public native void seekToTime(@ByVal CMTime time, @ByVal CMTime toleranceBefore, @ByVal CMTime toleranceAfter);
     /**
-     * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use -seekToDate:completionHandler:, passing nil for the completionHandler if you don't require notification of completion
      */
     @Deprecated
     @Method(selector = "seekToDate:")
     public native boolean seekToDate(NSDate date);
     /**
-     * @since Available in iOS 5.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use currentMediaSelection to obtain an instance of AVMediaSelection, which encompasses the currently selected AVMediaSelectionOption in each of the available AVMediaSelectionGroups
      */
     @Deprecated
     @Method(selector = "selectedMediaOptionInMediaSelectionGroup:")

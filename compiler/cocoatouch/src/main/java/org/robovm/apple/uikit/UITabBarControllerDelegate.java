@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -55,43 +57,22 @@ import org.robovm.apple.intents.*;
     
     /*</properties>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "tabBarController:shouldSelectViewController:")
     boolean shouldSelectViewController(UITabBarController tabBarController, UIViewController viewController);
     @Method(selector = "tabBarController:didSelectViewController:")
     void didSelectViewController(UITabBarController tabBarController, UIViewController viewController);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "tabBarController:willBeginCustomizingViewControllers:")
     void willBeginCustomizingViewControllers(UITabBarController tabBarController, NSArray<UIViewController> viewControllers);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "tabBarController:willEndCustomizingViewControllers:changed:")
     void willEndCustomizingViewControllers(UITabBarController tabBarController, NSArray<UIViewController> viewControllers, boolean changed);
     @Method(selector = "tabBarController:didEndCustomizingViewControllers:changed:")
     void didEndCustomizingViewControllers(UITabBarController tabBarController, NSArray<UIViewController> viewControllers, boolean changed);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "tabBarControllerSupportedInterfaceOrientations:")
     UIInterfaceOrientation getSupportedInterfaceOrientations(UITabBarController tabBarController);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "tabBarControllerPreferredInterfaceOrientationForPresentation:")
     UIInterfaceOrientation getPreferredInterfaceOrientation(UITabBarController tabBarController);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "tabBarController:interactionControllerForAnimationController:")
     UIViewControllerInteractiveTransitioning getInteractionController(UITabBarController tabBarController, UIViewControllerAnimatedTransitioning animationController);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "tabBarController:animationControllerForTransitionFromViewController:toViewController:")
     UIViewControllerAnimatedTransitioning getAnimationController(UITabBarController tabBarController, UIViewController fromVC, UIViewController toVC);
     /*</methods>*/

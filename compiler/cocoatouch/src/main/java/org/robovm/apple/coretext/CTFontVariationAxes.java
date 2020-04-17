@@ -110,9 +110,6 @@ import org.robovm.apple.uikit.*;
     }
     
 
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public long getIdentifier() {
         if (has(Keys.Identifier())) {
             CFNumber val = get(Keys.Identifier(), CFNumber.class);
@@ -120,16 +117,10 @@ import org.robovm.apple.uikit.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public CTFontVariationAxes setIdentifier(long identifier) {
         set(Keys.Identifier(), CFNumber.valueOf(identifier));
         return this;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public double getMinimumValue() {
         if (has(Keys.MinimumValue())) {
             CFNumber val = get(Keys.MinimumValue(), CFNumber.class);
@@ -137,16 +128,10 @@ import org.robovm.apple.uikit.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public CTFontVariationAxes setMinimumValue(double minimumValue) {
         set(Keys.MinimumValue(), CFNumber.valueOf(minimumValue));
         return this;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public double getMaximumValue() {
         if (has(Keys.MaximumValue())) {
             CFNumber val = get(Keys.MaximumValue(), CFNumber.class);
@@ -154,16 +139,10 @@ import org.robovm.apple.uikit.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public CTFontVariationAxes setMaximumValue(double maximumValue) {
         set(Keys.MaximumValue(), CFNumber.valueOf(maximumValue));
         return this;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public double getDefaultValue() {
         if (has(Keys.DefaultValue())) {
             CFNumber val = get(Keys.DefaultValue(), CFNumber.class);
@@ -171,16 +150,10 @@ import org.robovm.apple.uikit.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public CTFontVariationAxes setDefaultValue(double defaultValue) {
         set(Keys.DefaultValue(), CFNumber.valueOf(defaultValue));
         return this;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public String getLocalizedName() {
         if (has(Keys.Name())) {
             CFString val = get(Keys.Name(), CFString.class);
@@ -188,9 +161,6 @@ import org.robovm.apple.uikit.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     public CTFontVariationAxes setLocalizedName(String localizedName) {
         set(Keys.Name(), new CFString(localizedName));
         return this;
@@ -201,29 +171,14 @@ import org.robovm.apple.uikit.*;
     @Library("CoreText")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 3.2 and later.
-         */
         @GlobalValue(symbol="kCTFontVariationAxisIdentifierKey", optional=true)
         public static native CFString Identifier();
-        /**
-         * @since Available in iOS 3.2 and later.
-         */
         @GlobalValue(symbol="kCTFontVariationAxisMinimumValueKey", optional=true)
         public static native CFString MinimumValue();
-        /**
-         * @since Available in iOS 3.2 and later.
-         */
         @GlobalValue(symbol="kCTFontVariationAxisMaximumValueKey", optional=true)
         public static native CFString MaximumValue();
-        /**
-         * @since Available in iOS 3.2 and later.
-         */
         @GlobalValue(symbol="kCTFontVariationAxisDefaultValueKey", optional=true)
         public static native CFString DefaultValue();
-        /**
-         * @since Available in iOS 3.2 and later.
-         */
         @GlobalValue(symbol="kCTFontVariationAxisNameKey", optional=true)
         public static native CFString Name();
         /**

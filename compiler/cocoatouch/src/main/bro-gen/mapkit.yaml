@@ -23,6 +23,14 @@ enums:
     MKAnnotationViewCollisionMode: {} #since 11.0
     MKFeatureVisibility: {} #since 11.0
     MKScaleViewAlignment: {} #since 11.0
+    MKLocalSearchResultType: {} #since 13.0
+    MKLocalSearchCompleterResultType: {} #since 13.0
+
+typed_enums:
+    MKPointOfInterestCategory:
+        enum: MKPointOfInterestCategory
+        prefix: MKPointOfInterestCategory
+        type: NSString
 
 categories:
     NSValueMapKitGeometryExtensions: # DONE
@@ -125,6 +133,10 @@ classes:
         methods:
             '-initWithCompletion:':
                 name: init
+            '-initWithNaturalLanguageQuery:':
+                name: init
+            '-initWithNaturalLanguageQuery:region:':
+                name: init
     MKLocalSearchResponse: # DONE
         properties:
             'mapItems':
@@ -160,6 +172,10 @@ classes:
                         type: NSArray<MKMapItem>
                     launchOptions:
                         type: MKLaunchOptions
+            '-openInMapsWithLaunchOptions:fromScene:completionHandler:':
+                name: openInMaps
+            '+openMapsWithItems:launchOptions:fromScene:completionHandler:':
+                name: openMaps
     MKMapSnapshot: # DONE
         methods:
             '-pointForCoordinate:':
@@ -302,6 +318,10 @@ classes:
                 name: exchangeOverlay
             '-_handleSelectionAtPoint:':
                 name: handleSelectionAtPoint
+            '-setCameraZoomRange:animated:':
+                name: setCameraZoomRange
+            '-setCameraBoundary:animated:':
+                name: setCameraBoundary
     MKMultiPoint: # DONE
         skip_handle_constructor: false
         methods:
@@ -396,7 +416,12 @@ classes:
                         type: org.robovm.apple.contacts.CNPostalAddress
             '-init.*':
                 name: init
-    MKPointAnnotation: {} # DONE
+    MKPointAnnotation: #since 4.0
+        methods:
+            '-initWithCoordinate:':
+                name: init
+            '-initWithCoordinate:title:subtitle:':
+                name: init
     MKPolygon: # DONE
         properties:
             'interiorPolygons':
@@ -501,6 +526,53 @@ classes:
             '+userTrackingButtonWithMapView:':
                 name: create
                 constructor: true
+    # ios 13
+    MKGeoJSONDecoder: #since 13.0
+        methods:
+            '-geoJSONObjectsWithData:error:':
+                name: geoJSONObjects
+                throws: NSErrorException
+    MKGeoJSONFeature: {} #since 13.0
+    MKMapCameraBoundary: #since 13.0
+        methods:
+            '-initWithMapRect:':
+                name: init
+            '-initWithCoordinateRegion:':
+                name: init
+            '-initWithCoder:':
+                name: init
+    MKMapCameraZoomRange: #since 13.0
+        methods:
+            '-initWithMinCenterCoordinateDistance:maxCenterCoordinateDistance:':
+                name: init
+            '-initWithMinCenterCoordinateDistance:':
+                name: initUsingMinCenterCoordinateDistance
+                static_constructor_name: createUsingMinCenterCoordinateDistance
+            '-initWithMaxCenterCoordinateDistance:':
+                name: initUsingMaxCenterCoordinateDistance
+                static_constructor_name: createUsingMaxCenterCoordinateDistance
+    MKMultiPolygon: #since 13.0
+        methods:
+            '-initWithPolygons:':
+                name: init
+    MKMultiPolygonRenderer: #since 13.0
+        methods:
+            '-initWithMultiPolygon:':
+                name: init
+    MKMultiPolyline: #since 13.0
+        methods:
+            '-initWithPolylines:':
+                name: init
+    MKMultiPolylineRenderer: #since 13.0
+        methods:
+            '-initWithMultiPolyline:':
+                name: init
+    MKPointOfInterestFilter: #since 13.0
+        methods:
+            '-initIncludingCategories:':
+                static_constructor_name: createIncludingCategories
+            '-initExcludingCategories:':
+                static_constructor_name: createExcludingCategories
 protocols:
     MKAnnotation: {} # DONE
     MKMapViewDelegate: # DONE
@@ -570,6 +642,8 @@ protocols:
                 name: didUpdateResults
             '-completer:didFailWithError:':
                 name: didFailWithError
+    MKGeoJSONObject: #since 13.0
+        skip_adapter: true
 
 functions:
     # MKCoordinateRegion
@@ -698,7 +772,6 @@ functions:
     MKStringFromMapSize:
         class: MKMapSize
         name: asString
- 
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (k?MK.*):
         class: MapKit
@@ -757,6 +830,10 @@ values:
     MKMapViewDefaultClusterAnnotationViewReuseIdentifier:
         class: MKMapView
         name: getDefaultClusterAnnotationViewReuseIdentifier
+
+    MKMapCameraZoomDefault:
+        class: MKMapCameraZoomRange
+        name: getCameraZoomDefault
 
     # Make sure we don't miss any values if new ones are introduced in a later version
     (k?MK.*):

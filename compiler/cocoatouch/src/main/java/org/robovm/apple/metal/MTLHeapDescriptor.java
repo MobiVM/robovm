@@ -62,6 +62,36 @@ import org.robovm.apple.dispatch.*;
     public native MTLCPUCacheMode getCpuCacheMode();
     @Property(selector = "setCpuCacheMode:")
     public native void setCpuCacheMode(MTLCPUCacheMode v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "hazardTrackingMode")
+    public native MTLHazardTrackingMode getHazardTrackingMode();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setHazardTrackingMode:")
+    public native void setHazardTrackingMode(MTLHazardTrackingMode v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "resourceOptions")
+    public native MTLResourceOptions getResourceOptions();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setResourceOptions:")
+    public native void setResourceOptions(MTLResourceOptions v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "type")
+    public native MTLHeapType getType();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setType:")
+    public native void setType(MTLHeapType v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

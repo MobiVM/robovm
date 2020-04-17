@@ -39,9 +39,7 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 5.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSMetadataQuery/*</name>*/ 
@@ -132,24 +130,12 @@ import org.robovm.apple.dispatch.*;
     protected native NSArray<?> getSearchScopes0();
     @Property(selector = "setSearchScopes:")
     protected native void setSearchScopes0(NSArray<?> v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "searchItems")
     protected native NSArray<?> getSearchItems0();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setSearchItems:")
     protected native void setSearchItems0(NSArray<?> v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "operationQueue")
     public native NSOperationQueue getOperationQueue();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setOperationQueue:")
     public native void setOperationQueue(NSOperationQueue v);
     @Property(selector = "isStarted")
@@ -202,24 +188,12 @@ import org.robovm.apple.dispatch.*;
         return values;
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @GlobalValue(symbol="NSMetadataQueryDidStartGatheringNotification", optional=true)
     public static native NSString DidStartGatheringNotification();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @GlobalValue(symbol="NSMetadataQueryGatheringProgressNotification", optional=true)
     public static native NSString GatheringProgressNotification();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @GlobalValue(symbol="NSMetadataQueryDidFinishGatheringNotification", optional=true)
     public static native NSString DidFinishGatheringNotification();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @GlobalValue(symbol="NSMetadataQueryDidUpdateNotification", optional=true)
     public static native NSString DidUpdateNotification();
     
@@ -233,14 +207,8 @@ import org.robovm.apple.dispatch.*;
     public native void enableUpdates();
     @Method(selector = "resultAtIndex:")
     public native NSMetadataItem getResult(@MachineSizedUInt long idx);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "enumerateResultsUsingBlock:")
     public native void enumerateResults(@Block("(,@MachineSizedUInt,)") VoidBlock3<NSMetadataItem, Long, BooleanPtr> block);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "enumerateResultsWithOptions:usingBlock:")
     public native void enumerateResults(NSEnumerationOptions opts, @Block("(,@MachineSizedUInt,)") VoidBlock3<NSMetadataItem, Long, BooleanPtr> block);
     @Method(selector = "indexOfResult:")

@@ -7,13 +7,9 @@ headers:
     - /System/Library/Frameworks/PassKit.framework/Headers/PassKit.h
 private_typedefs:
     CGRect: '@ByVal org.robovm.apple.coregraphics.CGRect'
-typedefs:
-    'void (^)(PKPassLibraryAddPassesStatus)': '@Block VoidBlock1<PKPassLibraryAddPassesStatus>'
-    'void (^)(PKPaymentAuthorizationStatus)': '@Block VoidBlock1<PKPaymentAuthorizationStatus>'
-    'void (^)(BOOL, NSError *)': '@Block VoidBlock2<Boolean, NSError>'
-    
+
 enums:
-    PKPassKitErrorCode: {}
+    PKPassKitErrorCode: {nserror: true}
     PKPassLibraryAddPassesStatus: {}
     PKPassType: {}
     PKPaymentAuthorizationStatus: {}
@@ -31,7 +27,8 @@ enums:
     PKPaymentErrorCode: {nserror: true, prefix: PKPayment} #since 11.0
     PKAddPaymentPassStyle: {} #since 12.0
     PKDisbursementRequestSchedule: {}
-
+    PKAddSecureElementPassErrorCode: {prefix: PKAddSecureElementPass, nserror: true} #since 13.4
+    PKSecureElementPassActivationState: {} #since 13.4
 classes:
     PKPassKitError:
         extends: NSError
@@ -110,6 +107,14 @@ classes:
                 name: endAutomaticPassPresentationSuppression
             '+isPaymentPassActivationAvailable':
                 name: isDevicePaymentPassActivationAvailable
+            '-signData:withPaymentPass:completion:':
+                name: signData
+            '-canAddSecureElementPassWithPrimaryAccountIdentifier:':
+                name: canAddSecureElementPass
+            '-activateSecureElementPass:withActivationData:completion:':
+                name: activateSecureElementPass
+            '-signData:withSecureElementPass:completion:':
+                name: signData
     PKPayment: # DONE
         properties:
             'billingAddress':
@@ -187,7 +192,10 @@ classes:
         methods:
             '-init.*':
                 name: init
-    PKPaymentRequestPaymentMethodUpdate: {} #since 11.0
+    PKPaymentRequestPaymentMethodUpdate: #since 11.0
+        methods:
+            '-initWithErrors:paymentSummaryItems:':
+                name: init
     PKPaymentRequestShippingContactUpdate: #since 11.0
         methods:
             '-init.*':
@@ -206,6 +214,7 @@ classes:
                 name: authorizeDisbursement
     PKDisbursementRequest: {}
     PKDisbursementVoucher: {}
+    PKSecureElementPass: {} #since 13.4
 
 protocols:
     PKPaymentAuthorizationControllerDelegate:
@@ -296,11 +305,15 @@ functions:
 
 values:
     PKPassKitErrorDomain:
-        class: PKPassKitError
+        class: PKPassKitErrorCode
         name: getClassDomain
 
     PKPaymentErrorDomain:
         class: PKPaymentErrorCode
+        name: getClassDomain
+
+    PKAddSecureElementPassErrorDomain:
+        class: PKAddSecureElementPassErrorCode
         name: getClassDomain
 
     PKPaymentError(.*)UserInfoKey:

@@ -41,9 +41,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVAssetExportSession/*</name>*/ 
@@ -63,9 +61,6 @@ import org.robovm.apple.audiotoolbox.*;
     /*<properties>*/
     @Property(selector = "presetName")
     public native AVAssetExportPreset getPresetName();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "asset")
     public native AVAsset getAsset();
     @Property(selector = "outputFileType")
@@ -93,47 +88,31 @@ import org.robovm.apple.audiotoolbox.*;
     @Property(selector = "setTimeRange:")
     public native void setTimeRange(@ByVal CMTimeRange v);
     /**
-     * @since Available in iOS 4.0 and later.
+     * @deprecated Use estimateMaximumDurationWithCompletionHandler
      */
+    @Deprecated
     @Property(selector = "maxDuration")
     public native @ByVal CMTime getMaxDuration();
     /**
-     * @since Available in iOS 5.0 and later.
+     * @deprecated Use estimateOutputFileLengthWithCompletionHandler
      */
+    @Deprecated
     @Property(selector = "estimatedOutputFileLength")
     public native long getEstimatedOutputFileLength();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "fileLengthLimit")
     public native long getFileLengthLimit();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Property(selector = "setFileLengthLimit:")
     public native void setFileLengthLimit(long v);
     @Property(selector = "metadata")
     public native NSArray<AVMetadataItem> getMetadata();
     @Property(selector = "setMetadata:")
     public native void setMetadata(NSArray<AVMetadataItem> v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "metadataItemFilter")
     public native AVMetadataItemFilter getMetadataItemFilter();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setMetadataItemFilter:")
     public native void setMetadataItemFilter(AVMetadataItemFilter v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "audioTimePitchAlgorithm")
     public native AVAudioTimePitchAlgorithm getAudioTimePitchAlgorithm();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setAudioTimePitchAlgorithm:")
     public native void setAudioTimePitchAlgorithm(AVAudioTimePitchAlgorithm v);
     @Property(selector = "audioMix")
@@ -144,29 +123,14 @@ import org.robovm.apple.audiotoolbox.*;
     public native AVVideoComposition getVideoComposition();
     @Property(selector = "setVideoComposition:")
     public native void setVideoComposition(AVVideoComposition v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "customVideoCompositor")
     public native AVVideoCompositing getCustomVideoCompositor();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "canPerformMultiplePassesOverSourceMediaData")
     public native boolean canPerformMultiplePassesOverSourceMediaData();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setCanPerformMultiplePassesOverSourceMediaData:")
     public native void setCanPerformMultiplePassesOverSourceMediaData(boolean v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "directoryForTemporaryFiles")
     public native NSURL getDirectoryForTemporaryFiles();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setDirectoryForTemporaryFiles:")
     public native void setDirectoryForTemporaryFiles(NSURL v);
     /*</properties>*/
@@ -182,15 +146,19 @@ import org.robovm.apple.audiotoolbox.*;
     public static native @org.robovm.rt.bro.annotation.Marshaler(AVAssetExportPreset.AsListMarshaler.class) List<AVAssetExportPreset> getAllExportPresets();
     @Method(selector = "exportPresetsCompatibleWithAsset:")
     public static native @org.robovm.rt.bro.annotation.Marshaler(AVAssetExportPreset.AsListMarshaler.class) List<AVAssetExportPreset> getCompatibleExportPresets(AVAsset asset);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "determineCompatibilityOfExportPreset:withAsset:outputFileType:completionHandler:")
     public static native void determineCompatibilityOfExportPreset(AVAssetExportPreset presetName, AVAsset asset, String outputFileType, @Block VoidBooleanBlock handler);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "determineCompatibleFileTypesWithCompletionHandler:")
     public native void determineCompatibleFileTypes(@Block VoidBlock1<NSArray<NSString>> handler);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "estimateMaximumDurationWithCompletionHandler:")
+    public native void estimateMaximumDuration(@Block("(@ByVal,)") VoidBlock2<CMTime, NSError> handler);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "estimateOutputFileLengthWithCompletionHandler:")
+    public native void estimateOutputFileLength(@Block VoidBlock2<Long, NSError> handler);
     /*</methods>*/
 }

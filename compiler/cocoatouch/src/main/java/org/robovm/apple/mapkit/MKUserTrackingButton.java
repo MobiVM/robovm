@@ -55,7 +55,7 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "initWithFrame:")
     public MKUserTrackingButton(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public MKUserTrackingButton(NSCoder decoder) { super(decoder); }
+    public MKUserTrackingButton(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "mapView")

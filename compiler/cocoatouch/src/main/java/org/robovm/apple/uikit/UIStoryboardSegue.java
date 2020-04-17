@@ -37,12 +37,12 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 5.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIStoryboardSegue/*</name>*/ 
@@ -58,9 +58,6 @@ import org.robovm.apple.intents.*;
     protected UIStoryboardSegue(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithIdentifier:source:destination:")
     public UIStoryboardSegue(String identifier, UIViewController source, UIViewController destination) { super((SkipInit) null); initObject(init(identifier, source, destination)); }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public UIStoryboardSegue(String identifier, UIViewController source, UIViewController destination, @Block Runnable performHandler) { super((Handle) null, create(identifier, source, destination, performHandler)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
@@ -77,9 +74,6 @@ import org.robovm.apple.intents.*;
     protected native @Pointer long init(String identifier, UIViewController source, UIViewController destination);
     @Method(selector = "perform")
     public native void perform();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "segueWithIdentifier:source:destination:performHandler:")
     protected static native @Pointer long create(String identifier, UIViewController source, UIViewController destination, @Block Runnable performHandler);
     /*</methods>*/

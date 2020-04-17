@@ -50,6 +50,16 @@ import org.robovm.apple.iad.*;
     
     /*</properties>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "playerViewController:willBeginFullScreenPresentationWithAnimationCoordinator:")
+    void willBeginFullScreenPresentation(AVPlayerViewController playerViewController, UIViewControllerTransitionCoordinator coordinator);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "playerViewController:willEndFullScreenPresentationWithAnimationCoordinator:")
+    void willEndFullScreenPresentation(AVPlayerViewController playerViewController, UIViewControllerTransitionCoordinator coordinator);
     @Method(selector = "playerViewControllerWillStartPictureInPicture:")
     void willStartPictureInPicture(AVPlayerViewController playerViewController);
     @Method(selector = "playerViewControllerDidStartPictureInPicture:")

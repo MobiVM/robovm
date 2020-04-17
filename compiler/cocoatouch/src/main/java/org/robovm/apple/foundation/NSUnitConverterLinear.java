@@ -60,7 +60,7 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "initWithCoefficient:constant:")
     public NSUnitConverterLinear(double coefficient, double constant) { super((SkipInit) null); initObject(init(coefficient, constant)); }
     @Method(selector = "initWithCoder:")
-    public NSUnitConverterLinear(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public NSUnitConverterLinear(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "coefficient")
@@ -79,6 +79,6 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

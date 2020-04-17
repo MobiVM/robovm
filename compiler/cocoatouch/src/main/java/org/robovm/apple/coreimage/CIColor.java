@@ -36,12 +36,11 @@ import org.robovm.apple.imageio.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.metal.*;
 import org.robovm.apple.iosurface.*;
+import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 5.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreImage") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CIColor/*</name>*/ 
@@ -66,7 +65,7 @@ import org.robovm.apple.iosurface.*;
     @Method(selector = "initWithRed:green:blue:colorSpace:")
     public CIColor(@MachineSizedFloat double r, @MachineSizedFloat double g, @MachineSizedFloat double b, CGColorSpace colorSpace) { super((SkipInit) null); initObject(init(r, g, b, colorSpace)); }
     @Method(selector = "initWithCoder:")
-    public CIColor(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public CIColor(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     
     public CIColor(double r, double g, double b, double a) {
@@ -197,6 +196,6 @@ import org.robovm.apple.iosurface.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

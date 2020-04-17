@@ -40,9 +40,7 @@ import org.robovm.apple.metal.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("SpriteKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SKConstraint/*</name>*/ 
@@ -57,7 +55,7 @@ import org.robovm.apple.metal.*;
     protected SKConstraint(Handle h, long handle) { super(h, handle); }
     protected SKConstraint(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public SKConstraint(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public SKConstraint(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "enabled")
@@ -96,6 +94,6 @@ import org.robovm.apple.metal.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

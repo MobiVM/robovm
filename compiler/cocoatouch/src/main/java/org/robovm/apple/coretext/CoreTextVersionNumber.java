@@ -58,14 +58,12 @@ import org.robovm.apple.uikit.*;
     public static final int Version10_12 = 0x00090000;
     public static final int Version10_13 = 0x000A0000;
     public static final int Version10_14 = 0x000B0000;
+    public static final int Version10_15 = 0x000C0000;
     /*</constants>*/
     /*<constructors>*//*</constructors>*/
     /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     @Bridge(symbol="CTGetCoreTextVersion", optional=true)
     public static native int getVersion();
     /*</methods>*/

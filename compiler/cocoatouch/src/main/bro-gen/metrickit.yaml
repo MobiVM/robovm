@@ -1,0 +1,65 @@
+package: org.robovm.apple.metrickit
+include: [foundation]
+library: MetricKit
+framework: MetricKit
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/MetricKit.framework/Headers/MetricKit.h
+
+private_typedefs:
+
+typedefs:
+
+enums:
+
+typed_enums:
+
+classes:
+    MXAppLaunchMetric: {} #since 13.0
+    MXAppResponsivenessMetric: {} #since 13.0
+    MXAppRunTimeMetric: {} #since 13.0
+    MXAverage: {} #since 13.0
+    MXCPUMetric: {} #since 13.0
+    MXCellularConditionMetric: {} #since 13.0
+    MXDiskIOMetric: {} #since 13.0
+    MXDisplayMetric: {} #since 13.0
+    MXGPUMetric: {} #since 13.0
+    MXHistogram: {} #since 13.0
+    MXHistogramBucket: {} #since 13.0
+    MXLocationActivityMetric: {} #since 13.0
+    MXMemoryMetric: {} #since 13.0
+    MXMetaData: {} #since 13.0
+    MXMetric: {} #since 13.0
+    MXMetricManager: #since 13.0
+        methods:
+            '+makeLogHandleWithCategory:':
+                # name: makeLogHandle
+                exclude: true # fixme: there is no bindings for os/log.h
+    MXMetricPayload: {} #since 13.0
+    MXNetworkTransferMetric: {} #since 13.0
+    MXSignpostIntervalData: {} #since 13.0
+    MXSignpostMetric: {} #since 13.0
+    MXUnitAveragePixelLuminance: {} #since 13.0
+    MXUnitSignalBars: {} #since 13.0
+
+protocols:
+    MXMetricManagerSubscriber: {} #since 13.0
+
+functions:
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (k?MX.*):
+        class: FixMe
+        name: 'Function__#{g[0]}'
+
+values:
+
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (k?MX.*):
+        class: FixMe
+        name: 'Value__#{g[0]}'
+
+constants:
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (k?MX.*):
+        class: FixMe
+        name: 'Constant__#{g[0]}'

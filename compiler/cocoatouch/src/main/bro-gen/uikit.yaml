@@ -1,5 +1,17 @@
 package: org.robovm.apple.uikit
-include: [foundation, coreanimation, coregraphics, coredata, coreimage, coretext, corelocation, cloudkit, fileprovider, intents]
+include:
+    - foundation
+    - coreanimation
+    - coregraphics
+    - coredata
+    - coreimage
+    - coretext
+    - corelocation
+    - cloudkit
+    - fileprovider
+    - intents
+    - usernotifications
+    - linkpresentation
 library: UIKit
 framework: UIKit
 clang_args: ['-x', 'objective-c']
@@ -228,6 +240,35 @@ enums:
     UIDocumentBrowserErrorCode: {nserror: true, prefix: UIDocumentBrowserError}
     UIGuidedAccessErrorCode: {nserror: true, prefix: UIGuidedAccessError} #since 12.2
 
+    NSDirectionalRectEdge: {} #since 13.0
+    UIDirectionalRectEdge: {} #since 13.0
+    NSRectAlignment: {} #since 13.0
+    UIMenuElementState: {} #since 13.0
+    UIMenuElementAttributes: {} #since 13.0
+    UIMenuOptions: {} #since 13.0
+    UIEditingInteractionConfiguration: {} #since 13.0
+    UIAccessibilityContrast: {} #since 13.0
+    UILegibilityWeight: {} #since 13.0
+    UIUserInterfaceLevel: {} #since 13.0
+    UITextAlternativeStyle: {}
+    UISceneActivationState: {} #since 13.0
+    UISceneErrorCode: {nserror: true} #since 13.0
+    UICollectionLayoutSectionOrthogonalScrollingBehavior: {} #since 13.0
+    UIVibrancyEffectStyle: {} #since 13.0
+    UIImageSymbolScale: {} #since 13.0
+    UIImageSymbolWeight: {} #since 13.0
+    UISplitViewControllerBackgroundStyle: {} #since 13.0
+    UITabBarItemAppearanceStyle: {}
+    NSTextScalingType: {prefix: NSTextScaling} #since 13.0
+    UITextInteractionMode: {}
+    UIWindowSceneDismissalAnimation: {} #since 13.0
+    UIContextMenuInteractionCommitStyle: {} #since 13.0
+    UIDatePickerStyle: {} #since 13.4
+    UIKeyboardHIDUsage: {} #since 13.4
+#    EXCLUDE1: {exclude: true, first: NSAttachmentCharacter} -- don't exclude it as value will be picked up as constant
+#    EXCLUDE2: {exclude: true, first: UISegmentedControlNoSegment} -- don't exclude it as value will be picked up as constant
+    EXCLUDE3_AS_DEPRECATED: {exclude: true, first: NSControlCharacterZeroAdvancementAction}
+
 categories:
     CIColor: # DONE
         annotations: ['@WeaklyLinked']
@@ -373,7 +414,7 @@ categories:
     UIAccessibility@NSObject: {protocol: true}
     UIAccessibilityAction@NSObject: {protocol: true}
     UIAccessibilityContainer@NSObject: {protocol: true}
-    UIAccessibilityCustomRotor@NSObject: {protocol: true}
+    # UIAccessibilityCustomRotor@NSObject: {protocol: true}
     UIAccessibilityFocus@NSObject: {protocol: true}
     UINibLoadingAdditions@NSObject: {protocol: true}
     UIResponderStandardEditActions@NSObject: {protocol: true}
@@ -426,40 +467,35 @@ classes:
             '-itemForIdentifier:error:':
                 throws: NSErrorException
                 trim_after_first_colon: true
+            '-fetchContentsForItemWithIdentifier:version:completionHandler:':
+                name: fetchContents
+            '-fetchContentsForItemWithIdentifier:version:usingExistingContentsAtURL:existingVersion:completionHandler:':
+                name: fetchContents
+            '-itemChanged:baseVersion:changedFields:contents:completionHandler:':
+                name: itemChanged
+            '-createItemBasedOnTemplate:fields:contents:options:completionHandler:':
+                name: createItem
+            '-deleteItemWithIdentifier:baseVersion:options:completionHandler:':
+                name: deleteItem
+            '-importDidFinishWithCompletionHandler:':
+                name: importDidFinish
     NSLayoutAnchor: # DONE
+        template_parameters:
+            AnchorType: T
         methods:
             '-constraintEqualToAnchor:':
                 name: equalTo
-                parameters:
-                    anchor:
-                        type: NSLayoutAnchor<T>
             '-constraintGreaterThanOrEqualToAnchor:':
                 name: greaterThanOrEqual
-                parameters:
-                    anchor:
-                        type: NSLayoutAnchor<T>
             '-constraintLessThanOrEqualToAnchor:':
                 name: lessThanOrEqual
-                parameters:
-                    anchor:
-                        type: NSLayoutAnchor<T>
             '-constraintEqualToAnchor:constant:':
                 name: equalTo
-                parameters:
-                    anchor:
-                        type: NSLayoutAnchor<T>
             '-constraintGreaterThanOrEqualToAnchor:constant:':
                 name: greaterThanOrEqualTo
-                parameters:
-                    anchor:
-                        type: NSLayoutAnchor<T>
             '-constraintLessThanOrEqualToAnchor:constant:':
                 name: lessThanOrEqualTo
-                parameters:
-                    anchor:
-                        type: NSLayoutAnchor<T>
     NSLayoutDimension: # DONE
-        extends: NSLayoutAnchor<NSLayoutDimension>
         methods:
             '-constraintEqualToConstant:':
                 name: equalTo
@@ -480,7 +516,6 @@ classes:
             '-constraintLessThanOrEqualToAnchor:multiplier:constant:':
                 name: lessThanOrEqualTo
     NSLayoutXAxisAnchor: # DONE
-        extends: NSLayoutAnchor<NSLayoutXAxisAnchor>
         methods:
             '-constraintEqualToSystemSpacingAfterAnchor:multiplier:':
                 trim_after_first_colon: true
@@ -488,8 +523,9 @@ classes:
                 trim_after_first_colon: true
             '-constraintLessThanOrEqualToSystemSpacingAfterAnchor:multiplier:':
                 trim_after_first_colon: true
+            '-anchorWithOffsetToAnchor:':
+                name: anchorWithOffsetToAnchor # keep old name
     NSLayoutYAxisAnchor: # DONE
-        extends: NSLayoutAnchor<NSLayoutYAxisAnchor>
         methods:
             '-constraintEqualToSystemSpacingBelowAnchor:multiplier:':
                 trim_after_first_colon: true
@@ -497,6 +533,8 @@ classes:
                 trim_after_first_colon: true
             '-constraintLessThanOrEqualToSystemSpacingBelowAnchor:multiplier:':
                 trim_after_first_colon: true
+            '-anchorWithOffsetToAnchor:':
+                name: anchorWithOffsetToAnchor # keep old name
     NSLayoutConstraint: # DONE
         methods:
             '+constraintWithItem:attribute:relatedBy:toItem:attribute:multiplier:constant:':
@@ -673,6 +711,8 @@ classes:
                 parameters:
                     flag:
                         name: withoutAdditionalLayout
+            '-showCGGlyphs:positions:count:font:textMatrix:attributes:inContext:':
+                name: showCGGlyphs
     NSMutableParagraphStyle: # DONE
         properties:
             'tabStops':
@@ -702,6 +742,9 @@ classes:
         methods:
             '-init.*':
                 name: init
+            '+textAttachmentWithImage:':
+                constructor: true
+                name: create
     NSTextContainer: # DONE
         properties:
             'exclusionPaths':
@@ -895,8 +938,15 @@ classes:
                         type: UIApplicationOpenURLOptions
             '-setAlternateIconName:completionHandler:':
                 name: setAlternateIcon
+            '-requestSceneSessionActivation:userActivity:options:errorHandler:':
+                name: requestSceneSessionActivation
+            '-requestSceneSessionDestruction:options:errorHandler:':
+                name: requestSceneSessionDestruction
     UIApplicationShortcutIcon: # DONE
         methods:
+            '+iconWithSystemImageName:':
+                name: createUsingSystemImageName
+                constructor: false
             '+iconWith.*':
                 name: create
                 constructor: true
@@ -1079,6 +1129,10 @@ classes:
                 name: getAttributedTitle
             '-(set.*):forState:.*':
                 name: '#{g[0]}'
+            '-setPreferredSymbolConfiguration:forImageInState:':
+                name: setPreferredSymbolConfiguration
+            '+systemButtonWithImage:target:action:':
+                name: getSystemButtonWithImage
     UICollectionReusableView: # DONE
         methods:
             '-didTransitionFromLayout:toLayout:':
@@ -1382,6 +1436,10 @@ classes:
                 visibility: protected
             '-set':
                 name: setFillAndStroke
+            '-resolvedColorWithTraitCollection:':
+                name: resolvedColorWithTraitCollection
+            '+colorWithDynamicProvider:':
+                exclude: true # as has init
     UIContentSizeCategoryAdjusting: {} # DONE
     UIControl: # DONE
         skip_handle_constructor: false
@@ -1683,6 +1741,8 @@ classes:
                         type: UIFontTextStyle
             '-fontWithSize:':
                 name: newWithSize
+            '+monospacedSystemFontOfSize:weight:':
+                name: getMonospacedSystemFont
     UIFontDescriptor: # DONE
         properties:
             'fontAttributes':
@@ -1736,6 +1796,8 @@ classes:
                 name: newWithFace
             '-fontDescriptorWithFamily:':
                 name: newWithFamily
+            '-fontDescriptorWithDesign:':
+                name: newWithDesign
     UIGestureRecognizer: # DONE
         properties:
             'allowedTouchTypes':
@@ -1750,6 +1812,8 @@ classes:
                 parameters:
                     target:
                         type: NSObject
+            '-initWithCoder:':
+                name: init
             '-locationInView:':
                 name: getLocationInView
             '-locationOfTouch:inView:':
@@ -1892,6 +1956,12 @@ classes:
                 name: getImage
             '+imageNamed:inBundle:compatibleWithTraitCollection:':
                 name: getImage
+            '+systemImageNamed:withConfiguration:':
+                name: getSystemImage
+            '+systemImageNamed:compatibleWithTraitCollection:':
+                name: getSystemImage
+            '+imageNamed:inBundle:withConfiguration:':
+                name: getImage
             '+imageWithContentsOfFile:':
                 name: getImageWithContentsOfFile
                 visibility: private
@@ -1935,17 +2005,32 @@ classes:
             '-initWithCIImage.*':
                 name: init
                 annotations: ['@WeaklyLinked']
+            '-imageWithBaselineOffsetFromBottom:':
+                name: imageWithBaselineOffsetFromBottom
+            '-imageWithConfiguration:':
+                name: imageWithConfiguration
+            '-imageWithTintColor:':
+                name: imageWithTintColor
+            '-imageWithTintColor:renderingMode:':
+                name: imageWithTintColor
             '-init.*':
                 name: init
+
     UIImageAsset: # DONE
         methods:
             '-init.*':
                 name: init
             '-imageWithTraitCollection:':
                 name: getImage
+            '-imageWithConfiguration:':
+                name: getImage
             '-registerImage:withTraitCollection:':
                 trim_after_first_colon: true
+            '-registerImage:withConfiguration:':
+                trim_after_first_colon: true
             '-unregisterImageWithTraitCollection:':
+                name: unregisterImage
+            '-unregisterImageWithConfiguration:':
                 name: unregisterImage
     UIImagePickerController: # DONE
         properties:
@@ -1984,6 +2069,8 @@ classes:
         methods:
             '-init.*':
                 name: init
+            '-impactOccurredWithIntensity:':
+                name: impactOccurred
     UIInputView: # DONE
         methods:
             '-initWithFrame:inputViewStyle:':
@@ -2008,6 +2095,12 @@ classes:
             '-init.*':
                 name: init
             '+keyCommandWithInput:modifierFlags.*':
+                name: create
+                constructor: true
+            '+commandWithTitle:image:action:input:modifierFlags:propertyList:':
+                name: create
+                constructor: true
+            '+commandWithTitle:image:action:input:modifierFlags:propertyList:alternates:':
                 name: create
                 constructor: true
     UILayoutGuide: # DONE
@@ -2087,6 +2180,8 @@ classes:
                 trim_after_first_colon: true
             '-setTargetRect:inView:':
                 trim_after_first_colon: true
+            '-showMenuFromView:rect:':
+                name: showMenu
     UIMenuItem: # DONE
         methods:
             '-initWithTitle:action:':
@@ -2597,6 +2692,8 @@ classes:
                 trim_after_first_colon: true
             '-pressesCancelled:withEvent:':
                 trim_after_first_colon: true
+            '-buildMenuWithBuilder:':
+                name: buildMenu
     UIRotationGestureRecognizer: {} # DONE
     UIScreen: # DONE
         methods:
@@ -2664,6 +2761,8 @@ classes:
                 parameters:
                     attributes:
                         type: 'NSDictionary<NSString, ?>'
+            '-setShowsScopeBar:animated:':
+                name: setShowsScopeBar
     UISearchContainerViewController: # DONE
         methods:
             '-initWithSearchController:':
@@ -2824,10 +2923,12 @@ classes:
                 name: create
                 constructor: true
             '-instantiateInitialViewController':
-                return_type: UIViewController
             '-instantiateViewControllerWithIdentifier:':
                 name: instantiateViewController
-                return_type: UIViewController
+            '-instantiateInitialViewControllerWithCreator:':
+                name: instantiateViewController
+            '-instantiateViewControllerWithIdentifier:creator:':
+                name: instantiateViewController
     UIStoryboardPopoverSegue: {} # DONE
     UIStoryboardSegue: # DONE
         properties:
@@ -3188,6 +3289,15 @@ classes:
             '+traitCollectionWithDisplayGamut:':
                 name: create
                 constructor: true
+            '+traitCollectionWithAccessibilityContrast:':
+                name: create
+                constructor: true
+            '+traitCollectionWithUserInterfaceLevel:':
+                name: create
+                constructor: true
+            '+traitCollectionWithLegibilityWeight:':
+                name: create
+                constructor: true
     UIMutableApplicationShortcutItem: # DONE
         skip_def_constructor: true
     UIMutableUserNotificationAction: {} # DONE
@@ -3226,6 +3336,9 @@ classes:
     UIVibrancyEffect: # DONE
         methods:
             '+effectForBlurEffect:':
+                name: create
+                constructor: true
+            '+effectForBlurEffect:style:':
                 name: create
                 constructor: true
     UIView: # DONE
@@ -3401,6 +3514,8 @@ classes:
                 trim_after_first_colon: true
             '-removeLayoutGuide:':
                 trim_after_first_colon: true
+            '+modifyAnimationsWithRepeatCount:autoreverses:animations:':
+                name: modifyAnimations
     UIViewController: # DONE
         skip_handle_constructor: false
         properties:
@@ -3527,6 +3642,8 @@ classes:
                 name: registerForPreviewing
             '-unregisterForPreviewingWithContext:':
                 name: unregisterForPreviewing
+            '-canPerformUnwindSegueAction:fromViewController:sender:':
+                name: canPerformUnwindSegueAction
     UIViewPrintFormatter: {} # DONE
     UIViewPropertyAnimator: # DONE
         methods:
@@ -3574,6 +3691,8 @@ classes:
                 name: convertRectToWindow
             '-sendEvent:':
                 trim_after_first_colon: true
+            '-initWithWindowScene:':
+                name: init
     UIAccessibilityLocationDescriptor: #since 11.0
         methods:
             '-initWithName:view:':
@@ -3724,6 +3843,344 @@ classes:
                 name: create
                 constructor: true
     UIPencilInteraction: {} #since 12.1
+
+    # iOS13
+    NSCollectionLayoutAnchor: #since 13.0
+        methods:
+            '+layoutAnchorWithEdges:':
+                constructor: true
+                name: create
+            '+layoutAnchorWithEdges:absoluteOffset:':
+                name: createUsingAbsoluteOffset
+            '+layoutAnchorWithEdges:fractionalOffset:':
+                name: createUsingFactionOffset
+    NSCollectionLayoutBoundarySupplementaryItem: #since 13.0
+        methods:
+            '+boundarySupplementaryItemWithLayoutSize:elementKind:alignment:':
+                constructor: true
+                name: create
+            '+boundarySupplementaryItemWithLayoutSize:elementKind:alignment:absoluteOffset:':
+                constructor: true
+                name: create
+    NSCollectionLayoutDecorationItem: #since 13.0
+        methods:
+            '+backgroundDecorationItemWithElementKind:':
+                constructor: true
+                name: create
+    NSCollectionLayoutDimension: {} #since 13.0
+    NSCollectionLayoutEdgeSpacing: #since 13.0
+        methods:
+            '+spacingForLeading:top:trailing:bottom:':
+                constructor: true
+                name: create
+    NSCollectionLayoutGroup: #since 13.0
+        methods:
+            '+horizontalGroupWithLayoutSize:subitem:count:':
+                name: createHorizontalGroup
+            '+horizontalGroupWithLayoutSize:subitems:':
+                name: createHorizontalGroup
+            '+verticalGroupWithLayoutSize:subitem:count:':
+                name: createVerticalGroup
+            '+verticalGroupWithLayoutSize:subitems:':
+                name: createVerticalGroup
+            '+customGroupWithLayoutSize:itemProvider:':
+                name: createCustomGroup
+    NSCollectionLayoutGroupCustomItem: #since 13.0
+        methods:
+            '+customItemWithFrame:':
+                constructor: true
+                name: create
+            '+customItemWithFrame:zIndex:':
+                constructor: true
+                name: create
+    NSCollectionLayoutItem: #since 13.0
+        methods:
+            '+itemWithLayoutSize:':
+                constructor: true
+                name: create
+            '+itemWithLayoutSize:supplementaryItems:':
+                constructor: true
+                name: create
+    NSCollectionLayoutSection: #since 13.0
+        methods:
+            '+sectionWithGroup:':
+                constructor: true
+                name: create
+    NSCollectionLayoutSize: #since 13.0
+        methods:
+            '+sizeWithWidthDimension:heightDimension:':
+                constructor: true
+                name: create
+    NSCollectionLayoutSpacing: {} #since 13.0
+    NSCollectionLayoutSupplementaryItem: #since 13.0
+        methods:
+            '+supplementaryItemWithLayoutSize:elementKind:containerAnchor:':
+                constructor: true
+                name: create
+            '+supplementaryItemWithLayoutSize:elementKind:containerAnchor:itemAnchor:':
+                constructor: true
+                name: create
+    NSDiffableDataSourceSnapshot: #since 13.0
+        methods:
+            '-itemIdentifiersInSectionWithIdentifier:':
+                name: getItemIdentifiersInSection
+            '-appendItemsWithIdentifiers:':
+                name: appendItems
+            '-appendItemsWithIdentifiers:intoSectionWithIdentifier:':
+                name: appendItems
+            '-insertItemsWithIdentifiers:beforeItemWithIdentifier:':
+                name: insertItemsBeforeItem
+            '-insertItemsWithIdentifiers:afterItemWithIdentifier:':
+                name: insertItemsAfterItem
+            '-deleteItemsWithIdentifiers:':
+                name: deleteItems
+            '-moveItemWithIdentifier:beforeItemWithIdentifier:':
+                name: moveItemBeforeItem
+            '-moveItemWithIdentifier:afterItemWithIdentifier:':
+                name: moveItemAfterItem
+            '-reloadItemsWithIdentifiers:':
+                name: reloadItems
+            '-appendSectionsWithIdentifiers:':
+                name: appendSections
+            '-insertSectionsWithIdentifiers:beforeSectionWithIdentifier:':
+                name: insertSectionsBeforeSection
+            '-insertSectionsWithIdentifiers:afterSectionWithIdentifier:':
+                name: insertSectionsAfterSection
+            '-deleteSectionsWithIdentifiers:':
+                name: deleteSections
+            '-moveSectionWithIdentifier:beforeSectionWithIdentifier:':
+                name: moveSectionBeforeSection
+            '-moveSectionWithIdentifier:afterSectionWithIdentifier:':
+                name: moveSectionAfterSection
+            '-reloadSectionsWithIdentifiers:':
+                name: reloadSections
+    UIAction: #since 13.0
+        methods:
+            '+actionWithTitle:image:identifier:handler:':
+                constructor: true
+                name: create
+    UIActivityItemsConfiguration: #since 13.0
+        methods:
+            '-initWithObjects:':
+                static_constructor_name: createUsingObjects
+            '-initWithItemProviders:':
+                static_constructor_name: createUsingItemProviders
+            '+activityItemsConfigurationWithObjects:':
+                exclude: true
+            '+activityItemsConfigurationWithItemProviders:':
+                exclude: true
+    UIBarAppearance: #since 13.0
+        methods:
+            '-initWithIdiom:':
+                name: init
+            '-initWithBarAppearance:':
+                name: init
+            '-initWithCoder:':
+                name: init
+            '-configureWithDefaultBackground':
+                name: configureWithDefaultBackground
+            '-configureWithOpaqueBackground':
+                name: configureWithOpaqueBackground
+            '-configureWithTransparentBackground':
+                name: configureWithTransparentBackground
+    UIBarButtonItemAppearance: #since 13.0
+        methods:
+            '-initWithStyle:':
+                name: init
+            '-initWithCoder:':
+                name: init
+            '-configureWithDefaultForStyle:':
+                name: configureWithDefaultForStyle
+    UIBarButtonItemStateAppearance: {} #since 13.0
+    UICollectionViewCompositionalLayout: #since 13.0
+        methods:
+            '-initWithSection:':
+                name: init
+            '-initWithSection:configuration:':
+                name: init
+            '-initWithSectionProvider:':
+                name: init
+            '-initWithSectionProvider:configuration:':
+                name: init
+    UICollectionViewCompositionalLayoutConfiguration: {} #since 13.0
+    UICollectionViewDiffableDataSource: #since 13.0
+        methods:
+            '-initWithCollectionView:cellProvider:':
+                name: init
+            '-applySnapshot:animatingDifferences:':
+                name: applySnapshot
+            '-applySnapshot:animatingDifferences:completion:':
+                name: applySnapshot
+    UICommand: #since 13.0
+        methods:
+            '+commandWithTitle:image:action:propertyList:':
+                constructor: true
+                name: create
+            '+commandWithTitle:image:action:propertyList:alternates:':
+                constructor: true
+                name: create
+    UICommandAlternate: #since 13.0
+        methods:
+            '-initWithCoder:':
+                name: init
+            '+alternateWithTitle:action:modifierFlags:':
+                constructor: true
+                name: create
+    UIContextMenuConfiguration: #since 13.0
+        methods:
+            '+configurationWithIdentifier:previewProvider:actionProvider:':
+                constructor: true
+                name: create
+    UIContextMenuInteraction: #since 13.0
+        methods:
+            '-initWithDelegate:':
+                name: init
+    UIFontPickerViewController: #since 13.0
+        methods:
+            '-initWithConfiguration:':
+                name: init
+    UIFontPickerViewControllerConfiguration: {} #since 13.0
+    UIHoverGestureRecognizer: {} #since 13.0
+    UIImageConfiguration: #since 13.0
+        methods:
+            '-configurationWithTraitCollection:':
+                constructor: true
+                name: create
+    UIImageSymbolConfiguration: #since 13.0
+        methods:
+            '-configurationWithoutTextStyle':
+                name: getConfigurationWithoutTextStyle
+            '-configurationWithoutScale':
+                name: getConfigurationWithoutScale
+            '-configurationWithoutWeight':
+                name: getConfigurationWithoutWeight
+            '-configurationWithoutPointSizeAndWeight':
+                name: getConfigurationWithoutPointSizeAndWeight
+            '+configurationWithScale:':
+                name: getConfigurationWithScale
+            '+configurationWithPointSize:':
+                name: getConfigurationWithPointSize
+            '+configurationWithWeight:':
+                name: getConfigurationWithWeight
+            '+configurationWithPointSize:weight:':
+                name: getConfigurationWithPointSizeWeight
+            '+configurationWithPointSize:weight:scale:':
+                name: getConfigurationWithPointSizeWeightScale
+            '+configurationWithTextStyle:':
+                name: getConfigurationWithTextStyle
+            '+configurationWithTextStyle:scale:':
+                name: getConfigurationWithTextStyleScale
+            '+configurationWithFont:':
+                name: getConfigurationWithFont
+            '+configurationWithFont:scale:':
+                name: getConfigurationWithFontScale
+    UILargeContentViewerInteraction: #since 13.0
+        methods:
+            '-initWithDelegate:':
+                name: init
+    UIMenu: #since 13.0
+        methods:
+            '+menuWithTitle:children:':
+                constructor: true
+                name: create
+            '+menuWithTitle:image:identifier:options:children:':
+                constructor: true
+                name: create
+            '-initWithCoder:':
+                name: init
+    UIMenuElement: {} #since 13.0
+    UIMenuSystem: {} #since 13.0
+    UINavigationBarAppearance: #since 13.0
+        methods:
+            '-setBackIndicatorImage:transitionMaskImage:':
+                name: setBackIndicatorImage
+    UIOpenURLContext: {} #since 13.0
+    UIPreviewParameters: #since 13.0
+        methods:
+            '-initWithTextLineRects:':
+                name: init
+    UIPreviewTarget: #since 13.0
+        methods:
+            '-initWithContainer:center:transform:':
+                name: init
+            '-initWithContainer:center:':
+                name: init
+    UIScene: #since 13.0
+        methods:
+            '-initWithSession:connectionOptions:':
+                name: init
+            '-openURL:options:completionHandler:':
+                name: openURL
+    UISceneActivationConditions: #since 13.0
+        methods:
+            '-initWithCoder:':
+                name: init
+    UISceneActivationRequestOptions: {} #since 13.0
+    UISceneConfiguration: #since 13.0
+        methods:
+            '-initWithName:sessionRole:':
+                name: init
+            '+configurationWithName:sessionRole:':
+                exclude: true
+    UISceneConnectionOptions: {} #since 13.0
+    UISceneDestructionRequestOptions: {} #since 13.0
+    UISceneOpenExternalURLOptions: {} #since 13.0
+    UISceneOpenURLOptions: {} #since 13.0
+    UISceneSession: {} #since 13.0
+    UISceneSizeRestrictions: {} #since 13.0
+    UIScreenshotService: {} #since 13.0
+    UISearchTextField: #since 13.0
+        methods:
+            '-insertToken:atIndex:':
+                name: insertToken
+            '-replaceTextualPortionOfRange:withToken:atIndex:':
+                name: replaceTextualPortionOfRange
+    UISearchToken: #since 13.0
+        methods:
+            '+tokenWithIcon:text:':
+                constructor: true
+                name: create
+    UIStatusBarManager: {} #since 13.0
+    UITabBarAppearance: {} #since 13.0
+    UITabBarItemAppearance: #since 13.0
+        methods:
+            '-initWithStyle:':
+                name: init
+            '-initWithCoder:':
+                name: init
+            '-configureWithDefaultForStyle:':
+                name: configureWithDefaultForStyle
+    UITabBarItemStateAppearance: {} #since 13.0
+    UITableViewDiffableDataSource: #since 13.0
+        methods:
+            '-initWithTableView:cellProvider:':
+                name: init
+            '-applySnapshot:animatingDifferences:':
+                name: applySnapshot
+            '-applySnapshot:animatingDifferences:completion:':
+                name: applySnapshot
+    UITargetedPreview: #since 13.0
+        methods:
+            '-initWithView:parameters:target:':
+                name: init
+            '-initWithView:parameters:':
+                name: init
+            '-initWithView:':
+                name: init
+            '-retargetedPreviewWithTarget:':
+                name: retargetedPreview
+    UITextFormattingCoordinator: #since 13.0
+        methods:
+            '-initWithWindowScene:':
+                name: init
+            '-setSelectedAttributes:isMultiple:':
+                name: setSelectedAttributes
+    UITextInteraction: {} #since 13.0
+    UITextPlaceholder: {} #since 13.0
+    UIToolbarAppearance: {} #since 13.0
+    UIWindowScene: {} #since 13.0
+    UIWindowSceneDestructionRequestOptions: {} #since 13.0
+    UIKey: {} #since 13.4
 
 protocols:
     NSLayoutManagerDelegate: # DONE
@@ -3957,6 +4414,14 @@ protocols:
                 name: didAcceptCloudKitShare
             '-application:handleIntent:completionHandler:':
                 name: handleIntent
+            '-application:configurationForConnectingSceneSession:options:':
+                name: getConfigurationForConnectingSceneSession
+            '-application:didDiscardSceneSessions:':
+                name: didDiscardSceneSessions
+            '-application:shouldSaveSecureApplicationState:':
+                name: shouldSaveSecureApplicationState
+            '-application:shouldRestoreSecureApplicationState:':
+                name: shouldRestoreSecureApplicationState
     UIBarPositioning: {} # DONE
     UIBarPositioningDelegate: # DONE
         methods:
@@ -4030,6 +4495,20 @@ protocols:
                 name: getIndexPathForPreferredFocusedView
             '-collectionView:shouldSpringLoadItemAtIndexPath:withContext:':
                 name: shouldSpringLoadItem
+            '-collectionView:shouldBeginMultipleSelectionInteractionAtIndexPath:':
+                name: shouldBeginMultipleSelectionInteraction
+            '-collectionView:didBeginMultipleSelectionInteractionAtIndexPath:':
+                name: didBeginMultipleSelectionInteraction
+            '-collectionView:contextMenuConfigurationForItemAtIndexPath:point:':
+                name: getContextMenuConfiguration
+            '-collectionView:previewForHighlightingContextMenuWithConfiguration:':
+                name: getPreviewForHighlightingContextMenu
+            '-collectionView:previewForDismissingContextMenuWithConfiguration:':
+                name: getPreviewForDismissingContextMenu
+            '-collectionView:willCommitMenuWithAnimator:':
+                name: willCommitMenu
+            '-collectionView:willPerformPreviewActionForMenuWithConfiguration:animator:':
+                name: willPerformPreviewAction
     UICollectionViewDelegateFlowLayout: # DONE
         methods:
             '-collectionView:layout:insetForSectionAtIndex:':
@@ -4240,6 +4719,10 @@ protocols:
                 name: getAccessibilityAttributedLabel
             '-pickerView:accessibilityAttributedHintForComponent:':
                 name: getAccessibilityAttributedHint
+            '-pickerView:accessibilityUserInputLabelsForComponent:':
+                name: getAccessibilityUserInputLabels
+            '-pickerView:accessibilityAttributedUserInputLabelsForComponent:':
+                name: getAccessibilityAttributedUserInputLabels
     UIPickerViewDataSource: # DONE
         methods:
             '-numberOfComponentsInPickerView:':
@@ -4637,10 +5120,26 @@ protocols:
                 name: getTrailingSwipeActionsConfigurationForRow
             '-tableView:shouldSpringLoadRowAtIndexPath:withContext:':
                 name: shouldSpringLoadRow
+            '-tableView:shouldBeginMultipleSelectionInteractionAtIndexPath:':
+                name: shouldBeginMultipleSelectionInteraction
+            '-tableView:didBeginMultipleSelectionInteractionAtIndexPath:':
+                name: didBeginMultipleSelectionInteraction
+            '-tableView:contextMenuConfigurationForRowAtIndexPath:point:':
+                name: getContextMenuConfiguration
+            '-tableView:previewForHighlightingContextMenuWithConfiguration:':
+                name: getPreviewForHighlightingContextMenu
+            '-tableView:previewForDismissingContextMenuWithConfiguration:':
+                name: getPreviewForDismissingContextMenu
+            '-tableView:willCommitMenuWithAnimator:':
+                name: willCommitMenu
+            '-tableView:willPerformPreviewActionForMenuWithConfiguration:animator:':
+                name: willPerformPreviewAction
     UITextDocumentProxy: # DONE
         methods:
             '-adjustTextPositionByCharacterOffset:':
                 name: adjustTextPosition
+            '-setMarkedText:selectedRange:':
+                name: setMarkedText
     UITextFieldDelegate: # DONE
         methods:
             '-textField:shouldChangeCharactersInRange:replacementString:':
@@ -4726,6 +5225,12 @@ protocols:
                 name: beginFloatingCursor
             '-updateFloatingCursorAtPoint:':
                 name: updateFloatingCursor
+            '-insertText:alternatives:style:':
+                name: insertText
+            '-setAttributedMarkedText:selectedRange:':
+                name: setAttributedMarkedText
+            '-insertTextPlaceholderWithSize:':
+                name: insertTextPlaceholder
     UITextInputDelegate: # DONE
         methods:
             '-selectionWillChange:':
@@ -4970,6 +5475,8 @@ protocols:
                 name: increaseSize
             '-decreaseSize:':
                 name: decreaseSize
+            '-updateTextAttributesWithConversionHandler:':
+                name: updateTextAttributes
     # ios11 binding actions
     UIAccelerometerDelegate: # it is replaced by coremotion but lets have it here for a while
         methods:
@@ -5246,7 +5753,101 @@ protocols:
     UIInputViewAudioFeedback: {}
     UIUserActivityRestoring: {} #since 8.0
     UIPencilInteractionDelegate: {} #since 12.1
+    # iOS13
+    NSCollectionLayoutContainer: {} #since 13.0
+    NSCollectionLayoutEnvironment: {} #since 13.0
+    NSCollectionLayoutVisibleItem: {} #since 13.0
+    UIActivityItemsConfigurationReading: #since 13.0
+        methods:
+            '-activityItemsConfigurationMetadataForItemAtIndex:key:':
+                name: getItem
+            '-activityItemsConfigurationPreviewForItemAtIndex:intent:suggestedSize:':
+                name: getPreview
+    UIContextMenuInteractionCommitAnimating: {} #since 13.0
+    UIContextMenuInteractionDelegate: #since 13.0
+        methods:
+            '-contextMenuInteraction:configurationForMenuAtLocation:':
+                name: getConfiguration
+            '-contextMenuInteraction:previewForHighlightingMenuWithConfiguration:':
+                name: getPreviewForHighlightingMenu
+            '-contextMenuInteraction:previewForDismissingMenuWithConfiguration:':
+                name: getPreviewForDismissingMenu
+            '-contextMenuInteraction:willCommitWithAnimator:':
+                name: willCommitWithAnimator
+            '-contextMenuInteraction:willPerformPreviewActionForMenuWithConfiguration:animator:':
+                name: willPerformPreviewAction
+            '-contextMenuInteraction:willDisplayMenuForConfiguration:animator:':
+                name: willDisplayMenu
+            '-contextMenuInteraction:willEndForConfiguration:animator:':
+                name: willEnd
+    UIFontPickerViewControllerDelegate: {} #since 13.0
+    UILargeContentViewerInteractionDelegate: #since 13.0
+        methods:
+            '-largeContentViewerInteraction:didEndOnItem:atPoint:':
+                name: didEndOnItem
+            '-largeContentViewerInteraction:itemAtPoint:':
+                name: getItem
+    UILargeContentViewerItem: {} #since 13.0
+    UIMenuBuilder: #since 13.0
+        methods:
+            '-commandForAction:propertyList:':
+                name: getCommand
+            '-replaceMenuForIdentifier:withMenu:':
+                name: replaceMenu
+            '-replaceChildrenOfMenuForIdentifier:fromChildrenBlock:':
+                name: replaceChildren
+            '-insertSiblingMenu:beforeMenuForIdentifier:':
+                name: insertSiblingMenuBefore
+            '-insertSiblingMenu:afterMenuForIdentifier:':
+                name: insertSiblingMenuAfter
+            '-insertChildMenu:atStartOfMenuForIdentifier:':
+                name: insertChildMenuAtStart
+            '-insertChildMenu:atEndOfMenuForIdentifier:':
+                name: insertChildMenuAtEnd
+    UISceneDelegate: #since 13.0
+        methods:
+            '-scene:willConnectToSession:options:':
+                name: willConnect
+            '-scene:openURLContexts:':
+                name: openURLContexts
+            '-scene:willContinueUserActivityWithType:':
+                name: willContinueUserActivity
+            '-scene:continueUserActivity:':
+                name: continueUserActivity
+            '-scene:didFailToContinueUserActivityWithType:error:':
+                name: didFailToContinueUserActivity
+            '-scene:didUpdateUserActivity:':
+                name: didUpdateUserActivity
+    UIScreenshotServiceDelegate:
+        methods:
+            '-screenshotService:generatePDFRepresentationWithCompletion:':
+                name: generatePDFRepresentation
+    UISearchTextFieldDelegate:
+        methods:
+            '-searchTextField:itemProviderForCopyingToken:':
+                name: getItemProviderForCopyingToken
+    UISearchTextFieldPasteItem: {}
+    UITextFormattingCoordinatorDelegate: #since 13.0
+        methods:
+            '-updateTextAttributesWithConversionHandler:':
+                name: updateTextAttributes
+    UITextInteractionDelegate:
+        methods:
+            '-interactionShouldBegin:atPoint:':
+                name: interactionShouldBegin
+    UIWindowSceneDelegate: #since 13.0
+        methods:
+            '-windowScene:didUpdateCoordinateSpace:interfaceOrientation:traitCollection:':
+                name: didUpdateCoordinateSpace
+            '-windowScene:performActionForShortcutItem:completionHandler:':
+                name: performAction
+            '-windowScene:userDidAcceptCloudKitShareWithMetadata:':
+                name: userDidAcceptCloudKitShare
+    UIContextMenuInteractionAnimating: {} #since 13.0
 
+
+    # skipped
+    UIAppearance: {exclude: true, skip_implements: true, skip_methods: true} # as functionality is implemented in UIAppearance
 
 functions:
     # NSTextAlignment
@@ -5361,6 +5962,18 @@ functions:
     UIGuidedAccessConfigureAccessibilityFeatures:
         class: UIGuidedAccess
         name: configureAccessibilityFeatures
+
+    #ios13
+    # TODO: fix this after fixing primitive types of GlobalValueEnumerations
+    # - make a wrapper that take instance and pass to function, make functions private
+    UIFontWeightForImageSymbolWeight:
+        class: UIImageSymbolWeight
+        name: toFontWeight
+    # TODO: use 'static:false' configuration parameter to force it  into instance method
+    UIImageSymbolWeightForFontWeight:
+        class: UIFontWeight
+        name: toImageSymbolWeight
+
 
     # Make sure we don't miss any functions if new ones are introduced in a later UIKit
     (CG.*):
@@ -6040,6 +6653,27 @@ values:
         class: UIGuidedAccessErrorCode
         name: getClassDomain
 
+    UIScene(.*)Notification:
+        class: UISceneNotifications
+        name: '#{g[0]}'
+        type: NSString
+
+    UICommandTag(Share):
+        class: UICommand
+        static_class: Tags
+        name: '#{g[0]}'
+
+    UILargeContentViewer(InteractionEnabledStatusDidChange)Notification:
+        class: UILargeContentViewer
+        static_class: Notifications
+        name: '#{g[0]}'
+
+    # UISceneErrorCode(NSError)
+    UISceneErrorDomain:
+        class: UISceneErrorCode
+        name: getClassDomain
+
+
     # Make sure we don't miss any values if new ones are introduced in a later UIKit
     (NS.*):
         class: UIKit
@@ -6052,6 +6686,37 @@ typed_enums:
     NSAttributedStringDocumentReadingOptionKey:
         dictionary: NSAttributedStringDocumentReadingOptionKeys
         type: NSString
+
+    UIActivityItemsConfigurationMetadataKey:
+        enum: UIActivityItemsConfigurationMetadataKey
+        type: NSString
+        UIActivityItemsConfigurationMetadataKey(.*):
+            name: '#{g[0]}'
+    UIActivityItemsConfigurationPreviewIntent:
+        enum: UIActivityItemsConfigurationPreviewIntent
+        type: NSString
+        UIActivityItemsConfigurationPreviewIntent(.*):
+            name: '#{g[0]}'
+    UIActivityItemsConfigurationInteraction:
+        enum: UIActivityItemsConfigurationInteraction
+        type: NSString
+        UIActivityItemsConfigurationInteraction(.*):
+            name: '#{g[0]}'
+    UIMenuIdentifier:
+        enum: UIMenuIdentifier
+        type: NSString
+        UIMenu(.*):
+            name: '#{g[0]}'
+    UIFontDescriptorSystemDesign:
+        enum: UIFontDescriptorSystemDesign
+        type: NSString
+        UIFontDescriptorSystemDesign(.*):
+            name: '#{g[0]}'
+    UISceneSessionRole:
+        enum: UISceneSessionRole
+        type: NSString
+        UIWindowSceneSessionRole(.*):
+            name: '#{g[0]}'
 
 constants:
     NS(AttachmentCharacter):

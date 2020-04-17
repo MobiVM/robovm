@@ -53,13 +53,16 @@ import org.robovm.apple.imageio.*;
     public static final int RequestIDInvalid = 0;
     /*</constants>*/
     /*<constructors>*/
-    public PHLivePhoto() {}
+    protected PHLivePhoto() {}
     protected PHLivePhoto(Handle h, long handle) { super(h, handle); }
     protected PHLivePhoto(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public PHLivePhoto(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public PHLivePhoto(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 9.1 and later.
+     */
     @Property(selector = "size")
     public native @ByVal CGSize getSize();
     @Property(selector = "supportsSecureCoding")
@@ -87,19 +90,20 @@ import org.robovm.apple.imageio.*;
      */
     @GlobalValue(symbol="PHLivePhotoShouldRenderAtPlaybackTime", optional=true)
     public static native String ShouldRenderAtPlaybackTime();
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
-    @GlobalValue(symbol="PHLivePhotoShouldRenderAtPlaybackTime", optional=true)
-    public static native void ShouldRenderAtPlaybackTime(String v);
     
+    /**
+     * @since Available in iOS 9.1 and later.
+     */
     @Method(selector = "requestLivePhotoWithResourceFileURLs:placeholderImage:targetSize:contentMode:resultHandler:")
     public static native int requestLivePhoto(NSArray<NSURL> fileURLs, UIImage image, @ByVal CGSize targetSize, PHImageContentMode contentMode, @Block VoidBlock2<PHLivePhoto, NSDictionary<?, ?>> resultHandler);
+    /**
+     * @since Available in iOS 9.1 and later.
+     */
     @Method(selector = "cancelLivePhotoRequestWithRequestID:")
     public static native void cancelLivePhotoRequest(int requestID);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

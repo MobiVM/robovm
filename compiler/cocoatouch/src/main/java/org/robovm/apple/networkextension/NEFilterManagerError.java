@@ -29,12 +29,11 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.security.*;
+import org.robovm.apple.network.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Library("NetworkExtension")/*</annotations>*/
 public enum /*<name>*/NEFilterManagerError/*</name>*/ implements ValuedEnum {
@@ -42,15 +41,20 @@ public enum /*<name>*/NEFilterManagerError/*</name>*/ implements ValuedEnum {
     ConfigurationInvalid(1L),
     ConfigurationDisabled(2L),
     ConfigurationStale(3L),
-    ConfigurationCannotBeRemoved(4L);
+    ConfigurationCannotBeRemoved(4L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    ConfigurationPermissionDenied(5L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    ConfigurationInternalError(6L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(NEFilterManagerError.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @GlobalValue(symbol="NEFilterErrorDomain", optional=true)
     public static native String getClassDomain();
     /*</methods>*/

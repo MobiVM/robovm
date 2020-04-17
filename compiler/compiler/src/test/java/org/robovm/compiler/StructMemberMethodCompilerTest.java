@@ -9,6 +9,8 @@ import org.robovm.compiler.config.Config;
 import org.robovm.compiler.config.Config.Home;
 import org.robovm.compiler.llvm.StructureType;
 import org.robovm.compiler.log.Logger;
+import org.robovm.compiler.plugin.objc.ObjCBlockPlugin;
+import org.robovm.objc.annotation.Block;
 import org.robovm.rt.bro.Struct;
 import org.robovm.rt.bro.annotation.ByVal;
 import org.robovm.rt.bro.annotation.Packed;
@@ -21,6 +23,7 @@ import soot.options.Options;
 import java.io.File;
 import java.io.IOException;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -37,13 +40,13 @@ public class StructMemberMethodCompilerTest {
         Options.v().set_include_all(true);
         Options.v().set_print_tags_in_output(true);
         Options.v().set_allow_phantom_refs(true);
-        Options.v().set_soot_classpath(System.getProperty("sun.boot.class.path") + 
-                ":" + System.getProperty("java.class.path"));
+        Options.v().set_soot_classpath(ClassPathUtils.getBcPath() +
+                File.pathSeparator + System.getProperty("java.class.path"));
         Scene.v().loadNecessaryClasses();
         
         Config.Builder configBuilder = new Config.Builder();
-        for (String p : System.getProperty("sun.boot.class.path").split(File.pathSeparator)) {
-            configBuilder.addBootClasspathEntry(new File(p));
+        for (File p : ClassPathUtils.getBcPaths()) {
+            configBuilder.addBootClasspathEntry(p);
         }
         for (String p : System.getProperty("java.class.path").split(File.pathSeparator)) {
             configBuilder.addClasspathEntry(new File(p));
@@ -109,7 +112,31 @@ public class StructMemberMethodCompilerTest {
         assertEquals(config.getDataLayout().getStoreSize(packed), 12);
     }
 
+    @Test
+    public void testStructMemberOffsets() {
+        StructMemberMethodCompiler compiler = new StructMemberMethodCompiler(config);
 
+        StructureType packed = compiler.getStructType(toSootClass(StructForOffsetsPacked.class));
+        int[] offsets = compiler.getStructMemberOffsets(packed);
+        assertArrayEquals(new int[]{0, 1, 3}, offsets);
+    }
+
+    @Test
+    public void testBlockMember() {
+        Clazz clz = toClazz(StructWithBlock.class);
+        // run ObjCBlockPlugin.beforeClass to return attach marshaller annotation to
+        // method that operates blocks
+        try {
+            ObjCBlockPlugin objCBlockPlugin = new ObjCBlockPlugin();
+            objCBlockPlugin.beforeClass(config, clz, new ModuleBuilder());
+        } catch (IOException e) {
+            // should not happen
+            throw new IllegalStateException();
+        }
+        StructMemberMethodCompiler compiler = new StructMemberMethodCompiler(config);
+        StructureType struct = compiler.getStructType(clz.getSootClass());
+        assertEquals("{i8*}", struct.getDefinition());
+    }
 
     @Vectorised
     public static class VectorFloat2 extends Struct<VectorFloat2> {
@@ -158,6 +185,17 @@ public class StructMemberMethodCompilerTest {
 
         @StructMember(1) public native byte getC();
         @StructMember(1) public native PackedLongByte4 setC(byte c);
+    }
+
+    public static class StructWithBlock extends Struct<StructWithBlock> {
+        @StructMember(0) public native @Block Runnable getA();
+    }
+
+    @Packed(1)
+    public static class StructForOffsetsPacked extends Struct<StructForOffsetsPacked> {
+        @StructMember(0) public native byte getA();
+        @StructMember(1) public native short getB();
+        @StructMember(2) public native int getC();
     }
 
     public static class MockHome extends Home {

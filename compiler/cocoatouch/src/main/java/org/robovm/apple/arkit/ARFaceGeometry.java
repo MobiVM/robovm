@@ -58,9 +58,9 @@ import org.robovm.apple.imageio.*;
     protected ARFaceGeometry(Handle h, long handle) { super(h, handle); }
     protected ARFaceGeometry(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithBlendShapes:")
-    public ARFaceGeometry(NSDictionary<?, ?> blendShapes) { super((SkipInit) null); initObject(init(blendShapes)); }
+    public ARFaceGeometry(NSDictionary<NSString, NSNumber> blendShapes) { super((SkipInit) null); initObject(init(blendShapes)); }
     @Method(selector = "initWithCoder:")
-    public ARFaceGeometry(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public ARFaceGeometry(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "vertexCount")
@@ -81,10 +81,10 @@ import org.robovm.apple.imageio.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithBlendShapes:")
-    protected native @Pointer long init(NSDictionary<?, ?> blendShapes);
+    protected native @Pointer long init(NSDictionary<NSString, NSNumber> blendShapes);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

@@ -34,10 +34,11 @@ import org.robovm.apple.uikit.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 7.0 and later.
+ * @since Available in iOS 9.0 and later.
+ * @deprecated Deprecated in iOS 13.0. GCMicroGamepadSnapshot has been deprecated, use [GCController controllerWithMicroGamepad] instead
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("GameController") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("GameController") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GCMicroGamepadSnapshot/*</name>*/ 
     extends /*<extends>*/GCMicroGamepad/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -62,12 +63,19 @@ import org.robovm.apple.uikit.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 13.0. GCMicroGamepadSnapshot has been deprecated, use [GCController controllerWithMicroGamepad] instead
+     */
+    @Deprecated
     @GlobalValue(symbol="GCCurrentMicroGamepadSnapshotDataVersion", optional=true)
     public static native GCMicroGamepadSnapshotDataVersion getDataVersion();
     
     /**
-     * @since Available in iOS 7.0 and later.
+     * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 13.0. GCMicroGamepadSnapshot has been deprecated, use [GCController controllerWithMicroGamepad] instead
      */
+    @Deprecated
     @Bridge(symbol="GCMicroGamepadSnapshotDataFromNSData", optional=true)
     public static native boolean getDataFromNSData(GCMicroGamepadSnapshotData snapshotData, NSData data);
     

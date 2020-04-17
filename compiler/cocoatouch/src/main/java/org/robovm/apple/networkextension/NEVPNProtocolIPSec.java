@@ -29,12 +29,11 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.security.*;
+import org.robovm.apple.network.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("NetworkExtension") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NEVPNProtocolIPSec/*</name>*/ 
@@ -50,54 +49,24 @@ import org.robovm.apple.security.*;
     protected NEVPNProtocolIPSec(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "authenticationMethod")
     public native NEVPNIKEAuthenticationMethod getAuthenticationMethod();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setAuthenticationMethod:")
     public native void setAuthenticationMethod(NEVPNIKEAuthenticationMethod v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "useExtendedAuthentication")
     public native boolean usesExtendedAuthentication();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setUseExtendedAuthentication:")
     public native void setUsesExtendedAuthentication(boolean v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "sharedSecretReference")
     public native NSData getSharedSecretReference();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setSharedSecretReference:")
     public native void setSharedSecretReference(NSData v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "localIdentifier")
     public native String getLocalIdentifier();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setLocalIdentifier:")
     public native void setLocalIdentifier(String v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "remoteIdentifier")
     public native String getRemoteIdentifier();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setRemoteIdentifier:")
     public native void setRemoteIdentifier(String v);
     /*</properties>*/

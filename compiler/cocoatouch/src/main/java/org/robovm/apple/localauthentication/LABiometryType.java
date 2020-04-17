@@ -45,7 +45,7 @@ public enum /*<name>*/LABiometryType/*</name>*/ implements ValuedEnum {
     TypeNone(0L),
     /**
      * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 11.2.
+     * @deprecated Deprecated in iOS 11.2. Use LABiometryTypeNone
      */
     @Deprecated
     None(0L),

@@ -76,29 +76,14 @@ import org.robovm.apple.audiotoolbox.*;
         return convertTime(time, this, toClockOrTimebase);
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Bridge(symbol="CMSyncGetRelativeRate", optional=true)
     public native double getRelativeRate(CMClockOrTimebase relativeToClockOrTimebase);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Bridge(symbol="CMSyncGetRelativeRateAndAnchorTime", optional=true)
     protected native OSStatus getRelativeRateAndAnchorTime0(CMClockOrTimebase relativeToClockOrTimebase, DoublePtr outRelativeRate, CMTime.CMTimePtr outOfClockOrTimebaseAnchorTime, CMTime.CMTimePtr outRelativeToClockOrTimebaseAnchorTime);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Bridge(symbol="CMSyncConvertTime", optional=true)
     public static native @ByVal CMTime convertTime(@ByVal CMTime time, CMClockOrTimebase fromClockOrTimebase, CMClockOrTimebase toClockOrTimebase);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Bridge(symbol="CMSyncMightDrift", optional=true)
     public native boolean mightDrift(CMClockOrTimebase clockOrTimebase2);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Bridge(symbol="CMSyncGetTime", optional=true)
     public native @ByVal CMTime getTime();
     /*</methods>*/

@@ -27,6 +27,7 @@ import java.util.List;
 
 import org.apache.commons.io.FileUtils;
 import org.junit.After;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.robovm.compiler.config.Resource.Walker;
 
@@ -83,6 +84,7 @@ public class ResourceTest {
     }
 
     @Test
+    @Ignore // ignored as changing "user.dir" is not allowed in recent java (has no affect)
     public void testResourceWithNullDirectoryAndNullTargetPath() throws Exception {
         File f = createDirStructure("src/test1.txt", "src/test2.txt", "src/woo/test3.txt");
         

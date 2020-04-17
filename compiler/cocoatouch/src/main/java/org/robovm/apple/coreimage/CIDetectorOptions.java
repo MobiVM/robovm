@@ -36,6 +36,7 @@ import org.robovm.apple.imageio.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.metal.*;
 import org.robovm.apple.iosurface.*;
+import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -114,9 +115,6 @@ import org.robovm.apple.iosurface.*;
     }
     
 
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public CIDetectorAccuracy getAccuracy() {
         if (has(Keys.Accuracy())) {
             NSString val = (NSString) get(Keys.Accuracy());
@@ -124,16 +122,10 @@ import org.robovm.apple.iosurface.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public CIDetectorOptions setAccuracy(CIDetectorAccuracy accuracy) {
         set(Keys.Accuracy(), accuracy.value());
         return this;
     }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public boolean isTracking() {
         if (has(Keys.Tracking())) {
             NSNumber val = (NSNumber) get(Keys.Tracking());
@@ -141,16 +133,10 @@ import org.robovm.apple.iosurface.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public CIDetectorOptions setTracking(boolean tracking) {
         set(Keys.Tracking(), NSNumber.valueOf(tracking));
         return this;
     }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public double getMinFeatureSize() {
         if (has(Keys.MinFeatureSize())) {
             NSNumber val = (NSNumber) get(Keys.MinFeatureSize());
@@ -158,9 +144,6 @@ import org.robovm.apple.iosurface.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     public CIDetectorOptions setMinFeatureSize(double minFeatureSize) {
         set(Keys.MinFeatureSize(), NSNumber.valueOf(minFeatureSize));
         return this;
@@ -171,19 +154,10 @@ import org.robovm.apple.iosurface.*;
     @Library("CoreImage")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="CIDetectorAccuracy", optional=true)
         public static native NSString Accuracy();
-        /**
-         * @since Available in iOS 6.0 and later.
-         */
         @GlobalValue(symbol="CIDetectorTracking", optional=true)
         public static native NSString Tracking();
-        /**
-         * @since Available in iOS 6.0 and later.
-         */
         @GlobalValue(symbol="CIDetectorMinFeatureSize", optional=true)
         public static native NSString MinFeatureSize();
         /**

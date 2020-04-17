@@ -54,7 +54,26 @@ import org.robovm.apple.dispatch.*;
     boolean isAvailable();
     /*</properties>*/
     /*<methods>*/
-    
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "asNFCISO15693Tag")
+    NFCISO15693Tag asNFCISO15693Tag();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "asNFCISO7816Tag")
+    NFCISO7816Tag asNFCISO7816Tag();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "asNFCFeliCaTag")
+    NFCFeliCaTag asNFCFeliCaTag();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "asNFCMiFareTag")
+    NFCMiFareTag asNFCMiFareTag();
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

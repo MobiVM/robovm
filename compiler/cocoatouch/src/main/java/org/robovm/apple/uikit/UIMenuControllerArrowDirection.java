@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -46,21 +48,9 @@ import org.robovm.apple.intents.*;
 public enum /*<name>*/UIMenuControllerArrowDirection/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Default(0L),
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     Up(1L),
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     Down(2L),
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     Left(3L),
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
     Right(4L);
     /*</values>*/
 

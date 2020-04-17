@@ -37,7 +37,7 @@ public abstract class AbstractPath implements Path {
     protected final File generatedClassDir;
     
     AbstractPath(File file, Clazzes clazzes, int index, boolean inBootclasspath) {
-        this.file = file.getAbsoluteFile();
+        this.file = file;
         this.clazzes = clazzes;
         this.index = index;
         this.inBootclasspath = inBootclasspath;

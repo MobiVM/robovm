@@ -47,9 +47,6 @@ public final class /*<name>*/NSDataReadingOptions/*</name>*/ extends Bits</*<nam
     public static final NSDataReadingOptions None = new NSDataReadingOptions(0L);
     public static final NSDataReadingOptions MappedIfSafe = new NSDataReadingOptions(1L);
     public static final NSDataReadingOptions Uncached = new NSDataReadingOptions(2L);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final NSDataReadingOptions MappedAlways = new NSDataReadingOptions(8L);
     /*</values>*/
 

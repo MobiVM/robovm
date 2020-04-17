@@ -56,10 +56,10 @@ import org.robovm.apple.corelocation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "successWithResolvedNotebookItemType:")
-    public static native INNotebookItemTypeResolutionResult successWithResolvedNotebookItemType(INNotebookItemType resolvedNotebookItemType);
+    public static native INNotebookItemTypeResolutionResult success(INNotebookItemType resolvedNotebookItemType);
     @Method(selector = "disambiguationWithNotebookItemTypesToDisambiguate:")
-    public static native INNotebookItemTypeResolutionResult disambiguationWithNotebookItemTypesToDisambiguate(NSArray<NSNumber> notebookItemTypesToDisambiguate);
+    public static native INNotebookItemTypeResolutionResult disambiguation(NSArray<NSNumber> notebookItemTypesToDisambiguate);
     @Method(selector = "confirmationRequiredWithNotebookItemTypeToConfirm:")
-    public static native INNotebookItemTypeResolutionResult confirmationRequiredWithNotebookItemTypeToConfirm(INNotebookItemType notebookItemTypeToConfirm);
+    public static native INNotebookItemTypeResolutionResult confirmationRequired(INNotebookItemType notebookItemTypeToConfirm);
     /*</methods>*/
 }

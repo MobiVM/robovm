@@ -505,14 +505,8 @@ import org.robovm.apple.uikit.*;
         return AudioQueueProcessingTap.create(this, callback, flags);
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioQueueNewOutput", optional=true)
     protected static native OSStatus createOutput0(AudioStreamBasicDescription inFormat, FunctionPtr inCallbackProc, @Pointer long inUserData, NSRunLoop inCallbackRunLoop, String inCallbackRunLoopMode, int inFlags, AudioQueue.AudioQueuePtr outAQ);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioQueueNewInput", optional=true)
     protected static native OSStatus createInput0(AudioStreamBasicDescription inFormat, FunctionPtr inCallbackProc, @Pointer long inUserData, NSRunLoop inCallbackRunLoop, String inCallbackRunLoopMode, int inFlags, AudioQueue.AudioQueuePtr outAQ);
     /**
@@ -525,139 +519,58 @@ import org.robovm.apple.uikit.*;
      */
     @Bridge(symbol="AudioQueueNewInputWithDispatchQueue", optional=true)
     protected static native OSStatus createInputWithDispatchQueue0(AudioQueue.AudioQueuePtr outAQ, AudioStreamBasicDescription inFormat, int inFlags, org.robovm.apple.dispatch.DispatchQueue inCallbackDispatchQueue, @Block VoidBlock5<AudioQueue, AudioQueueBuffer, AudioTimeStamp, Integer, AudioStreamPacketDescription> inCallbackBlock);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioQueueDispose", optional=true)
     protected native OSStatus dispose0(boolean inImmediate);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioQueueAllocateBuffer", optional=true)
     protected native OSStatus allocateBuffer0(int inBufferByteSize, AudioQueueBuffer.AudioQueueBufferPtr outBuffer);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioQueueAllocateBufferWithPacketDescriptions", optional=true)
     protected native OSStatus allocateBuffer0(int inBufferByteSize, int inNumberPacketDescriptions, AudioQueueBuffer.AudioQueueBufferPtr outBuffer);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioQueueFreeBuffer", optional=true)
     protected native OSStatus freeBuffer0(@Pointer long inBuffer);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioQueueEnqueueBuffer", optional=true)
     protected native OSStatus enqueueBuffer0(@Pointer long inBuffer, int inNumPacketDescs, AudioStreamPacketDescription.AudioStreamPacketDescriptionPtr inPacketDescs);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioQueueEnqueueBufferWithParameters", optional=true)
     protected native OSStatus enqueueBuffer0(@Pointer long inBuffer, int inNumPacketDescs, AudioStreamPacketDescription.AudioStreamPacketDescriptionPtr inPacketDescs, int inTrimFramesAtStart, int inTrimFramesAtEnd, int inNumParamValues, AudioQueueParameterEvent.AudioQueueParameterEventPtr inParamValues, AudioTimeStamp inStartTime, AudioTimeStamp.AudioTimeStampPtr outActualStartTime);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioQueueStart", optional=true)
     protected native OSStatus start0(AudioTimeStamp inStartTime);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioQueuePrime", optional=true)
     protected native OSStatus prime0(int inNumberOfFramesToPrepare, IntPtr outNumberOfFramesPrepared);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioQueueStop", optional=true)
     protected native OSStatus stop0(boolean inImmediate);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioQueuePause", optional=true)
     protected native OSStatus pause0();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioQueueFlush", optional=true)
     protected native OSStatus flush0();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioQueueReset", optional=true)
     protected native OSStatus reset0();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioQueueGetParameter", optional=true)
     protected native OSStatus getParameter0(AudioQueueParam inParamID, FloatPtr outValue);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioQueueSetParameter", optional=true)
     protected native OSStatus setParameter0(AudioQueueParam inParamID, float inValue);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioQueueGetProperty", optional=true)
     protected native OSStatus getProperty0(AudioQueueProperty inID, VoidPtr outData, IntPtr ioDataSize);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioQueueSetProperty", optional=true)
     protected native OSStatus setProperty0(AudioQueueProperty inID, VoidPtr inData, int inDataSize);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioQueueGetPropertySize", optional=true)
     protected native OSStatus getPropertySize0(AudioQueueProperty inID, IntPtr outDataSize);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioQueueAddPropertyListener", optional=true)
     protected native OSStatus addPropertyListener0(AudioQueueProperty inID, FunctionPtr inProc, @Pointer long inUserData);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioQueueRemovePropertyListener", optional=true)
     protected native OSStatus removePropertyListener0(AudioQueueProperty inID, FunctionPtr inProc, @Pointer long inUserData);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioQueueCreateTimeline", optional=true)
     protected native OSStatus createTimeline0(AudioQueueTimeline.AudioQueueTimelinePtr outTimeline);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioQueueDisposeTimeline", optional=true)
     protected native OSStatus disposeTimeline0(AudioQueueTimeline inTimeline);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioQueueGetCurrentTime", optional=true)
     protected native OSStatus getCurrentTime0(AudioQueueTimeline inTimeline, AudioTimeStamp.AudioTimeStampPtr outTimeStamp, BooleanPtr outTimelineDiscontinuity);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioQueueDeviceGetCurrentTime", optional=true)
     protected native OSStatus getCurrentDeviceTime0(AudioTimeStamp.AudioTimeStampPtr outTimeStamp);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioQueueDeviceTranslateTime", optional=true)
     protected native OSStatus translateDeviceTime0(AudioTimeStamp inTime, AudioTimeStamp.AudioTimeStampPtr outTime);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioQueueDeviceGetNearestStartTime", optional=true)
     protected native OSStatus getNearestDeviceStartTime0(AudioTimeStamp ioRequestedStartTime, int inFlags);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioQueueSetOfflineRenderFormat", optional=true)
     protected native OSStatus setOfflineRenderFormat0(AudioStreamBasicDescription inFormat, AudioChannelLayout inLayout);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioQueueOfflineRender", optional=true)
     protected native OSStatus offlineRender0(AudioTimeStamp inTimestamp, AudioQueueBuffer ioBuffer, int inNumberFrames);
     /*</methods>*/

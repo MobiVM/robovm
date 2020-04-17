@@ -29,6 +29,7 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.security.*;
+import org.robovm.apple.network.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -53,7 +54,15 @@ public enum /*<name>*/NEProviderStopReason/*</name>*/ implements ValuedEnum {
     Superceded(11L),
     UserLogout(12L),
     UserSwitch(13L),
-    ConnectionFailed(14L);
+    ConnectionFailed(14L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    Sleep(15L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    AppUpdate(16L);
     /*</values>*/
 
     /*<bind>*/

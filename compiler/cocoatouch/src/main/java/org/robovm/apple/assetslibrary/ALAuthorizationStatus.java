@@ -34,7 +34,6 @@ import org.robovm.apple.imageio.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 6.0 and later.
  * @deprecated Deprecated in iOS 9.0. Use PHAuthorizationStatus in the Photos framework instead
  */
 /*</javadoc>*/
@@ -42,25 +41,21 @@ import org.robovm.apple.imageio.*;
 public enum /*<name>*/ALAuthorizationStatus/*</name>*/ implements ValuedEnum {
     /*<values>*/
     /**
-     * @since Available in iOS 6.0 and later.
      * @deprecated Deprecated in iOS 9.0.
      */
     @Deprecated
     NotDetermined(0L),
     /**
-     * @since Available in iOS 6.0 and later.
      * @deprecated Deprecated in iOS 9.0.
      */
     @Deprecated
     Restricted(1L),
     /**
-     * @since Available in iOS 6.0 and later.
      * @deprecated Deprecated in iOS 9.0.
      */
     @Deprecated
     Denied(2L),
     /**
-     * @since Available in iOS 6.0 and later.
      * @deprecated Deprecated in iOS 9.0.
      */
     @Deprecated

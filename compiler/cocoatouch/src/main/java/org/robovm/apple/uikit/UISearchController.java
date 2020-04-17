@@ -37,12 +37,12 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UISearchController/*</name>*/ 
@@ -59,9 +59,9 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithSearchResultsController:")
     public UISearchController(UIViewController searchResultsController) { super((SkipInit) null); initObject(init(searchResultsController)); }
     @Method(selector = "initWithNibName:bundle:")
-    public UISearchController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
+    public UISearchController(String nibNameOrNil, NSBundle nibBundleOrNil) { super((SkipInit) null); initObject(init(nibNameOrNil, nibBundleOrNil)); }
     @Method(selector = "initWithCoder:")
-    public UISearchController(NSCoder decoder) { super(decoder); }
+    public UISearchController(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "searchResultsUpdater")
@@ -76,8 +76,16 @@ import org.robovm.apple.intents.*;
     public native UISearchControllerDelegate getDelegate();
     @Property(selector = "setDelegate:", strongRef = true)
     public native void setDelegate(UISearchControllerDelegate v);
+    /**
+     * @deprecated Deprecated in iOS 12.0. Use obscuresBackgroundDuringPresentation
+     */
+    @Deprecated
     @Property(selector = "dimsBackgroundDuringPresentation")
     public native boolean dimsBackgroundDuringPresentation();
+    /**
+     * @deprecated Deprecated in iOS 12.0. Use obscuresBackgroundDuringPresentation
+     */
+    @Deprecated
     @Property(selector = "setDimsBackgroundDuringPresentation:")
     public native void setDimsBackgroundDuringPresentation(boolean v);
     /**
@@ -98,11 +106,55 @@ import org.robovm.apple.intents.*;
     public native UIViewController getSearchResultsController();
     @Property(selector = "searchBar")
     public native UISearchBar getSearchBar();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "automaticallyShowsSearchResultsController")
+    public native boolean automaticallyShowsSearchResultsController();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setAutomaticallyShowsSearchResultsController:")
+    public native void setAutomaticallyShowsSearchResultsController(boolean v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "showsSearchResultsController")
+    public native boolean showsSearchResultsController();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setShowsSearchResultsController:")
+    public native void setShowsSearchResultsController(boolean v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "automaticallyShowsCancelButton")
+    public native boolean automaticallyShowsCancelButton();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setAutomaticallyShowsCancelButton:")
+    public native void setAutomaticallyShowsCancelButton(boolean v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "automaticallyShowsScopeBar")
+    public native boolean automaticallyShowsScopeBar();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setAutomaticallyShowsScopeBar:")
+    public native void setAutomaticallyShowsScopeBar(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithSearchResultsController:")
     protected native @Pointer long init(UIViewController searchResultsController);
+    @Method(selector = "initWithNibName:bundle:")
+    protected native @Pointer long init(String nibNameOrNil, NSBundle nibBundleOrNil);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder coder);
     @Method(selector = "animationControllerForPresentedController:presentingController:sourceController:")
     public native UIViewControllerAnimatedTransitioning getAnimationControllerForPresentedController(UIViewController presented, UIViewController presenting, UIViewController source);
     @Method(selector = "animationControllerForDismissedController:")
@@ -111,9 +163,6 @@ import org.robovm.apple.intents.*;
     public native UIViewControllerInteractiveTransitioning getInteractionControllerForPresentation(UIViewControllerAnimatedTransitioning animator);
     @Method(selector = "interactionControllerForDismissal:")
     public native UIViewControllerInteractiveTransitioning getInteractionControllerForDismissal(UIViewControllerAnimatedTransitioning animator);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "presentationControllerForPresentedViewController:presentingViewController:sourceViewController:")
     public native UIPresentationController getPresentationControllerForPresentedViewController(UIViewController presented, UIViewController presenting, UIViewController source);
     @Method(selector = "transitionDuration:")

@@ -29,6 +29,7 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.security.*;
+import org.robovm.apple.network.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -84,5 +85,10 @@ import org.robovm.apple.security.*;
      */
     @Method(selector = "stopFilterWithReason:completionHandler:")
     public native void stopFilter(NEProviderStopReason reason, @Block Runnable completionHandler);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "handleReport:")
+    public native void handleReport(NEFilterReport report);
     /*</methods>*/
 }

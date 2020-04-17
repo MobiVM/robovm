@@ -48,8 +48,30 @@ import org.robovm.apple.dispatch.*;
     protected NFCNDEFPayload() {}
     protected NFCNDEFPayload(Handle h, long handle) { super(h, handle); }
     protected NFCNDEFPayload(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "initWithFormat:type:identifier:payload:")
+    public NFCNDEFPayload(NFCTypeNameFormat format, NSData type, NSData identifier, NSData payload) { super((SkipInit) null); initObject(init(format, type, identifier, payload)); }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "initWithFormat:type:identifier:payload:chunkSize:")
+    public NFCNDEFPayload(NFCTypeNameFormat format, NSData type, NSData identifier, NSData payload, @MachineSizedUInt long chunkSize) { super((SkipInit) null); initObject(init(format, type, identifier, payload, chunkSize)); }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public NFCNDEFPayload(String uri) { super((Handle) null, create(uri)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public NFCNDEFPayload(NSURL url) { super((Handle) null, create(url)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public NFCNDEFPayload(String text, NSLocale locale) { super((Handle) null, create(text, locale)); retain(getHandle()); }
     @Method(selector = "initWithCoder:")
-    public NFCNDEFPayload(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public NFCNDEFPayload(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "typeNameFormat")
@@ -73,9 +95,44 @@ import org.robovm.apple.dispatch.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "initWithFormat:type:identifier:payload:")
+    protected native @Pointer long init(NFCTypeNameFormat format, NSData type, NSData identifier, NSData payload);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "initWithFormat:type:identifier:payload:chunkSize:")
+    protected native @Pointer long init(NFCTypeNameFormat format, NSData type, NSData identifier, NSData payload, @MachineSizedUInt long chunkSize);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "wellKnownTypeURIPayload")
+    public native NSURL wellKnownTypeURIPayload();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "wellKnownTypeTextPayloadWithLocale:")
+    public native String getWellKnownTypeTextPayload(NSLocale.NSLocalePtr locale);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "wellKnownTypeURIPayloadWithString:")
+    protected static native @Pointer long create(String uri);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "wellKnownTypeURIPayloadWithURL:")
+    protected static native @Pointer long create(NSURL url);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "wellKnownTypeTextPayloadWithString:locale:")
+    protected static native @Pointer long create(String text, NSLocale locale);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

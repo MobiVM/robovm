@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -96,53 +98,17 @@ import org.robovm.apple.intents.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final UIFontDescriptorAttribute Family = new UIFontDescriptorAttribute("Family");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final UIFontDescriptorAttribute Name = new UIFontDescriptorAttribute("Name");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final UIFontDescriptorAttribute Face = new UIFontDescriptorAttribute("Face");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final UIFontDescriptorAttribute Size = new UIFontDescriptorAttribute("Size");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final UIFontDescriptorAttribute VisibleName = new UIFontDescriptorAttribute("VisibleName");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final UIFontDescriptorAttribute Matrix = new UIFontDescriptorAttribute("Matrix");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final UIFontDescriptorAttribute CharacterSet = new UIFontDescriptorAttribute("CharacterSet");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final UIFontDescriptorAttribute CascadeList = new UIFontDescriptorAttribute("CascadeList");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final UIFontDescriptorAttribute Traits = new UIFontDescriptorAttribute("Traits");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final UIFontDescriptorAttribute FixedAdvance = new UIFontDescriptorAttribute("FixedAdvance");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final UIFontDescriptorAttribute FeatureSettings = new UIFontDescriptorAttribute("FeatureSettings");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final UIFontDescriptorAttribute TextStyle = new UIFontDescriptorAttribute("TextStyle");
     /*</constants>*/
     
@@ -169,64 +135,28 @@ import org.robovm.apple.intents.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="UIFontDescriptorFamilyAttribute", optional=true)
         public static native NSString Family();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="UIFontDescriptorNameAttribute", optional=true)
         public static native NSString Name();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="UIFontDescriptorFaceAttribute", optional=true)
         public static native NSString Face();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="UIFontDescriptorSizeAttribute", optional=true)
         public static native NSString Size();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="UIFontDescriptorVisibleNameAttribute", optional=true)
         public static native NSString VisibleName();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="UIFontDescriptorMatrixAttribute", optional=true)
         public static native NSString Matrix();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="UIFontDescriptorCharacterSetAttribute", optional=true)
         public static native NSString CharacterSet();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="UIFontDescriptorCascadeListAttribute", optional=true)
         public static native NSString CascadeList();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="UIFontDescriptorTraitsAttribute", optional=true)
         public static native NSString Traits();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="UIFontDescriptorFixedAdvanceAttribute", optional=true)
         public static native NSString FixedAdvance();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="UIFontDescriptorFeatureSettingsAttribute", optional=true)
         public static native NSString FeatureSettings();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="UIFontDescriptorTextStyleAttribute", optional=true)
         public static native NSString TextStyle();
         /*</values>*/

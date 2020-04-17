@@ -33,9 +33,7 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 6.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreBluetooth") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CBMutableCharacteristic/*</name>*/ 
@@ -57,9 +55,6 @@ import org.robovm.apple.dispatch.*;
     public native CBAttributePermissions getPermissions();
     @Property(selector = "setPermissions:")
     public native void setPermissions(CBAttributePermissions v);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "subscribedCentrals")
     public native NSArray<CBCentral> getSubscribedCentrals();
     @Property(selector = "properties")

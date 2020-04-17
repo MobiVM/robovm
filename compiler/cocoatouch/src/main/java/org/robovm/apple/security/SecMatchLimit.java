@@ -88,13 +88,7 @@ import org.robovm.apple.dispatch.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final SecMatchLimit One = new SecMatchLimit("One");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final SecMatchLimit All = new SecMatchLimit("All");
     /*</constants>*/
     
@@ -121,14 +115,8 @@ import org.robovm.apple.dispatch.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kSecMatchLimitOne", optional=true)
         public static native CFType One();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kSecMatchLimitAll", optional=true)
         public static native CFType All();
         /*</values>*/

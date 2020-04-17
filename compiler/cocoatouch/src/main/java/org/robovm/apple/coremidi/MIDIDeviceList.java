@@ -45,24 +45,12 @@ import org.robovm.apple.corefoundation.*;
     /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     @Bridge(symbol="MIDIDeviceListGetNumberOfDevices", optional=true)
     public native @MachineSizedUInt long getNumberOfDevices();
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     @Bridge(symbol="MIDIDeviceListGetDevice", optional=true)
     public native MIDIDevice getDevice(@MachineSizedUInt long index0);
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     @Bridge(symbol="MIDIDeviceListAddDevice", optional=true)
     public native MIDIError addDevice(MIDIDevice dev);
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     @Bridge(symbol="MIDIDeviceListDispose", optional=true)
     public native MIDIError dispose();
     /*</methods>*/

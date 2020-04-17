@@ -37,12 +37,12 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSFileProviderExtension/*</name>*/ 
@@ -59,15 +59,13 @@ import org.robovm.apple.intents.*;
     /*</constructors>*/
     /*<properties>*/
     /**
-     * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use NSFileProviderManager -providerIdentifier
      */
     @Deprecated
     @Property(selector = "providerIdentifier")
     public native String getProviderIdentifier();
     /**
-     * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use NSFileProviderManager -documentStorageURL
      */
     @Deprecated
     @Property(selector = "documentStorageURL")
@@ -75,10 +73,6 @@ import org.robovm.apple.intents.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "URLForItemWithPersistentIdentifier:")
-    public native NSURL getURLForItem(NSString identifier);
-    @Method(selector = "persistentIdentifierForItemAtURL:")
-    public native NSString getPersistentIdentifierForItem(NSURL url);
     /**
      * @since Available in iOS 11.0 and later.
      */
@@ -93,6 +87,10 @@ import org.robovm.apple.intents.*;
      */
     @Method(selector = "itemForIdentifier:error:")
     private native NSFileProviderItem itemForIdentifier(NSString identifier, NSError.NSErrorPtr error);
+    @Method(selector = "URLForItemWithPersistentIdentifier:")
+    public native NSURL getURLForItem(NSString identifier);
+    @Method(selector = "persistentIdentifierForItemAtURL:")
+    public native NSString getPersistentIdentifierForItem(NSURL url);
     @Method(selector = "providePlaceholderAtURL:completionHandler:")
     public native void providePlaceholder(NSURL url, @Block VoidBlock1<NSError> completionHandler);
     @Method(selector = "startProvidingItemAtURL:completionHandler:")
@@ -102,7 +100,6 @@ import org.robovm.apple.intents.*;
     @Method(selector = "itemChangedAtURL:")
     public native void itemChanged(NSURL url);
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 11.0. Use the corresponding method on NSFileProviderManager instead
      */
     @Deprecated
@@ -113,15 +110,13 @@ import org.robovm.apple.intents.*;
        return result;
     }
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 11.0. Use the corresponding method on NSFileProviderManager instead
      */
     @Deprecated
     @Method(selector = "writePlaceholderAtURL:withMetadata:error:")
     private static native boolean writePlaceholder(NSURL placeholderURL, NSURLProperties metadata, NSError.NSErrorPtr error);
     /**
-     * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use NSFileProviderManager +placeholderURLForURL:
      */
     @Deprecated
     @Method(selector = "placeholderURLForURL:")

@@ -111,9 +111,6 @@ import org.robovm.apple.iosurface.*;
     }
     
 
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public int getAllocationThreshold() {
         if (has(Keys.AllocationThreshold())) {
             CFNumber val = get(Keys.AllocationThreshold(), CFNumber.class);
@@ -121,9 +118,6 @@ import org.robovm.apple.iosurface.*;
         }
         return 0;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CVPixelBufferPoolAuxiliaryAttributes setAllocationThreshold(int allocationThreshold) {
         set(Keys.AllocationThreshold(), CFNumber.valueOf(allocationThreshold));
         return this;
@@ -134,9 +128,6 @@ import org.robovm.apple.iosurface.*;
     @Library("CoreVideo")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCVPixelBufferPoolAllocationThresholdKey", optional=true)
         public static native CFString AllocationThreshold();
     }

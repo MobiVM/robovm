@@ -33,6 +33,7 @@ import org.robovm.rt.bro.Bro;
 import org.robovm.rt.bro.annotation.Callback;
 import org.robovm.rt.bro.annotation.Library;
 import org.robovm.rt.bro.annotation.MarshalsPointer;
+import org.robovm.rt.bro.annotation.Pointer;
 import org.robovm.rt.bro.ptr.IntPtr;
 
 @Library("objc")
@@ -40,8 +41,8 @@ public final class ObjCClass extends ObjCObject {
     
     private static final String OBJC_PROXY_CLASS_SUFFIX = "$ObjCProxy";
     private static final int OBJC_PROXY_CLASS_SUFFIX_LENGTH = OBJC_PROXY_CLASS_SUFFIX.length();
-    private static final Map<Class<? extends ObjCObject>, ObjCClass> typeToClass = new HashMap<Class<? extends ObjCObject>, ObjCClass>();
-    private static final Map<String, ObjCClass> nameToClass = new HashMap<String, ObjCClass>();
+    private static final Map<Class<? extends ObjCObject>, ObjCClass> typeToClass = new HashMap<>();
+    private static final Map<String, ObjCClass> nameToClass = new HashMap<>();
     private static final Map<String, Class<? extends ObjCObject>> allNativeClasses = new HashMap<>();
     private static final Map<String, Class<? extends ObjCObject>> allNativeProtocolProxies = new HashMap<>();
     private static final Map<String, Class<? extends ObjCObject>> allCustomClasses = new HashMap<>();
@@ -49,7 +50,8 @@ public final class ObjCClass extends ObjCObject {
 
     private static final int ACC_SYNTHETIC = 0x1000;
     private static final String CUSTOM_CLASS_NAME_PREFIX = "j_";
-    
+    private static final String MISSING_CLASS_NAME_PREFIX = "missing_";
+
     static {
         ObjCRuntime.bind(ObjCClass.class);
         @SuppressWarnings("unchecked")
@@ -239,6 +241,10 @@ public final class ObjCClass extends ObjCObject {
                     long classPtr = ObjCRuntime.objc_getClass(VM.getStringUTFChars(name));
                     if (classPtr != 0L) {
                         c = new ObjCClass(classPtr, type, name, false, false);
+                    } else {
+                        // class is missing in runtime, register stub that will allow to have missing
+                        // classes as parent but will not allow to create instance of missing class
+                        c = registerMissingNativeClass(type, name);
                     }
                 } else {
                     NativeProtocolProxy nativeProtocolProxyAnno = type.getAnnotation(NativeProtocolProxy.class);
@@ -354,7 +360,21 @@ public final class ObjCClass extends ObjCObject {
         name = name.replace('.', '_');
         return name;
     }
-    
+
+    /**
+     * support for OBJC_CLASS_$_
+     * once data from handle is copied to OBJC_CLASS_$_ there is two class_t struct for same class:
+     * - one in OBJC_CLASS_$_
+     * - second created runtime and pointed by handle
+     * just to have inside RoboVM and external objc one lets replace handle with alias (pointer to OBJC_CLASS_$_)
+     * WARNING: Shall not be called directly
+     */
+    @Deprecated
+    public void replaceHandle(long aliasHandle) {
+        ObjCObject.ObjectOwnershipHelper.replaceHandle(getHandle(), aliasHandle);
+        setHandle(aliasHandle);
+    }
+
     @SuppressWarnings("unchecked")
     private static ObjCClass register(Class<? extends ObjCObject> type, String name) {
         ObjCClass superclass = getByType((Class<? extends ObjCObject>) type.getSuperclass());
@@ -402,7 +422,7 @@ public final class ObjCClass extends ObjCObject {
 
         // register protocols now to allow conformsToProtocol works
         // TODO: might impact performance
-        Class cls = type;
+        Class<?> cls = type;
         while (cls != null && cls != ObjCObject.class) {
             Class<?>[] interfaces = cls.getInterfaces();
             for (Class<?> inf : interfaces) {
@@ -422,9 +442,65 @@ public final class ObjCClass extends ObjCObject {
 
         return new ObjCClass(handle, type, name, !isObjCProxy(type), false);
     }
-    
+
+    /**
+     * Callback for '+alloc' selector of registered missing native classes.
+     * Called when missing class is being directly allocated.
+     * Throws exception ObjCClassNotFoundException
+     */
+    @Callback
+    private static void allocatingMissingClass(@Pointer long self, @SuppressWarnings("unused") @Pointer long sel) {
+        // +alloc of missing objc class was called
+        ObjCClass c = ObjCObject.getPeerObject(self);
+        String name = c != null ? c.name : VM.newStringUTF(ObjCRuntime.class_getName(self));
+        throw new ObjCClassNotFoundException("Allocating missing native class " + name);
+    }
+
+    /**
+     * register objc pseudo class for missing native classes. classes might be missing in case api is re-arranged in way
+     * super of existing class (e.g. from ios12) is changed to newly introduced class (e.g. in ios13)
+     * this was causing ObjCClassNotFoundException when using such bindings on previous version of ios(e.g. ios12)
+     * as super class is missing (as part of ios13)
+     * registered pseudo-class extends from parent class and overrides only '+alloc' method to not allow creation of
+     * missing class
+     */
+    @SuppressWarnings("unchecked")
+    private static ObjCClass registerMissingNativeClass(Class<? extends ObjCObject> type, String name)  {
+        ObjCClass superclass = getByType((Class<? extends ObjCObject>) type.getSuperclass());
+        long handle = ObjCRuntime.objc_allocateClassPair(superclass.getHandle(), VM.getStringUTFChars(MISSING_CLASS_NAME_PREFIX +  name), 0);
+        if (handle == 0L) {
+            throw new ObjCClassNotFoundException("Failed create custom Objective-C class for missing native class: " + name);
+        }
+        // for this class override 'alloc' method. it will be used as a trap to throw ObjCClassNotFoundException in case
+        // instance of this class being created directly
+        Selector selector = Selector.register("alloc");
+        Method method;
+        try {
+            method = ObjCClass.class.getDeclaredMethod("allocatingMissingClass", long.class, long.class);
+        } catch (NoSuchMethodException e) {
+            throw new Error(e);
+        }
+        long impl = VM.getCallbackMethodImpl(method);
+        String encoding = null;
+        long methodPtr = ObjCRuntime.class_getClassMethod(superclass.getHandle(), selector.getHandle());
+        if (methodPtr != 0) {
+            long encodingPtr = ObjCRuntime.method_getTypeEncoding(methodPtr);
+            if (encodingPtr != 0L) {
+                encoding = VM.newStringUTF(encodingPtr);
+            }
+        }
+
+        long ownerHandle = ObjCRuntime.object_getClass(handle);
+        if (!ObjCRuntime.class_addMethod(ownerHandle, selector.getHandle(), impl, encoding != null ? VM.getStringUTFChars(encoding) : 0L)) {
+            throw new ObjCClassNotFoundException("Failed to add method alloc interceptor to custom Objective-C class for missing native class: " + name);
+        }
+
+        ObjCRuntime.objc_registerClassPair(handle);
+        return new ObjCClass(handle, type, name, false, false);
+    }
+
     private static Map<String, Method> getCallbacks(Class<?> type) {
-        Map<String, Method> callbacks = new HashMap<String, Method>();
+        Map<String, Method> callbacks = new HashMap<>();
         findCallbacks(type, callbacks);
         return callbacks;
     }

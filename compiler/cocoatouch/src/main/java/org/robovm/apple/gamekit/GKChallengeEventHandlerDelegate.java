@@ -33,7 +33,6 @@ import org.robovm.apple.uikit.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 6.0 and later.
  * @deprecated Deprecated in iOS 7.0. You should instead implement the GKChallengeListener protocol and register a listener with GKLocalPlayer.
  */
 /*</javadoc>*/

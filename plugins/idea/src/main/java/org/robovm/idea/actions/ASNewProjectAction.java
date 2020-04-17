@@ -19,8 +19,8 @@ import com.intellij.ide.impl.NewProjectUtil;
 import com.intellij.ide.projectWizard.NewProjectWizard;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
-import com.intellij.openapi.project.Project;
 import com.intellij.openapi.roots.ui.configuration.ModulesProvider;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * action to overcome idea studio limitation in creating new project
@@ -35,8 +35,8 @@ public class ASNewProjectAction extends AnAction {
     }
 
     @Override
-    public void actionPerformed(AnActionEvent e) {
-        NewProjectWizard wizard = new NewProjectWizard((Project)null, ModulesProvider.EMPTY_MODULES_PROVIDER, (String)null);
-        NewProjectUtil.createNewProject(getEventProject(e), wizard);
+    public void actionPerformed(@NotNull AnActionEvent e) {
+        NewProjectWizard wizard = new NewProjectWizard(null, ModulesProvider.EMPTY_MODULES_PROVIDER, null);
+        NewProjectUtil.createNewProject(null, wizard); // have to use outdated as replacement was introduced only in 2019.3
     }
 }

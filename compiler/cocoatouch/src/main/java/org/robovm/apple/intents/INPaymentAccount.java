@@ -62,7 +62,7 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "initWithNickname:number:accountType:organizationName:")
     public INPaymentAccount(INSpeakableString nickname, String number, INAccountType accountType, INSpeakableString organizationName) { super((SkipInit) null); initObject(init(nickname, number, accountType, organizationName)); }
     @Method(selector = "initWithCoder:")
-    public INPaymentAccount(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public INPaymentAccount(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "nickname")
@@ -103,6 +103,6 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

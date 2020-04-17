@@ -29,12 +29,11 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.security.*;
+import org.robovm.apple.network.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("NetworkExtension") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NEEvaluateConnectionRule/*</name>*/ 
@@ -48,43 +47,22 @@ import org.robovm.apple.security.*;
     public NEEvaluateConnectionRule() {}
     protected NEEvaluateConnectionRule(Handle h, long handle) { super(h, handle); }
     protected NEEvaluateConnectionRule(SkipInit skipInit) { super(skipInit); }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "initWithMatchDomains:andAction:")
     public NEEvaluateConnectionRule(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> domains, NEEvaluateConnectionRuleAction action) { super((SkipInit) null); initObject(init(domains, action)); }
     @Method(selector = "initWithCoder:")
-    public NEEvaluateConnectionRule(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public NEEvaluateConnectionRule(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "action")
     public native NEEvaluateConnectionRuleAction getAction();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "matchDomains")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getMatchDomains();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "useDNSServers")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getDNSServers();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setUseDNSServers:")
     public native void setDNSServers(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "probeURL")
     public native NSURL getProbeURL();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setProbeURL:")
     public native void setProbeURL(NSURL v);
     @Property(selector = "supportsSecureCoding")
@@ -92,14 +70,11 @@ import org.robovm.apple.security.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "initWithMatchDomains:andAction:")
     protected native @Pointer long init(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> domains, NEEvaluateConnectionRuleAction action);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

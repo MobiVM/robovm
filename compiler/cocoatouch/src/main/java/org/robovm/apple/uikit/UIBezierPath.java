@@ -37,12 +37,12 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 3.2 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIBezierPath/*</name>*/ 
@@ -57,7 +57,7 @@ import org.robovm.apple.intents.*;
     protected UIBezierPath(Handle h, long handle) { super(h, handle); }
     protected UIBezierPath(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public UIBezierPath(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public UIBezierPath(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "CGPath")
@@ -143,7 +143,7 @@ import org.robovm.apple.intents.*;
 
     /*<methods>*/
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
+    protected native @Pointer long init(NSCoder coder);
     @Method(selector = "moveToPoint:")
     public native void move(@ByVal CGPoint point);
     @Method(selector = "addLineToPoint:")
@@ -152,9 +152,6 @@ import org.robovm.apple.intents.*;
     public native void addCurve(@ByVal CGPoint endPoint, @ByVal CGPoint controlPoint1, @ByVal CGPoint controlPoint2);
     @Method(selector = "addQuadCurveToPoint:controlPoint:")
     public native void addQuadCurve(@ByVal CGPoint endPoint, @ByVal CGPoint controlPoint);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "addArcWithCenter:radius:startAngle:endAngle:clockwise:")
     public native void addArc(@ByVal CGPoint center, @MachineSizedFloat double radius, @MachineSizedFloat double startAngle, @MachineSizedFloat double endAngle, boolean clockwise);
     @Method(selector = "closePath")
@@ -163,9 +160,6 @@ import org.robovm.apple.intents.*;
     public native void removeAllPoints();
     @Method(selector = "appendPath:")
     public native void appendPath(UIBezierPath bezierPath);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "bezierPathByReversingPath")
     public native UIBezierPath reverse();
     @Method(selector = "applyTransform:")

@@ -28,6 +28,7 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -53,7 +54,15 @@ public enum /*<name>*/CLSContextType/*</name>*/ implements ValuedEnum {
     Game(12L),
     Document(13L),
     Audio(14L),
-    Video(15L);
+    Video(15L),
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    Course(16L),
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    Custom(17L);
     /*</values>*/
 
     /*<bind>*/

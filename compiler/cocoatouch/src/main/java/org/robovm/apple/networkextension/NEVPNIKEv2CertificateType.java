@@ -29,6 +29,7 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.security.*;
+import org.robovm.apple.network.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -42,7 +43,11 @@ public enum /*<name>*/NEVPNIKEv2CertificateType/*</name>*/ implements ValuedEnum
     RSA(1L),
     ECDSA256(2L),
     ECDSA384(3L),
-    ECDSA521(4L);
+    ECDSA521(4L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    Ed25519(5L);
     /*</values>*/
 
     /*<bind>*/

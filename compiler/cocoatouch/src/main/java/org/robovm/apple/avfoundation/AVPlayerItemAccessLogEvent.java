@@ -41,9 +41,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.3 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVPlayerItemAccessLogEvent/*</name>*/ 
@@ -60,15 +58,11 @@ import org.robovm.apple.audiotoolbox.*;
     /*</constructors>*/
     /*<properties>*/
     /**
-     * @since Available in iOS 4.3 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. No longer supported
      */
     @Deprecated
     @Property(selector = "numberOfSegmentsDownloaded")
     public native @MachineSizedSInt long getNumberOfSegmentsDownloaded();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Property(selector = "numberOfMediaRequests")
     public native @MachineSizedSInt long getNumberOfMediaRequests();
     @Property(selector = "playbackStartDate")
@@ -91,9 +85,6 @@ import org.robovm.apple.audiotoolbox.*;
     public native @MachineSizedSInt long getNumberOfStalls();
     @Property(selector = "numberOfBytesTransferred")
     public native long getNumberOfBytesTransferred();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "transferDuration")
     public native double getTransferDuration();
     @Property(selector = "observedBitrate")
@@ -117,44 +108,20 @@ import org.robovm.apple.audiotoolbox.*;
     public native double getAverageAudioBitrate();
     @Property(selector = "numberOfDroppedVideoFrames")
     public native @MachineSizedSInt long getNumberOfDroppedVideoFrames();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "startupTime")
     public native double getStartupTime();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "downloadOverdue")
     public native @MachineSizedSInt long getDownloadOverdue();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "observedMaxBitrate")
     public native double getObservedMaxBitrate();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "observedMinBitrate")
     public native double getObservedMinBitrate();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "observedBitrateStandardDeviation")
     public native double getObservedBitrateStandardDeviation();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "playbackType")
     public native String getPlaybackType();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "mediaRequestsWWAN")
     public native @MachineSizedSInt long getMediaRequestsWWAN();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "switchBitrate")
     public native double getSwitchBitrate();
     /*</properties>*/

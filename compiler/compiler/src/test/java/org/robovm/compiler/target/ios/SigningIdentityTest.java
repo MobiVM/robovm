@@ -61,7 +61,7 @@ public class SigningIdentityTest {
     public void testFindByRegexp() throws Exception {
         List<SigningIdentity> ids = SigningIdentity.parse(IOUtils.toString(getClass().getResourceAsStream("codesigning_dump.txt")));
 
-        SigningIdentity identity1 = SigningIdentity.find(ids, "/(?i)iPhone Developer|iOS Development/");
+        SigningIdentity identity1 = SigningIdentity.find(ids, SigningIdentity.REGEX_MATCH_FOR_IOS);
         assertEquals("ABBBE93758B08A8FE7B970354D8B6D9821CF9108", identity1.getFingerprint());
         assertEquals("iOS Development: Gerrard Eliot (KDH76S9URT)", identity1.getName());
 

@@ -69,29 +69,14 @@ import org.robovm.apple.corefoundation.*;
         return ptr.get();
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     @Bridge(symbol="MIDIThruConnectionCreate", optional=true)
     protected static native MIDIError create(String inPersistentOwnerID, NSData inConnectionParams, MIDIThruConnection.MIDIThruConnectionPtr outConnection);
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     @Bridge(symbol="MIDIThruConnectionDispose", optional=true)
     public native MIDIError dispose();
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     @Bridge(symbol="MIDIThruConnectionGetParams", optional=true)
     protected native MIDIError getParams(NSData.NSDataPtr outConnectionParams);
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     @Bridge(symbol="MIDIThruConnectionSetParams", optional=true)
     public native MIDIError setParams(NSData inConnectionParams);
-    /**
-     * @since Available in iOS 4.2 and later.
-     */
     @Bridge(symbol="MIDIThruConnectionFind", optional=true)
     protected static native MIDIError find(String inPersistentOwnerID, NSData.NSDataPtr outConnectionList);
     /*</methods>*/

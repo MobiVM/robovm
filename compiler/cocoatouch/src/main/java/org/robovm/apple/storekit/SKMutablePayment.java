@@ -32,9 +32,7 @@ import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 3.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("StoreKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SKMutablePayment/*</name>*/ 
@@ -59,14 +57,8 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "paymentWithProduct:")
     protected static native @Pointer long create(SKProduct product);
     /*<properties>*/
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "applicationUsername")
     public native String getApplicationUsername();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "setApplicationUsername:")
     public native void setApplicationUsername(String v);
     /**
@@ -79,34 +71,16 @@ import org.robovm.apple.uikit.*;
      */
     @Property(selector = "setPaymentDiscount:")
     public native void setPaymentDiscount(SKPaymentDiscount v);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "productIdentifier")
     public native String getProductIdentifier();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "setProductIdentifier:")
     public native void setProductIdentifier(String v);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "quantity")
     public native @MachineSizedSInt long getQuantity();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "setQuantity:")
     public native void setQuantity(@MachineSizedSInt long v);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "requestData")
     public native NSData getRequestData();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Property(selector = "setRequestData:")
     public native void setRequestData(NSData v);
     /**

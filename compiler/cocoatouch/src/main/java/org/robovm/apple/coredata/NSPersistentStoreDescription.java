@@ -29,6 +29,8 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corespotlight.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -88,6 +90,16 @@ import org.robovm.apple.corespotlight.*;
     public native boolean shouldInferMappingModelAutomatically();
     @Property(selector = "setShouldInferMappingModelAutomatically:")
     public native void setShouldInferMappingModelAutomatically(boolean v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "cloudKitContainerOptions")
+    public native NSPersistentCloudKitContainerOptions getCloudKitContainerOptions();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setCloudKitContainerOptions:")
+    public native void setCloudKitContainerOptions(NSPersistentCloudKitContainerOptions v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

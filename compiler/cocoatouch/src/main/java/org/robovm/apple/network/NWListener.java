@@ -35,7 +35,7 @@ import org.robovm.apple.security.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*/@Library("Network") @NativeProtocolProxy("OS_nw_listener")/*</annotations>*/
+/*<annotations>*/@Library("Network") @NativeClass("NSObject")/*</annotations>*/
 /*<visibility>*/public final/*</visibility>*/ class /*<name>*/NWListener/*</name>*/ 
     extends /*<extends>*/NWObject/*</extends>*/ 
     /*<implements>*/implements NSObjectProtocol/*</implements>*/ {
@@ -44,6 +44,19 @@ import org.robovm.apple.security.*;
     /*<bind>*/static { ObjCRuntime.bind(NWListener.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    public NWListener(String port, NWParameters parameters) { super((Handle) null, createWithPort(port, parameters));  }
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    public NWListener(NWParameters parameters) { super((Handle) null, create(parameters));  }
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    public NWListener(NWConnection connection, NWParameters parameters) { super((Handle) null, createWithConnection(connection, parameters));  }
+    
     
     /*</constructors>*/
     /*<properties>*/
@@ -55,17 +68,17 @@ import org.robovm.apple.security.*;
      * @since Available in iOS 12.0 and later.
      */
     @Bridge(symbol="nw_listener_create_with_port", optional=true)
-    public static native NWListener createWithPort(BytePtr port, NWParameters parameters);
+    private static native @Pointer long createWithPort(@org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class) String port, NWParameters parameters);
     /**
      * @since Available in iOS 12.0 and later.
      */
     @Bridge(symbol="nw_listener_create", optional=true)
-    public static native NWListener create(NWParameters parameters);
+    private static native @Pointer long create(NWParameters parameters);
     /**
      * @since Available in iOS 12.0 and later.
      */
     @Bridge(symbol="nw_listener_create_with_connection", optional=true)
-    public static native NWListener createWithConnection(NWConnection connection, NWParameters parameters);
+    private static native @Pointer long createWithConnection(NWConnection connection, NWParameters parameters);
     /**
      * @since Available in iOS 12.0 and later.
      */
@@ -81,6 +94,16 @@ import org.robovm.apple.security.*;
      */
     @Bridge(symbol="nw_listener_set_new_connection_handler", optional=true)
     public native void setNewConnectionHandler(@Block VoidBlock1<NWConnection> handler);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Bridge(symbol="nw_listener_get_new_connection_limit", optional=true)
+    public native int getNewConnectionLimit();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Bridge(symbol="nw_listener_set_new_connection_limit", optional=true)
+    public native void setNewConnectionLimit(int new_connection_limit);
     /**
      * @since Available in iOS 12.0 and later.
      */

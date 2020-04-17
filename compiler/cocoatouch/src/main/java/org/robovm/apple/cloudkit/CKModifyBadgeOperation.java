@@ -35,8 +35,7 @@ import org.robovm.apple.fileprovider.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 8.0 and later.
- * @deprecated Deprecated in iOS 11.0.
+ * @deprecated Deprecated in iOS 11.0. No longer supported, will cease working at some point in the future
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("CloudKit") @NativeClass @Deprecated/*</annotations>*/

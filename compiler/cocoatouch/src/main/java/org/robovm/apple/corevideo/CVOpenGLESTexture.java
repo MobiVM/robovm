@@ -62,35 +62,30 @@ import org.robovm.apple.iosurface.*;
     }
     /*<methods>*/
     /**
-     * @since Available in iOS 5.0 and later.
      * @deprecated Deprecated in iOS 12.0. OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)
      */
     @Deprecated
     @Bridge(symbol="CVOpenGLESTextureGetTypeID", optional=true)
     public static native @MachineSizedUInt long getClassTypeID();
     /**
-     * @since Available in iOS 5.0 and later.
      * @deprecated Deprecated in iOS 12.0. OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)
      */
     @Deprecated
     @Bridge(symbol="CVOpenGLESTextureGetTarget", optional=true)
     public native int getTarget();
     /**
-     * @since Available in iOS 5.0 and later.
      * @deprecated Deprecated in iOS 12.0. OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)
      */
     @Deprecated
     @Bridge(symbol="CVOpenGLESTextureGetName", optional=true)
     public native int getName();
     /**
-     * @since Available in iOS 5.0 and later.
      * @deprecated Deprecated in iOS 12.0. OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)
      */
     @Deprecated
     @Bridge(symbol="CVOpenGLESTextureIsFlipped", optional=true)
     public native boolean isFlipped();
     /**
-     * @since Available in iOS 5.0 and later.
      * @deprecated Deprecated in iOS 12.0. OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)
      */
     @Deprecated

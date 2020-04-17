@@ -36,7 +36,6 @@ import org.robovm.apple.avkit.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 4.3 and later.
  * @deprecated Deprecated in iOS 10.0.
  */
 /*</javadoc>*/
@@ -69,11 +68,6 @@ import org.robovm.apple.avkit.*;
     public native void cancelAction();
     @Method(selector = "presentInView:")
     public native boolean present(UIView containerView);
-    /**
-     * @since Available in iOS 4.3 and later.
-     * @deprecated Deprecated in iOS 7.0. Use -[UIViewController requestInterstitialAdPresentation] and related APIs documented in <iAd/UIViewControlleriAdAdditions.h>.
-     */
-    @Deprecated
     @Method(selector = "presentFromViewController:")
     public native void presentFromViewController(UIViewController viewController);
     /*</methods>*/

@@ -20,11 +20,15 @@ group = 'com.mobidevelop.robovm'
 archivesBaseName = 'robovm-gradle-plugin'
 version = '2.3.10-SNAPSHOT'
 
-sourceCompatibility = '1.7'
-[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+compileJava {
+    options.encoding = 'UTF-8'
+    options.compilerArgs.addAll(['--release', '8'])
+}
 
 ext {
-                                                                                    roboVMVersion = '2.3.10-SNAPSHOT'
+    roboVMVersion = '2.3.10-SNAPSHOT'
 }
 
 repositories {

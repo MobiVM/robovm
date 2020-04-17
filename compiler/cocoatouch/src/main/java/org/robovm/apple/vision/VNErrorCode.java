@@ -61,7 +61,11 @@ public enum /*<name>*/VNErrorCode/*</name>*/ implements NSErrorCode {
     /**
      * @since Available in iOS 12.0 and later.
      */
-    UnsupportedRevision(16L);
+    UnsupportedRevision(16L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    DataUnavailable(17L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(VNErrorCode.class); }/*</bind>*/

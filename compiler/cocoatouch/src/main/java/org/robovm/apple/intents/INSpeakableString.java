@@ -68,7 +68,7 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "initWithSpokenPhrase:")
     public INSpeakableString(String spokenPhrase) { super((SkipInit) null); initObject(init(spokenPhrase)); }
     @Method(selector = "initWithCoder:")
-    public INSpeakableString(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public INSpeakableString(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "spokenPhrase")
@@ -108,6 +108,6 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

@@ -56,22 +56,22 @@ import org.robovm.apple.corelocation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "successWithResolvedMessageAttribute:")
-    public static native INMessageAttributeResolutionResult successWithResolvedMessageAttribute(INMessageAttribute resolvedMessageAttribute);
+    public static native INMessageAttributeResolutionResult success(INMessageAttribute resolvedMessageAttribute);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use +successWithResolvedMessageAttribute:
      */
     @Deprecated
     @Method(selector = "successWithResolvedValue:")
-    public static native INMessageAttributeResolutionResult successWithResolvedValue(INMessageAttribute resolvedValue);
+    public static native INMessageAttributeResolutionResult successValue(INMessageAttribute resolvedValue);
     @Method(selector = "confirmationRequiredWithMessageAttributeToConfirm:")
-    public static native INMessageAttributeResolutionResult confirmationRequiredWithMessageAttributeToConfirm(INMessageAttribute messageAttributeToConfirm);
+    public static native INMessageAttributeResolutionResult confirmationRequired(INMessageAttribute messageAttributeToConfirm);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use +confirmationRequiredWithMessageAttributeToConfirm:
      */
     @Deprecated
     @Method(selector = "confirmationRequiredWithValueToConfirm:")
-    public static native INMessageAttributeResolutionResult confirmationRequiredWithValueToConfirm(INMessageAttribute valueToConfirm);
+    public static native INMessageAttributeResolutionResult confirmationRequiredForValue(INMessageAttribute valueToConfirm);
     /*</methods>*/
 }

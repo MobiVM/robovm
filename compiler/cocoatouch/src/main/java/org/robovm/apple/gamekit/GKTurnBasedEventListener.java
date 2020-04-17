@@ -47,31 +47,16 @@ import org.robovm.apple.uikit.*;
     
     /*</properties>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "player:didRequestMatchWithOtherPlayers:")
     void didRequestMatch(GKPlayer player, NSArray<GKPlayer> playersToInvite);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "player:receivedTurnEventForMatch:didBecomeActive:")
     void receivedTurnEvent(GKPlayer player, GKTurnBasedMatch match, boolean didBecomeActive);
     @Method(selector = "player:matchEnded:")
     void matchEnded(GKPlayer player, GKTurnBasedMatch match);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "player:receivedExchangeRequest:forMatch:")
     void receivedExchangeRequest(GKPlayer player, GKTurnBasedExchange exchange, GKTurnBasedMatch match);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "player:receivedExchangeCancellation:forMatch:")
     void receivedExchangeCancellation(GKPlayer player, GKTurnBasedExchange exchange, GKTurnBasedMatch match);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "player:receivedExchangeReplies:forCompletedExchange:forMatch:")
     void receivedExchangeReplies(GKPlayer player, NSArray<GKTurnBasedExchange> replies, GKTurnBasedExchange exchange, GKTurnBasedMatch match);
     /**
@@ -80,7 +65,6 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "player:wantsToQuitMatch:")
     void wantsToQuitMatch(GKPlayer player, GKTurnBasedMatch match);
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 8.0. use didRequestMatchWithOtherPlayers
      */
     @Deprecated

@@ -99,6 +99,10 @@ import org.robovm.apple.coretext.*;
     public native @org.robovm.rt.bro.annotation.Marshaler(CFString.AsStringNoRetainMarshaler.class) String getUserName();
     @Bridge(symbol="CFURLCopyPassword", optional=true)
     public native @org.robovm.rt.bro.annotation.Marshaler(CFString.AsStringNoRetainMarshaler.class) String getPassword();
+    /**
+     * @deprecated Deprecated in iOS 13.0. The CFURLCopyParameterString function is deprecated. Post deprecation for applications linked with or after the macOS 10.15, and for all iOS, watchOS, and tvOS applications, CFURLCopyParameterString will always return NULL, and the CFURLCopyPath(), CFURLCopyStrictPath(), and CFURLCopyFileSystemPath() functions will return the complete path including the semicolon separator and params component if the URL string contains them.
+     */
+    @Deprecated
     @Bridge(symbol="CFURLCopyParameterString", optional=true)
     public native @org.robovm.rt.bro.annotation.Marshaler(CFString.AsStringNoRetainMarshaler.class) String getParameterString(String charactersToLeaveEscaped);
     @Bridge(symbol="CFURLCopyQueryString", optional=true)
@@ -120,145 +124,83 @@ import org.robovm.apple.coretext.*;
     @Bridge(symbol="CFURLCreateStringByReplacingPercentEscapes", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFString.AsStringNoRetainMarshaler.class) String decodeURLString(CFAllocator allocator, String originalString, String charactersToLeaveEscaped);
     /**
-     * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use [NSString stringByRemovingPercentEncoding] or CFURLCreateStringByReplacingPercentEscapes() instead, which always uses the recommended UTF-8 encoding.
      */
     @Deprecated
     @Bridge(symbol="CFURLCreateStringByReplacingPercentEscapesUsingEncoding", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFString.AsStringNoRetainMarshaler.class) String decodeURLString(CFAllocator allocator, String origString, String charsToLeaveEscaped, CFStringEncodings encoding);
     /**
-     * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use [NSString stringByAddingPercentEncodingWithAllowedCharacters:] instead, which always uses the recommended UTF-8 encoding, and which encodes for a specific URL component or subcomponent (since each URL component or subcomponent has different rules for what characters are valid).
      */
     @Deprecated
     @Bridge(symbol="CFURLCreateStringByAddingPercentEscapes", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFString.AsStringNoRetainMarshaler.class) String encodeURLString(CFAllocator allocator, String originalString, String charactersToLeaveUnescaped, String legalURLCharactersToBeEscaped, CFStringEncodings encoding);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Bridge(symbol="CFURLIsFileReferenceURL", optional=true)
     public native boolean isFileReferenceURL();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static CFURL createFileReferenceURL(CFAllocator allocator, CFURL url) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        CFURL result = createFileReferenceURL(allocator, url, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        return result;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CFURLCreateFileReferenceURL", optional=true)
     private static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CFURL createFileReferenceURL(CFAllocator allocator, CFURL url, NSError.NSErrorPtr error);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static CFURL createFilePathURL(CFAllocator allocator, CFURL url) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        CFURL result = createFilePathURL(allocator, url, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        return result;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CFURLCreateFilePathURL", optional=true)
     private static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CFURL createFilePathURL(CFAllocator allocator, CFURL url, NSError.NSErrorPtr error);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public boolean getResourceValue(String key, VoidPtr propertyValueTypeRefPtr) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        boolean result = getResourceValue(key, propertyValueTypeRefPtr, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        return result;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CFURLCopyResourcePropertyForKey", optional=true)
     private native boolean getResourceValue(String key, VoidPtr propertyValueTypeRefPtr, NSError.NSErrorPtr error);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public CFDictionary getResourceValues(CFArray keys) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        CFDictionary result = getResourceValues(keys, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        return result;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CFURLCopyResourcePropertiesForKeys", optional=true)
     private native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CFDictionary getResourceValues(CFArray keys, NSError.NSErrorPtr error);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public boolean setResourceValue(String key, CFType propertyValue) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        boolean result = setResourceValue(key, propertyValue, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        return result;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CFURLSetResourcePropertyForKey", optional=true)
     private native boolean setResourceValue(String key, CFType propertyValue, NSError.NSErrorPtr error);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public boolean setResourceValues(CFDictionary keyedPropertyValues) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        boolean result = setResourceValues(keyedPropertyValues, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        return result;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CFURLSetResourcePropertiesForKeys", optional=true)
     private native boolean setResourceValues(CFDictionary keyedPropertyValues, NSError.NSErrorPtr error);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CFURLClearResourcePropertyCacheForKey", optional=true)
     public native void clearResourcePropertyCacheForKey(String key);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CFURLClearResourcePropertyCache", optional=true)
     public native void clearResourcePropertyCache();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public boolean isResourceReachable() throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        boolean result = isResourceReachable(ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        return result;
     }
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Bridge(symbol="CFURLResourceIsReachable", optional=true)
     private native boolean isResourceReachable(NSError.NSErrorPtr error);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Bridge(symbol="CFURLStartAccessingSecurityScopedResource", optional=true)
     public native boolean startAccessingSecurityScopedResource();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Bridge(symbol="CFURLStopAccessingSecurityScopedResource", optional=true)
     public native void stopAccessingSecurityScopedResource();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Bridge(symbol="CFCopyHomeDirectoryURL", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CFURL getHomeDirectoryURL();
     /*</methods>*/

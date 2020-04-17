@@ -85,5 +85,10 @@ import org.robovm.apple.metal.*;
      */
     @NotImplemented("copyWithZone:device:")
     public MPSCNNConvolutionDataSource copy(NSZone zone, MTLDevice device) { return null; }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("weightsLayout")
+    public MPSCNNConvolutionWeightsLayout weightsLayout() { return null; }
     /*</methods>*/
 }

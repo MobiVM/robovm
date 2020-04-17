@@ -33,9 +33,7 @@ import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("GameController") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GCMotion/*</name>*/ 
@@ -59,17 +57,44 @@ import org.robovm.apple.uikit.*;
     public native void setValueChangedHandler(@Block VoidBlock2<GCGamepad, GCControllerElement> v);
     @Property(selector = "gravity")
     public native @ByVal GCAcceleration getGravity();
+    @Property(selector = "setGravity:")
+    public native void setGravity(@ByVal GCAcceleration v);
     @Property(selector = "userAcceleration")
     public native @ByVal GCAcceleration getUserAcceleration();
+    @Property(selector = "setUserAcceleration:")
+    public native void setUserAcceleration(@ByVal GCAcceleration v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Property(selector = "hasAttitudeAndRotationRate")
     public native boolean hasAttitudeAndRotationRate();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Property(selector = "attitude")
     public native @ByVal GCQuaternion getAttitude();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setAttitude:")
+    public native void setAttitude(@ByVal GCQuaternion v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Property(selector = "rotationRate")
     public native @ByVal GCRotationRate getRotationRate();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setRotationRate:")
+    public native void setRotationRate(@ByVal GCRotationRate v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "setStateFromMotion:")
+    public native void setStateFromMotion(GCMotion motion);
     /*</methods>*/
 }

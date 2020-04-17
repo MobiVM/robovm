@@ -37,12 +37,12 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 5.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIPopoverBackgroundView/*</name>*/ 
@@ -59,7 +59,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithFrame:")
     public UIPopoverBackgroundView(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public UIPopoverBackgroundView(NSCoder decoder) { super(decoder); }
+    public UIPopoverBackgroundView(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "arrowOffset")
@@ -71,8 +71,9 @@ import org.robovm.apple.intents.*;
     @Property(selector = "setArrowDirection:")
     public native void setArrowDirection(UIPopoverArrowDirection v);
     /**
-     * @since Available in iOS 6.0 and later.
+     * @deprecated Deprecated in iOS 13.0. No longer supported
      */
+    @Deprecated
     @Property(selector = "wantsDefaultContentAppearance")
     public static native boolean wantsDefaultContentAppearance();
     /*</properties>*/

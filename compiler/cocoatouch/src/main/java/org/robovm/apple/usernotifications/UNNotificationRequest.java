@@ -49,7 +49,7 @@ import org.robovm.apple.foundation.*;
     protected UNNotificationRequest(SkipInit skipInit) { super(skipInit); }
     public UNNotificationRequest(String identifier, UNNotificationContent content, UNNotificationTrigger trigger) { super((Handle) null, create(identifier, content, trigger)); retain(getHandle()); }
     @Method(selector = "initWithCoder:")
-    public UNNotificationRequest(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public UNNotificationRequest(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "identifier")
@@ -68,6 +68,6 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

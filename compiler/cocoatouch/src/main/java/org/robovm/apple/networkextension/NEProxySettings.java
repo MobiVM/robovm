@@ -29,6 +29,7 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.security.*;
+import org.robovm.apple.network.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -49,7 +50,7 @@ import org.robovm.apple.security.*;
     protected NEProxySettings(Handle h, long handle) { super(h, handle); }
     protected NEProxySettings(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public NEProxySettings(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public NEProxySettings(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     /**
@@ -160,6 +161,6 @@ import org.robovm.apple.security.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

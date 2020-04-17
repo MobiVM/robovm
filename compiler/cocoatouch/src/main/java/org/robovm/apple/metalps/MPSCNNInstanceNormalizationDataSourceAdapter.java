@@ -70,5 +70,15 @@ import org.robovm.apple.metal.*;
      */
     @NotImplemented("copyWithZone:device:")
     public MPSCNNInstanceNormalizationDataSource copy(NSZone zone, MTLDevice device) { return null; }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("load")
+    public boolean load() { return false; }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("purge")
+    public void purge() {}
     /*</methods>*/
 }

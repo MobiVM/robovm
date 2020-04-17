@@ -32,9 +32,7 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("Metal") @NativeProtocolProxy/*</annotations>*/
 /*<visibility>*/public final/*</visibility>*/ class /*<name>*/MTLComputeCommandEncoder/*</name>*/ 
@@ -182,6 +180,16 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "useHeaps:count:")
     public native void useHeaps(MTLHeap heaps, @MachineSizedUInt long count);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "executeCommandsInBuffer:withRange:")
+    public native void executeCommandsInBuffer(MTLIndirectCommandBuffer indirectCommandBuffer, @ByVal NSRange executionRange);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "executeCommandsInBuffer:indirectBuffer:indirectBufferOffset:")
+    public native void executeCommandsInBuffer(MTLIndirectCommandBuffer indirectCommandbuffer, MTLBuffer indirectRangeBuffer, @MachineSizedUInt long indirectBufferOffset);
     /**
      * @since Available in iOS 12.0 and later.
      */

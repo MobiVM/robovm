@@ -97,13 +97,7 @@ import org.robovm.apple.audiotoolbox.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final AVSampleRateConverterAlgorithm Normal = new AVSampleRateConverterAlgorithm("Normal");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public static final AVSampleRateConverterAlgorithm Mastering = new AVSampleRateConverterAlgorithm("Mastering");
     /**
      * @since Available in iOS 10.0 and later.
@@ -134,14 +128,8 @@ import org.robovm.apple.audiotoolbox.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="AVSampleRateConverterAlgorithm_Normal", optional=true)
         public static native NSString Normal();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
         @GlobalValue(symbol="AVSampleRateConverterAlgorithm_Mastering", optional=true)
         public static native NSString Mastering();
         /**

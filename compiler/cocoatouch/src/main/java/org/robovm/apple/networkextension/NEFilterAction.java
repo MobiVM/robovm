@@ -29,6 +29,7 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.security.*;
+import org.robovm.apple.network.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -39,10 +40,25 @@ import org.robovm.apple.security.*;
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/NEFilterAction/*</name>*/ implements ValuedEnum {
     /*<values>*/
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     Invalid(0L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     Allow(1L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     Drop(2L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     Remediate(3L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     FilterData(4L);
     /*</values>*/
 

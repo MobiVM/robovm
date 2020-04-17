@@ -47,13 +47,7 @@ public final class /*<name>*/NSKeyValueObservingOptions/*</name>*/ extends Bits<
     public static final NSKeyValueObservingOptions None = new NSKeyValueObservingOptions(0L);
     public static final NSKeyValueObservingOptions New = new NSKeyValueObservingOptions(1L);
     public static final NSKeyValueObservingOptions Old = new NSKeyValueObservingOptions(2L);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final NSKeyValueObservingOptions Initial = new NSKeyValueObservingOptions(4L);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final NSKeyValueObservingOptions Prior = new NSKeyValueObservingOptions(8L);
     /*</values>*/
 

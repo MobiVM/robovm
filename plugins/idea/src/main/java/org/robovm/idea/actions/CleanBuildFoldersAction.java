@@ -25,6 +25,7 @@ import com.intellij.openapi.progress.ProgressIndicator;
 import com.intellij.openapi.progress.ProgressManager;
 import com.intellij.openapi.progress.Task;
 import com.intellij.openapi.project.Project;
+import com.intellij.openapi.vfs.VirtualFile;
 import org.apache.commons.io.FileUtils;
 import org.jetbrains.annotations.NotNull;
 import org.robovm.compiler.target.ios.IOSTarget;
@@ -40,9 +41,9 @@ public class CleanBuildFoldersAction extends AnAction {
     private static AtomicBoolean busy = new AtomicBoolean(false);
 
     @Override
-    public void actionPerformed(AnActionEvent anActionEvent) {
+    public void actionPerformed(@NotNull AnActionEvent e) {
         if (!busy.get()) {
-            ProgressManager.getInstance().run(new CleanTask(anActionEvent.getProject()));
+            ProgressManager.getInstance().run(new CleanTask(e.getProject()));
         }
     }
 
@@ -94,7 +95,7 @@ public class CleanBuildFoldersAction extends AnAction {
 
             // single exit point
             if (exceptionIfHappened != null) {
-                Notifications.Bus.notify(new Notification("RoboVM", "RoboVM Cache Build Folder Clearer",
+                Notifications.Bus.notify(new Notification("RoboVM", "RoboVM cache build folder clearer",
                         "Failed due error: " + exceptionIfHappened.getMessage(), NotificationType.ERROR));
             }
 

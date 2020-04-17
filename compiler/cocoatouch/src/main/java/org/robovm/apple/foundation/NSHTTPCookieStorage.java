@@ -94,18 +94,12 @@ import org.robovm.apple.dispatch.*;
     public native void setCookie(NSHTTPCookie cookie);
     @Method(selector = "deleteCookie:")
     public native void deleteCookie(NSHTTPCookie cookie);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "removeCookiesSinceDate:")
     public native void removeCookiesSinceDate(NSDate date);
     @Method(selector = "cookiesForURL:")
     public native NSArray<NSHTTPCookie> getCookiesForURL(NSURL URL);
     @Method(selector = "setCookies:forURL:mainDocumentURL:")
     public native void setCookiesForURL(NSArray<NSHTTPCookie> cookies, NSURL URL, NSURL mainDocumentURL);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "sortedCookiesUsingDescriptors:")
     public native NSArray<NSHTTPCookie> getSortedCookies(NSArray<NSSortDescriptor> sortOrder);
     /**
@@ -113,14 +107,8 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "sharedCookieStorageForGroupContainerIdentifier:")
     public static native NSHTTPCookieStorage getSharedCookieStorageForGroupContainer(String identifier);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "storeCookies:forTask:")
     public native void storeCookiesForTask(NSArray<NSHTTPCookie> cookies, NSURLSessionTask task);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "getCookiesForTask:completionHandler:")
     public native void getCookiesForTask(NSURLSessionTask task, @Block VoidBlock1<NSArray<NSHTTPCookie>> completionHandler);
     /*</methods>*/

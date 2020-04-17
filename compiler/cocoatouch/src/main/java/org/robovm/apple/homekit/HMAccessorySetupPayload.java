@@ -50,6 +50,11 @@ import org.robovm.apple.corelocation.*;
     protected HMAccessorySetupPayload(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithURL:")
     public HMAccessorySetupPayload(NSURL setupPayloadURL) { super((SkipInit) null); initObject(init(setupPayloadURL)); }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "initWithURL:ownershipToken:")
+    public HMAccessorySetupPayload(NSURL setupPayloadURL, HMAccessoryOwnershipToken ownershipToken) { super((SkipInit) null); initObject(init(setupPayloadURL, ownershipToken)); }
     /*</constructors>*/
     /*<properties>*/
     
@@ -58,5 +63,10 @@ import org.robovm.apple.corelocation.*;
     /*<methods>*/
     @Method(selector = "initWithURL:")
     protected native @Pointer long init(NSURL setupPayloadURL);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "initWithURL:ownershipToken:")
+    protected native @Pointer long init(NSURL setupPayloadURL, HMAccessoryOwnershipToken ownershipToken);
     /*</methods>*/
 }

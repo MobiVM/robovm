@@ -90,7 +90,7 @@ import org.robovm.apple.metal.*;
     /*<methods>*/
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use matrixDescriptorWithRows:columns:rowBytes:dataType instead.
      */
     @Deprecated
     @Method(selector = "matrixDescriptorWithDimensions:columns:rowBytes:dataType:")
@@ -107,7 +107,7 @@ import org.robovm.apple.metal.*;
     protected static native @Pointer long create(@MachineSizedUInt long rows, @MachineSizedUInt long columns, @MachineSizedUInt long matrices, @MachineSizedUInt long rowBytes, @MachineSizedUInt long matrixBytes, MPSDataType dataType);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use rowBytesForColumns:dataType instead.
      */
     @Deprecated
     @Method(selector = "rowBytesFromColumns:dataType:")

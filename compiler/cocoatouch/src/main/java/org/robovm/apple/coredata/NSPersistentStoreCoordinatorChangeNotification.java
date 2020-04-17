@@ -29,6 +29,8 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corespotlight.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -102,9 +104,6 @@ import org.robovm.apple.corespotlight.*;
     }
     
 
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public NSArray<NSPersistentStore> getAddedStores() {
         if (has(Keys.Added())) {
             NSArray<NSPersistentStore> val = (NSArray<NSPersistentStore>) get(Keys.Added());
@@ -112,9 +111,6 @@ import org.robovm.apple.corespotlight.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public NSArray<NSPersistentStore> getRemovedStores() {
         if (has(Keys.Removed())) {
             NSArray<NSPersistentStore> val = (NSArray<NSPersistentStore>) get(Keys.Removed());
@@ -122,9 +118,6 @@ import org.robovm.apple.corespotlight.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     public NSArray<NSPersistentStore> getUUIDChangedStores() {
         if (has(Keys.UUIDChanged())) {
             NSArray<NSPersistentStore> val = (NSArray<NSPersistentStore>) get(Keys.UUIDChanged());
@@ -133,7 +126,6 @@ import org.robovm.apple.corespotlight.*;
         return null;
     }
     /**
-     * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 10.0. Please see the release notes and Core Data documentation.
      */
     @Deprecated
@@ -150,23 +142,13 @@ import org.robovm.apple.corespotlight.*;
     @Library("CoreData")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 3.0 and later.
-         */
         @GlobalValue(symbol="NSAddedPersistentStoresKey", optional=true)
         public static native NSString Added();
-        /**
-         * @since Available in iOS 3.0 and later.
-         */
         @GlobalValue(symbol="NSRemovedPersistentStoresKey", optional=true)
         public static native NSString Removed();
-        /**
-         * @since Available in iOS 3.0 and later.
-         */
         @GlobalValue(symbol="NSUUIDChangedPersistentStoresKey", optional=true)
         public static native NSString UUIDChanged();
         /**
-         * @since Available in iOS 7.0 and later.
          * @deprecated Deprecated in iOS 10.0. Please see the release notes and Core Data documentation.
          */
         @Deprecated

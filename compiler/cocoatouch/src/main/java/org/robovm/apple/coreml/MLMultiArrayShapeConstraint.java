@@ -29,6 +29,10 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corevideo.*;
+import org.robovm.apple.coregraphics.*;
+import org.robovm.apple.imageio.*;
+import org.robovm.apple.vision.*;
+import org.robovm.apple.metal.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -39,7 +43,7 @@ import org.robovm.apple.corevideo.*;
 /*<annotations>*/@Library("CoreML") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MLMultiArrayShapeConstraint/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class MLMultiArrayShapeConstraintPtr extends Ptr<MLMultiArrayShapeConstraint, MLMultiArrayShapeConstraintPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(MLMultiArrayShapeConstraint.class); }/*</bind>*/
@@ -48,6 +52,8 @@ import org.robovm.apple.corevideo.*;
     public MLMultiArrayShapeConstraint() {}
     protected MLMultiArrayShapeConstraint(Handle h, long handle) { super(h, handle); }
     protected MLMultiArrayShapeConstraint(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public MLMultiArrayShapeConstraint(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "type")
@@ -56,9 +62,14 @@ import org.robovm.apple.corevideo.*;
     public native NSArray<NSValue> getSizeRangeForDimension();
     @Property(selector = "enumeratedShapes")
     public native NSArray<?> getEnumeratedShapes();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

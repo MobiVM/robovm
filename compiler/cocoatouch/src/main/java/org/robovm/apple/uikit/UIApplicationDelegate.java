@@ -37,6 +37,8 @@ import org.robovm.apple.corelocation.*;
 import org.robovm.apple.cloudkit.*;
 import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
+import org.robovm.apple.usernotifications.*;
+import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -52,28 +54,16 @@ import org.robovm.apple.intents.*;
     /*</bind>*/
     /*<constants>*//*</constants>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "window")
     UIWindow getWindow();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Property(selector = "setWindow:")
     void setWindow(UIWindow v);
     /*</properties>*/
     /*<methods>*/
     @Method(selector = "applicationDidFinishLaunching:")
     void didFinishLaunching(UIApplication application);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "application:willFinishLaunchingWithOptions:")
     boolean willFinishLaunching(UIApplication application, UIApplicationLaunchOptions launchOptions);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "application:didFinishLaunchingWithOptions:")
     boolean didFinishLaunching(UIApplication application, UIApplicationLaunchOptions launchOptions);
     @Method(selector = "applicationDidBecomeActive:")
@@ -81,15 +71,13 @@ import org.robovm.apple.intents.*;
     @Method(selector = "applicationWillResignActive:")
     void willResignActive(UIApplication application);
     /**
-     * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0. Please use application:openURL:options:
+     * @deprecated Deprecated in iOS 9.0. Use application:openURL:options:
      */
     @Deprecated
     @Method(selector = "application:handleOpenURL:")
     boolean handleOpenURL(UIApplication application, NSURL url);
     /**
-     * @since Available in iOS 4.2 and later.
-     * @deprecated Deprecated in iOS 9.0. Please use application:openURL:options:
+     * @deprecated Deprecated in iOS 9.0. Use application:openURL:options:
      */
     @Deprecated
     @Method(selector = "application:openURL:sourceApplication:annotation:")
@@ -105,47 +93,53 @@ import org.robovm.apple.intents.*;
     void willTerminate(UIApplication application);
     @Method(selector = "applicationSignificantTimeChange:")
     void significantTimeChange(UIApplication application);
+    /**
+     * @deprecated Deprecated in iOS 13.0. Use viewWillTransitionToSize:withTransitionCoordinator: instead.
+     */
+    @Deprecated
     @Method(selector = "application:willChangeStatusBarOrientation:duration:")
     void willChangeStatusBarOrientation(UIApplication application, UIInterfaceOrientation newStatusBarOrientation, double duration);
+    /**
+     * @deprecated Deprecated in iOS 13.0. Use viewWillTransitionToSize:withTransitionCoordinator: instead.
+     */
+    @Deprecated
     @Method(selector = "application:didChangeStatusBarOrientation:")
     void didChangStatusBarOrientation(UIApplication application, UIInterfaceOrientation oldStatusBarOrientation);
+    /**
+     * @deprecated Deprecated in iOS 13.0. Use viewWillTransitionToSize:withTransitionCoordinator: instead.
+     */
+    @Deprecated
     @Method(selector = "application:willChangeStatusBarFrame:")
     void willChangeStatusBarFrame(UIApplication application, @ByVal CGRect newStatusBarFrame);
+    /**
+     * @deprecated Deprecated in iOS 13.0. Use viewWillTransitionToSize:withTransitionCoordinator: instead.
+     */
+    @Deprecated
     @Method(selector = "application:didChangeStatusBarFrame:")
     void didChangStatusBarFrame(UIApplication application, @ByVal CGRect oldStatusBarFrame);
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 10.0. Use UserNotifications Framework's -[UNUserNotificationCenter requestAuthorizationWithOptions:completionHandler:]
      */
     @Deprecated
     @Method(selector = "application:didRegisterUserNotificationSettings:")
     void didRegisterUserNotificationSettings(UIApplication application, UIUserNotificationSettings notificationSettings);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "application:didRegisterForRemoteNotificationsWithDeviceToken:")
     void didRegisterForRemoteNotifications(UIApplication application, NSData deviceToken);
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "application:didFailToRegisterForRemoteNotificationsWithError:")
     void didFailToRegisterForRemoteNotifications(UIApplication application, NSError error);
     /**
-     * @since Available in iOS 3.0 and later.
      * @deprecated Deprecated in iOS 10.0. Use UserNotifications Framework's -[UNUserNotificationCenterDelegate willPresentNotification:withCompletionHandler:] or -[UNUserNotificationCenterDelegate didReceiveNotificationResponse:withCompletionHandler:] for user visible notifications and -[UIApplicationDelegate application:didReceiveRemoteNotification:fetchCompletionHandler:] for silent remote notifications
      */
     @Deprecated
     @Method(selector = "application:didReceiveRemoteNotification:")
     void didReceiveRemoteNotification(UIApplication application, UIRemoteNotification userInfo);
     /**
-     * @since Available in iOS 4.0 and later.
      * @deprecated Deprecated in iOS 10.0. Use UserNotifications Framework's -[UNUserNotificationCenterDelegate willPresentNotification:withCompletionHandler:] or -[UNUserNotificationCenterDelegate didReceiveNotificationResponse:withCompletionHandler:]
      */
     @Deprecated
     @Method(selector = "application:didReceiveLocalNotification:")
     void didReceiveLocalNotification(UIApplication application, UILocalNotification notification);
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 10.0. Use UserNotifications Framework's -[UNUserNotificationCenterDelegate didReceiveNotificationResponse:withCompletionHandler:]
      */
     @Deprecated
@@ -159,7 +153,6 @@ import org.robovm.apple.intents.*;
     @Method(selector = "application:handleActionWithIdentifier:forRemoteNotification:withResponseInfo:completionHandler:")
     void handleRemoteNotificationAction(UIApplication application, String identifier, UIRemoteNotification userInfo, NSDictionary<?, ?> responseInfo, @Block Runnable completionHandler);
     /**
-     * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 10.0. Use UserNotifications Framework's -[UNUserNotificationCenterDelegate didReceiveNotificationResponse:withCompletionHandler:]
      */
     @Deprecated
@@ -172,14 +165,12 @@ import org.robovm.apple.intents.*;
     @Deprecated
     @Method(selector = "application:handleActionWithIdentifier:forLocalNotification:withResponseInfo:completionHandler:")
     void handleLocalNotificationAction(UIApplication application, String identifier, UILocalNotification notification, NSDictionary<?, ?> responseInfo, @Block Runnable completionHandler);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "application:didReceiveRemoteNotification:fetchCompletionHandler:")
     void didReceiveRemoteNotification(UIApplication application, UIRemoteNotification userInfo, @Block VoidBlock1<UIBackgroundFetchResult> completionHandler);
     /**
-     * @since Available in iOS 7.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use a BGAppRefreshTask in the BackgroundTasks framework instead
      */
+    @Deprecated
     @Method(selector = "application:performFetchWithCompletionHandler:")
     void performFetch(UIApplication application, @Block VoidBlock1<UIBackgroundFetchResult> completionHandler);
     /**
@@ -187,9 +178,6 @@ import org.robovm.apple.intents.*;
      */
     @Method(selector = "application:performActionForShortcutItem:completionHandler:")
     void performAction(UIApplication application, UIApplicationShortcutItem shortcutItem, @Block VoidBooleanBlock completionHandler);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "application:handleEventsForBackgroundURLSession:completionHandler:")
     void handleEventsForBackgroundURLSession(UIApplication application, String identifier, @Block Runnable completionHandler);
     /**
@@ -207,79 +195,52 @@ import org.robovm.apple.intents.*;
      */
     @Method(selector = "application:handleIntent:completionHandler:")
     void handleIntent(UIApplication application, INIntent intent, @Block VoidBlock1<INIntentResponse> completionHandler);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "applicationDidEnterBackground:")
     void didEnterBackground(UIApplication application);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "applicationWillEnterForeground:")
     void willEnterForeground(UIApplication application);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "applicationProtectedDataWillBecomeUnavailable:")
     void protectedDataWillBecomeUnavailable(UIApplication application);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "applicationProtectedDataDidBecomeAvailable:")
     void protectedDataDidBecomeAvailable(UIApplication application);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "application:supportedInterfaceOrientationsForWindow:")
     UIInterfaceOrientationMask getSupportedInterfaceOrientations(UIApplication application, UIWindow window);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "application:shouldAllowExtensionPointIdentifier:")
     boolean shouldAllowExtensionPointIdentifier(UIApplication application, UIApplicationExtensionPointIdentifier extensionPointIdentifier);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "application:viewControllerWithRestorationIdentifierPath:coder:")
     UIViewController getViewController(UIApplication application, @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> identifierComponents, NSCoder coder);
     /**
-     * @since Available in iOS 6.0 and later.
+     * @since Available in iOS 13.2 and later.
      */
-    @Method(selector = "application:shouldSaveApplicationState:")
-    boolean shouldSaveApplicationState(UIApplication application, NSCoder coder);
+    @Method(selector = "application:shouldSaveSecureApplicationState:")
+    boolean shouldSaveSecureApplicationState(UIApplication application, NSCoder coder);
     /**
-     * @since Available in iOS 6.0 and later.
+     * @since Available in iOS 13.2 and later.
      */
-    @Method(selector = "application:shouldRestoreApplicationState:")
-    boolean shouldRestoreApplicationState(UIApplication application, NSCoder coder);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
+    @Method(selector = "application:shouldRestoreSecureApplicationState:")
+    boolean shouldRestoreSecureApplicationState(UIApplication application, NSCoder coder);
     @Method(selector = "application:willEncodeRestorableStateWithCoder:")
     void willEncodeRestorableState(UIApplication application, NSCoder coder);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "application:didDecodeRestorableStateWithCoder:")
     void didDecodeRestorableState(UIApplication application, NSCoder coder);
     /**
-     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 13.2. Use application:shouldSaveSecureApplicationState: instead
      */
+    @Deprecated
+    @Method(selector = "application:shouldSaveApplicationState:")
+    boolean shouldSaveApplicationState(UIApplication application, NSCoder coder);
+    /**
+     * @deprecated Deprecated in iOS 13.2. Use application:shouldRestoreSecureApplicationState: instead
+     */
+    @Deprecated
+    @Method(selector = "application:shouldRestoreApplicationState:")
+    boolean shouldRestoreApplicationState(UIApplication application, NSCoder coder);
     @Method(selector = "application:willContinueUserActivityWithType:")
     boolean willContinueUserActivity(UIApplication application, String userActivityType);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "application:continueUserActivity:restorationHandler:")
     boolean continueUserActivity(UIApplication application, NSUserActivity userActivity, @Block VoidBlock1<NSArray<UIResponder>> restorationHandler);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "application:didFailToContinueUserActivityWithType:error:")
     void didFailToContinueUserActivity(UIApplication application, String userActivityType, NSError error);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "application:didUpdateUserActivity:")
     void didUpdateUserActivity(UIApplication application, NSUserActivity userActivity);
     /**
@@ -287,6 +248,16 @@ import org.robovm.apple.intents.*;
      */
     @Method(selector = "application:userDidAcceptCloudKitShareWithMetadata:")
     void didAcceptCloudKitShare(UIApplication application, CKShareMetadata cloudKitShareMetadata);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "application:configurationForConnectingSceneSession:options:")
+    UISceneConfiguration getConfigurationForConnectingSceneSession(UIApplication application, UISceneSession connectingSceneSession, UISceneConnectionOptions options);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "application:didDiscardSceneSessions:")
+    void didDiscardSceneSessions(UIApplication application, NSSet<UISceneSession> sceneSessions);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

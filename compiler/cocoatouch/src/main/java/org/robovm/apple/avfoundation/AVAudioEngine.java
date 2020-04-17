@@ -41,9 +41,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVAudioEngine/*</name>*/ 
@@ -81,9 +79,6 @@ import org.robovm.apple.audiotoolbox.*;
     public native void setMusicSequence(MusicSequence v);
     @Property(selector = "outputNode")
     public native AVAudioOutputNode getOutputNode();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "inputNode")
     public native AVAudioInputNode getInputNode();
     @Property(selector = "mainMixerNode")
@@ -100,6 +95,11 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "setAutoShutdownEnabled:")
     public native void setAutoShutdownEnabled(boolean v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "attachedNodes")
+    public native NSSet<AVAudioNode> getAttachedNodes();
     /**
      * @since Available in iOS 11.0 and later.
      */
@@ -133,9 +133,6 @@ import org.robovm.apple.audiotoolbox.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @GlobalValue(symbol="AVAudioEngineConfigurationChangeNotification", optional=true)
     public static native NSString ConfigurationChangeNotification();
     

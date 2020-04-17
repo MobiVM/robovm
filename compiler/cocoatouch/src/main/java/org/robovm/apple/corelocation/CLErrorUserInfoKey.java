@@ -90,9 +90,6 @@ import org.robovm.apple.contacts.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final CLErrorUserInfoKey AlternateRegion = new CLErrorUserInfoKey("AlternateRegion");
     /*</constants>*/
     
@@ -119,9 +116,6 @@ import org.robovm.apple.contacts.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="kCLErrorUserInfoAlternateRegionKey", optional=true)
         public static native NSString AlternateRegion();
         /*</values>*/

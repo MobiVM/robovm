@@ -62,6 +62,11 @@ import org.robovm.apple.audiotoolbox.*;
     /*<properties>*/
     @Property(selector = "devices")
     public native NSArray<AVCaptureDevice> getDevices();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "supportedMultiCamDeviceSets")
+    public native NSArray<?> getSupportedMultiCamDeviceSets();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

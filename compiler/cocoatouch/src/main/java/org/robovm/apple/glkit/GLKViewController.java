@@ -38,7 +38,6 @@ import org.robovm.apple.modelio.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 5.0 and later.
  * @deprecated Deprecated in iOS 12.0. OpenGLES API deprecated. (Define GLES_SILENCE_DEPRECATION to silence these warnings)
  */
 /*</javadoc>*/
@@ -57,7 +56,7 @@ import org.robovm.apple.modelio.*;
     @Method(selector = "initWithNibName:bundle:")
     public GLKViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
     @Method(selector = "initWithCoder:")
-    public GLKViewController(NSCoder decoder) { super(decoder); }
+    public GLKViewController(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "delegate")

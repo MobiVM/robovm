@@ -24,17 +24,21 @@ import static org.robovm.compiler.llvm.Type.*;
 import org.robovm.compiler.Bro.MarshalerFlags;
 import org.robovm.compiler.clazz.Clazz;
 import org.robovm.compiler.config.Config;
+import org.robovm.compiler.llvm.BasicBlockRef;
 import org.robovm.compiler.llvm.Bitcast;
 import org.robovm.compiler.llvm.Function;
 import org.robovm.compiler.llvm.Getelementptr;
 import org.robovm.compiler.llvm.IntegerConstant;
 import org.robovm.compiler.llvm.Inttoptr;
+import org.robovm.compiler.llvm.Label;
 import org.robovm.compiler.llvm.Load;
 import org.robovm.compiler.llvm.PackedStructureType;
 import org.robovm.compiler.llvm.PointerType;
 import org.robovm.compiler.llvm.Ret;
 import org.robovm.compiler.llvm.StructureType;
+import org.robovm.compiler.llvm.Switch;
 import org.robovm.compiler.llvm.Type;
+import org.robovm.compiler.llvm.Unreachable;
 import org.robovm.compiler.llvm.Value;
 import org.robovm.compiler.llvm.Variable;
 import org.robovm.compiler.llvm.VariableRef;
@@ -42,6 +46,9 @@ import org.robovm.compiler.llvm.VariableRef;
 import org.robovm.compiler.llvm.VectorStructureType;
 import soot.SootMethod;
 import soot.VoidType;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author niklas
@@ -68,6 +75,8 @@ public class StructMemberMethodCompiler extends BroMethodCompiler {
     protected Function doCompile(ModuleBuilder moduleBuilder, SootMethod method) {
         if ("_sizeOf".equals(method.getName()) || "sizeOf".equals(method.getName())) {
             return structSizeOf(moduleBuilder, method);
+        } else if ("offsetOf".equals(method.getName())) {
+            return structOffsetOf(moduleBuilder, method);
         } else if (STRUCT_ATTRIBUTES_METHOD.equals(method.getName())) {
             return stretMeta(moduleBuilder, method);
         } else {
@@ -79,6 +88,39 @@ public class StructMemberMethodCompiler extends BroMethodCompiler {
         Function fn = createMethodFunction(method);
         moduleBuilder.addFunction(fn);
         fn.add(new Ret(sizeof(structType)));
+        return fn;
+    }
+
+    private Function structOffsetOf(ModuleBuilder moduleBuilder, SootMethod method) {
+        Function fn = createMethodFunction(method);
+        moduleBuilder.addFunction(fn);
+
+        int[] offsets = getStructMemberOffsets(structType);
+        if (offsets.length > 0 ) {
+            // function code -- basic switch of returns
+            Label[] switchLabels = new Label[offsets.length];
+            Map<IntegerConstant, BasicBlockRef> targets = new HashMap<IntegerConstant, BasicBlockRef>();
+            for (int idx = 0; idx < offsets.length; idx++) {
+                targets.put(new IntegerConstant(idx), fn.newBasicBlockRef(switchLabels[idx] = new Label(idx)));
+            }
+
+            Value idxValue = fn.getParameterRef(1); // 'env' is parameter 0
+            Label def = new Label(-1);
+            fn.add(new Switch(idxValue, fn.newBasicBlockRef(def), targets));
+
+            // cases
+            for (int idx = 0; idx < offsets.length; idx++) {
+                fn.newBasicBlock(switchLabels[idx]);
+                fn.add(new Ret(new IntegerConstant(offsets[idx])));
+            }
+
+            // default case -- array out of bounds exception
+            fn.newBasicBlock(def);
+        }
+        Functions.call(fn, Functions.BC_THROW_ARRAY_INDEX_OUT_OF_BOUNDS_EXCEPTION, fn.getParameterRef(0),
+            new IntegerConstant(offsets.length), fn.getParameterRef(1));
+        fn.add(new Unreachable());
+
         return fn;
     }
 

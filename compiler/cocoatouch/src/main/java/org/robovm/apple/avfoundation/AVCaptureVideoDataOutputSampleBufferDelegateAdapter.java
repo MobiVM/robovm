@@ -60,9 +60,6 @@ import org.robovm.apple.audiotoolbox.*;
     /*<methods>*/
     @NotImplemented("captureOutput:didOutputSampleBuffer:fromConnection:")
     public void didOutputSampleBuffer(AVCaptureOutput output, CMSampleBuffer sampleBuffer, AVCaptureConnection connection) {}
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @NotImplemented("captureOutput:didDropSampleBuffer:fromConnection:")
     public void didDropSampleBuffer(AVCaptureOutput output, CMSampleBuffer sampleBuffer, AVCaptureConnection connection) {}
     /*</methods>*/

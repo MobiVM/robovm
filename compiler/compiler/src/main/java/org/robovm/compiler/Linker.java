@@ -140,6 +140,7 @@ public class Linker {
 
     private final Config config;
     private final Map<String, byte[]> runtimeData = new HashMap<>();
+    private final Map<String, byte[]> bcGlobalData = new HashMap<>();
 
     public Linker(Config config) {
         this.config = config;
@@ -153,6 +154,16 @@ public class Linker {
         Objects.requireNonNull(id, "id");
         Objects.requireNonNull(data, "data");
         runtimeData.put(id, data);
+    }
+
+    /**
+     * adds global with data.
+     * allows plugins to register own data to be accesible in native/bc code
+     */
+    public void addBcGlobalData(String name, byte[]data) {
+        Objects.requireNonNull(name, "name");
+        Objects.requireNonNull(data, "data");
+        bcGlobalData.put(name, data);
     }
 
     private ArrayConstant runtimeDataToBytes() throws UnsupportedEncodingException {
@@ -199,6 +210,11 @@ public class Linker {
         mb.addInclude(getClass().getClassLoader().getResource("header.ll"));
 
         mb.addGlobal(new Global("_bcRuntimeData", runtimeDataToBytes()));
+        // add globals from plugins
+        for (Entry<String, byte[]> e : bcGlobalData.entrySet()) {
+            ArrayConstant value = new ArrayConstantBuilder(I8).add(e.getValue()).build();
+            mb.addGlobal(new Global(e.getKey(),  new ConstantGetelementptr(mb.newGlobal(value, true).ref(), 0, 0)));
+        }
 
         ArrayConstantBuilder staticLibs = new ArrayConstantBuilder(I8_PTR);
         for (Config.Lib lib : config.getLibs()) {
@@ -492,6 +508,9 @@ public class Linker {
         linkerO.getParentFile().mkdirs();
 
         try (Context context = new Context()) {
+            // emit bitcode section for linker?.o
+            ClassCompiler.emitBitcodeSection(config, mb);
+
             String ir = mb.build().toString();
             if (config.isDumpIntermediates()) {
                 File linkerLl = new File(config.getTmpDir(), "linker" + num + ".ll");

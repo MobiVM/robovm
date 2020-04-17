@@ -32,9 +32,7 @@ import org.robovm.apple.corefoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 6.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreTelephony") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CTSubscriberInfo/*</name>*/ 
@@ -60,8 +58,7 @@ import org.robovm.apple.corefoundation.*;
     @Method(selector = "subscribers")
     public static native NSArray<CTSubscriber> subscribers();
     /**
-     * @since Available in iOS 6.0 and later.
-     * @deprecated Deprecated in iOS 12.1.
+     * @deprecated Deprecated in iOS 12.1. Use subscribers instead
      */
     @Deprecated
     @Method(selector = "subscriber")

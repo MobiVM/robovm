@@ -36,9 +36,10 @@ import org.robovm.apple.mapkit.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 12.0 and later.
+ * @deprecated Deprecated in iOS 13.0. Use CPTemplateApplicationSceneDelegate
  */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
+/*<annotations>*/@Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ interface /*<name>*/CPApplicationDelegate/*</name>*/ 
     /*<implements>*/extends UIApplicationDelegate/*</implements>*/ {
 

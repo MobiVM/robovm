@@ -92,25 +92,10 @@ import org.robovm.apple.metal.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CAAnimationCalculationMode Linear = new CAAnimationCalculationMode("Linear");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CAAnimationCalculationMode Discrete = new CAAnimationCalculationMode("Discrete");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CAAnimationCalculationMode Paced = new CAAnimationCalculationMode("Paced");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CAAnimationCalculationMode Cubic = new CAAnimationCalculationMode("Cubic");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     public static final CAAnimationCalculationMode CubicPaced = new CAAnimationCalculationMode("CubicPaced");
     /*</constants>*/
     
@@ -137,29 +122,14 @@ import org.robovm.apple.metal.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCAAnimationLinear", optional=true)
         public static native NSString Linear();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCAAnimationDiscrete", optional=true)
         public static native NSString Discrete();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCAAnimationPaced", optional=true)
         public static native NSString Paced();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCAAnimationCubic", optional=true)
         public static native NSString Cubic();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
         @GlobalValue(symbol="kCAAnimationCubicPaced", optional=true)
         public static native NSString CubicPaced();
         /*</values>*/

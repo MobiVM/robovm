@@ -57,9 +57,6 @@ import org.robovm.apple.dispatch.*;
     /*<properties>*/
     @Property(selector = "currentRunLoop")
     public static native NSRunLoop getCurrent();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Property(selector = "mainRunLoop")
     public static native NSRunLoop getMain();
     @Property(selector = "currentMode")

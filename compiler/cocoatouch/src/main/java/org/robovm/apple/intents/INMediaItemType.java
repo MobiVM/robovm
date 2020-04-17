@@ -54,7 +54,27 @@ public enum /*<name>*/INMediaItemType/*</name>*/ implements ValuedEnum {
     Movie(11L),
     TVShow(12L),
     TVShowEpisode(13L),
-    MusicVideo(14L);
+    MusicVideo(14L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    PodcastStation(15L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    RadioStation(16L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    Station(17L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    Music(18L),
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    AlgorithmicRadioStation(19L);
     /*</values>*/
 
     /*<bind>*/
