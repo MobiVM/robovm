@@ -24,12 +24,4 @@
         </license>
     </licenses>
 
-    <dependencies>
-        <dependency>
-            <groupId>com.mobidevelop.robovm</groupId>
-            <artifactId>robovm-compiler</artifactId>
-            <scope>provided</scope>
-        </dependency>
-    </dependencies>
-
 </project>

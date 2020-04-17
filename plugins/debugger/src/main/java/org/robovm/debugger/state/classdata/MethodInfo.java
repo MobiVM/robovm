@@ -15,7 +15,7 @@
  */
 package org.robovm.debugger.state.classdata;
 
-import org.robovm.compiler.plugin.debug.DebuggerDebugMethodInfo;
+import org.robovm.debugger.debuginfo.DebuggerDebugMethodInfo;
 import org.robovm.debugger.utils.Converter;
 import org.robovm.debugger.utils.bytebuffer.DataBufferReader;
 

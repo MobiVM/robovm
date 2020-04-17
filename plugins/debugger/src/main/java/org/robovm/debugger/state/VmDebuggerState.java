@@ -15,7 +15,7 @@
  */
 package org.robovm.debugger.state;
 
-import org.robovm.compiler.config.Arch;
+import org.robovm.debugger.DebuggerConfig;
 import org.robovm.debugger.DebuggerException;
 import org.robovm.debugger.state.classdata.ClassInfo;
 import org.robovm.debugger.state.classdata.ClassInfoLoader;
@@ -60,7 +60,7 @@ public class VmDebuggerState {
      */
     Object centralLock = new Object();
 
-    public VmDebuggerState(File appFile, Arch arch) {
+    public VmDebuggerState(File appFile, DebuggerConfig.Arch arch) {
         try {
 
             // load and parse binary, will dig some useful info from it

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.robovm.debugger;
+package org.robovm.compiler.plugin.debug;
 
 import org.robovm.compiler.CompilerException;
 import org.robovm.compiler.config.Config;
@@ -24,6 +24,9 @@ import org.robovm.compiler.target.LaunchParameters;
 import org.robovm.compiler.target.Target;
 import org.robovm.compiler.target.ios.IOSDeviceLaunchParameters;
 import org.robovm.compiler.target.ios.IOSTarget;
+import org.robovm.debugger.Debugger;
+import org.robovm.debugger.DebuggerConfig;
+import org.robovm.debugger.DebuggerException;
 import org.robovm.debugger.hooks.IHooksConnection;
 import org.robovm.libimobiledevice.IDeviceConnection;
 import org.robovm.libimobiledevice.util.AppLauncherCallback;
@@ -32,7 +35,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -47,7 +50,7 @@ import java.util.Map;
  * Refer {@link Config#loadPluginsFromClassPath()} to find how configs are loaded from classloader
  * Also corresponding entry has to be done in META-INF/services
  */
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "JavadocReference"})
 public class DebuggerLaunchPlugin extends LaunchPlugin {
     private final static String ARG_KEY_LOG_CONSOLE = "logconsole";
     private final static String ARG_KEY_SOURCE_PATH = "sourcepath";
@@ -98,7 +101,7 @@ public class DebuggerLaunchPlugin extends LaunchPlugin {
         builder.setLogToConsole(logConsole);
         builder.setLogDir(new File(logDir));
         builder.setAppfile(new File(config.isSkipInstall() ? config.getTmpDir() : config.getInstallDir(), config.getExecutableName()));
-        builder.setArch(target.getArch());
+        builder.setArch(DebuggerConfig.Arch.valueOf(target.getArch().name()));
 
         // make list of arguments for target
         if (IOSTarget.isSimulatorArch(target.getArch())) {
@@ -192,7 +195,7 @@ public class DebuggerLaunchPlugin extends LaunchPlugin {
      * check hooks.c/_rvmHookSetupTCPChannel for details
      * implements hooks connection interface to provide in and out streams
      */
-    private class DebuggerLauncherCallback implements AppLauncherCallback, IHooksConnection {
+    private static class DebuggerLauncherCallback implements AppLauncherCallback, IHooksConnection {
         private final static String tag = "[DEBUG] hooks: debugPort=";
         private volatile Integer hooksPort;
         private IDeviceConnection deviceConnection;
@@ -209,7 +212,7 @@ public class DebuggerLaunchPlugin extends LaunchPlugin {
         public byte[] filterOutput(byte[] data) {
             if (hooksPort == null) {
                 // port is not received yet, keep working
-                String str = new String(data,  Charset.forName("UTF-8"));
+                String str = new String(data, StandardCharsets.UTF_8);
                 if (incompleteLine != null) {
                     str = incompleteLine + str;
                     incompleteLine = null;
@@ -243,7 +246,7 @@ public class DebuggerLaunchPlugin extends LaunchPlugin {
          * waits till port hooks port is available and establish connection
          */
         @Override
-        public void connect() throws IOException {
+        public void connect() {
             try {
                 long ts = System.currentTimeMillis();
                 while (hooksPort == null) {
@@ -259,17 +262,17 @@ public class DebuggerLaunchPlugin extends LaunchPlugin {
         }
 
         @Override
-        public void disconnect() throws IOException {
+        public void disconnect() {
             deviceConnection.close();
         }
 
         @Override
-        public InputStream getInputStream() throws IOException {
+        public InputStream getInputStream() {
             return deviceConnection.getInputStream();
         }
 
         @Override
-        public OutputStream getOutputStream() throws IOException {
+        public OutputStream getOutputStream() {
             return deviceConnection.getOutputStream();
         }
     }

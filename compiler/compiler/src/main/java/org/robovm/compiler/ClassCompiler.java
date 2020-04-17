@@ -63,7 +63,7 @@ import org.robovm.compiler.llvm.Value;
 import org.robovm.compiler.llvm.Variable;
 import org.robovm.compiler.llvm.VariableRef;
 import org.robovm.compiler.plugin.CompilerPlugin;
-import org.robovm.compiler.plugin.debug.DebuggerDebugObjectFileInfo;
+import org.robovm.debugger.debuginfo.DebuggerDebugObjectFileInfo;
 import org.robovm.compiler.plugin.objc.ObjCMemberPlugin;
 import org.robovm.compiler.trampoline.Checkcast;
 import org.robovm.compiler.trampoline.Instanceof;

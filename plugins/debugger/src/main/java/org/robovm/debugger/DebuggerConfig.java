@@ -15,7 +15,6 @@
  */
 package org.robovm.debugger;
 
-import org.robovm.compiler.config.Arch;
 import org.robovm.debugger.hooks.HooksChannel;
 import org.robovm.debugger.hooks.IHooksConnection;
 
@@ -35,6 +34,29 @@ import java.util.function.IntSupplier;
  */
 public class DebuggerConfig {
     public final static int TARGET_WAIT_TIMEOUT = 60000;
+
+    /**
+     * debugger local arch list, corresponds one from compiler
+     */
+    public enum Arch {
+        x86(true) ,
+        x86_64,
+        thumbv7(true),
+        arm64;
+
+        private final boolean is32bit;
+        Arch(boolean is32bit) {
+            this.is32bit = is32bit;
+        }
+
+        Arch() {
+            this(false);
+        }
+
+        public boolean is32Bit() {
+            return is32bit;
+        }
+    }
 
     private List<File> sourcePath;
     private Arch arch;

@@ -1,6 +1,6 @@
-package org.robovm.compiler.plugin.debug;
+package org.robovm.debugger.debuginfo;
 
-import org.robovm.llvm.debuginfo.DwarfDebugVariableInfo;
+import org.robovm.debugger.utils.bytebuffer.DataBufferReader;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.ByteOrder;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -53,7 +54,7 @@ public class DebuggerDebugObjectFileInfo {
         private final String sourceFile;
         private final DebuggerDebugMethodInfo.RawData[] methods;
 
-        RawData(String sourceFile, DebuggerDebugMethodInfo.RawData[] methods) {
+        public RawData(String sourceFile, DebuggerDebugMethodInfo.RawData[] methods) {
             this.sourceFile = sourceFile;
             this.methods = methods;
         }
@@ -95,7 +96,7 @@ public class DebuggerDebugObjectFileInfo {
 
                 // write allocas
                 stream.writeInt(methodInfo.allocas.length);
-                for (DwarfDebugVariableInfo alloca : methodInfo.allocas) {
+                for (DebuggerDebugAllocaInfo alloca : methodInfo.allocas) {
                     // put register and offset
                     stream.writeInt(alloca.register());
                     stream.writeInt(alloca.offset());
@@ -120,88 +121,89 @@ public class DebuggerDebugObjectFileInfo {
 
         return baos.toByteArray();
     }
-// FIXME: moved to debugger
-//    /**
-//     * de-serializes from buffer
-//     */
-//    public static DebuggerDebugObjectFileInfo readDebugInfo(ByteBufferReader buffer) {
-//        // big endian, as data was written with DataOutputStream which is big endian only
-//        buffer.order(ByteOrder.BIG_ENDIAN);
-//
-//        // read source file name
-//        String sourceFile = getStringWithLen(buffer);
-//
-//        // read methods
-//        int methodCount = buffer.getInt();
-//        DebuggerDebugMethodInfo.RawData [] methods = new DebuggerDebugMethodInfo.RawData[methodCount];
-//        for (int methodIdx = 0; methodIdx < methodCount; methodIdx++){
-//            // read method start and end lines
-//            int methodStartLine = buffer.getInt();
-//            int methodEndLine = buffer.getInt();
-//
-//            // read method name
-//            String methodSignature = getStringWithLen(buffer);
-//
-//            // read variables
-//            int count = buffer.getInt();
-//            DebuggerDebugVariableInfo[] variables = new DebuggerDebugVariableInfo[count];
-//            for (int idx = 0; idx < count; idx++) {
-//                // read name
-//                String varName = getStringWithLen(buffer);
-//
-//                // variable type signature
-//                String varSignature = getStringWithLen(buffer);
-//
-//                // get flags
-//                int flags = (buffer.get() & 0xFF);
-//
-//                // get scope
-//                int varStartLine = buffer.getInt();
-//                int varEndLine = buffer.getInt();
-//
-//                variables[idx] = new DebuggerDebugVariableInfo(varName, varSignature, (flags & 1) == 1,
-//                        varStartLine, varEndLine);
-//            }
-//
-//            // read allocas
-//            count = buffer.getInt();
-//            DwarfDebugVariableInfo[] allocas = new DwarfDebugVariableInfo[count];
-//            for (int idx = 0; idx < count; idx++) {
-//                // read register and offset
-//                int register = buffer.getInt();
-//                int offset = buffer.getInt();
-//                allocas[idx] = new DwarfDebugVariableInfo(register, offset);
-//            }
-//
-//            // read slices
-//            count = buffer.getInt();
-//            int [][] slices = new int[count][];
-//            for (int idx = 0; idx < count; idx++) {
-//                int sliceSize = buffer.getInt();
-//                int[] slice = new int[sliceSize];
-//                slices[idx] = slice;
-//                for (int i = 0; i < sliceSize; i++)
-//                    slice[i] = buffer.getInt();
-//            }
-//
-//            // read offsets list and corresponding slice index list
-//            count = buffer.getInt();
-//            int[] offsets = new int[count];
-//            int[] offsetSliceIndexes = new int[count];
-//            for (int idx = 0; idx < count; idx++) {
-//                offsets[idx] = buffer.getInt();
-//            }
-//            for (int idx = 0; idx < count; idx++) {
-//                offsetSliceIndexes[idx] = buffer.getInt();
-//            }
-//
-//            methods[methodIdx] = new DebuggerDebugMethodInfo.RawData(methodSignature, methodStartLine, methodEndLine, variables,
-//                    allocas, offsets, offsetSliceIndexes, slices);
-//        }
-//
-//        return new DebuggerDebugObjectFileInfo(sourceFile, methods);
-//    }
-//
+
+
+    /**
+     * de-serializes from buffer
+     */
+    public static DebuggerDebugObjectFileInfo readDebugInfo(DataBufferReader buffer) {
+        // big endian, as data was written with DataOutputStream which is big endian only
+        buffer.setByteOrder(ByteOrder.BIG_ENDIAN);
+
+        // read source file name
+        String sourceFile = buffer.readStringWithLen();
+
+        // read methods
+        int methodCount = buffer.readInt32();
+        DebuggerDebugMethodInfo.RawData [] methods = new DebuggerDebugMethodInfo.RawData[methodCount];
+        for (int methodIdx = 0; methodIdx < methodCount; methodIdx++){
+            // read method start and end lines
+            int methodStartLine = buffer.readInt32();
+            int methodEndLine = buffer.readInt32();
+
+            // read method name
+            String methodSignature = buffer.readStringWithLen();
+
+            // read variables
+            int count = buffer.readInt32();
+            DebuggerDebugVariableInfo[] variables = new DebuggerDebugVariableInfo[count];
+            for (int idx = 0; idx < count; idx++) {
+                // read name
+                String varName = buffer.readStringWithLen();
+
+                // variable type signature
+                String varSignature = buffer.readStringWithLen();
+
+                // get flags
+                int flags = (buffer.readByte() & 0xFF);
+
+                // get scope
+                int varStartLine = buffer.readInt32();
+                int varEndLine = buffer.readInt32();
+
+                variables[idx] = new DebuggerDebugVariableInfo(varName, varSignature, (flags & 1) == 1,
+                        varStartLine, varEndLine);
+            }
+
+            // read allocas
+            count = buffer.readInt32();
+            DebuggerDebugAllocaInfo[] allocas = new DebuggerDebugAllocaInfo[count];
+            for (int idx = 0; idx < count; idx++) {
+                // read register and offset
+                int register = buffer.readInt32();
+                int offset = buffer.readInt32();
+                allocas[idx] = new DebuggerDebugAllocaInfo(register, offset);
+            }
+
+            // read slices
+            count = buffer.readInt32();
+            int [][] slices = new int[count][];
+            for (int idx = 0; idx < count; idx++) {
+                int sliceSize = buffer.readInt32();
+                int[] slice = new int[sliceSize];
+                slices[idx] = slice;
+                for (int i = 0; i < sliceSize; i++)
+                    slice[i] = buffer.readInt32();
+            }
+
+            // read offsets list and corresponding slice index list
+            count = buffer.readInt32();
+            int[] offsets = new int[count];
+            int[] offsetSliceIndexes = new int[count];
+            for (int idx = 0; idx < count; idx++) {
+                offsets[idx] = buffer.readInt32();
+            }
+            for (int idx = 0; idx < count; idx++) {
+                offsetSliceIndexes[idx] = buffer.readInt32();
+            }
+
+            methods[methodIdx] = new DebuggerDebugMethodInfo.RawData(methodSignature, methodStartLine, methodEndLine, variables,
+                    allocas, offsets, offsetSliceIndexes, slices);
+        }
+
+        return new DebuggerDebugObjectFileInfo(sourceFile, methods);
+    }
+
     /**
      * dumps as text presentation (mostly not used)
      */

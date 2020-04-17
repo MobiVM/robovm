@@ -41,7 +41,6 @@ import org.robovm.compiler.llvm.Type;
 import org.robovm.compiler.llvm.Value;
 import org.robovm.compiler.llvm.Variable;
 import org.robovm.compiler.llvm.VariableRef;
-import org.robovm.compiler.llvm.ZeroInitializer;
 import org.robovm.compiler.llvm.debug.dwarf.DIBaseItem;
 import org.robovm.compiler.llvm.debug.dwarf.DICompileUnit;
 import org.robovm.compiler.llvm.debug.dwarf.DICompositeType;
@@ -56,6 +55,10 @@ import org.robovm.compiler.llvm.debug.dwarf.DwarfConst;
 import org.robovm.compiler.plugin.AbstractCompilerPlugin;
 import org.robovm.compiler.plugin.PluginArguments;
 import org.robovm.compiler.plugin.debug.kotlin.KotlinTools;
+import org.robovm.debugger.debuginfo.DebuggerDebugAllocaInfo;
+import org.robovm.debugger.debuginfo.DebuggerDebugMethodInfo;
+import org.robovm.debugger.debuginfo.DebuggerDebugObjectFileInfo;
+import org.robovm.debugger.debuginfo.DebuggerDebugVariableInfo;
 import org.robovm.llvm.LineInfo;
 import org.robovm.llvm.ObjectFile;
 import org.robovm.llvm.Symbol;
@@ -521,8 +524,8 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
     }
 
     private DebuggerDebugMethodInfo.RawData buildDebuggerMethodInfo(Config config, Clazz clazz, Symbol symbol,
-                                                                    DwarfDebugMethodInfo dbgMethodInfo, MethodDataBundle methodBundle,
-                                                                    List<LineInfo> lineInfos) {
+                                                            DwarfDebugMethodInfo dbgMethodInfo, MethodDataBundle methodBundle,
+                                                            List<LineInfo> lineInfos) {
         // sort line info by address an build
         lineInfos.sort(Comparator.comparingLong(LineInfo::getAddress));
 
@@ -651,8 +654,8 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
 
         // convert data to be prepared for saving into DebuggerDebugMethodInfo.RawData
         int[][] rawSlices = slices.values().toArray(new int[0][]);
-        DwarfDebugVariableInfo[] rawAllocas = new DwarfDebugVariableInfo[usedAllocas.size()];
-        usedAllocas.forEach((alloca, idx) -> rawAllocas[idx] = alloca);
+        DebuggerDebugAllocaInfo[] rawAllocas = new DebuggerDebugAllocaInfo[usedAllocas.size()];
+        usedAllocas.forEach((alloca, idx) -> rawAllocas[idx] = new DebuggerDebugAllocaInfo(alloca.register(), alloca.offset()));
         DebuggerDebugVariableInfo[] rawVariables = new DebuggerDebugVariableInfo[usedVariables.size()];
         usedVariables.forEach((variable, idx) -> rawVariables[idx] = variable);
         int[] rawOffsets = new int[offsetToSlice.size()];

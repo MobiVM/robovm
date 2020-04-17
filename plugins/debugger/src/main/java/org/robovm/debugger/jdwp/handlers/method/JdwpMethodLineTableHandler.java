@@ -15,7 +15,7 @@
  */
 package org.robovm.debugger.jdwp.handlers.method;
 
-import org.robovm.compiler.plugin.debug.DebuggerDebugMethodInfo;
+import org.robovm.debugger.debuginfo.DebuggerDebugMethodInfo;
 import org.robovm.debugger.jdwp.JdwpConsts;
 import org.robovm.debugger.jdwp.protocol.IJdwpRequestHandler;
 import org.robovm.debugger.state.VmDebuggerState;

@@ -1,4 +1,4 @@
-package org.robovm.compiler.plugin.debug;
+package org.robovm.debugger.debuginfo;
 
 /**
  * @author Demyan Kimitsa

@@ -1,8 +1,6 @@
-package org.robovm.compiler.plugin.debug;
+package org.robovm.debugger.debuginfo;
 
-import org.apache.commons.lang3.tuple.ImmutablePair;
-import org.apache.commons.lang3.tuple.Pair;
-import org.robovm.llvm.debuginfo.DwarfDebugVariableInfo;
+import org.robovm.debugger.utils.Pair;
 
 /**
  * @author Demyan Kimitsa
@@ -22,7 +20,7 @@ public class DebuggerDebugMethodInfo {
     // two dimension array: first dimension index specifies slice, second dimention are variables visible at slice
     private final DebuggerDebugVariableInfo[][] sliceVariables;
     // two dimension array: first dimension index specifies slice, second dimention are allocas of variables visible at slice
-    private final DwarfDebugVariableInfo[][] sliceAllocas;
+    private final DebuggerDebugAllocaInfo[][] sliceAllocas;
 
     // array with offsets from start of method, used to find slice index that corresponds to given address
     private final int[] offsets;
@@ -41,14 +39,14 @@ public class DebuggerDebugMethodInfo {
         // construct slice information
         int sliceCount = rawData.slices.length;
         sliceVariables = new DebuggerDebugVariableInfo[sliceCount][];
-        sliceAllocas = new DwarfDebugVariableInfo[sliceCount][];
+        sliceAllocas = new DebuggerDebugAllocaInfo[sliceCount][];
         for (int sliceIdx = 0; sliceIdx < sliceCount; sliceIdx++) {
             int[] sliceData = rawData.slices[sliceIdx];
             int varCount = sliceData.length / 2;
 
             // allocate variables and allocas of slice
             DebuggerDebugVariableInfo[] variables = sliceVariables[sliceIdx] = new DebuggerDebugVariableInfo[varCount];
-            DwarfDebugVariableInfo[] allocas = sliceAllocas[sliceIdx] = new DwarfDebugVariableInfo[varCount];
+            DebuggerDebugAllocaInfo[] allocas = sliceAllocas[sliceIdx] = new DebuggerDebugAllocaInfo[varCount];
             // build slice with data
             for (int idx = 0; idx < varCount; idx++) {
                 int varIdx = sliceData[idx * 2];
@@ -81,13 +79,13 @@ public class DebuggerDebugMethodInfo {
      * returns a tuple of variables and corresponding allocas that are visible at Frame's PC
      * @param offset from method start (e.g. PC - method.startAddr)
      */
-    public Pair<DebuggerDebugVariableInfo[], DwarfDebugVariableInfo[]> getVisibleVariables(int offset) {
+    public Pair<DebuggerDebugVariableInfo[], DebuggerDebugAllocaInfo[]> getVisibleVariables(int offset) {
         int offsetIdx = binarySearchOffset(offsets, offset);
         if (offsetIdx < 0)
             return null;
         int sliceIdx = offsetSliceIndexes[offsetIdx];
 
-        return new ImmutablePair<>(sliceVariables[sliceIdx], sliceAllocas[sliceIdx]);
+        return new Pair<>(sliceVariables[sliceIdx], sliceAllocas[sliceIdx]);
     }
 
 
@@ -124,7 +122,7 @@ public class DebuggerDebugMethodInfo {
         final DebuggerDebugVariableInfo[] variables;
 
         // allocas -- contains information about locations of variables in memory
-        final DwarfDebugVariableInfo[] allocas;
+        final DebuggerDebugAllocaInfo[] allocas;
 
         // array with offsets from start of method, used to find slice index that corresponds to given address
         final int[] offsets;
@@ -140,7 +138,7 @@ public class DebuggerDebugMethodInfo {
         final int startLine;
         final int finalLine;
 
-        public RawData(String methodName, int startLine, int finalLine, DebuggerDebugVariableInfo[] variables, DwarfDebugVariableInfo[] allocas,
+        public RawData(String methodName, int startLine, int finalLine, DebuggerDebugVariableInfo[] variables, DebuggerDebugAllocaInfo[] allocas,
                        int[] offsets, int[] offsetSliceIndexes, int[][] slices) {
             this.signature = methodName;
             this.startLine = startLine;
