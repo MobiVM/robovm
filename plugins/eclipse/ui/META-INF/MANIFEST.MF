@@ -25,6 +25,5 @@ Bundle-ClassPath: .,
  lib/commons-compress.jar,
  lib/robovm-dist-compiler.jar,
  lib/robovm-templater.jar,
- lib/robovm-debugger.jar,
  lib/robovm-ibxcode.jar,
  lib/bcel.jar

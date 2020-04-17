@@ -65,10 +65,6 @@
                         </artifactItem>
                         <artifactItem>
                             <groupId>com.mobidevelop.robovm</groupId>
-                            <artifactId>robovm-debugger</artifactId>
-                        </artifactItem>
-                        <artifactItem>
-                            <groupId>com.mobidevelop.robovm</groupId>
                             <artifactId>robovm-ibxcode</artifactId>
                         </artifactItem>
                         <artifactItem>
