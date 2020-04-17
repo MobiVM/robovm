@@ -239,6 +239,7 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
         for (BasicBlock bb : function.getBasicBlocks()) {
             for (Instruction instruction : bb.getInstructions()) {
                 int lineNumber = -1;
+                int unmappedLineNumber = -1;
                 int columnAsDebugInfoIdx = 0;
 
                 List<Object> units = instruction.getAttachments();
@@ -249,7 +250,8 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
                     LineNumberTag tag = (LineNumberTag) unit.getTag("LineNumberTag");
                     if (tag != null) {
                         // map line number to another one (required for kotlin)
-                        lineNumber = lineNumberMapper.map(tag.getLineNumber());
+                        unmappedLineNumber = tag.getLineNumber();
+                        lineNumber = lineNumberMapper.map(unmappedLineNumber);
                         methodLineNumber = Math.min(methodLineNumber, lineNumber);
                         methodEndLineNumber = Math.max(methodEndLineNumber, lineNumber);
                     }
@@ -268,14 +270,18 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
                     unitToInstruction.put(unit, instruction);
                 }
 
-
                 if (lineNumber != -1) {
                     // there is line number for instruction
                     // also set debug information index as column
                     instruction.addMetadata((new DILineNumber(lineNumber, columnAsDebugInfoIdx, diSubprogram)).get());
 
                     // save for debugger needs
-                    instructionToLineNo.put(instruction, lineNumber);
+                    // saving unmapped line number as after kotlin SMAP mapping
+                    // several blocks of code will have same line number
+                    // debugger logic bellow will assign instrumented hook only to first instruction
+                    // from all that shares same line number.
+                    // as result kotlin collections and lambdas will be not available for stepping
+                    instructionToLineNo.put(instruction, unmappedLineNumber);
                     if (columnAsDebugInfoIdx != 0)
                         instructionToDebugInfoIdx.put(instruction, columnAsDebugInfoIdx);
                 }
@@ -333,10 +339,10 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
                 if (!startInstrumenting && firstHooksInst != instruction)
                     continue;
                 startInstrumenting = true;
-                Integer lineNo = instructionToLineNo.get(instruction);
-                if (lineNo == null || hookInstructionLines.containsKey(lineNo))
+                Integer unmappedLineNo = instructionToLineNo.get(instruction);
+                if (unmappedLineNo == null || hookInstructionLines.containsKey(unmappedLineNo))
                     continue;
-                hookInstructionLines.put(lineNo, instruction);
+                hookInstructionLines.put(unmappedLineNo, instruction);
             }
         }
 
@@ -354,9 +360,9 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
         byte[] bpTableValue = new byte[arraySize];
         // set all lines as breakpoint armed
         Arrays.fill(bpTableValue, (byte)0xff);
-        for (Integer line : hookInstructionLines.keySet()) {
+        for (Integer unmappedLineNo : hookInstructionLines.keySet()) {
             // reset armed for valid lines
-            int lineOffset = line - methodLineNumber;
+            int lineOffset = lineNumberMapper.map(unmappedLineNo) - methodLineNumber;
             int idx = lineOffset >> 3;
             int mask = ~(1 << (lineOffset & 7));
             bpTableValue[idx] &= mask;
@@ -368,7 +374,8 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
         ConstantBitcast bpTableRef = new ConstantBitcast(bpTable.ref(), Type.I8_PTR);
         for (Map.Entry<Integer, Instruction> e : hookInstructionLines.entrySet()) {
             Instruction instr = e.getValue();
-            int lineNo = e.getKey();
+            int unmappedLineNo = e.getKey();
+            int lineNo = lineNumberMapper.map(unmappedLineNo);
             int debugInfoIdx = instructionToDebugInfoIdx.getOrDefault(instr, 0);
 
             injectHookInstrumented(diSubprogram, lineNo, debugInfoIdx, lineNo - methodLineNumber, function, bpTableRef, instr);
