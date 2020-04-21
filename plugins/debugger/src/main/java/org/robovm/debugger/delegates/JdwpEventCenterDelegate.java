@@ -550,29 +550,22 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
         // filter data through event requests and deliver them to JDPW
         int suspendPolicy = deliverEventToJdpwFiltered(eventData);
         if (suspendPolicy <= 0) {
-            if (suspendPolicy < 0) {
-                // event was filtered out, e.g. JDWP client is not interested in it
-
-                // there are two cases when stepping has to be resumed
-                // 1. VM performed stepped event but thread is stopped in class that is filtered out, so we have to
-                //    continue stepping till stop that was requested
-                // 2. there was exception generated in VM (probably it will be handled) and JDWP client is not interested
-                //    in it, in this case stepping/stepping over/stepping out shall be resumed
-                if ((eventPayload.eventId() == HookConsts.events.THREAD_STEPPED || eventPayload.eventId() == HookConsts.events.EXCEPTION) &&
-                        stoppedThread != null && activeStepRequest != null && !((JdwpEventRequest) activeStepRequest.payload()).isCanceled()) {
-                    if (activeStepRequest.thread().refId() == stoppedThread.refId() && stoppedThread.suspendCount() == 0) {
-                        // step again
-                        delegates.runtime().restep(activeStepRequest);
-                        delegates.threads().onThreadSuspended(stoppedThread, stoppedThreadCallStack, false);
-                        return;
-                    }
-                }
-                // event didn't pass filters no need to keep suspended thread
-            }
-
-            // or it pass but suspend policy is none
-            if (stoppedThread != null)
+            // event was filtered out (suspendPolicy < 0), e.g. JDWP client is not interested in it
+            // or it was commanded not to suspend any thread (suspendPolicy == 0)
+            //
+            // if thread was suspended -- all stepping have been canceled in target.
+            // there are few cases when stepping has to be resumed
+            // 1. VM performed stepped event but thread is stopped in class that is filtered out, so we have to
+            //    continue stepping till stop that was requested
+            // 2. there was exception generated in VM (probably it will be handled) and JDWP client is not interested
+            //    in it, in this case stepping/stepping over/stepping out shall be resumed
+            // 3. class load event happened but commanded to be ignored for this class (but thread is stopped)
+            if (stoppedThread != null) {
+                if (stoppedThread.suspendCount() == 0)
+                    restepBeforeResume(stoppedThread);
+                // resume thread in target
                 delegates.threads().onThreadSuspended(stoppedThread, stoppedThreadCallStack, false);
+            }
         } else {
             if (stoppedThread != null) {
                 delegates.threads().onThreadSuspended(stoppedThread, stoppedThreadCallStack, true);
@@ -774,7 +767,8 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
      * there is active one
      */
     public void restepBeforeResume(VmThread thread) {
-        if (activeStepRequest != null && activeStepRequest.thread().refId() == thread.refId()) {
+        if (activeStepRequest != null && !((JdwpEventRequest) activeStepRequest.payload()).isCanceled() &&
+                activeStepRequest.thread().refId() == thread.refId()) {
             // step again
             delegates.runtime().restep(activeStepRequest);
         }

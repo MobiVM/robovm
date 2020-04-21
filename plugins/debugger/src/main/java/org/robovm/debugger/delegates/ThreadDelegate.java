@@ -57,8 +57,6 @@ public class ThreadDelegate implements IJdwpThreadDelegate {
     @Override
     public void jdwpResumeThread(long threadId) throws DebuggerException {
         VmThread thread = getThread(threadId);
-        // if thread is stopped -- all stepping is canceled, try to resume active stepping if it active
-        delegates.events().restepBeforeResume(thread);
         resumeThread(thread);
     }
 
@@ -67,6 +65,9 @@ public class ThreadDelegate implements IJdwpThreadDelegate {
         int suspendCount = thread.suspendCount();
         thread.markResumed();
         if (suspendCount == 1) {
+            // before resume try resume stepping if it was active
+            delegates.events().restepBeforeResume(thread);
+
             delegates.hooksApi().threadResume(thread.threadPtr());
             thread.setStatus(VmThread.Status.RUNNING);
             setThreadStack(thread, null);
