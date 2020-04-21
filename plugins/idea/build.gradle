@@ -1,6 +1,6 @@
 plugins {
     id 'java'
-    id "org.jetbrains.intellij" version "0.4.15"
+    id "org.jetbrains.intellij" version "0.4.18"
 }
 
 ext {
@@ -44,8 +44,8 @@ dependencies {
 }
 
 intellij {
-    version '2018.3'   // we are compiles against this API version
-    plugins = ['maven', 'gradle']
+    version '2020.1'   // we are compiles against this API version
+    plugins = ['java', 'maven', 'gradle']
     updateSinceUntilBuild = false
 }
 
@@ -63,6 +63,5 @@ task copyRoboVmDist(type: Copy) {
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 compileJava {
-    options.compilerArgs.addAll(['--release', '8'])
     dependsOn copyRoboVmDist
 }

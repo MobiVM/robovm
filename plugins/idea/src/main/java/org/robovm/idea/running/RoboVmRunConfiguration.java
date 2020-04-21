@@ -327,7 +327,7 @@ public class RoboVmRunConfiguration extends ModuleBasedConfiguration<RoboVmRunCo
     //
     private <T extends Enum<T>> T valueOf(Class<T> enumType, String name) {
         try {
-            return Enum.valueOf(enumType, name);
+            return name != null ? Enum.valueOf(enumType, name) : null;
         } catch (IllegalArgumentException ignored){
             return null;
         }
@@ -335,8 +335,8 @@ public class RoboVmRunConfiguration extends ModuleBasedConfiguration<RoboVmRunCo
 
     private int parseInt(String value, int defaultValue) {
         try {
-            return Integer.parseInt(value);
-        } catch (Throwable ignored) {
+            return value != null ? Integer.parseInt(value) : defaultValue;
+        } catch (NumberFormatException ignored) {
             return defaultValue;
         }
     }

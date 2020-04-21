@@ -7,7 +7,7 @@
     <depends optional="true" config-file="">org.jetbrains.idea.maven</depends>
     <depends>org.jetbrains.plugins.gradle</depends>
 
-    <idea-version since-build="141.177"/>
+    <idea-version since-build="191"/>
 
     <description><![CDATA[
      <p>
