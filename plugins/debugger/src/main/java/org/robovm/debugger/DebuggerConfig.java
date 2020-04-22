@@ -17,6 +17,7 @@ package org.robovm.debugger;
 
 import org.robovm.debugger.hooks.HooksChannel;
 import org.robovm.debugger.hooks.IHooksConnection;
+import org.robovm.debugger.utils.macho.MachOConsts;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -30,7 +31,7 @@ import java.util.function.IntSupplier;
 
 /**
  * @author Demyan Kimitsas
- *         Configuration file that is to start debugger
+ * Configuration file that is to start debugger
  */
 public class DebuggerConfig {
     public final static int TARGET_WAIT_TIMEOUT = 60000;
@@ -39,22 +40,29 @@ public class DebuggerConfig {
      * debugger local arch list, corresponds one from compiler
      */
     public enum Arch {
-        x86(true) ,
-        x86_64,
-        thumbv7(true),
-        arm64;
+        x86(MachOConsts.cpu_type.CPU_TYPE_X86, true),
+        x86_64(MachOConsts.cpu_type.CPU_TYPE_X86_64),
+        thumbv7(MachOConsts.cpu_type.CPU_TYPE_ARM, true),
+        arm64(MachOConsts.cpu_type.CPU_TYPE_ARM64);
 
         private final boolean is32bit;
-        Arch(boolean is32bit) {
+        private int machoValue;
+
+        Arch(int machoValue, boolean is32bit) {
+            this.machoValue = machoValue;
             this.is32bit = is32bit;
         }
 
-        Arch() {
-            this(false);
+        Arch(int machoValue) {
+            this(machoValue, false);
         }
 
         public boolean is32Bit() {
             return is32bit;
+        }
+
+        public int getMachoValue() {
+            return machoValue;
         }
     }
 
@@ -206,11 +214,11 @@ public class DebuggerConfig {
                 } else if ("-jdwpClientMode".equals(args[i])) {
                     jdwpClienMode = true;
                 } else if ("-jdwpPort".equals(args[i])) {
-                    jdwpPort = Integer.valueOf(args[++i]);
+                    jdwpPort = Integer.parseInt(args[++i]);
                 } else if ("-hooksPortFile".equals(args[i])) {
                     hooksPortFile = new File(args[++i]);
                 } else if ("-hooksPort".equals(args[i])) {
-                    hooksPort = Integer.valueOf(args[++i]);
+                    hooksPort = Integer.parseInt(args[++i]);
                 } else {
                     throw new IllegalArgumentException("Unrecognized option: " + args[i]);
                 }
