@@ -100,7 +100,8 @@ public class DebuggerLaunchPlugin extends LaunchPlugin {
         builder.setJdwpClienMode(jdwpClientMode);
         builder.setLogToConsole(logConsole);
         builder.setLogDir(new File(logDir));
-        builder.setAppfile(new File(config.isSkipInstall() ? config.getTmpDir() : config.getInstallDir(), config.getExecutableName()));
+        File appDir = new File(config.isSkipInstall() ? config.getTmpDir() : config.getInstallDir(), config.getExecutableName() + ".app");
+        builder.setAppfile(new File(appDir, config.getExecutableName()));
         builder.setArch(DebuggerConfig.Arch.valueOf(target.getArch().name()));
 
         // make list of arguments for target
