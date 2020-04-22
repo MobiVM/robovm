@@ -41,7 +41,7 @@ public interface DataBufferReader extends DataBuffer {
      * sanity checks: checks if there is still enough bytes
      */
     default void expects(int bytes) {
-        if (this.position() + bytes > this.limit())
+        if (this.remaining() < bytes)
             throw new BufferUnderflowException();
     }
 
@@ -77,8 +77,8 @@ public interface DataBufferReader extends DataBuffer {
     double readDouble();
 
     default void readBytes(byte[] dst, int offset, int length) {
-        expects(length);
         if (hasArray()) {
+            expects(length);
             System.arraycopy(array(), arrayPositionOffset(), dst, offset, length);
         } else {
             while (length-- > 0)
@@ -97,7 +97,7 @@ public interface DataBufferReader extends DataBuffer {
      * reads all remaining bytes to byte array
      */
     default byte[] readBytes() {
-        return readBytes((int) remaining());
+        return readBytes(remaining());
     }
 
     /**
@@ -106,8 +106,6 @@ public interface DataBufferReader extends DataBuffer {
     default byte[] readBytes(int numBytes) {
         if (numBytes == 0)
             throw new IllegalArgumentException("Cant read zero number of bytes!");
-
-        expects(numBytes);
 
         byte[] res = new byte[numBytes];
         readBytes(res);
@@ -121,11 +119,22 @@ public interface DataBufferReader extends DataBuffer {
         // at least one byte is needed
         expects(1);
 
-        // reads null terminated string
-        StringBuilder sb = new StringBuilder();
-        for (byte b = readByte(); b != 0; b = readByte())
-            sb.append((char) b);
-        return sb.toString();
+        if (hasArray()) {
+            int remaining = remaining();
+            int pos = arrayPositionOffset();
+            byte[] array = array();
+            while (remaining > 0 && array[pos] != 0) {
+                pos++;
+                remaining--;
+            }
+            return new String(array, arrayPositionOffset(), pos - arrayPositionOffset(), StandardCharsets.US_ASCII);
+        } else {
+            // reads null terminated string
+            StringBuilder sb = new StringBuilder();
+            for (byte b = readByte(); b != 0; b = readByte())
+                sb.append((char) b);
+            return sb.toString();
+        }
     }
 
     /**
@@ -143,13 +152,12 @@ public interface DataBufferReader extends DataBuffer {
     }
 
     default String readString(int size) {
-        expects(size);
-
         String res;
         long savedPosition = position();
         byte[] stringBytes;
         int stringStartOffset;
         if (hasArray()) {
+            expects(size);
             stringBytes = array();
             stringStartOffset = arrayPositionOffset();
         } else {
@@ -158,10 +166,10 @@ public interface DataBufferReader extends DataBuffer {
             readBytes(stringBytes);
         }
 
-        // get the string len
+        // find where string is zero terminated
         int strLen = size;
-        for (int i = 0; i < size; i++) {
-            if (stringBytes[stringStartOffset + i] == 0) {
+        for (int i = 0, offset = stringStartOffset; i < size; i++, offset++) {
+            if (stringBytes[offset] == 0) {
                 strLen = i;
                 break;
             }
@@ -177,14 +185,13 @@ public interface DataBufferReader extends DataBuffer {
     default String readString() {
         if (!hasRemaining())
             return "";
-        return readString((int) remaining());
+        return readString(remaining());
     }
 
     /**
      * reads pascal like string: 4 byte integer size specified and followed string bytes
      */
     default String readStringWithLen() {
-        expects(4);
         int stringLen = readInt32();
         if (stringLen == 0)
             return "";
@@ -288,7 +295,7 @@ public interface DataBufferReader extends DataBuffer {
      * slices all remain bytes
      */
     default DataBufferReader slice() {
-        return sliceAt(position(), (int) remaining());
+        return sliceAt(position(), remaining());
     }
 
     /**

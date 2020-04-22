@@ -108,39 +108,43 @@ public class DataByteBufferReader implements DataBufferReader {
     }
 
     @Override
+    public int remaining() {
+        return byteBuffer.remaining();
+    }
+
+    @Override
     public byte readByte() {
-        expects(1);
         return byteBuffer.get();
     }
 
     @Override
     public short readInt16() {
-        expects(2);
         return byteBuffer.getShort();
     }
 
     @Override
     public int readInt32() {
-        expects(4);
         return byteBuffer.getInt();
     }
 
     @Override
     public long readLong() {
-        expects(8);
         return byteBuffer.getLong();
     }
 
     @Override
     public float readFloat() {
-        expects(4);
         return byteBuffer.getFloat();
     }
 
     @Override
     public double readDouble() {
-        expects(8);
         return byteBuffer.getDouble();
+    }
+
+    @Override
+    public void readBytes(byte[] dst, int offset, int length) {
+        byteBuffer.get(dst, offset, length);
     }
 
     @Override
