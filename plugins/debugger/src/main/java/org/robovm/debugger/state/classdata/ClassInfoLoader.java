@@ -18,6 +18,7 @@ package org.robovm.debugger.state.classdata;
 import org.robovm.debugger.DebuggerException;
 import org.robovm.debugger.runtime.ValueManipulator;
 import org.robovm.debugger.state.refid.RefIdHolder;
+import org.robovm.debugger.utils.DataUtils;
 import org.robovm.debugger.utils.bytebuffer.DataBufferReader;
 import org.robovm.debugger.utils.macho.MachOException;
 import org.robovm.debugger.utils.macho.MachOLoader;
@@ -88,7 +89,7 @@ public class ClassInfoLoader {
                 + (hashTableSize << 2)
                 + 4 /* sizeof(uint32_t) this is for the last end index in the hash */;
         // Make sure base is properly aligned
-        base = (base + pointerSize - 1) & ~(pointerSize - 1);
+        base = DataUtils.align(base, pointerSize);
         for (int i = 0; i < classInfoCount; i++) {
             reader.setPosition(base);
             long classInfoPtr = reader.readPointer();

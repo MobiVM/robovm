@@ -179,7 +179,9 @@ public abstract class AbstractTarget implements Target {
             for (int i = 0; i < exportedSymbols.size(); i++) {
                 // On Darwin symbols are always prefixed with a '_'. We'll prepend
                 // '_' to each symbol here so the user won't have to.
-                exportedSymbols.set(i, "_" + exportedSymbols.get(i));
+                // (excluding * starting wildcards)
+                String symb = exportedSymbols.get(i);
+                exportedSymbols.set(i, symb.startsWith("*") ? symb : "_" + symb);
             }
 
             if (!config.getUnhideSymbols().isEmpty()) {

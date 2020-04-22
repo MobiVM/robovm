@@ -343,11 +343,9 @@ public class IOSTarget extends AbstractTarget {
         generateDsym(installDir, getExecutable(), false);
 
         if (isDeviceArch(arch)) {
-            // only strip if this is not a debug build, otherwise
-            // LLDB can't resolve the DWARF info
-            if (!config.isDebug()) {
-                strip(installDir, getExecutable());
-            }
+            // strip local symbols
+            strip(installDir, getExecutable());
+
             // remove bitcode to minimize binary size if not required
             if (!config.isEnableBitcode()) {
                 config.getLogger().info("Striping bitcode from binary: %s", new File(installDir, getExecutable()));
@@ -387,6 +385,9 @@ public class IOSTarget extends AbstractTarget {
         super.doInstall(appDir, getExecutable(), appDir);
         createInfoPList(appDir);
         generateDsym(appDir, getExecutable(), true);
+
+        // strip symbols to reduce application size, all debugger symbols converted into globals
+        strip(appDir, getExecutable());
 
         if (isDeviceArch(arch)) {            
             if (config.isIosSkipSigning()) {

@@ -103,7 +103,15 @@ public class MachOLoader {
                     dataSegment = segCmd;
             } else if (cmd == MachOConsts.commands.LC_SYMTAB) {
                 SymtabCommand symtabCommand = new SymtabCommand(reader);
-                DataBufferReader stringReader = reader.sliceAt(symtabCommand.stroff, (int) symtabCommand.strsize);
+                DataBufferReader stringReader;
+                if (symtabCommand.strsize < 8 * 1024 * 1024) {
+                    // read entire data to byte array and wrap to byte buffer
+                    // to enable array based optimizations
+                    byte[] symtabBytes = reader.setPosition(symtabCommand.stroff).readBytes((int) symtabCommand.strsize);
+                    stringReader = DataBufferReader.wrap(symtabBytes);
+                } else {
+                    stringReader = reader.sliceAt(symtabCommand.stroff, (int) symtabCommand.strsize);
+                }
                 DataBufferReader nlistReader = reader.sliceAt(symtabCommand.symoff, (int) (symtabCommand.nsyms * NList.ITEM_SIZE(header.is64b())));
                 DataBufferArrayReader<NList> arrayReader = new DataBufferArrayReader<>(nlistReader,
                         NList.ITEM_SIZE(header.is64b()), NList.OBJECT_READER(header.is64b()));
@@ -123,12 +131,23 @@ public class MachOLoader {
 
                     // save offset to NList as there is too much of symbols
                     String sym = stringReader.readStringZ(nlist.n_strx());
-                    symTable.put(sym, nlist.n_value());
+                    if (isUsableDebuggerSym(sym))
+                        symTable.put(sym, nlist.n_value());
                 }
             }
 
             reader.setPosition(pos + cmdsize);
         }
+    }
+
+    private boolean isUsableDebuggerSym(String sym) {
+        return sym.endsWith("[debuginfo]") ||
+                sym.endsWith("[bptable]") ||
+                sym.endsWith(".spfpoffset") ||
+                sym.startsWith("_prim_") ||
+                sym.equals("__bcBootClassesHash") ||
+                sym.equals("__bcClassesHash") ||
+                sym.equals("_robovmBaseSymbol");
     }
 
     public static int cpuTypeFromString(String cpuString) {
@@ -171,10 +190,10 @@ public class MachOLoader {
     }
 
     public long resolveSymbol(String symbolName) {
-        Long nlistAddr = symTable.get("_" + symbolName);
-        if (nlistAddr == null)
+        Long symbAddr = symTable.get("_" + symbolName);
+        if (symbAddr == null)
             return -1;
-        return nlistAddr;
+        return symbAddr;
     }
 
     public DataBufferReader memoryReader() {

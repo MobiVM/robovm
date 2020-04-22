@@ -100,6 +100,24 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
     public DebugInformationPlugin() {
 	}
 
+    @Override
+    public void beforeConfig(Config.Builder builder, Config config) {
+        if (config.isDebug()) {
+            // debugger depends on amount of symbols.
+            // as strip removes all local symbols all dependencies need to be converted
+            // into exported ones, adding wildcards
+            // nb: linker doesn't support espaping in wildcards
+            // so "[[]" works actually as "\["
+            builder.addExportedSymbol("*[[]debuginfo]");
+            builder.addExportedSymbol("*[[]bptable]");
+            builder.addExportedSymbol("*.spfpoffset");
+            builder.addExportedSymbol("prim_*");
+            builder.addExportedSymbol("_bcBootClassesHash");
+            builder.addExportedSymbol("_bcClassesHash");
+            builder.addExportedSymbol("robovmBaseSymbol");
+        }
+    }
+
     public PluginArguments getArguments() {
     	return new PluginArguments("debug", Collections.emptyList());
     }
@@ -368,7 +386,7 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
             bpTableValue[idx] &= mask;
         }
         // global value to this array
-        Global bpTable = new Global(Symbols.bptableSymbol(method), Linkage.internal, new ArrayConstantBuilder(Type.I8).add(bpTableValue).build());
+        Global bpTable = new Global(Symbols.bptableSymbol(method), new ArrayConstantBuilder(Type.I8).add(bpTableValue).build());
         mb.addGlobal(bpTable);
         // cast to byte pointer
         ConstantBitcast bpTableRef = new ConstantBitcast(bpTable.ref(), Type.I8_PTR);
