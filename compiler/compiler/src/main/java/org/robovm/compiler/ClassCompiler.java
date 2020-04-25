@@ -619,49 +619,16 @@ public class ClassCompiler {
             Global debugInfoSymbolGlobal = new Global(debugInfoSymbol, new ByteArrayConstant(debugDataBytes), true);
             debugInfoMb.addGlobal(debugInfoSymbolGlobal);
 
-            // use a list for used as spfp offset data will go there as well
+            // list to keep weak values (such as debugger ones) to be added to llvm.used
             List<Value> usedGlobalValues = new ArrayList<>();
             usedGlobalValues.add(new ConstantBitcast(debugInfoSymbolGlobal.ref(), Type.I8_PTR));
-
-            // add reference to spFpOfsset symbols to llvm.used otherwise linker will remove them
-            if (config.getTarget().getArch().isArm()) {
-                List<Value> spfpGlobals = new ArrayList<>();
-
-                // cant get this information during debugger run as linker removes this information
-                // other option would be to add it to llvm.used field in patch but this is longer way than analize it
-                // during compile path
-                String prefix = "_[J]";
-                String suffix = ".spfpoffset";
-                for (Symbol symbol : objectFile.getSymbols()) {
-                    String symbName = symbol.getName();
-                    if (symbol.getSize() <= 0 || !symbName.startsWith(prefix) || !symbName.endsWith(suffix))
-                        continue;
-
-                    // substring to skip '_' as llvm will make it '__' in result
-                    Global spfp = new Global(symbName.substring(1), Type.I32);
-                    // add it as global to ba able reference it
-                    debugInfoMb.addGlobal(spfp);
-
-                    spfpGlobals.add(spfp.ref());
-                }
-
-                if (!spfpGlobals.isEmpty()) {
-                    // create dummy array to keep spfpoffset from being dropped by linker. this array is not going to be
-                    // used directly
-                    ArrayConstant globals = new ArrayConstant(new ArrayType(spfpGlobals.size(), new PointerType(Type.I32)),
-                            spfpGlobals.toArray(new Value[spfpGlobals.size()]));
-                    Global arrGlobal = new Global(clazz.getClassName() + "[spfprefs]", globals, true);
-                    debugInfoMb.addGlobal(arrGlobal);
-                    usedGlobalValues.add(new ConstantBitcast(arrGlobal.ref(), Type.I8_PTR));
-                }
-            }
 
             // also need to add reference to @llvm.used otherwise linker will drop out this data as not used
             // dkimitsa: always add it as array even if there is only one element as llvm.used is array of pointers
             // and debug version of llvm will crash on assertion while validating type
             Global usedGlobal;
             ArrayConstant usedValuesArr = new ArrayConstant(new ArrayType(usedGlobalValues.size(), Type.I8_PTR),
-                    usedGlobalValues.toArray(new Value[usedGlobalValues.size()]));
+                    usedGlobalValues.toArray(new Value[0]));
             usedGlobal = new Global("llvm.used", Linkage.appending, usedValuesArr, false, "llvm.metadata");
             debugInfoMb.addGlobal(usedGlobal);
 

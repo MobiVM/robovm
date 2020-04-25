@@ -292,8 +292,7 @@ public class StackFrameDelegate implements IJdwpStackFrameDelegate {
             // SP on thumb7(R13)
             // RSP register on ARM64
             // align using SpFpOffset data
-            // TODO: DataUtils.align uses ceil logic, but here was used floor one
-            addr = DataUtils.align(frame.fp() - frame.methodInfo().spFpOffset(), frame.methodInfo().spFpAlign());
+            addr = DataUtils.alignFloor(frame.fp() - frame.methodInfo().spFpOffset(), frame.methodInfo().spFpAlign());
             addr += variableInfo.offset();
         } else {
             // TODO:

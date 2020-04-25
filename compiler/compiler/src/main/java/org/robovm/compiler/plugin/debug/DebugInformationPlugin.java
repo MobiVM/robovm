@@ -33,7 +33,6 @@ import org.robovm.compiler.llvm.FunctionDeclaration;
 import org.robovm.compiler.llvm.Global;
 import org.robovm.compiler.llvm.Instruction;
 import org.robovm.compiler.llvm.IntegerConstant;
-import org.robovm.compiler.llvm.Linkage;
 import org.robovm.compiler.llvm.MetadataString;
 import org.robovm.compiler.llvm.MetadataValue;
 import org.robovm.compiler.llvm.PointerType;
@@ -61,6 +60,7 @@ import org.robovm.debugger.debuginfo.DebuggerDebugObjectFileInfo;
 import org.robovm.debugger.debuginfo.DebuggerDebugVariableInfo;
 import org.robovm.llvm.LineInfo;
 import org.robovm.llvm.ObjectFile;
+import org.robovm.llvm.SectionIterator;
 import org.robovm.llvm.Symbol;
 import org.robovm.llvm.debuginfo.DwarfDebugMethodInfo;
 import org.robovm.llvm.debuginfo.DwarfDebugObjectFileInfo;
@@ -110,7 +110,6 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
             // so "[[]" works actually as "\["
             builder.addExportedSymbol("*[[]debuginfo]");
             builder.addExportedSymbol("*[[]bptable]");
-            builder.addExportedSymbol("*.spfpoffset");
             builder.addExportedSymbol("prim_*");
             builder.addExportedSymbol("_bcBootClassesHash");
             builder.addExportedSymbol("_bcClassesHash");
@@ -516,6 +515,25 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
                 .filter(s -> s.getName().startsWith(symbolPrefix + Symbols.EXTERNAL_SYMBOL_PREFIX))
                 .collect(Collectors.toMap(Symbol::getName, e -> e));
 
+        // read text segment to get sp-fp offsets on arm targets
+        byte[] textSegmentContent = null;
+        long textSegmentAddress = 0L;
+        long textSegmentSize = 0L;
+        if (config.getTarget().getArch().isArm()) {
+            // look for __text section
+            for (SectionIterator it = objectFileData.getSectionIterator(); it.hasNext(); it.next()) {
+                if (it.getName().equals("__text")) {
+                    textSegmentSize = it.getSize();
+                    textSegmentAddress = it.getAddress();
+                    if (textSegmentSize > 0L) {
+                        textSegmentContent = new byte[(int) textSegmentSize];
+                        it.copyContents(textSegmentContent);
+                    }
+                    break;
+                }
+            }
+        }
+
         // now it is a task to combine it with data received during compilation
         List<DebuggerDebugMethodInfo.RawData> methods = new ArrayList<>();
         for (MethodDataBundle methodBundle :  classBundle.methods) {
@@ -533,8 +551,23 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
             if (lineInfos.size() == 0)
                 continue;
 
+            // if textSegmentContent is present (its arm) read spfpoffset from __text segment
+            int spfpOffset = 0;
+            if (textSegmentContent != null) {
+                Symbol spfp = symbols.get(symbolPrefix + methodBundle.signature + ".spfpoffset");
+                if (spfp != null) {
+                    long offset = spfp.getAddress() - textSegmentAddress;
+                    if (offset >= 0 && offset < textSegmentSize) {
+                        // little endian
+                        spfpOffset = (textSegmentContent[(int) offset] & 0xFF) |
+                                (textSegmentContent[(int) (offset + 1)] & 0xFF) << 8 |
+                                (textSegmentContent[(int) (offset + 2)] & 0xFF) << 16 |
+                                (textSegmentContent[(int) (offset + 3)] & 0xFF) << 24;
+                    }
+                }
+            }
 
-            DebuggerDebugMethodInfo.RawData debuggerMethodInfo = buildDebuggerMethodInfo(config, clazz, symbol, dbgMethodInfo, methodBundle, lineInfos);
+            DebuggerDebugMethodInfo.RawData debuggerMethodInfo = buildDebuggerMethodInfo(config, clazz, symbol, dbgMethodInfo, methodBundle, lineInfos, spfpOffset);
             methods.add(debuggerMethodInfo);
         }
 
@@ -550,7 +583,7 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
 
     private DebuggerDebugMethodInfo.RawData buildDebuggerMethodInfo(Config config, Clazz clazz, Symbol symbol,
                                                             DwarfDebugMethodInfo dbgMethodInfo, MethodDataBundle methodBundle,
-                                                            List<LineInfo> lineInfos) {
+                                                            List<LineInfo> lineInfos, int spfpOffset) {
         // sort line info by address an build
         lineInfos.sort(Comparator.comparingLong(LineInfo::getAddress));
 
@@ -698,7 +731,7 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
             methodName = methodName.substring(clazz.getClassName().length() + 4);
         //noinspection UnnecessaryLocalVariable
         DebuggerDebugMethodInfo.RawData mi = new DebuggerDebugMethodInfo.RawData(methodName, methodBundle.startLine, methodBundle.finalLine,
-                rawVariables, rawAllocas, rawOffsets, rawOffsetSliceIndexes, rawSlices);
+                spfpOffset, rawVariables, rawAllocas, rawOffsets, rawOffsetSliceIndexes, rawSlices);
         return mi;
     }
 

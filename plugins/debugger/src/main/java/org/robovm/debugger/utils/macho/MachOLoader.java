@@ -143,7 +143,6 @@ public class MachOLoader {
     private boolean isUsableDebuggerSym(String sym) {
         return sym.endsWith("[debuginfo]") ||
                 sym.endsWith("[bptable]") ||
-                sym.endsWith(".spfpoffset") ||
                 sym.startsWith("_prim_") ||
                 sym.equals("__bcBootClassesHash") ||
                 sym.equals("__bcClassesHash") ||

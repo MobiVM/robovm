@@ -21,7 +21,6 @@ import org.robovm.debugger.debuginfo.DebuggerDebugObjectFileInfo;
 import org.robovm.debugger.state.refid.RefIdHolder;
 import org.robovm.debugger.utils.Converter;
 import org.robovm.debugger.utils.bytebuffer.DataBufferReader;
-import org.robovm.debugger.utils.macho.MachOConsts;
 
 /**
  * @author Demyan Kimitsa
@@ -220,8 +219,6 @@ public class ClassInfoImpl extends ClassInfo {
             if (!methodInfo.isNative()) {
                 DebuggerDebugMethodInfo methodDebugInfo = null;
                 long bpTableAddr = -1;
-                int spFpOffset = -1;
-                int spFpAlign = -1;
                 if (debugInfo != null) {
                     methodDebugInfo = debugInfo.methodBySignature(methodInfo.name() + methodInfo.signature());
 
@@ -230,39 +227,10 @@ public class ClassInfoImpl extends ClassInfo {
                         String bpTableSymbol = "[j]" + className.replace('/', '.') + "." + methodInfo.name() + methodInfo.signature() + "[bptable]";
                         bpTableAddr = loader.appFileLoader.resolveSymbol(bpTableSymbol);
                     }
-
-                    // resolve spFp offset and align
-                    if (methodDebugInfo != null && (loader.appFileLoader.cpuType() == MachOConsts.cpu_type.CPU_TYPE_ARM64 ||
-                            loader.appFileLoader.cpuType() == MachOConsts.cpu_type.CPU_TYPE_ARM)) {
-                        String spFpOffsetSymbol = "[J]" + className.replace('/', '.') + "." + methodInfo.name() + methodInfo.signature() + ".spfpoffset";
-                        long spFpOffsetAddr = loader.appFileLoader.resolveSymbol(spFpOffsetSymbol);
-                        if (spFpOffsetAddr != -1) {
-                            long oldAddr = reader.position();
-                            reader.setPosition(spFpOffsetAddr);
-                            int spFpOffsetValue = reader.readInt32();
-                            reader.setPosition(oldAddr);
-                            // unpack values -- here is how it is set in
-                            // bellow are original comments from patch
-                            //
-                            // We divide by 4 since the offset is always at least a multiple of 4.
-                            // uint32_t spFpOffset = (GPRCS1Size - 8 + GPRCS2Size + DPRGapSize + DPRCSSize + NumBytes + AFI->getNumAlignedDPRCS2Regs()*8) >> 2;
-                            // Calculate the stack alignment. It's at least a multiple of 4 so we divide by 4.
-                            // We subtract by 1 since alignment/4 is always at least 1.
-                            // uint32_t spAlignment = (MFI->getMaxAlignment() >> 2) - 1;
-                            // We store the stack alignment in the 4 MSBs of the symbol value.
-                            //  Offset->setVariableValue(MCConstantExpr::Create(spFpOffset | (spAlignment << 28), Context));
-                            spFpOffset = (spFpOffsetValue & ((1 << 28) - 1)) << 2;
-                            spFpAlign = ((spFpOffsetValue >> 28) + 1) << 2;
-                        }
-                    } else {
-                        // for x86 keep these as zero
-                        spFpOffset = 0;
-                        spFpAlign = 0;
-                    }
                 }
 
-                if (methodDebugInfo != null && spFpAlign != -1) {
-                    methodInfo.setDebugInfo(methodDebugInfo, spFpOffset, spFpAlign);
+                if (methodDebugInfo != null && bpTableAddr != -1) {
+                    methodInfo.setDebugInfo(methodDebugInfo);
                     methodInfo.setBpTableAddr(bpTableAddr);
                 } else {
                     // there is no debug info and it will not be possible to work with this method, so mark it as native

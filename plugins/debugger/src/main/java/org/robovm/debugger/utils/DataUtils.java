@@ -12,4 +12,10 @@ public final class DataUtils {
         //noinspection PointlessBitwiseExpression
         return (addr + boundary - 1) & ~(boundary - 1);
     }
+
+    public static long alignFloor(long addr, long boundary) {
+        //noinspection PointlessBitwiseExpression
+        return addr & ~(boundary - 1);
+    }
+
 }

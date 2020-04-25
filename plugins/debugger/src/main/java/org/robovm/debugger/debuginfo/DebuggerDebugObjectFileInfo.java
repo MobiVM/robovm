@@ -72,12 +72,15 @@ public class DebuggerDebugObjectFileInfo {
             // write methods
             stream.writeInt(debugInfo.methods.length);
             for ( DebuggerDebugMethodInfo.RawData methodInfo : debugInfo.methods) {
+                // write method signature
+                putStringWithLen(stream, methodInfo.signature);
+
                 // write method start and end lines
                 stream.writeInt(methodInfo.startLine);
                 stream.writeInt(methodInfo.finalLine);
 
-                // write method signature
-                putStringWithLen(stream, methodInfo.signature);
+                // write spfp offset
+                stream.writeInt(methodInfo.spFpOffset);
 
                 // write variables
                 stream.writeInt(methodInfo.variables.length);
@@ -137,12 +140,15 @@ public class DebuggerDebugObjectFileInfo {
         int methodCount = buffer.readInt32();
         DebuggerDebugMethodInfo.RawData [] methods = new DebuggerDebugMethodInfo.RawData[methodCount];
         for (int methodIdx = 0; methodIdx < methodCount; methodIdx++){
+            // read method name
+            String methodSignature = buffer.readStringWithLen();
+
             // read method start and end lines
             int methodStartLine = buffer.readInt32();
             int methodEndLine = buffer.readInt32();
 
-            // read method name
-            String methodSignature = buffer.readStringWithLen();
+            // read spfp offset
+            int spfpOffset = buffer.readInt32();
 
             // read variables
             int count = buffer.readInt32();
@@ -197,8 +203,8 @@ public class DebuggerDebugObjectFileInfo {
                 offsetSliceIndexes[idx] = buffer.readInt32();
             }
 
-            methods[methodIdx] = new DebuggerDebugMethodInfo.RawData(methodSignature, methodStartLine, methodEndLine, variables,
-                    allocas, offsets, offsetSliceIndexes, slices);
+            methods[methodIdx] = new DebuggerDebugMethodInfo.RawData(methodSignature, methodStartLine, methodEndLine, spfpOffset,
+                    variables, allocas, offsets, offsetSliceIndexes, slices);
         }
 
         return new DebuggerDebugObjectFileInfo(sourceFile, methods);
