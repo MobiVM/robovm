@@ -15,9 +15,9 @@
  */
 package org.robovm.debugger;
 
-import org.robovm.compiler.config.Arch;
 import org.robovm.debugger.hooks.HooksChannel;
 import org.robovm.debugger.hooks.IHooksConnection;
+import org.robovm.debugger.utils.macho.MachOConsts;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -31,10 +31,40 @@ import java.util.function.IntSupplier;
 
 /**
  * @author Demyan Kimitsas
- *         Configuration file that is to start debugger
+ * Configuration file that is to start debugger
  */
 public class DebuggerConfig {
     public final static int TARGET_WAIT_TIMEOUT = 60000;
+
+    /**
+     * debugger local arch list, corresponds one from compiler
+     */
+    public enum Arch {
+        x86(MachOConsts.cpu_type.CPU_TYPE_X86, true),
+        x86_64(MachOConsts.cpu_type.CPU_TYPE_X86_64),
+        thumbv7(MachOConsts.cpu_type.CPU_TYPE_ARM, true),
+        arm64(MachOConsts.cpu_type.CPU_TYPE_ARM64);
+
+        private final boolean is32bit;
+        private int machoValue;
+
+        Arch(int machoValue, boolean is32bit) {
+            this.machoValue = machoValue;
+            this.is32bit = is32bit;
+        }
+
+        Arch(int machoValue) {
+            this(machoValue, false);
+        }
+
+        public boolean is32Bit() {
+            return is32bit;
+        }
+
+        public int getMachoValue() {
+            return machoValue;
+        }
+    }
 
     private List<File> sourcePath;
     private Arch arch;
@@ -184,11 +214,11 @@ public class DebuggerConfig {
                 } else if ("-jdwpClientMode".equals(args[i])) {
                     jdwpClienMode = true;
                 } else if ("-jdwpPort".equals(args[i])) {
-                    jdwpPort = Integer.valueOf(args[++i]);
+                    jdwpPort = Integer.parseInt(args[++i]);
                 } else if ("-hooksPortFile".equals(args[i])) {
                     hooksPortFile = new File(args[++i]);
                 } else if ("-hooksPort".equals(args[i])) {
-                    hooksPort = Integer.valueOf(args[++i]);
+                    hooksPort = Integer.parseInt(args[++i]);
                 } else {
                     throw new IllegalArgumentException("Unrecognized option: " + args[i]);
                 }
@@ -217,8 +247,10 @@ public class DebuggerConfig {
         builder.setLogToConsole(logToConsole);
         builder.setJdwpClienMode(jdwpClienMode);
         builder.setJdwpPort(jdwpPort);
-        builder.setHooksPortFile(hooksPortFile);
-        builder.setHooksPort(hooksPort);
+        if (hooksPortFile != null)
+            builder.setHooksPortFile(hooksPortFile);
+        else if (hooksPort != -1)
+            builder.setHooksPort(hooksPort);
         builder.setStandalone(true);
 
         return builder.build();
@@ -238,7 +270,7 @@ public class DebuggerConfig {
         ps.println("  -arch <name>           The name of the LLVM arch to compile for. Allowed values\n"
                 + "                          are 'auto', 'x86', 'x86_64', 'thumbv7', 'arm64'. Default is\n"
                 + "                         'auto' which means use the LLVM default.");
-        ps.println("  -appfile<file>         The path to compiled application file");
+        ps.println("  -appfile <file>        The path to compiled application file");
         ps.println("  -logdir <dir>          The directory to put log file to. Default is temp dir");
         ps.println("  -verbose               Output log messages to console");
         ps.println("  -jdwpClientMode        Specifies that JDWP server shall connect instead of listening");

@@ -18,14 +18,15 @@ package org.robovm.debugger.jdwp.handlers.vm;
 import org.robovm.debugger.jdwp.JdwpConsts;
 import org.robovm.debugger.jdwp.protocol.IJdwpRequestHandler;
 import org.robovm.debugger.state.VmSpecConsts;
-import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
+import org.robovm.debugger.utils.bytebuffer.DataBufferReader;
+import org.robovm.debugger.utils.bytebuffer.DataBufferWriter;
 
 /**
  * Returns the JDWP version implemented by the target VM. The version string format is implementation dependent.
  */
 public class JdwpVmVersionHandler implements IJdwpRequestHandler {
     @Override
-    public short handle(ByteBufferPacket payload, ByteBufferPacket output) {
+    public short handle(DataBufferReader payload, DataBufferWriter output) {
         // description - Text information on the VM version
         output.writeStringWithLen(VmSpecConsts.JDWP_NAME);
         // jdwpMajor - Major JDWP Version number

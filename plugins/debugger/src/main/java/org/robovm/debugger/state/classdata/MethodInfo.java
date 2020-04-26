@@ -15,10 +15,9 @@
  */
 package org.robovm.debugger.state.classdata;
 
-import org.robovm.compiler.plugin.debug.DebuggerDebugMethodInfo;
+import org.robovm.debugger.debuginfo.DebuggerDebugMethodInfo;
 import org.robovm.debugger.utils.Converter;
-import org.robovm.debugger.utils.bytebuffer.ByteBufferMemoryReader;
-import org.robovm.llvm.debuginfo.DwarfDebugMethodInfo;
+import org.robovm.debugger.utils.bytebuffer.DataBufferReader;
 
 /**
  * @author Demyan Kimitsa
@@ -53,15 +52,12 @@ public class MethodInfo extends BaseModifiersInfo {
     private long bpTableAddr;
     // call specification for method build from desc fiend
     private CallSpec callspec;
-    // SP to FP offset and align for ARM targets
-    private int spFpOffset;
-    private int spFpAlign;
 
-    public void readMethodInfo(ByteBufferMemoryReader reader) {
+    public void readMethodInfo(DataBufferReader reader) {
         flags = reader.readInt16();
 
         int vtableIndex = reader.readInt16();
-        name = reader.readStringZAtPtr(reader.readPointer());
+        name = reader.readStringZ(reader.readPointer());
 
         if ((flags & ClassDataConsts.methodinfo.COMPACT_DESC) != 0) {
             switch (reader.readByte()) {
@@ -94,7 +90,7 @@ public class MethodInfo extends BaseModifiersInfo {
                     break;
             }
         } else {
-            desc = reader.readStringZAtPtr(reader.readPointer());
+            desc = reader.readStringZ(reader.readPointer());
         }
 
         if ((flags & ClassDataConsts.methodinfo.ATTRIBUTES) != 0) {
@@ -141,10 +137,8 @@ public class MethodInfo extends BaseModifiersInfo {
         return debugInfo;
     }
 
-    public void setDebugInfo(DebuggerDebugMethodInfo debugInfo, int spFpOffset, int spFpAlign) {
+    public void setDebugInfo(DebuggerDebugMethodInfo debugInfo) {
         this.debugInfo = debugInfo;
-        this.spFpAlign = spFpAlign;
-        this.spFpOffset = spFpOffset;
     }
 
     /**
@@ -159,11 +153,11 @@ public class MethodInfo extends BaseModifiersInfo {
     }
 
     public int spFpOffset() {
-        return spFpOffset;
+        return debugInfo.getSpFpOffset();
     }
 
     public int spFpAlign() {
-        return spFpAlign;
+        return debugInfo.getSpFpAlign();
     }
 
     public boolean isBroCallback() {

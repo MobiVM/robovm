@@ -18,7 +18,8 @@ package org.robovm.debugger.jdwp.handlers.objectreference;
 import org.robovm.debugger.DebuggerException;
 import org.robovm.debugger.jdwp.JdwpConsts;
 import org.robovm.debugger.jdwp.protocol.IJdwpRequestHandler;
-import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
+import org.robovm.debugger.utils.bytebuffer.DataBufferReader;
+import org.robovm.debugger.utils.bytebuffer.DataBufferWriter;
 
 /**
  * @author Demyan Kimitsa
@@ -33,7 +34,7 @@ public class JdwpObjRefGetValuesHandler implements IJdwpRequestHandler {
     }
 
     @Override
-    public short handle(ByteBufferPacket payload, ByteBufferPacket output) {
+    public short handle(DataBufferReader payload, DataBufferWriter output) {
         long objectId = payload.readLong();
         int count = payload.readInt32();
         long[] fields = new long[count];

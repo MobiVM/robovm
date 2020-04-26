@@ -26,11 +26,13 @@ import org.robovm.debugger.state.classdata.ClassInfoPrimitiveImpl;
 import org.robovm.debugger.state.instances.VmArrayInstance;
 import org.robovm.debugger.state.instances.VmThread;
 import org.robovm.debugger.utils.Converter;
-import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
-import org.robovm.debugger.utils.bytebuffer.ByteBufferReader;
+import org.robovm.debugger.utils.DataUtils;
+import org.robovm.debugger.utils.bytebuffer.DataBufferReader;
+import org.robovm.debugger.utils.bytebuffer.DataBufferReaderWriter;
+import org.robovm.debugger.utils.bytebuffer.DataBufferWriter;
 
 import java.nio.ByteOrder;
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 
 /**
  * @author Demyan Kimitsa
@@ -62,7 +64,7 @@ public class JdwpArrayDelegate implements IJdwpArrayDelegate {
     }
 
     @Override
-    public void jdwpArrayGetValue(long arrayId, int index, int length, ByteBufferPacket writer) throws DebuggerException {
+    public void jdwpArrayGetValue(long arrayId, int index, int length, DataBufferWriter writer) throws DebuggerException {
         VmArrayInstance instance;
         try {
             instance = delegates.state().referenceRefIdHolder().instanceById(arrayId);
@@ -75,19 +77,19 @@ public class JdwpArrayDelegate implements IJdwpArrayDelegate {
             throw new DebuggerException(JdwpConsts.Error.INVALID_LENGTH);
 
         // read a memory block from device
-        ByteBufferReader reader;
+        DataBufferReader reader;
         ValueManipulator manipulator;
         ClassInfo elementType = instance.elementType();
         if (elementType.isPrimitive()) {
             ClassInfoPrimitiveImpl primType = (ClassInfoPrimitiveImpl) elementType;
             manipulator = primType.manipulator();
-            delegates.runtime().deviceMemoryReader().setAddress(instance.dataPtr() + primType.size() * index);
-            reader = ByteBufferReader.wrap(delegates.runtime().deviceMemoryReader().readBytes(primType.size() * length));
+            delegates.runtime().deviceMemoryReader().setPosition(instance.dataPtr() + primType.size() * index);
+            reader = DataBufferReader.wrap(delegates.runtime().deviceMemoryReader().readBytes(primType.size() * length));
         } else {
             // class or array, read pointers
             int pointerSize = delegates.runtime().deviceMemoryReader().pointerSize();
-            delegates.runtime().deviceMemoryReader().setAddress(instance.dataPtr() + pointerSize * index);
-            reader = ByteBufferReader.wrap(delegates.runtime().deviceMemoryReader().readBytes(pointerSize * length),
+            delegates.runtime().deviceMemoryReader().setPosition(instance.dataPtr() + pointerSize * index);
+            reader = DataBufferReader.wrap(delegates.runtime().deviceMemoryReader().readBytes(pointerSize * length),
                     delegates.runtime().deviceMemoryReader().is64bit());
             manipulator = delegates.instances().objectManipulator();
         }
@@ -117,7 +119,7 @@ public class JdwpArrayDelegate implements IJdwpArrayDelegate {
     }
 
     @Override
-    public void jdwpArraySetValue(long arrayId, int index, int length, ByteBufferReader reader) throws DebuggerException {
+    public void jdwpArraySetValue(long arrayId, int index, int length, DataBufferReader reader) throws DebuggerException {
         VmArrayInstance instance;
         try {
             instance = delegates.state().referenceRefIdHolder().instanceById(arrayId);
@@ -133,7 +135,7 @@ public class JdwpArrayDelegate implements IJdwpArrayDelegate {
             throw new DebuggerException(JdwpConsts.Error.INVALID_LENGTH);
 
         // read a memory block from device
-        ByteBufferPacket packet = delegates.sharedTargetPacket();
+        DataBufferReaderWriter packet = delegates.sharedTargetPacket();
         packet.reset();
         long destAddr;
         ValueManipulator manipulator;
@@ -162,7 +164,7 @@ public class JdwpArrayDelegate implements IJdwpArrayDelegate {
     public VmArrayInstance createArrayInstance(long objectPtr, ClassInfoArrayImpl ci) {
         // skip object structure and read length
         long dataPtr = objectPtr + delegates.runtime().deviceMemoryReader().pointerSize() * 2;
-        delegates.runtime().deviceMemoryReader().setAddress(dataPtr);
+        delegates.runtime().deviceMemoryReader().setPosition(dataPtr);
         int length = delegates.runtime().deviceMemoryReader().readInt32();
 
         // calculate data pointer
@@ -176,7 +178,7 @@ public class JdwpArrayDelegate implements IJdwpArrayDelegate {
         } else {
             alignSize = delegates.runtime().deviceMemoryReader().pointerSize();
         }
-        dataPtr = (dataPtr + alignSize - 1) & ~(alignSize - 1);
+        dataPtr = DataUtils.align(dataPtr, alignSize);
 
         return new VmArrayInstance(objectPtr, ci, length, dataPtr);
     }
@@ -191,10 +193,10 @@ public class JdwpArrayDelegate implements IJdwpArrayDelegate {
             throw new DebuggerException(JdwpConsts.Error.INVALID_LENGTH);
 
         ClassInfoPrimitiveImpl primType = (ClassInfoPrimitiveImpl) instance.elementType();
-        delegates.runtime().deviceMemoryReader().setAddress(instance.dataPtr() + primType.size() * index);
+        delegates.runtime().deviceMemoryReader().setPosition(instance.dataPtr() + primType.size() * index);
         byte[] bytes = delegates.runtime().deviceMemoryReader().readBytes(primType.size() * length);
         // using UTF-16LE here as target is little endian and each char is short which means that low byte will go first
-        return new String(bytes, Charset.forName("UTF-16LE"));
+        return new String(bytes, StandardCharsets.UTF_16LE);
     }
 
     @Override

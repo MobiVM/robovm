@@ -30,8 +30,10 @@ import org.robovm.debugger.state.instances.VmStringInstance;
 import org.robovm.debugger.utils.DbgLogger;
 import org.robovm.debugger.utils.DebuggerThread;
 import org.robovm.debugger.utils.IDebuggerToolbox;
-import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
-import org.robovm.debugger.utils.bytebuffer.ByteBufferReader;
+import org.robovm.debugger.utils.bytebuffer.DataBufferReader;
+import org.robovm.debugger.utils.bytebuffer.DataBufferReaderWriter;
+import org.robovm.debugger.utils.bytebuffer.DataBufferWriter;
+import org.robovm.debugger.utils.bytebuffer.DataByteBufferWriter;
 
 import java.nio.ByteOrder;
 import java.util.List;
@@ -59,7 +61,7 @@ public class AllDelegates implements IJdwpEventDelegate, IJdwpArrayDelegate, IDe
     /**
      * interface to hooks event processor and JDPW event request handler
      */
-    private JdwpEventCenterDelegate events;
+    private final JdwpEventCenterDelegate events;
 
     /**
      * interface to JDPW array API implementation
@@ -69,7 +71,7 @@ public class AllDelegates implements IJdwpEventDelegate, IJdwpArrayDelegate, IDe
     /**
      * interface to thread delegates
      */
-    private ThreadDelegate threads;
+    private final ThreadDelegate threads;
 
     /**
      * API to JDWPServer set once JDWP handshake complete used if not set lot of activities will not happen
@@ -89,7 +91,7 @@ public class AllDelegates implements IJdwpEventDelegate, IJdwpArrayDelegate, IDe
     /**
      * Shared byte buffer packet that can be used for operations with target once central lock is taken
      */
-    private final ByteBufferPacket sharedTargetPacket;
+    private final DataBufferReaderWriter sharedTargetPacket;
 
     /**
      * Instance operation delegate
@@ -105,7 +107,7 @@ public class AllDelegates implements IJdwpEventDelegate, IJdwpArrayDelegate, IDe
         this.toolBox = new DebuggerToolBox(catcher);
         this.state = state;
         this.threads = new ThreadDelegate(this);
-        this.sharedTargetPacket = new ByteBufferPacket(state.isTarget64bit());
+        this.sharedTargetPacket = new DataByteBufferWriter(state.isTarget64bit());
         this.sharedTargetPacket.setByteOrder(ByteOrder.LITTLE_ENDIAN); // targets are little endian
         this.events = new JdwpEventCenterDelegate(this);
     }
@@ -183,7 +185,7 @@ public class AllDelegates implements IJdwpEventDelegate, IJdwpArrayDelegate, IDe
         return stackframes;
     }
 
-    public ByteBufferPacket sharedTargetPacket() {
+    public DataBufferReaderWriter sharedTargetPacket() {
         return sharedTargetPacket;
     }
 
@@ -242,14 +244,14 @@ public class AllDelegates implements IJdwpEventDelegate, IJdwpArrayDelegate, IDe
     }
 
     @Override
-    public void jdwpArrayGetValue(long arrayId, int index, int length, ByteBufferPacket writer) throws DebuggerException {
+    public void jdwpArrayGetValue(long arrayId, int index, int length, DataBufferWriter writer) throws DebuggerException {
         synchronized (state.centralLock()) {
             arrays.jdwpArrayGetValue(arrayId, index, length, writer);
         }
     }
 
     @Override
-    public void jdwpArraySetValue(long arrayId, int index, int length, ByteBufferReader reader) throws DebuggerException {
+    public void jdwpArraySetValue(long arrayId, int index, int length, DataBufferReader reader) throws DebuggerException {
         synchronized (state.centralLock()) {
             arrays.jdwpArraySetValue(arrayId, index, length, reader);
         }
@@ -322,14 +324,14 @@ public class AllDelegates implements IJdwpEventDelegate, IJdwpArrayDelegate, IDe
     }
 
     @Override
-    public void jdwpFieldGetValues(long objectId, long[] fields, boolean isStatic, ByteBufferPacket output) {
+    public void jdwpFieldGetValues(long objectId, long[] fields, boolean isStatic, DataBufferWriter output) {
         synchronized (state.centralLock()) {
             instances.jdwpFieldGetValues(objectId, fields, isStatic, output);
         }
     }
 
     @Override
-    public void jdwpFieldSetValues(long objectId, int fieldsCount, boolean isStatic, ByteBufferPacket payload) {
+    public void jdwpFieldSetValues(long objectId, int fieldsCount, boolean isStatic, DataBufferReader payload) {
         synchronized (state.centralLock()) {
             instances.jdwpFieldSetValues(objectId, fieldsCount, isStatic, payload);
         }
@@ -344,7 +346,7 @@ public class AllDelegates implements IJdwpEventDelegate, IJdwpArrayDelegate, IDe
 
     @Override
     public void jdwpInvokeMethod(long objectOrClassId, long threadId, long methodId, boolean isStatic,
-                                 boolean singleThread, Object[] args, ByteBufferPacket output) {
+                                 boolean singleThread, Object[] args, DataBufferWriter output) {
         synchronized (state.centralLock()) {
             instances.jdwpInvokeMethod(objectOrClassId, threadId, methodId, isStatic, singleThread,  args, output);
         }
@@ -354,21 +356,21 @@ public class AllDelegates implements IJdwpEventDelegate, IJdwpArrayDelegate, IDe
     // Stack Frame delegate implementation
     //
     @Override
-    public void getFrameValues(long threadId, long frameId, int[] varIndexes, byte[] varTags, ByteBufferPacket output) {
+    public void getFrameValues(long threadId, long frameId, int[] varIndexes, byte[] varTags, DataBufferWriter output) {
         synchronized (state.centralLock()) {
             stackframes.getFrameValues(threadId, frameId, varIndexes, varTags, output);
         }
     }
 
     @Override
-    public void setFrameValues(long threadId, long frameId, ByteBufferPacket payload, int count) {
+    public void setFrameValues(long threadId, long frameId, DataBufferReader payload, int count) {
         synchronized (state.centralLock()) {
             stackframes.setFrameValues(threadId, frameId, payload, count);
         }
     }
 
     @Override
-    public void getFrameVariable(long threadId, long frameId, String variableName, ByteBufferPacket output) {
+    public void getFrameVariable(long threadId, long frameId, String variableName, DataBufferWriter output) {
         synchronized (state.centralLock()) {
             stackframes.getFrameVariable(threadId, frameId, variableName, output);
         }

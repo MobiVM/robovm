@@ -219,6 +219,6 @@ public final class Converter {
         return tag;
     }
 
-    private static Map<Long, Byte> classInfoToTagMap = new HashMap<>();
+    private static final Map<Long, Byte> classInfoToTagMap = new HashMap<>();
 
 }

@@ -28,7 +28,8 @@ import org.robovm.debugger.jdwp.handlers.eventrequest.events.predicates.EventSte
 import org.robovm.debugger.jdwp.handlers.eventrequest.events.predicates.EventThreadRefIdPredicate;
 import org.robovm.debugger.jdwp.JdwpConsts;
 import org.robovm.debugger.jdwp.protocol.IJdwpRequestHandler;
-import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
+import org.robovm.debugger.utils.bytebuffer.DataBufferReader;
+import org.robovm.debugger.utils.bytebuffer.DataBufferWriter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,7 +49,7 @@ public class JdwpEventReqSetHandler implements IJdwpRequestHandler {
     }
 
     @Override
-    public short handle(ByteBufferPacket payload, ByteBufferPacket output) {
+    public short handle(DataBufferReader payload, DataBufferWriter output) {
         // parse input
         byte eventKind = payload.readByte();
         byte suspendPolicy = payload.readByte();

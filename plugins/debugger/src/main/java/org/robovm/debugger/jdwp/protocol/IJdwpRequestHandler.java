@@ -15,7 +15,8 @@
  */
 package org.robovm.debugger.jdwp.protocol;
 
-import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
+import org.robovm.debugger.utils.bytebuffer.DataBufferReader;
+import org.robovm.debugger.utils.bytebuffer.DataBufferWriter;
 
 /**
  * @author Demyan Kimitsa
@@ -29,7 +30,7 @@ public interface IJdwpRequestHandler {
      * @param output to put output data if any
      * @return error code of operation
      */
-    short handle(ByteBufferPacket payload, ByteBufferPacket output);
+    short handle(DataBufferReader payload, DataBufferWriter output);
 
     /**
      * @return command set this handler is working in

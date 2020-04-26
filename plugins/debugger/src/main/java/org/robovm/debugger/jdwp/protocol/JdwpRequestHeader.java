@@ -15,7 +15,7 @@
  */
 package org.robovm.debugger.jdwp.protocol;
 
-import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
+import org.robovm.debugger.utils.bytebuffer.DataBufferReaderWriter;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -31,9 +31,9 @@ public class JdwpRequestHeader {
     public byte commandset;
     public byte command;
 
-    public void readFromStream(InputStream is, ByteBufferPacket packet) throws IOException {
+    public void readFromStream(InputStream is, DataBufferReaderWriter packet) throws IOException {
         packet.reset();
-        packet.fillFromInputStream(is, 11);
+        packet.writeFromStream(is, 11);
         packet.setPosition(0);
         length = packet.readInt32();
         id = packet.readInt32();

@@ -16,12 +16,10 @@
 package org.robovm.debugger.jdwp.handlers.eventrequest.events;
 
 import org.robovm.debugger.jdwp.JdwpConsts;
-import org.robovm.debugger.state.classdata.ClassInfo;
-import org.robovm.debugger.state.classdata.ClassInfoImpl;
 import org.robovm.debugger.state.instances.VmInstance;
 import org.robovm.debugger.state.instances.VmStackTrace;
 import org.robovm.debugger.state.instances.VmThread;
-import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
+import org.robovm.debugger.utils.bytebuffer.DataBufferWriter;
 
 /**
  * @author Demyan Kimitsa
@@ -71,7 +69,7 @@ public class JdwpThreadStoppedEventData extends JdwpEventData {
     }
 
     @Override
-    protected void dumpCustomData(ByteBufferPacket packet) {
+    protected void dumpCustomData(DataBufferWriter packet) {
         // write location
         packet.writeByte(JdwpConsts.TypeTag.CLASS);
         packet.writeLong(location.classInfo().refId());

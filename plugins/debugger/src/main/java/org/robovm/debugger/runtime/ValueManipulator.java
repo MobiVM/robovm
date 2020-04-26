@@ -17,8 +17,8 @@ package org.robovm.debugger.runtime;
 
 import org.robovm.debugger.DebuggerException;
 import org.robovm.debugger.jdwp.JdwpConsts;
-import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
-import org.robovm.debugger.utils.bytebuffer.ByteBufferReader;
+import org.robovm.debugger.utils.bytebuffer.DataBufferReader;
+import org.robovm.debugger.utils.bytebuffer.DataBufferWriter;
 
 /**
  * @author Demyan Kimitsa
@@ -27,20 +27,20 @@ import org.robovm.debugger.utils.bytebuffer.ByteBufferReader;
 public class ValueManipulator {
 
     protected interface Reader {
-        Object read(ByteBufferReader reader);
+        Object read(DataBufferReader reader);
     }
 
     protected interface Writer {
-        void write(ByteBufferPacket writer, Object o);
+        void write(DataBufferWriter writer, Object o);
     }
 
     // writes zeroes in case value is missing
     protected interface UndefinedWriter {
-        void write(ByteBufferPacket writer);
+        void write(DataBufferWriter writer);
     }
 
     protected interface ArrayReader {
-        Object read(ByteBufferReader reader, int length);
+        Object read(DataBufferReader reader, int length);
     }
 
     private final Reader fromDevice;
@@ -78,28 +78,28 @@ public class ValueManipulator {
         this.fromDeviceArray = fromDeviceArray;
     }
 
-    public Object readFromDevice(ByteBufferReader reader) {
+    public Object readFromDevice(DataBufferReader reader) {
         return fromDevice.read(reader);
     }
 
-    public <T> T readArrayFromDevice(ByteBufferReader reader, int length) {
+    public <T> T readArrayFromDevice(DataBufferReader reader, int length) {
         //noinspection unchecked
         return (T)fromDeviceArray.read(reader, length);
     }
 
-    public Object readFromJdwp(ByteBufferReader reader) {
+    public Object readFromJdwp(DataBufferReader reader) {
         return fromJdwp.read(reader);
     }
 
-    public void writeToDevice(ByteBufferPacket writer, Object o) {
+    public void writeToDevice(DataBufferWriter writer, Object o) {
         toDevice.write(writer, o);
     }
 
-    public void writeToJdwp(ByteBufferPacket writer, Object o) {
+    public void writeToJdwp(DataBufferWriter writer, Object o) {
         toJdwp.write(writer, o);
     }
 
-    public void writeDefaultToJdwp(ByteBufferPacket writer) {
+    public void writeDefaultToJdwp(DataBufferWriter writer) {
         toJdwpDefault.write(writer);
     }
 
@@ -107,7 +107,7 @@ public class ValueManipulator {
     // Implementation for manipulators of different kind
     //
     public static ValueManipulator Boolean = new ValueManipulator(
-            ByteBufferReader::readBoolean,
+            DataBufferReader::readBoolean,
             (writer, o) -> writer.writeBoolean((Boolean) o),
             (jdwpWriter, o) -> { jdwpWriter.writeByte(JdwpConsts.Tag.BOOLEAN); jdwpWriter.writeBoolean((Boolean) o); },
             (jdwpWriter) -> { jdwpWriter.writeByte(JdwpConsts.Tag.BOOLEAN); jdwpWriter.writeBoolean(false); },
@@ -119,7 +119,7 @@ public class ValueManipulator {
             });
 
     public static ValueManipulator Byte = new ValueManipulator(
-            ByteBufferReader::readByte,
+            DataBufferReader::readByte,
             (writer, o) -> writer.writeByte((Byte)o),
             (jdwpWriter, o) -> { jdwpWriter.writeByte(JdwpConsts.Tag.BYTE); jdwpWriter.writeByte((Byte)o);},
             (jdwpWriter) -> { jdwpWriter.writeByte(JdwpConsts.Tag.BYTE); jdwpWriter.writeByte((byte)0);},
@@ -131,7 +131,7 @@ public class ValueManipulator {
             });
 
     public static ValueManipulator Character = new ValueManipulator(
-            ByteBufferReader::readChar16,
+            DataBufferReader::readChar16,
             (writer, o) -> writer.writeChar16((Character)o),
             (jdwpWriter, o) -> { jdwpWriter.writeByte(JdwpConsts.Tag.CHAR); jdwpWriter.writeChar16((Character)o);},
             (jdwpWriter) -> { jdwpWriter.writeByte(JdwpConsts.Tag.CHAR); jdwpWriter.writeChar16((char)0);},
@@ -143,7 +143,7 @@ public class ValueManipulator {
             });
 
     public static ValueManipulator Short = new ValueManipulator(
-            ByteBufferReader::readInt16,
+            DataBufferReader::readInt16,
             (writer, o) -> writer.writeInt16((Short)o),
             (jdwpWriter, o) -> { jdwpWriter.writeByte(JdwpConsts.Tag.SHORT); jdwpWriter.writeInt16((Short)o);},
             (jdwpWriter) -> { jdwpWriter.writeByte(JdwpConsts.Tag.SHORT); jdwpWriter.writeInt16((short)0);},
@@ -155,7 +155,7 @@ public class ValueManipulator {
             });
 
     public static ValueManipulator Integer = new ValueManipulator(
-            ByteBufferReader::readInt32,
+            DataBufferReader::readInt32,
             (writer, o) -> writer.writeInt32((Integer)o),
             (jdwpWriter, o) -> { jdwpWriter.writeByte(JdwpConsts.Tag.INT); jdwpWriter.writeInt32((Integer)o);},
             (jdwpWriter) -> { jdwpWriter.writeByte(JdwpConsts.Tag.INT); jdwpWriter.writeInt32(0);},
@@ -167,7 +167,7 @@ public class ValueManipulator {
             });
 
     public static ValueManipulator Long = new ValueManipulator(
-            ByteBufferReader::readLong,
+            DataBufferReader::readLong,
             (writer, o) -> writer.writeLong((Long)o),
             (jdwpWriter, o) -> { jdwpWriter.writeByte(JdwpConsts.Tag.LONG); jdwpWriter.writeLong((Long)o);},
             (jdwpWriter) -> { jdwpWriter.writeByte(JdwpConsts.Tag.LONG); jdwpWriter.writeLong(0L);},
@@ -179,7 +179,7 @@ public class ValueManipulator {
             });
 
     public static ValueManipulator Float = new ValueManipulator(
-            ByteBufferReader::readFloat,
+            DataBufferReader::readFloat,
             (writer, o) -> writer.writeFloat((Float)o),
             (jdwpWriter, o) -> { jdwpWriter.writeByte(JdwpConsts.Tag.FLOAT); jdwpWriter.writeFloat((Float) o);},
             (jdwpWriter) -> { jdwpWriter.writeByte(JdwpConsts.Tag.FLOAT); jdwpWriter.writeFloat(0.0f);},
@@ -191,7 +191,7 @@ public class ValueManipulator {
             });
 
     public static ValueManipulator Double = new ValueManipulator(
-            ByteBufferReader::readDouble,
+            DataBufferReader::readDouble,
             (writer, o) -> writer.writeDouble((Double)o),
             (jdwpWriter, o) -> { jdwpWriter.writeByte(JdwpConsts.Tag.DOUBLE); jdwpWriter.writeDouble((Double) o);},
             (jdwpWriter) -> { jdwpWriter.writeByte(JdwpConsts.Tag.DOUBLE); jdwpWriter.writeDouble(0.0);},

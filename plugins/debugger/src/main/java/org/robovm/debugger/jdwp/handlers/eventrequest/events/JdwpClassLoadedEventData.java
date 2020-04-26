@@ -18,7 +18,7 @@ package org.robovm.debugger.jdwp.handlers.eventrequest.events;
 import org.robovm.debugger.state.classdata.ClassInfoImpl;
 import org.robovm.debugger.state.instances.VmThread;
 import org.robovm.debugger.utils.Converter;
-import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
+import org.robovm.debugger.utils.bytebuffer.DataBufferWriter;
 
 /**
  * @author Demyan Kimitsa
@@ -40,7 +40,7 @@ public class JdwpClassLoadedEventData extends JdwpEventData {
     }
 
     @Override
-    protected void dumpCustomData(ByteBufferPacket packet) {
+    protected void dumpCustomData(DataBufferWriter packet) {
         packet.writeByte(Converter.jdwpTypeTag(classInfo));
         packet.writeLong(classInfo.refId());
         packet.writeStringWithLen(classInfo.signature());

@@ -18,7 +18,8 @@ package org.robovm.debugger.state.classdata;
 import org.robovm.debugger.DebuggerException;
 import org.robovm.debugger.runtime.ValueManipulator;
 import org.robovm.debugger.state.refid.RefIdHolder;
-import org.robovm.debugger.utils.bytebuffer.ByteBufferMemoryReader;
+import org.robovm.debugger.utils.DataUtils;
+import org.robovm.debugger.utils.bytebuffer.DataBufferReader;
 import org.robovm.debugger.utils.macho.MachOException;
 import org.robovm.debugger.utils.macho.MachOLoader;
 
@@ -38,7 +39,7 @@ import java.util.Set;
 public class ClassInfoLoader {
 
     final MachOLoader appFileLoader;
-    final ByteBufferMemoryReader reader;
+    final DataBufferReader reader;
 
     // signature to data info
     private final Map<String, ClassInfo> signatureToDataInfo = new HashMap<>();
@@ -56,7 +57,7 @@ public class ClassInfoLoader {
 
 
     public ClassInfoLoader(RefIdHolder<ClassInfo> classRefIdHolder, RefIdHolder<MethodInfo> methodsRefIdHolder,
-                           RefIdHolder<FieldInfo> fieldRefIdHolder, MachOLoader appFileLoader, ByteBufferMemoryReader reader) {
+                           RefIdHolder<FieldInfo> fieldRefIdHolder, MachOLoader appFileLoader, DataBufferReader reader) {
         this.classRefIdHolder = classRefIdHolder;
         this.methodsRefIdHolder = methodsRefIdHolder;
         this.fieldRefIdHolder = fieldRefIdHolder;
@@ -66,8 +67,8 @@ public class ClassInfoLoader {
         // parse
         long bcBootClassesHash = appFileLoader.resolveSymbol("_bcBootClassesHash");
         long bcClassesHash = appFileLoader.resolveSymbol("_bcClassesHash");
-        parseHash(this.reader.setAddress(bcBootClassesHash).readPointer());
-        parseHash(this.reader.setAddress(bcClassesHash).readPointer());
+        parseHash(this.reader.setPosition(bcBootClassesHash).readPointer());
+        parseHash(this.reader.setPosition(bcClassesHash).readPointer());
 
 
         // create flat list of classes
@@ -75,7 +76,7 @@ public class ClassInfoLoader {
     }
 
     private void parseHash( long hash) {
-        reader.setAddress(hash);
+        reader.setPosition(hash);
         long pointerSize = reader.pointerSize();
         int classInfoCount = reader.readInt32();
         int hashTableSize = reader.readInt32();
@@ -88,11 +89,11 @@ public class ClassInfoLoader {
                 + (hashTableSize << 2)
                 + 4 /* sizeof(uint32_t) this is for the last end index in the hash */;
         // Make sure base is properly aligned
-        base = (base + pointerSize - 1) & ~(pointerSize - 1);
+        base = DataUtils.align(base, pointerSize);
         for (int i = 0; i < classInfoCount; i++) {
-            reader.setAddress(base);
+            reader.setPosition(base);
             long classInfoPtr = reader.readPointer();
-            reader.setAddress(classInfoPtr);
+            reader.setPosition(classInfoPtr);
 
             ClassInfoImpl classInfo = new ClassInfoImpl();
             classInfo.readClassInfoHeader(reader);

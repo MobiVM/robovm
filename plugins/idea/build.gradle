@@ -29,9 +29,6 @@ dependencies {
         exclude group: 'com.mobidevelop.robovm', module: 'robovm-cocoatouch'
         exclude group: 'com.mobidevelop.robovm', module: 'robovm-cacerts-full'
     }
-    compile ("com.mobidevelop.robovm:robovm-debugger:${roboVMVersion}") {
-        exclude group: 'com.mobidevelop.robovm', module: 'robovm-compiler'
-    }
     compile ("com.mobidevelop.robovm:robovm-ibxcode:${roboVMVersion}") {
         exclude group: 'com.mobidevelop.robovm', module: 'robovm-compiler'
     }

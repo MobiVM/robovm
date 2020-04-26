@@ -17,8 +17,6 @@ package org.robovm.debugger.state.classdata;
 
 import org.robovm.debugger.jdwp.JdwpConsts;
 import org.robovm.debugger.runtime.ValueManipulator;
-import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
-import org.robovm.debugger.utils.bytebuffer.ByteBufferReader;
 
 /**
  * @author Demyan Kimitsa
@@ -85,20 +83,4 @@ public class ClassInfoPrimitiveImpl extends ClassInfo {
         // ACC_PUBLIC, ACC_PRIVATE, ACC_PROTECTED are in the 3 least significant bits
         return JdwpConsts.Modifiers.PUBLIC;
     }
-
-
-
-    private interface TargetReader {
-        Object read(ByteBufferReader reader);
-    }
-
-    private interface TargetWritter {
-        void write(ByteBufferPacket packet, Object value);
-    }
-
-    private interface JdwpWritter {
-        void write(ByteBufferPacket packet, Object value);
-    }
-
-
 }

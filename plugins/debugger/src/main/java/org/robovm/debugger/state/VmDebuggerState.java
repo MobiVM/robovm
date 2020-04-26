@@ -15,9 +15,8 @@
  */
 package org.robovm.debugger.state;
 
-import org.robovm.compiler.config.Arch;
+import org.robovm.debugger.DebuggerConfig;
 import org.robovm.debugger.DebuggerException;
-import org.robovm.debugger.jdwp.handlers.eventrequest.events.JdwpEventRequest;
 import org.robovm.debugger.state.classdata.ClassInfo;
 import org.robovm.debugger.state.classdata.ClassInfoLoader;
 import org.robovm.debugger.state.classdata.FieldInfo;
@@ -26,14 +25,13 @@ import org.robovm.debugger.state.instances.VmStackTrace;
 import org.robovm.debugger.state.instances.VmThread;
 import org.robovm.debugger.state.refid.InstanceRefIdHolder;
 import org.robovm.debugger.state.refid.RefIdHolder;
-import org.robovm.debugger.utils.bytebuffer.ByteBufferMemoryReader;
+import org.robovm.debugger.utils.bytebuffer.DataBufferReader;
 import org.robovm.debugger.utils.macho.MachOException;
 import org.robovm.debugger.utils.macho.MachOLoader;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * @author Demyan Kimitsa
@@ -47,13 +45,13 @@ public class VmDebuggerState {
     RefIdHolder<MethodInfo> methodsRefIdHolder = new RefIdHolder<>(RefIdHolder.RefIdType.METHOD_TYPE);
     RefIdHolder<FieldInfo> fieldRefIdHolder = new RefIdHolder<>(RefIdHolder.RefIdType.FIELD_TYPE);
     InstanceRefIdHolder referenceRefIdHolder = new InstanceRefIdHolder();
-    RefIdHolder frameRefIdHolder = new RefIdHolder(RefIdHolder.RefIdType.FRAME_TYPE);
+    RefIdHolder<VmStackTrace> frameRefIdHolder = new RefIdHolder<>(RefIdHolder.RefIdType.FRAME_TYPE);
 
     // list of active threads
     List<VmThread> threads = new ArrayList<>();
 
     MachOLoader appFileLoader;
-    ByteBufferMemoryReader appFileDataMemoryReader;
+    DataBufferReader appFileDataMemoryReader;
     ClassInfoLoader classInfoLoader;
     boolean isTarget64bit;
 
@@ -62,11 +60,11 @@ public class VmDebuggerState {
      */
     Object centralLock = new Object();
 
-    public VmDebuggerState(File appFile, Arch arch) {
+    public VmDebuggerState(File appFile, DebuggerConfig.Arch arch) {
         try {
 
             // load and parse binary, will dig some useful info from it
-            appFileLoader  = new MachOLoader(appFile, MachOLoader.cpuTypeFromString(arch.toString()));
+            appFileLoader  = new MachOLoader(appFile, arch.getMachoValue());
             appFileDataMemoryReader = appFileLoader.memoryReader();
 
             // now load all classes info
@@ -104,7 +102,7 @@ public class VmDebuggerState {
         return appFileLoader;
     }
 
-    public ByteBufferMemoryReader appFileDataMemoryReader() {
+    public DataBufferReader appFileDataMemoryReader() {
         return appFileDataMemoryReader;
     }
 

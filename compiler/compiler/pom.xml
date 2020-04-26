@@ -93,6 +93,10 @@
         </dependency>
         <dependency>
             <groupId>com.mobidevelop.robovm</groupId>
+            <artifactId>robovm-debugger</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.mobidevelop.robovm</groupId>
             <artifactId>robovm-rt</artifactId>
             <scope>test</scope>
         </dependency>

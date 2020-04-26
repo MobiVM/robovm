@@ -15,12 +15,12 @@
  */
 package org.robovm.debugger.jdwp;
 
-import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
+import org.robovm.debugger.utils.bytebuffer.DataBufferReader;
 
 /**
  * @author Demyan Kimitsa
  * Api that application can use to work with server
  */
 public interface IJdwpServerApi {
-    void sendEvent(byte suspendPolicy, int eventsCount, ByteBufferPacket payload);
+    void sendEvent(byte suspendPolicy, int eventsCount, DataBufferReader payload);
 }

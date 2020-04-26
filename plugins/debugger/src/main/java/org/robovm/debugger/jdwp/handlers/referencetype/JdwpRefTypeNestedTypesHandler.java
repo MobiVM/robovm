@@ -17,7 +17,8 @@ package org.robovm.debugger.jdwp.handlers.referencetype;
 
 import org.robovm.debugger.jdwp.JdwpConsts;
 import org.robovm.debugger.jdwp.protocol.IJdwpRequestHandler;
-import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
+import org.robovm.debugger.utils.bytebuffer.DataBufferReader;
+import org.robovm.debugger.utils.bytebuffer.DataBufferWriter;
 
 /**
  * @author Demyan Kimitsa
@@ -25,7 +26,7 @@ import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
  */
 public class JdwpRefTypeNestedTypesHandler implements IJdwpRequestHandler {
     @Override
-    public short handle(ByteBufferPacket payload, ByteBufferPacket output) {
+    public short handle(DataBufferReader payload, DataBufferWriter output) {
         // TODO: there is no direct way to get this information, the only option would be
         // to scan all class names and to check by prefix
         return JdwpConsts.Error.ABSENT_INFORMATION;

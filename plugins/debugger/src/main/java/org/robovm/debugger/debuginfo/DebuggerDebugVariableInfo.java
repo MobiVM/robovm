@@ -1,4 +1,4 @@
-package org.robovm.compiler.plugin.debug;
+package org.robovm.debugger.debuginfo;
 
 /**
  * @author Demyan Kimitsa
@@ -15,7 +15,7 @@ public class DebuggerDebugVariableInfo {
      * constructor used to produce debug information that will be saved to dbg file
      * covers information that is not available in dwarf
      */
-    DebuggerDebugVariableInfo(String name, String typeSignature, boolean isArgument, int startLine, int finalLine) {
+    public DebuggerDebugVariableInfo(String name, String typeSignature, boolean isArgument, int startLine, int finalLine) {
         this.name = name;
         this.typeSignature = typeSignature;
         this.isArgument = isArgument;

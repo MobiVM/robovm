@@ -16,8 +16,8 @@
 package org.robovm.debugger.jdwp.handlers.array;
 
 import org.robovm.debugger.DebuggerException;
-import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
-import org.robovm.debugger.utils.bytebuffer.ByteBufferReader;
+import org.robovm.debugger.utils.bytebuffer.DataBufferReader;
+import org.robovm.debugger.utils.bytebuffer.DataBufferWriter;
 
 /**
  * @author Demyan Kimitsa
@@ -41,7 +41,7 @@ public interface IJdwpArrayDelegate {
      * @param writer packet buffer to dump JDWP data to
      * @throws DebuggerException with JDWP error code if something went wrong
      */
-    void jdwpArrayGetValue(long arrayId, int index, int length, ByteBufferPacket writer) throws DebuggerException;
+    void jdwpArrayGetValue(long arrayId, int index, int length, DataBufferWriter writer) throws DebuggerException;
 
     /**
      * Sets a range of array components
@@ -51,7 +51,7 @@ public interface IJdwpArrayDelegate {
      * @param reader byte buffer reader to read data from
      * @throws DebuggerException with JDWP error code if something went wrong
      */
-    void jdwpArraySetValue(long arrayId, int index, int length, ByteBufferReader reader) throws DebuggerException;
+    void jdwpArraySetValue(long arrayId, int index, int length, DataBufferReader reader) throws DebuggerException;
 
     /**
      * creates new instance of array

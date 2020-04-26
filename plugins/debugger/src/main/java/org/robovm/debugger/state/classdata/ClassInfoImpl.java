@@ -15,15 +15,12 @@
  */
 package org.robovm.debugger.state.classdata;
 
-import org.robovm.compiler.plugin.debug.DebuggerDebugMethodInfo;
-import org.robovm.compiler.plugin.debug.DebuggerDebugObjectFileInfo;
 import org.robovm.debugger.DebuggerException;
+import org.robovm.debugger.debuginfo.DebuggerDebugMethodInfo;
+import org.robovm.debugger.debuginfo.DebuggerDebugObjectFileInfo;
 import org.robovm.debugger.state.refid.RefIdHolder;
 import org.robovm.debugger.utils.Converter;
-import org.robovm.debugger.utils.bytebuffer.ByteBufferMemoryReader;
-import org.robovm.debugger.utils.macho.MachOConsts;
-
-import java.nio.ByteBuffer;
+import org.robovm.debugger.utils.bytebuffer.DataBufferReader;
 
 /**
  * @author Demyan Kimitsa
@@ -82,7 +79,7 @@ public class ClassInfoImpl extends ClassInfo {
         super(Type.CLASS);
     }
 
-    void readClassInfoHeader(ByteBufferMemoryReader reader) {
+    void readClassInfoHeader(DataBufferReader reader) {
         int pointerSize = reader.pointerSize();
 
         //    Class* clazz;
@@ -91,7 +88,7 @@ public class ClassInfoImpl extends ClassInfo {
         flags = reader.readInt32();
         //    const char* className;
         long ptr = reader.readPointer(true);
-        className = reader.readStringZAtPtr(ptr);
+        className = reader.readStringZ(ptr);
         signature = "L" + className + ";";
 
         if (hasError()) {
@@ -100,7 +97,7 @@ public class ClassInfoImpl extends ClassInfo {
 //            ptr = reader.readPointer(true);
 //            String errorMessage = null;
 //            if (ptr != 0) {
-//                errorMessage = reader.readStringZAtPtr(ptr);
+//                errorMessage = reader.readStringZ(ptr);
 //            }
 //            System.out.println("!Class " + className + " has error " + errorType + " due " + errorMessage);
             return;
@@ -120,14 +117,14 @@ public class ClassInfoImpl extends ClassInfo {
         // refer to classinfo.c/readClassInfo for some magic details
 
         // save position to continue once loadData is called
-        endOfHeaderPos = reader.address();
+        endOfHeaderPos = reader.position();
 
         // read little bit more to get super class name
         if (!isInterface()) {
             reader.skip(2 + 2 + 2); // interfaceCount +  fieldCount +  methodCount
             long superNamePtr = reader.readPointer();
             if (superNamePtr != 0) {
-                superclassName = reader.readStringZAtPtr(superNamePtr);
+                superclassName = reader.readStringZ(superNamePtr);
                 superclassSignature = "L" + superclassName + ";";
             }
         }
@@ -146,8 +143,8 @@ public class ClassInfoImpl extends ClassInfo {
         debugInfo = readDebugInfo(loader);
 
 
-        ByteBufferMemoryReader reader = loader.reader;
-        reader.setAddress(endOfHeaderPos);
+        DataBufferReader reader = loader.reader;
+        reader.setPosition(endOfHeaderPos);
         int interfaceCount = reader.readInt16();
         int fieldCount = reader.readInt16();
         int methodCount = reader.readInt16();
@@ -166,7 +163,7 @@ public class ClassInfoImpl extends ClassInfo {
         interfaces = new ClassInfo[interfaceCount];
         for (int idx = 0; idx < interfaceCount; idx++) {
             long ptr = reader.readPointer();
-            String interfaceSignature = "L" + reader.readStringZAtPtr(ptr) + ";";
+            String interfaceSignature = "L" + reader.readStringZ(ptr) + ";";
             interfaces[idx] = loader.classInfoBySignature(interfaceSignature);
             if (interfaces[idx] == null)
                 throw new DebuggerException("Interface '" + interfaceSignature + "' not found in " + className);
@@ -189,12 +186,11 @@ public class ClassInfoImpl extends ClassInfo {
         }
 
         // read value
-        loader.reader.setAddress(addr);
-        ByteBuffer buffer = loader.reader.sliceToByteBuffer();
-        return DebuggerDebugObjectFileInfo.readDebugInfo(buffer);
+        loader.reader.setPosition(addr);
+        return DebuggerDebugObjectFileInfo.readDebugInfo(loader.reader.slice());
     }
 
-    private void readFields(ByteBufferMemoryReader reader, int fieldCount, RefIdHolder<FieldInfo> fieldRefIdHolder) {
+    private void readFields(DataBufferReader reader, int fieldCount, RefIdHolder<FieldInfo> fieldRefIdHolder) {
         // refer: bc.c#loadFields
         // refer: classinfo.c#readFieldInfo
         fields = new FieldInfo[fieldCount];
@@ -205,7 +201,7 @@ public class ClassInfoImpl extends ClassInfo {
         }
     }
 
-    private void readMethods(ByteBufferMemoryReader reader, int methodCount, ClassInfoLoader loader) {
+    private void readMethods(DataBufferReader reader, int methodCount, ClassInfoLoader loader) {
         // refer: bc.c#loadMethod
         // refer: classinfo.c#readMethodInfo
         RefIdHolder<MethodInfo> methodsRefIdHolder = loader.methodsRefIdHolder;
@@ -223,8 +219,6 @@ public class ClassInfoImpl extends ClassInfo {
             if (!methodInfo.isNative()) {
                 DebuggerDebugMethodInfo methodDebugInfo = null;
                 long bpTableAddr = -1;
-                int spFpOffset = -1;
-                int spFpAlign = -1;
                 if (debugInfo != null) {
                     methodDebugInfo = debugInfo.methodBySignature(methodInfo.name() + methodInfo.signature());
 
@@ -233,44 +227,15 @@ public class ClassInfoImpl extends ClassInfo {
                         String bpTableSymbol = "[j]" + className.replace('/', '.') + "." + methodInfo.name() + methodInfo.signature() + "[bptable]";
                         bpTableAddr = loader.appFileLoader.resolveSymbol(bpTableSymbol);
                     }
-
-                    // resolve spFp offset and align
-                    if (methodDebugInfo != null && (loader.appFileLoader.cpuType() == MachOConsts.cpu_type.CPU_TYPE_ARM64 ||
-                            loader.appFileLoader.cpuType() == MachOConsts.cpu_type.CPU_TYPE_ARM)) {
-                        String spFpOffsetSymbol = "[J]" + className.replace('/', '.') + "." + methodInfo.name() + methodInfo.signature() + ".spfpoffset";
-                        long spFpOffsetAddr = loader.appFileLoader.resolveSymbol(spFpOffsetSymbol);
-                        if (spFpOffsetAddr != -1) {
-                            long oldAddr = reader.address();
-                            reader.setAddress(spFpOffsetAddr);
-                            int spFpOffsetValue = reader.readInt32();
-                            reader.setAddress(oldAddr);
-                            // unpack values -- here is how it is set in
-                            // bellow are original comments from patch
-                            //
-                            // We divide by 4 since the offset is always at least a multiple of 4.
-                            // uint32_t spFpOffset = (GPRCS1Size - 8 + GPRCS2Size + DPRGapSize + DPRCSSize + NumBytes + AFI->getNumAlignedDPRCS2Regs()*8) >> 2;
-                            // Calculate the stack alignment. It's at least a multiple of 4 so we divide by 4.
-                            // We subtract by 1 since alignment/4 is always at least 1.
-                            // uint32_t spAlignment = (MFI->getMaxAlignment() >> 2) - 1;
-                            // We store the stack alignment in the 4 MSBs of the symbol value.
-                            //  Offset->setVariableValue(MCConstantExpr::Create(spFpOffset | (spAlignment << 28), Context));
-                            spFpOffset = (spFpOffsetValue & ((1 << 28) - 1)) << 2;
-                            spFpAlign = ((spFpOffsetValue >> 28) + 1) << 2;
-                        }
-                    } else {
-                        // for x86 keep these as zero
-                        spFpOffset = 0;
-                        spFpAlign = 0;
-                    }
                 }
 
-                if (methodDebugInfo != null && spFpAlign != -1) {
-                    methodInfo.setDebugInfo(methodDebugInfo, spFpOffset, spFpAlign);
+                if (methodDebugInfo != null && bpTableAddr != -1) {
+                    methodInfo.setDebugInfo(methodDebugInfo);
                     methodInfo.setBpTableAddr(bpTableAddr);
                 } else {
                     // there is no debug info and it will not be possible to work with this method, so mark it as native
                     // to keep debugger away from it
-                    methodInfo.markAsNative();;
+                    methodInfo.markAsNative();
                 }
             }
             methodsRefIdHolder.addObject(methodInfo);
@@ -342,4 +307,6 @@ public class ClassInfoImpl extends ClassInfo {
 
         return sourceFile;
     }
+
+
 }

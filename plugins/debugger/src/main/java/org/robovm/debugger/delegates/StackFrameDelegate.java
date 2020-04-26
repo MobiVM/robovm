@@ -15,10 +15,10 @@
  */
 package org.robovm.debugger.delegates;
 
-import org.apache.commons.lang3.tuple.Pair;
-import org.robovm.compiler.plugin.debug.DebuggerDebugMethodInfo;
-import org.robovm.compiler.plugin.debug.DebuggerDebugVariableInfo;
 import org.robovm.debugger.DebuggerException;
+import org.robovm.debugger.debuginfo.DebuggerDebugAllocaInfo;
+import org.robovm.debugger.debuginfo.DebuggerDebugMethodInfo;
+import org.robovm.debugger.debuginfo.DebuggerDebugVariableInfo;
 import org.robovm.debugger.jdwp.JdwpConsts;
 import org.robovm.debugger.jdwp.handlers.stackframe.IJdwpStackFrameDelegate;
 import org.robovm.debugger.state.VmDebuggerState;
@@ -27,9 +27,10 @@ import org.robovm.debugger.state.classdata.ClassInfoLoader;
 import org.robovm.debugger.state.classdata.RuntimeClassInfoLoader;
 import org.robovm.debugger.state.instances.VmStackTrace;
 import org.robovm.debugger.state.instances.VmThread;
-import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
-import org.robovm.llvm.debuginfo.DwarfDebugMethodInfo;
-import org.robovm.llvm.debuginfo.DwarfDebugVariableInfo;
+import org.robovm.debugger.utils.DataUtils;
+import org.robovm.debugger.utils.Pair;
+import org.robovm.debugger.utils.bytebuffer.DataBufferReader;
+import org.robovm.debugger.utils.bytebuffer.DataBufferWriter;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -52,7 +53,7 @@ public class StackFrameDelegate implements IJdwpStackFrameDelegate {
      * reads frame local variables
      */
     @Override
-    public void getFrameValues(long threadId, long frameId, int[] varIndexes, byte[] varTags, ByteBufferPacket output) {
+    public void getFrameValues(long threadId, long frameId, int[] varIndexes, byte[] varTags, DataBufferWriter output) {
         VmDebuggerState state = delegates.state();
         // get variables just to validate that these are there and cast is working
         VmThread thread = state.referenceRefIdHolder().instanceById(threadId);
@@ -72,14 +73,14 @@ public class StackFrameDelegate implements IJdwpStackFrameDelegate {
             throw new DebuggerException(JdwpConsts.Error.INTERNAL);
 
         // get visible variables for frame PC offset
-        Pair<DebuggerDebugVariableInfo[], DwarfDebugVariableInfo[]> variablesAllocas;
+        Pair<DebuggerDebugVariableInfo[], DebuggerDebugAllocaInfo[]> variablesAllocas;
         variablesAllocas = debugInfo.getVisibleVariables((int) frame.pcoffset());
 
         // make a map of visible variable to alloca
-        Map<DebuggerDebugVariableInfo, DwarfDebugVariableInfo> variableToAlloca = new HashMap<>();
+        Map<DebuggerDebugVariableInfo, DebuggerDebugAllocaInfo> variableToAlloca = new HashMap<>();
         if (variablesAllocas != null) {
-            DebuggerDebugVariableInfo[] variables = variablesAllocas.getLeft();
-            DwarfDebugVariableInfo[] allocas = variablesAllocas.getRight();
+            DebuggerDebugVariableInfo[] variables = variablesAllocas.left;
+            DebuggerDebugAllocaInfo[] allocas = variablesAllocas.right;
             for (int idx = 0; idx < variables.length; idx++)
                 variableToAlloca.put(variables[idx], allocas[idx]);
         }
@@ -117,7 +118,7 @@ public class StackFrameDelegate implements IJdwpStackFrameDelegate {
         // now can fetch data
         for (int idx : varIndexes) {
             // read variable right to JDPW output
-            DwarfDebugVariableInfo alloca = variableToAlloca.get(variables[idx]);
+            DebuggerDebugAllocaInfo alloca = variableToAlloca.get(variables[idx]);
             if (alloca != null) {
                 long addr = getVariableAddress(frame, alloca);
                 delegates.instances().getMemoryValue(addr, classinfos[idx], output);
@@ -133,7 +134,7 @@ public class StackFrameDelegate implements IJdwpStackFrameDelegate {
      * gets frame local variable by its name (actually to get this value only)
      */
     @Override
-    public void getFrameVariable(long threadId, long frameId, String variableName, ByteBufferPacket output) {
+    public void getFrameVariable(long threadId, long frameId, String variableName, DataBufferWriter output) {
         VmDebuggerState state = delegates.state();
         // get variables just to validate that these are there and cast is working
         VmThread thread = state.referenceRefIdHolder().instanceById(threadId);
@@ -152,14 +153,14 @@ public class StackFrameDelegate implements IJdwpStackFrameDelegate {
         if (frame.pcoffset() < 0 || frame.pcoffset() > Integer.MAX_VALUE)
             throw new DebuggerException(JdwpConsts.Error.INTERNAL);
 
-        Pair<DebuggerDebugVariableInfo[], DwarfDebugVariableInfo[]> variablesAllocas;
+        Pair<DebuggerDebugVariableInfo[], DebuggerDebugAllocaInfo[]> variablesAllocas;
         variablesAllocas = debugInfo.getVisibleVariables((int) frame.pcoffset());
         if (variablesAllocas == null)
             throw new DebuggerException(JdwpConsts.Error.INTERNAL);
 
         // move through variables and find the one
-        DebuggerDebugVariableInfo[] variables = variablesAllocas.getLeft();
-        DwarfDebugVariableInfo[] allocas = variablesAllocas.getRight();
+        DebuggerDebugVariableInfo[] variables = variablesAllocas.left;
+        DebuggerDebugAllocaInfo[] allocas = variablesAllocas.right;
         int varIdx = -1;
         for (int idx = 0; idx < variables.length; idx++) {
             if (variables[idx].name().equals(variableName)) {
@@ -172,7 +173,7 @@ public class StackFrameDelegate implements IJdwpStackFrameDelegate {
             // read variable right to JDPW output
             // check if variable is loaded
             DebuggerDebugVariableInfo variable = variables[varIdx];
-            DwarfDebugVariableInfo alloca = allocas[varIdx];
+            DebuggerDebugAllocaInfo alloca = allocas[varIdx];
             ClassInfo ci = state.classInfoLoader().classInfoBySignature(variable.typeSignature());
             if (ci == null || ci.clazzPtr() == 0) {
                 // should not happen
@@ -196,7 +197,7 @@ public class StackFrameDelegate implements IJdwpStackFrameDelegate {
      * @param count    number of frame values to set
      */
     @Override
-    public void setFrameValues(long threadId, long frameId, ByteBufferPacket fromJdpw, int count) {
+    public void setFrameValues(long threadId, long frameId, DataBufferReader fromJdpw, int count) {
         VmDebuggerState state = delegates.state();
         // get variables just to validate that these are there and cast is working
         VmThread thread = state.referenceRefIdHolder().instanceById(threadId);
@@ -216,14 +217,14 @@ public class StackFrameDelegate implements IJdwpStackFrameDelegate {
             throw new DebuggerException(JdwpConsts.Error.INTERNAL);
 
         // get visible variables for frame PC offset
-        Pair<DebuggerDebugVariableInfo[], DwarfDebugVariableInfo[]> variablesAllocas;
+        Pair<DebuggerDebugVariableInfo[], DebuggerDebugAllocaInfo[]> variablesAllocas;
         variablesAllocas = debugInfo.getVisibleVariables((int) frame.pcoffset());
 
         // make a map of visible variable to alloca
-        Map<DebuggerDebugVariableInfo, DwarfDebugVariableInfo> variableToAlloca = new HashMap<>();
+        Map<DebuggerDebugVariableInfo, DebuggerDebugAllocaInfo> variableToAlloca = new HashMap<>();
         if (variablesAllocas != null) {
-            DebuggerDebugVariableInfo[] variables = variablesAllocas.getLeft();
-            DwarfDebugVariableInfo[] allocas = variablesAllocas.getRight();
+            DebuggerDebugVariableInfo[] variables = variablesAllocas.left;
+            DebuggerDebugAllocaInfo[] allocas = variablesAllocas.right;
             for (int idx = 0; idx < variables.length; idx++)
                 variableToAlloca.put(variables[idx], allocas[idx]);
         }
@@ -261,7 +262,7 @@ public class StackFrameDelegate implements IJdwpStackFrameDelegate {
                 }
             }
 
-            DwarfDebugVariableInfo alloca = variableToAlloca.get(variables[idx]);
+            DebuggerDebugAllocaInfo alloca = variableToAlloca.get(variables[idx]);
             if (alloca != null) {
                 // write variable value right from jdpw payload
                 long addr = getVariableAddress(frame, alloca);
@@ -281,21 +282,21 @@ public class StackFrameDelegate implements IJdwpStackFrameDelegate {
      * @param variableInfo information of variable location within stack
      * @return variable address
      */
-    private long getVariableAddress(VmStackTrace frame, DwarfDebugVariableInfo variableInfo) {
+    private long getVariableAddress(VmStackTrace frame, DebuggerDebugAllocaInfo variableInfo) {
         // get the memory address to read from based on debug information
         long addr;
-        if (variableInfo.register() == DwarfDebugVariableInfo.OP_fbreg) {
+        if (variableInfo.register() == DebuggerDebugAllocaInfo.OP_fbreg) {
             // FP register on x86 and ARM64
             addr = frame.fp() + variableInfo.offset();
-        } else  if (variableInfo.register() == DwarfDebugVariableInfo.OP_breg31 || variableInfo.register() == DwarfDebugVariableInfo.OP_breg13){
+        } else  if (variableInfo.register() == DebuggerDebugAllocaInfo.OP_breg31 || variableInfo.register() == DebuggerDebugAllocaInfo.OP_breg13){
             // SP on thumb7(R13)
             // RSP register on ARM64
             // align using SpFpOffset data
-            addr = (frame.fp() - frame.methodInfo().spFpOffset()) & ~(frame.methodInfo().spFpAlign() - 1);
+            addr = DataUtils.alignFloor(frame.fp() - frame.methodInfo().spFpOffset(), frame.methodInfo().spFpAlign());
             addr += variableInfo.offset();
         } else {
             // TODO:
-            throw new DebuggerException("Unexpected register for stack trace variable " + DwarfDebugVariableInfo.registerName(variableInfo.register()));
+            throw new DebuggerException("Unexpected register for stack trace variable " + DebuggerDebugAllocaInfo.registerName(variableInfo.register()));
         }
 
         return addr;

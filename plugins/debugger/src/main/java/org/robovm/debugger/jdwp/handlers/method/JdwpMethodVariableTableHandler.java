@@ -15,15 +15,14 @@
  */
 package org.robovm.debugger.jdwp.handlers.method;
 
-import org.robovm.compiler.plugin.debug.DebuggerDebugMethodInfo;
-import org.robovm.compiler.plugin.debug.DebuggerDebugVariableInfo;
+import org.robovm.debugger.debuginfo.DebuggerDebugMethodInfo;
+import org.robovm.debugger.debuginfo.DebuggerDebugVariableInfo;
 import org.robovm.debugger.jdwp.JdwpConsts;
 import org.robovm.debugger.jdwp.protocol.IJdwpRequestHandler;
 import org.robovm.debugger.state.VmDebuggerState;
 import org.robovm.debugger.state.classdata.MethodInfo;
-import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
-import org.robovm.llvm.debuginfo.DwarfDebugMethodInfo;
-import org.robovm.llvm.debuginfo.DwarfDebugVariableInfo;
+import org.robovm.debugger.utils.bytebuffer.DataBufferReader;
+import org.robovm.debugger.utils.bytebuffer.DataBufferWriter;
 
 /**
  * @author Demyan Kimitsa
@@ -38,7 +37,7 @@ public class JdwpMethodVariableTableHandler implements IJdwpRequestHandler {
     }
 
     @Override
-    public short handle(ByteBufferPacket payload, ByteBufferPacket output) {
+    public short handle(DataBufferReader payload, DataBufferWriter output) {
         long refTypeId = payload.readLong();
         long methodId = payload.readLong();
         synchronized (state.centralLock()) {

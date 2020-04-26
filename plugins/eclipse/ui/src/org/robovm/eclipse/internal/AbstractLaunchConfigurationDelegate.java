@@ -120,7 +120,6 @@ public abstract class AbstractLaunchConfigurationDelegate extends AbstractJavaLa
             String[] bootclasspath = getBootpath(configuration);
             IJavaProject javaProject = getJavaProject(configuration);
             int debuggerPort = findFreePort();
-            boolean hasDebugPlugin = false;
 
             if (monitor.isCanceled()) {
                 return;
@@ -168,13 +167,6 @@ public abstract class AbstractLaunchConfigurationDelegate extends AbstractJavaLa
                 configBuilder.addPluginArgument("debug:logdir=" + logDir.getAbsolutePath());
                 configBuilder.addPluginArgument("debug:clientmode=false");
                 configBuilder.addPluginArgument("debug:logconsole=true");
-                
-                // check if we have the debug plugin
-                for (Plugin plugin : configBuilder.getPlugins()) {
-                    if ("DebuggerLaunchPlugin".equals(plugin.getClass().getSimpleName())) {
-                        hasDebugPlugin = true;
-                    }
-                }
             }
 
             if (bootclasspath != null) {
@@ -274,7 +266,7 @@ public abstract class AbstractLaunchConfigurationDelegate extends AbstractJavaLa
                 IProcess iProcess = DebugPlugin.newProcess(launch, process, label);
                 
                 // setup the debugger
-                if (ILaunchManager.DEBUG_MODE.equals(mode) && hasDebugPlugin) {
+                if (ILaunchManager.DEBUG_MODE.equals(mode)) {
                     VirtualMachine vm = attachToVm(monitor, debuggerPort);
                     // we were canceled
                     if (vm == null) {

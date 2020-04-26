@@ -15,8 +15,8 @@
  */
 package org.robovm.debugger.utils.macho.structs;
 
-import org.robovm.debugger.utils.bytebuffer.ByteBufferArrayReader;
-import org.robovm.debugger.utils.bytebuffer.ByteBufferReader;
+import org.robovm.debugger.utils.bytebuffer.DataBufferArrayReader;
+import org.robovm.debugger.utils.bytebuffer.DataBufferReader;
 
 /**
  * @author Demyan Kimitsa
@@ -31,14 +31,14 @@ public class FatArch {
     private long reserved;
     private boolean is64b;
 
-    public FatArch(ByteBufferReader reader, boolean is64b) {
+    public FatArch(DataBufferReader reader, boolean is64b) {
         if (is64b)
             read64(reader);
         else
             read32(reader);
     }
 
-    public FatArch read32(ByteBufferReader reader) {
+    public FatArch read32(DataBufferReader reader) {
         //cpu_type_t	cputype;	/* cpu specifier (int) */
         cputype = reader.readInt32();
         //cpu_subtype_t	cpusubtype;	/* machine specifier (int) */
@@ -53,7 +53,7 @@ public class FatArch {
         return this;
     }
 
-    public FatArch read64(ByteBufferReader reader) {
+    public FatArch read64(DataBufferReader reader) {
         //cpu_type_t	cputype;	/* cpu specifier (int) */
         cputype = reader.readInt32();
         //cpu_subtype_t	cpusubtype;	/* machine specifier (int) */
@@ -94,21 +94,21 @@ public class FatArch {
         return is64b;
     }
 
-    private static ByteBufferArrayReader.ObjectReader<FatArch> objectReader32 = new ByteBufferArrayReader.ObjectReader<FatArch>() {
+    private static DataBufferArrayReader.ObjectReader<FatArch> objectReader32 = new DataBufferArrayReader.ObjectReader<FatArch>() {
         @Override
-        public FatArch readObject(ByteBufferReader reader, FatArch object) {
+        public FatArch readObject(DataBufferReader reader, FatArch object) {
             return object == null ? new FatArch(reader, false) : object.read32(reader);
         }
     };
 
-    private static ByteBufferArrayReader.ObjectReader<FatArch> objectReader64 = new ByteBufferArrayReader.ObjectReader<FatArch>() {
+    private static DataBufferArrayReader.ObjectReader<FatArch> objectReader64 = new DataBufferArrayReader.ObjectReader<FatArch>() {
         @Override
-        public FatArch readObject(ByteBufferReader reader, FatArch object) {
+        public FatArch readObject(DataBufferReader reader, FatArch object) {
             return object == null ? new FatArch(reader, true) : object.read64(reader);
         }
     };
 
-    public static ByteBufferArrayReader.ObjectReader<FatArch> OBJECT_READER(boolean is64b) {
+    public static DataBufferArrayReader.ObjectReader<FatArch> OBJECT_READER(boolean is64b) {
         return is64b ? objectReader64 : objectReader32;
     }
 

@@ -18,36 +18,37 @@ package org.robovm.debugger.utils.bytebuffer;
 import java.util.Iterator;
 
 /**
+ * Reads array elements from data buffer
+ *
  * @author Demyan Kimitsa
- * Reads array elements from byte-buffer
  */
-public class ByteBufferArrayReader<T> implements Iterable<T> {
-    private final ByteBufferReader bufferReader;
+public class DataBufferArrayReader<T> implements Iterable<T> {
+    private final DataBufferReader bufferReader;
     private final int elementSize;
     private final ObjectReader<T> objectReader;
-    private final int size;
+    private final int count;
     private final boolean reuseElement;
     private T lastAccessedObject;
 
     public interface ObjectReader<T> {
-        T readObject(ByteBufferReader reader, T object);
+        T readObject(DataBufferReader reader, T object);
     }
 
-    public ByteBufferArrayReader(ByteBufferReader bufferReader, int elementSize, ObjectReader<T> objectReader, boolean reuseElement) {
+    public DataBufferArrayReader(DataBufferReader bufferReader, int elementSize, ObjectReader<T> objectReader, boolean reuseElement) {
         this.bufferReader = bufferReader;
         this.elementSize = elementSize;
         this.objectReader = objectReader;
-        this.size = bufferReader.size() / elementSize;
+        this.count = bufferReader.size() / elementSize;
         this.reuseElement = reuseElement;
     }
 
-    public ByteBufferArrayReader(ByteBufferReader bufferReader, int elementSize, ObjectReader<T> objectReader) {
+    public DataBufferArrayReader(DataBufferReader bufferReader, int elementSize, ObjectReader<T> objectReader) {
         this(bufferReader, elementSize, objectReader, true);
     }
 
     public T get(int index) {
-        if (index >= size)
-            throw new IllegalArgumentException();
+        if (index >= count)
+            throw new IndexOutOfBoundsException();
 
         bufferReader.setPosition(elementSize * index);
         lastAccessedObject = objectReader.readObject(bufferReader, reuseElement ? lastAccessedObject : null);
@@ -56,8 +57,8 @@ public class ByteBufferArrayReader<T> implements Iterable<T> {
         return lastAccessedObject;
     }
 
-    public int size() {
-        return size;
+    public int count() {
+        return count;
     }
 
     @Override
@@ -67,7 +68,7 @@ public class ByteBufferArrayReader<T> implements Iterable<T> {
 
             @Override
             public boolean hasNext() {
-                return idx < size;
+                return idx < count;
             }
 
             @Override

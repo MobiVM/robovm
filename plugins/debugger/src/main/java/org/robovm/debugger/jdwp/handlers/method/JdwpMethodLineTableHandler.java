@@ -15,13 +15,13 @@
  */
 package org.robovm.debugger.jdwp.handlers.method;
 
-import org.robovm.compiler.plugin.debug.DebuggerDebugMethodInfo;
+import org.robovm.debugger.debuginfo.DebuggerDebugMethodInfo;
 import org.robovm.debugger.jdwp.JdwpConsts;
 import org.robovm.debugger.jdwp.protocol.IJdwpRequestHandler;
 import org.robovm.debugger.state.VmDebuggerState;
 import org.robovm.debugger.state.classdata.MethodInfo;
-import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
-import org.robovm.llvm.debuginfo.DwarfDebugMethodInfo;
+import org.robovm.debugger.utils.bytebuffer.DataBufferReader;
+import org.robovm.debugger.utils.bytebuffer.DataBufferWriter;
 
 /**
  * @author Demyan Kimitsa
@@ -37,7 +37,7 @@ public class JdwpMethodLineTableHandler implements IJdwpRequestHandler {
     }
 
     @Override
-    public short handle(ByteBufferPacket payload, ByteBufferPacket output) {
+    public short handle(DataBufferReader payload, DataBufferWriter output) {
         long refTypeId = payload.readLong();
         long methodId = payload.readLong();
         synchronized (state.centralLock()) {
@@ -59,10 +59,10 @@ public class JdwpMethodLineTableHandler implements IJdwpRequestHandler {
 
             // read bptable from mach-o executable, it contains bits set where lines are not available
             int arraySize = ((finalLine - startLine + 1) + 7) / 8;
-            state.appFileDataMemoryReader().setAddress(methodInfo.bpTableAddr());
+            state.appFileDataMemoryReader().setPosition(methodInfo.bpTableAddr());
             byte[] bpTable = state.appFileDataMemoryReader().readBytes(arraySize);
 
-            int savedCntPos = output.position();
+            long savedCntPos = output.position();
             output.writeInt32(0); // count map entries -- will be set once calculated
             int cnt = 0;
             int idx = 0;

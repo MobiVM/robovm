@@ -15,8 +15,8 @@
  */
 package org.robovm.debugger.utils.macho.cmds;
 
-import org.robovm.debugger.utils.bytebuffer.ByteBufferArrayReader;
-import org.robovm.debugger.utils.bytebuffer.ByteBufferReader;
+import org.robovm.debugger.utils.bytebuffer.DataBufferArrayReader;
+import org.robovm.debugger.utils.bytebuffer.DataBufferReader;
 import org.robovm.debugger.utils.macho.structs.Section;
 
 /**
@@ -37,14 +37,14 @@ public class SegmentCommand {
     private Section[] sections;
     private boolean is64b;
 
-    public SegmentCommand(ByteBufferReader reader, boolean is64b, int firstSectionIdx) {
+    public SegmentCommand(DataBufferReader reader, boolean is64b, int firstSectionIdx) {
         if (is64b)
             read64(reader, firstSectionIdx);
         else
             read32(reader, firstSectionIdx);
     }
 
-    public SegmentCommand read32(ByteBufferReader reader, int firstSectionIdx) {
+    public SegmentCommand read32(DataBufferReader reader, int firstSectionIdx) {
         is64b = false;
 
         //char		segname[16];	/* segment name */
@@ -73,7 +73,7 @@ public class SegmentCommand {
     }
 
 
-    public SegmentCommand read64(ByteBufferReader reader, int firstSectionIdx) {
+    public SegmentCommand read64(DataBufferReader reader, int firstSectionIdx) {
         is64b = true;
 
         //char		segname[16];	/* segment name */
@@ -101,12 +101,12 @@ public class SegmentCommand {
         return this;
     }
 
-    private void readSections(ByteBufferReader reader) {
+    private void readSections(DataBufferReader reader) {
         sections = new Section[(int) nsects];
         if (nsects == 0)
             return;
-        ByteBufferReader sectReader = reader.slice((int) (Section.ITEM_SIZE(is64b()) * nsects));
-        ByteBufferArrayReader<Section> arrayReader = new ByteBufferArrayReader<>(sectReader,
+        DataBufferReader sectReader = reader.slice((int) (Section.ITEM_SIZE(is64b()) * nsects));
+        DataBufferArrayReader<Section> arrayReader = new DataBufferArrayReader<>(sectReader,
                 Section.ITEM_SIZE(is64b), Section.OBJECT_READER(is64b), false);
         // dump sections
         int idx = 0;

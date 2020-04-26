@@ -36,8 +36,10 @@ import org.robovm.debugger.state.instances.VmStringInstance;
 import org.robovm.debugger.state.instances.VmThread;
 import org.robovm.debugger.state.instances.VmThreadGroup;
 import org.robovm.debugger.utils.Converter;
-import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
-import org.robovm.debugger.utils.bytebuffer.ByteBufferReader;
+import org.robovm.debugger.utils.bytebuffer.DataBufferReader;
+import org.robovm.debugger.utils.bytebuffer.DataBufferReaderWriter;
+import org.robovm.debugger.utils.bytebuffer.DataBufferWriter;
+import org.robovm.debugger.utils.bytebuffer.DataByteBufferWriter;
 
 import java.nio.ByteOrder;
 import java.util.ArrayList;
@@ -58,7 +60,7 @@ public class InstanceUtils {
     /**
      * maps class ref id to resolved instantiator
      */
-    private Map<Long, Instantiator> instantiatorForClassRefId = new HashMap<>();
+    private final Map<Long, Instantiator> instantiatorForClassRefId = new HashMap<>();
 
 
     /**
@@ -178,7 +180,7 @@ public class InstanceUtils {
      * @return fields value
      */
     @SuppressWarnings("unchecked")
-    private <T> T getFieldValue(long objectPtr, ClassInfo ci, FieldInfo fi, ByteBufferPacket jdwpOutput) throws DebuggerException {
+    private <T> T getFieldValue(long objectPtr, ClassInfo ci, FieldInfo fi, DataBufferWriter jdwpOutput) throws DebuggerException {
         String signature = fi.signature();
         // is resolved already ?
         ClassInfo fieldTypeInfo = fi.typeInfo();
@@ -208,9 +210,9 @@ public class InstanceUtils {
      * @param jdwpOutput if not null -- also outputs data to buffer packet
      * @return object read
      */
-    public Object getMemoryValue(long objectPtr, ClassInfo ci, ByteBufferPacket jdwpOutput) {
+    public Object getMemoryValue(long objectPtr, ClassInfo ci, DataBufferWriter jdwpOutput) {
         ValueManipulator valueManipulator;
-        delegates.runtime().deviceMemoryReader().setAddress(objectPtr);
+        delegates.runtime().deviceMemoryReader().setPosition(objectPtr);
         if (ci != null && ci.isPrimitive()) {
             ClassInfoPrimitiveImpl primitiveInfo = (ClassInfoPrimitiveImpl) ci;
             valueManipulator = primitiveInfo.manipulator();
@@ -232,7 +234,7 @@ public class InstanceUtils {
      * @param ci class info of data (null if it is object)
      * @param jdwpOutput if not null -- also outputs data to buffer packet
      */
-    public void getDefaultValue(ClassInfo ci, ByteBufferPacket jdwpOutput) {
+    public void getDefaultValue(ClassInfo ci, DataBufferWriter jdwpOutput) {
         ValueManipulator valueManipulator;
         if (ci != null && ci.isPrimitive()) {
             ClassInfoPrimitiveImpl primitiveInfo = (ClassInfoPrimitiveImpl) ci;
@@ -251,7 +253,7 @@ public class InstanceUtils {
      * @param isStatic tells that static fields has to be read
      * @param packet JDPW packet buffer to put JDPW data
      */
-    public void jdwpFieldGetValues(long objectOrClassId, long[] fields, boolean isStatic, ByteBufferPacket packet) {
+    public void jdwpFieldGetValues(long objectOrClassId, long[] fields, boolean isStatic, DataBufferWriter packet) {
         ClassInfo ci;
         long baseDataPointer;
         if (isStatic) {
@@ -295,8 +297,7 @@ public class InstanceUtils {
      * @param fromJdpw if not null value shall be picked here using manipulator
      * @throws DebuggerException if something wrong
      */
-    @SuppressWarnings("unchecked")
-    private void setFieldValue(long objectPtr, ClassInfo ci, FieldInfo fi, Object value, ByteBufferReader fromJdpw) throws DebuggerException {
+    private void setFieldValue(long objectPtr, ClassInfo ci, FieldInfo fi, Object value, DataBufferReader fromJdpw) throws DebuggerException {
         String signature = fi.signature();
         // is resolved already ?
         ClassInfo fieldTypeInfo = fi.typeInfo();
@@ -326,7 +327,7 @@ public class InstanceUtils {
      * @param value if there is value itself
      * @param fromJdpw if specified then manipulator will pick value from jdwp payload
      */
-    public void setMemoryValue(long objectPtr, ClassInfo ci, Object value, ByteBufferReader fromJdpw) {
+    public void setMemoryValue(long objectPtr, ClassInfo ci, Object value, DataBufferReader fromJdpw) {
         // can write data now
         ValueManipulator valueManipulator;
         if (ci != null && ci.isPrimitive()) {
@@ -340,7 +341,7 @@ public class InstanceUtils {
         if (fromJdpw != null)
             value = valueManipulator.readFromJdwp(fromJdpw);
 
-        ByteBufferPacket packet = delegates.sharedTargetPacket();
+        DataBufferReaderWriter packet = delegates.sharedTargetPacket();
         packet.reset();
         valueManipulator.writeToDevice(packet, value);
 
@@ -348,7 +349,7 @@ public class InstanceUtils {
         delegates.hooksApi().writeMemory(objectPtr, packet);
     }
 
-    public void jdwpFieldSetValues(long objectOrClassId, int fieldsCount, boolean isStatic, ByteBufferPacket payload) {
+    public void jdwpFieldSetValues(long objectOrClassId, int fieldsCount, boolean isStatic, DataBufferReader payload) {
         ClassInfo ci;
         long baseDataPointer;
         if (isStatic) {
@@ -503,7 +504,7 @@ public class InstanceUtils {
      * invokes the method of class or instance
      */
     public void jdwpInvokeMethod(long objectOrClassId, long threadId, long methodId, boolean isStatic,
-                                 boolean singleThread, Object[] args, ByteBufferPacket output) {
+                                 boolean singleThread, Object[] args, DataBufferWriter output) {
 
         // get thread
         VmThread thread = delegates.state().referenceRefIdHolder().instanceById(threadId);
@@ -545,12 +546,12 @@ public class InstanceUtils {
         if (args.length != callspec.arguments.length)
             throw new DebuggerException(JdwpConsts.Error.INVALID_METHODID);
 
-        ByteBufferPacket argsBuffer = null;
+        DataBufferReaderWriter argsBuffer = null;
         if (args.length > 0) {
             // write values to special buffer
             // intentionally marked as 64 to save pointers as longs
             // refer to method.c/setArgs for details of how array/object data is fetched
-            argsBuffer = new ByteBufferPacket(args.length * 8, true);
+            argsBuffer = new DataByteBufferWriter(args.length * 8, true);
             argsBuffer.setByteOrder(ByteOrder.LITTLE_ENDIAN);
             for (int idx = 0; idx < args.length; idx++) {
                 // write using class spec
@@ -571,12 +572,12 @@ public class InstanceUtils {
                 // there is one trick. data is being written as jvalue which is 8 bytes long
                 // so while writing we have to do back in force
                 // refer to method.c/setArgs for details
-                int pos = argsBuffer.position();
+                long pos = argsBuffer.position();
                 argsBuffer.writeLong(0);
                 argsBuffer.setPosition(pos);
                 valueManipulator.writeToDevice(argsBuffer, value);
                 // move pos to end of buf
-                argsBuffer.setPosition(argsBuffer.size());
+                argsBuffer.setPosition(argsBuffer.limit());
             }
         }
 
@@ -593,7 +594,7 @@ public class InstanceUtils {
         if (specReturnType == null)
             returnType = (byte) ("<init>".equals(methodInfo.name()) ? 'L' : 'V');
         else if (specReturnType.isPrimitive())
-            returnType = (byte) callspec.returnType.signature().charAt(0);
+            returnType = (byte) specReturnType.signature().charAt(0);
         else
             returnType = 'L'; // array or object
 
@@ -618,7 +619,7 @@ public class InstanceUtils {
             // now is a trick of how to make different types from long without checking types
             // write it to buffer and then read it back using manipulator
             if (argsBuffer == null) {
-                argsBuffer = new ByteBufferPacket(8, true);
+                argsBuffer = new DataByteBufferWriter(8, true);
                 argsBuffer.setByteOrder(ByteOrder.LITTLE_ENDIAN);
             } else {
                 argsBuffer.reset();
@@ -749,7 +750,7 @@ public class InstanceUtils {
             }
         }
 
-        return new MethodInfo.CallSpec(retType, argumentTypes.toArray(new ClassInfo[argumentTypes.size()]));
+        return new MethodInfo.CallSpec(retType, argumentTypes.toArray(new ClassInfo[0]));
     }
 
     /**

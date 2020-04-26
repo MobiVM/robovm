@@ -60,10 +60,6 @@
             <groupId>com.mobidevelop.robovm</groupId>
             <artifactId>robovm-ibxcode</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.mobidevelop.robovm</groupId>
-            <artifactId>robovm-debugger</artifactId>
-        </dependency>
     </dependencies>
 
     <build>

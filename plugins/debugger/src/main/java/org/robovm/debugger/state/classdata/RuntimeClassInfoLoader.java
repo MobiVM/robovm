@@ -55,7 +55,7 @@ public class RuntimeClassInfoLoader {
      * @return data type info for giver clazz pointer
      */
     public ClassInfo resolveObjectRuntimeDataTypeInfo(long objectPtr) {
-        delegates.runtime().deviceMemoryReader().setAddress(objectPtr);
+        delegates.runtime().deviceMemoryReader().setPosition(objectPtr);
         long clazzPointer = delegates.runtime().deviceMemoryReader().readPointer();
         return resolveRuntimeDataTypeInfo(clazzPointer);
     }
@@ -124,7 +124,7 @@ public class RuntimeClassInfoLoader {
         long clazzPrt = delegates.state().appFileLoader().resolveSymbol("prim_" + signature);
         if (clazzPrt < 0)
             throw new DebuggerException("Failed to resolve primitive clazz symbol prim_" + signature);
-        delegates.runtime().deviceMemoryReader().setAddress(delegates.runtime().toRuntimeAddr(clazzPrt));
+        delegates.runtime().deviceMemoryReader().setPosition(delegates.runtime().toRuntimeAddr(clazzPrt));
         clazzPrt = delegates.runtime().deviceMemoryReader().readPointer();
 
         return delegates.state().classInfoLoader().buildPrimitiveClassInfo(signature, clazzPrt);
@@ -138,7 +138,7 @@ public class RuntimeClassInfoLoader {
      */
     public long readClazzComponentType(long clazzPointer) {
         long pointerSize = delegates.runtime().deviceMemoryReader().pointerSize();
-        delegates.runtime().deviceMemoryReader().setAddress(clazzPointer +
+        delegates.runtime().deviceMemoryReader().setPosition(clazzPointer +
                 pointerSize +  // skip struct Object.*clazz
                 pointerSize +  // skip struct Object.*lock
                 pointerSize + // skip void* _data;
@@ -160,7 +160,7 @@ public class RuntimeClassInfoLoader {
      */
     public String readClazzSignature(long clazzPointer) {
         long pointerSize = delegates.runtime().deviceMemoryReader().pointerSize();
-        delegates.runtime().deviceMemoryReader().setAddress(clazzPointer +
+        delegates.runtime().deviceMemoryReader().setPosition(clazzPointer +
                 pointerSize +  // skip struct Object.*clazz
                 pointerSize +  // skip struct Object.*lock
                 pointerSize + // skip void* _data;
