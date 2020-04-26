@@ -7,6 +7,7 @@ import com.intellij.openapi.externalSystem.util.ExternalSystemConstants;
 import com.intellij.openapi.externalSystem.util.Order;
 import org.gradle.tooling.model.idea.IdeaModule;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.jetbrains.plugins.gradle.service.project.AbstractProjectResolverExtension;
 import org.jetbrains.plugins.gradle.settings.GradleExecutionSettings;
 import org.robovm.compiler.model.RoboVMGradleModel;
@@ -23,11 +24,11 @@ public class RoboVMGradleProjectResolver extends AbstractProjectResolverExtensio
 
     @NotNull
     @Override
-    public Set<Class> getExtraProjectModelClasses() {
+    public Set<Class<?>> getExtraProjectModelClasses() {
         return Collections.singleton(RoboVMGradleModel.class);
     }
 
-    @NotNull
+    @Nullable
     @Override
     public DataNode<ModuleData> createModule(@NotNull IdeaModule gradleModule, @NotNull DataNode<ProjectData> projectDataNode) {
         GradleExecutionSettings settings = resolverCtx.getSettings();

@@ -26,7 +26,6 @@ import com.intellij.debugger.ui.tree.render.BatchEvaluator;
 import com.intellij.execution.DefaultExecutionResult;
 import com.intellij.execution.ExecutionException;
 import com.intellij.execution.ExecutionResult;
-import com.intellij.execution.RunnerAndConfigurationSettings;
 import com.intellij.execution.configurations.RemoteConnection;
 import com.intellij.execution.configurations.RunProfile;
 import com.intellij.execution.configurations.RunProfileState;
@@ -60,13 +59,10 @@ public class RoboVmRunner extends GenericProgramRunner<RunnerSettings> {
     }
 
     @Override
-    protected void execute(@NotNull ExecutionEnvironment environment, @Nullable Callback callback, @NotNull RunProfileState state) throws ExecutionException {
+    protected void execute(@NotNull ExecutionEnvironment environment, @Nullable Callback callback, @NotNull RunProfileState state) {
         // we need to pass the run profile info to the compiler so
         // we can decide if this is a debug or release build
-        RunnerAndConfigurationSettings runner = environment.getRunnerAndConfigurationSettings();
-        if (runner == null)
-            throw new ExecutionException("RoboVmRunConfiguration is missing!");
-        RoboVmRunConfiguration runConfig = (RoboVmRunConfiguration) runner.getConfiguration();
+        RoboVmRunConfiguration runConfig = (RoboVmRunConfiguration)environment.getRunProfile();
         runConfig.setDebug(DEBUG_EXECUTOR.equals(environment.getExecutor().getId()));
         super.execute(environment, callback, state);
     }
