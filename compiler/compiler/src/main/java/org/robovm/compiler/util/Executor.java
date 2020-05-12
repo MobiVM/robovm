@@ -16,17 +16,6 @@
  */
 package org.robovm.compiler.util;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import org.apache.commons.exec.CommandLine;
 import org.apache.commons.exec.DefaultExecutor;
 import org.apache.commons.exec.ExecuteException;
@@ -39,6 +28,17 @@ import org.robovm.compiler.log.InfoOutputStream;
 import org.robovm.compiler.log.Logger;
 import org.robovm.compiler.target.Launcher;
 import org.robovm.compiler.util.io.NeverCloseOutputStream;
+
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Builder style wrapper around <code>commons-exec</code> which also adds support for asynchronous 
@@ -132,7 +132,8 @@ public class Executor implements Launcher {
     /**
      * Adds a single environment variable.
      * 
-     * @param env the environment variables.
+     * @param name variable name
+     * @param value variable value
      * @return this {@link Executor}.
      */
     public Executor addEnv(String name, String value) {
@@ -284,9 +285,8 @@ public class Executor implements Launcher {
             }
             executor.setStreamHandler(new PumpStreamHandler(pumpOut, pumpErr, pumpIn) {
                 @Override
-                protected Thread createPump(InputStream is, OutputStream os,
-                        boolean closeWhenExhausted) {
-                    return super.createPump(is, os, closeOutputStreams ? true : closeWhenExhausted);
+                protected Thread createPump(InputStream is, OutputStream os, boolean closeWhenExhausted) {
+                    return new Thread(new AutoFlushStreamPumper(is, os, closeOutputStreams || closeWhenExhausted));
                 }
             });
         } else {
@@ -377,6 +377,77 @@ public class Executor implements Launcher {
             throw e;
         } finally {
             streamHandler = oldStreamHandler;
+        }
+    }
+
+    /**
+     * dkimitsa: Its a copy of StreamPumper from org.apache.commons.exec which just does
+     * auto-flush on every write. Otherwise console application under debug is not
+     * receiving input
+     */
+    private static class AutoFlushStreamPumper implements Runnable {
+
+        /** the default size of the internal buffer for copying the streams */
+        private static final int DEFAULT_SIZE = 1024;
+
+        /** the input stream to pump from */
+        private final InputStream is;
+
+        /** the output stream to pmp into */
+        private final OutputStream os;
+
+        /** was the end of the stream reached */
+        private boolean finished;
+
+        /** close the output stream when exhausted */
+        private final boolean closeWhenExhausted;
+
+        /**
+         * Create a new stream pumper.
+         *
+         * @param is input stream to read data from
+         * @param os output stream to write data to.
+         * @param closeWhenExhausted if true, the output stream will be closed when the input is exhausted.
+         */
+        public AutoFlushStreamPumper(final InputStream is, final OutputStream os,
+                            final boolean closeWhenExhausted) {
+            this.is = is;
+            this.os = os;
+            this.closeWhenExhausted = closeWhenExhausted;
+        }
+
+        /**
+         * Copies data from the input stream to the output stream. Terminates as
+         * soon as the input stream is closed or an error occurs.
+         */
+        public void run() {
+            synchronized (this) {
+                // Just in case this object is reused in the future
+                finished = false;
+            }
+
+            final byte[] buf = new byte[DEFAULT_SIZE];
+
+            int length;
+            try {
+                while ((length = is.read(buf)) > 0) {
+                    os.write(buf, 0, length);
+                    os.flush();
+                }
+            } catch (final Exception e) {
+                // nothing to do - happens quite often with watchdog
+            } finally {
+                if (closeWhenExhausted) {
+                    try {
+                        os.close();
+                    } catch (final IOException ignored) {
+                    }
+                }
+                synchronized (this) {
+                    finished = true;
+                    notifyAll();
+                }
+            }
         }
     }
 }
