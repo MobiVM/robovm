@@ -16,114 +16,51 @@
  */
 package org.robovm.compiler.target.ios;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InterruptedIOException;
-import java.io.OutputStream;
-import java.io.PrintStream;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.atomic.AtomicInteger;
-
-import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.output.NullOutputStream;
-import org.robovm.compiler.log.ErrorOutputStream;
 import org.robovm.compiler.log.Logger;
 import org.robovm.compiler.target.LaunchParameters;
-import org.robovm.compiler.target.Launcher;
-import org.robovm.compiler.util.io.OpenOnWriteFileOutputStream;
 import org.robovm.libimobiledevice.util.AppLauncher;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.PipedInputStream;
+import java.io.PipedOutputStream;
 
 /**
  * {@link Process} implementation which runs an app on a device using an
  * {@link AppLauncher}.
  */
-public class AppLauncherProcess extends Process implements Launcher {
-    private final AtomicInteger threadCounter = new AtomicInteger();
-    private final Logger log;
+public class AppLauncherProcess extends AbstractLauncherProcess<LaunchParameters> {
     private final AppLauncher launcher;
-    private final WaitInputStream in = new WaitInputStream();
-    private final WaitInputStream err = new WaitInputStream();
-    private final CountDownLatch countDownLatch = new CountDownLatch(1);
-    private Thread launcherThread;
-    private volatile boolean finished = false;
-    private volatile int exitCode = -1;
-    private OutputStream errStream;
+    private final NullOutputStream stdInStream = new NullOutputStream();
+    private final WaitInputStream stdErrStream = new WaitInputStream();
+    private final PipedInputStream pipedStdOutStream = new PipedInputStream();
 
-    public AppLauncherProcess(Logger log, AppLauncher launcher, LaunchParameters launchParameters) {
-        this.log = log;
+    public AppLauncherProcess(Logger log, Listener listener, AppLauncher launcher, LaunchParameters launchParameters) {
+        super(log, listener, launchParameters);
         this.launcher = launcher;
-        if (launchParameters.getStderrFifo() != null) {
-            this.errStream = new OpenOnWriteFileOutputStream(launchParameters.getStderrFifo());
-        }
     }
 
     @Override
-    public Process execAsync() throws IOException {
+    protected int performLaunch() throws IOException {
         launcher.install();
-        this.launcherThread = new Thread("AppLauncherThread-" + threadCounter.getAndIncrement()) {
-            @Override
-            public void run() {
-                try {
-                    exitCode = launcher.launch();
-                } catch (Throwable t) {
-                    log.error("AppLauncher failed with an exception:", t.getMessage());
-                    t.printStackTrace(new PrintStream(new ErrorOutputStream(log), true));
-                } finally {
-                    IOUtils.closeQuietly(errStream);
-                    finished = true;
-                    countDownLatch.countDown();
-                }
-            }
-        };
-        this.launcherThread.start();
-        return this;
-    }
-    
-    @Override
-    public OutputStream getOutputStream() {
-        return new NullOutputStream();
+        launcher.stdout(new PipedOutputStream(pipedStdOutStream));
+        return launcher.launch();
     }
 
     @Override
-    public InputStream getInputStream() {
-        return in;
+    protected OutputStream getPipeForStdIn() {
+        return stdInStream ;
     }
 
     @Override
-    public InputStream getErrorStream() {
-        return err;
+    protected InputStream getPipeForStdOut() {
+        return pipedStdOutStream;
     }
 
     @Override
-    public int waitFor() throws InterruptedException {
-        countDownLatch.await();
-        return exitCode;
-    }
-
-    @Override
-    public int exitValue() {
-        if (!finished) {
-            throw new IllegalThreadStateException("Not terminated");
-        }
-        return exitCode;
-    }
-
-    @Override
-    public void destroy() {
-        launcher.kill();
-    }
-
-    private class WaitInputStream extends InputStream {
-
-        @Override
-        public int read() throws IOException {
-            try {
-                countDownLatch.await();
-            } catch (InterruptedException e) {
-                throw new InterruptedIOException();
-            }
-            return -1;
-        }
-        
+    protected InputStream getPipeForStdErr() {
+        return stdErrStream;
     }
 }

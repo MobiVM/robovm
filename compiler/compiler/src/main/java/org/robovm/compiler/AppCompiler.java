@@ -23,7 +23,13 @@ import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
-import org.robovm.compiler.clazz.*;
+import org.robovm.compiler.clazz.Clazz;
+import org.robovm.compiler.clazz.ClazzInfo;
+import org.robovm.compiler.clazz.Clazzes;
+import org.robovm.compiler.clazz.DirectoryPath;
+import org.robovm.compiler.clazz.MethodInfo;
+import org.robovm.compiler.clazz.Path;
+import org.robovm.compiler.clazz.ZipFilePath;
 import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.config.Config;
 import org.robovm.compiler.config.Config.TreeShakerMode;
@@ -32,34 +38,33 @@ import org.robovm.compiler.config.OS;
 import org.robovm.compiler.config.Resource;
 import org.robovm.compiler.config.StripArchivesConfig.StripArchivesBuilder;
 import org.robovm.compiler.log.ConsoleLogger;
-import org.robovm.compiler.plugin.LaunchPlugin;
 import org.robovm.compiler.plugin.Plugin;
 import org.robovm.compiler.plugin.PluginArgument;
 import org.robovm.compiler.plugin.TargetPlugin;
 import org.robovm.compiler.target.ConsoleTarget;
 import org.robovm.compiler.target.LaunchParameters;
-import org.robovm.compiler.target.ios.*;
+import org.robovm.compiler.target.ios.DeviceType;
+import org.robovm.compiler.target.ios.IOSSimulatorLaunchParameters;
+import org.robovm.compiler.target.ios.IOSTarget;
+import org.robovm.compiler.target.ios.ProvisioningProfile;
+import org.robovm.compiler.target.ios.SigningIdentity;
 import org.robovm.compiler.util.AntPathMatcher;
 import org.simpleframework.xml.Serializer;
-
-import java.io.*;
-import java.net.URL;
-import java.net.URLConnection;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.*;
-import java.util.concurrent.*;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.io.StringWriter;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -290,13 +295,11 @@ public class AppCompiler {
      * which classes need to be recompiled and linked in through the root
      * classes' dependencies.
      * 
-     * The classes matching {@link #ROOT_CLASS_PATTERNS} and
-     * {@link #ROOT_CLASSES} will always be included. If a main class has been
-     * specified it will also become a root. Any root class pattern specified on
-     * the command line (as returned by {@link Config#getRoots()} will also be
-     * used to find root classes. If no main class has been specified and
-     * {@link Config#getRoots()} returns an empty set all classes available on
-     * the bootclasspath and the classpath will become roots.
+     * The classes matching {@link Config#getForceLinkClasses()} and  {@link #ROOT_CLASSES}
+     * will always be included. If a main class has been specified it will also become a root.
+     * If no main class has been specified and {@link Config#getForceLinkClasses()} returns
+     * an empty set all classes available on the bootclasspath and the classpath will become
+     * roots.
      */
     private TreeSet<Clazz> getRootClasses() {
         TreeSet<Clazz> classes = new TreeSet<Clazz>();
@@ -536,7 +539,6 @@ public class AppCompiler {
     /**
      * Write the classpaths file that contains a list of class and jar files that were input for the Main binary
      *
-     * @param classPathsFile
      * @param linkClasses
      * @throws IOException
      */
@@ -933,7 +935,7 @@ public class AppCompiler {
                         simParams.setDeviceType(type);
                     }
                     launchParameters.setArguments(runArgs);
-                    compiler.launch(launchParameters);
+                    compiler.config.getTarget().launch(launchParameters);
                 } else {
                     compiler.build();
                     compiler.config.getTarget().install();
@@ -998,46 +1000,6 @@ public class AppCompiler {
      */
     public void install() throws IOException {
         config.getTarget().install();
-    }
-
-    public int launch(LaunchParameters launchParameters) throws Throwable {
-        return launch(launchParameters, null);
-    }
-
-    public int launch(LaunchParameters launchParameters, InputStream inputStream) throws Throwable {
-        try {
-            return launchAsync(launchParameters, inputStream).waitFor();
-        } finally {
-            launchAsyncCleanup();
-        }
-    }
-
-    public Process launchAsync(LaunchParameters launchParameters) throws Throwable {
-        return launchAsync(launchParameters, null);
-    }
-
-    public Process launchAsync(LaunchParameters launchParameters, InputStream inputStream) throws Throwable {
-        for (LaunchPlugin plugin : config.getLaunchPlugins()) {
-            plugin.beforeLaunch(config, launchParameters);
-        }
-        try {
-            Process process = config.getTarget().launch(launchParameters);
-            for (LaunchPlugin plugin : config.getLaunchPlugins()) {
-                plugin.afterLaunch(config, launchParameters, process);
-            }
-            return process;
-        } catch (Throwable e) {
-            for (LaunchPlugin plugin : config.getLaunchPlugins()) {
-                plugin.launchFailed(config, launchParameters);
-            }
-            throw e;
-        }
-    }
-
-    public void launchAsyncCleanup() {
-        for (LaunchPlugin plugin : config.getLaunchPlugins()) {
-            plugin.cleanup();
-        }
     }
 
     private static void printDeviceTypesAndExit() throws IOException {

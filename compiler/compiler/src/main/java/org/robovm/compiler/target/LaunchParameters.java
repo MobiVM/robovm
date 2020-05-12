@@ -27,9 +27,8 @@ public class LaunchParameters {
     private List<String> arguments = new ArrayList<>();
     private Map<String, String> environment = null;
     private File workingDirectory = new File(".");
-    private File stdoutFifo = null;
-    private File stderrFifo = null;
-    
+    private File appDirectory = null;
+
     public List<String> getArguments() {
         return arguments;
     }
@@ -53,20 +52,12 @@ public class LaunchParameters {
     public void setWorkingDirectory(File workingDirectory) {
         this.workingDirectory = workingDirectory;
     }
-    
-    public File getStdoutFifo() {
-        return stdoutFifo;
+
+    public File getAppDirectory() {
+        return appDirectory;
     }
-    
-    public void setStdoutFifo(File stdoutFifo) {
-        this.stdoutFifo = stdoutFifo;
-    }
-    
-    public File getStderrFifo() {
-        return stderrFifo;
-    }
-    
-    public void setStderrFifo(File stderrFifo) {
-        this.stderrFifo = stderrFifo;
+
+    public void setAppDirectory(File appDirectory) {
+        this.appDirectory = appDirectory;
     }
 }

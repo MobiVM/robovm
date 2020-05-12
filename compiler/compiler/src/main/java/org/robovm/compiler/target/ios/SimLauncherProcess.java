@@ -16,185 +16,108 @@
  */
 package org.robovm.compiler.target.ios;
 
-import org.apache.commons.exec.ExecuteException;
 import org.apache.commons.io.output.NullOutputStream;
-import org.robovm.compiler.log.ErrorOutputStream;
 import org.robovm.compiler.log.Logger;
-import org.robovm.compiler.target.Launcher;
 import org.robovm.compiler.util.Executor;
-import org.robovm.compiler.util.io.OpenOnWriteFileOutputStream;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InterruptedIOException;
 import java.io.OutputStream;
-import java.io.PrintStream;
+import java.io.PipedInputStream;
+import java.io.PipedOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.atomic.AtomicInteger;
-
-import static org.apache.commons.exec.Executor.INVALID_EXITVALUE;
 
 /**
  * {@link Process} implementation which runs an app on a simulator using an
  * simctl
  */
-public class SimLauncherProcess extends Process implements Launcher {
-    private final CountDownLatch countDownLatch = new CountDownLatch(1);
-    private final AtomicInteger threadCounter = new AtomicInteger();
-    private final Logger log;
-    private final DeviceType deviceType;
-    private final File wd;
-    private final String bundleId;
+public class SimLauncherProcess extends AbstractLauncherProcess<IOSSimulatorLaunchParameters> {
+    private final PipedInputStream pipedStdOutStream = new PipedInputStream();
+    private final PipedInputStream pipedStdErrStream = new PipedInputStream();
+    private final NullOutputStream stdInStream = new NullOutputStream();
     private final File appDir;
-    private final List<String> arguments;
-    private HashMap<String, String> env;
-    private Thread launcherThread;
-    private volatile boolean finished = false;
-    private volatile int exitCode = -1;
-    private OutputStream errStream;
-    private OutputStream outStream;
+    private final String bundleId;
 
-    public SimLauncherProcess(Logger log, File appDir, String bundleId, IOSSimulatorLaunchParameters launchParameters) {
-        this.log = log;
-        deviceType = launchParameters.getDeviceType();
-        wd = launchParameters.getWorkingDirectory();
+    public SimLauncherProcess(Logger log, Listener listener, File appDir, String bundleId, IOSSimulatorLaunchParameters launchParameters) {
+        super(log, listener, launchParameters);
+
         this.appDir = appDir;
         this.bundleId = bundleId;
-        this.arguments = new ArrayList<>(launchParameters.getArguments());
+    }
+
+    @Override
+    protected int performLaunch() throws IOException {
+        DeviceType deviceType = launchParameters.getDeviceType();
+        File wd = launchParameters.getWorkingDirectory();
+        ArrayList<String> arguments = new ArrayList<>(launchParameters.getArguments());
+        Map<String, String> env = null;
         if (launchParameters.getEnvironment() != null) {
-            this.env = new HashMap<>();
+            env = new HashMap<>();
             for (Map.Entry<String, String> entry : launchParameters.getEnvironment().entrySet()) {
                 env.put("SIMCTL_CHILD_" + entry.getKey(), entry.getValue());
             }
         }
 
-        outStream = System.out;
-        errStream = System.err;
-        if (launchParameters.getStdoutFifo() != null) {
-            outStream = new OpenOnWriteFileOutputStream(launchParameters.getStdoutFifo());
+        Executor executor;
+        if ("shutdown".equals(deviceType.getState(true).toLowerCase())) {
+            log.info("Booting simulator %s", deviceType.getUdid());
+            executor = new Executor(log, "xcrun");
+            executor.args("simctl", "boot", deviceType.getUdid());
+            executor.exec();
         }
-        if (launchParameters.getStderrFifo() != null) {
-            errStream = new OpenOnWriteFileOutputStream(launchParameters.getStderrFifo());
+
+        // bringing simulator to front (and showing it if it was just booted)
+        log.info("Showing simulator %s", deviceType.getUdid());
+        executor = new Executor(log, "open");
+        executor.args("-a", "Simulator", "--args", "-CurrentDeviceUDID", deviceType.getUdid());
+        executor.exec();
+
+        log.info("Deploying app %s to simulator %s", appDir.getAbsolutePath(),
+                deviceType.getUdid());
+        executor = new Executor(log, "xcrun");
+        executor.args("simctl", "install", deviceType.getUdid(), appDir.getAbsolutePath());
+        executor.exec();
+
+        log.info("Launching app %s on simulator %s", appDir.getAbsolutePath(),
+                deviceType.getUdid());
+        executor = new Executor(log, "xcrun");
+        List<Object> args = new ArrayList<>();
+        args.add("simctl");
+        args.add("launch");
+        args.add("--console");
+        args.add(deviceType.getUdid());
+        args.add(bundleId);
+        args.addAll(arguments);
+        executor.args(args);
+
+        if (env != null) {
+            executor.env(env);
         }
+
+        OutputStream outStream = new PipedOutputStream(pipedStdOutStream);
+        OutputStream errStream = new PipedOutputStream(pipedStdErrStream);
+        executor.wd(wd).out(outStream).err(errStream).closeOutputStreams(true).inheritEnv(false);
+        executor.exec();
+        return  0;
     }
 
     @Override
-    public Process execAsync() throws IOException {
-        this.launcherThread = new Thread("SimLauncherThread-" + threadCounter.getAndIncrement()) {
-            @Override
-            public void run() {
-                try {
-                    Executor executor;
-
-                    if ("shutdown".equals(deviceType.getState(true).toLowerCase())) {
-                        log.info("Booting simulator %s", deviceType.getUdid());
-                        executor = new Executor(log, "xcrun");
-                        executor.args("simctl", "boot", deviceType.getUdid());
-                        executor.exec();
-                    }
-
-                    // bringing simulator to front (and showing it if it was just booted)
-                    log.info("Showing simulator %s", deviceType.getUdid());
-                    executor = new Executor(log, "open");
-                    executor.args("-a", "Simulator", "--args", "-CurrentDeviceUDID", deviceType.getUdid());
-                    executor.exec();
-
-                    log.info("Deploying app %s to simulator %s", appDir.getAbsolutePath(),
-                            deviceType.getUdid());
-                    executor = new Executor(log, "xcrun");
-                    executor.args("simctl", "install", deviceType.getUdid(), appDir.getAbsolutePath());
-                    executor.exec();
-
-                    log.info("Launching app %s on simulator %s", appDir.getAbsolutePath(),
-                            deviceType.getUdid());
-                    executor = new Executor(log, "xcrun");
-                    List<Object> args = new ArrayList<>();
-                    args.add("simctl");
-                    args.add("launch");
-                    args.add("--console");
-                    args.add(deviceType.getUdid());
-                    args.add(bundleId);
-                    args.addAll(arguments);
-                    executor.args(args);
-
-                    if (env != null) {
-                        executor.env(env);
-                    }
-
-                    executor.wd(wd).out(outStream).err(errStream).closeOutputStreams(true).inheritEnv(false);
-                    executor.exec();
-                    exitCode = 0;
-                } catch (ExecuteException e) {
-                    exitCode = e.getExitValue();
-                    // if process is interrupted Apache Excutor will use this constant, replace with 0 otherwise
-                    // -559038737 looks odd in console output
-                    if (exitCode == INVALID_EXITVALUE)
-                        exitCode = 0;
-                } catch (Throwable t) {
-                    log.error("AppLauncher failed with an exception:", t.getMessage());
-                    t.printStackTrace(new PrintStream(new ErrorOutputStream(log), true));
-                } finally {
-                    finished = true;
-                    countDownLatch.countDown();
-                }
-            }
-        };
-        this.launcherThread.start();
-        return this;
-    }
-    
-    @Override
-    public OutputStream getOutputStream() {
-        return new NullOutputStream();
+    protected OutputStream getPipeForStdIn() {
+        // no input stream for IOS
+        return stdInStream;
     }
 
     @Override
-    public InputStream getInputStream() {
-        return waitInputStream;
+    protected InputStream getPipeForStdOut() {
+        return pipedStdOutStream;
     }
 
     @Override
-    public InputStream getErrorStream() {
-        return waitInputStream;
+    protected InputStream getPipeForStdErr() {
+        return pipedStdErrStream;
     }
-
-    @Override
-    public int waitFor() throws InterruptedException {
-        countDownLatch.await();
-        return exitCode;
-    }
-
-    @Override
-    public int exitValue() {
-        if (!finished) {
-            throw new IllegalThreadStateException("Not terminated");
-        }
-        return exitCode;
-    }
-
-    @Override
-    public void destroy() {
-        try {
-            this.launcherThread.interrupt();
-            this.launcherThread.join();
-        } catch (InterruptedException ignored) {
-        }
-    }
-
-    final InputStream waitInputStream = new  InputStream() {
-        @Override
-        public int read() throws IOException {
-            try {
-                countDownLatch.await();
-            } catch (InterruptedException e) {
-                throw new InterruptedIOException();
-            }
-            return -1;
-        }
-    };
 }

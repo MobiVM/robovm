@@ -24,5 +24,13 @@ import java.io.IOException;
 public interface Launcher {
 
     Process execAsync() throws IOException;
-    
+
+    /**
+     * Launcher progress listener
+     */
+    interface Listener {
+        void beforeLaunch();
+        void justLaunched(Process process);
+        void launchFinished();
+    }
 }
