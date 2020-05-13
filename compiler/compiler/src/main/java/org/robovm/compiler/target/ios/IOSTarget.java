@@ -306,6 +306,11 @@ public class IOSTarget extends AbstractTarget {
         libArgs.add("-Xlinker");
         libArgs.add(sdk.getVersion());
 
+        // add runtime path to swift libs first to support swift-5 libs location
+        libArgs.add("-Xlinker");
+        libArgs.add("-rpath");
+        libArgs.add("-Xlinker");
+        libArgs.add("/usr/lib/swift");
         // specify dynamic library loading path
         libArgs.add("-Xlinker");
         libArgs.add("-rpath");
