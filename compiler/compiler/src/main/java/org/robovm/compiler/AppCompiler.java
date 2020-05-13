@@ -579,7 +579,7 @@ public class AppCompiler {
     /**
      * Checks, whether recompilation of the Main binary is necessary by looking at the classPathsFile
      *
-     * @param classPathsFile
+     * @param config
      * @return
      * @throws IOException
      */
@@ -1212,6 +1212,14 @@ public class AppCompiler {
             builder.append(s);
         }
         return builder.toString();
+    }
+
+    public int launch(LaunchParameters launchParameters) throws IOException, InterruptedException {
+        return launchAsync(launchParameters).waitFor();
+    }
+
+    public Process launchAsync(LaunchParameters launchParameters) throws IOException {
+        return config.getTarget().launch(launchParameters);
     }
 
     private class UpdateChecker extends Thread {
