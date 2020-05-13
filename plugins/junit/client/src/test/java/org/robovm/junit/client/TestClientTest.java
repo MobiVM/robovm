@@ -54,7 +54,6 @@ public class TestClientTest {
         Process process = appCompiler.launchAsync(launchParameters);
         client.runTests(RunnerClass.class.getName()).terminate();
         process.waitFor();
-        appCompiler.launchAsyncCleanup();
 
         assertEquals("2 successful tests expected", 2, listener.successful.size());
         assertTrue(listener.successful.contains("testSuccessfulTest1(" + RunnerClass.class.getName() + ")"));
@@ -76,14 +75,13 @@ public class TestClientTest {
         Process process = appCompiler.launchAsync(launchParameters);
         client.runTests(RunnerClass.class.getName() + "#testSuccessfulTest1").terminate();
         process.waitFor();
-        appCompiler.launchAsyncCleanup();
 
         assertEquals("1 successful tests expected", 1, listener.successful.size());
         assertTrue(listener.successful.contains("testSuccessfulTest1(" + RunnerClass.class.getName() + ")"));
         assertEquals("0 failed tests expected", 0, listener.failed.size());
     }
 
-    private Config.Builder createConfig() throws IOException, ClassNotFoundException {
+    private Config.Builder createConfig() throws IOException {
         RoboVMResolver roboVMResolver = new RoboVMResolver();
         Home home = new Home(roboVMResolver.resolveAndUnpackRoboVMDistArtifact(Version.getVersion()));
 
@@ -109,19 +107,19 @@ public class TestClientTest {
         Failure failure = null;
 
         @Override
-        public void testStarted(Description description) throws Exception {
+        public void testStarted(Description description) {
             success = true;
             failure = null;
         }
 
         @Override
-        public void testFailure(Failure failure) throws Exception {
+        public void testFailure(Failure failure) {
             success = false;
             this.failure = failure;
         }
 
         @Override
-        public void testFinished(Description description) throws Exception {
+        public void testFinished(Description description) {
             if (success) {
                 successful.add(description.toString());
             } else {
