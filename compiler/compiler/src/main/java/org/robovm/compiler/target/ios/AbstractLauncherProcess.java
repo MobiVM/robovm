@@ -21,6 +21,7 @@ import org.robovm.compiler.log.ErrorOutputStream;
 import org.robovm.compiler.log.Logger;
 import org.robovm.compiler.target.LaunchParameters;
 import org.robovm.compiler.target.Launcher;
+import org.robovm.compiler.util.io.ObservableInputStream;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -44,11 +45,20 @@ public abstract class AbstractLauncherProcess<T extends LaunchParameters> extend
     protected final Listener listener;
     protected final T launchParameters;
 
+    // streams will be initialized once before starting the thread
+    private OutputStream stdInPipe;
+    private InputStream stdOutPipe;
+    private InputStream stdErrPipe;
+
     public AbstractLauncherProcess(Logger log, Listener listener, T launchParameters) {
         this.log = log;
         this.listener = listener;
         this.launchParameters = launchParameters;
         this.launcherThread = new Thread(this::internalPerformLaunch, getThreadName());
+
+        // notify right in the bottom of constructors. this allows all launchers to
+        // use finished launchParameters at constructor level
+        listener.beforeLaunch();
     }
 
     private void internalPerformLaunch() {
@@ -80,7 +90,15 @@ public abstract class AbstractLauncherProcess<T extends LaunchParameters> extend
 
     @Override
     public final Process execAsync() {
-        listener.beforeLaunch();
+        // collect all pipes
+        stdInPipe = getPipeForStdIn();
+        stdOutPipe = getPipeForStdOut();
+        stdErrPipe = getPipeForStdErr();
+
+        // apply observers
+        if (launchParameters.getStdOutObserver() != null)
+            stdOutPipe = new ObservableInputStream(stdOutPipe, launchParameters.getStdOutObserver());
+
         this.launcherThread.start();
         listener.justLaunched(this);
         return this;
@@ -96,17 +114,17 @@ public abstract class AbstractLauncherProcess<T extends LaunchParameters> extend
 
     @Override
     public final OutputStream getOutputStream() {
-        return getPipeForStdIn();
+        return stdInPipe;
     }
 
     @Override
     public final InputStream getInputStream() {
-        return getPipeForStdOut();
+        return stdOutPipe;
     }
 
     @Override
     public final InputStream getErrorStream() {
-        return getPipeForStdErr();
+        return stdErrPipe;
     }
 
     @Override

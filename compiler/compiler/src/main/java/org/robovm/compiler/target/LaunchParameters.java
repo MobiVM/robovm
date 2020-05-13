@@ -16,6 +16,8 @@
  */
 package org.robovm.compiler.target;
 
+import org.robovm.compiler.util.io.ObservableInputStream;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +30,7 @@ public class LaunchParameters {
     private Map<String, String> environment = null;
     private File workingDirectory = new File(".");
     private File appDirectory = null;
+    private ObservableInputStream.Observer stdOutObserver = null;
 
     public List<String> getArguments() {
         return arguments;
@@ -59,5 +62,13 @@ public class LaunchParameters {
 
     public void setAppDirectory(File appDirectory) {
         this.appDirectory = appDirectory;
+    }
+
+    public ObservableInputStream.Observer getStdOutObserver() {
+        return stdOutObserver;
+    }
+
+    public void setStdOutObserver(ObservableInputStream.Observer stdOutObserver) {
+        this.stdOutObserver = stdOutObserver;
     }
 }
