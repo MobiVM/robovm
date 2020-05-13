@@ -77,4 +77,30 @@ import org.robovm.apple.dispatch.*;
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/
+
+    // manually added code!
+    class AsListMarshaller {
+        @SuppressWarnings("unchecked")
+        @MarshalsPointer
+        public static List<NFCTag> toObject(Class<? extends NSObject> cls, long handle, long flags) {
+            NSArray<NSObject> o = (NSArray<NSObject>) NSObject.Marshaler.toObject(cls, handle, flags);
+            if (o == null) {
+                return null;
+            }
+            List<NFCTag> list = new ArrayList<>();
+            for (NSObject t : o) {
+                NFCTag tag = (NFCTag) ObjCObject.Marshaler.protocolToObject(NFCTag.class, t.getHandle(), 0);
+                list.add(tag);
+            }
+            return list;
+        }
+        @MarshalsPointer
+        public static long toNative(List<NFCTag> l, long flags) {
+            if (l == null) {
+                return 0L;
+            }
+            NSArray<?> array = new NSArray(l);
+            return NSObject.Marshaler.toNative(array, flags);
+        }
+    }
 }

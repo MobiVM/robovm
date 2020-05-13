@@ -21,6 +21,9 @@ enums:
     VASMode: {}
     VASErrorCode: {}
 
+categories:
+    NSUserActivity: {}
+
 classes:
     NFCISO15693CustomCommandConfiguration: #since 11.0
         methods:
@@ -212,8 +215,13 @@ protocols:
         methods:
             '-tagReaderSession:didInvalidateWithError:':
                 name: didInvalidate
+            '-tagReaderSessionDidBecomeActive:':
+                name: didBecomeActive
             '-tagReaderSession:didDetectTags:':
                 name: didDetectTags
+                parameters:
+                    tags:
+                        type: '@org.robovm.rt.bro.annotation.Marshaler(NFCTag.AsListMarshaller.class) List<NFCTag>'
     NFCVASReaderSessionDelegate: #since 13.0
         methods:
             '-readerSession:didInvalidateWithError:':
