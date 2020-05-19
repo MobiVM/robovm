@@ -99,7 +99,7 @@ public class IOSTarget extends AbstractTarget {
     private static File iosSimPath;
 
     private Arch arch;
-    private SDK sdk;    
+    private SDK sdk;
     private File entitlementsPList;
     private SigningIdentity signIdentity;
     private ProvisioningProfile provisioningProfile;
@@ -176,81 +176,10 @@ public class IOSTarget extends AbstractTarget {
                 getAppDir(), getBundleId(), (IOSSimulatorLaunchParameters) launchParameters);
     }
 
-    private Launcher createIOSDevLauncher(LaunchParameters launchParameters)
-            throws IOException {
-
+    private Launcher createIOSDevLauncher(LaunchParameters launchParameters) throws IOException {
         IOSDeviceLaunchParameters deviceLaunchParameters = (IOSDeviceLaunchParameters) launchParameters;
-        String deviceId = deviceLaunchParameters.getDeviceId();
-        int forwardPort = deviceLaunchParameters.getForwardPort();
-        AppLauncherCallback callback = deviceLaunchParameters.getAppPathCallback();
-        if (deviceId == null) {
-            String[] udids = IDevice.listUdids();
-            if (udids.length == 0) {
-                throw new RuntimeException("No devices connected");
-            }
-            if (udids.length > 1) {
-                config.getLogger().warn("More than 1 device connected (%s). "
-                        + "Using %s.", Arrays.asList(udids), udids[0]);
-            }
-            deviceId = udids[0];
-        }
-        device = new IDevice(deviceId);
-
-        Map<String, String> env = launchParameters.getEnvironment();
-        if (env == null) {
-            env = new HashMap<>();
-        }
-        //Fix for #71, see http://stackoverflow.com/questions/37800790/hide-strange-unwanted-xcode-8-logs
-        env.put("OS_ACTIVITY_DT_MODE", "");
-
-        AppLauncher launcher = new AppLauncher(device, getAppDir()) {
-            protected void log(String s, Object... args) {
-                config.getLogger().info(s, args);
-            }
-        }
-                .closeOutOnExit(true)
-                .args(launchParameters.getArguments().toArray(new String[0]))
-                .env(env)
-                .forward(forwardPort)
-                .appLauncherCallback(callback)
-                .xcodePath(ToolchainUtil.findXcodePath())
-                .uploadProgressCallback(new UploadProgressCallback() {
-                    boolean first = true;
-
-                    public void success() {
-                        config.getLogger().info("[100%%] Upload complete");
-                    }
-
-                    public void progress(File path, int percentComplete) {
-                        if (first) {
-                            config.getLogger().info("[  0%%] Beginning upload...");
-                        }
-                        first = false;
-                        config.getLogger().info("[%3d%%] Uploading %s...", percentComplete, path);
-                    }
-
-                    public void error(String message) {}
-                })
-                .installStatusCallback(new StatusCallback() {
-                    boolean first = true;
-
-                    public void success() {
-                        config.getLogger().info("[100%%] Install complete");
-                    }
-
-                    public void progress(String status, int percentComplete) {
-                        if (first) {
-                            config.getLogger().info("[  0%%] Beginning installation...");
-                        }
-                        first = false;
-                        config.getLogger().info("[%3d%%] %s", percentComplete, status);
-                    }
-
-                    public void error(String message) {}
-                });
-
-        return new AppLauncherProcess(config.getLogger(),createLauncherListener(launchParameters),
-                launcher, launchParameters);
+        return new AppLauncherProcess(config.getLogger(), createLauncherListener(launchParameters),
+                deviceLaunchParameters, getAppDir());
     }
 
     @Override
@@ -333,7 +262,7 @@ public class IOSTarget extends AbstractTarget {
             ccArgs.add("-Xlinker");
             ccArgs.add(simEntitlement.getAbsolutePath());
         }
-        
+
         super.doBuild(outFile, ccArgs, objectFiles, libArgs);
     }
 
@@ -388,7 +317,7 @@ public class IOSTarget extends AbstractTarget {
         // strip symbols to reduce application size, all debugger symbols converted into globals
         strip(appDir, getExecutable());
 
-        if (isDeviceArch(arch)) {            
+        if (isDeviceArch(arch)) {
             if (config.isIosSkipSigning()) {
                 config.getLogger().warn("Skiping code signing. The resulting app will "
                         + "be unsigned and will not run on unjailbroken devices");
@@ -886,11 +815,11 @@ public class IOSTarget extends AbstractTarget {
             dict.put(key, value);
         }
     }
-    
+
     protected void customizeInfoPList(NSDictionary dict) {
         if (isSimulatorArch(arch)) {
             dict.put("CFBundleSupportedPlatforms", new NSArray(new NSString("iPhoneSimulator")));
-        } else {            
+        } else {
             dict.put("CFBundleSupportedPlatforms", new NSArray(new NSString("iPhoneOS")));
             dict.put("DTPlatformVersion", sdk.getPlatformVersion());
             dict.put("DTPlatformBuild", sdk.getPlatformBuild());
