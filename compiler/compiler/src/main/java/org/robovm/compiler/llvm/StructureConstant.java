@@ -30,7 +30,7 @@ public class StructureConstant extends Constant {
     }
     
     @Override
-    public Type getType() {
+    public StructureType getType() {
         return type;
     }
 
