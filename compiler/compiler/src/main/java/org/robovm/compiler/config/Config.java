@@ -1779,6 +1779,9 @@ public class Config {
             registry.bind(StripArchivesConfig.class, new StripArchivesConfigConverter());
 
             // converters for attributes (comma separated arrays)
+            // adding file converter to matcher, as it fails to pick it from registry when writing
+            // tag text of custom object (such as QualifiedFile)
+            matcher.bind(File.class, fileConverter);
             matcher.bind(OS[].class, new EnumArrayConverter<>(OS.class));
             matcher.bind(Arch[].class, new EnumArrayConverter<>(Arch.class));
             matcher.bind(PlatformVariant[].class, new EnumArrayConverter<>(PlatformVariant.class));
@@ -1949,7 +1952,7 @@ public class Config {
         }
     }
 
-    private static final class RelativeFileConverter implements Converter<File> {
+    private static final class RelativeFileConverter implements Converter<File>, Transform<File> {
         private final String wdPrefix;
 
         public RelativeFileConverter(File wd) {
@@ -1963,7 +1966,8 @@ public class Config {
             wdPrefix = prefix;
         }
 
-        File read(String value) {
+        @Override
+        public File read(String value) {
             if (value == null) {
                 return null;
             }
@@ -1980,17 +1984,27 @@ public class Config {
         }
 
         @Override
-        public void write(OutputNode node, File value) throws Exception {
+        public String write(File value) {
             String path = value.isAbsolute() ? value.getAbsolutePath() : value.getPath();
-            if (path.isEmpty() || path.equals(wdPrefix)) {
+            if (value.isAbsolute() && path.startsWith(wdPrefix)) {
+                if (path.length() == wdPrefix.length())
+                    path = "";
+                else
+                    path = path.substring(wdPrefix.length() + 1);
+            }
+            return path;
+        }
+
+        @Override
+        public void write(OutputNode node, File value) throws Exception {
+            String path = write(value);
+            if (path.isEmpty()) {
                 if ("directory".equals(node.getName())) {
                     // Skip
                     node.remove();
                 } else {
                     node.setValue("");
                 }
-            } else if (value.isAbsolute() && path.startsWith(wdPrefix) && path.charAt(wdPrefix.length()) == File.separatorChar) {
-                node.setValue(path.substring(wdPrefix.length() + 1));
             } else {
                 node.setValue(path);
             }
