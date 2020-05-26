@@ -91,7 +91,10 @@ public class Types {
     public static final Type OBJECT_PTR = new PointerType(OBJECT);
     public static final Type METHOD_PTR = new PointerType(new OpaqueType("Method"));
     public static final Type FIELD_PTR = new PointerType(new OpaqueType("Field"));
-    
+
+    public static final String INFO_STRUCT_ALIAS = "InfoStruct";
+    public static final String CLASS_TYPE_ALIAS = "ClassType";
+
     public static Type getType(String desc) {
         switch (desc.charAt(0)) {
         case 'Z': return I8;
@@ -502,7 +505,7 @@ public class Types {
         return new PackedStructureType(types.toArray(new Type[types.size()]));
     }
     
-    public static StructureType getClassType(OS os, Arch arch, SootClass clazz) {
+    public static StructureType getClassType(ModuleBuilder mb, OS os, Arch arch, SootClass clazz) {
         List<Type> types = new ArrayList<Type>();
         int offset = 0;
         for (SootField field : getClassFields(os, arch, clazz)) {
@@ -511,7 +514,9 @@ public class Types {
             types.add(padType(getType(field.getType()), padding));
             offset += padding + getFieldSize(arch, field);
         }
-        return new StructureType(CLASS, new StructureType(types.toArray(new Type[types.size()])));
+        StructureType classType = new StructureType(CLASS_TYPE_ALIAS, CLASS, new StructureType(types.toArray(new Type[types.size()])));
+        mb.addType(classType);
+        return classType;
     }
 
     public static StructureType getInstanceType(OS os, Arch arch, SootClass clazz) {

@@ -781,7 +781,7 @@ public class ClassCompiler {
         catches = new HashSet<String>();
         classFields = getClassFields(config.getOs(), config.getArch(),sootClass);
         instanceFields = getInstanceFields(config.getOs(), config.getArch(),sootClass);
-        classType = getClassType(config.getOs(), config.getArch(),sootClass);
+        classType = getClassType(mb, config.getOs(), config.getArch(),sootClass);
         instanceType = getInstanceType(config.getOs(), config.getArch(),sootClass);
         
         attributesEncoder.encode(mb, sootClass);
@@ -1522,7 +1522,9 @@ public class ClassCompiler {
         // Return the struct {header, body}. To be compatible with the C code in classinfo.c 
         // it is important that the header is padded the same as in C so that the body starts
         // after sizeof(ClassInfoHeader) bytes.
-        return new StructureConstantBuilder().add(header.build()).add(body.build()).build();
+        StructureConstant infoStruct = new StructureConstantBuilder().add(header.build()).add(body.build()).build(INFO_STRUCT_ALIAS);
+        mb.addType(infoStruct.getType());
+        return infoStruct;
     }
 
     private Function compileMethod(AbstractMethodCompiler methodCompiler, SootMethod method) {
