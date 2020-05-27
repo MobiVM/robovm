@@ -19,6 +19,7 @@ package org.robovm.compiler.target;
 import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.config.Config;
 import org.robovm.compiler.config.OS;
+import org.robovm.compiler.target.Launchers.CustomizableLauncher;
 import org.robovm.compiler.target.ios.ConsoleLauncherProcess;
 
 import java.io.File;
@@ -57,11 +58,11 @@ public class ConsoleTarget extends AbstractTarget {
     }
 
     @Override
-    protected Launcher createLauncher(LaunchParameters launchParameters) {
+    protected CustomizableLauncher createLauncher(LaunchParameters launchParameters) {
         File dir = launchParameters.getAppDirectory();
         File executable = new File(dir, config.getExecutableName());
-        return new ConsoleLauncherProcess(config.getLogger(), createLauncherListener(launchParameters),
-                executable, launchParameters);
+        return ConsoleLauncherProcess.createLauncher(config.getLogger(), createLauncherListener(launchParameters),
+                launchParameters, executable);
     }
     
     public void init(Config config) {

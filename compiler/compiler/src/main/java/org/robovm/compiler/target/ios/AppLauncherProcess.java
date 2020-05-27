@@ -17,9 +17,11 @@
 package org.robovm.compiler.target.ios;
 
 import org.apache.commons.io.output.NullOutputStream;
+import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.robovm.compiler.log.Logger;
-import org.robovm.compiler.target.LaunchParameters;
+import org.robovm.compiler.target.Launchers.*;
 import org.robovm.compiler.util.ToolchainUtil;
+import org.robovm.compiler.util.io.NeverCloseOutputStream;
 import org.robovm.libimobiledevice.AfcClient;
 import org.robovm.libimobiledevice.IDevice;
 import org.robovm.libimobiledevice.InstallationProxyClient;
@@ -42,12 +44,10 @@ import java.util.Map;
  */
 public class AppLauncherProcess extends AbstractLauncherProcess<IOSDeviceLaunchParameters> {
     private final AppLauncher launcher;
-    private final NullOutputStream stdInStream = new NullOutputStream();
-    private final WaitInputStream stdErrStream = new WaitInputStream();
-    private final PipedInputStream pipedStdOutStream = new PipedInputStream();
 
-    public AppLauncherProcess(Logger log, Listener listener, IOSDeviceLaunchParameters launchParameters, File appDir) throws IOException {
-        super(log, listener, launchParameters);
+    private AppLauncherProcess(Builder builder, File appDir) throws IOException {
+        super(builder);
+
         String deviceId = launchParameters.getDeviceId();
         int forwardPort = launchParameters.getForwardPort();
         AppLauncherCallback callback = launchParameters.getAppPathCallback();
@@ -71,13 +71,12 @@ public class AppLauncherProcess extends AbstractLauncherProcess<IOSDeviceLaunchP
         //Fix for #71, see http://stackoverflow.com/questions/37800790/hide-strange-unwanted-xcode-8-logs
         env.put("OS_ACTIVITY_DT_MODE", "");
 
-        this.launcher = new AppLauncher(device, appDir) {
+        launcher = new AppLauncher(device, appDir) {
             protected void log(String s, Object... args) {
                 log.info(s, args);
             }
         };
-        this.launcher
-                .closeOutOnExit(true)
+        launcher.closeOutOnExit(true)
                 .args(launchParameters.getArguments().toArray(new String[0]))
                 .env(env)
                 .forward(forwardPort)
@@ -98,7 +97,9 @@ public class AppLauncherProcess extends AbstractLauncherProcess<IOSDeviceLaunchP
                         log.info("[%3d%%] Uploading %s...", percentComplete, path);
                     }
 
-                    public void error(String message) {}
+                    public void error(String message) {
+                        log.error("Upload failed with message: %s", message);
+                    }
                 })
                 .installStatusCallback(new InstallationProxyClient.StatusCallback() {
                     boolean first = true;
@@ -115,29 +116,82 @@ public class AppLauncherProcess extends AbstractLauncherProcess<IOSDeviceLaunchP
                         log.info("[%3d%%] %s", percentComplete, status);
                     }
 
-                    public void error(String message) {}
+                    public void error(String message) {
+                        log.error("Install failed with message: %s", message);
+                    }
                 });
+    }
+
+    public static CustomizableLauncher createLauncher(Logger log, Listener listener,
+                                                      IOSDeviceLaunchParameters launchParameters,
+                                                      File appDir) {
+        return new Builder(log, listener, launchParameters, appDir);
     }
 
     @Override
     protected int performLaunch() throws IOException {
         launcher.install();
-        launcher.stdout(new PipedOutputStream(pipedStdOutStream));
+        launcher.stdout(out);
         return launcher.launch();
     }
 
-    @Override
-    protected OutputStream getPipeForStdIn() {
-        return stdInStream ;
-    }
 
-    @Override
-    protected InputStream getPipeForStdOut() {
-        return pipedStdOutStream;
-    }
+    public static class Builder extends AbstractLauncherProcess.Builder<IOSDeviceLaunchParameters> {
+        private final File appDir;
 
-    @Override
-    protected InputStream getPipeForStdErr() {
-        return stdErrStream;
+        public Builder(Logger log, Listener listener, IOSDeviceLaunchParameters launchParameters,
+                       File appDir) {
+            super(log, listener, launchParameters);
+            this.appDir = appDir;
+        }
+
+        @Override
+        protected AbstractLauncherProcess.Builder<IOSDeviceLaunchParameters> duplicate() {
+            return new Builder(log, listener, launchParameters, appDir);
+        }
+
+        @Override
+        protected AbstractLauncherProcess<IOSDeviceLaunchParameters> createAndSetupThread(boolean async) throws IOException {
+            // apply default streams if not configured
+            // error/input stream is not used
+            err = new ImmutablePair<>(null, null);
+            in = new ImmutablePair<>(null, new NullOutputStream());
+            if (async) {
+                if (out == null) {
+                    PipedInputStream sink = new PipedInputStream();
+                    out = new ImmutablePair<>(new PipedOutputStream(sink), sink);
+                }
+            } else {
+                if (out == null)
+                    out = new ImmutablePair<>(new NeverCloseOutputStream(System.out), null);
+            }
+
+            AppLauncherProcess launcher = new AppLauncherProcess(this, appDir);
+            if (async) {
+                // need to provide not null sink for err stream for process
+                err = new ImmutablePair<>(null, launcher.waitInputStream);
+            }
+            return launcher;
+        }
+
+        @Override
+        public AsyncLauncherBuilder setIn(InputStream in, OutputStream inSink) {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
+        public SyncLauncherBuilder setIn(InputStream in) {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
+        public SyncLauncherBuilder setErr(OutputStream err) {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
+        public AsyncLauncherBuilder setErr(OutputStream err, InputStream errSink) {
+            throw new UnsupportedOperationException();
+        }
     }
 }

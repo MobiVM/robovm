@@ -17,8 +17,13 @@
 package org.robovm.compiler.target.ios;
 
 import org.apache.commons.io.output.NullOutputStream;
+import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.robovm.compiler.log.Logger;
+import org.robovm.compiler.target.Launchers;
+import org.robovm.compiler.target.Launchers.CustomizableLauncher;
+import org.robovm.compiler.target.Launchers.Listener;
 import org.robovm.compiler.util.Executor;
+import org.robovm.compiler.util.io.NeverCloseOutputStream;
 
 import java.io.File;
 import java.io.IOException;
@@ -36,17 +41,19 @@ import java.util.Map;
  * simctl
  */
 public class SimLauncherProcess extends AbstractLauncherProcess<IOSSimulatorLaunchParameters> {
-    private final PipedInputStream pipedStdOutStream = new PipedInputStream();
-    private final PipedInputStream pipedStdErrStream = new PipedInputStream();
-    private final NullOutputStream stdInStream = new NullOutputStream();
     private final File appDir;
     private final String bundleId;
 
-    public SimLauncherProcess(Logger log, Listener listener, File appDir, String bundleId, IOSSimulatorLaunchParameters launchParameters) {
-        super(log, listener, launchParameters);
+    private SimLauncherProcess(Builder builder, File appDir, String bundleId) {
+        super(builder);
 
         this.appDir = appDir;
         this.bundleId = bundleId;
+    }
+
+    public static CustomizableLauncher createLauncher(Logger log, Listener listener, IOSSimulatorLaunchParameters launchParameters,
+                                                                File appDir, String bundleId) {
+        return new Builder(log, listener, launchParameters, appDir, bundleId);
     }
 
     @Override
@@ -98,26 +105,60 @@ public class SimLauncherProcess extends AbstractLauncherProcess<IOSSimulatorLaun
             executor.env(env);
         }
 
-        OutputStream outStream = new PipedOutputStream(pipedStdOutStream);
-        OutputStream errStream = new PipedOutputStream(pipedStdErrStream);
-        executor.wd(wd).out(outStream).err(errStream).closeOutputStreams(true).inheritEnv(false);
+        executor.wd(wd).out(out).err(err).closeOutputStreams(true).inheritEnv(false);
         executor.exec();
-        return  0;
+        return 0;
     }
 
-    @Override
-    protected OutputStream getPipeForStdIn() {
-        // no input stream for IOS
-        return stdInStream;
-    }
+    public static class Builder extends AbstractLauncherProcess.Builder<IOSSimulatorLaunchParameters> {
+        private final File appDir;
+        private final String bundleId;
 
-    @Override
-    protected InputStream getPipeForStdOut() {
-        return pipedStdOutStream;
-    }
+        public Builder(Logger log, Listener listener, IOSSimulatorLaunchParameters launchParameters,
+                       File appDir, String bundleId) {
+            super(log, listener, launchParameters);
+            this.appDir = appDir;
+            this.bundleId = bundleId;
+        }
 
-    @Override
-    protected InputStream getPipeForStdErr() {
-        return pipedStdErrStream;
+        @Override
+        protected AbstractLauncherProcess.Builder<IOSSimulatorLaunchParameters> duplicate() {
+            return new Builder(log, listener, launchParameters, appDir, bundleId);
+        }
+
+        @Override
+        protected AbstractLauncherProcess<IOSSimulatorLaunchParameters> createAndSetupThread(boolean async) throws IOException {
+            // apply default streams if not configured
+            if (async) {
+                if (out == null) {
+                    PipedInputStream sink = new PipedInputStream();
+                    out = new ImmutablePair<>(new PipedOutputStream(sink), sink);
+                }
+                if (err == null) {
+                    PipedInputStream sink = new PipedInputStream();
+                    err = new ImmutablePair<>(new PipedOutputStream(sink), sink);
+                }
+                // input stream is not used
+                in = new ImmutablePair<>(null, new NullOutputStream());
+            } else {
+                if (out == null)
+                    out = new ImmutablePair<>(new NeverCloseOutputStream(System.out), null);
+                if (err == null)
+                    err = new ImmutablePair<>(new NeverCloseOutputStream(System.err), null);
+                // input stream is not used
+                in = new ImmutablePair<>(null, null);
+            }
+            return new SimLauncherProcess(this, appDir, bundleId);
+        }
+
+        @Override
+        public Launchers.AsyncLauncherBuilder setIn(InputStream in, OutputStream inSink) {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
+        public Launchers.SyncLauncherBuilder setIn(InputStream in) {
+            throw new UnsupportedOperationException();
+        }
     }
 }

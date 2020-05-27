@@ -53,7 +53,7 @@ public class RoboVmRunProfileState extends CommandLineState {
         customizeLaunchParameters(runConfig, config, launchParameters);
         launchParameters.setArguments(runConfig.getProgramArguments());
 
-        Process process = config.getTarget().launch(launchParameters);
+        Process process = config.getTarget().launchAsync(launchParameters);
         RoboVmPlugin.logInfo(getEnvironment().getProject(), "Launch done");
 
         final OSProcessHandler processHandler = new ColoredProcessHandler(process, null);

@@ -16,9 +16,14 @@
  */
 package org.robovm.compiler.target.ios;
 
+import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.robovm.compiler.log.Logger;
 import org.robovm.compiler.target.LaunchParameters;
+import org.robovm.compiler.target.Launchers;
+import org.robovm.compiler.target.Launchers.Listener;
 import org.robovm.compiler.util.Executor;
+import org.robovm.compiler.util.io.NeverCloseInputStream;
+import org.robovm.compiler.util.io.NeverCloseOutputStream;
 
 import java.io.File;
 import java.io.IOException;
@@ -28,7 +33,6 @@ import java.io.PipedInputStream;
 import java.io.PipedOutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -36,17 +40,16 @@ import java.util.Map;
  */
 public class ConsoleLauncherProcess extends AbstractLauncherProcess<LaunchParameters> {
     private final File executable;
-    private final PipedInputStream pipedStdOutStream;
-    private final PipedInputStream pipedStdErrStream;
-    private final PipedOutputStream pipedStdInStream;
 
-    public ConsoleLauncherProcess(Logger log, Listener listener, File executable, LaunchParameters launchParameters) {
-        super(log, listener, launchParameters);
+    private ConsoleLauncherProcess(Builder builder, File executable) {
+        super(builder);
 
         this.executable = executable;
-        pipedStdOutStream = new PipedInputStream();
-        pipedStdErrStream = new PipedInputStream();
-        pipedStdInStream = new PipedOutputStream();
+    }
+
+    public static Launchers.CustomizableLauncher createLauncher(Logger log, Listener listener, LaunchParameters launchParameters,
+                                                                File executable) {
+        return new ConsoleLauncherProcess.Builder(log, listener, launchParameters, executable);
     }
 
     @Override
@@ -55,17 +58,14 @@ public class ConsoleLauncherProcess extends AbstractLauncherProcess<LaunchParame
         ArrayList<String> arguments = new ArrayList<>(launchParameters.getArguments());
         Map<String, String> env = launchParameters.getEnvironment();
 
-        OutputStream outStream = new PipedOutputStream(pipedStdOutStream);
-        OutputStream errStream = new PipedOutputStream(pipedStdErrStream);
-        InputStream inStream = new PipedInputStream(pipedStdInStream);
         Executor executor = new Executor(log, executable.getAbsolutePath())
                 .args(arguments)
                 .wd(wd)
                 .inheritEnv(env == null)
                 .env(env == null ? Collections.emptyMap() : env)
-                .out(outStream)
-                .err(errStream)
-                .in(inStream)
+                .out(out)
+                .err(err)
+                .in(in)
                 .closeOutputStreams(true);
 
         log.info("Launching console app %s", executable.getAbsolutePath());
@@ -73,18 +73,55 @@ public class ConsoleLauncherProcess extends AbstractLauncherProcess<LaunchParame
         return  0;
     }
 
-    @Override
-    protected OutputStream getPipeForStdIn() {
-        return pipedStdInStream;
-    }
+    public static class Builder extends AbstractLauncherProcess.Builder<LaunchParameters> {
+        private final File executable;
 
-    @Override
-    protected InputStream getPipeForStdOut() {
-        return pipedStdOutStream;
-    }
+        public Builder(Logger log, Listener listener, LaunchParameters launchParameters,
+                       File executable) {
+            super(log, listener, launchParameters);
+            this.executable = executable;
+        }
 
-    @Override
-    protected InputStream getPipeForStdErr() {
-        return pipedStdErrStream;
+        @Override
+        protected AbstractLauncherProcess.Builder<LaunchParameters> duplicate() {
+            return new Builder(log, listener, launchParameters, executable);
+        }
+
+        @Override
+        protected AbstractLauncherProcess<LaunchParameters> createAndSetupThread(boolean async) throws IOException {
+            // apply default streams if not configured
+            if (async) {
+                if (out == null) {
+                    PipedInputStream sink = new PipedInputStream();
+                    out = new ImmutablePair<>(new PipedOutputStream(sink), sink);
+                }
+                if (err == null) {
+                    PipedInputStream sink = new PipedInputStream();
+                    err = new ImmutablePair<>(new PipedOutputStream(sink), sink);
+                }
+                if (in == null) {
+                    PipedOutputStream sink = new PipedOutputStream();
+                    in = new ImmutablePair<>(new PipedInputStream(sink), sink);
+                }
+            } else {
+                if (out == null)
+                    out = new ImmutablePair<>(new NeverCloseOutputStream(System.out), null);
+                if (err == null)
+                    err = new ImmutablePair<>(new NeverCloseOutputStream(System.err), null);
+                if (in == null)
+                    in = new ImmutablePair<>(new NeverCloseInputStream(System.in), null);
+            }
+            return new ConsoleLauncherProcess(this, executable);
+        }
+
+        @Override
+        public Launchers.AsyncLauncherBuilder setIn(InputStream in, OutputStream inSink) {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
+        public Launchers.SyncLauncherBuilder setIn(InputStream in) {
+            throw new UnsupportedOperationException();
+        }
     }
 }

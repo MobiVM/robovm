@@ -1215,11 +1215,11 @@ public class AppCompiler {
     }
 
     public int launch(LaunchParameters launchParameters) throws IOException, InterruptedException {
-        return launchAsync(launchParameters).waitFor();
+        return config.getTarget().launch(launchParameters);
     }
 
     public Process launchAsync(LaunchParameters launchParameters) throws IOException {
-        return config.getTarget().launch(launchParameters);
+        return config.getTarget().launchAsync(launchParameters);
     }
 
     private class UpdateChecker extends Thread {

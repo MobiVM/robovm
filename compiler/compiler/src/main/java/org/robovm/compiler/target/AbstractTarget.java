@@ -16,6 +16,25 @@
  */
 package org.robovm.compiler.target;
 
+import com.dd.plist.NSDictionary;
+import com.dd.plist.PropertyListParser;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.robovm.compiler.clazz.Path;
+import org.robovm.compiler.config.AppExtension;
+import org.robovm.compiler.config.Arch;
+import org.robovm.compiler.config.Config;
+import org.robovm.compiler.config.OS;
+import org.robovm.compiler.config.Resource;
+import org.robovm.compiler.config.Resource.Walker;
+import org.robovm.compiler.config.StripArchivesConfig;
+import org.robovm.compiler.plugin.LaunchPlugin;
+import org.robovm.compiler.target.Launchers.CustomizableLauncher;
+import org.robovm.compiler.target.Launchers.Listener;
+import org.robovm.compiler.util.ToolchainUtil;
+import org.simpleframework.xml.Transient;
+
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -38,23 +57,6 @@ import java.util.regex.Pattern;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 import java.util.zip.ZipOutputStream;
-
-import com.dd.plist.NSDictionary;
-import com.dd.plist.PropertyListParser;
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang3.StringUtils;
-import org.robovm.compiler.clazz.Path;
-import org.robovm.compiler.config.AppExtension;
-import org.robovm.compiler.config.Arch;
-import org.robovm.compiler.config.Config;
-import org.robovm.compiler.config.OS;
-import org.robovm.compiler.config.Resource;
-import org.robovm.compiler.config.Resource.Walker;
-import org.robovm.compiler.config.StripArchivesConfig;
-import org.robovm.compiler.plugin.LaunchPlugin;
-import org.robovm.compiler.util.ToolchainUtil;
-import org.simpleframework.xml.Transient;
 
 /**
  * @author niklas
@@ -653,7 +655,18 @@ public abstract class AbstractTarget implements Target {
         copyAppExtensions(installDir);
     }
 
-    public Process launch(LaunchParameters launchParameters) throws IOException {
+
+    @Override
+    public int launch(LaunchParameters launchParameters) throws IOException, InterruptedException {
+        return doLaunch(launchParameters).exec();
+    }
+
+    @Override
+    public Process launchAsync(LaunchParameters launchParameters) throws IOException {
+        return doLaunch(launchParameters).execAsync();
+    }
+
+    protected CustomizableLauncher doLaunch(LaunchParameters launchParameters) throws IOException {
         if (config.isSkipLinking()) {
             throw new IllegalStateException("Cannot skip linking if target should be run");
         }
@@ -678,22 +691,18 @@ public abstract class AbstractTarget implements Target {
         launchParameters.setEnvironment(env);
         launchParameters.setAppDirectory(getAppDir());
 
-        return doLaunch(launchParameters);
+        return createLauncher(launchParameters);
     }
 
-    protected Process doLaunch(LaunchParameters launchParameters) throws IOException {
-        return createLauncher(launchParameters).execAsync();
-    }
-
-    protected Launcher createLauncher(LaunchParameters launchParameters) throws IOException {
+    protected CustomizableLauncher createLauncher(LaunchParameters launchParameters) throws IOException {
         throw new UnsupportedOperationException();
     }
 
     /**
      * @return Launcher listener to notify launch plugins about launch progress
      */
-    protected Launcher.Listener createLauncherListener(LaunchParameters launchParameters) {
-        return new Launcher.Listener() {
+    protected Launchers.Listener createLauncherListener(LaunchParameters launchParameters) {
+        return new Launchers.Listener() {
             @Override
             public void beforeLaunch() {
                 config.getLaunchPlugins().forEach(plugin -> plugin.beforeLaunch(config, launchParameters));

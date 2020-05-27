@@ -111,7 +111,15 @@ public interface Target {
      * @throws UnsupportedOperationException if binaries built by this
      *             {@link Target} cannot be launched.
      */
-    Process launch(LaunchParameters launchParameters) throws IOException;
+    int launch(LaunchParameters launchParameters) throws IOException, InterruptedException;
+
+    /**
+     * Asynchronously launches the built binary if supported.
+     *
+     * @throws UnsupportedOperationException if binaries built by this
+     *             {@link Target} cannot be launched.
+     */
+    Process launchAsync(LaunchParameters launchParameters) throws IOException;
 
     /**
      * Creates {@link LaunchParameters} for launching the binary built by this
