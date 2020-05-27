@@ -101,22 +101,6 @@ public class RoboVMPluginExtension {
         this.iosSimulatorSdk = iosSimulatorSdk;
     }
 
-    public String getStdoutFifo() {
-        return stdoutFifo;
-    }
-
-    public void setStdoutFifo(String stdoutFifo) {
-        this.stdoutFifo = stdoutFifo;
-    }
-
-    public String getStderrFifo() {
-        return stderrFifo;
-    }
-
-    public void setStderrFifo(String stderrFifo) {
-        this.stderrFifo = stderrFifo;
-    }
-
     public boolean isIosSkipSigning() {
         return project.hasProperty("robovm.iosSkipSigning") 
                 ? Boolean.parseBoolean(project.getProperties().get("robovm.iosSkipSigning").toString())

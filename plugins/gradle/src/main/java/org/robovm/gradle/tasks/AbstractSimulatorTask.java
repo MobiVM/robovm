@@ -41,43 +41,6 @@ public abstract class AbstractSimulatorTask extends AbstractRoboVMTask {
             Config config = compiler.getConfig();
             IOSSimulatorLaunchParameters launchParameters = (IOSSimulatorLaunchParameters) config.getTarget().createLaunchParameters();
             launchParameters.setDeviceType(type);
-
-            if (extension.getStdoutFifo() != null) {
-                File stdoutFifo = new File(extension.getStdoutFifo());
-                boolean isWritable;
-
-                if (stdoutFifo.exists()) {
-                    isWritable = stdoutFifo.isFile() && stdoutFifo.canWrite();
-                } else {
-                    File parent = stdoutFifo.getParentFile();
-                    isWritable = parent != null && parent.isDirectory() && parent.canWrite();
-                }
-
-                if (!isWritable) {
-                    throw new GradleException("Unwritable 'stdoutFifo' specified for RoboVM compile: " + stdoutFifo);
-                }
-
-                launchParameters.setStdoutFifo(stdoutFifo);
-            }
-
-            if (extension.getStderrFifo() != null) {
-                File stderrFifo = new File(extension.getStderrFifo());
-                boolean isWritable;
-
-                if (stderrFifo.exists()) {
-                    isWritable = stderrFifo.isFile() && stderrFifo.canWrite();
-                } else {
-                    File parent = stderrFifo.getParentFile();
-                    isWritable = parent != null && parent.isDirectory() && parent.canWrite();
-                }
-
-                if (!isWritable) {
-                    throw new GradleException("Unwritable 'stderrFifo' specified for RoboVM compile: " + stderrFifo);
-                }
-
-                launchParameters.setStderrFifo(stderrFifo);
-            }
-
             compiler.launch(launchParameters);
         } catch (Throwable t) {
             throw new GradleException("Failed to launch simulator", t);
