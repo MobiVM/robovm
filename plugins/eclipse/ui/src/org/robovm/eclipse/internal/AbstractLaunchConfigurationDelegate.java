@@ -16,22 +16,10 @@
  */
 package org.robovm.eclipse.internal;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.PipedInputStream;
-import java.io.PipedOutputStream;
-import java.net.ServerSocket;
-import java.text.DateFormat;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-
+import com.sun.jdi.VirtualMachine;
+import com.sun.jdi.VirtualMachineManager;
+import com.sun.jdi.connect.AttachingConnector;
+import com.sun.jdi.connect.Connector.Argument;
 import org.apache.commons.exec.CommandLine;
 import org.apache.commons.io.FileUtils;
 import org.eclipse.core.runtime.CoreException;
@@ -55,17 +43,21 @@ import org.robovm.compiler.config.Config;
 import org.robovm.compiler.config.Config.Builder;
 import org.robovm.compiler.config.Config.Home;
 import org.robovm.compiler.config.OS;
-import org.robovm.compiler.plugin.Plugin;
 import org.robovm.compiler.plugin.PluginArgument;
 import org.robovm.compiler.target.LaunchParameters;
-import org.robovm.compiler.util.io.Fifos;
-import org.robovm.compiler.util.io.OpenOnReadFileInputStream;
 import org.robovm.eclipse.RoboVMPlugin;
 
-import com.sun.jdi.VirtualMachine;
-import com.sun.jdi.VirtualMachineManager;
-import com.sun.jdi.connect.AttachingConnector;
-import com.sun.jdi.connect.Connector.Argument;
+import java.io.File;
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.text.DateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -87,8 +79,6 @@ public abstract class AbstractLaunchConfigurationDelegate extends AbstractJavaLa
 
     protected void customizeLaunchParameters(Config config, LaunchParameters launchParameters, ILaunchConfiguration configuration,
             String mode) throws IOException, CoreException {
-        launchParameters.setStdoutFifo(Fifos.mkfifo("stdout"));
-        launchParameters.setStderrFifo(Fifos.mkfifo("stderr"));
     }
 
     protected boolean isTestConfiguration() {
@@ -189,8 +179,8 @@ public abstract class AbstractLaunchConfigurationDelegate extends AbstractJavaLa
             configBuilder.tmpDir(tmpDir);
             configBuilder.skipInstall(true);
 
-            Config config = null;
-            AppCompiler compiler = null;
+            Config config;
+            AppCompiler compiler;
             try {
                 RoboVMPlugin.consoleInfo("Cleaning output dir " + tmpDir.getAbsolutePath());
                 FileUtils.deleteDirectory(tmpDir);
@@ -232,7 +222,7 @@ public abstract class AbstractLaunchConfigurationDelegate extends AbstractJavaLa
                 monitor.subTask("Launching executable");
                 mainTypeName = config.getMainClass();
 
-                List<String> runArgs = new ArrayList<String>();
+                List<String> runArgs = new ArrayList<>();
                 runArgs.addAll(vmArgs);
                 runArgs.addAll(pgmArgs);
                 LaunchParameters launchParameters = config.getTarget().createLaunchParameters();
@@ -242,27 +232,7 @@ public abstract class AbstractLaunchConfigurationDelegate extends AbstractJavaLa
                 customizeLaunchParameters(config, launchParameters, configuration, mode);
                 String label = String.format("%s (%s)", mainTypeName,
                         DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.MEDIUM).format(new Date()));
-                // launch plugin may proxy stdout/stderr fifo, which
-                // it then writes to. Need to save the original fifos
-                File stdOutFifo = launchParameters.getStdoutFifo();
-                File stdErrFifo = launchParameters.getStderrFifo();
-                PipedInputStream pipedIn = new PipedInputStream();
-                PipedOutputStream pipedOut = new PipedOutputStream(pipedIn);
-                
-                Process process = compiler.launchAsync(launchParameters, pipedIn);
-                
-                if (stdOutFifo != null || stdErrFifo != null) {
-                    InputStream stdoutStream = null;
-                    InputStream stderrStream = null;
-                    if (launchParameters.getStdoutFifo() != null) {
-                        stdoutStream = new OpenOnReadFileInputStream(stdOutFifo);
-                    }
-                    if (launchParameters.getStderrFifo() != null) {
-                        stderrStream = new OpenOnReadFileInputStream(stdErrFifo);
-                    }
-                    process = new ProcessProxy(process, pipedOut, stdoutStream, stderrStream, compiler);
-                }
-
+                Process process = compiler.launchAsync(launchParameters);
                 IProcess iProcess = DebugPlugin.newProcess(launch, process, label);
                 
                 // setup the debugger
@@ -319,8 +289,7 @@ public abstract class AbstractLaunchConfigurationDelegate extends AbstractJavaLa
     private VirtualMachine attachToVm(IProgressMonitor monitor, int port) throws CoreException {
         VirtualMachineManager manager = Bootstrap.virtualMachineManager();
         AttachingConnector connector = null;
-        for (Iterator<?> it = manager.attachingConnectors().iterator(); it.hasNext();) {
-            AttachingConnector con = (AttachingConnector) it.next();
+        for (AttachingConnector con : manager.attachingConnectors()) {
             if ("dt_socket".equalsIgnoreCase(con.transport().name())) {
                 connector = con;
                 break;
@@ -336,7 +305,7 @@ public abstract class AbstractLaunchConfigurationDelegate extends AbstractJavaLa
         try {
         	Thread.sleep(5000); //waiting at least 5 secs before attempting to connect.
         }
-        catch (InterruptedException e) {}
+        catch (InterruptedException ignored) {}
         
         int retries = 60;
         CoreException exception = null;
@@ -349,7 +318,7 @@ public abstract class AbstractLaunchConfigurationDelegate extends AbstractJavaLa
             }
             try {
                 Thread.sleep(1000);
-            } catch (InterruptedException e) {
+            } catch (InterruptedException ignored) {
             }
             if (monitor.isCanceled()) {
                 return null;
@@ -359,15 +328,15 @@ public abstract class AbstractLaunchConfigurationDelegate extends AbstractJavaLa
         throw exception;
     }
 
-    private Map<String, String> envToMap(String[] envp) throws IOException {
+    private Map<String, String> envToMap(String[] envp) {
         if (envp == null) {
             return Collections.emptyMap();
         }
-        Map<String, String> result = new HashMap<String, String>();
-        for (int i = 0; i < envp.length; i++) {
-            int index = envp[i].indexOf('=');
+        Map<String, String> result = new HashMap<>();
+        for (String s : envp) {
+            int index = s.indexOf('=');
             if (index != -1) {
-                result.put(envp[i].substring(0, index), envp[i].substring(index + 1));
+                result.put(s.substring(0, index), s.substring(index + 1));
             }
         }
         return result;
@@ -388,7 +357,7 @@ public abstract class AbstractLaunchConfigurationDelegate extends AbstractJavaLa
         if (parts.length <= 1) {
             return Collections.emptyList();
         }
-        List<String> result = new ArrayList<String>(parts.length - 1);
+        List<String> result = new ArrayList<>(parts.length - 1);
         for (int i = 1; i < parts.length; i++) {
             result.add(unquoteArg(parts[i]));
         }
@@ -397,98 +366,10 @@ public abstract class AbstractLaunchConfigurationDelegate extends AbstractJavaLa
 
     public int findFreePort()
     {
-        ServerSocket socket = null;
-        try {
-            socket = new ServerSocket(0);
+        try (ServerSocket socket = new ServerSocket(0)) {
             return socket.getLocalPort();
-        } catch (IOException localIOException2) {
-        } finally {
-            if (socket != null) {
-                try {
-                    socket.close();
-                } catch (IOException localIOException4) {
-                }
-            }
+        } catch (IOException ignored) {
         }
         return -1;
-    }
-
-    private static class ProcessProxy extends Process {
-        private final Process target;
-        private final OutputStream outputStream;
-        private final InputStream inputStream;
-        private final InputStream errorStream;
-        private final AppCompiler appCompiler;
-        private volatile boolean cleanedUp = false;
-
-        ProcessProxy(Process target, OutputStream outputStream, InputStream inputStream, InputStream errorStream,
-                AppCompiler appCompiler) {
-            this.target = target;
-            this.outputStream = outputStream;
-            this.inputStream = inputStream;
-            this.errorStream = errorStream;
-            this.appCompiler = appCompiler;
-        }
-
-        public void destroy() {
-            synchronized(this) {
-                if(!cleanedUp) {
-                    appCompiler.launchAsyncCleanup();
-                    cleanedUp = true;
-                }
-            }            
-            target.destroy();
-        }
-
-        public boolean equals(Object obj) {
-            return target.equals(obj);
-        }
-
-        public int exitValue() {
-            return target.exitValue();
-        }
-
-        public InputStream getErrorStream() {
-            if (errorStream != null) {
-                return errorStream;
-            }
-            return target.getErrorStream();
-        }
-
-        public InputStream getInputStream() {
-            if (inputStream != null) {
-                return inputStream;
-            }
-            return target.getInputStream();
-        }
-
-        public OutputStream getOutputStream() {
-            if (outputStream != null) {
-                return outputStream;
-            }
-            return target.getOutputStream();
-        }
-
-        public int hashCode() {
-            return target.hashCode();
-        }
-
-        public String toString() {
-            return target.toString();
-        }
-
-        public int waitFor() {
-            try {
-                return target.waitFor();
-            } catch (Throwable t) {
-                synchronized(this) {
-                    if(!cleanedUp) {
-                        appCompiler.launchAsyncCleanup();
-                        cleanedUp = true;
-                    }
-                } 
-                throw new RuntimeException(t);
-            }
-        }
     }
 }
