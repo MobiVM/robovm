@@ -170,7 +170,7 @@ public class ObjCMemberPlugin extends AbstractCompilerPlugin {
     private SootMethodRef org_robovm_objc_ObjCObject_getSuper = null;
     private SootFieldRef org_robovm_objc_ObjCObject_customClass = null;
     private SootMethodRef org_robovm_objc_ObjCClass_getByType = null;
-    private SootMethodRef org_robovm_objc_ObjCClass_replaceHandle = null;
+    private SootMethodRef org_robovm_objc_ObjCClass_associateAlias = null;
     private SootMethodRef org_robovm_objc_ObjCRuntime_bind = null;
     private SootMethodRef org_robovm_objc_ObjCObject_updateStrongRef = null;
     private SootMethodRef org_robovm_objc_ObjCExtensions_updateStrongRef = null;
@@ -389,7 +389,7 @@ public class ObjCMemberPlugin extends AbstractCompilerPlugin {
                     Arrays.asList(
                             j.newAssignStmt(objCClassHandle, j.newSpecialInvokeExpr(objCClass, this.org_robovm_rt_bro_NativeObject_getHandle)),
                             j.newAssignStmt(objCClassHandle, j.newStaticInvokeExpr(exposeObjcClassMethod.makeRef(), objCClassHandle)),
-                            j.newInvokeStmt(j.newSpecialInvokeExpr(objCClass, org_robovm_objc_ObjCClass_replaceHandle, objCClassHandle))
+                            j.newInvokeStmt(j.newSpecialInvokeExpr(objCClass, org_robovm_objc_ObjCClass_associateAlias, objCClassHandle))
                     ),
                     units.getLast()
             );
@@ -484,10 +484,10 @@ public class ObjCMemberPlugin extends AbstractCompilerPlugin {
                         "getByType",
                         Arrays.asList(java_lang_Class.getType()),
                         org_robovm_objc_ObjCClass.getType(), true);
-        org_robovm_objc_ObjCClass_replaceHandle =
+        org_robovm_objc_ObjCClass_associateAlias =
                 Scene.v().makeMethodRef(
                         org_robovm_objc_ObjCClass,
-                        "replaceHandle",
+                        "associateAlias",
                         Arrays.asList(LongType.v()),
                         VoidType.v(), false);
         org_robovm_objc_ObjCRuntime_bind =
