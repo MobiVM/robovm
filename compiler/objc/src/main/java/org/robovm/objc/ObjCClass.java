@@ -366,13 +366,13 @@ public final class ObjCClass extends ObjCObject {
      * once data from handle is copied to OBJC_CLASS_$_ there is two class_t struct for same class:
      * - one in OBJC_CLASS_$_
      * - second created runtime and pointed by handle
-     * just to have inside RoboVM and external objc one lets replace handle with alias (pointer to OBJC_CLASS_$_)
+     * Native code can create instances both way. Ownership helper should be able to find parent
+     * class for both class objects
      * WARNING: Shall not be called directly
      */
     @Deprecated
-    public void replaceHandle(long aliasHandle) {
-        ObjCObject.ObjectOwnershipHelper.replaceHandle(getHandle(), aliasHandle);
-        setHandle(aliasHandle);
+    public void associateAlias(long aliasHandle) {
+        ObjCObject.ObjectOwnershipHelper.registerClassAlias(getHandle(), aliasHandle);
     }
 
     @SuppressWarnings("unchecked")
