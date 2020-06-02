@@ -212,8 +212,8 @@ public class MachOLoader {
                         continue;
                 } else {
                     // data
-                    if ("__bss".equals(sec.sectname())) {
-                        // zero initialized zeros data goes to __bss so have to read it as well
+                    if ("__bss".equals(sec.sectname()) || "__common".equals(sec.sectname())) {
+                        // zero initialized zeros data goes to __bss(static)/__common(global) so have to read it as well
                         region = new NullDataBufferReader(sec.addr(), (int) sec.size(), isPatform64Bit());
                     } else if (!"__const".equals(sec.sectname()) && !"__data".equals(sec.sectname()))
                         continue;
