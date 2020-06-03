@@ -58,6 +58,7 @@ import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 import org.simpleframework.xml.Serializer;
+import org.simpleframework.xml.Text;
 import org.simpleframework.xml.convert.Converter;
 import org.simpleframework.xml.convert.Registry;
 import org.simpleframework.xml.convert.RegistryStrategy;
@@ -66,6 +67,8 @@ import org.simpleframework.xml.filter.PlatformFilter;
 import org.simpleframework.xml.stream.Format;
 import org.simpleframework.xml.stream.InputNode;
 import org.simpleframework.xml.stream.OutputNode;
+import org.simpleframework.xml.transform.RegistryMatcher;
+import org.simpleframework.xml.transform.Transform;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -77,6 +80,7 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Reader;
 import java.io.Writer;
+import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
@@ -95,6 +99,7 @@ import java.util.ServiceLoader;
 import java.util.TreeMap;
 import java.util.jar.Attributes;
 import java.util.jar.JarFile;
+import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
@@ -156,11 +161,11 @@ public class Config {
     @ElementList(required = false, entry = "framework")
     private ArrayList<String> weakFrameworks;
     @ElementList(required = false, entry = "path")
-    private ArrayList<File> frameworkPaths;
+    private ArrayList<QualifiedFile> frameworkPaths;
     @ElementList(required = false, entry = "extension")
     private ArrayList<AppExtension> appExtensions;
     @ElementList(required = false, entry = "path")
-    private ArrayList<File> appExtensionPaths;
+    private ArrayList<QualifiedFile> appExtensionPaths;
     @ElementList(required = false, entry = "resource")
     private ArrayList<Resource> resources;   
     @ElementList(required = false, entry = "classpathentry")
@@ -432,7 +437,10 @@ public class Config {
 
     public List<File> getFrameworkPaths() {
         return frameworkPaths == null ? Collections.emptyList()
-                : Collections.unmodifiableList(frameworkPaths);
+                : frameworkPaths.stream()
+                .filter(this::isQualified)
+                .map(f -> f.entry)
+                .collect(Collectors.collectingAndThen(Collectors.toList(), Collections::unmodifiableList));
     }
 
     public List<AppExtension> getAppExtensions() {
@@ -442,7 +450,10 @@ public class Config {
 
     public List<File> getAppExtensionPaths() {
         return appExtensionPaths == null ? Collections.emptyList()
-                : Collections.unmodifiableList(appExtensionPaths);
+                : appExtensionPaths.stream()
+                .filter(this::isQualified)
+                .map(e -> e.entry)
+                .collect(Collectors.collectingAndThen(Collectors.toList(), Collections::unmodifiableList));
     }
 
     public List<Resource> getResources() {
@@ -684,6 +695,28 @@ public class Config {
     public File getGeneratedClassDir(Path path) {
         File pathCacheDir = getCacheDir(path);
         return new File(pathCacheDir.getParentFile(), pathCacheDir.getName() + ".generated");
+    }
+
+    /**
+     * tests if qualified item matches this config
+     */
+    protected boolean isQualified(Qualified qualified) {
+        if (qualified.filterPlatforms() != null) {
+            if (!Arrays.asList(qualified.filterPlatforms()).contains(os))
+                return false;
+        }
+        if (qualified.filterArch() != null) {
+            if (!Arrays.asList(qualified.filterArch()).contains(sliceArch))
+                return false;
+        }
+        // TODO: there is no platform variant, just guess it from arch, applies to iOS temporaly
+        if (os == OS.ios && qualified.filterPlatformVariants() != null) {
+            PlatformVariant variant = sliceArch.isArm() ? PlatformVariant.device : PlatformVariant.simulator;
+            if (!Arrays.asList(qualified.filterPlatformVariants()).contains(variant))
+                return false;
+        }
+
+        return true;
     }
 
     private static Map<Object, Object> getManifestAttributes(File jarFile) throws IOException {
@@ -1428,7 +1461,7 @@ public class Config {
             if (config.frameworkPaths == null) {
                 config.frameworkPaths = new ArrayList<>();
             }
-            config.frameworkPaths.add(frameworkPath);
+            config.frameworkPaths.add(new QualifiedFile(frameworkPath));
             return this;
         }
 
@@ -1461,7 +1494,7 @@ public class Config {
             if (config.appExtensionPaths == null) {
                 config.appExtensionPaths = new ArrayList<>();
             }
-            config.appExtensionPaths.add(extensionPath);
+            config.appExtensionPaths.add(new QualifiedFile(extensionPath));
             return this;
         }
 
@@ -1736,13 +1769,22 @@ public class Config {
 
             Registry registry = new Registry();
             RegistryStrategy registryStrategy = new RegistryStrategy(registry);
+            RegistryMatcher matcher = new RegistryMatcher();
             Serializer serializer = new Persister(registryStrategy,
-                    new PlatformFilter(config.properties), new Format(2));
+                    new PlatformFilter(config.properties), matcher, new Format(2));
 
             registry.bind(File.class, fileConverter);
             registry.bind(Lib.class, new RelativeLibConverter(fileConverter));
             registry.bind(Resource.class, new ResourceConverter(fileConverter, resourceSerializer));
             registry.bind(StripArchivesConfig.class, new StripArchivesConfigConverter());
+
+            // converters for attributes (comma separated arrays)
+            // adding file converter to matcher, as it fails to pick it from registry when writing
+            // tag text of custom object (such as QualifiedFile)
+            matcher.bind(File.class, fileConverter);
+            matcher.bind(OS[].class, new EnumArrayConverter<>(OS.class));
+            matcher.bind(Arch[].class, new EnumArrayConverter<>(Arch.class));
+            matcher.bind(PlatformVariant[].class, new EnumArrayConverter<>(PlatformVariant.class));
 
             return serializer;
         }
@@ -1818,6 +1860,30 @@ public class Config {
         }
     }
 
+    /**
+     * Container for file entry with platform/arch constraints
+     */
+    public static final class QualifiedFile extends AbstractQualified {
+        @Text File entry;
+
+        protected QualifiedFile() {
+        }
+
+        public QualifiedFile(File file) {
+            entry = file;
+        }
+
+        public File getEntry() {
+            return entry;
+        }
+
+        @Override
+        public String toString() {
+            return entry + " " + super.toString();
+        }
+    }
+
+
     private static final class RelativeLibConverter implements Converter<Lib> {
         private final RelativeFileConverter fileConverter;
 
@@ -1855,7 +1921,38 @@ public class Config {
         }
     }
 
-    private static final class RelativeFileConverter implements Converter<File> {
+    /**
+     * transformer for xml attribute/entry that transforms comma separated values into
+     * enum array
+     */
+    private static final class EnumArrayConverter<T extends Enum<T>> implements Transform<T[]> {
+        private final Class<T> enumClass;
+
+        private EnumArrayConverter(Class<T> enumClass) {
+            this.enumClass = enumClass;
+        }
+
+        @Override
+        public T[] read(String s) {
+            s = s.trim();
+            if (s.isEmpty())
+                return null;
+
+            String[] tokens = s.split(",");
+            @SuppressWarnings("unchecked")
+            T[] res = (T[])Array.newInstance(enumClass, tokens.length);
+            for (int idx = 0; idx < tokens.length; idx++)
+                res[idx] = Enum.valueOf(enumClass, tokens[idx].trim());
+            return res;
+        }
+
+        @Override
+        public String write(T[] ts) {
+            return Arrays.stream(ts).map(Enum::name).collect(Collectors.joining());
+        }
+    }
+
+    private static final class RelativeFileConverter implements Converter<File>, Transform<File> {
         private final String wdPrefix;
 
         public RelativeFileConverter(File wd) {
@@ -1869,7 +1966,8 @@ public class Config {
             wdPrefix = prefix;
         }
 
-        File read(String value) {
+        @Override
+        public File read(String value) {
             if (value == null) {
                 return null;
             }
@@ -1886,17 +1984,27 @@ public class Config {
         }
 
         @Override
-        public void write(OutputNode node, File value) throws Exception {
+        public String write(File value) {
             String path = value.isAbsolute() ? value.getAbsolutePath() : value.getPath();
-            if (path.isEmpty() || path.equals(wdPrefix)) {
+            if (value.isAbsolute() && path.startsWith(wdPrefix)) {
+                if (path.length() == wdPrefix.length())
+                    path = "";
+                else
+                    path = path.substring(wdPrefix.length() + 1);
+            }
+            return path;
+        }
+
+        @Override
+        public void write(OutputNode node, File value) throws Exception {
+            String path = write(value);
+            if (path.isEmpty()) {
                 if ("directory".equals(node.getName())) {
                     // Skip
                     node.remove();
                 } else {
                     node.setValue("");
                 }
-            } else if (value.isAbsolute() && path.startsWith(wdPrefix) && path.charAt(wdPrefix.length()) == File.separatorChar) {
-                node.setValue(path.substring(wdPrefix.length() + 1));
             } else {
                 node.setValue(path);
             }
