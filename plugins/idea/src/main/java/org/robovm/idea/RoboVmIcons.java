@@ -26,6 +26,6 @@ import java.util.Objects;
  * preloads icons used by various components
  */
 public class RoboVmIcons {
-    public static final @NotNull Icon ROBOVM_SMALL = Objects.requireNonNull(IconLoader.findIcon("/icons/robovm_small.png"));
+    public static final @NotNull Icon ROBOVM_SMALL = Objects.requireNonNull(IconLoader.findIcon("/icons/robovm_small.svg"));
     public static final @NotNull Icon ROBOVM_LARGE = Objects.requireNonNull(IconLoader.findIcon("/icons/robovm_large.png"));
 }
