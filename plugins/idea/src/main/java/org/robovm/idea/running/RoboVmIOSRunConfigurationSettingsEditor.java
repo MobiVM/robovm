@@ -21,6 +21,7 @@ import com.intellij.openapi.options.ConfigurationException;
 import com.intellij.openapi.options.SettingsEditor;
 import org.jetbrains.annotations.NotNull;
 import org.robovm.compiler.config.Arch;
+import org.robovm.compiler.config.Config;
 import org.robovm.compiler.target.ios.DeviceType;
 import org.robovm.compiler.target.ios.IOSTarget;
 import org.robovm.compiler.target.ios.ProvisioningProfile;
@@ -47,7 +48,7 @@ public class RoboVmIOSRunConfigurationSettingsEditor extends SettingsEditor<Robo
 
     private JPanel panel;
     private JTabbedPane tabbedPane1;
-    private JComboBox<String> module;
+    private JComboBox<ModuleNameDecorator> module;
     private JRadioButton attachedDeviceRadioButton;
     private JRadioButton simulatorRadioButton;
     private JComboBox<SimTypeDecorator> simType;
@@ -56,9 +57,10 @@ public class RoboVmIOSRunConfigurationSettingsEditor extends SettingsEditor<Robo
     private JComboBox<Arch> simArch;
     private JComboBox<Arch> deviceArch;
     private JTextArea args;
+    private JCheckBox pairedWatch;
 
     // copy of data that is time consuming to fetch (fetched only once when dialog is created)
-    private List<String> roboVmModules;
+    private List<ModuleNameDecorator> roboVmModules;
     private List<SimTypeDecorator> simDeviceTypes;
     private final SimTypeDecorator simulatorAutoIPhone = new SimTypeDecorator(AUTO_SIMULATOR_IPHONE_TITLE, EntryType.AUTO);
     private final SimTypeDecorator simulatorAutoIPad = new SimTypeDecorator(AUTO_SIMULATOR_IPAD_TITLE, EntryType.AUTO2);
@@ -66,6 +68,8 @@ public class RoboVmIOSRunConfigurationSettingsEditor extends SettingsEditor<Robo
     private final ProvisioningProfileDecorator provisioningProfileAuto = new ProvisioningProfileDecorator(AUTO_PROVISIONING_PROFILE, EntryType.AUTO);
     private List<SigningIdentityDecorator> signingIdentities;
     private final SigningIdentityDecorator signingIdentityAuto = new SigningIdentityDecorator(AUTO_SIGNING_IDENTITY, EntryType.AUTO);
+    private boolean moduleHasWatchApp;
+    // true if editor internally updating data and listeners should ignore the events
     private boolean updatingData;
 
     @NotNull
@@ -78,7 +82,16 @@ public class RoboVmIOSRunConfigurationSettingsEditor extends SettingsEditor<Robo
         populateSimulators();
         roboVmModules = null; // will be populated once modules list is known
 
-        simType.addActionListener(e -> updateSimArchs((SimTypeDecorator) simType.getSelectedItem()));
+        simType.addActionListener(e -> {
+            if (!updatingData) {
+                updateSimArchs((SimTypeDecorator) simType.getSelectedItem());
+                updatePairedWatch(false, null);
+            }
+        });
+        module.addActionListener(e -> {
+            if (!updatingData)
+                updatePairedWatch(true, null);
+        } );
 
         return panel;
     }
@@ -90,6 +103,7 @@ public class RoboVmIOSRunConfigurationSettingsEditor extends SettingsEditor<Robo
             module.setSelectedItem(getModuleFromConfig(config));
             simType.setSelectedItem(getSimulatorFromConfig(config));
             simArch.setSelectedItem(populateSimulatorArch((SimTypeDecorator) simType.getSelectedItem(), config.getSimulatorArch()));
+            updatePairedWatch(true, config.simulatorLaunchWatch());
 
             deviceArch.setSelectedItem(config.getDeviceArch());
             signingIdentity.setSelectedItem(getSigningIdentityFromConfig(config));
@@ -118,7 +132,7 @@ public class RoboVmIOSRunConfigurationSettingsEditor extends SettingsEditor<Robo
             throw buildConfigurationException("Provisioning profile is not specified!", () -> provisioningProfile.setSelectedItem(provisioningProfileAuto));
 
         // save all data
-        config.setModuleName(module.getSelectedItem().toString());
+        config.setModuleName(Decorator.from(module).name);
         config.setTargetType(attachedDeviceRadioButton.isSelected() ? RoboVmRunConfiguration.TargetType.Device : RoboVmRunConfiguration.TargetType.Simulator);
         // device related
         config.setDeviceArch((Arch) deviceArch.getSelectedItem());
@@ -132,6 +146,7 @@ public class RoboVmIOSRunConfigurationSettingsEditor extends SettingsEditor<Robo
         config.setSimulator(Decorator.from(simType).id);
         config.setSimulatorSdk(-1); // legacy, will not be used
         config.setArguments(args.getText());
+        config.setSimulatorLaunchWatch(pairedWatch.isSelected());
     }
 
     private Arch populateSimulatorArch(SimTypeDecorator simulator, Arch arch) {
@@ -167,12 +182,12 @@ public class RoboVmIOSRunConfigurationSettingsEditor extends SettingsEditor<Robo
         if (roboVmModules != null)
             return;
 
+        this.roboVmModules = RoboVmPlugin.getRoboVmModules(config.getProject(), IOSTarget.TYPE).stream()
+                .map(ModuleNameDecorator::new)
+                .collect(Collectors.toList());
+
         // populate with RoboVM Sdk modules
         this.module.removeAllItems();
-        this.roboVmModules = RoboVmPlugin.getRoboVmModules(config.getProject(), IOSTarget.TYPE).stream()
-                .map(Module::getName)
-                .sorted()
-                .collect(Collectors.toList());
         this.roboVmModules.forEach(m -> module.addItem(m));
     }
 
@@ -207,15 +222,13 @@ public class RoboVmIOSRunConfigurationSettingsEditor extends SettingsEditor<Robo
         this.simDeviceTypes.forEach(t -> simType.addItem(t));
     }
 
-    private String getModuleFromConfig(RoboVmRunConfiguration config) {
+    private ModuleNameDecorator getModuleFromConfig(RoboVmRunConfiguration config) {
         populateModules(config);
 
         // validate if module is known
         String name = config.getModuleName();
-        if (!name.isEmpty() && roboVmModules.contains(name))
-            return name;
-        else
-            return null;
+        return getMatchingDecorator(EntryType.ID, name, (ModuleNameDecorator) module.getSelectedItem(),
+                null, null, roboVmModules);
     }
 
     private SimTypeDecorator getSimulatorFromConfig(RoboVmRunConfiguration config) {
@@ -312,13 +325,49 @@ public class RoboVmIOSRunConfigurationSettingsEditor extends SettingsEditor<Robo
     }
 
     private void updateSimArchs(SimTypeDecorator simulator) {
-        if (updatingData)
-            return;
-
         Arch arch = populateSimulatorArch(simulator, (Arch) simArch.getSelectedItem());
         if (arch == null && simArch.getItemCount() > 0)
             arch = simArch.getItemAt(0);
         simArch.setSelectedItem(arch);
+    }
+
+    private void updatePairedWatch(boolean moduleChanged, Boolean valueToSet) {
+        boolean visible;
+        boolean enabled;
+        boolean selected = valueToSet != null ? valueToSet : pairedWatch.isSelected();
+        String text;
+
+        if (moduleChanged) {
+            // module changed
+            Decorator<Module> moduleSelected = Decorator.from(module);
+            Config config = moduleSelected != null ? RoboVmPlugin.loadRawModuleConfig(moduleSelected.data) : null;
+            moduleHasWatchApp = config != null && config.getWatchKitApp() != null;
+        }
+
+        if (!moduleHasWatchApp) {
+            selected = false;
+            enabled = false;
+            visible = false;
+            text = "";
+        } else {
+            visible = true;
+            Decorator<DeviceType> simSelected = Decorator.from(simType);
+            if (simSelected != null && simSelected.entryType == EntryType.ID && simSelected.data.getPair() != null) {
+                // has pair
+                text = "Launch paired: " + simSelected.data.getPair().getDeviceName();
+                enabled = true;
+            } else {
+                // no pair
+                text = "Not paired with watch";
+                enabled = false;
+                selected = false;
+            }
+        }
+
+        pairedWatch.setVisible(visible);
+        pairedWatch.setSelected(selected);
+        pairedWatch.setEnabled(enabled);
+        pairedWatch.setText(text);
     }
 
     /**
@@ -421,4 +470,18 @@ public class RoboVmIOSRunConfigurationSettingsEditor extends SettingsEditor<Robo
             return name;
         }
     }
-}
+
+    /**
+     * decorator for module
+     */
+    private static class ModuleNameDecorator extends Decorator<Module> {
+        ModuleNameDecorator(Module module) {
+            super(module, module.getName(), module.getName(), EntryType.ID);
+        }
+
+        @Override
+        public String toString() {
+            return name;
+        }
+    }
+ }

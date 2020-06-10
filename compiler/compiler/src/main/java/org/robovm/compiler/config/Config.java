@@ -193,6 +193,9 @@ public class Config {
     private File iosEntitlementsPList;
 
     @Element(required = false)
+    private WatchKitApp watchKitApp;
+
+    @Element(required = false)
     private Tools tools;
 
     @Element(required = false)
@@ -602,6 +605,10 @@ public class Config {
 
     public Tools getTools() {
         return tools;
+    }
+
+    public WatchKitApp getWatchKitApp() {
+        return watchKitApp;
     }
 
     private static File makeFileRelativeTo(File dir, File f) {
