@@ -155,7 +155,7 @@ public final class Converter {
      * @param loader loader to find out super class if required
      * @return JDPW presentation of instance
      */
-    public static byte jdwpInstanceTag(ClassInfo classInfo, ClassInfoLoader loader) {
+    public byte jdwpInstanceTag(ClassInfo classInfo, ClassInfoLoader loader) {
         if (classInfo.isArray())
             return JdwpConsts.Tag.ARRAY;
 
@@ -219,6 +219,5 @@ public final class Converter {
         return tag;
     }
 
-    private static final Map<Long, Byte> classInfoToTagMap = new HashMap<>();
-
+    private final Map<Long, Byte> classInfoToTagMap = new HashMap<>();
 }
