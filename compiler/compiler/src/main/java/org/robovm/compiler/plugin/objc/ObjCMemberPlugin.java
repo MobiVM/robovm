@@ -2017,6 +2017,15 @@ public class ObjCMemberPlugin extends AbstractCompilerPlugin {
                 byte[] data = sb.append('\0').toString().getBytes();
                 linker.addBcGlobalData("_bcFrameworkPreloadClasses", data);
             }
+
+            // TODO: probably ObjMemberPlugin is not best place for this logic
+            // but Targets are not integrated into build process and introducing
+            // this infrastructure will require significant changes
+            // disable JVM start up if JNI_CreateJavaVM is listed in exported symbols
+            if (config.getExportedSymbols().contains("JNI_CreateJavaVM")) {
+                byte[] data = new byte[1];
+                linker.addBcGlobalData("_bcFrameworkSkipJavaVMStartup", data);
+            }
         }
     }
 
