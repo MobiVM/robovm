@@ -32,39 +32,28 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 13.0 and later.
- */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/NFCTagReaderSessionDelegate/*</name>*/ 
-    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
+/*<annotations>*/@Library("CoreNFC")/*</annotations>*/
+/*<visibility>*/public final/*</visibility>*/ class /*<name>*/NSUserActivityExtensions/*</name>*/ 
+    extends /*<extends>*/NSExtensions/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/
     /*</ptr>*/
-    /*<bind>*/
-    /*</bind>*/
+    /*<bind>*/static { ObjCRuntime.bind(NSUserActivityExtensions.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
+    /*<constructors>*/
+    private NSUserActivityExtensions() {}
+    /*</constructors>*/
     /*<properties>*/
-    
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "ndefMessagePayload")
+    public static native NFCNDEFMessage getNdefMessagePayload(NSUserActivity thiz);
     /*</properties>*/
+    /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @Method(selector = "tagReaderSession:didInvalidateWithError:")
-    void didInvalidate(NFCTagReaderSession session, NSError error);
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @Method(selector = "tagReaderSessionDidBecomeActive:")
-    void didBecomeActive(NFCTagReaderSession session);
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @Method(selector = "tagReaderSession:didDetectTags:")
-    void didDetectTags(NFCTagReaderSession session, @org.robovm.rt.bro.annotation.Marshaler(NFCTag.AsListMarshaller.class) List<NFCTag> tags);
+    
     /*</methods>*/
-    /*<adapter>*/
-    /*</adapter>*/
 }
