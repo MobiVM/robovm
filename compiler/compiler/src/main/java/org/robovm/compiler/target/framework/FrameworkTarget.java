@@ -118,7 +118,7 @@ public class FrameworkTarget extends AbstractTarget {
 
 	@Override
 	protected List<String> getTargetExportedSymbols() {
-		return Arrays.asList("JNI_*", "rvmInstantiateFramework", "OBJC_CLASS_$_*");
+		return Arrays.asList("JNI_*", "rvmInstantiateFramework", "rvmInitializeFrameworkWithJVM", "OBJC_CLASS_$_*");
 	}
 
 	private String getMinimumOSVersion() {
