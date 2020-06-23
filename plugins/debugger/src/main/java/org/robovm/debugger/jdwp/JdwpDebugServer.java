@@ -78,6 +78,7 @@ import org.robovm.debugger.jdwp.handlers.vm.JdwpVmClassPathsHandler;
 import org.robovm.debugger.jdwp.handlers.vm.JdwpVmClassesBySignatureHandler;
 import org.robovm.debugger.jdwp.handlers.vm.JdwpVmCreateStringHandler;
 import org.robovm.debugger.jdwp.handlers.vm.JdwpVmDisposeHandler;
+import org.robovm.debugger.jdwp.handlers.vm.JdwpVmDisposeObjectsHandler;
 import org.robovm.debugger.jdwp.handlers.vm.JdwpVmExitHandler;
 import org.robovm.debugger.jdwp.handlers.vm.JdwpVmHoldEventsHandler;
 import org.robovm.debugger.jdwp.handlers.vm.JdwpVmIdSizesHandler;
@@ -331,7 +332,7 @@ public class JdwpDebugServer implements IJdwpServerApi{
         registerHandler(new JdwpVmCreateStringHandler(delegates));// CreateString Command (11)
         registerHandler(new JdwpVmCapabilitiesHandler()); // 12
         registerHandler(new JdwpVmClassPathsHandler()); // 13
-        // DisposeObjects Command (14) -- NOT_IMPLEMENTED
+        registerHandler(new JdwpVmDisposeObjectsHandler()); // 14
         registerHandler(new JdwpVmHoldEventsHandler(delegates)); // HoldEvents Command (15)
         registerHandler(new JdwpVmReleaseEventsHandler(delegates)); // ReleaseEvents Command (16)
         registerHandler(new JdwpVmCapabilitiesNewHandler()); // 17
