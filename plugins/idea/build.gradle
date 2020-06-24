@@ -62,3 +62,8 @@ targetCompatibility = 1.8
 compileJava {
     dependsOn copyRoboVmDist
 }
+
+runIde {
+    // Give IDEA more memory to allow RoboVM compilation
+    jvmArgs += '-Xmx4G'
+}
