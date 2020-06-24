@@ -87,7 +87,12 @@ public class RoboVmIOSRunConfigurationSettingsEditor extends SettingsEditor<Robo
     protected void resetEditorFrom(@NotNull RoboVmRunConfiguration config) {
         try {
             updatingData = true;
-            module.setSelectedItem(getModuleFromConfig(config));
+            // Default to the first RoboVM Module within this project, if the module has not been configured, yet (new editor)
+            String moduleName = getModuleFromConfig(config);
+            if (moduleName == null && this.roboVmModules != null && !this.roboVmModules.isEmpty()) {
+                moduleName = this.roboVmModules.get(0);
+            }
+            module.setSelectedItem(moduleName);
             simType.setSelectedItem(getSimulatorFromConfig(config));
             simArch.setSelectedItem(populateSimulatorArch((SimTypeDecorator) simType.getSelectedItem(), config.getSimulatorArch()));
 
@@ -104,8 +109,9 @@ public class RoboVmIOSRunConfigurationSettingsEditor extends SettingsEditor<Robo
     @Override
     protected void applyEditorTo(@NotNull RoboVmRunConfiguration config) throws ConfigurationException {
         // validate all data
-        if (module.getSelectedItem() == null)
-            throw new ConfigurationException("RoboVM module is not specified!");
+        // This has been removed to enable the creation of run configuration templates.
+        /*if (module.getSelectedItem() == null)
+            throw new ConfigurationException("RoboVM module is not specified!");*/
         if (simType.getSelectedItem() == null)
             throw buildConfigurationException("Simulator is not specified!", () -> simType.setSelectedItem(simulatorAutoIPhone));
         if (simArch.getSelectedItem() == null)
@@ -118,7 +124,9 @@ public class RoboVmIOSRunConfigurationSettingsEditor extends SettingsEditor<Robo
             throw buildConfigurationException("Provisioning profile is not specified!", () -> provisioningProfile.setSelectedItem(provisioningProfileAuto));
 
         // save all data
-        config.setModuleName(module.getSelectedItem().toString());
+        if (module.getSelectedItem() != null) {
+            config.setModuleName(module.getSelectedItem().toString());
+        }
         config.setTargetType(attachedDeviceRadioButton.isSelected() ? RoboVmRunConfiguration.TargetType.Device : RoboVmRunConfiguration.TargetType.Simulator);
         // device related
         config.setDeviceArch((Arch) deviceArch.getSelectedItem());
