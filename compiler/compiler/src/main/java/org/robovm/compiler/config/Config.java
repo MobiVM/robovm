@@ -166,6 +166,8 @@ public class Config {
     private ArrayList<AppExtension> appExtensions;
     @ElementList(required = false, entry = "path")
     private ArrayList<QualifiedFile> appExtensionPaths;
+    @ElementList(required = false, entry = "path")
+    private ArrayList<File> swiftLibPaths;
     @ElementList(required = false, entry = "resource")
     private ArrayList<Resource> resources;   
     @ElementList(required = false, entry = "classpathentry")
@@ -454,6 +456,11 @@ public class Config {
                 .filter(this::isQualified)
                 .map(e -> e.entry)
                 .collect(Collectors.collectingAndThen(Collectors.toList(), Collections::unmodifiableList));
+    }
+
+    public List<File> getSwiftLibPaths() {
+        return swiftLibPaths == null ? Collections.emptyList()
+                : Collections.unmodifiableList(swiftLibPaths);
     }
 
     public List<Resource> getResources() {
@@ -1495,6 +1502,21 @@ public class Config {
                 config.appExtensionPaths = new ArrayList<>();
             }
             config.appExtensionPaths.add(new QualifiedFile(extensionPath));
+            return this;
+        }
+
+        public Builder clearSwiftLibPaths() {
+            if (config.swiftLibPaths != null) {
+                config.swiftLibPaths.clear();
+            }
+            return this;
+        }
+
+        public Builder addSwiftLibPath(File path) {
+            if (config.swiftLibPaths == null) {
+                config.swiftLibPaths = new ArrayList<>();
+            }
+            config.swiftLibPaths.add(path);
             return this;
         }
 
