@@ -16,12 +16,7 @@
  */
 package org.robovm.compiler.target;
 
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -225,7 +220,7 @@ public abstract class AbstractTarget implements Target {
             }
         }
 
-        File swiftLibLocation = null;
+        File[] swiftLibLocations = null;
         if (!config.getLibs().isEmpty()) {
             objectFiles = new ArrayList<File>(objectFiles);
             for (Config.Lib lib : config.getLibs()) {
@@ -255,9 +250,10 @@ public abstract class AbstractTarget implements Target {
                     // resolved yet, allow user to specify them in library list
                     // link via -l by removing prefix "lib" and sufix ".dylib"
                     libs.add("-l" + p.substring(3, p.length() - 6));
-                    if (swiftLibLocation == null) {
-                        swiftLibLocation = getSwiftDir(config);
-                        ccArgs.add("-L" + swiftLibLocation.getAbsolutePath());
+                    if (swiftLibLocations == null) {
+                        swiftLibLocations = getSwiftDirs(config);
+                        for (File dir : swiftLibLocations)
+                            ccArgs.add("-L" + dir.getAbsolutePath());
                     }
                 } else if (p.endsWith(".dylib") || p.endsWith(".so")) {
                     libs.add(new File(p).getAbsolutePath());
@@ -473,12 +469,31 @@ public abstract class AbstractTarget implements Target {
         }
     }
 
-    private boolean isValidSwiftDir(File swiftDir) {
-        // FIXME: simplest criteria is to check for one of core libs
-        return new File(swiftDir, "libswiftCore.dylib").exists();
+    private File locateSwiftLib(File[] swiftDirs, String swiftLib) throws FileNotFoundException {
+        for (File swiftDir : swiftDirs) {
+            File f = new File(swiftDir, swiftLib);
+            if (f.exists())
+                return f;
+        }
+        throw new FileNotFoundException(swiftLib + " is not found in swift paths");
     }
 
-    private File getSwiftDir(Config config) throws IOException {
+    private File[] getSwiftDirs(Config config) throws IOException {
+        List<File> configPaths = config.getSwiftLibPaths();
+        if (!configPaths.isEmpty()) {
+            // swift lib locations are provided in config,
+            String system = getSwiftSystemName(config);
+            List<File> candidates = new ArrayList<>();
+            for (File path : configPaths)
+                candidates.add(new File(path, system));
+            File[] swiftDirs = candidates.toArray(new File[0]);
+            return validateSwiftDirs(swiftDirs);
+        } else {
+            return getDefaultSwiftDirs(config);
+        }
+    }
+
+    private String getSwiftSystemName(Config config) {
         String system;
         if (config.getOs() == OS.ios) {
             if (config.getArch().isArm()) {
@@ -487,29 +502,47 @@ public abstract class AbstractTarget implements Target {
                 system = "iphonesimulator";
             }
         } else {
-            system = "mac";
+            system = "macos";
         }
-        return getSwiftDir(system);
+
+        return system;
     }
 
-    private File getSwiftDir(String system) throws IOException {
+    private File[] getDefaultSwiftDirs(Config config) throws IOException {
+        String system = getSwiftSystemName(config);
+        return getDefaultSwiftDirs(system);
+    }
+
+    private File[] getDefaultSwiftDirs(String system) throws IOException {
         // FIXME: dkimitsa: its a temporal for finding location of swift libraries
         // FIXME: as in XCode 11 these are not under swift subdir anymore (but in swift-5.0).
         // FIXME: while its a workaround and hardcode for specific swift version and proper way of
         // FIXME: finding swift library location to be used
-        String[] versions = new String[]{"swift", "swift-5.0"};
+        String[] versions = new String[]{"swift-5.0", "swift"};
         String xcodePath = ToolchainUtil.findXcodePath();
+        List<File> candidates = new ArrayList<>();
         for (String v: versions) {
             File candidate = new File(xcodePath, "Toolchains/XcodeDefault.xctoolchain/usr/lib/" + v + "/" + system);
-            if (isValidSwiftDir(candidate))
-                return candidate;
+            if (candidate.exists())
+                candidates.add(candidate);
+        }
+        File[] swiftDirs = candidates.toArray(new File[0]);
+        return validateSwiftDirs(swiftDirs);
+    }
+
+    private File[]  validateSwiftDirs(File[] swiftDirs) throws IOException {
+        try {
+            // FIXME: simplest criteria is to check for one of core libs
+            locateSwiftLib(swiftDirs, "libswiftCore.dylib");
+        } catch (Throwable ignored) {
+            throw new IOException("Failed to locate Swift Library directory!");
         }
 
-        throw new IOException("Failed to locate Swift Library directory!");
+        return swiftDirs;
     }
 
 	protected void copySwiftLibs(Collection<String> swiftLibraries, File targetDir, boolean strip) throws IOException {
-		File swiftDir = getSwiftDir(config);
+		File[] swiftDirs = getSwiftDirs(config);
 
 		// dkimitsa: there is hidden dependencies possible between swift libraries.
 		// e.g. one swiftLib has dependency that is not listed in included framework
@@ -520,7 +553,7 @@ public abstract class AbstractTarget implements Target {
 			for (String library : new HashSet<>(libsToResolve)) {
 				libsToResolve.remove(library);
 
-				File swiftLibrary = new File(swiftDir, library);
+				File swiftLibrary = locateSwiftLib(swiftDirs, library);
 				String dependencies = ToolchainUtil.otool(swiftLibrary);
 				Pattern swiftLibraryPattern = Pattern.compile("libswift.+\\.dylib");
 				Matcher matcher = swiftLibraryPattern.matcher(dependencies);
@@ -535,8 +568,8 @@ public abstract class AbstractTarget implements Target {
 		}
 
 		for (String library : extendedSwiftLibraries) {
-			config.getLogger().info("Copying swift lib %s from %s to %s", library, swiftDir, targetDir);
-			File swiftLibrary = new File(swiftDir, library);
+            File swiftLibrary = locateSwiftLib(swiftDirs, library);
+            config.getLogger().info("Copying swift lib %s from %s to %s", library, swiftLibrary.getParent(), targetDir);
 			FileUtils.copyFileToDirectory(swiftLibrary, targetDir);
 
 			// don't strip if libraries goes to SwiftSupport folder
