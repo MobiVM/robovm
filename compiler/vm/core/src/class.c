@@ -752,7 +752,11 @@ jboolean rvmInitPrimitiveWrapperClasses(Env* env) {
 Class* rvmFindClass(Env* env, const char* className) {
     Method* method = rvmGetCallingMethod(env);
     if (rvmExceptionOccurred(env)) return NULL;
-    Object* classLoader = method ? method->clazz->classLoader : systemClassLoader;
+    // dkimitsa: method->clazz->classLoader is NULL in case of BootClassLoader
+    // any try to load user class using BCL will fail as all user classes are not in BC list
+    // it might happen when BC class is on top of stack, for example java.lang.Runtime
+    // will be most top when JNI_OnLoad is called in result of System.loadLibrary()
+    Object* classLoader = (method && method->clazz->classLoader) ? method->clazz->classLoader : systemClassLoader;
     return rvmFindClassUsingLoader(env, className, classLoader);
 }
 
