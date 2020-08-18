@@ -63,9 +63,9 @@ import org.robovm.apple.dispatch.*;
     @Property(selector = "setRollingStartNumber:")
     public native void setRollingStartNumber(int v);
     @Property(selector = "transmissionRiskLevel")
-    public native byte getTransmissionRiskLevel();
+    public native ENRiskLevel getTransmissionRiskLevel();
     @Property(selector = "setTransmissionRiskLevel:")
-    public native void setTransmissionRiskLevel(byte v);
+    public native void setTransmissionRiskLevel(ENRiskLevel v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

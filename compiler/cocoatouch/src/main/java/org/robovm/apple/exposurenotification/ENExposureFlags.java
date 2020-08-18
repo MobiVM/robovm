@@ -34,15 +34,12 @@ import org.robovm.apple.dispatch.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/ENStatus/*</name>*/ implements ValuedEnum {
+/*<annotations>*//*</annotations>*/
+public final class /*<name>*/ENExposureFlags/*</name>*/ extends Bits</*<name>*/ENExposureFlags/*</name>*/> {
     /*<values>*/
-    Unknown(0L),
-    Active(1L),
-    Disabled(2L),
-    BluetoothOff(3L),
-    Restricted(4L),
-    Paused(5L);
+    public static final ENExposureFlags None = new ENExposureFlags(0L);
+    public static final ENExposureFlags Cache = new ENExposureFlags(1L);
+    public static final ENExposureFlags ScoringV2 = new ENExposureFlags(2L);
     /*</values>*/
 
     /*<bind>*/
@@ -50,17 +47,17 @@ public enum /*<name>*/ENStatus/*</name>*/ implements ValuedEnum {
     /*<constants>*//*</constants>*/
     /*<methods>*//*</methods>*/
 
-    private final long n;
+    private static final /*<name>*/ENExposureFlags/*</name>*/[] values = _values(/*<name>*/ENExposureFlags/*</name>*/.class);
 
-    private /*<name>*/ENStatus/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/ENStatus/*</name>*/ valueOf(long n) {
-        for (/*<name>*/ENStatus/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/ENStatus/*</name>*/.class.getName());
+    public /*<name>*/ENExposureFlags/*</name>*/(long value) { super(value); }
+    private /*<name>*/ENExposureFlags/*</name>*/(long value, long mask) { super(value, mask); }
+    protected /*<name>*/ENExposureFlags/*</name>*/ wrap(long value, long mask) {
+        return new /*<name>*/ENExposureFlags/*</name>*/(value, mask);
+    }
+    protected /*<name>*/ENExposureFlags/*</name>*/[] _values() {
+        return values;
+    }
+    public static /*<name>*/ENExposureFlags/*</name>*/[] values() {
+        return values.clone();
     }
 }

@@ -34,15 +34,15 @@ import org.robovm.apple.dispatch.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/ENStatus/*</name>*/ implements ValuedEnum {
+/*<annotations>*//*</annotations>*/
+public enum /*<name>*/ENDiagnosisReportType/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Unknown(0L),
-    Active(1L),
-    Disabled(2L),
-    BluetoothOff(3L),
-    Restricted(4L),
-    Paused(5L);
+    ConfirmedTest(1L),
+    ConfirmedClinicalDiagnosis(2L),
+    SelfReported(3L),
+    Recursive(4L),
+    Revoked(5L);
     /*</values>*/
 
     /*<bind>*/
@@ -52,15 +52,15 @@ public enum /*<name>*/ENStatus/*</name>*/ implements ValuedEnum {
 
     private final long n;
 
-    private /*<name>*/ENStatus/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/ENDiagnosisReportType/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/ENStatus/*</name>*/ valueOf(long n) {
-        for (/*<name>*/ENStatus/*</name>*/ v : values()) {
+    public static /*<name>*/ENDiagnosisReportType/*</name>*/ valueOf(long n) {
+        for (/*<name>*/ENDiagnosisReportType/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/ENStatus/*</name>*/.class.getName());
+            + /*<name>*/ENDiagnosisReportType/*</name>*/.class.getName());
     }
 }

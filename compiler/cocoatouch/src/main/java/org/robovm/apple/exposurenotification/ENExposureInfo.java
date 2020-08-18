@@ -52,10 +52,8 @@ import org.robovm.apple.dispatch.*;
     /*<properties>*/
     @Property(selector = "attenuationDurations")
     public native NSArray<NSNumber> getAttenuationDurations();
-    @Property(selector = "setAttenuationDurations:")
-    public native void setAttenuationDurations(NSArray<NSNumber> v);
     @Property(selector = "attenuationValue")
-    public native byte getAttenuationValue();
+    public native ENAttenuation getAttenuationValue();
     @Property(selector = "date")
     public native NSDate getDate();
     @Property(selector = "duration")
@@ -63,9 +61,11 @@ import org.robovm.apple.dispatch.*;
     @Property(selector = "metadata")
     public native NSDictionary<?, ?> getMetadata();
     @Property(selector = "totalRiskScore")
-    public native byte getTotalRiskScore();
+    public native ENRiskScore getTotalRiskScore();
+    @Property(selector = "totalRiskScoreFullRange")
+    public native double getTotalRiskScoreFullRange();
     @Property(selector = "transmissionRiskLevel")
-    public native byte getTransmissionRiskLevel();
+    public native ENRiskLevel getTransmissionRiskLevel();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

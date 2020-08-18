@@ -50,14 +50,14 @@ import org.robovm.apple.dispatch.*;
     protected ENExposureConfiguration(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "metadata")
-    public native NSDictionary<?, ?> getMetadata();
-    @Property(selector = "setMetadata:")
-    public native void setMetadata(NSDictionary<?, ?> v);
-    @Property(selector = "minimumRiskScore")
-    public native byte getMinimumRiskScore();
-    @Property(selector = "setMinimumRiskScore:")
-    public native void setMinimumRiskScore(byte v);
+    @Property(selector = "attenuationDurationThresholds")
+    public native NSArray<NSNumber> getAttenuationDurationThresholds();
+    @Property(selector = "setAttenuationDurationThresholds:")
+    public native void setAttenuationDurationThresholds(NSArray<NSNumber> v);
+    @Property(selector = "minimumRiskScoreFullRange")
+    public native double getMinimumRiskScoreFullRange();
+    @Property(selector = "setMinimumRiskScoreFullRange:")
+    public native void setMinimumRiskScoreFullRange(double v);
     @Property(selector = "attenuationLevelValues")
     public native NSArray<NSNumber> getAttenuationLevelValues();
     @Property(selector = "setAttenuationLevelValues:")
@@ -82,6 +82,14 @@ import org.robovm.apple.dispatch.*;
     public native double getDurationWeight();
     @Property(selector = "setDurationWeight:")
     public native void setDurationWeight(double v);
+    @Property(selector = "metadata")
+    public native NSDictionary<?, ?> getMetadata();
+    @Property(selector = "setMetadata:")
+    public native void setMetadata(NSDictionary<?, ?> v);
+    @Property(selector = "minimumRiskScore")
+    public native ENRiskScore getMinimumRiskScore();
+    @Property(selector = "setMinimumRiskScore:")
+    public native void setMinimumRiskScore(ENRiskScore v);
     @Property(selector = "transmissionRiskLevelValues")
     public native NSArray<NSNumber> getTransmissionRiskLevelValues();
     @Property(selector = "setTransmissionRiskLevelValues:")

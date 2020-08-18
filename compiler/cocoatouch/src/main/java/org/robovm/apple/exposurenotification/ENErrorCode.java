@@ -51,7 +51,8 @@ public enum /*<name>*/ENErrorCode/*</name>*/ implements NSErrorCode {
     InsufficientMemory(12L),
     RateLimited(13L),
     Restricted(14L),
-    BadFormat(15L);
+    BadFormat(15L),
+    DataInaccessible(16L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(ENErrorCode.class); }/*</bind>*/

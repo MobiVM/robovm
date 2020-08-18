@@ -52,16 +52,18 @@ import org.robovm.apple.dispatch.*;
     /*<properties>*/
     @Property(selector = "attenuationDurations")
     public native NSArray<NSNumber> getAttenuationDurations();
-    @Property(selector = "setAttenuationDurations:")
-    public native void setAttenuationDurations(NSArray<NSNumber> v);
     @Property(selector = "daysSinceLastExposure")
     public native @MachineSizedSInt long getDaysSinceLastExposure();
     @Property(selector = "matchedKeyCount")
     public native long getMatchedKeyCount();
     @Property(selector = "maximumRiskScore")
-    public native byte getMaximumRiskScore();
+    public native ENRiskScore getMaximumRiskScore();
+    @Property(selector = "maximumRiskScoreFullRange")
+    public native double getMaximumRiskScoreFullRange();
     @Property(selector = "metadata")
     public native NSDictionary<?, ?> getMetadata();
+    @Property(selector = "riskScoreSumFullRange")
+    public native double getRiskScoreSumFullRange();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

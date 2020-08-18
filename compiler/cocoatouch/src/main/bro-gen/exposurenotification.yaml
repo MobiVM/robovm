@@ -14,7 +14,15 @@ enums:
     ENErrorCode: {nserror: true}
     ENAuthorizationStatus: {}
     ENStatus: {}
-
+    ENCalibrationConfidence: {}
+    ENDiagnosisReportType: {}
+    ENExposureFlags: {}
+    ENInfectiousness: {}
+    ENAttenuation: {prefix: ENAttenuation, first: ENAttenuationMin, marshaler: ValuedEnum.AsUnsignedByteMarshaler}
+    ENRiskLevel: { prefix: ENRiskLevel, first: ENRiskLevelMin, marshaler: ValuedEnum.AsUnsignedByteMarshaler }
+    ENRiskLevelValue: { prefix: ENRiskLevelValue, first: ENRiskLevelValueMin, marshaler: ValuedEnum.AsUnsignedByteMarshaler }
+    ENRiskScore: { prefix: ENRiskScoreM, first: ENRiskScoreMin, marshaler: ValuedEnum.AsUnsignedByteMarshaler }
+    ENRiskWeight: { prefix: ENRiskWeight, first: ENRiskWeightDefault }
 classes:
     ENExposureConfiguration: {} #since 13.5
     ENExposureDetectionSummary: {} #since 13.5

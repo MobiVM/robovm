@@ -34,15 +34,12 @@ import org.robovm.apple.dispatch.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/ENStatus/*</name>*/ implements ValuedEnum {
+/*<annotations>*//*</annotations>*/
+public enum /*<name>*/ENInfectiousness/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    Unknown(0L),
-    Active(1L),
-    Disabled(2L),
-    BluetoothOff(3L),
-    Restricted(4L),
-    Paused(5L);
+    None(0L),
+    Standard(1L),
+    High(2L);
     /*</values>*/
 
     /*<bind>*/
@@ -52,15 +49,15 @@ public enum /*<name>*/ENStatus/*</name>*/ implements ValuedEnum {
 
     private final long n;
 
-    private /*<name>*/ENStatus/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/ENInfectiousness/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/ENStatus/*</name>*/ valueOf(long n) {
-        for (/*<name>*/ENStatus/*</name>*/ v : values()) {
+    public static /*<name>*/ENInfectiousness/*</name>*/ valueOf(long n) {
+        for (/*<name>*/ENInfectiousness/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/ENStatus/*</name>*/.class.getName());
+            + /*<name>*/ENInfectiousness/*</name>*/.class.getName());
     }
 }
