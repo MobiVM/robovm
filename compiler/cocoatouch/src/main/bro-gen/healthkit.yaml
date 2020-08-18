@@ -48,6 +48,9 @@ enums:
     HKVO2MaxTestType: {} #since 11.0
     HKAuthorizationRequestStatus: {} #since 12.0
     HKCategoryValueAudioExposureEvent: {} #since 13.0
+    HKCategoryValueSeverity: {} #since 13.6
+    HKCategoryValueAppetiteChanges: {} #since 13.6
+    HKCategoryValuePresence: {} #since 13.6
 
 typed_enums:
     HKFHIRResourceType:
