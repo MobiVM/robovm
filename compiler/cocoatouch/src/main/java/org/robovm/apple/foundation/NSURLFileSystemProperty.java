@@ -117,7 +117,15 @@ import org.robovm.apple.dispatch.*;
     public static final NSURLFileSystemProperty LinkCount = new NSURLFileSystemProperty("LinkCount");
     public static final NSURLFileSystemProperty ParentDirectoryURL = new NSURLFileSystemProperty("ParentDirectoryURL");
     public static final NSURLFileSystemProperty VolumeURL = new NSURLFileSystemProperty("VolumeURL");
+    /**
+     * @deprecated Use NSURLContentTypeKey instead
+     */
+    @Deprecated
     public static final NSURLFileSystemProperty TypeIdentifier = new NSURLFileSystemProperty("TypeIdentifier");
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final NSURLFileSystemProperty ContentType = new NSURLFileSystemProperty("ContentType");
     public static final NSURLFileSystemProperty LocalizedTypeDescription = new NSURLFileSystemProperty("LocalizedTypeDescription");
     public static final NSURLFileSystemProperty LabelNumber = new NSURLFileSystemProperty("LabelNumber");
     public static final NSURLFileSystemProperty LabelColor = new NSURLFileSystemProperty("LabelColor");
@@ -143,6 +151,26 @@ import org.robovm.apple.dispatch.*;
     public static final NSURLFileSystemProperty AddedToDirectoryDate = new NSURLFileSystemProperty("AddedToDirectoryDate");
     public static final NSURLFileSystemProperty FileResourceType = new NSURLFileSystemProperty("FileResourceType");
     /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final NSURLFileSystemProperty FileContentIdentifier = new NSURLFileSystemProperty("FileContentIdentifier");
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final NSURLFileSystemProperty MayShareFileContent = new NSURLFileSystemProperty("MayShareFileContent");
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final NSURLFileSystemProperty MayHaveExtendedAttributes = new NSURLFileSystemProperty("MayHaveExtendedAttributes");
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final NSURLFileSystemProperty IsPurgeable = new NSURLFileSystemProperty("IsPurgeable");
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final NSURLFileSystemProperty IsSparse = new NSURLFileSystemProperty("IsSparse");
+    /**
      * @deprecated Use the QuickLookThumbnailing framework and extension point instead
      */
     @Deprecated
@@ -153,7 +181,7 @@ import org.robovm.apple.dispatch.*;
     public static final NSURLFileSystemProperty FileProtection = new NSURLFileSystemProperty("FileProtection");
     /*</constants>*/
     
-    private static /*<name>*/NSURLFileSystemProperty/*</name>*/[] values = new /*<name>*/NSURLFileSystemProperty/*</name>*/[] {/*<value_list>*/Name, LocalizedName, IsRegularFile, IsDirectory, IsSymbolicLink, IsVolume, IsPackage, IsApplication, IsSystemImmutable, IsUserImmutable, IsHidden, HasHiddenExtension, CreationDate, ContentAccessDate, ContentModificationDate, AttributeModificationDate, LinkCount, ParentDirectoryURL, VolumeURL, TypeIdentifier, LocalizedTypeDescription, LabelNumber, LabelColor, LocalizedLabel, EffectiveIcon, CustomIcon, FileResourceIdentifier, VolumeIdentifier, PreferredIOBlockSize, IsReadable, IsWritable, IsExecutable, FileSecurity, IsExcludedFromBackup, Path, CanonicalPath, IsMountTrigger, GenerationIdentifier, DocumentIdentifier, AddedToDirectoryDate, FileResourceType, ThumbnailDictionary, FileProtection/*</value_list>*/};
+    private static /*<name>*/NSURLFileSystemProperty/*</name>*/[] values = new /*<name>*/NSURLFileSystemProperty/*</name>*/[] {/*<value_list>*/Name, LocalizedName, IsRegularFile, IsDirectory, IsSymbolicLink, IsVolume, IsPackage, IsApplication, IsSystemImmutable, IsUserImmutable, IsHidden, HasHiddenExtension, CreationDate, ContentAccessDate, ContentModificationDate, AttributeModificationDate, LinkCount, ParentDirectoryURL, VolumeURL, TypeIdentifier, ContentType, LocalizedTypeDescription, LabelNumber, LabelColor, LocalizedLabel, EffectiveIcon, CustomIcon, FileResourceIdentifier, VolumeIdentifier, PreferredIOBlockSize, IsReadable, IsWritable, IsExecutable, FileSecurity, IsExcludedFromBackup, Path, CanonicalPath, IsMountTrigger, GenerationIdentifier, DocumentIdentifier, AddedToDirectoryDate, FileResourceType, FileContentIdentifier, MayShareFileContent, MayHaveExtendedAttributes, IsPurgeable, IsSparse, ThumbnailDictionary, FileProtection/*</value_list>*/};
     
     /*<name>*/NSURLFileSystemProperty/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -217,8 +245,17 @@ import org.robovm.apple.dispatch.*;
         public static native NSString ParentDirectoryURL();
         @GlobalValue(symbol="NSURLVolumeURLKey", optional=true)
         public static native NSString VolumeURL();
+        /**
+         * @deprecated Use NSURLContentTypeKey instead
+         */
+        @Deprecated
         @GlobalValue(symbol="NSURLTypeIdentifierKey", optional=true)
         public static native NSString TypeIdentifier();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="NSURLContentTypeKey", optional=true)
+        public static native NSString ContentType();
         @GlobalValue(symbol="NSURLLocalizedTypeDescriptionKey", optional=true)
         public static native NSString LocalizedTypeDescription();
         @GlobalValue(symbol="NSURLLabelNumberKey", optional=true)
@@ -264,6 +301,31 @@ import org.robovm.apple.dispatch.*;
         public static native NSString AddedToDirectoryDate();
         @GlobalValue(symbol="NSURLFileResourceTypeKey", optional=true)
         public static native NSString FileResourceType();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="NSURLFileContentIdentifierKey", optional=true)
+        public static native NSString FileContentIdentifier();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="NSURLMayShareFileContentKey", optional=true)
+        public static native NSString MayShareFileContent();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="NSURLMayHaveExtendedAttributesKey", optional=true)
+        public static native NSString MayHaveExtendedAttributes();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="NSURLIsPurgeableKey", optional=true)
+        public static native NSString IsPurgeable();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="NSURLIsSparseKey", optional=true)
+        public static native NSString IsSparse();
         /**
          * @deprecated Use the QuickLookThumbnailing framework and extension point instead
          */

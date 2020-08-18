@@ -60,6 +60,9 @@ import org.robovm.apple.dispatch.*;
     public void didReceiveResponse(NSURLSession session, NSURLSessionDataTask dataTask, NSURLResponse response, @Block VoidBlock1<NSURLSessionResponseDisposition> completionHandler) {}
     @NotImplemented("URLSession:dataTask:didBecomeDownloadTask:")
     public void didBecomeDownloadTask(NSURLSession session, NSURLSessionDataTask dataTask, NSURLSessionDownloadTask downloadTask) {}
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
     @NotImplemented("URLSession:dataTask:didBecomeStreamTask:")
     public void didBecomeStreamTask(NSURLSession session, NSURLSessionDataTask dataTask, NSURLSessionStreamTask streamTask) {}
     @NotImplemented("URLSession:dataTask:didReceiveData:")

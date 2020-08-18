@@ -44,12 +44,15 @@ import org.robovm.apple.dispatch.*;
 /*<annotations>*//*</annotations>*/
 public enum /*<name>*/NSBundleExecutableArchitectureType/*</name>*/ implements ValuedEnum {
     ARM(12L),
-    ARM64(16777228L),
     /*<values>*/
     I386(7L),
     PPC(18L),
     X86_64(16777223L),
-    PPC64(16777234L);
+    PPC64(16777234L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    ARM64(16777228L);
     /*</values>*/
     
     public static class AsListMarshaler {

@@ -111,6 +111,11 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "isMacCatalystApp")
     public native boolean isMacCatalystApp();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "isiOSAppOnMac")
+    public native boolean isIOSAppOnMac();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

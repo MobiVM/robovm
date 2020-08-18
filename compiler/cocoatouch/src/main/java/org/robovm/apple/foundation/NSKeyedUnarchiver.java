@@ -118,10 +118,30 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "unarchivedObjectOfClass:fromData:error:")
     private static native NSObject unarchivedObject(Class<?> cls, NSData data, NSError.NSErrorPtr error);
     /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "unarchivedArrayOfObjectsOfClass:fromData:error:")
+    public static native NSArray<?> unarchivedArray(Class<?> cls, NSData data, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "unarchivedDictionaryWithKeysOfClass:objectsOfClass:fromData:error:")
+    public static native NSDictionary<?, ?> unarchivedDictionary(Class<?> keyCls, Class<?> valueCls, NSData data, NSError.NSErrorPtr error);
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "unarchivedObjectOfClasses:fromData:error:")
     private static native NSObject unarchivedObject(NSSet<?> classes, NSData data, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "unarchivedArrayOfObjectsOfClasses:fromData:error:")
+    public static native NSArray<?> unarchivedArray(NSSet<?> classes, NSData data, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "unarchivedDictionaryWithKeysOfClasses:objectsOfClasses:fromData:error:")
+    public static native NSDictionary<?, ?> unarchivedDictionary(NSSet<?> keyClasses, NSSet<?> valueClasses, NSData data, NSError.NSErrorPtr error);
     /**
      * @deprecated Deprecated in iOS 12.0. Use +unarchivedObjectOfClass:fromData:error: instead
      */

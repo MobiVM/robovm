@@ -95,12 +95,40 @@ import org.robovm.apple.dispatch.*;
     /*</marshalers>*/
 
     /*<constants>*/
+    /**
+     * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+     */
+    @Deprecated
     public static final NSLinguisticTagScheme TokenType = new NSLinguisticTagScheme("TokenType");
+    /**
+     * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+     */
+    @Deprecated
     public static final NSLinguisticTagScheme LexicalClass = new NSLinguisticTagScheme("LexicalClass");
+    /**
+     * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+     */
+    @Deprecated
     public static final NSLinguisticTagScheme NameType = new NSLinguisticTagScheme("NameType");
+    /**
+     * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+     */
+    @Deprecated
     public static final NSLinguisticTagScheme NameTypeOrLexicalClass = new NSLinguisticTagScheme("NameTypeOrLexicalClass");
+    /**
+     * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+     */
+    @Deprecated
     public static final NSLinguisticTagScheme Lemma = new NSLinguisticTagScheme("Lemma");
+    /**
+     * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+     */
+    @Deprecated
     public static final NSLinguisticTagScheme Language = new NSLinguisticTagScheme("Language");
+    /**
+     * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+     */
+    @Deprecated
     public static final NSLinguisticTagScheme Script = new NSLinguisticTagScheme("Script");
     /*</constants>*/
     
@@ -127,18 +155,46 @@ import org.robovm.apple.dispatch.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
+        /**
+         * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+         */
+        @Deprecated
         @GlobalValue(symbol="NSLinguisticTagSchemeTokenType", optional=true)
         public static native NSString TokenType();
+        /**
+         * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+         */
+        @Deprecated
         @GlobalValue(symbol="NSLinguisticTagSchemeLexicalClass", optional=true)
         public static native NSString LexicalClass();
+        /**
+         * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+         */
+        @Deprecated
         @GlobalValue(symbol="NSLinguisticTagSchemeNameType", optional=true)
         public static native NSString NameType();
+        /**
+         * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+         */
+        @Deprecated
         @GlobalValue(symbol="NSLinguisticTagSchemeNameTypeOrLexicalClass", optional=true)
         public static native NSString NameTypeOrLexicalClass();
+        /**
+         * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+         */
+        @Deprecated
         @GlobalValue(symbol="NSLinguisticTagSchemeLemma", optional=true)
         public static native NSString Lemma();
+        /**
+         * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+         */
+        @Deprecated
         @GlobalValue(symbol="NSLinguisticTagSchemeLanguage", optional=true)
         public static native NSString Language();
+        /**
+         * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+         */
+        @Deprecated
         @GlobalValue(symbol="NSLinguisticTagSchemeScript", optional=true)
         public static native NSString Script();
         /*</values>*/
