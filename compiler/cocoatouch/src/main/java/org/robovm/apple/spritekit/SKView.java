@@ -114,6 +114,10 @@ import org.robovm.apple.metal.*;
      */
     @Property(selector = "setPreferredFramesPerSecond:")
     public native void setPreferredFramesPerSecond(@MachineSizedSInt long v);
+    @Property(selector = "disableDepthStencilBuffer")
+    public native boolean isDisableDepthStencilBuffer();
+    @Property(selector = "setDisableDepthStencilBuffer:")
+    public native void setDisableDepthStencilBuffer(boolean v);
     /**
      * @since Available in iOS 10.0 and later.
      */
