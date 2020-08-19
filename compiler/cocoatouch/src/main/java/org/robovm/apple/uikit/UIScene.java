@@ -78,6 +78,11 @@ import org.robovm.apple.linkpresentation.*;
     public native UISceneActivationConditions getActivationConditions();
     @Property(selector = "setActivationConditions:")
     public native void setActivationConditions(UISceneActivationConditions v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "pointerLockState")
+    public native UIPointerLockState getPointerLockState();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

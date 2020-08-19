@@ -237,4 +237,16 @@ public class UITableViewModel extends UIScrollViewDelegateAdapter implements UIT
      */
     @NotImplemented("tableView:willCommitMenuWithAnimator:")
     public void willCommitMenu(UITableView tableView, UIContextMenuInteractionCommitAnimating animator) {}
+
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Override
+    public void willDisplayContextMenu(UITableView tableView, UIContextMenuConfiguration configuration, UIContextMenuInteractionAnimating animator) {}
+
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Override
+    public void willEndContextMenuInteraction(UITableView tableView, UIContextMenuConfiguration configuration, UIContextMenuInteractionAnimating animator) {}
 }

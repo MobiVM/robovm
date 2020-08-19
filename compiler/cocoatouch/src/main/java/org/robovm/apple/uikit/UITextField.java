@@ -88,6 +88,11 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     public UITextField(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
     public UITextField(NSCoder coder) { super(coder); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithFrame:primaryAction:")
+    public UITextField(@ByVal CGRect frame, UIAction primaryAction) { super(frame, primaryAction); }
     /*</constructors>*/
     /**
      * @since Available in iOS 7.0 and later.

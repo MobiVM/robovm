@@ -97,6 +97,11 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Property(selector = "allowsDefaultTighteningForTruncation")
     public native boolean allowsDefaultTighteningForTruncation();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "lineBreakStrategy")
+    public native NSLineBreakStrategy getLineBreakStrategy();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

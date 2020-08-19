@@ -258,6 +258,16 @@ import org.robovm.apple.linkpresentation.*;
     @Property(selector = "setRemembersLastFocusedIndexPath:")
     public native void setRemembersLastFocusedIndexPath(boolean v);
     /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "selectionFollowsFocus")
+    public native boolean isSelectionFollowsFocus();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setSelectionFollowsFocus:")
+    public native void setSelectionFollowsFocus(boolean v);
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @Property(selector = "dragInteractionEnabled")

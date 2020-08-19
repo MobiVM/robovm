@@ -58,6 +58,10 @@ import org.robovm.apple.linkpresentation.*;
     protected UIAction() {}
     protected UIAction(Handle h, long handle) { super(h, handle); }
     protected UIAction(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public UIAction(@Block VoidBlock1<UIAction> handler) { super((Handle) null, create(handler)); retain(getHandle()); }
     public UIAction(String title, UIImage image, String identifier, @Block VoidBlock1<UIAction> handler) { super((Handle) null, create(title, image, identifier, handler)); retain(getHandle()); }
     @Method(selector = "initWithCoder:")
     public UIAction(NSCoder coder) { super(coder); }
@@ -85,9 +89,19 @@ import org.robovm.apple.linkpresentation.*;
     public native UIMenuElementState getState();
     @Property(selector = "setState:")
     public native void setState(UIMenuElementState v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "sender")
+    public native NSObject getSender();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "actionWithHandler:")
+    protected static native @Pointer long create(@Block VoidBlock1<UIAction> handler);
     @Method(selector = "actionWithTitle:image:identifier:handler:")
     protected static native @Pointer long create(String title, UIImage image, String identifier, @Block VoidBlock1<UIAction> handler);
     /*</methods>*/

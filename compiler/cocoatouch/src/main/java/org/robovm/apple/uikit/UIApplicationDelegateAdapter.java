@@ -218,8 +218,15 @@ import org.robovm.apple.linkpresentation.*;
     @NotImplemented("applicationShouldRequestHealthAuthorization:")
     public void shouldRequestHealthAuthorization(UIApplication application) {}
     /**
-     * @since Available in iOS 11.0 and later.
+     * @since Available in iOS 14.0 and later.
      */
+    @NotImplemented("application:handlerForIntent:")
+    public NSObject getHandlerForIntent(UIApplication application, INIntent intent) { return null; }
+    /**
+     * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 14.0. Use application:handlerForIntent: instead
+     */
+    @Deprecated
     @NotImplemented("application:handleIntent:completionHandler:")
     public void handleIntent(UIApplication application, INIntent intent, @Block VoidBlock1<INIntentResponse> completionHandler) {}
     @NotImplemented("applicationDidEnterBackground:")

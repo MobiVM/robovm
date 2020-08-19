@@ -321,6 +321,16 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
     @Property(selector = "prefersHomeIndicatorAutoHidden")
     public native boolean prefersHomeIndicatorAutoHidden();
     /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "childViewControllerForPointerLock")
+    public native UIViewController getChildViewControllerForPointerLock();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "prefersPointerLocked")
+    public native boolean prefersPointerLocked();
+    /**
      * @since Available in iOS 9.0 and later.
      * @deprecated Deprecated in iOS 13.0. UIViewControllerPreviewing is deprecated. Please use UIContextMenuInteraction.
      */
@@ -394,6 +404,11 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
     @Deprecated
     @Property(selector = "preferredFocusedView")
     public native UIView getPreferredFocusedView();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "focusGroupIdentifier")
+    public native String getFocusGroupIdentifier();
     @Property(selector = "restorationParent")
     public native UIStateRestoring getRestorationParent();
     @Property(selector = "objectRestorationClass")
@@ -680,6 +695,11 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
      */
     @Method(selector = "setNeedsUpdateOfHomeIndicatorAutoHidden")
     public native void setNeedsUpdateOfHomeIndicatorAutoHidden();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "setNeedsUpdateOfPrefersPointerLocked")
+    public native void setNeedsUpdateOfPrefersPointerLocked();
     @Method(selector = "setToolbarItems:animated:")
     public native void setToolbarItems(NSArray<UIBarButtonItem> toolbarItems, boolean animated);
     @Method(selector = "collapseSecondaryViewController:forSplitViewController:")

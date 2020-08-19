@@ -128,6 +128,16 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Property(selector = "setAllowsDefaultTighteningForTruncation:")
     public native void setAllowsDefaultTighteningForTruncation(boolean v);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "lineBreakStrategy")
+    public native NSLineBreakStrategy getLineBreakStrategy();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "setLineBreakStrategy:")
+    public native void setLineBreakStrategy(NSLineBreakStrategy v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

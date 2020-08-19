@@ -170,6 +170,11 @@ import org.robovm.apple.linkpresentation.*;
     @Method(selector = "collectionView:targetContentOffsetForProposedContentOffset:")
     public native @ByVal CGPoint getTargetContentOffsetForProposedContentOffset(UICollectionView collectionView, @ByVal CGPoint proposedContentOffset);
     /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "collectionView:canEditItemAtIndexPath:")
+    public native boolean canEditItem(UICollectionView collectionView, NSIndexPath indexPath);
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "collectionView:shouldSpringLoadItemAtIndexPath:withContext:")
@@ -209,6 +214,16 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Method(selector = "collectionView:willPerformPreviewActionForMenuWithConfiguration:animator:")
     public native void willPerformPreviewAction(UICollectionView collectionView, UIContextMenuConfiguration configuration, UIContextMenuInteractionCommitAnimating animator);
+    /**
+     * @since Available in iOS 13.2 and later.
+     */
+    @Method(selector = "collectionView:willDisplayContextMenuWithConfiguration:animator:")
+    public native void willDisplayContextMenu(UICollectionView collectionView, UIContextMenuConfiguration configuration, UIContextMenuInteractionAnimating animator);
+    /**
+     * @since Available in iOS 13.2 and later.
+     */
+    @Method(selector = "collectionView:willEndContextMenuInteractionWithConfiguration:animator:")
+    public native void willEndContextMenuInteraction(UICollectionView collectionView, UIContextMenuConfiguration configuration, UIContextMenuInteractionAnimating animator);
     @Method(selector = "scrollViewDidScroll:")
     public native void didScroll(UIScrollView scrollView);
     @Method(selector = "scrollViewDidZoom:")

@@ -51,7 +51,11 @@ public enum /*<name>*/UIDatePickerStyle/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Automatic(0L),
     Wheels(1L),
-    Compact(2L);
+    Compact(2L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    Inline(3L);
     /*</values>*/
 
     /*<bind>*/

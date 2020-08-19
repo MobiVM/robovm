@@ -48,8 +48,35 @@ import org.robovm.apple.linkpresentation.*;
 public enum /*<name>*/UISplitViewControllerDisplayMode/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Automatic(0L),
+    SecondaryOnly(1L),
+    OneBesideSecondary(2L),
+    OneOverSecondary(3L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    TwoBesideSecondary(4L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    TwoOverSecondary(5L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    TwoDisplaceSecondary(6L),
+    /**
+     * @deprecated Deprecated in iOS 14.0. Use UISplitViewControllerDisplayModeSecondaryOnly
+     */
+    @Deprecated
     PrimaryHidden(1L),
+    /**
+     * @deprecated Deprecated in iOS 14.0. Use UISplitViewControllerDisplayModeOneBesideSecondary
+     */
+    @Deprecated
     AllVisible(2L),
+    /**
+     * @deprecated Deprecated in iOS 14.0. Use UISplitViewControllerDisplayModeOneOverSecondary
+     */
+    @Deprecated
     PrimaryOverlay(3L);
     /*</values>*/
 

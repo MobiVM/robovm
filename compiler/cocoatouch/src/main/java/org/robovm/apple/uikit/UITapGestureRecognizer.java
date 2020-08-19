@@ -75,6 +75,16 @@ import org.robovm.apple.linkpresentation.*;
     public native @MachineSizedUInt long getNumberOfTouchesRequired();
     @Property(selector = "setNumberOfTouchesRequired:")
     public native void setNumberOfTouchesRequired(@MachineSizedUInt long v);
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    @Property(selector = "buttonMaskRequired")
+    public native UIEventButtonMask getButtonMaskRequired();
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    @Property(selector = "setButtonMaskRequired:")
+    public native void setButtonMaskRequired(UIEventButtonMask v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

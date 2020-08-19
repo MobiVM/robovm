@@ -113,6 +113,31 @@ import org.robovm.apple.linkpresentation.*;
      * @since Available in iOS 13.0 and later.
      */
     public static final NSAttributedStringAttribute SpeechSpellOut = new NSAttributedStringAttribute("SpeechSpellOut");
+    public static final NSAttributedStringAttribute Font = new NSAttributedStringAttribute("Font");
+    public static final NSAttributedStringAttribute ParagraphStyle = new NSAttributedStringAttribute("ParagraphStyle");
+    public static final NSAttributedStringAttribute ForegroundColor = new NSAttributedStringAttribute("ForegroundColor");
+    public static final NSAttributedStringAttribute BackgroundColor = new NSAttributedStringAttribute("BackgroundColor");
+    public static final NSAttributedStringAttribute Ligature = new NSAttributedStringAttribute("Ligature");
+    public static final NSAttributedStringAttribute Kern = new NSAttributedStringAttribute("Kern");
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final NSAttributedStringAttribute Tracking = new NSAttributedStringAttribute("Tracking");
+    public static final NSAttributedStringAttribute StrikethroughStyle = new NSAttributedStringAttribute("StrikethroughStyle");
+    public static final NSAttributedStringAttribute UnderlineStyle = new NSAttributedStringAttribute("UnderlineStyle");
+    public static final NSAttributedStringAttribute StrokeColor = new NSAttributedStringAttribute("StrokeColor");
+    public static final NSAttributedStringAttribute StrokeWidth = new NSAttributedStringAttribute("StrokeWidth");
+    public static final NSAttributedStringAttribute Shadow = new NSAttributedStringAttribute("Shadow");
+    public static final NSAttributedStringAttribute TextEffect = new NSAttributedStringAttribute("TextEffect");
+    public static final NSAttributedStringAttribute Attachment = new NSAttributedStringAttribute("Attachment");
+    public static final NSAttributedStringAttribute Link = new NSAttributedStringAttribute("Link");
+    public static final NSAttributedStringAttribute BaselineOffset = new NSAttributedStringAttribute("BaselineOffset");
+    public static final NSAttributedStringAttribute UnderlineColor = new NSAttributedStringAttribute("UnderlineColor");
+    public static final NSAttributedStringAttribute StrikethroughColor = new NSAttributedStringAttribute("StrikethroughColor");
+    public static final NSAttributedStringAttribute Obliqueness = new NSAttributedStringAttribute("Obliqueness");
+    public static final NSAttributedStringAttribute Expansion = new NSAttributedStringAttribute("Expansion");
+    public static final NSAttributedStringAttribute WritingDirection = new NSAttributedStringAttribute("WritingDirection");
+    public static final NSAttributedStringAttribute VerticalGlyphForm = new NSAttributedStringAttribute("VerticalGlyphForm");
     /**
      * @deprecated Deprecated in iOS 7.0. Use NSFontAttributeName
      */
@@ -133,30 +158,9 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Deprecated
     public static final NSAttributedStringAttribute TextShadowOffset = new NSAttributedStringAttribute("TextShadowOffset");
-    public static final NSAttributedStringAttribute Font = new NSAttributedStringAttribute("Font");
-    public static final NSAttributedStringAttribute ParagraphStyle = new NSAttributedStringAttribute("ParagraphStyle");
-    public static final NSAttributedStringAttribute ForegroundColor = new NSAttributedStringAttribute("ForegroundColor");
-    public static final NSAttributedStringAttribute BackgroundColor = new NSAttributedStringAttribute("BackgroundColor");
-    public static final NSAttributedStringAttribute Ligature = new NSAttributedStringAttribute("Ligature");
-    public static final NSAttributedStringAttribute Kern = new NSAttributedStringAttribute("Kern");
-    public static final NSAttributedStringAttribute StrikethroughStyle = new NSAttributedStringAttribute("StrikethroughStyle");
-    public static final NSAttributedStringAttribute UnderlineStyle = new NSAttributedStringAttribute("UnderlineStyle");
-    public static final NSAttributedStringAttribute StrokeColor = new NSAttributedStringAttribute("StrokeColor");
-    public static final NSAttributedStringAttribute StrokeWidth = new NSAttributedStringAttribute("StrokeWidth");
-    public static final NSAttributedStringAttribute Shadow = new NSAttributedStringAttribute("Shadow");
-    public static final NSAttributedStringAttribute TextEffect = new NSAttributedStringAttribute("TextEffect");
-    public static final NSAttributedStringAttribute Attachment = new NSAttributedStringAttribute("Attachment");
-    public static final NSAttributedStringAttribute Link = new NSAttributedStringAttribute("Link");
-    public static final NSAttributedStringAttribute BaselineOffset = new NSAttributedStringAttribute("BaselineOffset");
-    public static final NSAttributedStringAttribute UnderlineColor = new NSAttributedStringAttribute("UnderlineColor");
-    public static final NSAttributedStringAttribute StrikethroughColor = new NSAttributedStringAttribute("StrikethroughColor");
-    public static final NSAttributedStringAttribute Obliqueness = new NSAttributedStringAttribute("Obliqueness");
-    public static final NSAttributedStringAttribute Expansion = new NSAttributedStringAttribute("Expansion");
-    public static final NSAttributedStringAttribute WritingDirection = new NSAttributedStringAttribute("WritingDirection");
-    public static final NSAttributedStringAttribute VerticalGlyphForm = new NSAttributedStringAttribute("VerticalGlyphForm");
     /*</constants>*/
     
-    private static /*<name>*/NSAttributedStringAttribute/*</name>*/[] values = new /*<name>*/NSAttributedStringAttribute/*</name>*/[] {/*<value_list>*/SpeechPunctuation, SpeechLanguage, SpeechPitch, SpeechQueueAnnouncement, SpeechIPANotation, SpeechSpellOut, TextFont, TextColor, TextShadowColor, TextShadowOffset, Font, ParagraphStyle, ForegroundColor, BackgroundColor, Ligature, Kern, StrikethroughStyle, UnderlineStyle, StrokeColor, StrokeWidth, Shadow, TextEffect, Attachment, Link, BaselineOffset, UnderlineColor, StrikethroughColor, Obliqueness, Expansion, WritingDirection, VerticalGlyphForm/*</value_list>*/};
+    private static /*<name>*/NSAttributedStringAttribute/*</name>*/[] values = new /*<name>*/NSAttributedStringAttribute/*</name>*/[] {/*<value_list>*/SpeechPunctuation, SpeechLanguage, SpeechPitch, SpeechQueueAnnouncement, SpeechIPANotation, SpeechSpellOut, Font, ParagraphStyle, ForegroundColor, BackgroundColor, Ligature, Kern, Tracking, StrikethroughStyle, UnderlineStyle, StrokeColor, StrokeWidth, Shadow, TextEffect, Attachment, Link, BaselineOffset, UnderlineColor, StrikethroughColor, Obliqueness, Expansion, WritingDirection, VerticalGlyphForm, TextFont, TextColor, TextShadowColor, TextShadowOffset/*</value_list>*/};
     
     /*<name>*/NSAttributedStringAttribute/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -200,30 +204,6 @@ import org.robovm.apple.linkpresentation.*;
          */
         @GlobalValue(symbol="UIAccessibilitySpeechAttributeSpellOut", optional=true)
         public static native NSString SpeechSpellOut();
-        /**
-         * @deprecated Deprecated in iOS 7.0. Use NSFontAttributeName
-         */
-        @Deprecated
-        @GlobalValue(symbol="UITextAttributeFont", optional=true)
-        public static native NSString TextFont();
-        /**
-         * @deprecated Deprecated in iOS 7.0. Use NSForegroundColorAttributeName
-         */
-        @Deprecated
-        @GlobalValue(symbol="UITextAttributeTextColor", optional=true)
-        public static native NSString TextColor();
-        /**
-         * @deprecated Deprecated in iOS 7.0. Use NSShadowAttributeName with an NSShadow instance as the value
-         */
-        @Deprecated
-        @GlobalValue(symbol="UITextAttributeTextShadowColor", optional=true)
-        public static native NSString TextShadowColor();
-        /**
-         * @deprecated Deprecated in iOS 7.0. Use NSShadowAttributeName with an NSShadow instance as the value
-         */
-        @Deprecated
-        @GlobalValue(symbol="UITextAttributeTextShadowOffset", optional=true)
-        public static native NSString TextShadowOffset();
         @GlobalValue(symbol="NSFontAttributeName", optional=true)
         public static native NSString Font();
         @GlobalValue(symbol="NSParagraphStyleAttributeName", optional=true)
@@ -236,6 +216,11 @@ import org.robovm.apple.linkpresentation.*;
         public static native NSString Ligature();
         @GlobalValue(symbol="NSKernAttributeName", optional=true)
         public static native NSString Kern();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="NSTrackingAttributeName", optional=true)
+        public static native NSString Tracking();
         @GlobalValue(symbol="NSStrikethroughStyleAttributeName", optional=true)
         public static native NSString StrikethroughStyle();
         @GlobalValue(symbol="NSUnderlineStyleAttributeName", optional=true)
@@ -266,6 +251,30 @@ import org.robovm.apple.linkpresentation.*;
         public static native NSString WritingDirection();
         @GlobalValue(symbol="NSVerticalGlyphFormAttributeName", optional=true)
         public static native NSString VerticalGlyphForm();
+        /**
+         * @deprecated Deprecated in iOS 7.0. Use NSFontAttributeName
+         */
+        @Deprecated
+        @GlobalValue(symbol="UITextAttributeFont", optional=true)
+        public static native NSString TextFont();
+        /**
+         * @deprecated Deprecated in iOS 7.0. Use NSForegroundColorAttributeName
+         */
+        @Deprecated
+        @GlobalValue(symbol="UITextAttributeTextColor", optional=true)
+        public static native NSString TextColor();
+        /**
+         * @deprecated Deprecated in iOS 7.0. Use NSShadowAttributeName with an NSShadow instance as the value
+         */
+        @Deprecated
+        @GlobalValue(symbol="UITextAttributeTextShadowColor", optional=true)
+        public static native NSString TextShadowColor();
+        /**
+         * @deprecated Deprecated in iOS 7.0. Use NSShadowAttributeName with an NSShadow instance as the value
+         */
+        @Deprecated
+        @GlobalValue(symbol="UITextAttributeTextShadowOffset", optional=true)
+        public static native NSString TextShadowOffset();
         /*</values>*/
     }
 }

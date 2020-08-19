@@ -60,6 +60,11 @@ import org.robovm.apple.linkpresentation.*;
     public UIRefreshControl(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
     public UIRefreshControl(NSCoder coder) { super(coder); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithFrame:primaryAction:")
+    public UIRefreshControl(@ByVal CGRect frame, UIAction primaryAction) { super(frame, primaryAction); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "isRefreshing")

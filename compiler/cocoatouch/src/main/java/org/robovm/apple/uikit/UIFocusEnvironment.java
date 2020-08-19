@@ -75,6 +75,11 @@ import org.robovm.apple.linkpresentation.*;
     @Deprecated
     @Property(selector = "preferredFocusedView")
     UIView getPreferredFocusedView();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "focusGroupIdentifier")
+    String getFocusGroupIdentifier();
     /*</properties>*/
     /*<methods>*/
     @Method(selector = "setNeedsFocusUpdate")

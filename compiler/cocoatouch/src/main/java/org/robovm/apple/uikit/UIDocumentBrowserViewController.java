@@ -58,8 +58,22 @@ import org.robovm.apple.linkpresentation.*;
     public UIDocumentBrowserViewController() {}
     protected UIDocumentBrowserViewController(Handle h, long handle) { super(h, handle); }
     protected UIDocumentBrowserViewController(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 14.0. use initForOpeningContentTypes: instead
+     */
+    @Deprecated
     @Method(selector = "initForOpeningFilesWithContentTypes:")
-    public UIDocumentBrowserViewController(NSArray<NSString> allowedContentTypes) { super((SkipInit) null); initObject(initForOpeningFilesWithContentTypes(allowedContentTypes)); }
+    public UIDocumentBrowserViewController(NSArray<NSString> allowedContentTypes) { super((SkipInit) null); initObject(initForOpeningFilesUsingContentTypes(allowedContentTypes)); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initForOpeningContentTypes:")
+    public static  UIDocumentBrowserViewController createForOpeningContentTypes(NSArray<org.robovm.apple.uniformtypeid.UTType> contentTypes) {
+       UIDocumentBrowserViewController res = new UIDocumentBrowserViewController((SkipInit) null);
+       res.initObject(res.initForOpeningContentTypes(contentTypes));
+       return res;
+    }
     @Method(selector = "initWithCoder:")
     public UIDocumentBrowserViewController(NSCoder coder) { super(coder); }
     /*</constructors>*/
@@ -76,13 +90,25 @@ import org.robovm.apple.linkpresentation.*;
     public native boolean allowsPickingMultipleItems();
     @Property(selector = "setAllowsPickingMultipleItems:")
     public native void setAllowsPickingMultipleItems(boolean v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 14.0. allowedContentTypes is no longer supported
+     */
+    @Deprecated
     @Property(selector = "allowedContentTypes")
     public native NSArray<NSString> getAllowedContentTypes();
     /**
-     * @since Available in iOS 13.0 and later.
+     * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 14.0. use contentTypesForRecentDocuments instead
      */
+    @Deprecated
     @Property(selector = "recentDocumentsContentTypes")
     public native NSArray<NSString> getRecentDocumentsContentTypes();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "contentTypesForRecentDocuments")
+    public native NSArray<org.robovm.apple.uniformtypeid.UTType> getContentTypesForRecentDocuments();
     /**
      * @since Available in iOS 13.0 and later.
      */
@@ -132,8 +158,18 @@ import org.robovm.apple.linkpresentation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 14.0. use initForOpeningContentTypes: instead
+     */
+    @Deprecated
     @Method(selector = "initForOpeningFilesWithContentTypes:")
-    protected native @Pointer long initForOpeningFilesWithContentTypes(NSArray<NSString> allowedContentTypes);
+    protected native @Pointer long initForOpeningFilesUsingContentTypes(NSArray<NSString> allowedContentTypes);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initForOpeningContentTypes:")
+    protected native @Pointer long initForOpeningContentTypes(NSArray<org.robovm.apple.uniformtypeid.UTType> contentTypes);
     @Method(selector = "revealDocumentAtURL:importIfNeeded:completion:")
     public native void revealDocument(NSURL url, boolean importIfNeeded, @Block VoidBlock2<NSURL, NSError> completion);
     @Method(selector = "importDocumentAtURL:nextToDocumentAtURL:mode:completionHandler:")

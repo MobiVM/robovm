@@ -71,5 +71,10 @@ import org.robovm.apple.linkpresentation.*;
     public boolean shouldReceiveTouch(UIGestureRecognizer gestureRecognizer, UITouch touch) { return false; }
     @NotImplemented("gestureRecognizer:shouldReceivePress:")
     public boolean shouldReceivePress(UIGestureRecognizer gestureRecognizer, UIPress press) { return false; }
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    @NotImplemented("gestureRecognizer:shouldReceiveEvent:")
+    public boolean shouldReceiveEvent(UIGestureRecognizer gestureRecognizer, UIEvent event) { return false; }
     /*</methods>*/
 }

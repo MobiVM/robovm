@@ -47,8 +47,16 @@ import org.robovm.apple.linkpresentation.*;
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/UIImagePickerControllerSourceType/*</name>*/ implements ValuedEnum {
     /*<values>*/
+    /**
+     * @deprecated Will be removed in a future release, use PHPicker.
+     */
+    @Deprecated
     PhotoLibrary(0L),
     Camera(1L),
+    /**
+     * @deprecated Will be removed in a future release, use PHPicker.
+     */
+    @Deprecated
     SavedPhotosAlbum(2L);
     /*</values>*/
 

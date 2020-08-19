@@ -66,6 +66,26 @@ import org.robovm.apple.linkpresentation.*;
     public native @Block Block3<UICollectionView, NSString, NSIndexPath, UICollectionReusableView> getSupplementaryViewProvider();
     @Property(selector = "setSupplementaryViewProvider:")
     public native void setSupplementaryViewProvider(@Block Block3<UICollectionView, NSString, NSIndexPath, UICollectionReusableView> v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "reorderingHandlers")
+    public native UICollectionViewDiffableDataSourceReorderingHandlers<SectionIdentifierType, ItemIdentifierType> getReorderingHandlers();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setReorderingHandlers:")
+    public native void setReorderingHandlers(UICollectionViewDiffableDataSourceReorderingHandlers<SectionIdentifierType, ItemIdentifierType> v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "sectionSnapshotHandlers")
+    public native UICollectionViewDiffableDataSourceSectionSnapshotHandlers<ItemIdentifierType> getSectionSnapshotHandlers();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setSectionSnapshotHandlers:")
+    public native void setSectionSnapshotHandlers(UICollectionViewDiffableDataSourceSectionSnapshotHandlers<ItemIdentifierType> v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -81,6 +101,21 @@ import org.robovm.apple.linkpresentation.*;
     public native ItemIdentifierType itemIdentifierForIndexPath(NSIndexPath indexPath);
     @Method(selector = "indexPathForItemIdentifier:")
     public native NSIndexPath indexPathForItemIdentifier(ItemIdentifierType identifier);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "applySnapshot:toSection:animatingDifferences:")
+    public native void applySnapshot(NSDiffableDataSourceSectionSnapshot<ItemIdentifierType> snapshot, SectionIdentifierType sectionIdentifier, boolean animatingDifferences);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "applySnapshot:toSection:animatingDifferences:completion:")
+    public native void applySnapshot(NSDiffableDataSourceSectionSnapshot<ItemIdentifierType> snapshot, SectionIdentifierType sectionIdentifier, boolean animatingDifferences, @Block Runnable completion);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "snapshotForSection:")
+    public native NSDiffableDataSourceSectionSnapshot<ItemIdentifierType> snapshotForSection(SectionIdentifierType section);
     @Method(selector = "collectionView:numberOfItemsInSection:")
     public native @MachineSizedSInt long getNumberOfItemsInSection(UICollectionView collectionView, @MachineSizedSInt long section);
     @Method(selector = "collectionView:cellForItemAtIndexPath:")

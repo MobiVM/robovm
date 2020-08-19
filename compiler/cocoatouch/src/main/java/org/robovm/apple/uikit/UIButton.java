@@ -56,11 +56,20 @@ import org.robovm.apple.linkpresentation.*;
     public UIButton() {}
     protected UIButton(Handle h, long handle) { super(h, handle); }
     protected UIButton(SkipInit skipInit) { super(skipInit); }
-    public UIButton(UIButtonType buttonType) { super((Handle) null, create0(buttonType)); retain(getHandle()); }
     @Method(selector = "initWithFrame:")
-    public UIButton(@ByVal CGRect frame) { super(frame); }
+    public UIButton(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
     @Method(selector = "initWithCoder:")
-    public UIButton(NSCoder coder) { super(coder); }
+    public UIButton(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithFrame:primaryAction:")
+    public UIButton(@ByVal CGRect frame, UIAction primaryAction) { super((SkipInit) null); initObject(init(frame, primaryAction)); }
+    public UIButton(UIButtonType buttonType) { super((Handle) null, create0(buttonType)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public UIButton(UIButtonType buttonType, UIAction primaryAction) { super((Handle) null, create0(buttonType, primaryAction)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "contentEdgeInsets")
@@ -97,6 +106,46 @@ import org.robovm.apple.linkpresentation.*;
     public native void setTintColor(UIColor v);
     @Property(selector = "buttonType")
     public native UIButtonType getButtonType();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "role")
+    public native UIButtonRole getRole();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setRole:")
+    public native void setRole(UIButtonRole v);
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    @Property(selector = "isPointerInteractionEnabled")
+    public native boolean isPointerInteractionEnabled();
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    @Property(selector = "setPointerInteractionEnabled:")
+    public native void setPointerInteractionEnabled(boolean v);
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    @Property(selector = "pointerStyleProvider")
+    public native @Block Block3<UIButton, UIPointerEffect, UIPointerShape, UIPointerStyle> getPointerStyleProvider();
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    @Property(selector = "setPointerStyleProvider:")
+    public native void setPointerStyleProvider(@Block Block3<UIButton, UIPointerEffect, UIPointerShape, UIPointerStyle> v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "menu")
+    public native UIMenu getMenu();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setMenu:")
+    public native void setMenu(UIMenu v);
     @Property(selector = "currentTitle")
     public native String getCurrentTitle();
     @Property(selector = "currentTitleColor")
@@ -135,6 +184,15 @@ import org.robovm.apple.linkpresentation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    @Method(selector = "initWithFrame:")
+    protected native @Pointer long init(@ByVal CGRect frame);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder coder);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithFrame:primaryAction:")
+    protected native @Pointer long init(@ByVal CGRect frame, UIAction primaryAction);
     @Method(selector = "setTitle:forState:")
     public native void setTitle(String title, UIControlState state);
     @Method(selector = "setTitleColor:forState:")
@@ -184,5 +242,15 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Method(selector = "systemButtonWithImage:target:action:")
     public static native UIButton getSystemButtonWithImage(UIImage image, NSObject target, Selector action);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "systemButtonWithPrimaryAction:")
+    public static native UIButton getSystemButtonWithPrimaryAction(UIAction primaryAction);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "buttonWithType:primaryAction:")
+    protected static native @Pointer long create0(UIButtonType buttonType, UIAction primaryAction);
     /*</methods>*/
 }

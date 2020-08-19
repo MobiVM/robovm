@@ -58,7 +58,11 @@ public enum /*<name>*/UITouchType/*</name>*/ implements ValuedEnum {
     /**
      * @since Available in iOS 9.1 and later.
      */
-    Stylus(2L);
+    Stylus(2L),
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    IndirectPointer(3L);
     /*</values>*/
     
     public static class AsListMarshaler {

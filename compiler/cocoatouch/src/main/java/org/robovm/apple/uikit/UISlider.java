@@ -60,6 +60,11 @@ import org.robovm.apple.linkpresentation.*;
     public UISlider(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
     public UISlider(NSCoder coder) { super(coder); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithFrame:primaryAction:")
+    public UISlider(@ByVal CGRect frame, UIAction primaryAction) { super(frame, primaryAction); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "value")

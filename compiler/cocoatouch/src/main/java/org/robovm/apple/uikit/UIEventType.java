@@ -53,7 +53,19 @@ public enum /*<name>*/UIEventType/*</name>*/ implements ValuedEnum {
     /**
      * @since Available in iOS 9.0 and later.
      */
-    Presses(3L);
+    Presses(3L),
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    Scroll(10L),
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    Hover(11L),
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    Transform(14L);
     /*</values>*/
 
     private final long n;

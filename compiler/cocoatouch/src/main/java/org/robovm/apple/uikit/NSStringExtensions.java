@@ -60,6 +60,16 @@ import org.robovm.apple.linkpresentation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    @Method(selector = "sizeWithAttributes:")
+    public static native @ByVal CGSize getSize(@Pointer long thiz, NSDictionary<NSString, ?> attrs);
+    @Method(selector = "drawAtPoint:withAttributes:")
+    public static native void draw(@Pointer long thiz, @ByVal CGPoint point, NSDictionary<NSString, ?> attrs);
+    @Method(selector = "drawInRect:withAttributes:")
+    public static native void draw(@Pointer long thiz, @ByVal CGRect rect, NSDictionary<NSString, ?> attrs);
+    @Method(selector = "drawWithRect:options:attributes:context:")
+    public static native void draw(@Pointer long thiz, @ByVal CGRect rect, NSStringDrawingOptions options, NSDictionary<NSString, ?> attributes, NSStringDrawingContext context);
+    @Method(selector = "boundingRectWithSize:options:attributes:context:")
+    public static native @ByVal CGRect getBoundingRect(@Pointer long thiz, @ByVal CGSize size, NSStringDrawingOptions options, NSDictionary<NSString, ?> attributes, NSStringDrawingContext context);
     /**
      * @deprecated Deprecated in iOS 7.0. Use sizeWithAttributes:
      */
@@ -132,15 +142,5 @@ import org.robovm.apple.linkpresentation.*;
     @Deprecated
     @Method(selector = "drawAtPoint:forWidth:withFont:minFontSize:actualFontSize:lineBreakMode:baselineAdjustment:")
     public static native @ByVal CGSize draw(@Pointer long thiz, @ByVal CGPoint point, @MachineSizedFloat double width, UIFont font, @MachineSizedFloat double minFontSize, MachineSizedFloatPtr actualFontSize, NSLineBreakMode lineBreakMode, UIBaselineAdjustment baselineAdjustment);
-    @Method(selector = "sizeWithAttributes:")
-    public static native @ByVal CGSize getSize(@Pointer long thiz, NSDictionary<NSString, ?> attrs);
-    @Method(selector = "drawAtPoint:withAttributes:")
-    public static native void draw(@Pointer long thiz, @ByVal CGPoint point, NSDictionary<NSString, ?> attrs);
-    @Method(selector = "drawInRect:withAttributes:")
-    public static native void draw(@Pointer long thiz, @ByVal CGRect rect, NSDictionary<NSString, ?> attrs);
-    @Method(selector = "drawWithRect:options:attributes:context:")
-    public static native void draw(@Pointer long thiz, @ByVal CGRect rect, NSStringDrawingOptions options, NSDictionary<NSString, ?> attributes, NSStringDrawingContext context);
-    @Method(selector = "boundingRectWithSize:options:attributes:context:")
-    public static native @ByVal CGRect getBoundingRect(@Pointer long thiz, @ByVal CGSize size, NSStringDrawingOptions options, NSDictionary<NSString, ?> attributes, NSStringDrawingContext context);
     /*</methods>*/
 }

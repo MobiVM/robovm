@@ -75,6 +75,16 @@ import org.robovm.apple.linkpresentation.*;
     public native @MachineSizedUInt long getMaximumNumberOfTouches();
     @Property(selector = "setMaximumNumberOfTouches:")
     public native void setMaximumNumberOfTouches(@MachineSizedUInt long v);
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    @Property(selector = "allowedScrollTypesMask")
+    public native UIScrollTypeMask getAllowedScrollTypesMask();
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    @Property(selector = "setAllowedScrollTypesMask:")
+    public native void setAllowedScrollTypesMask(UIScrollTypeMask v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

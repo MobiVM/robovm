@@ -64,6 +64,16 @@ import org.robovm.apple.linkpresentation.*;
     public native UIEventSubtype getSubtype();
     @Property(selector = "timestamp")
     public native double getTimestamp();
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    @Property(selector = "modifierFlags")
+    public native UIKeyModifierFlags getModifierFlags();
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    @Property(selector = "buttonMask")
+    public native UIEventButtonMask getButtonMask();
     @Property(selector = "allTouches")
     public native NSSet<UITouch> getAllTouches();
     /*</properties>*/

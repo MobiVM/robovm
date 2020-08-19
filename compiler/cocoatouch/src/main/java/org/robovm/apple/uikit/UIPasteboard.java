@@ -229,6 +229,26 @@ import org.robovm.apple.linkpresentation.*;
      */
     @GlobalValue(symbol="UIPasteboardTypeAutomatic", optional=true)
     public static native String getAutomaticType();
+    @Library("UIKit")
+    public static class DetectionPatterns {
+        static { Bro.bind(DetectionPatterns.class); }
+
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="UIPasteboardDetectionPatternProbableWebURL", optional=true)
+        public static native NSString ProbableWebURL();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="UIPasteboardDetectionPatternProbableWebSearch", optional=true)
+        public static native NSString ProbableWebSearch();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="UIPasteboardDetectionPatternNumber", optional=true)
+        public static native NSString Number();
+    }
     
     /**
      * @since Available in iOS 11.0 and later.
@@ -272,6 +292,26 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Method(selector = "setItems:options:")
     private native void setItems0(NSArray<NSDictionary> items, UIPasteboardOptions options);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "detectPatternsForPatterns:completionHandler:")
+    public native void detectPatternsForPatterns(NSSet<NSString> patterns, @Block VoidBlock2<NSSet<NSString>, NSError> completionHandler);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "detectPatternsForPatterns:inItemSet:completionHandler:")
+    public native void detectPatternsForPatterns(NSSet<NSString> patterns, NSIndexSet itemSet, @Block VoidBlock2<NSArray<?>, NSError> completionHandler);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "detectValuesForPatterns:completionHandler:")
+    public native void detectValuesForPatterns(NSSet<NSString> patterns, @Block VoidBlock2<NSDictionary<NSString, ?>, NSError> completionHandler);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "detectValuesForPatterns:inItemSet:completionHandler:")
+    public native void detectValuesForPatterns(NSSet<NSString> patterns, NSIndexSet itemSet, @Block VoidBlock2<NSArray<?>, NSError> completionHandler);
     @Method(selector = "pasteboardWithName:create:")
     public static native UIPasteboard getPasteboard(String pasteboardName, boolean create);
     @Method(selector = "pasteboardWithUniqueName")
