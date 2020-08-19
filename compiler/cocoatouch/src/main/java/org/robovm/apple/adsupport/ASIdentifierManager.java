@@ -49,6 +49,10 @@ import org.robovm.apple.foundation.*;
     /*<properties>*/
     @Property(selector = "advertisingIdentifier")
     public native NSUUID getAdvertisingIdentifier();
+    /**
+     * @deprecated Deprecated in iOS 14.0. This has been replaced by functionality in AppTrackingTransparency's ATTrackingManager class.
+     */
+    @Deprecated
     @Property(selector = "isAdvertisingTrackingEnabled")
     public native boolean isAdvertisingTrackingEnabled();
     /*</properties>*/
