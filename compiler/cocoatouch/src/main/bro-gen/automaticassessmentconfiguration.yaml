@@ -9,6 +9,7 @@ typedefs: {}
     
 enums:
     AEAssessmentErrorCode: {prefix: AEAssessmentError, nserror: true}
+    AEAutocorrectMode: {}
 
 classes:
     AEAssessmentConfiguration: {} #since 13.4
