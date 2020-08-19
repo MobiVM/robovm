@@ -113,6 +113,11 @@ import org.robovm.apple.avfoundation.*;
     /*<methods>*/
     @Method(selector = "geometryElementWithData:primitiveType:primitiveCount:bytesPerIndex:")
     public static native SCNGeometryElement create(NSData data, SCNGeometryPrimitiveType primitiveType, @MachineSizedSInt long primitiveCount, @MachineSizedSInt long bytesPerIndex);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "geometryElementWithBuffer:primitiveType:primitiveCount:bytesPerIndex:")
+    public static native SCNGeometryElement create(MTLBuffer buffer, SCNGeometryPrimitiveType primitiveType, @MachineSizedSInt long primitiveCount, @MachineSizedSInt long bytesPerIndex);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

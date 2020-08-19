@@ -132,6 +132,11 @@ import org.robovm.apple.avfoundation.*;
     /**
      * @since Available in iOS 9.0 and later.
      */
+    @NotImplemented("currentRenderPassDescriptor")
+    public MTLRenderPassDescriptor getCurrentRenderPassDescriptor() { return null; }
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
     @NotImplemented("device")
     public MTLDevice getDevice() { return null; }
     /**

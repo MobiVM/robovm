@@ -58,7 +58,6 @@ categories:
         properties:
             'animationEvents':
                 type: NSArray<SCNAnimationEvent>
-        
 classes:
     SCNReferenceNode: #since 9.0
         methods:
@@ -278,6 +277,8 @@ classes:
     SCNGeometryElement: # DONE
         methods:
             '+geometryElementWithData:primitiveType:primitiveCount:bytesPerIndex:':
+                name: create
+            '+geometryElementWithBuffer:primitiveType:primitiveCount:bytesPerIndex:':
                 name: create
     SCNGeometrySource: # DONE
         properties:
