@@ -46,13 +46,23 @@ import org.robovm.apple.avfoundation.*;
     /*<bind>*/static { ObjCRuntime.bind(CXProviderConfiguration.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected CXProviderConfiguration() {}
+    public CXProviderConfiguration() {}
     protected CXProviderConfiguration(Handle h, long handle) { super(h, handle); }
     protected CXProviderConfiguration(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 14.0. Use init
+     */
+    @Deprecated
     @Method(selector = "initWithLocalizedName:")
     public CXProviderConfiguration(String localizedName) { super((SkipInit) null); initObject(init(localizedName)); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 14.0. No longer supported
+     */
+    @Deprecated
     @Property(selector = "localizedName")
     public native String getLocalizedName();
     @Property(selector = "ringtoneSound")
@@ -92,6 +102,11 @@ import org.robovm.apple.avfoundation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 14.0. Use init
+     */
+    @Deprecated
     @Method(selector = "initWithLocalizedName:")
     protected native @Pointer long init(String localizedName);
     /*</methods>*/
