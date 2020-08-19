@@ -44,9 +44,12 @@ public enum /*<name>*/AUSpatialMixerProperty/*</name>*/ implements AUPropertyTyp
     ReverbRoomType(10L),
     UsesInternalReverb(1005L),
     SpatializationAlgorithm(3000L),
+    RenderingFlags(3003L),
+    SourceMode(3005L),
     DistanceParams(3010L),
     AttenuationCurve(3013L),
-    RenderingFlags(3003L);
+    OutputType(3100L),
+    PointSourceInHeadMode(3103L);
     /*</values>*/
 
     /*<bind>*/

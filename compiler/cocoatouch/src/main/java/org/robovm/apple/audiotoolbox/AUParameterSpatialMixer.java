@@ -52,7 +52,10 @@ public enum /*<name>*/AUParameterSpatialMixer/*</name>*/ implements AUParameterT
     ReverbBlend(8L),
     GlobalReverbGain(9L),
     OcclusionAttenuation(10L),
-    ObstructionAttenuation(11L);
+    ObstructionAttenuation(11L),
+    HeadYaw(19L),
+    HeadPitch(20L),
+    HeadRoll(21L);
     /*</values>*/
 
     /*<bind>*/

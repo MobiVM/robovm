@@ -896,6 +896,11 @@ classes:
             exclude: true
     # added during ios11 bindings
     AUAudioUnit: #since 9.0
+        properties:
+            osWorkgroup:
+                exclude: true # TODO: not supported yet (check dispatch)
+            renderContextObserver:
+                exclude: true # TODO: not supported yet (check dispatch)
         methods:
             '-initWithComponentDescription:options:error:':
                 throws: NSErrorException
@@ -1679,6 +1684,9 @@ functions:
         class: MusicDevice
         name: '#{g[0]}0'
         visibility: protected
+
+    AudioWorkIntervalCreate:
+        exclude: true # as workgroups are not supported
 
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (k?AU.*):

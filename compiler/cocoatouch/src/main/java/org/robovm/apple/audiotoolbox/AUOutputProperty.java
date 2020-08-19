@@ -42,13 +42,14 @@ import org.robovm.apple.uikit.*;
 public enum /*<name>*/AUOutputProperty/*</name>*/ implements AUPropertyType {
     /*<values>*/
     CurrentDevice(2000L),
+    IsRunning(2001L),
     ChannelMap(2002L),
     EnableIO(2003L),
     StartTime(2004L),
     SetInputCallback(2005L),
     HasIO(2006L),
     StartTimestampsAtZero(2007L),
-    IsRunning(2001L),
+    OSWorkgroup(2015L),
     MIDICallbacks(2010L),
     HostReceivesRemoteControlEvents(2011L),
     RemoteControlToHost(2012L),

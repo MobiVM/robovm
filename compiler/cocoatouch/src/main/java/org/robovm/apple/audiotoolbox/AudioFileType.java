@@ -45,6 +45,8 @@ public enum /*<name>*/AudioFileType/*</name>*/ implements ValuedEnum {
     AIFC(1095321155L),
     WAVE(1463899717L),
     RF64(1380333108L),
+    BW64(1113011764L),
+    Wave64(1463170150L),
     SoundDesigner2(1399075430L),
     Next(1315264596L),
     MP3(1297106739L),

@@ -73,6 +73,7 @@ public enum /*<name>*/AudioFileProperty/*</name>*/ implements ValuedEnum {
     EstimatedDuration(1701082482L),
     BitRate(1651663220L),
     ID3Tag(1768174452L),
+    ID3TagOffset(1768174447L),
     SourceBitDepth(1935832164L),
     AlbumArtwork(1633776244L),
     AudioTrackCount(1635017588L),
