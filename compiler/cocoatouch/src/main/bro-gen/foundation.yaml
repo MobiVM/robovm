@@ -231,6 +231,7 @@ enums:
     NSURLErrorNetworkUnavailableReason: {} #since 13.0
     NSURLSessionWebSocketMessageType: {} #since 13.0
     NSURLSessionWebSocketCloseCode: {} #since 13.0
+    NSURLSessionTaskMetricsDomainResolutionProtocol: {} #since 14.0
     IGNORED1: {first: NS_UnknownByteOrder, exclude: true}  # ignored same as constants
     IGNORED2: {first: NSWrapCalendarComponents, exclude: true} # deprecated
     NSTextCheckingTypes: {prefix: NSTextChecking, name: NSTextCheckingTypes}

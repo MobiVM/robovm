@@ -171,6 +171,11 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "isMultipath")
     public native boolean isMultipath();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "domainResolutionProtocol")
+    public native NSURLSessionTaskMetricsDomainResolutionProtocol getDomainResolutionProtocol();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
