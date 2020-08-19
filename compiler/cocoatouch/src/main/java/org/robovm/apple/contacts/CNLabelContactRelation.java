@@ -874,11 +874,11 @@ import org.robovm.apple.foundation.*;
     /**
      * @since Available in iOS 13.0 and later.
      */
-    public static final CNLabelContactRelation Stepfather = new CNLabelContactRelation("Stepfather");
+    public static final CNLabelContactRelation Stepmother = new CNLabelContactRelation("Stepmother");
     /**
      * @since Available in iOS 13.0 and later.
      */
-    public static final CNLabelContactRelation Stepmother = new CNLabelContactRelation("Stepmother");
+    public static final CNLabelContactRelation Stepfather = new CNLabelContactRelation("Stepfather");
     /**
      * @since Available in iOS 13.0 and later.
      */
@@ -886,19 +886,19 @@ import org.robovm.apple.foundation.*;
     /**
      * @since Available in iOS 13.0 and later.
      */
-    public static final CNLabelContactRelation Stepson = new CNLabelContactRelation("Stepson");
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
     public static final CNLabelContactRelation Stepdaughter = new CNLabelContactRelation("Stepdaughter");
     /**
      * @since Available in iOS 13.0 and later.
      */
-    public static final CNLabelContactRelation Stepbrother = new CNLabelContactRelation("Stepbrother");
+    public static final CNLabelContactRelation Stepson = new CNLabelContactRelation("Stepson");
     /**
      * @since Available in iOS 13.0 and later.
      */
     public static final CNLabelContactRelation Stepsister = new CNLabelContactRelation("Stepsister");
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final CNLabelContactRelation Stepbrother = new CNLabelContactRelation("Stepbrother");
     /**
      * @since Available in iOS 13.0 and later.
      */
@@ -932,6 +932,14 @@ import org.robovm.apple.foundation.*;
      */
     public static final CNLabelContactRelation GrandchildOrSiblingsChild = new CNLabelContactRelation("GrandchildOrSiblingsChild");
     /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final CNLabelContactRelation GranddaughterOrNiece = new CNLabelContactRelation("GranddaughterOrNiece");
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final CNLabelContactRelation GrandsonOrNephew = new CNLabelContactRelation("GrandsonOrNephew");
+    /**
      * @since Available in iOS 13.0 and later.
      */
     public static final CNLabelContactRelation GreatGrandchildOrSiblingsGrandchild = new CNLabelContactRelation("GreatGrandchildOrSiblingsGrandchild");
@@ -945,7 +953,7 @@ import org.robovm.apple.foundation.*;
     public static final CNLabelContactRelation SonInLawOrBrotherInLaw = new CNLabelContactRelation("SonInLawOrBrotherInLaw");
     /*</constants>*/
     
-    private static /*<name>*/CNLabelContactRelation/*</name>*/[] values = new /*<name>*/CNLabelContactRelation/*</name>*/[] {/*<value_list>*/Assistant, Manager, Colleague, Teacher, Sibling, YoungerSibling, ElderSibling, Sister, YoungerSister, YoungestSister, ElderSister, EldestSister, Brother, YoungerBrother, YoungestBrother, ElderBrother, EldestBrother, Friend, MaleFriend, FemaleFriend, Spouse, Wife, Husband, Partner, MalePartner, FemalePartner, GirlfriendOrBoyfriend, Girlfriend, Boyfriend, Parent, Mother, Father, Child, Daughter, Son, Grandparent, Grandmother, GrandmotherMothersMother, GrandmotherFathersMother, Grandfather, GrandfatherMothersFather, GrandfatherFathersFather, GreatGrandparent, GreatGrandmother, GreatGrandfather, Grandchild, Granddaughter, GranddaughterDaughtersDaughter, GranddaughterSonsDaughter, Grandson, GrandsonDaughtersSon, GrandsonSonsSon, GreatGrandchild, GreatGranddaughter, GreatGrandson, ParentInLaw, MotherInLaw, MotherInLawWifesMother, MotherInLawHusbandsMother, FatherInLaw, FatherInLawWifesFather, FatherInLawHusbandsFather, CoParentInLaw, CoMotherInLaw, CoFatherInLaw, SiblingInLaw, YoungerSiblingInLaw, ElderSiblingInLaw, SisterInLaw, YoungerSisterInLaw, ElderSisterInLaw, SisterInLawSpousesSister, SisterInLawWifesSister, SisterInLawHusbandsSister, SisterInLawBrothersWife, SisterInLawYoungerBrothersWife, SisterInLawElderBrothersWife, BrotherInLaw, YoungerBrotherInLaw, ElderBrotherInLaw, BrotherInLawSpousesBrother, BrotherInLawHusbandsBrother, BrotherInLawWifesBrother, BrotherInLawSistersHusband, BrotherInLawYoungerSistersHusband, BrotherInLawElderSistersHusband, SisterInLawWifesBrothersWife, SisterInLawHusbandsBrothersWife, BrotherInLawWifesSistersHusband, BrotherInLawHusbandsSistersHusband, CoSiblingInLaw, CoSisterInLaw, CoBrotherInLaw, ChildInLaw, DaughterInLaw, SonInLaw, Cousin, YoungerCousin, ElderCousin, MaleCousin, FemaleCousin, CousinParentsSiblingsChild, CousinParentsSiblingsSon, YoungerCousinParentsSiblingsSon, ElderCousinParentsSiblingsSon, CousinParentsSiblingsDaughter, YoungerCousinParentsSiblingsDaughter, ElderCousinParentsSiblingsDaughter, CousinMothersSistersDaughter, YoungerCousinMothersSistersDaughter, ElderCousinMothersSistersDaughter, CousinMothersSistersSon, YoungerCousinMothersSistersSon, ElderCousinMothersSistersSon, CousinMothersBrothersDaughter, YoungerCousinMothersBrothersDaughter, ElderCousinMothersBrothersDaughter, CousinMothersBrothersSon, YoungerCousinMothersBrothersSon, ElderCousinMothersBrothersSon, CousinFathersSistersDaughter, YoungerCousinFathersSistersDaughter, ElderCousinFathersSistersDaughter, CousinFathersSistersSon, YoungerCousinFathersSistersSon, ElderCousinFathersSistersSon, CousinFathersBrothersDaughter, YoungerCousinFathersBrothersDaughter, ElderCousinFathersBrothersDaughter, CousinFathersBrothersSon, YoungerCousinFathersBrothersSon, ElderCousinFathersBrothersSon, CousinGrandparentsSiblingsChild, CousinGrandparentsSiblingsDaughter, CousinGrandparentsSiblingsSon, YoungerCousinMothersSiblingsSonOrFathersSistersSon, ElderCousinMothersSiblingsSonOrFathersSistersSon, YoungerCousinMothersSiblingsDaughterOrFathersSistersDaughter, ElderCousinMothersSiblingsDaughterOrFathersSistersDaughter, ParentsSibling, ParentsYoungerSibling, ParentsElderSibling, ParentsSiblingMothersSibling, ParentsSiblingMothersYoungerSibling, ParentsSiblingMothersElderSibling, ParentsSiblingFathersSibling, ParentsSiblingFathersYoungerSibling, ParentsSiblingFathersElderSibling, Aunt, AuntParentsSister, AuntParentsYoungerSister, AuntParentsElderSister, AuntFathersSister, AuntFathersYoungerSister, AuntFathersElderSister, AuntFathersBrothersWife, AuntFathersYoungerBrothersWife, AuntFathersElderBrothersWife, AuntMothersSister, AuntMothersYoungerSister, AuntMothersElderSister, AuntMothersBrothersWife, Grandaunt, Uncle, UncleParentsBrother, UncleParentsYoungerBrother, UncleParentsElderBrother, UncleMothersBrother, UncleMothersYoungerBrother, UncleMothersElderBrother, UncleMothersSistersHusband, UncleFathersBrother, UncleFathersYoungerBrother, UncleFathersElderBrother, UncleFathersSistersHusband, UncleFathersYoungerSistersHusband, UncleFathersElderSistersHusband, Granduncle, SiblingsChild, Niece, NieceSistersDaughter, NieceBrothersDaughter, NieceSistersDaughterOrWifesSiblingsDaughter, NieceBrothersDaughterOrHusbandsSiblingsDaughter, Nephew, NephewSistersSon, NephewBrothersSon, NephewBrothersSonOrHusbandsSiblingsSon, NephewSistersSonOrWifesSiblingsSon, Grandniece, GrandnieceSistersGranddaughter, GrandnieceBrothersGranddaughter, Grandnephew, GrandnephewSistersGrandson, GrandnephewBrothersGrandson, Stepparent, Stepfather, Stepmother, Stepchild, Stepson, Stepdaughter, Stepbrother, Stepsister, MotherInLawOrStepmother, FatherInLawOrStepfather, DaughterInLawOrStepdaughter, SonInLawOrStepson, CousinOrSiblingsChild, NieceOrCousin, NephewOrCousin, GrandchildOrSiblingsChild, GreatGrandchildOrSiblingsGrandchild, DaughterInLawOrSisterInLaw, SonInLawOrBrotherInLaw/*</value_list>*/};
+    private static /*<name>*/CNLabelContactRelation/*</name>*/[] values = new /*<name>*/CNLabelContactRelation/*</name>*/[] {/*<value_list>*/Assistant, Manager, Colleague, Teacher, Sibling, YoungerSibling, ElderSibling, Sister, YoungerSister, YoungestSister, ElderSister, EldestSister, Brother, YoungerBrother, YoungestBrother, ElderBrother, EldestBrother, Friend, MaleFriend, FemaleFriend, Spouse, Wife, Husband, Partner, MalePartner, FemalePartner, GirlfriendOrBoyfriend, Girlfriend, Boyfriend, Parent, Mother, Father, Child, Daughter, Son, Grandparent, Grandmother, GrandmotherMothersMother, GrandmotherFathersMother, Grandfather, GrandfatherMothersFather, GrandfatherFathersFather, GreatGrandparent, GreatGrandmother, GreatGrandfather, Grandchild, Granddaughter, GranddaughterDaughtersDaughter, GranddaughterSonsDaughter, Grandson, GrandsonDaughtersSon, GrandsonSonsSon, GreatGrandchild, GreatGranddaughter, GreatGrandson, ParentInLaw, MotherInLaw, MotherInLawWifesMother, MotherInLawHusbandsMother, FatherInLaw, FatherInLawWifesFather, FatherInLawHusbandsFather, CoParentInLaw, CoMotherInLaw, CoFatherInLaw, SiblingInLaw, YoungerSiblingInLaw, ElderSiblingInLaw, SisterInLaw, YoungerSisterInLaw, ElderSisterInLaw, SisterInLawSpousesSister, SisterInLawWifesSister, SisterInLawHusbandsSister, SisterInLawBrothersWife, SisterInLawYoungerBrothersWife, SisterInLawElderBrothersWife, BrotherInLaw, YoungerBrotherInLaw, ElderBrotherInLaw, BrotherInLawSpousesBrother, BrotherInLawHusbandsBrother, BrotherInLawWifesBrother, BrotherInLawSistersHusband, BrotherInLawYoungerSistersHusband, BrotherInLawElderSistersHusband, SisterInLawWifesBrothersWife, SisterInLawHusbandsBrothersWife, BrotherInLawWifesSistersHusband, BrotherInLawHusbandsSistersHusband, CoSiblingInLaw, CoSisterInLaw, CoBrotherInLaw, ChildInLaw, DaughterInLaw, SonInLaw, Cousin, YoungerCousin, ElderCousin, MaleCousin, FemaleCousin, CousinParentsSiblingsChild, CousinParentsSiblingsSon, YoungerCousinParentsSiblingsSon, ElderCousinParentsSiblingsSon, CousinParentsSiblingsDaughter, YoungerCousinParentsSiblingsDaughter, ElderCousinParentsSiblingsDaughter, CousinMothersSistersDaughter, YoungerCousinMothersSistersDaughter, ElderCousinMothersSistersDaughter, CousinMothersSistersSon, YoungerCousinMothersSistersSon, ElderCousinMothersSistersSon, CousinMothersBrothersDaughter, YoungerCousinMothersBrothersDaughter, ElderCousinMothersBrothersDaughter, CousinMothersBrothersSon, YoungerCousinMothersBrothersSon, ElderCousinMothersBrothersSon, CousinFathersSistersDaughter, YoungerCousinFathersSistersDaughter, ElderCousinFathersSistersDaughter, CousinFathersSistersSon, YoungerCousinFathersSistersSon, ElderCousinFathersSistersSon, CousinFathersBrothersDaughter, YoungerCousinFathersBrothersDaughter, ElderCousinFathersBrothersDaughter, CousinFathersBrothersSon, YoungerCousinFathersBrothersSon, ElderCousinFathersBrothersSon, CousinGrandparentsSiblingsChild, CousinGrandparentsSiblingsDaughter, CousinGrandparentsSiblingsSon, YoungerCousinMothersSiblingsSonOrFathersSistersSon, ElderCousinMothersSiblingsSonOrFathersSistersSon, YoungerCousinMothersSiblingsDaughterOrFathersSistersDaughter, ElderCousinMothersSiblingsDaughterOrFathersSistersDaughter, ParentsSibling, ParentsYoungerSibling, ParentsElderSibling, ParentsSiblingMothersSibling, ParentsSiblingMothersYoungerSibling, ParentsSiblingMothersElderSibling, ParentsSiblingFathersSibling, ParentsSiblingFathersYoungerSibling, ParentsSiblingFathersElderSibling, Aunt, AuntParentsSister, AuntParentsYoungerSister, AuntParentsElderSister, AuntFathersSister, AuntFathersYoungerSister, AuntFathersElderSister, AuntFathersBrothersWife, AuntFathersYoungerBrothersWife, AuntFathersElderBrothersWife, AuntMothersSister, AuntMothersYoungerSister, AuntMothersElderSister, AuntMothersBrothersWife, Grandaunt, Uncle, UncleParentsBrother, UncleParentsYoungerBrother, UncleParentsElderBrother, UncleMothersBrother, UncleMothersYoungerBrother, UncleMothersElderBrother, UncleMothersSistersHusband, UncleFathersBrother, UncleFathersYoungerBrother, UncleFathersElderBrother, UncleFathersSistersHusband, UncleFathersYoungerSistersHusband, UncleFathersElderSistersHusband, Granduncle, SiblingsChild, Niece, NieceSistersDaughter, NieceBrothersDaughter, NieceSistersDaughterOrWifesSiblingsDaughter, NieceBrothersDaughterOrHusbandsSiblingsDaughter, Nephew, NephewSistersSon, NephewBrothersSon, NephewBrothersSonOrHusbandsSiblingsSon, NephewSistersSonOrWifesSiblingsSon, Grandniece, GrandnieceSistersGranddaughter, GrandnieceBrothersGranddaughter, Grandnephew, GrandnephewSistersGrandson, GrandnephewBrothersGrandson, Stepparent, Stepmother, Stepfather, Stepchild, Stepdaughter, Stepson, Stepsister, Stepbrother, MotherInLawOrStepmother, FatherInLawOrStepfather, DaughterInLawOrStepdaughter, SonInLawOrStepson, CousinOrSiblingsChild, NieceOrCousin, NephewOrCousin, GrandchildOrSiblingsChild, GranddaughterOrNiece, GrandsonOrNephew, GreatGrandchildOrSiblingsGrandchild, DaughterInLawOrSisterInLaw, SonInLawOrBrotherInLaw/*</value_list>*/};
     
     private CNLabelContactRelation(String getterName) {
         super(getterName);
@@ -1951,13 +1959,13 @@ import org.robovm.apple.foundation.*;
         /**
          * @since Available in iOS 13.0 and later.
          */
-        @GlobalValue(symbol="CNLabelContactRelationStepfather", optional=true)
-        public static native NSString Stepfather();
+        @GlobalValue(symbol="CNLabelContactRelationStepmother", optional=true)
+        public static native NSString Stepmother();
         /**
          * @since Available in iOS 13.0 and later.
          */
-        @GlobalValue(symbol="CNLabelContactRelationStepmother", optional=true)
-        public static native NSString Stepmother();
+        @GlobalValue(symbol="CNLabelContactRelationStepfather", optional=true)
+        public static native NSString Stepfather();
         /**
          * @since Available in iOS 13.0 and later.
          */
@@ -1966,23 +1974,23 @@ import org.robovm.apple.foundation.*;
         /**
          * @since Available in iOS 13.0 and later.
          */
-        @GlobalValue(symbol="CNLabelContactRelationStepson", optional=true)
-        public static native NSString Stepson();
-        /**
-         * @since Available in iOS 13.0 and later.
-         */
         @GlobalValue(symbol="CNLabelContactRelationStepdaughter", optional=true)
         public static native NSString Stepdaughter();
         /**
          * @since Available in iOS 13.0 and later.
          */
-        @GlobalValue(symbol="CNLabelContactRelationStepbrother", optional=true)
-        public static native NSString Stepbrother();
+        @GlobalValue(symbol="CNLabelContactRelationStepson", optional=true)
+        public static native NSString Stepson();
         /**
          * @since Available in iOS 13.0 and later.
          */
         @GlobalValue(symbol="CNLabelContactRelationStepsister", optional=true)
         public static native NSString Stepsister();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="CNLabelContactRelationStepbrother", optional=true)
+        public static native NSString Stepbrother();
         /**
          * @since Available in iOS 13.0 and later.
          */
@@ -2023,6 +2031,16 @@ import org.robovm.apple.foundation.*;
          */
         @GlobalValue(symbol="CNLabelContactRelationGrandchildOrSiblingsChild", optional=true)
         public static native NSString GrandchildOrSiblingsChild();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="CNLabelContactRelationGranddaughterOrNiece", optional=true)
+        public static native NSString GranddaughterOrNiece();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="CNLabelContactRelationGrandsonOrNephew", optional=true)
+        public static native NSString GrandsonOrNephew();
         /**
          * @since Available in iOS 13.0 and later.
          */
