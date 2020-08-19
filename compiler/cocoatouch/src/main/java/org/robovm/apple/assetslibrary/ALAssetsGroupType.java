@@ -40,37 +40,37 @@ public final class /*<name>*/ALAssetsGroupType/*</name>*/ extends Bits</*<name>*
     /*<values>*/
     public static final ALAssetsGroupType None = new ALAssetsGroupType(0L);
     /**
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use PHAssetCollectionType and PHAssetCollectionSubtype in the Photos framework instead
      */
     @Deprecated
     public static final ALAssetsGroupType Library = new ALAssetsGroupType(1L);
     /**
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use PHAssetCollectionType and PHAssetCollectionSubtype in the Photos framework instead
      */
     @Deprecated
     public static final ALAssetsGroupType Album = new ALAssetsGroupType(2L);
     /**
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use PHAssetCollectionType and PHAssetCollectionSubtype in the Photos framework instead
      */
     @Deprecated
     public static final ALAssetsGroupType Event = new ALAssetsGroupType(4L);
     /**
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use PHAssetCollectionType and PHAssetCollectionSubtype in the Photos framework instead
      */
     @Deprecated
     public static final ALAssetsGroupType Faces = new ALAssetsGroupType(8L);
     /**
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use PHAssetCollectionType and PHAssetCollectionSubtype in the Photos framework instead
      */
     @Deprecated
     public static final ALAssetsGroupType SavedPhotos = new ALAssetsGroupType(16L);
     /**
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use PHAssetCollectionType and PHAssetCollectionSubtype in the Photos framework instead
      */
     @Deprecated
     public static final ALAssetsGroupType PhotoStream = new ALAssetsGroupType(32L);
     /**
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use PHAssetCollectionType and PHAssetCollectionSubtype in the Photos framework instead
      */
     @Deprecated
     public static final ALAssetsGroupType All = new ALAssetsGroupType(4294967295L);
