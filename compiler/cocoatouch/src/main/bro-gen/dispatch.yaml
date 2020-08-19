@@ -8,12 +8,10 @@ typedefs:
     _NSZone: void
     'Protocol *': ObjCProtocol
     dispatch_queue_t: DispatchQueue
-    'void (^)(dispatch_data_t, int)': '@Block VoidBlock2<DispatchData, Integer>'
-    'void (^)(int)': '@Block VoidBlock1<Integer>'
-    'void (^)(size_t)': '@Block("(@MachineSizedUInt)") VoidBlock1<Long>'
-    dispatch_io_handler_t: '@Block VoidBlock3<Boolean, DispatchData, Integer>'
-    dispatch_data_applier_t: '@Block("(,@MachineSizedUInt,,@MachineSizedUInt)") VoidBlock4<DispatchData, Long, VoidPtr, Long>'
-    dispatch_autorelease_frequency_t: 'long'
+    dispatch_workloop_t: DispatchWorkloop
+enums:
+    dispatch_autorelease_frequency_t: {name: AutoreleaseFrequency, prefix: DISPATCH_AUTORELEASE_FREQUENCY_}
+
 classes:
     timespec:
         visibility: ''
@@ -28,6 +26,8 @@ classes:
     (dispatch_(data|group|queue|queue_attr|semaphore|source|source_type))_s:
         name: '#{g[0].camelize}'
         extends: DispatchObject
+    DispatchWorkloop:
+        extends: DispatchQueue
     Dispatch:
         extends: Object
         
@@ -74,7 +74,7 @@ functions:
     dispatch_(get.*queue):
         class: DispatchQueue
         name: '#{g[0].camelize}'
-    dispatch_queue_(create):
+    dispatch_queue_(create|create_with_target):
         class: DispatchQueue
         name: '#{g[0].camelize}'
         parameters:
@@ -89,6 +89,11 @@ functions:
     dispatch_queue_(.*):
         class: DispatchQueue
         name: '#{g[0].camelize}'
+    dispatch_(assert_.*):
+        class: DispatchQueue
+        name: '#{g[0].camelize}'
+    dispatch_barrier_async_and_wait_f:
+        exclude: true
 
     # DispatchData
     dispatch_data_(.*):
@@ -135,6 +140,20 @@ functions:
         name: testCancel
     dispatch_source_(.*):
         class: DispatchSource
+        name: '#{g[0].camelize}'
+
+    # DispatchWorkloop
+    dispatch_workloop_set_os_workgroup:
+        exclude: true
+    dispatch_workloop_(create|create_inactive):
+        class: DispatchWorkloop
+        name: '#{g[0].camelize}'
+        parameters:
+            label:
+                type: String
+                marshaler: StringMarshalers.AsUtf8ZMarshaler
+    dispatch_workloop_(.*):
+        class: DispatchWorkloop
         name: '#{g[0].camelize}'
 
     # DispatchObject

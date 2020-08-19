@@ -47,9 +47,6 @@ import org.robovm.rt.bro.ptr.*;
     public static final int APPLY_AUTO_AVAILABLE = 1;
     public static final int ONCE_INLINE_FASTPATH = 1;
     public static final long WALLTIME_NOW = -2L;
-    public static final long AUTORELEASE_FREQUENCY_INHERIT = 0L;
-    public static final long AUTORELEASE_FREQUENCY_WORK_ITEM = 1L;
-    public static final long AUTORELEASE_FREQUENCY_NEVER = 2L;
     /*</constants>*/
     /*<constructors>*//*</constructors>*/
     /*<properties>*//*</properties>*/
@@ -78,41 +75,11 @@ import org.robovm.rt.bro.ptr.*;
     public static native void setQosClassFloor(@ByVal DispatchObject object, int qos_class, int relative_priority);
     @Bridge(symbol="dispatch_main", optional=true)
     public static native void main();
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
-    @Bridge(symbol="dispatch_assert_queue", optional=true)
-    public static native void assertQueue(DispatchQueue queue);
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
-    @Bridge(symbol="dispatch_assert_queue_barrier", optional=true)
-    public static native void assertQueueBarrier(DispatchQueue queue);
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
-    @Bridge(symbol="dispatch_assert_queue_not", optional=true)
-    public static native void assertQueueNot(DispatchQueue queue);
     @Bridge(symbol="dispatch_once", optional=true)
     protected static native void once(MachineSizedSIntPtr predicate, @Block Runnable block);
     @Bridge(symbol="dispatch_read", optional=true)
     public static native void read(int fd, @MachineSizedUInt long length, DispatchQueue queue, @Block VoidBlock2<DispatchData, Integer> handler);
     @Bridge(symbol="dispatch_write", optional=true)
     public static native void write(int fd, DispatchData data, DispatchQueue queue, @Block VoidBlock2<DispatchData, Integer> handler);
-    /**
-     * @since Available in iOS 12.0 and later.
-     */
-    @Bridge(symbol="dispatch_workloop_create", optional=true)
-    public static native DispatchQueue workloopCreate(BytePtr label);
-    /**
-     * @since Available in iOS 12.0 and later.
-     */
-    @Bridge(symbol="dispatch_workloop_create_inactive", optional=true)
-    public static native DispatchQueue workloopCreateInactive(BytePtr label);
-    /**
-     * @since Available in iOS 12.0 and later.
-     */
-    @Bridge(symbol="dispatch_workloop_set_autorelease_frequency", optional=true)
-    public static native void workloopSetAutoreleaseFrequency(DispatchQueue workloop, long frequency);
     /*</methods>*/
 }
