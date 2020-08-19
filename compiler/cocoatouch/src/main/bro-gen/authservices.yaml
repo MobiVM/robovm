@@ -99,7 +99,34 @@ classes:
                 constructor: true
                 name: create
     ASAuthorizationSingleSignOnRequest: {} #since 13.0
-
+    ASAccountAuthenticationModificationController: {} #since 14.0
+    ASAccountAuthenticationModificationExtensionContext: #since 14.0
+        methods:
+            '-getSignInWithAppleUpgradeAuthorizationWithState:nonce:completionHandler:':
+                name: getSignInWithAppleUpgradeAuthorization
+            '-completeUpgradeToSignInWithAppleWithUserInfo:':
+                name: completeUpgradeToSignInWithApple
+            '-completeChangePasswordRequestWithUpdatedCredential:userInfo:':
+                name: completeChangePasswordRequest
+    ASAccountAuthenticationModificationReplacePasswordWithSignInWithAppleRequest: #since 14.0
+        methods:
+            '-initWithUser:serviceIdentifier:userInfo:':
+                name: init
+    ASAccountAuthenticationModificationRequest: {} #since 14.0
+    ASAccountAuthenticationModificationUpgradePasswordToStrongPasswordRequest: #since 14.0
+        methods:
+            '-initWithUser:serviceIdentifier:userInfo:':
+                name: init
+    ASAccountAuthenticationModificationViewController: #since 14.0
+        methods:
+            '-convertAccountToSignInWithAppleWithoutUserInteractionForServiceIdentifier:existingCredential:userInfo:':
+                name: convertAccountToSignInWithAppleWithoutUserInteraction
+            '-prepareInterfaceToConvertAccountToSignInWithAppleForServiceIdentifier:existingCredential:userInfo:':
+                name: prepareInterfaceToConvertAccountToSignInWithApple
+            '-changePasswordWithoutUserInteractionForServiceIdentifier:existingCredential:newPassword:userInfo:':
+                name: changePasswordWithoutUserInteraction
+            '-prepareInterfaceToChangePasswordForServiceIdentifier:existingCredential:newPassword:userInfo:':
+                name: prepareInterfaceToChangePassword
 
 protocols:
     ASAuthorizationControllerDelegate: #since 13.0
@@ -118,7 +145,16 @@ protocols:
             '-cancelAuthorizationWithRequest:':
                 name: cancelAuthorization
     ASWebAuthenticationPresentationContextProviding: {} #since 13.0
-
+    ASAccountAuthenticationModificationControllerDelegate: #since 14.0
+        methods:
+            '-accountAuthenticationModificationController:didSuccessfullyCompleteRequest:withUserInfo:':
+                name: didSuccessfullyCompleteRequest
+            '-accountAuthenticationModificationController:didFailRequest:withError:':
+                name: didFailRequest
+    ASAccountAuthenticationModificationControllerPresentationContextProviding: #since 14.0
+        methods:
+            '-presentationAnchorForAccountAuthenticationModificationController:':
+                name: getPresentationAnchor
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (k?ASC.*):
