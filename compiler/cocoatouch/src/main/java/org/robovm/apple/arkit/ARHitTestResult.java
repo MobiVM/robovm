@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.avfoundation.*;
 import org.robovm.apple.coregraphics.*;
+import org.robovm.apple.corelocation.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.scenekit.*;
 import org.robovm.apple.corevideo.*;
@@ -43,9 +44,10 @@ import org.robovm.apple.imageio.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 11.0 and later.
+ * @deprecated Deprecated in iOS 14.0. Use raycasting
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("ARKit") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("ARKit") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/ARHitTestResult/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
