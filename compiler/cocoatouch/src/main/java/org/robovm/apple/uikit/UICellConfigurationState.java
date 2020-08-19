@@ -76,6 +76,10 @@ import org.robovm.apple.linkpresentation.*;
     public native boolean isSwiped();
     @Property(selector = "setSwiped:")
     public native void setSwiped(boolean v);
+    @Property(selector = "isReordering")
+    public native boolean isReordering();
+    @Property(selector = "setReordering:")
+    public native void setReordering(boolean v);
     @Property(selector = "cellDragState")
     public native UICellConfigurationDragState getCellDragState();
     @Property(selector = "setCellDragState:")

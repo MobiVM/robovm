@@ -213,11 +213,6 @@ import org.robovm.apple.linkpresentation.*;
     /*<methods>*/
     @GlobalValue(symbol="UISplitViewControllerAutomaticDimension", optional=true)
     public static native @MachineSizedFloat double getAutomaticDimension();
-    /**
-     * @since Available in iOS 14.0 and later.
-     */
-    @GlobalValue(symbol="UISplitViewControllerAutomaticSupplementaryFillDimension", optional=true)
-    public static native @MachineSizedFloat double getAutomaticSupplementaryFillDimension();
     
     @Method(selector = "initWithCoder:")
     protected native @Pointer long init(NSCoder coder);
