@@ -54,6 +54,34 @@ import org.robovm.apple.uikit.*;
     public NSBatchInsertRequest(String entityName, NSArray<?> dictionaries) { super((SkipInit) null); initObject(init(entityName, dictionaries)); }
     @Method(selector = "initWithEntity:objects:")
     public NSBatchInsertRequest(NSEntityDescription entity, NSArray<?> dictionaries) { super((SkipInit) null); initObject(init(entity, dictionaries)); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithEntity:dictionaryHandler:")
+    public static  NSBatchInsertRequest create(NSEntityDescription entity, @Block Block1<NSMutableDictionary<NSString, ?>, Boolean> handler) {
+       NSBatchInsertRequest res = new NSBatchInsertRequest((SkipInit) null);
+       res.initObject(res.init0(entity, handler));
+       return res;
+    }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithEntity:managedObjectHandler:")
+    public NSBatchInsertRequest(NSEntityDescription entity, @Block Block1<NSManagedObject, Boolean> handler) { super((SkipInit) null); initObject(init(entity, handler)); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithEntityName:dictionaryHandler:")
+    public static  NSBatchInsertRequest create(String entityName, @Block Block1<NSMutableDictionary<NSString, ?>, Boolean> handler) {
+       NSBatchInsertRequest res = new NSBatchInsertRequest((SkipInit) null);
+       res.initObject(res.init0(entityName, handler));
+       return res;
+    }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithEntityName:managedObjectHandler:")
+    public NSBatchInsertRequest(String entityName, @Block Block1<NSManagedObject, Boolean> handler) { super((SkipInit) null); initObject(init(entityName, handler)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "entityName")
@@ -64,6 +92,26 @@ import org.robovm.apple.uikit.*;
     public native NSArray<?> getObjectsToInsert();
     @Property(selector = "setObjectsToInsert:")
     public native void setObjectsToInsert(NSArray<?> v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "dictionaryHandler")
+    public native @Block Block1<NSMutableDictionary<NSString, ?>, Boolean> getDictionaryHandler();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setDictionaryHandler:")
+    public native void setDictionaryHandler(@Block Block1<NSMutableDictionary<NSString, ?>, Boolean> v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "managedObjectHandler")
+    public native @Block Block1<NSManagedObject, Boolean> getManagedObjectHandler();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setManagedObjectHandler:")
+    public native void setManagedObjectHandler(@Block Block1<NSManagedObject, Boolean> v);
     @Property(selector = "resultType")
     public native NSBatchInsertRequestResultType getResultType();
     @Property(selector = "setResultType:")
@@ -75,5 +123,25 @@ import org.robovm.apple.uikit.*;
     protected native @Pointer long init(String entityName, NSArray<?> dictionaries);
     @Method(selector = "initWithEntity:objects:")
     protected native @Pointer long init(NSEntityDescription entity, NSArray<?> dictionaries);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithEntity:dictionaryHandler:")
+    protected native @Pointer long init0(NSEntityDescription entity, @Block Block1<NSMutableDictionary<NSString, ?>, Boolean> handler);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithEntity:managedObjectHandler:")
+    protected native @Pointer long init(NSEntityDescription entity, @Block Block1<NSManagedObject, Boolean> handler);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithEntityName:dictionaryHandler:")
+    protected native @Pointer long init0(String entityName, @Block Block1<NSMutableDictionary<NSString, ?>, Boolean> handler);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithEntityName:managedObjectHandler:")
+    protected native @Pointer long init(String entityName, @Block Block1<NSManagedObject, Boolean> handler);
     /*</methods>*/
 }

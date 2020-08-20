@@ -76,5 +76,20 @@ import org.robovm.apple.uikit.*;
     public native CKRecordID recordIDForManagedObjectID(NSManagedObjectID managedObjectID);
     @Method(selector = "recordIDsForManagedObjectIDs:")
     public native NSDictionary<NSManagedObjectID, CKRecordID> recordIDsForManagedObjectIDs(NSArray<NSManagedObjectID> managedObjectIDs);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "canUpdateRecordForManagedObjectWithID:")
+    public native boolean canUpdateRecordForManagedObject(NSManagedObjectID objectID);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "canDeleteRecordForManagedObjectWithID:")
+    public native boolean canDeleteRecordForManagedObject(NSManagedObjectID objectID);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "canModifyManagedObjectsInStore:")
+    public native boolean canModifyManagedObjectsInStore(NSPersistentStore store);
     /*</methods>*/
 }

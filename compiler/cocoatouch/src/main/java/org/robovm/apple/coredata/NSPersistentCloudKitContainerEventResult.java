@@ -35,41 +35,30 @@ import org.robovm.apple.uikit.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 13.0 and later.
+ * @since Available in iOS 14.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreData") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/NSPersistentCloudKitContainerOptions/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/NSPersistentCloudKitContainerEventResult/*</name>*/ 
+    extends /*<extends>*/NSPersistentStoreResult/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class NSPersistentCloudKitContainerOptionsPtr extends Ptr<NSPersistentCloudKitContainerOptions, NSPersistentCloudKitContainerOptionsPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(NSPersistentCloudKitContainerOptions.class); }/*</bind>*/
+    /*<ptr>*/public static class NSPersistentCloudKitContainerEventResultPtr extends Ptr<NSPersistentCloudKitContainerEventResult, NSPersistentCloudKitContainerEventResultPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(NSPersistentCloudKitContainerEventResult.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected NSPersistentCloudKitContainerOptions() {}
-    protected NSPersistentCloudKitContainerOptions(Handle h, long handle) { super(h, handle); }
-    protected NSPersistentCloudKitContainerOptions(SkipInit skipInit) { super(skipInit); }
-    @Method(selector = "initWithContainerIdentifier:")
-    public NSPersistentCloudKitContainerOptions(String containerIdentifier) { super((SkipInit) null); initObject(init(containerIdentifier)); }
+    protected NSPersistentCloudKitContainerEventResult() {}
+    protected NSPersistentCloudKitContainerEventResult(Handle h, long handle) { super(h, handle); }
+    protected NSPersistentCloudKitContainerEventResult(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "containerIdentifier")
-    public native String getContainerIdentifier();
-    /**
-     * @since Available in iOS 14.0 and later.
-     */
-    @Property(selector = "databaseScope")
-    public native CKDatabaseScope getDatabaseScope();
-    /**
-     * @since Available in iOS 14.0 and later.
-     */
-    @Property(selector = "setDatabaseScope:")
-    public native void setDatabaseScope(CKDatabaseScope v);
+    @Property(selector = "result")
+    public native NSObject getResult();
+    @Property(selector = "resultType")
+    public native NSPersistentCloudKitContainerEventResultType getResultType();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithContainerIdentifier:")
-    protected native @Pointer long init(String containerIdentifier);
+    
     /*</methods>*/
 }
