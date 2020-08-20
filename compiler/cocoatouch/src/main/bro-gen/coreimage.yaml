@@ -241,6 +241,8 @@ classes:
             '+kernelWithFunctionName:fromMetalLibraryData:outputPixelFormat:error:':
                 throws: NSErrorException
                 name: create
+            '+kernelNamesFromMetalLibraryData:':
+                name: getKernelNamesFromMetalLibraryData
     CIQRCodeFeature: {} # DONE
     CIRectangleFeature: {} # DONE
     CIVector: # DONE

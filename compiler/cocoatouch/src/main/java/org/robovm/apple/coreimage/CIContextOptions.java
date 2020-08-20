@@ -203,6 +203,11 @@ import org.robovm.apple.avfoundation.*;
          */
         @GlobalValue(symbol="kCIContextAllowLowPower", optional=true)
         public static native NSString AllowLowPower();
+        /**
+         * @since Available in iOS 12.0 and later.
+         */
+        @GlobalValue(symbol="kCIContextName", optional=true)
+        public static native NSString Name();
     }
     /*</keys>*/
 }
