@@ -27,6 +27,7 @@ import org.robovm.compiler.util.Executor;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -54,13 +55,15 @@ public class DeviceType implements Comparable<DeviceType> {
     private final String state;
     private final Version version;
     private final Set<Arch> archs;
+    private final DeviceType pair;
 
-    DeviceType(String deviceName, String udid, String state, Version version, Set<Arch> archs) {
+    DeviceType(String deviceName, String udid, String state, Version version, Set<Arch> archs, DeviceType pair) {
         this.deviceName = deviceName;
         this.udid = udid;
         this.state = state;
         this.version = version;
         this.archs = archs;
+        this.pair = pair;
     }
 
     public String getDeviceName() {
@@ -73,6 +76,10 @@ public class DeviceType implements Comparable<DeviceType> {
 
     public Set<Arch> getArchs() {
         return Collections.unmodifiableSet(archs);
+    }
+
+    public DeviceType getPair() {
+        return pair;
     }
 
     /**
@@ -99,30 +106,55 @@ public class DeviceType implements Comparable<DeviceType> {
     }
 
     public String getState() {
-        return getState(false);
+        return state;
     }
 
-    public String getState(boolean fresh) {
-        if (fresh) {
-            // get fresh state by requesting a list
-            for (DeviceType t : listDeviceTypes()) {
-                if (udid.equals(t.udid))
-                    return t.state;
-            }
-
+    /**
+     * @return fresh copy -- to receive fresh device state (and paired state)
+     */
+    public DeviceType refresh() {
+        for (DeviceType t : listDeviceTypes()) {
+            if (udid.equals(t.udid))
+                return t;
         }
-        return state;
+
+        return null;
     }
 
     public static List<DeviceType> listDeviceTypes() {
         try {
             String capture = new Executor(Logger.NULL_LOGGER, "xcrun").args(
-                    "simctl", "list", "devices", "-j").execCapture();
+                    "simctl", "list", "devices", "pairs", "-j").execCapture();
             List<DeviceType> types = new ArrayList<>();
 
             JSONParser parser = new JSONParser();
-            JSONObject deviceList = (JSONObject) ((JSONObject) parser.parse(capture)).get("devices");
+            JSONObject root = (JSONObject) parser.parse(capture);
 
+            // parse watch pairs to
+            Map<String, DeviceType> pairs = new HashMap<>();
+            JSONObject pairList = (JSONObject) root.get("pairs");
+            if (pairList != null) {
+                for (Object e : pairList.values()) {
+                    JSONObject entry = (JSONObject) e;
+                    if (entry.containsKey("state") && entry.get("state").toString().contains("unavailable"))
+                        continue;
+                    JSONObject watchEntry = (JSONObject) entry.get("watch");
+                    JSONObject phoneEntry = (JSONObject) entry.get("phone");
+                    if (watchEntry != null && phoneEntry != null) {
+                        String phoneUdid = phoneEntry.get("udid").toString();
+                        String watchUdid = watchEntry.get("udid").toString();
+                        String watchName = watchEntry.get("name").toString();
+                        String watchState = watchEntry.get("state").toString();
+                        if (watchState.contains("unavailable"))
+                            continue;
+                        DeviceType simpleWatch = new DeviceType(watchName, watchUdid, watchState,
+                                new Version(0, 0, 0), Collections.emptySet(), null);
+                        pairs.put(phoneUdid, simpleWatch);
+                    }
+                }
+            }
+
+            JSONObject deviceList = (JSONObject) root.get("devices");
             for (Object value : deviceList.entrySet()) {
                 //noinspection rawtypes
                 Map.Entry entry = (Map.Entry) value;
@@ -155,8 +187,9 @@ public class DeviceType implements Comparable<DeviceType> {
                         if (!version.isSameOrBetter(ONLY_64BIT_IOS_VERSION))
                             archs.add(Arch.x86);
 
-                        types.add(new DeviceType(deviceName, device.get("udid").toString(),
-                                device.get("state").toString(), version, archs));
+                        String udid = device.get("udid").toString();
+                        DeviceType watchPair = pairs.get(udid);
+                        types.add(new DeviceType(deviceName, udid, device.get("state").toString(), version, archs, watchPair));
                     }
                 }
             }

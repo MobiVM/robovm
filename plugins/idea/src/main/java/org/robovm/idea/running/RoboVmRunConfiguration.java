@@ -71,6 +71,7 @@ public class RoboVmRunConfiguration extends ModuleBasedConfiguration<RoboVmRunCo
     private EntryType simulatorType;
     private String simulator;
     private int simulatorSdk;
+    private boolean simulatorLaunchWatch;
     private String arguments;
     private String workingDir;
 
@@ -98,6 +99,7 @@ public class RoboVmRunConfiguration extends ModuleBasedConfiguration<RoboVmRunCo
             provisioningProfileType = EntryType.AUTO;
             simulatorType = EntryType.AUTO;
             simulatorArch = Arch.x86_64;
+            simulatorLaunchWatch = false;
         } else if (type instanceof RoboVmConsoleConfigurationType) {
             targetType = TargetType.Console;
         }
@@ -138,6 +140,7 @@ public class RoboVmRunConfiguration extends ModuleBasedConfiguration<RoboVmRunCo
         simulator = JDOMExternalizerUtil.readField(element, "simulatorName");
         simulatorArch = valueOf(Arch.class, JDOMExternalizerUtil.readField(element, "simArch"));
         simulatorSdk = parseInt(JDOMExternalizerUtil.readField(element, "simulatorSdk"), -1);
+        simulatorLaunchWatch = parseInt(JDOMExternalizerUtil.readField(element, "simulatorLaunchPair"), -1)  > 0;
         arguments = JDOMExternalizerUtil.readField(element, "arguments", "");
         workingDir = JDOMExternalizerUtil.readField(element, "workingDir", "");
 
@@ -158,6 +161,7 @@ public class RoboVmRunConfiguration extends ModuleBasedConfiguration<RoboVmRunCo
         JDOMExternalizerUtil.writeField(element, "simulatorType", toStringOrNull(simulatorType));
         JDOMExternalizerUtil.writeField(element, "simulatorName", simulator);
         JDOMExternalizerUtil.writeField(element, "simulatorSdk", Integer.toString(simulatorSdk));
+        JDOMExternalizerUtil.writeField(element, "simulatorLaunchWatch", simulatorLaunchWatch ? "1" : "0");
         JDOMExternalizerUtil.writeField(element, "arguments", arguments);
         JDOMExternalizerUtil.writeField(element, "workingDir", workingDir);
     }
@@ -232,6 +236,14 @@ public class RoboVmRunConfiguration extends ModuleBasedConfiguration<RoboVmRunCo
 
     public void setSimulatorSdk(int simulatorSdk) {
         this.simulatorSdk = simulatorSdk;
+    }
+
+    public boolean simulatorLaunchWatch() {
+        return simulatorLaunchWatch;
+    }
+
+    public void setSimulatorLaunchWatch(boolean simulatorLaunchWatch) {
+        this.simulatorLaunchWatch = simulatorLaunchWatch;
     }
 
     public String getModuleName() {
