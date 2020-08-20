@@ -216,7 +216,7 @@ public class IOSTarget extends AbstractTarget {
         }
                 .stdout(out)
                 .closeOutOnExit(true)
-                .args(launchParameters.getArguments().toArray(new String[0]))
+                .args(launchParameters.getArguments(true).toArray(new String[0]))
                 .env(env)
                 .forward(forwardPort)
                 .appLauncherCallback(callback)

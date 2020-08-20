@@ -65,7 +65,7 @@ public class SimLauncherProcess extends Process implements Launcher {
         wd = launchParameters.getWorkingDirectory();
         this.appDir = appDir;
         this.bundleId = bundleId;
-        this.arguments = new ArrayList<>(launchParameters.getArguments());
+        this.arguments = new ArrayList<>(launchParameters.getArguments(true));
         if (launchParameters.getEnvironment() != null) {
             this.env = new HashMap<>();
             for (Map.Entry<String, String> entry : launchParameters.getEnvironment().entrySet()) {
