@@ -35,48 +35,45 @@ import org.robovm.apple.mapkit.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 12.0 and later.
+ * @since Available in iOS 14.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("CarPlay") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/CPListSection/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/CPNowPlayingButton/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
-    /*<ptr>*/public static class CPListSectionPtr extends Ptr<CPListSection, CPListSectionPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(CPListSection.class); }/*</bind>*/
+    /*<ptr>*/public static class CPNowPlayingButtonPtr extends Ptr<CPNowPlayingButton, CPNowPlayingButtonPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(CPNowPlayingButton.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected CPListSection() {}
-    protected CPListSection(Handle h, long handle) { super(h, handle); }
-    protected CPListSection(SkipInit skipInit) { super(skipInit); }
-    @Method(selector = "initWithItems:header:sectionIndexTitle:")
-    public CPListSection(NSArray<?> items, String header, String sectionIndexTitle) { super((SkipInit) null); initObject(init(items, header, sectionIndexTitle)); }
-    @Method(selector = "initWithItems:")
-    public CPListSection(NSArray<?> items) { super((SkipInit) null); initObject(init(items)); }
+    protected CPNowPlayingButton() {}
+    protected CPNowPlayingButton(Handle h, long handle) { super(h, handle); }
+    protected CPNowPlayingButton(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithHandler:")
+    public CPNowPlayingButton(@Block VoidBlock1<CPNowPlayingButton> handler) { super((SkipInit) null); initObject(init(handler)); }
     @Method(selector = "initWithCoder:")
-    public CPListSection(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
+    public CPNowPlayingButton(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "header")
-    public native String getHeader();
-    @Property(selector = "sectionIndexTitle")
-    public native String getSectionIndexTitle();
-    @Property(selector = "items")
-    public native NSArray<?> getItems();
+    @Property(selector = "isEnabled")
+    public native boolean isEnabled();
+    @Property(selector = "setEnabled:")
+    public native void setEnabled(boolean v);
+    @Property(selector = "isSelected")
+    public native boolean isSelected();
+    @Property(selector = "setSelected:")
+    public native void setSelected(boolean v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithItems:header:sectionIndexTitle:")
-    protected native @Pointer long init(NSArray<?> items, String header, String sectionIndexTitle);
-    @Method(selector = "initWithItems:")
-    protected native @Pointer long init(NSArray<?> items);
-    @Method(selector = "indexOfItem:")
-    public native @MachineSizedUInt long indexOfItem(CPListTemplateItem item);
-    @Method(selector = "itemAtIndex:")
-    public native CPListTemplateItem itemAtIndex(@MachineSizedUInt long index);
+    @GlobalValue(symbol="CPNowPlayingButtonMaximumImageSize", optional=true)
+    public static native @ByVal CGSize getMaximumImageSize();
+    
+    @Method(selector = "initWithHandler:")
+    protected native @Pointer long init(@Block VoidBlock1<CPNowPlayingButton> handler);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

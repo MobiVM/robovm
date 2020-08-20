@@ -35,38 +35,41 @@ import org.robovm.apple.mapkit.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 12.0 and later.
+ * @since Available in iOS 14.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("CarPlay") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/CPAlertTemplate/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/CPTabBarTemplate/*</name>*/ 
     extends /*<extends>*/CPTemplate/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class CPAlertTemplatePtr extends Ptr<CPAlertTemplate, CPAlertTemplatePtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(CPAlertTemplate.class); }/*</bind>*/
+    /*<ptr>*/public static class CPTabBarTemplatePtr extends Ptr<CPTabBarTemplate, CPTabBarTemplatePtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(CPTabBarTemplate.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected CPAlertTemplate() {}
-    protected CPAlertTemplate(Handle h, long handle) { super(h, handle); }
-    protected CPAlertTemplate(SkipInit skipInit) { super(skipInit); }
-    @Method(selector = "initWithTitleVariants:actions:")
-    public CPAlertTemplate(NSArray<NSString> titleVariants, NSArray<CPAlertAction> actions) { super((SkipInit) null); initObject(init(titleVariants, actions)); }
+    protected CPTabBarTemplate() {}
+    protected CPTabBarTemplate(Handle h, long handle) { super(h, handle); }
+    protected CPTabBarTemplate(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithTemplates:")
+    public CPTabBarTemplate(NSArray<CPTemplate> templates) { super((SkipInit) null); initObject(init(templates)); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "titleVariants")
-    public native NSArray<NSString> getTitleVariants();
-    /**
-     * @since Available in iOS 14.0 and later.
-     */
-    @Property(selector = "maximumActionCount")
-    public static native @MachineSizedUInt long getMaximumActionCount();
-    @Property(selector = "actions")
-    public native NSArray<CPAlertAction> getActions();
+    @Property(selector = "delegate")
+    public native CPTabBarTemplateDelegate getDelegate();
+    @Property(selector = "setDelegate:", strongRef = true)
+    public native void setDelegate(CPTabBarTemplateDelegate v);
+    @Property(selector = "maximumTabCount")
+    public static native @MachineSizedUInt long getMaximumTabCount();
+    @Property(selector = "templates")
+    public native NSArray<CPTemplate> getTemplates();
+    @Property(selector = "selectedTemplate")
+    public native CPTemplate getSelectedTemplate();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithTitleVariants:actions:")
-    protected native @Pointer long init(NSArray<NSString> titleVariants, NSArray<CPAlertAction> actions);
+    @Method(selector = "initWithTemplates:")
+    protected native @Pointer long init(NSArray<CPTemplate> templates);
+    @Method(selector = "updateTemplates:")
+    public native void updateTemplates(NSArray<CPTemplate> newTemplates);
     /*</methods>*/
 }

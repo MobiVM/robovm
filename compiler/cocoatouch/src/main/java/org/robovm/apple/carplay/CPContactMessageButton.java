@@ -35,38 +35,33 @@ import org.robovm.apple.mapkit.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 12.0 and later.
+ * @since Available in iOS 14.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("CarPlay") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/CPAlertTemplate/*</name>*/ 
-    extends /*<extends>*/CPTemplate/*</extends>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/CPContactMessageButton/*</name>*/ 
+    extends /*<extends>*/CPButton/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class CPAlertTemplatePtr extends Ptr<CPAlertTemplate, CPAlertTemplatePtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(CPAlertTemplate.class); }/*</bind>*/
+    /*<ptr>*/public static class CPContactMessageButtonPtr extends Ptr<CPContactMessageButton, CPContactMessageButtonPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(CPContactMessageButton.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected CPAlertTemplate() {}
-    protected CPAlertTemplate(Handle h, long handle) { super(h, handle); }
-    protected CPAlertTemplate(SkipInit skipInit) { super(skipInit); }
-    @Method(selector = "initWithTitleVariants:actions:")
-    public CPAlertTemplate(NSArray<NSString> titleVariants, NSArray<CPAlertAction> actions) { super((SkipInit) null); initObject(init(titleVariants, actions)); }
+    protected CPContactMessageButton() {}
+    protected CPContactMessageButton(Handle h, long handle) { super(h, handle); }
+    protected CPContactMessageButton(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithPhoneOrEmail:")
+    public CPContactMessageButton(String phoneOrEmail) { super((SkipInit) null); initObject(init(phoneOrEmail)); }
+    @Method(selector = "initWithImage:handler:")
+    public CPContactMessageButton(UIImage image, @Block VoidBlock1<CPButton> handler) { super(image, handler); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "titleVariants")
-    public native NSArray<NSString> getTitleVariants();
-    /**
-     * @since Available in iOS 14.0 and later.
-     */
-    @Property(selector = "maximumActionCount")
-    public static native @MachineSizedUInt long getMaximumActionCount();
-    @Property(selector = "actions")
-    public native NSArray<CPAlertAction> getActions();
+    @Property(selector = "phoneOrEmail")
+    public native String getPhoneOrEmail();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithTitleVariants:actions:")
-    protected native @Pointer long init(NSArray<NSString> titleVariants, NSArray<CPAlertAction> actions);
+    @Method(selector = "initWithPhoneOrEmail:")
+    protected native @Pointer long init(String phoneOrEmail);
     /*</methods>*/
 }

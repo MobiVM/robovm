@@ -35,38 +35,42 @@ import org.robovm.apple.mapkit.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 12.0 and later.
+ * @since Available in iOS 14.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("CarPlay") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/CPAlertTemplate/*</name>*/ 
-    extends /*<extends>*/CPTemplate/*</extends>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/CPButton/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class CPAlertTemplatePtr extends Ptr<CPAlertTemplate, CPAlertTemplatePtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(CPAlertTemplate.class); }/*</bind>*/
+    /*<ptr>*/public static class CPButtonPtr extends Ptr<CPButton, CPButtonPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(CPButton.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected CPAlertTemplate() {}
-    protected CPAlertTemplate(Handle h, long handle) { super(h, handle); }
-    protected CPAlertTemplate(SkipInit skipInit) { super(skipInit); }
-    @Method(selector = "initWithTitleVariants:actions:")
-    public CPAlertTemplate(NSArray<NSString> titleVariants, NSArray<CPAlertAction> actions) { super((SkipInit) null); initObject(init(titleVariants, actions)); }
+    protected CPButton() {}
+    protected CPButton(Handle h, long handle) { super(h, handle); }
+    protected CPButton(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithImage:handler:")
+    public CPButton(UIImage image, @Block VoidBlock1<CPButton> handler) { super((SkipInit) null); initObject(init(image, handler)); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "titleVariants")
-    public native NSArray<NSString> getTitleVariants();
-    /**
-     * @since Available in iOS 14.0 and later.
-     */
-    @Property(selector = "maximumActionCount")
-    public static native @MachineSizedUInt long getMaximumActionCount();
-    @Property(selector = "actions")
-    public native NSArray<CPAlertAction> getActions();
+    @Property(selector = "image")
+    public native UIImage getImage();
+    @Property(selector = "title")
+    public native String getTitle();
+    @Property(selector = "setTitle:")
+    public native void setTitle(String v);
+    @Property(selector = "isEnabled")
+    public native boolean isEnabled();
+    @Property(selector = "setEnabled:")
+    public native void setEnabled(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithTitleVariants:actions:")
-    protected native @Pointer long init(NSArray<NSString> titleVariants, NSArray<CPAlertAction> actions);
+    @GlobalValue(symbol="CPButtonMaximumImageSize", optional=true)
+    public static native @ByVal CGSize getMaximumImageSize();
+    
+    @Method(selector = "initWithImage:handler:")
+    protected native @Pointer long init(UIImage image, @Block VoidBlock1<CPButton> handler);
     /*</methods>*/
 }

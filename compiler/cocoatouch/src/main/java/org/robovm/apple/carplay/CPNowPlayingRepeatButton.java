@@ -34,39 +34,28 @@ import org.robovm.apple.mapkit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 12.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("CarPlay") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/CPAlertTemplate/*</name>*/ 
-    extends /*<extends>*/CPTemplate/*</extends>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/CPNowPlayingRepeatButton/*</name>*/ 
+    extends /*<extends>*/CPNowPlayingButton/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class CPAlertTemplatePtr extends Ptr<CPAlertTemplate, CPAlertTemplatePtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(CPAlertTemplate.class); }/*</bind>*/
+    /*<ptr>*/public static class CPNowPlayingRepeatButtonPtr extends Ptr<CPNowPlayingRepeatButton, CPNowPlayingRepeatButtonPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(CPNowPlayingRepeatButton.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected CPAlertTemplate() {}
-    protected CPAlertTemplate(Handle h, long handle) { super(h, handle); }
-    protected CPAlertTemplate(SkipInit skipInit) { super(skipInit); }
-    @Method(selector = "initWithTitleVariants:actions:")
-    public CPAlertTemplate(NSArray<NSString> titleVariants, NSArray<CPAlertAction> actions) { super((SkipInit) null); initObject(init(titleVariants, actions)); }
+    protected CPNowPlayingRepeatButton() {}
+    protected CPNowPlayingRepeatButton(Handle h, long handle) { super(h, handle); }
+    protected CPNowPlayingRepeatButton(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithHandler:")
+    public CPNowPlayingRepeatButton(@Block VoidBlock1<CPNowPlayingButton> handler) { super(handler); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "titleVariants")
-    public native NSArray<NSString> getTitleVariants();
-    /**
-     * @since Available in iOS 14.0 and later.
-     */
-    @Property(selector = "maximumActionCount")
-    public static native @MachineSizedUInt long getMaximumActionCount();
-    @Property(selector = "actions")
-    public native NSArray<CPAlertAction> getActions();
+    
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithTitleVariants:actions:")
-    protected native @Pointer long init(NSArray<NSString> titleVariants, NSArray<CPAlertAction> actions);
+    
     /*</methods>*/
 }

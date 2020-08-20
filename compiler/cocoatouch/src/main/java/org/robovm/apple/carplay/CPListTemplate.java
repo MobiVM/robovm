@@ -54,14 +54,64 @@ import org.robovm.apple.mapkit.*;
     public CPListTemplate(String title, NSArray<CPListSection> sections) { super((SkipInit) null); initObject(init(title, sections)); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 12.0 and later.
+     * @deprecated Deprecated in iOS 14.0. Use -[CPListItem listItemHandler]
+     */
+    @Deprecated
     @Property(selector = "delegate")
     public native CPListTemplateDelegate getDelegate();
+    /**
+     * @since Available in iOS 12.0 and later.
+     * @deprecated Deprecated in iOS 14.0. Use -[CPListItem listItemHandler]
+     */
+    @Deprecated
     @Property(selector = "setDelegate:", strongRef = true)
     public native void setDelegate(CPListTemplateDelegate v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "maximumItemCount")
+    public static native @MachineSizedUInt long getMaximumItemCount();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "maximumSectionCount")
+    public static native @MachineSizedUInt long getMaximumSectionCount();
     @Property(selector = "sections")
     public native NSArray<CPListSection> getSections();
     @Property(selector = "title")
     public native String getTitle();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "sectionCount")
+    public native @MachineSizedUInt long getSectionCount();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "itemCount")
+    public native @MachineSizedUInt long getItemCount();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "emptyViewTitleVariants")
+    public native NSArray<NSString> getEmptyViewTitleVariants();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setEmptyViewTitleVariants:")
+    public native void setEmptyViewTitleVariants(NSArray<NSString> v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "emptyViewSubtitleVariants")
+    public native NSArray<NSString> getEmptyViewSubtitleVariants();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setEmptyViewSubtitleVariants:")
+    public native void setEmptyViewSubtitleVariants(NSArray<NSString> v);
     @Property(selector = "leadingNavigationBarButtons")
     public native NSArray<CPBarButton> getLeadingNavigationBarButtons();
     @Property(selector = "setLeadingNavigationBarButtons:")
@@ -81,5 +131,10 @@ import org.robovm.apple.mapkit.*;
     protected native @Pointer long init(String title, NSArray<CPListSection> sections);
     @Method(selector = "updateSections:")
     public native void updateSections(NSArray<CPListSection> sections);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "indexPathForItem:")
+    public native NSIndexPath indexPathForItem(CPListTemplateItem item);
     /*</methods>*/
 }

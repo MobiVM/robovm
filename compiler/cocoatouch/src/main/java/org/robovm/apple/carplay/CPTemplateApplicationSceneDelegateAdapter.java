@@ -53,8 +53,18 @@ import org.robovm.apple.mapkit.*;
     /*<methods>*/
     @NotImplemented("templateApplicationScene:didConnectInterfaceController:toWindow:")
     public void didConnectInterfaceController(CPTemplateApplicationScene templateApplicationScene, CPInterfaceController interfaceController, CPWindow window) {}
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @NotImplemented("templateApplicationScene:didConnectInterfaceController:")
+    public void didConnectInterfaceController(CPTemplateApplicationScene templateApplicationScene, CPInterfaceController interfaceController) {}
     @NotImplemented("templateApplicationScene:didDisconnectInterfaceController:fromWindow:")
     public void didDisconnectInterfaceController(CPTemplateApplicationScene templateApplicationScene, CPInterfaceController interfaceController, CPWindow window) {}
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @NotImplemented("templateApplicationScene:didDisconnectInterfaceController:")
+    public void didDisconnectInterfaceController(CPTemplateApplicationScene templateApplicationScene, CPInterfaceController interfaceController) {}
     @NotImplemented("templateApplicationScene:didSelectNavigationAlert:")
     public void didSelectNavigationAlert(CPTemplateApplicationScene templateApplicationScene, CPNavigationAlert navigationAlert) {}
     @NotImplemented("templateApplicationScene:didSelectManeuver:")
