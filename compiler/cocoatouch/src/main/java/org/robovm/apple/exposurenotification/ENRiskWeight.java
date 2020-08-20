@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.robovm.apple.intents;
+package org.robovm.apple.exposurenotification;
 
 /*<imports>*/
 import java.io.*;
@@ -28,54 +28,20 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
-import org.robovm.apple.eventkit.*;
-import org.robovm.apple.corelocation.*;
+import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 12.0 and later.
- */
+
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/INMediaItemType/*</name>*/ implements ValuedEnum {
+/*<annotations>*//*</annotations>*/
+public enum /*<name>*/ENRiskWeight/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    Unknown(0L),
-    Song(1L),
-    Album(2L),
-    Artist(3L),
-    Genre(4L),
-    Playlist(5L),
-    PodcastShow(6L),
-    PodcastEpisode(7L),
-    PodcastPlaylist(8L),
-    MusicStation(9L),
-    AudioBook(10L),
-    Movie(11L),
-    TVShow(12L),
-    TVShowEpisode(13L),
-    MusicVideo(14L),
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    PodcastStation(15L),
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    RadioStation(16L),
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    Station(17L),
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    Music(18L),
-    /**
-     * @since Available in iOS 13.4 and later.
-     */
-    AlgorithmicRadioStation(19L),
-    News(20L);
+    Default(1L),
+    DefaultV2(100L),
+    Min(0L),
+    Max(100L),
+    MaxV2(200L);
     /*</values>*/
 
     /*<bind>*/
@@ -85,15 +51,15 @@ public enum /*<name>*/INMediaItemType/*</name>*/ implements ValuedEnum {
 
     private final long n;
 
-    private /*<name>*/INMediaItemType/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/ENRiskWeight/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/INMediaItemType/*</name>*/ valueOf(long n) {
-        for (/*<name>*/INMediaItemType/*</name>*/ v : values()) {
+    public static /*<name>*/ENRiskWeight/*</name>*/ valueOf(long n) {
+        for (/*<name>*/ENRiskWeight/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/INMediaItemType/*</name>*/.class.getName());
+            + /*<name>*/ENRiskWeight/*</name>*/.class.getName());
     }
 }

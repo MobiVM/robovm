@@ -336,36 +336,36 @@ import org.robovm.apple.uikit.*;
     @GlobalValue(symbol="kCGColorSpaceExtendedLinearDisplayP3", optional=true)
     public static native String ExtendedLinearDisplayP3();
     /**
-     * @since Available in iOS 13.0 and later.
-     * @deprecated Deprecated in iOS 14.0. No longer supported
+     * @since Available in iOS 12.6 and later.
+     * @deprecated Deprecated in iOS 13.4. No longer supported
      */
     @Deprecated
     @GlobalValue(symbol="kCGColorSpaceITUR_2020_PQ_EOTF", optional=true)
     public static native String ITUR_2020_PQ_EOTF();
     /**
-     * @since Available in iOS 14.0 and later.
+     * @since Available in iOS 13.4 and later.
      */
     @GlobalValue(symbol="kCGColorSpaceITUR_2020_PQ", optional=true)
     public static native String ITUR_2020_PQ();
     /**
-     * @since Available in iOS 13.0 and later.
-     * @deprecated Deprecated in iOS 14.0. No longer supported
+     * @since Available in iOS 12.6 and later.
+     * @deprecated Deprecated in iOS 13.4. No longer supported
      */
     @Deprecated
     @GlobalValue(symbol="kCGColorSpaceDisplayP3_PQ_EOTF", optional=true)
     public static native String DisplayP3_PQ_EOTF();
     /**
-     * @since Available in iOS 14.0 and later.
+     * @since Available in iOS 13.4 and later.
      */
     @GlobalValue(symbol="kCGColorSpaceDisplayP3_PQ", optional=true)
     public static native String DisplayP3_PQ();
     /**
-     * @since Available in iOS 13.0 and later.
+     * @since Available in iOS 12.6 and later.
      */
     @GlobalValue(symbol="kCGColorSpaceDisplayP3_HLG", optional=true)
     public static native String DisplayP3_HLG();
     /**
-     * @since Available in iOS 13.0 and later.
+     * @since Available in iOS 12.6 and later.
      */
     @GlobalValue(symbol="kCGColorSpaceITUR_2020_HLG", optional=true)
     public static native String ITUR_2020_HLG();

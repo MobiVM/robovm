@@ -1,0 +1,71 @@
+package: org.robovm.apple.exposurenotification
+include: [foundation, dispatch]
+library: ExposureNotification
+framework: ExposureNotification
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/ExposureNotification.framework/Headers/ExposureNotification.h
+
+private_typedefs:
+
+typedefs:
+
+enums:
+    ENErrorCode: {nserror: true}
+    ENAuthorizationStatus: {}
+    ENStatus: {}
+    ENCalibrationConfidence: {}
+    ENDiagnosisReportType: {}
+    ENExposureFlags: {}
+    ENInfectiousness: {}
+    ENAttenuation: {prefix: ENAttenuation, first: ENAttenuationMin, marshaler: ValuedEnum.AsUnsignedByteMarshaler}
+    ENRiskLevel: { prefix: ENRiskLevel, first: ENRiskLevelMin, marshaler: ValuedEnum.AsUnsignedByteMarshaler }
+    ENRiskLevelValue: { prefix: ENRiskLevelValue, first: ENRiskLevelValueMin, marshaler: ValuedEnum.AsUnsignedByteMarshaler }
+    ENRiskScore: { prefix: ENRiskScoreM, first: ENRiskScoreMin, marshaler: ValuedEnum.AsUnsignedByteMarshaler }
+    ENRiskWeight: { prefix: ENRiskWeight, first: ENRiskWeightDefault }
+classes:
+    ENExposureConfiguration: {} #since 13.5
+    ENExposureDetectionSummary: {} #since 13.5
+    ENExposureInfo: {} #since 13.5
+    ENManager: #since 13.5
+        methods:
+            '-activateWithCompletionHandler:':
+                name: activate
+            '-setExposureNotificationEnabled:completionHandler:':
+                name: setExposureNotificationEnabled
+            '-detectExposuresWithConfiguration:diagnosisKeyURLs:completionHandler:':
+                name: detectExposures
+            '-getExposureInfoFromSummary:userExplanation:completionHandler:':
+                name: getExposureInfo
+            '-getDiagnosisKeysWithCompletionHandler:':
+                name: getDiagnosisKeys
+            '-getTestDiagnosisKeysWithCompletionHandler:':
+                name: getTestDiagnosisKeys
+    ENTemporaryExposureKey: {} #since 13.5
+
+protocols:
+
+functions:
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (.*):
+        class: FixMe
+        name: 'Function__#{g[0]}'
+
+values:
+    ENErrorDomain:
+        name: getClassDomain
+        class: ENErrorCode
+
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (.*):
+        class: FixMe
+        name: 'Value__#{g[0]}'
+
+constants:
+    EN_FEATURE_GENERAL:
+        exclude: true
+
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (.*):
+        class: FixMe
+        name: 'Constant__#{g[0]}'
