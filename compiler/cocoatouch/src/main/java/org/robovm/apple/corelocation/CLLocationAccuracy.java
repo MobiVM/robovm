@@ -69,5 +69,10 @@ import org.robovm.apple.contacts.*;
     protected static native double KilometerValue();
     @GlobalValue(symbol="kCLLocationAccuracyThreeKilometers", optional=true)
     protected static native double ThreeKilometersValue();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @GlobalValue(symbol="kCLLocationAccuracyReduced", optional=true)
+    protected static native double ReducedValue();
     /*</methods>*/
 }
