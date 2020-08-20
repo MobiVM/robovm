@@ -6,6 +6,7 @@
 
     <depends optional="true" config-file="">org.jetbrains.idea.maven</depends>
     <depends>org.jetbrains.plugins.gradle</depends>
+    <depends>com.intellij.java</depends>
 
     <idea-version since-build="191"/>
 
