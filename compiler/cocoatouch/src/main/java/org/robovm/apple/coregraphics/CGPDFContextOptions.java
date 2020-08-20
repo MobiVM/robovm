@@ -230,8 +230,51 @@ import org.robovm.apple.uikit.*;
         set(Keys.AllowsCopying(), CFBoolean.valueOf(allowsCopying));
         return this;
     }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public CGPDFContextOutputIntent getOutputIntent() {
+        if (has(Keys.OutputIntent())) {
+            CFDictionary val = get(Keys.OutputIntent(), CFDictionary.class);
+            return new CGPDFContextOutputIntent(val);
+        }
+        return null;
+    }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public CGPDFContextOptions setOutputIntent(CGPDFContextOutputIntent outputIntent) {
+        set(Keys.OutputIntent(), outputIntent.getDictionary());
+        return this;
+    }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public List<CGPDFContextOutputIntent> getOutputIntents() {
+        if (has(Keys.OutputIntents())) {
+            CFArray val = get(Keys.OutputIntents(), CFArray.class);
+            List<CGPDFContextOutputIntent> list = new ArrayList<>();
+            CFDictionary[] array = val.toArray(CFDictionary.class);
+            for (CFDictionary d : array) {
+               list.add(new CGPDFContextOutputIntent(d));
+            }
+            return list;
+        }
+        return null;
+    }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public CGPDFContextOptions setOutputIntents(List<CGPDFContextOutputIntent> outputIntents) {
+        CFArray val = CFMutableArray.create();
+        for (CGPDFContextOutputIntent e : outputIntents) {
+            val.add(e.getDictionary());
+        }
+        set(Keys.OutputIntents(), val);
+        return this;
+    }
     /*</methods>*/
-    
+
     /*<keys>*/
     @Library("CoreGraphics")
     public static class Keys {
@@ -257,10 +300,30 @@ import org.robovm.apple.uikit.*;
         @GlobalValue(symbol="kCGPDFContextAllowsCopying", optional=true)
         public static native CFString AllowsCopying();
         /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="kCGPDFContextOutputIntent", optional=true)
+        public static native CFString OutputIntent();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="kCGPDFContextOutputIntents", optional=true)
+        public static native CFString OutputIntents();
+        /**
          * @since Available in iOS 11.0 and later.
          */
         @GlobalValue(symbol="kCGPDFContextAccessPermissions", optional=true)
         public static native CFString AccessPermissions();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="kCGPDFContextCreateLinearizedPDF", optional=true)
+        public static native CFString CreateLinearizedPDF();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="kCGPDFContextCreatePDFA", optional=true)
+        public static native CFString CreatePDFA();
     }
     /*</keys>*/
 }

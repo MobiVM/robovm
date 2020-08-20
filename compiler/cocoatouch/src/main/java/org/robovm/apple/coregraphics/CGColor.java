@@ -116,8 +116,44 @@ import org.robovm.apple.uikit.*;
         return getComponents(this).toFloatArray((int) getNumberOfComponents());
     }
     /*<methods>*/
+    @Library("CoreGraphics")
+    public static class ConstantColors {
+        static { Bro.bind(ConstantColors.class); }
+
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="kCGColorWhite", optional=true)
+        public static native String White();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="kCGColorBlack", optional=true)
+        public static native String Black();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="kCGColorClear", optional=true)
+        public static native String Clear();
+    }
+    
     @Bridge(symbol="CGColorCreate", optional=true)
     private static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGColor create(CGColorSpace space, @Pointer long components);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="CGColorCreateGenericGray", optional=true)
+    public static native CGColor createGenericGray(@MachineSizedFloat double gray, @MachineSizedFloat double alpha);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="CGColorCreateGenericRGB", optional=true)
+    public static native CGColor createGenericRGB(@MachineSizedFloat double red, @MachineSizedFloat double green, @MachineSizedFloat double blue, @MachineSizedFloat double alpha);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="CGColorCreateGenericCMYK", optional=true)
+    public static native CGColor createGenericCMYK(@MachineSizedFloat double cyan, @MachineSizedFloat double magenta, @MachineSizedFloat double yellow, @MachineSizedFloat double black, @MachineSizedFloat double alpha);
     /**
      * @since Available in iOS 13.0 and later.
      */
@@ -128,6 +164,11 @@ import org.robovm.apple.uikit.*;
      */
     @Bridge(symbol="CGColorCreateSRGB", optional=true)
     public static native CGColor createSRGB(@MachineSizedFloat double red, @MachineSizedFloat double green, @MachineSizedFloat double blue, @MachineSizedFloat double alpha);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Bridge(symbol="CGColorGetConstantColor", optional=true)
+    public static native CGColor getConstantColor(String colorName);
     @Bridge(symbol="CGColorCreateWithPattern", optional=true)
     private static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGColor create(CGColorSpace space, CGPattern pattern, @Pointer long components);
     @Bridge(symbol="CGColorCreateCopy", optional=true)

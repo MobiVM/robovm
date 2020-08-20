@@ -74,7 +74,7 @@ import org.robovm.apple.uikit.*;
      * @since Available in iOS 13.0 and later.
      */
     @Bridge(symbol="CGPDFContextBeginTag", optional=true)
-    public native void beginTag(CGPDFTagType tagType, NSDictionary tagProperties);
+    public static native void beginTag(CGContext context, CGPDFTagType tagType, CGPDFTagProperties tagProperties);
     /**
      * @since Available in iOS 13.0 and later.
      */
