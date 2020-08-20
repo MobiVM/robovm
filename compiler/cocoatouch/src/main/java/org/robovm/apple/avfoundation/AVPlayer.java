@@ -230,7 +230,7 @@ import org.robovm.apple.audiotoolbox.*;
     public native void cancelPendingPrerolls();
     @WeaklyLinked
     @Method(selector = "addPeriodicTimeObserverForInterval:queue:usingBlock:")
-    public native NSObject addPeriodicTimeObserver(@ByVal CMTime interval, DispatchQueue queue, @Block VoidBlock1<CMTime> block);
+    public native NSObject addPeriodicTimeObserver(@ByVal CMTime interval, DispatchQueue queue, @Block("(@ByVal)") VoidBlock1<CMTime> block);
     @WeaklyLinked
     @Method(selector = "addBoundaryTimeObserverForTimes:queue:usingBlock:")
     public native NSObject addBoundaryTimeObserver(@org.robovm.rt.bro.annotation.Marshaler(CMTime.AsValuedListMarshaler.class) List<CMTime> times, DispatchQueue queue, @Block Runnable block);

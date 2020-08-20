@@ -120,9 +120,13 @@ import org.robovm.apple.audiotoolbox.*;
     public static final AVMetadataIdentifierCommon Make = new AVMetadataIdentifierCommon("Make");
     public static final AVMetadataIdentifierCommon Model = new AVMetadataIdentifierCommon("Model");
     public static final AVMetadataIdentifierCommon Software = new AVMetadataIdentifierCommon("Software");
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final AVMetadataIdentifierCommon AccessibilityDescription = new AVMetadataIdentifierCommon("AccessibilityDescription");
     /*</constants>*/
     
-    private static /*<name>*/AVMetadataIdentifierCommon/*</name>*/[] values = new /*<name>*/AVMetadataIdentifierCommon/*</name>*/[] {/*<value_list>*/Title, Creator, Subject, Description, Publisher, Contributor, CreationDate, LastModifiedDate, Type, Format, AssetIdentifier, Source, Language, Relation, Location, Copyrights, AlbumName, Author, Artist, Artwork, Make, Model, Software/*</value_list>*/};
+    private static /*<name>*/AVMetadataIdentifierCommon/*</name>*/[] values = new /*<name>*/AVMetadataIdentifierCommon/*</name>*/[] {/*<value_list>*/Title, Creator, Subject, Description, Publisher, Contributor, CreationDate, LastModifiedDate, Type, Format, AssetIdentifier, Source, Language, Relation, Location, Copyrights, AlbumName, Author, Artist, Artwork, Make, Model, Software, AccessibilityDescription/*</value_list>*/};
     
     /*<name>*/AVMetadataIdentifierCommon/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -191,6 +195,11 @@ import org.robovm.apple.audiotoolbox.*;
         public static native NSString Model();
         @GlobalValue(symbol="AVMetadataCommonIdentifierSoftware", optional=true)
         public static native NSString Software();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="AVMetadataCommonIdentifierAccessibilityDescription", optional=true)
+        public static native NSString AccessibilityDescription();
         /*</values>*/
     }
 }

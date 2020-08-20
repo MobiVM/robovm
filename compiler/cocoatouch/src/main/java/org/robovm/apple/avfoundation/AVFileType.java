@@ -147,9 +147,17 @@ import org.robovm.apple.audiotoolbox.*;
      * @since Available in iOS 9.0 and later.
      */
     public static final AVFileType StreamingKeyDeliveryPersistentContentKey = new AVFileType("StreamingKeyDeliveryPersistentContentKey");
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final AVFileType ProfileMPEG4AppleHLS = new AVFileType("ProfileMPEG4AppleHLS");
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final AVFileType ProfileMPEG4CMAFCompliant = new AVFileType("ProfileMPEG4CMAFCompliant");
     /*</constants>*/
     
-    private static /*<name>*/AVFileType/*</name>*/[] values = new /*<name>*/AVFileType/*</name>*/[] {/*<value_list>*/QuickTimeMovie, MPEG4, AppleM4V, AppleM4A, _3GPP, _3GPP2, CoreAudioFormat, WAVE, AIFF, AIFC, AMR, MPEGLayer3, SunAU, AC3, EnhancedAC3, JPEG, DNG, HEIC, AVCI, HEIF, TIFF, StreamingKeyDeliveryContentKey, StreamingKeyDeliveryPersistentContentKey/*</value_list>*/};
+    private static /*<name>*/AVFileType/*</name>*/[] values = new /*<name>*/AVFileType/*</name>*/[] {/*<value_list>*/QuickTimeMovie, MPEG4, AppleM4V, AppleM4A, _3GPP, _3GPP2, CoreAudioFormat, WAVE, AIFF, AIFC, AMR, MPEGLayer3, SunAU, AC3, EnhancedAC3, JPEG, DNG, HEIC, AVCI, HEIF, TIFF, StreamingKeyDeliveryContentKey, StreamingKeyDeliveryPersistentContentKey, ProfileMPEG4AppleHLS, ProfileMPEG4CMAFCompliant/*</value_list>*/};
     
     /*<name>*/AVFileType/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -245,6 +253,16 @@ import org.robovm.apple.audiotoolbox.*;
          */
         @GlobalValue(symbol="AVStreamingKeyDeliveryPersistentContentKeyType", optional=true)
         public static native NSString StreamingKeyDeliveryPersistentContentKey();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="AVFileTypeProfileMPEG4AppleHLS", optional=true)
+        public static native NSString ProfileMPEG4AppleHLS();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="AVFileTypeProfileMPEG4CMAFCompliant", optional=true)
+        public static native NSString ProfileMPEG4CMAFCompliant();
         /*</values>*/
     }
 }

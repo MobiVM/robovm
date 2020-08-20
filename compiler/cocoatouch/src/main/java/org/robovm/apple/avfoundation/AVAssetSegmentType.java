@@ -41,21 +41,15 @@ import org.robovm.apple.audiotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 14.0 and later.
+ */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/AVAudioSessionRouteSharingPolicy/*</name>*/ implements ValuedEnum {
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+public enum /*<name>*/AVAssetSegmentType/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    Default(0L),
-    LongFormAudio(1L),
-    /**
-     * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 13.0. Use AVAudioSessionRouteSharingPolicyLongFormAudio
-     */
-    @Deprecated
-    LongForm(1L),
-    Independent(2L),
-    LongFormVideo(3L);
+    Initialization(1L),
+    Separable(2L);
     /*</values>*/
 
     /*<bind>*/
@@ -65,15 +59,15 @@ public enum /*<name>*/AVAudioSessionRouteSharingPolicy/*</name>*/ implements Val
 
     private final long n;
 
-    private /*<name>*/AVAudioSessionRouteSharingPolicy/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/AVAssetSegmentType/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/AVAudioSessionRouteSharingPolicy/*</name>*/ valueOf(long n) {
-        for (/*<name>*/AVAudioSessionRouteSharingPolicy/*</name>*/ v : values()) {
+    public static /*<name>*/AVAssetSegmentType/*</name>*/ valueOf(long n) {
+        for (/*<name>*/AVAssetSegmentType/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/AVAudioSessionRouteSharingPolicy/*</name>*/.class.getName());
+            + /*<name>*/AVAssetSegmentType/*</name>*/.class.getName());
     }
 }

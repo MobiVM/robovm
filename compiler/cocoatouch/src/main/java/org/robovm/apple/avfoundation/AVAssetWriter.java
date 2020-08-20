@@ -63,6 +63,11 @@ import org.robovm.apple.audiotoolbox.*;
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        initObject(handle);
     }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithContentType:")
+    public AVAssetWriter(org.robovm.apple.uniformtypeid.UTType outputContentType) { super((SkipInit) null); initObject(init(outputContentType)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "outputURL")
@@ -93,6 +98,26 @@ import org.robovm.apple.audiotoolbox.*;
     public native @ByVal CMTime getMovieFragmentInterval();
     @Property(selector = "setMovieFragmentInterval:")
     public native void setMovieFragmentInterval(@ByVal CMTime v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "initialMovieFragmentSequenceNumber")
+    public native @MachineSizedSInt long getInitialMovieFragmentSequenceNumber();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setInitialMovieFragmentSequenceNumber:")
+    public native void setInitialMovieFragmentSequenceNumber(@MachineSizedSInt long v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "producesCombinableFragments")
+    public native boolean isProducesCombinableFragments();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setProducesCombinableFragments:")
+    public native void setProducesCombinableFragments(boolean v);
     @Property(selector = "overallDurationHint")
     public native @ByVal CMTime getOverallDurationHint();
     @Property(selector = "setOverallDurationHint:")
@@ -103,6 +128,46 @@ import org.robovm.apple.audiotoolbox.*;
     public native void setMovieTimeScale(int v);
     @Property(selector = "inputGroups")
     public native NSArray<AVAssetWriterInputGroup> getInputGroups();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "preferredOutputSegmentInterval")
+    public native @ByVal CMTime getPreferredOutputSegmentInterval();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setPreferredOutputSegmentInterval:")
+    public native void setPreferredOutputSegmentInterval(@ByVal CMTime v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "initialSegmentStartTime")
+    public native @ByVal CMTime getInitialSegmentStartTime();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setInitialSegmentStartTime:")
+    public native void setInitialSegmentStartTime(@ByVal CMTime v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "outputFileTypeProfile")
+    public native String getOutputFileTypeProfile();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setOutputFileTypeProfile:")
+    public native void setOutputFileTypeProfile(String v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "delegate")
+    public native AVAssetWriterDelegate getDelegate();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setDelegate:", strongRef = true)
+    public native void setDelegate(AVAssetWriterDelegate v);
     /*</properties>*/
     /*<members>*//*</members>*/
     public boolean canApplyOutputSettings(AVAudioSettings outputSettings, AVMediaType mediaType) {
@@ -118,6 +183,11 @@ import org.robovm.apple.audiotoolbox.*;
     /*<methods>*/
     @Method(selector = "initWithURL:fileType:error:")
     private native @Pointer long init(NSURL outputURL, String outputFileType, NSError.NSErrorPtr outError);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithContentType:")
+    protected native @Pointer long init(org.robovm.apple.uniformtypeid.UTType outputContentType);
     @Method(selector = "canApplyOutputSettings:forMediaType:")
     protected native boolean canApplyOutputSettings(NSDictionary<NSString, ?> outputSettings, AVMediaType mediaType);
     @Method(selector = "canAddInput:")
@@ -138,5 +208,10 @@ import org.robovm.apple.audiotoolbox.*;
     public native boolean canAddInputGroup(AVAssetWriterInputGroup inputGroup);
     @Method(selector = "addInputGroup:")
     public native void addInputGroup(AVAssetWriterInputGroup inputGroup);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "flushSegment")
+    public native void flushSegment();
     /*</methods>*/
 }

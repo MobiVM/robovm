@@ -108,6 +108,9 @@ import org.robovm.apple.audiotoolbox.*;
     public native @ByVal CGAffineTransform getPreferredTransform();
     @Property(selector = "preferredVolume")
     public native float getPreferredVolume();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
     @Property(selector = "hasAudioSampleDependencies")
     public native boolean hasAudioSampleDependencies();
     @Property(selector = "nominalFrameRate")

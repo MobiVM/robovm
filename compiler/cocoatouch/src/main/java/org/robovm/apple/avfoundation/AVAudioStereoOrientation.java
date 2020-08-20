@@ -43,19 +43,14 @@ import org.robovm.apple.audiotoolbox.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/AVAudioSessionRouteSharingPolicy/*</name>*/ implements ValuedEnum {
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+public enum /*<name>*/AVAudioStereoOrientation/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    Default(0L),
-    LongFormAudio(1L),
-    /**
-     * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 13.0. Use AVAudioSessionRouteSharingPolicyLongFormAudio
-     */
-    @Deprecated
-    LongForm(1L),
-    Independent(2L),
-    LongFormVideo(3L);
+    None(0L),
+    Portrait(1L),
+    PortraitUpsideDown(2L),
+    LandscapeRight(3L),
+    LandscapeLeft(4L);
     /*</values>*/
 
     /*<bind>*/
@@ -65,15 +60,15 @@ public enum /*<name>*/AVAudioSessionRouteSharingPolicy/*</name>*/ implements Val
 
     private final long n;
 
-    private /*<name>*/AVAudioSessionRouteSharingPolicy/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/AVAudioStereoOrientation/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/AVAudioSessionRouteSharingPolicy/*</name>*/ valueOf(long n) {
-        for (/*<name>*/AVAudioSessionRouteSharingPolicy/*</name>*/ v : values()) {
+    public static /*<name>*/AVAudioStereoOrientation/*</name>*/ valueOf(long n) {
+        for (/*<name>*/AVAudioStereoOrientation/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/AVAudioSessionRouteSharingPolicy/*</name>*/.class.getName());
+            + /*<name>*/AVAudioStereoOrientation/*</name>*/.class.getName());
     }
 }

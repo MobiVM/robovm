@@ -1,5 +1,16 @@
 package: org.robovm.apple.avfoundation
-include: [foundation.yaml, corefoundation.yaml, dispatch.yaml, coreanimation.yaml, coreimage.yaml, coregraphics.yaml, coreaudio.yaml, coremedia.yaml, corevideo.yaml, mediatoolbox.yaml, audiotoolbox.yaml, ]
+include:
+    - foundation
+    - corefoundation
+    - dispatch
+    - coreanimation
+    - coreimage
+    - coregraphics
+    - coreaudio
+    - coremedia
+    - corevideo
+    - mediatoolbox
+    - audiotoolbox
 library: AVFoundation
 framework: AVFoundation
 internal_frameworks: [AVFAudio]
@@ -10,15 +21,12 @@ headers:
     - /System/Library/Frameworks/AVFoundation.framework/Headers/AVBase.h
     - /System/Library/Frameworks/AVFoundation.framework/Headers/AVFAudio.h
 typedefs:
-    'void (^)(CMSampleBufferRef, NSError *)': '@Block VoidBlock2<CMSampleBuffer, NSError>'
-    'void (^)(CMTime)': '@Block VoidBlock1<CMTime>'
-    'void (^)(BOOL, NSError *)': '@Block VoidBlock2<Boolean, NSError>'
-    'void (^)(CMSampleBufferRef, AVCaptureBracketedStillImageSettings *, NSError *)': '@Block VoidBlock3<CMSampleBuffer, AVCaptureBracketedStillImageSettings, NSError>'
 private_typedefs:
     CGImagePropertyOrientation: org.robovm.apple.imageio.CGImagePropertyOrientation
     # following can't be used as Enum from CoreMedia. As it defines only invalid state
     # and will fail on any valid track id
     CMPersistentTrackID: int
+    UTType *: org.robovm.apple.uniformtypeid.UTType
 enums:
     AVAssetReferenceRestrictions: {}
     AVAssetExportSessionStatus: {}
@@ -95,6 +103,11 @@ enums:
     AVSpeechSynthesisVoiceGender: {} #since 13.0
     AVCapturePhotoQualityPrioritization: {} #since 13.0
     AVMovieWritingOptions: {prefix: AVMovieWriting} #since 13.0
+    # ios14
+    AVAudioStereoOrientation: {}
+    AVAssetSegmentType: { } #since 14.0
+    AVAudioSpatializationFormats: { prefix: AVAudioSpatializationFormat }
+
 typed_enums:
     AVAssetDownloadedAssetEvictionPriority:
         enum: AVAssetDownloadedAssetEvictionPriority
@@ -491,6 +504,8 @@ classes:
             '-initWithURL:fileType:error:':
                 name: init
                 throws: NSErrorException
+            '-initWithContentType:':
+                name: init
             '-canApplyOutputSettings:forMediaType:':
                 trim_after_first_colon: true
                 visibility: protected # can be either AVAudioSettings or AVVideoSettings
@@ -1027,6 +1042,9 @@ classes:
                 throws: NSErrorException
             '-setAllowHapticsAndSystemSoundsDuringRecording:error:':
                 name: setAllowHapticsAndSystemSoundsDuringRecording
+                throws: NSErrorException
+            '-setPreferredInputOrientation:error:':
+                name: setPreferredInputOrientation
                 throws: NSErrorException
     AVAudioSessionChannelDescription: {} # DONE
     AVAudioSessionDataSourceDescription: # DONE
@@ -2709,7 +2727,9 @@ classes:
     AVMetadataDogBodyObject: {} #since 13.0
     AVMetadataHumanBodyObject: {} #since 13.0
     AVMetadataSalientObject: {} #since 13.0
-
+    AVAssetSegmentReport: {} #since 14.0
+    AVAssetSegmentReportSampleInformation: {} #since 14.0
+    AVAssetSegmentTrackReport: {} #since 14.0
 protocols:
     AVCapturePhotoCaptureDelegate:
         methods:
@@ -2965,7 +2985,12 @@ protocols:
                 name: replacementEmbeddedThumbnailPixelBuffer
             '-replacementSemanticSegmentationMatteOfType:forPhoto:':
                 name: replacementSemanticSegmentationMatteOfType
-
+    AVAssetWriterDelegate: #since 14.0
+        methods:
+            '-assetWriter:didOutputSegmentData:segmentType:segmentReport:':
+                name: didOutputSegmentData
+            '-assetWriter:didOutputSegmentData:segmentType:':
+                name: didOutputSegmentData
 functions:
     AVMake(RectWithAspectRatioInsideRect):
         class: AVFoundation

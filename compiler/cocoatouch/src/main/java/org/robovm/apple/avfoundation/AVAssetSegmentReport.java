@@ -41,39 +41,31 @@ import org.robovm.apple.audiotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 14.0 and later.
+ */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/AVAudioSessionRouteSharingPolicy/*</name>*/ implements ValuedEnum {
-    /*<values>*/
-    Default(0L),
-    LongFormAudio(1L),
-    /**
-     * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 13.0. Use AVAudioSessionRouteSharingPolicyLongFormAudio
-     */
-    @Deprecated
-    LongForm(1L),
-    Independent(2L),
-    LongFormVideo(3L);
-    /*</values>*/
+/*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/AVAssetSegmentReport/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
 
-    /*<bind>*/
-    /*</bind>*/
+    /*<ptr>*/public static class AVAssetSegmentReportPtr extends Ptr<AVAssetSegmentReport, AVAssetSegmentReportPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(AVAssetSegmentReport.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<methods>*//*</methods>*/
-
-    private final long n;
-
-    private /*<name>*/AVAudioSessionRouteSharingPolicy/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/AVAudioSessionRouteSharingPolicy/*</name>*/ valueOf(long n) {
-        for (/*<name>*/AVAudioSessionRouteSharingPolicy/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/AVAudioSessionRouteSharingPolicy/*</name>*/.class.getName());
-    }
+    /*<constructors>*/
+    protected AVAssetSegmentReport() {}
+    protected AVAssetSegmentReport(Handle h, long handle) { super(h, handle); }
+    protected AVAssetSegmentReport(SkipInit skipInit) { super(skipInit); }
+    /*</constructors>*/
+    /*<properties>*/
+    @Property(selector = "segmentType")
+    public native AVAssetSegmentType getSegmentType();
+    @Property(selector = "trackReports")
+    public native NSArray<AVAssetSegmentTrackReport> getTrackReports();
+    /*</properties>*/
+    /*<members>*//*</members>*/
+    /*<methods>*/
+    
+    /*</methods>*/
 }

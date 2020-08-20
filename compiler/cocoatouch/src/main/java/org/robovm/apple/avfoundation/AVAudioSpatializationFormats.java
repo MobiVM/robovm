@@ -43,19 +43,13 @@ import org.robovm.apple.audiotoolbox.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/AVAudioSessionRouteSharingPolicy/*</name>*/ implements ValuedEnum {
+/*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
+public final class /*<name>*/AVAudioSpatializationFormats/*</name>*/ extends Bits</*<name>*/AVAudioSpatializationFormats/*</name>*/> {
     /*<values>*/
-    Default(0L),
-    LongFormAudio(1L),
-    /**
-     * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 13.0. Use AVAudioSessionRouteSharingPolicyLongFormAudio
-     */
-    @Deprecated
-    LongForm(1L),
-    Independent(2L),
-    LongFormVideo(3L);
+    public static final AVAudioSpatializationFormats None = new AVAudioSpatializationFormats(0L);
+    public static final AVAudioSpatializationFormats MonoAndStereo = new AVAudioSpatializationFormats(3L);
+    public static final AVAudioSpatializationFormats Multichannel = new AVAudioSpatializationFormats(4L);
+    public static final AVAudioSpatializationFormats MonoStereoAndMultichannel = new AVAudioSpatializationFormats(7L);
     /*</values>*/
 
     /*<bind>*/
@@ -63,17 +57,17 @@ public enum /*<name>*/AVAudioSessionRouteSharingPolicy/*</name>*/ implements Val
     /*<constants>*//*</constants>*/
     /*<methods>*//*</methods>*/
 
-    private final long n;
+    private static final /*<name>*/AVAudioSpatializationFormats/*</name>*/[] values = _values(/*<name>*/AVAudioSpatializationFormats/*</name>*/.class);
 
-    private /*<name>*/AVAudioSessionRouteSharingPolicy/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/AVAudioSessionRouteSharingPolicy/*</name>*/ valueOf(long n) {
-        for (/*<name>*/AVAudioSessionRouteSharingPolicy/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/AVAudioSessionRouteSharingPolicy/*</name>*/.class.getName());
+    public /*<name>*/AVAudioSpatializationFormats/*</name>*/(long value) { super(value); }
+    private /*<name>*/AVAudioSpatializationFormats/*</name>*/(long value, long mask) { super(value, mask); }
+    protected /*<name>*/AVAudioSpatializationFormats/*</name>*/ wrap(long value, long mask) {
+        return new /*<name>*/AVAudioSpatializationFormats/*</name>*/(value, mask);
+    }
+    protected /*<name>*/AVAudioSpatializationFormats/*</name>*/[] _values() {
+        return values;
+    }
+    public static /*<name>*/AVAudioSpatializationFormats/*</name>*/[] values() {
+        return values.clone();
     }
 }

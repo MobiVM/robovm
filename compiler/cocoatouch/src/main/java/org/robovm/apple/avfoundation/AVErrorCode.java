@@ -171,7 +171,15 @@ public enum /*<name>*/AVErrorCode/*</name>*/ implements NSErrorCode {
     /**
      * @since Available in iOS 13.0 and later.
      */
-    UnsupportedDeviceActiveFormat(-11873L);
+    UnsupportedDeviceActiveFormat(-11873L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    IncorrectlyConfigured(-11875L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    SegmentStartedWithNonSyncSample(-11876L);
     /*</values>*/
 
     /*<bind>*/

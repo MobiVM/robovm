@@ -103,9 +103,13 @@ import org.robovm.apple.audiotoolbox.*;
      */
     public static final AVMetadataIdentifierISOUserData Date = new AVMetadataIdentifierISOUserData("Date");
     public static final AVMetadataIdentifierISOUserData TaggedCharacteristic = new AVMetadataIdentifierISOUserData("TaggedCharacteristic");
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final AVMetadataIdentifierISOUserData AccessibilityDescription = new AVMetadataIdentifierISOUserData("AccessibilityDescription");
     /*</constants>*/
     
-    private static /*<name>*/AVMetadataIdentifierISOUserData/*</name>*/[] values = new /*<name>*/AVMetadataIdentifierISOUserData/*</name>*/[] {/*<value_list>*/Copyright, Date, TaggedCharacteristic/*</value_list>*/};
+    private static /*<name>*/AVMetadataIdentifierISOUserData/*</name>*/[] values = new /*<name>*/AVMetadataIdentifierISOUserData/*</name>*/[] {/*<value_list>*/Copyright, Date, TaggedCharacteristic, AccessibilityDescription/*</value_list>*/};
     
     /*<name>*/AVMetadataIdentifierISOUserData/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -137,6 +141,11 @@ import org.robovm.apple.audiotoolbox.*;
         public static native NSString Date();
         @GlobalValue(symbol="AVMetadataIdentifierISOUserDataTaggedCharacteristic", optional=true)
         public static native NSString TaggedCharacteristic();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="AVMetadataIdentifierISOUserDataAccessibilityDescription", optional=true)
+        public static native NSString AccessibilityDescription();
         /*</values>*/
     }
 }

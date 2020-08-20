@@ -41,39 +41,35 @@ import org.robovm.apple.audiotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 14.0 and later.
+ */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/AVAudioSessionRouteSharingPolicy/*</name>*/ implements ValuedEnum {
-    /*<values>*/
-    Default(0L),
-    LongFormAudio(1L),
-    /**
-     * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 13.0. Use AVAudioSessionRouteSharingPolicyLongFormAudio
-     */
-    @Deprecated
-    LongForm(1L),
-    Independent(2L),
-    LongFormVideo(3L);
-    /*</values>*/
+/*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/AVAssetSegmentReportSampleInformation/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
 
-    /*<bind>*/
-    /*</bind>*/
+    /*<ptr>*/public static class AVAssetSegmentReportSampleInformationPtr extends Ptr<AVAssetSegmentReportSampleInformation, AVAssetSegmentReportSampleInformationPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(AVAssetSegmentReportSampleInformation.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<methods>*//*</methods>*/
-
-    private final long n;
-
-    private /*<name>*/AVAudioSessionRouteSharingPolicy/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/AVAudioSessionRouteSharingPolicy/*</name>*/ valueOf(long n) {
-        for (/*<name>*/AVAudioSessionRouteSharingPolicy/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/AVAudioSessionRouteSharingPolicy/*</name>*/.class.getName());
-    }
+    /*<constructors>*/
+    protected AVAssetSegmentReportSampleInformation() {}
+    protected AVAssetSegmentReportSampleInformation(Handle h, long handle) { super(h, handle); }
+    protected AVAssetSegmentReportSampleInformation(SkipInit skipInit) { super(skipInit); }
+    /*</constructors>*/
+    /*<properties>*/
+    @Property(selector = "presentationTimeStamp")
+    public native @ByVal CMTime getPresentationTimeStamp();
+    @Property(selector = "offset")
+    public native @MachineSizedSInt long getOffset();
+    @Property(selector = "length")
+    public native @MachineSizedSInt long getLength();
+    @Property(selector = "isSyncSample")
+    public native boolean isSyncSample();
+    /*</properties>*/
+    /*<members>*//*</members>*/
+    /*<methods>*/
+    
+    /*</methods>*/
 }
