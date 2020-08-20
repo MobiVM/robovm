@@ -57,6 +57,11 @@ import org.robovm.apple.fileprovider.*;
     public native CKNotificationID getNotificationID();
     @Property(selector = "containerIdentifier")
     public native String getContainerIdentifier();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "subscriptionOwnerUserRecordID")
+    public native CKRecordID getSubscriptionOwnerUserRecordID();
     @Property(selector = "isPruned")
     public native boolean isPruned();
     @Property(selector = "alertBody")

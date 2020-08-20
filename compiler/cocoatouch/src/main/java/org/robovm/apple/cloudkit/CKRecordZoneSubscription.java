@@ -54,6 +54,8 @@ import org.robovm.apple.fileprovider.*;
     public CKRecordZoneSubscription(CKRecordZoneID zoneID) { super((SkipInit) null); initObject(init(zoneID)); }
     @Method(selector = "initWithZoneID:subscriptionID:")
     public CKRecordZoneSubscription(CKRecordZoneID zoneID, String subscriptionID) { super((SkipInit) null); initObject(init(zoneID, subscriptionID)); }
+    @Method(selector = "initWithCoder:")
+    public CKRecordZoneSubscription(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "zoneID")
@@ -69,5 +71,7 @@ import org.robovm.apple.fileprovider.*;
     protected native @Pointer long init(CKRecordZoneID zoneID);
     @Method(selector = "initWithZoneID:subscriptionID:")
     protected native @Pointer long init(CKRecordZoneID zoneID, String subscriptionID);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

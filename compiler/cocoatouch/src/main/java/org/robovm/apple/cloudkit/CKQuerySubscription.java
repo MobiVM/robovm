@@ -54,6 +54,8 @@ import org.robovm.apple.fileprovider.*;
     public CKQuerySubscription(String recordType, NSPredicate predicate, CKQuerySubscriptionOptions querySubscriptionOptions) { super((SkipInit) null); initObject(init(recordType, predicate, querySubscriptionOptions)); }
     @Method(selector = "initWithRecordType:predicate:subscriptionID:options:")
     public CKQuerySubscription(String recordType, NSPredicate predicate, String subscriptionID, CKQuerySubscriptionOptions querySubscriptionOptions) { super((SkipInit) null); initObject(init(recordType, predicate, subscriptionID, querySubscriptionOptions)); }
+    @Method(selector = "initWithCoder:")
+    public CKQuerySubscription(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "recordType")
@@ -73,5 +75,7 @@ import org.robovm.apple.fileprovider.*;
     protected native @Pointer long init(String recordType, NSPredicate predicate, CKQuerySubscriptionOptions querySubscriptionOptions);
     @Method(selector = "initWithRecordType:predicate:subscriptionID:options:")
     protected native @Pointer long init(String recordType, NSPredicate predicate, String subscriptionID, CKQuerySubscriptionOptions querySubscriptionOptions);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }
