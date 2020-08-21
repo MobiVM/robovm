@@ -96,11 +96,15 @@ import org.robovm.apple.iosurface.*;
     public static final CVImageBufferYCbCrMatrix SMPTE_240M_1995 = new CVImageBufferYCbCrMatrix("SMPTE_240M_1995");
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 14.0. kCVImageBufferYCbCrMatrix_DCI_P3 no longer supported.
      */
+    @Deprecated
     public static final CVImageBufferYCbCrMatrix DCI_P3 = new CVImageBufferYCbCrMatrix("DCI_P3");
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 14.0. kCVImageBufferYCbCrMatrix_P3_D65 no longer supported.
      */
+    @Deprecated
     public static final CVImageBufferYCbCrMatrix P3_D65 = new CVImageBufferYCbCrMatrix("P3_D65");
     /**
      * @since Available in iOS 9.0 and later.
@@ -139,12 +143,16 @@ import org.robovm.apple.iosurface.*;
         public static native CFString SMPTE_240M_1995();
         /**
          * @since Available in iOS 9.0 and later.
+         * @deprecated Deprecated in iOS 14.0. kCVImageBufferYCbCrMatrix_DCI_P3 no longer supported.
          */
+        @Deprecated
         @GlobalValue(symbol="kCVImageBufferYCbCrMatrix_DCI_P3", optional=true)
         public static native CFString DCI_P3();
         /**
          * @since Available in iOS 9.0 and later.
+         * @deprecated Deprecated in iOS 14.0. kCVImageBufferYCbCrMatrix_P3_D65 no longer supported.
          */
+        @Deprecated
         @GlobalValue(symbol="kCVImageBufferYCbCrMatrix_P3_D65", optional=true)
         public static native CFString P3_D65();
         /**

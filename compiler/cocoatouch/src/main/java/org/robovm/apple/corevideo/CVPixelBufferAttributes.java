@@ -276,6 +276,176 @@ import org.robovm.apple.iosurface.*;
         set(CVPixelBufferAttribute.MetalCompatibility, CFBoolean.valueOf(compatibleWithMetal));
         return this;
     }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public CVVersatileBayerPattern getVersatileBayerKey() {
+        if (has(CVPixelBufferAttribute.VersatileBayerKey)) {
+            CFNumber val = get(CVPixelBufferAttribute.VersatileBayerKey, CFNumber.class);
+            return CVVersatileBayerPattern.valueOf(val.longValue());
+        }
+        return null;
+    }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public CVPixelBufferAttributes setVersatileBayerKey(CVVersatileBayerPattern versatileBayerKey) {
+        set(CVPixelBufferAttribute.VersatileBayerKey, CFNumber.valueOf(versatileBayerKey.value()));
+        return this;
+    }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public NSData getRawSenselSitingOffsets() {
+        if (has(CVPixelBufferAttribute.RawSenselSitingOffsets)) {
+            NSData val = get(CVPixelBufferAttribute.RawSenselSitingOffsets, NSData.class);
+            return val;
+        }
+        return null;
+    }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public CVPixelBufferAttributes setRawSenselSitingOffsets(NSData rawSenselSitingOffsets) {
+        set(CVPixelBufferAttribute.RawSenselSitingOffsets, rawSenselSitingOffsets);
+        return this;
+    }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public int getRawBlackLevel() {
+        if (has(CVPixelBufferAttribute.RawBlackLevel)) {
+            CFNumber val = get(CVPixelBufferAttribute.RawBlackLevel, CFNumber.class);
+            return val.intValue();
+        }
+        return 0;
+    }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public CVPixelBufferAttributes setRawBlackLevel(int rawBlackLevel) {
+        set(CVPixelBufferAttribute.RawBlackLevel, CFNumber.valueOf(rawBlackLevel));
+        return this;
+    }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public int getRawWhiteLevel() {
+        if (has(CVPixelBufferAttribute.RawWhiteLevel)) {
+            CFNumber val = get(CVPixelBufferAttribute.RawWhiteLevel, CFNumber.class);
+            return val.intValue();
+        }
+        return 0;
+    }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public CVPixelBufferAttributes setRawWhiteLevel(int rawWhiteLevel) {
+        set(CVPixelBufferAttribute.RawWhiteLevel, CFNumber.valueOf(rawWhiteLevel));
+        return this;
+    }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public int getRawWhiteBalanceCCT() {
+        if (has(CVPixelBufferAttribute.RawWhiteBalanceCCT)) {
+            CFNumber val = get(CVPixelBufferAttribute.RawWhiteBalanceCCT, CFNumber.class);
+            return val.intValue();
+        }
+        return 0;
+    }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public CVPixelBufferAttributes setRawWhiteBalanceCCT(int rawWhiteBalanceCCT) {
+        set(CVPixelBufferAttribute.RawWhiteBalanceCCT, CFNumber.valueOf(rawWhiteBalanceCCT));
+        return this;
+    }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public float getRawWhiteBalanceRedFactor() {
+        if (has(CVPixelBufferAttribute.RawWhiteBalanceRedFactor)) {
+            CFNumber val = get(CVPixelBufferAttribute.RawWhiteBalanceRedFactor, CFNumber.class);
+            return val.floatValue();
+        }
+        return 0;
+    }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public CVPixelBufferAttributes setRawWhiteBalanceRedFactor(float rawWhiteBalanceRedFactor) {
+        set(CVPixelBufferAttribute.RawWhiteBalanceRedFactor, CFNumber.valueOf(rawWhiteBalanceRedFactor));
+        return this;
+    }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public float getRawWhiteBalanceBlueFactor() {
+        if (has(CVPixelBufferAttribute.RawWhiteBalanceBlueFactor)) {
+            CFNumber val = get(CVPixelBufferAttribute.RawWhiteBalanceBlueFactor, CFNumber.class);
+            return val.floatValue();
+        }
+        return 0;
+    }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public CVPixelBufferAttributes setRawWhiteBalanceBlueFactor(float rawWhiteBalanceBlueFactor) {
+        set(CVPixelBufferAttribute.RawWhiteBalanceBlueFactor, CFNumber.valueOf(rawWhiteBalanceBlueFactor));
+        return this;
+    }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public NSData getRawColorMatrix() {
+        if (has(CVPixelBufferAttribute.RawColorMatrix)) {
+            NSData val = get(CVPixelBufferAttribute.RawColorMatrix, NSData.class);
+            return val;
+        }
+        return null;
+    }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public CVPixelBufferAttributes setRawColorMatrix(NSData rawColorMatrix) {
+        set(CVPixelBufferAttribute.RawColorMatrix, rawColorMatrix);
+        return this;
+    }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public float getRawGainFactor() {
+        if (has(CVPixelBufferAttribute.RawGainFactor)) {
+            CFNumber val = get(CVPixelBufferAttribute.RawGainFactor, CFNumber.class);
+            return val.floatValue();
+        }
+        return 0;
+    }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public CVPixelBufferAttributes setRawGainFactor(float rawGainFactor) {
+        set(CVPixelBufferAttribute.RawGainFactor, CFNumber.valueOf(rawGainFactor));
+        return this;
+    }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public NSData getRawRecommendedCrop() {
+        if (has(CVPixelBufferAttribute.RawRecommendedCrop)) {
+            NSData val = get(CVPixelBufferAttribute.RawRecommendedCrop, NSData.class);
+            return val;
+        }
+        return null;
+    }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public CVPixelBufferAttributes setRawRecommendedCrop(NSData rawRecommendedCrop) {
+        set(CVPixelBufferAttribute.RawRecommendedCrop, rawRecommendedCrop);
+        return this;
+    }
     /*</methods>*/
     
     /**
