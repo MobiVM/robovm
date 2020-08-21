@@ -20,6 +20,14 @@ classes:
         methods:
             '-generateTokenWithCompletionHandler:':
                 name: generateToken
+    DCAppAttestService: #since 14.0
+        methods:
+            '-generateKeyWithCompletionHandler:':
+                name: generateKey
+            '-attestKey:clientDataHash:completionHandler:':
+                name: attestKey
+            '-generateAssertion:clientDataHash:completionHandler:':
+                name: generateAssertion
 protocols:
 
 functions:
