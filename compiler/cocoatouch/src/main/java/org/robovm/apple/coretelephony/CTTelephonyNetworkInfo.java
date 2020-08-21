@@ -79,7 +79,7 @@ import org.robovm.apple.corefoundation.*;
     @Property(selector = "serviceSubscriberCellularProviders")
     public native NSDictionary<NSString, CTCarrier> getServiceSubscriberCellularProviders();
     /**
-     * @deprecated Deprecated in iOS 12.0. Replaced by serviceSubscriberCellularProviders
+     * @deprecated Deprecated in iOS 12.0. Use serviceSubscriberCellularProviders
      */
     @Deprecated
     @Property(selector = "subscriberCellularProvider")
