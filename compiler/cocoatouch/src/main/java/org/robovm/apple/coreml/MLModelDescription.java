@@ -66,6 +66,11 @@ import org.robovm.apple.metal.*;
     public native String getPredictedProbabilitiesName();
     @Property(selector = "metadata")
     public native NSDictionary<NSString, ?> getMetadata();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "classLabels")
+    public native NSArray<?> getClassLabels();
     @Property(selector = "isUpdatable")
     public native boolean isUpdatable();
     @Property(selector = "trainingInputDescriptionsByName")

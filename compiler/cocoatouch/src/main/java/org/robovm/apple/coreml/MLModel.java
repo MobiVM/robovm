@@ -143,6 +143,11 @@ import org.robovm.apple.metal.*;
     @Method(selector = "modelWithContentsOfURL:configuration:error:")
     protected static native @Pointer long create(NSURL url, MLModelConfiguration configuration, NSError.NSErrorPtr error);
     /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "loadContentsOfURL:configuration:completionHandler:")
+    public static native void load(NSURL url, MLModelConfiguration configuration, @Block VoidBlock2<MLModel, NSError> handler);
+    /**
      * @since Available in iOS 11.0 and later.
      */
     public static NSURL compileModel(NSURL modelURL) throws NSErrorException {

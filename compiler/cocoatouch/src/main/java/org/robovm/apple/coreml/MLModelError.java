@@ -36,7 +36,9 @@ import org.robovm.apple.metal.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 11.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Library("CoreML")/*</annotations>*/
 public enum /*<name>*/MLModelError/*</name>*/ implements NSErrorCode {
@@ -59,7 +61,19 @@ public enum /*<name>*/MLModelError/*</name>*/ implements NSErrorCode {
     /**
      * @since Available in iOS 13.0 and later.
      */
-    Parameters(7L);
+    Parameters(7L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    ModelDecryptionKeyFetch(8L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    ModelDecryption(9L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    ModelCollection(10L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(MLModelError.class); }/*</bind>*/

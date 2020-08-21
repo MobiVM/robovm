@@ -43,7 +43,7 @@ import org.robovm.apple.metal.*;
 /*<annotations>*/@Library("CoreML") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MLFeatureValue/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class MLFeatureValuePtr extends Ptr<MLFeatureValue, MLFeatureValuePtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(MLFeatureValue.class); }/*</bind>*/
@@ -134,6 +134,8 @@ import org.robovm.apple.metal.*;
        retain(getHandle());
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
     }
+    @Method(selector = "initWithCoder:")
+    public MLFeatureValue(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "type")
@@ -157,6 +159,8 @@ import org.robovm.apple.metal.*;
      */
     @Property(selector = "sequenceValue")
     public native MLSequence getSequenceValue();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -197,5 +201,9 @@ import org.robovm.apple.metal.*;
     protected static native @Pointer long create(CGImage cgImage, CGImagePropertyOrientation orientation, @MachineSizedSInt long pixelsWide, @MachineSizedSInt long pixelsHigh, int pixelFormatType, MLFeatureValueImageOption options, NSError.NSErrorPtr error);
     @Method(selector = "featureValueWithCGImage:orientation:constraint:options:error:")
     protected static native @Pointer long create(CGImage cgImage, CGImagePropertyOrientation orientation, MLImageConstraint constraint, MLFeatureValueImageOption options, NSError.NSErrorPtr error);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

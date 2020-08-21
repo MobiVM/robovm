@@ -37,41 +37,31 @@ import org.robovm.apple.metal.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 11.0 and later.
+ * @since Available in iOS 14.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/MLMultiArrayDataType/*</name>*/ implements ValuedEnum {
-    /*<values>*/
-    Double(65600L),
-    /**
-     * @since Available in iOS 14.0 and later.
-     */
-    Float64(65600L),
-    Float32(65568L),
-    /**
-     * @since Available in iOS 14.0 and later.
-     */
-    Float(65568L),
-    Int32(131104L);
-    /*</values>*/
+/*<annotations>*/@Library("CoreML") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MLModelCollectionEntry/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
 
-    /*<bind>*/
-    /*</bind>*/
+    /*<ptr>*/public static class MLModelCollectionEntryPtr extends Ptr<MLModelCollectionEntry, MLModelCollectionEntryPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(MLModelCollectionEntry.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<methods>*//*</methods>*/
-
-    private final long n;
-
-    private /*<name>*/MLMultiArrayDataType/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/MLMultiArrayDataType/*</name>*/ valueOf(long n) {
-        for (/*<name>*/MLMultiArrayDataType/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/MLMultiArrayDataType/*</name>*/.class.getName());
-    }
+    /*<constructors>*/
+    protected MLModelCollectionEntry() {}
+    protected MLModelCollectionEntry(Handle h, long handle) { super(h, handle); }
+    protected MLModelCollectionEntry(SkipInit skipInit) { super(skipInit); }
+    /*</constructors>*/
+    /*<properties>*/
+    @Property(selector = "modelIdentifier")
+    public native String getModelIdentifier();
+    @Property(selector = "modelURL")
+    public native NSURL getModelURL();
+    /*</properties>*/
+    /*<members>*//*</members>*/
+    /*<methods>*/
+    @Method(selector = "isEqualToModelCollectionEntry:")
+    public native boolean isEqualToModelCollectionEntry(MLModelCollectionEntry entry);
+    /*</methods>*/
 }
