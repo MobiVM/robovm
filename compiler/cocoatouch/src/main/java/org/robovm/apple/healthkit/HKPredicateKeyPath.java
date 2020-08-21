@@ -106,6 +106,18 @@ import org.robovm.apple.foundation.*;
     public static final HKPredicateKeyPath SourceRevision = new HKPredicateKeyPath("SourceRevision");
     public static final HKPredicateKeyPath StartDate = new HKPredicateKeyPath("StartDate");
     public static final HKPredicateKeyPath EndDate = new HKPredicateKeyPath("EndDate");
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final HKPredicateKeyPath AverageHeartRate = new HKPredicateKeyPath("AverageHeartRate");
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final HKPredicateKeyPath ECGClassification = new HKPredicateKeyPath("ECGClassification");
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final HKPredicateKeyPath ECGSymptomsStatus = new HKPredicateKeyPath("ECGSymptomsStatus");
     public static final HKPredicateKeyPath WorkoutDuration = new HKPredicateKeyPath("WorkoutDuration");
     public static final HKPredicateKeyPath WorkoutTotalDistance = new HKPredicateKeyPath("WorkoutTotalDistance");
     public static final HKPredicateKeyPath WorkoutTotalEnergyBurned = new HKPredicateKeyPath("WorkoutTotalEnergyBurned");
@@ -182,7 +194,7 @@ import org.robovm.apple.foundation.*;
     public static final HKPredicateKeyPath MostRecentDuration = new HKPredicateKeyPath("MostRecentDuration");
     /*</constants>*/
     
-    private static /*<name>*/HKPredicateKeyPath/*</name>*/[] values = new /*<name>*/HKPredicateKeyPath/*</name>*/[] {/*<value_list>*/DateComponents, UUID, Source, Metadata, Correlation, Workout, Device, SourceRevision, StartDate, EndDate, WorkoutDuration, WorkoutTotalDistance, WorkoutTotalEnergyBurned, WorkoutType, WorkoutTotalSwimmingStrokeCount, WorkoutTotalFlightsClimbed, Title, PatientName, AuthorName, CustodianName, CategoryValue, ClinicalRecordFHIRResourceIdentifier, ClinicalRecordFHIRResourceType, Quantity, Count, Sum, Min, Average, Max, MostRecent, MostRecentStartDate, MostRecentEndDate, MostRecentDuration/*</value_list>*/};
+    private static /*<name>*/HKPredicateKeyPath/*</name>*/[] values = new /*<name>*/HKPredicateKeyPath/*</name>*/[] {/*<value_list>*/DateComponents, UUID, Source, Metadata, Correlation, Workout, Device, SourceRevision, StartDate, EndDate, AverageHeartRate, ECGClassification, ECGSymptomsStatus, WorkoutDuration, WorkoutTotalDistance, WorkoutTotalEnergyBurned, WorkoutType, WorkoutTotalSwimmingStrokeCount, WorkoutTotalFlightsClimbed, Title, PatientName, AuthorName, CustodianName, CategoryValue, ClinicalRecordFHIRResourceIdentifier, ClinicalRecordFHIRResourceType, Quantity, Count, Sum, Min, Average, Max, MostRecent, MostRecentStartDate, MostRecentEndDate, MostRecentDuration/*</value_list>*/};
     
     /*<name>*/HKPredicateKeyPath/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -234,6 +246,21 @@ import org.robovm.apple.foundation.*;
         public static native NSString StartDate();
         @GlobalValue(symbol="HKPredicateKeyPathEndDate", optional=true)
         public static native NSString EndDate();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="HKPredicateKeyPathAverageHeartRate", optional=true)
+        public static native NSString AverageHeartRate();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="HKPredicateKeyPathECGClassification", optional=true)
+        public static native NSString ECGClassification();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="HKPredicateKeyPathECGSymptomsStatus", optional=true)
+        public static native NSString ECGSymptomsStatus();
         @GlobalValue(symbol="HKPredicateKeyPathWorkoutDuration", optional=true)
         public static native NSString WorkoutDuration();
         @GlobalValue(symbol="HKPredicateKeyPathWorkoutTotalDistance", optional=true)

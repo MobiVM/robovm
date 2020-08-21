@@ -49,9 +49,13 @@ public enum /*<name>*/HKWorkoutActivityType/*</name>*/ implements ValuedEnum {
     CrossTraining(11L),
     Curling(12L),
     Cycling(13L),
+    /**
+     * @deprecated Deprecated in iOS 14.0. Use HKWorkoutActivityTypeSocialDance or HKWorkoutActivityTypeCardioDance
+     */
+    @Deprecated
     Dance(14L),
     /**
-     * @deprecated Deprecated in iOS 10.0. Use HKWorkoutActivityTypeDance, HKWorkoutActivityTypeBarre or HKWorkoutActivityTypePilates
+     * @deprecated Deprecated in iOS 10.0. Use HKWorkoutActivityTypeSocialDance, HKWorkoutActivityTypeCardioDance, HKWorkoutActivityTypeBarre or HKWorkoutActivityTypePilates
      */
     @Deprecated
     DanceInspiredTraining(15L),
@@ -177,6 +181,22 @@ public enum /*<name>*/HKWorkoutActivityType/*</name>*/ implements ValuedEnum {
      * @since Available in iOS 13.0 and later.
      */
     FitnessGaming(76L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    CardioDance(77L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    SocialDance(78L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    Pickleball(79L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    Cooldown(80L),
     Other(3000L);
     /*</values>*/
 

@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -31,36 +31,21 @@ import org.robovm.apple.foundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 14.0 and later.
+ */
 /*</javadoc>*/
-@ForceLinkClass(HKError.class)
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/HKErrorCode/*</name>*/ implements NSErrorCode {
+public enum /*<name>*/HKElectrocardiogramClassification/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    NoError(0L),
-    ErrorHealthDataUnavailable(1L),
-    ErrorHealthDataRestricted(2L),
-    ErrorInvalidArgument(3L),
-    ErrorAuthorizationDenied(4L),
-    ErrorAuthorizationNotDetermined(5L),
-    ErrorDatabaseInaccessible(6L),
-    ErrorUserCanceled(7L),
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
-    ErrorAnotherWorkoutSessionStarted(8L),
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
-    ErrorUserExitedWorkoutSession(9L),
-    /**
-     * @since Available in iOS 12.0 and later.
-     */
-    ErrorRequiredAuthorizationDenied(10L),
-    /**
-     * @since Available in iOS 14.0 and later.
-     */
-    ErrorNoData(11L);
+    NotSet(0L),
+    SinusRhythm(1L),
+    AtrialFibrillation(2L),
+    InconclusiveLowHeartRate(3L),
+    InconclusiveHighHeartRate(4L),
+    InconclusivePoorReading(5L),
+    InconclusiveOther(6L),
+    Unrecognized(100L);
     /*</values>*/
 
     /*<bind>*/
@@ -70,15 +55,15 @@ public enum /*<name>*/HKErrorCode/*</name>*/ implements NSErrorCode {
 
     private final long n;
 
-    private /*<name>*/HKErrorCode/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/HKElectrocardiogramClassification/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/HKErrorCode/*</name>*/ valueOf(long n) {
-        for (/*<name>*/HKErrorCode/*</name>*/ v : values()) {
+    public static /*<name>*/HKElectrocardiogramClassification/*</name>*/ valueOf(long n) {
+        for (/*<name>*/HKElectrocardiogramClassification/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/HKErrorCode/*</name>*/.class.getName());
+            + /*<name>*/HKElectrocardiogramClassification/*</name>*/.class.getName());
     }
 }

@@ -51,6 +51,11 @@ import org.robovm.apple.foundation.*;
     public HKFHIRResource(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "FHIRVersion")
+    public native HKFHIRVersion getFHIRVersion();
     @Property(selector = "resourceType")
     public native HKFHIRResourceType getResourceType();
     @Property(selector = "identifier")

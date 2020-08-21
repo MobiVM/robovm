@@ -96,6 +96,10 @@ import org.robovm.apple.foundation.*;
      */
     public static final HKFHIRResourceType Condition = new HKFHIRResourceType("Condition");
     /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final HKFHIRResourceType Coverage = new HKFHIRResourceType("Coverage");
+    /**
      * @since Available in iOS 12.0 and later.
      */
     public static final HKFHIRResourceType Immunization = new HKFHIRResourceType("Immunization");
@@ -107,6 +111,10 @@ import org.robovm.apple.foundation.*;
      * @since Available in iOS 12.0 and later.
      */
     public static final HKFHIRResourceType MedicationOrder = new HKFHIRResourceType("MedicationOrder");
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final HKFHIRResourceType MedicationRequest = new HKFHIRResourceType("MedicationRequest");
     /**
      * @since Available in iOS 12.0 and later.
      */
@@ -121,7 +129,7 @@ import org.robovm.apple.foundation.*;
     public static final HKFHIRResourceType Procedure = new HKFHIRResourceType("Procedure");
     /*</constants>*/
     
-    private static /*<name>*/HKFHIRResourceType/*</name>*/[] values = new /*<name>*/HKFHIRResourceType/*</name>*/[] {/*<value_list>*/AllergyIntolerance, Condition, Immunization, MedicationDispense, MedicationOrder, MedicationStatement, Observation, Procedure/*</value_list>*/};
+    private static /*<name>*/HKFHIRResourceType/*</name>*/[] values = new /*<name>*/HKFHIRResourceType/*</name>*/[] {/*<value_list>*/AllergyIntolerance, Condition, Coverage, Immunization, MedicationDispense, MedicationOrder, MedicationRequest, MedicationStatement, Observation, Procedure/*</value_list>*/};
     
     /*<name>*/HKFHIRResourceType/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -155,6 +163,11 @@ import org.robovm.apple.foundation.*;
         @GlobalValue(symbol="HKFHIRResourceTypeCondition", optional=true)
         public static native NSString Condition();
         /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="HKFHIRResourceTypeCoverage", optional=true)
+        public static native NSString Coverage();
+        /**
          * @since Available in iOS 12.0 and later.
          */
         @GlobalValue(symbol="HKFHIRResourceTypeImmunization", optional=true)
@@ -169,6 +182,11 @@ import org.robovm.apple.foundation.*;
          */
         @GlobalValue(symbol="HKFHIRResourceTypeMedicationOrder", optional=true)
         public static native NSString MedicationOrder();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="HKFHIRResourceTypeMedicationRequest", optional=true)
+        public static native NSString MedicationRequest();
         /**
          * @since Available in iOS 12.0 and later.
          */

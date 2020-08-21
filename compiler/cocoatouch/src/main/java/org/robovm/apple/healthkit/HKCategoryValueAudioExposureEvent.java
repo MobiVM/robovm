@@ -33,11 +33,17 @@ import org.robovm.apple.foundation.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 13.0 and later.
+ * @deprecated Deprecated in iOS 14.0. Use HKCategoryValueEnvironmentalAudioExposureEvent
  */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Deprecated/*</annotations>*/
 public enum /*<name>*/HKCategoryValueAudioExposureEvent/*</name>*/ implements ValuedEnum {
     /*<values>*/
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 14.0. Use HKCategoryValueEnvironmentalAudioExposureEventMomentaryLimit
+     */
+    @Deprecated
     LoudEnvironment(1L);
     /*</values>*/
 
