@@ -30,7 +30,7 @@ enums:
     CVPixelBufferLockFlags: { prefix: kCVPixelBufferLock_, bits: true }
     CVPixelBufferPoolFlushFlags: { bits: false, prefix: kCVPixelBufferPoolFlush}
     CVReturn: { first: kCVReturnSuccess }
-
+    CVVersatileBayerPattern: {prefix: kCVVersatileBayer_BayerPattern_, first: kCVVersatileBayer_BayerPattern_RGGB}
 classes:
     # Opaque Types
     CVBuffer:
@@ -541,6 +541,36 @@ values:
             MetalCompatibility:
                 name: compatibleWithMetal
                 type: boolean
+            VersatileBayerKey:
+                type: CVVersatileBayerPattern
+            RawSenselSitingOffsets:
+                type: NSData
+            RawBlackLevel:
+                type: int
+            RawWhiteLevel:
+                type: int
+            RawWhiteBalanceCCT:
+                type: int
+            RawWhiteBalanceRedFactor:
+                type: float
+            RawWhiteBalanceBlueFactor:
+                type: float
+            RawColorMatrix:
+                type: NSData
+            RawGainFactor:
+                type: float
+            RawRecommendedCrop:
+                type: NSData
+    kCVPixelBuffer(VersatileBayerKey)_BayerPattern:
+        dictionary: CVPixelBufferAttributes
+        enum: CVPixelBufferAttribute
+        name: '#{g[0]}'
+        type: CFString
+    kCVPixelBufferProResRAWKey_(.*):
+        dictionary: CVPixelBufferAttributes
+        enum: CVPixelBufferAttribute
+        name: 'Raw#{g[0]}'
+        type: CFString
 
     # CVPixelFormatDescription
     kCVPixelFormat(.*):
