@@ -29,6 +29,7 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -67,7 +68,10 @@ public enum /*<name>*/GKErrorCode/*</name>*/ implements NSErrorCode {
     MatchNotConnected(28L),
     GameSessionRequestInvalid(29L),
     RestrictedToAutomatch(30L),
-    APINotAvailable(31L);
+    APINotAvailable(31L),
+    NotAuthorized(32L),
+    ConnectionTimeout(33L),
+    APIObsolete(34L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(GKErrorCode.class); }/*</bind>*/

@@ -1,5 +1,5 @@
 package: org.robovm.apple.gamekit
-include: [foundation.yaml, uikit.yaml]
+include: [foundation, uikit, coregraphics]
 library: GameKit
 framework: GameKit
 clang_args: ['-x', 'objective-c']
@@ -29,11 +29,14 @@ enums:
     GKVoiceChatPlayerState: {}
     GKConnectionState: {}
     GKTransportType: {}
-    GKGameSessionErrorCode: { }
+    GKGameSessionErrorCode: { nserror: true }
     GKErrorCode: { nserror: true }
     GKSessionError: { nserror: true, suffix: Error }
     GKVoiceChatServiceError: { nserror: true, suffix: Error }
     GKAuthenticationType: {}
+    GKLeaderboardType: {}
+    GKAccessPointLocation: {}
+    GKMatchmakingMode: {}
 
 classes:
 
@@ -153,7 +156,16 @@ classes:
                         marshaler: NSArray.AsStringListMarshaler
             '+maxNumberOfRecipients':
                 name: getMaxNumberOfRecipients
-    GKGameCenterViewController: {} # 
+    GKGameCenterViewController:
+        methods:
+            '-initWithState:':
+                name: init
+            '-initWithLeaderboardID:playerScope:timeScope:':
+                name: initWithLeaderboardID$playerScope$timeScope$
+            '-initWithLeaderboard:playerScope:':
+                name: init
+            '-initWithAchievementID:':
+                name: init
     GKGameSession:
         methods:
             '-getShareURLWithCompletionHandler:':
@@ -225,6 +237,18 @@ classes:
                 name: loadImage
             '+setDefaultLeaderboard:withCompletionHandler:':
                 trim_after_first_colon: true
+            '-loadPreviousOccurrenceWithCompletionHandler:':
+                name: loadPreviousOccurrence
+            '-submitScore:context:player:completionHandler:':
+                name: submitScore
+            '-loadEntriesForPlayerScope:timeScope:range:completionHandler:':
+                name: loadEntriesForPlayerScope
+            '-loadEntriesForPlayers:timeScope:completionHandler:':
+                name: loadEntriesForPlayers
+            '+loadLeaderboardsWithIDs:completionHandler:':
+                name: loadLeaderboards
+            '+submitScore:context:player:leaderboardIDs:completionHandler:':
+                name: submitScore
     GKLeaderboardSet: # DONE
         methods:
             '+loadLeaderboardSetsWithCompletionHandler:':
@@ -234,11 +258,10 @@ classes:
                         type: '@Block VoidBlock2<GKLeaderboardSet, NSError>'
             '-loadLeaderboardsWithCompletionHandler:':
                 name: loadLeaderboards
-                parameters:
-                    completionHandler:
-                        type: '@Block VoidBlock2<GKLeaderboard, NSError>'
             '-loadImageWithCompletionHandler:':
                 name: loadImage
+            '-loadLeaderboardsWithHandler:':
+                name: loadLeaderboardsUsingHandler # slashes with loadImageWithCompletionHandler
     GKLeaderboardViewController: {} # DONE
     GKLocalPlayer: # DONE
         properties:
@@ -292,6 +315,8 @@ classes:
                         type: NSArray<GKSavedGame>
                     handler:
                         type: '@Block VoidBlock2<NSArray<GKSavedGame>, NSError>'
+            '-loadChallengableFriendsWithCompletionHandler:':
+                name: loadChallengableFriends
     GKMatch: # DONE
         properties:
             'players':
@@ -447,6 +472,8 @@ classes:
                         type: NSArray<GKScore>
                     challenges:
                         type: NSArray<GKChallenge>
+            '+reportLeaderboardScores:withEligibleChallenges:withCompletionHandler:':
+                name: reportLeaderboardScores
     GKScoreChallenge: {} # DONE
     GKSession: # DONE
         methods:
@@ -589,6 +616,8 @@ classes:
                         type: '@Block VoidBlock2<NSArray<GKTurnBasedMatch>, NSError>'
             '+loadMatchWithID:withCompletionHandler:':
                 name: loadMatches
+            '-endMatchInTurnWithMatchData:leaderboardScores:achievements:completionHandler:':
+                name: endMatchInTurn
     GKTurnBasedMatchmakerViewController: # DONE
         properties:
             'showExistingMatches':
@@ -627,7 +656,17 @@ classes:
                 trim_after_first_colon: true
             '+defaultVoiceChatService':
                 property: true
-
+    GKAccessPoint: #since 14.0
+        methods:
+            '-triggerAccessPointWithHandler:':
+                name: triggerAccessPoint
+            '-triggerAccessPointWithState:handler:':
+                name: triggerAccessPoint
+    GKLeaderboardScore: {} #since 14.0
+    GKLeaderboardEntry: #since 14.0
+        methods:
+            '-challengeComposeControllerWithMessage:players:completionHandler:':
+                name: challengeComposeController
 categories:
     GKGameSession :
         methods:
@@ -867,6 +906,10 @@ values:
         class: GKSessionError
         name: getClassDomain
         readonly: true
+    GKGameSessionErrorDomain:
+        class: GKGameSessionErrorCode
+        name: getClassDomain
+        readonly: true
     GKVoiceChatServiceErrorDomain:
         class: GKVoiceChatServiceError
         name: getClassDomain
@@ -892,6 +935,10 @@ values:
         name: '#{g[0]}'
         type: NSString
         readonly: true
+    GKPlayer(IDNoLongerAvailable):
+        class: GKPlayer
+        name: '#{g[0]}'
+        type: NSString
 
     # Make sure we don't miss any values if new ones are introduced in a later version
     (k?GK.*):

@@ -29,6 +29,7 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -67,6 +68,8 @@ import org.robovm.apple.uikit.*;
      */
     @Property(selector = "guestIdentifier")
     public native String getGuestIdentifier();
+    @Property(selector = "isInvitable")
+    public native boolean isInvitable();
     /**
      * @deprecated Deprecated in iOS 8.0. use -[GKLocalPlayer loadFriendPlayers...]
      */
@@ -82,6 +85,11 @@ import org.robovm.apple.uikit.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @GlobalValue(symbol="GKPlayerIDNoLongerAvailable", optional=true)
+    public static native NSString IDNoLongerAvailable();
     @GlobalValue(symbol="GKPlayerDidChangeNotificationName", optional=true)
     public static native NSString DidChangeNotification();
     

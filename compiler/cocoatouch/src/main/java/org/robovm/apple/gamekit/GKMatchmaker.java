@@ -29,6 +29,7 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -88,19 +89,19 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "sharedMatchmaker")
     public static native GKMatchmaker getSharedMatchmaker();
     /**
-     * @deprecated Deprecated in iOS 8.0. Use startBrowsingForNearbyPlayersWithHandler: instead
+     * @deprecated Deprecated in iOS 8.0. This is never invoked and its implementation does nothing, Use startBrowsingForNearbyPlayersWithHandler: instead
      */
     @Deprecated
     @Method(selector = "startBrowsingForNearbyPlayersWithReachableHandler:")
     public native void startBrowsingForNearbyPlayers(@Block VoidBlock2<NSString, Boolean> reachableHandler);
     /**
-     * @deprecated Deprecated in iOS 8.0. use cancelPendingInviteToPlayer:
+     * @deprecated Deprecated in iOS 8.0. This is never invoked and its implementation does nothing, use cancelPendingInviteToPlayer:
      */
     @Deprecated
     @Method(selector = "cancelInviteToPlayer:")
     public native void cancelInvite(String playerID);
     /**
-     * @deprecated Deprecated in iOS 8.0. use findPlayersForHostedRequest:
+     * @deprecated Deprecated in iOS 8.0. This is never invoked and its implementation does nothing, use findPlayersForHostedRequest:
      */
     @Deprecated
     @Method(selector = "findPlayersForHostedMatchRequest:withCompletionHandler:")

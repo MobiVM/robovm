@@ -29,6 +29,7 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -57,7 +58,7 @@ import org.robovm.apple.uikit.*;
     @Property(selector = "expectedPlayerCount")
     public native @MachineSizedUInt long getExpectedPlayerCount();
     /**
-     * @deprecated Deprecated in iOS 8.0. use players
+     * @deprecated Deprecated in iOS 8.0. This is never invoked and its implementation does nothing, use players instead.
      */
     @Deprecated
     @Property(selector = "playerIDs")
@@ -90,13 +91,13 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "rematchWithCompletionHandler:")
     public native void rematch(@Block VoidBlock2<GKMatch, NSError> completionHandler);
     /**
-     * @deprecated Deprecated in iOS 8.0. use chooseBestHostingPlayerWithCompletionHandler:
+     * @deprecated Deprecated in iOS 8.0. This is never invoked and its implementation does nothing, use chooseBestHostingPlayerWithCompletionHandler:
      */
     @Deprecated
     @Method(selector = "chooseBestHostPlayerWithCompletionHandler:")
     public native void chooseBestHostPlayer(@Block VoidBlock1<NSString> completionHandler);
     /**
-     * @deprecated Deprecated in iOS 8.0. use sendData:toPlayers:dataMode:error:
+     * @deprecated Deprecated in iOS 8.0. This is never invoked and its implementation does nothing, use sendData:toPlayers:dataMode:error:
      */
     @Deprecated
     public boolean sendDataToPlayers(NSData data, List<String> playerIDs, GKMatchSendDataMode mode) throws NSErrorException {
@@ -106,7 +107,7 @@ import org.robovm.apple.uikit.*;
        return result;
     }
     /**
-     * @deprecated Deprecated in iOS 8.0. use sendData:toPlayers:dataMode:error:
+     * @deprecated Deprecated in iOS 8.0. This is never invoked and its implementation does nothing, use sendData:toPlayers:dataMode:error:
      */
     @Deprecated
     @Method(selector = "sendData:toPlayers:withDataMode:error:")

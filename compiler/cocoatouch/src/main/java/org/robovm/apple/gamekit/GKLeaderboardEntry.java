@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -33,32 +33,43 @@ import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 14.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("GameKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/GKSavedGame/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/GKLeaderboardEntry/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class GKSavedGamePtr extends Ptr<GKSavedGame, GKSavedGamePtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(GKSavedGame.class); }/*</bind>*/
+    /*<ptr>*/public static class GKLeaderboardEntryPtr extends Ptr<GKLeaderboardEntry, GKLeaderboardEntryPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(GKLeaderboardEntry.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public GKSavedGame() {}
-    protected GKSavedGame(Handle h, long handle) { super(h, handle); }
-    protected GKSavedGame(SkipInit skipInit) { super(skipInit); }
+    protected GKLeaderboardEntry() {}
+    protected GKLeaderboardEntry(Handle h, long handle) { super(h, handle); }
+    protected GKLeaderboardEntry(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "name")
-    public native String getName();
-    @Property(selector = "deviceName")
-    public native String getDeviceName();
-    @Property(selector = "modificationDate")
-    public native NSDate getModificationDate();
+    @Property(selector = "player")
+    public native GKPlayer getPlayer();
+    @Property(selector = "rank")
+    public native @MachineSizedSInt long getRank();
+    @Property(selector = "score")
+    public native @MachineSizedSInt long getScore();
+    @Property(selector = "formattedScore")
+    public native String getFormattedScore();
+    @Property(selector = "context")
+    public native @MachineSizedUInt long getContext();
+    @Property(selector = "date")
+    public native NSDate getDate();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "loadDataWithCompletionHandler:")
-    public native void loadData(@Block VoidBlock2<NSData, NSError> handler);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "challengeComposeControllerWithMessage:players:completionHandler:")
+    public native UIViewController challengeComposeController(String message, NSArray<GKPlayer> players, @Block VoidBlock3<UIViewController, Boolean, NSArray<NSString>> completionHandler);
     /*</methods>*/
 }

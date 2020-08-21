@@ -29,6 +29,7 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -63,10 +64,19 @@ import org.robovm.apple.uikit.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "loadLeaderboardsWithCompletionHandler:")
-    public native void loadLeaderboards(@Block VoidBlock2<GKLeaderboard, NSError> completionHandler);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "loadLeaderboardsWithHandler:")
+    public native void loadLeaderboardsUsingHandler(@Block VoidBlock2<NSArray<GKLeaderboard>, NSError> handler);
     @Method(selector = "loadLeaderboardSetsWithCompletionHandler:")
     public static native void loadLeaderboardSets(@Block VoidBlock2<GKLeaderboardSet, NSError> completionHandler);
+    /**
+     * @deprecated Deprecated in iOS 14.0. Use loadLeaderboardsWithHandler: instead.
+     */
+    @Deprecated
+    @Method(selector = "loadLeaderboardsWithCompletionHandler:")
+    public native void loadLeaderboards(@Block VoidBlock2<NSArray<GKLeaderboard>, NSError> completionHandler);
     @Method(selector = "loadImageWithCompletionHandler:")
     public native void loadImage(@Block VoidBlock2<UIImage, NSError> completionHandler);
     @Method(selector = "encodeWithCoder:")

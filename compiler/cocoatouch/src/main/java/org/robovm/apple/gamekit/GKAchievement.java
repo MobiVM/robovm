@@ -29,6 +29,7 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -51,7 +52,7 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "initWithIdentifier:player:")
     public GKAchievement(String identifier, GKPlayer player) { super((SkipInit) null); initObject(init(identifier, player)); }
     /**
-     * @deprecated Deprecated in iOS 8.0. use initWithIdentifier:player:
+     * @deprecated Deprecated in iOS 8.0. This is never invoked and its implementation does nothing, use initWithIdentifier:player:
      */
     @Deprecated
     @Method(selector = "initWithIdentifier:forPlayer:")
@@ -79,7 +80,7 @@ import org.robovm.apple.uikit.*;
     @Property(selector = "player")
     public native GKPlayer getPlayer();
     /**
-     * @deprecated Deprecated in iOS 8.0. use player
+     * @deprecated Deprecated in iOS 8.0. This will return a null string, use player instead
      */
     @Deprecated
     @Property(selector = "playerID")
@@ -106,31 +107,31 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "reportAchievementWithCompletionHandler:")
     public native void reportAchievement(@Block VoidBlock1<NSError> completionHandler);
     /**
-     * @deprecated Deprecated in iOS 8.0. use initWithIdentifier:player:
+     * @deprecated Deprecated in iOS 8.0. This is never invoked and its implementation does nothing, use initWithIdentifier:player:
      */
     @Deprecated
     @Method(selector = "initWithIdentifier:forPlayer:")
     protected native @Pointer long init(String identifier, String playerID);
-    @Method(selector = "challengeComposeControllerWithMessage:players:completionHandler:")
-    public native UIViewController getChallengeComposeController(String message, NSArray<GKPlayer> players, @Block VoidBlock3<UIViewController, Boolean, NSArray<GKPlayer>> completionHandler);
-    /**
-     * @deprecated Deprecated in iOS 7.0. pass GKPlayers to challengeComposeControllerWithMessage:players:completionHandler: and present the view controller instead
-     */
-    @Deprecated
-    @Method(selector = "issueChallengeToPlayers:message:")
-    public native void issueChallengeToPlayers(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> playerIDs, String message);
     @Method(selector = "selectChallengeablePlayers:withCompletionHandler:")
     public native void selectChallengeablePlayers(NSArray<GKPlayer> players, @Block VoidBlock2<NSArray<GKPlayer>, NSError> completionHandler);
     @Method(selector = "reportAchievements:withEligibleChallenges:withCompletionHandler:")
     public static native void reportAchievements(NSArray<GKAchievement> achievements, NSArray<GKChallenge> challenges, @Block VoidBlock1<NSError> completionHandler);
     /**
-     * @deprecated Deprecated in iOS 8.0. pass GKPlayers to selectChallengeablePlayers:
+     * @deprecated Deprecated in iOS 7.0. This is never invoked and its implementation does nothing, pass GKPlayers to challengeComposeControllerWithMessage:players:completionHandler: and present the view controller instead
+     */
+    @Deprecated
+    @Method(selector = "issueChallengeToPlayers:message:")
+    public native void issueChallengeToPlayers(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> playerIDs, String message);
+    /**
+     * @deprecated Deprecated in iOS 8.0. This is never invoked and its implementation does nothing, pass GKPlayers to selectChallengeablePlayers:
      */
     @Deprecated
     @Method(selector = "selectChallengeablePlayerIDs:withCompletionHandler:")
     public native void selectChallengeablePlayerIDs(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> playerIDs, @Block VoidBlock2<NSArray<NSString>, NSError> completionHandler);
+    @Method(selector = "challengeComposeControllerWithMessage:players:completionHandler:")
+    public native UIViewController getChallengeComposeController(String message, NSArray<GKPlayer> players, @Block VoidBlock3<UIViewController, Boolean, NSArray<GKPlayer>> completionHandler);
     /**
-     * @deprecated Deprecated in iOS 8.0. pass GKPlayers to challengeComposeControllerWithMessage:players:
+     * @deprecated Deprecated in iOS 8.0. This is never invoked and its implementation does nothing, pass GKPlayers to challengeComposeControllerWithMessage:players: instead
      */
     @Deprecated
     @Method(selector = "challengeComposeControllerWithPlayers:message:completionHandler:")

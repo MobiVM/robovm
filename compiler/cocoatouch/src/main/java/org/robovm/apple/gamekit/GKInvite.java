@@ -29,6 +29,7 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -50,18 +51,18 @@ import org.robovm.apple.uikit.*;
     /*<properties>*/
     @Property(selector = "sender")
     public native GKPlayer getSender();
-    /**
-     * @deprecated Deprecated in iOS 8.0. use sender
-     */
-    @Deprecated
-    @Property(selector = "inviter")
-    public native String getInviter();
     @Property(selector = "isHosted")
     public native boolean isHosted();
     @Property(selector = "playerGroup")
     public native @MachineSizedUInt long getPlayerGroup();
     @Property(selector = "playerAttributes")
     public native int getPlayerAttributes();
+    /**
+     * @deprecated Deprecated in iOS 8.0. This property is obsolete, use sender instead
+     */
+    @Deprecated
+    @Property(selector = "inviter")
+    public native String getInviter();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
