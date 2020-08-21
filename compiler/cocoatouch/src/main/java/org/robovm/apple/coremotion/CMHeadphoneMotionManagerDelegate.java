@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -31,44 +31,28 @@ import org.robovm.apple.foundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 14.0 and later.
+ */
 /*</javadoc>*/
-@ForceLinkClass(CMError.class)
 /*<annotations>*//*</annotations>*/
-public enum /*<name>*/CMErrorCode/*</name>*/ implements NSErrorCode {
-    /*<values>*/
-    NULL(100L),
-    DeviceRequiresMovement(101L),
-    TrueNorthNotAvailable(102L),
-    Unknown(103L),
-    MotionActivityNotAvailable(104L),
-    MotionActivityNotAuthorized(105L),
-    MotionActivityNotEntitled(106L),
-    InvalidParameter(107L),
-    InvalidAction(108L),
-    NotAvailable(109L),
-    NotEntitled(110L),
-    NotAuthorized(111L),
-    NilData(112L),
-    Size(113L);
-    /*</values>*/
+/*<visibility>*/public/*</visibility>*/ interface /*<name>*/CMHeadphoneMotionManagerDelegate/*</name>*/ 
+    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
 
+    /*<ptr>*/
+    /*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<methods>*//*</methods>*/
-
-    private final long n;
-
-    private /*<name>*/CMErrorCode/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/CMErrorCode/*</name>*/ valueOf(long n) {
-        for (/*<name>*/CMErrorCode/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/CMErrorCode/*</name>*/.class.getName());
-    }
+    /*<properties>*/
+    
+    /*</properties>*/
+    /*<methods>*/
+    @Method(selector = "headphoneMotionManagerDidConnect:")
+    void headphoneMotionManagerDidConnect(CMHeadphoneMotionManager manager);
+    @Method(selector = "headphoneMotionManagerDidDisconnect:")
+    void headphoneMotionManagerDidDisconnect(CMHeadphoneMotionManager manager);
+    /*</methods>*/
+    /*<adapter>*/
+    /*</adapter>*/
 }

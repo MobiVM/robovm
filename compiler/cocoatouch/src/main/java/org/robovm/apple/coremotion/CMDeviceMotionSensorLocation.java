@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -33,24 +33,12 @@ import org.robovm.apple.foundation.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-@ForceLinkClass(CMError.class)
-/*<annotations>*//*</annotations>*/
-public enum /*<name>*/CMErrorCode/*</name>*/ implements NSErrorCode {
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+public enum /*<name>*/CMDeviceMotionSensorLocation/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    NULL(100L),
-    DeviceRequiresMovement(101L),
-    TrueNorthNotAvailable(102L),
-    Unknown(103L),
-    MotionActivityNotAvailable(104L),
-    MotionActivityNotAuthorized(105L),
-    MotionActivityNotEntitled(106L),
-    InvalidParameter(107L),
-    InvalidAction(108L),
-    NotAvailable(109L),
-    NotEntitled(110L),
-    NotAuthorized(111L),
-    NilData(112L),
-    Size(113L);
+    Default(0L),
+    HeadphoneLeft(1L),
+    HeadphoneRight(2L);
     /*</values>*/
 
     /*<bind>*/
@@ -60,15 +48,15 @@ public enum /*<name>*/CMErrorCode/*</name>*/ implements NSErrorCode {
 
     private final long n;
 
-    private /*<name>*/CMErrorCode/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/CMDeviceMotionSensorLocation/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/CMErrorCode/*</name>*/ valueOf(long n) {
-        for (/*<name>*/CMErrorCode/*</name>*/ v : values()) {
+    public static /*<name>*/CMDeviceMotionSensorLocation/*</name>*/ valueOf(long n) {
+        for (/*<name>*/CMDeviceMotionSensorLocation/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/CMErrorCode/*</name>*/.class.getName());
+            + /*<name>*/CMDeviceMotionSensorLocation/*</name>*/.class.getName());
     }
 }
