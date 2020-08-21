@@ -39,7 +39,10 @@ import org.robovm.apple.foundation.*;
 public enum /*<name>*/DCError/*</name>*/ implements NSErrorCode {
     /*<values>*/
     UnknownSystemFailure(0L),
-    FeatureUnsupported(1L);
+    FeatureUnsupported(1L),
+    InvalidInput(2L),
+    InvalidKey(3L),
+    ServerUnavailable(4L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(DCError.class); }/*</bind>*/
