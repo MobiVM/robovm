@@ -53,13 +53,13 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "initWithNoise:")
     public GKNoiseMap(GKNoise noise) { super((SkipInit) null); initObject(init(noise)); }
     @Method(selector = "initWithNoise:size:origin:sampleCount:seamless:")
-    public GKNoiseMap(GKNoise noise, FunctionPtr size, FunctionPtr origin, @ByVal VectorInt2 sampleCount, boolean seamless) { super((SkipInit) null); initObject(init(noise, size, origin, sampleCount, seamless)); }
+    public GKNoiseMap(GKNoise noise, @ByVal VectorDouble2 size, @ByVal VectorDouble2 origin, @ByVal VectorInt2 sampleCount, boolean seamless) { super((SkipInit) null); initObject(init(noise, size, origin, sampleCount, seamless)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "size")
-    public native FunctionPtr getSize();
+    public native @ByVal VectorDouble2 getSize();
     @Property(selector = "origin")
-    public native FunctionPtr getOrigin();
+    public native @ByVal VectorDouble2 getOrigin();
     @Property(selector = "sampleCount")
     public native @ByVal VectorInt2 getSampleCount();
     @Property(selector = "isSeamless")
@@ -70,7 +70,7 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "initWithNoise:")
     protected native @Pointer long init(GKNoise noise);
     @Method(selector = "initWithNoise:size:origin:sampleCount:seamless:")
-    protected native @Pointer long init(GKNoise noise, FunctionPtr size, FunctionPtr origin, @ByVal VectorInt2 sampleCount, boolean seamless);
+    protected native @Pointer long init(GKNoise noise, @ByVal VectorDouble2 size, @ByVal VectorDouble2 origin, @ByVal VectorInt2 sampleCount, boolean seamless);
     @Method(selector = "valueAtPosition:")
     public native float valueAtPosition(@ByVal VectorInt2 position);
     @Method(selector = "interpolatedValueAtPosition:")
