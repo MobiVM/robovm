@@ -36,33 +36,29 @@ import org.robovm.apple.dispatch.*;
  * @since Available in iOS 14.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-public enum /*<name>*/ENDiagnosisReportType/*</name>*/ implements ValuedEnum {
-    /*<values>*/
-    Unknown(0L),
-    ConfirmedTest(1L),
-    ConfirmedClinicalDiagnosis(2L),
-    SelfReported(3L),
-    Recursive(4L),
-    Revoked(5L);
-    /*</values>*/
+/*<annotations>*/@Library("ExposureNotification") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/ENScanInstance/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
 
-    /*<bind>*/
-    /*</bind>*/
+    /*<ptr>*/public static class ENScanInstancePtr extends Ptr<ENScanInstance, ENScanInstancePtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(ENScanInstance.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<methods>*//*</methods>*/
-
-    private final long n;
-
-    private /*<name>*/ENDiagnosisReportType/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/ENDiagnosisReportType/*</name>*/ valueOf(long n) {
-        for (/*<name>*/ENDiagnosisReportType/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/ENDiagnosisReportType/*</name>*/.class.getName());
-    }
+    /*<constructors>*/
+    public ENScanInstance() {}
+    protected ENScanInstance(Handle h, long handle) { super(h, handle); }
+    protected ENScanInstance(SkipInit skipInit) { super(skipInit); }
+    /*</constructors>*/
+    /*<properties>*/
+    @Property(selector = "minimumAttenuation")
+    public native ENAttenuation getMinimumAttenuation();
+    @Property(selector = "typicalAttenuation")
+    public native ENAttenuation getTypicalAttenuation();
+    @Property(selector = "secondsSinceLastScan")
+    public native @MachineSizedSInt long getSecondsSinceLastScan();
+    /*</properties>*/
+    /*<members>*//*</members>*/
+    /*<methods>*/
+    
+    /*</methods>*/
 }

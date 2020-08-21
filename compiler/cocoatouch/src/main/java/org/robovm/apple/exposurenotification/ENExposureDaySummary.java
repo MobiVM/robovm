@@ -33,49 +33,35 @@ import org.robovm.apple.dispatch.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 13.5 and later.
+ * @since Available in iOS 14.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("ExposureNotification") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/ENExposureInfo/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/ENExposureDaySummary/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class ENExposureInfoPtr extends Ptr<ENExposureInfo, ENExposureInfoPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(ENExposureInfo.class); }/*</bind>*/
+    /*<ptr>*/public static class ENExposureDaySummaryPtr extends Ptr<ENExposureDaySummary, ENExposureDaySummaryPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(ENExposureDaySummary.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public ENExposureInfo() {}
-    protected ENExposureInfo(Handle h, long handle) { super(h, handle); }
-    protected ENExposureInfo(SkipInit skipInit) { super(skipInit); }
+    public ENExposureDaySummary() {}
+    protected ENExposureDaySummary(Handle h, long handle) { super(h, handle); }
+    protected ENExposureDaySummary(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "attenuationDurations")
-    public native NSArray<NSNumber> getAttenuationDurations();
-    @Property(selector = "attenuationValue")
-    public native ENAttenuation getAttenuationValue();
     @Property(selector = "date")
     public native NSDate getDate();
-    /**
-     * @since Available in iOS 14.0 and later.
-     */
-    @Property(selector = "daysSinceOnsetOfSymptoms")
-    public native @MachineSizedSInt long getDaysSinceOnsetOfSymptoms();
-    /**
-     * @since Available in iOS 14.0 and later.
-     */
-    @Property(selector = "diagnosisReportType")
-    public native ENDiagnosisReportType getDiagnosisReportType();
-    @Property(selector = "duration")
-    public native double getDuration();
-    @Property(selector = "metadata")
-    public native NSDictionary<?, ?> getMetadata();
-    @Property(selector = "totalRiskScore")
-    public native ENRiskScore getTotalRiskScore();
-    @Property(selector = "totalRiskScoreFullRange")
-    public native double getTotalRiskScoreFullRange();
-    @Property(selector = "transmissionRiskLevel")
-    public native ENRiskLevel getTransmissionRiskLevel();
+    @Property(selector = "confirmedTestSummary")
+    public native ENExposureSummaryItem getConfirmedTestSummary();
+    @Property(selector = "confirmedClinicalDiagnosisSummary")
+    public native ENExposureSummaryItem getConfirmedClinicalDiagnosisSummary();
+    @Property(selector = "recursiveSummary")
+    public native ENExposureSummaryItem getRecursiveSummary();
+    @Property(selector = "selfReportedSummary")
+    public native ENExposureSummaryItem getSelfReportedSummary();
+    @Property(selector = "daySummary")
+    public native ENExposureSummaryItem getDaySummary();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -41,8 +41,17 @@ classes:
                 name: getDiagnosisKeys
             '-getTestDiagnosisKeysWithCompletionHandler:':
                 name: getTestDiagnosisKeys
+            '-getUserTraveledWithCompletionHandler:':
+                name: getUserTraveled
+            '-detectExposuresWithConfiguration:completionHandler:':
+                name: detectExposures
+            '-getExposureWindowsFromSummary:completionHandler:':
+                name: getExposureWindows
     ENTemporaryExposureKey: {} #since 13.5
-
+    ENExposureDaySummary: {} #since 14.0
+    ENExposureSummaryItem: {} #since 14.0
+    ENExposureWindow: {} #since 14.0
+    ENScanInstance: {} #since 14.0
 protocols:
 
 functions:

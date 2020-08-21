@@ -33,34 +33,32 @@ import org.robovm.apple.dispatch.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 13.5 and later.
+ * @since Available in iOS 14.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/ENAuthorizationStatus/*</name>*/ implements ValuedEnum {
-    /*<values>*/
-    Unknown(0L),
-    Restricted(1L),
-    NotAuthorized(2L),
-    Authorized(3L);
-    /*</values>*/
+/*<annotations>*/@Library("ExposureNotification") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/ENExposureSummaryItem/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
 
-    /*<bind>*/
-    /*</bind>*/
+    /*<ptr>*/public static class ENExposureSummaryItemPtr extends Ptr<ENExposureSummaryItem, ENExposureSummaryItemPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(ENExposureSummaryItem.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<methods>*//*</methods>*/
-
-    private final long n;
-
-    private /*<name>*/ENAuthorizationStatus/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/ENAuthorizationStatus/*</name>*/ valueOf(long n) {
-        for (/*<name>*/ENAuthorizationStatus/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/ENAuthorizationStatus/*</name>*/.class.getName());
-    }
+    /*<constructors>*/
+    public ENExposureSummaryItem() {}
+    protected ENExposureSummaryItem(Handle h, long handle) { super(h, handle); }
+    protected ENExposureSummaryItem(SkipInit skipInit) { super(skipInit); }
+    /*</constructors>*/
+    /*<properties>*/
+    @Property(selector = "maximumScore")
+    public native double getMaximumScore();
+    @Property(selector = "scoreSum")
+    public native double getScoreSum();
+    @Property(selector = "weightedDurationSum")
+    public native double getWeightedDurationSum();
+    /*</properties>*/
+    /*<members>*//*</members>*/
+    /*<methods>*/
+    
+    /*</methods>*/
 }

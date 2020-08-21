@@ -71,12 +71,32 @@ import org.robovm.apple.dispatch.*;
     public native void activate(@Block VoidBlock1<NSError> completionHandler);
     @Method(selector = "invalidate")
     public native void invalidate();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "getUserTraveledWithCompletionHandler:")
+    public native void getUserTraveled(@Block VoidBlock2<Boolean, NSError> completionHandler);
     @Method(selector = "setExposureNotificationEnabled:completionHandler:")
     public native void setExposureNotificationEnabled(boolean enabled, @Block VoidBlock1<NSError> completionHandler);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "detectExposuresWithConfiguration:completionHandler:")
+    public native NSProgress detectExposures(ENExposureConfiguration configuration, @Block VoidBlock2<ENExposureDetectionSummary, NSError> completionHandler);
     @Method(selector = "detectExposuresWithConfiguration:diagnosisKeyURLs:completionHandler:")
     public native NSProgress detectExposures(ENExposureConfiguration configuration, NSArray<NSURL> diagnosisKeyURLs, @Block VoidBlock2<ENExposureDetectionSummary, NSError> completionHandler);
+    /**
+     * @since Available in iOS 13.5 and later.
+     * @deprecated Deprecated in iOS 13.6. Use getExposureWindowsFromSummary, if needed.
+     */
+    @Deprecated
     @Method(selector = "getExposureInfoFromSummary:userExplanation:completionHandler:")
     public native NSProgress getExposureInfo(ENExposureDetectionSummary summary, String userExplanation, @Block VoidBlock2<NSArray<ENExposureInfo>, NSError> completionHandler);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "getExposureWindowsFromSummary:completionHandler:")
+    public native NSProgress getExposureWindows(ENExposureDetectionSummary summary, @Block VoidBlock2<NSArray<ENExposureWindow>, NSError> completionHandler);
     @Method(selector = "getDiagnosisKeysWithCompletionHandler:")
     public native void getDiagnosisKeys(@Block VoidBlock2<NSArray<ENTemporaryExposureKey>, NSError> completionHandler);
     @Method(selector = "getTestDiagnosisKeysWithCompletionHandler:")
