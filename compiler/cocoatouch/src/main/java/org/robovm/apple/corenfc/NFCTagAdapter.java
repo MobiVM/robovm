@@ -45,10 +45,19 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*//*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @NotImplemented("type")
     public NFCTagType getType() { return null; }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @NotImplemented("session")
     public NFCReaderSession getSession() { return null; }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @NotImplemented("isAvailable")
     public boolean isAvailable() { return false; }
     /*</properties>*/

@@ -49,10 +49,19 @@ import org.robovm.apple.dispatch.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @NotImplemented("readerSessionDidBecomeActive:")
     public void readerSessionDidBecomeActive(NFCReaderSession session) {}
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @NotImplemented("readerSession:didInvalidateWithError:")
     public void didInvalidateWithError(NFCReaderSession session, NSError error) {}
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @NotImplemented("readerSession:didDetectTags:")
     public void didDetectTags(NFCReaderSession session, NSArray<?> tags) {}
     /*</methods>*/

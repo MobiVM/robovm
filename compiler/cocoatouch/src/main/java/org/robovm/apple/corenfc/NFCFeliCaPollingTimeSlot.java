@@ -32,19 +32,33 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 14.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/VASErrorCode/*</name>*/ implements ValuedEnum {
+public enum /*<name>*/NFCFeliCaPollingTimeSlot/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    Success(36864L),
-    DataNotFound(27267L),
-    DataNotActivated(25223L),
-    WrongParameters(27392L),
-    WrongLCField(26368L),
-    UserIntervention(27012L),
-    IncorrectData(27264L),
-    UnsupportedApplicationVersion(25408L);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    Max1(0L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    Max2(1L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    Max4(3L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    Max8(7L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    Max16(15L);
     /*</values>*/
 
     /*<bind>*/
@@ -54,15 +68,15 @@ public enum /*<name>*/VASErrorCode/*</name>*/ implements ValuedEnum {
 
     private final long n;
 
-    private /*<name>*/VASErrorCode/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/NFCFeliCaPollingTimeSlot/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/VASErrorCode/*</name>*/ valueOf(long n) {
-        for (/*<name>*/VASErrorCode/*</name>*/ v : values()) {
+    public static /*<name>*/NFCFeliCaPollingTimeSlot/*</name>*/ valueOf(long n) {
+        for (/*<name>*/NFCFeliCaPollingTimeSlot/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/VASErrorCode/*</name>*/.class.getName());
+            + /*<name>*/NFCFeliCaPollingTimeSlot/*</name>*/.class.getName());
     }
 }

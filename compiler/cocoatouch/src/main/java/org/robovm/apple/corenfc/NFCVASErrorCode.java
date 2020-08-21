@@ -32,13 +32,45 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 13.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/VASMode/*</name>*/ implements ValuedEnum {
+public enum /*<name>*/NFCVASErrorCode/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    URLOnly(0L),
-    Normal(1L);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    Success(36864L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    DataNotFound(27267L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    DataNotActivated(25223L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    WrongParameters(27392L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    WrongLCField(26368L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    UserIntervention(27012L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    IncorrectData(27264L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    UnsupportedApplicationVersion(25408L);
     /*</values>*/
 
     /*<bind>*/
@@ -48,15 +80,15 @@ public enum /*<name>*/VASMode/*</name>*/ implements ValuedEnum {
 
     private final long n;
 
-    private /*<name>*/VASMode/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/NFCVASErrorCode/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/VASMode/*</name>*/ valueOf(long n) {
-        for (/*<name>*/VASMode/*</name>*/ v : values()) {
+    public static /*<name>*/NFCVASErrorCode/*</name>*/ valueOf(long n) {
+        for (/*<name>*/NFCVASErrorCode/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/VASMode/*</name>*/.class.getName());
+            + /*<name>*/NFCVASErrorCode/*</name>*/.class.getName());
     }
 }

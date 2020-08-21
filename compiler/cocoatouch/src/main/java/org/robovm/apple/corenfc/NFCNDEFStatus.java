@@ -37,8 +37,17 @@ import org.robovm.apple.dispatch.*;
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/NFCNDEFStatus/*</name>*/ implements ValuedEnum {
     /*<values>*/
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
     NotSupported(1L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
     ReadWrite(2L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
     ReadOnly(3L);
     /*</values>*/
 

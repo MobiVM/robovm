@@ -32,13 +32,25 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 14.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/EncryptionId/*</name>*/ implements ValuedEnum {
+public enum /*<name>*/NFCFeliCaPollingRequestCode/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    AES(79L),
-    AES_DES(65L);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    NoRequest(0L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    SystemCode(1L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    CommunicationPerformance(2L);
     /*</values>*/
 
     /*<bind>*/
@@ -48,15 +60,15 @@ public enum /*<name>*/EncryptionId/*</name>*/ implements ValuedEnum {
 
     private final long n;
 
-    private /*<name>*/EncryptionId/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/NFCFeliCaPollingRequestCode/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/EncryptionId/*</name>*/ valueOf(long n) {
-        for (/*<name>*/EncryptionId/*</name>*/ v : values()) {
+    public static /*<name>*/NFCFeliCaPollingRequestCode/*</name>*/ valueOf(long n) {
+        for (/*<name>*/NFCFeliCaPollingRequestCode/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/EncryptionId/*</name>*/.class.getName());
+            + /*<name>*/NFCFeliCaPollingRequestCode/*</name>*/.class.getName());
     }
 }

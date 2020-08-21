@@ -37,7 +37,13 @@ import org.robovm.apple.dispatch.*;
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Library("CoreNFC")/*</annotations>*/
 public enum /*<name>*/NFCReaderError/*</name>*/ implements NSErrorCode {
     /*<values>*/
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     ReaderErrorUnsupportedFeature(1L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     ReaderErrorSecurityViolation(2L),
     /**
      * @since Available in iOS 13.0 and later.
@@ -51,8 +57,21 @@ public enum /*<name>*/NFCReaderError/*</name>*/ implements NSErrorCode {
      * @since Available in iOS 13.0 and later.
      */
     ReaderErrorParameterOutOfBound(5L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    ReaderErrorRadioDisabled(6L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     ReaderTransceiveErrorTagConnectionLost(100L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     ReaderTransceiveErrorRetryExceeded(101L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     ReaderTransceiveErrorTagResponseError(102L),
     /**
      * @since Available in iOS 13.0 and later.
@@ -62,11 +81,33 @@ public enum /*<name>*/NFCReaderError/*</name>*/ implements NSErrorCode {
      * @since Available in iOS 13.0 and later.
      */
     ReaderTransceiveErrorTagNotConnected(104L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    ReaderTransceiveErrorPacketTooLong(105L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     ReaderSessionInvalidationErrorUserCanceled(200L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     ReaderSessionInvalidationErrorSessionTimeout(201L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     ReaderSessionInvalidationErrorSessionTerminatedUnexpectedly(202L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     ReaderSessionInvalidationErrorSystemIsBusy(203L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     ReaderSessionInvalidationErrorFirstNDEFTagRead(204L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     TagCommandConfigurationErrorInvalidParameters(300L),
     /**
      * @since Available in iOS 13.0 and later.

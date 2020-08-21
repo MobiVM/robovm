@@ -37,9 +37,21 @@ import org.robovm.apple.dispatch.*;
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/NFCMiFareFamily/*</name>*/ implements ValuedEnum {
     /*<values>*/
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
     Unknown(1L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
     Ultralight(2L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
     Plus(3L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
     DESFire(4L);
     /*</values>*/
 

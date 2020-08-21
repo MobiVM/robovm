@@ -32,14 +32,33 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 13.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/PollingRequestCode/*</name>*/ implements ValuedEnum {
+public enum /*<name>*/NFCVASMode/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    NoRequest(0L),
-    SystemCode(1L),
-    CommunicationPerformance(2L);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    NFCVASModeURLOnly(0L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    NFCVASModeNormal(1L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 14.0. Use NFCVASModeURLOnly
+     */
+    @Deprecated
+    VASModeURLOnly(0L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 14.0. Use NFCVASModeNormal
+     */
+    @Deprecated
+    VASModeNormal(1L);
     /*</values>*/
 
     /*<bind>*/
@@ -49,15 +68,15 @@ public enum /*<name>*/PollingRequestCode/*</name>*/ implements ValuedEnum {
 
     private final long n;
 
-    private /*<name>*/PollingRequestCode/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/NFCVASMode/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/PollingRequestCode/*</name>*/ valueOf(long n) {
-        for (/*<name>*/PollingRequestCode/*</name>*/ v : values()) {
+    public static /*<name>*/NFCVASMode/*</name>*/ valueOf(long n) {
+        for (/*<name>*/NFCVASMode/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/PollingRequestCode/*</name>*/.class.getName());
+            + /*<name>*/NFCVASMode/*</name>*/.class.getName());
     }
 }

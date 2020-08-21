@@ -46,16 +46,31 @@ import org.robovm.apple.dispatch.*;
     /*</bind>*/
     /*<constants>*//*</constants>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Property(selector = "isReady")
     boolean isReady();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Property(selector = "alertMessage")
     String getAlertMessage();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Property(selector = "setAlertMessage:")
     void setAlertMessage(String v);
     /*</properties>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Method(selector = "beginSession")
     void beginSession();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Method(selector = "invalidateSession")
     void invalidateSession();
     /**

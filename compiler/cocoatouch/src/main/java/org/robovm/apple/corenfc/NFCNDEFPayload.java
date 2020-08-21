@@ -74,20 +74,44 @@ import org.robovm.apple.dispatch.*;
     public NFCNDEFPayload(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Property(selector = "typeNameFormat")
     public native NFCTypeNameFormat getTypeNameFormat();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Property(selector = "setTypeNameFormat:")
     public native void setTypeNameFormat(NFCTypeNameFormat v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Property(selector = "type")
     public native NSData getType();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Property(selector = "setType:")
     public native void setType(NSData v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Property(selector = "identifier")
     public native NSData getIdentifier();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Property(selector = "setIdentifier:")
     public native void setIdentifier(NSData v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Property(selector = "payload")
     public native NSData getPayload();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Property(selector = "setPayload:")
     public native void setPayload(NSData v);
     @Property(selector = "supportsSecureCoding")

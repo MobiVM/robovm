@@ -50,23 +50,47 @@ import org.robovm.apple.dispatch.*;
     protected NFCReaderSession(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Property(selector = "delegate")
     public native NSObject getDelegate();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Property(selector = "readingAvailable")
     public static native boolean isReadingAvailable();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Property(selector = "sessionQueue")
     public native DispatchQueue getSessionQueue();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Property(selector = "isReady")
     public native boolean isReady();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Property(selector = "alertMessage")
     public native String getAlertMessage();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Property(selector = "setAlertMessage:")
     public native void setAlertMessage(String v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Method(selector = "beginSession")
     public native void beginSession();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Method(selector = "invalidateSession")
     public native void invalidateSession();
     /**

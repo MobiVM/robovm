@@ -35,13 +35,16 @@ import org.robovm.apple.dispatch.*;
 
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/PollingTimeSlot/*</name>*/ implements ValuedEnum {
+public enum /*<name>*/NFCFeliCaEncryptionId/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    Max1(0L),
-    Max2(1L),
-    Max4(3L),
-    Max8(7L),
-    Max16(15L);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    AES(79L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    AES_DES(65L);
     /*</values>*/
 
     /*<bind>*/
@@ -51,15 +54,15 @@ public enum /*<name>*/PollingTimeSlot/*</name>*/ implements ValuedEnum {
 
     private final long n;
 
-    private /*<name>*/PollingTimeSlot/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/NFCFeliCaEncryptionId/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/PollingTimeSlot/*</name>*/ valueOf(long n) {
-        for (/*<name>*/PollingTimeSlot/*</name>*/ v : values()) {
+    public static /*<name>*/NFCFeliCaEncryptionId/*</name>*/ valueOf(long n) {
+        for (/*<name>*/NFCFeliCaEncryptionId/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/PollingTimeSlot/*</name>*/.class.getName());
+            + /*<name>*/NFCFeliCaEncryptionId/*</name>*/.class.getName());
     }
 }

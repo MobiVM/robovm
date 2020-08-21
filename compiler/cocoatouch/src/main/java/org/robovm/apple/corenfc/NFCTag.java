@@ -46,10 +46,19 @@ import org.robovm.apple.dispatch.*;
     /*</bind>*/
     /*<constants>*//*</constants>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Property(selector = "type")
     NFCTagType getType();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Property(selector = "session")
     NFCReaderSession getSession();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Property(selector = "isAvailable")
     boolean isAvailable();
     /*</properties>*/
