@@ -32,16 +32,13 @@ import org.robovm.apple.corelocation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 10.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/HMCharacteristicValueChargingState/*</name>*/ implements ValuedEnum {
+public enum /*<name>*/HMCharacteristicValueTargetLockMechanismState/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    None(0L),
-    InProgress(1L),
-    NotChargeable(2L);
+    Unsecured(0L),
+    Secured(1L);
     /*</values>*/
 
     /*<bind>*/
@@ -51,15 +48,15 @@ public enum /*<name>*/HMCharacteristicValueChargingState/*</name>*/ implements V
 
     private final long n;
 
-    private /*<name>*/HMCharacteristicValueChargingState/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/HMCharacteristicValueTargetLockMechanismState/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/HMCharacteristicValueChargingState/*</name>*/ valueOf(long n) {
-        for (/*<name>*/HMCharacteristicValueChargingState/*</name>*/ v : values()) {
+    public static /*<name>*/HMCharacteristicValueTargetLockMechanismState/*</name>*/ valueOf(long n) {
+        for (/*<name>*/HMCharacteristicValueTargetLockMechanismState/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/HMCharacteristicValueChargingState/*</name>*/.class.getName());
+            + /*<name>*/HMCharacteristicValueTargetLockMechanismState/*</name>*/.class.getName());
     }
 }

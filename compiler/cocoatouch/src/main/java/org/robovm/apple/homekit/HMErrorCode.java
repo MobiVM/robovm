@@ -189,7 +189,23 @@ public enum /*<name>*/HMErrorCode/*</name>*/ implements NSErrorCode {
     /**
      * @since Available in iOS 13.0 and later.
      */
-    WiFiCredentialGenerationFailed(98L);
+    WiFiCredentialGenerationFailed(98L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    EnterpriseNetworkNotSupported(99L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    TimedOutWaitingForAccessory(100L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    AccessoryCommunicationFailure(101L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    FailedToJoinNetwork(102L);
     /*</values>*/
 
     /*<bind>*/

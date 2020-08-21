@@ -88,23 +88,7 @@ import org.robovm.apple.corelocation.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    public static final HMCharacteristicType PowerState = new HMCharacteristicType("PowerState");
-    public static final HMCharacteristicType Hue = new HMCharacteristicType("Hue");
-    public static final HMCharacteristicType Saturation = new HMCharacteristicType("Saturation");
-    public static final HMCharacteristicType Brightness = new HMCharacteristicType("Brightness");
-    public static final HMCharacteristicType TemperatureUnits = new HMCharacteristicType("TemperatureUnits");
-    public static final HMCharacteristicType CurrentTemperature = new HMCharacteristicType("CurrentTemperature");
-    public static final HMCharacteristicType TargetTemperature = new HMCharacteristicType("TargetTemperature");
-    public static final HMCharacteristicType CurrentHeatingCooling = new HMCharacteristicType("CurrentHeatingCooling");
-    public static final HMCharacteristicType TargetHeatingCooling = new HMCharacteristicType("TargetHeatingCooling");
-    public static final HMCharacteristicType CoolingThreshold = new HMCharacteristicType("CoolingThreshold");
-    public static final HMCharacteristicType HeatingThreshold = new HMCharacteristicType("HeatingThreshold");
-    public static final HMCharacteristicType CurrentRelativeHumidity = new HMCharacteristicType("CurrentRelativeHumidity");
     public static final HMCharacteristicType TargetRelativeHumidity = new HMCharacteristicType("TargetRelativeHumidity");
-    public static final HMCharacteristicType CurrentDoorState = new HMCharacteristicType("CurrentDoorState");
-    public static final HMCharacteristicType TargetDoorState = new HMCharacteristicType("TargetDoorState");
-    public static final HMCharacteristicType ObstructionDetected = new HMCharacteristicType("ObstructionDetected");
-    public static final HMCharacteristicType Name = new HMCharacteristicType("Name");
     /**
      * @deprecated Deprecated in iOS 11.0. Use -[HMAccessory manufacturer] instead
      */
@@ -121,10 +105,7 @@ import org.robovm.apple.corelocation.*;
     @Deprecated
     public static final HMCharacteristicType SerialNumber = new HMCharacteristicType("SerialNumber");
     public static final HMCharacteristicType Identify = new HMCharacteristicType("Identify");
-    public static final HMCharacteristicType RotationDirection = new HMCharacteristicType("RotationDirection");
-    public static final HMCharacteristicType RotationSpeed = new HMCharacteristicType("RotationSpeed");
     public static final HMCharacteristicType OutletInUse = new HMCharacteristicType("OutletInUse");
-    public static final HMCharacteristicType Version = new HMCharacteristicType("Version");
     public static final HMCharacteristicType Logs = new HMCharacteristicType("Logs");
     public static final HMCharacteristicType AudioFeedback = new HMCharacteristicType("AudioFeedback");
     public static final HMCharacteristicType AdminOnlyAccess = new HMCharacteristicType("AdminOnlyAccess");
@@ -133,8 +114,6 @@ import org.robovm.apple.corelocation.*;
      */
     public static final HMCharacteristicType SecuritySystemAlarmType = new HMCharacteristicType("SecuritySystemAlarmType");
     public static final HMCharacteristicType MotionDetected = new HMCharacteristicType("MotionDetected");
-    public static final HMCharacteristicType CurrentLockMechanismState = new HMCharacteristicType("CurrentLockMechanismState");
-    public static final HMCharacteristicType TargetLockMechanismState = new HMCharacteristicType("TargetLockMechanismState");
     public static final HMCharacteristicType LockMechanismLastKnownAction = new HMCharacteristicType("LockMechanismLastKnownAction");
     public static final HMCharacteristicType LockManagementControlPoint = new HMCharacteristicType("LockManagementControlPoint");
     public static final HMCharacteristicType LockManagementAutoSecureTimeout = new HMCharacteristicType("LockManagementAutoSecureTimeout");
@@ -150,10 +129,6 @@ import org.robovm.apple.corelocation.*;
      * @since Available in iOS 9.0 and later.
      */
     public static final HMCharacteristicType AirQuality = new HMCharacteristicType("AirQuality");
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
-    public static final HMCharacteristicType BatteryLevel = new HMCharacteristicType("BatteryLevel");
     /**
      * @since Available in iOS 9.0 and later.
      */
@@ -181,19 +156,11 @@ import org.robovm.apple.corelocation.*;
     /**
      * @since Available in iOS 9.0 and later.
      */
-    public static final HMCharacteristicType ChargingState = new HMCharacteristicType("ChargingState");
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
     public static final HMCharacteristicType ContactState = new HMCharacteristicType("ContactState");
     /**
      * @since Available in iOS 9.0 and later.
      */
     public static final HMCharacteristicType CurrentHorizontalTilt = new HMCharacteristicType("CurrentHorizontalTilt");
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
-    public static final HMCharacteristicType CurrentLightLevel = new HMCharacteristicType("CurrentLightLevel");
     /**
      * @since Available in iOS 9.0 and later.
      */
@@ -222,10 +189,6 @@ import org.robovm.apple.corelocation.*;
     /**
      * @since Available in iOS 9.0 and later.
      */
-    public static final HMCharacteristicType InputEvent = new HMCharacteristicType("InputEvent");
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
     public static final HMCharacteristicType LeakDetected = new HMCharacteristicType("LeakDetected");
     /**
      * @since Available in iOS 9.0 and later.
@@ -242,10 +205,6 @@ import org.robovm.apple.corelocation.*;
     /**
      * @since Available in iOS 9.0 and later.
      */
-    public static final HMCharacteristicType SmokeDetected = new HMCharacteristicType("SmokeDetected");
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
     public static final HMCharacteristicType SoftwareVersion = new HMCharacteristicType("SoftwareVersion");
     /**
      * @since Available in iOS 9.0 and later.
@@ -259,10 +218,6 @@ import org.robovm.apple.corelocation.*;
      * @since Available in iOS 9.0 and later.
      */
     public static final HMCharacteristicType StatusJammed = new HMCharacteristicType("StatusJammed");
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
-    public static final HMCharacteristicType StatusLowBattery = new HMCharacteristicType("StatusLowBattery");
     /**
      * @since Available in iOS 9.0 and later.
      */
@@ -298,27 +253,11 @@ import org.robovm.apple.corelocation.*;
     /**
      * @since Available in iOS 10.0 and later.
      */
-    public static final HMCharacteristicType SupportedAudioStreamConfiguration = new HMCharacteristicType("SupportedAudioStreamConfiguration");
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
     public static final HMCharacteristicType SupportedRTPConfiguration = new HMCharacteristicType("SupportedRTPConfiguration");
     /**
      * @since Available in iOS 10.0 and later.
      */
     public static final HMCharacteristicType SelectedStreamConfiguration = new HMCharacteristicType("SelectedStreamConfiguration");
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
-    public static final HMCharacteristicType Volume = new HMCharacteristicType("Volume");
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
-    public static final HMCharacteristicType Mute = new HMCharacteristicType("Mute");
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
-    public static final HMCharacteristicType NightVision = new HMCharacteristicType("NightVision");
     /**
      * @since Available in iOS 10.0 and later.
      */
@@ -346,10 +285,6 @@ import org.robovm.apple.corelocation.*;
     /**
      * @since Available in iOS 10.2 and later.
      */
-    public static final HMCharacteristicType Active = new HMCharacteristicType("Active");
-    /**
-     * @since Available in iOS 10.2 and later.
-     */
     public static final HMCharacteristicType CurrentAirPurifierState = new HMCharacteristicType("CurrentAirPurifierState");
     /**
      * @since Available in iOS 10.2 and later.
@@ -358,23 +293,7 @@ import org.robovm.apple.corelocation.*;
     /**
      * @since Available in iOS 10.2 and later.
      */
-    public static final HMCharacteristicType CurrentFanState = new HMCharacteristicType("CurrentFanState");
-    /**
-     * @since Available in iOS 10.2 and later.
-     */
-    public static final HMCharacteristicType CurrentHeaterCoolerState = new HMCharacteristicType("CurrentHeaterCoolerState");
-    /**
-     * @since Available in iOS 10.2 and later.
-     */
-    public static final HMCharacteristicType CurrentHumidifierDehumidifierState = new HMCharacteristicType("CurrentHumidifierDehumidifierState");
-    /**
-     * @since Available in iOS 10.2 and later.
-     */
     public static final HMCharacteristicType CurrentSlatState = new HMCharacteristicType("CurrentSlatState");
-    /**
-     * @since Available in iOS 10.2 and later.
-     */
-    public static final HMCharacteristicType WaterLevel = new HMCharacteristicType("WaterLevel");
     /**
      * @since Available in iOS 10.2 and later.
      */
@@ -387,26 +306,6 @@ import org.robovm.apple.corelocation.*;
      * @since Available in iOS 10.2 and later.
      */
     public static final HMCharacteristicType FilterResetChangeIndication = new HMCharacteristicType("FilterResetChangeIndication");
-    /**
-     * @since Available in iOS 10.2 and later.
-     */
-    public static final HMCharacteristicType LockPhysicalControls = new HMCharacteristicType("LockPhysicalControls");
-    /**
-     * @since Available in iOS 10.2 and later.
-     */
-    public static final HMCharacteristicType SwingMode = new HMCharacteristicType("SwingMode");
-    /**
-     * @since Available in iOS 10.2 and later.
-     */
-    public static final HMCharacteristicType TargetHeaterCoolerState = new HMCharacteristicType("TargetHeaterCoolerState");
-    /**
-     * @since Available in iOS 10.2 and later.
-     */
-    public static final HMCharacteristicType TargetHumidifierDehumidifierState = new HMCharacteristicType("TargetHumidifierDehumidifierState");
-    /**
-     * @since Available in iOS 10.2 and later.
-     */
-    public static final HMCharacteristicType TargetFanState = new HMCharacteristicType("TargetFanState");
     /**
      * @since Available in iOS 10.2 and later.
      */
@@ -444,18 +343,6 @@ import org.robovm.apple.corelocation.*;
      */
     public static final HMCharacteristicType VolatileOrganicCompoundDensity = new HMCharacteristicType("VolatileOrganicCompoundDensity");
     /**
-     * @since Available in iOS 10.2 and later.
-     */
-    public static final HMCharacteristicType DehumidifierThreshold = new HMCharacteristicType("DehumidifierThreshold");
-    /**
-     * @since Available in iOS 10.2 and later.
-     */
-    public static final HMCharacteristicType HumidifierThreshold = new HMCharacteristicType("HumidifierThreshold");
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
-    public static final HMCharacteristicType ColorTemperature = new HMCharacteristicType("ColorTemperature");
-    /**
      * @since Available in iOS 11.2 and later.
      */
     public static final HMCharacteristicType ProgramMode = new HMCharacteristicType("ProgramMode");
@@ -475,13 +362,126 @@ import org.robovm.apple.corelocation.*;
      * @since Available in iOS 11.2 and later.
      */
     public static final HMCharacteristicType ValveType = new HMCharacteristicType("ValveType");
+    public static final HMCharacteristicType Brightness = new HMCharacteristicType("Brightness");
+    public static final HMCharacteristicType CoolingThreshold = new HMCharacteristicType("CoolingThreshold");
+    public static final HMCharacteristicType CurrentDoorState = new HMCharacteristicType("CurrentDoorState");
+    public static final HMCharacteristicType CurrentHeatingCooling = new HMCharacteristicType("CurrentHeatingCooling");
+    public static final HMCharacteristicType CurrentRelativeHumidity = new HMCharacteristicType("CurrentRelativeHumidity");
+    public static final HMCharacteristicType CurrentTemperature = new HMCharacteristicType("CurrentTemperature");
+    public static final HMCharacteristicType HeatingThreshold = new HMCharacteristicType("HeatingThreshold");
+    public static final HMCharacteristicType Hue = new HMCharacteristicType("Hue");
+    public static final HMCharacteristicType CurrentLockMechanismState = new HMCharacteristicType("CurrentLockMechanismState");
+    public static final HMCharacteristicType TargetLockMechanismState = new HMCharacteristicType("TargetLockMechanismState");
+    public static final HMCharacteristicType Name = new HMCharacteristicType("Name");
+    public static final HMCharacteristicType ObstructionDetected = new HMCharacteristicType("ObstructionDetected");
+    public static final HMCharacteristicType PowerState = new HMCharacteristicType("PowerState");
+    public static final HMCharacteristicType RotationDirection = new HMCharacteristicType("RotationDirection");
+    public static final HMCharacteristicType RotationSpeed = new HMCharacteristicType("RotationSpeed");
+    public static final HMCharacteristicType Saturation = new HMCharacteristicType("Saturation");
+    public static final HMCharacteristicType TargetDoorState = new HMCharacteristicType("TargetDoorState");
+    public static final HMCharacteristicType TargetHeatingCooling = new HMCharacteristicType("TargetHeatingCooling");
+    public static final HMCharacteristicType TargetTemperature = new HMCharacteristicType("TargetTemperature");
+    public static final HMCharacteristicType TemperatureUnits = new HMCharacteristicType("TemperatureUnits");
+    public static final HMCharacteristicType Version = new HMCharacteristicType("Version");
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    public static final HMCharacteristicType BatteryLevel = new HMCharacteristicType("BatteryLevel");
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    public static final HMCharacteristicType CurrentLightLevel = new HMCharacteristicType("CurrentLightLevel");
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    public static final HMCharacteristicType InputEvent = new HMCharacteristicType("InputEvent");
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    public static final HMCharacteristicType SmokeDetected = new HMCharacteristicType("SmokeDetected");
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    public static final HMCharacteristicType StatusLowBattery = new HMCharacteristicType("StatusLowBattery");
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    public static final HMCharacteristicType ChargingState = new HMCharacteristicType("ChargingState");
+    /**
+     * @since Available in iOS 10.2 and later.
+     */
+    public static final HMCharacteristicType LockPhysicalControls = new HMCharacteristicType("LockPhysicalControls");
+    /**
+     * @since Available in iOS 10.2 and later.
+     */
+    public static final HMCharacteristicType CurrentFanState = new HMCharacteristicType("CurrentFanState");
+    /**
+     * @since Available in iOS 10.2 and later.
+     */
+    public static final HMCharacteristicType Active = new HMCharacteristicType("Active");
+    /**
+     * @since Available in iOS 10.2 and later.
+     */
+    public static final HMCharacteristicType CurrentHeaterCoolerState = new HMCharacteristicType("CurrentHeaterCoolerState");
+    /**
+     * @since Available in iOS 10.2 and later.
+     */
+    public static final HMCharacteristicType TargetHeaterCoolerState = new HMCharacteristicType("TargetHeaterCoolerState");
+    /**
+     * @since Available in iOS 10.2 and later.
+     */
+    public static final HMCharacteristicType CurrentHumidifierDehumidifierState = new HMCharacteristicType("CurrentHumidifierDehumidifierState");
+    /**
+     * @since Available in iOS 10.2 and later.
+     */
+    public static final HMCharacteristicType TargetHumidifierDehumidifierState = new HMCharacteristicType("TargetHumidifierDehumidifierState");
+    /**
+     * @since Available in iOS 10.2 and later.
+     */
+    public static final HMCharacteristicType WaterLevel = new HMCharacteristicType("WaterLevel");
+    /**
+     * @since Available in iOS 10.2 and later.
+     */
+    public static final HMCharacteristicType SwingMode = new HMCharacteristicType("SwingMode");
+    /**
+     * @since Available in iOS 10.2 and later.
+     */
+    public static final HMCharacteristicType TargetFanState = new HMCharacteristicType("TargetFanState");
+    /**
+     * @since Available in iOS 10.2 and later.
+     */
+    public static final HMCharacteristicType DehumidifierThreshold = new HMCharacteristicType("DehumidifierThreshold");
+    /**
+     * @since Available in iOS 10.2 and later.
+     */
+    public static final HMCharacteristicType HumidifierThreshold = new HMCharacteristicType("HumidifierThreshold");
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    public static final HMCharacteristicType ColorTemperature = new HMCharacteristicType("ColorTemperature");
     /**
      * @since Available in iOS 11.2 and later.
      */
     public static final HMCharacteristicType IsConfigured = new HMCharacteristicType("IsConfigured");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final HMCharacteristicType SupportedAudioStreamConfiguration = new HMCharacteristicType("SupportedAudioStreamConfiguration");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final HMCharacteristicType Volume = new HMCharacteristicType("Volume");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final HMCharacteristicType Mute = new HMCharacteristicType("Mute");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final HMCharacteristicType NightVision = new HMCharacteristicType("NightVision");
     /*</constants>*/
     
-    private static /*<name>*/HMCharacteristicType/*</name>*/[] values = new /*<name>*/HMCharacteristicType/*</name>*/[] {/*<value_list>*/PowerState, Hue, Saturation, Brightness, TemperatureUnits, CurrentTemperature, TargetTemperature, CurrentHeatingCooling, TargetHeatingCooling, CoolingThreshold, HeatingThreshold, CurrentRelativeHumidity, TargetRelativeHumidity, CurrentDoorState, TargetDoorState, ObstructionDetected, Name, Manufacturer, Model, SerialNumber, Identify, RotationDirection, RotationSpeed, OutletInUse, Version, Logs, AudioFeedback, AdminOnlyAccess, SecuritySystemAlarmType, MotionDetected, CurrentLockMechanismState, TargetLockMechanismState, LockMechanismLastKnownAction, LockManagementControlPoint, LockManagementAutoSecureTimeout, AirParticulateDensity, AirParticulateSize, AirQuality, BatteryLevel, CarbonDioxideDetected, CarbonDioxideLevel, CarbonDioxidePeakLevel, CarbonMonoxideDetected, CarbonMonoxideLevel, CarbonMonoxidePeakLevel, ChargingState, ContactState, CurrentHorizontalTilt, CurrentLightLevel, CurrentPosition, CurrentSecuritySystemState, CurrentVerticalTilt, FirmwareVersion, HardwareVersion, HoldPosition, InputEvent, LeakDetected, OccupancyDetected, OutputState, PositionState, SmokeDetected, SoftwareVersion, StatusActive, StatusFault, StatusJammed, StatusLowBattery, StatusTampered, TargetHorizontalTilt, TargetSecuritySystemState, TargetPosition, TargetVerticalTilt, StreamingStatus, SetupStreamEndpoint, SupportedVideoStreamConfiguration, SupportedAudioStreamConfiguration, SupportedRTPConfiguration, SelectedStreamConfiguration, Volume, Mute, NightVision, OpticalZoom, DigitalZoom, ImageRotation, ImageMirroring, LabelNamespace, LabelIndex, Active, CurrentAirPurifierState, TargetAirPurifierState, CurrentFanState, CurrentHeaterCoolerState, CurrentHumidifierDehumidifierState, CurrentSlatState, WaterLevel, FilterChangeIndication, FilterLifeLevel, FilterResetChangeIndication, LockPhysicalControls, SwingMode, TargetHeaterCoolerState, TargetHumidifierDehumidifierState, TargetFanState, SlatType, CurrentTilt, TargetTilt, OzoneDensity, NitrogenDioxideDensity, SulphurDioxideDensity, PM2_5Density, PM10Density, VolatileOrganicCompoundDensity, DehumidifierThreshold, HumidifierThreshold, ColorTemperature, ProgramMode, InUse, SetDuration, RemainingDuration, ValveType, IsConfigured/*</value_list>*/};
+    private static /*<name>*/HMCharacteristicType/*</name>*/[] values = new /*<name>*/HMCharacteristicType/*</name>*/[] {/*<value_list>*/TargetRelativeHumidity, Manufacturer, Model, SerialNumber, Identify, OutletInUse, Logs, AudioFeedback, AdminOnlyAccess, SecuritySystemAlarmType, MotionDetected, LockMechanismLastKnownAction, LockManagementControlPoint, LockManagementAutoSecureTimeout, AirParticulateDensity, AirParticulateSize, AirQuality, CarbonDioxideDetected, CarbonDioxideLevel, CarbonDioxidePeakLevel, CarbonMonoxideDetected, CarbonMonoxideLevel, CarbonMonoxidePeakLevel, ContactState, CurrentHorizontalTilt, CurrentPosition, CurrentSecuritySystemState, CurrentVerticalTilt, FirmwareVersion, HardwareVersion, HoldPosition, LeakDetected, OccupancyDetected, OutputState, PositionState, SoftwareVersion, StatusActive, StatusFault, StatusJammed, StatusTampered, TargetHorizontalTilt, TargetSecuritySystemState, TargetPosition, TargetVerticalTilt, StreamingStatus, SetupStreamEndpoint, SupportedVideoStreamConfiguration, SupportedRTPConfiguration, SelectedStreamConfiguration, OpticalZoom, DigitalZoom, ImageRotation, ImageMirroring, LabelNamespace, LabelIndex, CurrentAirPurifierState, TargetAirPurifierState, CurrentSlatState, FilterChangeIndication, FilterLifeLevel, FilterResetChangeIndication, SlatType, CurrentTilt, TargetTilt, OzoneDensity, NitrogenDioxideDensity, SulphurDioxideDensity, PM2_5Density, PM10Density, VolatileOrganicCompoundDensity, ProgramMode, InUse, SetDuration, RemainingDuration, ValveType, Brightness, CoolingThreshold, CurrentDoorState, CurrentHeatingCooling, CurrentRelativeHumidity, CurrentTemperature, HeatingThreshold, Hue, CurrentLockMechanismState, TargetLockMechanismState, Name, ObstructionDetected, PowerState, RotationDirection, RotationSpeed, Saturation, TargetDoorState, TargetHeatingCooling, TargetTemperature, TemperatureUnits, Version, BatteryLevel, CurrentLightLevel, InputEvent, SmokeDetected, StatusLowBattery, ChargingState, LockPhysicalControls, CurrentFanState, Active, CurrentHeaterCoolerState, TargetHeaterCoolerState, CurrentHumidifierDehumidifierState, TargetHumidifierDehumidifierState, WaterLevel, SwingMode, TargetFanState, DehumidifierThreshold, HumidifierThreshold, ColorTemperature, IsConfigured, SupportedAudioStreamConfiguration, Volume, Mute, NightVision/*</value_list>*/};
     
     /*<name>*/HMCharacteristicType/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -504,40 +504,8 @@ import org.robovm.apple.corelocation.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        @GlobalValue(symbol="HMCharacteristicTypePowerState", optional=true)
-        public static native NSString PowerState();
-        @GlobalValue(symbol="HMCharacteristicTypeHue", optional=true)
-        public static native NSString Hue();
-        @GlobalValue(symbol="HMCharacteristicTypeSaturation", optional=true)
-        public static native NSString Saturation();
-        @GlobalValue(symbol="HMCharacteristicTypeBrightness", optional=true)
-        public static native NSString Brightness();
-        @GlobalValue(symbol="HMCharacteristicTypeTemperatureUnits", optional=true)
-        public static native NSString TemperatureUnits();
-        @GlobalValue(symbol="HMCharacteristicTypeCurrentTemperature", optional=true)
-        public static native NSString CurrentTemperature();
-        @GlobalValue(symbol="HMCharacteristicTypeTargetTemperature", optional=true)
-        public static native NSString TargetTemperature();
-        @GlobalValue(symbol="HMCharacteristicTypeCurrentHeatingCooling", optional=true)
-        public static native NSString CurrentHeatingCooling();
-        @GlobalValue(symbol="HMCharacteristicTypeTargetHeatingCooling", optional=true)
-        public static native NSString TargetHeatingCooling();
-        @GlobalValue(symbol="HMCharacteristicTypeCoolingThreshold", optional=true)
-        public static native NSString CoolingThreshold();
-        @GlobalValue(symbol="HMCharacteristicTypeHeatingThreshold", optional=true)
-        public static native NSString HeatingThreshold();
-        @GlobalValue(symbol="HMCharacteristicTypeCurrentRelativeHumidity", optional=true)
-        public static native NSString CurrentRelativeHumidity();
         @GlobalValue(symbol="HMCharacteristicTypeTargetRelativeHumidity", optional=true)
         public static native NSString TargetRelativeHumidity();
-        @GlobalValue(symbol="HMCharacteristicTypeCurrentDoorState", optional=true)
-        public static native NSString CurrentDoorState();
-        @GlobalValue(symbol="HMCharacteristicTypeTargetDoorState", optional=true)
-        public static native NSString TargetDoorState();
-        @GlobalValue(symbol="HMCharacteristicTypeObstructionDetected", optional=true)
-        public static native NSString ObstructionDetected();
-        @GlobalValue(symbol="HMCharacteristicTypeName", optional=true)
-        public static native NSString Name();
         /**
          * @deprecated Deprecated in iOS 11.0. Use -[HMAccessory manufacturer] instead
          */
@@ -558,14 +526,8 @@ import org.robovm.apple.corelocation.*;
         public static native NSString SerialNumber();
         @GlobalValue(symbol="HMCharacteristicTypeIdentify", optional=true)
         public static native NSString Identify();
-        @GlobalValue(symbol="HMCharacteristicTypeRotationDirection", optional=true)
-        public static native NSString RotationDirection();
-        @GlobalValue(symbol="HMCharacteristicTypeRotationSpeed", optional=true)
-        public static native NSString RotationSpeed();
         @GlobalValue(symbol="HMCharacteristicTypeOutletInUse", optional=true)
         public static native NSString OutletInUse();
-        @GlobalValue(symbol="HMCharacteristicTypeVersion", optional=true)
-        public static native NSString Version();
         @GlobalValue(symbol="HMCharacteristicTypeLogs", optional=true)
         public static native NSString Logs();
         @GlobalValue(symbol="HMCharacteristicTypeAudioFeedback", optional=true)
@@ -579,10 +541,6 @@ import org.robovm.apple.corelocation.*;
         public static native NSString SecuritySystemAlarmType();
         @GlobalValue(symbol="HMCharacteristicTypeMotionDetected", optional=true)
         public static native NSString MotionDetected();
-        @GlobalValue(symbol="HMCharacteristicTypeCurrentLockMechanismState", optional=true)
-        public static native NSString CurrentLockMechanismState();
-        @GlobalValue(symbol="HMCharacteristicTypeTargetLockMechanismState", optional=true)
-        public static native NSString TargetLockMechanismState();
         @GlobalValue(symbol="HMCharacteristicTypeLockMechanismLastKnownAction", optional=true)
         public static native NSString LockMechanismLastKnownAction();
         @GlobalValue(symbol="HMCharacteristicTypeLockManagementControlPoint", optional=true)
@@ -604,11 +562,6 @@ import org.robovm.apple.corelocation.*;
          */
         @GlobalValue(symbol="HMCharacteristicTypeAirQuality", optional=true)
         public static native NSString AirQuality();
-        /**
-         * @since Available in iOS 9.0 and later.
-         */
-        @GlobalValue(symbol="HMCharacteristicTypeBatteryLevel", optional=true)
-        public static native NSString BatteryLevel();
         /**
          * @since Available in iOS 9.0 and later.
          */
@@ -642,11 +595,6 @@ import org.robovm.apple.corelocation.*;
         /**
          * @since Available in iOS 9.0 and later.
          */
-        @GlobalValue(symbol="HMCharacteristicTypeChargingState", optional=true)
-        public static native NSString ChargingState();
-        /**
-         * @since Available in iOS 9.0 and later.
-         */
         @GlobalValue(symbol="HMCharacteristicTypeContactState", optional=true)
         public static native NSString ContactState();
         /**
@@ -654,11 +602,6 @@ import org.robovm.apple.corelocation.*;
          */
         @GlobalValue(symbol="HMCharacteristicTypeCurrentHorizontalTilt", optional=true)
         public static native NSString CurrentHorizontalTilt();
-        /**
-         * @since Available in iOS 9.0 and later.
-         */
-        @GlobalValue(symbol="HMCharacteristicTypeCurrentLightLevel", optional=true)
-        public static native NSString CurrentLightLevel();
         /**
          * @since Available in iOS 9.0 and later.
          */
@@ -693,11 +636,6 @@ import org.robovm.apple.corelocation.*;
         /**
          * @since Available in iOS 9.0 and later.
          */
-        @GlobalValue(symbol="HMCharacteristicTypeInputEvent", optional=true)
-        public static native NSString InputEvent();
-        /**
-         * @since Available in iOS 9.0 and later.
-         */
         @GlobalValue(symbol="HMCharacteristicTypeLeakDetected", optional=true)
         public static native NSString LeakDetected();
         /**
@@ -718,11 +656,6 @@ import org.robovm.apple.corelocation.*;
         /**
          * @since Available in iOS 9.0 and later.
          */
-        @GlobalValue(symbol="HMCharacteristicTypeSmokeDetected", optional=true)
-        public static native NSString SmokeDetected();
-        /**
-         * @since Available in iOS 9.0 and later.
-         */
         @GlobalValue(symbol="HMCharacteristicTypeSoftwareVersion", optional=true)
         public static native NSString SoftwareVersion();
         /**
@@ -740,11 +673,6 @@ import org.robovm.apple.corelocation.*;
          */
         @GlobalValue(symbol="HMCharacteristicTypeStatusJammed", optional=true)
         public static native NSString StatusJammed();
-        /**
-         * @since Available in iOS 9.0 and later.
-         */
-        @GlobalValue(symbol="HMCharacteristicTypeStatusLowBattery", optional=true)
-        public static native NSString StatusLowBattery();
         /**
          * @since Available in iOS 9.0 and later.
          */
@@ -788,11 +716,6 @@ import org.robovm.apple.corelocation.*;
         /**
          * @since Available in iOS 10.0 and later.
          */
-        @GlobalValue(symbol="HMCharacteristicTypeSupportedAudioStreamConfiguration", optional=true)
-        public static native NSString SupportedAudioStreamConfiguration();
-        /**
-         * @since Available in iOS 10.0 and later.
-         */
         @GlobalValue(symbol="HMCharacteristicTypeSupportedRTPConfiguration", optional=true)
         public static native NSString SupportedRTPConfiguration();
         /**
@@ -800,21 +723,6 @@ import org.robovm.apple.corelocation.*;
          */
         @GlobalValue(symbol="HMCharacteristicTypeSelectedStreamConfiguration", optional=true)
         public static native NSString SelectedStreamConfiguration();
-        /**
-         * @since Available in iOS 10.0 and later.
-         */
-        @GlobalValue(symbol="HMCharacteristicTypeVolume", optional=true)
-        public static native NSString Volume();
-        /**
-         * @since Available in iOS 10.0 and later.
-         */
-        @GlobalValue(symbol="HMCharacteristicTypeMute", optional=true)
-        public static native NSString Mute();
-        /**
-         * @since Available in iOS 10.0 and later.
-         */
-        @GlobalValue(symbol="HMCharacteristicTypeNightVision", optional=true)
-        public static native NSString NightVision();
         /**
          * @since Available in iOS 10.0 and later.
          */
@@ -848,11 +756,6 @@ import org.robovm.apple.corelocation.*;
         /**
          * @since Available in iOS 10.2 and later.
          */
-        @GlobalValue(symbol="HMCharacteristicTypeActive", optional=true)
-        public static native NSString Active();
-        /**
-         * @since Available in iOS 10.2 and later.
-         */
         @GlobalValue(symbol="HMCharacteristicTypeCurrentAirPurifierState", optional=true)
         public static native NSString CurrentAirPurifierState();
         /**
@@ -863,28 +766,8 @@ import org.robovm.apple.corelocation.*;
         /**
          * @since Available in iOS 10.2 and later.
          */
-        @GlobalValue(symbol="HMCharacteristicTypeCurrentFanState", optional=true)
-        public static native NSString CurrentFanState();
-        /**
-         * @since Available in iOS 10.2 and later.
-         */
-        @GlobalValue(symbol="HMCharacteristicTypeCurrentHeaterCoolerState", optional=true)
-        public static native NSString CurrentHeaterCoolerState();
-        /**
-         * @since Available in iOS 10.2 and later.
-         */
-        @GlobalValue(symbol="HMCharacteristicTypeCurrentHumidifierDehumidifierState", optional=true)
-        public static native NSString CurrentHumidifierDehumidifierState();
-        /**
-         * @since Available in iOS 10.2 and later.
-         */
         @GlobalValue(symbol="HMCharacteristicTypeCurrentSlatState", optional=true)
         public static native NSString CurrentSlatState();
-        /**
-         * @since Available in iOS 10.2 and later.
-         */
-        @GlobalValue(symbol="HMCharacteristicTypeWaterLevel", optional=true)
-        public static native NSString WaterLevel();
         /**
          * @since Available in iOS 10.2 and later.
          */
@@ -900,31 +783,6 @@ import org.robovm.apple.corelocation.*;
          */
         @GlobalValue(symbol="HMCharacteristicTypeFilterResetChangeIndication", optional=true)
         public static native NSString FilterResetChangeIndication();
-        /**
-         * @since Available in iOS 10.2 and later.
-         */
-        @GlobalValue(symbol="HMCharacteristicTypeLockPhysicalControls", optional=true)
-        public static native NSString LockPhysicalControls();
-        /**
-         * @since Available in iOS 10.2 and later.
-         */
-        @GlobalValue(symbol="HMCharacteristicTypeSwingMode", optional=true)
-        public static native NSString SwingMode();
-        /**
-         * @since Available in iOS 10.2 and later.
-         */
-        @GlobalValue(symbol="HMCharacteristicTypeTargetHeaterCoolerState", optional=true)
-        public static native NSString TargetHeaterCoolerState();
-        /**
-         * @since Available in iOS 10.2 and later.
-         */
-        @GlobalValue(symbol="HMCharacteristicTypeTargetHumidifierDehumidifierState", optional=true)
-        public static native NSString TargetHumidifierDehumidifierState();
-        /**
-         * @since Available in iOS 10.2 and later.
-         */
-        @GlobalValue(symbol="HMCharacteristicTypeTargetFanState", optional=true)
-        public static native NSString TargetFanState();
         /**
          * @since Available in iOS 10.2 and later.
          */
@@ -971,21 +829,6 @@ import org.robovm.apple.corelocation.*;
         @GlobalValue(symbol="HMCharacteristicTypeVolatileOrganicCompoundDensity", optional=true)
         public static native NSString VolatileOrganicCompoundDensity();
         /**
-         * @since Available in iOS 10.2 and later.
-         */
-        @GlobalValue(symbol="HMCharacteristicTypeDehumidifierThreshold", optional=true)
-        public static native NSString DehumidifierThreshold();
-        /**
-         * @since Available in iOS 10.2 and later.
-         */
-        @GlobalValue(symbol="HMCharacteristicTypeHumidifierThreshold", optional=true)
-        public static native NSString HumidifierThreshold();
-        /**
-         * @since Available in iOS 11.0 and later.
-         */
-        @GlobalValue(symbol="HMCharacteristicTypeColorTemperature", optional=true)
-        public static native NSString ColorTemperature();
-        /**
          * @since Available in iOS 11.2 and later.
          */
         @GlobalValue(symbol="HMCharacteristicTypeProgramMode", optional=true)
@@ -1010,11 +853,168 @@ import org.robovm.apple.corelocation.*;
          */
         @GlobalValue(symbol="HMCharacteristicTypeValveType", optional=true)
         public static native NSString ValveType();
+        @GlobalValue(symbol="HMCharacteristicTypeBrightness", optional=true)
+        public static native NSString Brightness();
+        @GlobalValue(symbol="HMCharacteristicTypeCoolingThreshold", optional=true)
+        public static native NSString CoolingThreshold();
+        @GlobalValue(symbol="HMCharacteristicTypeCurrentDoorState", optional=true)
+        public static native NSString CurrentDoorState();
+        @GlobalValue(symbol="HMCharacteristicTypeCurrentHeatingCooling", optional=true)
+        public static native NSString CurrentHeatingCooling();
+        @GlobalValue(symbol="HMCharacteristicTypeCurrentRelativeHumidity", optional=true)
+        public static native NSString CurrentRelativeHumidity();
+        @GlobalValue(symbol="HMCharacteristicTypeCurrentTemperature", optional=true)
+        public static native NSString CurrentTemperature();
+        @GlobalValue(symbol="HMCharacteristicTypeHeatingThreshold", optional=true)
+        public static native NSString HeatingThreshold();
+        @GlobalValue(symbol="HMCharacteristicTypeHue", optional=true)
+        public static native NSString Hue();
+        @GlobalValue(symbol="HMCharacteristicTypeCurrentLockMechanismState", optional=true)
+        public static native NSString CurrentLockMechanismState();
+        @GlobalValue(symbol="HMCharacteristicTypeTargetLockMechanismState", optional=true)
+        public static native NSString TargetLockMechanismState();
+        @GlobalValue(symbol="HMCharacteristicTypeName", optional=true)
+        public static native NSString Name();
+        @GlobalValue(symbol="HMCharacteristicTypeObstructionDetected", optional=true)
+        public static native NSString ObstructionDetected();
+        @GlobalValue(symbol="HMCharacteristicTypePowerState", optional=true)
+        public static native NSString PowerState();
+        @GlobalValue(symbol="HMCharacteristicTypeRotationDirection", optional=true)
+        public static native NSString RotationDirection();
+        @GlobalValue(symbol="HMCharacteristicTypeRotationSpeed", optional=true)
+        public static native NSString RotationSpeed();
+        @GlobalValue(symbol="HMCharacteristicTypeSaturation", optional=true)
+        public static native NSString Saturation();
+        @GlobalValue(symbol="HMCharacteristicTypeTargetDoorState", optional=true)
+        public static native NSString TargetDoorState();
+        @GlobalValue(symbol="HMCharacteristicTypeTargetHeatingCooling", optional=true)
+        public static native NSString TargetHeatingCooling();
+        @GlobalValue(symbol="HMCharacteristicTypeTargetTemperature", optional=true)
+        public static native NSString TargetTemperature();
+        @GlobalValue(symbol="HMCharacteristicTypeTemperatureUnits", optional=true)
+        public static native NSString TemperatureUnits();
+        @GlobalValue(symbol="HMCharacteristicTypeVersion", optional=true)
+        public static native NSString Version();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="HMCharacteristicTypeBatteryLevel", optional=true)
+        public static native NSString BatteryLevel();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="HMCharacteristicTypeCurrentLightLevel", optional=true)
+        public static native NSString CurrentLightLevel();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="HMCharacteristicTypeInputEvent", optional=true)
+        public static native NSString InputEvent();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="HMCharacteristicTypeSmokeDetected", optional=true)
+        public static native NSString SmokeDetected();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="HMCharacteristicTypeStatusLowBattery", optional=true)
+        public static native NSString StatusLowBattery();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="HMCharacteristicTypeChargingState", optional=true)
+        public static native NSString ChargingState();
+        /**
+         * @since Available in iOS 10.2 and later.
+         */
+        @GlobalValue(symbol="HMCharacteristicTypeLockPhysicalControls", optional=true)
+        public static native NSString LockPhysicalControls();
+        /**
+         * @since Available in iOS 10.2 and later.
+         */
+        @GlobalValue(symbol="HMCharacteristicTypeCurrentFanState", optional=true)
+        public static native NSString CurrentFanState();
+        /**
+         * @since Available in iOS 10.2 and later.
+         */
+        @GlobalValue(symbol="HMCharacteristicTypeActive", optional=true)
+        public static native NSString Active();
+        /**
+         * @since Available in iOS 10.2 and later.
+         */
+        @GlobalValue(symbol="HMCharacteristicTypeCurrentHeaterCoolerState", optional=true)
+        public static native NSString CurrentHeaterCoolerState();
+        /**
+         * @since Available in iOS 10.2 and later.
+         */
+        @GlobalValue(symbol="HMCharacteristicTypeTargetHeaterCoolerState", optional=true)
+        public static native NSString TargetHeaterCoolerState();
+        /**
+         * @since Available in iOS 10.2 and later.
+         */
+        @GlobalValue(symbol="HMCharacteristicTypeCurrentHumidifierDehumidifierState", optional=true)
+        public static native NSString CurrentHumidifierDehumidifierState();
+        /**
+         * @since Available in iOS 10.2 and later.
+         */
+        @GlobalValue(symbol="HMCharacteristicTypeTargetHumidifierDehumidifierState", optional=true)
+        public static native NSString TargetHumidifierDehumidifierState();
+        /**
+         * @since Available in iOS 10.2 and later.
+         */
+        @GlobalValue(symbol="HMCharacteristicTypeWaterLevel", optional=true)
+        public static native NSString WaterLevel();
+        /**
+         * @since Available in iOS 10.2 and later.
+         */
+        @GlobalValue(symbol="HMCharacteristicTypeSwingMode", optional=true)
+        public static native NSString SwingMode();
+        /**
+         * @since Available in iOS 10.2 and later.
+         */
+        @GlobalValue(symbol="HMCharacteristicTypeTargetFanState", optional=true)
+        public static native NSString TargetFanState();
+        /**
+         * @since Available in iOS 10.2 and later.
+         */
+        @GlobalValue(symbol="HMCharacteristicTypeDehumidifierThreshold", optional=true)
+        public static native NSString DehumidifierThreshold();
+        /**
+         * @since Available in iOS 10.2 and later.
+         */
+        @GlobalValue(symbol="HMCharacteristicTypeHumidifierThreshold", optional=true)
+        public static native NSString HumidifierThreshold();
+        /**
+         * @since Available in iOS 11.0 and later.
+         */
+        @GlobalValue(symbol="HMCharacteristicTypeColorTemperature", optional=true)
+        public static native NSString ColorTemperature();
         /**
          * @since Available in iOS 11.2 and later.
          */
         @GlobalValue(symbol="HMCharacteristicTypeIsConfigured", optional=true)
         public static native NSString IsConfigured();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="HMCharacteristicTypeSupportedAudioStreamConfiguration", optional=true)
+        public static native NSString SupportedAudioStreamConfiguration();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="HMCharacteristicTypeVolume", optional=true)
+        public static native NSString Volume();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="HMCharacteristicTypeMute", optional=true)
+        public static native NSString Mute();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="HMCharacteristicTypeNightVision", optional=true)
+        public static native NSString NightVision();
         /*</values>*/
     }
 }

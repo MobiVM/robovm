@@ -16,32 +16,19 @@
 package org.robovm.apple.homekit;
 
 /*<imports>*/
-import java.io.*;
-import java.nio.*;
-import java.util.*;
-import org.robovm.objc.*;
-import org.robovm.objc.annotation.*;
-import org.robovm.objc.block.*;
-import org.robovm.rt.*;
-import org.robovm.rt.annotation.*;
-import org.robovm.rt.bro.*;
-import org.robovm.rt.bro.annotation.*;
-import org.robovm.rt.bro.ptr.*;
-import org.robovm.apple.foundation.*;
-import org.robovm.apple.corelocation.*;
+
+import org.robovm.rt.bro.ValuedEnum;
+import org.robovm.rt.bro.annotation.Marshaler;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 10.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/HMCharacteristicValueChargingState/*</name>*/ implements ValuedEnum {
+public enum /*<name>*/HMCharacteristicValueTargetDoorState/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    None(0L),
-    InProgress(1L),
-    NotChargeable(2L);
+    Open(0L),
+    Closed(1L);
     /*</values>*/
 
     /*<bind>*/
@@ -51,15 +38,15 @@ public enum /*<name>*/HMCharacteristicValueChargingState/*</name>*/ implements V
 
     private final long n;
 
-    private /*<name>*/HMCharacteristicValueChargingState/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/HMCharacteristicValueTargetDoorState/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/HMCharacteristicValueChargingState/*</name>*/ valueOf(long n) {
-        for (/*<name>*/HMCharacteristicValueChargingState/*</name>*/ v : values()) {
+    public static /*<name>*/HMCharacteristicValueTargetDoorState/*</name>*/ valueOf(long n) {
+        for (/*<name>*/HMCharacteristicValueTargetDoorState/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/HMCharacteristicValueChargingState/*</name>*/.class.getName());
+            + /*<name>*/HMCharacteristicValueTargetDoorState/*</name>*/.class.getName());
     }
 }

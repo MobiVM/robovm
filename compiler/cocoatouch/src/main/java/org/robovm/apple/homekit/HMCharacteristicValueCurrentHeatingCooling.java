@@ -32,16 +32,14 @@ import org.robovm.apple.corelocation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 10.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/HMCharacteristicValueChargingState/*</name>*/ implements ValuedEnum {
+public enum /*<name>*/HMCharacteristicValueCurrentHeatingCooling/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    None(0L),
-    InProgress(1L),
-    NotChargeable(2L);
+    Off(0L),
+    Heat(1L),
+    Cool(2L);
     /*</values>*/
 
     /*<bind>*/
@@ -51,15 +49,15 @@ public enum /*<name>*/HMCharacteristicValueChargingState/*</name>*/ implements V
 
     private final long n;
 
-    private /*<name>*/HMCharacteristicValueChargingState/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/HMCharacteristicValueCurrentHeatingCooling/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/HMCharacteristicValueChargingState/*</name>*/ valueOf(long n) {
-        for (/*<name>*/HMCharacteristicValueChargingState/*</name>*/ v : values()) {
+    public static /*<name>*/HMCharacteristicValueCurrentHeatingCooling/*</name>*/ valueOf(long n) {
+        for (/*<name>*/HMCharacteristicValueCurrentHeatingCooling/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/HMCharacteristicValueChargingState/*</name>*/.class.getName());
+            + /*<name>*/HMCharacteristicValueCurrentHeatingCooling/*</name>*/.class.getName());
     }
 }

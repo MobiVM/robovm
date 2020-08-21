@@ -88,23 +88,15 @@ import org.robovm.apple.corelocation.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    public static final HMServiceType Lightbulb = new HMServiceType("Lightbulb");
     public static final HMServiceType Switch = new HMServiceType("Switch");
     public static final HMServiceType Thermostat = new HMServiceType("Thermostat");
-    public static final HMServiceType GarageDoorOpener = new HMServiceType("GarageDoorOpener");
     public static final HMServiceType AccessoryInformation = new HMServiceType("AccessoryInformation");
-    public static final HMServiceType Fan = new HMServiceType("Fan");
     public static final HMServiceType Outlet = new HMServiceType("Outlet");
-    public static final HMServiceType LockMechanism = new HMServiceType("LockMechanism");
     public static final HMServiceType LockManagement = new HMServiceType("LockManagement");
     /**
      * @since Available in iOS 9.0 and later.
      */
     public static final HMServiceType AirQualitySensor = new HMServiceType("AirQualitySensor");
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
-    public static final HMServiceType Battery = new HMServiceType("Battery");
     /**
      * @since Available in iOS 9.0 and later.
      */
@@ -121,10 +113,6 @@ import org.robovm.apple.corelocation.*;
      * @since Available in iOS 9.0 and later.
      */
     public static final HMServiceType Door = new HMServiceType("Door");
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
-    public static final HMServiceType Doorbell = new HMServiceType("Doorbell");
     /**
      * @since Available in iOS 9.0 and later.
      */
@@ -196,19 +184,7 @@ import org.robovm.apple.corelocation.*;
     /**
      * @since Available in iOS 10.2 and later.
      */
-    public static final HMServiceType VentilationFan = new HMServiceType("VentilationFan");
-    /**
-     * @since Available in iOS 10.2 and later.
-     */
     public static final HMServiceType FilterMaintenance = new HMServiceType("FilterMaintenance");
-    /**
-     * @since Available in iOS 10.2 and later.
-     */
-    public static final HMServiceType HeaterCooler = new HMServiceType("HeaterCooler");
-    /**
-     * @since Available in iOS 10.2 and later.
-     */
-    public static final HMServiceType HumidifierDehumidifier = new HMServiceType("HumidifierDehumidifier");
     /**
      * @since Available in iOS 10.2 and later.
      */
@@ -229,9 +205,33 @@ import org.robovm.apple.corelocation.*;
      * @since Available in iOS 11.2 and later.
      */
     public static final HMServiceType Faucet = new HMServiceType("Faucet");
+    public static final HMServiceType Fan = new HMServiceType("Fan");
+    public static final HMServiceType GarageDoorOpener = new HMServiceType("GarageDoorOpener");
+    public static final HMServiceType Lightbulb = new HMServiceType("Lightbulb");
+    public static final HMServiceType LockMechanism = new HMServiceType("LockMechanism");
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    public static final HMServiceType Battery = new HMServiceType("Battery");
+    /**
+     * @since Available in iOS 10.2 and later.
+     */
+    public static final HMServiceType VentilationFan = new HMServiceType("VentilationFan");
+    /**
+     * @since Available in iOS 10.2 and later.
+     */
+    public static final HMServiceType HeaterCooler = new HMServiceType("HeaterCooler");
+    /**
+     * @since Available in iOS 10.2 and later.
+     */
+    public static final HMServiceType HumidifierDehumidifier = new HMServiceType("HumidifierDehumidifier");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final HMServiceType Doorbell = new HMServiceType("Doorbell");
     /*</constants>*/
     
-    private static /*<name>*/HMServiceType/*</name>*/[] values = new /*<name>*/HMServiceType/*</name>*/[] {/*<value_list>*/Lightbulb, Switch, Thermostat, GarageDoorOpener, AccessoryInformation, Fan, Outlet, LockMechanism, LockManagement, AirQualitySensor, Battery, CarbonDioxideSensor, CarbonMonoxideSensor, ContactSensor, Door, Doorbell, HumiditySensor, LeakSensor, LightSensor, MotionSensor, OccupancySensor, SecuritySystem, StatefulProgrammableSwitch, StatelessProgrammableSwitch, SmokeSensor, TemperatureSensor, Window, WindowCovering, CameraRTPStreamManagement, CameraControl, Microphone, Speaker, AirPurifier, VentilationFan, FilterMaintenance, HeaterCooler, HumidifierDehumidifier, Slats, Label, IrrigationSystem, Valve, Faucet/*</value_list>*/};
+    private static /*<name>*/HMServiceType/*</name>*/[] values = new /*<name>*/HMServiceType/*</name>*/[] {/*<value_list>*/Switch, Thermostat, AccessoryInformation, Outlet, LockManagement, AirQualitySensor, CarbonDioxideSensor, CarbonMonoxideSensor, ContactSensor, Door, HumiditySensor, LeakSensor, LightSensor, MotionSensor, OccupancySensor, SecuritySystem, StatefulProgrammableSwitch, StatelessProgrammableSwitch, SmokeSensor, TemperatureSensor, Window, WindowCovering, CameraRTPStreamManagement, CameraControl, Microphone, Speaker, AirPurifier, FilterMaintenance, Slats, Label, IrrigationSystem, Valve, Faucet, Fan, GarageDoorOpener, Lightbulb, LockMechanism, Battery, VentilationFan, HeaterCooler, HumidifierDehumidifier, Doorbell/*</value_list>*/};
     
     /*<name>*/HMServiceType/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -254,22 +254,14 @@ import org.robovm.apple.corelocation.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        @GlobalValue(symbol="HMServiceTypeLightbulb", optional=true)
-        public static native NSString Lightbulb();
         @GlobalValue(symbol="HMServiceTypeSwitch", optional=true)
         public static native NSString Switch();
         @GlobalValue(symbol="HMServiceTypeThermostat", optional=true)
         public static native NSString Thermostat();
-        @GlobalValue(symbol="HMServiceTypeGarageDoorOpener", optional=true)
-        public static native NSString GarageDoorOpener();
         @GlobalValue(symbol="HMServiceTypeAccessoryInformation", optional=true)
         public static native NSString AccessoryInformation();
-        @GlobalValue(symbol="HMServiceTypeFan", optional=true)
-        public static native NSString Fan();
         @GlobalValue(symbol="HMServiceTypeOutlet", optional=true)
         public static native NSString Outlet();
-        @GlobalValue(symbol="HMServiceTypeLockMechanism", optional=true)
-        public static native NSString LockMechanism();
         @GlobalValue(symbol="HMServiceTypeLockManagement", optional=true)
         public static native NSString LockManagement();
         /**
@@ -277,11 +269,6 @@ import org.robovm.apple.corelocation.*;
          */
         @GlobalValue(symbol="HMServiceTypeAirQualitySensor", optional=true)
         public static native NSString AirQualitySensor();
-        /**
-         * @since Available in iOS 9.0 and later.
-         */
-        @GlobalValue(symbol="HMServiceTypeBattery", optional=true)
-        public static native NSString Battery();
         /**
          * @since Available in iOS 9.0 and later.
          */
@@ -302,11 +289,6 @@ import org.robovm.apple.corelocation.*;
          */
         @GlobalValue(symbol="HMServiceTypeDoor", optional=true)
         public static native NSString Door();
-        /**
-         * @since Available in iOS 10.0 and later.
-         */
-        @GlobalValue(symbol="HMServiceTypeDoorbell", optional=true)
-        public static native NSString Doorbell();
         /**
          * @since Available in iOS 9.0 and later.
          */
@@ -395,23 +377,8 @@ import org.robovm.apple.corelocation.*;
         /**
          * @since Available in iOS 10.2 and later.
          */
-        @GlobalValue(symbol="HMServiceTypeVentilationFan", optional=true)
-        public static native NSString VentilationFan();
-        /**
-         * @since Available in iOS 10.2 and later.
-         */
         @GlobalValue(symbol="HMServiceTypeFilterMaintenance", optional=true)
         public static native NSString FilterMaintenance();
-        /**
-         * @since Available in iOS 10.2 and later.
-         */
-        @GlobalValue(symbol="HMServiceTypeHeaterCooler", optional=true)
-        public static native NSString HeaterCooler();
-        /**
-         * @since Available in iOS 10.2 and later.
-         */
-        @GlobalValue(symbol="HMServiceTypeHumidifierDehumidifier", optional=true)
-        public static native NSString HumidifierDehumidifier();
         /**
          * @since Available in iOS 10.2 and later.
          */
@@ -437,6 +404,39 @@ import org.robovm.apple.corelocation.*;
          */
         @GlobalValue(symbol="HMServiceTypeFaucet", optional=true)
         public static native NSString Faucet();
+        @GlobalValue(symbol="HMServiceTypeFan", optional=true)
+        public static native NSString Fan();
+        @GlobalValue(symbol="HMServiceTypeGarageDoorOpener", optional=true)
+        public static native NSString GarageDoorOpener();
+        @GlobalValue(symbol="HMServiceTypeLightbulb", optional=true)
+        public static native NSString Lightbulb();
+        @GlobalValue(symbol="HMServiceTypeLockMechanism", optional=true)
+        public static native NSString LockMechanism();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="HMServiceTypeBattery", optional=true)
+        public static native NSString Battery();
+        /**
+         * @since Available in iOS 10.2 and later.
+         */
+        @GlobalValue(symbol="HMServiceTypeVentilationFan", optional=true)
+        public static native NSString VentilationFan();
+        /**
+         * @since Available in iOS 10.2 and later.
+         */
+        @GlobalValue(symbol="HMServiceTypeHeaterCooler", optional=true)
+        public static native NSString HeaterCooler();
+        /**
+         * @since Available in iOS 10.2 and later.
+         */
+        @GlobalValue(symbol="HMServiceTypeHumidifierDehumidifier", optional=true)
+        public static native NSString HumidifierDehumidifier();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="HMServiceTypeDoorbell", optional=true)
+        public static native NSString Doorbell();
         /*</values>*/
     }
 }
