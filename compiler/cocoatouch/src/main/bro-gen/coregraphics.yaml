@@ -950,6 +950,8 @@ functions:
     CGPDFTagTypeGetName:
         class: CGPDFTagType
         name: getName
+        return_type: String
+        return_marshaler: StringMarshalers.AsUtf8ZMarshaler
 
     (k?CG.*):
         class: CoreGraphics

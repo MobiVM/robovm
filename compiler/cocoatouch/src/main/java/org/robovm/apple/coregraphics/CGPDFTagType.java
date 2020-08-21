@@ -98,7 +98,7 @@ public enum /*<name>*/CGPDFTagType/*</name>*/ implements ValuedEnum {
      * @since Available in iOS 13.0 and later.
      */
     @Bridge(symbol="CGPDFTagTypeGetName", optional=true)
-    public native BytePtr getName();
+    public native @org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsUtf8ZMarshaler.class) String getName();
     /*</methods>*/
 
     private final long n;
