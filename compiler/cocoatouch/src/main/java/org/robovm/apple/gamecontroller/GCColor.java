@@ -35,34 +35,43 @@ import org.robovm.apple.corehaptic.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 9.0 and later.
+ * @since Available in iOS 14.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("GameController") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/GCEventViewController/*</name>*/ 
-    extends /*<extends>*/UIViewController/*</extends>*/
-    /*<implements>*//*</implements>*/ {
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/GCColor/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
-    /*<ptr>*/public static class GCEventViewControllerPtr extends Ptr<GCEventViewController, GCEventViewControllerPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(GCEventViewController.class); }/*</bind>*/
+    /*<ptr>*/public static class GCColorPtr extends Ptr<GCColor, GCColorPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(GCColor.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public GCEventViewController() {}
-    protected GCEventViewController(Handle h, long handle) { super(h, handle); }
-    protected GCEventViewController(SkipInit skipInit) { super(skipInit); }
-    @Method(selector = "initWithNibName:bundle:")
-    public GCEventViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
+    protected GCColor() {}
+    protected GCColor(Handle h, long handle) { super(h, handle); }
+    protected GCColor(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithRed:green:blue:")
+    public GCColor(float red, float green, float blue) { super((SkipInit) null); initObject(init(red, green, blue)); }
     @Method(selector = "initWithCoder:")
-    public GCEventViewController(NSCoder coder) { super(coder); }
+    public GCColor(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "controllerUserInteractionEnabled")
-    public native boolean isControllerUserInteractionEnabled();
-    @Property(selector = "setControllerUserInteractionEnabled:")
-    public native void setControllerUserInteractionEnabled(boolean v);
+    @Property(selector = "red")
+    public native float getRed();
+    @Property(selector = "green")
+    public native float getGreen();
+    @Property(selector = "blue")
+    public native float getBlue();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "initWithRed:green:blue:")
+    protected native @Pointer long init(float red, float green, float blue);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

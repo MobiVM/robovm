@@ -1,19 +1,19 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.robovm.apple.gamekit;
+package org.robovm.apple.gamecontroller;
 
 /*<imports>*/
 import java.io.*;
@@ -28,37 +28,34 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.dispatch.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.corehaptic.*;
 /*</imports>*/
 
 /*<javadoc>*/
+/**
+ * @since Available in iOS 14.0 and later.
+ */
 /*</javadoc>*/
-/*<annotations>*/@Library("GameKit")/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/GameKit/*</name>*/ 
-    extends /*<extends>*/CocoaUtility/*</extends>*/ 
+/*<annotations>*/@Library("GameController") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/GCDeviceCursor/*</name>*/ 
+    extends /*<extends>*/GCControllerDirectionPad/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/
-    /*</ptr>*/
-    /*<bind>*/static { Bro.bind(GameKit.class); }/*</bind>*/
+    /*<ptr>*/public static class GCDeviceCursorPtr extends Ptr<GCDeviceCursor, GCDeviceCursorPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(GCDeviceCursor.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*//*</constructors>*/
-    /*<properties>*//*</properties>*/
+    /*<constructors>*/
+    public GCDeviceCursor() {}
+    protected GCDeviceCursor(Handle h, long handle) { super(h, handle); }
+    protected GCDeviceCursor(SkipInit skipInit) { super(skipInit); }
+    /*</constructors>*/
+    /*<properties>*/
+    
+    /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 12.0. GKGameSession is deprecated, use real-time and turn-based matchmaking APIs instead.
-     */
-    @Deprecated
-    @GlobalValue(symbol="GKGameSessionErrorDomain", optional=true)
-    public static native String Value__GKGameSessionErrorDomain();
-    /**
-     * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 12.0. GKGameSession is deprecated, use real-time and turn-based matchmaking APIs instead.
-     */
-    @Deprecated
-    @GlobalValue(symbol="GKGameSessionErrorDomain", optional=true)
-    public static native void Value__GKGameSessionErrorDomain(String v);
+    
     /*</methods>*/
 }

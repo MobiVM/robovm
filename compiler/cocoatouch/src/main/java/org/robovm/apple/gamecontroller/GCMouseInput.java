@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -34,30 +34,38 @@ import org.robovm.apple.corehaptic.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 14.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("GameController") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/GCControllerAxisInput/*</name>*/ 
-    extends /*<extends>*/GCControllerElement/*</extends>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/GCMouseInput/*</name>*/ 
+    extends /*<extends>*/GCPhysicalInputProfile/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class GCControllerAxisInputPtr extends Ptr<GCControllerAxisInput, GCControllerAxisInputPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(GCControllerAxisInput.class); }/*</bind>*/
+    /*<ptr>*/public static class GCMouseInputPtr extends Ptr<GCMouseInput, GCMouseInputPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(GCMouseInput.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public GCControllerAxisInput() {}
-    protected GCControllerAxisInput(Handle h, long handle) { super(h, handle); }
-    protected GCControllerAxisInput(SkipInit skipInit) { super(skipInit); }
+    public GCMouseInput() {}
+    protected GCMouseInput(Handle h, long handle) { super(h, handle); }
+    protected GCMouseInput(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "valueChangedHandler")
-    public native @Block VoidBlock2<GCControllerAxisInput, Float> getValueChangedHandler();
-    @Property(selector = "setValueChangedHandler:")
-    public native void setValueChangedHandler(@Block VoidBlock2<GCControllerAxisInput, Float> v);
-    @Property(selector = "value")
-    public native float getValue();
-    @Property(selector = "setValue:")
-    public native void setValue(float v);
+    @Property(selector = "mouseMovedHandler")
+    public native @Block VoidBlock3<GCMouseInput, Float, Float> getMouseMovedHandler();
+    @Property(selector = "setMouseMovedHandler:")
+    public native void setMouseMovedHandler(@Block VoidBlock3<GCMouseInput, Float, Float> v);
+    @Property(selector = "scroll")
+    public native GCDeviceCursor getScroll();
+    @Property(selector = "leftButton")
+    public native GCControllerButtonInput getLeftButton();
+    @Property(selector = "rightButton")
+    public native GCControllerButtonInput getRightButton();
+    @Property(selector = "middleButton")
+    public native GCControllerButtonInput getMiddleButton();
+    @Property(selector = "auxiliaryButtons")
+    public native NSArray<GCControllerButtonInput> getAuxiliaryButtons();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

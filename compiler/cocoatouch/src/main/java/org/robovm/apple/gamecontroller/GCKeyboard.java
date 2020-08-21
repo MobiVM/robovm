@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -34,45 +34,50 @@ import org.robovm.apple.corehaptic.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 14.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("GameController") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/GCControllerElement/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/GCKeyboard/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements GCDevice/*</implements>*/ {
 
-    /*<ptr>*/public static class GCControllerElementPtr extends Ptr<GCControllerElement, GCControllerElementPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(GCControllerElement.class); }/*</bind>*/
+    /*<ptr>*/public static class GCKeyboardPtr extends Ptr<GCKeyboard, GCKeyboardPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(GCKeyboard.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public GCControllerElement() {}
-    protected GCControllerElement(Handle h, long handle) { super(h, handle); }
-    protected GCControllerElement(SkipInit skipInit) { super(skipInit); }
+    public GCKeyboard() {}
+    protected GCKeyboard(Handle h, long handle) { super(h, handle); }
+    protected GCKeyboard(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "collection")
-    public native GCControllerElement getCollection();
-    @Property(selector = "isAnalog")
-    public native boolean isAnalog();
-    @Property(selector = "isBoundToSystemGesture")
-    public native boolean isBoundToSystemGesture();
-    @Property(selector = "preferredSystemGestureState")
-    public native GCSystemGestureState getPreferredSystemGestureState();
-    @Property(selector = "setPreferredSystemGestureState:")
-    public native void setPreferredSystemGestureState(GCSystemGestureState v);
-    @Property(selector = "sfSymbolsName")
-    public native String getSfSymbolsName();
-    @Property(selector = "setSfSymbolsName:")
-    public native void setSfSymbolsName(String v);
-    @Property(selector = "localizedName")
-    public native String getLocalizedName();
-    @Property(selector = "setLocalizedName:")
-    public native void setLocalizedName(String v);
     /**
      * @since Available in iOS 14.0 and later.
      */
-    @Property(selector = "aliases")
-    public native NSSet<NSString> getAliases();
+    @Property(selector = "keyboardInput")
+    public native GCKeyboardInput getKeyboardInput();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "coalescedKeyboard")
+    public static native GCKeyboard getCoalescedKeyboard();
+    @Property(selector = "handlerQueue")
+    public native DispatchQueue getHandlerQueue();
+    @Property(selector = "setHandlerQueue:")
+    public native void setHandlerQueue(DispatchQueue v);
+    @Property(selector = "vendorName")
+    public native String getVendorName();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "productCategory")
+    public native String getProductCategory();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "physicalInputProfile")
+    public native GCPhysicalInputProfile getPhysicalInputProfile();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

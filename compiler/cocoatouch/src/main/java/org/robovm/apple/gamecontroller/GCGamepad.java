@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.dispatch.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.corehaptic.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -39,7 +40,7 @@ import org.robovm.apple.uikit.*;
 /*</javadoc>*/
 /*<annotations>*/@Library("GameController") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GCGamepad/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
+    extends /*<extends>*/GCPhysicalInputProfile/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class GCGamepadPtr extends Ptr<GCGamepad, GCGamepadPtr> {}/*</ptr>*/

@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -34,36 +34,33 @@ import org.robovm.apple.corehaptic.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 14.0 and later.
+ */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/GCQuaternion/*</name>*/ 
-    extends /*<extends>*/Struct<GCQuaternion>/*</extends>*/ 
+/*<annotations>*/@Library("GameController") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/GCDualShockGamepad/*</name>*/ 
+    extends /*<extends>*/GCExtendedGamepad/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class GCQuaternionPtr extends Ptr<GCQuaternion, GCQuaternionPtr> {}/*</ptr>*/
-    /*<bind>*/
-    /*</bind>*/
+    /*<ptr>*/public static class GCDualShockGamepadPtr extends Ptr<GCDualShockGamepad, GCDualShockGamepadPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(GCDualShockGamepad.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public GCQuaternion() {}
-    public GCQuaternion(double x, double y, double z, double w) {
-        this.setX(x);
-        this.setY(y);
-        this.setZ(z);
-        this.setW(w);
-    }
+    public GCDualShockGamepad() {}
+    protected GCDualShockGamepad(Handle h, long handle) { super(h, handle); }
+    protected GCDualShockGamepad(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
-    /*<properties>*//*</properties>*/
-    /*<members>*/
-    @StructMember(0) public native double getX();
-    @StructMember(0) public native GCQuaternion setX(double x);
-    @StructMember(1) public native double getY();
-    @StructMember(1) public native GCQuaternion setY(double y);
-    @StructMember(2) public native double getZ();
-    @StructMember(2) public native GCQuaternion setZ(double z);
-    @StructMember(3) public native double getW();
-    @StructMember(3) public native GCQuaternion setW(double w);
-    /*</members>*/
-    /*<methods>*//*</methods>*/
+    /*<properties>*/
+    @Property(selector = "touchpadButton")
+    public native GCControllerButtonInput getTouchpadButton();
+    @Property(selector = "touchpadPrimary")
+    public native GCControllerDirectionPad getTouchpadPrimary();
+    @Property(selector = "touchpadSecondary")
+    public native GCControllerDirectionPad getTouchpadSecondary();
+    /*</properties>*/
+    /*<members>*//*</members>*/
+    /*<methods>*/
+    
+    /*</methods>*/
 }
