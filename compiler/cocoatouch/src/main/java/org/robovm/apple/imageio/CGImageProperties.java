@@ -497,6 +497,11 @@ import org.robovm.apple.coregraphics.*;
          */
         @GlobalValue(symbol="kCGImagePropertyFileContentsDictionary", optional=true)
         public static native CFString FileContentsDictionary();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyWebPDictionary", optional=true)
+        public static native CFString WebPDictionary();
         @GlobalValue(symbol="kCGImagePropertyFileSize", optional=true)
         public static native CFString FileSize();
         @GlobalValue(symbol="kCGImagePropertyPixelHeight", optional=true)
@@ -556,6 +561,36 @@ import org.robovm.apple.coregraphics.*;
          */
         @GlobalValue(symbol="kCGImagePropertyHEICSFrameInfoArray", optional=true)
         public static native CFString HEICSFrameInfoArray();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyWebPLoopCount", optional=true)
+        public static native CFString WebPLoopCount();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyWebPDelayTime", optional=true)
+        public static native CFString WebPDelayTime();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyWebPUnclampedDelayTime", optional=true)
+        public static native CFString WebPUnclampedDelayTime();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyWebPFrameInfoArray", optional=true)
+        public static native CFString WebPFrameInfoArray();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyWebPCanvasPixelWidth", optional=true)
+        public static native CFString WebPCanvasPixelWidth();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyWebPCanvasPixelHeight", optional=true)
+        public static native CFString WebPCanvasPixelHeight();
         /**
          * @since Available in iOS 11.0 and later.
          */
