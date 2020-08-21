@@ -29,6 +29,7 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.coregraphics.*;
+import org.robovm.apple.uniformtypeid.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -50,6 +51,16 @@ import org.robovm.apple.coregraphics.*;
     NSString getParentItemIdentifier();
     @Property(selector = "filename")
     String getFilename();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "contentType")
+    UTType getContentType();
+    /**
+     * @since Available in iOS 11.0 and later.
+     * @deprecated Use contentType
+     */
+    @Deprecated
     @Property(selector = "typeIdentifier")
     String getTypeIdentifier();
     @Property(selector = "capabilities")
@@ -92,11 +103,6 @@ import org.robovm.apple.coregraphics.*;
     NSPersonNameComponents getOwnerNameComponents();
     @Property(selector = "mostRecentEditorNameComponents")
     NSPersonNameComponents getMostRecentEditorNameComponents();
-    /**
-     * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 13.0. itemVersion
-     */
-    @Deprecated
     @Property(selector = "versionIdentifier")
     NSData getVersionIdentifier();
     @Property(selector = "userInfo")
