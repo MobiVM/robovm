@@ -33,48 +33,44 @@ import org.robovm.apple.corefoundation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 12.0 and later.
+ * @since Available in iOS 14.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreMIDI") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MIDICIProfile/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MIDICIDeviceInfo/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
-    /*<ptr>*/public static class MIDICIProfilePtr extends Ptr<MIDICIProfile, MIDICIProfilePtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(MIDICIProfile.class); }/*</bind>*/
+    /*<ptr>*/public static class MIDICIDeviceInfoPtr extends Ptr<MIDICIDeviceInfo, MIDICIDeviceInfoPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(MIDICIDeviceInfo.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected MIDICIProfile() {}
-    protected MIDICIProfile(Handle h, long handle) { super(h, handle); }
-    protected MIDICIProfile(SkipInit skipInit) { super(skipInit); }
-    /**
-     * @since Available in iOS 14.0 and later.
-     */
-    @Method(selector = "initWithData:")
-    public MIDICIProfile(NSData data) { super((SkipInit) null); initObject(init(data)); }
-    @Method(selector = "initWithData:name:")
-    public MIDICIProfile(NSData data, String inName) { super((SkipInit) null); initObject(init(data, inName)); }
+    protected MIDICIDeviceInfo() {}
+    protected MIDICIDeviceInfo(Handle h, long handle) { super(h, handle); }
+    protected MIDICIDeviceInfo(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithDestination:manufacturer:family:model:revision:")
+    public MIDICIDeviceInfo(MIDIEntity midiDestination, NSData manufacturer, NSData family, NSData modelNumber, NSData revisionLevel) { super((SkipInit) null); initObject(init(midiDestination, manufacturer, family, modelNumber, revisionLevel)); }
     @Method(selector = "initWithCoder:")
-    public MIDICIProfile(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
+    public MIDICIDeviceInfo(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "name")
-    public native String getName();
-    @Property(selector = "profileID")
-    public native NSData getProfileID();
+    @Property(selector = "manufacturerID")
+    public native NSData getManufacturerID();
+    @Property(selector = "family")
+    public native NSData getFamily();
+    @Property(selector = "modelNumber")
+    public native NSData getModelNumber();
+    @Property(selector = "revisionLevel")
+    public native NSData getRevisionLevel();
+    @Property(selector = "midiDestination")
+    public native MIDIEndpoint getMidiDestination();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 14.0 and later.
-     */
-    @Method(selector = "initWithData:")
-    protected native @Pointer long init(NSData data);
-    @Method(selector = "initWithData:name:")
-    protected native @Pointer long init(NSData data, String inName);
+    @Method(selector = "initWithDestination:manufacturer:family:model:revision:")
+    protected native @Pointer long init(MIDIEntity midiDestination, NSData manufacturer, NSData family, NSData modelNumber, NSData revisionLevel);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

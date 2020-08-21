@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -32,35 +32,30 @@ import org.robovm.apple.corefoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
 /*</javadoc>*/
-/*<annotations>*/@Packed(4) @Library("CoreMIDI")/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MIDIPacketList/*</name>*/ 
-    extends /*<extends>*/Struct<MIDIPacketList>/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+/*<annotations>*//*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MIDICIProfileResponderDelegateAdapter/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
+    /*<implements>*/implements MIDICIProfileResponderDelegate/*</implements>*/ {
 
-    /*<ptr>*/public static class MIDIPacketListPtr extends Ptr<MIDIPacketList, MIDIPacketListPtr> {}/*</ptr>*/
-    /*<bind>*/static { Bro.bind(MIDIPacketList.class); }/*</bind>*/
+    /*<ptr>*/
+    /*</ptr>*/
+    /*<bind>*/
+    /*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*//*</constructors>*/
-    /*<properties>*//*</properties>*/
-    /*<members>*/
-    @StructMember(0) public native int getNumPackets();
-    @StructMember(0) public native MIDIPacketList setNumPackets(int numPackets);
-    @StructMember(1) public native @ByVal MIDIPacket getPacket();
-    /*</members>*/
+    /*<properties>*/
+    
+    /*</properties>*/
+    /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @deprecated Use MIDIEventListInit
-     */
-    @Deprecated
-    @Bridge(symbol="MIDIPacketListInit", optional=true)
-    public native MIDIPacket init();
-    /**
-     * @deprecated Use MIDIEventListAdd
-     */
-    @Deprecated
-    @Bridge(symbol="MIDIPacketListAdd", optional=true)
-    protected native MIDIPacket add(@MachineSizedUInt long listSize, MIDIPacket curPacket, long time, @MachineSizedUInt long nData, BytePtr data);
+    @NotImplemented("connectInitiator:withDeviceInfo:")
+    public boolean connectInitiator(NSNumber initiatorMUID, MIDICIDeviceInfo deviceInfo) { return false; }
+    @NotImplemented("initiatorDisconnected:")
+    public void initiatorDisconnected(NSNumber initiatorMUID) {}
+    @NotImplemented("willSetProfile:onChannel:enabled:")
+    public boolean willSetProfile(MIDICIProfile aProfile, byte channel, boolean shouldEnable) { return false; }
+    @NotImplemented("handleDataForProfile:onChannel:data:")
+    public void handleDataForProfile(MIDICIProfile aProfile, byte channel, NSData inData) {}
     /*</methods>*/
 }
