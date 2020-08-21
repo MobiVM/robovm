@@ -34,16 +34,14 @@
 * corehaptic
 * coreimage
 * corelocation
-
-## Framework to process
 * coremedia
 * coremidi
 * coreml
 * coremotion
-* corenfc
 * coreservices
-* corespotlight
+* corenfc
 * coretelephony
+* corespotlight
 * coretext
 * corevideo
 * cryptotokenkit
@@ -64,8 +62,10 @@
 * iad
 * identitylookup
 * identitylookupui
-* imagecapturecore
 * imageio
+* imagecapturecore
+
+## Framework to process
 * intents
 * intentsui
 * iosurface
