@@ -86,6 +86,16 @@ import org.robovm.apple.uikit.*;
      */
     @Property(selector = "iCloudPhotosEnabled")
     public native boolean isICloudPhotosEnabled();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "mediaPresentation")
+    public native ICMediaPresentation getMediaPresentation();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setMediaPresentation:")
+    public native void setMediaPresentation(ICMediaPresentation v);
     @Property(selector = "timeOffset")
     public native double getTimeOffset();
     @Property(selector = "batteryLevelAvailable")

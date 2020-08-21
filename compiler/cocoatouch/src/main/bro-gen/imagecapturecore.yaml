@@ -23,6 +23,7 @@ enums:
     ICReturnPTPDeviceErrorCode: {prefix: ICReturn, merge_with: ICReturnCode}
     ICReturnDownloadErrorCode: {prefix: ICReturn, merge_with: ICReturnCode}
     ICReturnObjectErrorCode: {prefix: ICReturn, merge_with: ICReturnCode}
+    ICMediaPresentation: {} #since 14.0
 typed_enums:
     # here most of typed value enums are converted just into const classes as this framework has complicated generic usage (like generic in generic) and bro-gen fails here
     ICDeleteResult:
@@ -57,7 +58,10 @@ typed_enums:
         class: ICSessionOptions
         type: NSString
         prefix: IC
-
+    ICAuthorizationStatus:
+        enum: ICAuthorizationStatus
+        type: NSString
+        prefix: ICAuthorizationStatus
 classes:
     ICCameraDevice: #since 13.0
         methods:
@@ -87,8 +91,12 @@ classes:
                 name: requestCloseSession
             '-requestEjectWithCompletion:':
                 name: requestEject
-    ICDeviceBrowser: {} #since 13.0
-
+    ICDeviceBrowser: #since 13.0
+        methods:
+            '-requestContentsAuthorizationWithCompletion:':
+                name: requestContentsAuthorization
+            '-requestControlAuthorizationWithCompletion:':
+                name: requestControlAuthorization
 protocols:
     ICCameraDeviceDelegate:
         methods:
