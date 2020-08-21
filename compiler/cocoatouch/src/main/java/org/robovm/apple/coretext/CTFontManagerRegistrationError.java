@@ -55,7 +55,8 @@ public enum /*<name>*/CTFontManagerRegistrationError/*</name>*/ implements Value
     InsufficientInfo(303L),
     CancelledByUser(304L),
     DuplicatedName(305L),
-    InvalidFilePath(306L);
+    InvalidFilePath(306L),
+    UnsupportedScope(307L);
     /*</values>*/
 
     /*<bind>*/
