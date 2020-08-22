@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -42,39 +42,26 @@ import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/UIGestureRecognizerDelegate/*</name>*/ 
-    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/UIPointerInteractionAnimatingAdapter/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
+    /*<implements>*/implements UIPointerInteractionAnimating/*</implements>*/ {
 
     /*<ptr>*/
     /*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
+    /*<constructors>*//*</constructors>*/
     /*<properties>*/
     
     /*</properties>*/
+    /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "gestureRecognizerShouldBegin:")
-    boolean shouldBegin(UIGestureRecognizer gestureRecognizer);
-    @Method(selector = "gestureRecognizer:shouldRecognizeSimultaneouslyWithGestureRecognizer:")
-    boolean shouldRecognizeSimultaneously(UIGestureRecognizer gestureRecognizer, UIGestureRecognizer otherGestureRecognizer);
-    @Method(selector = "gestureRecognizer:shouldRequireFailureOfGestureRecognizer:")
-    boolean shouldRequireFailure(UIGestureRecognizer gestureRecognizer, UIGestureRecognizer otherGestureRecognizer);
-    @Method(selector = "gestureRecognizer:shouldBeRequiredToFailByGestureRecognizer:")
-    boolean shouldBeRequiredToFail(UIGestureRecognizer gestureRecognizer, UIGestureRecognizer otherGestureRecognizer);
-    @Method(selector = "gestureRecognizer:shouldReceiveTouch:")
-    boolean shouldReceiveTouch(UIGestureRecognizer gestureRecognizer, UITouch touch);
-    @Method(selector = "gestureRecognizer:shouldReceivePress:")
-    boolean shouldReceivePress(UIGestureRecognizer gestureRecognizer, UIPress press);
-    /**
-     * @since Available in iOS 13.4 and later.
-     */
-    @Method(selector = "gestureRecognizer:shouldReceiveEvent:")
-    boolean shouldReceiveEvent(UIGestureRecognizer gestureRecognizer, UIEvent event);
+    @NotImplemented("addAnimations:")
+    public void addAnimations(@Block Runnable animations) {}
+    @NotImplemented("addCompletion:")
+    public void addCompletion(@Block VoidBooleanBlock completion) {}
     /*</methods>*/
-    /*<adapter>*/
-    /*</adapter>*/
 }

@@ -43,14 +43,11 @@ import org.robovm.apple.imageio.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
-public final class /*<name>*/ARSessionRunOptions/*</name>*/ extends Bits</*<name>*/ARSessionRunOptions/*</name>*/> {
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+public enum /*<name>*/ARGeometryPrimitiveType/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    public static final ARSessionRunOptions None = new ARSessionRunOptions(0L);
-    public static final ARSessionRunOptions ResetTracking = new ARSessionRunOptions(1L);
-    public static final ARSessionRunOptions RemoveExistingAnchors = new ARSessionRunOptions(2L);
-    public static final ARSessionRunOptions StopTrackedRaycasts = new ARSessionRunOptions(4L);
-    public static final ARSessionRunOptions ResetSceneReconstruction = new ARSessionRunOptions(8L);
+    Line(0L),
+    Triangle(1L);
     /*</values>*/
 
     /*<bind>*/
@@ -58,17 +55,17 @@ public final class /*<name>*/ARSessionRunOptions/*</name>*/ extends Bits</*<name
     /*<constants>*//*</constants>*/
     /*<methods>*//*</methods>*/
 
-    private static final /*<name>*/ARSessionRunOptions/*</name>*/[] values = _values(/*<name>*/ARSessionRunOptions/*</name>*/.class);
+    private final long n;
 
-    public /*<name>*/ARSessionRunOptions/*</name>*/(long value) { super(value); }
-    private /*<name>*/ARSessionRunOptions/*</name>*/(long value, long mask) { super(value, mask); }
-    protected /*<name>*/ARSessionRunOptions/*</name>*/ wrap(long value, long mask) {
-        return new /*<name>*/ARSessionRunOptions/*</name>*/(value, mask);
-    }
-    protected /*<name>*/ARSessionRunOptions/*</name>*/[] _values() {
-        return values;
-    }
-    public static /*<name>*/ARSessionRunOptions/*</name>*/[] values() {
-        return values.clone();
+    private /*<name>*/ARGeometryPrimitiveType/*</name>*/(long n) { this.n = n; }
+    public long value() { return n; }
+    public static /*<name>*/ARGeometryPrimitiveType/*</name>*/ valueOf(long n) {
+        for (/*<name>*/ARGeometryPrimitiveType/*</name>*/ v : values()) {
+            if (v.n == n) {
+                return v;
+            }
+        }
+        throw new IllegalArgumentException("No constant with value " + n + " found in " 
+            + /*<name>*/ARGeometryPrimitiveType/*</name>*/.class.getName());
     }
 }

@@ -97,6 +97,26 @@ import org.robovm.apple.linkpresentation.*;
     public native void setTintColor(UIColor v);
     @Property(selector = "buttonType")
     public native UIButtonType getButtonType();
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    @Property(selector = "isPointerInteractionEnabled")
+    public native boolean isPointerInteractionEnabled();
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    @Property(selector = "setPointerInteractionEnabled:")
+    public native void setPointerInteractionEnabled(boolean v);
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    @Property(selector = "pointerStyleProvider")
+    public native @Block Block3<UIButton, UIPointerEffect, UIPointerShape, UIPointerStyle> getPointerStyleProvider();
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    @Property(selector = "setPointerStyleProvider:")
+    public native void setPointerStyleProvider(@Block Block3<UIButton, UIPointerEffect, UIPointerShape, UIPointerStyle> v);
     @Property(selector = "currentTitle")
     public native String getCurrentTitle();
     @Property(selector = "currentTitleColor")

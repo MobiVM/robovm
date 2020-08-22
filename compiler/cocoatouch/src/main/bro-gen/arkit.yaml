@@ -28,6 +28,9 @@ enums:
     ARCollaborationDataPriority: {}
     ARCoachingGoal: {}
     ARMatteResolution: {}
+    ARSceneReconstruction: {}
+    ARGeometryPrimitiveType: {}
+    ARMeshClassification: {}
 typed_enums:
     ARSkeletonJointName:
         enum: ARSkeletonJointName
@@ -206,7 +209,10 @@ classes:
     ARSkeleton3D: {} #since 13.0
     ARSkeletonDefinition: {} #since 13.0
     ARTrackedRaycast: {} #since 13.0
-
+    ARGeometryElement: {} #since 13.4
+    ARGeometrySource: {} #since 13.4
+    ARMeshAnchor: {} #since 13.4
+    ARMeshGeometry: {} #since 13.4
 protocols:
     ARSCNViewDelegate: #since 11.0
         methods:

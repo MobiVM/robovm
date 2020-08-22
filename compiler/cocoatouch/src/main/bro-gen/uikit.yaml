@@ -265,6 +265,11 @@ enums:
     UIContextMenuInteractionCommitStyle: {} #since 13.0
     UIDatePickerStyle: {} #since 13.4
     UIKeyboardHIDUsage: {} #since 13.4
+    UIAxis: { } #since 13.4
+    UIEventButtonMask: { } #since 13.4
+    UIScrollType: { } #since 13.4
+    UIScrollTypeMask: { } #since 13.4
+    UIPointerEffectTintMode: { } #since 13.4
 #    EXCLUDE1: {exclude: true, first: NSAttachmentCharacter} -- don't exclude it as value will be picked up as constant
 #    EXCLUDE2: {exclude: true, first: UISegmentedControlNoSegment} -- don't exclude it as value will be picked up as constant
     EXCLUDE3_AS_DEPRECATED: {exclude: true, first: NSControlCharacterZeroAdvancementAction}
@@ -433,9 +438,11 @@ classes:
         extends: NSRunLoopMode
 
     # Structs
-    UIEdgeInsets: {}
+    UIEdgeInsets:
+        annotations: [ '@Marshaler(NSString.AsStringMarshaler.class)' ]
     UIFloatRange: {}
-    UIOffset: {}
+    UIOffset:
+        annotations: [ '@Marshaler(NSString.AsStringMarshaler.class)' ]
     NSDirectionalEdgeInsets: {} # since 11.0
 
     NSDataAsset: # DONE
@@ -1382,7 +1389,7 @@ classes:
             '-removeItem:':
                 trim_after_first_colon: true
             '-setTranslatesReferenceBoundsIntoBoundaryWithInsets:':
-                trim_after_first_colon: true
+                name: setTranslatesReferenceBoundsIntoBoundary
             '-addBoundaryWithIdentifier:forPath:':
                 name: addBoundary
             '-addBoundaryWithIdentifier:fromPoint:toPoint:':
@@ -4181,7 +4188,46 @@ classes:
     UIWindowScene: {} #since 13.0
     UIWindowSceneDestructionRequestOptions: {} #since 13.0
     UIKey: {} #since 13.4
-
+    UIPointerEffect: #since 13.4
+        methods:
+            '+effectWithPreview:':
+                name: create
+                constructor: true
+    UIPointerHighlightEffect: {} #since 13.4
+    UIPointerHoverEffect: {} #since 13.4
+    UIPointerInteraction: #since 13.4
+        methods:
+            '-initWithDelegate:':
+                name: init
+    UIPointerLiftEffect: {} #since 13.4
+    UIPointerRegion: #since 13.4
+        methods:
+            '+regionWithRect:identifier:':
+                name: create
+                constructor: true
+    UIPointerRegionRequest: {} #since 13.4
+    UIPointerShape: #since 13.4
+        methods:
+            '+shapeWithPath:':
+                name: create
+                constructor: true
+            '+shapeWithRoundedRect:':
+                name: create
+                constructor: true
+            '+shapeWithRoundedRect:cornerRadius:':
+                name: create
+                constructor: true
+            '+beamWithPreferredLength:axis:':
+                name: create
+                constructor: true
+    UIPointerStyle: #since 13.4
+        methods:
+            '+styleWithEffect:shape:':
+                name: create
+                constructor: true
+            '+styleWithShape:constrainedAxes:':
+                name: create
+                constructor: true
 protocols:
     NSLayoutManagerDelegate: # DONE
         methods:
@@ -4623,6 +4669,8 @@ protocols:
                 name: shouldBeRequiredToFail
             '-gestureRecognizer:shouldReceivePress:':
                 name: shouldReceivePress
+            '-gestureRecognizer:shouldReceiveEvent:':
+                name: shouldReceiveEvent
     UIGuidedAccessRestrictionDelegate: # DONE
         properties:
             'guidedAccessRestrictionIdentifiers':
@@ -5845,6 +5893,17 @@ protocols:
                 name: userDidAcceptCloudKitShare
     UIContextMenuInteractionAnimating: {} #since 13.0
 
+    UIPointerInteractionAnimating: {} #since 13.4
+    UIPointerInteractionDelegate: #since 13.4
+        methods:
+            '-pointerInteraction:regionForRequest:defaultRegion:':
+                name: getRegionForRequest
+            '-pointerInteraction:styleForRegion:':
+                name: getStyleForRegion
+            '-pointerInteraction:willEnterRegion:animator:':
+                name: willEnterRegion
+            '-pointerInteraction:willExitRegion:animator:':
+                name: willExitRegion
 
     # skipped
     UIAppearance: {exclude: true, skip_implements: true, skip_methods: true} # as functionality is implemented in UIAppearance
@@ -5973,6 +6032,9 @@ functions:
     UIImageSymbolWeightForFontWeight:
         class: UIFontWeight
         name: toImageSymbolWeight
+    UIEventButtonMaskForButtonNumber:
+        class: UIEventButtonMask
+        name: fromButtonNumber
 
 
     # Make sure we don't miss any functions if new ones are introduced in a later UIKit
@@ -6672,7 +6734,6 @@ values:
     UISceneErrorDomain:
         class: UISceneErrorCode
         name: getClassDomain
-
 
     # Make sure we don't miss any values if new ones are introduced in a later UIKit
     (NS.*):

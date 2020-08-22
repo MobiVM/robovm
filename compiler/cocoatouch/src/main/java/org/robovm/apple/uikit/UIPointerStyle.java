@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -42,39 +42,35 @@ import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 13.4 and later.
+ */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/UIGestureRecognizerDelegate/*</name>*/ 
-    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
+/*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/UIPointerStyle/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/
-    /*</ptr>*/
-    /*<bind>*/
-    /*</bind>*/
+    /*<ptr>*/public static class UIPointerStylePtr extends Ptr<UIPointerStyle, UIPointerStylePtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(UIPointerStyle.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
+    /*<constructors>*/
+    protected UIPointerStyle() {}
+    protected UIPointerStyle(Handle h, long handle) { super(h, handle); }
+    protected UIPointerStyle(SkipInit skipInit) { super(skipInit); }
+    public UIPointerStyle(UIPointerEffect effect, UIPointerShape shape) { super((Handle) null, create(effect, shape)); retain(getHandle()); }
+    public UIPointerStyle(UIPointerShape shape, UIAxis axes) { super((Handle) null, create(shape, axes)); retain(getHandle()); }
+    /*</constructors>*/
     /*<properties>*/
     
     /*</properties>*/
+    /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "gestureRecognizerShouldBegin:")
-    boolean shouldBegin(UIGestureRecognizer gestureRecognizer);
-    @Method(selector = "gestureRecognizer:shouldRecognizeSimultaneouslyWithGestureRecognizer:")
-    boolean shouldRecognizeSimultaneously(UIGestureRecognizer gestureRecognizer, UIGestureRecognizer otherGestureRecognizer);
-    @Method(selector = "gestureRecognizer:shouldRequireFailureOfGestureRecognizer:")
-    boolean shouldRequireFailure(UIGestureRecognizer gestureRecognizer, UIGestureRecognizer otherGestureRecognizer);
-    @Method(selector = "gestureRecognizer:shouldBeRequiredToFailByGestureRecognizer:")
-    boolean shouldBeRequiredToFail(UIGestureRecognizer gestureRecognizer, UIGestureRecognizer otherGestureRecognizer);
-    @Method(selector = "gestureRecognizer:shouldReceiveTouch:")
-    boolean shouldReceiveTouch(UIGestureRecognizer gestureRecognizer, UITouch touch);
-    @Method(selector = "gestureRecognizer:shouldReceivePress:")
-    boolean shouldReceivePress(UIGestureRecognizer gestureRecognizer, UIPress press);
-    /**
-     * @since Available in iOS 13.4 and later.
-     */
-    @Method(selector = "gestureRecognizer:shouldReceiveEvent:")
-    boolean shouldReceiveEvent(UIGestureRecognizer gestureRecognizer, UIEvent event);
+    @Method(selector = "styleWithEffect:shape:")
+    protected static native @Pointer long create(UIPointerEffect effect, UIPointerShape shape);
+    @Method(selector = "styleWithShape:constrainedAxes:")
+    protected static native @Pointer long create(UIPointerShape shape, UIAxis axes);
+    @Method(selector = "hiddenPointerStyle")
+    public static native UIPointerStyle hiddenPointerStyle();
     /*</methods>*/
-    /*<adapter>*/
-    /*</adapter>*/
 }

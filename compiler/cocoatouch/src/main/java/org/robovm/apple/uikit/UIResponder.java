@@ -281,8 +281,14 @@ import org.robovm.apple.linkpresentation.*;
     public native boolean canPerformAction(Selector action, NSObject sender);
     @Method(selector = "targetForAction:withSender:")
     public native NSObject getActionTarget(Selector action, NSObject sender);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
     @Method(selector = "buildMenuWithBuilder:")
     public native void buildMenu(UIMenuBuilder builder);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
     @Method(selector = "validateCommand:")
     public native void validateCommand(UICommand command);
     @Method(selector = "reloadInputViews")

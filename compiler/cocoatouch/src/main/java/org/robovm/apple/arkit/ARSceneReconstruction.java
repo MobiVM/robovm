@@ -44,13 +44,11 @@ import org.robovm.apple.imageio.*;
 
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
-public final class /*<name>*/ARSessionRunOptions/*</name>*/ extends Bits</*<name>*/ARSessionRunOptions/*</name>*/> {
+public final class /*<name>*/ARSceneReconstruction/*</name>*/ extends Bits</*<name>*/ARSceneReconstruction/*</name>*/> {
     /*<values>*/
-    public static final ARSessionRunOptions None = new ARSessionRunOptions(0L);
-    public static final ARSessionRunOptions ResetTracking = new ARSessionRunOptions(1L);
-    public static final ARSessionRunOptions RemoveExistingAnchors = new ARSessionRunOptions(2L);
-    public static final ARSessionRunOptions StopTrackedRaycasts = new ARSessionRunOptions(4L);
-    public static final ARSessionRunOptions ResetSceneReconstruction = new ARSessionRunOptions(8L);
+    public static final ARSceneReconstruction None = new ARSceneReconstruction(0L);
+    public static final ARSceneReconstruction Mesh = new ARSceneReconstruction(1L);
+    public static final ARSceneReconstruction MeshWithClassification = new ARSceneReconstruction(3L);
     /*</values>*/
 
     /*<bind>*/
@@ -58,17 +56,17 @@ public final class /*<name>*/ARSessionRunOptions/*</name>*/ extends Bits</*<name
     /*<constants>*//*</constants>*/
     /*<methods>*//*</methods>*/
 
-    private static final /*<name>*/ARSessionRunOptions/*</name>*/[] values = _values(/*<name>*/ARSessionRunOptions/*</name>*/.class);
+    private static final /*<name>*/ARSceneReconstruction/*</name>*/[] values = _values(/*<name>*/ARSceneReconstruction/*</name>*/.class);
 
-    public /*<name>*/ARSessionRunOptions/*</name>*/(long value) { super(value); }
-    private /*<name>*/ARSessionRunOptions/*</name>*/(long value, long mask) { super(value, mask); }
-    protected /*<name>*/ARSessionRunOptions/*</name>*/ wrap(long value, long mask) {
-        return new /*<name>*/ARSessionRunOptions/*</name>*/(value, mask);
+    public /*<name>*/ARSceneReconstruction/*</name>*/(long value) { super(value); }
+    private /*<name>*/ARSceneReconstruction/*</name>*/(long value, long mask) { super(value, mask); }
+    protected /*<name>*/ARSceneReconstruction/*</name>*/ wrap(long value, long mask) {
+        return new /*<name>*/ARSceneReconstruction/*</name>*/(value, mask);
     }
-    protected /*<name>*/ARSessionRunOptions/*</name>*/[] _values() {
+    protected /*<name>*/ARSceneReconstruction/*</name>*/[] _values() {
         return values;
     }
-    public static /*<name>*/ARSessionRunOptions/*</name>*/[] values() {
+    public static /*<name>*/ARSceneReconstruction/*</name>*/[] values() {
         return values.clone();
     }
 }

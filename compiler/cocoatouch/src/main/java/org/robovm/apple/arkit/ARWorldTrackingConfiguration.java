@@ -168,9 +168,24 @@ import org.robovm.apple.imageio.*;
      */
     @Property(selector = "setUserFaceTrackingEnabled:")
     public native void setUserFaceTrackingEnabled(boolean v);
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    @Property(selector = "sceneReconstruction")
+    public native ARSceneReconstruction getSceneReconstruction();
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    @Property(selector = "setSceneReconstruction:")
+    public native void setSceneReconstruction(ARSceneReconstruction v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    @Method(selector = "supportsSceneReconstruction:")
+    public static native boolean supportsSceneReconstruction(ARSceneReconstruction sceneReconstruction);
     @Method(selector = "new")
     protected static native @Pointer long create();
     /*</methods>*/

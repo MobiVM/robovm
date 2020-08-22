@@ -51,7 +51,19 @@ public enum /*<name>*/UITouchPhase/*</name>*/ implements ValuedEnum {
     Moved(1L),
     Stationary(2L),
     Ended(3L),
-    Cancelled(4L);
+    Cancelled(4L),
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    RegionEntered(5L),
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    RegionMoved(6L),
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    RegionExited(7L);
     /*</values>*/
 
     private final long n;

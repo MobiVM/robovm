@@ -86,7 +86,7 @@ import org.robovm.apple.linkpresentation.*;
     @Method(selector = "removeItem:")
     public native void removeItem(UIDynamicItem item);
     @Method(selector = "setTranslatesReferenceBoundsIntoBoundaryWithInsets:")
-    public native void setTranslatesReferenceBoundsIntoBoundaryWithInsets(@ByVal UIEdgeInsets insets);
+    public native void setTranslatesReferenceBoundsIntoBoundary(@ByVal UIEdgeInsets insets);
     @Method(selector = "addBoundaryWithIdentifier:forPath:")
     public native void addBoundary(NSObject identifier, UIBezierPath bezierPath);
     @Method(selector = "addBoundaryWithIdentifier:fromPoint:toPoint:")

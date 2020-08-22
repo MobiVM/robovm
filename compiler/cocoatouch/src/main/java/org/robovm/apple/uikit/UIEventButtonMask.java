@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -42,39 +42,39 @@ import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 13.4 and later.
+ */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/UIGestureRecognizerDelegate/*</name>*/ 
-    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
+/*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class) @Library("UIKit")/*</annotations>*/
+public final class /*<name>*/UIEventButtonMask/*</name>*/ extends Bits</*<name>*/UIEventButtonMask/*</name>*/> {
+    /*<values>*/
+    public static final UIEventButtonMask None = new UIEventButtonMask(0L);
+    public static final UIEventButtonMask Primary = new UIEventButtonMask(1L);
+    public static final UIEventButtonMask Secondary = new UIEventButtonMask(2L);
+    /*</values>*/
 
-    /*<ptr>*/
-    /*</ptr>*/
-    /*<bind>*/
-    /*</bind>*/
+    /*<bind>*/static { Bro.bind(UIEventButtonMask.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<properties>*/
-    
-    /*</properties>*/
     /*<methods>*/
-    @Method(selector = "gestureRecognizerShouldBegin:")
-    boolean shouldBegin(UIGestureRecognizer gestureRecognizer);
-    @Method(selector = "gestureRecognizer:shouldRecognizeSimultaneouslyWithGestureRecognizer:")
-    boolean shouldRecognizeSimultaneously(UIGestureRecognizer gestureRecognizer, UIGestureRecognizer otherGestureRecognizer);
-    @Method(selector = "gestureRecognizer:shouldRequireFailureOfGestureRecognizer:")
-    boolean shouldRequireFailure(UIGestureRecognizer gestureRecognizer, UIGestureRecognizer otherGestureRecognizer);
-    @Method(selector = "gestureRecognizer:shouldBeRequiredToFailByGestureRecognizer:")
-    boolean shouldBeRequiredToFail(UIGestureRecognizer gestureRecognizer, UIGestureRecognizer otherGestureRecognizer);
-    @Method(selector = "gestureRecognizer:shouldReceiveTouch:")
-    boolean shouldReceiveTouch(UIGestureRecognizer gestureRecognizer, UITouch touch);
-    @Method(selector = "gestureRecognizer:shouldReceivePress:")
-    boolean shouldReceivePress(UIGestureRecognizer gestureRecognizer, UIPress press);
     /**
      * @since Available in iOS 13.4 and later.
      */
-    @Method(selector = "gestureRecognizer:shouldReceiveEvent:")
-    boolean shouldReceiveEvent(UIGestureRecognizer gestureRecognizer, UIEvent event);
+    @Bridge(symbol="UIEventButtonMaskForButtonNumber", optional=true)
+    public static native UIEventButtonMask fromButtonNumber(@MachineSizedSInt long buttonNumber);
     /*</methods>*/
-    /*<adapter>*/
-    /*</adapter>*/
+
+    private static final /*<name>*/UIEventButtonMask/*</name>*/[] values = _values(/*<name>*/UIEventButtonMask/*</name>*/.class);
+
+    public /*<name>*/UIEventButtonMask/*</name>*/(long value) { super(value); }
+    private /*<name>*/UIEventButtonMask/*</name>*/(long value, long mask) { super(value, mask); }
+    protected /*<name>*/UIEventButtonMask/*</name>*/ wrap(long value, long mask) {
+        return new /*<name>*/UIEventButtonMask/*</name>*/(value, mask);
+    }
+    protected /*<name>*/UIEventButtonMask/*</name>*/[] _values() {
+        return values;
+    }
+    public static /*<name>*/UIEventButtonMask/*</name>*/[] values() {
+        return values.clone();
+    }
 }
