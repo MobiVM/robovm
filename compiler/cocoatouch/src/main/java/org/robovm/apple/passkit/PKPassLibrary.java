@@ -135,7 +135,7 @@ import org.robovm.apple.contacts.*;
     public native void openPaymentSetup();
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Use -[PKPassLibrary remoteSecureElementPasses] instead
+     * @deprecated Use -[PKPassLibrary presentSecureElementPass] instead
      */
     @Deprecated
     @Method(selector = "presentPaymentPass:")

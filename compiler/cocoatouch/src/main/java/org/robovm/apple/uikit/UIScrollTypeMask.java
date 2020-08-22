@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -42,43 +42,35 @@ import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 13.4 and later.
+ */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/UIEventType/*</name>*/ implements ValuedEnum {
+/*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
+public final class /*<name>*/UIScrollTypeMask/*</name>*/ extends Bits</*<name>*/UIScrollTypeMask/*</name>*/> {
     /*<values>*/
-    Touches(0L),
-    Motion(1L),
-    RemoteControl(2L),
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
-    Presses(3L),
-    /**
-     * @since Available in iOS 13.4 and later.
-     */
-    Scroll(10L),
-    /**
-     * @since Available in iOS 13.4 and later.
-     */
-    Hover(11L),
-    /**
-     * @since Available in iOS 13.4 and later.
-     */
-    Transform(14L);
+    public static final UIScrollTypeMask None = new UIScrollTypeMask(0L);
+    public static final UIScrollTypeMask Discrete = new UIScrollTypeMask(1L);
+    public static final UIScrollTypeMask Continuous = new UIScrollTypeMask(2L);
+    public static final UIScrollTypeMask All = new UIScrollTypeMask(3L);
     /*</values>*/
 
-    private final long n;
+    /*<bind>*/
+    /*</bind>*/
+    /*<constants>*//*</constants>*/
+    /*<methods>*//*</methods>*/
 
-    private /*<name>*/UIEventType/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/UIEventType/*</name>*/ valueOf(long n) {
-        for (/*<name>*/UIEventType/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/UIEventType/*</name>*/.class.getName());
+    private static final /*<name>*/UIScrollTypeMask/*</name>*/[] values = _values(/*<name>*/UIScrollTypeMask/*</name>*/.class);
+
+    public /*<name>*/UIScrollTypeMask/*</name>*/(long value) { super(value); }
+    private /*<name>*/UIScrollTypeMask/*</name>*/(long value, long mask) { super(value, mask); }
+    protected /*<name>*/UIScrollTypeMask/*</name>*/ wrap(long value, long mask) {
+        return new /*<name>*/UIScrollTypeMask/*</name>*/(value, mask);
+    }
+    protected /*<name>*/UIScrollTypeMask/*</name>*/[] _values() {
+        return values;
+    }
+    public static /*<name>*/UIScrollTypeMask/*</name>*/[] values() {
+        return values.clone();
     }
 }

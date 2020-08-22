@@ -187,6 +187,16 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Property(selector = "setName:")
     public native void setName(String v);
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    @Property(selector = "modifierFlags")
+    public native UIKeyModifierFlags getModifierFlags();
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    @Property(selector = "buttonMask")
+    public native UIEventButtonMask getButtonMask();
     @Property(selector = "setState:")
     public native void setState(UIGestureRecognizerState v);
     /*</properties>*/
@@ -223,6 +233,11 @@ import org.robovm.apple.linkpresentation.*;
     public native boolean shouldRequireFailureOfGestureRecognizer(UIGestureRecognizer otherGestureRecognizer);
     @Method(selector = "shouldBeRequiredToFailByGestureRecognizer:")
     public native boolean shouldBeRequiredToFailByGestureRecognizer(UIGestureRecognizer otherGestureRecognizer);
+    /**
+     * @since Available in iOS 13.4 and later.
+     */
+    @Method(selector = "shouldReceiveEvent:")
+    public native boolean shouldReceiveEvent(UIEvent event);
     @Method(selector = "touchesBegan:withEvent:")
     protected native void touchesBegan(NSSet<UITouch> touches, UIEvent event);
     @Method(selector = "touchesMoved:withEvent:")

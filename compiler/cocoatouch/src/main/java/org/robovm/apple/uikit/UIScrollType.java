@@ -43,54 +43,15 @@ import org.robovm.apple.linkpresentation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 9.0 and later.
+ * @since Available in iOS 13.4 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/UITouchType/*</name>*/ implements ValuedEnum {
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
+public enum /*<name>*/UIScrollType/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    Direct(0L),
-    Indirect(1L),
-    /**
-     * @since Available in iOS 9.1 and later.
-     */
-    Pencil(2L),
-    /**
-     * @since Available in iOS 9.1 and later.
-     */
-    Stylus(2L),
-    /**
-     * @since Available in iOS 13.4 and later.
-     */
-    IndirectPointer(3L);
+    Discrete(0L),
+    Continuous(1L);
     /*</values>*/
-    
-    public static class AsListMarshaler {
-        @SuppressWarnings("unchecked")
-        @MarshalsPointer
-        public static List<UITouchType> toObject(Class<? extends NSObject> cls, long handle, long flags) {
-            NSArray<NSNumber> o = (NSArray<NSNumber>) NSObject.Marshaler.toObject(cls, handle, flags);
-            if (o == null) {
-                return null;
-            }
-            List<UITouchType> list = new ArrayList<>();
-            for (NSNumber n : o) {
-                list.add(UITouchType.valueOf(n.longValue()));
-            }
-            return list;
-        }
-        @MarshalsPointer
-        public static long toNative(List<UITouchType> l, long flags) {
-            if (l == null) {
-                return 0L;
-            }
-            NSArray<NSNumber> array = new NSMutableArray<>();
-            for (UITouchType i : l) {
-                array.add(NSNumber.valueOf(i.value()));
-            }
-            return NSObject.Marshaler.toNative(array, flags);
-        }
-    }
 
     /*<bind>*/
     /*</bind>*/
@@ -99,15 +60,15 @@ public enum /*<name>*/UITouchType/*</name>*/ implements ValuedEnum {
 
     private final long n;
 
-    private /*<name>*/UITouchType/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/UIScrollType/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/UITouchType/*</name>*/ valueOf(long n) {
-        for (/*<name>*/UITouchType/*</name>*/ v : values()) {
+    public static /*<name>*/UIScrollType/*</name>*/ valueOf(long n) {
+        for (/*<name>*/UIScrollType/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/UITouchType/*</name>*/.class.getName());
+            + /*<name>*/UIScrollType/*</name>*/.class.getName());
     }
 }

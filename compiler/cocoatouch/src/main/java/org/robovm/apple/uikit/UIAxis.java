@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -42,43 +42,36 @@ import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 13.4 and later.
+ */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/UIEventType/*</name>*/ implements ValuedEnum {
+/*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
+public final class /*<name>*/UIAxis/*</name>*/ extends Bits</*<name>*/UIAxis/*</name>*/> {
     /*<values>*/
-    Touches(0L),
-    Motion(1L),
-    RemoteControl(2L),
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
-    Presses(3L),
-    /**
-     * @since Available in iOS 13.4 and later.
-     */
-    Scroll(10L),
-    /**
-     * @since Available in iOS 13.4 and later.
-     */
-    Hover(11L),
-    /**
-     * @since Available in iOS 13.4 and later.
-     */
-    Transform(14L);
+    public static final UIAxis None = new UIAxis(0L);
+    public static final UIAxis Neither = new UIAxis(0L);
+    public static final UIAxis Horizontal = new UIAxis(1L);
+    public static final UIAxis Vertical = new UIAxis(2L);
+    public static final UIAxis Both = new UIAxis(3L);
     /*</values>*/
 
-    private final long n;
+    /*<bind>*/
+    /*</bind>*/
+    /*<constants>*//*</constants>*/
+    /*<methods>*//*</methods>*/
 
-    private /*<name>*/UIEventType/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/UIEventType/*</name>*/ valueOf(long n) {
-        for (/*<name>*/UIEventType/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/UIEventType/*</name>*/.class.getName());
+    private static final /*<name>*/UIAxis/*</name>*/[] values = _values(/*<name>*/UIAxis/*</name>*/.class);
+
+    public /*<name>*/UIAxis/*</name>*/(long value) { super(value); }
+    private /*<name>*/UIAxis/*</name>*/(long value, long mask) { super(value, mask); }
+    protected /*<name>*/UIAxis/*</name>*/ wrap(long value, long mask) {
+        return new /*<name>*/UIAxis/*</name>*/(value, mask);
+    }
+    protected /*<name>*/UIAxis/*</name>*/[] _values() {
+        return values;
+    }
+    public static /*<name>*/UIAxis/*</name>*/[] values() {
+        return values.clone();
     }
 }
