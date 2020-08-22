@@ -44,7 +44,7 @@ import org.robovm.apple.linkpresentation.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*/@Library("UIKit")/*</annotations>*/
+/*<annotations>*/@Marshaler(NSString.AsStringMarshaler.class) @Library("UIKit")/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIEdgeInsets/*</name>*/ 
     extends /*<extends>*/Struct<UIEdgeInsets>/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
