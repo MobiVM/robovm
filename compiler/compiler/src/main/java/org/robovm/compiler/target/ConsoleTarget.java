@@ -73,7 +73,7 @@ public class ConsoleTarget extends AbstractTarget {
         
         return createExecutor(launchParameters, new File(dir, 
                 config.getExecutableName()).getAbsolutePath(), 
-                launchParameters.getArguments())
+                launchParameters.getArguments(true))
                 .out(out).err(err).closeOutputStreams(true);
     }
     

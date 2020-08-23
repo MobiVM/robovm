@@ -48,6 +48,7 @@ public class SimLauncherProcess extends Process implements Launcher {
     private final AtomicInteger threadCounter = new AtomicInteger();
     private final Logger log;
     private final DeviceType deviceType;
+    private final String watchAppName;
     private final File wd;
     private final String bundleId;
     private final File appDir;
@@ -62,10 +63,11 @@ public class SimLauncherProcess extends Process implements Launcher {
     public SimLauncherProcess(Logger log, File appDir, String bundleId, IOSSimulatorLaunchParameters launchParameters) {
         this.log = log;
         deviceType = launchParameters.getDeviceType();
+        watchAppName = launchParameters.getPairedWatchAppName();
         wd = launchParameters.getWorkingDirectory();
         this.appDir = appDir;
         this.bundleId = bundleId;
-        this.arguments = new ArrayList<>(launchParameters.getArguments());
+        this.arguments = new ArrayList<>(launchParameters.getArguments(true));
         if (launchParameters.getEnvironment() != null) {
             this.env = new HashMap<>();
             for (Map.Entry<String, String> entry : launchParameters.getEnvironment().entrySet()) {
@@ -90,8 +92,8 @@ public class SimLauncherProcess extends Process implements Launcher {
             public void run() {
                 try {
                     Executor executor;
-
-                    if ("shutdown".equals(deviceType.getState(true).toLowerCase())) {
+                    DeviceType freshState = deviceType.refresh();
+                    if (freshState != null && "shutdown".equals(freshState.getState().toLowerCase())) {
                         log.info("Booting simulator %s", deviceType.getUdid());
                         executor = new Executor(log, "xcrun");
                         executor.args("simctl", "boot", deviceType.getUdid());
@@ -109,6 +111,30 @@ public class SimLauncherProcess extends Process implements Launcher {
                     executor = new Executor(log, "xcrun");
                     executor.args("simctl", "install", deviceType.getUdid(), appDir.getAbsolutePath());
                     executor.exec();
+
+                    // launch and deploy to paired watch simulator
+                    if (watchAppName != null && freshState != null  && freshState.getPair() != null) {
+                        DeviceType watchDeviceType = freshState.getPair();
+                        if ("shutdown".equals(watchDeviceType.getState().toLowerCase())) {
+                            log.info("Booting watch simulator %s", watchDeviceType.getUdid());
+                            executor = new Executor(log, "xcrun");
+                            executor.args("simctl", "boot", watchDeviceType.getUdid());
+                            executor.exec();
+                        }
+
+                        // bringing simulator to front (and showing it if it was just booted)
+                        log.info("Showing watch simulator %s", watchDeviceType.getUdid());
+                        executor = new Executor(log, "open");
+                        executor.args("-a", "Simulator", "--args", "-CurrentDeviceUDID", watchDeviceType.getUdid());
+                        executor.exec();
+
+                        File watchAppDir = new File(appDir, "Watch/" + watchAppName);
+                        log.info("Deploying app %s to watch simulator %s", watchAppDir.getAbsolutePath(),
+                                watchDeviceType.getUdid());
+                        executor = new Executor(log, "xcrun");
+                        executor.args("simctl", "install", watchDeviceType.getUdid(), watchAppDir.getAbsolutePath());
+                        executor.exec();
+                    }
 
                     log.info("Launching app %s on simulator %s", appDir.getAbsolutePath(),
                             deviceType.getUdid());
@@ -147,7 +173,7 @@ public class SimLauncherProcess extends Process implements Launcher {
         this.launcherThread.start();
         return this;
     }
-    
+
     @Override
     public OutputStream getOutputStream() {
         return new NullOutputStream();

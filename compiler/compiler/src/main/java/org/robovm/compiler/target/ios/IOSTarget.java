@@ -22,6 +22,7 @@ import com.dd.plist.NSDictionary;
 import com.dd.plist.NSNumber;
 import com.dd.plist.NSObject;
 import com.dd.plist.NSString;
+import com.dd.plist.PropertyListFormatException;
 import com.dd.plist.PropertyListParser;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
@@ -38,6 +39,7 @@ import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.config.Config;
 import org.robovm.compiler.config.OS;
 import org.robovm.compiler.config.Resource;
+import org.robovm.compiler.config.WatchKitApp;
 import org.robovm.compiler.log.Logger;
 import org.robovm.compiler.target.AbstractTarget;
 import org.robovm.compiler.target.LaunchParameters;
@@ -51,7 +53,9 @@ import org.robovm.libimobiledevice.IDevice;
 import org.robovm.libimobiledevice.InstallationProxyClient.StatusCallback;
 import org.robovm.libimobiledevice.util.AppLauncher;
 import org.robovm.libimobiledevice.util.AppLauncherCallback;
+import org.xml.sax.SAXException;
 
+import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.FileFilter;
 import java.io.FileNotFoundException;
@@ -59,6 +63,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -99,7 +104,7 @@ public class IOSTarget extends AbstractTarget {
     private static File iosSimPath;
 
     private Arch arch;
-    private SDK sdk;    
+    private SDK sdk;
     private File entitlementsPList;
     private SigningIdentity signIdentity;
     private ProvisioningProfile provisioningProfile;
@@ -216,7 +221,7 @@ public class IOSTarget extends AbstractTarget {
         }
                 .stdout(out)
                 .closeOutOnExit(true)
-                .args(launchParameters.getArguments().toArray(new String[0]))
+                .args(launchParameters.getArguments(true).toArray(new String[0]))
                 .env(env)
                 .forward(forwardPort)
                 .appLauncherCallback(callback)
@@ -339,7 +344,7 @@ public class IOSTarget extends AbstractTarget {
             ccArgs.add("-Xlinker");
             ccArgs.add(simEntitlement.getAbsolutePath());
         }
-        
+
         super.doBuild(outFile, ccArgs, objectFiles, libArgs);
     }
 
@@ -361,12 +366,21 @@ public class IOSTarget extends AbstractTarget {
                         + "be unsigned and will not run on unjailbroken devices");
                 codesignApp(SigningIdentity.ADHOC, getOrCreateEntitlementsPList(false, getBundleId()), installDir);
             } else {
+                String appIdPrefix = provisioningProfile.getAppIdPrefix();
+
                 // Copy the provisioning profile
                 copyProvisioningProfile(provisioningProfile, installDir);
                 boolean getTaskAllow = provisioningProfile.getType() == Type.Development;
                 signFrameworks(signIdentity, installDir);
-                provisionAppExtensions(signIdentity, installDir);
-                signAppExtensions(signIdentity, installDir, getTaskAllow);
+                // app extensions
+                provisionAppExtensions(config.getAppExtensions(), signIdentity, installDir);
+                signAppExtensions(signIdentity, installDir, appIdPrefix, getTaskAllow);
+                // watch app
+                if (config.getWatchKitApp() != null) {
+                    provisionWatchApp(signIdentity, installDir);
+                    signWatchApp(signIdentity, installDir, appIdPrefix, getTaskAllow);
+                }
+                // app
                 codesignApp(signIdentity, getOrCreateEntitlementsPList(getTaskAllow, getBundleId()), installDir);
             }
         }
@@ -394,17 +408,25 @@ public class IOSTarget extends AbstractTarget {
         // strip symbols to reduce application size, all debugger symbols converted into globals
         strip(appDir, getExecutable());
 
-        if (isDeviceArch(arch)) {            
+        if (isDeviceArch(arch)) {
             if (config.isIosSkipSigning()) {
                 config.getLogger().warn("Skiping code signing. The resulting app will "
                         + "be unsigned and will not run on unjailbroken devices");
                 codesignApp(SigningIdentity.ADHOC, getOrCreateEntitlementsPList(true, getBundleId()), appDir);
             } else {
+                String appIdPrefix = provisioningProfile.getAppIdPrefix();
+
                 copyProvisioningProfile(provisioningProfile, appDir);
                 boolean getTaskAllow = provisioningProfile.getType() == Type.Development;
                 signFrameworks(signIdentity, appDir);
-                provisionAppExtensions(signIdentity, appDir);
-                signAppExtensions(signIdentity, appDir, getTaskAllow);
+                // app extensions
+                provisionAppExtensions(config.getAppExtensions(), signIdentity, appDir);
+                signAppExtensions(signIdentity, appDir, appIdPrefix, getTaskAllow);
+                // watch app
+                if (config.getWatchKitApp() != null) {
+                    provisionWatchApp(signIdentity, appDir);
+                    signWatchApp(signIdentity, appDir, appIdPrefix, getTaskAllow);
+                }
                 // sign the app
                 codesignApp(signIdentity, getOrCreateEntitlementsPList(getTaskAllow, getBundleId()), appDir);
             }
@@ -412,7 +434,9 @@ public class IOSTarget extends AbstractTarget {
             if (sdk.getVersionCode() >= 0x0B0300) {
                 // code signing of frameworks and app extensions are required since iOS 11.3
                 signFrameworks(SigningIdentity.ADHOC, appDir);
-                signAppExtensions(SigningIdentity.ADHOC, appDir, true);
+                signAppExtensions(SigningIdentity.ADHOC, appDir, null, true);
+                if (config.getWatchKitApp() != null)
+                    signWatchApp(SigningIdentity.ADHOC, appDir, null, true);
             }
             // sign the app
             // NB: it is not required as app can run without it but Xcode does this
@@ -440,36 +464,68 @@ public class IOSTarget extends AbstractTarget {
         }
     }
 
-    private void signAppExtensions(SigningIdentity identity, File appDir, boolean getTaskAllow) throws IOException {
+    private void signAppExtensions(SigningIdentity identity, File appDir, String appIdPrefix, boolean getTaskAllow) throws IOException {
         // sign dynamic frameworks first
         File extensionsDir = new File(appDir, "PlugIns");
         if (extensionsDir.exists() && extensionsDir.isDirectory()) {
             // sign embedded app-extensions
             for (File extension : extensionsDir.listFiles()) {
-                if (extension.isDirectory() && extension.getName().endsWith(".appex")) {
-                    File entitlements = null;
-                    if (provisioningProfile != null) {
-                        String bundleId =  provisioningProfile.getAppIdPrefix() + "." + getBundleId() + "." + extension.getName().replace(".appex", "");
-                        entitlements = createEntitlementForAppEx(getTaskAllow, bundleId);
-                    }
-
-                    // now sign
-                    codesignAppExtension(identity, entitlements, extension);
-                }
+                if (extension.isDirectory() && extension.getName().endsWith(".appex"))
+                    signSingleAppExtension(identity, extension, appIdPrefix, getTaskAllow);
             }
         }
     }
 
+    private void signSingleAppExtension(SigningIdentity identity, File extDir, String appIdPrefix, boolean getTaskAllow) throws IOException {
+        String appExBundleId = null;
+        // NB: appIdPrefix is null for simulator build
+        if (appIdPrefix != null) {
+            // read extension bundle id from plist (id was generated during copy phase up to robovm.xml config)
+            File infoPlistFile = new File(extDir, "Info.plist");
+            try {
+                NSDictionary infoPlist = (NSDictionary) PropertyListParser.parse(infoPlistFile);
+                appExBundleId = infoPlist.get("CFBundleIdentifier").toString();
+            } catch (PropertyListFormatException | SAXException | ParserConfigurationException | ParseException e) {
+                throw new IOException(e);
+            }
+            appExBundleId = appIdPrefix + "." + appExBundleId;
+        }
+        // create entitlements
+        File entitlements = createEntitlementForAppEx(getTaskAllow, appExBundleId);
+
+        // now sign
+        codesignAppExtension(identity, entitlements, extDir);
+    }
+
+    private void signWatchApp(SigningIdentity identity, File appDir, String appIdPrefix, boolean getTaskAllow) throws IOException {
+        // sign watch app
+        WatchKitApp waConfig = config.getWatchKitApp();
+
+        String waName = waConfig.getWatchAppName();
+        File waDir = new File(appDir, "Watch/" + waName);
+        if (!waDir.exists() || !waDir.isDirectory())
+            throw new IllegalStateException("Error while signing WatchApp, watch directory doesn't exist: " + waDir.getAbsolutePath());
+
+        // sign all extension first
+        signAppExtensions(identity, waDir, appIdPrefix, getTaskAllow);
+
+        // sign watch app (same way as app extension)
+        signSingleAppExtension(identity, waDir, appIdPrefix, getTaskAllow);
+    }
+
     /**
-     * generates simple emtitlement plist which is required for AppEx during submit to app store
+     * generates simple entitlement plist which is required for AppEx during submit to app store
+     * @param bundleId -- might be null for simulator
      */
     private File createEntitlementForAppEx(boolean getTaskAllow, String bundleId) throws IOException {
         try {
             File destFile = new File(config.getTmpDir(), "AppExtEntitlements.plist");
-            NSDictionary dict = (NSDictionary) PropertyListParser.parse(IOUtils.toByteArray(getClass().getResourceAsStream(
-                        "/Entitlements.plist")));
-            dict.put("application-identifier", bundleId);
-            dict.put("get-task-allow", getTaskAllow);
+            NSDictionary dict = new NSDictionary();
+            if (bundleId != null)
+                dict.put("application-identifier", bundleId);
+            // xcode uses prefix for simulators entitlements
+            String prefix = isDeviceArch(arch) ? "" : "com.apple.security.";
+            dict.put(prefix + "get-task-allow", getTaskAllow);
             PropertyListParser.saveAsXML(dict, destFile);
             return destFile;
         } catch (IOException e) {
@@ -480,47 +536,90 @@ public class IOSTarget extends AbstractTarget {
     }
 
     /**
-     * finds and copies provisioning profile for AppExtension
-     * @param signIdentity that matches profile
+     * finds and copies provisioning profiles for AppExtensions
+     *
+     * @param extensions   extension information from robovm.xml
+     * @param signIdentity ideantity used to sign application
+     * @param installDir   of application
+     */
+    private void provisionAppExtensions(List<AppExtension> extensions, SigningIdentity signIdentity, File installDir) throws IOException {
+        File pluginsDir = new File(installDir, "PlugIns");
+        if (pluginsDir.exists() && pluginsDir.isDirectory()) {
+            Map<String, AppExtension> extensionsMap = new HashMap<>();
+            extensions.forEach(e -> extensionsMap.put(e.getNameWithExt(".appex"), e));
+
+            // move through all extensions in directory
+            for (File extPath : pluginsDir.listFiles()) {
+                if (!extPath.isDirectory() || !extPath.getName().endsWith(".appex")) {
+                    config.getLogger().info("Skipping not expected file/dir '%s' in PlugIns folder: %s",
+                            extPath.getName(), pluginsDir.getAbsolutePath());
+                    continue;
+                }
+                String name = extPath.getName();
+                AppExtension extension = extensionsMap.get(name);
+                if (extension == null) {
+                    extension = AppExtension.DEFAULT_RULE;
+                    config.getLogger().info("Using default signing rules for app extension " + name);
+                }
+
+                provisionSingleAppExtension(extension, signIdentity, extPath);
+            }
+        }
+    }
+
+    /**
+     * provision single app extension:
+     * - finds and copies profile for it
+     */
+    private void provisionSingleAppExtension(AppExtension extension, SigningIdentity signIdentity, File extPath) throws IOException {
+        if (extension.skipSigning())
+            return;
+
+        // read extension bundle id from plist (id was generated during copy phase up to robovm.xml config)
+        File infoPlistFile = new File(extPath, "Info.plist");
+        String appExBundleId;
+        try {
+            NSDictionary infoPlist = (NSDictionary) PropertyListParser.parse(infoPlistFile);
+            appExBundleId = infoPlist.get("CFBundleIdentifier").toString();
+        } catch (PropertyListFormatException | SAXException | ParserConfigurationException | ParseException e) {
+            throw new IOException(e);
+        }
+
+        ProvisioningProfile appExtProfile;
+        String profileName = extension.getProfile();
+        if (profileName != null) {
+            // profile is specified in robovm.xml
+            appExtProfile = ProvisioningProfile.find(ProvisioningProfile.list(), profileName);
+        } else {
+            // find profile that matches app ext bundle id
+            appExtProfile = ProvisioningProfile.find(ProvisioningProfile.list(), signIdentity, appExBundleId);
+        }
+
+        if (appExtProfile != null) {
+            config.getLogger().info("Copying %s provisioning profile for : %s (%s)",
+                    appExtProfile.getType(),
+                    appExtProfile.getName(),
+                    appExtProfile.getEntitlements().objectForKey("application-identifier"));
+            FileUtils.copyFile(appExtProfile.getFile(), new File(extPath, "embedded.mobileprovision"));
+        } else {
+            throw new RuntimeException("Failed to locate provisioning profile for " + extPath.getName());
+        }
+    }
+
+    /**
+     * provision WatchApplication and its extensions
+     * @param signIdentity used for signing the application
      * @param installDir of application
      */
-    private void provisionAppExtensions(SigningIdentity signIdentity, File installDir) throws IOException {
-        File pluginsDir = new File(installDir, "PlugIns");
+    private void provisionWatchApp(SigningIdentity signIdentity, File installDir) throws IOException {
+        WatchKitApp waConfig = config.getWatchKitApp();
 
-        for (AppExtension extension : config.getAppExtensions()) {
-            // find extension
-            ProvisioningProfile appExtProfile;
-            String profileName = extension.getProfile();
-            if (profileName != null) {
-                // profile is specified in robovm.xml
-                appExtProfile = ProvisioningProfile.find(ProvisioningProfile.list(), profileName);
-            } else {
-                // find profile that matches app ext bundle id
-                String bundleId = getBundleId() + "." + extension.getName();
-                appExtProfile = ProvisioningProfile.find(ProvisioningProfile.list(), signIdentity, bundleId);
-            }
+        // provision app itself
+        File waDir = new File(installDir, "Watch/" + waConfig.getWatchAppName());
+        provisionSingleAppExtension(waConfig.getApp(), signIdentity, waDir);
 
-
-            if (appExtProfile != null) {
-                File extPath = new File(pluginsDir, extension.getName() + ".appex");
-                config.getLogger().info("Copying %s provisioning profile for : %s (%s)",
-                        appExtProfile.getType(),
-                        appExtProfile.getName(),
-                        appExtProfile.getEntitlements().objectForKey("application-identifier"));
-                FileUtils.copyFile(appExtProfile.getFile(), new File(extPath, "embedded.mobileprovision"));
-            } else {
-
-            }
-            if (provisioningProfile == null) {
-                String bundleId = "*";
-                if (config.getIosInfoPList() != null && config.getIosInfoPList().getBundleIdentifier() != null) {
-                    bundleId = config.getIosInfoPList().getBundleIdentifier();
-                }
-                provisioningProfile = ProvisioningProfile.find(ProvisioningProfile.list(), signIdentity, bundleId);
-            }
-
-
-        }
+        // provision plugins
+        provisionAppExtensions(waConfig.getExtensions(), signIdentity, new File(waDir, "/PlugIns" ));
     }
 
     private void codesignApp(SigningIdentity identity, File entitlementsPList, File appDir) throws IOException {
@@ -770,8 +869,8 @@ public class IOSTarget extends AbstractTarget {
                     File stickersExtSupportStub = new File(xcodePath, "Platforms/iPhoneOS.platform/Library/" +
                             "Application Support/MessagesApplicationExtensionStub/MessagesApplicationExtensionStub");
                     if (!stickersExtSupportStub.exists()) {
-                        throw new FileNotFoundException("Stickers support: bi MessagesApplicationStub or MessagesApplicationExtensionStub found in "
-                                + new File(xcodePath, "Platforms/iPhoneOS.platform/Library/Application Support/").getAbsolutePath());
+                        throw new FileNotFoundException("Stickers support: MessagesApplicationExtensionStub not found in "
+                                + stickersExtSupportStub.getAbsolutePath());
                     }
 
                     File stickersExtSupportDestDir = new File(tmpDir, "MessagesApplicationExtensionSupport");
@@ -781,6 +880,21 @@ public class IOSTarget extends AbstractTarget {
                             StandardCopyOption.COPY_ATTRIBUTES);
                 }
             }
+        }
+
+        if (config.getWatchKitApp() != null) {
+            // copy "WatchKitSupport2/WK: for watch kit app
+            config.getLogger().info("Copying support files for WatchKit app extension");
+            File xcodePath = new File(ToolchainUtil.findXcodePath());
+            File wk = new File(xcodePath, "Platforms/WatchOS.platform/Developer/SDKs/WatchOS.sdk/" +
+                    "Library/Application Support/WatchKit/WK");
+            if (!wk.exists()) {
+                throw new FileNotFoundException("WatchKitSupport support not found in " + wk.getAbsolutePath());
+            }
+
+            File watchKitSupport2 = new File(tmpDir, "WatchKitSupport2");
+            watchKitSupport2.mkdir();
+            Files.copy(wk.toPath(), new File(watchKitSupport2, wk.getName()).toPath(), StandardCopyOption.COPY_ATTRIBUTES);
         }
 
         config.getLogger().info("Zipping %s to %s", tmpDir, ipaFile);
@@ -840,6 +954,7 @@ public class IOSTarget extends AbstractTarget {
         return tmpFile;
     }
 
+    @Override
     protected File getAppDir() {
         File dir = null;
         if (!config.isSkipInstall()) {
@@ -891,11 +1006,11 @@ public class IOSTarget extends AbstractTarget {
             dict.put(key, value);
         }
     }
-    
+
     protected void customizeInfoPList(NSDictionary dict) {
         if (isSimulatorArch(arch)) {
             dict.put("CFBundleSupportedPlatforms", new NSArray(new NSString("iPhoneSimulator")));
-        } else {            
+        } else {
             dict.put("CFBundleSupportedPlatforms", new NSArray(new NSString("iPhoneOS")));
             dict.put("DTPlatformVersion", sdk.getPlatformVersion());
             dict.put("DTPlatformBuild", sdk.getPlatformBuild());

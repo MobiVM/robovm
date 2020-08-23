@@ -135,6 +135,8 @@ public class ModuleBuilder {
     }
     
     public void addType(UserType type) {
+        if (!type.hasAlias())
+            throw new IllegalArgumentException("Expected type alias !");
         types.add(type);
     }
     

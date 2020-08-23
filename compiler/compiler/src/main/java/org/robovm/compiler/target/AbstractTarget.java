@@ -16,12 +16,7 @@
  */
 package org.robovm.compiler.target;
 
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -52,6 +47,7 @@ import org.robovm.compiler.config.OS;
 import org.robovm.compiler.config.Resource;
 import org.robovm.compiler.config.Resource.Walker;
 import org.robovm.compiler.config.StripArchivesConfig;
+import org.robovm.compiler.config.WatchKitApp;
 import org.robovm.compiler.util.ToolchainUtil;
 import org.simpleframework.xml.Transient;
 
@@ -225,7 +221,7 @@ public abstract class AbstractTarget implements Target {
             }
         }
 
-        File swiftLibLocation = null;
+        File[] swiftLibLocations = null;
         if (!config.getLibs().isEmpty()) {
             objectFiles = new ArrayList<File>(objectFiles);
             for (Config.Lib lib : config.getLibs()) {
@@ -255,9 +251,10 @@ public abstract class AbstractTarget implements Target {
                     // resolved yet, allow user to specify them in library list
                     // link via -l by removing prefix "lib" and sufix ".dylib"
                     libs.add("-l" + p.substring(3, p.length() - 6));
-                    if (swiftLibLocation == null) {
-                        swiftLibLocation = getSwiftDir(config);
-                        ccArgs.add("-L" + swiftLibLocation.getAbsolutePath());
+                    if (swiftLibLocations == null) {
+                        swiftLibLocations = getSwiftDirs(config);
+                        for (File dir : swiftLibLocations)
+                            ccArgs.add("-L" + dir.getAbsolutePath());
                     }
                 } else if (p.endsWith(".dylib") || p.endsWith(".so")) {
                     libs.add(new File(p).getAbsolutePath());
@@ -288,6 +285,14 @@ public abstract class AbstractTarget implements Target {
             List<String> libs) throws IOException {
 
         ToolchainUtil.link(config, ccArgs, objectFiles, libs, outFile);
+    }
+
+    protected File getAppDir() {
+        if (!config.isSkipInstall()) {
+            return config.getInstallDir();
+        } else {
+            return config.getTmpDir();
+        }
     }
 
     protected String getExecutable() {
@@ -420,21 +425,15 @@ public abstract class AbstractTarget implements Target {
     protected void copyAppExtensions(File destDir) throws IOException {
         File pluginsDir = new File(destDir, "PlugIns");
 
+        List<File> extPaths = config.getAppExtensionPaths();
+        String appBundleId = getBundleId();
         for (AppExtension extensionVo : config.getAppExtensions()) {
-            String extension = extensionVo.getName();
-            File extensionDir = null;
-            for (File path : config.getAppExtensionPaths()) {
-                File extPath = new File(path, extension + ".appex");
-                if (extPath.exists() && extPath.isDirectory()) {
-                    extensionDir = extPath;
-                    break;
-                }
-            }
-
+            String extensionName = extensionVo.getNameWithExt(".appex");
+            File extensionDir = findDirectoryInLocations(extensionName, extPaths);
             if (extensionDir == null)
-                continue;
+                throw new IllegalArgumentException(String.format("Specified app extension `%s` not found in ext paths", extensionVo.getName()));
 
-            config.getLogger().info("Copying app-extension %s from %s to %s", extension, extensionDir, pluginsDir);
+            config.getLogger().info("Copying app-extension %s from %s to %s", extensionName, extensionDir, pluginsDir);
             new Resource(extensionDir).walk(new Walker() {
                 @Override
                 public boolean processDir(Resource resource, File dir, File destDir) throws IOException {
@@ -457,28 +456,137 @@ public abstract class AbstractTarget implements Target {
                 }
             }, pluginsDir);
 
-            // app extension shell extend app id, e.g. if app id = com.sample.app
+            // app extension shall extend app id, e.g. if app id = com.sample.app
             // all app extensions shall have "com.sample.app." as prefix.
             // just override all app extension ids by adding extension name to app id
             // read app ext info.plist
+            updateAppExtensionBundleId(new File(pluginsDir, extensionName), extensionVo, appBundleId);
+        }
+    }
+
+    /**
+     * finds directory in specified location list
+     * @return path to directory or null if not found
+     */
+    protected File findDirectoryInLocations(String dirName, List<File> locations) {
+        for (File path : locations) {
+            File extPath = new File(path, dirName);
+            if (extPath.exists() && extPath.isDirectory())
+                return extPath;
+        }
+
+        return null;
+    }
+
+    /**
+     * updates application extension bundle id
+     * @param extensionPath  directory of extension
+     * @param config         config of app extension
+     * @param parentBundleId bundle id of application (parent)
+     * @return updated bundle ID
+     */
+    protected String updateAppExtensionBundleId(File extensionPath, AppExtension config, String parentBundleId) {
+        // read existing bundle id from Info.plist
+        NSDictionary infoPlist;
+        String appExBundleId;
+        File infoPlistFile = new File(extensionPath, "Info.plist");
+        try {
+            infoPlist = (NSDictionary) PropertyListParser.parse(infoPlistFile);
+            appExBundleId = infoPlist.get("CFBundleIdentifier").toString();
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to read bundle id of extension " + extensionPath);
+        }
+
+        if (config.getSuffix() == null) {
+            // keep existing bundle id, just validate it matches parent pattern
+            if (!appExBundleId.startsWith(parentBundleId + "."))
+                throw new RuntimeException(String.format("AppExtension (%s) shall extend parent bundle(%s) id while skipSigning!",
+                        extensionPath.getName(), parentBundleId));
+        } else if (config.getSuffix() != null) {
+            // update and write back
+            appExBundleId = parentBundleId + "." + config.getSuffix();
             try {
-                File infoPlistFile = new File(pluginsDir, extension + ".appex/Info.plist");
-                NSDictionary infoPlist = (NSDictionary) PropertyListParser.parse(infoPlistFile);
-                String appExBundleId = getBundleId() + "." + extension;
+                infoPlist = (NSDictionary) PropertyListParser.parse(infoPlistFile);
                 infoPlist.put("CFBundleIdentifier", appExBundleId);
                 PropertyListParser.saveAsXML(infoPlist, infoPlistFile);
             } catch (Exception e) {
-                throw new RuntimeException("Failed to read/update bundle id of extension " + extension);
+                throw new RuntimeException("Failed to update bundle id of extension " + extensionPath);
+            }
+        }
+
+        return appExBundleId;
+    }
+
+    /**
+     * Copies watch app and its extensions
+     * @param installDir application install dir
+     */
+    protected void copyWatchApp(File installDir) throws IOException {
+        WatchKitApp waConfig = config.getWatchKitApp();
+        if (waConfig == null)
+            return;
+
+        // just copy entire extensions
+        String waName = waConfig.getWatchAppName();
+        File waSrcDir = findDirectoryInLocations(waName, config.getAppExtensionPaths());
+        if (waSrcDir == null)
+            throw new IllegalArgumentException("WatchApp with name " + waName + " not found in app extension paths!");
+
+        File waDestDir = new File(installDir, "Watch/" + waName);
+        config.getLogger().info("Copying Watch App from %s to %s", waSrcDir, waDestDir);
+        FileUtils.copyDirectory(waSrcDir, waDestDir);
+
+        // update bundle id of application
+        String waKitBundleId = updateAppExtensionBundleId(waDestDir, waConfig.getApp(), getBundleId());
+
+        // update bundle ids of its extension
+        Map<String, AppExtension> extensionsMap = new HashMap<>();
+        waConfig.getExtensions().forEach(e -> extensionsMap.put(e.getNameWithExt(".appex"), e));
+
+        // move through all extensions in directory
+        File pluginsDir = new File(waDestDir, "PlugIns");
+        for (File extPath : pluginsDir.listFiles()) {
+            if (!extPath.isDirectory() || !extPath.getName().endsWith(".appex")) {
+                config.getLogger().info("Skipping not expected file/dir '%s' in PlugIns folder: %s",
+                        extPath.getName(), pluginsDir.getAbsolutePath());
+                continue;
+
+            }
+
+            String name = extPath.getName();
+            AppExtension extension = extensionsMap.get(name);
+            if (extension == null) {
+                extension = AppExtension.DEFAULT_RULE;
+                updateAppExtensionBundleId(extPath, extension, waKitBundleId);
             }
         }
     }
 
-    private boolean isValidSwiftDir(File swiftDir) {
-        // FIXME: simplest criteria is to check for one of core libs
-        return new File(swiftDir, "libswiftCore.dylib").exists();
+    private File locateSwiftLib(File[] swiftDirs, String swiftLib) throws FileNotFoundException {
+        for (File swiftDir : swiftDirs) {
+            File f = new File(swiftDir, swiftLib);
+            if (f.exists())
+                return f;
+        }
+        throw new FileNotFoundException(swiftLib + " is not found in swift paths");
     }
 
-    private File getSwiftDir(Config config) throws IOException {
+    private File[] getSwiftDirs(Config config) throws IOException {
+        List<File> configPaths = config.getSwiftLibPaths();
+        if (!configPaths.isEmpty()) {
+            // swift lib locations are provided in config,
+            String system = getSwiftSystemName(config);
+            List<File> candidates = new ArrayList<>();
+            for (File path : configPaths)
+                candidates.add(new File(path, system));
+            File[] swiftDirs = candidates.toArray(new File[0]);
+            return validateSwiftDirs(swiftDirs);
+        } else {
+            return getDefaultSwiftDirs(config);
+        }
+    }
+
+    private String getSwiftSystemName(Config config) {
         String system;
         if (config.getOs() == OS.ios) {
             if (config.getArch().isArm()) {
@@ -487,29 +595,47 @@ public abstract class AbstractTarget implements Target {
                 system = "iphonesimulator";
             }
         } else {
-            system = "mac";
+            system = "macos";
         }
-        return getSwiftDir(system);
+
+        return system;
     }
 
-    private File getSwiftDir(String system) throws IOException {
+    private File[] getDefaultSwiftDirs(Config config) throws IOException {
+        String system = getSwiftSystemName(config);
+        return getDefaultSwiftDirs(system);
+    }
+
+    private File[] getDefaultSwiftDirs(String system) throws IOException {
         // FIXME: dkimitsa: its a temporal for finding location of swift libraries
         // FIXME: as in XCode 11 these are not under swift subdir anymore (but in swift-5.0).
         // FIXME: while its a workaround and hardcode for specific swift version and proper way of
         // FIXME: finding swift library location to be used
-        String[] versions = new String[]{"swift", "swift-5.0"};
+        String[] versions = new String[]{"swift-5.0", "swift"};
         String xcodePath = ToolchainUtil.findXcodePath();
+        List<File> candidates = new ArrayList<>();
         for (String v: versions) {
             File candidate = new File(xcodePath, "Toolchains/XcodeDefault.xctoolchain/usr/lib/" + v + "/" + system);
-            if (isValidSwiftDir(candidate))
-                return candidate;
+            if (candidate.exists())
+                candidates.add(candidate);
+        }
+        File[] swiftDirs = candidates.toArray(new File[0]);
+        return validateSwiftDirs(swiftDirs);
+    }
+
+    private File[]  validateSwiftDirs(File[] swiftDirs) throws IOException {
+        try {
+            // FIXME: simplest criteria is to check for one of core libs
+            locateSwiftLib(swiftDirs, "libswiftCore.dylib");
+        } catch (Throwable ignored) {
+            throw new IOException("Failed to locate Swift Library directory!");
         }
 
-        throw new IOException("Failed to locate Swift Library directory!");
+        return swiftDirs;
     }
 
 	protected void copySwiftLibs(Collection<String> swiftLibraries, File targetDir, boolean strip) throws IOException {
-		File swiftDir = getSwiftDir(config);
+		File[] swiftDirs = getSwiftDirs(config);
 
 		// dkimitsa: there is hidden dependencies possible between swift libraries.
 		// e.g. one swiftLib has dependency that is not listed in included framework
@@ -520,7 +646,7 @@ public abstract class AbstractTarget implements Target {
 			for (String library : new HashSet<>(libsToResolve)) {
 				libsToResolve.remove(library);
 
-				File swiftLibrary = new File(swiftDir, library);
+				File swiftLibrary = locateSwiftLib(swiftDirs, library);
 				String dependencies = ToolchainUtil.otool(swiftLibrary);
 				Pattern swiftLibraryPattern = Pattern.compile("libswift.+\\.dylib");
 				Matcher matcher = swiftLibraryPattern.matcher(dependencies);
@@ -535,8 +661,8 @@ public abstract class AbstractTarget implements Target {
 		}
 
 		for (String library : extendedSwiftLibraries) {
-			config.getLogger().info("Copying swift lib %s from %s to %s", library, swiftDir, targetDir);
-			File swiftLibrary = new File(swiftDir, library);
+            File swiftLibrary = locateSwiftLib(swiftDirs, library);
+            config.getLogger().info("Copying swift lib %s from %s to %s", library, swiftLibrary.getParent(), targetDir);
 			FileUtils.copyFileToDirectory(swiftLibrary, targetDir);
 
 			// don't strip if libraries goes to SwiftSupport folder
@@ -642,6 +768,7 @@ public abstract class AbstractTarget implements Target {
         copyResources(resourcesDir);
         copyDynamicFrameworks(installDir);
         copyAppExtensions(installDir);
+        copyWatchApp(installDir);
     }
 
     public Process launch(LaunchParameters launchParameters) throws IOException {

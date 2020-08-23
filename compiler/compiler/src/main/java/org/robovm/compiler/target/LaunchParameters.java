@@ -33,7 +33,26 @@ public class LaunchParameters {
     public List<String> getArguments() {
         return arguments;
     }
-    
+
+    public List<String> getArguments(boolean rvmReorder) {
+        if (rvmReorder) {
+            // filter arguments to have all -rvm: to be present in front of any other user specified
+            // otherwise robovm will just stop parsing JVM parameters at first non `-rvm:` one
+            List<String> rvmArgs = new ArrayList<>();
+            List<String> userArgs = new ArrayList<>();
+            for (String arg : arguments) {
+                if (arg.startsWith("-rvm:"))
+                    rvmArgs.add(arg);
+                else
+                    userArgs.add(arg);
+            }
+            rvmArgs.addAll(userArgs);
+            return rvmArgs;
+        } else {
+            return arguments;
+        }
+    }
+
     public void setArguments(List<String> arguments) {
         this.arguments = arguments;
     }

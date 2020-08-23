@@ -25,11 +25,22 @@ import org.robovm.compiler.target.LaunchParameters;
 public class IOSSimulatorLaunchParameters extends LaunchParameters {
     private DeviceType deviceType;
 
+    /// if specified will deploy and launch watch kit app as well
+    private String pairedWatchAppName;
+
     public DeviceType getDeviceType() {
         return deviceType;
     }
 
     public void setDeviceType(DeviceType type) {
         this.deviceType = type;
+    }
+
+    public String getPairedWatchAppName() {
+        return pairedWatchAppName;
+    }
+
+    public void setPairedWatchAppName(String pairedWatchAppName) {
+        this.pairedWatchAppName = pairedWatchAppName;
     }
 }

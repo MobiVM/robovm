@@ -462,9 +462,11 @@ classes:
         extends: NSRunLoopMode
 
     # Structs
-    UIEdgeInsets: {}
+    UIEdgeInsets:
+        annotations: [ '@Marshaler(NSString.AsStringMarshaler.class)' ]
     UIFloatRange: {}
-    UIOffset: {}
+    UIOffset:
+        annotations: [ '@Marshaler(NSString.AsStringMarshaler.class)' ]
     NSDirectionalEdgeInsets: {} # since 11.0
 
     NSDataAsset: # DONE

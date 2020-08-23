@@ -24,21 +24,32 @@ import java.util.List;
  * @version $Id$
  */
 public class StructureConstantBuilder {
-    private final List<Value> values = new ArrayList<Value>();
+    private final List<Value> values = new ArrayList<>();
 
     public StructureConstantBuilder add(Value v) {
         values.add(v);
         return this;
     }
-    
+
     public StructureConstant build() {
+        return build(null);
+    }
+
+    /**
+     * @param typeAlias if specified structure will be created with type alias
+     */
+    public StructureConstant build(String typeAlias) {
         Type[] types = new Type[values.size()];
         int i = 0;
         for (Value v : values) {
             types[i++] = v.getType();
         }
-        return new StructureConstant(new StructureType(types), 
-                values.toArray(new Value[values.size()]));
+
+        if (typeAlias != null) {
+            return new StructureConstant(new StructureType(typeAlias, types), values.toArray(new Value[0]));
+        } else {
+            return new StructureConstant(new StructureType(types), values.toArray(new Value[0]));
+        }
     }
     
 }

@@ -74,7 +74,7 @@ public class InstanceUtils {
     public InstanceUtils(AllDelegates delegates) {
         this.delegates = delegates;
         this.runtimeClassInfoLoader = new RuntimeClassInfoLoader(delegates);
-        this.manipulator = new Manipulator(this);
+        this.manipulator = new Manipulator(this, new Converter());
     }
 
     public RuntimeClassInfoLoader classInfoLoader() {
@@ -789,7 +789,7 @@ public class InstanceUtils {
      * Special subclass for object manipulations
      */
     private static class Manipulator extends ValueManipulator {
-        private Manipulator(InstanceUtils utils) {
+        private Manipulator(InstanceUtils utils, Converter converterInstance) {
             super(
                     fromDevice -> {
                         long ptr = fromDevice.readPointer();
@@ -806,7 +806,7 @@ public class InstanceUtils {
                     (jdwpWriter, o) -> {
                         VmInstance instance = (VmInstance) o;
                         if (instance != null) {
-                            byte typeTag = Converter.jdwpInstanceTag(instance.classInfo(), utils.delegates.state().classInfoLoader());
+                            byte typeTag = converterInstance.jdwpInstanceTag(instance.classInfo(), utils.delegates.state().classInfoLoader());
                             jdwpWriter.writeByte(typeTag);
                             jdwpWriter.writeLong(instance.refId());
                         } else {

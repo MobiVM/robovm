@@ -104,6 +104,8 @@ public class RoboVmRunProfileState extends CommandLineState {
                 if (exactType == null)
                     throw new ExecutionException("Simulator type is not set or is not available anymore!");
                 simParams.setDeviceType(exactType);
+                simParams.setPairedWatchAppName(config.getWatchKitApp() != null && runConfig.simulatorLaunchWatch()
+                        ? config.getWatchKitApp().getWatchAppName() : null);
             }
         }
     }

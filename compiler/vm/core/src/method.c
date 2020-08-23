@@ -1441,13 +1441,18 @@ jboolean rvmLoadNativeLibrary(Env* env, const char* path, Object* classLoader) {
         return TRUE;
     }
 
-    jint (*JNI_OnLoad)(JavaVM*, void*) = rvmFindDynamicLibSymbol(env, lib, "JNI_OnLoad", FALSE);
-    if (JNI_OnLoad) {
-        // TODO: Check that JNI_OnLoad returns a supported JNI version?
-        JNI_OnLoad(&env->vm->javaVM, NULL);
-        if (rvmExceptionOccurred(env)) {
-            releaseNativeLibsLock();
-            return FALSE;
+    if (path) {
+        // do not call JNI_OnLoad for executable image
+        // as rvmLoadNativeLibrary is called in early state when VM is not initialized
+        // completely and rvmInitJNI is not called yet (env is not initialized)
+        jint (*JNI_OnLoad)(JavaVM*, void*) = rvmFindDynamicLibSymbol(env, lib, "JNI_OnLoad", FALSE);
+        if (JNI_OnLoad) {
+            // TODO: Check that JNI_OnLoad returns a supported JNI version?
+            JNI_OnLoad(&env->vm->javaVM, NULL);
+            if (rvmExceptionOccurred(env)) {
+                releaseNativeLibsLock();
+                return FALSE;
+            }
         }
     }
 

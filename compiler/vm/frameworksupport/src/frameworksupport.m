@@ -18,11 +18,32 @@
 #import "jni.h"
 
 static JNIEnv *env;
-const char* __attribute__ ((weak)) _bcFrameworkPreloadClasses = NULL;
+static dispatch_once_t createVmOnce;
 
-__attribute__((constructor))
-static void initializer(int argc, char** argv, char** envp) {
-	static dispatch_once_t createVmOnce;
+const char* __attribute__ ((weak)) _bcFrameworkPreloadClasses = NULL;
+const char* __attribute__ ((weak)) _bcFrameworkSkipJavaVMStartup = NULL;
+
+
+// preloads Custom classes once JVM is initiated
+static void preloadClasses() {
+    // preload classes needed for framework
+    // _bcFrameworkPreloadClasses contains zero terminated strings of classes to preload
+    // it finishes with zero length string
+    if (_bcFrameworkPreloadClasses) {
+        const char* className = _bcFrameworkPreloadClasses;
+        while (*className) {
+            jclass cls = (*env)->FindClass(env, className);
+            if (!cls) {
+                [NSException raise:@"Failed to preload class for framework" format:@"classname = %s", className];
+            }
+            className += strlen(className) + 1;
+        }
+    }
+}
+
+
+// creates JVM
+static void createJavaVm(int argc, char** argv) {
     dispatch_once(&createVmOnce, ^ {
         JavaVMInitArgs vm_args;
         JavaVM *vm;
@@ -36,13 +57,13 @@ static void initializer(int argc, char** argv, char** envp) {
         vm_args.nOptions = argc;
         JavaVMOption options[argc];
         if (argc) {
-        	for (int idx = 0; idx < argc; idx++) {
-				options[idx].optionString = argv[idx];
-				options[idx].extraInfo = NULL;
-        	}
-        	vm_args.options = options;
+            for (int idx = 0; idx < argc; idx++) {
+                options[idx].optionString = argv[idx];
+                options[idx].extraInfo = NULL;
+            }
+            vm_args.options = options;
         } else {
-        	vm_args.options = NULL;
+            vm_args.options = NULL;
         }
 
         res = JNI_CreateJavaVM(&vm, &env, &vm_args);
@@ -50,27 +71,28 @@ static void initializer(int argc, char** argv, char** envp) {
             [NSException raise:@"JNI_CreateJavaVM() failed" format:@"%d", res];
         }
 
-        // preload classes needed for framework
-        // _bcFrameworkPreloadClasses contains zero terminated strings of classes to preload
-        // it finishes with zero length string
-        if (_bcFrameworkPreloadClasses) {
-        	const char* className = _bcFrameworkPreloadClasses;
-        	while (*className) {
-				jclass cls = (*env)->FindClass(env, className);
-				if (!cls) {
-					[NSException raise:@"Failed to preload class for framework" format:@"classname = %s", className];
-				}
-        		className += strlen(className) + 1;
-        	}
-        }
+        preloadClasses();
     });
 }
+
+
+// notification that JV< was initiated externaly, preload classes
+void rvmInitializeFrameworkWithJVM(JavaVM* externalVm, JNIEnv *externalEnv) {
+    dispatch_once(&createVmOnce, ^ {
+        env = externalEnv;
+        preloadClasses();
+    });
+}
+
 
 // deprecated, for compatibility with old code
 NSObject* rvmInstantiateFramework(const char *className) {
 	static dispatch_once_t createFrameworkInstanceOnce;
 	static id instance;
     dispatch_once(&createFrameworkInstanceOnce, ^ {
+        // create JVM if was not created externaly
+        createJavaVm(0, NULL);
+        
         // Lookup the root framework Java class that and call its instantiate() method to obtain Object instance
         char *jvmClassName = strdup(className);
         for (char *p = jvmClassName; *p; p++) {
@@ -113,3 +135,9 @@ NSObject* rvmInstantiateFramework(const char *className) {
     return instance;
 }
 
+__attribute__((constructor))
+static void initializer(int argc, char** argv, char** envp) {
+    // framework loaded, initialize JVM and CustomClasses if not disabled
+    if (!_bcFrameworkSkipJavaVMStartup)
+        createJavaVm(argc, argv);
+}
