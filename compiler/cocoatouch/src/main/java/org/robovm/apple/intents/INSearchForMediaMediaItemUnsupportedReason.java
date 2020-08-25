@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.eventkit.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -45,7 +46,15 @@ public enum /*<name>*/INSearchForMediaMediaItemUnsupportedReason/*</name>*/ impl
     UnsupportedMediaType(3L),
     ExplicitContentSettings(4L),
     CellularDataSettings(5L),
-    RestrictedContent(6L);
+    RestrictedContent(6L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    ServiceUnavailable(7L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    RegionRestriction(8L);
     /*</values>*/
 
     /*<bind>*/

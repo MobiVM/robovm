@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.eventkit.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -49,12 +50,16 @@ import org.robovm.apple.corelocation.*;
     /*<methods>*/
     /**
      * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 13.0. INStartAudioCallIntentIdentifier is deprecated. Please adopt INStartCallIntentIdentifier instead
      */
+    @Deprecated
     @GlobalValue(symbol="INStartAudioCallIntentIdentifier", optional=true)
     public static native String StartAudioCall();
     /**
      * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 13.0. INStartVideoCallIntentIdentifier is deprecated. Please adopt INStartCallIntentIdentifier instead
      */
+    @Deprecated
     @GlobalValue(symbol="INStartVideoCallIntentIdentifier", optional=true)
     public static native String StartVideoCall();
     /**
@@ -62,6 +67,11 @@ import org.robovm.apple.corelocation.*;
      */
     @GlobalValue(symbol="INSearchCallHistoryIntentIdentifier", optional=true)
     public static native String SearchCallHistory();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @GlobalValue(symbol="INStartCallIntentIdentifier", optional=true)
+    public static native String StartCall();
     /**
      * @since Available in iOS 10.0 and later.
      */

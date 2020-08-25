@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.eventkit.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -40,6 +41,9 @@ import org.robovm.apple.corelocation.*;
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Library("Intents")/*</annotations>*/
 public enum /*<name>*/INIntentErrorCode/*</name>*/ implements NSErrorCode {
     /*<values>*/
+    HandlingApplicationExitedUnexpectedly(1312L),
+    HandlingApplicationRequestTimeout(1314L),
+    HandlingNotSupportedOnPlatform(1316L),
     InteractionOperationNotSupported(1900L),
     DonatingInteraction(1901L),
     DeletingAllInteractions(1902L),

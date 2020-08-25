@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.eventkit.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -65,6 +66,18 @@ import org.robovm.apple.corelocation.*;
     public native String getReservationHolderName();
     @Property(selector = "actions")
     public native NSArray<INReservationAction> getActions();
+    /**
+     * @since Available in iOS 14.0 and later.
+     * @deprecated Deprecated in iOS 14.0. Use URL instead
+     */
+    @Deprecated
+    @Property(selector = "url")
+    public native NSURL getUrl();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "URL")
+    public native NSURL getURL();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

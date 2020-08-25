@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.eventkit.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -40,7 +41,7 @@ import org.robovm.apple.corelocation.*;
 /*<annotations>*/@Library("Intents") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/INFile/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class INFilePtr extends Ptr<INFile, INFilePtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(INFile.class); }/*</bind>*/
@@ -51,6 +52,8 @@ import org.robovm.apple.corelocation.*;
     protected INFile(SkipInit skipInit) { super(skipInit); }
     public INFile(NSData data, String filename, String typeIdentifier) { super((Handle) null, create(data, filename, typeIdentifier)); retain(getHandle()); }
     public INFile(NSURL fileURL, String filename, String typeIdentifier) { super((Handle) null, create(fileURL, filename, typeIdentifier)); retain(getHandle()); }
+    @Method(selector = "initWithCoder:")
+    public INFile(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "data")
@@ -63,6 +66,8 @@ import org.robovm.apple.corelocation.*;
     public native String getTypeIdentifier();
     @Property(selector = "fileURL")
     public native NSURL getFileURL();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -70,5 +75,9 @@ import org.robovm.apple.corelocation.*;
     protected static native @Pointer long create(NSData data, String filename, String typeIdentifier);
     @Method(selector = "fileWithFileURL:filename:typeIdentifier:")
     protected static native @Pointer long create(NSURL fileURL, String filename, String typeIdentifier);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

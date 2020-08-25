@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.eventkit.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -92,5 +93,10 @@ import org.robovm.apple.corelocation.*;
      */
     @GlobalValue(symbol="INPersonHandleLabelOther", optional=true)
     public static native NSString Other();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @GlobalValue(symbol="INPersonHandleLabelSchool", optional=true)
+    public static native NSString School();
     /*</methods>*/
 }

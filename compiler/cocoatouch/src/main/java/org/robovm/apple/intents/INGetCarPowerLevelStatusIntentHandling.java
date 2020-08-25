@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.eventkit.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -52,6 +53,16 @@ import org.robovm.apple.corelocation.*;
     /*<methods>*/
     @Method(selector = "handleGetCarPowerLevelStatus:completion:")
     void handleGetCarPowerLevelStatus(INGetCarPowerLevelStatusIntent intent, @Block VoidBlock1<INGetCarPowerLevelStatusIntentResponse> completion);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "startSendingUpdatesForGetCarPowerLevelStatus:toObserver:")
+    void startSendingUpdatesForGetCarPowerLevelStatus(INGetCarPowerLevelStatusIntent intent, INGetCarPowerLevelStatusIntentResponseObserver observer);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "stopSendingUpdatesForGetCarPowerLevelStatus:")
+    void stopSendingUpdatesForGetCarPowerLevelStatus(INGetCarPowerLevelStatusIntent intent);
     @Method(selector = "confirmGetCarPowerLevelStatus:completion:")
     void confirmGetCarPowerLevelStatus(INGetCarPowerLevelStatusIntent intent, @Block VoidBlock1<INGetCarPowerLevelStatusIntentResponse> completion);
     @Method(selector = "resolveCarNameForGetCarPowerLevelStatus:withCompletion:")

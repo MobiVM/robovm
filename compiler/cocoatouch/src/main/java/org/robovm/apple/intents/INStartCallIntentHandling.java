@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.eventkit.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -54,6 +55,11 @@ import org.robovm.apple.corelocation.*;
     void handleStartCall(INStartCallIntent intent, @Block VoidBlock1<INStartCallIntentResponse> completion);
     @Method(selector = "confirmStartCall:completion:")
     void confirmStartCall(INStartCallIntent intent, @Block VoidBlock1<INStartCallIntentResponse> completion);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "resolveCallRecordToCallBackForStartCall:withCompletion:")
+    void resolveCallRecord(INStartCallIntent intent, @Block VoidBlock1<INCallRecordResolutionResult> completion);
     @Method(selector = "resolveDestinationTypeForStartCall:withCompletion:")
     void resolveDestinationType(INStartCallIntent intent, @Block VoidBlock1<INCallDestinationTypeResolutionResult> completion);
     @Method(selector = "resolveContactsForStartCall:withCompletion:")

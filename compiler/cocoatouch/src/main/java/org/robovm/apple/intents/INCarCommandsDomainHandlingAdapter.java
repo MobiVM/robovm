@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.eventkit.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -66,6 +67,16 @@ import org.robovm.apple.corelocation.*;
     public void resolveCarNameForGetCarLockStatus(INGetCarLockStatusIntent intent, @Block VoidBlock1<INSpeakableStringResolutionResult> completion) {}
     @NotImplemented("handleGetCarPowerLevelStatus:completion:")
     public void handleGetCarPowerLevelStatus(INGetCarPowerLevelStatusIntent intent, @Block VoidBlock1<INGetCarPowerLevelStatusIntentResponse> completion) {}
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @NotImplemented("startSendingUpdatesForGetCarPowerLevelStatus:toObserver:")
+    public void startSendingUpdatesForGetCarPowerLevelStatus(INGetCarPowerLevelStatusIntent intent, INGetCarPowerLevelStatusIntentResponseObserver observer) {}
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @NotImplemented("stopSendingUpdatesForGetCarPowerLevelStatus:")
+    public void stopSendingUpdatesForGetCarPowerLevelStatus(INGetCarPowerLevelStatusIntent intent) {}
     @NotImplemented("confirmGetCarPowerLevelStatus:completion:")
     public void confirmGetCarPowerLevelStatus(INGetCarPowerLevelStatusIntent intent, @Block VoidBlock1<INGetCarPowerLevelStatusIntentResponse> completion) {}
     @NotImplemented("resolveCarNameForGetCarPowerLevelStatus:withCompletion:")

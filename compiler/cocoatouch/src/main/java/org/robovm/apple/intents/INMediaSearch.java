@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.eventkit.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -51,13 +52,6 @@ import org.robovm.apple.corelocation.*;
     protected INMediaSearch(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithMediaType:sortOrder:mediaName:artistName:albumName:genreNames:moodNames:releaseDate:reference:mediaIdentifier:")
     public INMediaSearch(INMediaItemType mediaType, INMediaSortOrder sortOrder, String mediaName, String artistName, String albumName, NSArray<NSString> genreNames, NSArray<NSString> moodNames, INDateComponentsRange releaseDate, INMediaReference reference, String mediaIdentifier) { super((SkipInit) null); initObject(init(mediaType, sortOrder, mediaName, artistName, albumName, genreNames, moodNames, releaseDate, reference, mediaIdentifier)); }
-    /**
-     * @since Available in iOS 13.0 and later.
-     * @deprecated Deprecated in iOS 13.0. Use the designated initializer instead
-     */
-    @Deprecated
-    @Method(selector = "initWithMediaType:sortOrder:mediaName:artistName:albumName:genreNames:moodNames:activityNames:releaseDate:reference:mediaIdentifier:")
-    public INMediaSearch(INMediaItemType mediaType, INMediaSortOrder sortOrder, String mediaName, String artistName, String albumName, NSArray<NSString> genreNames, NSArray<NSString> moodNames, NSArray<NSString> activityNames, INDateComponentsRange releaseDate, INMediaReference reference, String mediaIdentifier) { super((SkipInit) null); initObject(init(mediaType, sortOrder, mediaName, artistName, albumName, genreNames, moodNames, activityNames, releaseDate, reference, mediaIdentifier)); }
     @Method(selector = "initWithCoder:")
     public INMediaSearch(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
@@ -96,13 +90,6 @@ import org.robovm.apple.corelocation.*;
     /*<methods>*/
     @Method(selector = "initWithMediaType:sortOrder:mediaName:artistName:albumName:genreNames:moodNames:releaseDate:reference:mediaIdentifier:")
     protected native @Pointer long init(INMediaItemType mediaType, INMediaSortOrder sortOrder, String mediaName, String artistName, String albumName, NSArray<NSString> genreNames, NSArray<NSString> moodNames, INDateComponentsRange releaseDate, INMediaReference reference, String mediaIdentifier);
-    /**
-     * @since Available in iOS 13.0 and later.
-     * @deprecated Deprecated in iOS 13.0. Use the designated initializer instead
-     */
-    @Deprecated
-    @Method(selector = "initWithMediaType:sortOrder:mediaName:artistName:albumName:genreNames:moodNames:activityNames:releaseDate:reference:mediaIdentifier:")
-    protected native @Pointer long init(INMediaItemType mediaType, INMediaSortOrder sortOrder, String mediaName, String artistName, String albumName, NSArray<NSString> genreNames, NSArray<NSString> moodNames, NSArray<NSString> activityNames, INDateComponentsRange releaseDate, INMediaReference reference, String mediaIdentifier);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
