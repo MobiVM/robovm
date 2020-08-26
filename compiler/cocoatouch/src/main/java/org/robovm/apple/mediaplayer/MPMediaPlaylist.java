@@ -53,6 +53,11 @@ import org.robovm.apple.coregraphics.*;
     /*<properties>*/
     @Property(selector = "persistentID")
     public native long getPersistentID();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "cloudGlobalID")
+    public native String getCloudGlobalID();
     @Property(selector = "name")
     public native String getName();
     @Property(selector = "playlistAttributes")

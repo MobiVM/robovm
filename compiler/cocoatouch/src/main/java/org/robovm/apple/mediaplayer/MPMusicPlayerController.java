@@ -155,6 +155,9 @@ import org.robovm.apple.coregraphics.*;
     public static native NSString NowPlayingItemDidChangeNotification();
     @GlobalValue(symbol="MPMusicPlayerControllerVolumeDidChangeNotification", optional=true)
     public static native NSString VolumeDidChangeNotification();
+    /**
+     * @since Available in iOS 10.3 and later.
+     */
     @GlobalValue(symbol="MPMusicPlayerControllerQueueDidChangeNotification", optional=true)
     public static native NSString QueueDidChangeNotification();
     
