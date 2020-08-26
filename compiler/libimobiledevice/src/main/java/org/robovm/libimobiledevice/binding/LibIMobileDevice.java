@@ -166,8 +166,8 @@ public class LibIMobileDevice implements LibIMobileDeviceConstants {
     return LockdowndError.swigToEnum(LibIMobileDeviceJNI.lockdownd_start_service_with_escrow_bag(LockdowndClientRef.getCPtr(client), client, identifier, LockdowndServiceDescriptorStructOut.getCPtr(service), service));
   }
 
-  public static LockdowndError lockdownd_start_session(LockdowndClientRef client, String host_id, StringOut session_id, IntOut ssl_enabled) {
-    return LockdowndError.swigToEnum(LibIMobileDeviceJNI.lockdownd_start_session(LockdowndClientRef.getCPtr(client), client, host_id, StringOut.getCPtr(session_id), session_id, IntOut.getCPtr(ssl_enabled), ssl_enabled));
+  public static LockdowndError lockdownd_start_session(LockdowndClientRef client, String host_id, StringOut session_id, IntOut sslEnabled) {
+    return LockdowndError.swigToEnum(LibIMobileDeviceJNI.lockdownd_start_session(LockdowndClientRef.getCPtr(client), client, host_id, StringOut.getCPtr(session_id), session_id, IntOut.getCPtr(sslEnabled), sslEnabled));
   }
 
   public static LockdowndError lockdownd_stop_session(LockdowndClientRef client, String session_id) {

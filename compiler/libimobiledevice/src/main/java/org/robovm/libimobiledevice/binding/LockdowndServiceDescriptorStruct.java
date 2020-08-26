@@ -21,6 +21,7 @@ public class LockdowndServiceDescriptorStruct {
     return (obj == null) ? 0 : obj.swigCPtr;
   }
 
+  @SuppressWarnings("deprecation")
   protected void finalize() {
     delete();
   }
@@ -49,6 +50,14 @@ public class LockdowndServiceDescriptorStruct {
 
   public boolean getSslEnabled() {
     return LibIMobileDeviceJNI.LockdowndServiceDescriptorStruct_sslEnabled_get(swigCPtr, this);
+  }
+
+  public void setIdentifier(String value) {
+    LibIMobileDeviceJNI.LockdowndServiceDescriptorStruct_identifier_set(swigCPtr, this, value);
+  }
+
+  public String getIdentifier() {
+    return LibIMobileDeviceJNI.LockdowndServiceDescriptorStruct_identifier_get(swigCPtr, this);
   }
 
   public LockdowndServiceDescriptorStruct() {

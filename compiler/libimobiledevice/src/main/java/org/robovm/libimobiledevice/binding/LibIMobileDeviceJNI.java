@@ -117,6 +117,8 @@ public class LibIMobileDeviceJNI {
   public final static native short LockdowndServiceDescriptorStruct_port_get(long jarg1, LockdowndServiceDescriptorStruct jarg1_);
   public final static native void LockdowndServiceDescriptorStruct_sslEnabled_set(long jarg1, LockdowndServiceDescriptorStruct jarg1_, boolean jarg2);
   public final static native boolean LockdowndServiceDescriptorStruct_sslEnabled_get(long jarg1, LockdowndServiceDescriptorStruct jarg1_);
+  public final static native void LockdowndServiceDescriptorStruct_identifier_set(long jarg1, LockdowndServiceDescriptorStruct jarg1_, String jarg2);
+  public final static native String LockdowndServiceDescriptorStruct_identifier_get(long jarg1, LockdowndServiceDescriptorStruct jarg1_);
   public final static native long new_LockdowndServiceDescriptorStruct();
   public final static native void delete_LockdowndServiceDescriptorStruct(long jarg1);
   public final static native int lockdownd_client_new(long jarg1, IDeviceRef jarg1_, long jarg2, LockdowndClientRefOut jarg2_, String jarg3);
