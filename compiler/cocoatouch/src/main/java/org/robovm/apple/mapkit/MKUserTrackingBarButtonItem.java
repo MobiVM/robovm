@@ -63,6 +63,31 @@ import org.robovm.apple.dispatch.*;
     public MKUserTrackingBarButtonItem(UIBarButtonSystemItem systemItem, NSObject target, Selector action) { super(systemItem, target, action); }
     @Method(selector = "initWithCustomView:")
     public MKUserTrackingBarButtonItem(UIView customView) { super(customView); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithBarButtonSystemItem:primaryAction:")
+    public MKUserTrackingBarButtonItem(UIBarButtonSystemItem systemItem, UIAction primaryAction) { super(systemItem, primaryAction); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithPrimaryAction:")
+    public MKUserTrackingBarButtonItem(UIAction primaryAction) { super(primaryAction); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithBarButtonSystemItem:menu:")
+    public MKUserTrackingBarButtonItem(UIBarButtonSystemItem systemItem, UIMenu menu) { super(systemItem, menu); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithTitle:menu:")
+    public MKUserTrackingBarButtonItem(String title, UIMenu menu) { super(title, menu); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithImage:menu:")
+    public MKUserTrackingBarButtonItem(UIImage image, UIMenu menu) { super(image, menu); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "mapView")

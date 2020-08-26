@@ -35,37 +35,24 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 11.0 and later.
- */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/MKAnnotationViewCollisionMode/*</name>*/ implements ValuedEnum {
-    /*<values>*/
-    Rectangle(0L),
-    Circle(1L),
+/*<annotations>*/@Library("MapKit")/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MKPointsOfInterestRequest/*</name>*/ 
+    extends /*<extends>*/CocoaUtility/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
+
+    /*<ptr>*/
+    /*</ptr>*/
+    /*<bind>*/static { Bro.bind(MKPointsOfInterestRequest.class); }/*</bind>*/
+    /*<constants>*//*</constants>*/
+    /*<constructors>*//*</constructors>*/
+    /*<properties>*//*</properties>*/
+    /*<members>*//*</members>*/
+    /*<methods>*/
     /**
      * @since Available in iOS 14.0 and later.
      */
-    None(2L);
-    /*</values>*/
-
-    /*<bind>*/
-    /*</bind>*/
-    /*<constants>*//*</constants>*/
-    /*<methods>*//*</methods>*/
-
-    private final long n;
-
-    private /*<name>*/MKAnnotationViewCollisionMode/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/MKAnnotationViewCollisionMode/*</name>*/ valueOf(long n) {
-        for (/*<name>*/MKAnnotationViewCollisionMode/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/MKAnnotationViewCollisionMode/*</name>*/.class.getName());
-    }
+    @GlobalValue(symbol="MKPointsOfInterestRequestMaxRadius", optional=true)
+    public static native double getMaxRadius();
+    /*</methods>*/
 }

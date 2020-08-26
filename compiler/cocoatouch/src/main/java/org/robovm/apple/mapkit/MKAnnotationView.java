@@ -143,6 +143,26 @@ import org.robovm.apple.dispatch.*;
     @Property(selector = "setDisplayPriority:")
     public native void setDisplayPriority(float v);
     /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "zPriority")
+    public native float getZPriority();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setZPriority:")
+    public native void setZPriority(float v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "selectedZPriority")
+    public native float getSelectedZPriority();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setSelectedZPriority:")
+    public native void setSelectedZPriority(float v);
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @Property(selector = "collisionMode")
