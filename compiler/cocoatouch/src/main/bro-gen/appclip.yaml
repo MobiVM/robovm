@@ -11,6 +11,9 @@ typedefs:
 enums:
     APActivationPayloadErrorCode: {nserror: true} #since 14.0
 
+categories:
+    AppClip@NSUserActivity: {}
+
 classes:
     APActivationPayload: #since 14.0
         methods:
