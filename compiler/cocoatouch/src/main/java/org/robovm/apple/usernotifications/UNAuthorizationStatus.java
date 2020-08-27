@@ -44,7 +44,11 @@ public enum /*<name>*/UNAuthorizationStatus/*</name>*/ implements ValuedEnum {
     /**
      * @since Available in iOS 12.0 and later.
      */
-    Provisional(3L);
+    Provisional(3L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    Ephemeral(4L);
     /*</values>*/
 
     /*<bind>*/
