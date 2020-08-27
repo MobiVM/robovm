@@ -77,6 +77,8 @@ classes:
                 name: startRecording
             '-stopCaptureWithHandler:':
                 name: stopCapture
+            '-stopRecordingWithOutputURL:completionHandler:':
+                name: stopRecording
     RPSystemBroadcastPickerView: {} #since 12.0
 
 protocols:

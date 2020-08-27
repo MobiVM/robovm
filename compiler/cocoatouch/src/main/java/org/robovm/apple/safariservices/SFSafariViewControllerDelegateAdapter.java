@@ -68,5 +68,10 @@ import org.robovm.apple.uikit.*;
      */
     @NotImplemented("safariViewController:initialLoadDidRedirectToURL:")
     public void initialLoadDidRedirectToURL(SFSafariViewController controller, NSURL URL) {}
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @NotImplemented("safariViewControllerWillOpenInBrowser:")
+    public void safariViewControllerWillOpenInBrowser(SFSafariViewController controller) {}
     /*</methods>*/
 }

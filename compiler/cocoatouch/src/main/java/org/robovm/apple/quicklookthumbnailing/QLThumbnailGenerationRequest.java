@@ -55,6 +55,16 @@ import org.robovm.apple.uikit.*;
     public QLThumbnailGenerationRequest(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "contentType")
+    public native org.robovm.apple.uniformtypeid.UTType getContentType();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setContentType:")
+    public native void setContentType(org.robovm.apple.uniformtypeid.UTType v);
     @Property(selector = "minimumDimension")
     public native @MachineSizedFloat double getMinimumDimension();
     @Property(selector = "setMinimumDimension:")
