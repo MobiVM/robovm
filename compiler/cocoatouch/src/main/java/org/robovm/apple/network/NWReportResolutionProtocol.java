@@ -36,13 +36,13 @@ import org.robovm.apple.security.*;
 
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-public enum /*<name>*/NWBrowseState/*</name>*/ implements ValuedEnum {
+public enum /*<name>*/NWReportResolutionProtocol/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    invalid(0L),
-    ready(1L),
-    failed(2L),
-    cancelled(3L),
-    waiting(4L);
+    unknown(0L),
+    udp(1L),
+    tcp(2L),
+    tls(3L),
+    https(4L);
     /*</values>*/
 
     /*<bind>*/
@@ -52,15 +52,15 @@ public enum /*<name>*/NWBrowseState/*</name>*/ implements ValuedEnum {
 
     private final long n;
 
-    private /*<name>*/NWBrowseState/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/NWReportResolutionProtocol/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/NWBrowseState/*</name>*/ valueOf(long n) {
-        for (/*<name>*/NWBrowseState/*</name>*/ v : values()) {
+    public static /*<name>*/NWReportResolutionProtocol/*</name>*/ valueOf(long n) {
+        for (/*<name>*/NWReportResolutionProtocol/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/NWBrowseState/*</name>*/.class.getName());
+            + /*<name>*/NWReportResolutionProtocol/*</name>*/.class.getName());
     }
 }

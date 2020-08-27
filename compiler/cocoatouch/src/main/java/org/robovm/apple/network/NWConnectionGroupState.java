@@ -36,13 +36,13 @@ import org.robovm.apple.security.*;
 
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-public enum /*<name>*/NWBrowseState/*</name>*/ implements ValuedEnum {
+public enum /*<name>*/NWConnectionGroupState/*</name>*/ implements ValuedEnum {
     /*<values>*/
     invalid(0L),
-    ready(1L),
-    failed(2L),
-    cancelled(3L),
-    waiting(4L);
+    waiting(1L),
+    ready(2L),
+    failed(3L),
+    cancelled(4L);
     /*</values>*/
 
     /*<bind>*/
@@ -52,15 +52,15 @@ public enum /*<name>*/NWBrowseState/*</name>*/ implements ValuedEnum {
 
     private final long n;
 
-    private /*<name>*/NWBrowseState/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/NWConnectionGroupState/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/NWBrowseState/*</name>*/ valueOf(long n) {
-        for (/*<name>*/NWBrowseState/*</name>*/ v : values()) {
+    public static /*<name>*/NWConnectionGroupState/*</name>*/ valueOf(long n) {
+        for (/*<name>*/NWConnectionGroupState/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/NWBrowseState/*</name>*/.class.getName());
+            + /*<name>*/NWConnectionGroupState/*</name>*/.class.getName());
     }
 }

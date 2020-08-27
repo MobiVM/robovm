@@ -35,32 +35,22 @@ import org.robovm.apple.security.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-public enum /*<name>*/NWBrowseState/*</name>*/ implements ValuedEnum {
-    /*<values>*/
-    invalid(0L),
-    ready(1L),
-    failed(2L),
-    cancelled(3L),
-    waiting(4L);
-    /*</values>*/
+/*<annotations>*/@Library("Network") @NativeClass("NSObject")/*</annotations>*/
+/*<visibility>*/public final/*</visibility>*/ class /*<name>*/NWConnectionGroup/*</name>*/ 
+    extends /*<extends>*/NWObject/*</extends>*/ 
+    /*<implements>*/implements NSObjectProtocol/*</implements>*/ {
 
-    /*<bind>*/
-    /*</bind>*/
+    /*<ptr>*/public static class NWConnectionGroupPtr extends Ptr<NWConnectionGroup, NWConnectionGroupPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(NWConnectionGroup.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<methods>*//*</methods>*/
-
-    private final long n;
-
-    private /*<name>*/NWBrowseState/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/NWBrowseState/*</name>*/ valueOf(long n) {
-        for (/*<name>*/NWBrowseState/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/NWBrowseState/*</name>*/.class.getName());
-    }
+    /*<constructors>*/
+    
+    /*</constructors>*/
+    /*<properties>*/
+    
+    /*</properties>*/
+    /*<members>*//*</members>*/
+    /*<methods>*/
+    
+    /*</methods>*/
 }
