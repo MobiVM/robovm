@@ -88,8 +88,26 @@ import org.robovm.apple.imageio.*;
     public native void unregisterChangeObserver(PHPhotoLibraryChangeObserver observer);
     @Method(selector = "sharedPhotoLibrary")
     public static native PHPhotoLibrary getSharedPhotoLibrary();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "authorizationStatusForAccessLevel:")
+    public static native PHAuthorizationStatus authorizationStatusForAccessLevel(PHAccessLevel accessLevel);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "requestAuthorizationForAccessLevel:handler:")
+    public static native void requestAuthorization(PHAccessLevel accessLevel, @Block VoidBlock1<PHAuthorizationStatus> handler);
+    /**
+     * @deprecated Use +authorizationStatusForAccessLevel:
+     */
+    @Deprecated
     @Method(selector = "authorizationStatus")
     public static native PHAuthorizationStatus getAuthorizationStatus();
+    /**
+     * @deprecated Use +requestAuthorizationForAccessLevel:handler:
+     */
+    @Deprecated
     @Method(selector = "requestAuthorization:")
     public static native void requestAuthorization(@Block VoidBlock1<PHAuthorizationStatus> handler);
     /*</methods>*/

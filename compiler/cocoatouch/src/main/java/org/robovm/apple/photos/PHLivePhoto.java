@@ -45,7 +45,7 @@ import org.robovm.apple.imageio.*;
 /*<annotations>*/@Library("Photos") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/PHLivePhoto/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding, NSItemProviderReading/*</implements>*/ {
 
     /*<ptr>*/public static class PHLivePhotoPtr extends Ptr<PHLivePhoto, PHLivePhotoPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(PHLivePhoto.class); }/*</bind>*/
@@ -67,6 +67,8 @@ import org.robovm.apple.imageio.*;
     public native @ByVal CGSize getSize();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
+    @Property(selector = "readableTypeIdentifiersForItemProvider")
+    public static native NSArray<NSString> getReadableTypeIdentifiersForItemProvider();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -105,5 +107,13 @@ import org.robovm.apple.imageio.*;
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
     protected native @Pointer long init(NSCoder coder);
+    public static PHLivePhoto createProviderDataObject(NSData data, String typeIdentifier) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       PHLivePhoto result = createProviderDataObject(data, typeIdentifier, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    @Method(selector = "objectWithItemProviderData:typeIdentifier:error:")
+    private static native PHLivePhoto createProviderDataObject(NSData data, String typeIdentifier, NSError.NSErrorPtr outError);
     /*</methods>*/
 }
