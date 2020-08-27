@@ -32,30 +32,27 @@ import org.robovm.apple.foundation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 13.0 and later.
+ * @since Available in iOS 14.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("MetricKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MXCPUMetric/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MXAppExitMetric/*</name>*/ 
     extends /*<extends>*/MXMetric/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class MXCPUMetricPtr extends Ptr<MXCPUMetric, MXCPUMetricPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(MXCPUMetric.class); }/*</bind>*/
+    /*<ptr>*/public static class MXAppExitMetricPtr extends Ptr<MXAppExitMetric, MXAppExitMetricPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(MXAppExitMetric.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MXCPUMetric() {}
-    protected MXCPUMetric(Handle h, long handle) { super(h, handle); }
-    protected MXCPUMetric(SkipInit skipInit) { super(skipInit); }
+    public MXAppExitMetric() {}
+    protected MXAppExitMetric(Handle h, long handle) { super(h, handle); }
+    protected MXAppExitMetric(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "cumulativeCPUTime")
-    public native NSMeasurement<NSUnitDuration> getCumulativeCPUTime();
-    /**
-     * @since Available in iOS 14.0 and later.
-     */
-    @Property(selector = "cumulativeCPUInstructions")
-    public native NSMeasurement<NSUnit> getCumulativeCPUInstructions();
+    @Property(selector = "foregroundExitData")
+    public native MXForegroundExitData getForegroundExitData();
+    @Property(selector = "backgroundExitData")
+    public native MXBackgroundExitData getBackgroundExitData();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

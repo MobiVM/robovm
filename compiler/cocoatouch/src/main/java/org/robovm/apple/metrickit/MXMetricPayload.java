@@ -81,6 +81,16 @@ import org.robovm.apple.foundation.*;
     public native MXMemoryMetric getMemoryMetrics();
     @Property(selector = "displayMetrics")
     public native MXDisplayMetric getDisplayMetrics();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "animationMetrics")
+    public native MXAnimationMetric getAnimationMetrics();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "applicationExitMetrics")
+    public native MXAppExitMetric getApplicationExitMetrics();
     @Property(selector = "signpostMetrics")
     public native NSArray<MXSignpostMetric> getSignpostMetrics();
     @Property(selector = "metaData")
@@ -92,8 +102,18 @@ import org.robovm.apple.foundation.*;
     /*<methods>*/
     @Method(selector = "JSONRepresentation")
     public native NSData JSONRepresentation();
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Use dictionaryRepresentation
+     */
+    @Deprecated
     @Method(selector = "DictionaryRepresentation")
     public native NSDictionary<?, ?> DictionaryRepresentation();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "dictionaryRepresentation")
+    public native NSDictionary<?, ?> dictionaryRepresentation();
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

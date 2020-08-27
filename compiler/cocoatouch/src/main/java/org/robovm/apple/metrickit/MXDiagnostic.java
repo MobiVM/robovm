@@ -32,38 +32,41 @@ import org.robovm.apple.foundation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 13.0 and later.
+ * @since Available in iOS 14.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("MetricKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MXMetricManager/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MXDiagnostic/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
-    /*<ptr>*/public static class MXMetricManagerPtr extends Ptr<MXMetricManager, MXMetricManagerPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(MXMetricManager.class); }/*</bind>*/
+    /*<ptr>*/public static class MXDiagnosticPtr extends Ptr<MXDiagnostic, MXDiagnosticPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(MXDiagnostic.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MXMetricManager() {}
-    protected MXMetricManager(Handle h, long handle) { super(h, handle); }
-    protected MXMetricManager(SkipInit skipInit) { super(skipInit); }
+    public MXDiagnostic() {}
+    protected MXDiagnostic(Handle h, long handle) { super(h, handle); }
+    protected MXDiagnostic(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public MXDiagnostic(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "pastPayloads")
-    public native NSArray<MXMetricPayload> getPastPayloads();
-    /**
-     * @since Available in iOS 14.0 and later.
-     */
-    @Property(selector = "pastDiagnosticPayloads")
-    public native NSArray<MXDiagnosticPayload> getPastDiagnosticPayloads();
-    @Property(selector = "sharedManager")
-    public static native MXMetricManager getSharedManager();
+    @Property(selector = "metaData")
+    public native MXMetaData getMetaData();
+    @Property(selector = "applicationVersion")
+    public native String getApplicationVersion();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "addSubscriber:")
-    public native void addSubscriber(MXMetricManagerSubscriber subscriber);
-    @Method(selector = "removeSubscriber:")
-    public native void removeSubscriber(MXMetricManagerSubscriber subscriber);
+    @Method(selector = "JSONRepresentation")
+    public native NSData JSONRepresentation();
+    @Method(selector = "dictionaryRepresentation")
+    public native NSDictionary<?, ?> dictionaryRepresentation();
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

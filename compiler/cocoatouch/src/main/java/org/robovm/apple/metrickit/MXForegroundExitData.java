@@ -32,44 +32,42 @@ import org.robovm.apple.foundation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 13.0 and later.
+ * @since Available in iOS 14.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("MetricKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MXMetric/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MXForegroundExitData/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
-    /*<ptr>*/public static class MXMetricPtr extends Ptr<MXMetric, MXMetricPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(MXMetric.class); }/*</bind>*/
+    /*<ptr>*/public static class MXForegroundExitDataPtr extends Ptr<MXForegroundExitData, MXForegroundExitDataPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(MXForegroundExitData.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MXMetric() {}
-    protected MXMetric(Handle h, long handle) { super(h, handle); }
-    protected MXMetric(SkipInit skipInit) { super(skipInit); }
+    public MXForegroundExitData() {}
+    protected MXForegroundExitData(Handle h, long handle) { super(h, handle); }
+    protected MXForegroundExitData(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public MXMetric(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
+    public MXForegroundExitData(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
+    @Property(selector = "cumulativeNormalAppExitCount")
+    public native @MachineSizedUInt long getCumulativeNormalAppExitCount();
+    @Property(selector = "cumulativeMemoryResourceLimitExitCount")
+    public native @MachineSizedUInt long getCumulativeMemoryResourceLimitExitCount();
+    @Property(selector = "cumulativeBadAccessExitCount")
+    public native @MachineSizedUInt long getCumulativeBadAccessExitCount();
+    @Property(selector = "cumulativeAbnormalExitCount")
+    public native @MachineSizedUInt long getCumulativeAbnormalExitCount();
+    @Property(selector = "cumulativeIllegalInstructionExitCount")
+    public native @MachineSizedUInt long getCumulativeIllegalInstructionExitCount();
+    @Property(selector = "cumulativeAppWatchdogExitCount")
+    public native @MachineSizedUInt long getCumulativeAppWatchdogExitCount();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "JSONRepresentation")
-    public native NSData JSONRepresentation();
-    /**
-     * @since Available in iOS 13.0 and later.
-     * @deprecated Use dictionaryRepresentation
-     */
-    @Deprecated
-    @Method(selector = "DictionaryRepresentation")
-    public native NSDictionary<?, ?> DictionaryRepresentation();
-    /**
-     * @since Available in iOS 14.0 and later.
-     */
-    @Method(selector = "dictionaryRepresentation")
-    public native NSDictionary<?, ?> dictionaryRepresentation();
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

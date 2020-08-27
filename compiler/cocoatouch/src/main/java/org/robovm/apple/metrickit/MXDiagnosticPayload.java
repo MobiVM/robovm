@@ -32,25 +32,37 @@ import org.robovm.apple.foundation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 13.0 and later.
+ * @since Available in iOS 14.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("MetricKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MXMetric/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MXDiagnosticPayload/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
-    /*<ptr>*/public static class MXMetricPtr extends Ptr<MXMetric, MXMetricPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(MXMetric.class); }/*</bind>*/
+    /*<ptr>*/public static class MXDiagnosticPayloadPtr extends Ptr<MXDiagnosticPayload, MXDiagnosticPayloadPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(MXDiagnosticPayload.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MXMetric() {}
-    protected MXMetric(Handle h, long handle) { super(h, handle); }
-    protected MXMetric(SkipInit skipInit) { super(skipInit); }
+    public MXDiagnosticPayload() {}
+    protected MXDiagnosticPayload(Handle h, long handle) { super(h, handle); }
+    protected MXDiagnosticPayload(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public MXMetric(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
+    public MXDiagnosticPayload(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
+    @Property(selector = "cpuExceptionDiagnostics")
+    public native NSArray<MXCPUExceptionDiagnostic> getCpuExceptionDiagnostics();
+    @Property(selector = "diskWriteExceptionDiagnostics")
+    public native NSArray<MXDiskWriteExceptionDiagnostic> getDiskWriteExceptionDiagnostics();
+    @Property(selector = "hangDiagnostics")
+    public native NSArray<MXHangDiagnostic> getHangDiagnostics();
+    @Property(selector = "crashDiagnostics")
+    public native NSArray<MXCrashDiagnostic> getCrashDiagnostics();
+    @Property(selector = "timeStampBegin")
+    public native NSDate getTimeStampBegin();
+    @Property(selector = "timeStampEnd")
+    public native NSDate getTimeStampEnd();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
@@ -58,16 +70,6 @@ import org.robovm.apple.foundation.*;
     /*<methods>*/
     @Method(selector = "JSONRepresentation")
     public native NSData JSONRepresentation();
-    /**
-     * @since Available in iOS 13.0 and later.
-     * @deprecated Use dictionaryRepresentation
-     */
-    @Deprecated
-    @Method(selector = "DictionaryRepresentation")
-    public native NSDictionary<?, ?> DictionaryRepresentation();
-    /**
-     * @since Available in iOS 14.0 and later.
-     */
     @Method(selector = "dictionaryRepresentation")
     public native NSDictionary<?, ?> dictionaryRepresentation();
     @Method(selector = "encodeWithCoder:")

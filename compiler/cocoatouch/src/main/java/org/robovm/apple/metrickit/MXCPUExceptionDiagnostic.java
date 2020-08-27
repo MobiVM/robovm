@@ -32,30 +32,29 @@ import org.robovm.apple.foundation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 13.0 and later.
+ * @since Available in iOS 14.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("MetricKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MXCPUMetric/*</name>*/ 
-    extends /*<extends>*/MXMetric/*</extends>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MXCPUExceptionDiagnostic/*</name>*/ 
+    extends /*<extends>*/MXDiagnostic/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class MXCPUMetricPtr extends Ptr<MXCPUMetric, MXCPUMetricPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(MXCPUMetric.class); }/*</bind>*/
+    /*<ptr>*/public static class MXCPUExceptionDiagnosticPtr extends Ptr<MXCPUExceptionDiagnostic, MXCPUExceptionDiagnosticPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(MXCPUExceptionDiagnostic.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MXCPUMetric() {}
-    protected MXCPUMetric(Handle h, long handle) { super(h, handle); }
-    protected MXCPUMetric(SkipInit skipInit) { super(skipInit); }
+    public MXCPUExceptionDiagnostic() {}
+    protected MXCPUExceptionDiagnostic(Handle h, long handle) { super(h, handle); }
+    protected MXCPUExceptionDiagnostic(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "cumulativeCPUTime")
-    public native NSMeasurement<NSUnitDuration> getCumulativeCPUTime();
-    /**
-     * @since Available in iOS 14.0 and later.
-     */
-    @Property(selector = "cumulativeCPUInstructions")
-    public native NSMeasurement<NSUnit> getCumulativeCPUInstructions();
+    @Property(selector = "callStackTree")
+    public native MXCallStackTree getCallStackTree();
+    @Property(selector = "totalCPUTime")
+    public native NSMeasurement<NSUnitDuration> getTotalCPUTime();
+    @Property(selector = "totalSampledTime")
+    public native NSMeasurement<NSUnitDuration> getTotalSampledTime();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

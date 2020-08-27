@@ -32,33 +32,35 @@ import org.robovm.apple.foundation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 13.0 and later.
+ * @since Available in iOS 14.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("MetricKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MXCPUMetric/*</name>*/ 
-    extends /*<extends>*/MXMetric/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MXCallStackTree/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
-    /*<ptr>*/public static class MXCPUMetricPtr extends Ptr<MXCPUMetric, MXCPUMetricPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(MXCPUMetric.class); }/*</bind>*/
+    /*<ptr>*/public static class MXCallStackTreePtr extends Ptr<MXCallStackTree, MXCallStackTreePtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(MXCallStackTree.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MXCPUMetric() {}
-    protected MXCPUMetric(Handle h, long handle) { super(h, handle); }
-    protected MXCPUMetric(SkipInit skipInit) { super(skipInit); }
+    public MXCallStackTree() {}
+    protected MXCallStackTree(Handle h, long handle) { super(h, handle); }
+    protected MXCallStackTree(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public MXCallStackTree(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "cumulativeCPUTime")
-    public native NSMeasurement<NSUnitDuration> getCumulativeCPUTime();
-    /**
-     * @since Available in iOS 14.0 and later.
-     */
-    @Property(selector = "cumulativeCPUInstructions")
-    public native NSMeasurement<NSUnit> getCumulativeCPUInstructions();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "JSONRepresentation")
+    public native NSData JSONRepresentation();
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }
