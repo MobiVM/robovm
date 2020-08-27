@@ -31,6 +31,7 @@ import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.addressbook.*;
 import org.robovm.apple.contacts.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -59,18 +60,23 @@ import org.robovm.apple.contacts.*;
     public PKPaymentButton(@ByVal org.robovm.apple.coregraphics.CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
     public PKPaymentButton(NSCoder coder) { super(coder); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithFrame:primaryAction:")
+    public PKPaymentButton(@ByVal org.robovm.apple.coregraphics.CGRect frame, UIAction primaryAction) { super(frame, primaryAction); }
     /*</constructors>*/
     /*<properties>*/
     /**
      * @since Available in iOS 12.0 and later.
      */
     @Property(selector = "cornerRadius")
-    public native double getCornerRadius();
+    public native @MachineSizedFloat double getCornerRadius();
     /**
      * @since Available in iOS 12.0 and later.
      */
     @Property(selector = "setCornerRadius:")
-    public native void setCornerRadius(double v);
+    public native void setCornerRadius(@MachineSizedFloat double v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

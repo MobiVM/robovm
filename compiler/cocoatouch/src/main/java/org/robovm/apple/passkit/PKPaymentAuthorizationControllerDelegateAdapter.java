@@ -31,6 +31,7 @@ import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.addressbook.*;
 import org.robovm.apple.contacts.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -68,6 +69,11 @@ import org.robovm.apple.contacts.*;
     @NotImplemented("paymentAuthorizationControllerWillAuthorizePayment:")
     public void willAuthorizePayment(PKPaymentAuthorizationController controller) {}
     /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @NotImplemented("paymentAuthorizationController:didRequestMerchantSessionUpdate:")
+    public void didRequestMerchantSessionUpdate(PKPaymentAuthorizationController controller, @Block VoidBlock1<PKPaymentRequestMerchantSessionUpdate> handler) {}
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @NotImplemented("paymentAuthorizationController:didSelectShippingMethod:handler:")
@@ -103,5 +109,10 @@ import org.robovm.apple.contacts.*;
     @Deprecated
     @NotImplemented("paymentAuthorizationController:didSelectPaymentMethod:completion:")
     public void didSelectPaymentMethodEx(PKPaymentAuthorizationController controller, PKPaymentMethod paymentMethod, @Block VoidBlock1<NSArray<PKPaymentSummaryItem>> completion) {}
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @NotImplemented("presentationWindowForPaymentAuthorizationController:")
+    public UIWindow presentationWindowForPaymentAuthorizationController(PKPaymentAuthorizationController controller) { return null; }
     /*</methods>*/
 }

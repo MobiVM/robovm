@@ -31,6 +31,7 @@ import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.addressbook.*;
 import org.robovm.apple.contacts.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -159,9 +160,17 @@ import org.robovm.apple.contacts.*;
      * @since Available in iOS 12.0 and later.
      */
     public static final PKPaymentNetwork VPay = new PKPaymentNetwork("VPay");
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final PKPaymentNetwork Barcode = new PKPaymentNetwork("Barcode");
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final PKPaymentNetwork Girocard = new PKPaymentNetwork("Girocard");
     /*</constants>*/
     
-    private static /*<name>*/PKPaymentNetwork/*</name>*/[] values = new /*<name>*/PKPaymentNetwork/*</name>*/[] {/*<value_list>*/Amex, CarteBancaire, CarteBancaires, CartesBancaires, ChinaUnionPay, Discover, Eftpos, Electron, Elo, IDCredit, Interac, JCB, Mada, Maestro, MasterCard, PrivateLabel, QuicPay, Suica, Visa, VPay/*</value_list>*/};
+    private static /*<name>*/PKPaymentNetwork/*</name>*/[] values = new /*<name>*/PKPaymentNetwork/*</name>*/[] {/*<value_list>*/Amex, CarteBancaire, CarteBancaires, CartesBancaires, ChinaUnionPay, Discover, Eftpos, Electron, Elo, IDCredit, Interac, JCB, Mada, Maestro, MasterCard, PrivateLabel, QuicPay, Suica, Visa, VPay, Barcode, Girocard/*</value_list>*/};
     
     /*<name>*/PKPaymentNetwork/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -273,6 +282,16 @@ import org.robovm.apple.contacts.*;
          */
         @GlobalValue(symbol="PKPaymentNetworkVPay", optional=true)
         public static native NSString VPay();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="PKPaymentNetworkBarcode", optional=true)
+        public static native NSString Barcode();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="PKPaymentNetworkGirocard", optional=true)
+        public static native NSString Girocard();
         /*</values>*/
     }
 }
