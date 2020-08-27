@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -35,9 +35,9 @@ import org.robovm.apple.coregraphics.*;
 /*<javadoc>*/
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/SKProductsRequestDelegateAdapter/*</name>*/ 
-    extends /*<extends>*/SKRequestDelegateAdapter/*</extends>*/ 
-    /*<implements>*/implements SKProductsRequestDelegate/*</implements>*/ {
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/SKOverlayDelegateAdapter/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
+    /*<implements>*/implements SKOverlayDelegate/*</implements>*/ {
 
     /*<ptr>*/
     /*</ptr>*/
@@ -50,7 +50,15 @@ import org.robovm.apple.coregraphics.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @NotImplemented("productsRequest:didReceiveResponse:")
-    public void didReceiveResponse(SKProductsRequest request, SKProductsResponse response) {}
+    @NotImplemented("storeOverlay:didFailToLoadWithError:")
+    public void didFailToLoad(SKOverlay overlay, NSError error) {}
+    @NotImplemented("storeOverlay:willStartPresentation:")
+    public void willStartPresentation(SKOverlay overlay, SKOverlayTransitionContext transitionContext) {}
+    @NotImplemented("storeOverlay:didFinishPresentation:")
+    public void didFinishPresentation(SKOverlay overlay, SKOverlayTransitionContext transitionContext) {}
+    @NotImplemented("storeOverlay:willStartDismissal:")
+    public void willStartDismissal(SKOverlay overlay, SKOverlayTransitionContext transitionContext) {}
+    @NotImplemented("storeOverlay:didFinishDismissal:")
+    public void didFinishDismissal(SKOverlay overlay, SKOverlayTransitionContext transitionContext) {}
     /*</methods>*/
 }

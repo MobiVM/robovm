@@ -34,38 +34,45 @@ import org.robovm.apple.coregraphics.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 10.3 and later.
+ * @since Available in iOS 14.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("StoreKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/SKStoreReviewController/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/SKOverlay/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class SKStoreReviewControllerPtr extends Ptr<SKStoreReviewController, SKStoreReviewControllerPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(SKStoreReviewController.class); }/*</bind>*/
+    /*<ptr>*/public static class SKOverlayPtr extends Ptr<SKOverlay, SKOverlayPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(SKOverlay.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public SKStoreReviewController() {}
-    protected SKStoreReviewController(Handle h, long handle) { super(h, handle); }
-    protected SKStoreReviewController(SkipInit skipInit) { super(skipInit); }
+    protected SKOverlay() {}
+    protected SKOverlay(Handle h, long handle) { super(h, handle); }
+    protected SKOverlay(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithConfiguration:")
+    public SKOverlay(SKOverlayConfiguration configuration) { super((SkipInit) null); initObject(init(configuration)); }
     /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "delegate")
+    public native SKOverlayDelegate getDelegate();
+    @Property(selector = "setDelegate:", strongRef = true)
+    public native void setDelegate(SKOverlayDelegate v);
+    @Property(selector = "configuration")
+    public native SKOverlayConfiguration getConfiguration();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 10.3 and later.
-     * @deprecated Deprecated in iOS 14.0. Use -[SKStoreReviewController requestReviewInScene:]
-     */
-    @Deprecated
-    @Method(selector = "requestReview")
-    public static native void requestReview();
+    @Method(selector = "initWithConfiguration:")
+    protected native @Pointer long init(SKOverlayConfiguration configuration);
     /**
      * @since Available in iOS 14.0 and later.
      */
-    @Method(selector = "requestReviewInScene:")
-    public static native void requestReviewInScene(UIWindowScene windowScene);
+    @Method(selector = "presentInScene:")
+    public native void presentInScene(UIWindowScene scene);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "dismissOverlayInScene:")
+    public static native void dismissOverlayInScene(UIWindowScene scene);
     /*</methods>*/
 }

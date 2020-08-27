@@ -1,5 +1,5 @@
 package: org.robovm.apple.storekit
-include: [foundation.yaml, uikit.yaml]
+include: [foundation, uikit, coregraphics]
 library: StoreKit
 framework: StoreKit
 clang_args: ['-x', 'objective-c']
@@ -17,7 +17,7 @@ enums:
     SKProductPeriodUnit: {}
     SKProductDiscountPaymentMode: {}
     SKProductDiscountType: {} #since 12.2
-
+    SKOverlayPosition: {} #since 14.0
 classes:
     SKCloudServiceController: #since 9.3
         methods:
@@ -153,6 +153,24 @@ classes:
                 name: registerArcadeApp
             '+arcadeSubscriptionStatusWithNonce:resultHandler:':
                 name: getArcadeSubscriptionStatus
+    SKOverlay: #since 14.0
+        methods:
+            '-initWithConfiguration:':
+                name: init
+    SKOverlayAppClipConfiguration: #since 14.0
+        methods:
+            '-initWithPosition:':
+                name: init
+            '-setAdditionalValue:forKey:':
+                name: setAdditionalValue
+    SKOverlayAppConfiguration: #since 14.0
+        methods:
+            '-initWithAppIdentifier:position:':
+                name: init
+            '-setAdditionalValue:forKey:':
+                name: setAdditionalValue
+    SKOverlayConfiguration: {} #since 14.0
+    SKOverlayTransitionContext: {} #since 14.0
 protocols:
     SKCloudServiceSetupViewControllerDelegate:
         methods:
@@ -185,6 +203,8 @@ protocols:
                         type: NSArray<SKDownload>
             '-paymentQueue:shouldAddStorePayment:forProduct:':
                 name: shouldAddStorePayment
+            '-paymentQueue:didRevokeEntitlementsForProductIdentifiers:':
+                name: didRevokeEntitlements
     SKProductsRequestDelegate: # DONE
         methods:
             '-productsRequest:didReceiveResponse:':
@@ -203,6 +223,18 @@ protocols:
         methods:
             '-paymentQueue:shouldContinueTransaction:inStorefront:':
                 name: shouldContinueTransaction
+    SKOverlayDelegate: #since 14.0
+        methods:
+            '-storeOverlay:didFailToLoadWithError:':
+                name: didFailToLoad
+            '-storeOverlay:willStartPresentation:':
+                name: willStartPresentation
+            '-storeOverlay:didFinishPresentation:':
+                name: didFinishPresentation
+            '-storeOverlay:willStartDismissal:':
+                name: willStartDismissal
+            '-storeOverlay:didFinishDismissal:':
+                name: didFinishDismissal
 functions:
     SK(TerminateForInvalidReceipt):
         class: SKReceiptRefreshRequest

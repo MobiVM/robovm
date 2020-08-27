@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -33,24 +33,34 @@ import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
+/**
+ * @since Available in iOS 14.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/SKProductsRequestDelegateAdapter/*</name>*/ 
-    extends /*<extends>*/SKRequestDelegateAdapter/*</extends>*/ 
-    /*<implements>*/implements SKProductsRequestDelegate/*</implements>*/ {
+/*<visibility>*/public/*</visibility>*/ interface /*<name>*/SKOverlayDelegate/*</name>*/ 
+    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
 
     /*<ptr>*/
     /*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*//*</constructors>*/
     /*<properties>*/
     
     /*</properties>*/
-    /*<members>*//*</members>*/
     /*<methods>*/
-    @NotImplemented("productsRequest:didReceiveResponse:")
-    public void didReceiveResponse(SKProductsRequest request, SKProductsResponse response) {}
+    @Method(selector = "storeOverlay:didFailToLoadWithError:")
+    void didFailToLoad(SKOverlay overlay, NSError error);
+    @Method(selector = "storeOverlay:willStartPresentation:")
+    void willStartPresentation(SKOverlay overlay, SKOverlayTransitionContext transitionContext);
+    @Method(selector = "storeOverlay:didFinishPresentation:")
+    void didFinishPresentation(SKOverlay overlay, SKOverlayTransitionContext transitionContext);
+    @Method(selector = "storeOverlay:willStartDismissal:")
+    void willStartDismissal(SKOverlay overlay, SKOverlayTransitionContext transitionContext);
+    @Method(selector = "storeOverlay:didFinishDismissal:")
+    void didFinishDismissal(SKOverlay overlay, SKOverlayTransitionContext transitionContext);
     /*</methods>*/
+    /*<adapter>*/
+    /*</adapter>*/
 }

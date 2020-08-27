@@ -29,6 +29,7 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -59,5 +60,10 @@ import org.robovm.apple.uikit.*;
      */
     @Method(selector = "registerAppForAdNetworkAttribution")
     public static native void registerAppForAdNetworkAttribution();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "updateConversionValue:")
+    public static native void updateConversionValue(@MachineSizedSInt long conversionValue);
     /*</methods>*/
 }
