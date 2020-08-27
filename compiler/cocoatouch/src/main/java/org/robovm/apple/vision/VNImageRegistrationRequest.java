@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.coreml.*;
 import org.robovm.apple.coregraphics.*;
+import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.metal.*;
 import org.robovm.apple.coreimage.*;
@@ -93,6 +94,26 @@ import org.robovm.apple.imageio.*;
     public VNImageRegistrationRequest(NSData imageData, CGImagePropertyOrientation orientation, VNImageOption options) { super(imageData, orientation, options); }
     @Method(selector = "initWithTargetedImageData:orientation:options:completionHandler:")
     public VNImageRegistrationRequest(NSData imageData, CGImagePropertyOrientation orientation, VNImageOption options, @Block VoidBlock2<VNRequest, NSError> completionHandler) { super(imageData, orientation, options, completionHandler); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithTargetedCMSampleBuffer:options:")
+    public VNImageRegistrationRequest(CMSampleBuffer sampleBuffer, VNImageOption options) { super(sampleBuffer, options); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithTargetedCMSampleBuffer:options:completionHandler:")
+    public VNImageRegistrationRequest(CMSampleBuffer sampleBuffer, VNImageOption options, @Block VoidBlock2<VNRequest, NSError> completionHandler) { super(sampleBuffer, options, completionHandler); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithTargetedCMSampleBuffer:orientation:options:")
+    public VNImageRegistrationRequest(CMSampleBuffer sampleBuffer, CGImagePropertyOrientation orientation, VNImageOption options) { super(sampleBuffer, orientation, options); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithTargetedCMSampleBuffer:orientation:options:completionHandler:")
+    public VNImageRegistrationRequest(CMSampleBuffer sampleBuffer, CGImagePropertyOrientation orientation, VNImageOption options, @Block VoidBlock2<VNRequest, NSError> completionHandler) { super(sampleBuffer, orientation, options, completionHandler); }
     /*</constructors>*/
     /*<properties>*/
     

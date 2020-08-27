@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.coreml.*;
 import org.robovm.apple.coregraphics.*;
+import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.metal.*;
 import org.robovm.apple.coreimage.*;
@@ -73,6 +74,16 @@ import org.robovm.apple.imageio.*;
     public VNImageRequestHandler(NSData imageData, VNImageOption options) { super((SkipInit) null); initObject(init(imageData, options)); }
     @Method(selector = "initWithData:orientation:options:")
     public VNImageRequestHandler(NSData imageData, CGImagePropertyOrientation orientation, VNImageOption options) { super((SkipInit) null); initObject(init(imageData, orientation, options)); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithCMSampleBuffer:options:")
+    public VNImageRequestHandler(CMSampleBuffer sampleBuffer, VNImageOption options) { super((SkipInit) null); initObject(init(sampleBuffer, options)); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithCMSampleBuffer:orientation:options:")
+    public VNImageRequestHandler(CMSampleBuffer sampleBuffer, CGImagePropertyOrientation orientation, VNImageOption options) { super((SkipInit) null); initObject(init(sampleBuffer, orientation, options)); }
     /*</constructors>*/
     /*<properties>*/
     
@@ -99,6 +110,16 @@ import org.robovm.apple.imageio.*;
     protected native @Pointer long init(NSData imageData, VNImageOption options);
     @Method(selector = "initWithData:orientation:options:")
     protected native @Pointer long init(NSData imageData, CGImagePropertyOrientation orientation, VNImageOption options);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithCMSampleBuffer:options:")
+    protected native @Pointer long init(CMSampleBuffer sampleBuffer, VNImageOption options);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithCMSampleBuffer:orientation:options:")
+    protected native @Pointer long init(CMSampleBuffer sampleBuffer, CGImagePropertyOrientation orientation, VNImageOption options);
     public boolean performRequests(NSArray<VNRequest> requests) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        boolean result = performRequests(requests, ptr);

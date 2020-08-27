@@ -1,5 +1,5 @@
 package: org.robovm.apple.vision
-include: [foundation, coreml, coregraphics, corevideo, metal, coreimage, imageio]
+include: [foundation, coreml, coregraphics, coremedia, corevideo, metal, coreimage, imageio]
 library: Vision
 framework: Vision
 clang_args: ['-x', 'objective-c']
@@ -14,6 +14,7 @@ enums:
     VNElementType: {}
     VNRequestFaceLandmarksConstellation: {}
     VNRequestTextRecognitionLevel: {}
+    VNGenerateOpticalFlowRequestComputationAccuracy: {}
 classes:
     VNBarcodeObservation: {} #since 11.0
     VNClassificationObservation: #since 11.0
@@ -119,6 +120,12 @@ classes:
             '-performRequests:onImageData:orientation:error:':
                 trim_after_first_colon: true
                 throws: NSErrorException
+            '-performRequests:onCMSampleBuffer:error:':
+                name: performRequests
+                throws: NSErrorException
+            '-performRequests:onCMSampleBuffer:orientation:error:':
+                name: performRequests
+                throws: NSErrorException
     VNTargetedImageRequest: #since 11.0
         methods:
             '-init.*':
@@ -172,6 +179,181 @@ classes:
                 throws: NSErrorException
     VNRecognizedTextObservation: {} #since 13.0
     VNSaliencyImageObservation: {} #since 13.0
+    VNCircle: #since 14.0
+        methods:
+            '-initWithCenter:radius:':
+                name: init
+            '-initWithCenter:diameter:':
+                static_constructor_name: createUsingCenterDiameter
+                name: initUsingCenterDiameter
+            '-containsPoint:inCircumferentialRingOfWidth:':
+                name: containsPoint
+    VNContour: #since 14.0
+        methods:
+            '-childContourAtIndex:error:':
+                name: getChildContour
+                throws: NSErrorException
+            '-polygonApproximationWithEpsilon:error:':
+                name: polygonApproximation
+                throws: NSErrorException
+    VNContoursObservation: #since 14.0
+        methods:
+            '-contourAtIndex:error:':
+                name: getContour
+                throws: NSErrorException
+            '-contourAtIndexPath:error:':
+                name: getContour
+                throws: NSErrorException
+    VNDetectContoursRequest: {} #since 14.0
+    VNDetectHumanBodyPoseRequest: #since 14.0
+        methods:
+            '+supportedRecognizedPointKeysForRevision:error:':
+                name: getSupportedRecognizedPointKeys
+                throws: NSErrorException
+            '+supportedRecognizedPointGroupKeysForRevision:error:':
+                name: getSupportedRecognizedPointGroupKeys
+                throws: NSErrorException
+            '+supportedIdentifiedPointKeysForRevision:error:':
+                name: getSupportedIdentifiedPointKeys
+                throws: NSErrorException
+            '+supportedIdentifiedPointGroupKeysForRevision:error:':
+                name: getSupportedIdentifiedPointGroupKeys
+                throws: NSErrorException
+            '+supportedJointNamesForRevision:error:':
+                name: getSupportedJointNames
+                throws: NSErrorException
+            '+supportedJointsGroupNamesForRevision:error:':
+                name: getSupportedJointsGroupNames
+                throws: NSErrorException
+    VNDetectHumanHandPoseRequest: #since 14.0
+        methods:
+            '+supportedRecognizedPointKeysForRevision:error:':
+                name: getSupportedRecognizedPointKeys
+                throws: NSErrorException
+            '+supportedRecognizedPointGroupKeysForRevision:error:':
+                name: getSupportedRecognizedPointGroupKeys
+                throws: NSErrorException
+            '+supportedIdentifiedPointKeysForRevision:error:':
+                throws: NSErrorException
+                name: getSupportedIdentifiedPointKeys
+            '+supportedIdentifiedPointGroupKeysForRevision:error:':
+                name: getSupportedIdentifiedPointGroupKeys
+                throws: NSErrorException
+            '+supportedJointNamesForRevision:error:':
+                name: getSupportedJointNames
+                throws: NSErrorException
+            '+supportedJointsGroupNamesForRevision:error:':
+                name: getSupportedJointsGroupNames
+                throws: NSErrorException
+    VNDetectTrajectoriesRequest: #since 14.0
+        methods:
+            '-initWithFrameAnalysisSpacing:trajectoryLength:completionHandler:':
+                name: init
+    VNDetectedPoint: {} #since 14.0
+    VNGenerateOpticalFlowRequest: {} #since 14.0
+    VNGeometryUtils: #since 14.0
+        methods:
+            '+boundingCircleForContour:error:':
+                name: getBoundingCircle
+                throws: NSErrorException
+            '+boundingCircleForPoints:error:':
+                name: getBoundingCircle
+                throws: NSErrorException
+            '+boundingCircleForSIMDPoints:pointCount:error:':
+                name: getBoundingCircle
+                throws: NSErrorException
+            '+calculateArea:forContour:orientedArea:error:':
+                name: calculateArea
+                throws: NSErrorException
+            '+calculatePerimeter:forContour:error:':
+                name: calculatePerimeter
+                throws: NSErrorException
+    VNHumanBodyPoseObservation: #since 14.0
+        methods:
+            '-recognizedPointForJointName:error:':
+                name: recognizedPoint
+                throws: NSErrorException
+            '-recognizedPointsForJointsGroupName:error:':
+                name: recognizedPoints
+                throws: NSErrorException
+    VNHumanHandPoseObservation: #since 14.0
+        methods:
+            '-recognizedPointForJointName:error:':
+                name: recognizedPoint
+                throws: NSErrorException
+            '-recognizedPointsForJointsGroupName:error:':
+                name: recognizedPoints
+                throws: NSErrorException
+    VNPoint: #since 14.0
+        methods:
+            '-initWithX:y:':
+                name: init
+            '-initWithLocation:':
+                name: init
+            '+pointByApplyingVector:toPoint:':
+                name: getPointByApplyingVector
+            '+distanceBetweenPoint:point:':
+                name: getDistance
+    VNRecognizedPoint: {} #since 14.0
+    VNRecognizedPointsObservation: #since 14.0
+        methods:
+            '-recognizedPointForKey:error:':
+                name: getRecognizedPoint
+                throws: NSErrorException
+            '-recognizedPointsForGroupKey:error:':
+                name: getRecognizedPoints
+                throws: NSErrorException
+    VNStatefulRequest: #since 14.0
+        methods:
+            '-initWithFrameAnalysisSpacing:completionHandler:':
+                name: init
+    VNTrajectoryObservation: {} #since 14.0
+    VNVector: #since 14.0
+        methods:
+            '-initWithXComponent:yComponent:':
+                name: init
+            '-initWithR:theta:':
+                static_constructor_name: createUsingRTheta
+                name: initUsingRTheta
+            '-initWithVectorHead:tail:':
+                name: init
+            '+vectorByMultiplyingVector:byScalar:':
+                name: getVectorByMultiplyingVector
+            '+vectorByAddingVector:toVector:':
+                name: getVectorByAddingVector
+            '+vectorBySubtractingVector:fromVector:':
+                name: getVectorBySubtractingVector
+            '+dotProductOfVector:vector:':
+                name: getDotProductOfVector
+    VNVideoProcessor: #since 14.0
+        methods:
+            '-initWithURL:':
+                name: init
+            '-addRequest:processingOptions:error:':
+                name: addRequest
+                throws: NSErrorException
+            '-addRequest:withProcessingOptions:error:':
+                name: addRequest
+                throws: NSErrorException
+            '-removeRequest:error:':
+                name: removeRequest
+                throws: NSErrorException
+            '-analyzeTimeRange:error:':
+                name: analyzeTimeRange
+                throws: NSErrorException
+            '-analyzeWithTimeRange:error:':
+                name: analyzeWithTimeRange
+                throws: NSErrorException
+    VNVideoProcessorCadence: {} #since 14.0
+    VNVideoProcessorFrameRateCadence: #since 14.0
+        methods:
+            '-initWithFrameRate:':
+                name: init
+    VNVideoProcessorRequestProcessingOptions: {} #since 14.0
+    VNVideoProcessorTimeIntervalCadence: #since 14.0
+        methods:
+            '-initWithTimeInterval:':
+                name: init
 
 protocols:
     VNFaceObservationAccepting: {} #since 11.0
@@ -203,6 +385,10 @@ functions:
     VNImagePointForFaceLandmarkPoint:
         class: VNUtils
         name: getImagePointForFaceLandmarkPoint
+
+    VNNormalizedPointForImagePoint:
+        class: VNUtils
+        name: getNormalizedPointForImagePoint
 
     VNElementTypeSize:
         class: VNElementType
@@ -259,6 +445,40 @@ values:
         class: Vision
         name: 'Value__#{g[0]}'
 
+typed_enums:
+    VNHumanHandPoseObservationJointName:
+        prefix: VNHumanHandPoseObservationJointName
+        enum: VNHumanHandPoseObservationJointName
+        type: NSString
+    VNHumanHandPoseObservationJointsGroupName:
+        prefix: VNHumanHandPoseObservationJointsGroupName
+        enum: VNHumanHandPoseObservationJointsGroupName
+        type: NSString
+    VNHumanBodyPoseObservationJointName:
+        prefix: VNHumanBodyPoseObservationJointName
+        enum: VNHumanBodyPoseObservationJointName
+        type: NSString
+    VNHumanBodyPoseObservationJointsGroupName:
+        prefix: VNHumanBodyPoseObservationJointsGroupName
+        enum: VNHumanBodyPoseObservationJointsGroupName
+        type: NSString
+    VNVideoProcessingOption:
+        prefix: VNVideoProcessingOption
+        enum: VNVideoProcessingOption
+        type: NSString
+    VNRecognizedPointKey:
+        prefix: VN
+        enum: VNRecognizedPointKey
+        type: NSString
+    VNHandLandmarkRegionKey:
+        prefix: VNHandLandmarkRegionKeyIndexFinger
+        enum: VNHandLandmarkRegionKeyIndexFinger
+        type: NSString
+    VNRecognizedPointGroupKey:
+        prefix: VN
+        enum: VNRecognizedPointGroupKey
+        type: NSString
+
 constants:
     VNDetectBarcodesRequest(Revision1):
         class: VNDetectBarcodesRequest
@@ -272,55 +492,69 @@ constants:
     VNRequest(RevisionUnspecified):
         class: VNRequest
         name: '#{g[0]}'
-    VNClassifyImageRequest(Revision1):
+    VNClassifyImageRequestRevision(.*):
         class: VNClassifyImageRequest
-        name: '#{g[0]}'
-    VNDetectFaceRectanglesRequest(Revision1|Revision2):
+        name: 'Revision#{g[0]}'
+    VNDetectFaceRectanglesRequestRevision(.*):
         class: VNDetectFaceRectanglesRequest
-        name: '#{g[0]}'
-    VNDetectFaceLandmarksRequest(Revision1|Revision2|Revision3):
+        name: 'Revision#{g[0]}'
+    VNDetectFaceLandmarksRequestRevision(.*):
         class: VNDetectFaceLandmarksRequest
-        name: '#{g[0]}'
-    VNDetectFaceCaptureQualityRequest(Revision1):
+        name: 'Revision#{g[0]}'
+    VNDetectFaceCaptureQualityRequestRevision(.*):
         class: VNDetectFaceCaptureQualityRequest
-        name: '#{g[0]}'
-    VNDetectHorizonRequest(Revision1):
+        name: 'Revision#{g[0]}'
+    VNDetectHorizonRequestRevision(.*):
         class: VNDetectHorizonRequest
-        name: '#{g[0]}'
-    VNDetectRectanglesRequest(Revision1):
+        name: 'Revision#{g[0]}'
+    VNDetectRectanglesRequestRevision(.*):
         class: VNDetectRectanglesRequest
-        name: '#{g[0]}'
-    VNDetectTextRectanglesRequest(Revision1):
+        name: 'Revision#{g[0]}'
+    VNDetectTextRectanglesRequestRevision(.*):
         class: VNDetectTextRectanglesRequest
-        name: '#{g[0]}'
-    VNRecognizeTextRequest(Revision1):
+        name: 'Revision#{g[0]}'
+    VNRecognizeTextRequestRevision(.*):
         class: VNRecognizeTextRequest
-        name: '#{g[0]}'
-    VNGenerateAttentionBasedSaliencyImageRequest(Revision1):
+        name: 'Revision#{g[0]}'
+    VNGenerateAttentionBasedSaliencyImageRequestRevision(.*):
         class: VNGenerateAttentionBasedSaliencyImageRequest
-        name: '#{g[0]}'
-    VNGenerateObjectnessBasedSaliencyImageRequest(Revision1):
+        name: 'Revision#{g[0]}'
+    VNGenerateObjectnessBasedSaliencyImageRequestRevision(.*):
         class: VNGenerateObjectnessBasedSaliencyImageRequest
-        name: '#{g[0]}'
-    VNGenerateImageFeaturePrintRequest(Revision1):
+        name: 'Revision#{g[0]}'
+    VNGenerateImageFeaturePrintRequestRevision(.*):
         class: VNGenerateImageFeaturePrintRequest
-        name: '#{g[0]}'
-    VNCoreMLRequest(Revision1):
+        name: 'Revision#{g[0]}'
+    VNCoreMLRequestRevision(.*):
         class: VNCoreMLRequest
-        name: '#{g[0]}'
-    VNTrackObjectRequest(Revision1|Revision2):
+        name: 'Revision#{g[0]}'
+    VNTrackObjectRequestRevision(.*):
         class: VNTrackObjectRequest
-        name: '#{g[0]}'
-    VNTrackRectangleRequest(Revision1):
+        name: 'Revision#{g[0]}'
+    VNTrackRectangleRequestRevision(.*):
         class: VNTrackRectangleRequest
-        name: '#{g[0]}'
-    VNDetectHumanRectanglesRequest(Revision1):
+        name: 'Revision#{g[0]}'
+    VNDetectHumanRectanglesRequestRevision(.*):
         class: VNDetectHumanRectanglesRequest
-        name: '#{g[0]}'
-    VNRecognizeAnimalsRequest(Revision1):
+        name: 'Revision#{g[0]}'
+    VNRecognizeAnimalsRequestRevision(.*):
         class: VNRecognizeAnimalsRequest
-        name: '#{g[0]}'
-
+        name: 'Revision#{g[0]}'
+    VNGenerateOpticalFlowRequestRevision(.*):
+        class: VNGenerateOpticalFlowRequest
+        name: 'Revision#{g[0]}'
+    VNDetectHumanBodyPoseRequestRevision(.*):
+        class: VNDetectHumanBodyPoseRequest
+        name: 'Revision#{g[0]}'
+    VNDetectHumanHandPoseRequestRevision(.*):
+        class: VNDetectHumanHandPoseRequest
+        name: 'Revision#{g[0]}'
+    VNDetectContourRequestRevision(.*):
+        class: VNDetectContoursRequest
+        name: 'Revision#{g[0]}'
+    VNDetectTrajectoriesRequestRevision(.*):
+        class: VNDetectTrajectoriesRequest
+        name: 'Revision#{g[0]}'
     # Make sure we don't miss any constants if new ones are introduced in a later version
     (VN.*):
         class: Vision
