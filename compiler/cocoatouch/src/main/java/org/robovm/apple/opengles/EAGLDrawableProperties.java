@@ -106,6 +106,10 @@ import org.robovm.apple.foundation.*;
     }
     
 
+    /**
+     * @deprecated Deprecated in iOS 12.0. OpenGLES API deprecated. (Define GLES_SILENCE_DEPRECATION to silence these warnings)
+     */
+    @Deprecated
     public boolean isRetainedBacking() {
         if (has(Keys.RetainedBacking())) {
             NSNumber val = (NSNumber) get(Keys.RetainedBacking());
@@ -113,10 +117,18 @@ import org.robovm.apple.foundation.*;
         }
         return false;
     }
+    /**
+     * @deprecated Deprecated in iOS 12.0. OpenGLES API deprecated. (Define GLES_SILENCE_DEPRECATION to silence these warnings)
+     */
+    @Deprecated
     public EAGLDrawableProperties setRetainedBacking(boolean retainedBacking) {
         set(Keys.RetainedBacking(), NSNumber.valueOf(retainedBacking));
         return this;
     }
+    /**
+     * @deprecated Deprecated in iOS 12.0. OpenGLES API deprecated. (Define GLES_SILENCE_DEPRECATION to silence these warnings)
+     */
+    @Deprecated
     public EAGLColorFormat getColorFormat() {
         if (has(Keys.ColorFormat())) {
             NSString val = (NSString) get(Keys.ColorFormat());
@@ -124,6 +136,10 @@ import org.robovm.apple.foundation.*;
         }
         return null;
     }
+    /**
+     * @deprecated Deprecated in iOS 12.0. OpenGLES API deprecated. (Define GLES_SILENCE_DEPRECATION to silence these warnings)
+     */
+    @Deprecated
     public EAGLDrawableProperties setColorFormat(EAGLColorFormat colorFormat) {
         set(Keys.ColorFormat(), colorFormat.value());
         return this;
@@ -134,8 +150,16 @@ import org.robovm.apple.foundation.*;
     @Library("OpenGLES")
     public static class Keys {
         static { Bro.bind(Keys.class); }
+        /**
+         * @deprecated Deprecated in iOS 12.0. OpenGLES API deprecated. (Define GLES_SILENCE_DEPRECATION to silence these warnings)
+         */
+        @Deprecated
         @GlobalValue(symbol="kEAGLDrawablePropertyRetainedBacking", optional=true)
         public static native NSString RetainedBacking();
+        /**
+         * @deprecated Deprecated in iOS 12.0. OpenGLES API deprecated. (Define GLES_SILENCE_DEPRECATION to silence these warnings)
+         */
+        @Deprecated
         @GlobalValue(symbol="kEAGLDrawablePropertyColorFormat", optional=true)
         public static native NSString ColorFormat();
     }
