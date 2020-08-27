@@ -59,6 +59,11 @@ import org.robovm.apple.network.*;
     /*</constructors>*/
     /*<properties>*/
     /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "dnsProtocol")
+    public native NEDNSProtocol getDnsProtocol();
+    /**
      * @since Available in iOS 9.0 and later.
      */
     @Property(selector = "servers")

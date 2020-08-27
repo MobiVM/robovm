@@ -50,12 +50,24 @@ import org.robovm.apple.network.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
     @NotImplemented("shouldProvideIdentityForConnection:")
     public boolean shouldProvideIdentityForConnection(NWTCPConnection connection) { return false; }
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
     @NotImplemented("provideIdentityForConnection:completionHandler:")
     public void provideIdentityForConnection(NWTCPConnection connection, @Block VoidBlock2<SecIdentity, NSArray<?>> completion) {}
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
     @NotImplemented("shouldEvaluateTrustForConnection:")
     public boolean shouldEvaluateTrustForConnection(NWTCPConnection connection) { return false; }
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
     @NotImplemented("evaluateTrustForConnection:peerCertificateChain:completionHandler:")
     public void evaluateTrustForConnection(NWTCPConnection connection, NSArray<?> peerCertificateChain, @Block VoidBlock1<SecTrust> completion) {}
     /*</methods>*/

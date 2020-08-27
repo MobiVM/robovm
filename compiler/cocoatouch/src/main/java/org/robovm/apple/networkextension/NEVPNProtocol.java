@@ -95,6 +95,16 @@ import org.robovm.apple.network.*;
      */
     @Property(selector = "setProxySettings:")
     public native void setProxySettings(NEProxySettings v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "includeAllNetworks")
+    public native boolean isIncludeAllNetworks();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setIncludeAllNetworks:")
+    public native void setIncludeAllNetworks(boolean v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

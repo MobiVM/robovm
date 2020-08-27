@@ -34,43 +34,41 @@ import org.robovm.apple.network.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 9.0 and later.
+ * @since Available in iOS 14.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/NWTCPConnectionAuthenticationDelegate/*</name>*/ 
-    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
+/*<annotations>*/@Library("NetworkExtension") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/NEDNSOverHTTPSSettings/*</name>*/ 
+    extends /*<extends>*/NEDNSSettings/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/
-    /*</ptr>*/
-    /*<bind>*/
-    /*</bind>*/
+    /*<ptr>*/public static class NEDNSOverHTTPSSettingsPtr extends Ptr<NEDNSOverHTTPSSettings, NEDNSOverHTTPSSettingsPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(NEDNSOverHTTPSSettings.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
+    /*<constructors>*/
+    public NEDNSOverHTTPSSettings() {}
+    protected NEDNSOverHTTPSSettings(Handle h, long handle) { super(h, handle); }
+    protected NEDNSOverHTTPSSettings(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "initWithServers:")
+    public NEDNSOverHTTPSSettings(NSArray<NSString> servers) { super(servers); }
+    /*</constructors>*/
     /*<properties>*/
-    
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "serverURL")
+    public native NSURL getServerURL();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setServerURL:")
+    public native void setServerURL(NSURL v);
     /*</properties>*/
+    /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
-    @Method(selector = "shouldProvideIdentityForConnection:")
-    boolean shouldProvideIdentityForConnection(NWTCPConnection connection);
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
-    @Method(selector = "provideIdentityForConnection:completionHandler:")
-    void provideIdentityForConnection(NWTCPConnection connection, @Block VoidBlock2<SecIdentity, NSArray<?>> completion);
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
-    @Method(selector = "shouldEvaluateTrustForConnection:")
-    boolean shouldEvaluateTrustForConnection(NWTCPConnection connection);
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
-    @Method(selector = "evaluateTrustForConnection:peerCertificateChain:completionHandler:")
-    void evaluateTrustForConnection(NWTCPConnection connection, NSArray<?> peerCertificateChain, @Block VoidBlock1<SecTrust> completion);
+    
     /*</methods>*/
-    /*<adapter>*/
-    /*</adapter>*/
 }

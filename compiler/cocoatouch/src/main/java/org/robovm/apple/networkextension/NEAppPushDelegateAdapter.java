@@ -33,44 +33,27 @@ import org.robovm.apple.network.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 9.0 and later.
- */
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/NWTCPConnectionAuthenticationDelegate/*</name>*/ 
-    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/NEAppPushDelegateAdapter/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
+    /*<implements>*/implements NEAppPushDelegate/*</implements>*/ {
 
     /*<ptr>*/
     /*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
+    /*<constructors>*//*</constructors>*/
     /*<properties>*/
     
     /*</properties>*/
+    /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @since Available in iOS 9.0 and later.
+     * @since Available in iOS 14.0 and later.
      */
-    @Method(selector = "shouldProvideIdentityForConnection:")
-    boolean shouldProvideIdentityForConnection(NWTCPConnection connection);
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
-    @Method(selector = "provideIdentityForConnection:completionHandler:")
-    void provideIdentityForConnection(NWTCPConnection connection, @Block VoidBlock2<SecIdentity, NSArray<?>> completion);
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
-    @Method(selector = "shouldEvaluateTrustForConnection:")
-    boolean shouldEvaluateTrustForConnection(NWTCPConnection connection);
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
-    @Method(selector = "evaluateTrustForConnection:peerCertificateChain:completionHandler:")
-    void evaluateTrustForConnection(NWTCPConnection connection, NSArray<?> peerCertificateChain, @Block VoidBlock1<SecTrust> completion);
+    @NotImplemented("appPushManager:didReceiveIncomingCallWithUserInfo:")
+    public void didReceiveIncomingCall(NEAppPushManager manager, NSDictionary<?, ?> userInfo) {}
     /*</methods>*/
-    /*<adapter>*/
-    /*</adapter>*/
 }

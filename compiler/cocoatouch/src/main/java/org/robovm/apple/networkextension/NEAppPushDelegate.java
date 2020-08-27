@@ -34,11 +34,11 @@ import org.robovm.apple.network.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 9.0 and later.
+ * @since Available in iOS 14.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/NWTCPConnectionAuthenticationDelegate/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ interface /*<name>*/NEAppPushDelegate/*</name>*/ 
     /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
 
     /*<ptr>*/
@@ -51,25 +51,10 @@ import org.robovm.apple.network.*;
     /*</properties>*/
     /*<methods>*/
     /**
-     * @since Available in iOS 9.0 and later.
+     * @since Available in iOS 14.0 and later.
      */
-    @Method(selector = "shouldProvideIdentityForConnection:")
-    boolean shouldProvideIdentityForConnection(NWTCPConnection connection);
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
-    @Method(selector = "provideIdentityForConnection:completionHandler:")
-    void provideIdentityForConnection(NWTCPConnection connection, @Block VoidBlock2<SecIdentity, NSArray<?>> completion);
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
-    @Method(selector = "shouldEvaluateTrustForConnection:")
-    boolean shouldEvaluateTrustForConnection(NWTCPConnection connection);
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
-    @Method(selector = "evaluateTrustForConnection:peerCertificateChain:completionHandler:")
-    void evaluateTrustForConnection(NWTCPConnection connection, NSArray<?> peerCertificateChain, @Block VoidBlock1<SecTrust> completion);
+    @Method(selector = "appPushManager:didReceiveIncomingCallWithUserInfo:")
+    void didReceiveIncomingCall(NEAppPushManager manager, NSDictionary<?, ?> userInfo);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/
