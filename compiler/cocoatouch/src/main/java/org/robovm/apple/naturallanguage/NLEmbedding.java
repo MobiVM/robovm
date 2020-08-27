@@ -49,6 +49,10 @@ import org.robovm.apple.coreml.*;
     protected NLEmbedding(Handle h, long handle) { super(h, handle); }
     protected NLEmbedding(SkipInit skipInit) { super(skipInit); }
     /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public NLEmbedding(NLLanguage language, @MachineSizedUInt long revision) { super((Handle) null, create(language, revision)); retain(getHandle()); }
+    /**
      * @since Available in iOS 13.0 and later.
      */
     public NLEmbedding(NSURL url) throws NSErrorException {
@@ -166,6 +170,16 @@ import org.robovm.apple.coreml.*;
     @Method(selector = "wordEmbeddingForLanguage:revision:")
     public static native NLEmbedding getWordEmbedding(NLLanguage language, @MachineSizedUInt long revision);
     /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "sentenceEmbeddingForLanguage:")
+    public static native NLEmbedding sentenceEmbeddingForLanguage(NLLanguage language);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "sentenceEmbeddingForLanguage:revision:")
+    protected static native @Pointer long create(NLLanguage language, @MachineSizedUInt long revision);
+    /**
      * @since Available in iOS 13.0 and later.
      */
     @Method(selector = "embeddingWithContentsOfURL:error:")
@@ -180,6 +194,16 @@ import org.robovm.apple.coreml.*;
      */
     @Method(selector = "currentRevisionForLanguage:")
     public static native @MachineSizedUInt long currentRevisionForLanguage(NLLanguage language);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "supportedSentenceEmbeddingRevisionsForLanguage:")
+    public static native NSIndexSet supportedSentenceEmbeddingRevisionsForLanguage(NLLanguage language);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "currentSentenceEmbeddingRevisionForLanguage:")
+    public static native @MachineSizedUInt long currentSentenceEmbeddingRevisionForLanguage(NLLanguage language);
     /**
      * @since Available in iOS 13.0 and later.
      */

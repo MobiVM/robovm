@@ -89,6 +89,11 @@ import org.robovm.apple.coreml.*;
     @Method(selector = "tokenRangeAtIndex:unit:")
     public native @ByVal NSRange getTokenRange(@MachineSizedUInt long characterIndex, NLTokenUnit unit);
     /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "tokenRangeForRange:unit:")
+    public native @ByVal NSRange getTokenRange(@ByVal NSRange range, NLTokenUnit unit);
+    /**
      * @since Available in iOS 12.0 and later.
      */
     @Method(selector = "enumerateTagsInRange:unit:scheme:options:usingBlock:")
@@ -103,6 +108,11 @@ import org.robovm.apple.coreml.*;
      */
     @Method(selector = "tagsInRange:unit:scheme:options:tokenRanges:")
     public native NSArray<NSString> getTags(@ByVal NSRange range, NLTokenUnit unit, NLTagScheme scheme, NLTaggerOptions options, NSArray.NSArrayPtr<?> tokenRanges);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "tagHypothesesAtIndex:unit:scheme:maximumCount:tokenRange:")
+    public native NSDictionary<NSString, NSNumber> getTagHypotheses(@MachineSizedUInt long characterIndex, NLTokenUnit unit, NLTagScheme scheme, @MachineSizedUInt long maximumCount, NSRange tokenRange);
     /**
      * @since Available in iOS 12.0 and later.
      */
