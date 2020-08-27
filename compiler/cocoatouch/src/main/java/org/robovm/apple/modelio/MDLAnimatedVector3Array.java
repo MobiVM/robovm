@@ -62,18 +62,18 @@ import org.robovm.apple.coregraphics.*;
     @Method(selector = "setFloat3Array:count:atTime:")
     public native void setFloat3Array(VectorFloat3 array, @MachineSizedUInt long count, double time);
     @Method(selector = "setDouble3Array:count:atTime:")
-    public native void setDouble3Array(FunctionPtr.FunctionPtrPtr array, @MachineSizedUInt long count, double time);
+    public native void setDouble3Array(VectorDouble3 array, @MachineSizedUInt long count, double time);
     @Method(selector = "getFloat3Array:maxCount:atTime:")
     public native @MachineSizedUInt long getFloat3Array(VectorFloat3 array, @MachineSizedUInt long maxCount, double time);
     @Method(selector = "getDouble3Array:maxCount:atTime:")
-    public native @MachineSizedUInt long getDouble3Array(FunctionPtr.FunctionPtrPtr array, @MachineSizedUInt long maxCount, double time);
+    public native @MachineSizedUInt long getDouble3Array(VectorDouble3 array, @MachineSizedUInt long maxCount, double time);
     @Method(selector = "resetWithFloat3Array:count:atTimes:count:")
     public native void resetWithFloat3Array(VectorFloat3 valuesArray, @MachineSizedUInt long valuesCount, DoublePtr timesArray, @MachineSizedUInt long timesCount);
     @Method(selector = "resetWithDouble3Array:count:atTimes:count:")
-    public native void resetWithDouble3Array(FunctionPtr.FunctionPtrPtr valuesArray, @MachineSizedUInt long valuesCount, DoublePtr timesArray, @MachineSizedUInt long timesCount);
+    public native void resetWithDouble3Array(VectorDouble3 valuesArray, @MachineSizedUInt long valuesCount, DoublePtr timesArray, @MachineSizedUInt long timesCount);
     @Method(selector = "getFloat3Array:maxCount:")
     public native @MachineSizedUInt long getFloat3Array(VectorFloat3 valuesArray, @MachineSizedUInt long maxCount);
     @Method(selector = "getDouble3Array:maxCount:")
-    public native @MachineSizedUInt long getDouble3Array(FunctionPtr.FunctionPtrPtr valuesArray, @MachineSizedUInt long maxCount);
+    public native @MachineSizedUInt long getDouble3Array(VectorDouble3 valuesArray, @MachineSizedUInt long maxCount);
     /*</methods>*/
 }

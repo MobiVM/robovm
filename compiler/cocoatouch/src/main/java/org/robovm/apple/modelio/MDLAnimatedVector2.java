@@ -57,18 +57,18 @@ import org.robovm.apple.coregraphics.*;
     @Method(selector = "setFloat2:atTime:")
     public native void setFloat2(@ByVal VectorFloat2 value, double time);
     @Method(selector = "setDouble2:atTime:")
-    public native void setDouble2(FunctionPtr value, double time);
+    public native void setDouble2(@ByVal VectorDouble2 value, double time);
     @Method(selector = "float2AtTime:")
     public native @ByVal VectorFloat2 float2AtTime(double time);
     @Method(selector = "double2AtTime:")
-    public native FunctionPtr double2AtTime(double time);
+    public native @ByVal VectorDouble2 double2AtTime(double time);
     @Method(selector = "resetWithFloat2Array:atTimes:count:")
     public native void resetWithFloat2Array(VectorFloat2 valuesArray, DoublePtr timesArray, @MachineSizedUInt long count);
     @Method(selector = "resetWithDouble2Array:atTimes:count:")
-    public native void resetWithDouble2Array(FunctionPtr.FunctionPtrPtr valuesArray, DoublePtr timesArray, @MachineSizedUInt long count);
+    public native void resetWithDouble2Array(VectorDouble2 valuesArray, DoublePtr timesArray, @MachineSizedUInt long count);
     @Method(selector = "getFloat2Array:maxCount:")
     public native @MachineSizedUInt long getFloat2Array(VectorFloat2 valuesArray, @MachineSizedUInt long maxCount);
     @Method(selector = "getDouble2Array:maxCount:")
-    public native @MachineSizedUInt long getDouble2Array(FunctionPtr.FunctionPtrPtr valuesArray, @MachineSizedUInt long maxCount);
+    public native @MachineSizedUInt long getDouble2Array(VectorDouble2 valuesArray, @MachineSizedUInt long maxCount);
     /*</methods>*/
 }
