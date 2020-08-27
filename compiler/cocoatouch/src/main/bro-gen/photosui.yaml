@@ -14,7 +14,7 @@ typedefs:
 enums:
     PHLivePhotoBadgeOptions: {}
     PHLivePhotoViewPlaybackStyle: {}
-
+    PHPickerConfigurationAssetRepresentationMode: {} #since 14.0
 classes:
     PHLivePhotoView: #since 9.1
         methods:
@@ -23,7 +23,16 @@ classes:
             '+livePhotoBadgeImageWithOptions:':
                 name: createLivePhotoBadgeImage
     PHEditingExtensionContext: {} #since 8.0
-
+    PHPickerConfiguration: #since 14.0
+        methods:
+            '-initWithPhotoLibrary:':
+                name: init
+    PHPickerFilter: {} #since 14.0
+    PHPickerResult: {} #since 14.0
+    PHPickerViewController: #since 14.0
+        methods:
+            '-initWithConfiguration:':
+                name: init
 protocols:
     PHLivePhotoViewDelegate:
         methods:
@@ -42,7 +51,10 @@ protocols:
                 name: startContentEditing
             '-finishContentEditingWithCompletionHandler:':
                 name: finishContentEditing
-
+    PHPickerViewControllerDelegate: #since 14.0
+        methods:
+            '-picker:didFinishPicking:':
+                name: didFinishPicking
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (k?PH.*):
