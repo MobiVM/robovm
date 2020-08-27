@@ -110,18 +110,18 @@
 * watchconnectivity
 * watchkit
 * webkit
-
-## New frameworks to process
-* Accessibility
-* AppClip
-* AppTrackingTransparency 
-* ClockKit
-* DeveloperToolsSupport
+* Accessibility (new framework)
+* AppClip (new framework)
+* AppTrackingTransparency (new framework) 
+* ClockKit (new framework)
 * MediaSetup
 * MetalPerformanceShadersGraph
 * MLCompute
 * NearbyInteraction
+
+## New frameworks to process
 * OSLog
 * ScreenTime
 * SensorKit
 * WidgetKit
+* DeveloperToolsSupport
