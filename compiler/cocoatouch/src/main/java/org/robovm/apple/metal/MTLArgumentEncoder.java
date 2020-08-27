@@ -107,10 +107,35 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "setIndirectCommandBuffers:withRange:")
     void setIndirectCommandBuffers(MTLIndirectCommandBuffer buffers, @ByVal NSRange range);
     /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "setAccelerationStructure:atIndex:")
+    void setAccelerationStructure(MTLAccelerationStructure accelerationStructure, @MachineSizedUInt long index);
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "newArgumentEncoderForBufferAtIndex:")
     MTLArgumentEncoder newArgumentEncoderForBufferAtIndex(@MachineSizedUInt long index);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "setVisibleFunctionTable:atIndex:")
+    void setVisibleFunctionTable(MTLVisibleFunctionTable visibleFunctionTable, @MachineSizedUInt long index);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "setVisibleFunctionTables:withRange:")
+    void setVisibleFunctionTables(MTLVisibleFunctionTable visibleFunctionTables, @ByVal NSRange range);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "setIntersectionFunctionTable:atIndex:")
+    void setIntersectionFunctionTable(MTLIntersectionFunctionTable intersectionFunctionTable, @MachineSizedUInt long index);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "setIntersectionFunctionTables:withRange:")
+    void setIntersectionFunctionTables(MTLIntersectionFunctionTable intersectionFunctionTables, @ByVal NSRange range);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

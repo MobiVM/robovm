@@ -48,7 +48,23 @@ public enum /*<name>*/MTLArgumentType/*</name>*/ implements ValuedEnum {
     /**
      * @since Available in iOS 11.0 and later.
      */
-    Imageblock(17L);
+    Imageblock(17L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    VisibleFunctionTable(24L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    PrimitiveAccelerationStructure(25L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    InstanceAccelerationStructure(26L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    IntersectionFunctionTable(27L);
     /*</values>*/
 
     /*<bind>*/

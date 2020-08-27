@@ -431,6 +431,11 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "executeCommandsInBuffer:indirectBuffer:indirectBufferOffset:")
     public native void executeCommandsInBuffer(MTLIndirectCommandBuffer indirectCommandbuffer, MTLBuffer indirectRangeBuffer, @MachineSizedUInt long indirectBufferOffset);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "sampleCountersInBuffer:atSampleIndex:withBarrier:")
+    public native void sampleCountersInBuffer(MTLCounterSampleBuffer sampleBuffer, @MachineSizedUInt long sampleIndex, boolean barrier);
     @Method(selector = "endEncoding")
     public native void endEncoding();
     @Method(selector = "insertDebugSignpost:")

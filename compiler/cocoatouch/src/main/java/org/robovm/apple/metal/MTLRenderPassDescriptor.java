@@ -152,6 +152,11 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "setRasterizationRateMap:")
     public native void setRasterizationRateMap(MTLRasterizationRateMap v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "sampleBufferAttachments")
+    public native MTLRenderPassSampleBufferAttachmentDescriptorArray getSampleBufferAttachments();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

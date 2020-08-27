@@ -6,16 +6,11 @@ clang_args: ['-x', 'objective-c']
 headers:
     - /System/Library/Frameworks/Metal.framework/Headers/Metal.h
 private_typedefs:
-    MTLNewLibraryCompletionHandler: '@Block VoidBlock2<MTLLibrary, NSError>'
-    MTLNewRenderPipelineStateCompletionHandler: '@Block VoidBlock2<MTLRenderPipelineState, NSError>'
-    MTLNewRenderPipelineStateWithReflectionCompletionHandler: '@Block VoidBlock3<MTLRenderPipelineState, MTLRenderPipelineReflection, NSError>'
-    MTLNewComputePipelineStateCompletionHandler: '@Block VoidBlock2<MTLComputePipelineState, NSError>'
-    MTLNewComputePipelineStateWithReflectionCompletionHandler: '@Block VoidBlock3<MTLComputePipelineState, MTLComputePipelineReflection, NSError>'    
-    'void (^)(void *, NSUInteger)': '@Block("(@Pointer,@MachineSizedUInt)") VoidBlock2<Long, Long>'
     'MTLAutoreleasedRenderPipelineReflection *': MTLRenderPipelineReflection.MTLRenderPipelineReflectionPtr
     'MTLAutoreleasedComputePipelineReflection *': MTLComputePipelineReflection.MTLComputePipelineReflectionPtr
     '__IOSurface *': org.robovm.apple.iosurface.IOSurface
-
+private_structdefs:
+    MTLPackedFloat3: MTLPackedFloat3
 enums:
     MTLBlitOption: {}
     MTLPixelFormat: {}
@@ -85,6 +80,19 @@ enums:
     MTLHeapType: {} #since 13.0
     MTLCaptureError: {nserror: true} #since 13.0
     MTLCaptureDestination: {} #since 13.0
+
+    MTLFunctionOptions: {prefix: MTLFunctionOption} #since 14.0
+    MTLLibraryType: {} #since 14.0
+    MTLCounterSampleBufferError: {nserror: true} #since 14.0
+    MTLCounterSamplingPoint: {} #since 14.0
+    MTLCommandBufferErrorOption: {} #since 14.0
+    MTLCommandEncoderErrorState: {} #since 14.0
+    MTLFunctionLogType: {}
+    MTLAccelerationStructureUsage: {} #since 14.0
+    MTLAccelerationStructureInstanceOptions: {prefix: MTLAccelerationStructureInstanceOption} #since 14.0
+    MTLDynamicLibraryError: {nserror: true} #since 14.0
+    MTLBinaryArchiveError: {nserror: true} #since 14.0
+    MTLIntersectionFunctionSignature: {} #since 14.0
 classes:
     MTLAttribute: {}
     MTLFunctionConstant: {}
@@ -137,6 +145,13 @@ classes:
     MTLScissorRect: {} # DONE
     MTLSize: {} # DONE
     MTLViewport: {} # DONE
+    MTLCounterResultTimestamp: { } #since 14.0
+    MTLCounterResultStageUtilization: { } #since 14.0
+    MTLCounterResultStatistic: {} #since 14.0
+    MTLAccelerationStructureSizes: {}
+    MTLPackedFloat4x3: {}
+    MTLAxisAlignedBoundingBox: {}
+    MTLAccelerationStructureInstanceDescriptor: {}
 
     MTLArgument: {} # DONE
     MTLArrayType: # DONE
@@ -311,6 +326,43 @@ classes:
     MTLQuadTessellationFactorsHalf: {}
     MTLTriangleTessellationFactorsHalf: {}
     MTLIndirectCommandBufferExecutionRange: {}
+    MTLAccelerationStructureBoundingBoxGeometryDescriptor: { } #since 14.0
+    MTLAccelerationStructureDescriptor: { } #since 14.0
+    MTLAccelerationStructureGeometryDescriptor: { } #since 14.0
+    MTLAccelerationStructureTriangleGeometryDescriptor: { } #since 14.0
+    MTLBinaryArchiveDescriptor: { } #since 14.0
+    MTLBlitPassDescriptor: { } #since 14.0
+    MTLBlitPassSampleBufferAttachmentDescriptor: { } #since 14.0
+    MTLBlitPassSampleBufferAttachmentDescriptorArray: #since 14.0
+        methods:
+            '-setObject:atIndexedSubscript:':
+                name: setObject
+    MTLCommandBufferDescriptor: { } #since 14.0
+    MTLComputePassDescriptor: { } #since 14.0
+    MTLComputePassSampleBufferAttachmentDescriptor: { } #since 14.0
+    MTLComputePassSampleBufferAttachmentDescriptorArray: #since 14.0
+        methods:
+            '-setObject:atIndexedSubscript:':
+                name: setObject
+    MTLCounterSampleBufferDescriptor: { } #since 14.0
+    MTLFunctionDescriptor: { } #since 14.0
+    MTLInstanceAccelerationStructureDescriptor: { } #since 14.0
+    MTLIntersectionFunctionDescriptor: { } #since 14.0
+    MTLIntersectionFunctionTableDescriptor: { } #since 14.0
+    MTLLinkedFunctions: { } #since 14.0
+    MTLPrimitiveAccelerationStructureDescriptor: { } #since 14.0
+    MTLRenderPassSampleBufferAttachmentDescriptor: { } #since 14.0
+    MTLRenderPassSampleBufferAttachmentDescriptorArray: #since 14.0
+        methods:
+            '-setObject:atIndexedSubscript:':
+                name: setObject
+    MTLResourceStatePassDescriptor: { } #since 14.0
+    MTLResourceStatePassSampleBufferAttachmentDescriptor: { } #since 14.0
+    MTLResourceStatePassSampleBufferAttachmentDescriptorArray: #since 14.0
+        methods:
+            '-setObject:atIndexedSubscript:':
+                name: setObject
+    MTLVisibleFunctionTableDescriptor: { } #since 14.0
 protocols:
     MTLHeap:
         methods:
@@ -358,6 +410,10 @@ protocols:
                 name: getTextureAccessCounters
             '-resetTextureAccessCounters:region:mipLevel:slice:':
                 name: resetTextureAccessCounters
+            '-sampleCountersInBuffer:atSampleIndex:withBarrier:':
+                name: sampleCountersInBuffer
+            '-resolveCounters:inRange:destinationBuffer:destinationOffset:':
+                name: resolveCounters
     MTLBuffer: # DONE
         class: true
         annotations: ['@NativeProtocolProxy']
@@ -413,6 +469,12 @@ protocols:
                 name: encodeWaitForEvent
             '-encodeSignalEvent:value:':
                 name: encodeSignalEvent
+            '-computeCommandEncoderWithDescriptor:':
+                name: computeCommandEncoder
+            '-blitCommandEncoderWithDescriptor:':
+                name: blitCommandEncoder
+            '-resourceStateCommandEncoderWithDescriptor:':
+                name: resourceStateCommandEncoder
     MTLCommandEncoder: # DONE
         methods:
             '-insertDebugSignpost:':
@@ -428,6 +490,8 @@ protocols:
                 property: true
             '-commandBufferWithUnretainedReferences':
                 property: true
+            '-commandBufferWithDescriptor:':
+                name: commandBuffer
     MTLComputeCommandEncoder: # DONE
         class: true
         annotations: ['@NativeProtocolProxy']
@@ -499,10 +563,31 @@ protocols:
                 name: executeCommandsInBuffer
             '-executeCommandsInBuffer:indirectBuffer:indirectBufferOffset:':
                 name: executeCommandsInBuffer
+            '-setVisibleFunctionTable:atBufferIndex:':
+                name: setVisibleFunctionTable
+            '-setVisibleFunctionTables:withBufferRange:':
+                name: setVisibleFunctionTables
+            '-setIntersectionFunctionTable:atBufferIndex:':
+                name: setIntersectionFunctionTable
+            '-setIntersectionFunctionTables:withBufferRange:':
+                name: setIntersectionFunctionTables
+            '-setAccelerationStructure:atBufferIndex:':
+                name: setAccelerationStructure
+            '-sampleCountersInBuffer:atSampleIndex:withBarrier:':
+                name: sampleCountersInBuffer
     MTLComputePipelineState: # DONE
         class: true
         annotations: ['@NativeProtocolProxy']
         visibility: 'public final'
+        methods:
+            '-functionHandleWithFunction:':
+                name: functionHandle
+            '-newComputePipelineStateWithAdditionalBinaryFunctions:error:':
+                name: newComputePipelineState
+            '-newVisibleFunctionTableWithDescriptor:':
+                name: newVisibleFunctionTable
+            '-newIntersectionFunctionTableWithDescriptor:':
+                name: newIntersectionFunctionTabl
     MTLDepthStencilState: # DONE
         class: true
         annotations: ['@NativeProtocolProxy']
@@ -601,6 +686,22 @@ protocols:
                 name: convertSparsePixelRegions
             '-convertSparseTileRegions:toPixelRegions:withTileSize:numRegions:':
                 name: convertSparseTileRegions
+            '-newCounterSampleBufferWithDescriptor:error:':
+                name: newCounterSampleBuffer
+            '-sampleTimestamps:gpuTimestamp:':
+                name: sampleTimestamps
+            '-newDynamicLibrary:error:':
+                name: newDynamicLibrary
+            '-newDynamicLibraryWithURL:error:':
+                name: newDynamicLibrary
+            '-newBinaryArchiveWithDescriptor:error:':
+                name: newBinaryArchive
+            '-accelerationStructureSizesWithDescriptor:':
+                name: accelerationStructureSizes
+            '-newAccelerationStructureWithSize:':
+                name: newAccelerationStructure
+            '-newAccelerationStructureWithDescriptor:':
+                name: newAccelerationStructure
     MTLDrawable: # DONE
         methods:
             '-presentAtTime:':
@@ -633,6 +734,14 @@ protocols:
                 throws: NSErrorException
             '-newFunctionWithName:constantValues:completionHandler:':
                 name: newFunction
+            '-newFunctionWithDescriptor:completionHandler:':
+                name: newFunction
+            '-newFunctionWithDescriptor:error:':
+                name: newFunction
+            '-newIntersectionFunctionWithDescriptor:completionHandler:':
+                name: newIntersectionFunction
+            '-newIntersectionFunctionWithDescriptor:error:':
+                name: newIntersectionFunction
     MTLParallelRenderCommandEncoder: # DONE
         class: true
         annotations: ['@NativeProtocolProxy']
@@ -817,6 +926,8 @@ protocols:
                 trim_after_first_colon: true
             '-executeCommandsInBuffer:indirectBuffer:indirectBufferOffset:':
                 trim_after_first_colon: true
+            '-sampleCountersInBuffer:atSampleIndex:withBarrier:':
+                name: sampleCountersInBuffer
     MTLRenderPipelineState: # DONE
         class: true
         annotations: ['@NativeProtocolProxy']
@@ -891,6 +1002,16 @@ protocols:
                 name: setComputePipelineState
             '-setComputePipelineStates:withRange:':
                 name: setComputePipelineStates
+            '-setAccelerationStructure:atIndex:':
+                name: setAccelerationStructure
+            '-setVisibleFunctionTable:atIndex:':
+                name: setVisibleFunctionTable
+            '-setVisibleFunctionTables:withRange:':
+                name: setVisibleFunctionTables
+            '-setIntersectionFunctionTable:atIndex:':
+                name: setIntersectionFunctionTable
+            '-setIntersectionFunctionTables:withRange:':
+                name: setIntersectionFunctionTables
     MTLCaptureScope: {} #since 11.0
 
     MTLEvent: {} #since 12.0
@@ -926,6 +1047,8 @@ protocols:
                 name: concurrentDispatchThreads
             '-setThreadgroupMemoryLength:atIndex:':
                 name: setThreadgroupMemoryLength
+            '-setImageblockWidth:height:':
+                name: setImageblockWidth
     MTLRasterizationRateMap: #since 13.0
         methods:
             '-copyParameterDataToBuffer:offset:':
@@ -942,6 +1065,84 @@ protocols:
                 name: updateTextureMapping
             '-updateTextureMapping:mode:indirectBuffer:indirectBufferOffset:':
                 name: updateTextureMapping
+    MTLAccelerationStructure: {} #since 14.0
+    MTLAccelerationStructureCommandEncoder: #since 14.0
+        methods:
+            '-buildAccelerationStructure:descriptor:scratchBuffer:scratchBufferOffset:':
+                #trim_after_first_colon: true
+                name: buildAccelerationStructure$descriptor$scratchBuffer$scratchBufferOffset$
+            '-refitAccelerationStructure:descriptor:destination:scratchBuffer:scratchBufferOffset:':
+                #trim_after_first_colon: true
+                name: refitAccelerationStructure$descriptor$destination$scratchBuffer$scratchBufferOffset$
+            '-copyAccelerationStructure:toAccelerationStructure:':
+                #trim_after_first_colon: true
+                name: copyAccelerationStructure$toAccelerationStructure$
+            '-writeCompactedAccelerationStructureSize:toBuffer:offset:':
+                #trim_after_first_colon: true
+                name: writeCompactedAccelerationStructureSize$toBuffer$offset$
+            '-copyAndCompactAccelerationStructure:toAccelerationStructure:':
+                #trim_after_first_colon: true
+                name: copyAndCompactAccelerationStructure$toAccelerationStructure$
+            '-useResource:usage:':
+                #trim_after_first_colon: true
+                name: useResource$usage$
+            '-useResources:count:usage:':
+                #trim_after_first_colon: true
+                name: useResources$count$usage$
+            '-useHeaps:count:':
+                #trim_after_first_colon: true
+                name: useHeaps$count$
+            '-sampleCountersInBuffer:atSampleIndex:withBarrier:':
+                #trim_after_first_colon: true
+                name: sampleCountersInBuffer$atSampleIndex$withBarrier$
+    MTLBinaryArchive: #since 14.0
+        methods:
+            '-addComputePipelineFunctionsWithDescriptor:error:':
+                name: addComputePipeline
+            '-addRenderPipelineFunctionsWithDescriptor:error:':
+                name: addRenderPipelineFunctions
+            '-addTileRenderPipelineFunctionsWithDescriptor:error:':
+                name: addTileRenderPipelineFunctions
+            '-serializeToURL:error:':
+                name: serializeToURL
+                throws: NSErrorException
+    MTLCommandBufferEncoderInfo: {} #since 14.0
+    MTLCounter: {} #since 14.0
+    MTLCounterSampleBuffer: {} #since 14.0
+    MTLCounterSet: {} #since 14.0
+    MTLDynamicLibrary: #since 14.0
+        methods:
+            '-serializeToURL:error:':
+                name: serializeToUR
+                throws: NSErrorException
+    MTLFunctionHandle: {} #since 14.0
+    MTLFunctionLog: {} #since 14.0
+    MTLFunctionLogDebugLocation: {} #since 14.0
+    MTLIntersectionFunctionTable: #since 14.0
+        methods:
+            '-setBuffer:offset:atIndex:':
+                name: setBuffer
+            '-setBuffers:offsets:withRange:':
+                name: setBuffers
+            '-setFunction:atIndex:':
+                name: setFunction
+            '-setFunctions:withRange:':
+                name: setFunctions
+            '-setOpaqueTriangleIntersectionFunctionWithSignature:atIndex:':
+                name: setOpaqueTriangleIntersectionFunction
+            '-setOpaqueTriangleIntersectionFunctionWithSignature:withRange:':
+                name: setOpaqueTriangleIntersectionFunction
+            '-setVisibleFunctionTable:atBufferIndex:':
+                name: setVisibleFunctionTable
+            '-setVisibleFunctionTables:withBufferRange:':
+                name: setVisibleFunctionTables
+    MTLLogContainer: {} #since 14.0
+    MTLVisibleFunctionTable: #since 14.0
+        methods:
+            '-setFunction:atIndex:':
+                name: setFunction
+            '-setFunctions:withRange:':
+                name: setFunctions
 functions:
     MTLClearColorMake:
         exclude: true # use constructor instead
@@ -969,11 +1170,33 @@ values:
     MTLCaptureErrorDomain:
         class: MTLCaptureError
         name: getClassDomain
+    MTLDynamicLibraryDomain:  #since 14.0
+        class: MTLDynamicLibraryError
+        name: getClassDomain
+    MTLBinaryArchiveDomain: #since 14.0
+        class: MTLBinaryArchiveError
+        name: getClassDomain
+    MTLCounterErrorDomain: #since 14.0
+        class: MTLCounterSampleBufferError
+        name: getClassDomain
+    MTLCommandBufferEncoderInfoErrorKey:
+        class: MTLCommandBufferError
+        name: getEncoderInfoErrorKey
 
     # Make sure we don't miss any values if new ones are introduced in a later version
     (k?MTL.*):
         class: Metal
         name: 'Value__#{g[0]}'
+
+typed_enums:
+    MTLCommonCounter:
+        enum: MTLCommonCounter
+        prefix: MTLCommonCounter
+        type: NSString
+    MTLCommonCounterSet:
+        enum: MTLCommonCounterSet
+        prefix: MTLCommonCounterSet
+        type: NSString
 
 constants:
     MTLResourceCPUCacheModeShift:
@@ -981,6 +1204,15 @@ constants:
     MTLResourceStorageModeShift:
         exclude: true
     MTLResourceHazardTrackingModeShift:
+        exclude: true
+
+    MTLMaxResourceStatePassSampleBuffers:
+        exclude: true
+    MTLMaxRenderPassSampleBuffers:
+        exclude: true
+    MTLMaxBlitPassSampleBuffers:
+        exclude: true
+    MTLMaxComputePassSampleBuffers:
         exclude: true
 
     # Make sure we don't miss any constants if new ones are introduced in a later version

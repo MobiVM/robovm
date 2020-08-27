@@ -40,6 +40,10 @@ public final class /*<name>*/MTLPipelineOption/*</name>*/ extends Bits</*<name>*
     public static final MTLPipelineOption None = new MTLPipelineOption(0L);
     public static final MTLPipelineOption ArgumentInfo = new MTLPipelineOption(1L);
     public static final MTLPipelineOption BufferTypeInfo = new MTLPipelineOption(2L);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final MTLPipelineOption FailOnBinaryArchiveMiss = new MTLPipelineOption(4L);
     /*</values>*/
 
     /*<bind>*/

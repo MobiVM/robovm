@@ -60,5 +60,10 @@ import org.robovm.apple.dispatch.*;
     /*<methods>*/
     @GlobalValue(symbol="MTLCommandBufferErrorDomain", optional=true)
     public static native String getClassDomain();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @GlobalValue(symbol="MTLCommandBufferEncoderInfoErrorKey", optional=true)
+    public static native String getEncoderInfoErrorKey();
     /*</methods>*/
 }

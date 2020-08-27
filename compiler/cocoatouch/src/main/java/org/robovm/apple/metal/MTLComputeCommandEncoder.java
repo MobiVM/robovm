@@ -109,6 +109,31 @@ import org.robovm.apple.dispatch.*;
     public native void setBufferOffset(@MachineSizedUInt long offset, @MachineSizedUInt long index);
     @Method(selector = "setBuffers:offsets:withRange:")
     protected native void setBuffers(MTLBuffer.MTLBufferPtr buffers, MachineSizedUIntPtr offsets, @ByVal NSRange range);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "setVisibleFunctionTable:atBufferIndex:")
+    public native void setVisibleFunctionTable(MTLVisibleFunctionTable visibleFunctionTable, @MachineSizedUInt long bufferIndex);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "setVisibleFunctionTables:withBufferRange:")
+    public native void setVisibleFunctionTables(MTLVisibleFunctionTable visibleFunctionTables, @ByVal NSRange range);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "setIntersectionFunctionTable:atBufferIndex:")
+    public native void setIntersectionFunctionTable(MTLIntersectionFunctionTable intersectionFunctionTable, @MachineSizedUInt long bufferIndex);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "setIntersectionFunctionTables:withBufferRange:")
+    public native void setIntersectionFunctionTables(MTLIntersectionFunctionTable intersectionFunctionTables, @ByVal NSRange range);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "setAccelerationStructure:atBufferIndex:")
+    public native void setAccelerationStructure(MTLAccelerationStructure accelerationStructure, @MachineSizedUInt long bufferIndex);
     @Method(selector = "setTexture:atIndex:")
     public native void setTexture(MTLTexture texture, @MachineSizedUInt long index);
     @Method(selector = "setTextures:withRange:")
@@ -200,6 +225,11 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "memoryBarrierWithResources:count:")
     public native void memoryBarrier(MTLResource resources, @MachineSizedUInt long count);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "sampleCountersInBuffer:atSampleIndex:withBarrier:")
+    public native void sampleCountersInBuffer(MTLCounterSampleBuffer sampleBuffer, @MachineSizedUInt long sampleIndex, boolean barrier);
     @Method(selector = "endEncoding")
     public native void endEncoding();
     @Method(selector = "insertDebugSignpost:")
