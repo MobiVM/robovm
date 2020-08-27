@@ -56,6 +56,7 @@ public enum /*<name>*/SecErrorCode/*</name>*/ implements ValuedEnum {
     InternalComponent(-2070L),
     CoreFoundationUnknown(-4960L),
     MissingEntitlement(-34018L),
+    RestrictedAPI(-34020L),
     NotAvailable(-25291L),
     ReadOnly(-25292L),
     AuthFailed(-25293L),
@@ -419,7 +420,8 @@ public enum /*<name>*/SecErrorCode/*</name>*/ implements ValuedEnum {
     TimestampRevocationNotification(-67898L),
     CertificatePolicyNotAllowed(-67899L),
     CertificateNameNotAllowed(-67900L),
-    CertificateValidityPeriodTooLong(-67901L);
+    CertificateValidityPeriodTooLong(-67901L),
+    CertificateIsCA(-67902L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(SecErrorCode.class); }/*</bind>*/

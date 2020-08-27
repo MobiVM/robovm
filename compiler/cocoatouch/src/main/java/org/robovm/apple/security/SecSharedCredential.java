@@ -69,6 +69,10 @@ import org.robovm.apple.dispatch.*;
     /*<methods>*/
     @Bridge(symbol="SecAddSharedWebCredential", optional=true)
     public static native void addSharedWebCredential(String fqdn, String account, String password, @Block VoidBlock1<NSError> completionHandler);
+    /**
+     * @deprecated Deprecated in iOS 14.0. Use ASAuthorizationController to make an ASAuthorizationPasswordRequest (AuthenticationServices framework)
+     */
+    @Deprecated
     @Bridge(symbol="SecRequestSharedWebCredential", optional=true)
     protected static native void requestSharedWebCredential0(String fqdn, String account, @Block VoidBlock2<CFArray, NSError> completionHandler);
     @Bridge(symbol="SecCreateSharedWebCredentialPassword", optional=true)
