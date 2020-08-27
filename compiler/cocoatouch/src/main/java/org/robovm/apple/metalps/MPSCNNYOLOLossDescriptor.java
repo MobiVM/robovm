@@ -72,6 +72,16 @@ import org.robovm.apple.metal.*;
     public native MPSCNNReductionType getReductionType();
     @Property(selector = "setReductionType:")
     public native void setReductionType(MPSCNNReductionType v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "reduceAcrossBatch")
+    public native boolean isReduceAcrossBatch();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setReduceAcrossBatch:")
+    public native void setReduceAcrossBatch(boolean v);
     @Property(selector = "rescore")
     public native boolean isRescore();
     @Property(selector = "setRescore:")

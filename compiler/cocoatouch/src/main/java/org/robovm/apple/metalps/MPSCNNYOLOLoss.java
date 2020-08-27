@@ -85,6 +85,11 @@ import org.robovm.apple.metal.*;
     public native @MachineSizedUInt long getNumberOfAnchorBoxes();
     @Property(selector = "anchorBoxes")
     public native NSData getAnchorBoxes();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "reduceAcrossBatch")
+    public native boolean isReduceAcrossBatch();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

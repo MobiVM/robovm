@@ -34,44 +34,54 @@ import org.robovm.apple.metal.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 11.3 and later.
+ * @since Available in iOS 14.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSImageEuclideanDistanceTransform/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSImageCanny/*</name>*/ 
     extends /*<extends>*/MPSUnaryImageKernel/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class MPSImageEuclideanDistanceTransformPtr extends Ptr<MPSImageEuclideanDistanceTransform, MPSImageEuclideanDistanceTransformPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(MPSImageEuclideanDistanceTransform.class); }/*</bind>*/
+    /*<ptr>*/public static class MPSImageCannyPtr extends Ptr<MPSImageCanny, MPSImageCannyPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(MPSImageCanny.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MPSImageEuclideanDistanceTransform() {}
-    protected MPSImageEuclideanDistanceTransform(Handle h, long handle) { super(h, handle); }
-    protected MPSImageEuclideanDistanceTransform(SkipInit skipInit) { super(skipInit); }
+    public MPSImageCanny() {}
+    protected MPSImageCanny(Handle h, long handle) { super(h, handle); }
+    protected MPSImageCanny(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithDevice:")
-    public MPSImageEuclideanDistanceTransform(MTLDevice device) { super((SkipInit) null); initObject(init(device)); }
+    public MPSImageCanny(MTLDevice device) { super((SkipInit) null); initObject(init(device)); }
+    @Method(selector = "initWithDevice:linearToGrayScaleTransform:sigma:")
+    public MPSImageCanny(MTLDevice device, FloatPtr transform, float sigma) { super((SkipInit) null); initObject(init(device, transform, sigma)); }
     @Method(selector = "initWithCoder:device:")
-    public MPSImageEuclideanDistanceTransform(NSCoder decoder, MTLDevice device) { super((SkipInit) null); initObject(init(decoder, device)); }
+    public MPSImageCanny(NSCoder decoder, MTLDevice device) { super((SkipInit) null); initObject(init(decoder, device)); }
     @Method(selector = "initWithCoder:")
-    public MPSImageEuclideanDistanceTransform(NSCoder decoder) { super(decoder); }
+    public MPSImageCanny(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 14.0 and later.
-     */
-    @Property(selector = "searchLimitRadius")
-    public native float getSearchLimitRadius();
-    /**
-     * @since Available in iOS 14.0 and later.
-     */
-    @Property(selector = "setSearchLimitRadius:")
-    public native void setSearchLimitRadius(float v);
+    @Property(selector = "colorTransform")
+    public native FloatPtr getColorTransform();
+    @Property(selector = "sigma")
+    public native float getSigma();
+    @Property(selector = "highThreshold")
+    public native float getHighThreshold();
+    @Property(selector = "setHighThreshold:")
+    public native void setHighThreshold(float v);
+    @Property(selector = "lowThreshold")
+    public native float getLowThreshold();
+    @Property(selector = "setLowThreshold:")
+    public native void setLowThreshold(float v);
+    @Property(selector = "useFastMode")
+    public native boolean isUseFastMode();
+    @Property(selector = "setUseFastMode:")
+    public native void setUseFastMode(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithDevice:")
     protected native @Pointer long init(MTLDevice device);
+    @Method(selector = "initWithDevice:linearToGrayScaleTransform:sigma:")
+    protected native @Pointer long init(MTLDevice device, FloatPtr transform, float sigma);
     @Method(selector = "initWithCoder:device:")
     protected native @Pointer long init(NSCoder decoder, MTLDevice device);
     /*</methods>*/

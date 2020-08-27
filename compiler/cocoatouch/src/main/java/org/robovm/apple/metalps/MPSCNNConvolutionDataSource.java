@@ -88,6 +88,11 @@ import org.robovm.apple.metal.*;
      */
     @Method(selector = "weightsLayout")
     MPSCNNConvolutionWeightsLayout weightsLayout();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "kernelWeightsDataType")
+    MPSDataType kernelWeightsDataType();
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

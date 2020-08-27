@@ -47,6 +47,10 @@ public final class /*<name>*/MPSMatrixRandomDistribution/*</name>*/ extends Bits
      * @since Available in iOS 13.0 and later.
      */
     public static final MPSMatrixRandomDistribution Uniform = new MPSMatrixRandomDistribution(2L);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final MPSMatrixRandomDistribution Normal = new MPSMatrixRandomDistribution(3L);
     /*</values>*/
 
     /*<bind>*/
