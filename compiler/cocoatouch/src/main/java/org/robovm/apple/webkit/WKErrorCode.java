@@ -71,7 +71,19 @@ public enum /*<name>*/WKErrorCode/*</name>*/ implements NSErrorCode {
     /**
      * @since Available in iOS 13.0 and later.
      */
-    AttributedStringContentLoadTimedOut(11L);
+    AttributedStringContentLoadTimedOut(11L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    JavaScriptInvalidFrameTarget(12L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    NavigationAppBoundDomain(13L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    JavaScriptAppBoundDomain(14L);
     /*</values>*/
 
     /*<bind>*/

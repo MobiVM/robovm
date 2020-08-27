@@ -56,10 +56,6 @@ import org.robovm.apple.security.*;
     public native @MachineSizedFloat double getMinimumFontSize();
     @Property(selector = "setMinimumFontSize:")
     public native void setMinimumFontSize(@MachineSizedFloat double v);
-    @Property(selector = "javaScriptEnabled")
-    public native boolean isJavaScriptEnabled();
-    @Property(selector = "setJavaScriptEnabled:")
-    public native void setJavaScriptEnabled(boolean v);
     @Property(selector = "javaScriptCanOpenWindowsAutomatically")
     public native boolean javaScriptCanOpenWindowsAutomatically();
     @Property(selector = "setJavaScriptCanOpenWindowsAutomatically:")
@@ -74,14 +70,18 @@ import org.robovm.apple.security.*;
      */
     @Property(selector = "setFraudulentWebsiteWarningEnabled:")
     public native void setFraudulentWebsiteWarningEnabled(boolean v);
-    @Property(selector = "javaEnabled")
-    public native boolean isJavaEnabled();
-    @Property(selector = "setJavaEnabled:")
-    public native void setJavaEnabled(boolean v);
-    @Property(selector = "plugInsEnabled")
-    public native boolean isPlugInsEnabled();
-    @Property(selector = "setPlugInsEnabled:")
-    public native void setPlugInsEnabled(boolean v);
+    /**
+     * @deprecated Deprecated in iOS 14.0. Use WKWebPagePreferences.allowsContentJavaScript to disable content JavaScript on a per-navigation basis
+     */
+    @Deprecated
+    @Property(selector = "javaScriptEnabled")
+    public native boolean isJavaScriptEnabled();
+    /**
+     * @deprecated Deprecated in iOS 14.0. Use WKWebPagePreferences.allowsContentJavaScript to disable content JavaScript on a per-navigation basis
+     */
+    @Deprecated
+    @Property(selector = "setJavaScriptEnabled:")
+    public native void setJavaScriptEnabled(boolean v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -34,38 +34,27 @@ import org.robovm.apple.security.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
 /*</javadoc>*/
-/*<annotations>*/@Library("WebKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/WKScriptMessage/*</name>*/ 
+/*<annotations>*//*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/WKScriptMessageHandlerWithReplyAdapter/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements WKScriptMessageHandlerWithReply/*</implements>*/ {
 
-    /*<ptr>*/public static class WKScriptMessagePtr extends Ptr<WKScriptMessage, WKScriptMessagePtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(WKScriptMessage.class); }/*</bind>*/
+    /*<ptr>*/
+    /*</ptr>*/
+    /*<bind>*/
+    /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*/
-    public WKScriptMessage() {}
-    protected WKScriptMessage(Handle h, long handle) { super(h, handle); }
-    protected WKScriptMessage(SkipInit skipInit) { super(skipInit); }
-    /*</constructors>*/
+    /*<constructors>*//*</constructors>*/
     /*<properties>*/
-    @Property(selector = "body")
-    public native NSObject getBody();
-    @Property(selector = "webView")
-    public native WKWebView getWebView();
-    @Property(selector = "frameInfo")
-    public native WKFrameInfo getFrameInfo();
-    @Property(selector = "name")
-    public native String getName();
-    /**
-     * @since Available in iOS 14.0 and later.
-     */
-    @Property(selector = "world")
-    public native WKContentWorld getWorld();
+    
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @NotImplemented("userContentController:didReceiveScriptMessage:replyHandler:")
+    public void didReceiveScriptMessage(WKUserContentController userContentController, WKScriptMessage message, @Block VoidBlock2<NSObject, NSString> replyHandler) {}
     /*</methods>*/
 }

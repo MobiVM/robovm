@@ -35,46 +35,34 @@ import org.robovm.apple.security.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 13.0 and later.
+ * @since Available in iOS 14.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("WebKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/WKWebpagePreferences/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/WKContentWorld/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class WKWebpagePreferencesPtr extends Ptr<WKWebpagePreferences, WKWebpagePreferencesPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(WKWebpagePreferences.class); }/*</bind>*/
+    /*<ptr>*/public static class WKContentWorldPtr extends Ptr<WKContentWorld, WKContentWorldPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(WKContentWorld.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public WKWebpagePreferences() {}
-    protected WKWebpagePreferences(Handle h, long handle) { super(h, handle); }
-    protected WKWebpagePreferences(SkipInit skipInit) { super(skipInit); }
+    protected WKContentWorld() {}
+    protected WKContentWorld(Handle h, long handle) { super(h, handle); }
+    protected WKContentWorld(SkipInit skipInit) { super(skipInit); }
+    public WKContentWorld(String name) { super((Handle) null, create(name)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @Property(selector = "preferredContentMode")
-    public native WKContentMode getPreferredContentMode();
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @Property(selector = "setPreferredContentMode:")
-    public native void setPreferredContentMode(WKContentMode v);
-    /**
-     * @since Available in iOS 14.0 and later.
-     */
-    @Property(selector = "allowsContentJavaScript")
-    public native boolean allowsContentJavaScript();
-    /**
-     * @since Available in iOS 14.0 and later.
-     */
-    @Property(selector = "setAllowsContentJavaScript:")
-    public native void setAllowsContentJavaScript(boolean v);
+    @Property(selector = "pageWorld")
+    public static native WKContentWorld getPageWorld();
+    @Property(selector = "defaultClientWorld")
+    public static native WKContentWorld getDefaultClientWorld();
+    @Property(selector = "name")
+    public native String getName();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "worldWithName:")
+    protected static native @Pointer long create(String name);
     /*</methods>*/
 }
