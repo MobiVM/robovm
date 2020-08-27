@@ -64,20 +64,18 @@
 * identitylookupui
 * imageio
 * imagecapturecore
-
-## Framework to process
 * intents
 * intentsui
 * iosurface
 * linkpresentation
 * localauthentication
-* mapkit
 * mediaplayer
 * mediatoolbox
 * messages
+* mapkit
 * messageui
-* metal
 * metalkit
+* metal
 * metalperformanceshaders
 * metrickit
 * mobilecoreservices
@@ -98,17 +96,32 @@
 * quicklookthumbnailing
 * replaykit
 * safariservices
-* security
 * social
+* security
 * soundanalysis
 * speech
-* storekit
 * systemconfiguration
 * twitter
 * usernotifications
 * usernotificationsui
+* storekit
 * vision
 * visionkit
 * watchconnectivity
 * watchkit
 * webkit
+
+## New frameworks to process
+* Accessibility
+* AppClip
+* AppTrackingTransparency 
+* ClockKit
+* DeveloperToolsSupport
+* MediaSetup
+* MetalPerformanceShadersGraph
+* MLCompute
+* NearbyInteraction
+* OSLog
+* ScreenTime
+* SensorKit
+* WidgetKit
