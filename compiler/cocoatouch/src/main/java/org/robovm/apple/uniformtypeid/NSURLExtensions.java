@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.robovm.apple.carplay;
+package org.robovm.apple.uniformtypeid;
 
 /*<imports>*/
 import java.io.*;
@@ -29,33 +29,36 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
-import org.robovm.apple.coregraphics.*;
-import org.robovm.apple.mapkit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 14.0 and later.
- */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/CPPointOfInterestTemplateDelegate/*</name>*/ 
-    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
+/*<annotations>*/@Library("UniformTypeIdentifiers")/*</annotations>*/
+/*<visibility>*/public final/*</visibility>*/ class /*<name>*/NSURLExtensions/*</name>*/ 
+    extends /*<extends>*/NSExtensions/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/
     /*</ptr>*/
-    /*<bind>*/
-    /*</bind>*/
+    /*<bind>*/static { ObjCRuntime.bind(NSURLExtensions.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
+    /*<constructors>*/
+    private NSURLExtensions() {}
+    /*</constructors>*/
     /*<properties>*/
     
     /*</properties>*/
+    /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "pointOfInterestTemplate:didChangeMapRegion:")
-    void didChangeMapRegion(CPPointOfInterestTemplate pointOfInterestTemplate, @ByVal MKCoordinateRegion region);
-    @Method(selector = "pointOfInterestTemplate:didSelectPointOfInterest:")
-    void didSelectPointOfInterest(CPPointOfInterestTemplate pointOfInterestTemplate, CPPointOfInterest pointOfInterest);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "URLByAppendingPathComponent:conformingToType:")
+    public static native NSURL URLByAppendingPathComponent(NSURL thiz, String partialName, UTType contentType);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "URLByAppendingPathExtensionForType:")
+    public static native NSURL URLByAppendingPathExtensionForType(NSURL thiz, UTType contentType);
     /*</methods>*/
-    /*<adapter>*/
-    /*</adapter>*/
 }

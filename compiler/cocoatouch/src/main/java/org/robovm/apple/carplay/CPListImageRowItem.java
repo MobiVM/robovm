@@ -40,7 +40,7 @@ import org.robovm.apple.mapkit.*;
 /*</javadoc>*/
 /*<annotations>*/@Library("CarPlay") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CPListImageRowItem/*</name>*/ 
-    extends /*<extends>*/CPBaseListItem/*</extends>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*/implements CPSelectableListItem/*</implements>*/ {
 
     /*<ptr>*/public static class CPListImageRowItemPtr extends Ptr<CPListImageRowItem, CPListImageRowItemPtr> {}/*</ptr>*/

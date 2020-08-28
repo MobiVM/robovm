@@ -57,12 +57,12 @@ import org.robovm.apple.dispatch.*;
     @Property(selector = "date")
     public native NSDate getDate();
     /**
-     * @since Available in iOS 14.0 and later.
+     * @since Available in iOS 13.7 and later.
      */
     @Property(selector = "daysSinceOnsetOfSymptoms")
     public native @MachineSizedSInt long getDaysSinceOnsetOfSymptoms();
     /**
-     * @since Available in iOS 14.0 and later.
+     * @since Available in iOS 13.7 and later.
      */
     @Property(selector = "diagnosisReportType")
     public native ENDiagnosisReportType getDiagnosisReportType();

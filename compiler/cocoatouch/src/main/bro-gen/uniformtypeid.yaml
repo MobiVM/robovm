@@ -9,7 +9,19 @@ headers:
 typedefs:
     
 enums:
-        
+
+categories:
+    UTAdditions@NSString:
+        methods:
+            '-stringByAppendingPathComponent:conformingToType:':
+                name: stringByAppendingPathComponent
+                return_type: NSString
+            '-stringByAppendingPathExtensionForType:':
+                return_type: NSString
+    UTAdditions@NSURL:
+        methods:
+            '-URLByAppendingPathComponent:conformingToType:':
+                name: URLByAppendingPathComponent
 classes:
     UTType: #since 14.0
         methods:

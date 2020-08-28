@@ -51,7 +51,6 @@ import org.robovm.apple.uikit.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @since Available in iOS 10.0 and later.
      * @deprecated Deprecated in iOS 14.0. Use WidgetKit instead. Today View extensions have been deprecated.
      */
     @Deprecated

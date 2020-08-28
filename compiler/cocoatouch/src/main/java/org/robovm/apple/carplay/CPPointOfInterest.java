@@ -96,6 +96,10 @@ import org.robovm.apple.mapkit.*;
     public native CPTextButton getSecondaryButton();
     @Property(selector = "setSecondaryButton:")
     public native void setSecondaryButton(CPTextButton v);
+    @Property(selector = "userInfo")
+    public native NSObject getUserInfo();
+    @Property(selector = "setUserInfo:")
+    public native void setUserInfo(NSObject v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

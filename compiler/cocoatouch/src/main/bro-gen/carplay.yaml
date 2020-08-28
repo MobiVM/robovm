@@ -373,6 +373,8 @@ protocols:
         methods:
             '-pointOfInterestTemplate:didChangeMapRegion:':
                 name: didChangeMapRegion
+            '-pointOfInterestTemplate:didSelectPointOfInterest:':
+                name: didSelectPointOfInterest
     CPSelectableListItem: {} #since 14.0
     CPTabBarTemplateDelegate: #since 14.0
         methods:

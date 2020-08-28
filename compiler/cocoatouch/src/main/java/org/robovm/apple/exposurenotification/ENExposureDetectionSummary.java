@@ -65,7 +65,7 @@ import org.robovm.apple.dispatch.*;
     @Property(selector = "riskScoreSumFullRange")
     public native double getRiskScoreSumFullRange();
     /**
-     * @since Available in iOS 14.0 and later.
+     * @since Available in iOS 13.7 and later.
      */
     @Property(selector = "daySummaries")
     public native NSArray<ENExposureDaySummary> getDaySummaries();

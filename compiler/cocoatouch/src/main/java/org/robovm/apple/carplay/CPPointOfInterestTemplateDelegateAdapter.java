@@ -53,5 +53,7 @@ import org.robovm.apple.mapkit.*;
     /*<methods>*/
     @NotImplemented("pointOfInterestTemplate:didChangeMapRegion:")
     public void didChangeMapRegion(CPPointOfInterestTemplate pointOfInterestTemplate, @ByVal MKCoordinateRegion region) {}
+    @NotImplemented("pointOfInterestTemplate:didSelectPointOfInterest:")
+    public void didSelectPointOfInterest(CPPointOfInterestTemplate pointOfInterestTemplate, CPPointOfInterest pointOfInterest) {}
     /*</methods>*/
 }

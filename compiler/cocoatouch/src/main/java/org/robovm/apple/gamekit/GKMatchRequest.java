@@ -79,12 +79,16 @@ import org.robovm.apple.coregraphics.*;
     public native void setDefaultNumberOfPlayers(@MachineSizedUInt long v);
     /**
      * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 14.0. Set the matchmakingMode of GKMatchmakerViewController instead.
      */
+    @Deprecated
     @Property(selector = "restrictToAutomatch")
     public native boolean isRestrictToAutomatch();
     /**
      * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 14.0. Set the matchmakingMode of GKMatchmakerViewController instead.
      */
+    @Deprecated
     @Property(selector = "setRestrictToAutomatch:")
     public native void setRestrictToAutomatch(boolean v);
     @Property(selector = "recipientResponseHandler")

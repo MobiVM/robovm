@@ -41,9 +41,6 @@ import org.robovm.apple.coregraphics.*;
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Library("Intents")/*</annotations>*/
 public enum /*<name>*/INIntentErrorCode/*</name>*/ implements NSErrorCode {
     /*<values>*/
-    HandlingApplicationExitedUnexpectedly(1312L),
-    HandlingApplicationRequestTimeout(1314L),
-    HandlingNotSupportedOnPlatform(1316L),
     InteractionOperationNotSupported(1900L),
     DonatingInteraction(1901L),
     DeletingAllInteractions(1902L),

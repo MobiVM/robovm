@@ -42,7 +42,7 @@ public enum /*<name>*/ENRiskWeight/*</name>*/ implements ValuedEnum {
      */
     Default(1L),
     /**
-     * @since Available in iOS 14.0 and later.
+     * @since Available in iOS 13.7 and later.
      */
     DefaultV2(100L),
     /**
@@ -54,7 +54,7 @@ public enum /*<name>*/ENRiskWeight/*</name>*/ implements ValuedEnum {
      */
     Max(100L),
     /**
-     * @since Available in iOS 14.0 and later.
+     * @since Available in iOS 13.7 and later.
      */
     MaxV2(250L);
     /*</values>*/
