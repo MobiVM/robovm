@@ -1,0 +1,114 @@
+package: org.robovm.apple.sensorkit
+include: [foundation]
+library: SensorKit
+framework: SensorKit
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/SensorKit.framework/Headers/SensorKit.h
+
+typedefs:
+    
+enums:
+    SRAuthorizationStatus: {} #since 14.0
+    SRErrorCode: {prefix: SRError, nserror: true} #since 14.0
+    SRAmbientLightSensorPlacement: {} #since 14.0
+    SRLocationCategory: {} #since 14.0
+    SRNotificationEvent: {} #since 14.0
+    SRDeletionReason: {} #since 14.0
+    SRWristLocation: {} #since 14.0
+    SRCrownOrientation: {} #since 14.0
+
+categories:
+    SensorKit@NSDate:
+        methods:
+            '-initWithSRAbsoluteTime:':
+                exclude: true
+            '+dateWithSRAbsoluteTime:':
+                name: createUsingSRAbsoluteTime
+    SRDeletionRecord@NSString:
+        methods:
+            '-sr_sensorForDeletionRecordsFromSensor':
+                name: getSensorStreamForDeletionRecords
+classes:
+    # structs
+    SRAmbientLightChromaticity: {}
+
+    # classes
+    SRAmbientLightSample: {} #since 14.0
+    SRApplicationUsage: {} #since 14.0
+    SRDeletionRecord: {} #since 14.0
+    SRDevice: {} #since 14.0
+    SRDeviceUsageReport: {} #since 14.0
+    SRFetchRequest: {} #since 14.0
+    SRFetchResult: {} #since 14.0
+    SRKeyboardMetrics: {} #since 14.0
+    SRKeyboardProbabilityMetric: {} #since 14.0
+    SRMessagesUsageReport: {} #since 14.0
+    SRNotificationUsage: {} #since 14.0
+    SRPhoneUsageReport: {} #since 14.0
+    SRSensorReader: #since 14.0
+        methods:
+            '-initWithSensor:':
+                name: init
+            '+requestAuthorizationForSensors:completion:':
+                name: requestAuthorization
+    SRVisit: {} #since 14.0
+    SRWebUsage: {} #since 14.0
+    SRWristDetection: {} #since 14.0
+
+protocols:
+    SRSensorReaderDelegate: #since 14.0
+        methods:
+            '-sensorReader:fetchingRequest:didFetchResult:':
+                name: didFetchResult
+            '-sensorReader:didCompleteFetch:':
+                name: didCompleteFetch
+            '-sensorReader:fetchingRequest:failedWithError:':
+                name: failed
+            '-sensorReader:didChangeAuthorizationStatus:':
+                name: didChangeAuthorizationStatus
+            '-sensorReader:startRecordingFailedWithError:':
+                name: startRecordingFailed
+            '-sensorReader:stopRecordingFailedWithError:':
+                name: stopRecordingFailed
+            '-sensorReader:didFetchDevices:':
+                name: didFetchDevices
+            '-sensorReader:fetchDevicesDidFailWithError:':
+                name: fetchDevicesDidFail
+
+functions:
+    SRAbsoluteTime(.*):
+        class: SRAbsoluteTime
+        name: '#{g[0]}'
+
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (k?SR.*):
+        class: FIXME
+        name: 'Function__#{g[0]}'
+
+typed_enums:
+    SRSensor:
+        enum: SRSensor
+        prefix: SRSensor
+        type: NSString
+
+    SRDeviceUsageCategoryKey:
+        enum: SRDeviceUsageCategory
+        prefix: SRDeviceUsageCategory
+        type: NSString
+
+values:
+    SRErrorDomain:
+        class: SRErrorCode
+        name: getClassDomain
+
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (k?SR.*):
+        class: FIXME
+        name: 'Value__#{g[0]}'
+
+constants:
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (k?SR.*):
+        class: FIXME
+        name: 'Constant__#{g[0]}'
