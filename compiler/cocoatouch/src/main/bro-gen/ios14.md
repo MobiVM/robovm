@@ -1,6 +1,6 @@
 ## Processed
 * foundation
-* UniformTypeIdentifiers
+* (new framework) UniformTypeIdentifiers
 * uikit
 * spritekit
 * scenekit
@@ -110,18 +110,16 @@
 * watchconnectivity
 * watchkit
 * webkit
-* Accessibility (new framework)
-* AppClip (new framework)
-* AppTrackingTransparency (new framework) 
-* ClockKit (new framework)
-* MediaSetup
-* MetalPerformanceShadersGraph
-* MLCompute
-* NearbyInteraction
-
-## New frameworks to process
-* OSLog
-* ScreenTime
-* SensorKit
-* WidgetKit
-* DeveloperToolsSupport
+* (new framework) Accessibility
+* (new framework) AppClip 
+* (new framework) AppTrackingTransparency  
+* (new framework) ClockKit
+* (new framework) MediaSetup
+* (new framework) MetalPerformanceShadersGraph
+* (new framework) MLCompute
+* (new framework) NearbyInteraction
+* (new framework) OSLog
+* (new framework) ScreenTime
+* (new framework) SensorKit
+* (new framework) WidgetKit
+* (new framework) DeveloperToolsSupport
