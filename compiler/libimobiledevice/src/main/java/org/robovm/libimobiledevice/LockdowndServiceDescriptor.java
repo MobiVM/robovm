@@ -24,10 +24,12 @@ import org.robovm.libimobiledevice.binding.LockdowndServiceDescriptorStruct;
 public class LockdowndServiceDescriptor {
     private final int port;
     private final boolean sslEnabled;
+    private final String identifier;
     
     LockdowndServiceDescriptor(LockdowndServiceDescriptorStruct descriptor) {
         this.port = descriptor.getPort() & 0xffff;
         this.sslEnabled = descriptor.getSslEnabled();
+        this.identifier = descriptor.getIdentifier();
     }
 
     public int getPort() {
@@ -42,6 +44,7 @@ public class LockdowndServiceDescriptor {
         LockdowndServiceDescriptorStruct res = new LockdowndServiceDescriptorStruct();
         res.setPort((short) port);
         res.setSslEnabled(sslEnabled);
+        res.setIdentifier(identifier);
         return res;
     }
 }

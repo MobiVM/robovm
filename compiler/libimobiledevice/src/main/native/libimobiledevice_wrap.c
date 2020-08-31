@@ -158,15 +158,16 @@
 
 /* Support for throwing Java exceptions */
 typedef enum {
-  SWIG_JavaOutOfMemoryError = 1, 
-  SWIG_JavaIOException, 
-  SWIG_JavaRuntimeException, 
+  SWIG_JavaOutOfMemoryError = 1,
+  SWIG_JavaIOException,
+  SWIG_JavaRuntimeException,
   SWIG_JavaIndexOutOfBoundsException,
   SWIG_JavaArithmeticException,
   SWIG_JavaIllegalArgumentException,
   SWIG_JavaNullPointerException,
   SWIG_JavaDirectorPureVirtual,
-  SWIG_JavaUnknownError
+  SWIG_JavaUnknownError,
+  SWIG_JavaIllegalStateException,
 } SWIG_JavaExceptionCodes;
 
 typedef struct {
@@ -187,6 +188,7 @@ static void SWIGUNUSED SWIG_JavaThrowException(JNIEnv *jenv, SWIG_JavaExceptionC
     { SWIG_JavaNullPointerException, "java/lang/NullPointerException" },
     { SWIG_JavaDirectorPureVirtual, "java/lang/RuntimeException" },
     { SWIG_JavaUnknownError,  "java/lang/UnknownError" },
+    { SWIG_JavaIllegalStateException, "java/lang/IllegalStateException" },
     { (SWIG_JavaExceptionCodes)0,  "java/lang/UnknownError" }
   };
   const SWIG_JavaExceptions_t *except_ptr = java_exceptions;
@@ -2545,6 +2547,47 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_libimobiledevice_binding_LibIMobileD
   arg1 = *(struct lockdownd_service_descriptor **)&jarg1; 
   result =  ((arg1)->ssl_enabled);
   jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_org_robovm_libimobiledevice_binding_LibIMobileDeviceJNI_LockdowndServiceDescriptorStruct_1identifier_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2) {
+  struct lockdownd_service_descriptor *arg1 = (struct lockdownd_service_descriptor *) 0 ;
+  char *arg2 = (char *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(struct lockdownd_service_descriptor **)&jarg1; 
+  arg2 = 0;
+  if (jarg2) {
+    arg2 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg2, 0);
+    if (!arg2) return ;
+  }
+  {
+    free(arg1->identifier);
+    if (arg2) {
+      arg1->identifier = (char *) malloc(strlen((const char *)arg2)+1);
+      strcpy((char *)arg1->identifier, (const char *)arg2);
+    } else {
+      arg1->identifier = 0;
+    }
+  }
+  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
+}
+
+
+SWIGEXPORT jstring JNICALL Java_org_robovm_libimobiledevice_binding_LibIMobileDeviceJNI_LockdowndServiceDescriptorStruct_1identifier_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jstring jresult = 0 ;
+  struct lockdownd_service_descriptor *arg1 = (struct lockdownd_service_descriptor *) 0 ;
+  char *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(struct lockdownd_service_descriptor **)&jarg1; 
+  result = (char *) ((arg1)->identifier);
+  if (result) jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
   return jresult;
 }
 
