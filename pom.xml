@@ -20,6 +20,20 @@
     </description>
     <inceptionYear>2012</inceptionYear>
 
+    <licenses>
+        <license>
+            <name>The Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <id>Developers</id>
+            <url>https://github.com/orgs/MobiVM/people</url>
+        </developer>
+    </developers>
+
     <issueManagement>
         <url>https://github.com/MobiVM/robovm</url>
     </issueManagement>
