@@ -1,7 +1,7 @@
-<idea-plugin version="2" url="https://github.com/robovm/robovm-idea">
+<idea-plugin url="https://github.com/robovm/robovm-idea">
     <id>com.mobidevelop.robovm.intellij</id>
     <version>${project.version}</version>
-    <vendor email="robovm@mobidevelop.com" url="http://github.com/mobidevelop/robovm">mobidevelop</vendor>
+    <vendor email="robovm@mobidevelop.com" url="https://github.com/mobidevelop/robovm">mobidevelop</vendor>
 
     <depends optional="true" config-file="">org.jetbrains.idea.maven</depends>
     <depends>org.jetbrains.plugins.gradle</depends>
@@ -79,7 +79,7 @@
                     description="Deletes as files in ~/.robovm/cache folder"/>
             <separator/>
 
-            <group id="org.robovm.idea.as-fixes-new" text="New" description="new Project/Module workaround for Android Studio" popup="true">
+            <group id="org.robovm.idea.as-fixes-new" class="org.robovm.idea.actions.ASNewGroup" text="New" description="new Project/Module workaround for Android Studio" popup="true">
                 <action id="org.robovm.idea.as-fixes-new-project" class="org.robovm.idea.actions.ASNewProjectAction" text="Project..."/>
                 <action id="org.robovm.idea.as-fixes-new-module" class="org.robovm.idea.actions.ASNewModuleAction" text="Module..."/>
             </group>
