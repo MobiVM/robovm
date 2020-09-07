@@ -1,8 +1,7 @@
-<idea-plugin version="2" url="https://github.com/robovm/robovm-idea">
+<idea-plugin url="https://github.com/robovm/robovm-idea">
     <id>com.mobidevelop.robovm.intellij</id>
-    <name>RoboVM Intellij IDEA Plugin</name>
     <version>${project.version}</version>
-    <vendor email="robovm@mobidevelop.com" url="http://github.com/mobidevelop/robovm">mobidevelop</vendor>
+    <vendor email="robovm@mobidevelop.com" url="https://github.com/mobidevelop/robovm">mobidevelop</vendor>
 
     <depends optional="true" config-file="">org.jetbrains.idea.maven</depends>
     <depends>org.jetbrains.plugins.gradle</depends>
@@ -10,15 +9,21 @@
 
     <idea-version since-build="191"/>
 
-    <description><![CDATA[
-     <p>
-     RoboVM support for IntelliJ
-     </p>     
-    ]]></description>
-
-    <change-notes><![CDATA[
-
-    ]]>
+    <name>MobiVM</name>
+    <description>
+        <![CDATA[
+            <p>
+              MobiVM is a fork of the last open-source release of RoboVM — an ahead-of-time compiler for Java bytecode, targeting Linux, Mac OS X and iOS.
+            </p>
+        ]]>
+    </description>
+    <change-notes>
+        <![CDATA[
+            <b>2.3.10</b>
+            <li> iOS 13 API support </li>
+            <li> iOS 14 device support </li>
+            <li> fixes and improvements </li>
+        ]]>
     </change-notes>
 
     <extensions defaultExtensionNs="org.jetbrains.plugins.gradle">
@@ -63,7 +68,7 @@
                     description="Create an IPA for App Store or ad-hoc distribution"/>
             <action id="org.robovm.idea.create-framework" class="org.robovm.idea.actions.CreateFrameworkAction" text="Create Framework"
                     description="Create a Framework"/>
-            <action id="org.robovm.idea.open-ibxcode" class="org.robovm.idea.actions.GenerateXCodeProjectAction" text="Open XCode"
+            <action id="org.robovm.idea.open-ibxcode" class="org.robovm.idea.actions.GenerateXCodeProjectAction" text="Open in Interface Builder (Xcode)"
                     description="Generate and open XCode project to edit xib/storyboard in Interface Builder"/>
             <separator/>
             <action id="org.robovm.idea.clean-build" class="org.robovm.idea.actions.CleanBuildFoldersAction"
@@ -74,7 +79,7 @@
                     description="Deletes as files in ~/.robovm/cache folder"/>
             <separator/>
 
-            <group id="org.robovm.idea.as-fixes-new" text="AS New" description="new Project/Module workaround for Android Studio" popup="true">
+            <group id="org.robovm.idea.as-fixes-new" class="org.robovm.idea.actions.ASNewGroup" text="New" description="new Project/Module workaround for Android Studio" popup="true">
                 <action id="org.robovm.idea.as-fixes-new-project" class="org.robovm.idea.actions.ASNewProjectAction" text="Project..."/>
                 <action id="org.robovm.idea.as-fixes-new-module" class="org.robovm.idea.actions.ASNewModuleAction" text="Module..."/>
             </group>
