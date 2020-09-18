@@ -93,10 +93,6 @@ import org.robovm.apple.coregraphics.*;
     /**
      * @since Available in iOS 14.0 and later.
      */
-    public static final INCarChargingConnectorType None = new INCarChargingConnectorType("None");
-    /**
-     * @since Available in iOS 14.0 and later.
-     */
     public static final INCarChargingConnectorType J1772 = new INCarChargingConnectorType("J1772");
     /**
      * @since Available in iOS 14.0 and later.
@@ -128,7 +124,7 @@ import org.robovm.apple.coregraphics.*;
     public static final INCarChargingConnectorType Mennekes = new INCarChargingConnectorType("Mennekes");
     /*</constants>*/
     
-    private static /*<name>*/INCarChargingConnectorType/*</name>*/[] values = new /*<name>*/INCarChargingConnectorType/*</name>*/[] {/*<value_list>*/None, J1772, CCS1, CCS2, CHAdeMO, GBTAC, GBTDC, Tesla, Mennekes/*</value_list>*/};
+    private static /*<name>*/INCarChargingConnectorType/*</name>*/[] values = new /*<name>*/INCarChargingConnectorType/*</name>*/[] {/*<value_list>*/J1772, CCS1, CCS2, CHAdeMO, GBTAC, GBTDC, Tesla, Mennekes/*</value_list>*/};
     
     /*<name>*/INCarChargingConnectorType/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -151,11 +147,6 @@ import org.robovm.apple.coregraphics.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 14.0 and later.
-         */
-        @GlobalValue(symbol="INCarChargingConnectorTypeNone", optional=true)
-        public static native NSString None();
         /**
          * @since Available in iOS 14.0 and later.
          */

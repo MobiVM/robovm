@@ -51,6 +51,7 @@ enums:
     HKElectrocardiogramSymptomsStatus: {} #since 14.0
     HKAppleECGAlgorithmVersion: {} #since 14.0
     HKDevicePlacementSide: {} #since 14.0
+    HKActivityMoveMode: {} #since 14.0
 typed_enums:
     HKFHIRResourceType:
         enum: HKFHIRResourceType
@@ -151,6 +152,8 @@ classes:
             '-wheelchairUseWithError:':
                 name: getWheelchairUse
                 throws: NSErrorException
+            '-activityMoveModeWithError:':
+                name: getActivityMoveMode
     HKObject: # DONE
         properties:
             'metadata':
@@ -642,6 +645,7 @@ classes:
                 constructor: true
                 name: create
                 throws: NSErrorException
+    HKActivityMoveModeObject: {} #since 14.0
 protocols:
     HKWorkoutSessionDelegate: {}
 

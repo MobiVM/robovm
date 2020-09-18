@@ -84,6 +84,16 @@ import org.robovm.apple.dispatch.*;
     @Property(selector = "supportsPullModelInterpolation")
     public native boolean supportsPullModelInterpolation();
     /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "areBarycentricCoordsSupported")
+    public native boolean isBarycentricCoordsSupported();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "supportsShaderBarycentricCoordinates")
+    public native boolean supportsShaderBarycentricCoordinates();
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @Property(selector = "currentAllocatedSize")

@@ -217,13 +217,13 @@ import org.robovm.apple.linkpresentation.*;
     @GlobalValue(symbol="UIPasteboardRemovedNotification", optional=true)
     public static native NSString RemovedNotification();
     @GlobalValue(symbol="UIPasteboardTypeListString", optional=true)
-    public static native List<String> getStringTypeList();
+    public static native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getStringTypeList();
     @GlobalValue(symbol="UIPasteboardTypeListURL", optional=true)
-    public static native List<String> getURLTypeList();
+    public static native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getURLTypeList();
     @GlobalValue(symbol="UIPasteboardTypeListImage", optional=true)
-    public static native List<String> getImageTypeList();
+    public static native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getImageTypeList();
     @GlobalValue(symbol="UIPasteboardTypeListColor", optional=true)
-    public static native List<String> getColorTypeList();
+    public static native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getColorTypeList();
     /**
      * @since Available in iOS 10.0 and later.
      */

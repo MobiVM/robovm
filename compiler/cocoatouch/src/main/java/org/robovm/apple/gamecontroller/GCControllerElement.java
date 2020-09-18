@@ -68,6 +68,14 @@ import org.robovm.apple.corehaptic.*;
     public native String getLocalizedName();
     @Property(selector = "setLocalizedName:")
     public native void setLocalizedName(String v);
+    @Property(selector = "unmappedSfSymbolsName")
+    public native String getUnmappedSfSymbolsName();
+    @Property(selector = "setUnmappedSfSymbolsName:")
+    public native void setUnmappedSfSymbolsName(String v);
+    @Property(selector = "unmappedLocalizedName")
+    public native String getUnmappedLocalizedName();
+    @Property(selector = "setUnmappedLocalizedName:")
+    public native void setUnmappedLocalizedName(String v);
     /**
      * @since Available in iOS 14.0 and later.
      */

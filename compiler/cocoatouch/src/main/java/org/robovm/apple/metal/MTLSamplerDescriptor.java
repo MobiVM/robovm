@@ -76,6 +76,16 @@ import org.robovm.apple.dispatch.*;
     public native MTLSamplerAddressMode getRAddressMode();
     @Property(selector = "setRAddressMode:")
     public native void setRAddressMode(MTLSamplerAddressMode v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "borderColor")
+    public native MTLSamplerBorderColor getBorderColor();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setBorderColor:")
+    public native void setBorderColor(MTLSamplerBorderColor v);
     @Property(selector = "normalizedCoordinates")
     public native boolean normalizesCoordinates();
     @Property(selector = "setNormalizedCoordinates:")

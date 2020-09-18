@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.robovm.apple.oslog;
+package org.robovm.apple.healthkit;
 
 /*<imports>*/
 import java.io.*;
@@ -35,37 +35,24 @@ import org.robovm.apple.foundation.*;
  * @since Available in iOS 14.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("OSLog") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/OSLogEntry/*</name>*/ 
+/*<annotations>*/@Library("HealthKit") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/HKActivityMoveModeObject/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
-    /*<ptr>*/public static class OSLogEntryPtr extends Ptr<OSLogEntry, OSLogEntryPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(OSLogEntry.class); }/*</bind>*/
+    /*<ptr>*/public static class HKActivityMoveModeObjectPtr extends Ptr<HKActivityMoveModeObject, HKActivityMoveModeObjectPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(HKActivityMoveModeObject.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public OSLogEntry() {}
-    protected OSLogEntry(Handle h, long handle) { super(h, handle); }
-    protected OSLogEntry(SkipInit skipInit) { super(skipInit); }
+    public HKActivityMoveModeObject() {}
+    protected HKActivityMoveModeObject(Handle h, long handle) { super(h, handle); }
+    protected HKActivityMoveModeObject(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public OSLogEntry(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
+    public HKActivityMoveModeObject(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 14.0 and later.
-     */
-    @Property(selector = "composedMessage")
-    public native String getComposedMessage();
-    /**
-     * @since Available in iOS 14.0 and later.
-     */
-    @Property(selector = "date")
-    public native NSDate getDate();
-    /**
-     * @since Available in iOS 14.0 and later.
-     */
-    @Property(selector = "storeCategory")
-    public native OSLogEntryStoreCategory getStoreCategory();
+    @Property(selector = "activityMoveMode")
+    public native HKActivityMoveMode getActivityMoveMode();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

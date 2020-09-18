@@ -55,6 +55,9 @@ public enum /*<name>*/AVAudioSessionRouteSharingPolicy/*</name>*/ implements Val
     @Deprecated
     LongForm(1L),
     Independent(2L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
     LongFormVideo(3L);
     /*</values>*/
 

@@ -68,6 +68,9 @@ import org.robovm.apple.coregraphics.*;
      */
     @Property(selector = "guestIdentifier")
     public native String getGuestIdentifier();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
     @Property(selector = "isInvitable")
     public native boolean isInvitable();
     /**

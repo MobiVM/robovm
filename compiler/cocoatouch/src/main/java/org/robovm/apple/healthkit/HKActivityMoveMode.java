@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.robovm.apple.oslog;
+package org.robovm.apple.healthkit;
 
 /*<imports>*/
 import java.io.*;
@@ -36,14 +36,10 @@ import org.robovm.apple.foundation.*;
  */
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/OSLogEntryLogLevel/*</name>*/ implements ValuedEnum {
+public enum /*<name>*/HKActivityMoveMode/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    Undefined(0L),
-    Debug(1L),
-    Info(2L),
-    Notice(3L),
-    Error(4L),
-    Fault(5L);
+    ActiveEnergy(1L),
+    AppleMoveTime(2L);
     /*</values>*/
 
     /*<bind>*/
@@ -53,15 +49,15 @@ public enum /*<name>*/OSLogEntryLogLevel/*</name>*/ implements ValuedEnum {
 
     private final long n;
 
-    private /*<name>*/OSLogEntryLogLevel/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/HKActivityMoveMode/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/OSLogEntryLogLevel/*</name>*/ valueOf(long n) {
-        for (/*<name>*/OSLogEntryLogLevel/*</name>*/ v : values()) {
+    public static /*<name>*/HKActivityMoveMode/*</name>*/ valueOf(long n) {
+        for (/*<name>*/HKActivityMoveMode/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/OSLogEntryLogLevel/*</name>*/.class.getName());
+            + /*<name>*/HKActivityMoveMode/*</name>*/.class.getName());
     }
 }

@@ -154,7 +154,7 @@ import org.robovm.apple.imageio.*;
     public static final VNRecognizedPointGroupKey HandLandmarkRegionKeyMiddleFinger = new VNRecognizedPointGroupKey("HandLandmarkRegionKeyMiddleFinger");
     /**
      * @since Available in iOS 14.0 and later.
-     * @deprecated Deprecated in iOS 14.0. Use VNHumanHandPoseObservationJointsGroupNameRingFinder
+     * @deprecated Deprecated in iOS 14.0. Use VNHumanHandPoseObservationJointsGroupNameRingFinger
      */
     @Deprecated
     public static final VNRecognizedPointGroupKey HandLandmarkRegionKeyRingFinger = new VNRecognizedPointGroupKey("HandLandmarkRegionKeyRingFinger");
@@ -259,7 +259,7 @@ import org.robovm.apple.imageio.*;
         public static native NSString HandLandmarkRegionKeyMiddleFinger();
         /**
          * @since Available in iOS 14.0 and later.
-         * @deprecated Deprecated in iOS 14.0. Use VNHumanHandPoseObservationJointsGroupNameRingFinder
+         * @deprecated Deprecated in iOS 14.0. Use VNHumanHandPoseObservationJointsGroupNameRingFinger
          */
         @Deprecated
         @GlobalValue(symbol="VNHandLandmarkRegionKeyRingFinger", optional=true)
