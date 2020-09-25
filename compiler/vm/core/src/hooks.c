@@ -1383,7 +1383,9 @@ void _rvmHookClassLoaded(Env* env, Class* clazz, void* classInfo) {
     if(javaThread) writeCallstack(env, callStackLength, callStack);
     rvmUnlockMutex(&writeMutex);
 
-    if(javaThread) {
+    // dkimitsa: do not suspend loop if class was loaded during  method invocation
+    //           e.g. already suspended
+    if(javaThread && !debugEnv->ignoreInstrumented) {
         rvmLockMutex(&debugEnv->suspendMutex);
         suspendLoop(debugEnv);
         rvmUnlockMutex(&debugEnv->suspendMutex);
