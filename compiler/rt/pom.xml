@@ -37,6 +37,7 @@
                     <include>**/*.java</include>
                 </includes>
             </resource>
+            <resource><directory>android_icu4j/src/main/resources</directory></resource>
 
 <!--            <resource><directory>libcore/crypto/src/main/resources</directory></resource>-->
 <!--            <resource><directory>libcore/dalvik/src/main/resources</directory></resource>-->
@@ -99,6 +100,7 @@
                                 <source>libcore/json/src/main/java</source>
                                 <source>libcore/xml/src/main/java</source>
                                 <source>conscrypt/src/main/java</source>
+                                <source>android_icu4j/src/main/java</source>
 
 <!--                                <source>libcore/crypto/src/main/java</source>-->
 <!--                                <source>libcore/libdvm/src/main/java</source>-->
