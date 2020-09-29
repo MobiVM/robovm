@@ -98,6 +98,7 @@
                                 <source>libcore/ojluni/src/main/java</source>
                                 <source>libcore/json/src/main/java</source>
                                 <source>libcore/xml/src/main/java</source>
+                                <source>conscrypt/src/main/java</source>
 
 <!--                                <source>libcore/crypto/src/main/java</source>-->
 <!--                                <source>libcore/libdvm/src/main/java</source>-->
