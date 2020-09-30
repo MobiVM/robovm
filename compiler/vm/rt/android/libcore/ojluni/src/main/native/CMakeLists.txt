@@ -34,8 +34,6 @@ set(SRC
   FileOutputStream_md.c
   FileInputStream.c
   FileSystemPreferences.c
-  EPoll.c
-  EPollPort.c
   UnixAsynchronousServerSocketChannelImpl.c
   UnixAsynchronousSocketChannelImpl.c
   io_util_md.c
@@ -45,8 +43,6 @@ set(SRC
   ObjectStreamClass.c
   ObjectOutputStream.c
   ObjectInputStream.c
-  LinuxNativeDispatcher.c
-  LinuxWatchService.c
   UnixCopyFile.c
   UnixNativeDispatcher.c
   InetAddress.c
@@ -72,6 +68,17 @@ set(SRC
   socket_tagger_util.cpp
   OnLoad.cpp
 )
+
+if(LINUX)
+  set(SRC
+    ${SRC}
+    EPoll.c
+    EPollPort.c
+    LinuxNativeDispatcher.c
+    LinuxWatchService.c
+  )
+endif()
+
 
 add_library(android-libcore-ojluni OBJECT ${SRC})
 set(LIBCORE_OJLUNI_OBJECTS $<TARGET_OBJECTS:android-libcore-ojluni> PARENT_SCOPE)
