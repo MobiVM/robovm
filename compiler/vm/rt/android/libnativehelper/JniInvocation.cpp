@@ -289,7 +289,7 @@ MODULE_API jint JNI_CreateJavaVM(JavaVM** p_vm, JNIEnv** p_env, void* vm_args) {
   // Ensure any cached heap objects from previous VM instances are
   // invalidated. There is no notification here that a VM is destroyed. These
   // cached objects limit us to one VM instance per process.
-  JniConstants::Uninitialize();
+  JniConstants::Invalidate();
   return JniInvocationImpl::GetJniInvocation().JNI_CreateJavaVM(p_vm, p_env, vm_args);
 }
 
