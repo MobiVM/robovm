@@ -71,7 +71,6 @@ set(SRC
   Character.cpp
   socket_tagger_util.cpp
   OnLoad.cpp
-  JniConstants.cpp
 )
 
 add_library(android-libcore-ojluni OBJECT ${SRC})

@@ -70,14 +70,52 @@ struct JniConstants {
     // Global reference to java.lang.String.
     static jclass GetStringClass(JNIEnv* env);
 
-    // Ensure class constants are initialized before use. Field and method
-    // constants are lazily initialized via getters.
-    static void EnsureClassReferencesInitialized(JNIEnv* env);
+    // RoboVM note: Start change
+    // merging luni/JniConstants and ojluni/JniConstants into single place as
+    // RoboVM will combine VM/RT code into static library and will not able
+    // to call stand-along JNIInit
 
-    // Ensure any cached heap objects from previous VM instances are
-    // invalidated. There is no notification here that a VM is destroyed so this
-    // method must be called when a new VM is created (and calls from any
-    // earlier VM's are completed). The caching of heap objects in this class is
-    // one reason why there is a limit of VM instance per process.
-    static void Uninitialize();
+    // RoboVM note: entries from luni/JniConstants.h
+    // Initialized cached heap objects. This should be called in JNI_OnLoad.
+    static void Initialize(JNIEnv* env);
+
+    // Invalidate cached heap objects. This should be called in JNI_OnUnload.
+    static void Invalidate();
+
+    static jclass GetBooleanClass(JNIEnv* env);
+    static jclass GetCharsetICUClass(JNIEnv* env);
+    static jclass GetDoubleClass(JNIEnv* env);
+    static jclass GetErrnoExceptionClass(JNIEnv* env);
+    static jclass GetGaiExceptionClass(JNIEnv* env);
+    static jclass GetInet6AddressClass(JNIEnv* env);
+    static jclass GetInet6AddressHolderClass(JNIEnv* env);
+    static jclass GetInetAddressClass(JNIEnv* env);
+    static jclass GetInetAddressHolderClass(JNIEnv* env);
+    static jclass GetInetSocketAddressClass(JNIEnv* env);
+    static jclass GetInetSocketAddressHolderClass(JNIEnv* env);
+    static jclass GetIntegerClass(JNIEnv* env);
+    static jclass GetLocaleDataClass(JNIEnv* env);
+    static jclass GetLongClass(JNIEnv* env);
+    static jclass GetNetlinkSocketAddressClass(JNIEnv* env);
+    static jclass GetPacketSocketAddressClass(JNIEnv* env);
+    static jclass GetPatternSyntaxExceptionClass(JNIEnv* env);
+    static jclass GetStructAddrinfoClass(JNIEnv* env);
+    static jclass GetStructFlockClass(JNIEnv* env);
+    static jclass GetStructGroupReqClass(JNIEnv* env);
+    static jclass GetStructIfaddrsClass(JNIEnv* env);
+    static jclass GetStructLingerClass(JNIEnv* env);
+    static jclass GetStructPasswdClass(JNIEnv* env);
+    static jclass GetStructPollfdClass(JNIEnv* env);
+    static jclass GetStructStatClass(JNIEnv* env);
+    static jclass GetStructStatVfsClass(JNIEnv* env);
+    static jclass GetStructTimespecClass(JNIEnv* env);
+    static jclass GetStructTimevalClass(JNIEnv* env);
+    static jclass GetStructUcredClass(JNIEnv* env);
+    static jclass GetStructUtsnameClass(JNIEnv* env);
+    static jclass GetUnixSocketAddressClass(JNIEnv* env);
+
+    // RoboVM note: entries from ojluni/JniConstants.h
+    // Gets class representing SocketTagger from cache.
+    static jclass GetSocketTaggerClass(JNIEnv* env);
+    // RoboVM note: End of changes
 };
