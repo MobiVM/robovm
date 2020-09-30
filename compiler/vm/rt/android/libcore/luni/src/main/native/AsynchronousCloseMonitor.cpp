@@ -66,6 +66,10 @@ static AsynchronousCloseMonitorImpl* blockedThreadList = NULL;
  */
 #if defined(__Fuchsia__)
 static const int BLOCKED_THREAD_SIGNAL = SIGRTMIN + 2;
+// RoboVM Note: changes start
+#elif defined(__APPLE__)
+static const int BLOCKED_THREAD_SIGNAL = SIGUSR2;
+// RoboVM Note: end of changes
 #else
 static const int BLOCKED_THREAD_SIGNAL = __SIGRTMIN + 2;
 #endif
