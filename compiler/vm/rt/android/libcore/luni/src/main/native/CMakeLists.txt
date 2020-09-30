@@ -13,7 +13,6 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DU_USING_ICU_NAMESPACE=0")
 set(SRC
   ExecStrings.cpp
   IcuUtilities.cpp
-  JniConstants.cpp
   JniException.cpp
   NetworkUtilities.cpp
   Register.cpp

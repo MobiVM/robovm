@@ -403,5 +403,5 @@ MODULE_API jstring jniCreateString(C_JNIEnv* env, const jchar* unicodeChars, jsi
 }
 
 MODULE_API void jniUninitializeConstants() {
-  JniConstants::Uninitialize();
+  JniConstants::Invalidate();
 }
