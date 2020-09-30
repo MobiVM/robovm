@@ -31,7 +31,9 @@
 #include <string.h>
 
 // BEGIN Android-added: Fuchsia: Alias *64 functions on Fuchsia. http://b/119496969
-#if defined(__Fuchsia__)
+// RoboVM Note: added _ALLBSD_SOURCE
+#if defined(__Fuchsia__) || defined(_ALLBSD_SOURCE)
+// RoboVM Note: end of changes
 #define stat64 stat
 #define fstat64 fstat
 #define open64 open

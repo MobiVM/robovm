@@ -29,7 +29,6 @@ set(SRC
   libcore_icu_NativeConverter.cpp
   libcore_icu_TimeZoneNames.cpp
   libcore_io_AsynchronousCloseMonitor.cpp
-  libcore_io_Linux.cpp
   libcore_io_Memory.cpp
   libcore_util_NativeAllocationRegistry.cpp
   org_apache_harmony_xml_ExpatParser.cpp
@@ -37,6 +36,12 @@ set(SRC
   valueOf.cpp
   AsynchronousCloseMonitor.cpp
 )
+if(LINUX)
+  set(SRC
+    ${SRC}
+    libcore_io_Linux.cpp
+  )
+endif()
 
 add_library(android-libcore-luni OBJECT ${SRC})
 set(LIBCORE_LUNI_OBJECTS $<TARGET_OBJECTS:android-libcore-luni> PARENT_SCOPE)

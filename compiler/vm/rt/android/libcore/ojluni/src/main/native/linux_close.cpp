@@ -50,9 +50,15 @@ extern "C" {
 /*
  * Signal to unblock thread
  */
+#if defined(__APPLE__)
+// RoboVM Note: changes start
+static const int sigWakeup = SIGUSR2;
+// RoboVM Note: end of changes
+#else
 // Android-changed: Bionic (and AsynchronousCloseMonitor) expects libcore to use
 // __SIGRTMIN + 2, not __SIGRTMAX - 2
 static int sigWakeup = (__SIGRTMIN + 2);
+#endif
 
 /*
  * Close or dup2 a file descriptor ensuring that all threads blocked on
