@@ -21,6 +21,7 @@ package dalvik.system;
  *
  * @hide
  */
+@libcore.api.CorePlatformApi
 public final class DalvikLogging {
     private DalvikLogging() {}
 
@@ -29,6 +30,7 @@ public final class DalvikLogging {
      * Traditionally loggers are named by fully-qualified Java classes; this
      * method attempts to return a concise identifying part of such names.
      */
+    @libcore.api.CorePlatformApi
     public static String loggerNameToTag(String loggerName) {
         // Anonymous logger.
         if (loggerName == null) {

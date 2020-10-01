@@ -29,6 +29,7 @@ import java.util.logging.Logger;
  *
  * @hide
  */
+@libcore.api.CorePlatformApi
 public interface DalvikLogHandler {
 
     /**
@@ -41,6 +42,7 @@ public interface DalvikLogHandler {
      * @param tag the short (23 characters or fewer) logger tag identifying
      *      {@code logger}.
      */
+    @libcore.api.CorePlatformApi
     void publish(Logger source, String tag, Level level, String message);
 
     // TODO: support messages with throwables?
