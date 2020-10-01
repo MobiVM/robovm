@@ -142,12 +142,17 @@ public class Thread implements Runnable {
      * Holds the thread's ID. We simply count upwards, so
      * each Thread has a unique ID.
      */
-    private long id = 0;
+    private long tid = 0;
     private String name = null;
     private long stackSize;
     private boolean daemon = false;
     private int priority = NORM_PRIORITY;
     private Runnable target = null;
+
+    /** Thread locals for ThreadLocalRandom */
+    int threadLocalRandomProbe;
+    int threadLocalRandomSecondarySeed;
+    long threadLocalRandomSeed;
 
     /** Callbacks to run on interruption. */
     private final List<Runnable> interruptActions = new ArrayList<Runnable>();
@@ -351,9 +356,9 @@ public class Thread implements Runnable {
         this.daemon = daemon;
         this.group = group == null ? ThreadGroup.mMain : group;
         synchronized (Thread.class) {
-            id = ++count;
+            tid = ++count;
         }
-        this.name = name == null ? "Thread-" + this.id : name;
+        this.name = name == null ? "Thread-" + this.tid : name;
         this.priority = NORM_PRIORITY;        
         this.started = true;
         this.group.addThread(this);
@@ -388,11 +393,11 @@ public class Thread implements Runnable {
         this.group = group;
 
         synchronized (Thread.class) {
-            id = ++Thread.count;
+            tid = ++Thread.count;
         }
 
         if (threadName == null) {
-            this.name = "Thread-" + id;
+            this.name = "Thread-" + tid;
         } else {
             this.name = threadName;
         }
@@ -547,7 +552,7 @@ public class Thread implements Runnable {
      * @return the thread's ID.
      */
     public long getId() {
-        return id;
+        return tid;
     }
 
     /**

@@ -269,10 +269,4 @@ public class Proxy implements Serializable {
 
     native private static Class generateProxy(String name, Class[] interfaces,
         ClassLoader loader);
-
-    /*
-     * The VM clones this method's descriptor when generating a proxy class.
-     * There is no implementation.
-     */
-    native private static void constructorPrototype(InvocationHandler h);
 }
