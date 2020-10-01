@@ -210,6 +210,8 @@ public abstract class AbstractInterruptibleChannel
     // -- sun.misc.SharedSecrets --
     static void blockedOn(Interruptible intr) {         // package-private
         // Android-changed: Call Thread.currentThread().blockedOn() directly.
-        Thread.currentThread().blockedOn(intr);
+        // RoboVM Note: FIXME: TODO: required by libcore10, not implemented
+        // Thread.currentThread().blockedOn(intr);
+        throw new UnsupportedOperationException("TODO");
     }
 }

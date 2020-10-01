@@ -134,25 +134,10 @@ public final class Daemons {
                     }
                 } catch (InterruptedException e) {
                     continue;
+                } catch (OutOfMemoryError e) {
+                    continue;
                 }
-                enqueue(list);
-            }
-        }
-
-        private void enqueue(Reference<?> list) {
-            while (list != null) {
-                Reference<?> reference;
-                // pendingNext is owned by the GC so no synchronization is required
-                if (list == list.pendingNext) {
-                    reference = list;
-                    reference.pendingNext = null;
-                    list = null;
-                } else {
-                    reference = list.pendingNext;
-                    list.pendingNext = reference.pendingNext;
-                    reference.pendingNext = null;
-                }
-                reference.enqueueInternal();
+                ReferenceQueue.enqueuePending(list);
             }
         }
     }

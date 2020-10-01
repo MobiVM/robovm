@@ -49,8 +49,6 @@ import java.util.regex.Pattern;
 import libcore.io.IoUtils;
 import libcore.timezone.ZoneInfoDB;
 
-import dalvik.system.RuntimeHooks;
-
 /**
  * <code>TimeZone</code> represents a time zone offset, and also figures out daylight
  * savings.
@@ -706,7 +704,8 @@ abstract public class TimeZone implements Serializable, Cloneable {
      */
     static synchronized TimeZone getDefaultRef() {
         if (defaultTimeZone == null) {
-            Supplier<String> tzGetter = RuntimeHooks.getTimeZoneIdSupplier();
+            // RoboVM Notes: TODO: FIXME: replace with TimezoneGetter.getInstance();
+            Supplier<String> tzGetter = null; // RoboVM Notes: FIXME: RuntimeHooks.getTimeZoneIdSupplier();
             String zoneName = (tzGetter != null) ? tzGetter.get() : null;
             if (zoneName != null) {
                 zoneName = zoneName.trim();

@@ -899,12 +899,8 @@ public final class System {
      * @return  the hashCode
      * @since   JDK1.1
      */
-    public static int identityHashCode(Object x) {
-        if (x == null) {
-            return 0;
-        }
-        return Object.identityHashCode(x);
-    }
+    // RoboVM Note: using native implementation
+    public static native int identityHashCode(Object x);
 
     /**
      * System properties. The following properties are guaranteed to be defined:

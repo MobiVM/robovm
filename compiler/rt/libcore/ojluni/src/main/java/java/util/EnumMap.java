@@ -750,9 +750,8 @@ public class EnumMap<K extends Enum<K>, V> extends AbstractMap<K, V>
      * The result is uncloned, cached, and shared by all callers.
      */
     private static <K extends Enum<K>> K[] getKeyUniverse(Class<K> keyType) {
-        // Android-changed: Use getEnumConstantsShared directly instead of going
-        // through SharedSecrets.
-        return keyType.getEnumConstantsShared();
+        // RoboVM Note: using luni4 approach
+        return Enum.getSharedConstants(keyType);
     }
 
     private static final long serialVersionUID = 458661240069192865L;

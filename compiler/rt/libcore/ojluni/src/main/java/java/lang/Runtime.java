@@ -32,15 +32,11 @@ import java.util.StringTokenizer;
 
 import dalvik.system.BlockGuard;
 import sun.reflect.CallerSensitive;
-import java.lang.ref.FinalizerReference;
 import java.util.ArrayList;
 import java.util.List;
-import dalvik.system.BaseDexClassLoader;
-import dalvik.system.VMDebug;
 import dalvik.system.VMRuntime;
 import sun.reflect.Reflection;
 
-import libcore.io.IoUtils;
 import libcore.io.Libcore;
 import libcore.util.EmptyArray;
 import static android.system.OsConstants._SC_NPROCESSORS_CONF;
@@ -77,10 +73,11 @@ public class Runtime {
      */
     private boolean shuttingDown;
 
-    /**
-     * Reflects whether we are tracing method calls.
-     */
-    private boolean tracingMethods;
+    // RoboVM Note: not used
+//    /**
+//     * Reflects whether we are tracing method calls.
+//     */
+//    private boolean tracingMethods;
 
     private static native void nativeExit(int code);
 
@@ -844,14 +841,7 @@ public class Runtime {
      *               <code>false</code> to disable this feature.
      */
     public void traceMethodCalls(boolean on) {
-        if (on != tracingMethods) {
-            if (on) {
-                VMDebug.startMethodTracing();
-            } else {
-                VMDebug.stopMethodTracing();
-            }
-            tracingMethods = on;
-        }
+        // RoboVM Note: does nothing
     }
 
     /**
@@ -1003,7 +993,7 @@ public class Runtime {
     }
     */
     void loadLibrary0(Class<?> fromClass, String libname) {
-        ClassLoader classLoader = ClassLoader.getClassLoader(fromClass);
+        ClassLoader classLoader = fromClass.getClassLoader(); // RoboVM Note: was ClassLoader.getClassLoader(fromClass);
         loadLibrary0(classLoader, fromClass, libname);
     }
 
@@ -1040,7 +1030,7 @@ public class Runtime {
      * @param      loader    the class loader that initiated the loading. Used by the
      *                       underlying linker to determine linker namespace. A {@code null}
      *                       value represents the boot class loader.
-     * @param      fromClass the class that initiated the loading. Used when loader is
+     * @param      callerClass the class that initiated the loading. Used when loader is
      *                       {@code null} and ignored in all other cases. When used, it 
      *                       determines the linker namespace from the class's .dex location.
      *                       {@code null} indicates the default namespace for the boot 

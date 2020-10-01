@@ -100,11 +100,8 @@ public abstract class Reference<T> {
      *           <code>null</code> if this reference object has been cleared
      */
     public T get() {
-        return getReferent();
+        return referent;
     }
-
-    @FastNative
-    private final native T getReferent();
 
     /**
      * Clears this reference object.  Invoking this method will not cause this
@@ -113,14 +110,13 @@ public abstract class Reference<T> {
      * <p> This method is invoked only by Java code; when the garbage collector
      * clears references it does so directly, without invoking this method.
      */
+    /**
+     * Makes the referent {@code null}. This does not force the reference
+     * object to be enqueued.
+     */
     public void clear() {
-        clearReferent();
+        referent = null;
     }
-
-    // Direct access to the referent is prohibited, clearReferent blocks and set
-    // the referent to null when it is safe to do so.
-    @FastNative
-    native void clearReferent();
 
     /* -- Queue operations -- */
 
@@ -165,8 +161,14 @@ public abstract class Reference<T> {
     Reference(T referent, ReferenceQueue<? super T> queue) {
         this.referent = referent;
         this.queue = queue;
+        register(referent);
     }
     // END Android-changed: Reimplemented to accommodate a different GC and compiler.
+
+    /**
+     * RoboVM note: This is not in Android.
+     */
+    private native void register(T r);
 
     // BEGIN Android-added: reachabilityFence() from upstream OpenJDK9+181.
     // The actual implementation differs from OpenJDK9.

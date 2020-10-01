@@ -27,6 +27,8 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Formatter;
 import java.util.Locale;
+import java.util.Objects;
+import java.util.StringJoiner;
 import java.util.regex.Pattern;
 import libcore.util.EmptyArray;
 
@@ -494,7 +496,7 @@ outer:
     public String(StringBuffer stringBuffer) {
         offset = 0;
         synchronized (stringBuffer) {
-            value = stringBuffer.shareValue();
+            value = stringBuffer.getValue();
             count = stringBuffer.length();
         }
     }
@@ -1556,7 +1558,7 @@ outer:
      * @return a new lower case string, or {@code this} if it's already all lower case.
      */
     public String toLowerCase() {
-        return CaseMapper.toLowerCase(Locale.getDefault(), this, value, offset, count);
+        return CaseMapper.toLowerCase(Locale.getDefault(), this);
     }
 
     /**
@@ -1573,7 +1575,7 @@ outer:
      * @return a new lower case string, or {@code this} if it's already all lower case.
      */
     public String toLowerCase(Locale locale) {
-        return CaseMapper.toLowerCase(locale, this, value, offset, count);
+        return CaseMapper.toLowerCase(locale, this);
     }
 
     /**
@@ -1591,7 +1593,7 @@ outer:
      * @return a new upper case string, or {@code this} if it's already all upper case.
      */
     public String toUpperCase() {
-        return CaseMapper.toUpperCase(Locale.getDefault(), this, value, offset, count);
+        return CaseMapper.toUpperCase(Locale.getDefault(), this, count);
     }
 
     /**
@@ -1608,7 +1610,7 @@ outer:
      * @return a new upper case string, or {@code this} if it's already all upper case.
      */
     public String toUpperCase(Locale locale) {
-        return CaseMapper.toUpperCase(locale, this, value, offset, count);
+        return CaseMapper.toUpperCase(locale, this, count);
     }
 
     /**
@@ -1902,7 +1904,7 @@ outer:
      * @since 1.4
      */
     public String[] split(String regularExpression, int limit) {
-        String[] result = java.util.regex.Splitter.fastSplit(regularExpression, this, limit);
+        String[] result = Pattern.fastSplit(regularExpression, this, limit);
         return result != null ? result : Pattern.compile(regularExpression).split(this, limit);
     }
 
@@ -2105,5 +2107,237 @@ outer:
             i++;
         }
         return -1;
+    }
+
+    /**
+     * RoboVM Note: method required in Libcore10
+     */
+    public void getCharsNoCheck(int start, int end, char[] buffer, int index) {
+        _getChars(start, end, buffer, index);
+    }
+
+    /**
+     * RoboVM Note: method required in Libcore10
+     */
+    void getChars(char dst[], int dstBegin) {
+        getChars(0, length(), dst, dstBegin);
+    }
+
+    /**
+     * Returns a new String composed of copies of the
+     * {@code CharSequence elements} joined together with a copy of
+     * the specified {@code delimiter}.
+     *
+     * <blockquote>For example,
+     * <pre>{@code
+     *     String message = String.join("-", "Java", "is", "cool");
+     *     // message returned is: "Java-is-cool"
+     * }</pre></blockquote>
+     *
+     * Note that if an element is null, then {@code "null"} is added.
+     *
+     * @param  delimiter the delimiter that separates each element
+     * @param  elements the elements to join together.
+     *
+     * @return a new {@code String} that is composed of the {@code elements}
+     *         separated by the {@code delimiter}
+     *
+     * @throws NullPointerException If {@code delimiter} or {@code elements}
+     *         is {@code null}
+     *
+     * @see java.util.StringJoiner
+     * @since 1.8
+     */
+    public static String join(CharSequence delimiter, CharSequence... elements) {
+        Objects.requireNonNull(delimiter);
+        Objects.requireNonNull(elements);
+        // Number of elements not likely worth Arrays.stream overhead.
+        StringJoiner joiner = new StringJoiner(delimiter);
+        for (CharSequence cs: elements) {
+            joiner.add(cs);
+        }
+        return joiner.toString();
+    }
+
+    /**
+     * Returns a new {@code String} composed of copies of the
+     * {@code CharSequence elements} joined together with a copy of the
+     * specified {@code delimiter}.
+     *
+     * <blockquote>For example,
+     * <pre>{@code
+     *     List<String> strings = new LinkedList<>();
+     *     strings.add("Java");strings.add("is");
+     *     strings.add("cool");
+     *     String message = String.join(" ", strings);
+     *     //message returned is: "Java is cool"
+     *
+     *     Set<String> strings = new LinkedHashSet<>();
+     *     strings.add("Java"); strings.add("is");
+     *     strings.add("very"); strings.add("cool");
+     *     String message = String.join("-", strings);
+     *     //message returned is: "Java-is-very-cool"
+     * }</pre></blockquote>
+     *
+     * Note that if an individual element is {@code null}, then {@code "null"} is added.
+     *
+     * @param  delimiter a sequence of characters that is used to separate each
+     *         of the {@code elements} in the resulting {@code String}
+     * @param  elements an {@code Iterable} that will have its {@code elements}
+     *         joined together.
+     *
+     * @return a new {@code String} that is composed from the {@code elements}
+     *         argument
+     *
+     * @throws NullPointerException If {@code delimiter} or {@code elements}
+     *         is {@code null}
+     *
+     * @see    #join(CharSequence,CharSequence...)
+     * @see    java.util.StringJoiner
+     * @since 1.8
+     */
+    public static String join(CharSequence delimiter,
+                              Iterable<? extends CharSequence> elements) {
+        Objects.requireNonNull(delimiter);
+        Objects.requireNonNull(elements);
+        StringJoiner joiner = new StringJoiner(delimiter);
+        for (CharSequence cs: elements) {
+            joiner.add(cs);
+        }
+        return joiner.toString();
+    }
+    static int indexOf(char[] source, int sourceOffset, int sourceCount,
+                       String target, int fromIndex) {
+        return indexOf(source, sourceOffset, sourceCount,
+                target.toCharArray(), 0, target.length(),
+                fromIndex);
+    }
+
+    /**
+     * Code shared by String and StringBuffer to do searches. The
+     * source is the character array being searched, and the target
+     * is the string being searched for.
+     *
+     * @param   source       the characters being searched.
+     * @param   sourceOffset offset of the source string.
+     * @param   sourceCount  count of the source string.
+     * @param   target       the characters being searched for.
+     * @param   targetOffset offset of the target string.
+     * @param   targetCount  count of the target string.
+     * @param   fromIndex    the index to begin searching from.
+     */
+    static int indexOf(char[] source, int sourceOffset, int sourceCount,
+                       char[] target, int targetOffset, int targetCount,
+                       int fromIndex) {
+        if (fromIndex >= sourceCount) {
+            return (targetCount == 0 ? sourceCount : -1);
+        }
+        if (fromIndex < 0) {
+            fromIndex = 0;
+        }
+        if (targetCount == 0) {
+            return fromIndex;
+        }
+
+        char first = target[targetOffset];
+        int max = sourceOffset + (sourceCount - targetCount);
+
+        for (int i = sourceOffset + fromIndex; i <= max; i++) {
+            /* Look for first character. */
+            if (source[i] != first) {
+                while (++i <= max && source[i] != first);
+            }
+
+            /* Found first character, now look at the rest of v2 */
+            if (i <= max) {
+                int j = i + 1;
+                int end = j + targetCount - 1;
+                for (int k = targetOffset + 1; j < end && source[j]
+                        == target[k]; j++, k++);
+
+                if (j == end) {
+                    /* Found whole string. */
+                    return i - sourceOffset;
+                }
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * Code shared by String and AbstractStringBuilder to do searches. The
+     * source is the character array being searched, and the target
+     * is the string being searched for.
+     *
+     * @param   source       the characters being searched.
+     * @param   sourceOffset offset of the source string.
+     * @param   sourceCount  count of the source string.
+     * @param   target       the characters being searched for.
+     * @param   fromIndex    the index to begin searching from.
+     */
+    static int lastIndexOf(char[] source, int sourceOffset, int sourceCount,
+                           String target, int fromIndex) {
+        return lastIndexOf(source, sourceOffset, sourceCount,
+                target.toCharArray(), 0, target.length(),
+                fromIndex);
+    }
+
+    /**
+     * Code shared by String and StringBuffer to do searches. The
+     * source is the character array being searched, and the target
+     * is the string being searched for.
+     *
+     * @param   source       the characters being searched.
+     * @param   sourceOffset offset of the source string.
+     * @param   sourceCount  count of the source string.
+     * @param   target       the characters being searched for.
+     * @param   targetOffset offset of the target string.
+     * @param   targetCount  count of the target string.
+     * @param   fromIndex    the index to begin searching from.
+     */
+    static int lastIndexOf(char[] source, int sourceOffset, int sourceCount,
+                           char[] target, int targetOffset, int targetCount,
+                           int fromIndex) {
+        /*
+         * Check arguments; return immediately where possible. For
+         * consistency, don't check for null str.
+         */
+        int rightIndex = sourceCount - targetCount;
+        if (fromIndex < 0) {
+            return -1;
+        }
+        if (fromIndex > rightIndex) {
+            fromIndex = rightIndex;
+        }
+        /* Empty string always matches. */
+        if (targetCount == 0) {
+            return fromIndex;
+        }
+
+        int strLastIndex = targetOffset + targetCount - 1;
+        char strLastChar = target[strLastIndex];
+        int min = sourceOffset + targetCount - 1;
+        int i = min + fromIndex;
+
+        startSearchForLastChar:
+        while (true) {
+            while (i >= min && source[i] != strLastChar) {
+                i--;
+            }
+            if (i < min) {
+                return -1;
+            }
+            int j = i - 1;
+            int start = j - (targetCount - 1);
+            int k = strLastIndex - 1;
+
+            while (j > start) {
+                if (source[j--] != target[k--]) {
+                    i--;
+                    continue startSearchForLastChar;
+                }
+            }
+            return start - sourceOffset + 1;
+        }
     }
 }

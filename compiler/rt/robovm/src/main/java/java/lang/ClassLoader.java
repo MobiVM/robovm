@@ -69,7 +69,7 @@ import java.util.Map;
  * {@code ClassLoader} is an abstract class that implements the common
  * infrastructure required by all class loaders. Android provides several
  * concrete implementations of the class, with
- * {@link dalvik.system.PathClassLoader} being the one typically used. Other
+ * {@link java.lang.PathClassLoader} being the one typically used. Other
  * applications may implement subclasses of {@code ClassLoader} to provide
  * special ways for loading classes.
  * </p>
@@ -647,7 +647,7 @@ public abstract class ClassLoader {
             }
 
             Package newPackage = new Package(name, specTitle, specVersion, specVendor, implTitle,
-                    implVersion, implVendor, sealBase);
+                    implVersion, implVendor, sealBase, this.getClass().getClassLoader());
 
             packages.put(name, newPackage);
 
@@ -719,6 +719,10 @@ public abstract class ClassLoader {
      * </p>
      */
     public void clearAssertionStatus() {
+    }
+
+    protected static void registerAsParallelCapable() {
+        // RoboVM Note: FIXME: TODO: required by Libcore10, does nothing
     }
 }
 

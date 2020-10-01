@@ -69,6 +69,7 @@ import java.util.HashMap;
 import libcore.reflect.GenericSignatureParser;
 import libcore.reflect.Types;
 import dalvik.system.VMStack;
+import libcore.util.EmptyArray;
 
 /**
  * The in-memory representation of a Java class. This representation serves as
@@ -440,7 +441,7 @@ public final class Class<T> implements Serializable, AnnotatedElement, GenericDe
     /**
      * Returns the annotation if it exists.
      */
-    private <A extends Annotation> A getDeclaredAnnotation(Class<A> annotationClass) {
+    public <A extends Annotation> A getDeclaredAnnotation(Class<A> annotationClass) {
         if (annotationClass == null) {
             throw new NullPointerException("annotationClass == null");
         }
@@ -707,6 +708,13 @@ public final class Class<T> implements Serializable, AnnotatedElement, GenericDe
      */
     public int getModifiers() {
         return getModifiers(this, false);
+    }
+
+    /**
+     * RoboVM Note: needed by Libcore10
+     */
+    public int getAccessFlags() {
+        return getModifiers();
     }
 
     /*
@@ -1091,5 +1099,57 @@ public final class Class<T> implements Serializable, AnnotatedElement, GenericDe
         System.arraycopy(head, 0, result, 0, head.length);
         System.arraycopy(tail, 0, result, head.length, tail.length);
         return result;
+    }
+
+    /**
+     * RoboVM Note: added to support libcore 10, items in switch copied from
+     * corresponding primitive box classes
+     */
+    public static Class<?> getPrimitiveClass(String prim) {
+        switch (prim) {
+            case "boolean":
+                // Note: Boolean.TYPE can't be set to "boolean.class", since *that* is
+                // defined to be "java.lang.Boolean.TYPE";
+                return boolean[].class.getComponentType();
+            case "byte":
+                // Note: Byte.TYPE can't be set to "byte.class", since *that* is
+                // defined to be "java.lang.Byte.TYPE";
+                return byte[].class.getComponentType();
+            case "short":
+                // Note: Short.TYPE can't be set to "short.class", since *that* is
+                // defined to be "java.lang.Short.TYPE";
+                return short[].class.getComponentType();
+            case "int":
+                // Note: Integer.TYPE can't be set to "int.class", since *that* is
+                // defined to be "java.lang.Integer.TYPE";
+                return int[].class.getComponentType();
+            case "long":
+                // Note: Long.TYPE can't be set to "long.class", since *that* is
+                // defined to be "java.lang.Long.TYPE";
+                return long[].class.getComponentType();
+            case "float":
+                // Note: Float.TYPE can't be set to "float.class", since *that* is
+                // defined to be "java.lang.Float.TYPE";
+                return float[].class.getComponentType();
+            case "double":
+                // Note: Double.TYPE can't be set to "double.class", since *that* is
+                // defined to be "java.lang.Double.TYPE";
+                return double[].class.getComponentType();
+            case "char":
+                // Note: Character.TYPE can't be set to "char.class", since *that* is
+                // defined to be "java.lang.Character.TYPE";
+                return char[].class.getComponentType();
+            case "void":
+                // Note: Void.TYPE can't be set to "void.class", since *that* is
+                // defined to be "java.lang.Void.TYPE";
+                try {
+                    Method method = Runnable.class.getMethod("run", EmptyArray.CLASS);
+                    return method.getReturnType();
+                } catch (Exception e) {
+                    throw new AssertionError(e);
+                }
+        }
+
+        throw new IllegalArgumentException("Unrecognized prim name: " + prim);
     }
 }

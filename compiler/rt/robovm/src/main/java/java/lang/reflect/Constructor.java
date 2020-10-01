@@ -523,4 +523,9 @@ public final class Constructor<T> extends AccessibleObject implements GenericDec
 
         return result.toString();
     }
+
+    public Constructor<?> serializationCopy(Class<?> declaringClass, Class<?> cl) {
+        // RoboVM Note: FIXME: TODO: required by Libcore10, not implemented yet
+        throw new UnsupportedOperationException();
+    }
 }
