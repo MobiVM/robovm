@@ -21,16 +21,19 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 
 /**
- * The package name notwithstanding, this class is the quasi-standard
- * way for Java code to gain access to and use functionality which,
- * when unsupervised, would allow one to break the pointer/type safety
- * of Java.
+ * A collection of methods for performing low-level, unsafe operations.
+ * Although the class and all methods are public, use of this class is
+ * limited because only trusted code can obtain instances of it.
+ *
+ * @author John R. Rose
+ * @see #getUnsafe
  */
 public final class Unsafe {
     /** Traditional dalvik name. */
     private static final Unsafe THE_ONE = new Unsafe();
     /** Traditional RI name. */
     private static final Unsafe theUnsafe = THE_ONE;
+    public static final int INVALID_FIELD_OFFSET   = -1;
 
     /**
      * This class is only privately instantiable.
@@ -46,10 +49,12 @@ public final class Unsafe {
          * Only code on the bootclasspath is allowed to get at the
          * Unsafe instance.
          */
-        ClassLoader calling = VMStack.getCallingClassLoader();
-        if ((calling != null) && (calling != Unsafe.class.getClassLoader())) {
-            throw new SecurityException("Unsafe access denied");
-        }
+        // RoboVm Note: TODO: FIXME: getCallingClassLoader() causes force-loading of BootClassLoaded, System and VMRuntime as
+        // result VMRuntime/System got referenced while their CLinit is not finished yet
+//        ClassLoader calling = VMStack.getCallingClassLoader();
+//        if ((calling != null) && (calling != Unsafe.class.getClassLoader())) {
+//            throw new SecurityException("Unsafe access denied");
+//        }
 
         return THE_ONE;
     }
@@ -401,4 +406,198 @@ public final class Unsafe {
      * The class' <clinit> will be run, if necessary.
      */
     public native Object allocateInstance(Class<?> c);
+
+    public native int addressSize();
+
+    public native int pageSize();
+
+    public native long allocateMemory(long bytes);
+
+    public native void freeMemory(long address);
+
+    public native void setMemory(long address, long bytes, byte value);
+
+    public native void copyMemory(long srcAddr, long dstAddr, long bytes);
+
+    public native byte getByte(long address);
+
+    public native void putByte(long address, byte x);
+
+    public native short getShort(long address);
+
+    public native void putShort(long address, short x);
+
+    public native char getChar(long address);
+
+    public native void putChar(long address, char x);
+
+    public native int getInt(long address);
+
+    public native void putInt(long address, int x);
+
+    public native long getLong(long address);
+
+    public native void putLong(long address, long x);
+
+    public native float getFloat(long address);
+
+    public native void putFloat(long address, float x);
+
+    public native double getDouble(long address);
+
+    public native void putDouble(long address, double x);
+
+    public native char getChar(Object obj, long offset);
+
+    public native void putChar(Object obj, long offset, char newValue);
+
+    public native short getShort(Object obj, long offset);
+
+    public native void putShort(Object obj, long offset, short newValue);
+
+    public native double getDouble(Object obj, long offset);
+
+    public native void putDouble(Object obj, long offset, double newValue);
+
+    // The following contain CAS-based Java implementations used on
+    // platforms not supporting native instructions
+
+    /**
+     * Atomically adds the given value to the current value of a field
+     * or array element within the given object {@code o}
+     * at the given {@code offset}.
+     *
+     * @param o object/array to update the field/element in
+     * @param offset field/element offset
+     * @param delta the value to add
+     * @return the previous value
+     * @since 1.8
+     */
+    // @HotSpotIntrinsicCandidate
+    public final int getAndAddInt(Object o, long offset, int delta) {
+        int v;
+        do {
+            v = getIntVolatile(o, offset);
+        } while (!compareAndSwapInt(o, offset, v, v + delta));
+        return v;
+    }
+
+    /**
+     * Atomically adds the given value to the current value of a field
+     * or array element within the given object {@code o}
+     * at the given {@code offset}.
+     *
+     * @param o object/array to update the field/element in
+     * @param offset field/element offset
+     * @param delta the value to add
+     * @return the previous value
+     * @since 1.8
+     */
+    // @HotSpotIntrinsicCandidate
+    public final long getAndAddLong(Object o, long offset, long delta) {
+        long v;
+        do {
+            v = getLongVolatile(o, offset);
+        } while (!compareAndSwapLong(o, offset, v, v + delta));
+        return v;
+    }
+
+    /**
+     * Atomically exchanges the given value with the current value of
+     * a field or array element within the given object {@code o}
+     * at the given {@code offset}.
+     *
+     * @param o object/array to update the field/element in
+     * @param offset field/element offset
+     * @param newValue new value
+     * @return the previous value
+     * @since 1.8
+     */
+    // @HotSpotIntrinsicCandidate
+    public final int getAndSetInt(Object o, long offset, int newValue) {
+        int v;
+        do {
+            v = getIntVolatile(o, offset);
+        } while (!compareAndSwapInt(o, offset, v, newValue));
+        return v;
+    }
+
+    /**
+     * Atomically exchanges the given value with the current value of
+     * a field or array element within the given object {@code o}
+     * at the given {@code offset}.
+     *
+     * @param o object/array to update the field/element in
+     * @param offset field/element offset
+     * @param newValue new value
+     * @return the previous value
+     * @since 1.8
+     */
+    // @HotSpotIntrinsicCandidate
+    public final long getAndSetLong(Object o, long offset, long newValue) {
+        long v;
+        do {
+            v = getLongVolatile(o, offset);
+        } while (!compareAndSwapLong(o, offset, v, newValue));
+        return v;
+    }
+
+    /**
+     * Atomically exchanges the given reference value with the current
+     * reference value of a field or array element within the given
+     * object {@code o} at the given {@code offset}.
+     *
+     * @param o object/array to update the field/element in
+     * @param offset field/element offset
+     * @param newValue new value
+     * @return the previous value
+     * @since 1.8
+     */
+    public final Object getAndSetObject(Object o, long offset, Object newValue) {
+        Object v;
+        do {
+            v = getObjectVolatile(o, offset);
+        } while (!compareAndSwapObject(o, offset, v, newValue));
+        return v;
+    }
+
+
+    /**
+     * Ensures that loads before the fence will not be reordered with loads and
+     * stores after the fence; a "LoadLoad plus LoadStore barrier".
+     *
+     * Corresponds to C11 atomic_thread_fence(memory_order_acquire)
+     * (an "acquire fence").
+     *
+     * A pure LoadLoad fence is not provided, since the addition of LoadStore
+     * is almost always desired, and most current hardware instructions that
+     * provide a LoadLoad barrier also provide a LoadStore barrier for free.
+     * @since 1.8
+     */
+    public native void loadFence();
+
+    /**
+     * Ensures that loads and stores before the fence will not be reordered with
+     * stores after the fence; a "StoreStore plus LoadStore barrier".
+     *
+     * Corresponds to C11 atomic_thread_fence(memory_order_release)
+     * (a "release fence").
+     *
+     * A pure StoreStore fence is not provided, since the addition of LoadStore
+     * is almost always desired, and most current hardware instructions that
+     * provide a StoreStore barrier also provide a LoadStore barrier for free.
+     * @since 1.8
+     */
+    public native void storeFence();
+
+    /**
+     * Ensures that loads and stores before the fence will not be reordered
+     * with loads and stores after the fence.  Implies the effects of both
+     * loadFence() and storeFence(), and in addition, the effect of a StoreLoad
+     * barrier.
+     *
+     * Corresponds to C11 atomic_thread_fence(memory_order_seq_cst).
+     * @since 1.8
+     */
+    public native void fullFence();
 }
