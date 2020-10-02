@@ -62,7 +62,8 @@ public final class NativeCrypto {
     static {
         UnsatisfiedLinkError error = null;
         try {
-            NativeCryptoJni.init();
+            // RoboVM Note: library is statically linked, just call onload()
+            onload();
             clinit();
         } catch (UnsatisfiedLinkError t) {
             // Don't rethrow the error, so that we can later on interrogate the
@@ -72,6 +73,7 @@ public final class NativeCrypto {
         loadError = error;
     }
 
+    private native static void onload();
     private native static void clinit();
 
     /**
