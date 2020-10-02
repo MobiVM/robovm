@@ -83,7 +83,8 @@ public class InetAddressUtils {
         hints.ai_flags = AI_NUMERICHOST;
         InetAddress[] addresses = null;
         try {
-            addresses = Libcore.os.android_getaddrinfo(address, hints, NETID_UNSET);
+            // RoboVM Note: TODO: FIXME: using getaddrinfo instead of android_getaddrinfo
+            addresses = Libcore.os.getaddrinfo(address, hints);
         } catch (GaiException ignored) {
         }
         if (addresses == null) {

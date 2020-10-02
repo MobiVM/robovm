@@ -132,7 +132,8 @@ class Inet6AddressImpl implements InetAddressImpl {
             // for SOCK_STREAM and one for SOCK_DGRAM. Since we do not return the family
             // anyway, just pick one.
             hints.ai_socktype = SOCK_STREAM;
-            InetAddress[] addresses = Libcore.os.android_getaddrinfo(host, hints, netId);
+            // RoboVM Note: TODO: FIXME: using getaddrinfo instead of android_getaddrinfo
+            InetAddress[] addresses = Libcore.os.getaddrinfo(host, hints);
             // TODO: should getaddrinfo set the hostname of the InetAddresses it returns?
             for (InetAddress address : addresses) {
                 address.holder().hostName = host;
