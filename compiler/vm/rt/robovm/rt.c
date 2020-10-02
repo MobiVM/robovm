@@ -32,14 +32,17 @@ typedef struct {
   Object* target;
   Object* uncaughtHandler;
 #if defined(RVM_THUMBV7)
-  jlong id __attribute__ ((aligned (8))); // The compiler 8-byte aligns all long fields on ARM 32-bit.
+  jlong stackSize __attribute__ ((aligned (8))); // The compiler 8-byte aligns all long fields on ARM 32-bit.
 #else
-  jlong id;
-#endif
   jlong stackSize;
+#endif
+  jlong threadLocalRandomSeed;
   /*volatile*/ jlong threadPtr; // Points to the Thread
+  jlong tid;
   jint parkState;
   jint priority;
+  jint threadLocalRandomProbe;
+  jint threadLocalRandomSecondarySeed;
   jboolean daemon;
   jboolean started;
 } JavaThread;
@@ -120,7 +123,7 @@ jint rvmRTGetThreadStackSize(Env* env, Object* threadObj) {
 }
 
 jlong rvmRTGetThreadId(Env* env, Object* threadObj) {
-    return ((JavaThread*) threadObj)->id;
+    return ((JavaThread*) threadObj)->tid;
 }
 
 void rvmRTResumeJoiningThreads(Env* env, Object* threadObj) {
