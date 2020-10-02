@@ -27,6 +27,7 @@ import java.util.Set;
 
 import android.icu.util.ICUUncheckedIOException;
 import android.icu.util.VersionInfo;
+import libcore.icu.ICU;
 
 /**
  * @hide Only a subset of ICU is exposed in Android
@@ -285,10 +286,11 @@ public final class ICUBinary {
     private static final List<DataFile> icuDataFiles = new ArrayList<>();
 
     static {
-        // Normally android.icu.impl.ICUBinary.dataPath.
-        String dataPath = ICUConfig.get(ICUBinary.class.getName() + ".dataPath");
-        if (dataPath != null) {
-            addDataFilesFromPath(dataPath, icuDataFiles);
+        // RoboVM Note: will not provide both icu4j resources and .dat file for native part
+        // instead asking for data file from native part
+        ByteBuffer pkgBytes = ICU.getIcuData();
+        if (pkgBytes != null && DatPackageReader.validate(pkgBytes)) {
+            icuDataFiles.add(new PackageDataFile("icudt63l.dat", pkgBytes));
         }
     }
 

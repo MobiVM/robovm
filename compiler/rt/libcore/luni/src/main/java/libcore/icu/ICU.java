@@ -17,6 +17,8 @@
 package libcore.icu;
 
 import dalvik.annotation.compat.UnsupportedAppUsage;
+
+import java.nio.ByteBuffer;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -46,6 +48,12 @@ public final class ICU {
 
   private ICU() {
   }
+
+  /**
+   * RoboVM Note: retrieves ByteBuffer to icudt file from native part.
+   * To be shared with icu4j code
+   */
+  public static native ByteBuffer getIcuData();
 
   /**
    * Returns an array of two-letter ISO 639-1 language codes, either from ICU or our cache.
