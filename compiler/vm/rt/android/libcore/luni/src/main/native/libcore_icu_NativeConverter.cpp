@@ -695,6 +695,6 @@ static JNINativeMethod gMethods[] = {
     NATIVE_METHOD(NativeConverter, getNativeFinalizer, "()J"),
     NATIVE_METHOD(NativeConverter, getNativeSize, "()J")
 };
-void register_libcore_icu_NativeConverter(JNIEnv* env) {
+extern "C" void register_libcore_icu_NativeConverter(JNIEnv* env) {
     jniRegisterNativeMethods(env, "libcore/icu/NativeConverter", gMethods, NELEM(gMethods));
 }

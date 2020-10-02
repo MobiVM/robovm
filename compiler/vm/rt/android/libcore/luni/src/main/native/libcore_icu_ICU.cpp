@@ -1076,7 +1076,7 @@ struct ICURegistration {
 static std::unique_ptr<ICURegistration> sIcuRegistration;
 
 // Init ICU, configuring it and loading the data files.
-void register_libcore_icu_ICU(JNIEnv* env) {
+extern "C" void register_libcore_icu_ICU(JNIEnv* env) {
   sIcuRegistration.reset(new ICURegistration(env));
 }
 

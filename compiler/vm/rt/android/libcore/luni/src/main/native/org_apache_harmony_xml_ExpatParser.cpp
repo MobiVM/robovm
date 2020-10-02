@@ -1378,7 +1378,7 @@ static JNINativeMethod attributeMethods[] = {
     NATIVE_METHOD(ExpatAttributes, getValueForQName, "(JLjava/lang/String;)Ljava/lang/String;"),
     NATIVE_METHOD(ExpatAttributes, getValue, "(JLjava/lang/String;Ljava/lang/String;)Ljava/lang/String;"),
 };
-void register_org_apache_harmony_xml_ExpatParser(JNIEnv* env) {
+extern "C" void register_org_apache_harmony_xml_ExpatParser(JNIEnv* env) {
     jniRegisterNativeMethods(env, "org/apache/harmony/xml/ExpatParser", parserMethods, NELEM(parserMethods));
     jniRegisterNativeMethods(env, "org/apache/harmony/xml/ExpatAttributes", attributeMethods, NELEM(attributeMethods));
 }

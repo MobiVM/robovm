@@ -101,6 +101,6 @@ static JNINativeMethod gMethods[] = {
     NATIVE_METHOD(Pattern, getNativeFinalizer, "()J"),
 };
 
-void register_java_util_regex_Pattern(JNIEnv* env) {
+extern "C" void register_java_util_regex_Pattern(JNIEnv* env) {
     jniRegisterNativeMethods(env, "java/util/regex/Pattern", gMethods, NELEM(gMethods));
 }

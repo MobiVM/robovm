@@ -244,6 +244,6 @@ static JNINativeMethod gMethods[] = {
   NATIVE_METHOD(VarHandle, weakCompareAndSetRelease, "([Ljava/lang/Object;)Z"),
 };
 
-void register_java_lang_invoke_VarHandle(JNIEnv* env) {
+extern "C" void register_java_lang_invoke_VarHandle(JNIEnv* env) {
     jniRegisterNativeMethods(env, "java/lang/invoke/VarHandle", gMethods, NELEM(gMethods));
 }

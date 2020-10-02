@@ -100,6 +100,6 @@ static void TimeZoneNames_fillZoneStrings(JNIEnv* env, jclass, jstring javaLocal
 static JNINativeMethod gMethods[] = {
   NATIVE_METHOD(TimeZoneNames, fillZoneStrings, "(Ljava/lang/String;[[Ljava/lang/String;)V"),
 };
-void register_libcore_icu_TimeZoneNames(JNIEnv* env) {
+extern "C" void register_libcore_icu_TimeZoneNames(JNIEnv* env) {
   jniRegisterNativeMethods(env, "libcore/icu/TimeZoneNames", gMethods, NELEM(gMethods));
 }

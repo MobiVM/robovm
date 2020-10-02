@@ -778,6 +778,6 @@ static void OsConstants_initConstants(JNIEnv* env, jclass c) {
 static JNINativeMethod gMethods[] = {
     NATIVE_METHOD(OsConstants, initConstants, "()V"),
 };
-void register_android_system_OsConstants(JNIEnv* env) {
+extern "C" void register_android_system_OsConstants(JNIEnv* env) {
     jniRegisterNativeMethods(env, "android/system/OsConstants", gMethods, NELEM(gMethods));
 }

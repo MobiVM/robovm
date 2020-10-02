@@ -56,8 +56,9 @@ struct ClassLoader {
   ClassLoader* parent;
 };
 
-
-extern int registerCoreLibrariesJni(JNIEnv* env);
+extern void luniRegister(JNIEnv* env);
+extern void ojluniRegister(JNIEnv* env);
+extern void ojluni_OnLoad(JavaVM* vm, void*);
 
 LAZY_CLASS(class_java_lang_String, "java/lang/String");
 LAZY_CLASS(class_java_lang_Thread, "java/lang/Thread");
@@ -143,6 +144,12 @@ const char* rvmRTGetName(void) {
 }
 
 jboolean rvmRTInit(Env* env) {
-    registerCoreLibrariesJni((JNIEnv*) env);
+    luniRegister((JNIEnv*)env);
+    ojluniRegister((JNIEnv*)env);
+    return TRUE;
+}
+
+jboolean rvmRTOnLoad(Env* env) {
+    ojluni_OnLoad(&env->vm->javaVM, NULL);
     return TRUE;
 }
