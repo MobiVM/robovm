@@ -287,17 +287,18 @@ public class NativeAllocationRegistry {
     // Inform the garbage collector of the allocation. We do this differently for
     // malloc-based allocations.
     private static void registerNativeAllocation(long size) {
-        VMRuntime runtime = VMRuntime.getRuntime();
-        if ((size & IS_MALLOCED) != 0) {
-            final long notifyImmediateThreshold = 300000;
-            if (size >= notifyImmediateThreshold) {
-                runtime.notifyNativeAllocationsInternal();
-            } else {
-                runtime.notifyNativeAllocation();
-            }
-        } else {
-            runtime.registerNativeAllocation(size);
-        }
+// RoboVM Note: not used in RoboVM
+//        VMRuntime runtime = VMRuntime.getRuntime();
+//        if ((size & IS_MALLOCED) != 0) {
+//            final long notifyImmediateThreshold = 300000;
+//            if (size >= notifyImmediateThreshold) {
+//                runtime.notifyNativeAllocationsInternal();
+//            } else {
+//                runtime.notifyNativeAllocation();
+//            }
+//        } else {
+//            runtime.registerNativeAllocation(size);
+//        }
     }
 
     // Inform the garbage collector of deallocation, if appropriate.

@@ -264,7 +264,11 @@ public abstract class Enum<E extends Enum<E>>
             return null;
         }
         try {
+            // RoboVM note: The code to lookup the values() method below emulates the behavior of
+            // Android's Class.getDeclaredConstructorOrMethod() (i.e. make the method accessible
+            // and return null if not found).
             Method valueMethod = clazz.getDeclaredMethod("values");
+            valueMethod.setAccessible(true);
             return (Object[]) valueMethod.invoke(null);
         } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
             throw new RuntimeException(e);

@@ -629,8 +629,12 @@ public abstract class Charset
                         new TreeMap<String,Charset>(
                             ASCIICaseInsensitiveComparator.CASE_INSENSITIVE_ORDER);
                     for (String charsetName : NativeConverter.getAvailableCharsetNames()) {
-                        Charset charset = NativeConverter.charsetForName(charsetName);
-                        m.put(charset.name(), charset);
+                        // RoboVM note: Added try-catch to ignore charsets with bad names (e.g. "x-UTF-16,version=1")
+                        try {
+                            Charset charset = NativeConverter.charsetForName(charsetName);
+                            m.put(charset.name(), charset);
+                        } catch (IllegalCharsetNameException ignored) {
+                        }
                     }
                     // Android-changed: No more "standard" provider.
                     // put(standardProvider.charsets(), m);

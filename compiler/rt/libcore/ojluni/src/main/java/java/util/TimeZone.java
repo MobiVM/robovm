@@ -675,17 +675,19 @@ abstract public class TimeZone implements Serializable, Cloneable {
         return ZoneInfoDB.getInstance().getAvailableIDs();
     }
 
-    /**
-     * Gets the platform defined TimeZone ID.
-     **/
-    private static native String getSystemTimeZoneID(String javaHome,
-                                                     String country);
+// RoboVM Note: not used
+//    /**
+//     * Gets the platform defined TimeZone ID.
+//     **/
+//    private static native String getSystemTimeZoneID(String javaHome,
+//                                                     String country);
 
-    /**
-     * Gets the custom time zone ID based on the GMT offset of the
-     * platform. (e.g., "GMT+08:00")
-     */
-    private static native String getSystemGMTOffsetID();
+// RoboVM Note: not used
+//    /**
+//     * Gets the custom time zone ID based on the GMT offset of the
+//     * platform. (e.g., "GMT+08:00")
+//     */
+//    private static native String getSystemGMTOffsetID();
 
     /**
      * Gets the default <code>TimeZone</code> for this host.

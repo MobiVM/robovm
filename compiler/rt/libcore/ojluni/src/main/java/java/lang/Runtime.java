@@ -73,12 +73,6 @@ public class Runtime {
      */
     private boolean shuttingDown;
 
-    // RoboVM Note: not used
-//    /**
-//     * Reflects whether we are tracing method calls.
-//     */
-//    private boolean tracingMethods;
-
     private static native void nativeExit(int code);
 
     /**
@@ -773,9 +767,6 @@ public class Runtime {
     }
 
     private native void nativeGc();
-
-    /* Wormhole for calling java.lang.ref.Finalizer.runFinalization */
-    private static native void runFinalization0();
 
     /**
      * Runs the finalization methods of any objects pending finalization.
