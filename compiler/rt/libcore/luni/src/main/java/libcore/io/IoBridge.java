@@ -677,7 +677,7 @@ public final class IoBridge {
         pollFds[0].events = (short) events;
 
         try {
-            int ret = android.system.Os.poll(pollFds, timeout);
+            int ret = Libcore.os.poll(pollFds, timeout);
             if (ret == 0) {
                 throw new SocketTimeoutException("Poll timed out");
             }

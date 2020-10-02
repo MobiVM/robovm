@@ -21,7 +21,6 @@ import static android.system.OsConstants.SOL_SOCKET;
 import static android.system.OsConstants.SO_SNDTIMEO;
 
 import android.system.ErrnoException;
-import android.system.Os;
 import android.system.StructTimeval;
 import dalvik.system.BlockGuard;
 import dalvik.system.CloseGuard;
@@ -57,6 +56,8 @@ import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.StandardConstants;
 import javax.net.ssl.X509ExtendedTrustManager;
 import javax.net.ssl.X509TrustManager;
+
+import libcore.io.Libcore;
 import libcore.net.NetworkSecurityPolicy;
 import com.android.org.conscrypt.ct.CTLogStore;
 import com.android.org.conscrypt.ct.CTLogStoreImpl;
@@ -122,7 +123,7 @@ final class Platform {
     static void setSocketWriteTimeout(Socket s, long timeoutMillis) throws SocketException {
         StructTimeval tv = StructTimeval.fromMillis(timeoutMillis);
         try {
-            Os.setsockoptTimeval(s.getFileDescriptor$(), SOL_SOCKET, SO_SNDTIMEO, tv);
+            Libcore.getOs().setsockoptTimeval(s.getFileDescriptor$(), SOL_SOCKET, SO_SNDTIMEO, tv);
         } catch (ErrnoException errnoException) {
             throw errnoException.rethrowAsSocketException();
         }
