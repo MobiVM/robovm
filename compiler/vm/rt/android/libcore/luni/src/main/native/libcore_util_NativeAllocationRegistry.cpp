@@ -33,7 +33,7 @@ static JNINativeMethod gMethods[] = {
     NATIVE_METHOD(NativeAllocationRegistry, applyFreeFunction, "(JJ)V"),
 };
 
-void register_libcore_util_NativeAllocationRegistry(JNIEnv* env) {
+extern "C" void register_libcore_util_NativeAllocationRegistry(JNIEnv* env) {
     jniRegisterNativeMethods(env, "libcore/util/NativeAllocationRegistry",
         gMethods, NELEM(gMethods));
 }
