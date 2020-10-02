@@ -120,8 +120,9 @@ public final class CloseGuard {
      * Enabled by default so we can diagnose issues early in VM startup.
      * Note, however, that Android disables this early in its startup,
      * but enables it with DropBoxing for system apps on debug builds.
+     * <p>RoboVM note: Changed to be disabled by default.
      */
-    private static volatile boolean stackAndTrackingEnabled = true;
+    private static volatile boolean stackAndTrackingEnabled = false;
 
     /**
      * Hook for customizing how CloseGuard issues are reported.
