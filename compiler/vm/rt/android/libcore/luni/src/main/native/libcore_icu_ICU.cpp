@@ -71,6 +71,15 @@
 #include "ureslocs.h"
 #include "valueOf.h"
 
+// RoboVM note: Start change.
+#if defined(__APPLE__)
+#include <mach-o/dyld.h> // for _NSGetExecutablePath()
+#include <libgen.h>      // for dirname()
+#include "zlib.h"
+#endif
+#include "icudt63l.dat.gz.h"
+// RoboVM note: End chage.
+
 class ScopedResourceBundle {
  public:
   explicit ScopedResourceBundle(UResourceBundle* bundle) : bundle_(bundle) {
@@ -807,6 +816,9 @@ static jstring ICU_getDefaultLocale(JNIEnv* env, jclass) {
   return env->NewStringUTF(icu::Locale::getDefault().getName());
 }
 
+// RoboVM Note: will implement at bottom where IcuData is available
+static jobject ICU_getIcuData(JNIEnv* env, jclass);
+
 static JNINativeMethod gMethods[] = {
     NATIVE_METHOD(ICU, addLikelySubtags, "(Ljava/lang/String;)Ljava/lang/String;"),
     NATIVE_METHOD(ICU, getAvailableBreakIteratorLocalesNative, "()[Ljava/lang/String;"),
@@ -840,6 +852,7 @@ static JNINativeMethod gMethods[] = {
     NATIVE_METHOD(ICU, setDefaultLocale, "(Ljava/lang/String;)V"),
     NATIVE_METHOD(ICU, toLowerCase, "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;"),
     NATIVE_METHOD(ICU, toUpperCase, "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;"),
+    NATIVE_METHOD(ICU, getIcuData, "()Ljava/nio/ByteBuffer;"),
 };
 
 //
@@ -857,11 +870,105 @@ static JNINativeMethod gMethods[] = {
         return FALSE; \
     }
 
+// Common struct for icu-data sources
+struct IcuData {
+    IcuData(void * d, size_t l) : data_(d), data_length_(l) {
+    }
+
+    void *data_;          // Save for munmap.
+    size_t data_length_;  // Save for munmap.
+};
+
+// Contain the unpacked minimal ICU data.
+// Automatically adds the data file to ICU's list of data files upon constructing.
+//
+// - Automatically frees in destructor
+struct IcuDataGzip : IcuData {
+    static std::unique_ptr<IcuDataGzip> Create() {
+      std::unique_ptr<IcuDataGzip> gzip(new IcuDataGzip());
+
+      if (!gzip->Load()) {
+        // Destructor will take care of cleaning up a partial init.
+        return nullptr;
+      }
+
+      return gzip;
+    }
+
+    IcuDataGzip() : IcuData(nullptr, 0)
+    {}
+
+    // Free the ICU data.
+    ~IcuDataGzip() {
+      if (data_)
+        free(data_);
+    }
+
+private:
+    bool Load() {
+      ALOGI("Using builtin minimal ICU data");
+      data_ = malloc(out_icudt63l_dat_len);
+      if (!data_) {
+        ALOGE("Failed to allocate %d bytes for builtin ICU data", out_icudt63l_dat_len);
+        abort();
+      }
+      int ret = inflate(out_icudt63l_dat_gz, out_icudt63l_dat_gz_len, data_, out_icudt63l_dat_len);
+      if (ret != out_icudt63l_dat_len) {
+        ALOGE("Failed to inflate %d->%d bytes of builtin ICU data: %d",
+              out_icudt63l_dat_gz_len, out_icudt63l_dat_len, ret);
+        abort();
+      }
+      data_length_ = out_icudt63l_dat_len;
+      UErrorCode status = U_ZERO_ERROR;
+
+      // Tell ICU to use our memory-mapped data.
+      udata_setCommonData(data_, &status);
+      if (status != U_ZERO_ERROR) {
+        ALOGE("Couldn't initialize ICU ( udata_setCommonData ): %s", u_errorName(status));
+        return FALSE;
+      }
+
+      return true;
+    }
+
+    int inflate(const void *src, int srcLen, void *dst, int dstLen) {
+      z_stream strm  = {0};
+      strm.total_in  = strm.avail_in  = srcLen;
+      strm.total_out = strm.avail_out = dstLen;
+      strm.next_in   = (Bytef *) src;
+      strm.next_out  = (Bytef *) dst;
+
+      strm.zalloc = Z_NULL;
+      strm.zfree  = Z_NULL;
+      strm.opaque = Z_NULL;
+
+      int err = -1;
+      int ret = -1;
+
+      err = inflateInit2(&strm, (15 + 16)); // 15 window bits, gzipped data (16)
+      if (err == Z_OK) {
+        err = ::inflate(&strm, Z_FINISH);
+        if (err == Z_STREAM_END) {
+          ret = strm.total_out;
+        } else {
+          inflateEnd(&strm);
+          return err;
+        }
+      } else {
+        inflateEnd(&strm);
+        return err;
+      }
+
+      inflateEnd(&strm);
+      return ret;
+    }
+};
+
 // Contain the memory map for ICU data files.
 // Automatically adds the data file to ICU's list of data files upon constructing.
 //
 // - Automatically unmaps in the destructor.
-struct IcuDataMap {
+struct IcuDataMap : IcuData {
   // Map in ICU data at the path, returning null if it failed (prints error to ALOGE).
   static std::unique_ptr<IcuDataMap> Create(const std::string& path) {
     std::unique_ptr<IcuDataMap> map(new IcuDataMap(path));
@@ -882,9 +989,7 @@ struct IcuDataMap {
 
  private:
   IcuDataMap(const std::string& path)
-    : path_(path),
-      data_(MAP_FAILED),
-      data_length_(0)
+    : IcuData(MAP_FAILED, 0), path_(path)
   {}
 
   bool TryMap() {
@@ -939,51 +1044,26 @@ struct IcuDataMap {
   }
 
   std::string path_;    // Save for error messages.
-  void* data_;          // Save for munmap.
-  size_t data_length_;  // Save for munmap.
 };
 
 struct ICURegistration {
   // Init ICU, configuring it and loading the data files.
   ICURegistration(JNIEnv* env) {
     UErrorCode status = U_ZERO_ERROR;
+    // RoboVM note: Start change. Look for custom ICU data and fall back to builtin minimal data if not found.
+    std::string path;
+    if (findCustomICUData(path))
+      icu_data_ = IcuDataMap::Create(path);
+    else
+      icu_data_ = IcuDataGzip::Create();
+    if (icu_data_ == nullptr) {
+        abort();
+    }
+
     // Tell ICU it can *only* use our memory-mapped data.
     udata_setFileAccess(UDATA_NO_FILES, &status);
     if (status != U_ZERO_ERROR) {
         ALOGE("Couldn't initialize ICU (s_setFileAccess): %s", u_errorName(status));
-        abort();
-    }
-
-    // Check the timezone /data override file exists from the "Time zone update via APK" feature.
-    // https://source.android.com/devices/tech/config/timezone-rules
-    // If it does, map it first so we use its data in preference to later ones.
-    std::string dataPath = getDataTimeZonePath();
-    if (pathExists(dataPath)) {
-        ALOGD("Time zone override file found: %s", dataPath.c_str());
-        if ((icu_datamap_from_data_ = IcuDataMap::Create(dataPath)) == nullptr) {
-            ALOGW("TZ override /data file %s exists but could not be loaded. Skipping.",
-                    dataPath.c_str());
-        }
-    } else {
-        ALOGV("No timezone override /data file found: %s", dataPath.c_str());
-    }
-
-    // Check the timezone override file exists from a mounted APEX file.
-    // If it does, map it next so we use its data in preference to later ones.
-    std::string tzModulePath = getTimeZoneModulePath();
-    if (pathExists(tzModulePath)) {
-        ALOGD("Time zone APEX file found: %s", tzModulePath.c_str());
-        if ((icu_datamap_from_tz_module_ = IcuDataMap::Create(tzModulePath)) == nullptr) {
-            ALOGW("TZ module override file %s exists but could not be loaded. Skipping.",
-                    tzModulePath.c_str());
-        }
-    } else {
-        ALOGV("No time zone module override file found: %s", tzModulePath.c_str());
-    }
-
-    // Use the ICU data files that shipped with the runtime module for everything else.
-    icu_datamap_from_runtime_module_ = IcuDataMap::Create(getRuntimeModulePath());
-    if (icu_datamap_from_runtime_module_ == nullptr) {
         abort();
     }
 
@@ -1007,13 +1087,7 @@ struct ICURegistration {
     u_cleanup();
 
     // Unmap ICU data files from the runtime module.
-    icu_datamap_from_runtime_module_.reset();
-
-    // Unmap optional TZ module files from /apex.
-    icu_datamap_from_tz_module_.reset();
-
-    // Unmap optional TZ /data file.
-    icu_datamap_from_data_.reset();
+    icu_data_.reset();
 
     // We don't need to call udata_setFileAccess because u_cleanup takes care of it.
   }
@@ -1066,22 +1140,67 @@ struct ICURegistration {
     return runtimeModulePath;
   }
 
-  std::unique_ptr<IcuDataMap> icu_datamap_from_data_;
-  std::unique_ptr<IcuDataMap> icu_datamap_from_tz_module_;
-  std::unique_ptr<IcuDataMap> icu_datamap_from_runtime_module_;
+  // RoboVM note: Start change.
+#if (__APPLE__)
+  static std::string getExecutablePath() {
+    std::string exePath;
+    uint32_t size = 0;
+    char empty[] = "";
+    char *buf = empty;
+    _NSGetExecutablePath(buf, &size);
+    buf = (char *) alloca(size);
+    if (_NSGetExecutablePath(buf, &size) == -1) {
+      abort();
+    }
+    buf = realpath(buf, NULL);
+    if (!buf) {
+      abort();
+    }
+    exePath = buf;
+    free(buf);
+    return exePath;
+  }
+#endif
+
+  static bool findCustomICUData(std::string &result) {
+#if (__APPLE__)
+    std::string exePath = getExecutablePath();
+    std::string basePath = dirname((char *) exePath.c_str());
+#else
+    // TODO: Implement custom ICU data lookup on Linux.
+    std::string basePath = "/usr/share/icu";
+#endif
+    std::string icuDataPath = basePath;
+    icuDataPath += "/";
+    icuDataPath += U_ICUDATA_NAME;
+    icuDataPath += ".dat";
+    ALOGD("Looking for icu data at: %s", icuDataPath.c_str());
+    if (!access(icuDataPath.c_str(), R_OK)) {
+      result = icuDataPath;
+      return true;
+    }
+
+    return false;
+  }
+
+  std::unique_ptr<IcuData> icu_data_;
 };
 
 // Use RAII-style initialization/teardown so that we can get unregistered
 // when dlclose is called (even if JNI_OnUnload is not).
 static std::unique_ptr<ICURegistration> sIcuRegistration;
 
+// RoboVM Note: have to implement here to be able to access sIcuRegistration
+static jobject ICU_getIcuData(JNIEnv* env, jclass) {
+  if (sIcuRegistration.get() == nullptr)
+    return nullptr;
+  IcuData *data = sIcuRegistration.get()->icu_data_.get();
+  return env->NewDirectByteBuffer(data->data_, data->data_length_);
+}
+
+
 // Init ICU, configuring it and loading the data files.
 extern "C" void register_libcore_icu_ICU(JNIEnv* env) {
   sIcuRegistration.reset(new ICURegistration(env));
 }
 
-// De-init ICU, unloading the data files. Do the opposite of the above function.
-void unregister_libcore_icu_ICU() {
-  // Explicitly calling this is optional. Dlclose will take care of it as well.
-  sIcuRegistration.reset();
-}
