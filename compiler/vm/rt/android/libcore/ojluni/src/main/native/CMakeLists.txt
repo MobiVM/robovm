@@ -80,5 +80,14 @@ if(LINUX)
 endif()
 
 
+if(DARWIN)
+  set(SRC
+    ${SRC}
+    KQueue.c
+    KQueueArrayWrapper.c
+    KQueuePort.c
+  )
+endif()
+
 add_library(android-libcore-ojluni OBJECT ${SRC})
 set(LIBCORE_OJLUNI_OBJECTS $<TARGET_OBJECTS:android-libcore-ojluni> PARENT_SCOPE)

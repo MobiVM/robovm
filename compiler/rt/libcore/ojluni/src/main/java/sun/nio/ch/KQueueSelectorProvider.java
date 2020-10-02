@@ -23,29 +23,22 @@
  * questions.
  */
 
-package sun.nio.ch;
-
-import java.nio.channels.spi.SelectorProvider;
-
-/**
- * Creates this platform's default SelectorProvider
+/*
+ * KQueueSelectorProvider.java
+ * Implementation of Selector using FreeBSD / Mac OS X kqueues
+ * Derived from Sun's DevPollSelectorProvider
  */
 
-public class DefaultSelectorProvider {
+package sun.nio.ch;
 
-    /**
-     * Prevent instantiation.
-     */
-    private DefaultSelectorProvider() { }
+import java.io.IOException;
+import java.nio.channels.*;
+import java.nio.channels.spi.*;
 
-    /**
-     * Returns the default SelectorProvider.
-     */
-    public static SelectorProvider create() {
-        // RoboVM Note: using KQueueSelectorProvider that is available on MAC/iOS
-        // RoboVM Note: TODO: FIXME: linux should use Poll one!
-        return new sun.nio.ch.KQueueSelectorProvider();
-        // return new sun.nio.ch.PollSelectorProvider();
+public class KQueueSelectorProvider
+extends SelectorProviderImpl
+{
+    public AbstractSelector openSelector() throws IOException {
+        return new KQueueSelectorImpl(this);
     }
-
 }
