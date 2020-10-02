@@ -26,8 +26,6 @@
 package sun.nio.fs;
 
 import java.nio.file.spi.FileSystemProvider;
-import java.security.AccessController;
-import sun.security.action.GetPropertyAction;
 
 /**
  * Creates this platform's default FileSystemProvider.
@@ -55,18 +53,8 @@ public class DefaultFileSystemProvider {
      * Returns the default FileSystemProvider.
      */
     public static FileSystemProvider create() {
-        String osname = AccessController
-            .doPrivileged(new GetPropertyAction("os.name"));
-        if (osname.equals("SunOS"))
-            return createProvider("sun.nio.fs.SolarisFileSystemProvider");
-        // Android-changed: Fuchsia: Use LinuxFileSystemProvider.
-        // if (osname.equals("Linux"))
-        if (osname.equals("Linux") || osname.equals("Fuchsia"))
-            return createProvider("sun.nio.fs.LinuxFileSystemProvider");
-        if (osname.contains("OS X"))
-            return createProvider("sun.nio.fs.MacOSXFileSystemProvider");
-        if (osname.equals("AIX"))
-            return createProvider("sun.nio.fs.AixFileSystemProvider");
-        throw new AssertionError("Platform not recognized");
+        // RoboVM Note: hardcoded to LinuxFileSystemProvider
+        // RoboVM Note: TODO: FIXME: check if there is an issue with in on MacOS/iOS
+        return createProvider("sun.nio.fs.LinuxFileSystemProvider");
     }
 }

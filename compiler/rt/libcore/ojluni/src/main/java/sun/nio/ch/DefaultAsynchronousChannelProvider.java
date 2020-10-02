@@ -60,7 +60,8 @@ public class DefaultAsynchronousChannelProvider {
      * Returns the default AsynchronousChannelProvider.
      */
     public static AsynchronousChannelProvider create() {
-        // BEGIN Android-changed: Hardcode AsynchronousChannelProvider provider.
+        // RoboVM Note: Hardcode BsdAsynchronousChannelProvider
+        // RoboVM FIXME: TODO: Linux case should use LinuxAsynchronousChannelProvider
         /*
         String osname = AccessController
             .doPrivileged(new GetPropertyAction("os.name"));
@@ -74,7 +75,7 @@ public class DefaultAsynchronousChannelProvider {
             return createProvider("sun.nio.ch.AixAsynchronousChannelProvider");
         throw new InternalError("platform not recognized");
         */
-        return createProvider("sun.nio.ch.LinuxAsynchronousChannelProvider");
-        // END Android-changed: Hardcode AsynchronousChannelProvider provider.
+        return createProvider("sun.nio.ch.BsdAsynchronousChannelProvider");
+        // END RoboVM-changed: Hardcode BsdAsynchronousChannelProvider provider.
     }
 }
