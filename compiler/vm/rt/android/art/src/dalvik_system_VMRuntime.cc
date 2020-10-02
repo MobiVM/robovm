@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2013 The Android Open Source Project
+ * Copyright (C) 2008 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,18 +14,9 @@
  * limitations under the License.
  */
 
-#define LOG_TAG "Unsafe"
+#include <jni.h>
 
-#include <nativehelper/JNIHelp.h>
-#include <nativehelper/jni_macros.h>
-
-static jobject Unsafe_allocateInstance(JNIEnv* env, jclass, jclass c) {
-  return env->AllocObject(c);
-}
-
-static JNINativeMethod gMethods[] = {
-  NATIVE_METHOD(Unsafe, allocateInstance, "(Ljava/lang/Class;)Ljava/lang/Object;"),
-};
-void register_sun_misc_Unsafe(JNIEnv* env) {
-  jniRegisterNativeMethods(env, "sun/misc/Unsafe", gMethods, NELEM(gMethods));
+extern "C" jboolean Java_dalvik_system_VMRuntime_is64Bit(JNIEnv*, jclass) {
+  bool is64BitMode = (sizeof(void*) == sizeof(uint64_t));
+  return is64BitMode ? JNI_TRUE : JNI_FALSE;
 }

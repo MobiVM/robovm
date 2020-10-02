@@ -6,6 +6,7 @@ include_directories(
 
 set(SRC
   openjdkjvm/OpenjdkJvm.cc
+  src/dalvik_system_VMRuntime.cc
 )
 
 add_library(android-art OBJECT ${SRC})
