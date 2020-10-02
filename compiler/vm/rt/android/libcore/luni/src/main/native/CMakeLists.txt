@@ -32,9 +32,11 @@ set(SRC
   libcore_io_Memory.cpp
   libcore_util_NativeAllocationRegistry.cpp
   org_apache_harmony_xml_ExpatParser.cpp
-  sun_misc_Unsafe.cpp
   valueOf.cpp
   AsynchronousCloseMonitor.cpp
+  # files from luni4
+  libcore_io_Posix.cpp
+  java_nio_charset_Charsets.cpp
 )
 if(LINUX)
   set(SRC
