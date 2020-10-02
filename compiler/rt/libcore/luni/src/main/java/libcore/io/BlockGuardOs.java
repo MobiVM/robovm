@@ -17,10 +17,8 @@
 package libcore.io;
 
 import android.system.ErrnoException;
-import android.system.GaiException;
 import android.system.Int64Ref;
 import android.system.OsConstants;
-import android.system.StructAddrinfo;
 import android.system.StructLinger;
 import android.system.StructPollfd;
 import android.system.StructStat;
@@ -32,7 +30,6 @@ import java.io.FileDescriptor;
 import java.io.InterruptedIOException;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
-import java.net.SocketAddress;
 import java.net.SocketException;
 import java.nio.ByteBuffer;
 
@@ -56,7 +53,7 @@ public class BlockGuardOs extends ForwardingOs {
         }
     }
 
-    @Override public FileDescriptor accept(FileDescriptor fd, SocketAddress peerAddress) throws ErrnoException, SocketException {
+    @Override public FileDescriptor accept(FileDescriptor fd, InetSocketAddress peerAddress) throws ErrnoException, SocketException {
         BlockGuard.getThreadPolicy().onNetwork();
         final FileDescriptor acceptFd = super.accept(fd, peerAddress);
         if (isInetSocket(acceptFd)) {
@@ -136,17 +133,6 @@ public class BlockGuardOs extends ForwardingOs {
         super.connect(fd, address, port);
     }
 
-    @Override public void connect(FileDescriptor fd, SocketAddress address) throws ErrnoException,
-            SocketException {
-        boolean skipGuard = false;
-        try {
-            skipGuard = isUdpSocket(fd);
-        } catch (ErrnoException ignored) {
-        }
-        if (!skipGuard) BlockGuard.getThreadPolicy().onNetwork();
-        super.connect(fd, address);
-    }
-
     @UnsupportedAppUsage
     @Override public void fchmod(FileDescriptor fd, int mode) throws ErrnoException {
         BlockGuard.getThreadPolicy().onWriteToDisk();
@@ -189,30 +175,11 @@ public class BlockGuardOs extends ForwardingOs {
         super.ftruncate(fd, length);
     }
 
-    @Override public InetAddress[] android_getaddrinfo(String node, StructAddrinfo hints, int netId) throws GaiException {
-        // With AI_NUMERICHOST flag set, the node must a numerical network address, therefore no
-        // host address lookups will be performed. In this case, it is fine to perform on main
-        // thread.
-        boolean isNumericHost = (hints.ai_flags & AI_NUMERICHOST) != 0;
-        if (!isNumericHost) {
-            BlockGuard.getThreadPolicy().onNetwork();
-        }
-        return super.android_getaddrinfo(node, hints, netId);
-    }
-
     @UnsupportedAppUsage
     @Override public void lchown(String path, int uid, int gid) throws ErrnoException {
         BlockGuard.getThreadPolicy().onWriteToDisk();
         BlockGuard.getVmPolicy().onPathAccess(path);
         super.lchown(path, uid, gid);
-    }
-
-    @UnsupportedAppUsage
-    @Override public void link(String oldPath, String newPath) throws ErrnoException {
-        BlockGuard.getThreadPolicy().onWriteToDisk();
-        BlockGuard.getVmPolicy().onPathAccess(oldPath);
-        BlockGuard.getVmPolicy().onPathAccess(newPath);
-        super.link(oldPath, newPath);
     }
 
     @UnsupportedAppUsage
@@ -236,13 +203,6 @@ public class BlockGuardOs extends ForwardingOs {
     }
 
     @UnsupportedAppUsage
-    @Override public void mkfifo(String path, int mode) throws ErrnoException {
-        BlockGuard.getThreadPolicy().onWriteToDisk();
-        BlockGuard.getVmPolicy().onPathAccess(path);
-        super.mkfifo(path, mode);
-    }
-
-    @UnsupportedAppUsage
     @Override public FileDescriptor open(String path, int flags, int mode) throws ErrnoException {
         BlockGuard.getThreadPolicy().onReadFromDisk();
         BlockGuard.getVmPolicy().onPathAccess(path);
@@ -262,63 +222,43 @@ public class BlockGuardOs extends ForwardingOs {
     }
 
     @UnsupportedAppUsage
-    @Override public void posix_fallocate(FileDescriptor fd, long offset, long length) throws ErrnoException {
-        BlockGuard.getThreadPolicy().onWriteToDisk();
-        super.posix_fallocate(fd, offset, length);
-    }
-
-    @UnsupportedAppUsage
     @Override public int pread(FileDescriptor fd, ByteBuffer buffer, long offset) throws ErrnoException, InterruptedIOException {
         BlockGuard.getThreadPolicy().onReadFromDisk();
         return super.pread(fd, buffer, offset);
     }
 
     @UnsupportedAppUsage
-    @Override public int pread(FileDescriptor fd, byte[] bytes, int byteOffset, int byteCount, long offset) throws ErrnoException, InterruptedIOException {
+    @Override public int pread(FileDescriptor fd, byte[] bytes, int byteOffset, int byteCount, long offset) throws ErrnoException {
         BlockGuard.getThreadPolicy().onReadFromDisk();
         return super.pread(fd, bytes, byteOffset, byteCount, offset);
     }
 
     @UnsupportedAppUsage
-    @Override public int pwrite(FileDescriptor fd, ByteBuffer buffer, long offset) throws ErrnoException, InterruptedIOException {
+    @Override public int pwrite(FileDescriptor fd, ByteBuffer buffer, long offset) throws ErrnoException {
         BlockGuard.getThreadPolicy().onWriteToDisk();
         return super.pwrite(fd, buffer, offset);
     }
 
     @UnsupportedAppUsage
-    @Override public int pwrite(FileDescriptor fd, byte[] bytes, int byteOffset, int byteCount, long offset) throws ErrnoException, InterruptedIOException {
+    @Override public int pwrite(FileDescriptor fd, byte[] bytes, int byteOffset, int byteCount, long offset) throws ErrnoException {
         BlockGuard.getThreadPolicy().onWriteToDisk();
         return super.pwrite(fd, bytes, byteOffset, byteCount, offset);
     }
 
     @UnsupportedAppUsage
-    @Override public int read(FileDescriptor fd, ByteBuffer buffer) throws ErrnoException, InterruptedIOException {
+    @Override public int read(FileDescriptor fd, ByteBuffer buffer) throws ErrnoException {
         BlockGuard.getThreadPolicy().onReadFromDisk();
         return super.read(fd, buffer);
     }
 
     @UnsupportedAppUsage
-    @Override public int read(FileDescriptor fd, byte[] bytes, int byteOffset, int byteCount) throws ErrnoException, InterruptedIOException {
+    @Override public int read(FileDescriptor fd, byte[] bytes, int byteOffset, int byteCount) throws ErrnoException {
         BlockGuard.getThreadPolicy().onReadFromDisk();
         return super.read(fd, bytes, byteOffset, byteCount);
     }
 
     @UnsupportedAppUsage
-    @Override public String readlink(String path) throws ErrnoException {
-      BlockGuard.getThreadPolicy().onReadFromDisk();
-      BlockGuard.getVmPolicy().onPathAccess(path);
-      return super.readlink(path);
-    }
-
-    @UnsupportedAppUsage
-    @Override public String realpath(String path) throws ErrnoException {
-      BlockGuard.getThreadPolicy().onReadFromDisk();
-      BlockGuard.getVmPolicy().onPathAccess(path);
-      return super.realpath(path);
-    }
-
-    @UnsupportedAppUsage
-    @Override public int readv(FileDescriptor fd, Object[] buffers, int[] offsets, int[] byteCounts) throws ErrnoException, InterruptedIOException {
+    @Override public int readv(FileDescriptor fd, Object[] buffers, int[] offsets, int[] byteCounts) throws ErrnoException {
         BlockGuard.getThreadPolicy().onReadFromDisk();
         return super.readv(fd, buffers, offsets, byteCounts);
     }
@@ -405,19 +345,19 @@ public class BlockGuardOs extends ForwardingOs {
     }
 
     @UnsupportedAppUsage
-    @Override public int write(FileDescriptor fd, ByteBuffer buffer) throws ErrnoException, InterruptedIOException {
+    @Override public int write(FileDescriptor fd, ByteBuffer buffer) throws ErrnoException {
         BlockGuard.getThreadPolicy().onWriteToDisk();
         return super.write(fd, buffer);
     }
 
     @UnsupportedAppUsage
-    @Override public int write(FileDescriptor fd, byte[] bytes, int byteOffset, int byteCount) throws ErrnoException, InterruptedIOException {
+    @Override public int write(FileDescriptor fd, byte[] bytes, int byteOffset, int byteCount) throws ErrnoException {
         BlockGuard.getThreadPolicy().onWriteToDisk();
         return super.write(fd, bytes, byteOffset, byteCount);
     }
 
     @UnsupportedAppUsage
-    @Override public int writev(FileDescriptor fd, Object[] buffers, int[] offsets, int[] byteCounts) throws ErrnoException, InterruptedIOException {
+    @Override public int writev(FileDescriptor fd, Object[] buffers, int[] offsets, int[] byteCounts) throws ErrnoException {
         BlockGuard.getThreadPolicy().onWriteToDisk();
         return super.writev(fd, buffers, offsets, byteCounts);
     }
@@ -435,12 +375,6 @@ public class BlockGuardOs extends ForwardingOs {
         super.execve(filename, argv, envp);
     }
 
-    @Override public byte[] getxattr(String path, String name) throws ErrnoException {
-        BlockGuard.getThreadPolicy().onReadFromDisk();
-        BlockGuard.getVmPolicy().onPathAccess(path);
-        return super.getxattr(path, name);
-    }
-
     @Override public void msync(long address, long byteCount, int flags) throws ErrnoException {
         if ((flags & OsConstants.MS_SYNC) != 0) {
             BlockGuard.getThreadPolicy().onWriteToDisk();
@@ -448,36 +382,4 @@ public class BlockGuardOs extends ForwardingOs {
         super.msync(address, byteCount, flags);
     }
 
-    @Override public void removexattr(String path, String name) throws ErrnoException {
-        BlockGuard.getThreadPolicy().onWriteToDisk();
-        BlockGuard.getVmPolicy().onPathAccess(path);
-        super.removexattr(path, name);
-    }
-
-    @Override public void setxattr(String path, String name, byte[] value, int flags)
-            throws ErrnoException {
-        BlockGuard.getThreadPolicy().onWriteToDisk();
-        BlockGuard.getVmPolicy().onPathAccess(path);
-        super.setxattr(path, name, value, flags);
-    }
-
-    @Override public int sendto(FileDescriptor fd, byte[] bytes, int byteOffset, int byteCount,
-            int flags, SocketAddress address) throws ErrnoException, SocketException {
-        BlockGuard.getThreadPolicy().onNetwork();
-        return super.sendto(fd, bytes, byteOffset, byteCount, flags, address);
-    }
-
-    @Override public void unlink(String pathname) throws ErrnoException {
-        BlockGuard.getThreadPolicy().onWriteToDisk();
-        BlockGuard.getVmPolicy().onPathAccess(pathname);
-        super.unlink(pathname);
-    }
-
-    @Override public long splice(FileDescriptor fdIn, Int64Ref offIn, FileDescriptor fdOut, Int64Ref offOut, long len, int flags) throws ErrnoException {
-        // It's infeasible to figure out if splice will result in read or write (would require fstat to figure out which fd is pipe).
-        // So, signal both read and write.
-        BlockGuard.getThreadPolicy().onWriteToDisk();
-        BlockGuard.getThreadPolicy().onReadFromDisk();
-        return super.splice(fdIn, offIn, fdOut, offOut, len, flags);
-    }
 }

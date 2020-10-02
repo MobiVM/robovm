@@ -26,7 +26,6 @@ import java.io.InterruptedIOException;
 import java.net.Socket;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
-import java.util.Objects;
 
 import dalvik.annotation.compat.UnsupportedAppUsage;
 import libcore.util.NonNull;
@@ -38,80 +37,81 @@ public final class IoUtils {
     private IoUtils() {
     }
 
-    /**
-     * Acquires ownership of an integer file descriptor from a FileDescriptor.
-     *
-     * This method invalidates the FileDescriptor passed in.
-     *
-     * The important part of this function is that you are taking ownership of a resource that you
-     * must either clean up yourself, or hand off to some other object that does that for you.
-     *
-     * See bionic/include/android/fdsan.h for more details.
-     *
-     * @param fd FileDescriptor to take ownership from, must be non-null.
-     * @throws NullPointerException if fd is null
-     */
-    @libcore.api.CorePlatformApi
-    public static int acquireRawFd(@NonNull FileDescriptor fd) {
-        Objects.requireNonNull(fd);
-
-        FileDescriptor copy = fd.release$();
-        // Get the numeric Unix file descriptor. -1 means it is invalid; for example if
-        // {@link FileDescriptor#release$()} has already been called on the FileDescriptor.
-        int rawFd = copy.getInt$();
-        long previousOwnerId = copy.getOwnerId$();
-        if (rawFd != -1 && previousOwnerId != FileDescriptor.NO_OWNER) {
-          // Clear the file descriptor's owner ID, aborting if the previous value isn't as expected.
-          Libcore.os.android_fdsan_exchange_owner_tag(copy, previousOwnerId,
-                                                      FileDescriptor.NO_OWNER);
-        }
-        return rawFd;
-    }
-
-    private static boolean isParcelFileDescriptor(Object object) {
-        // We need to look up ParcelFileDescriptor dynamically, because there are cases where the
-        // framework classes will not be found on the classpath such as on-host development.
-        try {
-            Class<?> pfdClass = Class.forName("android.os.ParcelFileDescriptor");
-            if (pfdClass.isInstance(object)) {
-                return true;
-            }
-            return false;
-        } catch (ClassNotFoundException ex) {
-            return false;
-        }
-    }
-
-    private static long generateFdOwnerId(Object owner) {
-        if (owner == null) {
-            return 0;
-        }
-
-        // Type values from bionic's <android/fdsan.h>.
-        long tagType;
-        if (owner instanceof java.io.FileInputStream) {
-            tagType = 5;
-        } else if (owner instanceof java.io.FileOutputStream) {
-            tagType = 6;
-        } else if (owner instanceof java.io.RandomAccessFile) {
-            tagType = 7;
-        } else if (owner instanceof java.net.DatagramSocketImpl) {
-            tagType = 10;
-        } else if (owner instanceof java.net.SocketImpl) {
-            tagType = 11;
-        } else if (isParcelFileDescriptor(owner)) {
-            tagType = 8;
-        } else {
-            // Generic Java type.
-            tagType = 255;
-        }
-
-        // The owner ID is not required to be unique but should be stable and attempt to avoid
-        // collision with identifiers generated both here and in native code (which are simply the
-        // address of the owning object). identityHashCode(Object) meets these requirements.
-        long tagValue = System.identityHashCode(owner);
-        return tagType << 56 | tagValue;
-    }
+// RoboVM Note: commended out as not used
+//    /**
+//     * Acquires ownership of an integer file descriptor from a FileDescriptor.
+//     *
+//     * This method invalidates the FileDescriptor passed in.
+//     *
+//     * The important part of this function is that you are taking ownership of a resource that you
+//     * must either clean up yourself, or hand off to some other object that does that for you.
+//     *
+//     * See bionic/include/android/fdsan.h for more details.
+//     *
+//     * @param fd FileDescriptor to take ownership from, must be non-null.
+//     * @throws NullPointerException if fd is null
+//     */
+//    @libcore.api.CorePlatformApi
+//    public static int acquireRawFd(@NonNull FileDescriptor fd) {
+//        Objects.requireNonNull(fd);
+//
+//        FileDescriptor copy = fd.release$();
+//        // Get the numeric Unix file descriptor. -1 means it is invalid; for example if
+//        // {@link FileDescriptor#release$()} has already been called on the FileDescriptor.
+//        int rawFd = copy.getInt$();
+//        long previousOwnerId = copy.getOwnerId$();
+//        if (rawFd != -1 && previousOwnerId != FileDescriptor.NO_OWNER) {
+//          // Clear the file descriptor's owner ID, aborting if the previous value isn't as expected.
+//          Libcore.os.android_fdsan_exchange_owner_tag(copy, previousOwnerId,
+//                                                      FileDescriptor.NO_OWNER);
+//        }
+//        return rawFd;
+//    }
+//
+//    private static boolean isParcelFileDescriptor(Object object) {
+//        // We need to look up ParcelFileDescriptor dynamically, because there are cases where the
+//        // framework classes will not be found on the classpath such as on-host development.
+//        try {
+//            Class<?> pfdClass = Class.forName("android.os.ParcelFileDescriptor");
+//            if (pfdClass.isInstance(object)) {
+//                return true;
+//            }
+//            return false;
+//        } catch (ClassNotFoundException ex) {
+//            return false;
+//        }
+//    }
+//
+//    private static long generateFdOwnerId(Object owner) {
+//        if (owner == null) {
+//            return 0;
+//        }
+//
+//        // Type values from bionic's <android/fdsan.h>.
+//        long tagType;
+//        if (owner instanceof java.io.FileInputStream) {
+//            tagType = 5;
+//        } else if (owner instanceof java.io.FileOutputStream) {
+//            tagType = 6;
+//        } else if (owner instanceof java.io.RandomAccessFile) {
+//            tagType = 7;
+//        } else if (owner instanceof java.net.DatagramSocketImpl) {
+//            tagType = 10;
+//        } else if (owner instanceof java.net.SocketImpl) {
+//            tagType = 11;
+//        } else if (isParcelFileDescriptor(owner)) {
+//            tagType = 8;
+//        } else {
+//            // Generic Java type.
+//            tagType = 255;
+//        }
+//
+//        // The owner ID is not required to be unique but should be stable and attempt to avoid
+//        // collision with identifiers generated both here and in native code (which are simply the
+//        // address of the owning object). identityHashCode(Object) meets these requirements.
+//        long tagValue = System.identityHashCode(owner);
+//        return tagType << 56 | tagValue;
+//    }
 
     /**
      * Assigns ownership of an unowned FileDescriptor.
@@ -129,20 +129,21 @@ public final class IoUtils {
      */
     @libcore.api.CorePlatformApi
     public static void setFdOwner(@NonNull FileDescriptor fd, @NonNull Object owner) {
-        Objects.requireNonNull(fd);
-        Objects.requireNonNull(owner);
-
-        long previousOwnerId = fd.getOwnerId$();
-        if (previousOwnerId != FileDescriptor.NO_OWNER) {
-            throw new IllegalStateException("Attempted to take ownership of already-owned " +
-                                            "FileDescriptor");
-        }
-
-        long ownerId = generateFdOwnerId(owner);
-        fd.setOwnerId$(ownerId);
-
-        // Set the file descriptor's owner ID, aborting if the previous value isn't as expected.
-        Libcore.os.android_fdsan_exchange_owner_tag(fd, previousOwnerId, ownerId);
+        // RoboVM Note: TODO: FIXME: does nothing
+//        Objects.requireNonNull(fd);
+//        Objects.requireNonNull(owner);
+//
+//        long previousOwnerId = fd.getOwnerId$();
+//        if (previousOwnerId != FileDescriptor.NO_OWNER) {
+//            throw new IllegalStateException("Attempted to take ownership of already-owned " +
+//                                            "FileDescriptor");
+//        }
+//
+//        long ownerId = generateFdOwnerId(owner);
+//        fd.setOwnerId$(ownerId);
+//
+//        // Set the file descriptor's owner ID, aborting if the previous value isn't as expected.
+//        Libcore.os.android_fdsan_exchange_owner_tag(fd, previousOwnerId, ownerId);
     }
 
     /**
@@ -209,7 +210,7 @@ public final class IoUtils {
             } else {
                 flags &= ~O_NONBLOCK;
             }
-            Libcore.os.fcntlInt(fd, F_SETFL, flags);
+            Libcore.os.fcntlLong(fd, F_SETFL, flags);
         } catch (ErrnoException errnoException) {
             throw errnoException.rethrowAsIOException();
         }

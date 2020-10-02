@@ -26,10 +26,11 @@
 package java.io;
 
 import android.system.ErrnoException;
-import android.system.Os;
-import static android.system.OsConstants.F_DUPFD_CLOEXEC;
+import libcore.io.Libcore;
 
 import java.util.concurrent.atomic.AtomicInteger;
+
+import static android.system.OsConstants.*;
 
 /**
  * Instances of the file descriptor class serve as an opaque handle
@@ -83,7 +84,7 @@ public final class FileDescriptor {
      * @see     java.lang.System#in
      */
     // Android-changed: Duplicates of FDs needed for RuntimeInit#redirectLogStreams
-    public static final FileDescriptor in = dupFd(0);
+    public static final FileDescriptor in = new FileDescriptor(STDIN_FILENO);
 
     /**
      * A handle to the standard output stream. Usually, this file
@@ -92,7 +93,7 @@ public final class FileDescriptor {
      * @see     java.lang.System#out
      */
     // Android-changed: Duplicates of FDs needed for RuntimeInit#redirectLogStreams
-    public static final FileDescriptor out = dupFd(1);
+    public static final FileDescriptor out = new FileDescriptor(STDOUT_FILENO);
 
     /**
      * A handle to the standard error stream. Usually, this file
@@ -102,7 +103,7 @@ public final class FileDescriptor {
      * @see     java.lang.System#err
      */
     // Android-changed: Duplicates of FDs needed for RuntimeInit#redirectLogStreams
-    public static final FileDescriptor err = dupFd(2);
+    public static final FileDescriptor err = new FileDescriptor(STDERR_FILENO);
 
     /**
      * Tests if this file descriptor object is valid.
@@ -185,7 +186,7 @@ public final class FileDescriptor {
      *
      * It's highly unlikely you should be calling this.
      * Please discuss your needs with a libcore maintainer before using this method.
-     * @param owner the owner ID of the Object that is responsible for closing this FileDescriptor
+     * @param newOwnerId the owner ID of the Object that is responsible for closing this FileDescriptor
      * @hide internal use only
      */
     public void setOwnerId$(long newOwnerId) {
@@ -212,15 +213,6 @@ public final class FileDescriptor {
     // Android-added: Needed for framework to test if it's a socket
     public boolean isSocket$() {
         return isSocket(descriptor);
-    }
-
-    // Android-added: Needed for RuntimeInit#redirectLogStreams.
-    private static FileDescriptor dupFd(int fd) {
-        try {
-            return new FileDescriptor(Os.fcntlInt(new FileDescriptor(fd), F_DUPFD_CLOEXEC, 0));
-        } catch (ErrnoException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     private static native boolean isSocket(int descriptor);
