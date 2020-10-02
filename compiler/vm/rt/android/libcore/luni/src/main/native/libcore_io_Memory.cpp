@@ -316,6 +316,6 @@ static JNINativeMethod gMethods[] = {
     NATIVE_METHOD(Memory, unsafeBulkGet, "(Ljava/lang/Object;II[BIIZ)V"),
     NATIVE_METHOD(Memory, unsafeBulkPut, "([BIILjava/lang/Object;IIZ)V"),
 };
-void register_libcore_io_Memory(JNIEnv* env) {
+extern "C" void register_libcore_io_Memory(JNIEnv* env) {
     jniRegisterNativeMethods(env, "libcore/io/Memory", gMethods, NELEM(gMethods));
 }
