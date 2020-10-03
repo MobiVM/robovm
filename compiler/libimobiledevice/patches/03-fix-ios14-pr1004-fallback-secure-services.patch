@@ -38,7 +38,7 @@ diff --git a/src/debugserver.c b/src/debugserver.c
 index c5170171..d8ea52f7 100644
 --- a/src/debugserver.c
 +++ b/src/debugserver.c
-@@ -80,7 +80,12 @@ LIBIMOBILEDEVICE_API debugserver_error_t debugserver_client_new(idevice_t device
+@@ -79,7 +79,12 @@ LIBIMOBILEDEVICE_API debugserver_error_t debugserver_client_new(idevice_t device
  		debug_info("Creating base service client failed. Error: %i", ret);
  		return ret;
  	}
@@ -56,7 +56,7 @@ diff --git a/src/lockdown.c b/src/lockdown.c
 index 79353f23..6ec9d58b 100644
 --- a/src/lockdown.c
 +++ b/src/lockdown.c
-@@ -38,6 +38,7 @@
+@@ -47,6 +47,7 @@
  #include "property_list_service.h"
  #include "lockdown.h"
  #include "idevice.h"
@@ -64,7 +64,7 @@ index 79353f23..6ec9d58b 100644
  #include "common/debug.h"
  #include "common/userpref.h"
  #include "common/utils.h"
-@@ -1251,6 +1252,36 @@ static lockdownd_error_t lockdownd_build_start_service_request(lockdownd_client_
+@@ -1276,6 +1277,36 @@ static lockdownd_error_t lockdownd_build_start_service_request(lockdownd_client_
  	return LOCKDOWN_E_SUCCESS;
  }
  
@@ -101,7 +101,7 @@ index 79353f23..6ec9d58b 100644
  /**
   * Function used internally by lockdownd_start_service and lockdownd_start_service_with_escrow_bag.
   *
-@@ -1274,39 +1305,39 @@ static lockdownd_error_t lockdownd_do_start_service(lockdownd_client_t client, c
+@@ -1299,39 +1330,39 @@ static lockdownd_error_t lockdownd_do_start_service(lockdownd_client_t client, c
  		// reset fields if service descriptor is reused
  		(*service)->port = 0;
  		(*service)->ssl_enabled = 0;
@@ -163,7 +163,7 @@ index 79353f23..6ec9d58b 100644
  
  		/* read service port number */
  		plist_t node = plist_dict_get_item(dict, "Port");
-@@ -1511,8 +1542,12 @@ LIBIMOBILEDEVICE_API lockdownd_error_t lockdownd_data_classes_free(char **classe
+@@ -1536,8 +1567,12 @@ LIBIMOBILEDEVICE_API lockdownd_error_t lockdownd_data_classes_free(char **classe
  
  LIBIMOBILEDEVICE_API lockdownd_error_t lockdownd_service_descriptor_free(lockdownd_service_descriptor_t service)
  {
