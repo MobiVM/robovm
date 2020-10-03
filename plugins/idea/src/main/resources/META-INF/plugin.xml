@@ -5,9 +5,8 @@
 
     <depends optional="true" config-file="">org.jetbrains.idea.maven</depends>
     <depends>org.jetbrains.plugins.gradle</depends>
-    <depends>com.intellij.java</depends>
-
-    <idea-version since-build="191"/>
+    <depends>com.intellij.modules.java</depends>
+    <idea-version since-build="193.1"/>
 
     <name>MobiVM</name>
     <description>
