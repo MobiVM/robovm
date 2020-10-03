@@ -605,9 +605,15 @@ public final class System {
 
         try {
             StructPasswd passwd = Libcore.os.getpwuid(Libcore.os.getuid());
+            p.put("user.home", passwd.pw_dir);
             p.put("user.name", passwd.pw_name);
         } catch (ErrnoException exception) {
-            throw new AssertionError(exception);
+            // RoboVM note: Start change. Fall back to environment variables. getpwuid() fails on the iOS simulator.
+            String home = getenv("HOME");
+            String user = getenv("USER");
+            p.put("user.home", home != null ? home : "");
+            p.put("user.name", user != null ? user : "");
+            // RoboVM note: End change.
         }
 
         StructUtsname info = Libcore.os.uname();
@@ -616,6 +622,18 @@ public final class System {
         // for Fuchsia. b/121268567 shows initialization regressions.
         p.put("os.name", info.sysname);
         p.put("os.version", info.release);
+
+        // RoboVM note: Added in RoboVM. Make sure we get sane and consistent
+        // user.home, user.dir and user.name values on iOS.
+        if (info.machine.contains("iOS")) {
+            // On iOS we want user.home and user.dir to point to the app's data
+            // container root dir. This is the dir $HOME points to. We also set
+            // user.name to $USER or hardcode 'mobile' if $USER isn't set (iOS
+            // simulator).
+            String home = getenv("HOME");
+            p.put("user.dir", home != null ? home : "/");
+        }
+        // RoboVM note: End change.
 
         // Android-added: Undocumented properties that exist only on Android.
         p.put("android.icu.library.version", ICU.getIcuVersion());
@@ -632,21 +650,6 @@ public final class System {
         parsePropertyAssignments(p, specialProperties());
 
         parsePropertyAssignments(p, robovmSpecialProperties());
-
-        // RoboVM note: Added in RoboVM. Make sure we get sane and consistent
-        // user.home, user.dir and user.name values on iOS.
-        if (p.getProperty("os.name").contains("iOS")) {
-            // On iOS we want user.home and user.dir to point to the app's data
-            // container root dir. This is the dir $HOME points to. We also set
-            // user.name to $USER or hardcode 'mobile' if $USER isn't set (iOS
-            // simulator).
-            String home = getenv("HOME");
-            String user = getenv("USER");
-            p.put("user.home", home != null ? home : "");
-            p.put("user.dir", home != null ? home : "/");
-            p.put("user.name", user != null ? user : "mobile");
-        }
-        // RoboVM note: End change.
 
         // Override built-in properties with settings from the command line.
         // Note: it is not possible to override hardcoded values.
