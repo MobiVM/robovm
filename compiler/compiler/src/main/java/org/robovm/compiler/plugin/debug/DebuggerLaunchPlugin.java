@@ -20,6 +20,7 @@ import org.robovm.compiler.config.Config;
 import org.robovm.compiler.plugin.LaunchPlugin;
 import org.robovm.compiler.plugin.PluginArgument;
 import org.robovm.compiler.plugin.PluginArguments;
+import org.robovm.compiler.target.ConsoleTarget;
 import org.robovm.compiler.target.LaunchParameters;
 import org.robovm.compiler.target.Target;
 import org.robovm.compiler.target.ios.IOSDeviceLaunchParameters;
@@ -100,33 +101,50 @@ public class DebuggerLaunchPlugin extends LaunchPlugin {
         builder.setJdwpClienMode(jdwpClientMode);
         builder.setLogToConsole(logConsole);
         builder.setLogDir(new File(logDir));
-        File appDir = new File(config.isSkipInstall() ? config.getTmpDir() : config.getInstallDir(), config.getExecutableName() + ".app");
-        builder.setAppfile(new File(appDir, config.getExecutableName()));
         builder.setArch(DebuggerConfig.Arch.valueOf(target.getArch().name()));
 
         // make list of arguments for target
-        if (IOSTarget.isSimulatorArch(target.getArch())) {
-            // launching on simulator, it can write down port number to file on local system
+        if (ConsoleTarget.TYPE.equals(target.getType())) {
+            File appDir = config.isSkipInstall() ? config.getTmpDir() : config.getInstallDir();
+            builder.setAppfile(new File(appDir, config.getExecutableName()));
+
             File hooksPortFile;
             try {
-                hooksPortFile = File.createTempFile("robovm-dbg-sim", ".port");
+                hooksPortFile = File.createTempFile("robovm-dbg-console", ".port");
                 builder.setHooksPortFile(hooksPortFile);
             } catch (IOException e) {
-                throw new CompilerException("Failed to create simulator debuuger port file", e);
+                throw new CompilerException("Failed to create debugger port file", e);
             }
 
             parameters.getArguments().add("-rvm:PrintDebugPort=" + hooksPortFile.getAbsolutePath());
+        } else if (IOSTarget.TYPE.equals(target.getType())) {
+            File appDir = new File(config.isSkipInstall() ? config.getTmpDir() : config.getInstallDir(), config.getExecutableName() + ".app");
+            builder.setAppfile(new File(appDir, config.getExecutableName()));
+
+            if (IOSTarget.isSimulatorArch(target.getArch())) {
+                // launching on simulator, it can write down port number to file on local system
+                File hooksPortFile;
+                try {
+                    hooksPortFile = File.createTempFile("robovm-dbg-sim", ".port");
+                    builder.setHooksPortFile(hooksPortFile);
+                } catch (IOException e) {
+                    throw new CompilerException("Failed to create simulator debuuger port file", e);
+                }
+
+                parameters.getArguments().add("-rvm:PrintDebugPort=" + hooksPortFile.getAbsolutePath());
+            } else {
+                // launching on device
+                IOSDeviceLaunchParameters deviceLaunchParameters = (IOSDeviceLaunchParameters) parameters;
+                DebuggerLauncherCallback callback = new DebuggerLauncherCallback();
+                deviceLaunchParameters.setAppLauncherCallback(callback);
+                deviceLaunchParameters.getArguments().add("-rvm:PrintDebugPort");
+
+                // wait for hooks channel from launch callback
+                builder.setHooksConnection(callback);
+            }
         } else {
-            // launching on device
-            IOSDeviceLaunchParameters deviceLaunchParameters = (IOSDeviceLaunchParameters) parameters;
-            DebuggerLauncherCallback callback = new DebuggerLauncherCallback();
-            deviceLaunchParameters.setAppLauncherCallback(callback);
-            deviceLaunchParameters.getArguments().add("-rvm:PrintDebugPort");
-
-            // wait for hooks channel from launch callback
-            builder.setHooksConnection(callback);
+            throw new IllegalArgumentException("Unsupported target " + target.getType());
         }
-
 
         debuggerConfig = builder.build();
     }
