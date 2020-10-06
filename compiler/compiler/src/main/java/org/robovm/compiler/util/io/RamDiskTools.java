@@ -158,7 +158,7 @@ public class RamDiskTools {
             for (Arch arch : Arch.values()) {
                 for (boolean isDebug : new boolean[] { false, true }) {
                     CacheDir cacheDir = constructCacheDir(volume, os, arch, isDebug);
-                    if (cacheDir != null && !cacheDir.directory.equals(currCacheDir.directory)) {
+                    if (cacheDir != null && (currCacheDir == null || !cacheDir.directory.equals(currCacheDir.directory))) {
                         cacheDirs.add(cacheDir);
                     }
                 }
