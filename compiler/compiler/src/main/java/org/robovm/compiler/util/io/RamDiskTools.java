@@ -110,7 +110,10 @@ public class RamDiskTools {
                 config.getLogger().info("Couldn't create cache directory on RAM disk, using hard drive");
                 return;
             }
+
+            // manage every build in own tmp folder -- allows to clear up not required tmp data
             File newTmpDir = new File(volume, "tmp");
+            newTmpDir = new File(newTmpDir, config.getBuildUuid().toString());
             if (tmpDir.getAbsolutePath().startsWith(newTmpDir.getAbsolutePath())) {
                 // tmpDir already build on top of RamDisk, don't add it
                 // happens when building slice config from main one
@@ -133,16 +136,39 @@ public class RamDiskTools {
     }
 
     private void cleanRamDisk(FileStore store, File volume, Config config) {
-        // clean the cache/ and tmp/ dirs
-        // FIXME be smarter as per the issue report
+        // clean tmp/ dir
         try {
-//            FileUtils.deleteDirectory(new File(volume, "tmp"));
+            cleanTmp(volume, config);
+        } catch (IOException e) {
+            // nothing to do here
+        }
+
+        // clean the cache/
+        try {
             // only clean the cache if killing the tmp dir didn't work
             if (store.getUsableSpace() < MIN_FREE_SPACE) {
                 cleanCache(store, volume, config);
             }
         } catch (IOException e) {
             // nothing to do here
+        }
+    }
+
+    private void cleanTmp(File volume, Config config) throws IOException {
+        // clean up all files/folders inside tmp but not current build ones
+        File tmpDir = new File(volume, "tmp");
+        if (tmpDir.exists() && tmpDir.isDirectory()) {
+            File[] builds = tmpDir.listFiles();
+            if (builds != null && builds.length > 0) {
+                String currentBuild = config.getBuildUuid().toString();
+                for (File b : builds) {
+                    if (!currentBuild.equals(b.getName()))
+                        if (b.isDirectory())
+                            FileUtils.deleteDirectory(b);
+                        else
+                            b.delete();
+                }
+            }
         }
     }
 

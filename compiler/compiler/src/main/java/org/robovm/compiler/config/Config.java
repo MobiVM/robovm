@@ -85,18 +85,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
-import java.util.ServiceLoader;
-import java.util.TreeMap;
+import java.util.*;
 import java.util.jar.Attributes;
 import java.util.jar.JarFile;
 import java.util.stream.Collectors;
@@ -233,6 +222,7 @@ public class Config {
      * the builder() method skip them.
      */
 
+    private transient final UUID buildUuid;
     private transient List<Plugin> plugins = new ArrayList<>();
     private transient Target target = null;
     private transient File osArchDepLibDir;
@@ -248,7 +238,10 @@ public class Config {
     private transient Arch sliceArch;
     private transient StripArchivesBuilder stripArchivesBuilder;
 
-    protected Config() {
+    protected Config(UUID uuid) {
+        // save session uuid
+        this.buildUuid = uuid;
+
         // Add standard plugins
         this.plugins.addAll(0, Arrays.asList(
                 new InterfaceBuilderClassesPlugin(),
@@ -269,6 +262,10 @@ public class Config {
      */
     public Builder builder() throws IOException {
         return new Builder(clone(configBeforeBuild));
+    }
+
+    public UUID getBuildUuid() {
+        return buildUuid;
     }
 
     public Home getHome() {
@@ -816,7 +813,7 @@ public class Config {
         // classpath. Last the config from this object is added.
 
         // First merge all configs on the classpath to an empty Config
-        Config config = new Config();
+        Config config = new Config(this.buildUuid);
         for (Path path : clazzes.getPaths()) {
             for (String dir : dirs) {
                 if (path.contains(dir + "/robovm.xml")) {
@@ -864,7 +861,7 @@ public class Config {
     }
 
     private static Config clone(Config config) throws IOException {
-        Config clone = new Config();
+        Config clone = new Config(config.buildUuid);
         for (Field f : Config.class.getDeclaredFields()) {
             if (!Modifier.isStatic(f.getModifiers()) && !Modifier.isTransient(f.getModifiers())) {
                 f.setAccessible(true);
@@ -1214,7 +1211,7 @@ public class Config {
         }
 
         public Builder() {
-            this.config = new Config();
+            this.config = new Config(UUID.randomUUID());
         }
 
         public Builder os(OS os) {
