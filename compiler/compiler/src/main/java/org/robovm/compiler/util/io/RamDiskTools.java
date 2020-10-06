@@ -111,11 +111,17 @@ public class RamDiskTools {
                 return;
             }
             File newTmpDir = new File(volume, "tmp");
+            if (tmpDir.getAbsolutePath().startsWith(newTmpDir.getAbsolutePath())) {
+                // tmpDir already build on top of RamDisk, don't add it
+                // happens when building slice config from main one
+                newTmpDir = tmpDir;
+            } else {
+                newTmpDir = new File(newTmpDir, tmpDir.getAbsolutePath());
+            }
             if (!newTmpDir.exists() && !newTmpDir.mkdirs()) {
                 config.getLogger().info("Couldn't create tmp directory on RAM disk, using hard drive");
                 return;
             }
-            newTmpDir = new File(newTmpDir, tmpDir.getAbsolutePath());
             config.getLogger().info("Using RAM disk at %s for cache and tmp directory", ROBOVM_RAM_DISK_PATH);
             this.newCacheDir = newCacheDir;
             this.newTmpDir = newTmpDir;
