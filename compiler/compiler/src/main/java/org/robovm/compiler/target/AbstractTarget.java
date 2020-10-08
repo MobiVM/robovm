@@ -320,19 +320,22 @@ public abstract class AbstractTarget implements Target {
     }
 
     protected void copyResources(File destDir) throws IOException {
-        for (Resource res : config.getResources()) {
-            res.walk(new Walker() {
-                @Override
-                public boolean processDir(Resource resource, File dir, File destDir) throws IOException {
-                    return AbstractTarget.this.processDir(resource, dir, destDir);
-                }
-                @Override
-                public void processFile(Resource resource, File file, File destDir)
-                        throws IOException {
+        Walker walker = new Walker() {
+            @Override
+            public boolean processDir(Resource resource, File dir, File destDir) throws IOException {
+                return true;
+            }
 
-                    copyFile(resource, file, destDir);
-                }
-            }, destDir);
+            @Override
+            public void processFile(Resource resource, File file, File destDir)
+                    throws IOException {
+
+                copyFile(resource, file, destDir);
+            }
+        };
+
+        for (Resource res : config.getResources()) {
+            res.walk(walker, destDir);
         }
     }
 
@@ -726,10 +729,6 @@ public abstract class AbstractTarget implements Target {
     protected boolean isAppExtension(File file) throws IOException {
         String result = ToolchainUtil.file(file);
         return result.contains("Mach-O 64-bit executable") || result.contains("Mach-O executable");
-    }
-
-    protected boolean processDir(Resource resource, File dir, File destDir) throws IOException {
-        return true;
     }
 
     protected void copyFile(Resource resource, File file, File destDir) throws IOException {
