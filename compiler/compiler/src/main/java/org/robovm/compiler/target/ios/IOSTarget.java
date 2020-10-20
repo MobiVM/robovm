@@ -920,41 +920,41 @@ public class IOSTarget extends AbstractTarget {
 
     @Override
     protected boolean processDir(Resource resource, File dir, File destDir) throws IOException {
-                if (dir.getName().endsWith(".atlas")) {
-                    destDir.mkdirs();
+        if (dir.getName().endsWith(".atlas")) {
+            destDir.mkdirs();
 
-                    ToolchainUtil.textureatlas(config, dir, destDir);
-                    return false;
-                } else if (dir.getName().endsWith(".xcassets")) {
+            ToolchainUtil.textureatlas(config, dir, destDir);
+            return false;
+        } else if (dir.getName().endsWith(".xcassets")) {
             ToolchainUtil.actool(config, createPartialInfoPlistFile(dir), dir, getAppDir());
-                    return false;
-                }
+            return false;
+        }
         return super.processDir(resource, dir, destDir);
-            }
+    }
 
-            @Override
+    @Override
     protected void copyFile(Resource resource, File file, File destDir)
             throws IOException {
 
-                if (isDeviceArch(arch) && !resource.isSkipPngCrush()
-                        && file.getName().toLowerCase().endsWith(".png")) {
-                    destDir.mkdirs();
-                    File outFile = new File(destDir, file.getName());
-                    ToolchainUtil.pngcrush(config, file, outFile);
-                } else if (file.getName().toLowerCase().endsWith(".strings")) {
-                    destDir.mkdirs();
-                    File outFile = new File(destDir, file.getName());
-                    ToolchainUtil.compileStrings(config, file, outFile);
-                } else if (file.getName().toLowerCase().endsWith(".storyboard")) {
-                    destDir.mkdirs();
-                    ToolchainUtil.ibtool(config, createPartialInfoPlistFile(file), file, destDir);
-                } else if (file.getName().toLowerCase().endsWith(".xib")) {
-                    destDir.mkdirs();
-                    String fileName = file.getName();
-                    fileName = fileName.substring(0, fileName.lastIndexOf('.')) + ".nib";
-                    File outFile = new File(destDir, fileName);
-                    ToolchainUtil.ibtool(config, createPartialInfoPlistFile(file), file, outFile);
-                } else {
+        if (isDeviceArch(arch) && !resource.isSkipPngCrush()
+                && file.getName().toLowerCase().endsWith(".png")) {
+            destDir.mkdirs();
+            File outFile = new File(destDir, file.getName());
+            ToolchainUtil.pngcrush(config, file, outFile);
+        } else if (file.getName().toLowerCase().endsWith(".strings")) {
+            destDir.mkdirs();
+            File outFile = new File(destDir, file.getName());
+            ToolchainUtil.compileStrings(config, file, outFile);
+        } else if (file.getName().toLowerCase().endsWith(".storyboard")) {
+            destDir.mkdirs();
+            ToolchainUtil.ibtool(config, createPartialInfoPlistFile(file), file, destDir);
+        } else if (file.getName().toLowerCase().endsWith(".xib")) {
+            destDir.mkdirs();
+            String fileName = file.getName();
+            fileName = fileName.substring(0, fileName.lastIndexOf('.')) + ".nib";
+            File outFile = new File(destDir, fileName);
+            ToolchainUtil.ibtool(config, createPartialInfoPlistFile(file), file, outFile);
+        } else {
             super.copyFile(resource, file, destDir);
         }
     }
