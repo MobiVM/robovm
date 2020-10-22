@@ -31,7 +31,6 @@ import org.apache.commons.io.filefilter.AndFileFilter;
 import org.apache.commons.io.filefilter.PrefixFileFilter;
 import org.apache.commons.io.filefilter.RegexFileFilter;
 import org.apache.commons.io.filefilter.SuffixFileFilter;
-import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.tuple.Pair;
 import org.robovm.compiler.CompilerException;
 import org.robovm.compiler.config.AppExtension;
@@ -46,6 +45,7 @@ import org.robovm.compiler.target.LaunchParameters;
 import org.robovm.compiler.target.Launcher;
 import org.robovm.compiler.target.ios.ProvisioningProfile.Type;
 import org.robovm.compiler.util.Executor;
+import org.robovm.compiler.util.PList;
 import org.robovm.compiler.util.ToolchainUtil;
 import org.robovm.compiler.util.io.OpenOnWriteFileOutputStream;
 import org.robovm.libimobiledevice.AfcClient.UploadProgressCallback;
@@ -61,19 +61,13 @@ import java.io.FileFilter;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.math.BigInteger;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
+import java.security.MessageDigest;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.NoSuchElementException;
+import java.util.*;
 
 /**
  * @author niklas
@@ -100,8 +94,6 @@ public class IOSTarget extends AbstractTarget {
     );
 
     public static final String TYPE = "ios";
-
-    private static File iosSimPath;
 
     private Arch arch;
     private SDK sdk;
@@ -675,7 +667,7 @@ public class IOSTarget extends AbstractTarget {
     }
 
     /**
-     * creates simple entitlement plist from scratch that only containts get-task-allow
+     * creates simple entitlement plist from scratch that only contains get-task-allow
      * used to sign binary for simulator
      */
     private File createEntitlementsPList(boolean getTaskAllow) throws IOException {
@@ -698,12 +690,27 @@ public class IOSTarget extends AbstractTarget {
      */
     private File createSimulatedEntitlementsPList(String bundleId) throws IOException {
         try {
-            // generate random group id as there is no one real available when compiling for simulator
-            String groupId = RandomStringUtils.randomAlphanumeric(10).toUpperCase();
+            // there is no provisioning profile in simulator to pick teamId. check if user have provided in properties
+            String teamID = config.getProperties().getProperty("teamID");
+            if (teamID == null) {
+                // generate team ID from bundle id. use MD5 hash from bundle, then convert it to base-36
+                teamID = new BigInteger(MessageDigest.getInstance("MD5").digest(bundleId.getBytes())).toString(36).toUpperCase();
+                if (teamID.length() > 10)
+                    teamID = teamID.substring(0, 10);
+            }
+
             File destFile = new File(config.getTmpDir(), "Entitlements-Simulated.plist");
-            NSDictionary dict = new NSDictionary();
-            dict.put("application-identifier", groupId + "." + bundleId);
-            dict.put("keychain-access-groups", new NSArray(new NSString(groupId + "." + bundleId)));
+            NSDictionary dict;
+            if (entitlementsPList != null) {
+                // use properties. this allows teamID (and other placeholders) to be used in entitlements
+                Properties properties = new Properties(config.getProperties());
+                properties.setProperty("teamID", teamID);
+                dict = new PList(entitlementsPList).parse(properties).getDictionary();
+            } else {
+                dict = new NSDictionary();
+            }
+
+            dict.put("application-identifier", teamID + "." + bundleId);
             PropertyListParser.saveAsXML(dict, destFile);
             return destFile;
         } catch (IOException e) {
@@ -717,20 +724,24 @@ public class IOSTarget extends AbstractTarget {
         try {
             File destFile = new File(config.getTmpDir(), "Entitlements.plist");
             NSDictionary dict = null;
-            if (entitlementsPList != null) {
-                dict = (NSDictionary) PropertyListParser.parse(entitlementsPList);
-            } else {
-                dict = (NSDictionary) PropertyListParser.parse(IOUtils.toByteArray(getClass().getResourceAsStream(
-                        "/Entitlements.plist")));
-            }
-            if (provisioningProfile != null) {
+            if (entitlementsPList == null) {
+                dict = new NSDictionary();
+            } else if (provisioningProfile != null) {
+                String teamID = provisioningProfile.getAppIdPrefix();
+                // use properties. this allows teamID (and other placeholders) to be used in entitlements
+                Properties properties = new Properties(config.getProperties());
+                properties.setProperty("teamID", teamID);
+                dict = new PList(entitlementsPList).parse(properties).getDictionary();
+
                 NSDictionary profileEntitlements = provisioningProfile.getEntitlements();
                 for (String key : profileEntitlements.allKeys()) {
                     if (dict.objectForKey(key) == null && !excludedKeys.contains(key)) {
                         dict.put(key, profileEntitlements.objectForKey(key));
                     }
                 }
-                dict.put("application-identifier", provisioningProfile.getAppIdPrefix() + "." + bundleId);
+                dict.put("application-identifier", teamID + "." + bundleId);
+            } else {
+                dict = (NSDictionary) PropertyListParser.parse(entitlementsPList);
             }
             dict.put("get-task-allow", getTaskAllow);
             PropertyListParser.saveAsXML(dict, destFile);

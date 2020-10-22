@@ -15,41 +15,14 @@
  */
 package org.robovm.compiler.util;
 
-import java.io.File;
-import java.lang.reflect.Method;
-import java.util.Properties;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import javax.xml.parsers.DocumentBuilder;
-
-import org.w3c.dom.Document;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.w3c.dom.Text;
-
-import com.dd.plist.NSDictionary;
 import com.dd.plist.NSObject;
-import com.dd.plist.XMLPropertyListParser;
 
-public class InfoPList {
-    private File file;
-    private NSDictionary dictionary;
+import java.io.File;
+
+public class InfoPList extends PList {
 
     public InfoPList(File file) {
-        this.file = file;
-    }
-
-    public void parse(Properties props) {
-        parse(props, true);
-    }
-
-    public void parse(Properties props, boolean includeSystemProperties) {
-        try {
-            this.dictionary = (NSDictionary) parsePropertyList(file, props, includeSystemProperties);
-        } catch (Throwable t) {
-            throw new IllegalArgumentException("Failed to parse Info.plist XML file: " + file, t);
-        }
+        super(file);
     }
 
     public String getBundleIdentifier() {
@@ -80,53 +53,5 @@ public class InfoPList {
             }
         }
         return null;
-    }
-
-    public File getFile() {
-        return file;
-    }
-
-    public NSDictionary getDictionary() {
-        return dictionary;
-    }
-    
-    private final static Pattern VARIABLE_PATTERN = Pattern.compile("\\$\\{([^}]+)\\}");
-
-    static void replacePropertyRefs(Node node, Properties props) {
-        if (node instanceof Text) {
-            Text el = (Text) node;
-            String value = el.getNodeValue();
-            if (value != null && value.trim().length() > 0) {
-                Matcher matcher = VARIABLE_PATTERN.matcher(value);
-                StringBuilder sb = new StringBuilder();
-                int pos = 0;
-                while (matcher.find()) {
-                    if (pos < matcher.start()) {
-                        sb.append(value.substring(pos, matcher.start()));
-                    }
-                    String key = matcher.group(1);
-                    sb.append(props.getProperty(key, matcher.group()));
-                    pos = matcher.end();
-                }
-                if (pos < value.length()) {
-                    sb.append(value.substring(pos));
-                }
-                el.setNodeValue(sb.toString());
-            }
-        }
-        NodeList children = node.getChildNodes();
-        for (int i = 0; i < children.getLength(); i++) {
-            replacePropertyRefs(children.item(i), props);
-        }
-    }
-
-    static NSObject parsePropertyList(File file, Properties props, boolean includeSystemProperties) throws Exception {
-        Properties allProps = new Properties(includeSystemProperties ? System.getProperties() : new Properties());
-        allProps.putAll(props);
-
-        DocumentBuilder docBuilder = XMLPropertyListParser.getDocBuilder();
-        Document doc = docBuilder.parse(file);
-        replacePropertyRefs(doc, allProps);
-        return XMLPropertyListParser.parse(doc);
     }
 }
