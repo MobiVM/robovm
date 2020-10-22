@@ -96,6 +96,11 @@ import org.robovm.apple.foundation.*;
     public static native NSPredicate createPredicateForObjectsWithNoCorrelation();
     @Method(selector = "predicateForObjectsFromWorkout:")
     public static native NSPredicate createPredicateForObjectsFromWorkout(HKWorkout workout);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "predicateForObjectsAssociatedWithElectrocardiogram:")
+    public static native NSPredicate createPredicateForObjectsAssociatedWithElectrocardiogram(HKElectrocardiogram electrocardiogram);
     @Method(selector = "predicateForSamplesWithStartDate:endDate:options:")
     public static native NSPredicate createPredicateForSamplesWithDate(NSDate startDate, NSDate endDate, HKQueryOptions options);
     @Method(selector = "predicateForQuantitySamplesWithOperatorType:quantity:")
@@ -137,5 +142,15 @@ import org.robovm.apple.foundation.*;
      */
     @Method(selector = "predicateForClinicalRecordsFromSource:FHIRResourceType:identifier:")
     public static native NSPredicate createPredicateForClinicalRecords(HKSource source, HKFHIRResourceType resourceType, String identifier);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "predicateForElectrocardiogramsWithClassification:")
+    public static native NSPredicate predicateForElectrocardiogramsWithClassification(HKElectrocardiogramClassification classification);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "predicateForElectrocardiogramsWithSymptomsStatus:")
+    public static native NSPredicate predicateForElectrocardiogramsWithSymptomsStatus(HKElectrocardiogramSymptomsStatus symptomsStatus);
     /*</methods>*/
 }

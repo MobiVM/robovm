@@ -44,6 +44,10 @@ classes:
                 name: create
                 constructor: true
                 throws: NSErrorException
+            '-predictedLabelHypothesesForString:maximumCount:':
+                name: getPredictedLabelHypothesesForString
+            '-predictedLabelHypothesesForTokens:maximumCount:':
+                name: getPredictedLabelHypothesesForTokens
     NLModelConfiguration: {} #since 12.0
     NLTagger: #since 12.0
         methods:
@@ -69,6 +73,10 @@ classes:
                 name: setGazetteers
             '+requestAssetsForLanguage:tagScheme:completionHandler:':
                 name: requestAssets
+            '-tokenRangeForRange:unit:':
+                name: getTokenRange
+            '-tagHypothesesAtIndex:unit:scheme:maximumCount:tokenRange:':
+                name: getTagHypotheses
     NLTokenizer: #since 12.0
         methods:
             '-initWithUnit:':
@@ -107,6 +115,10 @@ classes:
                 name: create
                 constructor: true
                 throws: NSErrorException
+            '+sentenceEmbeddingForLanguage:revision:':
+                #trim_after_first_colon: true
+                name: create
+                constructor: true
     NLGazetteer: #since 13.0
         methods:
             '-initWithContentsOfURL:error:':

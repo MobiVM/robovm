@@ -52,6 +52,10 @@ import org.robovm.apple.coretext.CTAttributedStringAttributes;
     protected CNContactFormatter(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    @Property(selector = "descriptorForRequiredKeysForNameOrder")
+    public static native NSObject getDescriptorForRequiredKeysForNameOrder();
+    @Property(selector = "descriptorForRequiredKeysForDelimiter")
+    public static native NSObject getDescriptorForRequiredKeysForDelimiter();
     @Property(selector = "style")
     public native CNContactFormatterStyle getStyle();
     @Property(selector = "setStyle:")

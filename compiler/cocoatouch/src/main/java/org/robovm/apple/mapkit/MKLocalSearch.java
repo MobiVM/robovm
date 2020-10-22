@@ -51,6 +51,11 @@ import org.robovm.apple.dispatch.*;
     protected MKLocalSearch(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithRequest:")
     public MKLocalSearch(MKLocalSearchRequest request) { super((SkipInit) null); initObject(init(request)); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithPointsOfInterestRequest:")
+    public MKLocalSearch(MKLocalPointsOfInterestRequest request) { super((SkipInit) null); initObject(init(request)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "isSearching")
@@ -60,6 +65,11 @@ import org.robovm.apple.dispatch.*;
     /*<methods>*/
     @Method(selector = "initWithRequest:")
     protected native @Pointer long init(MKLocalSearchRequest request);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithPointsOfInterestRequest:")
+    protected native @Pointer long init(MKLocalPointsOfInterestRequest request);
     @Method(selector = "startWithCompletionHandler:")
     public native void start(@Block VoidBlock2<MKLocalSearchResponse, NSError> completionHandler);
     @Method(selector = "cancel")

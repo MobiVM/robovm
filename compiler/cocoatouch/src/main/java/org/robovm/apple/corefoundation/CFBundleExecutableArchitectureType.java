@@ -41,12 +41,15 @@ import org.robovm.apple.coretext.*;
 /*<annotations>*//*</annotations>*/
 public enum /*<name>*/CFBundleExecutableArchitectureType/*</name>*/ implements ValuedEnum {
 	ARM(12L),
-    ARM64(16777228L),
     /*<values>*/
     I386(7L),
     PPC(18L),
     X86_64(16777223L),
-    PPC64(16777234L);
+    PPC64(16777234L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    ARM64(16777228L);
     /*</values>*/
 
     private final long n;

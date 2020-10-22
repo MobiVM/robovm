@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.eventkit.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -73,6 +74,11 @@ import org.robovm.apple.corelocation.*;
     @Deprecated
     @NotImplemented("resolveGroupNameForSendMessage:withCompletion:")
     public void resolveGroupNameForSendMessage(INSendMessageIntent intent, @Block VoidBlock1<INStringResolutionResult> completion) {}
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @NotImplemented("resolveOutgoingMessageTypeForSendMessage:withCompletion:")
+    public void resolveOutgoingMessageTypeForSendMessage(INSendMessageIntent intent, @Block VoidBlock1<INOutgoingMessageTypeResolutionResult> completion) {}
     @NotImplemented("resolveContentForSendMessage:withCompletion:")
     public void resolveContentForSendMessage(INSendMessageIntent intent, @Block VoidBlock1<INStringResolutionResult> completion) {}
     /**

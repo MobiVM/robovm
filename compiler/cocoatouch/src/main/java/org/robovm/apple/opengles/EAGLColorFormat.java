@@ -87,8 +87,20 @@ import org.robovm.apple.foundation.*;
     /*</marshalers>*/
 
     /*<constants>*/
+    /**
+     * @deprecated Deprecated in iOS 12.0. OpenGLES API deprecated. (Define GLES_SILENCE_DEPRECATION to silence these warnings)
+     */
+    @Deprecated
     public static final EAGLColorFormat RGBA8 = new EAGLColorFormat("RGBA8");
+    /**
+     * @deprecated Deprecated in iOS 12.0. OpenGLES API deprecated. (Define GLES_SILENCE_DEPRECATION to silence these warnings)
+     */
+    @Deprecated
     public static final EAGLColorFormat RGB565 = new EAGLColorFormat("RGB565");
+    /**
+     * @deprecated Deprecated in iOS 12.0. OpenGLES API deprecated. (Define GLES_SILENCE_DEPRECATION to silence these warnings)
+     */
+    @Deprecated
     public static final EAGLColorFormat SRGBA8 = new EAGLColorFormat("SRGBA8");
     /*</constants>*/
     
@@ -115,10 +127,22 @@ import org.robovm.apple.foundation.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
+        /**
+         * @deprecated Deprecated in iOS 12.0. OpenGLES API deprecated. (Define GLES_SILENCE_DEPRECATION to silence these warnings)
+         */
+        @Deprecated
         @GlobalValue(symbol="kEAGLColorFormatRGBA8", optional=true)
         public static native NSString RGBA8();
+        /**
+         * @deprecated Deprecated in iOS 12.0. OpenGLES API deprecated. (Define GLES_SILENCE_DEPRECATION to silence these warnings)
+         */
+        @Deprecated
         @GlobalValue(symbol="kEAGLColorFormatRGB565", optional=true)
         public static native NSString RGB565();
+        /**
+         * @deprecated Deprecated in iOS 12.0. OpenGLES API deprecated. (Define GLES_SILENCE_DEPRECATION to silence these warnings)
+         */
+        @Deprecated
         @GlobalValue(symbol="kEAGLColorFormatSRGBA8", optional=true)
         public static native NSString SRGBA8();
         /*</values>*/

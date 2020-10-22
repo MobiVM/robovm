@@ -41,6 +41,8 @@ public enum /*<name>*/CHHapticEngineStoppedReason/*</name>*/ implements ValuedEn
     ApplicationSuspended(2L),
     IdleTimeout(3L),
     NotifyWhenFinished(4L),
+    EngineDestroyed(5L),
+    GameControllerDisconnect(6L),
     SystemError(-1L);
     /*</values>*/
 

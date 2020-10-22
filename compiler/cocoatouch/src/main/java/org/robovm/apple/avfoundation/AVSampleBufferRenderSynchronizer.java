@@ -88,7 +88,7 @@ import org.robovm.apple.audiotoolbox.*;
     @Method(selector = "removeRenderer:atTime:completionHandler:")
     public native void removeRenderer(AVQueuedSampleBufferRendering renderer, @ByVal CMTime time, @Block VoidBooleanBlock completionHandler);
     @Method(selector = "addPeriodicTimeObserverForInterval:queue:usingBlock:")
-    public native NSObject addPeriodicTimeObserver(@ByVal CMTime interval, DispatchQueue queue, @Block VoidBlock1<CMTime> block);
+    public native NSObject addPeriodicTimeObserver(@ByVal CMTime interval, DispatchQueue queue, @Block("(@ByVal)") VoidBlock1<CMTime> block);
     @Method(selector = "addBoundaryTimeObserverForTimes:queue:usingBlock:")
     public native NSObject addBoundaryTimeObserver(NSArray<NSValue> times, DispatchQueue queue, @Block Runnable block);
     @Method(selector = "removeTimeObserver:")

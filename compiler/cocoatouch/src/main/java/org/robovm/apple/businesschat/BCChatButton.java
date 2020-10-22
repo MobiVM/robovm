@@ -54,10 +54,15 @@ import org.robovm.apple.coregraphics.*;
      */
     @Method(selector = "initWithStyle:")
     public BCChatButton(BCChatButtonStyle style) { super((SkipInit) null); initObject(init(style)); }
+    @Method(selector = "initWithCoder:")
+    public BCChatButton(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     @Method(selector = "initWithFrame:")
     public BCChatButton(@ByVal CGRect frame) { super(frame); }
-    @Method(selector = "initWithCoder:")
-    public BCChatButton(NSCoder coder) { super(coder); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithFrame:primaryAction:")
+    public BCChatButton(@ByVal CGRect frame, UIAction primaryAction) { super(frame, primaryAction); }
     /*</constructors>*/
     /*<properties>*/
     
@@ -69,5 +74,7 @@ import org.robovm.apple.coregraphics.*;
      */
     @Method(selector = "initWithStyle:")
     protected native @Pointer long init(BCChatButtonStyle style);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

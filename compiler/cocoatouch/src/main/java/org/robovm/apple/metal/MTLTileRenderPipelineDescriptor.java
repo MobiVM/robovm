@@ -83,6 +83,16 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "setMaxTotalThreadsPerThreadgroup:")
     public native void setMaxTotalThreadsPerThreadgroup(@MachineSizedUInt long v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "binaryArchives")
+    public native NSArray<?> getBinaryArchives();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setBinaryArchives:")
+    public native void setBinaryArchives(NSArray<?> v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

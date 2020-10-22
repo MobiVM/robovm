@@ -50,10 +50,19 @@ import org.robovm.apple.dispatch.*;
     protected NFCVASResponse(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
     @Property(selector = "status")
-    public native VASErrorCode getStatus();
+    public native NFCVASErrorCode getStatus();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
     @Property(selector = "vasData")
     public native NSData getVasData();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
     @Property(selector = "mobileToken")
     public native NSData getMobileToken();
     /*</properties>*/

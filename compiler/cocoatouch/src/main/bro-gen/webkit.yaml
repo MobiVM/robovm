@@ -62,6 +62,12 @@ classes:
                 trim_after_first_colon: true
             '-removeScriptMessageHandlerForName:':
                 name: removeScriptMessageHandler
+            '-addScriptMessageHandler:contentWorld:name:':
+                name: addScriptMessageHandler
+            '-addScriptMessageHandlerWithReply:contentWorld:name:':
+                name: addScriptMessageHandler
+            '-removeScriptMessageHandlerForName:contentWorld:':
+                name: removeScriptMessageHandler
     WKUserScript: # DONE
         methods:
             '-init.*':
@@ -154,6 +160,10 @@ classes:
                 name: createWebArchiveData
             '-findString:withConfiguration:completionHandler:':
                 name: findString
+            '-evaluateJavaScript:inFrame:inContentWorld:completionHandler:':
+                name: evaluateJavaScript
+            '-callAsyncJavaScript:arguments:inFrame:inContentWorld:completionHandler:':
+                name: callAsyncJavaScript
     WKPreviewElementInfo: {}
     WKContentRuleList: {} #since 11.0
     WKContentRuleListStore: #since 11.0
@@ -179,6 +189,11 @@ classes:
     WKFindConfiguration: {} #since 13.0
     WKFindResult: {} #since 13.0
     WKPDFConfiguration: {} #since 13.0
+    WKContentWorld: #since 14.0
+        methods:
+            '+worldWithName:':
+                name: create
+                constructor: true
 protocols:
     WKNavigationDelegate: # DONE
         methods:
@@ -204,6 +219,8 @@ protocols:
                 name: webContentProcessDidTerminate
             '-webView:decidePolicyForNavigationAction:preferences:decisionHandler:':
                 name: decidePolicyForNavigationAction
+            '-webView:authenticationChallenge:shouldAllowDeprecatedTLS:':
+                name: shouldAllowDeprecatedTLS
     WKScriptMessageHandler: # DONE
         methods:
             '-userContentController:didReceiveScriptMessage:':
@@ -246,7 +263,10 @@ protocols:
         methods:
             '-didFailWithError:':
                 name: didFail
-functions:
+    WKScriptMessageHandlerWithReply:
+        methods:
+            '-userContentController:didReceiveScriptMessage:replyHandler:':
+                name: didReceiveScriptMessage
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (k?WK.*):
         class: WebKit

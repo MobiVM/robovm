@@ -93,6 +93,7 @@ public enum /*<name>*/ICReturnCode/*</name>*/ implements NSErrorCode {
     ConnectionEjectFailed(-21346L),
     ConnectionFailedToOpen(-21345L),
     ConnectionFailedToOpenDevice(-21344L),
+    ConnectionNotAuthorizedToOpenDevice(-21343L),
     PTPFailedToSendCommand(-21250L),
     PTPNotAuthorizedToSendCommand(-21249L),
     DownloadPathInvalid(-21100L),

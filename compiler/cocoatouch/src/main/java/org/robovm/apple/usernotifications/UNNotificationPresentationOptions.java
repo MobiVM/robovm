@@ -41,7 +41,20 @@ public final class /*<name>*/UNNotificationPresentationOptions/*</name>*/ extend
     public static final UNNotificationPresentationOptions None = new UNNotificationPresentationOptions(0L);
     public static final UNNotificationPresentationOptions Badge = new UNNotificationPresentationOptions(1L);
     public static final UNNotificationPresentationOptions Sound = new UNNotificationPresentationOptions(2L);
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 14.0. Use UNNotificationPresentationOptionList | UNNotificationPresentationOptionBanner
+     */
+    @Deprecated
     public static final UNNotificationPresentationOptions Alert = new UNNotificationPresentationOptions(4L);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final UNNotificationPresentationOptions List = new UNNotificationPresentationOptions(8L);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final UNNotificationPresentationOptions Banner = new UNNotificationPresentationOptions(16L);
     /*</values>*/
 
     /*<bind>*/

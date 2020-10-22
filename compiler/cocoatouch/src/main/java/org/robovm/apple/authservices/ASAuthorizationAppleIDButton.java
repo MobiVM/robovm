@@ -55,6 +55,11 @@ import org.robovm.apple.coregraphics.*;
     public ASAuthorizationAppleIDButton(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
     public ASAuthorizationAppleIDButton(NSCoder coder) { super(coder); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithFrame:primaryAction:")
+    public ASAuthorizationAppleIDButton(@ByVal CGRect frame, UIAction primaryAction) { super(frame, primaryAction); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "cornerRadius")

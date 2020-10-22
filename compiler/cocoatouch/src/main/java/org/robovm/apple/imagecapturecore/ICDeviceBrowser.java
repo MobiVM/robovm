@@ -58,6 +58,11 @@ import org.robovm.apple.uikit.*;
     @Property(selector = "isBrowsing")
     public native boolean isBrowsing();
     /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "isSuspended")
+    public native boolean isSuspended();
+    /**
      * @since Available in iOS 13.0 and later.
      */
     @Property(selector = "devices")
@@ -75,5 +80,25 @@ import org.robovm.apple.uikit.*;
      */
     @Method(selector = "stop")
     public native void stop();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "contentsAuthorizationStatus")
+    public native ICAuthorizationStatus contentsAuthorizationStatus();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "requestContentsAuthorizationWithCompletion:")
+    public native void requestContentsAuthorization(@Block VoidBlock1<ICAuthorizationStatus> completion);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "controlAuthorizationStatus")
+    public native ICAuthorizationStatus controlAuthorizationStatus();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "requestControlAuthorizationWithCompletion:")
+    public native void requestControlAuthorization(@Block VoidBlock1<ICAuthorizationStatus> completion);
     /*</methods>*/
 }

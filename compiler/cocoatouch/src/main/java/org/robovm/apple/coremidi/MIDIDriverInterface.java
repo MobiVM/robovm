@@ -44,7 +44,7 @@ import org.robovm.apple.corefoundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MIDIDriverInterface() {}
-    public MIDIDriverInterface(VoidPtr _reserved, FunctionPtr QueryInterface, FunctionPtr AddRef, FunctionPtr Release, FunctionPtr FindDevices, FunctionPtr Start, FunctionPtr Stop, FunctionPtr Configure, FunctionPtr Send, FunctionPtr EnableSource, FunctionPtr Flush, FunctionPtr Monitor) {
+    public MIDIDriverInterface(VoidPtr _reserved, FunctionPtr QueryInterface, FunctionPtr AddRef, FunctionPtr Release, FunctionPtr FindDevices, FunctionPtr Start, FunctionPtr Stop, FunctionPtr Configure, FunctionPtr Send, FunctionPtr EnableSource, FunctionPtr Flush, FunctionPtr Monitor, FunctionPtr SendPackets, FunctionPtr MonitorEvents) {
         this.set_reserved(_reserved);
         this.setQueryInterface(QueryInterface);
         this.setAddRef(AddRef);
@@ -57,6 +57,8 @@ import org.robovm.apple.corefoundation.*;
         this.setEnableSource(EnableSource);
         this.setFlush(Flush);
         this.setMonitor(Monitor);
+        this.setSendPackets(SendPackets);
+        this.setMonitorEvents(MonitorEvents);
     }
     /*</constructors>*/
     /*<properties>*//*</properties>*/
@@ -85,6 +87,10 @@ import org.robovm.apple.corefoundation.*;
     @StructMember(10) public native MIDIDriverInterface setFlush(FunctionPtr Flush);
     @StructMember(11) public native FunctionPtr getMonitor();
     @StructMember(11) public native MIDIDriverInterface setMonitor(FunctionPtr Monitor);
+    @StructMember(12) public native FunctionPtr getSendPackets();
+    @StructMember(12) public native MIDIDriverInterface setSendPackets(FunctionPtr SendPackets);
+    @StructMember(13) public native FunctionPtr getMonitorEvents();
+    @StructMember(13) public native MIDIDriverInterface setMonitorEvents(FunctionPtr MonitorEvents);
     /*</members>*/
     /*<methods>*//*</methods>*/
 }

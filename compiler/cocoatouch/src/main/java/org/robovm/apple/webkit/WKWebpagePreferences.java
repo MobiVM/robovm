@@ -62,6 +62,16 @@ import org.robovm.apple.security.*;
      */
     @Property(selector = "setPreferredContentMode:")
     public native void setPreferredContentMode(WKContentMode v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "allowsContentJavaScript")
+    public native boolean allowsContentJavaScript();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setAllowsContentJavaScript:")
+    public native void setAllowsContentJavaScript(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -1,5 +1,5 @@
 package: org.robovm.apple.corespotlight
-include: [foundation]
+include: [foundation, uniformtypeid]
 library: CoreSpotlight
 framework: CoreSpotlight
 clang_args: ['-x', 'objective-c']
@@ -59,6 +59,8 @@ classes:
     CSSearchableItemAttributeSet: #since 9.0
         methods:
             '-initWithItemContentType:':
+                name: init
+            '-initWithContentType:':
                 name: init
             '-setValue:forCustomKey:':
                 name: setValue

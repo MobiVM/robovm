@@ -74,10 +74,30 @@ import org.robovm.apple.coregraphics.*;
     public native void setRulerActive(boolean v);
     @Property(selector = "drawingGestureRecognizer")
     public native UIGestureRecognizer getDrawingGestureRecognizer();
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 14.0. Use 'drawingPolicy' property.
+     */
+    @Deprecated
     @Property(selector = "allowsFingerDrawing")
     public native boolean allowsFingerDrawing();
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 14.0. Use 'drawingPolicy' property.
+     */
+    @Deprecated
     @Property(selector = "setAllowsFingerDrawing:")
     public native void setAllowsFingerDrawing(boolean v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "drawingPolicy")
+    public native PKCanvasViewDrawingPolicy getDrawingPolicy();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setDrawingPolicy:")
+    public native void setDrawingPolicy(PKCanvasViewDrawingPolicy v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

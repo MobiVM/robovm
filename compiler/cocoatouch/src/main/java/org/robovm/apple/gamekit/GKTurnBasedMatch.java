@@ -29,6 +29,7 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -104,8 +105,17 @@ import org.robovm.apple.uikit.*;
     public native void participantQuitOutOfTurn(GKTurnBasedMatchOutcome matchOutcome, @Block VoidBlock1<NSError> completionHandler);
     @Method(selector = "endMatchInTurnWithMatchData:completionHandler:")
     public native void endMatch(NSData matchData, @Block VoidBlock1<NSError> completionHandler);
+    /**
+     * @deprecated Deprecated in iOS 14.0. pass GKLeaderboardScore to endMatchInTurnWithMatchData:scores:completionHandler instead
+     */
+    @Deprecated
     @Method(selector = "endMatchInTurnWithMatchData:scores:achievements:completionHandler:")
     public native void endMatch(NSData matchData, NSArray<GKScore> scores, NSArray<GKAchievement> achievements, @Block VoidBlock1<NSError> completionHandler);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "endMatchInTurnWithMatchData:leaderboardScores:achievements:completionHandler:")
+    public native void endMatchInTurn(NSData matchData, NSArray<GKLeaderboardScore> scores, NSArray<?> achievements, @Block VoidBlock1<NSError> completionHandler);
     @Method(selector = "saveCurrentTurnWithMatchData:completionHandler:")
     public native void saveCurrentTurn(NSData matchData, @Block VoidBlock1<NSError> completionHandler);
     @Method(selector = "saveMergedMatchData:withResolvedExchanges:completionHandler:")

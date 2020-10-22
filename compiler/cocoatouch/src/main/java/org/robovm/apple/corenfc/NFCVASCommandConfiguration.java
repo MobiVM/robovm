@@ -49,25 +49,43 @@ import org.robovm.apple.dispatch.*;
     protected NFCVASCommandConfiguration(Handle h, long handle) { super(h, handle); }
     protected NFCVASCommandConfiguration(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithVASMode:passTypeIdentifier:url:")
-    public NFCVASCommandConfiguration(VASMode mode, String passTypeIdentifier, NSURL url) { super((SkipInit) null); initObject(init(mode, passTypeIdentifier, url)); }
+    public NFCVASCommandConfiguration(NFCVASMode mode, String passTypeIdentifier, NSURL url) { super((SkipInit) null); initObject(init(mode, passTypeIdentifier, url)); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
     @Property(selector = "mode")
-    public native VASMode getMode();
+    public native NFCVASMode getMode();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
     @Property(selector = "setMode:")
-    public native void setMode(VASMode v);
+    public native void setMode(NFCVASMode v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
     @Property(selector = "passTypeIdentifier")
     public native String getPassTypeIdentifier();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
     @Property(selector = "setPassTypeIdentifier:")
     public native void setPassTypeIdentifier(String v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
     @Property(selector = "url")
     public native NSURL getUrl();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
     @Property(selector = "setUrl:")
     public native void setUrl(NSURL v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithVASMode:passTypeIdentifier:url:")
-    protected native @Pointer long init(VASMode mode, String passTypeIdentifier, NSURL url);
+    protected native @Pointer long init(NFCVASMode mode, String passTypeIdentifier, NSURL url);
     /*</methods>*/
 }

@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.eventkit.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -49,6 +50,11 @@ import org.robovm.apple.corelocation.*;
     protected INLodgingReservation() {}
     protected INLodgingReservation(Handle h, long handle) { super(h, handle); }
     protected INLodgingReservation(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithItemReference:reservationNumber:bookingTime:reservationStatus:reservationHolderName:actions:URL:lodgingBusinessLocation:reservationDuration:numberOfAdults:numberOfChildren:")
+    public INLodgingReservation(INSpeakableString itemReference, String reservationNumber, NSDate bookingTime, INReservationStatus reservationStatus, String reservationHolderName, NSArray<INReservationAction> actions, NSURL URL, CLPlacemark lodgingBusinessLocation, INDateComponentsRange reservationDuration, NSNumber numberOfAdults, NSNumber numberOfChildren) { super((SkipInit) null); initObject(init(itemReference, reservationNumber, bookingTime, reservationStatus, reservationHolderName, actions, URL, lodgingBusinessLocation, reservationDuration, numberOfAdults, numberOfChildren)); }
     @Method(selector = "initWithItemReference:reservationNumber:bookingTime:reservationStatus:reservationHolderName:actions:lodgingBusinessLocation:reservationDuration:numberOfAdults:numberOfChildren:")
     public INLodgingReservation(INSpeakableString itemReference, String reservationNumber, NSDate bookingTime, INReservationStatus reservationStatus, String reservationHolderName, NSArray<INReservationAction> actions, CLPlacemark lodgingBusinessLocation, INDateComponentsRange reservationDuration, NSNumber numberOfAdults, NSNumber numberOfChildren) { super((SkipInit) null); initObject(init(itemReference, reservationNumber, bookingTime, reservationStatus, reservationHolderName, actions, lodgingBusinessLocation, reservationDuration, numberOfAdults, numberOfChildren)); }
     /*</constructors>*/
@@ -64,6 +70,11 @@ import org.robovm.apple.corelocation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithItemReference:reservationNumber:bookingTime:reservationStatus:reservationHolderName:actions:URL:lodgingBusinessLocation:reservationDuration:numberOfAdults:numberOfChildren:")
+    protected native @Pointer long init(INSpeakableString itemReference, String reservationNumber, NSDate bookingTime, INReservationStatus reservationStatus, String reservationHolderName, NSArray<INReservationAction> actions, NSURL URL, CLPlacemark lodgingBusinessLocation, INDateComponentsRange reservationDuration, NSNumber numberOfAdults, NSNumber numberOfChildren);
     @Method(selector = "initWithItemReference:reservationNumber:bookingTime:reservationStatus:reservationHolderName:actions:lodgingBusinessLocation:reservationDuration:numberOfAdults:numberOfChildren:")
     protected native @Pointer long init(INSpeakableString itemReference, String reservationNumber, NSDate bookingTime, INReservationStatus reservationStatus, String reservationHolderName, NSArray<INReservationAction> actions, CLPlacemark lodgingBusinessLocation, INDateComponentsRange reservationDuration, NSNumber numberOfAdults, NSNumber numberOfChildren);
     /*</methods>*/

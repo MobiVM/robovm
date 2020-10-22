@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.coreml.*;
 import org.robovm.apple.coregraphics.*;
+import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.metal.*;
 import org.robovm.apple.coreimage.*;
@@ -139,5 +140,33 @@ import org.robovm.apple.imageio.*;
     }
     @Method(selector = "performRequests:onImageData:orientation:error:")
     private native boolean performRequests(NSArray<VNRequest> requests, NSData imageData, CGImagePropertyOrientation orientation, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public boolean performRequests(NSArray<VNRequest> requests, CMSampleBuffer sampleBuffer) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       boolean result = performRequests(requests, sampleBuffer, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "performRequests:onCMSampleBuffer:error:")
+    private native boolean performRequests(NSArray<VNRequest> requests, CMSampleBuffer sampleBuffer, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public boolean performRequests(NSArray<VNRequest> requests, CMSampleBuffer sampleBuffer, CGImagePropertyOrientation orientation) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       boolean result = performRequests(requests, sampleBuffer, orientation, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "performRequests:onCMSampleBuffer:orientation:error:")
+    private native boolean performRequests(NSArray<VNRequest> requests, CMSampleBuffer sampleBuffer, CGImagePropertyOrientation orientation, NSError.NSErrorPtr error);
     /*</methods>*/
 }

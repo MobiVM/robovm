@@ -181,7 +181,23 @@ public enum /*<name>*/MTLDataType/*</name>*/ implements ValuedEnum {
     /**
      * @since Available in iOS 12.0 and later.
      */
-    IndirectCommandBuffer(80L);
+    IndirectCommandBuffer(80L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    VisibleFunctionTable(115L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    IntersectionFunctionTable(116L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    PrimitiveAccelerationStructure(117L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    InstanceAccelerationStructure(118L);
     /*</values>*/
 
     /*<bind>*/

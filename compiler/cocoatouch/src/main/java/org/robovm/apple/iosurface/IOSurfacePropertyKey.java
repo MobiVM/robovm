@@ -92,88 +92,88 @@ import org.robovm.apple.corefoundation.*;
      */
     public static final IOSurfacePropertyKey AllocSize = new IOSurfacePropertyKey("AllocSize");
     /**
-     * @since Available in iOS 10.0 and later.
+     * @since Available in iOS 11.0 and later.
      */
     public static final IOSurfacePropertyKey Width = new IOSurfacePropertyKey("Width");
     /**
-     * @since Available in iOS 10.0 and later.
+     * @since Available in iOS 11.0 and later.
      */
     public static final IOSurfacePropertyKey Height = new IOSurfacePropertyKey("Height");
     /**
-     * @since Available in iOS 10.0 and later.
+     * @since Available in iOS 11.0 and later.
      */
     public static final IOSurfacePropertyKey BytesPerRow = new IOSurfacePropertyKey("BytesPerRow");
     /**
-     * @since Available in iOS 10.0 and later.
+     * @since Available in iOS 11.0 and later.
      */
     public static final IOSurfacePropertyKey BytesPerElement = new IOSurfacePropertyKey("BytesPerElement");
     /**
-     * @since Available in iOS 10.0 and later.
+     * @since Available in iOS 11.0 and later.
      */
     public static final IOSurfacePropertyKey ElementWidth = new IOSurfacePropertyKey("ElementWidth");
     /**
-     * @since Available in iOS 10.0 and later.
+     * @since Available in iOS 11.0 and later.
      */
     public static final IOSurfacePropertyKey ElementHeight = new IOSurfacePropertyKey("ElementHeight");
     /**
-     * @since Available in iOS 10.0 and later.
+     * @since Available in iOS 11.0 and later.
      */
     public static final IOSurfacePropertyKey Offset = new IOSurfacePropertyKey("Offset");
     /**
-     * @since Available in iOS 10.0 and later.
+     * @since Available in iOS 11.0 and later.
      */
     public static final IOSurfacePropertyKey PlaneInfo = new IOSurfacePropertyKey("PlaneInfo");
     /**
-     * @since Available in iOS 10.0 and later.
+     * @since Available in iOS 11.0 and later.
      */
     public static final IOSurfacePropertyKey PlaneWidth = new IOSurfacePropertyKey("PlaneWidth");
     /**
-     * @since Available in iOS 10.0 and later.
+     * @since Available in iOS 11.0 and later.
      */
     public static final IOSurfacePropertyKey PlaneHeight = new IOSurfacePropertyKey("PlaneHeight");
     /**
-     * @since Available in iOS 10.0 and later.
+     * @since Available in iOS 11.0 and later.
      */
     public static final IOSurfacePropertyKey PlaneBytesPerRow = new IOSurfacePropertyKey("PlaneBytesPerRow");
     /**
-     * @since Available in iOS 10.0 and later.
+     * @since Available in iOS 11.0 and later.
      */
     public static final IOSurfacePropertyKey PlaneOffset = new IOSurfacePropertyKey("PlaneOffset");
     /**
-     * @since Available in iOS 10.0 and later.
+     * @since Available in iOS 11.0 and later.
      */
     public static final IOSurfacePropertyKey PlaneSize = new IOSurfacePropertyKey("PlaneSize");
     /**
-     * @since Available in iOS 10.0 and later.
+     * @since Available in iOS 11.0 and later.
      */
     public static final IOSurfacePropertyKey PlaneBase = new IOSurfacePropertyKey("PlaneBase");
     /**
-     * @since Available in iOS 10.0 and later.
+     * @since Available in iOS 11.0 and later.
      */
     public static final IOSurfacePropertyKey PlaneBytesPerElement = new IOSurfacePropertyKey("PlaneBytesPerElement");
     /**
-     * @since Available in iOS 10.0 and later.
+     * @since Available in iOS 11.0 and later.
      */
     public static final IOSurfacePropertyKey PlaneElementWidth = new IOSurfacePropertyKey("PlaneElementWidth");
     /**
-     * @since Available in iOS 10.0 and later.
+     * @since Available in iOS 11.0 and later.
      */
     public static final IOSurfacePropertyKey PlaneElementHeight = new IOSurfacePropertyKey("PlaneElementHeight");
     /**
-     * @since Available in iOS 10.0 and later.
+     * @since Available in iOS 11.0 and later.
      */
     public static final IOSurfacePropertyKey CacheMode = new IOSurfacePropertyKey("CacheMode");
     /**
-     * @since Available in iOS 10.0 and later.
+     * @since Available in iOS 11.0 and later.
      */
     public static final IOSurfacePropertyKey PixelFormat = new IOSurfacePropertyKey("PixelFormat");
     /**
-     * @since Available in iOS 10.0 and later.
+     * @since Available in iOS 11.0 and later.
      */
     public static final IOSurfacePropertyKey PixelSizeCastingAllowed = new IOSurfacePropertyKey("PixelSizeCastingAllowed");
     /**
-     * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 12.0.
+     * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 12.0. Use IOSurfacePropertyKeyAllocSize
      */
     @Deprecated
     public static final IOSurfacePropertyKey AllocSizeKey = new IOSurfacePropertyKey("AllocSizeKey");
@@ -208,108 +208,108 @@ import org.robovm.apple.corefoundation.*;
         @GlobalValue(symbol="IOSurfacePropertyKeyAllocSize", optional=true)
         public static native CFString AllocSize();
         /**
-         * @since Available in iOS 10.0 and later.
+         * @since Available in iOS 11.0 and later.
          */
         @GlobalValue(symbol="IOSurfacePropertyKeyWidth", optional=true)
         public static native CFString Width();
         /**
-         * @since Available in iOS 10.0 and later.
+         * @since Available in iOS 11.0 and later.
          */
         @GlobalValue(symbol="IOSurfacePropertyKeyHeight", optional=true)
         public static native CFString Height();
         /**
-         * @since Available in iOS 10.0 and later.
+         * @since Available in iOS 11.0 and later.
          */
         @GlobalValue(symbol="IOSurfacePropertyKeyBytesPerRow", optional=true)
         public static native CFString BytesPerRow();
         /**
-         * @since Available in iOS 10.0 and later.
+         * @since Available in iOS 11.0 and later.
          */
         @GlobalValue(symbol="IOSurfacePropertyKeyBytesPerElement", optional=true)
         public static native CFString BytesPerElement();
         /**
-         * @since Available in iOS 10.0 and later.
+         * @since Available in iOS 11.0 and later.
          */
         @GlobalValue(symbol="IOSurfacePropertyKeyElementWidth", optional=true)
         public static native CFString ElementWidth();
         /**
-         * @since Available in iOS 10.0 and later.
+         * @since Available in iOS 11.0 and later.
          */
         @GlobalValue(symbol="IOSurfacePropertyKeyElementHeight", optional=true)
         public static native CFString ElementHeight();
         /**
-         * @since Available in iOS 10.0 and later.
+         * @since Available in iOS 11.0 and later.
          */
         @GlobalValue(symbol="IOSurfacePropertyKeyOffset", optional=true)
         public static native CFString Offset();
         /**
-         * @since Available in iOS 10.0 and later.
+         * @since Available in iOS 11.0 and later.
          */
         @GlobalValue(symbol="IOSurfacePropertyKeyPlaneInfo", optional=true)
         public static native CFString PlaneInfo();
         /**
-         * @since Available in iOS 10.0 and later.
+         * @since Available in iOS 11.0 and later.
          */
         @GlobalValue(symbol="IOSurfacePropertyKeyPlaneWidth", optional=true)
         public static native CFString PlaneWidth();
         /**
-         * @since Available in iOS 10.0 and later.
+         * @since Available in iOS 11.0 and later.
          */
         @GlobalValue(symbol="IOSurfacePropertyKeyPlaneHeight", optional=true)
         public static native CFString PlaneHeight();
         /**
-         * @since Available in iOS 10.0 and later.
+         * @since Available in iOS 11.0 and later.
          */
         @GlobalValue(symbol="IOSurfacePropertyKeyPlaneBytesPerRow", optional=true)
         public static native CFString PlaneBytesPerRow();
         /**
-         * @since Available in iOS 10.0 and later.
+         * @since Available in iOS 11.0 and later.
          */
         @GlobalValue(symbol="IOSurfacePropertyKeyPlaneOffset", optional=true)
         public static native CFString PlaneOffset();
         /**
-         * @since Available in iOS 10.0 and later.
+         * @since Available in iOS 11.0 and later.
          */
         @GlobalValue(symbol="IOSurfacePropertyKeyPlaneSize", optional=true)
         public static native CFString PlaneSize();
         /**
-         * @since Available in iOS 10.0 and later.
+         * @since Available in iOS 11.0 and later.
          */
         @GlobalValue(symbol="IOSurfacePropertyKeyPlaneBase", optional=true)
         public static native CFString PlaneBase();
         /**
-         * @since Available in iOS 10.0 and later.
+         * @since Available in iOS 11.0 and later.
          */
         @GlobalValue(symbol="IOSurfacePropertyKeyPlaneBytesPerElement", optional=true)
         public static native CFString PlaneBytesPerElement();
         /**
-         * @since Available in iOS 10.0 and later.
+         * @since Available in iOS 11.0 and later.
          */
         @GlobalValue(symbol="IOSurfacePropertyKeyPlaneElementWidth", optional=true)
         public static native CFString PlaneElementWidth();
         /**
-         * @since Available in iOS 10.0 and later.
+         * @since Available in iOS 11.0 and later.
          */
         @GlobalValue(symbol="IOSurfacePropertyKeyPlaneElementHeight", optional=true)
         public static native CFString PlaneElementHeight();
         /**
-         * @since Available in iOS 10.0 and later.
+         * @since Available in iOS 11.0 and later.
          */
         @GlobalValue(symbol="IOSurfacePropertyKeyCacheMode", optional=true)
         public static native CFString CacheMode();
         /**
-         * @since Available in iOS 10.0 and later.
+         * @since Available in iOS 11.0 and later.
          */
         @GlobalValue(symbol="IOSurfacePropertyKeyPixelFormat", optional=true)
         public static native CFString PixelFormat();
         /**
-         * @since Available in iOS 10.0 and later.
+         * @since Available in iOS 11.0 and later.
          */
         @GlobalValue(symbol="IOSurfacePropertyKeyPixelSizeCastingAllowed", optional=true)
         public static native CFString PixelSizeCastingAllowed();
         /**
-         * @since Available in iOS 10.0 and later.
-         * @deprecated Deprecated in iOS 12.0.
+         * @since Available in iOS 11.0 and later.
+         * @deprecated Deprecated in iOS 12.0. Use IOSurfacePropertyKeyAllocSize
          */
         @Deprecated
         @GlobalValue(symbol="IOSurfacePropertyAllocSizeKey", optional=true)

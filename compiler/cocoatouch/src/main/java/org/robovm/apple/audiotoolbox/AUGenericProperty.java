@@ -82,6 +82,7 @@ public enum /*<name>*/AUGenericProperty/*</name>*/ implements AUPropertyType {
     RequestViewController(56L),
     ParametersForOverview(57L),
     SupportsMPE(58L),
+    RenderContextObserver(60L),
     MIDIOutputCallbackInfo(47L),
     MIDIOutputCallback(48L),
     RemoteControlEventListener(100L),

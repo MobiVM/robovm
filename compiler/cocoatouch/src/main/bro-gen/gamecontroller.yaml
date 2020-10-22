@@ -1,5 +1,5 @@
 package: org.robovm.apple.gamecontroller
-include: [foundation.yaml, dispatch.yaml, uikit.yaml]
+include: [foundation, dispatch, uikit, corehaptic]
 library: GameController
 framework: GameController
 clang_args: ['-x', 'objective-c']
@@ -12,6 +12,9 @@ enums:
     GCControllerPlayerIndex: {}
     GCExtendedGamepadSnapshotDataVersion: {}
     GCMicroGamepadSnapshotDataVersion: {}
+    GCDeviceBatteryState: {}
+    GCSystemGestureState: {}
+    GCTouchState: {}
 classes:
     # Structs
     GCAcceleration: {}
@@ -81,8 +84,30 @@ classes:
             '-initWithSnapshotData:':
                 name: init
     GCEventViewController: {}
-
-protocols: {}
+    GCColor: #since 14.0
+        methods:
+            '-initWithRed:green:blue:':
+                name: init
+    GCControllerTouchpad: #since 14.0
+        methods:
+            '-setValueForXAxis:yAxis:touchDown:buttonValue:':
+                name: setValue
+    GCDeviceBattery: {} #since 14.0
+    GCDeviceCursor: {} #since 14.0
+    GCDeviceHaptics: #since 14.0
+        methods:
+            '-createEngineWithLocality:':
+                name: createEngine
+    GCDeviceLight: {} #since 14.0
+    GCDualShockGamepad: {} #since 14.0
+    GCKeyboard: {} #since 14.0
+    GCKeyboardInput: {} #since 14.0
+    GCMouse: {} #since 14.0
+    GCMouseInput: {} #since 14.0
+    GCPhysicalInputProfile: {} #since 14.0
+    GCXboxGamepad: {} #since 14.0
+protocols:
+    GCDevice: {} #since 14.0
 
 functions:
     (GCExtendedGamepadSnapShotDataV100FromNSData):
@@ -133,11 +158,51 @@ values:
         class: GCMicroGamepadSnapshot
         name: getDataVersion
 
+    GCInputXbox(.*):
+        class: GCPhysicalInputProfile
+        static_class: Xbox
+        name: '#{g[0]}'
+    GCInputDualShock(.*):
+        class: GCPhysicalInputProfile
+        static_class: DualShock
+        name: '#{g[0]}'
+    GCInput(.*):
+        class: GCPhysicalInputProfile
+        static_class: Common
+        name: '#{g[0]}'
+    GCKeyCode(.*):
+        class: GCKeyCode
+        name: '#{g[0]}'
+    GCKey(.*):
+        class: GCKey
+        name: '#{g[0]}'
+
+    GCKeyboard(.*)Notification:
+        class: GCKeyboard
+        static_class: Notifications
+        type: NSString
+        name: '#{g[0]}'
+    GCMouse(.*)Notification:
+        class: GCMouse
+        static_class: Notifications
+        type: NSString
+        name: '#{g[0]}'
+
+    GCHapticDuration(Infinite):
+        class: GCDeviceHaptics
+        name: '#{g[0]}'
 
     # Make sure we don't miss any values if new ones are introduced in a later version
     (k?GC.*):
         class: GameController
         name: 'Value__#{g[0]}'
+
+typed_enums:
+    GCHapticsLocality:
+        enum: GCHapticsLocality
+        prefix: GCHapticsLocality
+        type: NSString
+
 
 constants:
     GCControllerPlayerIndexUnset:

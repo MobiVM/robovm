@@ -62,14 +62,38 @@ import org.robovm.apple.corefoundation.*;
     public static native @MachineSizedUInt long getNumberOfExternalDevices();
     @Bridge(symbol="MIDIGetExternalDevice", optional=true)
     public static native MIDIDevice getExternalDevice(@MachineSizedUInt long deviceIndex0);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Bridge(symbol="MIDISendEventList", optional=true)
+    public static native OSStatus sendEventList(MIDIPort port, MIDIEndpoint dest, MIDIEventList evtlist);
+    /**
+     * @deprecated Use MIDISendEventList
+     */
+    @Deprecated
     @Bridge(symbol="MIDISend", optional=true)
     public static native MIDIError send(MIDIPort port, MIDIEndpoint dest, MIDIPacketList pktlist);
     @Bridge(symbol="MIDISendSysex", optional=true)
     public static native MIDIError sendSysex(MIDISysexSendRequest request);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Bridge(symbol="MIDIReceivedEventList", optional=true)
+    public static native OSStatus receivedEventList(MIDIEndpoint src, MIDIEventList evtlist);
     @Bridge(symbol="MIDIFlushOutput", optional=true)
     public static native MIDIError flushOutput(MIDIEndpoint dest);
     @Bridge(symbol="MIDIRestart", optional=true)
     public static native MIDIError restart();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Bridge(symbol="MIDIEventListInit", optional=true)
+    public static native MIDIEventPacket eventListInit(MIDIEventList evtlist, MIDIProtocolID protocol);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Bridge(symbol="MIDIEventListAdd", optional=true)
+    public static native MIDIEventPacket eventListAdd(MIDIEventList evtlist, @MachineSizedUInt long listSize, MIDIEventPacket curPacket, long time, @MachineSizedUInt long wordCount, IntPtr words);
     @Bridge(symbol="MIDISetupAddDevice", optional=true)
     public static native MIDIError addDevice(MIDIDevice device);
     @Bridge(symbol="MIDISetupRemoveDevice", optional=true)

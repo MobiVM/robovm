@@ -88,6 +88,16 @@ import org.robovm.apple.linkpresentation.*;
     @Property(selector = "isFocused")
     public native boolean isFocused();
     /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "focusGroupIdentifier")
+    public native String getFocusGroupIdentifier();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setFocusGroupIdentifier:")
+    public native void setFocusGroupIdentifier(String v);
+    /**
      * @since Available in iOS 9.0 and later.
      */
     @Property(selector = "semanticContentAttribute")
@@ -119,12 +129,12 @@ import org.robovm.apple.linkpresentation.*;
     @Property(selector = "setTransform:")
     public native void setTransform(@ByVal CGAffineTransform v);
     /**
-     * @since Available in iOS 12.0 and later.
+     * @since Available in iOS 13.0 and later.
      */
     @Property(selector = "transform3D")
     public native @ByVal CATransform3D getTransform3D();
     /**
-     * @since Available in iOS 12.0 and later.
+     * @since Available in iOS 13.0 and later.
      */
     @Property(selector = "setTransform3D:")
     public native void setTransform3D(@ByVal CATransform3D v);
@@ -363,16 +373,6 @@ import org.robovm.apple.linkpresentation.*;
     /**
      * @since Available in iOS 11.0 and later.
      */
-    @Property(selector = "accessibilityIgnoresInvertColors")
-    public native boolean isAccessibilityIgnoresInvertColors();
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
-    @Property(selector = "setAccessibilityIgnoresInvertColors:")
-    public native void setAccessibilityIgnoresInvertColors(boolean v);
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
     @Property(selector = "interactions")
     public native NSArray<?> getInteractions();
     /**
@@ -380,6 +380,16 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Property(selector = "setInteractions:")
     public native void setInteractions(NSArray<?> v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "accessibilityIgnoresInvertColors")
+    public native boolean isAccessibilityIgnoresInvertColors();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setAccessibilityIgnoresInvertColors:")
+    public native void setAccessibilityIgnoresInvertColors(boolean v);
     /**
      * @since Available in iOS 13.0 and later.
      */

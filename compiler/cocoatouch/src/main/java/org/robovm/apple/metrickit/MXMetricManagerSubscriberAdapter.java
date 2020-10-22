@@ -50,5 +50,10 @@ import org.robovm.apple.foundation.*;
     /*<methods>*/
     @NotImplemented("didReceiveMetricPayloads:")
     public void didReceiveMetricPayloads(NSArray<MXMetricPayload> payloads) {}
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @NotImplemented("didReceiveDiagnosticPayloads:")
+    public void didReceiveDiagnosticPayloads(NSArray<MXDiagnosticPayload> payloads) {}
     /*</methods>*/
 }

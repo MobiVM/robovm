@@ -90,5 +90,10 @@ import org.robovm.apple.metal.*;
      */
     @NotImplemented("weightsLayout")
     public MPSCNNConvolutionWeightsLayout weightsLayout() { return null; }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @NotImplemented("kernelWeightsDataType")
+    public MPSDataType kernelWeightsDataType() { return null; }
     /*</methods>*/
 }

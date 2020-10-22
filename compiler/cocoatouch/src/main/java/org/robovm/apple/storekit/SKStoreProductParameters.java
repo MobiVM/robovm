@@ -29,6 +29,7 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -188,6 +189,16 @@ import org.robovm.apple.uikit.*;
          */
         @GlobalValue(symbol="SKStoreProductParameterAdNetworkTimestamp", optional=true)
         public static native NSString AdNetworkTimestamp();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="SKStoreProductParameterAdNetworkSourceAppStoreIdentifier", optional=true)
+        public static native NSString AdNetworkSourceAppStoreIdentifier();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="SKStoreProductParameterAdNetworkVersion", optional=true)
+        public static native NSString AdNetworkVersion();
         @GlobalValue(symbol="SKStoreProductParameterITunesItemIdentifier", optional=true)
         public static native NSString ITunesItemIdentifier();
         /**

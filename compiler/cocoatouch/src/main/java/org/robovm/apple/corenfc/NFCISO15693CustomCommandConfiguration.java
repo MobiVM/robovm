@@ -48,29 +48,59 @@ import org.robovm.apple.dispatch.*;
     public NFCISO15693CustomCommandConfiguration() {}
     protected NFCISO15693CustomCommandConfiguration(Handle h, long handle) { super(h, handle); }
     protected NFCISO15693CustomCommandConfiguration(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Method(selector = "initWithManufacturerCode:customCommandCode:requestParameters:")
     public NFCISO15693CustomCommandConfiguration(@MachineSizedUInt long manufacturerCode, @MachineSizedUInt long customCommandCode, NSData requestParameters) { super((SkipInit) null); initObject(init(manufacturerCode, customCommandCode, requestParameters)); }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Method(selector = "initWithManufacturerCode:customCommandCode:requestParameters:maximumRetries:retryInterval:")
     public NFCISO15693CustomCommandConfiguration(@MachineSizedUInt long manufacturerCode, @MachineSizedUInt long customCommandCode, NSData requestParameters, @MachineSizedUInt long maximumRetries, double retryInterval) { super((SkipInit) null); initObject(init(manufacturerCode, customCommandCode, requestParameters, maximumRetries, retryInterval)); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Property(selector = "manufacturerCode")
     public native @MachineSizedUInt long getManufacturerCode();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Property(selector = "setManufacturerCode:")
     public native void setManufacturerCode(@MachineSizedUInt long v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Property(selector = "customCommandCode")
     public native @MachineSizedUInt long getCustomCommandCode();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Property(selector = "setCustomCommandCode:")
     public native void setCustomCommandCode(@MachineSizedUInt long v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Property(selector = "requestParameters")
     public native NSData getRequestParameters();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Property(selector = "setRequestParameters:")
     public native void setRequestParameters(NSData v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Method(selector = "initWithManufacturerCode:customCommandCode:requestParameters:")
     protected native @Pointer long init(@MachineSizedUInt long manufacturerCode, @MachineSizedUInt long customCommandCode, NSData requestParameters);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Method(selector = "initWithManufacturerCode:customCommandCode:requestParameters:maximumRetries:retryInterval:")
     protected native @Pointer long init(@MachineSizedUInt long manufacturerCode, @MachineSizedUInt long customCommandCode, NSData requestParameters, @MachineSizedUInt long maximumRetries, double retryInterval);
     /*</methods>*/

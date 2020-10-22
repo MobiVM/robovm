@@ -100,9 +100,13 @@ import org.robovm.apple.audiotoolbox.*;
     public static final AVAudioSessionPolarPattern Omnidirectional = new AVAudioSessionPolarPattern("Omnidirectional");
     public static final AVAudioSessionPolarPattern Cardioid = new AVAudioSessionPolarPattern("Cardioid");
     public static final AVAudioSessionPolarPattern Subcardioid = new AVAudioSessionPolarPattern("Subcardioid");
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final AVAudioSessionPolarPattern Stereo = new AVAudioSessionPolarPattern("Stereo");
     /*</constants>*/
     
-    private static /*<name>*/AVAudioSessionPolarPattern/*</name>*/[] values = new /*<name>*/AVAudioSessionPolarPattern/*</name>*/[] {/*<value_list>*/Omnidirectional, Cardioid, Subcardioid/*</value_list>*/};
+    private static /*<name>*/AVAudioSessionPolarPattern/*</name>*/[] values = new /*<name>*/AVAudioSessionPolarPattern/*</name>*/[] {/*<value_list>*/Omnidirectional, Cardioid, Subcardioid, Stereo/*</value_list>*/};
     
     /*<name>*/AVAudioSessionPolarPattern/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -131,6 +135,11 @@ import org.robovm.apple.audiotoolbox.*;
         public static native NSString Cardioid();
         @GlobalValue(symbol="AVAudioSessionPolarPatternSubcardioid", optional=true)
         public static native NSString Subcardioid();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="AVAudioSessionPolarPatternStereo", optional=true)
+        public static native NSString Stereo();
         /*</values>*/
     }
 }

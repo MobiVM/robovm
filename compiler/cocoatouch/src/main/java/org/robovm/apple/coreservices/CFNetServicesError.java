@@ -45,7 +45,11 @@ public enum /*<name>*/CFNetServicesError/*</name>*/ implements ValuedEnum {
     BadArgument(-72004L),
     Cancel(-72005L),
     Invalid(-72006L),
-    Timeout(-72007L);
+    Timeout(-72007L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    MissingRequiredConfiguration(-72008L);
     /*</values>*/
 
     /*<bind>*/

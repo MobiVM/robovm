@@ -1,5 +1,5 @@
 package: org.robovm.apple.fileprovider
-include: [foundation, coregraphics]
+include: [foundation, coregraphics, uniformtypeid]
 library: FileProvider
 framework: FileProvider
 clang_args: ['-x', 'objective-c']

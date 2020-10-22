@@ -43,7 +43,7 @@ import org.robovm.apple.metal.*;
 /*<annotations>*/@Library("CoreML") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MLSequence/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class MLSequencePtr extends Ptr<MLSequence, MLSequencePtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(MLSequence.class); }/*</bind>*/
@@ -54,6 +54,8 @@ import org.robovm.apple.metal.*;
     protected MLSequence(SkipInit skipInit) { super(skipInit); }
     public MLSequence(MLFeatureType type) { super((Handle) null, create(type)); retain(getHandle()); }
     public MLSequence(NSArray<NSString> stringValues) { super((Handle) null, create0(stringValues)); retain(getHandle()); }
+    @Method(selector = "initWithCoder:")
+    public MLSequence(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "type")
@@ -62,6 +64,8 @@ import org.robovm.apple.metal.*;
     public native NSArray<NSString> getStringValues();
     @Property(selector = "int64Values")
     public native NSArray<NSNumber> getInt64Values();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -71,5 +75,9 @@ import org.robovm.apple.metal.*;
     protected static native @Pointer long create0(NSArray<NSString> stringValues);
     @Method(selector = "sequenceWithInt64Array:")
     public static native MLSequence create(NSArray<NSNumber> int64Values);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

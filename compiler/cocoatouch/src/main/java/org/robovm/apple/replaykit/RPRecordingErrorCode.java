@@ -73,6 +73,8 @@ public enum /*<name>*/RPRecordingErrorCode/*</name>*/ implements NSErrorCode {
     PhotoFailure(-5831L),
     RecordingInvalidSession(-5832L),
     FailedToStartCaptureStack(-5833L),
+    InvalidParameter(-5834L),
+    FilePermissions(-5835L),
     CodeSuccessful(0L);
     /*</values>*/
 

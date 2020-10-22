@@ -29,6 +29,7 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -40,7 +41,9 @@ public enum /*<name>*/GKGameCenterViewControllerState/*</name>*/ implements Valu
     Default(-1L),
     Leaderboards(0L),
     Achievements(1L),
-    Challenges(2L);
+    Challenges(2L),
+    LocalPlayerProfile(3L),
+    Dashboard(4L);
     /*</values>*/
 
     /*<bind>*/

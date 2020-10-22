@@ -140,6 +140,11 @@ import org.robovm.apple.foundation.*;
      */
     @Method(selector = "decibelAWeightedSoundPressureLevelUnit")
     public static native HKUnit decibelAWeightedSoundPressureLevel();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "inchesOfMercuryUnit")
+    public static native HKUnit inchesOfMercury();
     @Method(selector = "secondUnitWithMetricPrefix:")
     public static native HKUnit second(HKMetricPrefix prefix);
     @Method(selector = "secondUnit")
@@ -214,6 +219,16 @@ import org.robovm.apple.foundation.*;
      */
     @Method(selector = "hertzUnit")
     public static native HKUnit hertz();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "voltUnitWithMetricPrefix:")
+    public static native HKUnit volt(HKMetricPrefix prefix);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "voltUnit")
+    public static native HKUnit volt();
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

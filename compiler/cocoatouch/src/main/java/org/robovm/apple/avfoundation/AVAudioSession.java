@@ -153,28 +153,15 @@ import org.robovm.apple.audiotoolbox.*;
     public native @org.robovm.rt.bro.annotation.Marshaler(AVAudioSessionMode.AsListMarshaler.class) List<AVAudioSessionMode> getAvailableModes();
     @Property(selector = "mode")
     public native AVAudioSessionMode getMode();
-    @Property(selector = "recordPermission")
-    public native AVAudioSessionRecordPermission getRecordPermission();
-    @Property(selector = "isOtherAudioPlaying")
-    public native boolean isOtherAudioPlaying();
-    @Property(selector = "secondaryAudioShouldBeSilencedHint")
-    public native boolean secondaryAudioShouldBeSilencedHint();
-    @Property(selector = "currentRoute")
-    public native AVAudioSessionRouteDescription getCurrentRoute();
-    @Property(selector = "preferredInput")
-    public native AVAudioSessionPortDescription getPreferredInput();
-    @Property(selector = "availableInputs")
-    public native NSArray<AVAudioSessionPortDescription> getAvailableInputs();
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @Property(selector = "promptStyle")
-    public native AVAudioSessionPromptStyle getPromptStyle();
     /**
      * @since Available in iOS 13.0 and later.
      */
     @Property(selector = "allowHapticsAndSystemSoundsDuringRecording")
     public native boolean isAllowHapticsAndSystemSoundsDuringRecording();
+    @Property(selector = "recordPermission")
+    public native AVAudioSessionRecordPermission getRecordPermission();
+    @Property(selector = "preferredInput")
+    public native AVAudioSessionPortDescription getPreferredInput();
     @Property(selector = "preferredSampleRate")
     public native double getPreferredSampleRate();
     @Property(selector = "preferredIOBufferDuration")
@@ -183,6 +170,16 @@ import org.robovm.apple.audiotoolbox.*;
     public native @MachineSizedSInt long getPreferredInputNumberOfChannels();
     @Property(selector = "preferredOutputNumberOfChannels")
     public native @MachineSizedSInt long getPreferredOutputNumberOfChannels();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "preferredInputOrientation")
+    public native AVAudioStereoOrientation getPreferredInputOrientation();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "inputOrientation")
+    public native AVAudioStereoOrientation getInputOrientation();
     @Property(selector = "maximumInputNumberOfChannels")
     public native @MachineSizedSInt long getMaximumInputNumberOfChannels();
     @Property(selector = "maximumOutputNumberOfChannels")
@@ -207,14 +204,27 @@ import org.robovm.apple.audiotoolbox.*;
     public native @MachineSizedSInt long getInputNumberOfChannels();
     @Property(selector = "outputNumberOfChannels")
     public native @MachineSizedSInt long getOutputNumberOfChannels();
-    @Property(selector = "outputVolume")
-    public native float getOutputVolume();
     @Property(selector = "inputLatency")
     public native double getInputLatency();
     @Property(selector = "outputLatency")
     public native double getOutputLatency();
     @Property(selector = "IOBufferDuration")
     public native double getIOBufferDuration();
+    @Property(selector = "isOtherAudioPlaying")
+    public native boolean isOtherAudioPlaying();
+    @Property(selector = "secondaryAudioShouldBeSilencedHint")
+    public native boolean secondaryAudioShouldBeSilencedHint();
+    @Property(selector = "outputVolume")
+    public native float getOutputVolume();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "promptStyle")
+    public native AVAudioSessionPromptStyle getPromptStyle();
+    @Property(selector = "availableInputs")
+    public native NSArray<AVAudioSessionPortDescription> getAvailableInputs();
+    @Property(selector = "currentRoute")
+    public native AVAudioSessionRouteDescription getCurrentRoute();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -231,22 +241,6 @@ import org.robovm.apple.audiotoolbox.*;
     @GlobalValue(symbol="AVAudioSessionSilenceSecondaryAudioHintTypeKey", optional=true)
     protected static native NSString SilenceSecondaryAudioHintTypeKey();
     
-    public boolean setActive(boolean active) throws NSErrorException {
-       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
-       boolean result = setActive(active, ptr);
-       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
-       return result;
-    }
-    @Method(selector = "setActive:error:")
-    private native boolean setActive(boolean active, NSError.NSErrorPtr outError);
-    public boolean setActive(boolean active, AVAudioSessionSetActiveOptions options) throws NSErrorException {
-       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
-       boolean result = setActive(active, options, ptr);
-       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
-       return result;
-    }
-    @Method(selector = "setActive:withOptions:error:")
-    private native boolean setActive(boolean active, AVAudioSessionSetActiveOptions options, NSError.NSErrorPtr outError);
     public boolean setCategory(AVAudioSessionCategory category) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        boolean result = setCategory(category, ptr);
@@ -299,6 +293,20 @@ import org.robovm.apple.audiotoolbox.*;
     }
     @Method(selector = "setMode:error:")
     private native boolean setMode(AVAudioSessionMode mode, NSError.NSErrorPtr outError);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public boolean setAllowHapticsAndSystemSoundsDuringRecording(boolean inValue) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       boolean result = setAllowHapticsAndSystemSoundsDuringRecording(inValue, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "setAllowHapticsAndSystemSoundsDuringRecording:error:")
+    private native boolean setAllowHapticsAndSystemSoundsDuringRecording(boolean inValue, NSError.NSErrorPtr outError);
     @Method(selector = "requestRecordPermission:")
     public native void requestRecordPermission(@Block VoidBooleanBlock response);
     public boolean overrideOutputAudioPort(AVAudioSessionPortOverride portOverride) throws NSErrorException {
@@ -317,22 +325,24 @@ import org.robovm.apple.audiotoolbox.*;
     }
     @Method(selector = "setPreferredInput:error:")
     private native boolean setPreferredInput(AVAudioSessionPortDescription inPort, NSError.NSErrorPtr outError);
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    public boolean setAllowHapticsAndSystemSoundsDuringRecording(boolean inValue) throws NSErrorException {
+    @Method(selector = "sharedInstance")
+    public static native AVAudioSession getSharedInstance();
+    public boolean setActive(boolean active) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
-       boolean result = setAllowHapticsAndSystemSoundsDuringRecording(inValue, ptr);
+       boolean result = setActive(active, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        return result;
     }
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @Method(selector = "setAllowHapticsAndSystemSoundsDuringRecording:error:")
-    private native boolean setAllowHapticsAndSystemSoundsDuringRecording(boolean inValue, NSError.NSErrorPtr outError);
-    @Method(selector = "sharedInstance")
-    public static native AVAudioSession getSharedInstance();
+    @Method(selector = "setActive:error:")
+    private native boolean setActive(boolean active, NSError.NSErrorPtr outError);
+    public boolean setActive(boolean active, AVAudioSessionSetActiveOptions options) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       boolean result = setActive(active, options, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    @Method(selector = "setActive:withOptions:error:")
+    private native boolean setActive(boolean active, AVAudioSessionSetActiveOptions options, NSError.NSErrorPtr outError);
     public boolean setPreferredSampleRate(double sampleRate) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        boolean result = setPreferredSampleRate(sampleRate, ptr);
@@ -365,6 +375,20 @@ import org.robovm.apple.audiotoolbox.*;
     }
     @Method(selector = "setPreferredOutputNumberOfChannels:error:")
     private native boolean setPreferredOutputNumberOfChannels(@MachineSizedSInt long count, NSError.NSErrorPtr outError);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public boolean setPreferredInputOrientation(AVAudioStereoOrientation orientation) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       boolean result = setPreferredInputOrientation(orientation, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "setPreferredInputOrientation:error:")
+    private native boolean setPreferredInputOrientation(AVAudioStereoOrientation orientation, NSError.NSErrorPtr outError);
     public boolean setInputGain(float gain) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        boolean result = setInputGain(gain, ptr);

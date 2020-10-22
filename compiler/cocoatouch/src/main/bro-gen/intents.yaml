@@ -1,5 +1,5 @@
 package: org.robovm.apple.intents
-include: [foundation, eventkit, corelocation]
+include: [foundation, eventkit, corelocation, coregraphics]
 library: Intents
 framework: Intents
 clang_args: ['-x', 'objective-c']
@@ -147,7 +147,17 @@ enums:
     INTicketedEventCategory: {} #since 13.0
     INUpdateMediaAffinityMediaItemUnsupportedReason: {} #since 13.0
     INMediaUserContextSubscriptionStatus: {} #since 13.0
+    INShortcutAvailabilityOptions: {prefix: INShortcutAvailabilityOptionSleep} #since 14.0
+    INOutgoingMessageType: {} #since 14.0
+    INListCarsIntentResponseCode: {} #since 14.0
+    INDayOfWeekOptions: {prefix: INDayOfWeekOption} #since 14.0
+    INStartCallCallRecordToCallBackUnsupportedReason: {} #since 14.0
 
+typed_enums:
+    INCarChargingConnectorType:
+        enum: INCarChargingConnectorType
+        type: NSString
+        prefix: INCarChargingConnectorType
 categories:
     NSUserActivity: {}
     CLPlacemark:
@@ -695,6 +705,8 @@ classes:
         methods:
             '-initWithInterval:frequency:':
                 name: init
+            '-initWithInterval:frequency:weeklyRecurrenceDays:':
+                name: init
     INRelativeReferenceResolutionResult: #since 10.0
         methods:
             '+successWithResolvedRelativeReference:':
@@ -1201,6 +1213,10 @@ classes:
                 name: init
             '-initWithIdentifier:displayString:':
                 name: init
+            '-initWithIdentifier:displayString:subtitleString:displayImage:':
+                name: init
+            '-initWithIdentifier:displayString:pronunciationHint:subtitleString:displayImage:':
+                name: init
     INPlayMediaIntent: #since 12.0
         methods:
             '-initWithMediaItems:mediaContainer:playShuffled:playbackRepeatMode:resumePlayback:':
@@ -1343,6 +1359,8 @@ classes:
         methods:
             '-initWithItemReference:reservationNumber:bookingTime:reservationStatus:reservationHolderName:actions:reservedSeat:flight:':
                 name: init
+            '-initWithItemReference:reservationNumber:bookingTime:reservationStatus:reservationHolderName:actions:URL:reservedSeat:flight:':
+                name: init
     INGetReservationDetailsIntent: #since 13.0
         methods:
             '-initWithReservationContainerReference:reservationItemReferences:':
@@ -1362,6 +1380,8 @@ classes:
     INLodgingReservation: #since 13.0
         methods:
             '-initWithItemReference:reservationNumber:bookingTime:reservationStatus:reservationHolderName:actions:lodgingBusinessLocation:reservationDuration:numberOfAdults:numberOfChildren:':
+                name: init
+            '-initWithItemReference:reservationNumber:bookingTime:reservationStatus:reservationHolderName:actions:URL:lodgingBusinessLocation:reservationDuration:numberOfAdults:numberOfChildren:':
                 name: init
     INMassResolutionResult: #since 13.0
         methods:
@@ -1394,6 +1414,10 @@ classes:
             '+confirmationRequiredWithMediaDestinationToConfirm:':
                 name: confirmationRequired
     INMediaItemResolutionResult: #since 12.0
+        methods_private:
+            '+successesWithResolvedMediaItems:':
+                name: successes
+                return_type: NSArray<? extends INMediaItemResolutionResult>
         methods:
             '+successWithResolvedMediaItem:':
                 name: success
@@ -1454,6 +1478,8 @@ classes:
         methods:
             '-initWithItemReference:reservationNumber:bookingTime:reservationStatus:reservationHolderName:actions:rentalCar:rentalDuration:pickupLocation:dropOffLocation:':
                 name: init
+            '-initWithItemReference:reservationNumber:bookingTime:reservationStatus:reservationHolderName:actions:URL:rentalCar:rentalDuration:pickupLocation:dropOffLocation:':
+                name: init
     INReservation: {} #since 13.0
     INReservationAction: #since 13.0
         methods:
@@ -1462,6 +1488,8 @@ classes:
     INRestaurantReservation: #since 13.0
         methods:
             '-initWithItemReference:reservationNumber:bookingTime:reservationStatus:reservationHolderName:actions:reservationDuration:partySize:restaurantLocation:':
+                name: init
+            '-initWithItemReference:reservationNumber:bookingTime:reservationStatus:reservationHolderName:actions:URL:reservationDuration:partySize:restaurantLocation:':
                 name: init
     INSearchForMediaIntent: #since 13.0
         methods:
@@ -1515,6 +1543,8 @@ classes:
         methods:
             '-initWithAudioRoute:destinationType:contacts:recordTypeForRedialing:callCapability:':
                 name: init
+            '-initWithCallRecordFilter:callRecordToCallBack:audioRoute:destinationType:contacts:callCapability:':
+                name: init
     INStartCallIntentResponse: #since 13.0
         methods:
             '-initWithCode:userActivity:':
@@ -1539,6 +1569,8 @@ classes:
         methods:
             '-initWithItemReference:reservationNumber:bookingTime:reservationStatus:reservationHolderName:actions:reservedSeat:event:':
                 name: init
+            '-initWithItemReference:reservationNumber:bookingTime:reservationStatus:reservationHolderName:actions:URL:reservedSeat:event:':
+                name: init
     INTimeIntervalResolutionResult: #since 13.0
         methods:
             '+successWithResolvedTimeInterval:':
@@ -1548,6 +1580,8 @@ classes:
     INTrainReservation: #since 13.0
         methods:
             '-initWithItemReference:reservationNumber:bookingTime:reservationStatus:reservationHolderName:actions:reservedSeat:trainTrip:':
+                name: init
+            '-initWithItemReference:reservationNumber:bookingTime:reservationStatus:reservationHolderName:actions:URL:reservedSeat:trainTrip:':
                 name: init
     INTrainTrip: #since 13.0
         methods:
@@ -1582,6 +1616,79 @@ classes:
                 name: disambiguation
             '+confirmationRequiredWithVolumeToConfirm:':
                 name: confirmationRequired
+    INBoatReservation: #since 14.0
+        methods:
+            '-initWithItemReference:reservationNumber:bookingTime:reservationStatus:reservationHolderName:actions:URL:reservedSeat:boatTrip:':
+                name: init
+    INBoatTrip: #since 14.0
+        methods:
+            '-initWithProvider:boatName:boatNumber:tripDuration:departureBoatTerminalLocation:arrivalBoatTerminalLocation:':
+                name: init
+    INBusReservation: #since 14.0
+        methods:
+            '-initWithItemReference:reservationNumber:bookingTime:reservationStatus:reservationHolderName:actions:URL:reservedSeat:busTrip:':
+                name: init
+    INBusTrip: #since 14.0
+        methods:
+            '-initWithProvider:busName:busNumber:tripDuration:departureBusStopLocation:departurePlatform:arrivalBusStopLocation:arrivalPlatform:':
+                name: init
+    INCallRecordFilter: #since 14.0
+        methods:
+            '-initWithParticipants:callTypes:callCapability:':
+                name: init
+    INCallRecordResolutionResult: #since 11.0
+        methods:
+            '+successWithResolvedCallRecord:':
+                name: createSuccess
+            '+disambiguationWithCallRecordsToDisambiguate:':
+                name: createDisambiguation
+            '+confirmationRequiredWithCallRecordToConfirm:':
+                name: createConfirmationRequired
+    INCar: #since 14.0
+        methods:
+            '-initWithCarIdentifier:displayName:year:make:model:color:headUnit:supportedChargingConnectors:':
+                name: init
+            '-setMaximumPower:forChargingConnectorType:':
+                name: setMaximumPower
+    INCarHeadUnit: #since 14.0
+        methods:
+            '-initWithBluetoothIdentifier:iAP2Identifier:':
+                name: init
+    INColor: #since 14.0
+        methods:
+            '-initWithRed:green:blue:':
+                name: init
+    INListCarsIntent: {} #since 14.0
+    INListCarsIntentResponse: #since 14.0
+        methods:
+            '-initWithCode:userActivity:':
+                name: init
+    INObjectCollection: #since 14.0
+        methods:
+            '-initWithSections:':
+                static_constructor_name: createFromSections
+                name: initFromSection
+            '-initWithItems:':
+                name: init
+    INObjectSection: #since 14.0
+        methods:
+            '-initWithTitle:items:':
+                name: init
+    INOutgoingMessageTypeResolutionResult: #since 14.0
+        methods:
+            '+successWithResolvedOutgoingMessageType:':
+                name: createSuccess
+            '+confirmationRequiredWithOutgoingMessageTypeToConfirm:':
+                name: createConfirmationRequired
+    INSendMessageAttachment: #since 14.0
+        methods:
+            '+attachmentWithAudioMessageFile:':
+                constructor: true
+                name: create
+    INStartCallCallRecordToCallBackResolutionResult: #since 14.0
+        methods:
+            '-initWithCallRecordResolutionResult:':
+                name: init
 
 protocols:
     INActivateCarSignalIntentHandling: #since 10.3
@@ -1726,6 +1833,8 @@ protocols:
                 trim_after_first_colon: true
             '-resolveCarNameForGetCarPowerLevelStatus:withCompletion:':
                 trim_after_first_colon: true
+            '-startSendingUpdatesForGetCarPowerLevelStatus:toObserver:':
+                name: startSendingUpdatesForGetCarPowerLevelStatus
     INGetRestaurantGuestIntentHandling: #since 10.0
         methods:
             '-handleGetRestaurantGuest:completion:':
@@ -1973,6 +2082,8 @@ protocols:
             '-resolveContentForSendMessage:withCompletion:':
                 trim_after_first_colon: true
             '-resolveSpeakableGroupNameForSendMessage:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveOutgoingMessageTypeForSendMessage:withCompletion:':
                 trim_after_first_colon: true
     INSendPaymentIntentHandling: #since 10.0
         methods:
@@ -2272,6 +2383,8 @@ protocols:
                 name: resolveContacts
             '-resolveCallCapabilityForStartCall:withCompletion:':
                 name: resolveCallCapability
+            '-resolveCallRecordToCallBackForStartCall:withCompletion:':
+                name: resolveCallRecord
     INUpdateMediaAffinityIntentHandling: #since 13.0
         methods:
             '-handleUpdateMediaAffinity:completion:':
@@ -2282,7 +2395,13 @@ protocols:
                 name: resolveMediaItems
             '-resolveAffinityTypeForUpdateMediaAffinity:withCompletion:':
                 name: resolveAffinityType
-
+    INGetCarPowerLevelStatusIntentResponseObserver: {} #since 14.0
+    INListCarsIntentHandling: #since 14.0
+        methods:
+            '-handleListCars:completion:':
+                name: handleListCars
+            '-confirmListCars:completion:':
+                name: confirmListCars
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (IN.*):

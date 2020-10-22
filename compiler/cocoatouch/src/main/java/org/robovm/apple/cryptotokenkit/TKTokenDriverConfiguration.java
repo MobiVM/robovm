@@ -33,7 +33,7 @@ import org.robovm.apple.security.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 13.0 and later.
+ * @since Available in iOS 14.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("CryptoTokenKit") @NativeClass/*</annotations>*/

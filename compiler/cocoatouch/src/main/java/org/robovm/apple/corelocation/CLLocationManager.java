@@ -50,6 +50,21 @@ import org.robovm.apple.contacts.*;
     protected CLLocationManager(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "authorizationStatus")
+    public native CLAuthorizationStatus authorizationStatus();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "accuracyAuthorization")
+    public native CLAccuracyAuthorization getAccuracyAuthorization();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "isAuthorizedForWidgetUpdates")
+    public native boolean isAuthorizedForWidgetUpdates();
     @Property(selector = "delegate")
     public native CLLocationManagerDelegate getDelegate();
     @Property(selector = "setDelegate:", strongRef = true)
@@ -131,6 +146,16 @@ import org.robovm.apple.contacts.*;
     public native void requestWhenInUseAuthorization();
     @Method(selector = "requestAlwaysAuthorization")
     public native void requestAlwaysAuthorization();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "requestTemporaryFullAccuracyAuthorizationWithPurposeKey:completion:")
+    public native void requestTemporaryFullAccuracyAuthorization(String purposeKey, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "requestTemporaryFullAccuracyAuthorizationWithPurposeKey:")
+    public native void requestTemporaryFullAccuracyAuthorization(String purposeKey);
     @Method(selector = "startUpdatingLocation")
     public native void startUpdatingLocation();
     @Method(selector = "stopUpdatingLocation")
@@ -206,6 +231,10 @@ import org.robovm.apple.contacts.*;
     public static native boolean isRegionMonitoringAvailable();
     @Method(selector = "isRangingAvailable")
     public static native boolean isRangingAvailable();
+    /**
+     * @deprecated Deprecated in iOS 14.0. Use -authorizationStatus
+     */
+    @Deprecated
     @Method(selector = "authorizationStatus")
     public static native CLAuthorizationStatus getAuthorizationStatus();
     /**

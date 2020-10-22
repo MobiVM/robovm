@@ -99,12 +99,22 @@ import org.robovm.apple.linkpresentation.*;
     public static native NSString GuidedAccessStatusDidChangeNotification();
     @GlobalValue(symbol="UIAccessibilityBoldTextStatusDidChangeNotification", optional=true)
     public static native NSString BoldTextStatusDidChangeNotification();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @GlobalValue(symbol="UIAccessibilityButtonShapesEnabledStatusDidChangeNotification", optional=true)
+    public static native NSString ButtonShapesEnabledStatusDidChangeNotification();
     @GlobalValue(symbol="UIAccessibilityGrayscaleStatusDidChangeNotification", optional=true)
     public static native NSString GrayscaleStatusDidChangeNotification();
     @GlobalValue(symbol="UIAccessibilityReduceTransparencyStatusDidChangeNotification", optional=true)
     public static native NSString ReduceTransparencyStatusDidChangeNotification();
     @GlobalValue(symbol="UIAccessibilityReduceMotionStatusDidChangeNotification", optional=true)
     public static native NSString ReduceMotionStatusDidChangeNotification();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @GlobalValue(symbol="UIAccessibilityPrefersCrossFadeTransitionsStatusDidChangeNotification", optional=true)
+    public static native NSString PrefersCrossFadeTransitionsStatusDidChangeNotification();
     /**
      * @since Available in iOS 13.0 and later.
      */
@@ -171,12 +181,22 @@ import org.robovm.apple.linkpresentation.*;
     public static native boolean isGuidedAccessEnabled();
     @Bridge(symbol="UIAccessibilityIsBoldTextEnabled", optional=true)
     public static native boolean isBoldTextEnabled();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Bridge(symbol="UIAccessibilityButtonShapesEnabled", optional=true)
+    public static native boolean buttonShapesEnabled();
     @Bridge(symbol="UIAccessibilityIsGrayscaleEnabled", optional=true)
     public static native boolean isGrayscaleEnabled();
     @Bridge(symbol="UIAccessibilityIsReduceTransparencyEnabled", optional=true)
     public static native boolean isReduceTransparencyEnabled();
     @Bridge(symbol="UIAccessibilityIsReduceMotionEnabled", optional=true)
     public static native boolean isReduceMotionEnabled();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Bridge(symbol="UIAccessibilityPrefersCrossFadeTransitions", optional=true)
+    public static native boolean prefersCrossFadeTransitions();
     /**
      * @since Available in iOS 13.0 and later.
      */

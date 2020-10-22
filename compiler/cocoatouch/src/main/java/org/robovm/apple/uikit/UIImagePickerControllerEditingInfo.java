@@ -173,7 +173,7 @@ import org.robovm.apple.linkpresentation.*;
         return this;
     }
     /**
-     * @deprecated Deprecated in iOS 11.0. Use UIImagePickerControllerPHAsset
+     * @deprecated Deprecated in iOS 11.0. Will be removed in a future release, use PHPicker.
      */
     @Deprecated
     public NSURL getReferenceURL() {
@@ -184,7 +184,7 @@ import org.robovm.apple.linkpresentation.*;
         return null;
     }
     /**
-     * @deprecated Deprecated in iOS 11.0. Use UIImagePickerControllerPHAsset
+     * @deprecated Deprecated in iOS 11.0. Will be removed in a future release, use PHPicker.
      */
     @Deprecated
     public UIImagePickerControllerEditingInfo setReferenceURL(NSURL referenceURL) {
@@ -219,7 +219,7 @@ import org.robovm.apple.linkpresentation.*;
         @GlobalValue(symbol="UIImagePickerControllerMediaURL", optional=true)
         public static native NSString MediaURL();
         /**
-         * @deprecated Deprecated in iOS 11.0. Use UIImagePickerControllerPHAsset
+         * @deprecated Deprecated in iOS 11.0. Will be removed in a future release, use PHPicker.
          */
         @Deprecated
         @GlobalValue(symbol="UIImagePickerControllerReferenceURL", optional=true)
@@ -233,7 +233,9 @@ import org.robovm.apple.linkpresentation.*;
         public static native NSString LivePhoto();
         /**
          * @since Available in iOS 11.0 and later.
+         * @deprecated Will be removed in a future release, use PHPicker.
          */
+        @Deprecated
         @GlobalValue(symbol="UIImagePickerControllerPHAsset", optional=true)
         public static native NSString PHAsset();
         /**

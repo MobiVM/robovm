@@ -54,6 +54,16 @@ import org.robovm.apple.dispatch.*;
     public native MTLDevice getDevice();
     @Property(selector = "functionNames")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getFunctionNames();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "type")
+    public native MTLLibraryType getType();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "installName")
+    public native String getInstallName();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -78,5 +88,25 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "newFunctionWithName:constantValues:completionHandler:")
     public native void newFunction(String name, MTLFunctionConstantValues constantValues, @Block VoidBlock2<MTLFunction, NSError> completionHandler);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "newFunctionWithDescriptor:completionHandler:")
+    public native void newFunction(MTLFunctionDescriptor descriptor, @Block VoidBlock2<MTLFunction, NSError> completionHandler);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "newFunctionWithDescriptor:error:")
+    public native MTLFunction newFunction(MTLFunctionDescriptor descriptor, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "newIntersectionFunctionWithDescriptor:completionHandler:")
+    public native void newIntersectionFunction(MTLIntersectionFunctionDescriptor descriptor, @Block VoidBlock2<MTLFunction, NSError> completionHandler);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "newIntersectionFunctionWithDescriptor:error:")
+    public native MTLFunction newIntersectionFunction(MTLIntersectionFunctionDescriptor descriptor, NSError.NSErrorPtr error);
     /*</methods>*/
 }

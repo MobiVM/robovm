@@ -86,11 +86,11 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "remapValuesToTerracesWithPeaks:terracesInverted:")
     public native void remapValuesToTerraces(NSArray<NSNumber> peakInputValues, boolean inverted);
     @Method(selector = "moveBy:")
-    public native void moveBy(FunctionPtr delta);
+    public native void moveBy(@ByVal VectorDouble3 delta);
     @Method(selector = "scaleBy:")
-    public native void scaleBy(FunctionPtr factor);
+    public native void scaleBy(@ByVal VectorDouble3 factor);
     @Method(selector = "rotateBy:")
-    public native void rotateBy(FunctionPtr radians);
+    public native void rotateBy(@ByVal VectorDouble3 radians);
     @Method(selector = "addWithNoise:")
     public native void add(GKNoise noise);
     @Method(selector = "multiplyWithNoise:")

@@ -1,0 +1,44 @@
+package: org.robovm.apple.accessibility
+include: [foundation, coregraphics]
+library: Accessibility
+framework: Accessibility
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/Accessibility.framework/Headers/Accessibility.h
+
+typedefs:
+    
+enums:
+    AXCustomContentImportance: {} #since 14.0
+classes:
+    AXCustomContent: #since 14.0
+        methods:
+            '+customContentWithLabel:value:':
+                constructor: true
+                name: customContent
+            '+customContentWithAttributedLabel:attributedValue:':
+                constructor: true
+                name: customContent
+protocols:
+    AXCustomContentProvider: {} #since 14.0
+functions:
+    AXNameFromColor:
+        class: AXUtils
+        name: nameFromColor
+
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (k?AX.*):
+        class: FIXME
+        name: 'Function__#{g[0]}'
+
+values:
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (k?AX.*):
+        class: FIXME
+        name: 'Value__#{g[0]}'
+
+constants:
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (k?AX.*):
+        class: FIXME
+        name: 'Constant__#{g[0]}'

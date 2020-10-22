@@ -58,8 +58,18 @@ import org.robovm.apple.foundation.*;
     /*<methods>*/
     @Method(selector = "JSONRepresentation")
     public native NSData JSONRepresentation();
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Use dictionaryRepresentation
+     */
+    @Deprecated
     @Method(selector = "DictionaryRepresentation")
     public native NSDictionary<?, ?> DictionaryRepresentation();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "dictionaryRepresentation")
+    public native NSDictionary<?, ?> dictionaryRepresentation();
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

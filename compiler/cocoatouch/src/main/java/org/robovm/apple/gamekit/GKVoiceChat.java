@@ -29,6 +29,7 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -65,12 +66,6 @@ import org.robovm.apple.uikit.*;
     @Property(selector = "players")
     public native NSArray<GKPlayer> getPlayers();
     /**
-     * @deprecated Deprecated in iOS 8.0. use players
-     */
-    @Deprecated
-    @Property(selector = "playerIDs")
-    public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getPlayerIDs();
-    /**
      * @deprecated Deprecated in iOS 8.0. use setPlayerVoiceChatStateDidChangeHandler:
      */
     @Deprecated
@@ -82,6 +77,12 @@ import org.robovm.apple.uikit.*;
     @Deprecated
     @Property(selector = "setPlayerStateUpdateHandler:")
     public native void setPlayerStateUpdateHandler(@Block VoidBlock2<NSString, GKVoiceChatPlayerState> v);
+    /**
+     * @deprecated Deprecated in iOS 8.0. use players
+     */
+    @Deprecated
+    @Property(selector = "playerIDs")
+    public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getPlayerIDs();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -94,7 +95,7 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "isVoIPAllowed")
     public static native boolean isVoIPAllowed();
     /**
-     * @deprecated Deprecated in iOS 8.0. use setPlayer:muted:
+     * @deprecated Deprecated in iOS 8.0. This is never invoked and its implementation does nothing, use setPlayer:muted:
      */
     @Deprecated
     @Method(selector = "setMute:forPlayer:")

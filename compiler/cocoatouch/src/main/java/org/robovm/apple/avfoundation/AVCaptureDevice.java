@@ -99,8 +99,18 @@ import org.robovm.apple.audiotoolbox.*;
     public native String getModelID();
     @Property(selector = "localizedName")
     public native String getLocalizedName();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "manufacturer")
+    public native String getManufacturer();
     @Property(selector = "isConnected")
     public native boolean isConnected();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "isSuspended")
+    public native boolean isSuspended();
     @Property(selector = "formats")
     public native NSArray<AVCaptureDeviceFormat> getFormats();
     @Property(selector = "activeFormat")
@@ -434,17 +444,17 @@ import org.robovm.apple.audiotoolbox.*;
     @Method(selector = "isFocusModeSupported:")
     public native boolean isFocusModeSupported(AVCaptureFocusMode focusMode);
     @Method(selector = "setFocusModeLockedWithLensPosition:completionHandler:")
-    public native void setFocusModeLocked(float lensPosition, @Block VoidBlock1<CMTime> handler);
+    public native void setFocusModeLocked(float lensPosition, @Block("(@ByVal)") VoidBlock1<CMTime> handler);
     @Method(selector = "isExposureModeSupported:")
     public native boolean isExposureModeSupported(AVCaptureExposureMode exposureMode);
     @Method(selector = "setExposureModeCustomWithDuration:ISO:completionHandler:")
-    public native void setExposureModeCustom(@ByVal CMTime duration, float ISO, @Block VoidBlock1<CMTime> handler);
+    public native void setExposureModeCustom(@ByVal CMTime duration, float ISO, @Block("(@ByVal)") VoidBlock1<CMTime> handler);
     @Method(selector = "setExposureTargetBias:completionHandler:")
-    public native void setExposureTargetBias(float bias, @Block VoidBlock1<CMTime> handler);
+    public native void setExposureTargetBias(float bias, @Block("(@ByVal)") VoidBlock1<CMTime> handler);
     @Method(selector = "isWhiteBalanceModeSupported:")
     public native boolean isWhiteBalanceModeSupported(AVCaptureWhiteBalanceMode whiteBalanceMode);
     @Method(selector = "setWhiteBalanceModeLockedWithDeviceWhiteBalanceGains:completionHandler:")
-    public native void setWhiteBalanceModeLocked(@ByVal AVCaptureWhiteBalanceGains whiteBalanceGains, @Block VoidBlock1<CMTime> handler);
+    public native void setWhiteBalanceModeLocked(@ByVal AVCaptureWhiteBalanceGains whiteBalanceGains, @Block("(@ByVal)") VoidBlock1<CMTime> handler);
     @Method(selector = "chromaticityValuesForDeviceWhiteBalanceGains:")
     public native @ByVal AVCaptureWhiteBalanceChromaticityValues convertDeviceWhiteBalanceGainsToChromaticityValues(@ByVal AVCaptureWhiteBalanceGains whiteBalanceGains);
     @Method(selector = "deviceWhiteBalanceGainsForChromaticityValues:")

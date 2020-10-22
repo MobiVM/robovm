@@ -64,6 +64,11 @@ import org.robovm.apple.dispatch.*;
     public native NSDictionary<?, ?> getMetadata();
     @Property(selector = "riskScoreSumFullRange")
     public native double getRiskScoreSumFullRange();
+    /**
+     * @since Available in iOS 13.7 and later.
+     */
+    @Property(selector = "daySummaries")
+    public native NSArray<ENExposureDaySummary> getDaySummaries();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

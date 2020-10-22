@@ -57,6 +57,11 @@ import org.robovm.apple.network.*;
     @Property(selector = "remoteEndpoint")
     public native NWEndpoint getRemoteEndpoint();
     /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "remoteHostname")
+    public native String getRemoteHostname();
+    /**
      * @since Available in iOS 9.0 and later.
      */
     @Property(selector = "localEndpoint")

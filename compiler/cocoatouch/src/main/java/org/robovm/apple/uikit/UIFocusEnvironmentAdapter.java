@@ -74,6 +74,11 @@ import org.robovm.apple.linkpresentation.*;
     @Deprecated
     @NotImplemented("preferredFocusedView")
     public UIView getPreferredFocusedView() { return null; }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @NotImplemented("focusGroupIdentifier")
+    public String getFocusGroupIdentifier() { return null; }
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

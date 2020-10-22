@@ -69,6 +69,10 @@ import org.robovm.apple.foundation.*;
         requestAccessToAccounts(accountType, options == null ? null : options.getDictionary(), completion);
     }
     /*<methods>*/
+    /**
+     * @deprecated Deprecated in iOS 14.0. Public notification deprecated. Internal clients, see private header for replacement
+     */
+    @Deprecated
     @GlobalValue(symbol="ACAccountStoreDidChangeNotification", optional=true)
     public static native NSString DidChangeNotification();
     

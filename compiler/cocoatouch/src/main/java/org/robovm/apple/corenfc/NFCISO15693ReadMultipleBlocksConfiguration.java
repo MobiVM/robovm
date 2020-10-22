@@ -48,25 +48,49 @@ import org.robovm.apple.dispatch.*;
     public NFCISO15693ReadMultipleBlocksConfiguration() {}
     protected NFCISO15693ReadMultipleBlocksConfiguration(Handle h, long handle) { super(h, handle); }
     protected NFCISO15693ReadMultipleBlocksConfiguration(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Method(selector = "initWithRange:chunkSize:")
     public NFCISO15693ReadMultipleBlocksConfiguration(@ByVal NSRange range, @MachineSizedUInt long chunkSize) { super((SkipInit) null); initObject(init(range, chunkSize)); }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Method(selector = "initWithRange:chunkSize:maximumRetries:retryInterval:")
     public NFCISO15693ReadMultipleBlocksConfiguration(@ByVal NSRange range, @MachineSizedUInt long chunkSize, @MachineSizedUInt long maximumRetries, double retryInterval) { super((SkipInit) null); initObject(init(range, chunkSize, maximumRetries, retryInterval)); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Property(selector = "range")
     public native @ByVal NSRange getRange();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Property(selector = "setRange:")
     public native void setRange(@ByVal NSRange v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Property(selector = "chunkSize")
     public native @MachineSizedUInt long getChunkSize();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Property(selector = "setChunkSize:")
     public native void setChunkSize(@MachineSizedUInt long v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Method(selector = "initWithRange:chunkSize:")
     protected native @Pointer long init(@ByVal NSRange range, @MachineSizedUInt long chunkSize);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Method(selector = "initWithRange:chunkSize:maximumRetries:retryInterval:")
     protected native @Pointer long init(@ByVal NSRange range, @MachineSizedUInt long chunkSize, @MachineSizedUInt long maximumRetries, double retryInterval);
     /*</methods>*/

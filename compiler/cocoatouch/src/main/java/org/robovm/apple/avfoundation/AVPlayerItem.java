@@ -239,14 +239,28 @@ import org.robovm.apple.audiotoolbox.*;
     public native void setAudioTimePitchAlgorithm(String v);
     /**
      * @since Available in iOS 13.0 and later.
+     * @deprecated Use allowedAudioSpatializationFormats
      */
+    @Deprecated
     @Property(selector = "isAudioSpatializationAllowed")
     public native boolean isAudioSpatializationAllowed();
     /**
      * @since Available in iOS 13.0 and later.
+     * @deprecated Use allowedAudioSpatializationFormats
      */
+    @Deprecated
     @Property(selector = "setAudioSpatializationAllowed:")
     public native void setAudioSpatializationAllowed(boolean v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "allowedAudioSpatializationFormats")
+    public native AVAudioSpatializationFormats getAllowedAudioSpatializationFormats();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setAllowedAudioSpatializationFormats:")
+    public native void setAllowedAudioSpatializationFormats(AVAudioSpatializationFormats v);
     @Property(selector = "audioMix")
     public native AVAudioMix getAudioMix();
     @Property(selector = "setAudioMix:")
@@ -293,6 +307,16 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "setPreferredMaximumResolution:")
     public native void setPreferredMaximumResolution(@ByVal CGSize v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "startsOnFirstEligibleVariant")
+    public native boolean isStartsOnFirstEligibleVariant();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setStartsOnFirstEligibleVariant:")
+    public native void setStartsOnFirstEligibleVariant(boolean v);
     /**
      * @since Available in iOS 9.0 and later.
      */

@@ -51,7 +51,11 @@ public enum /*<name>*/NSNetServiceErrorCode/*</name>*/ implements ValuedEnum {
     BadArgument(-72004L),
     Cancelled(-72005L),
     Invalid(-72006L),
-    Timeout(-72007L);
+    Timeout(-72007L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    MissingRequiredConfiguration(-72008L);
     /*</values>*/
 
     /*<bind>*/

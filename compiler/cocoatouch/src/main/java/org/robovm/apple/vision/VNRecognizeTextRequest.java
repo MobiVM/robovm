@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.coreml.*;
 import org.robovm.apple.coregraphics.*;
+import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.metal.*;
 import org.robovm.apple.coreimage.*;
@@ -50,6 +51,7 @@ import org.robovm.apple.imageio.*;
     /*<bind>*/static { ObjCRuntime.bind(VNRecognizeTextRequest.class); }/*</bind>*/
     /*<constants>*/
     public static final int Revision1 = 1;
+    public static final int Revision2 = 2;
     /*</constants>*/
     /*<constructors>*/
     public VNRecognizeTextRequest() {}

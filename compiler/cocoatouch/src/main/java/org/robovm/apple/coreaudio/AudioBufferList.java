@@ -92,8 +92,7 @@ import org.robovm.apple.corefoundation.*;
     /*<members>*/
     @StructMember(0) protected native int getNumberBuffers();
     @StructMember(0) protected native AudioBufferList setNumberBuffers(int numberBuffers);
-    @StructMember(1) protected native @Array({1}) AudioBuffer getBuffers0();
-    @StructMember(1) protected native AudioBufferList setBuffers0(@Array({1}) AudioBuffer buffers0);
+    @StructMember(1) protected native @ByVal AudioBuffer getBuffers0();
     /*</members>*/
     /*<methods>*//*</methods>*/
 }

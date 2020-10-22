@@ -196,6 +196,11 @@ import org.robovm.apple.foundation.*;
      */
     @Method(selector = "wheelchairUseWithError:")
     private native HKWheelchairUseObject getWheelchairUse(NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "activityMoveModeWithError:")
+    public native HKActivityMoveModeObject getActivityMoveMode(NSError.NSErrorPtr error);
     @Method(selector = "isHealthDataAvailable")
     public static native boolean isHealthDataAvailable();
     @Method(selector = "addSamples:toWorkout:completion:")

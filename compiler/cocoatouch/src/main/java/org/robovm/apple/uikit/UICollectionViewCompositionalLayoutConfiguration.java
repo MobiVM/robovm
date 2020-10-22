@@ -72,6 +72,16 @@ import org.robovm.apple.linkpresentation.*;
     public native NSArray<NSCollectionLayoutBoundarySupplementaryItem> getBoundarySupplementaryItems();
     @Property(selector = "setBoundarySupplementaryItems:")
     public native void setBoundarySupplementaryItems(NSArray<NSCollectionLayoutBoundarySupplementaryItem> v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "contentInsetsReference")
+    public native UIContentInsetsReference getContentInsetsReference();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setContentInsetsReference:")
+    public native void setContentInsetsReference(UIContentInsetsReference v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

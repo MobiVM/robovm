@@ -64,7 +64,11 @@ public enum /*<name>*/PHPhotosError/*</name>*/ implements NSErrorCode {
     /**
      * @since Available in iOS 13.0 and later.
      */
-    SwitchingSystemPhotoLibrary(3143L);
+    SwitchingSystemPhotoLibrary(3143L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    NetworkAccessRequired(3164L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(PHPhotosError.class); }/*</bind>*/

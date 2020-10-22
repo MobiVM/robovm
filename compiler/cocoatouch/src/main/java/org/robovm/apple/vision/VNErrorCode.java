@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.coreml.*;
 import org.robovm.apple.coregraphics.*;
+import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.metal.*;
 import org.robovm.apple.coreimage.*;
@@ -65,7 +66,11 @@ public enum /*<name>*/VNErrorCode/*</name>*/ implements NSErrorCode {
     /**
      * @since Available in iOS 13.0 and later.
      */
-    DataUnavailable(17L);
+    DataUnavailable(17L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    TimeStampNotFound(18L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(VNErrorCode.class); }/*</bind>*/

@@ -47,7 +47,7 @@ import org.robovm.apple.uikit.*;
     /*<bind>*/static { ObjCRuntime.bind(NSCoreDataCoreSpotlightDelegate.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public NSCoreDataCoreSpotlightDelegate() {}
+    protected NSCoreDataCoreSpotlightDelegate() {}
     protected NSCoreDataCoreSpotlightDelegate(Handle h, long handle) { super(h, handle); }
     protected NSCoreDataCoreSpotlightDelegate(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initForStoreWithDescription:model:")

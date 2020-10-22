@@ -87,5 +87,10 @@ import org.robovm.apple.uikit.*;
      */
     @GlobalValue(symbol="ICCameraDeviceCanAcceptPTPCommands", optional=true)
     public static native NSString CameraDeviceCanAcceptPTPCommands();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @GlobalValue(symbol="ICCameraDeviceSupportsHEIF", optional=true)
+    public static native NSString CameraDeviceSupportsHEIF();
     /*</methods>*/
 }

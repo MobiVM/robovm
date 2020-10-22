@@ -90,6 +90,11 @@ import org.robovm.apple.network.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "fetchCurrentWithCompletionHandler:")
+    public static native void fetchCurrent(@Block VoidBlock1<NEHotspotNetwork> completionHandler);
+    /**
      * @since Available in iOS 9.0 and later.
      */
     @Method(selector = "setConfidence:")

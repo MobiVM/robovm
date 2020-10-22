@@ -79,6 +79,21 @@ import org.robovm.apple.dispatch.*;
     @Property(selector = "areRasterOrderGroupsSupported")
     public native boolean isRasterOrderGroupsSupported();
     /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "supportsPullModelInterpolation")
+    public native boolean supportsPullModelInterpolation();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "areBarycentricCoordsSupported")
+    public native boolean isBarycentricCoordsSupported();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "supportsShaderBarycentricCoordinates")
+    public native boolean supportsShaderBarycentricCoordinates();
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @Property(selector = "currentAllocatedSize")
@@ -108,6 +123,26 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "maxBufferLength")
     public native @MachineSizedUInt long getMaxBufferLength();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "counterSets")
+    public native NSArray<?> getCounterSets();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "supportsDynamicLibraries")
+    public native boolean supportsDynamicLibraries();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "supportsRaytracing")
+    public native boolean supportsRaytracing();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "supportsFunctionPointers")
+    public native boolean supportsFunctionPointers();
     /*</properties>*/
     /*<members>*//*</members>*/
     public MTLBuffer newBuffer(byte[] bytes, MTLResourceOptions options) {
@@ -397,9 +432,54 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "convertSparseTileRegions:toPixelRegions:withTileSize:numRegions:")
     public native void convertSparseTileRegions(MTLRegion tileRegions, MTLRegion pixelRegions, @ByVal MTLSize tileSize, @MachineSizedUInt long numRegions);
     /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "newCounterSampleBufferWithDescriptor:error:")
+    public native MTLCounterSampleBuffer newCounterSampleBuffer(MTLCounterSampleBufferDescriptor descriptor, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "sampleTimestamps:gpuTimestamp:")
+    public native void sampleTimestamps(LongPtr cpuTimestamp, LongPtr gpuTimestamp);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "supportsCounterSampling:")
+    public native boolean supportsCounterSampling(MTLCounterSamplingPoint samplingPoint);
+    /**
      * @since Available in iOS 13.0 and later.
      */
     @Method(selector = "supportsVertexAmplificationCount:")
     public native boolean supportsVertexAmplificationCount(@MachineSizedUInt long count);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "newDynamicLibrary:error:")
+    public native MTLDynamicLibrary newDynamicLibrary(MTLLibrary library, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "newDynamicLibraryWithURL:error:")
+    public native MTLDynamicLibrary newDynamicLibrary(NSURL url, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "newBinaryArchiveWithDescriptor:error:")
+    public native MTLBinaryArchive newBinaryArchive(MTLBinaryArchiveDescriptor descriptor, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "accelerationStructureSizesWithDescriptor:")
+    public native @ByVal MTLAccelerationStructureSizes accelerationStructureSizes(MTLAccelerationStructureDescriptor descriptor);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "newAccelerationStructureWithSize:")
+    public native MTLAccelerationStructure newAccelerationStructure(@MachineSizedUInt long size);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "newAccelerationStructureWithDescriptor:")
+    public native MTLAccelerationStructure newAccelerationStructure(MTLAccelerationStructureDescriptor descriptor);
     /*</methods>*/
 }

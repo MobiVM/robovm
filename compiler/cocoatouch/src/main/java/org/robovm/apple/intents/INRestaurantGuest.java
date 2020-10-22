@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.eventkit.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -53,6 +54,11 @@ import org.robovm.apple.corelocation.*;
     public INRestaurantGuest(NSPersonNameComponents nameComponents, String phoneNumber, String emailAddress) { super((SkipInit) null); initObject(init(nameComponents, phoneNumber, emailAddress)); }
     @Method(selector = "initWithPersonHandle:nameComponents:displayName:image:contactIdentifier:customIdentifier:")
     public INRestaurantGuest(INPersonHandle personHandle, NSPersonNameComponents nameComponents, String displayName, INImage image, String contactIdentifier, String customIdentifier) { super(personHandle, nameComponents, displayName, image, contactIdentifier, customIdentifier); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithPersonHandle:nameComponents:displayName:image:contactIdentifier:customIdentifier:relationship:")
+    public INRestaurantGuest(INPersonHandle personHandle, NSPersonNameComponents nameComponents, String displayName, INImage image, String contactIdentifier, String customIdentifier, String relationship) { super(personHandle, nameComponents, displayName, image, contactIdentifier, customIdentifier, relationship); }
     /**
      * @since Available in iOS 12.0 and later.
      */

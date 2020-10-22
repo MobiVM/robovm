@@ -64,6 +64,11 @@ import org.robovm.apple.metal.*;
     /*<properties>*/
     @Property(selector = "momentumScale")
     public native float getMomentumScale();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "useNesterovMomentum")
+    public native boolean isUseNesterovMomentum();
     @Property(selector = "useNestrovMomentum")
     public native boolean isUseNestrovMomentum();
     /*</properties>*/

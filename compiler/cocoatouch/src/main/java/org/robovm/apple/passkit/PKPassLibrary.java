@@ -31,6 +31,7 @@ import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.addressbook.*;
 import org.robovm.apple.contacts.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -135,7 +136,7 @@ import org.robovm.apple.contacts.*;
     public native void openPaymentSetup();
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Use -[PKPassLibrary presentSecureElementPass] instead
+     * @deprecated Use -[PKPassLibrary presentSecureElementPass:] instead
      */
     @Deprecated
     @Method(selector = "presentPaymentPass:")

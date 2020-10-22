@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.dispatch.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.corehaptic.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -57,12 +58,24 @@ import org.robovm.apple.uikit.*;
     public native @Block VoidBlock3<GCControllerButtonInput, Float, Boolean> getPressedChangedHandler();
     @Property(selector = "setPressedChangedHandler:")
     public native void setPressedChangedHandler(@Block VoidBlock3<GCControllerButtonInput, Float, Boolean> v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "touchedChangedHandler")
+    public native @Block VoidBlock4<GCControllerButtonInput, Float, Boolean, Boolean> getTouchedChangedHandler();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setTouchedChangedHandler:")
+    public native void setTouchedChangedHandler(@Block VoidBlock4<GCControllerButtonInput, Float, Boolean, Boolean> v);
     @Property(selector = "value")
     public native float getValue();
     @Property(selector = "setValue:")
     public native void setValue(float v);
     @Property(selector = "isPressed")
     public native boolean isPressed();
+    @Property(selector = "isTouched")
+    public native boolean isTouched();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

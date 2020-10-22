@@ -46,34 +46,79 @@ import org.robovm.apple.corefoundation.*;
     /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @GlobalValue(symbol="kIOSurfaceAllocSize", optional=true)
     public static native CFString AllocSize();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @GlobalValue(symbol="kIOSurfaceWidth", optional=true)
     public static native CFString Width();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @GlobalValue(symbol="kIOSurfaceHeight", optional=true)
     public static native CFString Height();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @GlobalValue(symbol="kIOSurfaceBytesPerRow", optional=true)
     public static native CFString BytesPerRow();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @GlobalValue(symbol="kIOSurfaceBytesPerElement", optional=true)
     public static native CFString BytesPerElement();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @GlobalValue(symbol="kIOSurfaceElementWidth", optional=true)
     public static native CFString ElementWidth();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @GlobalValue(symbol="kIOSurfaceElementHeight", optional=true)
     public static native CFString ElementHeight();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @GlobalValue(symbol="kIOSurfaceOffset", optional=true)
     public static native CFString Offset();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @GlobalValue(symbol="kIOSurfacePlaneInfo", optional=true)
     public static native CFString PlaneInfo();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @GlobalValue(symbol="kIOSurfacePlaneWidth", optional=true)
     public static native CFString PlaneWidth();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @GlobalValue(symbol="kIOSurfacePlaneHeight", optional=true)
     public static native CFString PlaneHeight();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @GlobalValue(symbol="kIOSurfacePlaneBytesPerRow", optional=true)
     public static native CFString PlaneBytesPerRow();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @GlobalValue(symbol="kIOSurfacePlaneOffset", optional=true)
     public static native CFString PlaneOffset();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @GlobalValue(symbol="kIOSurfacePlaneSize", optional=true)
     public static native CFString PlaneSize();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @GlobalValue(symbol="kIOSurfacePlaneBase", optional=true)
     public static native CFString PlaneBase();
     /**
@@ -81,24 +126,40 @@ import org.robovm.apple.corefoundation.*;
      */
     @GlobalValue(symbol="kIOSurfacePlaneBitsPerElement", optional=true)
     public static native CFString PlaneBitsPerElement();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @GlobalValue(symbol="kIOSurfacePlaneBytesPerElement", optional=true)
     public static native CFString PlaneBytesPerElement();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @GlobalValue(symbol="kIOSurfacePlaneElementWidth", optional=true)
     public static native CFString PlaneElementWidth();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @GlobalValue(symbol="kIOSurfacePlaneElementHeight", optional=true)
     public static native CFString PlaneElementHeight();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @GlobalValue(symbol="kIOSurfaceCacheMode", optional=true)
     public static native CFString CacheMode();
     /**
-     * @deprecated Deprecated in iOS 9.0.
+     * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 11.0. Global surfaces are insecure
      */
     @Deprecated
     @GlobalValue(symbol="kIOSurfaceIsGlobal", optional=true)
     public static native CFString IsGlobal();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @GlobalValue(symbol="kIOSurfacePixelFormat", optional=true)
     public static native CFString PixelFormat();
     /**
-     * @since Available in iOS 10.0 and later.
+     * @since Available in iOS 11.0 and later.
      */
     @GlobalValue(symbol="kIOSurfacePixelSizeCastingAllowed", optional=true)
     public static native CFString PixelSizeCastingAllowed();

@@ -54,6 +54,11 @@ import org.robovm.apple.uikit.*;
     public INUIAddVoiceShortcutButton(INUIAddVoiceShortcutButtonStyle style) { super((SkipInit) null); initObject(init(style)); }
     @Method(selector = "initWithCoder:")
     public INUIAddVoiceShortcutButton(NSCoder coder) { super(coder); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithFrame:primaryAction:")
+    public INUIAddVoiceShortcutButton(@ByVal CGRect frame, UIAction primaryAction) { super(frame, primaryAction); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "style")

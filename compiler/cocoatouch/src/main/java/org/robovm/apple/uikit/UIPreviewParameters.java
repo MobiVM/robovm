@@ -66,6 +66,16 @@ import org.robovm.apple.linkpresentation.*;
     public native UIBezierPath getVisiblePath();
     @Property(selector = "setVisiblePath:")
     public native void setVisiblePath(UIBezierPath v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "shadowPath")
+    public native UIBezierPath getShadowPath();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setShadowPath:")
+    public native void setShadowPath(UIBezierPath v);
     @Property(selector = "backgroundColor")
     public native UIColor getBackgroundColor();
     @Property(selector = "setBackgroundColor:")

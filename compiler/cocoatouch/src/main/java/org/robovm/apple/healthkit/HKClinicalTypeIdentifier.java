@@ -115,9 +115,13 @@ import org.robovm.apple.foundation.*;
      * @since Available in iOS 12.0 and later.
      */
     public static final HKClinicalTypeIdentifier VitalSignRecord = new HKClinicalTypeIdentifier("VitalSignRecord");
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final HKClinicalTypeIdentifier CoverageRecord = new HKClinicalTypeIdentifier("CoverageRecord");
     /*</constants>*/
     
-    private static /*<name>*/HKClinicalTypeIdentifier/*</name>*/[] values = new /*<name>*/HKClinicalTypeIdentifier/*</name>*/[] {/*<value_list>*/AllergyRecord, ConditionRecord, ImmunizationRecord, LabResultRecord, MedicationRecord, ProcedureRecord, VitalSignRecord/*</value_list>*/};
+    private static /*<name>*/HKClinicalTypeIdentifier/*</name>*/[] values = new /*<name>*/HKClinicalTypeIdentifier/*</name>*/[] {/*<value_list>*/AllergyRecord, ConditionRecord, ImmunizationRecord, LabResultRecord, MedicationRecord, ProcedureRecord, VitalSignRecord, CoverageRecord/*</value_list>*/};
     
     /*<name>*/HKClinicalTypeIdentifier/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -175,6 +179,11 @@ import org.robovm.apple.foundation.*;
          */
         @GlobalValue(symbol="HKClinicalTypeIdentifierVitalSignRecord", optional=true)
         public static native NSString VitalSignRecord();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="HKClinicalTypeIdentifierCoverageRecord", optional=true)
+        public static native NSString CoverageRecord();
         /*</values>*/
     }
 }

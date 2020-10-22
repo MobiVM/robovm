@@ -198,6 +198,16 @@ import org.robovm.apple.uikit.*;
     @GlobalValue(symbol="NSManagedObjectContextObjectsDidChangeNotification", optional=true)
     public static native NSString ObjectsDidChangeNotification();
     /**
+     * @since Available in iOS 10.3 and later.
+     */
+    @GlobalValue(symbol="NSManagedObjectContextDidSaveObjectIDsNotification", optional=true)
+    public static native NSString DidSaveObjectIDsNotification();
+    /**
+     * @since Available in iOS 10.3 and later.
+     */
+    @GlobalValue(symbol="NSManagedObjectContextDidMergeChangesObjectIDsNotification", optional=true)
+    public static native NSString DidMergeChangesObjectIDsNotification();
+    /**
      * @since Available in iOS 10.0 and later.
      */
     @GlobalValue(symbol="NSManagedObjectContextQueryGenerationKey", optional=true)

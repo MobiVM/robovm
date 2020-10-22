@@ -45,6 +45,7 @@ public enum /*<name>*/MTLGPUFamily/*</name>*/ implements ValuedEnum {
     Apple4(1004L),
     Apple5(1005L),
     Apple6(1006L),
+    Apple7(1007L),
     Mac1(2001L),
     Mac2(2002L),
     Common1(3001L),

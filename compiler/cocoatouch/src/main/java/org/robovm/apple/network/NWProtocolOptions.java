@@ -92,6 +92,11 @@ import org.robovm.apple.security.*;
     @Bridge(symbol="nw_ip_options_set_local_address_preference", optional=true)
     public native void setIpLocalAddressPreference(NWIpLocalAddressPreference preference);
     /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Bridge(symbol="nw_ip_options_set_disable_multicast_loopback", optional=true)
+    public native void setIpDisableMulticastLoopback(boolean disable_multicast_loopback);
+    /**
      * @since Available in iOS 12.0 and later.
      */
     @Bridge(symbol="nw_tcp_create_options", optional=true)

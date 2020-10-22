@@ -56,6 +56,7 @@ public enum /*<name>*/CMVideoCodecType/*</name>*/ implements ValuedEnum {
     MPEG4Video(1836070006L),
     MPEG2Video(1836069494L),
     MPEG1Video(1836069238L),
+    VP9(1987063865L),
     DVCNTSC(1685480224L),
     DVCPAL(1685480304L),
     DVCProPAL(1685483632L),

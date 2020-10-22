@@ -69,5 +69,15 @@ import org.robovm.apple.dispatch.*;
     protected native MKMapPoint getPoints0();
     @Method(selector = "getCoordinates:range:")
     protected native void getCoordinates0(CLLocationCoordinate2D coords, @ByVal NSRange range);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "locationAtPointIndex:")
+    public native @MachineSizedFloat double locationAtPointIndex(@MachineSizedUInt long index);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "locationsAtPointIndexes:")
+    public native NSArray<NSNumber> locationsAtPointIndexes(NSIndexSet indexes);
     /*</methods>*/
 }

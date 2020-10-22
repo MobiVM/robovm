@@ -78,6 +78,11 @@ import org.robovm.apple.security.*;
      */
     @Method(selector = "webViewWebContentProcessDidTerminate:")
     void webContentProcessDidTerminate(WKWebView webView);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "webView:authenticationChallenge:shouldAllowDeprecatedTLS:")
+    void shouldAllowDeprecatedTLS(WKWebView webView, NSURLAuthenticationChallenge challenge, @Block VoidBooleanBlock decisionHandler);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

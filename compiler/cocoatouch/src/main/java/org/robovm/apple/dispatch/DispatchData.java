@@ -63,7 +63,7 @@ import org.robovm.rt.bro.ptr.*;
     @Bridge(symbol="dispatch_data_create_subrange", optional=true)
     public native DispatchData createSubrange(@MachineSizedUInt long offset, @MachineSizedUInt long length);
     @Bridge(symbol="dispatch_data_apply", optional=true)
-    public native boolean apply(@Block("(,@MachineSizedUInt,,@MachineSizedUInt)") VoidBlock4<DispatchData, Long, VoidPtr, Long> applier);
+    public native boolean apply(@Block("(,@MachineSizedUInt,,@MachineSizedUInt)") Block4<DispatchData, Long, VoidPtr, Long, Boolean> applier);
     @Bridge(symbol="dispatch_data_copy_region", optional=true)
     public native DispatchData copyRegion(@MachineSizedUInt long location, MachineSizedUIntPtr offset_ptr);
     /*</methods>*/

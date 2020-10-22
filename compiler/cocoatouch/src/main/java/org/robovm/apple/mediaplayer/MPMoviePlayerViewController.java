@@ -49,6 +49,10 @@ import org.robovm.apple.coregraphics.*;
     public MPMoviePlayerViewController() {}
     protected MPMoviePlayerViewController(Handle h, long handle) { super(h, handle); }
     protected MPMoviePlayerViewController(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit.
+     */
+    @Deprecated
     @Method(selector = "initWithContentURL:")
     public MPMoviePlayerViewController(NSURL contentURL) { super((SkipInit) null); initObject(init(contentURL)); }
     @Method(selector = "initWithNibName:bundle:")
@@ -57,11 +61,19 @@ import org.robovm.apple.coregraphics.*;
     public MPMoviePlayerViewController(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit.
+     */
+    @Deprecated
     @Property(selector = "moviePlayer")
     public native MPMoviePlayerController getMoviePlayer();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit.
+     */
+    @Deprecated
     @Method(selector = "initWithContentURL:")
     protected native @Pointer long init(NSURL contentURL);
     /*</methods>*/

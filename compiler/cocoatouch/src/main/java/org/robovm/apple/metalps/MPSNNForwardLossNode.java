@@ -63,6 +63,11 @@ import org.robovm.apple.metal.*;
     public native MPSCNNReductionType getReductionType();
     @Property(selector = "numberOfClasses")
     public native @MachineSizedUInt long getNumberOfClasses();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "reduceAcrossBatch")
+    public native boolean isReduceAcrossBatch();
     @Property(selector = "weight")
     public native float getWeight();
     @Property(selector = "labelSmoothing")

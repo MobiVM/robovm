@@ -41,10 +41,23 @@ import org.robovm.apple.avkit.*;
 @ForceLinkClass(ADClientError.class)
 public enum /*<name>*/ADClientErrorCode/*</name>*/ implements NSErrorCode {
     /*<values>*/
+    /**
+     * @deprecated ADClientErrorUnknown is not used and never returned.
+     */
+    @Deprecated
     Unknown(0L),
+    TrackingRestrictedOrDenied(1L),
+    /**
+     * @deprecated ADClientErrorLimitAdTracking has been deprecated use ADClientErrorTrackingRestrictedOrDenied.
+     */
+    @Deprecated
     LimitAdTracking(1L),
     MissingData(2L),
-    CorruptResponse(3L);
+    CorruptResponse(3L),
+    RequestClientError(4L),
+    RequestServerError(5L),
+    RequestNetworkError(6L),
+    UnsupportedPlatform(7L);
     /*</values>*/
 
     /*<bind>*/

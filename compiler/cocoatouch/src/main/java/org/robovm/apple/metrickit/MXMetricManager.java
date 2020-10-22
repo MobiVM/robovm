@@ -51,6 +51,11 @@ import org.robovm.apple.foundation.*;
     /*<properties>*/
     @Property(selector = "pastPayloads")
     public native NSArray<MXMetricPayload> getPastPayloads();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "pastDiagnosticPayloads")
+    public native NSArray<MXDiagnosticPayload> getPastDiagnosticPayloads();
     @Property(selector = "sharedManager")
     public static native MXMetricManager getSharedManager();
     /*</properties>*/

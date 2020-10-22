@@ -79,12 +79,20 @@ public enum /*<name>*/CVPixelFormatType/*</name>*/ implements ValuedEnum {
     _422YpCbCr_4A_8BiPlanar(1630697081L),
     _420YpCbCr8BiPlanarVideoRange(875704438L),
     _420YpCbCr8BiPlanarFullRange(875704422L),
+    _422YpCbCr8BiPlanarVideoRange(875704950L),
+    _422YpCbCr8BiPlanarFullRange(875704934L),
+    _444YpCbCr8BiPlanarVideoRange(875836534L),
+    _444YpCbCr8BiPlanarFullRange(875836518L),
     _422YpCbCr8_yuvs(2037741171L),
     _422YpCbCr8FullRange(2037741158L),
     OneComponent8(1278226488L),
     TwoComponent8(843264056L),
     _30RGBLEPackedWideGamut(1999843442L),
     ARGB2101010LEPacked(1815162994L),
+    OneComponent10(1278226736L),
+    OneComponent12(1278226738L),
+    OneComponent16(1278226742L),
+    TwoComponent16(843264310L),
     OneComponent16Half(1278226536L),
     OneComponent32Float(1278226534L),
     TwoComponent16Half(843264104L),
@@ -105,7 +113,9 @@ public enum /*<name>*/CVPixelFormatType/*</name>*/ implements ValuedEnum {
     _420YpCbCr10BiPlanarFullRange(2019963440L),
     _422YpCbCr10BiPlanarFullRange(2019963442L),
     _444YpCbCr10BiPlanarFullRange(2019963956L),
-    _420YpCbCr8VideoRange_8A_TriPlanar(1982882104L);
+    _420YpCbCr8VideoRange_8A_TriPlanar(1982882104L),
+    _16VersatileBayer(1651519798L),
+    _64RGBA_DownscaledProResRAW(1651521076L);
     /*</values>*/
 
     public static class AsListMarshaler {

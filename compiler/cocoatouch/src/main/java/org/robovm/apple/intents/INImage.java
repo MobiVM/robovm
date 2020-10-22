@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.eventkit.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -66,6 +67,11 @@ import org.robovm.apple.corelocation.*;
     /*<methods>*/
     @Method(selector = "imageNamed:")
     public static native INImage imageNamed(String name);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "systemImageNamed:")
+    public static native INImage systemImageNamed(String systemImageName);
     @Method(selector = "imageWithImageData:")
     protected static native @Pointer long create(NSData imageData);
     @Method(selector = "imageWithURL:")

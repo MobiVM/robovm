@@ -84,12 +84,16 @@ import org.robovm.apple.linkpresentation.*;
     public native void setAllowsEditing(boolean v);
     /**
      * @since Available in iOS 11.0 and later.
+     * @deprecated Will be removed in a future release, use PHPicker.
      */
+    @Deprecated
     @Property(selector = "imageExportPreset")
     public native UIImagePickerControllerImageURLExportPreset getImageExportPreset();
     /**
      * @since Available in iOS 11.0 and later.
+     * @deprecated Will be removed in a future release, use PHPicker.
      */
+    @Deprecated
     @Property(selector = "setImageExportPreset:")
     public native void setImageExportPreset(UIImagePickerControllerImageURLExportPreset v);
     @Property(selector = "videoMaximumDuration")
@@ -102,12 +106,16 @@ import org.robovm.apple.linkpresentation.*;
     public native void setVideoQuality(UIImagePickerControllerQualityType v);
     /**
      * @since Available in iOS 11.0 and later.
+     * @deprecated Will be removed in a future release, use PHPicker.
      */
+    @Deprecated
     @Property(selector = "videoExportPreset")
     public native String getVideoExportPreset();
     /**
      * @since Available in iOS 11.0 and later.
+     * @deprecated Will be removed in a future release, use PHPicker.
      */
+    @Deprecated
     @Property(selector = "setVideoExportPreset:")
     public native void setVideoExportPreset(String v);
     @Property(selector = "showsCameraControls")

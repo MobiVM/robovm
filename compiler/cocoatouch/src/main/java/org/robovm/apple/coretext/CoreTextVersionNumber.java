@@ -59,11 +59,16 @@ import org.robovm.apple.uikit.*;
     public static final int Version10_13 = 0x000A0000;
     public static final int Version10_14 = 0x000B0000;
     public static final int Version10_15 = 0x000C0000;
+    public static final int Version11_0 = 0x000D0000;
     /*</constants>*/
     /*<constructors>*//*</constructors>*/
     /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @deprecated Deprecated in iOS 14.0. Use -[NSProcessInfo operatingSystemVersion]
+     */
+    @Deprecated
     @Bridge(symbol="CTGetCoreTextVersion", optional=true)
     public static native int getVersion();
     /*</methods>*/

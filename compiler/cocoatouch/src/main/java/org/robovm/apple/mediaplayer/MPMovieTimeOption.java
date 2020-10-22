@@ -34,13 +34,21 @@ import org.robovm.apple.coregraphics.*;
 
 /*<javadoc>*/
 /**
- * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit.
+ * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit
  */
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Deprecated/*</annotations>*/
 public enum /*<name>*/MPMovieTimeOption/*</name>*/ implements ValuedEnum {
     /*<values>*/
+    /**
+     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit
+     */
+    @Deprecated
     NearestKeyFrame(0L),
+    /**
+     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit
+     */
+    @Deprecated
     Exact(1L);
     /*</values>*/
 

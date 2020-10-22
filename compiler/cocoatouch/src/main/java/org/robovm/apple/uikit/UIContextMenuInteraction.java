@@ -64,6 +64,11 @@ import org.robovm.apple.linkpresentation.*;
     /*<properties>*/
     @Property(selector = "delegate")
     public native UIContextMenuInteractionDelegate getDelegate();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "menuAppearance")
+    public native UIContextMenuInteractionAppearance getMenuAppearance();
     @Property(selector = "view")
     public native UIView getView();
     /*</properties>*/
@@ -73,6 +78,13 @@ import org.robovm.apple.linkpresentation.*;
     protected native @Pointer long init(UIContextMenuInteractionDelegate delegate);
     @Method(selector = "locationInView:")
     public native @ByVal CGPoint locationInView(UIView view);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "updateVisibleMenuWithBlock:")
+    public native void updateVisibleMenu(@Block Block1<UIMenu, UIMenu> block);
+    @Method(selector = "dismissMenu")
+    public native void dismissMenu();
     @Method(selector = "willMoveToView:")
     public native void willMoveToView(UIView view);
     @Method(selector = "didMoveToView:")

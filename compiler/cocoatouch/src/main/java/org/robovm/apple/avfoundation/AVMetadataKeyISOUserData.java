@@ -103,9 +103,13 @@ import org.robovm.apple.audiotoolbox.*;
      * @since Available in iOS 10.0 and later.
      */
     public static final AVMetadataKeyISOUserData Date = new AVMetadataKeyISOUserData("Date");
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final AVMetadataKeyISOUserData AccessibilityDescription = new AVMetadataKeyISOUserData("AccessibilityDescription");
     /*</constants>*/
     
-    private static /*<name>*/AVMetadataKeyISOUserData/*</name>*/[] values = new /*<name>*/AVMetadataKeyISOUserData/*</name>*/[] {/*<value_list>*/Copyright, TaggedCharacteristic, Date/*</value_list>*/};
+    private static /*<name>*/AVMetadataKeyISOUserData/*</name>*/[] values = new /*<name>*/AVMetadataKeyISOUserData/*</name>*/[] {/*<value_list>*/Copyright, TaggedCharacteristic, Date, AccessibilityDescription/*</value_list>*/};
     
     /*<name>*/AVMetadataKeyISOUserData/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -137,6 +141,11 @@ import org.robovm.apple.audiotoolbox.*;
          */
         @GlobalValue(symbol="AVMetadataISOUserDataKeyDate", optional=true)
         public static native NSString Date();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="AVMetadataISOUserDataKeyAccessibilityDescription", optional=true)
+        public static native NSString AccessibilityDescription();
         /*</values>*/
     }
 }

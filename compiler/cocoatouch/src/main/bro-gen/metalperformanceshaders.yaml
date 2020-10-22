@@ -76,7 +76,7 @@ enums:
     MPSRayDataType: {} #since 12.0
     MPSIntersectionDataType: {} #since 12.0
     MPSRayMaskOperator: {} #since 13.0
-
+    MPSDeviceCapsValues: {prefix: MPS}
 classes:
     # structs
     MPSOrigin: {}
@@ -1351,7 +1351,16 @@ classes:
     MPSNNReduceRowMin: {} #since 11.3
     MPSNNReduceRowSum: {} #since 11.3
     MPSNNReduceUnary: {} #since 11.3
-    MPSNNReshape: {}  #since 11.3
+    MPSNNReshape:  #since 11.3
+        methods:
+            '-encodeToCommandBuffer:sourceImage:reshapedWidth:reshapedHeight:reshapedFeatureChannels:':
+                name: encodeToCommandBuffer
+            '-encodeToCommandBuffer:sourceImage:destinationState:destinationStateIsTemporary:reshapedWidth:reshapedHeight:reshapedFeatureChannels:':
+                name: encodeToCommandBuffer
+            '-encodeBatchToCommandBuffer:sourceImages:reshapedWidth:reshapedHeight:reshapedFeatureChannels:':
+                name: encodeBatchToCommandBuffer
+            '-encodeBatchToCommandBuffer:sourceImages:destinationStates:destinationStateIsTemporary:reshapedWidth:reshapedHeight:reshapedFeatureChannels:':
+                name: encodeBatchToCommandBuffer
     MPSNNScaleNode: #since 11.0
         methods:
             '-init.*':
@@ -1608,6 +1617,8 @@ classes:
                 name: init
             '-initWithDevice:momentumScale:useNestrovMomentum:optimizerDescriptor:':
                 name: init
+            '-initWithDevice:momentumScale:useNesterovMomentum:optimizerDescriptor:':
+                exclude: true # dkimitsa: seem to be copy a copy of above -- as typo fix
             '-encodeToCommandBuffer:inputGradientVector:inputValuesVector:inputMomentumVector:resultValuesVector:':
                 name: encode
             '-encodeToCommandBuffer:convolutionGradientState:convolutionSourceState:inputMomentumVectors:resultState:':
@@ -1813,6 +1824,10 @@ classes:
             '+uniformDistributionDescriptorWithMinimum:maximum:':
                 constructor: true
                 name: create
+            '+normalDistributionDescriptorWithMean:standardDeviation:':
+                name: createNormalDistributionDescriptor
+            '+normalDistributionDescriptorWithMean:standardDeviation:minimum:maximum:':
+                name: createNormalDistributionDescriptor
     MPSMatrixRandomMTGP32: #since 13.0
         methods:
             '-initWithDevice:destinationDataType:seed:distributionDescriptor:':
@@ -2119,7 +2134,16 @@ classes:
             '-encodeToCommandBuffer:sourceTexture:previousTexture:destinationTexture:motionVectorTexture:depthTexture:':
                 name: encode
     MPSTriangleAccelerationStructure: {} #since 12.0
-
+    MPSImageCanny: #since 14.0
+        methods:
+            '-initWithDevice:linearToGrayScaleTransform:sigma:':
+                name: init
+    MPSImageEDLines: #since 13.4
+        methods:
+            '-initWithDevice:gaussianSigma:minLineLength:maxLines:detailRatio:gradientThreshold:lineErrorThreshold:mergeLocalityThreshold:':
+                name: init
+            '-encodeToCommandBuffer:sourceTexture:destinationTexture:endpointBuffer:endpointOffset:':
+                name: encodeToCommandBuffer
 protocols:
     MPSCNNBatchNormalizationDataSource: #since 11.3
         methods:
@@ -2249,6 +2273,7 @@ values:
 constants:
     # TODO: excluding these constants for now 
     MPSKernelTypes_h: {exclude: true}
+    MPSDeviceCapsIndex: {exclude: true}
     MPSFunctionConstantIndex:  {exclude: true}
     MPSBatchSizeIndex:  {exclude: true}
     MPSUserConstantIndex:  {exclude: true}

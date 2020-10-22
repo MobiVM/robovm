@@ -91,7 +91,7 @@ import org.robovm.apple.avfoundation.*;
      * @since Available in iOS 9.0 and later.
      */
     @Method(selector = "geometrySourceWithBuffer:vertexFormat:semantic:vertexCount:dataOffset:dataStride:")
-    public static native SCNGeometrySource createWithBuffer(MTLBuffer mtlBuffer, MTLVertexFormat vertexFormat, String semantic, @MachineSizedSInt long vertexCount, @MachineSizedSInt long offset, @MachineSizedSInt long stride);
+    public static native SCNGeometrySource createWithBuffer(MTLBuffer buffer, MTLVertexFormat vertexFormat, String semantic, @MachineSizedSInt long vertexCount, @MachineSizedSInt long offset, @MachineSizedSInt long stride);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

@@ -109,7 +109,7 @@ import org.robovm.apple.linkpresentation.*;
         }
     }
     public UIBarButtonItem(UIBarButtonSystemItem systemItem) {
-        this(systemItem, null);
+        this(systemItem, (OnClickListener)null);
     }
     public UIBarButtonItem(UIBarButtonSystemItem systemItem, OnClickListener listener) {
         super((SkipInit) null);
@@ -138,6 +138,31 @@ import org.robovm.apple.linkpresentation.*;
     public UIBarButtonItem(UIBarButtonSystemItem systemItem, NSObject target, Selector action) { super((SkipInit) null); initObject(init(systemItem, target, action)); }
     @Method(selector = "initWithCustomView:")
     public UIBarButtonItem(UIView customView) { super((SkipInit) null); initObject(init(customView)); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithBarButtonSystemItem:primaryAction:")
+    public UIBarButtonItem(UIBarButtonSystemItem systemItem, UIAction primaryAction) { super((SkipInit) null); initObject(init(systemItem, primaryAction)); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithPrimaryAction:")
+    public UIBarButtonItem(UIAction primaryAction) { super((SkipInit) null); initObject(init(primaryAction)); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithBarButtonSystemItem:menu:")
+    public UIBarButtonItem(UIBarButtonSystemItem systemItem, UIMenu menu) { super((SkipInit) null); initObject(init(systemItem, menu)); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithTitle:menu:")
+    public UIBarButtonItem(String title, UIMenu menu) { super((SkipInit) null); initObject(init(title, menu)); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithImage:menu:")
+    public UIBarButtonItem(UIImage image, UIMenu menu) { super((SkipInit) null); initObject(init(image, menu)); }
     /*</constructors>*/
 
     public void setOnClickListener(OnClickListener listener) {
@@ -170,12 +195,32 @@ import org.robovm.apple.linkpresentation.*;
     public native void setCustomView(UIView v);
     @Property(selector = "action")
     public native Selector getAction();
-    @Property(selector = "setAction:")
+    @Property(selector = "setAction:", strongRef = true)
     public native void setAction(Selector v);
     @Property(selector = "target")
     public native NSObject getTarget();
-    @Property(selector = "setTarget:", strongRef = true)
+    @Property(selector = "setTarget:")
     public native void setTarget(NSObject v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "primaryAction")
+    public native UIAction getPrimaryAction();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setPrimaryAction:")
+    public native void setPrimaryAction(UIAction v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "menu")
+    public native UIMenu getMenu();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setMenu:")
+    public native void setMenu(UIMenu v);
     @Property(selector = "tintColor")
     public native UIColor getTintColor();
     @Property(selector = "setTintColor:")
@@ -210,6 +255,31 @@ import org.robovm.apple.linkpresentation.*;
     protected native @Pointer long init(UIBarButtonSystemItem systemItem, NSObject target, Selector action);
     @Method(selector = "initWithCustomView:")
     protected native @Pointer long init(UIView customView);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithBarButtonSystemItem:primaryAction:")
+    protected native @Pointer long init(UIBarButtonSystemItem systemItem, UIAction primaryAction);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithPrimaryAction:")
+    protected native @Pointer long init(UIAction primaryAction);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithBarButtonSystemItem:menu:")
+    protected native @Pointer long init(UIBarButtonSystemItem systemItem, UIMenu menu);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithTitle:menu:")
+    protected native @Pointer long init(String title, UIMenu menu);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithImage:menu:")
+    protected native @Pointer long init(UIImage image, UIMenu menu);
     @Method(selector = "setBackgroundImage:forState:barMetrics:")
     public native void setBackgroundImage(UIImage backgroundImage, UIControlState state, UIBarMetrics barMetrics);
     @Method(selector = "backgroundImageForState:barMetrics:")
@@ -238,5 +308,15 @@ import org.robovm.apple.linkpresentation.*;
     public native void setBackButtonBackgroundVerticalPositionAdjustment(@MachineSizedFloat double adjustment, UIBarMetrics barMetrics);
     @Method(selector = "backButtonBackgroundVerticalPositionAdjustmentForBarMetrics:")
     public native @MachineSizedFloat double getBackButtonBackgroundVerticalPositionAdjustment(UIBarMetrics barMetrics);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "fixedSpaceItemOfWidth:")
+    public static native UIBarButtonItem fixedSpaceItemOfWidth(@MachineSizedFloat double width);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "flexibleSpaceItem")
+    public static native UIBarButtonItem flexibleSpaceItem();
     /*</methods>*/
 }

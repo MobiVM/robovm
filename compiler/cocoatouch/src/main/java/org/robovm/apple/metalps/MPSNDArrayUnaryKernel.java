@@ -57,14 +57,39 @@ import org.robovm.apple.metal.*;
     public MPSNDArrayUnaryKernel(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 14.0. Use derived filter properties
+     */
+    @Deprecated
     @Property(selector = "offsets")
     public native @ByVal MPSNDArrayOffsets getOffsets();
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 14.0. Use derived filter properties
+     */
+    @Deprecated
     @Property(selector = "edgeMode")
     public native MPSImageEdgeMode getEdgeMode();
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 14.0. Use derived filter properties
+     */
+    @Deprecated
     @Property(selector = "kernelSizes")
     public native @ByVal MPSNDArraySizes getKernelSizes();
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 14.0. Use derived filter properties
+     */
+    @Deprecated
     @Property(selector = "strides")
     public native @ByVal MPSNDArrayOffsets getStrides();
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 14.0. Use derived filter properties
+     */
+    @Deprecated
     @Property(selector = "dilationRates")
     public native @ByVal MPSNDArraySizes getDilationRates();
     /*</properties>*/

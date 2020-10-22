@@ -129,7 +129,7 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "archivedDataWithRootObject:")
     public static native NSData archive(NSObject rootObject);
     /**
-     * @deprecated Deprecated in iOS 12.0. Use +archivedDataWithRootObject:requiringSecureCoding:error: instead
+     * @deprecated Deprecated in iOS 12.0. Use +archivedDataWithRootObject:requiringSecureCoding:error: and -writeToURL:options:error: instead
      */
     @Deprecated
     @Method(selector = "archiveRootObject:toFile:")

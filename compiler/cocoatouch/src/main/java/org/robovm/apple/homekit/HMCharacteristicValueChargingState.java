@@ -41,9 +41,6 @@ public enum /*<name>*/HMCharacteristicValueChargingState/*</name>*/ implements V
     /*<values>*/
     None(0L),
     InProgress(1L),
-    /**
-     * @since Available in iOS 10.2 and later.
-     */
     NotChargeable(2L);
     /*</values>*/
 

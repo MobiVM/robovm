@@ -33,9 +33,12 @@ import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 10.0 and later.
+ * @deprecated Deprecated in iOS 14.0. Use WidgetKit instead. Today View extensions have been deprecated.
+ */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
+/*<annotations>*/@Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ interface /*<name>*/NCWidgetProviding/*</name>*/ 
     /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
 
@@ -48,11 +51,17 @@ import org.robovm.apple.uikit.*;
     
     /*</properties>*/
     /*<methods>*/
+    /**
+     * @deprecated Deprecated in iOS 14.0. Use WidgetKit instead. Today View extensions have been deprecated.
+     */
+    @Deprecated
     @Method(selector = "widgetPerformUpdateWithCompletionHandler:")
     void performUpdate(@Block VoidBlock1<NCUpdateResult> completionHandler);
     /**
      * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 14.0. Use WidgetKit instead. Today View extensions have been deprecated.
      */
+    @Deprecated
     @Method(selector = "widgetActiveDisplayModeDidChange:withMaximumSize:")
     void activeDisplayModeDidChange(NCWidgetDisplayMode activeDisplayMode, @ByVal CGSize maxSize);
     /**

@@ -51,10 +51,22 @@ import org.robovm.apple.coregraphics.*;
     protected MPMovieErrorLog(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit
+     */
+    @Deprecated
     @Property(selector = "extendedLogData")
     public native NSData getExtendedLogData();
+    /**
+     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit
+     */
+    @Deprecated
     @Property(selector = "extendedLogDataStringEncoding")
     public native NSStringEncoding getExtendedLogDataStringEncoding();
+    /**
+     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit
+     */
+    @Deprecated
     @Property(selector = "events")
     public native NSArray<MPMovieErrorLogEvent> getEvents();
     /*</properties>*/

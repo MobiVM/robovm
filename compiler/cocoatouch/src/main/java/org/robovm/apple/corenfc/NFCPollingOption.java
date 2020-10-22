@@ -38,8 +38,17 @@ import org.robovm.apple.dispatch.*;
 public final class /*<name>*/NFCPollingOption/*</name>*/ extends Bits</*<name>*/NFCPollingOption/*</name>*/> {
     /*<values>*/
     public static final NFCPollingOption None = new NFCPollingOption(0L);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
     public static final NFCPollingOption ISO14443 = new NFCPollingOption(1L);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
     public static final NFCPollingOption ISO15693 = new NFCPollingOption(2L);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
     public static final NFCPollingOption ISO18092 = new NFCPollingOption(4L);
     /*</values>*/
 

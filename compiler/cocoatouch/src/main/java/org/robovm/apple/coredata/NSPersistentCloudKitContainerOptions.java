@@ -56,6 +56,16 @@ import org.robovm.apple.uikit.*;
     /*<properties>*/
     @Property(selector = "containerIdentifier")
     public native String getContainerIdentifier();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "databaseScope")
+    public native CKDatabaseScope getDatabaseScope();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setDatabaseScope:")
+    public native void setDatabaseScope(CKDatabaseScope v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

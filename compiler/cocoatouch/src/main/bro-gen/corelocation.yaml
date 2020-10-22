@@ -14,7 +14,7 @@ enums:
     CLError: {name: CLErrorCode}
     CLProximity: {}
     CLRegionState: {}
-
+    CLAccuracyAuthorization: {}
 classes:
     CLError:
         extends: NSError
@@ -105,6 +105,8 @@ classes:
                 name: getDistanceTo
     CLLocationManager: # DONE
         properties:
+            'authorizationStatus':
+                omit_prefix: true
             'headingAvailable': # Deprecated in iOS 4. Conflicts with the class method with the same name.
                 exclude: true
             'locationServicesEnabled': # Deprecated in iOS 4. Conflicts with the class method with the same name.
@@ -147,6 +149,10 @@ classes:
                 name: stopRangingBeacons
             '-allowDeferredLocationUpdatesUntilTraveled:timeout:':
                 name: allowDeferredLocationUpdatesUntil
+            '-requestTemporaryFullAccuracyAuthorizationWithPurposeKey:completion:':
+                name: requestTemporaryFullAccuracyAuthorization
+            '-requestTemporaryFullAccuracyAuthorizationWithPurposeKey:':
+                name: requestTemporaryFullAccuracyAuthorization
     CLPlacemark: # DONE
         properties:
             'areasOfInterest':

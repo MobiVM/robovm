@@ -43,7 +43,7 @@ import org.robovm.apple.metal.*;
 /*<annotations>*/@Library("CoreML") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MLDictionaryFeatureProvider/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements MLFeatureProvider, NSFastEnumeration/*</implements>*/ {
+    /*<implements>*/implements MLFeatureProvider, NSFastEnumeration, NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class MLDictionaryFeatureProviderPtr extends Ptr<MLDictionaryFeatureProvider, MLDictionaryFeatureProviderPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(MLDictionaryFeatureProvider.class); }/*</bind>*/
@@ -60,12 +60,16 @@ import org.robovm.apple.metal.*;
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        initObject(handle);
     }
+    @Method(selector = "initWithCoder:")
+    public MLDictionaryFeatureProvider(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "dictionary")
     public native NSDictionary<NSString, MLFeatureValue> getDictionary();
     @Property(selector = "featureNames")
     public native NSSet<NSString> getFeatureNames();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -75,5 +79,9 @@ import org.robovm.apple.metal.*;
     public native MLFeatureValue objectForKeyedSubscript(String featureName);
     @Method(selector = "featureValueForName:")
     public native MLFeatureValue featureValueForName(String featureName);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

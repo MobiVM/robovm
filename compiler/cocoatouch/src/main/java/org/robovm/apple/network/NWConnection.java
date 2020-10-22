@@ -182,6 +182,76 @@ import org.robovm.apple.security.*;
     @Bridge(symbol="nw_connection_get_maximum_datagram_size", optional=true)
     public native int getMaximumDatagramSize();
     /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Bridge(symbol="nw_connection_group_create", optional=true)
+    public static native NWConnectionGroup groupCreate(NWGroupDescriptor group_descriptor, NWParameters parameters);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Bridge(symbol="nw_connection_group_copy_descriptor", optional=true)
+    public static native NWGroupDescriptor groupCopyDescriptor(NWConnectionGroup group);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Bridge(symbol="nw_connection_group_copy_parameters", optional=true)
+    public static native NWParameters groupCopyParameters(NWConnectionGroup group);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Bridge(symbol="nw_connection_group_set_queue", optional=true)
+    public static native void groupSetQueue(NWConnectionGroup group, DispatchQueue queue);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Bridge(symbol="nw_connection_group_set_state_changed_handler", optional=true)
+    public static native void groupSetStateChangedHandler(NWConnectionGroup group, @Block VoidBlock2<NWConnectionGroupState, NWError> state_changed_handler);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Bridge(symbol="nw_connection_group_set_receive_handler", optional=true)
+    public static native void groupSetReceiveHandler(NWConnectionGroup group, int maximum_message_size, boolean reject_oversized_messages, @Block VoidBlock3<DispatchData, NWContentContext, Boolean> receive_handler);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Bridge(symbol="nw_connection_group_start", optional=true)
+    public static native void groupStart(NWConnectionGroup group);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Bridge(symbol="nw_connection_group_cancel", optional=true)
+    public static native void groupCancel(NWConnectionGroup group);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Bridge(symbol="nw_connection_group_copy_remote_endpoint_for_message", optional=true)
+    public static native NWEndpoint groupCopyRemoteEndpointForMessage(NWConnectionGroup group, NWContentContext context);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Bridge(symbol="nw_connection_group_copy_local_endpoint_for_message", optional=true)
+    public static native NWEndpoint groupCopyLocalEndpointForMessage(NWConnectionGroup group, NWContentContext context);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Bridge(symbol="nw_connection_group_copy_path_for_message", optional=true)
+    public static native NWPath groupCopyPathForMessage(NWConnectionGroup group, NWContentContext context);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Bridge(symbol="nw_connection_group_reply", optional=true)
+    public static native void groupReply(NWConnectionGroup group, NWContentContext inbound_message, NWContentContext outbound_message, DispatchData content);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Bridge(symbol="nw_connection_group_extract_connection_for_message", optional=true)
+    public static native NWConnection groupExtractConnectionForMessage(NWConnectionGroup group, NWContentContext context);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Bridge(symbol="nw_connection_group_send_message", optional=true)
+    public static native void groupSendMessage(NWConnectionGroup group, DispatchData content, NWEndpoint endpoint, NWContentContext context, @Block VoidBlock1<NWError> completion);
+    /**
      * @since Available in iOS 13.0 and later.
      */
     @Bridge(symbol="nw_connection_access_establishment_report", optional=true)

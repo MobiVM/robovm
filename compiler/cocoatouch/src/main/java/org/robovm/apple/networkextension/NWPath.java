@@ -61,6 +61,11 @@ import org.robovm.apple.network.*;
      */
     @Property(selector = "isExpensive")
     public native boolean isExpensive();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "isConstrained")
+    public native boolean isConstrained();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

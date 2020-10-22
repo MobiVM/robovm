@@ -71,6 +71,11 @@ import org.robovm.apple.security.*;
     @Bridge(symbol="nw_path_monitor_create_with_type", optional=true)
     private static native @Pointer long createWithType(NWInterfaceType required_interface_type);
     /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Bridge(symbol="nw_path_monitor_prohibit_interface_type", optional=true)
+    public native void prohibitInterfaceType(NWInterfaceType interface_type);
+    /**
      * @since Available in iOS 12.0 and later.
      */
     @Bridge(symbol="nw_path_monitor_set_cancel_handler", optional=true)

@@ -42,6 +42,10 @@ enums:
 
     NETrafficDirection: {} #since 13.0
     NEFilterReportEvent: {} #since 13.0
+
+    NEDNSProtocol: {} #since 14.0
+    NEDNSSettingsManagerError: {nserror: true} #since 14.0
+    NEAppPushManagerError: {nserror: true} #since 14.0
 classes:
     NEProvider:
         methods:
@@ -115,7 +119,10 @@ classes:
             '-saveToPreferencesWithCompletionHandler:':
                 name: saveToPreferences
     NEFilterProviderConfiguration: {}
-    NEHotspotNetwork: {}
+    NEHotspotNetwork:
+        methods:
+            '+fetchCurrentWithCompletionHandler:':
+                name: fetchCurrent
     NEHotspotHelperCommand: {}
     NEHotspotHelperResponse: {}
     NEHotspotHelper:
@@ -366,7 +373,34 @@ classes:
         methods:
             '-initWithDomainName:roamingEnabled:':
                 name: init
-
+    NEAppPushManager: #since 14.0
+        methods:
+            '-loadFromPreferencesWithCompletionHandler:':
+                name: loadFromPreferences
+            '-removeFromPreferencesWithCompletionHandler:':
+                name: removeFromPreferences
+            '-saveToPreferencesWithCompletionHandler:':
+                name: saveToPreferences
+            '+loadAllFromPreferencesWithCompletionHandler:':
+                name: loadAllFromPreferences
+    NEAppPushProvider: #since 14.0
+        methods:
+            '-startWithCompletionHandler:':
+                name: start
+            '-stopWithReason:completionHandler:':
+                name: stop
+            '-reportIncomingCallWithUserInfo:':
+                name: reportIncomingCall
+    NEDNSOverHTTPSSettings: {} #since 14.0
+    NEDNSOverTLSSettings: {} #since 14.0
+    NEDNSSettingsManager: #since 14.0
+        methods:
+            '-loadFromPreferencesWithCompletionHandler:':
+                name: loadFromPreferences
+            '-removeFromPreferencesWithCompletionHandler:':
+                name: removeFromPreferences
+            '-saveToPreferencesWithCompletionHandler:':
+                name: saveToPreferences
 protocols:
     NWTCPConnectionAuthenticationDelegate:
         methods:
@@ -374,7 +408,10 @@ protocols:
                 name: provideIdentityForConnection
             '-evaluateTrustForConnection:peerCertificateChain:completionHandler:':
                 name: evaluateTrustForConnection
-
+    NEAppPushDelegate: #since 14.0
+        methods:
+            '-appPushManager:didReceiveIncomingCallWithUserInfo:':
+                name: didReceiveIncomingCall
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (k?NE.*):
@@ -405,6 +442,17 @@ values:
     NEHotspotConfigurationErrorDomain:
         class: NEHotspotConfigurationError
         name: getClassDomain
+    NEDNSSettingsErrorDomain:
+        class: NEDNSSettingsManagerError
+        name: getClassDomain
+    NEAppPushErrorDomain:
+        class: NEAppPushManagerError
+        name: getClassDomain
+
+    NEDNSSettingsConfiguration(DidChangeNotification):
+        class: NEDNSSettingsManager
+        static_class: Notifications
+        name: '#{g[0]}'
 
     # NEFilterProvider
     NEFilterProvider(RemediationMapRemediationURLs|RemediationMapRemediationButtonTexts):

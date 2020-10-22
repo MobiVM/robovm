@@ -174,9 +174,11 @@ public final class /*<name>*/AudioChannelLayoutTag/*</name>*/ extends Bits</*<na
     public static final AudioChannelLayoutTag WAVE_7_1 = new AudioChannelLayoutTag(12386312L);
     public static final AudioChannelLayoutTag HOA_ACN_SN3D = new AudioChannelLayoutTag(12451840L);
     public static final AudioChannelLayoutTag HOA_ACN_N3D = new AudioChannelLayoutTag(12517376L);
+    public static final AudioChannelLayoutTag Atmos_5_1_2 = new AudioChannelLayoutTag(12713992L);
+    public static final AudioChannelLayoutTag Atmos_5_1_4 = new AudioChannelLayoutTag(12779530L);
+    public static final AudioChannelLayoutTag Atmos_7_1_2 = new AudioChannelLayoutTag(12845066L);
     public static final AudioChannelLayoutTag Atmos_7_1_4 = new AudioChannelLayoutTag(12582924L);
     public static final AudioChannelLayoutTag Atmos_9_1_6 = new AudioChannelLayoutTag(12648464L);
-    public static final AudioChannelLayoutTag Atmos_5_1_2 = new AudioChannelLayoutTag(12713992L);
     public static final AudioChannelLayoutTag DiscreteInOrder = new AudioChannelLayoutTag(9633792L);
     public static final AudioChannelLayoutTag BeginReserved = new AudioChannelLayoutTag(4026531840L);
     public static final AudioChannelLayoutTag EndReserved = new AudioChannelLayoutTag(4294901759L);

@@ -33,9 +33,11 @@ import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @deprecated Deprecated in iOS 14.0. Use CarPlay framework
+ */
 /*</javadoc>*/
-/*<annotations>*/@Library("MediaPlayer") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MediaPlayer") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPPlayableContentManager/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -59,17 +61,23 @@ import org.robovm.apple.coregraphics.*;
     public native void setDelegate(MPPlayableContentDelegate v);
     /**
      * @since Available in iOS 8.4 and later.
+     * @deprecated Deprecated in iOS 14.0. Use CarPlay framework
      */
+    @Deprecated
     @Property(selector = "context")
     public native MPPlayableContentManagerContext getContext();
     /**
      * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 14.0. Use CarPlay framework
      */
+    @Deprecated
     @Property(selector = "nowPlayingIdentifiers")
     public native NSArray<NSString> getNowPlayingIdentifiers();
     /**
      * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 14.0. Use CarPlay framework
      */
+    @Deprecated
     @Property(selector = "setNowPlayingIdentifiers:")
     public native void setNowPlayingIdentifiers(NSArray<NSString> v);
     /*</properties>*/

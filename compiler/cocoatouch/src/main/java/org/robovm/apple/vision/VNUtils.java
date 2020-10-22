@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.coreml.*;
 import org.robovm.apple.coregraphics.*;
+import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.metal.*;
 import org.robovm.apple.coreimage.*;
@@ -72,6 +73,11 @@ import org.robovm.apple.imageio.*;
      */
     @Bridge(symbol="VNImagePointForNormalizedPoint", optional=true)
     public static native @ByVal CGPoint getImagePointForNormalizedPoint(@ByVal CGPoint normalizedPoint, @MachineSizedUInt long imageWidth, @MachineSizedUInt long imageHeight);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Bridge(symbol="VNNormalizedPointForImagePoint", optional=true)
+    public static native @ByVal CGPoint getNormalizedPointForImagePoint(@ByVal CGPoint imagePoint, @MachineSizedUInt long imageWidth, @MachineSizedUInt long imageHeight);
     /**
      * @since Available in iOS 11.0 and later.
      */

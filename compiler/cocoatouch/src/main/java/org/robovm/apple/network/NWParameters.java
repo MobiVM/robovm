@@ -88,6 +88,11 @@ import org.robovm.apple.security.*;
     @Bridge(symbol="nw_parameters_copy", optional=true)
     public native NWParameters copyParameters();
     /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Bridge(symbol="nw_parameters_set_privacy_context", optional=true)
+    public native void setPrivacyContext(NWPrivacyContext privacy_context);
+    /**
      * @since Available in iOS 12.0 and later.
      */
     @Bridge(symbol="nw_parameters_require_interface", optional=true)

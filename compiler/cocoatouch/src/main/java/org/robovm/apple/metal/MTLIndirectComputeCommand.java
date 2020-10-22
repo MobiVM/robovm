@@ -64,6 +64,11 @@ import org.robovm.apple.dispatch.*;
     void setBarrier();
     @Method(selector = "clearBarrier")
     void clearBarrier();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "setImageblockWidth:height:")
+    void setImageblockWidth(@MachineSizedUInt long width, @MachineSizedUInt long height);
     @Method(selector = "reset")
     void reset();
     @Method(selector = "setThreadgroupMemoryLength:atIndex:")

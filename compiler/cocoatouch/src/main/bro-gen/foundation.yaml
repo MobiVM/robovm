@@ -58,32 +58,6 @@ typedefs:
     'NSMutableOrderedSet *': NSMutableOrderedSet<?>
     'NSMutableOrderedSet **': NSMutableOrderedSet.NSMutableOrderedSetPtr<?>
     'NSEnumerator *': NSEnumerator<?>
-    'void (^)(NSUInteger, BOOL * _Nonnull)': '@Block("(@MachineSizedUInt,)") VoidBlock2<Long, BooleanPtr>'
-    'BOOL (^)(NSURL * _Nonnull, NSError * _Nonnull)': '@Block Block2<NSURL, NSError, Boolean>'
-    'void (^)(NSCachedURLResponse * _Nullable)': '@Block VoidBlock1<NSCachedURLResponse>'
-    'void (^)(NSData * _Nullable)': '@Block VoidBlock1<NSData>'
-    'void (^)(NSData * _Nullable, NSURLResponse * _Nullable, NSError * _Nullable)': '@Block VoidBlock3<NSData, NSURLResponse, NSError>'
-    'void (^)(NSDate *, BOOL, BOOL *)': '@Block VoidBlock3<NSDate, Boolean, BooleanPtr>'
-    'void (^)(NSError * _Nullable)': '@Block VoidBlock1<NSError>'
-    'void (^)(NSFileHandle * _Nonnull)': '@Block VoidBlock1<NSFileHandle>'
-    'void (^)(NSInputStream * _Nullable)': '@Block VoidBlock1<NSInputStream>'
-    'void (^)(NSNotification * _Nonnull)': '@Block VoidBlock1<NSNotification>'
-    'void (^)(NSRange, BOOL * _Nonnull)': '@Block("(@ByVal,)") VoidBlock2<NSRange, BooleanPtr>'
-    'void (^)(NSString *, BOOL *)': '@Block VoidBlock2<String, BooleanPtr>'
-    'void (^)(NSTextCheckingResult * _Nullable, NSMatchingFlags, BOOL * _Nonnull)': '@Block VoidBlock3<NSTextCheckingResult, NSMatchingFlags, BooleanPtr>'
-    'void (^)(NSUInteger, BOOL *)': '@Block("(@MachineSizedUInt,)") VoidBlock2<Long, BooleanPtr>'
-    'void (^)(NSURL * _Nonnull)': '@Block VoidBlock1<NSURL>'
-    'void (^)(NSURL * _Nonnull, NSURL * _Nonnull)': '@Block VoidBlock2<NSURL, NSURL>'
-    'void (^)(NSURL * _Nullable, NSURLResponse * _Nullable, NSError * _Nullable)': '@Block VoidBlock3<NSURL, NSURLResponse, NSError>'
-    'void (^)(NSURLRequest * _Nullable)': '@Block VoidBlock1<NSURLRequest>'
-    'void (^)(NSURLResponse * _Nullable, NSData * _Nullable, NSError * _Nullable)': '@Block VoidBlock3<NSURLResponse, NSData, NSError>'
-    'void (^)(NSURLSessionAuthChallengeDisposition, NSURLCredential * _Nullable)': '@Block VoidBlock2<NSURLSessionAuthChallengeDisposition, NSURLCredential>'
-    'void (^)(NSURLSessionResponseDisposition)': '@Block VoidBlock1<NSURLSessionResponseDisposition>'
-    'void (^)(void (^ _Nullable)(void))': '@Block("(@Block)") VoidBlock1<Runnable>'
-    'void (^)(void (^ _Nonnull)(void))': '@Block("(@Block)") VoidBlock1<Runnable>'
-    'void (^)(NSInputStream * _Nullable, NSOutputStream * _Nullable, NSError * _Nullable)': '@Block VoidBlock3<NSInputStream, NSOutputStream, NSError>'
-    'void (^)(NSURLCredential * _Nullable)': '@Block VoidBlock1<NSURLCredential>'
-    'void (^)(NSTimer * _Nonnull)': '@Block VoidBlock1<NSTimer>'
     NSPropertyListReadOptions: NSPropertyListMutabilityOptions
     # bellow defines to fight current typedef expand issue
     NSURLResourceKey: NSString
@@ -112,11 +86,13 @@ structdefs:
     vector_float2: 'VectorFloat2'
     vector_float3: 'VectorFloat3'
     vector_float4: 'VectorFloat4'
+    vector_double2: 'VectorDouble2'
+    vector_double3: 'VectorDouble3'
+    vector_double4: 'VectorDouble4'
     simd_float2: 'VectorFloat2'
     simd_float3: 'VectorFloat3'
     simd_float4: 'VectorFloat4'
     simd_quatf: 'VectorFloat4'
-    vector_double4: 'VectorDouble4'
     simd_quatd: 'VectorDouble4'
     matrix_float2x2: 'MatrixFloat2x4'
     matrix_float3x2: 'MatrixFloat3x4'
@@ -257,6 +233,7 @@ enums:
     NSURLErrorNetworkUnavailableReason: {} #since 13.0
     NSURLSessionWebSocketMessageType: {} #since 13.0
     NSURLSessionWebSocketCloseCode: {} #since 13.0
+    NSURLSessionTaskMetricsDomainResolutionProtocol: {} #since 14.0
     IGNORED1: {first: NS_UnknownByteOrder, exclude: true}  # ignored same as constants
     IGNORED2: {first: NSWrapCalendarComponents, exclude: true} # deprecated
     NSTextCheckingTypes: {prefix: NSTextChecking, name: NSTextCheckingTypes}
@@ -703,6 +680,18 @@ classes:
                 property: true
             '-failWithError:':
                 name: fail
+            '-decodeArrayOfObjectsOfClass:forKey:':
+                name: decodeArray
+                visibility: protected
+            '-decodeDictionaryWithKeysOfClass:objectsOfClass:forKey:':
+                name: decodeDictionary
+                visibility: protected
+            '-decodeArrayOfObjectsOfClasses:forKey:':
+                name: decodeArray
+                visibility: protected
+            '-decodeDictionaryWithKeysOfClasses:objectsOfClasses:forKey:':
+                name: decodeDictionary
+                visibility: protected
     NSComparisonPredicate: # DONE
         methods:
             '-init.*':
@@ -2011,6 +2000,14 @@ classes:
                 parameters:
                     cls:
                         type: 'Class<? extends NSObject>'
+            '+unarchivedArrayOfObjectsOfClass:fromData:error:':
+                name: unarchivedArray
+            '+unarchivedDictionaryWithKeysOfClass:objectsOfClass:fromData:error:':
+                name: unarchivedDictionary
+            '+unarchivedArrayOfObjectsOfClasses:fromData:error:':
+                name: unarchivedArray
+            '+unarchivedDictionaryWithKeysOfClasses:objectsOfClasses:fromData:error:':
+                name: unarchivedDictionary
     NSLengthFormatter: # DONE
         methods:
             '-stringFromValue:unit:':

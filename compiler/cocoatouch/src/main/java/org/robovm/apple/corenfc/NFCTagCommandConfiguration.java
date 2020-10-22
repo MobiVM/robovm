@@ -50,12 +50,24 @@ import org.robovm.apple.dispatch.*;
     protected NFCTagCommandConfiguration(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Property(selector = "maximumRetries")
     public native @MachineSizedUInt long getMaximumRetries();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Property(selector = "setMaximumRetries:")
     public native void setMaximumRetries(@MachineSizedUInt long v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Property(selector = "retryInterval")
     public native double getRetryInterval();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Property(selector = "setRetryInterval:")
     public native void setRetryInterval(double v);
     /*</properties>*/

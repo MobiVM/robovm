@@ -108,5 +108,10 @@ import org.robovm.apple.avfoundation.*;
      */
     @Method(selector = "kernelWithFunctionName:fromMetalLibraryData:outputPixelFormat:error:")
     private static native CIKernel create(String name, NSData data, int format, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "kernelNamesFromMetalLibraryData:")
+    public static native NSArray<NSString> getKernelNamesFromMetalLibraryData(NSData data);
     /*</methods>*/
 }

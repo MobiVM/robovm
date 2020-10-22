@@ -72,7 +72,7 @@ import org.robovm.apple.imageio.*;
     @Deprecated
     @WeaklyLinked
     @Method(selector = "requestImageDataForAsset:options:resultHandler:")
-    public native int requestImageDataForAsset(PHAsset asset, PHImageRequestOptions options, ObjCBlock resultHandler);
+    public native int requestImageDataForAsset(PHAsset asset, PHImageRequestOptions options, @Block VoidBlock4<NSData, NSString, UIImageOrientation, NSDictionary<?, ?>> resultHandler);
     /**
      * @since Available in iOS 13.0 and later.
      */

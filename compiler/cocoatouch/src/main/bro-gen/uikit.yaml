@@ -19,11 +19,11 @@ headers:
     - /System/Library/Frameworks/UIKit.framework/Headers/UIKit.h
 typedefs:
     NSCopying: NSObject
-    UIGraphicsImageDrawingActions: '@Block VoidBlock1<UIGraphicsImageRendererContext>'
-    UIGraphicsPDFDrawingActions: '@Block VoidBlock1<UIGraphicsPDFRendererContext>'
     UITextContentType: UITextContentType
 private_typedefs:
     AnchorType: NSObject
+    UIScribbleElementIdentifier: NSObject
+    UTType: org.robovm.apple.uniformtypeid.UTType
 
 enums:
     NSControlCharacterAction: {}
@@ -141,7 +141,7 @@ enums:
     UISearchBarStyle: {}
     UISemanticContentAttribute: {}
     UISegmentedControlSegment: {}
-    UISegmentedControlStyle: {}
+    UISegmentedControlSegment2: {prefix: UISegmentedControl, first: UISegmentedControlNoSegment, merge_with: UISegmentedControlSegment}
     UISplitViewControllerDisplayMode: {}
     UIStackViewAlignment: {}
     UIStackViewDistribution: {}
@@ -265,13 +265,37 @@ enums:
     UIContextMenuInteractionCommitStyle: {} #since 13.0
     UIDatePickerStyle: {} #since 13.4
     UIKeyboardHIDUsage: {} #since 13.4
-    UIAxis: { } #since 13.4
+    UIAxis: {} #since 13.4
+
     UIEventButtonMask: { } #since 13.4
+    UIUserInterfaceActiveAppearance: { } #since 14.0
+    UIContextMenuInteractionAppearance: { } #since 14.0
+    UIButtonRole: { } #since 14.0
+    UIContentInsetsReference: { } #since 14.0
+    UICellAccessoryDisplayedState: { prefix: UICellAccessoryDisplayed } #since 14.0
+    UICellAccessoryOutlineDisclosureStyle: { } #since 14.0
+    UICellAccessoryPlacement: { } #since 14.0
+    UICollectionLayoutListAppearance: { } #since 14.0
+    UICollectionLayoutListHeaderMode: { } #since 14.0
+    UICollectionLayoutListFooterMode: { } #since 14.0
+    UICellConfigurationDragState: { } #since 14.0
+    UICellConfigurationDropState: { } #since 14.0
+    UIListContentTextAlignment: { } #since 14.0
+    UIListContentTextTransform: { } #since 14.0
     UIScrollType: { } #since 13.4
     UIScrollTypeMask: { } #since 13.4
+    UINavigationItemBackButtonDisplayMode: { }
+    UIPageControlInteractionState: { } #since 14.0
+    UIPageControlBackgroundStyle: { } #since 14.0
+    UISplitViewControllerStyle: { } #since 14.0
+    UISplitViewControllerColumn: { } #since 14.0
+    UISplitViewControllerSplitBehavior: { } #since 14.0
+    UISwitchStyle: { } #since 14.0
     UIPointerEffectTintMode: { } #since 13.4
+    NSLineBreakStrategy: {}
+    UISegmentedControlStyle: {}
+
 #    EXCLUDE1: {exclude: true, first: NSAttachmentCharacter} -- don't exclude it as value will be picked up as constant
-#    EXCLUDE2: {exclude: true, first: UISegmentedControlNoSegment} -- don't exclude it as value will be picked up as constant
     EXCLUDE3_AS_DEPRECATED: {exclude: true, first: NSControlCharacterZeroAdvancementAction}
 
 categories:
@@ -875,6 +899,8 @@ classes:
                 parameters:
                     applicationActivities:
                         type: NSArray<UIActivity>
+            '-initWithActivityItemsConfiguration:':
+                name: init
     UIAlertAction: # DONE
         methods:
             '+actionWithTitle:style:handler:':
@@ -1037,6 +1063,16 @@ classes:
                 trim_after_first_colon: true
             '-setBackButtonBackgroundVerticalPositionAdjustment:forBarMetrics:':
                 trim_after_first_colon: true
+            '-initWithBarButtonSystemItem:primaryAction:':
+                name: init
+            '-initWithPrimaryAction:':
+                name: init
+            '-initWithBarButtonSystemItem:menu:':
+                name: init
+            '-initWithTitle:menu:':
+                name: init
+            '-initWithImage:menu:':
+                name: init
     UIBarButtonItemGroup: # DONE
         properties:
             'barButtonItems':
@@ -1140,6 +1176,11 @@ classes:
                 name: setPreferredSymbolConfiguration
             '+systemButtonWithImage:target:action:':
                 name: getSystemButtonWithImage
+            '+systemButtonWithPrimaryAction:':
+                name: getSystemButtonWithPrimaryAction
+            '+buttonWithType:primaryAction:':
+                name: create0
+                constructor: true
     UICollectionReusableView: # DONE
         methods:
             '-didTransitionFromLayout:toLayout:':
@@ -1239,6 +1280,10 @@ classes:
                 name: beginInteractiveMovement
             '-updateInteractiveMovementTargetPosition:':
                 name: updateInteractiveMovement
+            '-dequeueConfiguredReusableCellWithRegistration:forIndexPath:item:':
+                name: dequeueConfiguredReusableCell
+            '-dequeueConfiguredReusableSupplementaryViewWithRegistration:forIndexPath:':
+                name: dequeueConfiguredReusableSupplementaryView
     UICollectionViewCell: # DONE
         methods:
     UICollectionViewController: # DONE
@@ -1471,6 +1516,14 @@ classes:
                 name: removeTarget
             '-sendAction:to:forEvent:':
                 name: sendAction
+            '-initWithFrame:primaryAction:':
+                name: init
+            '-addAction:forControlEvents:':
+                name: addAction
+            '-removeAction:forControlEvents:':
+                name: removeAction
+            '-removeActionForIdentifier:forControlEvents:':
+                name: removeAction
     UICubicTimingParameters: # DONE
         methods:
             '-init.*':
@@ -1599,6 +1652,17 @@ classes:
                 name: init
             '-initWithURLs:inMode:':
                 name: init
+            '-initForOpeningContentTypes:':
+                static_constructor_name: createForOpeningContentTypes
+            '-initForOpeningFilesWithContentTypes:':
+                static_constructor_name: createForOpeningContentTypes
+                name: initForOpeningFilesWithContentTypes
+            '-initForOpeningContentTypes:asCopy:':
+                static_constructor_name: createForOpeningContentTypes
+                name: initForOpeningContentTypesAsCopy
+            '-initForExportingURLs:asCopy:':
+                static_constructor_name: createForExportingURLs
+                name: initForExportingURLsAsCopy
     UIDynamicAnimator: # DONE
         properties:
             'behaviors':
@@ -2314,6 +2378,8 @@ classes:
         methods:
             '-sizeForNumberOfPages:':
                 name: getSizeForNumberOfPages
+            '-setIndicatorImage:forPage:':
+                name: setIndicatorImage
     UIPageViewController: # DONE
         properties:
             'gestureRecognizers':
@@ -2408,6 +2474,14 @@ classes:
                 trim_after_first_colon: true
             '-setObjects:localOnly:expirationDate:':
                 trim_after_first_colon: true
+            '-detectPatternsForPatterns:completionHandler:':
+                name: detectPatternsForPatterns
+            '-detectPatternsForPatterns:inItemSet:completionHandler:':
+                name: detectPatternsForPatterns
+            '-detectValuesForPatterns:completionHandler:':
+                name: detectValuesForPatterns
+            '-detectValuesForPatterns:inItemSet:completionHandler:':
+                name: detectValuesForPatterns
     UIPercentDrivenInteractiveTransition: # DONE
         methods:
             '-updateInteractiveTransition:':
@@ -2839,6 +2913,12 @@ classes:
                         type: 'NSDictionary<NSString, ?>'
             '-setContentPositionAdjustment:forSegmentType:barMetrics:':
                 name: setContentPositionAdjustment
+            '-initWithFrame:actions:':
+                name: init
+            '-insertSegmentWithAction:atIndex:animated:':
+                name: insertSegment
+            '-setAction:forSegmentAtIndex:':
+                name: setAction
     UISelectionFeedbackGenerator: {} # DONE
     UISimpleTextPrintFormatter: # DONE
         methods:
@@ -2880,6 +2960,10 @@ classes:
                 trim_after_first_colon: true
             '-showDetailViewController:sender:':
                 trim_after_first_colon: true
+            '-initWithStyle:':
+                name: init
+            '-setViewController:forColumn:':
+                name: setViewController
     UISpringTimingParameters: # DONE
         methods:
             '-initWithDampingRatio:initialVelocity:':
@@ -3303,6 +3387,9 @@ classes:
                 name: create
                 constructor: true
             '+traitCollectionWithLegibilityWeight:':
+                name: create
+                constructor: true
+            '+traitCollectionWithActiveAppearance:':
                 name: create
                 constructor: true
     UIMutableApplicationShortcutItem: # DONE
@@ -3842,7 +3929,9 @@ classes:
             '-importDocumentAtURL:nextToDocumentAtURL:mode:completionHandler:':
                 name: importDocument
             '-initForOpeningFilesWithContentTypes:':
-                name: initForOpeningFilesWithContentTypes
+                name: initForOpeningFilesUsingContentTypes
+            '-initForOpeningContentTypes:':
+                static_constructor_name: createForOpeningContentTypes
     UIFocusMovementHint: {} #since 12.0
     UITextInputPasswordRules: #since 12.0
         methods:
@@ -3913,6 +4002,9 @@ classes:
             '+sectionWithGroup:':
                 constructor: true
                 name: create
+            '+sectionWithListConfiguration:layoutEnvironment:':
+                constructor: true
+                name: create
     NSCollectionLayoutSize: #since 13.0
         methods:
             '+sizeWithWidthDimension:heightDimension:':
@@ -3966,6 +4058,9 @@ classes:
             '+actionWithTitle:image:identifier:handler:':
                 constructor: true
                 name: create
+            '+actionWithHandler:':
+                constructor: true
+                name: create
     UIActivityItemsConfiguration: #since 13.0
         methods:
             '-initWithObjects:':
@@ -4009,6 +4104,9 @@ classes:
                 name: init
             '-initWithSectionProvider:configuration:':
                 name: init
+            '+layoutWithListConfiguration:':
+                constructor: true
+                name: create
     UICollectionViewCompositionalLayoutConfiguration: {} #since 13.0
     UICollectionViewDiffableDataSource: #since 13.0
         methods:
@@ -4017,6 +4115,10 @@ classes:
             '-applySnapshot:animatingDifferences:':
                 name: applySnapshot
             '-applySnapshot:animatingDifferences:completion:':
+                name: applySnapshot
+            '-applySnapshot:toSection:animatingDifferences:':
+                name: applySnapshot
+            '-applySnapshot:toSection:animatingDifferences:completion:':
                 name: applySnapshot
     UICommand: #since 13.0
         methods:
@@ -4042,6 +4144,8 @@ classes:
         methods:
             '-initWithDelegate:':
                 name: init
+            '-updateVisibleMenuWithBlock:':
+                name: updateVisibleMenu
     UIFontPickerViewController: #since 13.0
         methods:
             '-initWithConfiguration:':
@@ -4095,6 +4199,9 @@ classes:
                 name: create
             '-initWithCoder:':
                 name: init
+            '+menuWithChildren:':
+                constructor: true
+                name: create
     UIMenuElement: {} #since 13.0
     UIMenuSystem: {} #since 13.0
     UINavigationBarAppearance: #since 13.0
@@ -4188,6 +4295,86 @@ classes:
     UIWindowScene: {} #since 13.0
     UIWindowSceneDestructionRequestOptions: {} #since 13.0
     UIKey: {} #since 13.4
+    NSDiffableDataSourceSectionSnapshot: #since 14.0
+        methods:
+            '-appendItems:intoParentItem:':
+                name: appendItems
+            '-insertItems:beforeItem:':
+                name: insertItemsBeforeItem
+            '-insertItems:afterItem:':
+                name: insertItemsAgterItem
+            '-replaceChildrenOfParentItem:withSnapshot:':
+                name: replaceChildrenOfParentItem
+            '-insertSnapshot:beforeItem:':
+                name: insertSnapshotBeforeItem
+            '-insertSnapshot:afterItem:':
+                name: insertSnapshotAfterItem
+            '-snapshotOfParentItem:includingParentItem:':
+                name: getSnapshotOfParentItem
+    NSDiffableDataSourceSectionTransaction: {} #since 14.0
+    NSDiffableDataSourceTransaction: {} #since 14.0
+    UIBackgroundConfiguration: {} #since 14.0
+    UICellAccessory: #since 14.0
+        methods:
+            '-initWithCoder:':
+                name: init
+    UICellAccessoryCheckmark: {} #since 14.0
+    UICellAccessoryCustomView: #since 14.0
+        methods:
+            '-initWithCustomView:placement:':
+                name: init
+    UICellAccessoryDelete: {} #since 14.0
+    UICellAccessoryDisclosureIndicator: {} #since 14.0
+    UICellAccessoryInsert: {} #since 14.0
+    UICellAccessoryLabel: #since 14.0
+        methods:
+            '-initWithText:':
+                name: init
+    UICellAccessoryMultiselect: {} #since 14.0
+    UICellAccessoryOutlineDisclosure: {} #since 14.0
+    UICellAccessoryReorder: {} #since 14.0
+    UICellConfigurationState: {} #since 14.0
+    UICollectionLayoutListConfiguration: #since 14.0
+        methods:
+            '-initWithAppearance:':
+                name: initWithAppearance$
+    UICollectionViewCellRegistration: #since 14.0
+        methods:
+            '+registrationWithCellClass:configurationHandler:':
+                name: create
+                constructor: true
+            '+registrationWithCellNib:configurationHandler:':
+                name: create
+                constructor: true
+    UICollectionViewDiffableDataSourceReorderingHandlers: {} #since 14.0
+    UICollectionViewDiffableDataSourceSectionSnapshotHandlers: {} #since 14.0
+    UICollectionViewListCell: {} #since 14.0
+    UICollectionViewSupplementaryRegistration: #since 14.0
+        methods:
+            '+registrationWithSupplementaryClass:elementKind:configurationHandler:':
+                name: create
+                constructor: true
+            '+registrationWithSupplementaryNib:elementKind:configurationHandler:':
+                name: create
+                constructor: true
+    UIColorPickerViewController: {} #since 14.0
+    UIColorWell: {} #since 14.0
+    UIDeferredMenuElement: #since 14.0
+        methods:
+            '+elementWithProvider:':
+                name: create
+                constructor: true
+    UIIndirectScribbleInteraction: #since 14.0
+        methods:
+            '-initWithDelegate:':
+                name: init
+    UIListContentConfiguration: {} #since 14.0
+    UIListContentImageProperties: {} #since 14.0
+    UIListContentTextProperties: {} #since 14.0
+    UIListContentView: #since 14.0
+        methods:
+            '-initWithConfiguration:':
+                name: init
     UIPointerEffect: #since 13.4
         methods:
             '+effectWithPreview:':
@@ -4200,6 +4387,7 @@ classes:
             '-initWithDelegate:':
                 name: init
     UIPointerLiftEffect: {} #since 13.4
+    UIPointerLockState: {} #since 14.0
     UIPointerRegion: #since 13.4
         methods:
             '+regionWithRect:identifier:':
@@ -4228,6 +4416,16 @@ classes:
             '+styleWithShape:constrainedAxes:':
                 name: create
                 constructor: true
+    UIScribbleInteraction: #since 14.0
+        methods:
+            '-initWithDelegate:':
+                name: init
+    UIViewConfigurationState: #since 14.0
+        methods:
+            '-initWithTraitCollection:':
+                name: init
+            '-initWithCoder:':
+                name: init
 protocols:
     NSLayoutManagerDelegate: # DONE
         methods:
@@ -4468,6 +4666,8 @@ protocols:
                 name: shouldSaveSecureApplicationState
             '-application:shouldRestoreSecureApplicationState:':
                 name: shouldRestoreSecureApplicationState
+            '-application:handlerForIntent:':
+                name: getHandlerForIntent
     UIBarPositioning: {} # DONE
     UIBarPositioningDelegate: # DONE
         methods:
@@ -4555,6 +4755,12 @@ protocols:
                 name: willCommitMenu
             '-collectionView:willPerformPreviewActionForMenuWithConfiguration:animator:':
                 name: willPerformPreviewAction
+            '-collectionView:canEditItemAtIndexPath:':
+                name: canEditItem
+            '-collectionView:willDisplayContextMenuWithConfiguration:animator:':
+                name: willDisplayContextMenu
+            '-collectionView:willEndContextMenuInteractionWithConfiguration:animator:':
+                name: willEndContextMenuInteraction
     UICollectionViewDelegateFlowLayout: # DONE
         methods:
             '-collectionView:layout:insetForSectionAtIndex:':
@@ -4989,6 +5195,22 @@ protocols:
                 name: collapseSecondaryViewController
             '-splitViewController:separateSecondaryViewControllerFromPrimaryViewController:':
                 name: separateSecondaryViewController
+            '-splitViewController:topColumnForCollapsingToProposedTopColumn:':
+                name: getTopColumnForCollapsingToProposedTopColumn
+            '-splitViewController:displayModeForExpandingToProposedDisplayMode:':
+                name: getDisplayModeForExpandingToProposedDisplayMode
+            '-splitViewController:willShowColumn:':
+                name: willShowColumn
+            '-splitViewController:willHideColumn:':
+                name: willHideColumn
+            '-splitViewControllerDidCollapse:':
+                name: didCollapse
+            '-splitViewControllerDidExpand:':
+                name: didExpand
+            '-splitViewControllerInteractivePresentationGestureWillBegin:':
+                name: interactivePresentationGestureWillBegin
+            '-splitViewControllerInteractivePresentationGestureDidEnd:':
+                name: interactivePresentationGestureDidEnd
     UIStateRestoring: # DONE
         methods:
             '-decodeRestorableStateWithCoder:':
@@ -5182,6 +5404,11 @@ protocols:
                 name: willCommitMenu
             '-tableView:willPerformPreviewActionForMenuWithConfiguration:animator:':
                 name: willPerformPreviewAction
+            '-tableView:willDisplayContextMenuWithConfiguration:animator:':
+                name: willDisplayContextMenu
+            '-tableView:willEndContextMenuInteractionWithConfiguration:animator:':
+                name: willEndContextMenuInteraction
+
     UITextDocumentProxy: # DONE
         methods:
             '-adjustTextPositionByCharacterOffset:':
@@ -5893,6 +6120,38 @@ protocols:
                 name: userDidAcceptCloudKitShare
     UIContextMenuInteractionAnimating: {} #since 13.0
 
+    UIColorPickerViewControllerDelegate:  #since 14.0
+        methods:
+            '-colorPickerViewControllerDidSelectColor:':
+                name: didSelectColor
+            '-colorPickerViewControllerDidFinish:':
+                name: didFinish
+    UIConfigurationState: #since 14.0
+        methods:
+            '-initWithTraitCollection:':
+                name: init
+            '-setCustomState:forKey:':
+                name: setCustomState
+            '-setObject:forKeyedSubscript:':
+                name: setObject
+    UIContentConfiguration: {} #since 14.0
+    UIContentView: {} #since 14.0
+    UIIndirectScribbleInteractionDelegate: #since 14.0
+        methods:
+            '-indirectScribbleInteraction:requestElementsInRect:completion:':
+                name: requestElementsInRect
+            '-indirectScribbleInteraction:isElementFocused:':
+                name: isElementFocused
+            '-indirectScribbleInteraction:frameForElement:':
+                name: getFrame
+            '-indirectScribbleInteraction:focusElementIfNeeded:referencePoint:completion:':
+                name: focusElementIfNeeded
+            '-indirectScribbleInteraction:shouldDelayFocusForElement:':
+                name: shouldDelayFocus
+            '-indirectScribbleInteraction:willBeginWritingInElement:':
+                name: willBeginWritingInElement
+            '-indirectScribbleInteraction:didFinishWritingInElement:':
+                name: didFinishWriting
     UIPointerInteractionAnimating: {} #since 13.4
     UIPointerInteractionDelegate: #since 13.4
         methods:
@@ -5904,6 +6163,16 @@ protocols:
                 name: willEnterRegion
             '-pointerInteraction:willExitRegion:animator:':
                 name: willExitRegion
+    UIScribbleInteractionDelegate: #since 14.0
+        methods:
+            '-scribbleInteraction:shouldBeginAtLocation:':
+                name: shouldBegin
+            '-scribbleInteractionShouldDelayFocus:':
+                name: shouldDelayFocus
+            '-scribbleInteractionWillBeginWriting:':
+                name: willBeginWriting
+            '-scribbleInteractionDidFinishWriting:':
+                name: didFinishWriting
 
     # skipped
     UIAppearance: {exclude: true, skip_implements: true, skip_methods: true} # as functionality is implemented in UIAppearance
@@ -6032,18 +6301,26 @@ functions:
     UIImageSymbolWeightForFontWeight:
         class: UIFontWeight
         name: toImageSymbolWeight
+
     UIEventButtonMaskForButtonNumber:
         class: UIEventButtonMask
         name: fromButtonNumber
 
+    # TODO: probably not a best option to put it inside UICellAccessory
+    UICellAccessoryPosition(.*):
+        class: UICellAccessory
+        name: 'getPosition#{g[0]}'
 
     # Make sure we don't miss any functions if new ones are introduced in a later UIKit
     (CG.*):
         name: 'Function__#{g[0]}'
+        class: FIXME
     (NS.*):
         name: 'Function__#{g[0]}'
+        class: FIXME
     (UI.*):
         name: 'Function__#{g[0]}'
+        class: FIXME
 
 values:
     NS(TabColumnTerminators)AttributeName:
@@ -6555,7 +6832,7 @@ values:
         type: NSString
 
     # UISplitViewController
-    UISplitViewController(AutomaticDimension):
+    UISplitViewController(AutomaticDimension|AutomaticSupplementaryFillDimension):
         class: UISplitViewController
         name: 'get#{g[0]}'
 
@@ -6735,12 +7012,33 @@ values:
         class: UISceneErrorCode
         name: getClassDomain
 
+    UIPointerLockStateDidChangeNotification:
+        class: UIPointerLockState
+        name: DidChangeNotification
+    UIPointerLockStateSceneUserInfoKey:
+        class: UIPointerLockState
+        name: SceneUserInfoKey
+    UICellAccessoryStandardDimension:
+        class: UICellAccessory
+        name: getStandardDimension
+    UIConfigurationColorTransformer(.*):
+        class: UIConfigurationColorTransformer
+        name: '#{g[0]}'
+    UIListContentImageStandardDimension:
+        class: UIListContentImageProperties
+        name: getStandardDimension
+    UIPasteboardDetectionPattern(.*):
+        class: UIPasteboard
+        static_class: DetectionPatterns
+        type: NSString
+        name: '#{g[0]}'
+
     # Make sure we don't miss any values if new ones are introduced in a later UIKit
     (NS.*):
-        class: UIKit
+        class: FIXME
         name: 'Value__#{g[0]}'
     (UI.*):
-        class: UIKit
+        class: FIXME
         name: 'Value__#{g[0]}'
 
 typed_enums:
@@ -6785,10 +7083,6 @@ constants:
         name: '#{g[0]}'
         type: char
 
-    UISegmentedControl(NoSegment):
-        class: UISegmentedControl
-        name: '#{g[0]}'
-
     UILayoutPriority(.*):
         class: UILayoutPriority
         name: '#{g[0]}'
@@ -6802,5 +7096,5 @@ constants:
 
     # Make sure we don't miss any constants if new ones are introduced in a later UIKit
     (UI.*):
-        class: UIKit
+        class: FIXME
         name: 'Constant__#{g[0]}'

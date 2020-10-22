@@ -87,8 +87,17 @@ import org.robovm.apple.contacts.*;
     void didFail(CLLocationManager manager, NSError error);
     @Method(selector = "locationManager:monitoringDidFailForRegion:withError:")
     void monitoringDidFail(CLLocationManager manager, CLRegion region, NSError error);
+    /**
+     * @deprecated Deprecated in iOS 14.0. Use -locationManagerDidChangeAuthorization:
+     */
+    @Deprecated
     @Method(selector = "locationManager:didChangeAuthorizationStatus:")
     void didChangeAuthorizationStatus(CLLocationManager manager, CLAuthorizationStatus status);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "locationManagerDidChangeAuthorization:")
+    void locationManagerDidChangeAuthorization(CLLocationManager manager);
     @Method(selector = "locationManager:didStartMonitoringForRegion:")
     void didStartMonitoring(CLLocationManager manager, CLRegion region);
     @Method(selector = "locationManagerDidPauseLocationUpdates:")

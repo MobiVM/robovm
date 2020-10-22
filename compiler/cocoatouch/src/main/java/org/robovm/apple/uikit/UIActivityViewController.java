@@ -58,6 +58,11 @@ import org.robovm.apple.linkpresentation.*;
     protected UIActivityViewController(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithActivityItems:applicationActivities:")
     public UIActivityViewController(NSArray<?> activityItems, NSArray<UIActivity> applicationActivities) { super((SkipInit) null); initObject(init(activityItems, applicationActivities)); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithActivityItemsConfiguration:")
+    public UIActivityViewController(UIActivityItemsConfigurationReading activityItemsConfiguration) { super((SkipInit) null); initObject(init(activityItemsConfiguration)); }
     /*</constructors>*/
     public UIActivityViewController(List<?> activityItems, NSArray<UIActivity> applicationActivities) {
         super((SkipInit) null);
@@ -103,5 +108,10 @@ import org.robovm.apple.linkpresentation.*;
     /*<methods>*/
     @Method(selector = "initWithActivityItems:applicationActivities:")
     protected native @Pointer long init(NSArray<?> activityItems, NSArray<UIActivity> applicationActivities);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithActivityItemsConfiguration:")
+    protected native @Pointer long init(UIActivityItemsConfigurationReading activityItemsConfiguration);
     /*</methods>*/
 }

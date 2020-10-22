@@ -35,7 +35,9 @@ import org.robovm.apple.mapkit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 13.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("EventKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/EKObject/*</name>*/ 

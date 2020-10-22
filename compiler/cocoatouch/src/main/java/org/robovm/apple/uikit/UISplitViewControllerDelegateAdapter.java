@@ -103,5 +103,45 @@ import org.robovm.apple.linkpresentation.*;
     @Deprecated
     @NotImplemented("splitViewController:shouldHideViewController:inOrientation:")
     public boolean shouldHideViewController(UISplitViewController svc, UIViewController vc, UIInterfaceOrientation orientation) { return false; }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @NotImplemented("splitViewController:topColumnForCollapsingToProposedTopColumn:")
+    public UISplitViewControllerColumn getTopColumnForCollapsingToProposedTopColumn(UISplitViewController svc, UISplitViewControllerColumn proposedTopColumn) { return null; }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @NotImplemented("splitViewController:displayModeForExpandingToProposedDisplayMode:")
+    public UISplitViewControllerDisplayMode getDisplayModeForExpandingToProposedDisplayMode(UISplitViewController svc, UISplitViewControllerDisplayMode proposedDisplayMode) { return null; }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @NotImplemented("splitViewControllerDidCollapse:")
+    public void didCollapse(UISplitViewController svc) {}
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @NotImplemented("splitViewControllerDidExpand:")
+    public void didExpand(UISplitViewController svc) {}
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @NotImplemented("splitViewController:willShowColumn:")
+    public void willShowColumn(UISplitViewController svc, UISplitViewControllerColumn column) {}
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @NotImplemented("splitViewController:willHideColumn:")
+    public void willHideColumn(UISplitViewController svc, UISplitViewControllerColumn column) {}
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @NotImplemented("splitViewControllerInteractivePresentationGestureWillBegin:")
+    public void interactivePresentationGestureWillBegin(UISplitViewController svc) {}
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @NotImplemented("splitViewControllerInteractivePresentationGestureDidEnd:")
+    public void interactivePresentationGestureDidEnd(UISplitViewController svc) {}
     /*</methods>*/
 }

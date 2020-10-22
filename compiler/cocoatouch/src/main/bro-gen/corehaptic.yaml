@@ -14,23 +14,43 @@ enums:
 
 typed_enums:
     CHHapticPatternKey:
-        readonly: true # as declared without const
-        class: CHHapticPatternKey
+        dictionary: CHHapticPatternDict
         type: NSString
         prefix: CHHapticPatternKey
+        methods:
+            Version:
+                type: double
+            Pattern:
+                type: NSArray<?>
+            Event:
+                type: CHHapticPatternDict
+            EventType:
+                type: CHHapticEventType
+            EventDuration:
+                type: double
+            EventParameters:
+                type: NSArray<?>
+            KeyParameter:
+                type: NSDictionary<?, ?>
+            KeyParameterID:
+                type: CHHapticEventParameterID
+            ParameterValue:
+                type: double
+            Time:
+                type: double
+            EventWaveformPath:
+                type: String
+
     CHHapticEventType:
-        readonly: true # as declared without const
-        class: CHHapticEventType
+        enum: CHHapticEventType
         type: NSString
         prefix: CHHapticEventType
     CHHapticEventParameterID:
-        readonly: true # as declared without const
-        class: CHHapticEventParameterID
+        enum: CHHapticEventParameterID
         type: NSString
         prefix: CHHapticEventParameterID
     CHHapticDynamicParameterID:
-        readonly: true # as declared without const
-        class: CHHapticDynamicParameterID
+        enum: CHHapticDynamicParameterID
         type: NSString
         prefix: CHHapticDynamicParameterID
 

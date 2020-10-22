@@ -5,12 +5,6 @@ framework: HealthKit
 clang_args: ['-x', 'objective-c']
 headers:
     - /System/Library/Frameworks/HealthKit.framework/Headers/HealthKit.h
-typedefs:
-    'void (^)(BOOL, NSError *)': '@Block VoidBlock2<Boolean, NSError>'
-    'void (^)(HKStatistics *, BOOL *)': '@Block VoidBlock2<HKStatistics, Boolean>'
-    'void (^)(HKStatisticsQuery *, HKStatistics *, NSError *)': '@Block VoidBlock3<HKStatisticsQuery, HKStatistics, NSError>'
-    'void (^)(HKStatisticsCollectionQuery *, HKStatisticsCollection *, NSError *)': '@Block VoidBlock3<HKStatisticsCollectionQuery, HKStatisticsCollection, NSError>'
-    'void (^)(HKStatisticsCollectionQuery *, HKStatistics *, HKStatisticsCollection *, NSError *)': '@Block VoidBlock4<HKStatisticsCollectionQuery, HKStatistics, HKStatisticsCollection, NSError>'
 
 private_typedefs:
     'CLLocation *': org.robovm.apple.corelocation.CLLocation
@@ -51,7 +45,13 @@ enums:
     HKCategoryValueSeverity: {} #since 13.6
     HKCategoryValueAppetiteChanges: {} #since 13.6
     HKCategoryValuePresence: {} #since 13.6
-
+    HKCategoryValueEnvironmentalAudioExposureEvent: {} #since 14.0
+    HKElectrocardiogramLead: {} #since 14.0
+    HKElectrocardiogramClassification: {} #since 14.0
+    HKElectrocardiogramSymptomsStatus: {} #since 14.0
+    HKAppleECGAlgorithmVersion: {} #since 14.0
+    HKDevicePlacementSide: {} #since 14.0
+    HKActivityMoveMode: {} #since 14.0
 typed_enums:
     HKFHIRResourceType:
         enum: HKFHIRResourceType
@@ -61,7 +61,10 @@ typed_enums:
         enum: HKClinicalTypeIdentifier
         prefix: HKClinicalTypeIdentifier
         type: NSString
-
+    HKFHIRRelease:
+        enum: HKFHIRRelease
+        prefix: HKFHIRRelease
+        type: NSString
 classes:
     HKError:
         extends: NSError
@@ -149,6 +152,8 @@ classes:
             '-wheelchairUseWithError:':
                 name: getWheelchairUse
                 throws: NSErrorException
+            '-activityMoveModeWithError:':
+                name: getActivityMoveMode
     HKObject: # DONE
         properties:
             'metadata':
@@ -366,6 +371,12 @@ classes:
                 name: createPredicateForActivitySummary
             '+predicateForClinicalRecordsWithFHIRResourceType:':
                 name: createPredicateForClinicalRecords
+            '+predicateForObjectsAssociatedWithElectrocardiogram:':
+                name: createPredicateForObjectsAssociatedWithElectrocardiogram
+            '+predicateForElectrocardiogramsWithClassification:':
+                name: predicateForElectrocardiogramsWithClassification
+            '+predicateForElectrocardiogramsWithSymptomsStatus:':
+                name: predicateForElectrocardiogramsWithSymptomsStatus
     HKAnchoredObjectQuery: # DONE
         methods:
             '-initWithType:predicate:anchor:limit:completionHandler:':
@@ -621,6 +632,20 @@ classes:
             '-initWithHeartbeatSeries:dataHandler:':
                 name: init
     HKHeartbeatSeriesSample: {} #since 13.0
+    HKElectrocardiogram: {} #since 14.0
+    HKElectrocardiogramQuery: #since 14.0
+        methods:
+            '-initWithElectrocardiogram:dataHandler:':
+                name: init
+    HKElectrocardiogramType: {} #since 14.0
+    HKElectrocardiogramVoltageMeasurement: {} #since 14.0
+    HKFHIRVersion: #since 14.0
+        methods:
+            '+versionFromVersionString:error:':
+                constructor: true
+                name: create
+                throws: NSErrorException
+    HKActivityMoveModeObject: {} #since 14.0
 protocols:
     HKWorkoutSessionDelegate: {}
 

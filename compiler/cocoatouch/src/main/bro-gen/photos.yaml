@@ -1,10 +1,20 @@
 package: org.robovm.apple.photos
-include: [foundation.yaml, coregraphics.yaml, uikit.yaml, corelocation.yaml, avfoundation.yaml, coreimage.yaml, coremedia.yaml, imageio.yaml]
+include:
+    - foundation
+    - coregraphics
+    - uikit
+    - corelocation
+    - avfoundation
+    - coreimage
+    - coremedia
+    - imageio
 library: Photos
 framework: Photos
 clang_args: ['-x', 'objective-c']
 headers:
     - /System/Library/Frameworks/Photos.framework/Headers/Photos.h
+private_typedefs:
+    UIImageOrientation: UIImageOrientation # in UKIT but photos defines it as empty enum
 enums:
     PHAssetResourceType: {}
     PHAssetSourceType: {}
@@ -27,6 +37,7 @@ enums:
     PHLivePhotoFrameType: {}
     PHAssetPlaybackStyle: {} #since 11.0
     PHPhotosError: {nserror: true, prefix: PHPhotosError, first: PHPhotosErrorInvalid} #since 13.0
+    PHAccessLevel: { } #since 14.0
 classes:
     PHLivePhotoRequestOptions: {}
     PHLivePhoto:
@@ -350,6 +361,8 @@ classes:
                 property: true
             '+requestAuthorization:':
                 trim_after_first_colon: true
+            '+requestAuthorizationForAccessLevel:handler:':
+                name: requestAuthorization
     PHVideoRequestOptions: {} # DONE
     PHLivePhotoEditingContext:
         methods:

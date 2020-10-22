@@ -29,6 +29,7 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -43,7 +44,8 @@ public enum /*<name>*/GKPeerConnectionState/*</name>*/ implements ValuedEnum {
     Unavailable(1L),
     Connected(2L),
     Disconnected(3L),
-    Connecting(4L);
+    Connecting(4L),
+    ConnectedRelay(5L);
     /*</values>*/
 
     /*<bind>*/

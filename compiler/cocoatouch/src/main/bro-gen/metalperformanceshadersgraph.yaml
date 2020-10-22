@@ -1,0 +1,386 @@
+package: org.robovm.apple.metalpsgraph
+include: [foundation, metal, metalperformanceshaders]
+library: MetalPerformanceShadersGraph
+framework: MetalPerformanceShadersGraph
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/MetalPerformanceShadersGraph.framework/Headers/MetalPerformanceShadersGraph.h
+
+typedefs:
+    
+enums:
+    MPSGraphTensorNamedDataLayout: {}
+    MPSGraphPaddingStyle: {}
+    MPSGraphPaddingMode: {}
+    MPSGraphDeviceType: {}
+    MPSGraphOptions: {}
+    MPSGraphLossReductionType: {}
+    MPSGraphResizeMode: {prefix: MPSGraphResize}
+
+categories:
+
+classes:
+    MPSGraph: #since 14.0
+        methods:
+            '-runWithFeeds:targetTensors:targetOperations:':
+                name: run
+            '-runWithMTLCommandQueue:feeds:targetTensors:targetOperations:':
+                name: run
+            '-runWithMTLCommandQueue:feeds:targetOperations:resultsDictionary:':
+                name: run
+            '-runAsyncWithFeeds:targetTensors:targetOperations:executionDescriptor:':
+                name: runAsync
+            '-runAsyncWithMTLCommandQueue:feeds:targetTensors:targetOperations:executionDescriptor:':
+                name: runAsync
+            '-runAsyncWithMTLCommandQueue:feeds:targetOperations:resultsDictionary:executionDescriptor:':
+                name: runAsync
+            '-encodeToCommandBuffer:feeds:targetTensors:targetOperations:executionDescriptor:':
+                name: encodeToCommandBuffer
+            '-encodeToCommandBuffer:feeds:targetOperations:resultsDictionary:executionDescriptor:':
+                name: encodeToCommandBuffer
+            '-gradientForPrimaryTensor:withTensors:name:':
+                name: gradientForPrimaryTensor
+            '-reLUWithTensor:name:':
+                name: reLU
+            '-reLUGradientWithIncomingGradient:sourceTensor:name:':
+                name: reLUGradient
+            '-sigmoidWithTensor:name:':
+                name: sigmoid
+            '-sigmoidGradientWithIncomingGradient:sourceTensor:name:':
+                name: sigmoidGradient
+            '-softMaxWithTensor:axis:name:':
+                name: softMax
+            '-softMaxGradientWithIncomingGradient:sourceTensor:axis:name:':
+                name: softMaxGradient
+            '-identityWithTensor:name:':
+                name: identity
+            '-exponentWithTensor:name:':
+                name: exponent
+            '-exponentBase2WithTensor:name:':
+                name: exponentBase2
+            '-exponentBase10WithTensor:name:':
+                name: exponentBase10
+            '-logarithmWithTensor:name:':
+                name: logarithm
+            '-logarithmBase2WithTensor:name:':
+                name: logarithmBase2
+            '-logarithmBase10WithTensor:name:':
+                name: logarithmBase10
+            '-squareWithTensor:name:':
+                name: square
+            '-squareRootWithTensor:name:':
+                name: squareRoot
+            '-reverseSquareRootWithTensor:name:':
+                name: reverseSquareRoot
+            '-reciprocalWithTensor:name:':
+                name: reciprocal
+            '-absoluteWithTensor:name:':
+                name: absolute
+            '-negativeWithTensor:name:':
+                name: negative
+            '-signWithTensor:name:':
+                name: sign
+            '-signbitWithTensor:name:':
+                name: signbit
+            '-ceilWithTensor:name:':
+                name: ceil
+            '-floorWithTensor:name:':
+                name: floor
+            '-roundWithTensor:name:':
+                name: round
+            '-rintWithTensor:name:':
+                name: rint
+            '-sinWithTensor:name:':
+                name: sin
+            '-cosWithTensor:name:':
+                name: cos
+            '-tanWithTensor:name:':
+                name: tan
+            '-sinhWithTensor:name:':
+                name: sinh
+            '-coshWithTensor:name:':
+                name: cosh
+            '-tanhWithTensor:name:':
+                name: tanh
+            '-asinWithTensor:name:':
+                name: asin
+            '-acosWithTensor:name:':
+                name: acos
+            '-atanWithTensor:name:':
+                name: atan
+            '-asinhWithTensor:name:':
+                name: asinh
+            '-acoshWithTensor:name:':
+                name: acosh
+            '-atanhWithTensor:name:':
+                name: atanh
+            '-notWithTensor:name:':
+                name: not
+            '-isInfiniteWithTensor:name:':
+                name: isInfinite
+            '-isFiniteWithTensor:name:':
+                name: isFinite
+            '-isNaNWithTensor:name:':
+                name: isNaN
+            '-erfWithTensor:name:':
+                name: erf
+            '-additionWithPrimaryTensor:secondaryTensor:name:':
+                name: addition
+            '-subtractionWithPrimaryTensor:secondaryTensor:name:':
+                name: subtraction
+            '-multiplicationWithPrimaryTensor:secondaryTensor:name:':
+                name: multiplication
+            '-divisionWithPrimaryTensor:secondaryTensor:name:':
+                name: division
+            '-moduloWithPrimaryTensor:secondaryTensor:name:':
+                name: modulo
+            '-powerWithPrimaryTensor:secondaryTensor:name:':
+                name: power
+            '-minimumWithPrimaryTensor:secondaryTensor:name:':
+                name: minimum
+            '-maximumWithPrimaryTensor:secondaryTensor:name:':
+                name: maximum
+            '-equalWithPrimaryTensor:secondaryTensor:name:':
+                name: equal
+            '-notEqualWithPrimaryTensor:secondaryTensor:name:':
+                name: notEqual
+            '-lessThanWithPrimaryTensor:secondaryTensor:name:':
+                name: lessThan
+            '-lessThanOrEqualToWithPrimaryTensor:secondaryTensor:name:':
+                name: lessThanOrEqual
+            '-greaterThanWithPrimaryTensor:secondaryTensor:name:':
+                name: greaterThan
+            '-greaterThanOrEqualToWithPrimaryTensor:secondaryTensor:name:':
+                name: greaterThanOrEqual
+            '-logicalANDWithPrimaryTensor:secondaryTensor:name:':
+                name: logicalAND
+            '-logicalORWithPrimaryTensor:secondaryTensor:name:':
+                name: logicalOR
+            '-logicalNANDWithPrimaryTensor:secondaryTensor:name:':
+                name: logicalNAND
+            '-logicalNORWithPrimaryTensor:secondaryTensor:name:':
+                name: logicalNOR
+            '-logicalXORWithPrimaryTensor:secondaryTensor:name:':
+                name: logicalXOR
+            '-logicalXNORWithPrimaryTensor:secondaryTensor:name:':
+                name: logicalXNOR
+            '-atan2WithPrimaryTensor:secondaryTensor:name:':
+                name: atan2
+            '-selectWithPredicateTensor:truePredicateTensor:falsePredicateTensor:name:':
+                name: select
+            '-clampWithTensor:minValueTensor:maxValueTensor:name:':
+                name: clamp
+            '-divisionNoNaNWithPrimaryTensor:secondaryTensor:name:':
+                name: divisionNoNaN
+            '-floorModuloWithPrimaryTensor:secondaryTensor:name:':
+                name: floorModulo
+            '-convolution2DWithSourceTensor:weightsTensor:descriptor:name:':
+                name: convolution2D
+            '-convolution2DDataGradientWithIncomingGradientTensor:weightsTensor:outputShape:forwardConvolutionDescriptor:name:':
+                name: convolution2DDataGradient
+            '-convolution2DWeightsGradientWithIncomingGradientTensor:sourceTensor:outputShape:forwardConvolutionDescriptor:name:':
+                name: convolution2DWeightsGradient
+            '-convolutionTranspose2DWithSourceTensor:weightsTensor:outputShape:descriptor:name:':
+                name: convolutionTranspose2D
+            '-convolutionTranspose2DDataGradientWithIncomingGradientTensor:weightsTensor:outputShape:forwardConvolutionDescriptor:name:':
+                name: convolutionTranspose2DDataGradient
+            '-convolutionTranspose2DWeightsGradientWithIncomingGradientTensor:sourceTensor:outputShape:forwardConvolutionDescriptor:name:':
+                name: convolutionTranspose2DWeightsGradient
+            '-depthwiseConvolution2DWithSourceTensor:weightsTensor:descriptor:name:':
+                name: depthwiseConvolution2D
+            '-depthwiseConvolution2DDataGradientWithIncomingGradientTensor:weightsTensor:outputShape:descriptor:name:':
+                name: depthwiseConvolution2DDataGradient
+            '-depthwiseConvolution2DWeightsGradientWithIncomingGradientTensor:sourceTensor:outputShape:descriptor:name:':
+                name: depthwiseConvolution2DWeightsGradient
+            '-gatherNDWithUpdatesTensor:indicesTensor:batchDimensions:name:':
+                name: gatherND
+            '-gatherWithUpdatesTensor:indicesTensor:axis:batchDimensions:name:':
+                name: gather
+            '-softMaxCrossEntropyWithSourceTensor:labelsTensor:axis:reductionType:name:':
+                name: softMaxCrossEntropy
+            '-softMaxCrossEntropyGradientWithIncomingGradientTensor:sourceTensor:labelsTensor:axis:reductionType:name:':
+                name: softMaxCrossEntropyGradient
+            '-matrixMultiplicationWithPrimaryTensor:secondaryTensor:name:':
+                name: matrixMultiplication
+            '-placeholderWithShape:dataType:name:':
+                name: placeholder
+            '-placeholderWithShape:name:':
+                name: placeholder
+            '-constantWithData:shape:dataType:':
+                name: constant
+            '-constantWithScalar:shape:dataType:':
+                name: constant
+            '-variableWithData:shape:dataType:name:':
+                name: variable
+            '-readVariable:name:':
+                name: readVariable
+            '-assignVariable:withValueOfTensor:name:':
+                name: assignVariable
+            '-meanOfTensor:axes:name:':
+                name: mean
+            '-varianceOfTensor:meanTensor:axes:name:':
+                name: variance
+            '-varianceOfTensor:axes:name:':
+                #trim_after_first_colon: true
+                name: variance
+            '-normalizationWithTensor:meanTensor:varianceTensor:gammaTensor:betaTensor:epsilon:name:':
+                name: normalization
+            '-normalizationGammaGradientWithIncomingGradientTensor:sourceTensor:meanTensor:varianceTensor:reductionAxes:epsilon:name:':
+                name: normalizationGammaGradient
+            '-normalizationBetaGradientWithIncomingGradientTensor:sourceTensor:reductionAxes:name:':
+                name: normalizationBetaGradient
+            '-normalizationGradientWithIncomingGradientTensor:sourceTensor:meanTensor:varianceTensor:gammaTensor:gammaGradientTensor:betaGradientTensor:reductionAxes:epsilon:name:':
+                name: normalizationGradient
+            '-oneHotWithIndicesTensor:depth:axis:dataType:onValue:offValue:name:':
+                name: oneHot
+            '-oneHotWithIndicesTensor:depth:dataType:onValue:offValue:name:':
+                name: oneHot
+            '-oneHotWithIndicesTensor:depth:axis:dataType:name:':
+                name: oneHot
+            '-oneHotWithIndicesTensor:depth:axis:name:':
+                name: oneHot
+            '-oneHotWithIndicesTensor:depth:dataType:name:':
+                name: oneHot
+            '-oneHotWithIndicesTensor:depth:name:':
+                name: oneHot
+            '-stochasticGradientDescentWithLearningRateTensor:valuesTensor:gradientTensor:name:':
+                name: stochasticGradientDescent
+            '-applyStochasticGradientDescentWithLearningRateTensor:variable:gradientTensor:name:':
+                name: applyStochasticGradientDescent
+            '-maxPooling2DWithSourceTensor:descriptor:name:':
+                name: maxPooling2D
+            '-maxPooling2DGradientWithGradientTensor:sourceTensor:descriptor:name:':
+                name: maxPooling2DGradient
+            '-avgPooling2DWithSourceTensor:descriptor:name:':
+                name: avgPooling2D
+            '-avgPooling2DGradientWithGradientTensor:sourceTensor:descriptor:name:':
+                name: avgPooling2D
+            '-dropoutTensor:rate:name:':
+                name: dropout
+            '-dropoutTensor:rateTensor:name:':
+                name: dropout
+            '-reductionSumWithTensor:axis:name:':
+                name: reductionSum
+            '-reductionSumWithTensor:axes:name:':
+                name: reductionSum
+            '-reductionMaximumWithTensor:axis:name:':
+                name: reductionMaximum
+            '-reductionMaximumWithTensor:axes:name:':
+                name: reductionMaximum
+            '-reductionMinimumWithTensor:axis:name:':
+                name: reductionMinimum
+            '-reductionMinimumWithTensor:axes:name:':
+                name: reductionMinimum
+            '-reductionProductWithTensor:axis:name:':
+                name: reductionProduct
+            '-reductionProductWithTensor:axes:name:':
+                name: reductionProduct
+            '-resizeTensor:size:mode:centerResult:alignCorners:layout:name:':
+                name: resizeTensor
+            '-resizeWithGradientTensor:input:mode:centerResult:alignCorners:layout:name:':
+                name: resize
+            '-scatterNDWithUpdatesTensor:indicesTensor:shape:batchDimensions:name:':
+                name: scatterND
+            '-reshapeTensor:withShape:name:':
+                name: reshapeTensor
+            '-transposeTensor:dimension:withDimension:name:':
+                name: transposeTensor
+            '-sliceTensor:dimension:start:length:name:':
+                name: sliceTensor
+            '-concatTensor:withTensor:dimension:name:':
+                name: concatTensor
+            '-concatTensors:dimension:name:':
+                name: concatTensors
+            '-tileTensor:withMultiplier:name:':
+                name: tileTensor
+            '-tileGradientWithIncomingGradientTensor:sourceTensor:withMultiplier:name:':
+                name: tileGradient
+            '-padTensor:withPaddingMode:leftPadding:rightPadding:constantValue:name:':
+                name: padTensor
+            '-padGradientWithIncomingGradientTensor:sourceTensor:paddingMode:leftPadding:rightPadding:name:':
+                name: padGradient
+            '+new':
+                exclude: true
+    MPSGraphConvolution2DOpDescriptor:
+        methods:
+            '-setExplicitPaddingWithPaddingLeft:paddingRight:paddingTop:paddingBottom:':
+                name: setExplicitPadding
+            '+descriptorWithStrideInX:strideInY:dilationRateInX:dilationRateInY:groups:paddingLeft:paddingRight:paddingTop:paddingBottom:paddingStyle:dataLayout:weightsLayout:':
+                name: create
+                constructor: true
+            '+descriptorWithStrideInX:strideInY:dilationRateInX:dilationRateInY:groups:paddingStyle:dataLayout:weightsLayout:':
+                name: create
+                constructor: true
+    MPSGraphDepthwiseConvolution2DOpDescriptor:
+        methods:
+            '-setExplicitPaddingWithPaddingLeft:paddingRight:paddingTop:paddingBottom:':
+                name: setExplicitPadding
+            '+descriptorWithStrideInX:strideInY:dilationRateInX:dilationRateInY:paddingLeft:paddingRight:paddingTop:paddingBottom:paddingStyle:dataLayout:weightsLayout:':
+                name: create
+                constructor: true
+            '+descriptorWithDataLayout:weightsLayout:':
+                name: create
+                constructor: true
+    MPSGraphDevice:
+        methods:
+            '+deviceWithMTLDevice:':
+                name: create
+                constructor: true
+    MPSGraphExecutionDescriptor: {} #since 14.0
+    MPSGraphOperation: {} #since 14.0
+    MPSGraphPooling2DOpDescriptor:
+        methods:
+            '-setExplicitPaddingWithPaddingLeft:paddingRight:paddingTop:paddingBottom:':
+                name: setExplicitPadding
+            '+descriptorWithKernelWidth:kernelHeight:strideInX:strideInY:dilationRateInX:dilationRateInY:paddingLeft:paddingRight:paddingTop:paddingBottom:paddingStyle:dataLayout:':
+                name: create
+                constructor: true
+            '+descriptorWithKernelWidth:kernelHeight:strideInX:strideInY:paddingStyle:dataLayout:':
+                name: create
+                constructor: true
+    MPSGraphShapedType:
+        methods:
+            '-initWithShape:dataType:':
+                name: init
+    MPSGraphTensor: {} #since 14.0
+    MPSGraphTensorData: #since 14.0
+        methods:
+            '-initWithDevice:data:shape:dataType:':
+                name: init
+            '-initWithMTLBuffer:shape:dataType:':
+                name: init
+            '-initWithMPSMatrix:':
+                name: init
+            '-initWithMPSMatrix:rank:':
+                name: init
+            '-initWithMPSVector:':
+                name: init
+            '-initWithMPSVector:rank:':
+                name: init
+            '-initWithMPSNDArray:':
+                name: init
+            '-initWithMPSImageBatch:':
+                name: init
+    MPSGraphVariableOp: {}
+
+protocols:
+
+functions:
+
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (k?MPS.*):
+        class: FIXME
+        name: 'Function__#{g[0]}'
+
+values:
+
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (k?MPS.*):
+        class: FIXME
+        name: 'Value__#{g[0]}'
+
+constants:
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (k?MPS.*):
+        class: FIXME
+        name: 'Constant__#{g[0]}'

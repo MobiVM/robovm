@@ -120,9 +120,13 @@ import org.robovm.apple.audiotoolbox.*;
     public static final AVMetadataKeyCommon Make = new AVMetadataKeyCommon("Make");
     public static final AVMetadataKeyCommon Model = new AVMetadataKeyCommon("Model");
     public static final AVMetadataKeyCommon Software = new AVMetadataKeyCommon("Software");
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final AVMetadataKeyCommon AccessibilityDescription = new AVMetadataKeyCommon("AccessibilityDescription");
     /*</constants>*/
     
-    private static /*<name>*/AVMetadataKeyCommon/*</name>*/[] values = new /*<name>*/AVMetadataKeyCommon/*</name>*/[] {/*<value_list>*/Title, Creator, Subject, Description, Publisher, Contributor, CreationDate, LastModifiedDate, Type, Format, Identifier, Source, Language, Relation, Location, Copyrights, AlbumName, Author, Artist, Artwork, Make, Model, Software/*</value_list>*/};
+    private static /*<name>*/AVMetadataKeyCommon/*</name>*/[] values = new /*<name>*/AVMetadataKeyCommon/*</name>*/[] {/*<value_list>*/Title, Creator, Subject, Description, Publisher, Contributor, CreationDate, LastModifiedDate, Type, Format, Identifier, Source, Language, Relation, Location, Copyrights, AlbumName, Author, Artist, Artwork, Make, Model, Software, AccessibilityDescription/*</value_list>*/};
     
     /*<name>*/AVMetadataKeyCommon/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -191,6 +195,11 @@ import org.robovm.apple.audiotoolbox.*;
         public static native NSString Model();
         @GlobalValue(symbol="AVMetadataCommonKeySoftware", optional=true)
         public static native NSString Software();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="AVMetadataCommonKeyAccessibilityDescription", optional=true)
+        public static native NSString AccessibilityDescription();
         /*</values>*/
     }
 }

@@ -48,7 +48,9 @@ public enum /*<name>*/CMErrorCode/*</name>*/ implements NSErrorCode {
     InvalidAction(108L),
     NotAvailable(109L),
     NotEntitled(110L),
-    NotAuthorized(111L);
+    NotAuthorized(111L),
+    NilData(112L),
+    Size(113L);
     /*</values>*/
 
     /*<bind>*/

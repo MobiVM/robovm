@@ -101,6 +101,46 @@ import org.robovm.apple.linkpresentation.*;
     @Deprecated
     @Method(selector = "splitViewController:shouldHideViewController:inOrientation:")
     boolean shouldHideViewController(UISplitViewController svc, UIViewController vc, UIInterfaceOrientation orientation);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "splitViewController:topColumnForCollapsingToProposedTopColumn:")
+    UISplitViewControllerColumn getTopColumnForCollapsingToProposedTopColumn(UISplitViewController svc, UISplitViewControllerColumn proposedTopColumn);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "splitViewController:displayModeForExpandingToProposedDisplayMode:")
+    UISplitViewControllerDisplayMode getDisplayModeForExpandingToProposedDisplayMode(UISplitViewController svc, UISplitViewControllerDisplayMode proposedDisplayMode);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "splitViewControllerDidCollapse:")
+    void didCollapse(UISplitViewController svc);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "splitViewControllerDidExpand:")
+    void didExpand(UISplitViewController svc);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "splitViewController:willShowColumn:")
+    void willShowColumn(UISplitViewController svc, UISplitViewControllerColumn column);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "splitViewController:willHideColumn:")
+    void willHideColumn(UISplitViewController svc, UISplitViewControllerColumn column);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "splitViewControllerInteractivePresentationGestureWillBegin:")
+    void interactivePresentationGestureWillBegin(UISplitViewController svc);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "splitViewControllerInteractivePresentationGestureDidEnd:")
+    void interactivePresentationGestureDidEnd(UISplitViewController svc);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

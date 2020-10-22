@@ -71,6 +71,11 @@ import org.robovm.apple.metal.*;
     public native MTLCommandQueue getCommandQueue();
     @Property(selector = "retainedReferences")
     public native boolean maintainsRetainedReferences();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "errorOptions")
+    public native MTLCommandBufferErrorOption getErrorOptions();
     @Property(selector = "label")
     public native String getLabel();
     @Property(selector = "setLabel:")
@@ -85,6 +90,11 @@ import org.robovm.apple.metal.*;
      */
     @Property(selector = "kernelEndTime")
     public native double getKernelEndTime();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "logs")
+    public native MTLLogContainer getLogs();
     /**
      * @since Available in iOS 10.3 and later.
      */
@@ -120,6 +130,9 @@ import org.robovm.apple.metal.*;
     public native void presentDrawable(MTLDrawable drawable);
     @Method(selector = "presentDrawable:atTime:")
     public native void presentDrawableAtTime(MTLDrawable drawable, double presentationTime);
+    /**
+     * @since Available in iOS 10.3 and later.
+     */
     @Method(selector = "presentDrawable:afterMinimumDuration:")
     public native void presentDrawableAfterMinimumDuration(MTLDrawable drawable, double duration);
     @Method(selector = "waitUntilScheduled")
@@ -132,6 +145,16 @@ import org.robovm.apple.metal.*;
     public native MTLBlitCommandEncoder newBlitCommandEncoder();
     @Method(selector = "renderCommandEncoderWithDescriptor:")
     public native MTLRenderCommandEncoder newRenderCommandEncoder(MTLRenderPassDescriptor renderPassDescriptor);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "computeCommandEncoderWithDescriptor:")
+    public native MTLComputeCommandEncoder computeCommandEncoder(MTLComputePassDescriptor computePassDescriptor);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "blitCommandEncoderWithDescriptor:")
+    public native MTLBlitCommandEncoder blitCommandEncoder(MTLBlitPassDescriptor blitPassDescriptor);
     @Method(selector = "computeCommandEncoder")
     public native MTLComputeCommandEncoder newComputeCommandEncoder();
     /**
@@ -156,6 +179,16 @@ import org.robovm.apple.metal.*;
      */
     @Method(selector = "resourceStateCommandEncoder")
     public native MTLResourceStateCommandEncoder resourceStateCommandEncoder();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "resourceStateCommandEncoderWithDescriptor:")
+    public native MTLResourceStateCommandEncoder resourceStateCommandEncoder(MTLResourceStatePassDescriptor resourceStatePassDescriptor);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "accelerationStructureCommandEncoder")
+    public native MTLAccelerationStructureCommandEncoder accelerationStructureCommandEncoder();
     /**
      * @since Available in iOS 11.0 and later.
      */

@@ -29,6 +29,7 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -54,32 +55,76 @@ import org.robovm.apple.uikit.*;
     public GKGameCenterViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
     @Method(selector = "initWithCoder:")
     public GKGameCenterViewController(NSCoder decoder) { super(decoder); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithState:")
+    public GKGameCenterViewController(GKGameCenterViewControllerState state) { super((SkipInit) null); initObject(init(state)); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithLeaderboardID:playerScope:timeScope:")
+    public GKGameCenterViewController(String leaderboardID, GKLeaderboardPlayerScope playerScope, GKLeaderboardTimeScope timeScope) { super((SkipInit) null); initObject(initWithLeaderboardID$playerScope$timeScope$(leaderboardID, playerScope, timeScope)); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithLeaderboard:playerScope:")
+    public GKGameCenterViewController(GKLeaderboard leaderboard, GKLeaderboardPlayerScope playerScope) { super((SkipInit) null); initObject(init(leaderboard, playerScope)); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithAchievementID:")
+    public GKGameCenterViewController(String achievementID) { super((SkipInit) null); initObject(init(achievementID)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "gameCenterDelegate")
     public native GKGameCenterControllerDelegate getGameCenterDelegate();
     @Property(selector = "setGameCenterDelegate:", strongRef = true)
     public native void setGameCenterDelegate(GKGameCenterControllerDelegate v);
+    /**
+     * @deprecated Deprecated in iOS 14.0. Use -initWithState: instead
+     */
+    @Deprecated
     @Property(selector = "viewState")
     public native GKGameCenterViewControllerState getViewState();
+    /**
+     * @deprecated Deprecated in iOS 14.0. Use -initWithState: instead
+     */
+    @Deprecated
     @Property(selector = "setViewState:")
     public native void setViewState(GKGameCenterViewControllerState v);
+    /**
+     * @deprecated Deprecated in iOS 14.0. Use -initWithLeaderboard: instead
+     */
+    @Deprecated
     @Property(selector = "leaderboardTimeScope")
     public native GKLeaderboardTimeScope getLeaderboardTimeScope();
+    /**
+     * @deprecated Deprecated in iOS 14.0. Use -initWithLeaderboard: instead
+     */
+    @Deprecated
     @Property(selector = "setLeaderboardTimeScope:")
     public native void setLeaderboardTimeScope(GKLeaderboardTimeScope v);
+    /**
+     * @deprecated Deprecated in iOS 14.0. Use -initWithLeaderboard: instead
+     */
+    @Deprecated
     @Property(selector = "leaderboardIdentifier")
     public native String getLeaderboardIdentifier();
+    /**
+     * @deprecated Deprecated in iOS 14.0. Use -initWithLeaderboard: instead
+     */
+    @Deprecated
     @Property(selector = "setLeaderboardIdentifier:")
     public native void setLeaderboardIdentifier(String v);
     /**
-     * @deprecated Deprecated in iOS 7.0. GKGameCenterViewController's leaderboardCategory property is deprecated. Use leaderboardIdentifier instead.
+     * @deprecated Deprecated in iOS 7.0. GKGameCenterViewController's leaderboardCategory property is deprecated. Use -initWithLeaderboard: instead
      */
     @Deprecated
     @Property(selector = "leaderboardCategory")
     public native String getLeaderboardCategory();
     /**
-     * @deprecated Deprecated in iOS 7.0. GKGameCenterViewController's leaderboardCategory property is deprecated. Use leaderboardIdentifier instead.
+     * @deprecated Deprecated in iOS 7.0. GKGameCenterViewController's leaderboardCategory property is deprecated. Use -initWithLeaderboard: instead
      */
     @Deprecated
     @Property(selector = "setLeaderboardCategory:")
@@ -87,6 +132,25 @@ import org.robovm.apple.uikit.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithState:")
+    protected native @Pointer long init(GKGameCenterViewControllerState state);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithLeaderboardID:playerScope:timeScope:")
+    protected native @Pointer long initWithLeaderboardID$playerScope$timeScope$(String leaderboardID, GKLeaderboardPlayerScope playerScope, GKLeaderboardTimeScope timeScope);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithLeaderboard:playerScope:")
+    protected native @Pointer long init(GKLeaderboard leaderboard, GKLeaderboardPlayerScope playerScope);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithAchievementID:")
+    protected native @Pointer long init(String achievementID);
     /*</methods>*/
 }

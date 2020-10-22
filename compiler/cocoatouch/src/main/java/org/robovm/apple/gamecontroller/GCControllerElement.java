@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.dispatch.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.corehaptic.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -53,6 +54,33 @@ import org.robovm.apple.uikit.*;
     public native GCControllerElement getCollection();
     @Property(selector = "isAnalog")
     public native boolean isAnalog();
+    @Property(selector = "isBoundToSystemGesture")
+    public native boolean isBoundToSystemGesture();
+    @Property(selector = "preferredSystemGestureState")
+    public native GCSystemGestureState getPreferredSystemGestureState();
+    @Property(selector = "setPreferredSystemGestureState:")
+    public native void setPreferredSystemGestureState(GCSystemGestureState v);
+    @Property(selector = "sfSymbolsName")
+    public native String getSfSymbolsName();
+    @Property(selector = "setSfSymbolsName:")
+    public native void setSfSymbolsName(String v);
+    @Property(selector = "localizedName")
+    public native String getLocalizedName();
+    @Property(selector = "setLocalizedName:")
+    public native void setLocalizedName(String v);
+    @Property(selector = "unmappedSfSymbolsName")
+    public native String getUnmappedSfSymbolsName();
+    @Property(selector = "setUnmappedSfSymbolsName:")
+    public native void setUnmappedSfSymbolsName(String v);
+    @Property(selector = "unmappedLocalizedName")
+    public native String getUnmappedLocalizedName();
+    @Property(selector = "setUnmappedLocalizedName:")
+    public native void setUnmappedLocalizedName(String v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "aliases")
+    public native NSSet<NSString> getAliases();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

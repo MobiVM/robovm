@@ -1,0 +1,64 @@
+package: org.robovm.apple.nearbyinteraction
+include: [foundation, dispatch]
+library: NearbyInteraction
+framework: NearbyInteraction
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/NearbyInteraction.framework/Headers/NearbyInteraction.h
+
+typedefs:
+    
+enums:
+    NIErrorCode: {nserror: true}
+    NINearbyObjectRemovalReason: {}
+
+categories:
+
+classes:
+    NIConfiguration: {} #since 14.0
+    NIDiscoveryToken: {} #since 14.0
+    NINearbyObject: {} #since 14.0
+    NINearbyPeerConfiguration: #since 14.0
+        methods:
+            '-initWithPeerToken:':
+                name: init
+    NISession: #since 14.0
+        methods:
+            '-runWithConfiguration:':
+                name: run
+protocols:
+    NISessionDelegate: #since 14.0
+        methods:
+            '-session:didUpdateNearbyObjects:':
+                name: didUpdateNearbyObjects
+            '-session:didRemoveNearbyObjects:withReason:':
+                name: didRemoveNearbyObjects
+            '-session:didInvalidateWithError:':
+                name: didInvalidate
+functions:
+
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (k?NI.*):
+        class: FIXME
+        name: 'Function__#{g[0]}'
+
+values:
+    NIErrorDomain:
+        class: NIErrorCode
+        name: getClassDomain
+
+    NINearbyObject(DistanceNotAvailable|DirectionNotAvailable):
+        readonly: true
+        class: NINearbyObject
+        name: '#{g[0]}'
+
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (k?NI.*):
+        class: FIXME
+        name: 'Value__#{g[0]}'
+
+constants:
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (k?NI.*):
+        class: FIXME
+        name: 'Constant__#{g[0]}'

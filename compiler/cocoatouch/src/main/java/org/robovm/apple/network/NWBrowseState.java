@@ -41,7 +41,8 @@ public enum /*<name>*/NWBrowseState/*</name>*/ implements ValuedEnum {
     invalid(0L),
     ready(1L),
     failed(2L),
-    cancelled(3L);
+    cancelled(3L),
+    waiting(4L);
     /*</values>*/
 
     /*<bind>*/

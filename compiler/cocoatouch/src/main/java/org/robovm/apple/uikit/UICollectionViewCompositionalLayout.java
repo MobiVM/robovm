@@ -68,6 +68,10 @@ import org.robovm.apple.linkpresentation.*;
     public UICollectionViewCompositionalLayout(@Block("(@MachineSizedSInt,)") Block2<Long, NSCollectionLayoutEnvironment, NSCollectionLayoutSection> sectionProvider, UICollectionViewCompositionalLayoutConfiguration configuration) { super((SkipInit) null); initObject(init(sectionProvider, configuration)); }
     @Method(selector = "initWithCoder:")
     public UICollectionViewCompositionalLayout(NSCoder coder) { super(coder); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public UICollectionViewCompositionalLayout(UICollectionLayoutListConfiguration configuration) { super((Handle) null, create(configuration)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "configuration")
@@ -85,5 +89,10 @@ import org.robovm.apple.linkpresentation.*;
     protected native @Pointer long init(@Block("(@MachineSizedSInt,)") Block2<Long, NSCollectionLayoutEnvironment, NSCollectionLayoutSection> sectionProvider);
     @Method(selector = "initWithSectionProvider:configuration:")
     protected native @Pointer long init(@Block("(@MachineSizedSInt,)") Block2<Long, NSCollectionLayoutEnvironment, NSCollectionLayoutSection> sectionProvider, UICollectionViewCompositionalLayoutConfiguration configuration);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "layoutWithListConfiguration:")
+    protected static native @Pointer long create(UICollectionLayoutListConfiguration configuration);
     /*</methods>*/
 }

@@ -34,14 +34,26 @@ import org.robovm.apple.coregraphics.*;
 
 /*<javadoc>*/
 /**
- * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit.
+ * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit
  */
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Deprecated/*</annotations>*/
 public enum /*<name>*/MPMovieFinishReason/*</name>*/ implements ValuedEnum {
     /*<values>*/
+    /**
+     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit
+     */
+    @Deprecated
     PlaybackEnded(0L),
+    /**
+     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit
+     */
+    @Deprecated
     PlaybackError(1L),
+    /**
+     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit
+     */
+    @Deprecated
     UserExited(2L);
     /*</values>*/
 

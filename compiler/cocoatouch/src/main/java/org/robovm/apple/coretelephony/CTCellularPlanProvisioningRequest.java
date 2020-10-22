@@ -32,7 +32,9 @@ import org.robovm.apple.corefoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 12.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreTelephony") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CTCellularPlanProvisioningRequest/*</name>*/ 
@@ -50,28 +52,64 @@ import org.robovm.apple.corefoundation.*;
     public CTCellularPlanProvisioningRequest(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
     @Property(selector = "address")
     public native String getAddress();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
     @Property(selector = "setAddress:")
     public native void setAddress(String v);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
     @Property(selector = "matchingID")
     public native String getMatchingID();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
     @Property(selector = "setMatchingID:")
     public native void setMatchingID(String v);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
     @Property(selector = "OID")
     public native String getOID();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
     @Property(selector = "setOID:")
     public native void setOID(String v);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
     @Property(selector = "confirmationCode")
     public native String getConfirmationCode();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
     @Property(selector = "setConfirmationCode:")
     public native void setConfirmationCode(String v);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
     @Property(selector = "ICCID")
     public native String getICCID();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
     @Property(selector = "setICCID:")
     public native void setICCID(String v);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
     @Property(selector = "EID")
     public native String getEID();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
     @Property(selector = "setEID:")
     public native void setEID(String v);
     @Property(selector = "supportsSecureCoding")

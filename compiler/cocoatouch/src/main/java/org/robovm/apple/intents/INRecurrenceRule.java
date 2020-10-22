@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.eventkit.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -46,11 +47,16 @@ import org.robovm.apple.corelocation.*;
     /*<bind>*/static { ObjCRuntime.bind(INRecurrenceRule.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public INRecurrenceRule() {}
+    protected INRecurrenceRule() {}
     protected INRecurrenceRule(Handle h, long handle) { super(h, handle); }
     protected INRecurrenceRule(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithInterval:frequency:")
     public INRecurrenceRule(@MachineSizedUInt long interval, INRecurrenceFrequency frequency) { super((SkipInit) null); initObject(init(interval, frequency)); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithInterval:frequency:weeklyRecurrenceDays:")
+    public INRecurrenceRule(@MachineSizedUInt long interval, INRecurrenceFrequency frequency, INDayOfWeekOptions weeklyRecurrenceDays) { super((SkipInit) null); initObject(init(interval, frequency, weeklyRecurrenceDays)); }
     @Method(selector = "initWithCoder:")
     public INRecurrenceRule(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
@@ -59,6 +65,11 @@ import org.robovm.apple.corelocation.*;
     public native @MachineSizedUInt long getInterval();
     @Property(selector = "frequency")
     public native INRecurrenceFrequency getFrequency();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "weeklyRecurrenceDays")
+    public native INDayOfWeekOptions getWeeklyRecurrenceDays();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
@@ -66,6 +77,11 @@ import org.robovm.apple.corelocation.*;
     /*<methods>*/
     @Method(selector = "initWithInterval:frequency:")
     protected native @Pointer long init(@MachineSizedUInt long interval, INRecurrenceFrequency frequency);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithInterval:frequency:weeklyRecurrenceDays:")
+    protected native @Pointer long init(@MachineSizedUInt long interval, INRecurrenceFrequency frequency, INDayOfWeekOptions weeklyRecurrenceDays);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

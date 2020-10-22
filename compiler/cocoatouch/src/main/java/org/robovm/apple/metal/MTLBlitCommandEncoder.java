@@ -142,6 +142,16 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "optimizeIndirectCommandBuffer:withRange:")
     public native void optimizeIndirectCommandBuffer(MTLIndirectCommandBuffer indirectCommandBuffer, @ByVal NSRange range);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "sampleCountersInBuffer:atSampleIndex:withBarrier:")
+    public native void sampleCountersInBuffer(MTLCounterSampleBuffer sampleBuffer, @MachineSizedUInt long sampleIndex, boolean barrier);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "resolveCounters:inRange:destinationBuffer:destinationOffset:")
+    public native void resolveCounters(MTLCounterSampleBuffer sampleBuffer, @ByVal NSRange range, MTLBuffer destinationBuffer, @MachineSizedUInt long destinationOffset);
     @Method(selector = "endEncoding")
     public native void endEncoding();
     @Method(selector = "insertDebugSignpost:")

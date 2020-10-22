@@ -77,6 +77,16 @@ import org.robovm.apple.metal.*;
     /*<methods>*/
     @Method(selector = "uniformDistributionDescriptorWithMinimum:maximum:")
     protected static native @Pointer long create(float minimum, float maximum);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "normalDistributionDescriptorWithMean:standardDeviation:")
+    public static native MPSMatrixRandomDistributionDescriptor createNormalDistributionDescriptor(float mean, float standardDeviation);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "normalDistributionDescriptorWithMean:standardDeviation:minimum:maximum:")
+    public static native MPSMatrixRandomDistributionDescriptor createNormalDistributionDescriptor(float mean, float standardDeviation, float minimum, float maximum);
     @Method(selector = "defaultDistributionDescriptor")
     public static native MPSMatrixRandomDistributionDescriptor defaultDistributionDescriptor();
     /*</methods>*/

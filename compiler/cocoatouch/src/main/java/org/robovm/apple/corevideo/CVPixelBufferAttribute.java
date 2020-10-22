@@ -111,12 +111,52 @@ import org.robovm.apple.iosurface.*;
      * @since Available in iOS 9.0 and later.
      */
     public static final CVPixelBufferAttribute OpenGLESTextureCacheCompatibility = new CVPixelBufferAttribute("OpenGLESTextureCacheCompatibility");
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final CVPixelBufferAttribute VersatileBayerKey = new CVPixelBufferAttribute("VersatileBayerKey");
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final CVPixelBufferAttribute RawSenselSitingOffsets = new CVPixelBufferAttribute("RawSenselSitingOffsets");
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final CVPixelBufferAttribute RawBlackLevel = new CVPixelBufferAttribute("RawBlackLevel");
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final CVPixelBufferAttribute RawWhiteLevel = new CVPixelBufferAttribute("RawWhiteLevel");
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final CVPixelBufferAttribute RawWhiteBalanceCCT = new CVPixelBufferAttribute("RawWhiteBalanceCCT");
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final CVPixelBufferAttribute RawWhiteBalanceRedFactor = new CVPixelBufferAttribute("RawWhiteBalanceRedFactor");
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final CVPixelBufferAttribute RawWhiteBalanceBlueFactor = new CVPixelBufferAttribute("RawWhiteBalanceBlueFactor");
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final CVPixelBufferAttribute RawColorMatrix = new CVPixelBufferAttribute("RawColorMatrix");
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final CVPixelBufferAttribute RawGainFactor = new CVPixelBufferAttribute("RawGainFactor");
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final CVPixelBufferAttribute RawRecommendedCrop = new CVPixelBufferAttribute("RawRecommendedCrop");
     public static final CVPixelBufferAttribute IOSurfaceCoreAnimationCompatibility = new CVPixelBufferAttribute("IOSurfaceCoreAnimationCompatibility");
     public static final CVPixelBufferAttribute IOSurfaceOpenGLESTextureCompatibility = new CVPixelBufferAttribute("IOSurfaceOpenGLESTextureCompatibility");
     public static final CVPixelBufferAttribute IOSurfaceOpenGLESFBOCompatibility = new CVPixelBufferAttribute("IOSurfaceOpenGLESFBOCompatibility");
     /*</constants>*/
     
-    private static /*<name>*/CVPixelBufferAttribute/*</name>*/[] values = new /*<name>*/CVPixelBufferAttribute/*</name>*/[] {/*<value_list>*/PixelFormatType, MemoryAllocator, Width, Height, ExtendedPixelsLeft, ExtendedPixelsTop, ExtendedPixelsRight, ExtendedPixelsBottom, BytesPerRowAlignment, CGBitmapContextCompatibility, CGImageCompatibility, OpenGLCompatibility, PlaneAlignment, IOSurfaceProperties, OpenGLESCompatibility, MetalCompatibility, OpenGLESTextureCacheCompatibility, IOSurfaceCoreAnimationCompatibility, IOSurfaceOpenGLESTextureCompatibility, IOSurfaceOpenGLESFBOCompatibility/*</value_list>*/};
+    private static /*<name>*/CVPixelBufferAttribute/*</name>*/[] values = new /*<name>*/CVPixelBufferAttribute/*</name>*/[] {/*<value_list>*/PixelFormatType, MemoryAllocator, Width, Height, ExtendedPixelsLeft, ExtendedPixelsTop, ExtendedPixelsRight, ExtendedPixelsBottom, BytesPerRowAlignment, CGBitmapContextCompatibility, CGImageCompatibility, OpenGLCompatibility, PlaneAlignment, IOSurfaceProperties, OpenGLESCompatibility, MetalCompatibility, OpenGLESTextureCacheCompatibility, VersatileBayerKey, RawSenselSitingOffsets, RawBlackLevel, RawWhiteLevel, RawWhiteBalanceCCT, RawWhiteBalanceRedFactor, RawWhiteBalanceBlueFactor, RawColorMatrix, RawGainFactor, RawRecommendedCrop, IOSurfaceCoreAnimationCompatibility, IOSurfaceOpenGLESTextureCompatibility, IOSurfaceOpenGLESFBOCompatibility/*</value_list>*/};
     
     /*<name>*/CVPixelBufferAttribute/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -176,6 +216,56 @@ import org.robovm.apple.iosurface.*;
          */
         @GlobalValue(symbol="kCVPixelBufferOpenGLESTextureCacheCompatibilityKey", optional=true)
         public static native CFString OpenGLESTextureCacheCompatibility();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="kCVPixelBufferVersatileBayerKey_BayerPattern", optional=true)
+        public static native CFString VersatileBayerKey();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="kCVPixelBufferProResRAWKey_SenselSitingOffsets", optional=true)
+        public static native CFString RawSenselSitingOffsets();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="kCVPixelBufferProResRAWKey_BlackLevel", optional=true)
+        public static native CFString RawBlackLevel();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="kCVPixelBufferProResRAWKey_WhiteLevel", optional=true)
+        public static native CFString RawWhiteLevel();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="kCVPixelBufferProResRAWKey_WhiteBalanceCCT", optional=true)
+        public static native CFString RawWhiteBalanceCCT();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="kCVPixelBufferProResRAWKey_WhiteBalanceRedFactor", optional=true)
+        public static native CFString RawWhiteBalanceRedFactor();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="kCVPixelBufferProResRAWKey_WhiteBalanceBlueFactor", optional=true)
+        public static native CFString RawWhiteBalanceBlueFactor();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="kCVPixelBufferProResRAWKey_ColorMatrix", optional=true)
+        public static native CFString RawColorMatrix();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="kCVPixelBufferProResRAWKey_GainFactor", optional=true)
+        public static native CFString RawGainFactor();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="kCVPixelBufferProResRAWKey_RecommendedCrop", optional=true)
+        public static native CFString RawRecommendedCrop();
         @GlobalValue(symbol="kCVPixelBufferIOSurfaceCoreAnimationCompatibilityKey", optional=true)
         public static native CFString IOSurfaceCoreAnimationCompatibility();
         @GlobalValue(symbol="kCVPixelBufferIOSurfaceOpenGLESTextureCompatibilityKey", optional=true)

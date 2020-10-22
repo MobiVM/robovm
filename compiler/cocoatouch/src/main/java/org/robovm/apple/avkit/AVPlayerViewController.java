@@ -63,6 +63,16 @@ import org.robovm.apple.iad.*;
     public native boolean showsPlaybackControls();
     @Property(selector = "setShowsPlaybackControls:")
     public native void setShowsPlaybackControls(boolean v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "showsTimecodes")
+    public native boolean showsTimecodes();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setShowsTimecodes:")
+    public native void setShowsTimecodes(boolean v);
     @Property(selector = "videoGravity")
     public native AVLayerVideoGravity getVideoGravity();
     @Property(selector = "setVideoGravity:")
@@ -113,6 +123,16 @@ import org.robovm.apple.iad.*;
      */
     @Property(selector = "setExitsFullScreenWhenPlaybackEnds:")
     public native void setExitsFullScreenWhenPlaybackEnds(boolean v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "requiresLinearPlayback")
+    public native boolean requiresLinearPlayback();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setRequiresLinearPlayback:")
+    public native void setRequiresLinearPlayback(boolean v);
     /**
      * @since Available in iOS 9.0 and later.
      */

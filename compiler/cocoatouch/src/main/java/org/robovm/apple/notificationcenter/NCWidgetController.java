@@ -33,9 +33,11 @@ import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @deprecated Deprecated in iOS 14.0. Use WidgetKit instead. Today View extensions have been deprecated.
+ */
 /*</javadoc>*/
-/*<annotations>*/@Library("NotificationCenter") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("NotificationCenter") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NCWidgetController/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {

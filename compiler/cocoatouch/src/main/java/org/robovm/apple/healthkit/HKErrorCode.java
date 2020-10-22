@@ -56,7 +56,11 @@ public enum /*<name>*/HKErrorCode/*</name>*/ implements NSErrorCode {
     /**
      * @since Available in iOS 12.0 and later.
      */
-    ErrorRequiredAuthorizationDenied(10L);
+    ErrorRequiredAuthorizationDenied(10L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    ErrorNoData(11L);
     /*</values>*/
 
     /*<bind>*/

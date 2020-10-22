@@ -1,0 +1,599 @@
+package: org.robovm.apple.mlcompute
+include: [foundation, metal, metalperformanceshaders]
+library: MLCompute
+framework: MLCompute
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/MLCompute.framework/Headers/MLCompute.h
+    - /System/Library/Frameworks/MLCompute.framework/Headers/MLCTensorOptimizerDeviceData.h
+
+typedefs:
+    
+enums:
+    MLCDataType: {}
+    MLCRandomInitializerType: {}
+    MLCDeviceType: {}
+    MLCGraphCompilationOptions: {}
+    MLCExecutionOptions: {}
+    MLCArithmeticOperation: {}
+    MLCLossType: {}
+    MLCActivationType: {}
+    MLCConvolutionType: {}
+    MLCPaddingPolicy: {}
+    MLCPaddingType: {}
+    MLCPoolingType: {}
+    MLCReductionType: {}
+    MLCRegularizationType: {}
+    MLCSampleMode: {}
+    MLCSoftmaxOperation: {}
+    MLCLSTMResultMode: {}
+
+categories:
+
+classes:
+    MLCActivationDescriptor: #since 14.0
+        methods:
+            '+descriptorWithType:':
+                name: create
+                constructor: true
+            '+descriptorWithType:a:':
+                name: create
+                constructor: true
+            '+descriptorWithType:a:b:':
+                name: create
+                constructor: true
+            '+descriptorWithType:a:b:c:':
+                name: create
+                constructor: true
+    MLCActivationLayer: #since 14.0
+        methods:
+            '+layerWithDescriptor:':
+                name: create
+                constructor: true
+            '+leakyReLULayerWithNegativeSlope:':
+                name: createLeakyReLULayer
+            '+linearLayerWithScale:bias:':
+                name: createLinearLayer
+            '+softPlusLayerWithBeta:':
+                name: createSoftPlusLayer
+            '+eluLayerWithA:':
+                name: createEluLayer
+            '+relunLayerWithA:b:':
+                name: createRelunLayer
+            '+celuLayerWithA:':
+                name: createCeluLayer
+            '+hardShrinkLayerWithA:':
+                name: createHardShrinkLayer
+            '+softShrinkLayerWithA:':
+                name: createSoftShrinkLayer
+            '+thresholdLayerWithThreshold:replacement:':
+                name: createThresholdLayer
+    MLCAdamOptimizer: #since 14.0
+        methods:
+            '+optimizerWithDescriptor:':
+                name: create
+                constructor: true
+            '+optimizerWithDescriptor:beta1:beta2:epsilon:timeStep:':
+                name: create
+                constructor: true
+    MLCArithmeticLayer: #since 14.0
+        methods:
+            '+layerWithOperation:':
+                name: create
+                constructor: true
+    MLCBatchNormalizationLayer: #since 14.0
+        methods:
+            '+layerWithFeatureChannelCount:mean:variance:beta:gamma:varianceEpsilon:':
+                name: create
+                constructor: true
+            '+layerWithFeatureChannelCount:mean:variance:beta:gamma:varianceEpsilon:momentum:':
+                name: create
+                constructor: true
+    MLCConcatenationLayer: #since 14.0
+        methods:
+            '+layerWithDimension:':
+                name: create
+                constructor: true
+    MLCConvolutionDescriptor: #since 14.0
+        methods:
+            '+descriptorWithType:kernelSizes:inputFeatureChannelCount:outputFeatureChannelCount:groupCount:strides:dilationRates:paddingPolicy:paddingSizes:':
+                name: create
+                constructor: true
+            '+descriptorWithKernelWidth:kernelHeight:inputFeatureChannelCount:outputFeatureChannelCount:':
+                name: create
+                constructor: true
+            '+descriptorWithKernelSizes:inputFeatureChannelCount:outputFeatureChannelCount:strides:paddingPolicy:paddingSizes:':
+                name: create
+                constructor: true
+            '+descriptorWithKernelSizes:inputFeatureChannelCount:outputFeatureChannelCount:groupCount:strides:dilationRates:paddingPolicy:paddingSizes:':
+                name: create
+                constructor: true
+            '+convolutionTransposeDescriptorWithKernelWidth:kernelHeight:inputFeatureChannelCount:outputFeatureChannelCount:':
+                name: createConvolutionTransposeDescriptor
+            '+convolutionTransposeDescriptorWithKernelSizes:inputFeatureChannelCount:outputFeatureChannelCount:strides:paddingPolicy:paddingSizes:':
+                name: createConvolutionTransposeDescriptor
+            '+convolutionTransposeDescriptorWithKernelSizes:inputFeatureChannelCount:outputFeatureChannelCount:groupCount:strides:dilationRates:paddingPolicy:paddingSizes:':
+                name: createConvolutionTransposeDescriptor
+            '+depthwiseConvolutionDescriptorWithKernelWidth:kernelHeight:inputFeatureChannelCount:channelMultiplier:':
+                name: createDepthwiseConvolutionDescriptor
+            '+depthwiseConvolutionDescriptorWithKernelSizes:inputFeatureChannelCount:channelMultiplier:strides:paddingPolicy:paddingSizes:':
+                name: createDepthwiseConvolutionDescriptor
+            '+depthwiseConvolutionDescriptorWithKernelSizes:inputFeatureChannelCount:channelMultiplier:strides:dilationRates:paddingPolicy:paddingSizes:':
+                name: createDepthwiseConvolutionDescriptor
+    MLCConvolutionLayer: #since 14.0
+        methods:
+            '+layerWithWeights:biases:descriptor:':
+                name: create
+                constructor: true
+    MLCDevice: #since 14.0
+        methods:
+            '+deviceWithType:':
+                name: create
+                constructor: true
+            '+deviceWithGPUDevices:':
+                name: create
+                constructor: true
+    MLCDropoutLayer: #since 14.0
+        methods:
+            '+layerWithRate:seed:':
+                name: create
+                constructor: true
+    MLCEmbeddingDescriptor: #since 14.0
+        methods:
+            '+descriptorWithEmbeddingCount:embeddingDimension:':
+                name: create
+                constructor: true
+            '+descriptorWithEmbeddingCount:embeddingDimension:paddingIndex:maximumNorm:pNorm:scalesGradientByFrequency:':
+                name: create
+                constructor: true
+    MLCEmbeddingLayer: #since 14.0
+        methods:
+            '+layerWithDescriptor:weights:':
+                name: create
+                constructor: true
+    MLCFullyConnectedLayer: #since 14.0
+        methods:
+            '+layerWithWeights:biases:descriptor:':
+                name: create
+                constructor: true
+    MLCGramMatrixLayer: #since 14.0
+        methods:
+            '+layerWithScale:':
+                name: create
+                constructor: true
+    MLCGraph: #since 14.0
+        methods:
+            '-nodeWithLayer:source:':
+                name: node
+            '-nodeWithLayer:sources:':
+                name: node
+            '-nodeWithLayer:sources:disableUpdate:':
+                name: node
+            '-nodeWithLayer:sources:lossLabels:':
+                name: node
+            '-splitWithSource:splitCount:dimension:':
+                name: split
+            '-splitWithSource:splitSectionLengths:dimension:':
+                name: split
+            '-concatenateWithSources:dimension:':
+                name: concatenate
+            '-reshapeWithShape:source:':
+                name: reshape
+            '-transposeWithDimensions:source:':
+                name: transpose
+            '-bindAndWriteData:forInputs:toDevice:batchSize:synchronous:':
+                name: bindAndWriteData
+            '-bindAndWriteData:forInputs:toDevice:synchronous:':
+                name: bindAndWriteData
+    MLCGroupNormalizationLayer: #since 14.0
+        methods:
+            '+layerWithFeatureChannelCount:groupCount:beta:gamma:varianceEpsilon:':
+                name: create
+                constructor: true
+    MLCInferenceGraph: #since 14.0
+        methods:
+            '-addInputs:lossLabels:lossLabelWeights:':
+                name: addInputs
+            '-compileWithOptions:device:':
+                name: compile
+            '-linkWithGraphs:':
+                name: link
+            '-executeWithInputsData:batchSize:options:completionHandler:':
+                name: execute
+            '-executeWithInputsData:outputsData:batchSize:options:completionHandler:':
+                name: execute
+            '-executeWithInputsData:lossLabelsData:lossLabelWeightsData:batchSize:options:completionHandler:':
+                name: execute
+            '-executeWithInputsData:lossLabelsData:lossLabelWeightsData:outputsData:batchSize:options:completionHandler:':
+                name: execute
+            '+graphWithGraphObjects:':
+                name: create
+                constructor: true
+    MLCInstanceNormalizationLayer: #since 14.0
+        methods:
+            '+layerWithFeatureChannelCount:beta:gamma:varianceEpsilon:':
+                name: create
+                constructor: true
+            '+layerWithFeatureChannelCount:beta:gamma:varianceEpsilon:momentum:':
+                name: create
+                constructor: true
+    MLCLSTMDescriptor: #since 14.0
+        methods:
+            '+descriptorWithInputSize:hiddenSize:layerCount:':
+                name: create
+                constructor: true
+            '+descriptorWithInputSize:hiddenSize:layerCount:usesBiases:isBidirectional:dropout:':
+                name: create
+                constructor: true
+            '+descriptorWithInputSize:hiddenSize:layerCount:usesBiases:batchFirst:isBidirectional:dropout:':
+                name: create
+                constructor: true
+            '+descriptorWithInputSize:hiddenSize:layerCount:usesBiases:batchFirst:isBidirectional:returnsSequences:dropout:':
+                name: create
+                constructor: true
+            '+descriptorWithInputSize:hiddenSize:layerCount:usesBiases:batchFirst:isBidirectional:returnsSequences:dropout:resultMode:':
+                name: create
+                constructor: true
+    MLCLSTMLayer: #since 14.0
+        methods:
+            '+layerWithDescriptor:inputWeights:hiddenWeights:biases:':
+                name: create
+                constructor: true
+            '+layerWithDescriptor:inputWeights:hiddenWeights:peepholeWeights:biases:':
+                name: create
+                constructor: true
+            '+layerWithDescriptor:inputWeights:hiddenWeights:peepholeWeights:biases:gateActivations:outputResultActivation:':
+                name: create
+                constructor: true
+    MLCLayer: #since 14.0
+        methods:
+            '+supportsDataType:onDevice:':
+                name: supportsDataType
+    MLCLayerNormalizationLayer: #since 14.0
+        methods:
+            '+layerWithNormalizedShape:beta:gamma:varianceEpsilon:':
+                name: create
+                constructor: true
+    MLCLossDescriptor: #since 14.0
+        methods:
+            '+descriptorWithType:reductionType:':
+                name: create
+                constructor: true
+            '+descriptorWithType:reductionType:weight:':
+                name: create
+                constructor: true
+            '+descriptorWithType:reductionType:weight:labelSmoothing:classCount:':
+                name: create
+                constructor: true
+            '+descriptorWithType:reductionType:weight:labelSmoothing:classCount:epsilon:delta:':
+                name: create
+                constructor: true
+    MLCLossLayer: #since 14.0
+        methods:
+            '+layerWithDescriptor:':
+                name: create
+                constructor: true
+            '+layerWithDescriptor:weights:':
+                name: create
+                constructor: true
+            '+softmaxCrossEntropyLossWithReductionType:labelSmoothing:classCount:weight:':
+                name: createSoftmaxCrossEntropyLoss
+            '+softmaxCrossEntropyLossWithReductionType:labelSmoothing:classCount:weights:':
+                name: createSoftmaxCrossEntropyLoss
+            '+categoricalCrossEntropyLossWithReductionType:labelSmoothing:classCount:weight:':
+                name: createCategoricalCrossEntropyLoss
+            '+categoricalCrossEntropyLossWithReductionType:labelSmoothing:classCount:weights:':
+                name: createCategoricalCrossEntropyLoss
+            '+sigmoidCrossEntropyLossWithReductionType:labelSmoothing:weight:':
+                name: createSigmoidCrossEntropyLoss
+            '+sigmoidCrossEntropyLossWithReductionType:labelSmoothing:weights:':
+                name: createSigmoidCrossEntropyLoss
+            '+logLossWithReductionType:epsilon:weight:':
+                name: createLogLoss
+            '+logLossWithReductionType:epsilon:weights:':
+                name: createLogLoss
+            '+huberLossWithReductionType:delta:weight:':
+                name: createHuberLoss
+            '+huberLossWithReductionType:delta:weights:':
+                name: createHuberLoss
+            '+meanAbsoluteErrorLossWithReductionType:weight:':
+                name: createMeanAbsoluteErrorLoss
+            '+meanAbsoluteErrorLossWithReductionType:weights:':
+                name: createMeanAbsoluteErrorLoss
+            '+meanSquaredErrorLossWithReductionType:weight:':
+                name: createMeanSquaredErrorLoss
+            '+meanSquaredErrorLossWithReductionType:weights:':
+                name: createMeanSquaredErrorLoss
+            '+hingeLossWithReductionType:weight:':
+                name: createHingeLoss
+            '+hingeLossWithReductionType:weights:':
+                name: createHingeLoss
+            '+cosineDistanceLossWithReductionType:weight:':
+                name: createCosineDistanceLoss
+            '+cosineDistanceLossWithReductionType:weights:':
+                name: createCosineDistanceLoss
+    MLCMatMulDescriptor: #since 14.0
+        methods:
+            '+descriptorWithAlpha:transposesX:transposesY:':
+                name: create
+                constructor: true
+    MLCMatMulLayer: #since 14.0
+        methods:
+            '+layerWithDescriptor:':
+                name: create
+                constructor: true
+    MLCMultiheadAttentionDescriptor: #since 14.0
+        methods:
+            '+descriptorWithModelDimension:keyDimension:valueDimension:headCount:dropout:hasBiases:hasAttentionBiases:addsZeroAttention:':
+                name: create
+                constructor: true
+            '+descriptorWithModelDimension:headCount:':
+                name: create
+                constructor: true
+    MLCMultiheadAttentionLayer: #since 14.0
+        methods:
+            '+layerWithDescriptor:weights:biases:attentionBiases:':
+                name: create
+                constructor: true
+    MLCOptimizer: {} #since 14.0
+    MLCOptimizerDescriptor: #since 14.0
+        methods:
+            '+descriptorWithLearningRate:gradientRescale:regularizationType:regularizationScale:':
+                name: create
+                constructor: true
+            '+descriptorWithLearningRate:gradientRescale:appliesGradientClipping:gradientClipMax:gradientClipMin:regularizationType:regularizationScale:':
+                name: create
+                constructor: true
+    MLCPaddingLayer: #since 14.0
+        methods:
+            '+layerWithReflectionPadding:':
+                name: createLayerWithReflectionPadding
+            '+layerWithSymmetricPadding:':
+                name: createLayerWithSymmetricPadding
+            '+layerWithZeroPadding:':
+                name: createLayerWithZeroPadding
+            '+layerWithConstantPadding:constantValue:':
+                name: createLayerWithConstantPadding
+    MLCPoolingDescriptor: #since 14.0
+        methods:
+            '+poolingDescriptorWithType:kernelSize:stride:':
+                name: create
+                constructor: true
+            '+maxPoolingDescriptorWithKernelSizes:strides:paddingPolicy:paddingSizes:':
+                name: createMaxPoolingDescriptor
+            '+maxPoolingDescriptorWithKernelSizes:strides:dilationRates:paddingPolicy:paddingSizes:':
+                name: createMaxPoolingDescriptor
+            '+averagePoolingDescriptorWithKernelSizes:strides:paddingPolicy:paddingSizes:countIncludesPadding:':
+                name: createAveragePoolingDescriptor
+            '+averagePoolingDescriptorWithKernelSizes:strides:dilationRates:paddingPolicy:paddingSizes:countIncludesPadding:':
+                name: createAveragePoolingDescriptor
+            '+l2NormPoolingDescriptorWithKernelSizes:strides:paddingPolicy:paddingSizes:':
+                name: createL2NormPoolingDescriptor
+            '+l2NormPoolingDescriptorWithKernelSizes:strides:dilationRates:paddingPolicy:paddingSizes:':
+                name: createL2NormPoolingDescriptor
+    MLCPoolingLayer: #since 14.0
+        methods:
+            '+layerWithDescriptor:':
+                name: create
+                constructor: true
+    MLCRMSPropOptimizer:
+        methods:
+            '+optimizerWithDescriptor:':
+                name: create
+                constructor: true
+            '+optimizerWithDescriptor:momentumScale:alpha:epsilon:isCentered:':
+                name: create
+                constructor: true
+    MLCReductionLayer: #since 14.0
+        methods:
+            '+layerWithReductionType:dimension:':
+                name: create
+                constructor: true
+    MLCReshapeLayer: #since 14.0
+        methods:
+            '+layerWithShape:':
+                name: create
+                constructor: true
+    MLCSGDOptimizer: #since 14.0
+        methods:
+            '+optimizerWithDescriptor:':
+                name: create
+                constructor: true
+            '+optimizerWithDescriptor:momentumScale:usesNestrovMomentum:':
+                exclude: true # seems like a typo
+            '+optimizerWithDescriptor:momentumScale:usesNesterovMomentum:':
+                name: create
+                constructor: true
+    MLCSliceLayer: #since 14.0
+        methods:
+            '+sliceLayerWithStart:end:stride:':
+                name: create
+                constructor: true
+    MLCSoftmaxLayer: #since 14.0
+        methods:
+            '+layerWithOperation:':
+                name: create
+                constructor: true
+            '+layerWithOperation:dimension:':
+                name: create
+                constructor: true
+    MLCSplitLayer: #since 14.0
+        methods:
+            '+layerWithSplitCount:dimension:':
+                name: create
+                constructor: true
+            '+layerWithSplitSectionLengths:dimension:':
+                name: create
+                constructor: true
+    MLCTensor: #since 14.0
+        methods:
+            '-copyDataFromDeviceMemoryToBytes:length:synchronizeWithDevice:':
+                name: copyData
+            '-bindAndWriteData:toDevice:':
+                name: bindAndWriteData
+            '-bindOptimizerData:deviceData:':
+                name: bindOptimizerData
+            '+tensorWithDescriptor:':
+                name: create
+                constructor: true
+            '+tensorWithDescriptor:randomInitializerType:':
+                name: create
+                constructor: true
+            '+tensorWithDescriptor:fillWithData:':
+                name: create
+                constructor: true
+            '+tensorWithDescriptor:data:':
+                name: create
+                constructor: true
+            '+tensorWithShape:':
+                name: create
+                constructor: true
+            '+tensorWithShape:randomInitializerType:':
+                name: create
+                constructor: true
+            '+tensorWithShape:dataType:':
+                name: create
+                constructor: true
+            '+tensorWithShape:data:dataType:':
+                name: create
+                constructor: true
+            '+tensorWithShape:fillWithData:dataType:':
+                name: create
+                constructor: true
+            '+tensorWithWidth:height:featureChannelCount:batchSize:':
+                name: create
+                constructor: true
+            '+tensorWithWidth:height:featureChannelCount:batchSize:fillWithData:dataType:':
+                name: create
+                constructor: true
+            '+tensorWithWidth:height:featureChannelCount:batchSize:randomInitializerType:':
+                name: create
+                constructor: true
+            '+tensorWithWidth:height:featureChannelCount:batchSize:data:':
+                name: create
+                constructor: true
+            '+tensorWithWidth:height:featureChannelCount:batchSize:data:dataType:':
+                name: create
+                constructor: true
+            '+tensorWithSequenceLength:featureChannelCount:batchSize:':
+                name: create
+                constructor: true
+            '+tensorWithSequenceLength:featureChannelCount:batchSize:randomInitializerType:':
+                name: create
+                constructor: true
+            '+tensorWithSequenceLength:featureChannelCount:batchSize:data:':
+                name: create
+                constructor: true
+            '+tensorWithSequenceLengths:sortedSequences:featureChannelCount:batchSize:randomInitializerType:':
+                name: create
+                constructor: true
+            '+tensorWithSequenceLengths:sortedSequences:featureChannelCount:batchSize:data:':
+                name: create
+                constructor: true
+    MLCTensorData: #since 14.0
+        methods:
+            '+dataWithBytesNoCopy:length:':
+                name: createDataNoCopy
+            '+dataWithImmutableBytesNoCopy:length:':
+                name: createDataUsingImutableBytesNoCopy
+    MLCTensorDescriptor: #since 14.0
+        methods:
+            '+descriptorWithShape:dataType:':
+                name: create
+                constructor: true
+            '+descriptorWithShape:sequenceLengths:sortedSequences:dataType:':
+                name: create
+                constructor: true
+            '+descriptorWithWidth:height:featureChannelCount:batchSize:':
+                name: create
+                constructor: true
+            '+descriptorWithWidth:height:featureChannelCount:batchSize:dataType:':
+                name: create
+                constructor: true
+            '+convolutionWeightsDescriptorWithWidth:height:inputFeatureChannelCount:outputFeatureChannelCount:dataType:':
+                name: createConvolutionWeightsDescriptor
+            '+convolutionWeightsDescriptorWithInputFeatureChannelCount:outputFeatureChannelCount:dataType:':
+                name: createConvolutionWeightsDescriptor
+            '+convolutionBiasesDescriptorWithFeatureChannelCount:dataType:':
+                name: createConvolutionBiasesDescriptor
+    MLCTensorParameter: #since 14.0
+        methods:
+            '+parameterWithTensor:':
+                name: create
+                constructor: true
+            '+parameterWithTensor:optimizerData:':
+                name: create
+                constructor: true
+    MLCTrainingGraph: #since 14.0
+        methods:
+            '-addInputs:lossLabels:':
+                name: addInputs
+            '-addInputs:lossLabels:lossLabelWeights:':
+                name: addInputs
+            '-compileWithOptions:device:':
+                name: compile
+            '-linkWithGraphs:':
+                name: link
+            '-gradientDataForParameter:layer:':
+                name: gradientData
+            '-executeWithInputsData:lossLabelsData:lossLabelWeightsData:batchSize:options:completionHandler:':
+                name: execute
+            '-executeWithInputsData:lossLabelsData:lossLabelWeightsData:outputsData:batchSize:options:completionHandler:':
+                name: execute
+            '-executeForwardWithBatchSize:options:completionHandler:':
+                name: executeForward
+            '-executeForwardWithBatchSize:options:outputsData:completionHandler:':
+                name: executeForward
+            '-executeGradientWithBatchSize:options:completionHandler:':
+                name: executeGradient
+            '-executeGradientWithBatchSize:options:outputsData:completionHandler:':
+                name: executeGradient
+            '-executeOptimizerUpdateWithOptions:completionHandler:':
+                name: executeOptimizerUpdate
+            '+graphWithGraphObjects:lossLayer:optimizer:':
+                name: create
+                constructor: true
+    MLCTransposeLayer: #since 14.0
+        methods:
+            '+layerWithDimensions:':
+                name: create
+                constructor: true
+    MLCUpsampleLayer: #since 14.0
+        methods:
+            '+layerWithShape:':
+                name: create
+                constructor: true
+            '+layerWithShape:sampleMode:alignsCorners:':
+                name: create
+                constructor: true
+    MLCYOLOLossDescriptor: #since 14.0
+        methods:
+            '+descriptorWithAnchorBoxes:anchorBoxCount:':
+                name: create
+                constructor: true
+    MLCYOLOLossLayer: {} #since 14.0
+    MLCTensorOptimizerDeviceData: {}
+protocols:
+
+functions:
+    MLC(.*)DebugDescription:
+        class: 'MLC#{g[0]}'
+        name: getDebugDescription
+
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (k?MLC.*):
+        class: FIXME
+        name: 'Function__#{g[0]}'
+
+values:
+
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (k?MLC.*):
+        class: FIXME
+        name: 'Value__#{g[0]}'
+
+constants:
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (k?MLC.*):
+        class: FIXME
+        name: 'Constant__#{g[0]}'

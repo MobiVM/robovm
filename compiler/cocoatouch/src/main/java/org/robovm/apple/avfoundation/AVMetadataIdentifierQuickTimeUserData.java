@@ -135,9 +135,13 @@ import org.robovm.apple.audiotoolbox.*;
     public static final AVMetadataIdentifierQuickTimeUserData Credits = new AVMetadataIdentifierQuickTimeUserData("Credits");
     public static final AVMetadataIdentifierQuickTimeUserData PhonogramRights = new AVMetadataIdentifierQuickTimeUserData("PhonogramRights");
     public static final AVMetadataIdentifierQuickTimeUserData TaggedCharacteristic = new AVMetadataIdentifierQuickTimeUserData("TaggedCharacteristic");
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final AVMetadataIdentifierQuickTimeUserData AccessibilityDescription = new AVMetadataIdentifierQuickTimeUserData("AccessibilityDescription");
     /*</constants>*/
     
-    private static /*<name>*/AVMetadataIdentifierQuickTimeUserData/*</name>*/[] values = new /*<name>*/AVMetadataIdentifierQuickTimeUserData/*</name>*/[] {/*<value_list>*/Album, Arranger, Artist, Author, Chapter, Comment, Composer, Copyright, CreationDate, Description, Director, Disclaimer, EncodedBy, FullName, Genre, HostComputer, Information, Keywords, Make, Model, OriginalArtist, OriginalFormat, OriginalSource, Performers, Producer, Publisher, Product, Software, SpecialPlaybackRequirements, Track, Warning, Writer, URLLink, LocationISO6709, TrackName, Credits, PhonogramRights, TaggedCharacteristic/*</value_list>*/};
+    private static /*<name>*/AVMetadataIdentifierQuickTimeUserData/*</name>*/[] values = new /*<name>*/AVMetadataIdentifierQuickTimeUserData/*</name>*/[] {/*<value_list>*/Album, Arranger, Artist, Author, Chapter, Comment, Composer, Copyright, CreationDate, Description, Director, Disclaimer, EncodedBy, FullName, Genre, HostComputer, Information, Keywords, Make, Model, OriginalArtist, OriginalFormat, OriginalSource, Performers, Producer, Publisher, Product, Software, SpecialPlaybackRequirements, Track, Warning, Writer, URLLink, LocationISO6709, TrackName, Credits, PhonogramRights, TaggedCharacteristic, AccessibilityDescription/*</value_list>*/};
     
     /*<name>*/AVMetadataIdentifierQuickTimeUserData/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -236,6 +240,11 @@ import org.robovm.apple.audiotoolbox.*;
         public static native NSString PhonogramRights();
         @GlobalValue(symbol="AVMetadataIdentifierQuickTimeUserDataTaggedCharacteristic", optional=true)
         public static native NSString TaggedCharacteristic();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="AVMetadataIdentifierQuickTimeUserDataAccessibilityDescription", optional=true)
+        public static native NSString AccessibilityDescription();
         /*</values>*/
     }
 }

@@ -65,6 +65,11 @@ import org.robovm.apple.uikit.*;
      */
     @Method(selector = "safariViewController:initialLoadDidRedirectToURL:")
     void initialLoadDidRedirectToURL(SFSafariViewController controller, NSURL URL);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "safariViewControllerWillOpenInBrowser:")
+    void safariViewControllerWillOpenInBrowser(SFSafariViewController controller);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

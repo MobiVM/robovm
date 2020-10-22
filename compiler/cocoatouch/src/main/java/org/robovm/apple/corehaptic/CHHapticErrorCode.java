@@ -89,7 +89,7 @@ public enum /*<name>*/CHHapticErrorCode/*</name>*/ implements NSErrorCode {
         return ClassDomain;
     }
 
-    // bind wrap to include it in compilation as long as nserror enum is used 
+    // bind wrap to include it in compilation as long as nserror enum is used
     static { Bro.bind(NSErrorWrap.class); }
     @StronglyLinked
     public static class NSErrorWrap extends NSError {
@@ -104,7 +104,7 @@ public enum /*<name>*/CHHapticErrorCode/*</name>*/ implements NSErrorCode {
          }
 
         public static String getClassDomain() {
-            /** must be incerted in value section */
+            /** must be inserted in value section */
             return /*<name>*/CHHapticErrorCode/*</name>*/.getClassDomain();
         }
     }

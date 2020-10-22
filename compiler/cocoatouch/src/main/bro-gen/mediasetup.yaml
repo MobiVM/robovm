@@ -1,0 +1,48 @@
+package: org.robovm.apple.mediasetup
+include: [foundation, uikit]
+library: MediaSetup
+framework: MediaSetup
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/MediaSetup.framework/Headers/MediaSetup.h
+
+typedefs:
+    
+enums:
+
+categories:
+
+classes:
+    MSServiceAccount: #since 14.0
+        methods:
+            '-initWithServiceName:accountName:':
+                name: init
+    MSSetupSession: #since 14.0
+        methods:
+            '-initWithServiceAccount:':
+                name: init
+            '-startWithError:':
+                name: start
+                throws: NSErrorException
+protocols:
+    MSAuthenticationPresentationContext: {}
+
+functions:
+
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (k?MS.*):
+        class: FIXME
+        name: 'Function__#{g[0]}'
+
+values:
+
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (k?MS.*):
+        class: FIXME
+        name: 'Value__#{g[0]}'
+
+constants:
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (k?MS.*):
+        class: FIXME
+        name: 'Constant__#{g[0]}'

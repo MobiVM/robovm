@@ -51,6 +51,11 @@ import org.robovm.apple.foundation.*;
     /*<properties>*/
     @Property(selector = "cumulativeCPUTime")
     public native NSMeasurement<NSUnitDuration> getCumulativeCPUTime();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "cumulativeCPUInstructions")
+    public native NSMeasurement<NSUnit> getCumulativeCPUInstructions();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

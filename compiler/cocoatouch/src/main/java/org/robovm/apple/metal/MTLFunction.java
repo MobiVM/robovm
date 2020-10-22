@@ -84,6 +84,11 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "functionConstantsDictionary")
     public native NSDictionary<NSString, MTLFunctionConstant> getFunctionConstantsDictionary();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "options")
+    public native MTLFunctionOptions getOptions();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

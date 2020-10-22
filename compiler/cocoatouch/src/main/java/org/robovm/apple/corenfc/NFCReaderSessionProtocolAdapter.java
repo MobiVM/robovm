@@ -45,17 +45,32 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*//*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @NotImplemented("isReady")
     public boolean isReady() { return false; }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @NotImplemented("alertMessage")
     public String getAlertMessage() { return null; }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @NotImplemented("setAlertMessage:")
     public void setAlertMessage(String v) {}
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @NotImplemented("beginSession")
     public void beginSession() {}
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @NotImplemented("invalidateSession")
     public void invalidateSession() {}
     /**

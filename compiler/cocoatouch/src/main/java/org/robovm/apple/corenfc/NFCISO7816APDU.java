@@ -48,29 +48,59 @@ import org.robovm.apple.dispatch.*;
     protected NFCISO7816APDU() {}
     protected NFCISO7816APDU(Handle h, long handle) { super(h, handle); }
     protected NFCISO7816APDU(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
     @Method(selector = "initWithInstructionClass:instructionCode:p1Parameter:p2Parameter:data:expectedResponseLength:")
     public NFCISO7816APDU(byte instructionClass, byte instructionCode, byte p1Parameter, byte p2Parameter, NSData data, @MachineSizedSInt long expectedResponseLength) { super((SkipInit) null); initObject(init(instructionClass, instructionCode, p1Parameter, p2Parameter, data, expectedResponseLength)); }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
     @Method(selector = "initWithData:")
     public NFCISO7816APDU(NSData data) { super((SkipInit) null); initObject(init(data)); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
     @Property(selector = "instructionClass")
     public native byte getInstructionClass();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
     @Property(selector = "instructionCode")
     public native byte getInstructionCode();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
     @Property(selector = "p1Parameter")
     public native byte getP1Parameter();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
     @Property(selector = "p2Parameter")
     public native byte getP2Parameter();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
     @Property(selector = "data")
     public native NSData getData();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
     @Property(selector = "expectedResponseLength")
     public native @MachineSizedSInt long getExpectedResponseLength();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
     @Method(selector = "initWithInstructionClass:instructionCode:p1Parameter:p2Parameter:data:expectedResponseLength:")
     protected native @Pointer long init(byte instructionClass, byte instructionCode, byte p1Parameter, byte p2Parameter, NSData data, @MachineSizedSInt long expectedResponseLength);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
     @Method(selector = "initWithData:")
     protected native @Pointer long init(NSData data);
     /*</methods>*/

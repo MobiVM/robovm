@@ -97,6 +97,11 @@ import org.robovm.apple.mapkit.*;
     /*<methods>*/
     @Method(selector = "showTripPreviews:textConfiguration:")
     public native void showTripPreviews(NSArray<CPTrip> tripPreviews, CPTripPreviewTextConfiguration textConfiguration);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "showTripPreviews:selectedTrip:textConfiguration:")
+    public native void showTripPreviews(NSArray<CPTrip> tripPreviews, CPTrip selectedTrip, CPTripPreviewTextConfiguration textConfiguration);
     @Method(selector = "showRouteChoicesPreviewForTrip:textConfiguration:")
     public native void showRouteChoicesPreviewForTrip(CPTrip tripPreview, CPTripPreviewTextConfiguration textConfiguration);
     @Method(selector = "hideTripPreviews")

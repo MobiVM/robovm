@@ -60,6 +60,9 @@ enums:
     HMCharacteristicValueValveType: {} #since 11.2
     HMCharacteristicValueConfigurationState: {} #since 11.2
     HMHomeManagerAuthorizationStatus: {} #since 13.0
+    HMCharacteristicValueCurrentHeatingCooling: { } #since 8.0
+    HMCharacteristicValueTargetLockMechanismState: { } #since 8.0
+    HMCharacteristicValueTargetDoorState: { } #since 8.0
 classes:
     HMError:
         extends: NSError

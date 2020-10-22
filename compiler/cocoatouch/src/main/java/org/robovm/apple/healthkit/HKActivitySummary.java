@@ -51,10 +51,30 @@ import org.robovm.apple.foundation.*;
     public HKActivitySummary(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "activityMoveMode")
+    public native HKActivityMoveMode getActivityMoveMode();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setActivityMoveMode:")
+    public native void setActivityMoveMode(HKActivityMoveMode v);
     @Property(selector = "activeEnergyBurned")
     public native HKQuantity getActiveEnergyBurned();
     @Property(selector = "setActiveEnergyBurned:")
     public native void setActiveEnergyBurned(HKQuantity v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "appleMoveTime")
+    public native HKQuantity getAppleMoveTime();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setAppleMoveTime:")
+    public native void setAppleMoveTime(HKQuantity v);
     @Property(selector = "appleExerciseTime")
     public native HKQuantity getAppleExerciseTime();
     @Property(selector = "setAppleExerciseTime:")
@@ -67,6 +87,16 @@ import org.robovm.apple.foundation.*;
     public native HKQuantity getActiveEnergyBurnedGoal();
     @Property(selector = "setActiveEnergyBurnedGoal:")
     public native void setActiveEnergyBurnedGoal(HKQuantity v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "appleMoveTimeGoal")
+    public native HKQuantity getAppleMoveTimeGoal();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setAppleMoveTimeGoal:")
+    public native void setAppleMoveTimeGoal(HKQuantity v);
     @Property(selector = "appleExerciseTimeGoal")
     public native HKQuantity getAppleExerciseTimeGoal();
     @Property(selector = "setAppleExerciseTimeGoal:")

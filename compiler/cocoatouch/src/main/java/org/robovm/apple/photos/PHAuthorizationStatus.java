@@ -46,7 +46,11 @@ public enum /*<name>*/PHAuthorizationStatus/*</name>*/ implements ValuedEnum {
     NotDetermined(0L),
     Restricted(1L),
     Denied(2L),
-    Authorized(3L);
+    Authorized(3L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    Limited(4L);
     /*</values>*/
 
     /*<bind>*/

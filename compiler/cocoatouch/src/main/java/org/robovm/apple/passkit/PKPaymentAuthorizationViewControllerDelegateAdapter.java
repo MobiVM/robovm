@@ -31,6 +31,7 @@ import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.addressbook.*;
 import org.robovm.apple.contacts.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -63,6 +64,11 @@ import org.robovm.apple.contacts.*;
      */
     @NotImplemented("paymentAuthorizationViewControllerWillAuthorizePayment:")
     public void willAuthorizePayment(PKPaymentAuthorizationViewController controller) {}
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @NotImplemented("paymentAuthorizationViewController:didRequestMerchantSessionUpdate:")
+    public void didRequestMerchantSessionUpdate(PKPaymentAuthorizationViewController controller, @Block VoidBlock1<PKPaymentRequestMerchantSessionUpdate> handler) {}
     /**
      * @since Available in iOS 11.0 and later.
      */

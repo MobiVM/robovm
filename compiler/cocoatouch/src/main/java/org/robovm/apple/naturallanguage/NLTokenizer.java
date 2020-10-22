@@ -89,6 +89,11 @@ import org.robovm.apple.coreml.*;
     @Method(selector = "tokenRangeAtIndex:")
     public native @ByVal NSRange tokenRangeAtIndex(@MachineSizedUInt long characterIndex);
     /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "tokenRangeForRange:")
+    public native @ByVal NSRange tokenRangeForRange(@ByVal NSRange range);
+    /**
      * @since Available in iOS 12.0 and later.
      */
     @Method(selector = "tokensForRange:")

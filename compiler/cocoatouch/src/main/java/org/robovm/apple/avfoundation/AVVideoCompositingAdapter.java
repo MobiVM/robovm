@@ -65,6 +65,11 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @NotImplemented("supportsWideColorSourceFrames")
     public boolean supportsWideColorSourceFrames() { return false; }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @NotImplemented("supportsHDRSourceFrames")
+    public boolean supportsHDRSourceFrames() { return false; }
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

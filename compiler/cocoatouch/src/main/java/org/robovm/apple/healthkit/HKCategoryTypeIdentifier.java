@@ -130,12 +130,22 @@ import org.robovm.apple.foundation.*;
     public static final HKCategoryTypeIdentifier IrregularHeartRhythmEvent = new HKCategoryTypeIdentifier("IrregularHeartRhythmEvent");
     /**
      * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 14.0. Use HKCategoryTypeIdentifierEnvironmentalAudioExposureEvent
      */
+    @Deprecated
     public static final HKCategoryTypeIdentifier AudioExposureEvent = new HKCategoryTypeIdentifier("AudioExposureEvent");
     /**
      * @since Available in iOS 13.0 and later.
      */
     public static final HKCategoryTypeIdentifier ToothbrushingEvent = new HKCategoryTypeIdentifier("ToothbrushingEvent");
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final HKCategoryTypeIdentifier EnvironmentalAudioExposureEvent = new HKCategoryTypeIdentifier("EnvironmentalAudioExposureEvent");
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final HKCategoryTypeIdentifier HandwashingEvent = new HKCategoryTypeIdentifier("HandwashingEvent");
     /**
      * @since Available in iOS 13.6 and later.
      */
@@ -149,9 +159,9 @@ import org.robovm.apple.foundation.*;
      */
     public static final HKCategoryTypeIdentifier AppetiteChanges = new HKCategoryTypeIdentifier("AppetiteChanges");
     /**
-     * @since Available in iOS 13.6 and later.
+     * @since Available in iOS 14.0 and later.
      */
-    public static final HKCategoryTypeIdentifier GeneralizedBodyAche = new HKCategoryTypeIdentifier("GeneralizedBodyAche");
+    public static final HKCategoryTypeIdentifier BladderIncontinence = new HKCategoryTypeIdentifier("BladderIncontinence");
     /**
      * @since Available in iOS 13.6 and later.
      */
@@ -185,6 +195,10 @@ import org.robovm.apple.foundation.*;
      */
     public static final HKCategoryTypeIdentifier Dizziness = new HKCategoryTypeIdentifier("Dizziness");
     /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final HKCategoryTypeIdentifier DrySkin = new HKCategoryTypeIdentifier("DrySkin");
+    /**
      * @since Available in iOS 13.6 and later.
      */
     public static final HKCategoryTypeIdentifier Fainting = new HKCategoryTypeIdentifier("Fainting");
@@ -196,6 +210,14 @@ import org.robovm.apple.foundation.*;
      * @since Available in iOS 13.6 and later.
      */
     public static final HKCategoryTypeIdentifier Fever = new HKCategoryTypeIdentifier("Fever");
+    /**
+     * @since Available in iOS 13.6 and later.
+     */
+    public static final HKCategoryTypeIdentifier GeneralizedBodyAche = new HKCategoryTypeIdentifier("GeneralizedBodyAche");
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final HKCategoryTypeIdentifier HairLoss = new HKCategoryTypeIdentifier("HairLoss");
     /**
      * @since Available in iOS 13.6 and later.
      */
@@ -211,10 +233,6 @@ import org.robovm.apple.foundation.*;
     /**
      * @since Available in iOS 13.6 and later.
      */
-    public static final HKCategoryTypeIdentifier LowerBackPain = new HKCategoryTypeIdentifier("LowerBackPain");
-    /**
-     * @since Available in iOS 13.6 and later.
-     */
     public static final HKCategoryTypeIdentifier LossOfSmell = new HKCategoryTypeIdentifier("LossOfSmell");
     /**
      * @since Available in iOS 13.6 and later.
@@ -223,11 +241,23 @@ import org.robovm.apple.foundation.*;
     /**
      * @since Available in iOS 13.6 and later.
      */
+    public static final HKCategoryTypeIdentifier LowerBackPain = new HKCategoryTypeIdentifier("LowerBackPain");
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final HKCategoryTypeIdentifier MemoryLapse = new HKCategoryTypeIdentifier("MemoryLapse");
+    /**
+     * @since Available in iOS 13.6 and later.
+     */
     public static final HKCategoryTypeIdentifier MoodChanges = new HKCategoryTypeIdentifier("MoodChanges");
     /**
      * @since Available in iOS 13.6 and later.
      */
     public static final HKCategoryTypeIdentifier Nausea = new HKCategoryTypeIdentifier("Nausea");
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final HKCategoryTypeIdentifier NightSweats = new HKCategoryTypeIdentifier("NightSweats");
     /**
      * @since Available in iOS 13.6 and later.
      */
@@ -261,6 +291,10 @@ import org.robovm.apple.foundation.*;
      */
     public static final HKCategoryTypeIdentifier SoreThroat = new HKCategoryTypeIdentifier("SoreThroat");
     /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final HKCategoryTypeIdentifier VaginalDryness = new HKCategoryTypeIdentifier("VaginalDryness");
+    /**
      * @since Available in iOS 13.6 and later.
      */
     public static final HKCategoryTypeIdentifier Vomiting = new HKCategoryTypeIdentifier("Vomiting");
@@ -270,7 +304,7 @@ import org.robovm.apple.foundation.*;
     public static final HKCategoryTypeIdentifier Wheezing = new HKCategoryTypeIdentifier("Wheezing");
     /*</constants>*/
     
-    private static /*<name>*/HKCategoryTypeIdentifier/*</name>*/[] values = new /*<name>*/HKCategoryTypeIdentifier/*</name>*/[] {/*<value_list>*/SleepAnalysis, AppleStandHour, CervicalMucusQuality, OvulationTestResult, MenstrualFlow, IntermenstrualBleeding, SexualActivity, MindfulSession, HighHeartRateEvent, LowHeartRateEvent, IrregularHeartRhythmEvent, AudioExposureEvent, ToothbrushingEvent, AbdominalCramps, Acne, AppetiteChanges, GeneralizedBodyAche, Bloating, BreastPain, ChestTightnessOrPain, Chills, Constipation, Coughing, Diarrhea, Dizziness, Fainting, Fatigue, Fever, Headache, Heartburn, HotFlashes, LowerBackPain, LossOfSmell, LossOfTaste, MoodChanges, Nausea, PelvicPain, RapidPoundingOrFlutteringHeartbeat, RunnyNose, ShortnessOfBreath, SinusCongestion, SkippedHeartbeat, SleepChanges, SoreThroat, Vomiting, Wheezing/*</value_list>*/};
+    private static /*<name>*/HKCategoryTypeIdentifier/*</name>*/[] values = new /*<name>*/HKCategoryTypeIdentifier/*</name>*/[] {/*<value_list>*/SleepAnalysis, AppleStandHour, CervicalMucusQuality, OvulationTestResult, MenstrualFlow, IntermenstrualBleeding, SexualActivity, MindfulSession, HighHeartRateEvent, LowHeartRateEvent, IrregularHeartRhythmEvent, AudioExposureEvent, ToothbrushingEvent, EnvironmentalAudioExposureEvent, HandwashingEvent, AbdominalCramps, Acne, AppetiteChanges, BladderIncontinence, Bloating, BreastPain, ChestTightnessOrPain, Chills, Constipation, Coughing, Diarrhea, Dizziness, DrySkin, Fainting, Fatigue, Fever, GeneralizedBodyAche, HairLoss, Headache, Heartburn, HotFlashes, LossOfSmell, LossOfTaste, LowerBackPain, MemoryLapse, MoodChanges, Nausea, NightSweats, PelvicPain, RapidPoundingOrFlutteringHeartbeat, RunnyNose, ShortnessOfBreath, SinusCongestion, SkippedHeartbeat, SleepChanges, SoreThroat, VaginalDryness, Vomiting, Wheezing/*</value_list>*/};
     
     /*<name>*/HKCategoryTypeIdentifier/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -347,7 +381,9 @@ import org.robovm.apple.foundation.*;
         public static native NSString IrregularHeartRhythmEvent();
         /**
          * @since Available in iOS 13.0 and later.
+         * @deprecated Deprecated in iOS 14.0. Use HKCategoryTypeIdentifierEnvironmentalAudioExposureEvent
          */
+        @Deprecated
         @GlobalValue(symbol="HKCategoryTypeIdentifierAudioExposureEvent", optional=true)
         public static native NSString AudioExposureEvent();
         /**
@@ -355,6 +391,16 @@ import org.robovm.apple.foundation.*;
          */
         @GlobalValue(symbol="HKCategoryTypeIdentifierToothbrushingEvent", optional=true)
         public static native NSString ToothbrushingEvent();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="HKCategoryTypeIdentifierEnvironmentalAudioExposureEvent", optional=true)
+        public static native NSString EnvironmentalAudioExposureEvent();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="HKCategoryTypeIdentifierHandwashingEvent", optional=true)
+        public static native NSString HandwashingEvent();
         /**
          * @since Available in iOS 13.6 and later.
          */
@@ -371,10 +417,10 @@ import org.robovm.apple.foundation.*;
         @GlobalValue(symbol="HKCategoryTypeIdentifierAppetiteChanges", optional=true)
         public static native NSString AppetiteChanges();
         /**
-         * @since Available in iOS 13.6 and later.
+         * @since Available in iOS 14.0 and later.
          */
-        @GlobalValue(symbol="HKCategoryTypeIdentifierGeneralizedBodyAche", optional=true)
-        public static native NSString GeneralizedBodyAche();
+        @GlobalValue(symbol="HKCategoryTypeIdentifierBladderIncontinence", optional=true)
+        public static native NSString BladderIncontinence();
         /**
          * @since Available in iOS 13.6 and later.
          */
@@ -416,6 +462,11 @@ import org.robovm.apple.foundation.*;
         @GlobalValue(symbol="HKCategoryTypeIdentifierDizziness", optional=true)
         public static native NSString Dizziness();
         /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="HKCategoryTypeIdentifierDrySkin", optional=true)
+        public static native NSString DrySkin();
+        /**
          * @since Available in iOS 13.6 and later.
          */
         @GlobalValue(symbol="HKCategoryTypeIdentifierFainting", optional=true)
@@ -430,6 +481,16 @@ import org.robovm.apple.foundation.*;
          */
         @GlobalValue(symbol="HKCategoryTypeIdentifierFever", optional=true)
         public static native NSString Fever();
+        /**
+         * @since Available in iOS 13.6 and later.
+         */
+        @GlobalValue(symbol="HKCategoryTypeIdentifierGeneralizedBodyAche", optional=true)
+        public static native NSString GeneralizedBodyAche();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="HKCategoryTypeIdentifierHairLoss", optional=true)
+        public static native NSString HairLoss();
         /**
          * @since Available in iOS 13.6 and later.
          */
@@ -448,11 +509,6 @@ import org.robovm.apple.foundation.*;
         /**
          * @since Available in iOS 13.6 and later.
          */
-        @GlobalValue(symbol="HKCategoryTypeIdentifierLowerBackPain", optional=true)
-        public static native NSString LowerBackPain();
-        /**
-         * @since Available in iOS 13.6 and later.
-         */
         @GlobalValue(symbol="HKCategoryTypeIdentifierLossOfSmell", optional=true)
         public static native NSString LossOfSmell();
         /**
@@ -463,6 +519,16 @@ import org.robovm.apple.foundation.*;
         /**
          * @since Available in iOS 13.6 and later.
          */
+        @GlobalValue(symbol="HKCategoryTypeIdentifierLowerBackPain", optional=true)
+        public static native NSString LowerBackPain();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="HKCategoryTypeIdentifierMemoryLapse", optional=true)
+        public static native NSString MemoryLapse();
+        /**
+         * @since Available in iOS 13.6 and later.
+         */
         @GlobalValue(symbol="HKCategoryTypeIdentifierMoodChanges", optional=true)
         public static native NSString MoodChanges();
         /**
@@ -470,6 +536,11 @@ import org.robovm.apple.foundation.*;
          */
         @GlobalValue(symbol="HKCategoryTypeIdentifierNausea", optional=true)
         public static native NSString Nausea();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="HKCategoryTypeIdentifierNightSweats", optional=true)
+        public static native NSString NightSweats();
         /**
          * @since Available in iOS 13.6 and later.
          */
@@ -510,6 +581,11 @@ import org.robovm.apple.foundation.*;
          */
         @GlobalValue(symbol="HKCategoryTypeIdentifierSoreThroat", optional=true)
         public static native NSString SoreThroat();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="HKCategoryTypeIdentifierVaginalDryness", optional=true)
+        public static native NSString VaginalDryness();
         /**
          * @since Available in iOS 13.6 and later.
          */

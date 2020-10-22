@@ -64,6 +64,15 @@ import org.robovm.apple.corefoundation.*;
     public native @MachineSizedUInt long getNumberOfEntities();
     @Bridge(symbol="MIDIDeviceGetEntity", optional=true)
     public native MIDIEntity getEntity(@MachineSizedUInt long entityIndex0);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Bridge(symbol="MIDIDeviceNewEntity", optional=true)
+    public native OSStatus newEntity(String name, MIDIProtocolID protocol, boolean embedded, @MachineSizedUInt long numSourceEndpoints, @MachineSizedUInt long numDestinationEndpoints, MIDIEntity.MIDIEntityPtr newEntity);
+    /**
+     * @deprecated Use MIDIDeviceNewEntity
+     */
+    @Deprecated
     @Bridge(symbol="MIDIDeviceAddEntity", optional=true)
     protected native MIDIError addEntity(String name, boolean embedded, @MachineSizedUInt long numSourceEndpoints, @MachineSizedUInt long numDestinationEndpoints, MIDIEntity.MIDIEntityPtr newEntity);
     @Bridge(symbol="MIDIDeviceRemoveEntity", optional=true)

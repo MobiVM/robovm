@@ -60,6 +60,7 @@ public enum /*<name>*/AudioFormatProperty/*</name>*/ implements ValuedEnum {
     AvailableEncodeSampleRates(1634038642L),
     AvailableEncodeChannelLayoutTags(1634034540L),
     AvailableEncodeNumberChannels(1635151459L),
+    AvailableDecodeNumberChannels(1633971811L),
     ASBDFromMPEGPacket(1633971568L),
     BitmapForLayoutTag(1651340391L),
     MatrixMixMap(1835884912L),

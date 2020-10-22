@@ -90,6 +90,11 @@ import org.robovm.apple.audiotoolbox.*;
     public native AVQueuedSampleBufferRenderingStatus getStatus();
     @Property(selector = "error")
     public native NSError getError();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "requiresFlushToResumeDecoding")
+    public native boolean requiresFlushToResumeDecoding();
     @Property(selector = "isReadyForMoreMediaData")
     public native boolean isReadyForMoreMediaData();
     /**
@@ -121,6 +126,11 @@ import org.robovm.apple.audiotoolbox.*;
     public static native NSString FailedToDecodeNotification();
     @GlobalValue(symbol="AVSampleBufferDisplayLayerFailedToDecodeNotificationErrorKey", optional=true)
     protected static native NSString FailedToDecodeNotificationErrorKey();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @GlobalValue(symbol="AVSampleBufferDisplayLayerRequiresFlushToResumeDecodingDidChangeNotification", optional=true)
+    public static native NSString RequiresFlushToResumeDecodingDidChangeNotification();
     
     @Method(selector = "enqueueSampleBuffer:")
     public native void enqueueSampleBuffer(CMSampleBuffer sampleBuffer);

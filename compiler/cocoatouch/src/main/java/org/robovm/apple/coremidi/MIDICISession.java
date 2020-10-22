@@ -48,42 +48,45 @@ import org.robovm.apple.corefoundation.*;
     protected MIDICISession() {}
     protected MIDICISession(Handle h, long handle) { super(h, handle); }
     protected MIDICISession(SkipInit skipInit) { super(skipInit); }
-    @Method(selector = "initWithMIDIEntity:dataReadyHandler:")
-    public MIDICISession(MIDIEntity entity, @Block Runnable handler) { super((SkipInit) null); initObject(init(entity, handler)); }
+    @Method(selector = "initWithDiscoveredNode:dataReadyHandler:disconnectHandler:")
+    public MIDICISession(MIDICIDiscoveredNode discoveredNode, @Block Runnable handler, @Block VoidBlock2<MIDICISession, NSError> disconnectHandler) { super((SkipInit) null); initObject(init(discoveredNode, handler, disconnectHandler)); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "entity")
-    public native MIDIEntity getEntity();
+    @Property(selector = "midiDestination")
+    public native MIDIEntity getMidiDestination();
     @Property(selector = "supportsProfileCapability")
     public native boolean supportsProfileCapability();
     @Property(selector = "supportsPropertyCapability")
     public native boolean supportsPropertyCapability();
-    @Property(selector = "deviceIdentification")
-    public native @ByVal MIDICIDeviceIdentification getDeviceIdentification();
+    @Property(selector = "deviceInfo")
+    public native MIDICIDeviceInfo getDeviceInfo();
+    @Property(selector = "maxSysExSize")
+    public native NSNumber getMaxSysExSize();
+    @Property(selector = "maxPropertyRequests")
+    public native NSNumber getMaxPropertyRequests();
     @Property(selector = "profileChangedCallback")
     public native @Block VoidBlock4<MIDICISession, Byte, MIDICIProfile, Boolean> getProfileChangedCallback();
     @Property(selector = "setProfileChangedCallback:")
     public native void setProfileChangedCallback(@Block VoidBlock4<MIDICISession, Byte, MIDICIProfile, Boolean> v);
-    @Property(selector = "propertyChangedCallback")
-    public native @Block VoidBlock3<MIDICISession, Byte, NSData> getPropertyChangedCallback();
-    @Property(selector = "setPropertyChangedCallback:")
-    public native void setPropertyChangedCallback(@Block VoidBlock3<MIDICISession, Byte, NSData> v);
+    @Property(selector = "profileSpecificDataHandler")
+    public native @Block VoidBlock4<MIDICISession, Byte, MIDICIProfile, NSData> getProfileSpecificDataHandler();
+    @Property(selector = "setProfileSpecificDataHandler:")
+    public native void setProfileSpecificDataHandler(@Block VoidBlock4<MIDICISession, Byte, MIDICIProfile, NSData> v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithMIDIEntity:dataReadyHandler:")
-    protected native @Pointer long init(MIDIEntity entity, @Block Runnable handler);
+    @Method(selector = "initWithDiscoveredNode:dataReadyHandler:disconnectHandler:")
+    protected native @Pointer long init(MIDICIDiscoveredNode discoveredNode, @Block Runnable handler, @Block VoidBlock2<MIDICISession, NSError> disconnectHandler);
     @Method(selector = "profileStateForChannel:")
     public native MIDICIProfileState profileStateForChannel(byte channel);
     @Method(selector = "enableProfile:onChannel:error:")
     public native boolean enableProfile(MIDICIProfile profile, byte channel, NSError.NSErrorPtr outError);
     @Method(selector = "disableProfile:onChannel:error:")
     public native boolean disableProfile(MIDICIProfile profile, byte channel, NSError.NSErrorPtr outError);
-    @Method(selector = "hasProperty:onChannel:responseHandler:")
-    public native void hasProperty(NSData inquiry, byte channel, @Block VoidBlock4<MIDICISession, Byte, NSData, NSError> handler);
-    @Method(selector = "getProperty:onChannel:responseHandler:")
-    public native void getProperty(NSData inquiry, byte channel, @Block VoidBlock4<MIDICISession, Byte, NSData, NSError> handler);
-    @Method(selector = "setProperty:onChannel:responseHandler:")
-    public native void setProperty(NSData inquiry, byte channel, @Block VoidBlock4<MIDICISession, Byte, NSData, NSError> handler);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "sendProfile:onChannel:profileData:")
+    public native boolean sendProfile(MIDICIProfile profile, byte channel, NSData profileSpecificData);
     /*</methods>*/
 }

@@ -29,6 +29,7 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -50,18 +51,6 @@ import org.robovm.apple.uikit.*;
     public GKChallenge(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @deprecated Deprecated in iOS 8.0. Use issuingPlayer instead
-     */
-    @Deprecated
-    @Property(selector = "issuingPlayerID")
-    public native String getIssuingPlayerID();
-    /**
-     * @deprecated Deprecated in iOS 8.0. Use receivingPlayer instead
-     */
-    @Deprecated
-    @Property(selector = "receivingPlayerID")
-    public native String getReceivingPlayerID();
     @Property(selector = "issuingPlayer")
     public native GKPlayer getIssuingPlayer();
     @Property(selector = "receivingPlayer")
@@ -74,6 +63,18 @@ import org.robovm.apple.uikit.*;
     public native NSDate getCompletionDate();
     @Property(selector = "message")
     public native String getMessage();
+    /**
+     * @deprecated Deprecated in iOS 8.0. This property is obsolete, Use issuingPlayer instead
+     */
+    @Deprecated
+    @Property(selector = "issuingPlayerID")
+    public native String getIssuingPlayerID();
+    /**
+     * @deprecated Deprecated in iOS 8.0. This property is obsolete, Use receivingPlayer instead
+     */
+    @Deprecated
+    @Property(selector = "receivingPlayerID")
+    public native String getReceivingPlayerID();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

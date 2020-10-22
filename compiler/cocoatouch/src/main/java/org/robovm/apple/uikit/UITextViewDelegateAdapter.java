@@ -84,13 +84,13 @@ import org.robovm.apple.linkpresentation.*;
     @NotImplemented("textView:shouldInteractWithTextAttachment:inRange:interaction:")
     public boolean shouldInteractWithTextAttachment(UITextView textView, NSTextAttachment textAttachment, @ByVal NSRange characterRange, UITextItemInteraction interaction) { return false; }
     /**
-     * @deprecated Deprecated in iOS 10.0. Use textView:shouldInteractWithURL:inRange:forInteractionType:
+     * @deprecated Deprecated in iOS 10.0. Use textView:shouldInteractWithURL:inRange:interaction:
      */
     @Deprecated
     @NotImplemented("textView:shouldInteractWithURL:inRange:")
     public boolean shouldInteractWithURL(UITextView textView, NSURL URL, @ByVal NSRange characterRange) { return false; }
     /**
-     * @deprecated Deprecated in iOS 10.0. Use textView:shouldInteractWithTextAttachment:inRange:forInteractionType:
+     * @deprecated Deprecated in iOS 10.0. Use textView:shouldInteractWithTextAttachment:inRange:interaction:
      */
     @Deprecated
     @NotImplemented("textView:shouldInteractWithTextAttachment:inRange:")

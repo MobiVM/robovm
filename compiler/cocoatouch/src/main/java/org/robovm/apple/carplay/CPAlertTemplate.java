@@ -56,6 +56,11 @@ import org.robovm.apple.mapkit.*;
     /*<properties>*/
     @Property(selector = "titleVariants")
     public native NSArray<NSString> getTitleVariants();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "maximumActionCount")
+    public static native @MachineSizedUInt long getMaximumActionCount();
     @Property(selector = "actions")
     public native NSArray<CPAlertAction> getActions();
     /*</properties>*/

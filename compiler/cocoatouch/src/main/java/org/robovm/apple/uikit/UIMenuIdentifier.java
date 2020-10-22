@@ -147,6 +147,10 @@ import org.robovm.apple.linkpresentation.*;
      */
     public static final UIMenuIdentifier NewScene = new UIMenuIdentifier("NewScene");
     /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final UIMenuIdentifier OpenRecent = new UIMenuIdentifier("OpenRecent");
+    /**
      * @since Available in iOS 13.0 and later.
      */
     public static final UIMenuIdentifier Close = new UIMenuIdentifier("Close");
@@ -272,7 +276,7 @@ import org.robovm.apple.linkpresentation.*;
     public static final UIMenuIdentifier Root = new UIMenuIdentifier("Root");
     /*</constants>*/
     
-    private static /*<name>*/UIMenuIdentifier/*</name>*/[] values = new /*<name>*/UIMenuIdentifier/*</name>*/[] {/*<value_list>*/Application, File, Edit, View, Window, Help, About, Preferences, Services, Hide, Quit, NewScene, Close, Print, UndoRedo, StandardEdit, Find, Replace, Share, TextStyle, Spelling, SpellingPanel, SpellingOptions, Substitutions, SubstitutionsPanel, SubstitutionOptions, Transformations, Speech, Lookup, Learn, Format, Font, TextSize, TextColor, TextStylePasteboard, Text, WritingDirection, Alignment, Toolbar, Fullscreen, MinimizeAndZoom, BringAllToFront, Root/*</value_list>*/};
+    private static /*<name>*/UIMenuIdentifier/*</name>*/[] values = new /*<name>*/UIMenuIdentifier/*</name>*/[] {/*<value_list>*/Application, File, Edit, View, Window, Help, About, Preferences, Services, Hide, Quit, NewScene, OpenRecent, Close, Print, UndoRedo, StandardEdit, Find, Replace, Share, TextStyle, Spelling, SpellingPanel, SpellingOptions, Substitutions, SubstitutionsPanel, SubstitutionOptions, Transformations, Speech, Lookup, Learn, Format, Font, TextSize, TextColor, TextStylePasteboard, Text, WritingDirection, Alignment, Toolbar, Fullscreen, MinimizeAndZoom, BringAllToFront, Root/*</value_list>*/};
     
     /*<name>*/UIMenuIdentifier/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -355,6 +359,11 @@ import org.robovm.apple.linkpresentation.*;
          */
         @GlobalValue(symbol="UIMenuNewScene", optional=true)
         public static native NSString NewScene();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="UIMenuOpenRecent", optional=true)
+        public static native NSString OpenRecent();
         /**
          * @since Available in iOS 13.0 and later.
          */

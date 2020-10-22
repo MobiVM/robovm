@@ -43,7 +43,11 @@ import org.robovm.apple.dispatch.*;
 public enum /*<name>*/MKAnnotationViewCollisionMode/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Rectangle(0L),
-    Circle(1L);
+    Circle(1L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    None(2L);
     /*</values>*/
 
     /*<bind>*/

@@ -53,19 +53,27 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
 
     /*<ptr>*/public static class UISegmentedControlPtr extends Ptr<UISegmentedControl, UISegmentedControlPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(UISegmentedControl.class); }/*</bind>*/
-    /*<constants>*/
-    public static final int NoSegment = -1;
-    /*</constants>*/
+    /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UISegmentedControl() {}
     protected UISegmentedControl(Handle h, long handle) { super(h, handle); }
     protected UISegmentedControl(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithFrame:")
+    public UISegmentedControl(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
+    @Method(selector = "initWithCoder:")
+    public UISegmentedControl(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     @Method(selector = "initWithItems:")
     public UISegmentedControl(NSArray<?> items) { super((SkipInit) null); initObject(init(items)); }
-    @Method(selector = "initWithFrame:")
-    public UISegmentedControl(@ByVal CGRect frame) { super(frame); }
-    @Method(selector = "initWithCoder:")
-    public UISegmentedControl(NSCoder coder) { super(coder); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithFrame:actions:")
+    public UISegmentedControl(@ByVal CGRect frame, NSArray<UIAction> actions) { super((SkipInit) null); initObject(init(frame, actions)); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithFrame:primaryAction:")
+    public UISegmentedControl(@ByVal CGRect frame, UIAction primaryAction) { super(frame, primaryAction); }
     /*</constructors>*/
     public UISegmentedControl(String... items) {
         super((SkipInit) null);
@@ -183,8 +191,37 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
         return new CTAttributedStringAttributes(dict.as(CFDictionary.class));
     }
     /*<methods>*/
+    @Method(selector = "initWithFrame:")
+    protected native @Pointer long init(@ByVal CGRect frame);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder coder);
     @Method(selector = "initWithItems:")
     protected native @Pointer long init(NSArray<?> items);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithFrame:actions:")
+    protected native @Pointer long init(@ByVal CGRect frame, NSArray<UIAction> actions);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "insertSegmentWithAction:atIndex:animated:")
+    public native void insertSegment(UIAction action, @MachineSizedUInt long segment, boolean animated);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "setAction:forSegmentAtIndex:")
+    public native void setAction(UIAction action, @MachineSizedUInt long segment);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "actionForSegmentAtIndex:")
+    public native UIAction actionForSegmentAtIndex(@MachineSizedUInt long segment);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "segmentIndexForActionIdentifier:")
+    public native @MachineSizedSInt long segmentIndexForActionIdentifier(String actionIdentifier);
     @Method(selector = "insertSegmentWithTitle:atIndex:animated:")
     public native void insertSegment(String title, @MachineSizedUInt long segment, boolean animated);
     @Method(selector = "insertSegmentWithImage:atIndex:animated:")

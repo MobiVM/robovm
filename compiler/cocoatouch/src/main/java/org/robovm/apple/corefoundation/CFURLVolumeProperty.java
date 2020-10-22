@@ -164,9 +164,13 @@ import org.robovm.apple.coretext.*;
      * @since Available in iOS 11.0 and later.
      */
     public static final CFURLVolumeProperty SupportsAccessPermissions = new CFURLVolumeProperty("SupportsAccessPermissions");
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final CFURLVolumeProperty SupportsFileProtection = new CFURLVolumeProperty("SupportsFileProtection");
     /*</constants>*/
     
-    private static /*<name>*/CFURLVolumeProperty/*</name>*/[] values = new /*<name>*/CFURLVolumeProperty/*</name>*/[] {/*<value_list>*/URL, Identifier, LocalizedFormatDescription, TotalCapacity, AvailableCapacity, AvailableCapacityForImportantUsage, AvailableCapacityForOpportunisticUsage, ResourceCount, SupportsPersistentIDs, SupportsSymbolicLinks, SupportsHardLinks, SupportsJournaling, IsJournaling, SupportsSparseFiles, SupportsZeroRuns, SupportsCaseSensitiveNames, SupportsCasePreservedNames, SupportsRootDirectoryDates, SupportsVolumeSizes, SupportsRenaming, SupportsAdvisoryFileLocking, SupportsExtendedSecurity, IsBrowsable, MaximumFileSize, IsEjectable, IsRemovable, IsInternal, IsAutomounted, IsLocal, IsReadOnly, CreationDate, URLForRemounting, UUIDString, Name, LocalizedName, IsEncrypted, IsRootFileSystem, SupportsCompression, SupportsFileCloning, SupportsSwapRenaming, SupportsExclusiveRenaming, SupportsImmutableFiles, SupportsAccessPermissions/*</value_list>*/};
+    private static /*<name>*/CFURLVolumeProperty/*</name>*/[] values = new /*<name>*/CFURLVolumeProperty/*</name>*/[] {/*<value_list>*/URL, Identifier, LocalizedFormatDescription, TotalCapacity, AvailableCapacity, AvailableCapacityForImportantUsage, AvailableCapacityForOpportunisticUsage, ResourceCount, SupportsPersistentIDs, SupportsSymbolicLinks, SupportsHardLinks, SupportsJournaling, IsJournaling, SupportsSparseFiles, SupportsZeroRuns, SupportsCaseSensitiveNames, SupportsCasePreservedNames, SupportsRootDirectoryDates, SupportsVolumeSizes, SupportsRenaming, SupportsAdvisoryFileLocking, SupportsExtendedSecurity, IsBrowsable, MaximumFileSize, IsEjectable, IsRemovable, IsInternal, IsAutomounted, IsLocal, IsReadOnly, CreationDate, URLForRemounting, UUIDString, Name, LocalizedName, IsEncrypted, IsRootFileSystem, SupportsCompression, SupportsFileCloning, SupportsSwapRenaming, SupportsExclusiveRenaming, SupportsImmutableFiles, SupportsAccessPermissions, SupportsFileProtection/*</value_list>*/};
     
     /*<name>*/CFURLVolumeProperty/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -305,6 +309,11 @@ import org.robovm.apple.coretext.*;
          */
         @GlobalValue(symbol="kCFURLVolumeSupportsAccessPermissionsKey", optional=true)
         public static native CFString SupportsAccessPermissions();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="kCFURLVolumeSupportsFileProtectionKey", optional=true)
+        public static native CFString SupportsFileProtection();
         /*</values>*/
     }
 }

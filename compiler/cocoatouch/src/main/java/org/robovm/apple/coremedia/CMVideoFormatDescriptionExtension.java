@@ -383,6 +383,11 @@ import org.robovm.apple.audiotoolbox.*;
         public static native CFString ChromaLocationBottomField();
         @GlobalValue(symbol="kCMFormatDescriptionConformsToMPEG2VideoProfile", optional=true)
         public static native CFString ConformsToMPEG2VideoProfile();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="kCMFormatDescriptionExtension_ProtectedContentOriginalFormat", optional=true)
+        public static native CFString ProtectedContentOriginalFormat();
         @GlobalValue(symbol="kCMFormatDescriptionExtension_TemporalQuality", optional=true)
         public static native CFString TemporalQuality();
         @GlobalValue(symbol="kCMFormatDescriptionExtension_SpatialQuality", optional=true)

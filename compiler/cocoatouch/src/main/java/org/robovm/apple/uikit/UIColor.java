@@ -274,6 +274,11 @@ import org.robovm.apple.linkpresentation.*;
     @Deprecated
     @Property(selector = "underPageBackgroundColor")
     public static native UIColor underPageBackground();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "accessibilityName")
+    public native String getAccessibilityName();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     @Property(selector = "readableTypeIdentifiersForItemProvider")

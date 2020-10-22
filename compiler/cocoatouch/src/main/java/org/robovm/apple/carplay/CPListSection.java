@@ -51,9 +51,9 @@ import org.robovm.apple.mapkit.*;
     protected CPListSection(Handle h, long handle) { super(h, handle); }
     protected CPListSection(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithItems:header:sectionIndexTitle:")
-    public CPListSection(NSArray<CPListItem> items, String header, String sectionIndexTitle) { super((SkipInit) null); initObject(init(items, header, sectionIndexTitle)); }
+    public CPListSection(NSArray<?> items, String header, String sectionIndexTitle) { super((SkipInit) null); initObject(init(items, header, sectionIndexTitle)); }
     @Method(selector = "initWithItems:")
-    public CPListSection(NSArray<CPListItem> items) { super((SkipInit) null); initObject(init(items)); }
+    public CPListSection(NSArray<?> items) { super((SkipInit) null); initObject(init(items)); }
     @Method(selector = "initWithCoder:")
     public CPListSection(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
@@ -63,16 +63,20 @@ import org.robovm.apple.mapkit.*;
     @Property(selector = "sectionIndexTitle")
     public native String getSectionIndexTitle();
     @Property(selector = "items")
-    public native NSArray<CPListItem> getItems();
+    public native NSArray<?> getItems();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithItems:header:sectionIndexTitle:")
-    protected native @Pointer long init(NSArray<CPListItem> items, String header, String sectionIndexTitle);
+    protected native @Pointer long init(NSArray<?> items, String header, String sectionIndexTitle);
     @Method(selector = "initWithItems:")
-    protected native @Pointer long init(NSArray<CPListItem> items);
+    protected native @Pointer long init(NSArray<?> items);
+    @Method(selector = "indexOfItem:")
+    public native @MachineSizedUInt long indexOfItem(CPListTemplateItem item);
+    @Method(selector = "itemAtIndex:")
+    public native CPListTemplateItem itemAtIndex(@MachineSizedUInt long index);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

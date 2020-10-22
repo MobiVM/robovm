@@ -62,6 +62,11 @@ import org.robovm.apple.foundation.*;
      */
     @Property(selector = "heading")
     public native double getHeading();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "sensorLocation")
+    public native CMDeviceMotionSensorLocation getSensorLocation();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

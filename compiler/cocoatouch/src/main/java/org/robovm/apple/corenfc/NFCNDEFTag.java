@@ -46,6 +46,9 @@ import org.robovm.apple.dispatch.*;
     /*</bind>*/
     /*<constants>*//*</constants>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
     @Property(selector = "isAvailable")
     boolean isAvailable();
     /*</properties>*/

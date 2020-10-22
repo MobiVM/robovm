@@ -53,6 +53,11 @@ import org.robovm.apple.coregraphics.*;
     public PKInkingTool(PKInkType type, UIColor color, @MachineSizedFloat double width) { super((SkipInit) null); initObject(init(type, color, width)); }
     @Method(selector = "initWithInkType:color:")
     public PKInkingTool(PKInkType type, UIColor color) { super((SkipInit) null); initObject(init(type, color)); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithInk:width:")
+    public PKInkingTool(PKInk ink, @MachineSizedFloat double width) { super((SkipInit) null); initObject(init(ink, width)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "inkType")
@@ -61,6 +66,11 @@ import org.robovm.apple.coregraphics.*;
     public native UIColor getColor();
     @Property(selector = "width")
     public native @MachineSizedFloat double getWidth();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "ink")
+    public native PKInk getInk();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -68,6 +78,11 @@ import org.robovm.apple.coregraphics.*;
     protected native @Pointer long init(PKInkType type, UIColor color, @MachineSizedFloat double width);
     @Method(selector = "initWithInkType:color:")
     protected native @Pointer long init(PKInkType type, UIColor color);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithInk:width:")
+    protected native @Pointer long init(PKInk ink, @MachineSizedFloat double width);
     @Method(selector = "defaultWidthForInkType:")
     public static native @MachineSizedFloat double defaultWidthForInkType(PKInkType inkType);
     @Method(selector = "minimumWidthForInkType:")

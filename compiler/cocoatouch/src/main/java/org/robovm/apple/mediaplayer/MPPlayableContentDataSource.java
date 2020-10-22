@@ -33,9 +33,11 @@ import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @deprecated Deprecated in iOS 14.0. Use CarPlay framework
+ */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
+/*<annotations>*/@Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ interface /*<name>*/MPPlayableContentDataSource/*</name>*/ 
     /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
 
@@ -54,7 +56,9 @@ import org.robovm.apple.coregraphics.*;
     boolean childItemsDisplayPlaybackProgress(NSIndexPath indexPath);
     /**
      * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 14.0. Use CarPlay framework
      */
+    @Deprecated
     @Method(selector = "contentItemForIdentifier:completionHandler:")
     void getContentItem(String identifier, @Block VoidBlock2<MPContentItem, NSError> completionHandler);
     @Method(selector = "numberOfChildItemsAtIndexPath:")

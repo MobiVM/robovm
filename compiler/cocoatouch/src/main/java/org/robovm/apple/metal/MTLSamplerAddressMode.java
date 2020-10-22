@@ -38,9 +38,17 @@ import org.robovm.apple.dispatch.*;
 public enum /*<name>*/MTLSamplerAddressMode/*</name>*/ implements ValuedEnum {
     /*<values>*/
     ClampToEdge(0L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    MirrorClampToEdge(1L),
     Repeat(2L),
     MirrorRepeat(3L),
-    ClampToZero(4L);
+    ClampToZero(4L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    ClampToBorderColor(5L);
     /*</values>*/
 
     /*<bind>*/

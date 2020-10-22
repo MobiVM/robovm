@@ -58,6 +58,11 @@ import org.robovm.apple.security.*;
     public native WKFrameInfo getFrameInfo();
     @Property(selector = "name")
     public native String getName();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "world")
+    public native WKContentWorld getWorld();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

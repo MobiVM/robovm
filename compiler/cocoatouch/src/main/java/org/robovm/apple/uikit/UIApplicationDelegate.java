@@ -191,8 +191,15 @@ import org.robovm.apple.linkpresentation.*;
     @Method(selector = "applicationShouldRequestHealthAuthorization:")
     void shouldRequestHealthAuthorization(UIApplication application);
     /**
-     * @since Available in iOS 11.0 and later.
+     * @since Available in iOS 14.0 and later.
      */
+    @Method(selector = "application:handlerForIntent:")
+    NSObject getHandlerForIntent(UIApplication application, INIntent intent);
+    /**
+     * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 14.0. Use application:handlerForIntent: instead
+     */
+    @Deprecated
     @Method(selector = "application:handleIntent:completionHandler:")
     void handleIntent(UIApplication application, INIntent intent, @Block VoidBlock1<INIntentResponse> completionHandler);
     @Method(selector = "applicationDidEnterBackground:")
