@@ -49,6 +49,8 @@
                         <bootclasspath>""</bootclasspath>
                     </compilerArguments>
                     <encoding>UTF-8</encoding>
+                    <source>6</source>
+                    <target>6</target>
                 </configuration>
             </plugin>
 

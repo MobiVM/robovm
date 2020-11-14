@@ -52,6 +52,7 @@ enums:
     HKAppleECGAlgorithmVersion: {} #since 14.0
     HKDevicePlacementSide: {} #since 14.0
     HKActivityMoveMode: {} #since 14.0
+    HKCategoryValueHeadphoneAudioExposureEvent: {} #since 14.2
 typed_enums:
     HKFHIRResourceType:
         enum: HKFHIRResourceType

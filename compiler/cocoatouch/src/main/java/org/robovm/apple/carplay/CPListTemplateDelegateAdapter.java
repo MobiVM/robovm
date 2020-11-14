@@ -51,6 +51,11 @@ import org.robovm.apple.mapkit.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 12.0 and later.
+     * @deprecated Deprecated in iOS 14.0. Use -[CPListItem handler]
+     */
+    @Deprecated
     @NotImplemented("listTemplate:didSelectListItem:completionHandler:")
     public void didSelectListItem(CPListTemplate listTemplate, CPListItem item, @Block Runnable completionHandler) {}
     /*</methods>*/

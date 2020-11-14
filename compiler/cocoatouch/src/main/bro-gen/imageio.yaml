@@ -20,7 +20,7 @@ enums:
     CGImagePropertyOrientation: {}
     CGImageSourceStatus: {}
     CGImageAnimationStatus: {prefix: kCGImageAnimationStatus_}
-
+    CGImagePropertyTGACompression: {prefix: kCGImageTGACompression}
 classes:
     # Opaque types
     CGImageDestination:

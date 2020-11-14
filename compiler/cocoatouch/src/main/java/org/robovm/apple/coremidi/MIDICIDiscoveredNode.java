@@ -39,7 +39,7 @@ import org.robovm.apple.corefoundation.*;
 /*<annotations>*/@Library("CoreMIDI") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MIDICIDiscoveredNode/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class MIDICIDiscoveredNodePtr extends Ptr<MIDICIDiscoveredNode, MIDICIDiscoveredNodePtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(MIDICIDiscoveredNode.class); }/*</bind>*/
@@ -48,6 +48,8 @@ import org.robovm.apple.corefoundation.*;
     protected MIDICIDiscoveredNode() {}
     protected MIDICIDiscoveredNode(Handle h, long handle) { super(h, handle); }
     protected MIDICIDiscoveredNode(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public MIDICIDiscoveredNode(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "destination")
@@ -60,9 +62,14 @@ import org.robovm.apple.corefoundation.*;
     public native boolean supportsProperties();
     @Property(selector = "maximumSysExSize")
     public native NSNumber getMaximumSysExSize();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

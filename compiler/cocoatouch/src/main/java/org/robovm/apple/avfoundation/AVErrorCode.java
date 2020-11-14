@@ -179,7 +179,11 @@ public enum /*<name>*/AVErrorCode/*</name>*/ implements NSErrorCode {
     /**
      * @since Available in iOS 14.0 and later.
      */
-    SegmentStartedWithNonSyncSample(-11876L);
+    SegmentStartedWithNonSyncSample(-11876L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    RosettaNotInstalled(-11877L);
     /*</values>*/
 
     /*<bind>*/

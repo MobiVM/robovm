@@ -171,6 +171,11 @@ import org.robovm.apple.coregraphics.*;
          */
         @GlobalValue(symbol="kCGImageDestinationOptimizeColorForSharing", optional=true)
         public static native CFString OptimizeColorForSharing();
+        /**
+         * @since Available in iOS 14.1 and later.
+         */
+        @GlobalValue(symbol="kCGImageDestinationPreserveGainMap", optional=true)
+        public static native CFString PreserveGainMap();
     }
     /*</keys>*/
 }

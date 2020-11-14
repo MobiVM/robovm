@@ -210,6 +210,8 @@ classes:
                 name: constant
             '-constantWithScalar:shape:dataType:':
                 name: constant
+            '-constantWithScalar:dataType:':
+                name: constant
             '-variableWithData:shape:dataType:name:':
                 name: variable
             '-readVariable:name:':

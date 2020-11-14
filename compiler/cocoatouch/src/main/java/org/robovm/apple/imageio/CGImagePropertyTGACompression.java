@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.robovm.apple.mlcompute;
+package org.robovm.apple.imageio;
 
 /*<imports>*/
 import java.io.*;
@@ -28,22 +28,18 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
-import org.robovm.apple.metal.*;
-import org.robovm.apple.metalps.*;
+import org.robovm.apple.corefoundation.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
 
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-public enum /*<name>*/MLCDataType/*</name>*/ implements ValuedEnum {
+public enum /*<name>*/CGImagePropertyTGACompression/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    Invalid(0L),
-    Float32(1L),
-    Boolean(4L),
-    Int64(5L),
-    Int32(7L),
-    Count(8L);
+    None(0L),
+    RLE(1L);
     /*</values>*/
 
     /*<bind>*/
@@ -53,15 +49,15 @@ public enum /*<name>*/MLCDataType/*</name>*/ implements ValuedEnum {
 
     private final long n;
 
-    private /*<name>*/MLCDataType/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/CGImagePropertyTGACompression/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/MLCDataType/*</name>*/ valueOf(long n) {
-        for (/*<name>*/MLCDataType/*</name>*/ v : values()) {
+    public static /*<name>*/CGImagePropertyTGACompression/*</name>*/ valueOf(long n) {
+        for (/*<name>*/CGImagePropertyTGACompression/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/MLCDataType/*</name>*/.class.getName());
+            + /*<name>*/CGImagePropertyTGACompression/*</name>*/.class.getName());
     }
 }

@@ -87,6 +87,16 @@ import org.robovm.apple.iad.*;
      */
     @Property(selector = "setRequiresLinearPlayback:")
     public native void setRequiresLinearPlayback(boolean v);
+    /**
+     * @since Available in iOS 14.2 and later.
+     */
+    @Property(selector = "canStartPictureInPictureAutomaticallyFromInline")
+    public native boolean canStartPictureInPictureAutomaticallyFromInline();
+    /**
+     * @since Available in iOS 14.2 and later.
+     */
+    @Property(selector = "setCanStartPictureInPictureAutomaticallyFromInline:")
+    public native void setCanStartPictureInPictureAutomaticallyFromInline(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

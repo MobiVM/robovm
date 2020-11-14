@@ -246,6 +246,8 @@ import org.robovm.apple.metalps.*;
     public native MPSGraphTensor placeholder(NSArray<NSNumber> shape, String name);
     @Method(selector = "constantWithData:shape:dataType:")
     public native MPSGraphTensor constant(NSData data, NSArray<NSNumber> shape, MPSDataType dataType);
+    @Method(selector = "constantWithScalar:dataType:")
+    public native MPSGraphTensor constant(double scalar, MPSDataType dataType);
     @Method(selector = "constantWithScalar:shape:dataType:")
     public native MPSGraphTensor constant(double scalar, NSArray<NSNumber> shape, MPSDataType dataType);
     @Method(selector = "variableWithData:shape:dataType:name:")
