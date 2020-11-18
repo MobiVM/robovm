@@ -60,9 +60,14 @@ classes:
             '-initWithParameterID:value:relativeTime:':
                 name: init
     CHHapticEngine: #since 13.0
+        skip_def_constructor: true
         methods:
             '-initWithAudioSession:error:':
                 name: init
+                throws: NSErrorException
+            '-initAndReturnError:':
+                name: init
+                throws: NSErrorException
             '-startWithCompletionHandler:':
                 name: start
             '-stopWithCompletionHandler:':
