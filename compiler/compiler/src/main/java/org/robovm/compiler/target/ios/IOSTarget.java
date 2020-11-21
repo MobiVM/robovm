@@ -724,14 +724,16 @@ public class IOSTarget extends AbstractTarget {
         try {
             File destFile = new File(config.getTmpDir(), "Entitlements.plist");
             NSDictionary dict = null;
-            if (entitlementsPList == null) {
-                dict = new NSDictionary();
-            } else if (provisioningProfile != null) {
+            if (provisioningProfile != null) {
                 String teamID = provisioningProfile.getAppIdPrefix();
-                // use properties. this allows teamID (and other placeholders) to be used in entitlements
-                Properties properties = new Properties(config.getProperties());
-                properties.setProperty("teamID", teamID);
-                dict = new PList(entitlementsPList).parse(properties).getDictionary();
+                if (entitlementsPList != null) {
+                    // use properties. this allows teamID (and other placeholders) to be used in entitlements
+                    Properties properties = new Properties(config.getProperties());
+                    properties.setProperty("teamID", teamID);
+                    dict = new PList(entitlementsPList).parse(properties).getDictionary();
+                } else {
+                    dict = new NSDictionary();
+                }
 
                 NSDictionary profileEntitlements = provisioningProfile.getEntitlements();
                 for (String key : profileEntitlements.allKeys()) {
@@ -741,7 +743,8 @@ public class IOSTarget extends AbstractTarget {
                 }
                 dict.put("application-identifier", teamID + "." + bundleId);
             } else {
-                dict = (NSDictionary) PropertyListParser.parse(entitlementsPList);
+                // should not happen
+                dict = entitlementsPList == null ? new NSDictionary() : (NSDictionary) PropertyListParser.parse(entitlementsPList);
             }
             dict.put("get-task-allow", getTaskAllow);
             PropertyListParser.saveAsXML(dict, destFile);
