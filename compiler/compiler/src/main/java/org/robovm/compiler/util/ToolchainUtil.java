@@ -20,6 +20,7 @@ package org.robovm.compiler.util;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.apache.commons.exec.ExecuteException;
@@ -216,7 +217,11 @@ public class ToolchainUtil {
                 inDir, outDir).exec();
     }
 
-    public static void actool(Config config, File partialInfoPlist, File inDir, File outDir) throws IOException {
+    public static void actool(Config config, File partialInfoPlist, File outDir, File inDir) throws IOException {
+        actool(config, partialInfoPlist, outDir, Collections.singletonList(inDir));
+    }
+
+    public static void actool(Config config, File partialInfoPlist, File outDir, List<File> inDirs) throws IOException {
         List<Object> opts = new ArrayList<>();
 
         String appIconSetName = null;
@@ -225,12 +230,14 @@ public class ToolchainUtil {
         final String appiconset = "appiconset";
         final String launchimage = "launchimage";
 
-        for (String fileName : inDir.list()) {
-            String ext = FilenameUtils.getExtension(fileName);
-            if (ext.equals(appiconset)) {
-                appIconSetName = FilenameUtils.getBaseName(fileName);
-            } else if (ext.equals(launchimage)) {
-                launchImagesName = FilenameUtils.getBaseName(fileName);
+        for (File inDir : inDirs) {
+            for (String fileName : inDir.list()) {
+                String ext = FilenameUtils.getExtension(fileName);
+                if (ext.equals(appiconset)) {
+                    appIconSetName = FilenameUtils.getBaseName(fileName);
+                } else if (ext.equals(launchimage)) {
+                    launchImagesName = FilenameUtils.getBaseName(fileName);
+                }
             }
         }
         if (appIconSetName != null || launchImagesName != null) {
@@ -269,7 +276,7 @@ public class ToolchainUtil {
 
         new Executor(config.getLogger(), getACTool()).args("--output-format", "human-readable-text", opts,
                 "--minimum-deployment-target", minOSVersion, "--target-device", "iphone", "--target-device", "ipad",
-                "--compress-pngs", "--compile", outDir, inDir).exec();
+                "--compress-pngs", "--compile", outDir, inDirs).exec();
     }
 
     public static void ibtool(Config config, File partialInfoPlist, File inFile, File outFile) throws IOException {
