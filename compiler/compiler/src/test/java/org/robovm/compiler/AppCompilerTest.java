@@ -23,12 +23,8 @@ import java.io.FilterInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.robovm.compiler.clazz.Clazz;
@@ -132,7 +128,7 @@ public class AppCompilerTest {
     }
     
     private static Clazzes createClazzes(final Path... paths) throws Exception {
-        Config cfg = new Config() {
+        Config cfg = new Config(UUID.randomUUID()) {
         };
         Clazzes clazzes = new Clazzes(
                 cfg,
