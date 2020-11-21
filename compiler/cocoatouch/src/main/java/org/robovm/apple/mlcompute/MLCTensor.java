@@ -91,13 +91,6 @@ import org.robovm.apple.metalps.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 14.0 and later.
-     * @deprecated Deprecated in iOS 14.0. Please use -bindOptimizerData:deviceData: instead
-     */
-    @Deprecated
-    @Method(selector = "optimizerData:")
-    public native boolean optimizerData(NSArray<MLCTensorData> optimizerData);
     @Method(selector = "synchronizeData")
     public native boolean synchronizeData();
     @Method(selector = "synchronizeOptimizerData")

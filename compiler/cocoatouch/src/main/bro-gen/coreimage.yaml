@@ -115,6 +115,8 @@ classes:
                 name: depthBlurEffectFilter
             '-depthBlurEffectFilterForImage:disparityImage:portraitEffectsMatte:hairSemanticSegmentation:orientation:options:':
                 name: depthBlurEffectFilter
+            '-depthBlurEffectFilterForImage:disparityImage:portraitEffectsMatte:hairSemanticSegmentation:glassesMatte:gainMap:orientation:options:':
+                name: depthBlurEffectFilter
     CIDetector: # DONE
         methods:
             '+detectorOfType:context:options:':

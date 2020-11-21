@@ -66,6 +66,11 @@ import org.robovm.apple.network.*;
      */
     @Property(selector = "setNetworkInterface:")
     public native void setNetworkInterface(NWInterface v);
+    /**
+     * @since Available in iOS 14.2 and later.
+     */
+    @Property(selector = "remoteHostname")
+    public native String getRemoteHostname();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

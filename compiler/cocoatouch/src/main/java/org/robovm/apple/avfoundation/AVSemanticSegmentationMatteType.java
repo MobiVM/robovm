@@ -109,9 +109,13 @@ import org.robovm.apple.audiotoolbox.*;
      * @since Available in iOS 13.0 and later.
      */
     public static final AVSemanticSegmentationMatteType Teeth = new AVSemanticSegmentationMatteType("Teeth");
+    /**
+     * @since Available in iOS 14.1 and later.
+     */
+    public static final AVSemanticSegmentationMatteType Glasses = new AVSemanticSegmentationMatteType("Glasses");
     /*</constants>*/
     
-    private static /*<name>*/AVSemanticSegmentationMatteType/*</name>*/[] values = new /*<name>*/AVSemanticSegmentationMatteType/*</name>*/[] {/*<value_list>*/Skin, Hair, Teeth/*</value_list>*/};
+    private static /*<name>*/AVSemanticSegmentationMatteType/*</name>*/[] values = new /*<name>*/AVSemanticSegmentationMatteType/*</name>*/[] {/*<value_list>*/Skin, Hair, Teeth, Glasses/*</value_list>*/};
     
     /*<name>*/AVSemanticSegmentationMatteType/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -149,6 +153,11 @@ import org.robovm.apple.audiotoolbox.*;
          */
         @GlobalValue(symbol="AVSemanticSegmentationMatteTypeTeeth", optional=true)
         public static native NSString Teeth();
+        /**
+         * @since Available in iOS 14.1 and later.
+         */
+        @GlobalValue(symbol="AVSemanticSegmentationMatteTypeGlasses", optional=true)
+        public static native NSString Glasses();
         /*</values>*/
     }
 }

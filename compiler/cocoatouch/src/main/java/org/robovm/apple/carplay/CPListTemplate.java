@@ -56,14 +56,14 @@ import org.robovm.apple.mapkit.*;
     /*<properties>*/
     /**
      * @since Available in iOS 12.0 and later.
-     * @deprecated Deprecated in iOS 14.0. Use -[CPListItem listItemHandler]
+     * @deprecated Deprecated in iOS 14.0. Use -[CPListItem handler]
      */
     @Deprecated
     @Property(selector = "delegate")
     public native CPListTemplateDelegate getDelegate();
     /**
      * @since Available in iOS 12.0 and later.
-     * @deprecated Deprecated in iOS 14.0. Use -[CPListItem listItemHandler]
+     * @deprecated Deprecated in iOS 14.0. Use -[CPListItem handler]
      */
     @Deprecated
     @Property(selector = "setDelegate:", strongRef = true)

@@ -195,6 +195,21 @@ import org.robovm.apple.audiotoolbox.*;
     @Property(selector = "availableLivePhotoVideoCodecTypes")
     public native NSArray<NSString> getAvailableLivePhotoVideoCodecTypes();
     /**
+     * @since Available in iOS 14.1 and later.
+     */
+    @Property(selector = "isContentAwareDistortionCorrectionSupported")
+    public native boolean isContentAwareDistortionCorrectionSupported();
+    /**
+     * @since Available in iOS 14.1 and later.
+     */
+    @Property(selector = "isContentAwareDistortionCorrectionEnabled")
+    public native boolean isContentAwareDistortionCorrectionEnabled();
+    /**
+     * @since Available in iOS 14.1 and later.
+     */
+    @Property(selector = "setContentAwareDistortionCorrectionEnabled:")
+    public native void setContentAwareDistortionCorrectionEnabled(boolean v);
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @Property(selector = "isDepthDataDeliverySupported")

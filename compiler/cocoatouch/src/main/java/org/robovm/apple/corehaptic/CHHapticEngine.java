@@ -45,13 +45,24 @@ import org.robovm.apple.avfoundation.*;
     /*<bind>*/static { ObjCRuntime.bind(CHHapticEngine.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected CHHapticEngine() {}
     protected CHHapticEngine(Handle h, long handle) { super(h, handle); }
     protected CHHapticEngine(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initAndReturnError:")
-    public CHHapticEngine(NSError.NSErrorPtr error) { super((SkipInit) null); initObject(initAndReturnError(error)); }
+    public CHHapticEngine() throws NSErrorException {
+       super((SkipInit) null);
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       long handle = init(ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       initObject(handle);
+    }
     @Method(selector = "initWithAudioSession:error:")
-    public CHHapticEngine(AVAudioSession audioSession, NSError.NSErrorPtr error) { super((SkipInit) null); initObject(init(audioSession, error)); }
+    public CHHapticEngine(AVAudioSession audioSession) throws NSErrorException {
+       super((SkipInit) null);
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       long handle = init(audioSession, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       initObject(handle);
+    }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "currentTime")
@@ -84,9 +95,9 @@ import org.robovm.apple.avfoundation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initAndReturnError:")
-    protected native @Pointer long initAndReturnError(NSError.NSErrorPtr error);
+    private native @Pointer long init(NSError.NSErrorPtr error);
     @Method(selector = "initWithAudioSession:error:")
-    protected native @Pointer long init(AVAudioSession audioSession, NSError.NSErrorPtr error);
+    private native @Pointer long init(AVAudioSession audioSession, NSError.NSErrorPtr error);
     @Method(selector = "startWithCompletionHandler:")
     public native void start(@Block VoidBlock1<NSError> completionHandler);
     @Method(selector = "startAndReturnError:")

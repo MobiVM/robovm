@@ -49,7 +49,11 @@ import org.robovm.apple.audiotoolbox.*;
 public enum /*<name>*/AVCaptureColorSpace/*</name>*/ implements ValuedEnum {
     /*<values>*/
     sRGB(0L),
-    P3_D65(1L);
+    P3_D65(1L),
+    /**
+     * @since Available in iOS 14.1 and later.
+     */
+    HLG_BT2020(2L);
     /*</values>*/
 
     /*<bind>*/

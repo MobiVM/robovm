@@ -85,5 +85,10 @@ import org.robovm.apple.imageio.*;
     protected static native @Pointer long create(PHCollectionList collectionList);
     @Method(selector = "changeRequestForCollectionList:childCollections:")
     protected static native @Pointer long create(PHCollectionList collectionList, PHFetchResult<PHCollection> childCollections);
+    /**
+     * @since Available in iOS 14.2 and later.
+     */
+    @Method(selector = "changeRequestForTopLevelCollectionListUserCollections:")
+    public static native PHCollectionListChangeRequest changeRequestForTopLevelCollectionListUserCollections(PHFetchResult<PHCollection> childCollections);
     /*</methods>*/
 }

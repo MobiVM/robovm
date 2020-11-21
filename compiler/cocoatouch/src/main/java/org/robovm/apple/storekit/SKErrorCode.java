@@ -96,7 +96,11 @@ public enum /*<name>*/SKErrorCode/*</name>*/ implements NSErrorCode {
     /**
      * @since Available in iOS 14.0 and later.
      */
-    IneligibleForOffer(18L);
+    IneligibleForOffer(18L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    UnsupportedPlatform(19L);
     /*</values>*/
 
     /*<bind>*/

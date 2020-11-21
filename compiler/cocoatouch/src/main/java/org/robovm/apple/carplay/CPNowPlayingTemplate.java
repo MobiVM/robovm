@@ -54,8 +54,6 @@ import org.robovm.apple.mapkit.*;
     /*<properties>*/
     @Property(selector = "sharedTemplate")
     public static native CPNowPlayingTemplate getSharedTemplate();
-    @Property(selector = "setSharedTemplate:")
-    public static native void setSharedTemplate(CPNowPlayingTemplate v);
     @Property(selector = "nowPlayingButtons")
     public native NSArray<CPNowPlayingButton> getNowPlayingButtons();
     @Property(selector = "isUpNextButtonEnabled")

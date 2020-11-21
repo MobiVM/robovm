@@ -233,6 +233,16 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "setVideoApertureMode:")
     public native void setVideoApertureMode(AVVideoApertureMode v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "appliesPerFrameHDRDisplayMetadata")
+    public native boolean appliesPerFrameHDRDisplayMetadata();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setAppliesPerFrameHDRDisplayMetadata:")
+    public native void setAppliesPerFrameHDRDisplayMetadata(boolean v);
     @Property(selector = "audioTimePitchAlgorithm")
     public native String getAudioTimePitchAlgorithm();
     @Property(selector = "setAudioTimePitchAlgorithm:")

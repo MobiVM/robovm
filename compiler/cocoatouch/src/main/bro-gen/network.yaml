@@ -40,7 +40,7 @@ enums:
     nw_ws_response_status_t: {prefix: nw_ws_response_status_, name: NWWsResponseStatus}
     nw_connection_group_state_t: {prefix: nw_connection_group_state_, name: NWConnectionGroupState}
     nw_report_resolution_protocol_t: {prefix: nw_report_resolution_protocol_, name: NWReportResolutionProtocol}
-
+    nw_path_unsatisfied_reason_t: {prefix: nw_path_unsatisfied_reason_, name: NWPathUnsatisfiedReason}
 
 classes:
     NWFramerMessage:

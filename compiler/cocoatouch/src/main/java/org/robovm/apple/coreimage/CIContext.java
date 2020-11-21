@@ -244,6 +244,11 @@ import org.robovm.apple.avfoundation.*;
     @Method(selector = "depthBlurEffectFilterForImage:disparityImage:portraitEffectsMatte:hairSemanticSegmentation:orientation:options:")
     public native CIFilter depthBlurEffectFilter(CIImage image, CIImage disparityImage, CIImage portraitEffectsMatte, CIImage hairSemanticSegmentation, CGImagePropertyOrientation orientation, NSDictionary<?, ?> options);
     /**
+     * @since Available in iOS 14.1 and later.
+     */
+    @Method(selector = "depthBlurEffectFilterForImage:disparityImage:portraitEffectsMatte:hairSemanticSegmentation:glassesMatte:gainMap:orientation:options:")
+    public native CIFilter depthBlurEffectFilter(CIImage image, CIImage disparityImage, CIImage portraitEffectsMatte, CIImage hairSemanticSegmentation, CIImage glassesMatte, CIImage gainMap, CGImagePropertyOrientation orientation, NSDictionary<?, ?> options);
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "startTaskToRender:fromRect:toDestination:atPoint:error:")

@@ -600,6 +600,10 @@ import org.robovm.apple.dispatch.*;
         set(Keys.UseItemList(), CFArray.create(itemList));
         return this;
     }
+    /**
+     * @deprecated Deprecated in iOS 14.0. Use kSecUseAuthenticationContext and set LAContext.localizedReason property
+     */
+    @Deprecated
     public String getOperationPrompt() {
         if (has(Keys.UseOperationPrompt())) {
             CFString val = get(Keys.UseOperationPrompt(), CFString.class);
@@ -607,6 +611,10 @@ import org.robovm.apple.dispatch.*;
         }
         return null;
     }
+    /**
+     * @deprecated Deprecated in iOS 14.0. Use kSecUseAuthenticationContext and set LAContext.localizedReason property
+     */
+    @Deprecated
     public SecAttributes setOperationPrompt(String operationPrompt) {
         set(Keys.UseOperationPrompt(), new CFString(operationPrompt));
         return this;
@@ -786,6 +794,10 @@ import org.robovm.apple.dispatch.*;
         @Deprecated
         @GlobalValue(symbol="kSecUseItemList", optional=true)
         public static native CFType UseItemList();
+        /**
+         * @deprecated Deprecated in iOS 14.0. Use kSecUseAuthenticationContext and set LAContext.localizedReason property
+         */
+        @Deprecated
         @GlobalValue(symbol="kSecUseOperationPrompt", optional=true)
         public static native CFType UseOperationPrompt();
         /**

@@ -143,6 +143,10 @@ import org.robovm.apple.foundation.*;
      */
     public static final HKCategoryTypeIdentifier EnvironmentalAudioExposureEvent = new HKCategoryTypeIdentifier("EnvironmentalAudioExposureEvent");
     /**
+     * @since Available in iOS 14.2 and later.
+     */
+    public static final HKCategoryTypeIdentifier HeadphoneAudioExposureEvent = new HKCategoryTypeIdentifier("HeadphoneAudioExposureEvent");
+    /**
      * @since Available in iOS 14.0 and later.
      */
     public static final HKCategoryTypeIdentifier HandwashingEvent = new HKCategoryTypeIdentifier("HandwashingEvent");
@@ -304,7 +308,7 @@ import org.robovm.apple.foundation.*;
     public static final HKCategoryTypeIdentifier Wheezing = new HKCategoryTypeIdentifier("Wheezing");
     /*</constants>*/
     
-    private static /*<name>*/HKCategoryTypeIdentifier/*</name>*/[] values = new /*<name>*/HKCategoryTypeIdentifier/*</name>*/[] {/*<value_list>*/SleepAnalysis, AppleStandHour, CervicalMucusQuality, OvulationTestResult, MenstrualFlow, IntermenstrualBleeding, SexualActivity, MindfulSession, HighHeartRateEvent, LowHeartRateEvent, IrregularHeartRhythmEvent, AudioExposureEvent, ToothbrushingEvent, EnvironmentalAudioExposureEvent, HandwashingEvent, AbdominalCramps, Acne, AppetiteChanges, BladderIncontinence, Bloating, BreastPain, ChestTightnessOrPain, Chills, Constipation, Coughing, Diarrhea, Dizziness, DrySkin, Fainting, Fatigue, Fever, GeneralizedBodyAche, HairLoss, Headache, Heartburn, HotFlashes, LossOfSmell, LossOfTaste, LowerBackPain, MemoryLapse, MoodChanges, Nausea, NightSweats, PelvicPain, RapidPoundingOrFlutteringHeartbeat, RunnyNose, ShortnessOfBreath, SinusCongestion, SkippedHeartbeat, SleepChanges, SoreThroat, VaginalDryness, Vomiting, Wheezing/*</value_list>*/};
+    private static /*<name>*/HKCategoryTypeIdentifier/*</name>*/[] values = new /*<name>*/HKCategoryTypeIdentifier/*</name>*/[] {/*<value_list>*/SleepAnalysis, AppleStandHour, CervicalMucusQuality, OvulationTestResult, MenstrualFlow, IntermenstrualBleeding, SexualActivity, MindfulSession, HighHeartRateEvent, LowHeartRateEvent, IrregularHeartRhythmEvent, AudioExposureEvent, ToothbrushingEvent, EnvironmentalAudioExposureEvent, HeadphoneAudioExposureEvent, HandwashingEvent, AbdominalCramps, Acne, AppetiteChanges, BladderIncontinence, Bloating, BreastPain, ChestTightnessOrPain, Chills, Constipation, Coughing, Diarrhea, Dizziness, DrySkin, Fainting, Fatigue, Fever, GeneralizedBodyAche, HairLoss, Headache, Heartburn, HotFlashes, LossOfSmell, LossOfTaste, LowerBackPain, MemoryLapse, MoodChanges, Nausea, NightSweats, PelvicPain, RapidPoundingOrFlutteringHeartbeat, RunnyNose, ShortnessOfBreath, SinusCongestion, SkippedHeartbeat, SleepChanges, SoreThroat, VaginalDryness, Vomiting, Wheezing/*</value_list>*/};
     
     /*<name>*/HKCategoryTypeIdentifier/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -396,6 +400,11 @@ import org.robovm.apple.foundation.*;
          */
         @GlobalValue(symbol="HKCategoryTypeIdentifierEnvironmentalAudioExposureEvent", optional=true)
         public static native NSString EnvironmentalAudioExposureEvent();
+        /**
+         * @since Available in iOS 14.2 and later.
+         */
+        @GlobalValue(symbol="HKCategoryTypeIdentifierHeadphoneAudioExposureEvent", optional=true)
+        public static native NSString HeadphoneAudioExposureEvent();
         /**
          * @since Available in iOS 14.0 and later.
          */

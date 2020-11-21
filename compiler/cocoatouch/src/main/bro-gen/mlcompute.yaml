@@ -133,6 +133,9 @@ classes:
             '+deviceWithGPUDevices:':
                 name: create
                 constructor: true
+            '+deviceWithType:selectsMultipleComputeDevices:':
+                name: create
+                constructor: true
     MLCDropoutLayer: #since 14.0
         methods:
             '+layerWithRate:seed:':
@@ -553,6 +556,8 @@ classes:
             '+graphWithGraphObjects:lossLayer:optimizer:':
                 name: create
                 constructor: true
+            '-bindOptimizerData:deviceData:withTensor:':
+                name: bindOptimizerData
     MLCTransposeLayer: #since 14.0
         methods:
             '+layerWithDimensions:':

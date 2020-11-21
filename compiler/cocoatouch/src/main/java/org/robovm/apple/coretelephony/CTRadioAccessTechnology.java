@@ -99,9 +99,17 @@ import org.robovm.apple.corefoundation.*;
     public static final CTRadioAccessTechnology CDMAEVDORevB = new CTRadioAccessTechnology("CDMAEVDORevB");
     public static final CTRadioAccessTechnology eHRPD = new CTRadioAccessTechnology("eHRPD");
     public static final CTRadioAccessTechnology LTE = new CTRadioAccessTechnology("LTE");
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final CTRadioAccessTechnology NRNSA = new CTRadioAccessTechnology("NRNSA");
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final CTRadioAccessTechnology NR = new CTRadioAccessTechnology("NR");
     /*</constants>*/
     
-    private static /*<name>*/CTRadioAccessTechnology/*</name>*/[] values = new /*<name>*/CTRadioAccessTechnology/*</name>*/[] {/*<value_list>*/GPRS, Edge, WCDMA, HSDPA, HSUPA, CDMA1x, CDMAEVDORev0, CDMAEVDORevA, CDMAEVDORevB, eHRPD, LTE/*</value_list>*/};
+    private static /*<name>*/CTRadioAccessTechnology/*</name>*/[] values = new /*<name>*/CTRadioAccessTechnology/*</name>*/[] {/*<value_list>*/GPRS, Edge, WCDMA, HSDPA, HSUPA, CDMA1x, CDMAEVDORev0, CDMAEVDORevA, CDMAEVDORevB, eHRPD, LTE, NRNSA, NR/*</value_list>*/};
     
     /*<name>*/CTRadioAccessTechnology/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -146,6 +154,16 @@ import org.robovm.apple.corefoundation.*;
         public static native NSString eHRPD();
         @GlobalValue(symbol="CTRadioAccessTechnologyLTE", optional=true)
         public static native NSString LTE();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="CTRadioAccessTechnologyNRNSA", optional=true)
+        public static native NSString NRNSA();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="CTRadioAccessTechnologyNR", optional=true)
+        public static native NSString NR();
         /*</values>*/
     }
 }
