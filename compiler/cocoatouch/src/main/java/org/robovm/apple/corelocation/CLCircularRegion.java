@@ -56,6 +56,8 @@ import org.robovm.apple.contacts.*;
     public native @ByVal CLLocationCoordinate2D getCenter();
     @Property(selector = "radius")
     public native double getRadius();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

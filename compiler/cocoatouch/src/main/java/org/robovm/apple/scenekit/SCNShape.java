@@ -76,10 +76,16 @@ import org.robovm.apple.avfoundation.*;
     public native UIBezierPath getChamferProfile();
     @Property(selector = "setChamferProfile:")
     public native void setChamferProfile(UIBezierPath v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "shapeWithPath:extrusionDepth:")
     public static native SCNShape create(UIBezierPath path, @MachineSizedFloat double extrusionDepth);
+    @Method(selector = "geometry")
+    public static native SCNShape createGeometry();
+    @Method(selector = "geometryWithSources:elements:")
+    public static native SCNShape createGeometry(NSArray<SCNGeometrySource> sources, NSArray<SCNGeometryElement> elements);
     /*</methods>*/
 }

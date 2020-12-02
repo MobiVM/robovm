@@ -70,6 +70,8 @@ import org.robovm.apple.metal.*;
     public native @MachineSizedUInt long getZeroPadSizeY();
     @Property(selector = "setZeroPadSizeY:")
     public native void setZeroPadSizeY(@MachineSizedUInt long v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

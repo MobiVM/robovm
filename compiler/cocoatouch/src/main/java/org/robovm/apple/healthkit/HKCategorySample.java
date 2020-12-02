@@ -51,6 +51,8 @@ import org.robovm.apple.foundation.*;
     public native HKCategoryType getCategoryType();
     @Property(selector = "value")
     public native @MachineSizedSInt long getValue();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

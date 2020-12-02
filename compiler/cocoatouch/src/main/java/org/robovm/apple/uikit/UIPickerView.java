@@ -84,6 +84,9 @@ import org.robovm.apple.linkpresentation.*;
     public native void setShowsSelectionIndicator(boolean v);
     @Property(selector = "numberOfComponents")
     public native @MachineSizedSInt long getNumberOfComponents();
+    @WeaklyLinked
+    @Property(selector = "layerClass")
+    public static native Class<? extends CALayer> getLayerClass();
     /*</properties>*/
     /*<members>*//*</members>*/
     private UIPickerViewModel model;
@@ -110,5 +113,15 @@ import org.robovm.apple.linkpresentation.*;
     public native void selectRow(@MachineSizedSInt long row, @MachineSizedSInt long component, boolean animated);
     @Method(selector = "selectedRowInComponent:")
     public native @MachineSizedSInt long getSelectedRow(@MachineSizedSInt long component);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute attribute);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:relativeToLayoutDirection:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute semanticContentAttribute, UIUserInterfaceLayoutDirection layoutDirection);
     /*</methods>*/
 }

@@ -1,5 +1,5 @@
 package: org.robovm.apple.passkit
-include: [foundation, uikit, addressbook, contacts, coregraphics]
+include: [foundation, uikit, addressbook, contacts, coregraphics, coreanimation]
 library: PassKit
 framework: PassKit
 clang_args: ['-x', 'objective-c']

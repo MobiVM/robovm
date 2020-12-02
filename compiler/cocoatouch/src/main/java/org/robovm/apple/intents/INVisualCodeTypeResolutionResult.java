@@ -60,5 +60,11 @@ import org.robovm.apple.coregraphics.*;
     public static native INVisualCodeTypeResolutionResult success(INVisualCodeType resolvedVisualCodeType);
     @Method(selector = "confirmationRequiredWithVisualCodeTypeToConfirm:")
     public static native INVisualCodeTypeResolutionResult confirmationRequired(INVisualCodeType visualCodeTypeToConfirm);
+    @Method(selector = "needsValue")
+    public static native INVisualCodeTypeResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INVisualCodeTypeResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INVisualCodeTypeResolutionResult unsupported();
     /*</methods>*/
 }

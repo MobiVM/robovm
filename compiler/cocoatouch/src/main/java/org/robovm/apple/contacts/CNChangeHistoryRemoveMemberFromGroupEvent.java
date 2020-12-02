@@ -53,6 +53,8 @@ import org.robovm.apple.foundation.*;
     public native CNContact getMember();
     @Property(selector = "group")
     public native CNGroup getGroup();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

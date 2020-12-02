@@ -67,6 +67,8 @@ import org.robovm.apple.avfoundation.*;
     public native @ByVal SCNVector3 getTargetPosition();
     @Property(selector = "setTargetPosition:")
     public native void setTargetPosition(@ByVal SCNVector3 v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

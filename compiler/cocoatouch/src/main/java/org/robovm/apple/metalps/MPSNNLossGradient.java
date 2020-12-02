@@ -88,6 +88,8 @@ import org.robovm.apple.metal.*;
     public native boolean isComputeLabelGradients();
     @Property(selector = "setComputeLabelGradients:")
     public native void setComputeLabelGradients(boolean v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -1,12 +1,12 @@
 package: org.robovm.apple.avkit
-include: [foundation.yaml, uikit.yaml, avfoundation.yaml, coregraphics.yaml, iad.yaml]
+include: [foundation, uikit, avfoundation, coregraphics, iad, coreanimation]
 library: AVKit
 framework: AVKit
 clang_args: ['-x', 'objective-c']
 headers:
     - /System/Library/Frameworks/AVKit.framework/Headers/AVKit.h
 typedefs: {}
-    
+
 enums:
     AVKitError: {name: AVKitErrorCode}
     AVAudioSessionRouteSelection: {} #since 13.0

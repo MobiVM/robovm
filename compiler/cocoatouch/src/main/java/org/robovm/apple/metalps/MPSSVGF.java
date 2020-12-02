@@ -117,6 +117,8 @@ import org.robovm.apple.metal.*;
     public native @MachineSizedUInt long getChannelCount2();
     @Property(selector = "setChannelCount2:")
     public native void setChannelCount2(@MachineSizedUInt long v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -58,6 +58,8 @@ import org.robovm.apple.imageio.*;
     /*<properties>*/
     @Property(selector = "salientObjects")
     public native NSArray<VNRectangleObservation> getSalientObjects();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

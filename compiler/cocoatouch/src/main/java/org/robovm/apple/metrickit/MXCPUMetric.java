@@ -56,6 +56,8 @@ import org.robovm.apple.foundation.*;
      */
     @Property(selector = "cumulativeCPUInstructions")
     public native NSMeasurement<NSUnit> getCumulativeCPUInstructions();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

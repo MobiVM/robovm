@@ -93,9 +93,12 @@ import org.robovm.apple.foundation.*;
     public native String getISOCountryCode();
     @Property(selector = "setISOCountryCode:")
     public native void setISOCountryCode(String v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "localizedStringForKey:")
+    public static native String getLocalizedProperty(CNPostalAddressPropertyKey key);
     /*</methods>*/
 }

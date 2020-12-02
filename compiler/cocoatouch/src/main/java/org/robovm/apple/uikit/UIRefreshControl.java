@@ -77,6 +77,9 @@ import org.robovm.apple.linkpresentation.*;
     public native NSAttributedString getAttributedTitle();
     @Property(selector = "setAttributedTitle:")
     public native void setAttributedTitle(NSAttributedString v);
+    @WeaklyLinked
+    @Property(selector = "layerClass")
+    public static native Class<? extends CALayer> getLayerClass();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -84,5 +87,15 @@ import org.robovm.apple.linkpresentation.*;
     public native void beginRefreshing();
     @Method(selector = "endRefreshing")
     public native void endRefreshing();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute attribute);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:relativeToLayoutDirection:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute semanticContentAttribute, UIUserInterfaceLayoutDirection layoutDirection);
     /*</methods>*/
 }

@@ -58,6 +58,8 @@ import org.robovm.apple.coregraphics.*;
     public native INSpeakableString getCarName();
     @Property(selector = "signals")
     public native INCarSignalOptions getSignals();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

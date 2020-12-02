@@ -62,5 +62,11 @@ import org.robovm.apple.coregraphics.*;
     public static native INRestaurantResolutionResult disambiguation(NSArray<INRestaurant> restaurantsToDisambiguate);
     @Method(selector = "confirmationRequiredWithRestaurantToConfirm:")
     public static native INRestaurantResolutionResult confirmationRequired(INRestaurant restaurantToConfirm);
+    @Method(selector = "needsValue")
+    public static native INRestaurantResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INRestaurantResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INRestaurantResolutionResult unsupported();
     /*</methods>*/
 }

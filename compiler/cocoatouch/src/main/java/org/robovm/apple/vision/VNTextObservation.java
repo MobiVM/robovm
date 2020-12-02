@@ -58,6 +58,8 @@ import org.robovm.apple.imageio.*;
     /*<properties>*/
     @Property(selector = "characterBoxes")
     public native NSArray<VNRectangleObservation> getCharacterBoxes();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

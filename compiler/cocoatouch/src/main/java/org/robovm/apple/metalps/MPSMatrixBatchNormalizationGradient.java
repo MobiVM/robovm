@@ -69,6 +69,8 @@ import org.robovm.apple.metal.*;
     public native float getEpsilon();
     @Property(selector = "setEpsilon:")
     public native void setEpsilon(float v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

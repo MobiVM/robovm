@@ -53,6 +53,8 @@ import org.robovm.apple.foundation.*;
     public native MXHistogram<NSUnitDuration> getHistogrammedTimeToFirstDraw();
     @Property(selector = "histogrammedApplicationResumeTime")
     public native MXHistogram<NSUnitDuration> getHistogrammedApplicationResumeTime();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -76,6 +76,8 @@ import org.robovm.apple.linkpresentation.*;
     public native @Block Block1<NSArray<UICellAccessory>, Long> getPosition();
     @Property(selector = "setPosition:")
     public native void setPosition(@Block Block1<NSArray<UICellAccessory>, Long> v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

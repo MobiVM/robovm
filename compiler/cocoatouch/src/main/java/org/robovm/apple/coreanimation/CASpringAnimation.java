@@ -72,9 +72,12 @@ import org.robovm.apple.metal.*;
     public native void setInitialVelocity(@MachineSizedFloat double v);
     @Property(selector = "settlingDuration")
     public native double getSettlingDuration();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "defaultValueForKey:")
+    public static native NSObject getDefaultValue(String key);
     /*</methods>*/
 }

@@ -90,6 +90,8 @@ import org.robovm.apple.metal.*;
      */
     @Property(selector = "reduceAcrossBatch")
     public native boolean isReduceAcrossBatch();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -121,6 +121,8 @@ import org.robovm.apple.audiotoolbox.*;
     protected native @Pointer long init(NSData data, NSDictionary<NSString, ?> options, NSError.NSErrorPtr outError);
     @Method(selector = "initWithSettingsFromMovie:options:error:")
     private native @Pointer long init(AVMovie movie, NSDictionary<NSString, ?> options, NSError.NSErrorPtr outError);
+    @Method(selector = "movieTypes")
+    public static native NSArray<NSString> movieTypes();
     @Method(selector = "insertTimeRange:ofAsset:atTime:copySampleData:error:")
     public native boolean insertTimeRange(@ByVal CMTimeRange timeRange, AVAsset asset, @ByVal CMTime startTime, boolean copySampleData, NSError.NSErrorPtr outError);
     @Method(selector = "insertEmptyTimeRange:")

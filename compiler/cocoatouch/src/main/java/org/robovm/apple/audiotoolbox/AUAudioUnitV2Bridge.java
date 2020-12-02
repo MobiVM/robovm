@@ -62,6 +62,7 @@ import org.robovm.apple.uikit.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "instantiateWithComponentDescription:options:completionHandler:")
+    public static native void instantiate(@ByVal AudioComponentDescription componentDescription, AudioComponentInstantiationOptions options, @Block VoidBlock2<AUAudioUnit, NSError> completionHandler);
     /*</methods>*/
 }

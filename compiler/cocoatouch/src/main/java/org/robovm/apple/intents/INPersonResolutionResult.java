@@ -62,5 +62,11 @@ import org.robovm.apple.coregraphics.*;
     public static native INPersonResolutionResult disambiguation(NSArray<INPerson> peopleToDisambiguate);
     @Method(selector = "confirmationRequiredWithPersonToConfirm:")
     public static native INPersonResolutionResult confirmationRequired(INPerson personToConfirm);
+    @Method(selector = "needsValue")
+    public static native INPersonResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INPersonResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INPersonResolutionResult unsupported();
     /*</methods>*/
 }

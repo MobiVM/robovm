@@ -75,5 +75,9 @@ import org.robovm.apple.uikit.*;
     protected static native @Pointer long create0(NSArray<GKBehavior> behaviors);
     @Method(selector = "behaviorWithBehaviors:andWeights:")
     protected static native @Pointer long create0(NSArray<GKBehavior> behaviors, NSArray<NSNumber> weights);
+    @Method(selector = "behaviorWithGoals:")
+    public static native GKCompositeBehavior createUsingGoals(NSArray<GKGoal> goals);
+    @Method(selector = "behaviorWithGoals:andWeights:")
+    public static native GKCompositeBehavior createUsingGoals(NSArray<GKGoal> goals, NSArray<NSNumber> weights);
     /*</methods>*/
 }

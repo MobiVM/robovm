@@ -73,9 +73,12 @@ import org.robovm.apple.dispatch.*;
     public static native NSUnitElectricCharge getMilliampereHours();
     @Property(selector = "microampereHours")
     public static native NSUnitElectricCharge getMicroampereHours();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "baseUnit")
+    public static native NSUnitElectricCharge getBaseUnit();
     /*</methods>*/
 }

@@ -67,6 +67,8 @@ import org.robovm.apple.coregraphics.*;
     public native CLPlacemark getPickupLocation();
     @Property(selector = "dropOffLocation")
     public native CLPlacemark getDropOffLocation();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

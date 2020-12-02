@@ -1,12 +1,12 @@
 package: org.robovm.apple.carplay
-include: [foundation, uikit, coregraphics, mapkit]
+include: [foundation, uikit, coregraphics, mapkit, coreanimation]
 library: CarPlay
 framework: CarPlay
 clang_args: ['-x', 'objective-c']
 headers:
     - /System/Library/Frameworks/CarPlay.framework/Headers/CarPlay.h
 typedefs: {}
-    
+
 enums:
     CPAlertActionStyle: {} #since 12.0
     CPBarButtonType: {} #since 12.0

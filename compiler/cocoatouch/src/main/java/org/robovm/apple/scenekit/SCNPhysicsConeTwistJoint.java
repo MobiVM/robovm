@@ -82,6 +82,8 @@ import org.robovm.apple.avfoundation.*;
     public native @MachineSizedFloat double getMaximumTwistAngle();
     @Property(selector = "setMaximumTwistAngle:")
     public native void setMaximumTwistAngle(@MachineSizedFloat double v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

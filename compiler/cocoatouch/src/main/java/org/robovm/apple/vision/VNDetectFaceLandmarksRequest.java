@@ -72,6 +72,21 @@ import org.robovm.apple.imageio.*;
      */
     @Property(selector = "setConstellation:")
     public native void setConstellation(VNRequestFaceLandmarksConstellation v);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "supportedRevisions")
+    public static native NSIndexSet getSupportedRevisions();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "defaultRevision")
+    public static native @MachineSizedUInt long getDefaultRevision();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "currentRevision")
+    public static native @MachineSizedUInt long getCurrentRevision();
     @Property(selector = "inputFaceObservations")
     public native NSArray<VNFaceObservation> getInputFaceObservations();
     @Property(selector = "setInputFaceObservations:")

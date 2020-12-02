@@ -64,6 +64,8 @@ import org.robovm.apple.coregraphics.*;
     public native INWorkoutLocationType getWorkoutLocationType();
     @Property(selector = "isOpenEnded")
     public native NSNumber getIsOpenEnded();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

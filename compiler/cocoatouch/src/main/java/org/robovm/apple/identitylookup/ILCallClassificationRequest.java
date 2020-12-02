@@ -52,6 +52,8 @@ import org.robovm.apple.uikit.*;
     /*<properties>*/
     @Property(selector = "callCommunications")
     public native NSArray<ILCallCommunication> getCallCommunications();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

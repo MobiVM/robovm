@@ -86,6 +86,8 @@ import org.robovm.apple.coregraphics.*;
     @Deprecated
     @Property(selector = "profileLabel")
     public native String getProfileLabel();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -89,9 +89,12 @@ import org.robovm.apple.dispatch.*;
     public static native NSUnitArea getAres();
     @Property(selector = "hectares")
     public static native NSUnitArea getHectares();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "baseUnit")
+    public static native NSUnitArea getBaseUnit();
     /*</methods>*/
 }

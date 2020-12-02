@@ -51,9 +51,12 @@ import org.robovm.apple.coregraphics.*;
     /*<properties>*/
     @Property(selector = "achievement")
     public native GKAchievement getAchievement();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "loadReceivedChallengesWithCompletionHandler:")
+    public static native void loadReceivedChallenges(@Block VoidBlock2<NSArray<GKChallenge>, NSError> completionHandler);
     /*</methods>*/
 }

@@ -60,6 +60,8 @@ import org.robovm.apple.coregraphics.*;
     public native double getMaxScore();
     @Property(selector = "setMaxScore:")
     public native void setMaxScore(double v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -52,6 +52,8 @@ import org.robovm.apple.foundation.*;
     /*<properties>*/
     @Property(selector = "dateComponents")
     public native NSDateComponents getDateComponents();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

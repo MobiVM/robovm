@@ -52,6 +52,8 @@ import org.robovm.apple.foundation.*;
     /*<properties>*/
     @Property(selector = "region")
     public native org.robovm.apple.corelocation.CLRegion getRegion();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

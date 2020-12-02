@@ -97,6 +97,8 @@ import org.robovm.apple.audiotoolbox.*;
         public static native NSString WasDefragmented();
     }
     
+    @Method(selector = "movieTypes")
+    public static native NSArray<NSString> movieTypes();
     @Method(selector = "trackWithTrackID:")
     public native AVFragmentedMovieTrack getTrack(int trackID);
     @Method(selector = "tracksWithMediaType:")

@@ -62,5 +62,11 @@ import org.robovm.apple.coregraphics.*;
     public static native INSpeedResolutionResult disambiguation(NSArray<?> speedToDisambiguate);
     @Method(selector = "confirmationRequiredWithSpeedToConfirm:")
     public static native INSpeedResolutionResult confirmationRequired(NSMeasurement<NSUnitSpeed> speedToConfirm);
+    @Method(selector = "needsValue")
+    public static native INSpeedResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INSpeedResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INSpeedResolutionResult unsupported();
     /*</methods>*/
 }

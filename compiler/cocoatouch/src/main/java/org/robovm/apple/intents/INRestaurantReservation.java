@@ -65,6 +65,8 @@ import org.robovm.apple.coregraphics.*;
     public native NSNumber getPartySize();
     @Property(selector = "restaurantLocation")
     public native CLPlacemark getRestaurantLocation();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

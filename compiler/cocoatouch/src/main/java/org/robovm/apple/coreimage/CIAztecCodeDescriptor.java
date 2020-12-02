@@ -68,6 +68,8 @@ import org.robovm.apple.avfoundation.*;
     public native @MachineSizedSInt long getLayerCount();
     @Property(selector = "dataCodewordCount")
     public native @MachineSizedSInt long getDataCodewordCount();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

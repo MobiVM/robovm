@@ -64,5 +64,17 @@ import org.robovm.apple.coregraphics.*;
     public static native NSArray<INSearchForMediaMediaItemResolutionResult> successes(NSArray<INMediaItem> resolvedMediaItems);
     @Method(selector = "unsupportedForReason:")
     public static native INSearchForMediaMediaItemResolutionResult unsupportedForReason(INSearchForMediaMediaItemUnsupportedReason reason);
+    @Method(selector = "successWithResolvedMediaItem:")
+    public static native INSearchForMediaMediaItemResolutionResult success(INMediaItem resolvedMediaItem);
+    @Method(selector = "disambiguationWithMediaItemsToDisambiguate:")
+    public static native INSearchForMediaMediaItemResolutionResult disambiguation(NSArray<INMediaItem> mediaItemsToDisambiguate);
+    @Method(selector = "confirmationRequiredWithMediaItemToConfirm:")
+    public static native INSearchForMediaMediaItemResolutionResult confirmationRequired(INMediaItem mediaItemToConfirm);
+    @Method(selector = "needsValue")
+    public static native INSearchForMediaMediaItemResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INSearchForMediaMediaItemResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INSearchForMediaMediaItemResolutionResult unsupported();
     /*</methods>*/
 }

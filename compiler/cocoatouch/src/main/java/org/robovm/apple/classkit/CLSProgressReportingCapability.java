@@ -56,6 +56,8 @@ import org.robovm.apple.coregraphics.*;
     public native CLSProgressReportingCapabilityKind getKind();
     @Property(selector = "details")
     public native String getDetails();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

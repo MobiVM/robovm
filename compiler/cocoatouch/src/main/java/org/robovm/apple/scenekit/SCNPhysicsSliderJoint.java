@@ -108,6 +108,8 @@ import org.robovm.apple.avfoundation.*;
     public native @MachineSizedFloat double getMotorMaximumTorque();
     @Property(selector = "setMotorMaximumTorque:")
     public native void setMotorMaximumTorque(@MachineSizedFloat double v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

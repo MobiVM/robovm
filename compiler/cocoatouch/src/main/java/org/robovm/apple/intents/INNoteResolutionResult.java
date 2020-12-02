@@ -62,5 +62,11 @@ import org.robovm.apple.coregraphics.*;
     public static native INNoteResolutionResult disambiguation(NSArray<INNote> notesToDisambiguate);
     @Method(selector = "confirmationRequiredWithNoteToConfirm:")
     public static native INNoteResolutionResult confirmationRequired(INNote noteToConfirm);
+    @Method(selector = "needsValue")
+    public static native INNoteResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INNoteResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INNoteResolutionResult unsupported();
     /*</methods>*/
 }

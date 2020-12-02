@@ -80,6 +80,8 @@ import org.robovm.apple.metal.*;
     public native @MachineSizedUInt long getBatchSize();
     @Property(selector = "setBatchSize:")
     public native void setBatchSize(@MachineSizedUInt long v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

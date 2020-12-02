@@ -80,10 +80,16 @@ import org.robovm.apple.avfoundation.*;
     public native @MachineSizedSInt long getLengthSegmentCount();
     @Property(selector = "setLengthSegmentCount:")
     public native void setLengthSegmentCount(@MachineSizedSInt long v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "pyramidWithWidth:height:length:")
     public static native SCNPyramid create(@MachineSizedFloat double width, @MachineSizedFloat double height, @MachineSizedFloat double length);
+    @Method(selector = "geometry")
+    public static native SCNPyramid createGeometry();
+    @Method(selector = "geometryWithSources:elements:")
+    public static native SCNPyramid createGeometry(NSArray<SCNGeometrySource> sources, NSArray<SCNGeometryElement> elements);
     /*</methods>*/
 }

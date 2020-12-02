@@ -64,6 +64,8 @@ import org.robovm.apple.metal.*;
     public native MPSScaleTransform getScaleTransform();
     @Property(selector = "setScaleTransform:")
     public native void setScaleTransform(MPSScaleTransform v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

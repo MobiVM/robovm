@@ -61,6 +61,8 @@ import org.robovm.apple.metal.*;
     public native @ByVal MPSNDArrayOffsets getStrides();
     @Property(selector = "setStrides:")
     public native void setStrides(@ByVal MPSNDArrayOffsets v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

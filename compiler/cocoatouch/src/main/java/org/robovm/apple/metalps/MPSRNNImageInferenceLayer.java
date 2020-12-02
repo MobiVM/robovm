@@ -86,6 +86,8 @@ import org.robovm.apple.metal.*;
     public native MPSRNNBidirectionalCombineMode getBidirectionalCombineMode();
     @Property(selector = "setBidirectionalCombineMode:")
     public native void setBidirectionalCombineMode(MPSRNNBidirectionalCombineMode v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -67,6 +67,8 @@ import org.robovm.apple.avfoundation.*;
     public native boolean isVideo();
     @Property(selector = "setVideo:")
     public native void setVideo(boolean v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -54,6 +54,8 @@ import org.robovm.apple.security.*;
     public native String getPassword();
     @Property(selector = "setPassword:")
     public native void setPassword(String v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

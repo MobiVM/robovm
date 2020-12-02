@@ -74,6 +74,8 @@ import org.robovm.apple.metal.*;
     public native void setDelta(float v);
     @Property(selector = "kernelSize")
     public native @MachineSizedUInt long getKernelSize();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

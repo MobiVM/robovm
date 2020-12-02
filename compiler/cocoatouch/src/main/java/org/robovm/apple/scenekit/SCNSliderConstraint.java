@@ -70,6 +70,8 @@ import org.robovm.apple.avfoundation.*;
     public native @ByVal SCNVector3 getOffset();
     @Property(selector = "setOffset:")
     public native void setOffset(@ByVal SCNVector3 v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -60,10 +60,14 @@ import org.robovm.apple.uikit.*;
     public native long getSeed();
     @Property(selector = "setSeed:")
     public native void setSeed(long v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithSeed:")
     protected native @Pointer long init(long seed);
+    @Method(selector = "sharedRandom")
+    public static native GKRandomSource getSharedRandom();
     /*</methods>*/
 }

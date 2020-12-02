@@ -68,9 +68,12 @@ import org.robovm.apple.metal.*;
     public native float getEndProgress();
     @Property(selector = "setEndProgress:")
     public native void setEndProgress(float v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "defaultValueForKey:")
+    public static native NSObject getDefaultValue(String key);
     /*</methods>*/
 }

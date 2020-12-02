@@ -158,6 +158,9 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     public native @ByVal UIOffset getSearchTextPositionAdjustment();
     @Property(selector = "setSearchTextPositionAdjustment:")
     public native void setSearchTextPositionAdjustment(@ByVal UIOffset v);
+    @WeaklyLinked
+    @Property(selector = "layerClass")
+    public static native Class<? extends CALayer> getLayerClass();
     @Property(selector = "barPosition")
     public native UIBarPosition getBarPosition();
     @Property(selector = "autocapitalizationType")
@@ -342,5 +345,15 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     public native void setPositionAdjustmentForSearchBarIcon(@ByVal UIOffset adjustment, UISearchBarIcon icon);
     @Method(selector = "positionAdjustmentForSearchBarIcon:")
     public native @ByVal UIOffset getPositionAdjustmentForSearchBarIcon(UISearchBarIcon icon);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute attribute);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:relativeToLayoutDirection:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute semanticContentAttribute, UIUserInterfaceLayoutDirection layoutDirection);
     /*</methods>*/
 }

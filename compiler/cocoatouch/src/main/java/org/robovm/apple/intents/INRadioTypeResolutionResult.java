@@ -74,5 +74,11 @@ import org.robovm.apple.coregraphics.*;
     @Deprecated
     @Method(selector = "confirmationRequiredWithValueToConfirm:")
     public static native INRadioTypeResolutionResult confirmationRequiredForValue(INRadioType valueToConfirm);
+    @Method(selector = "needsValue")
+    public static native INRadioTypeResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INRadioTypeResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INRadioTypeResolutionResult unsupported();
     /*</methods>*/
 }

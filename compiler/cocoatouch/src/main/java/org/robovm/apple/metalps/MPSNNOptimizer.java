@@ -76,6 +76,8 @@ import org.robovm.apple.metal.*;
     public native float getRegularizationScale();
     @Property(selector = "regularizationType")
     public native MPSNNRegularizationType getRegularizationType();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

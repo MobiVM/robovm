@@ -96,6 +96,8 @@ import org.robovm.apple.linkpresentation.*;
     public native void setDelegate(NSTextStorageDelegate v);
     @Property(selector = "fixesAttributesLazily")
     public native boolean fixesAttributesLazily();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

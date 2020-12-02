@@ -60,5 +60,11 @@ import org.robovm.apple.coregraphics.*;
     public static native INTimeIntervalResolutionResult success(double resolvedTimeInterval);
     @Method(selector = "confirmationRequiredWithTimeIntervalToConfirm:")
     public static native INTimeIntervalResolutionResult confirmationRequired(double timeIntervalToConfirm);
+    @Method(selector = "needsValue")
+    public static native INTimeIntervalResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INTimeIntervalResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INTimeIntervalResolutionResult unsupported();
     /*</methods>*/
 }

@@ -1,5 +1,5 @@
 package: org.robovm.apple.scenekit
-include: [foundation.yaml, uikit.yaml, coregraphics.yaml, coreanimation.yaml, dispatch.yaml, glkit.yaml, spritekit.yaml, opengles.yaml, metal.yaml, avfoundation.yaml]
+include: [foundation, uikit, coregraphics, coreanimation, dispatch, glkit, spritekit, opengles, metal, avfoundation, coreanimation]
 library: SceneKit
 framework: SceneKit
 clang_args: ['-x', 'objective-c']
@@ -208,9 +208,9 @@ classes:
             '-geometryElementAtIndex:':
                 name: getGeometryElement
             '+geometry':
-                name: create
+                name: createGeometry
             '+geometryWithSources:elements:':
-                name: create
+                name: createGeometry
                 parameters:
                     sources:
                         type: NSArray<SCNGeometrySource>

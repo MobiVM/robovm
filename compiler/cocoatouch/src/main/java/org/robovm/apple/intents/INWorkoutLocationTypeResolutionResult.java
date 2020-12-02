@@ -74,5 +74,11 @@ import org.robovm.apple.coregraphics.*;
     @Deprecated
     @Method(selector = "confirmationRequiredWithValueToConfirm:")
     public static native INWorkoutLocationTypeResolutionResult confirmationRequiredForValue(INWorkoutLocationType valueToConfirm);
+    @Method(selector = "needsValue")
+    public static native INWorkoutLocationTypeResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INWorkoutLocationTypeResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INWorkoutLocationTypeResolutionResult unsupported();
     /*</methods>*/
 }

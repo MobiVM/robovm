@@ -102,6 +102,13 @@ import org.robovm.apple.coregraphics.*;
      */
     @Method(selector = "fetchItemsForIdentityVerificationSignature:")
     public native void fetchItemsForIdentityVerificationSignature(@Block VoidBlock5<NSURL, NSData, NSData, Long, NSError> completionHandler);
+    @Method(selector = "loadPlayersForIdentifiers:withCompletionHandler:")
+    public static native void loadPlayers(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> identifiers, @Block VoidBlock2<NSArray<GKPlayer>, NSError> completionHandler);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "anonymousGuestPlayerWithIdentifier:")
+    public static native GKLocalPlayer getAnonymousGuestPlayer(String guestIdentifier);
     @Method(selector = "registerListener:")
     public native void registerListener(GKLocalPlayerListener listener);
     @Method(selector = "unregisterListener:")

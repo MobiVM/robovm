@@ -62,6 +62,8 @@ import org.robovm.apple.linkpresentation.*;
     /*<properties>*/
     @Property(selector = "unspecifiedConfiguration")
     public static native UIImageSymbolConfiguration getUnspecifiedConfiguration();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

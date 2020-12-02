@@ -56,6 +56,8 @@ import org.robovm.apple.coregraphics.*;
     public native double getQuantity();
     @Property(selector = "setQuantity:")
     public native void setQuantity(double v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

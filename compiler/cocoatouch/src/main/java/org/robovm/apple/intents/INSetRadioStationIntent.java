@@ -64,6 +64,8 @@ import org.robovm.apple.coregraphics.*;
     public native String getChannel();
     @Property(selector = "presetNumber")
     public native NSNumber getPresetNumber();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

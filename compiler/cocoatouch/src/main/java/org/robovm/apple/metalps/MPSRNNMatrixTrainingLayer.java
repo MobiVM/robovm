@@ -83,6 +83,8 @@ import org.robovm.apple.metal.*;
     public native boolean isAccumulateWeightGradients();
     @Property(selector = "setAccumulateWeightGradients:")
     public native void setAccumulateWeightGradients(boolean v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

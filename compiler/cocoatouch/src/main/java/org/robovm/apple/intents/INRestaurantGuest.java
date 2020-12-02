@@ -74,6 +74,8 @@ import org.robovm.apple.coregraphics.*;
     public native String getEmailAddress();
     @Property(selector = "setEmailAddress:")
     public native void setEmailAddress(String v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -60,5 +60,11 @@ import org.robovm.apple.coregraphics.*;
     public static native INDoubleResolutionResult success(double resolvedValue);
     @Method(selector = "confirmationRequiredWithValueToConfirm:")
     public static native INDoubleResolutionResult confirmationRequired(NSNumber valueToConfirm);
+    @Method(selector = "needsValue")
+    public static native INDoubleResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INDoubleResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INDoubleResolutionResult unsupported();
     /*</methods>*/
 }

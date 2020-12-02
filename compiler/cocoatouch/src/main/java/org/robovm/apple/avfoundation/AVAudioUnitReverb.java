@@ -69,5 +69,10 @@ import org.robovm.apple.audiotoolbox.*;
     /*<methods>*/
     @Method(selector = "loadFactoryPreset:")
     public native void loadFactoryPreset(AVAudioUnitReverbPreset preset);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "instantiateWithComponentDescription:options:completionHandler:")
+    public static native void instantiate(@ByVal AudioComponentDescription audioComponentDescription, AudioComponentInstantiationOptions options, @Block VoidBlock2<AVAudioUnit, NSError> completionHandler);
     /*</methods>*/
 }

@@ -63,5 +63,7 @@ import org.robovm.apple.metalps.*;
     /*<methods>*/
     @Method(selector = "sliceLayerWithStart:end:stride:")
     protected static native @Pointer long create(NSArray<NSNumber> start, NSArray<NSNumber> end, NSArray<NSNumber> stride);
+    @Method(selector = "supportsDataType:onDevice:")
+    public static native boolean supportsDataType(MLCDataType dataType, MLCDevice device);
     /*</methods>*/
 }

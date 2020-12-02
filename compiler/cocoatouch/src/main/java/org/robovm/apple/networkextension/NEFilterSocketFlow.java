@@ -81,6 +81,8 @@ import org.robovm.apple.network.*;
      */
     @Property(selector = "socketProtocol")
     public native int getSocketProtocol();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

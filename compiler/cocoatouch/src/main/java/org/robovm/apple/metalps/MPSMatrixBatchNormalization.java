@@ -73,6 +73,8 @@ import org.robovm.apple.metal.*;
     public native boolean isComputeStatistics();
     @Property(selector = "setComputeStatistics:")
     public native void setComputeStatistics(boolean v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

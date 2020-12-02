@@ -64,5 +64,7 @@ import org.robovm.apple.metalps.*;
     protected static native @Pointer long create(MLCSoftmaxOperation operation);
     @Method(selector = "layerWithOperation:dimension:")
     protected static native @Pointer long create(MLCSoftmaxOperation operation, @MachineSizedUInt long dimension);
+    @Method(selector = "supportsDataType:onDevice:")
+    public static native boolean supportsDataType(MLCDataType dataType, MLCDevice device);
     /*</methods>*/
 }

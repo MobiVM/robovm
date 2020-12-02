@@ -68,6 +68,8 @@ import org.robovm.apple.coregraphics.*;
     public native NSDate getExpirationDate();
     @Property(selector = "setExpirationDate:")
     public native void setExpirationDate(NSDate v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

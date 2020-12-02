@@ -64,6 +64,8 @@ import org.robovm.apple.coregraphics.*;
     public native INCurrencyAmount getTip();
     @Property(selector = "setTip:")
     public native void setTip(INCurrencyAmount v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

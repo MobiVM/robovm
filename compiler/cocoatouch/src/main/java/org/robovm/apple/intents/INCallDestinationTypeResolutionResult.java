@@ -60,5 +60,11 @@ import org.robovm.apple.coregraphics.*;
     public static native INCallDestinationTypeResolutionResult success(INCallDestinationType resolvedCallDestinationType);
     @Method(selector = "confirmationRequiredWithCallDestinationTypeToConfirm:")
     public static native INCallDestinationTypeResolutionResult confirmationRequired(INCallDestinationType callDestinationTypeToConfirm);
+    @Method(selector = "needsValue")
+    public static native INCallDestinationTypeResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INCallDestinationTypeResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INCallDestinationTypeResolutionResult unsupported();
     /*</methods>*/
 }

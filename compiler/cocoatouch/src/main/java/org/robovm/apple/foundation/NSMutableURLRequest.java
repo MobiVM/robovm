@@ -103,6 +103,8 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "setAllowsConstrainedNetworkAccess:")
     public native void setAllowsConstrainedNetworkAccess(boolean v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     @Property(selector = "HTTPMethod")
     public native String getHTTPMethod();
     @Property(selector = "setHTTPMethod:")

@@ -105,6 +105,8 @@ import org.robovm.apple.metal.*;
     public native NSArray<MPSPolygonBuffer> getPolygonBuffers();
     @Property(selector = "setPolygonBuffers:")
     public native void setPolygonBuffers(NSArray<MPSPolygonBuffer> v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

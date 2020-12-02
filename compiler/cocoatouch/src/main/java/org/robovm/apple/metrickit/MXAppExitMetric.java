@@ -53,6 +53,8 @@ import org.robovm.apple.foundation.*;
     public native MXForegroundExitData getForegroundExitData();
     @Property(selector = "backgroundExitData")
     public native MXBackgroundExitData getBackgroundExitData();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

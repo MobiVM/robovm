@@ -111,5 +111,7 @@ import org.robovm.apple.metalps.*;
     public static native MLCActivationLayer createSoftShrinkLayer(float a);
     @Method(selector = "thresholdLayerWithThreshold:replacement:")
     public static native MLCActivationLayer createThresholdLayer(float threshold, float replacement);
+    @Method(selector = "supportsDataType:onDevice:")
+    public static native boolean supportsDataType(MLCDataType dataType, MLCDevice device);
     /*</methods>*/
 }

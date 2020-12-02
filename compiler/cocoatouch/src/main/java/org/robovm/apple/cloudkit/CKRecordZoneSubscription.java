@@ -64,6 +64,8 @@ import org.robovm.apple.fileprovider.*;
     public native String getRecordType();
     @Property(selector = "setRecordType:")
     public native void setRecordType(String v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -83,6 +83,8 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "isPreviewing")
     public native boolean isPreviewing();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -102,5 +104,16 @@ import org.robovm.apple.audiotoolbox.*;
     public native @ByVal CGRect getRectOfInterestInMetadataOutputCoordinates(@ByVal CGRect rectInMetadataOutputCoordinates);
     @Method(selector = "transformedMetadataObjectForMetadataObject:")
     public native AVMetadataObject getTransformedMetadataObject(AVMetadataObject metadataObject);
+    @Method(selector = "defaultValueForKey:")
+    public static native NSObject getDefaultValue(String key);
+    @Method(selector = "needsDisplayForKey:")
+    public static native boolean needsDisplay(String key);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "cornerCurveExpansionFactor:")
+    public static native @MachineSizedFloat double cornerCurveExpansionFactor(CALayerCornerCurve curve);
+    @Method(selector = "defaultActionForKey:")
+    public static native CAAction getDefaultAction(String event);
     /*</methods>*/
 }

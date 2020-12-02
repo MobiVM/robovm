@@ -74,5 +74,7 @@ import org.robovm.apple.metalps.*;
     protected static native @Pointer long create(@MachineSizedUInt long featureChannelCount, MLCTensor beta, MLCTensor gamma, float varianceEpsilon);
     @Method(selector = "layerWithFeatureChannelCount:beta:gamma:varianceEpsilon:momentum:")
     protected static native @Pointer long create(@MachineSizedUInt long featureChannelCount, MLCTensor beta, MLCTensor gamma, float varianceEpsilon, float momentum);
+    @Method(selector = "supportsDataType:onDevice:")
+    public static native boolean supportsDataType(MLCDataType dataType, MLCDevice device);
     /*</methods>*/
 }

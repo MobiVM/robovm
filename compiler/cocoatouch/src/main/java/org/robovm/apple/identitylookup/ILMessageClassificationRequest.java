@@ -52,6 +52,8 @@ import org.robovm.apple.uikit.*;
     /*<properties>*/
     @Property(selector = "messageCommunications")
     public native NSArray<ILMessageCommunication> getMessageCommunications();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

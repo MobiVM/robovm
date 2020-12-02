@@ -58,6 +58,8 @@ import org.robovm.apple.coregraphics.*;
     public native NSNumber getLocked();
     @Property(selector = "carName")
     public native INSpeakableString getCarName();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

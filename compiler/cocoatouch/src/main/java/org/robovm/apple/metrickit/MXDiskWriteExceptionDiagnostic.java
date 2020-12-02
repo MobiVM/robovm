@@ -53,6 +53,8 @@ import org.robovm.apple.foundation.*;
     public native MXCallStackTree getCallStackTree();
     @Property(selector = "totalWritesCaused")
     public native NSMeasurement<NSUnitInformationStorage> getTotalWritesCaused();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -1,12 +1,12 @@
 package: org.robovm.apple.messages
-include: [foundation.yaml, coregraphics.yaml, uikit.yaml]
+include: [foundation, coregraphics, uikit, coreanimation]
 library: Messages
 framework: Messages
 clang_args: ['-x', 'objective-c']
 headers:
     - /System/Library/Frameworks/Messages.framework/Headers/Messages.h
 typedefs: {}
-    
+
 enums:
     MSMessagesAppPresentationStyle: {}
     MSMessageErrorCode: {}

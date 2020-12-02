@@ -64,6 +64,11 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "isScanning")
     public native boolean isScanning();
+    /**
+     * @since Available in iOS 13.1 and later.
+     */
+    @Property(selector = "authorization")
+    public static native CBManagerAuthorization authorization();
     /*</properties>*/
     /*<members>*//*</members>*/
     @Property(selector = "state")

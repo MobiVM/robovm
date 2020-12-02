@@ -52,6 +52,12 @@ import org.robovm.apple.coregraphics.*;
     public MDLURLTexture(NSURL URL, String name) { super((SkipInit) null); initObject(init(URL, name)); }
     @Method(selector = "initWithData:topLeftOrigin:name:dimensions:rowStride:channelCount:channelEncoding:isCube:")
     public MDLURLTexture(NSData pixelData, boolean topLeftOrigin, String name, @ByVal VectorInt2 dimensions, @MachineSizedSInt long rowStride, @MachineSizedUInt long channelCount, MDLTextureChannelEncoding channelEncoding, boolean isCube) { super(pixelData, topLeftOrigin, name, dimensions, rowStride, channelCount, channelEncoding, isCube); }
+    public MDLURLTexture(String name) { super((Handle) null, create(name)); retain(getHandle()); }
+    public MDLURLTexture(String name, NSBundle bundleOrNil) { super((Handle) null, create(name, bundleOrNil)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    public MDLURLTexture(String name, MDLAssetResolver resolver) { super((Handle) null, create(name, resolver)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "URL")
@@ -63,5 +69,22 @@ import org.robovm.apple.coregraphics.*;
     /*<methods>*/
     @Method(selector = "initWithURL:name:")
     protected native @Pointer long init(NSURL URL, String name);
+    @Method(selector = "textureNamed:")
+    protected static native @Pointer long create(String name);
+    @Method(selector = "textureNamed:bundle:")
+    protected static native @Pointer long create(String name, NSBundle bundleOrNil);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "textureNamed:assetResolver:")
+    protected static native @Pointer long create(String name, MDLAssetResolver resolver);
+    @Method(selector = "textureCubeWithImagesNamed:")
+    public static native MDLURLTexture newTextureCube(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> names);
+    @Method(selector = "textureCubeWithImagesNamed:bundle:")
+    public static native MDLURLTexture newTextureCube(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> names, NSBundle bundleOrNil);
+    @Method(selector = "irradianceTextureCubeWithTexture:name:dimensions:")
+    public static native MDLURLTexture newIrradianceTextureCube(MDLTexture texture, String name, @ByVal VectorInt2 dimensions);
+    @Method(selector = "irradianceTextureCubeWithTexture:name:dimensions:roughness:")
+    public static native MDLURLTexture newIrradianceTextureCube(MDLTexture texture, String name, @ByVal VectorInt2 dimensions, float roughness);
     /*</methods>*/
 }

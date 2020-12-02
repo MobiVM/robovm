@@ -58,5 +58,9 @@ import org.robovm.apple.security.*;
     /*<methods>*/
     @Method(selector = "initWithTag:value:")
     protected native @Pointer long init(byte tag, NSData value);
+    @Method(selector = "recordFromData:")
+    public static native TKSimpleTLVRecord recordFromData(NSData data);
+    @Method(selector = "sequenceOfRecordsFromData:")
+    public static native NSArray<TKTLVRecord> sequenceOfRecordsFromData(NSData data);
     /*</methods>*/
 }

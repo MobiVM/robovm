@@ -60,6 +60,8 @@ import org.robovm.apple.imageio.*;
     public native NSArray<NSString> getAvailableJointNames();
     @Property(selector = "availableJointsGroupNames")
     public native NSArray<NSString> getAvailableJointsGroupNames();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

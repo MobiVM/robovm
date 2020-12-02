@@ -1,5 +1,5 @@
 package: org.robovm.apple.webkit
-include: [foundation.yaml, uikit.yaml, coregraphics.yaml, security.yaml]
+include: [foundation, uikit, coregraphics, security, coreanimation]
 library: WebKit
 framework: WebKit
 clang_args: ['-x', 'objective-c']

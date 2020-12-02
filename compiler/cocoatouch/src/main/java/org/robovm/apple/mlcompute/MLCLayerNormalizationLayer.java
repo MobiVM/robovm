@@ -69,5 +69,7 @@ import org.robovm.apple.metalps.*;
     /*<methods>*/
     @Method(selector = "layerWithNormalizedShape:beta:gamma:varianceEpsilon:")
     protected static native @Pointer long create(NSArray<NSNumber> normalizedShape, MLCTensor beta, MLCTensor gamma, float varianceEpsilon);
+    @Method(selector = "supportsDataType:onDevice:")
+    public static native boolean supportsDataType(MLCDataType dataType, MLCDevice device);
     /*</methods>*/
 }

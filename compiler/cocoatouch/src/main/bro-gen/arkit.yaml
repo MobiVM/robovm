@@ -1,5 +1,5 @@
 package: org.robovm.apple.arkit
-include: [foundation, avfoundation, coregraphics, corelocation, uikit, scenekit, corevideo, spritekit, coremedia, dispatch, metal, imageio]
+include: [foundation, avfoundation, coregraphics, corelocation, uikit, scenekit, corevideo, spritekit, coremedia, dispatch, metal, imageio, coreanimation]
 library: ARKit
 framework: ARKit
 clang_args: ['-x', 'objective-c']

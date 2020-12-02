@@ -60,5 +60,11 @@ import org.robovm.apple.coregraphics.*;
     public static native INPlaybackQueueLocationResolutionResult success(INPlaybackQueueLocation resolvedPlaybackQueueLocation);
     @Method(selector = "confirmationRequiredWithPlaybackQueueLocationToConfirm:")
     public static native INPlaybackQueueLocationResolutionResult confirmationRequired(INPlaybackQueueLocation playbackQueueLocationToConfirm);
+    @Method(selector = "needsValue")
+    public static native INPlaybackQueueLocationResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INPlaybackQueueLocationResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INPlaybackQueueLocationResolutionResult unsupported();
     /*</methods>*/
 }

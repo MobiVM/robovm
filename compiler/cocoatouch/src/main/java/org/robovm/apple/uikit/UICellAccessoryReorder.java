@@ -66,6 +66,8 @@ import org.robovm.apple.linkpresentation.*;
     public native boolean showsVerticalSeparator();
     @Property(selector = "setShowsVerticalSeparator:")
     public native void setShowsVerticalSeparator(boolean v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

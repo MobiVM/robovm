@@ -61,6 +61,8 @@ import org.robovm.apple.foundation.*;
     public native NSNumber getExceptionCode();
     @Property(selector = "signal")
     public native NSNumber getSignal();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

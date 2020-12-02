@@ -61,10 +61,43 @@ import org.robovm.apple.uikit.*;
     public native NSExpression getContextExpression();
     @Property(selector = "isCountOnlyRequest")
     public native boolean isCountOnlyRequest();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "expressionForFetch:context:countOnly:")
     protected static native @Pointer long create(NSExpression fetch, NSExpression context, boolean countFlag);
+    @Method(selector = "expressionForConstantValue:")
+    public static native NSExpression createForConstantValue(NSObject obj);
+    @Method(selector = "expressionForEvaluatedObject")
+    public static native NSExpression createForEvaluatedObject();
+    @Method(selector = "expressionForVariable:")
+    public static native NSExpression createForVariable(String string);
+    @Method(selector = "expressionForKeyPath:")
+    public static native NSExpression createForKeyPath(String keyPath);
+    @Method(selector = "expressionForFunction:arguments:")
+    public static native NSExpression createForFunction(String name, NSArray<?> parameters);
+    @Method(selector = "expressionForAggregate:")
+    public static native NSExpression createForAggregate(NSArray<NSExpression> subexpressions);
+    @Method(selector = "expressionForUnionSet:with:")
+    public static native NSExpression createForUnionSet(NSExpression left, NSExpression right);
+    @Method(selector = "expressionForIntersectSet:with:")
+    public static native NSExpression createForIntersectSet(NSExpression left, NSExpression right);
+    @Method(selector = "expressionForMinusSet:with:")
+    public static native NSExpression createForMinusSet(NSExpression left, NSExpression right);
+    @Method(selector = "expressionForSubquery:usingIteratorVariable:predicate:")
+    public static native NSExpression createForSubquery(NSExpression expression, String variable, NSPredicate predicate);
+    @Method(selector = "expressionForFunction:selectorName:arguments:")
+    public static native NSExpression createForFunction(NSExpression target, String name, NSArray<?> parameters);
+    @Method(selector = "expressionForAnyKey")
+    public static native NSExpression createForAnyKey();
+    @Method(selector = "expressionForBlock:arguments:")
+    public static native NSExpression createForBlock(@Block Block3<NSObject, NSArray<NSExpression>, NSMutableDictionary<?, ?>, NSObject> block, NSArray<NSExpression> arguments);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "expressionForConditional:trueExpression:falseExpression:")
+    public static native NSExpression createForConditional(NSPredicate predicate, NSExpression trueExpression, NSExpression falseExpression);
     /*</methods>*/
 }
