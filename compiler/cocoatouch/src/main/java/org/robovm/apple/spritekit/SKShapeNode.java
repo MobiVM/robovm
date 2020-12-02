@@ -126,6 +126,8 @@ import org.robovm.apple.metal.*;
      */
     @Property(selector = "setAttributeValues:")
     public native void setAttributeValues(NSDictionary<NSString, SKAttributeValue> v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

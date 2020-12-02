@@ -62,5 +62,11 @@ import org.robovm.apple.coregraphics.*;
     public static native INLengthResolutionResult disambiguation(NSArray<?> lengthsToDisambiguate);
     @Method(selector = "confirmationRequiredWithLengthToConfirm:")
     public static native INLengthResolutionResult confirmationRequired(NSMeasurement<NSUnitLength> lengthToConfirm);
+    @Method(selector = "needsValue")
+    public static native INLengthResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INLengthResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INLengthResolutionResult unsupported();
     /*</methods>*/
 }

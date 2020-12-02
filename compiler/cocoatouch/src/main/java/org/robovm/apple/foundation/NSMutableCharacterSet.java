@@ -64,7 +64,8 @@ import org.robovm.apple.dispatch.*;
         retain(getHandle());
     }
     /*<properties>*/
-    
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     private static long createWithFile(File file) {

@@ -55,9 +55,12 @@ import org.robovm.apple.foundation.*;
     /*<properties>*/
     @Property(selector = "bars")
     public static native MXUnitSignalBars getBars();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "baseUnit")
+    public static native MXUnitSignalBars getBaseUnit();
     /*</methods>*/
 }

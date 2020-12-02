@@ -60,5 +60,11 @@ import org.robovm.apple.coregraphics.*;
     public static native INLocationSearchTypeResolutionResult success(INLocationSearchType resolvedLocationSearchType);
     @Method(selector = "confirmationRequiredWithLocationSearchTypeToConfirm:")
     public static native INLocationSearchTypeResolutionResult confirmationRequired(INLocationSearchType locationSearchTypeToConfirm);
+    @Method(selector = "needsValue")
+    public static native INLocationSearchTypeResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INLocationSearchTypeResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INLocationSearchTypeResolutionResult unsupported();
     /*</methods>*/
 }

@@ -54,6 +54,12 @@ import org.robovm.apple.coregraphics.*;
     public MDLNoiseTexture(float smoothness, String name, @ByVal VectorInt2 textureDimensions, int channelCount, MDLTextureChannelEncoding channelEncoding, boolean grayscale) { super((SkipInit) null); initObject(init(smoothness, name, textureDimensions, channelCount, channelEncoding, grayscale)); }
     @Method(selector = "initWithData:topLeftOrigin:name:dimensions:rowStride:channelCount:channelEncoding:isCube:")
     public MDLNoiseTexture(NSData pixelData, boolean topLeftOrigin, String name, @ByVal VectorInt2 dimensions, @MachineSizedSInt long rowStride, @MachineSizedUInt long channelCount, MDLTextureChannelEncoding channelEncoding, boolean isCube) { super(pixelData, topLeftOrigin, name, dimensions, rowStride, channelCount, channelEncoding, isCube); }
+    public MDLNoiseTexture(String name) { super((Handle) null, create(name)); retain(getHandle()); }
+    public MDLNoiseTexture(String name, NSBundle bundleOrNil) { super((Handle) null, create(name, bundleOrNil)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    public MDLNoiseTexture(String name, MDLAssetResolver resolver) { super((Handle) null, create(name, resolver)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     
@@ -69,5 +75,22 @@ import org.robovm.apple.coregraphics.*;
      */
     @Method(selector = "initCellularNoiseWithFrequency:name:textureDimensions:channelEncoding:")
     protected native @Pointer long initCellularNoise(float frequency, String name, @ByVal VectorInt2 textureDimensions, MDLTextureChannelEncoding channelEncoding);
+    @Method(selector = "textureNamed:")
+    protected static native @Pointer long create(String name);
+    @Method(selector = "textureNamed:bundle:")
+    protected static native @Pointer long create(String name, NSBundle bundleOrNil);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "textureNamed:assetResolver:")
+    protected static native @Pointer long create(String name, MDLAssetResolver resolver);
+    @Method(selector = "textureCubeWithImagesNamed:")
+    public static native MDLNoiseTexture newTextureCube(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> names);
+    @Method(selector = "textureCubeWithImagesNamed:bundle:")
+    public static native MDLNoiseTexture newTextureCube(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> names, NSBundle bundleOrNil);
+    @Method(selector = "irradianceTextureCubeWithTexture:name:dimensions:")
+    public static native MDLNoiseTexture newIrradianceTextureCube(MDLTexture texture, String name, @ByVal VectorInt2 dimensions);
+    @Method(selector = "irradianceTextureCubeWithTexture:name:dimensions:roughness:")
+    public static native MDLNoiseTexture newIrradianceTextureCube(MDLTexture texture, String name, @ByVal VectorInt2 dimensions, float roughness);
     /*</methods>*/
 }

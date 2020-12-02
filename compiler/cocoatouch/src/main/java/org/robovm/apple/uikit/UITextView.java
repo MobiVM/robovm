@@ -295,6 +295,9 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
      */
     @Property(selector = "setUsesStandardTextScaling:")
     public native void setUsesStandardTextScaling(boolean v);
+    @WeaklyLinked
+    @Property(selector = "layerClass")
+    public static native Class<? extends CALayer> getLayerClass();
     @Property(selector = "selectedTextRange")
     public native UITextRange getSelectedTextRange();
     @Property(selector = "setSelectedTextRange:")
@@ -455,6 +458,16 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     protected native @Pointer long init(@ByVal CGRect frame, NSTextContainer textContainer);
     @Method(selector = "initWithCoder:")
     protected native @Pointer long init(NSCoder coder);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute attribute);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:relativeToLayoutDirection:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute semanticContentAttribute, UIUserInterfaceLayoutDirection layoutDirection);
     @Method(selector = "textInRange:")
     public native String getText(UITextRange range);
     @Method(selector = "replaceRange:withText:")

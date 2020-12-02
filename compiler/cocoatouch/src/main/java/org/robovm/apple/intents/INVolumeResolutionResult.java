@@ -62,5 +62,11 @@ import org.robovm.apple.coregraphics.*;
     public static native INVolumeResolutionResult disambiguation(NSArray<?> volumeToDisambiguate);
     @Method(selector = "confirmationRequiredWithVolumeToConfirm:")
     public static native INVolumeResolutionResult confirmationRequired(NSMeasurement<NSUnitVolume> volumeToConfirm);
+    @Method(selector = "needsValue")
+    public static native INVolumeResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INVolumeResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INVolumeResolutionResult unsupported();
     /*</methods>*/
 }

@@ -64,6 +64,21 @@ import org.robovm.apple.imageio.*;
     public native VNImageCropAndScaleOption getImageCropAndScaleOption();
     @Property(selector = "setImageCropAndScaleOption:")
     public native void setImageCropAndScaleOption(VNImageCropAndScaleOption v);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "supportedRevisions")
+    public static native NSIndexSet getSupportedRevisions();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "defaultRevision")
+    public static native @MachineSizedUInt long getDefaultRevision();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "currentRevision")
+    public static native @MachineSizedUInt long getCurrentRevision();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

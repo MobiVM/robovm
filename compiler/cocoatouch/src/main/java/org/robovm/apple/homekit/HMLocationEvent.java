@@ -65,5 +65,10 @@ import org.robovm.apple.corelocation.*;
     @Deprecated
     @Method(selector = "updateRegion:completionHandler:")
     public native void updateRegion(CLRegion region, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "isSupportedForHome:")
+    public static native boolean isSupportedForHome(HMHome home);
     /*</methods>*/
 }

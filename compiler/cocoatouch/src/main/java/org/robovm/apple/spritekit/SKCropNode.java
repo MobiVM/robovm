@@ -62,6 +62,8 @@ import org.robovm.apple.metal.*;
     public native SKNode getMaskNode();
     @Property(selector = "setMaskNode:")
     public native void setMaskNode(SKNode v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

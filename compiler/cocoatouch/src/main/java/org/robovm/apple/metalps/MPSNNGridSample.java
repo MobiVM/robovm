@@ -61,6 +61,8 @@ import org.robovm.apple.metal.*;
     public native boolean isUseGridValueAsInputCoordinate();
     @Property(selector = "setUseGridValueAsInputCoordinate:")
     public native void setUseGridValueAsInputCoordinate(boolean v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

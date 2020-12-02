@@ -71,6 +71,8 @@ import org.robovm.apple.avfoundation.*;
     public native @MachineSizedFloat double getMaximumDistance();
     @Property(selector = "setMaximumDistance:")
     public native void setMaximumDistance(@MachineSizedFloat double v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

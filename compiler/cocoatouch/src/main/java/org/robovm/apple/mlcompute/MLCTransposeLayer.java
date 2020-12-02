@@ -59,5 +59,7 @@ import org.robovm.apple.metalps.*;
     /*<methods>*/
     @Method(selector = "layerWithDimensions:")
     protected static native @Pointer long create(NSArray<NSNumber> dimensions);
+    @Method(selector = "supportsDataType:onDevice:")
+    public static native boolean supportsDataType(MLCDataType dataType, MLCDevice device);
     /*</methods>*/
 }

@@ -60,6 +60,8 @@ import org.robovm.apple.coregraphics.*;
     public native INMediaSearch getMediaSearch();
     @Property(selector = "affinityType")
     public native INMediaAffinityType getAffinityType();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

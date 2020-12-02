@@ -61,6 +61,8 @@ import org.robovm.apple.metal.*;
     public native @MachineSizedFloat double getMaxLength();
     @Property(selector = "setMaxLength:")
     public native void setMaxLength(@MachineSizedFloat double v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

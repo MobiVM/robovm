@@ -62,5 +62,11 @@ import org.robovm.apple.coregraphics.*;
     public static native INCurrencyAmountResolutionResult disambiguation(NSArray<INCurrencyAmount> currencyAmountsToDisambiguate);
     @Method(selector = "confirmationRequiredWithCurrencyAmountToConfirm:")
     public static native INCurrencyAmountResolutionResult confirmationRequired(INCurrencyAmount currencyAmountToConfirm);
+    @Method(selector = "needsValue")
+    public static native INCurrencyAmountResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INCurrencyAmountResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INCurrencyAmountResolutionResult unsupported();
     /*</methods>*/
 }

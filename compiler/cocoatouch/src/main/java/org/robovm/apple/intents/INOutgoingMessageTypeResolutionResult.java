@@ -60,5 +60,11 @@ import org.robovm.apple.coregraphics.*;
     public static native INOutgoingMessageTypeResolutionResult createSuccess(INOutgoingMessageType resolvedOutgoingMessageType);
     @Method(selector = "confirmationRequiredWithOutgoingMessageTypeToConfirm:")
     public static native INOutgoingMessageTypeResolutionResult createConfirmationRequired(INOutgoingMessageType outgoingMessageTypeToConfirm);
+    @Method(selector = "needsValue")
+    public static native INOutgoingMessageTypeResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INOutgoingMessageTypeResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INOutgoingMessageTypeResolutionResult unsupported();
     /*</methods>*/
 }

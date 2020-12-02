@@ -71,6 +71,8 @@ import org.robovm.apple.metal.*;
     public native float getReconstructOffset();
     @Property(selector = "setReconstructOffset:")
     public native void setReconstructOffset(float v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -62,5 +62,11 @@ import org.robovm.apple.coregraphics.*;
     public static native INFileResolutionResult disambiguation(NSArray<INFile> filesToDisambiguate);
     @Method(selector = "confirmationRequiredWithFileToConfirm:")
     public static native INFileResolutionResult confirmationRequired(INFile fileToConfirm);
+    @Method(selector = "needsValue")
+    public static native INFileResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INFileResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INFileResolutionResult unsupported();
     /*</methods>*/
 }

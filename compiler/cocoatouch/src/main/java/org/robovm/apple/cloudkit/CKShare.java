@@ -70,6 +70,8 @@ import org.robovm.apple.fileprovider.*;
     public native CKShareParticipant getOwner();
     @Property(selector = "currentUserParticipant")
     public native CKShareParticipant getCurrentUserParticipant();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

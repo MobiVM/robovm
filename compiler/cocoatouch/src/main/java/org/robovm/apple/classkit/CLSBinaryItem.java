@@ -58,6 +58,8 @@ import org.robovm.apple.coregraphics.*;
     public native void setValue(boolean v);
     @Property(selector = "valueType")
     public native CLSBinaryValueType getValueType();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

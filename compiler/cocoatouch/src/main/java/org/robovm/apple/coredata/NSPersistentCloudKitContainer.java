@@ -91,5 +91,7 @@ import org.robovm.apple.uikit.*;
      */
     @Method(selector = "canModifyManagedObjectsInStore:")
     public native boolean canModifyManagedObjectsInStore(NSPersistentStore store);
+    @Method(selector = "defaultDirectoryURL")
+    public static native NSURL defaultDirectoryURL();
     /*</methods>*/
 }

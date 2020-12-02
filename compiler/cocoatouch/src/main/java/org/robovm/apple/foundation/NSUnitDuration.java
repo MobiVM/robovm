@@ -87,9 +87,12 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "picoseconds")
     public static native NSUnitDuration getPicoseconds();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "baseUnit")
+    public static native NSUnitDuration getBaseUnit();
     /*</methods>*/
 }

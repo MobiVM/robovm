@@ -219,6 +219,9 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Property(selector = "setUserInteractionEnabledWhileDragging:")
     public native void setUserInteractionEnabledWhileDragging(boolean v);
+    @WeaklyLinked
+    @Property(selector = "layerClass")
+    public static native Class<? extends CALayer> getLayerClass();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -258,6 +261,16 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Method(selector = "dragStateDidChange:")
     public native void dragStateDidChange(UITableViewCellDragState dragState);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute attribute);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:relativeToLayoutDirection:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute semanticContentAttribute, UIUserInterfaceLayoutDirection layoutDirection);
     @Method(selector = "gestureRecognizerShouldBegin:")
     public native boolean shouldBegin(UIGestureRecognizer gestureRecognizer);
     @Method(selector = "gestureRecognizer:shouldRecognizeSimultaneouslyWithGestureRecognizer:")

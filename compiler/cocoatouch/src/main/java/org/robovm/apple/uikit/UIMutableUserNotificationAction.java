@@ -102,6 +102,8 @@ import org.robovm.apple.linkpresentation.*;
     public native boolean isDestructive();
     @Property(selector = "setDestructive:")
     public native void setDestructive(boolean v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

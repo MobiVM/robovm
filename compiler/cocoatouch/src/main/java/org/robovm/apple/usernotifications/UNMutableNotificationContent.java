@@ -119,6 +119,8 @@ import org.robovm.apple.foundation.*;
      */
     @Property(selector = "setTargetContentIdentifier:")
     public native void setTargetContentIdentifier(String v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -36,6 +36,7 @@ import org.robovm.apple.mapkit.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 12.0 and later.
+ * @deprecated Deprecated in iOS 14.0. Use -[CPListItem handler]
  */
 /*</javadoc>*/
 /*<annotations>*/@Deprecated/*</annotations>*/

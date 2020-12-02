@@ -68,6 +68,8 @@ import org.robovm.apple.metal.*;
     public native @MachineSizedSInt long getNumberOfRows();
     @Property(selector = "vertexCount")
     public native @MachineSizedSInt long getVertexCount();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

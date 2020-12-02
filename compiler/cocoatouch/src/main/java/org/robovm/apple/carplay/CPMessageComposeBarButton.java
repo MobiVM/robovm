@@ -61,7 +61,8 @@ import org.robovm.apple.mapkit.*;
     public CPMessageComposeBarButton(CPBarButtonType type, @Block VoidBlock1<CPBarButton> handler) { super(type, handler); }
     /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

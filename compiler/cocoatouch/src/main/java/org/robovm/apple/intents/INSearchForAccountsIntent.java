@@ -62,6 +62,8 @@ import org.robovm.apple.coregraphics.*;
     public native INSpeakableString getOrganizationName();
     @Property(selector = "requestedBalanceType")
     public native INBalanceType getRequestedBalanceType();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -56,6 +56,8 @@ import org.robovm.apple.coregraphics.*;
     public native void setTitle(String v);
     @Property(selector = "identifier")
     public native String getIdentifier();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

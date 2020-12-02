@@ -69,6 +69,8 @@ import org.robovm.apple.metal.*;
     public native MPSCNNConvolutionGradientOption getGradientOption();
     @Property(selector = "setGradientOption:")
     public native void setGradientOption(MPSCNNConvolutionGradientOption v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

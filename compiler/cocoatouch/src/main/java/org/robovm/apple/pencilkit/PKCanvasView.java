@@ -98,9 +98,22 @@ import org.robovm.apple.coregraphics.*;
      */
     @Property(selector = "setDrawingPolicy:")
     public native void setDrawingPolicy(PKCanvasViewDrawingPolicy v);
+    @WeaklyLinked
+    @Property(selector = "layerClass")
+    public static native Class<? extends CALayer> getLayerClass();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute attribute);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:relativeToLayoutDirection:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute semanticContentAttribute, UIUserInterfaceLayoutDirection layoutDirection);
     @Method(selector = "toolPickerSelectedToolDidChange:")
     public native void toolPickerSelectedToolDidChange(PKToolPicker toolPicker);
     @Method(selector = "toolPickerIsRulerActiveDidChange:")

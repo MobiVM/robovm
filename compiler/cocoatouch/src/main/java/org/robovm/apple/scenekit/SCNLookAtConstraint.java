@@ -94,6 +94,8 @@ import org.robovm.apple.avfoundation.*;
     public native boolean isGimbalLockEnabled();
     @Property(selector = "setGimbalLockEnabled:")
     public native void setGimbalLockEnabled(boolean v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

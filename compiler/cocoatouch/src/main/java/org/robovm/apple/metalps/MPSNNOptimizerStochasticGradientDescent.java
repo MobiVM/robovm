@@ -71,6 +71,8 @@ import org.robovm.apple.metal.*;
     public native boolean isUseNesterovMomentum();
     @Property(selector = "useNestrovMomentum")
     public native boolean isUseNestrovMomentum();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

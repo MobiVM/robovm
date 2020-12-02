@@ -63,6 +63,8 @@ import org.robovm.apple.mapkit.*;
     public static native @MachineSizedUInt long getMaximumActionCount();
     @Property(selector = "actions")
     public native NSArray<CPAlertAction> getActions();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -98,6 +98,8 @@ import org.robovm.apple.linkpresentation.*;
     public native @MachineSizedFloat double getStackedItemSpacing();
     @Property(selector = "setStackedItemSpacing:")
     public native void setStackedItemSpacing(@MachineSizedFloat double v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

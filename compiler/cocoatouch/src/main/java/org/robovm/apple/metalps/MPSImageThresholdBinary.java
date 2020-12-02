@@ -66,6 +66,8 @@ import org.robovm.apple.metal.*;
     public native float getMaximumValue();
     @Property(selector = "transform")
     public native FloatPtr getTransform();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

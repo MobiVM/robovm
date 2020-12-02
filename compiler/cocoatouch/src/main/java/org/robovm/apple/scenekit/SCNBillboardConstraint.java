@@ -62,6 +62,8 @@ import org.robovm.apple.avfoundation.*;
     public native SCNBillboardAxis getFreeAxes();
     @Property(selector = "setFreeAxes:")
     public native void setFreeAxes(SCNBillboardAxis v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

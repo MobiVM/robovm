@@ -99,12 +99,15 @@ import org.robovm.apple.metal.*;
     public native NSObject getByValue();
     @Property(selector = "setByValue:")
     public native void setByValue(NSObject v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
 
     @Method(selector = "animationWithKeyPath:")
     protected static native @Pointer long create(String path);
     /*<methods>*/
-    
+    @Method(selector = "defaultValueForKey:")
+    public static native NSObject getDefaultValue(String key);
     /*</methods>*/
 }

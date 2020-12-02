@@ -175,6 +175,8 @@ import org.robovm.apple.network.*;
      */
     @Property(selector = "setMtu:")
     public native void setMtu(@MachineSizedUInt long v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

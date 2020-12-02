@@ -143,6 +143,8 @@ import org.robovm.apple.metal.*;
     public native SKBlendMode getBlendMode();
     @Property(selector = "setBlendMode:")
     public native void setBlendMode(SKBlendMode v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

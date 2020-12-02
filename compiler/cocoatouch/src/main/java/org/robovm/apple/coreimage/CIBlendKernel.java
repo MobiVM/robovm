@@ -156,5 +156,44 @@ import org.robovm.apple.avfoundation.*;
     @Deprecated
     @Method(selector = "kernelWithString:")
     public static native CIBlendKernel create(String string);
+    /**
+     * @deprecated Deprecated in iOS 12.0. Core Image Kernel Language API deprecated. (Define CI_SILENCE_GL_DEPRECATION to silence these warnings)
+     */
+    @Deprecated
+    @Method(selector = "kernelsWithString:")
+    public static native NSArray<CIKernel> createKernels(String string);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    public static CIBlendKernel create(String name, NSData data) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       CIBlendKernel result = create(name, data, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "kernelWithFunctionName:fromMetalLibraryData:error:")
+    private static native CIBlendKernel create(String name, NSData data, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    public static CIBlendKernel create(String name, NSData data, int format) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       CIBlendKernel result = create(name, data, format, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "kernelWithFunctionName:fromMetalLibraryData:outputPixelFormat:error:")
+    private static native CIBlendKernel create(String name, NSData data, int format, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "kernelNamesFromMetalLibraryData:")
+    public static native NSArray<NSString> getKernelNamesFromMetalLibraryData(NSData data);
     /*</methods>*/
 }

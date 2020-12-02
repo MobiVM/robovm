@@ -63,6 +63,8 @@ import org.robovm.apple.metal.*;
     public native @MachineSizedUInt long getSeed();
     @Property(selector = "maskStrideInPixels")
     public native @ByVal MTLSize getMaskStrideInPixels();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

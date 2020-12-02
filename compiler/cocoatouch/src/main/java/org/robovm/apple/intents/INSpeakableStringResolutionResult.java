@@ -62,5 +62,11 @@ import org.robovm.apple.coregraphics.*;
     public static native INSpeakableStringResolutionResult disambiguation(NSArray<INSpeakableString> stringsToDisambiguate);
     @Method(selector = "confirmationRequiredWithStringToConfirm:")
     public static native INSpeakableStringResolutionResult confirmationRequired(INSpeakableString stringToConfirm);
+    @Method(selector = "needsValue")
+    public static native INSpeakableStringResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INSpeakableStringResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INSpeakableStringResolutionResult unsupported();
     /*</methods>*/
 }

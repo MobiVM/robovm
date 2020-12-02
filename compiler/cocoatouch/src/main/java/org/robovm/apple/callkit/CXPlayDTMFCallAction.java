@@ -63,6 +63,8 @@ import org.robovm.apple.avfoundation.*;
     public native CXPlayDTMFCallActionType getType();
     @Property(selector = "setType:")
     public native void setType(CXPlayDTMFCallActionType v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

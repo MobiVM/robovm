@@ -73,6 +73,8 @@ import org.robovm.apple.metal.*;
     public native float getFillValue();
     @Property(selector = "setFillValue:")
     public native void setFillValue(float v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

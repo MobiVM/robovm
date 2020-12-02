@@ -83,10 +83,33 @@ import org.robovm.apple.uikit.*;
      */
     @Property(selector = "setCornerRadius:")
     public native void setCornerRadius(@MachineSizedFloat double v);
+    @WeaklyLinked
+    @Property(selector = "layerClass")
+    public static native Class<? extends CALayer> getLayerClass();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithStyle:")
     protected native @Pointer long init(INUIAddVoiceShortcutButtonStyle style);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "systemButtonWithImage:target:action:")
+    public static native INUIAddVoiceShortcutButton getSystemButtonWithImage(UIImage image, NSObject target, Selector action);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "systemButtonWithPrimaryAction:")
+    public static native INUIAddVoiceShortcutButton getSystemButtonWithPrimaryAction(UIAction primaryAction);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute attribute);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:relativeToLayoutDirection:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute semanticContentAttribute, UIUserInterfaceLayoutDirection layoutDirection);
     /*</methods>*/
 }

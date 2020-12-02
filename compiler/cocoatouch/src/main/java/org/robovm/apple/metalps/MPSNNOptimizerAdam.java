@@ -72,6 +72,8 @@ import org.robovm.apple.metal.*;
     public native @MachineSizedUInt long getTimeStep();
     @Property(selector = "setTimeStep:")
     public native void setTimeStep(@MachineSizedUInt long v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

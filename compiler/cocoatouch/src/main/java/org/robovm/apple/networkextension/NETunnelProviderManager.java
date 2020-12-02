@@ -69,5 +69,7 @@ import org.robovm.apple.network.*;
      */
     @Method(selector = "loadAllFromPreferencesWithCompletionHandler:")
     public static native void loadAllTunnels(@Block VoidBlock2<NSArray<NETunnelProviderManager>, NSError> completionHandler);
+    @Method(selector = "sharedManager")
+    public static native NEVPNManager getSharedManager();
     /*</methods>*/
 }

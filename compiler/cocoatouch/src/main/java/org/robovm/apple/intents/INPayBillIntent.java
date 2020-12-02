@@ -68,6 +68,8 @@ import org.robovm.apple.coregraphics.*;
     public native INBillType getBillType();
     @Property(selector = "dueDate")
     public native INDateComponentsRange getDueDate();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

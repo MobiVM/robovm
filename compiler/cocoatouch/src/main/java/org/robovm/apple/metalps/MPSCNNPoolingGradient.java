@@ -63,6 +63,8 @@ import org.robovm.apple.metal.*;
     public native @ByVal MTLSize getSourceSize();
     @Property(selector = "setSourceSize:")
     public native void setSourceSize(@ByVal MTLSize v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

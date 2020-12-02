@@ -67,9 +67,12 @@ import org.robovm.apple.dispatch.*;
     public static native NSUnitFuelEfficiency getMilesPerImperialGallon();
     @Property(selector = "milesPerGallon")
     public static native NSUnitFuelEfficiency getMilesPerGallon();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "baseUnit")
+    public static native NSUnitFuelEfficiency getBaseUnit();
     /*</methods>*/
 }

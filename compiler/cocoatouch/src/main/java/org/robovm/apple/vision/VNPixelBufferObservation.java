@@ -63,6 +63,8 @@ import org.robovm.apple.imageio.*;
      */
     @Property(selector = "featureName")
     public native String getFeatureName();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

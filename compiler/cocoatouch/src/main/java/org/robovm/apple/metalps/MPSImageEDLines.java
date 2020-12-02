@@ -89,6 +89,8 @@ import org.robovm.apple.metal.*;
     public native float getMergeLocalityThreshold();
     @Property(selector = "setMergeLocalityThreshold:")
     public native void setMergeLocalityThreshold(float v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

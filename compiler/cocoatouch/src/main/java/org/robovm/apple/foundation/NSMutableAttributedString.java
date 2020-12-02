@@ -74,6 +74,8 @@ import org.robovm.apple.dispatch.*;
     /*<properties>*/
     @Property(selector = "mutableString")
     public native NSMutableString getMutableString();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     public void addAttribute(String name, NSObject value, @ByVal NSRange range) {

@@ -91,5 +91,9 @@ import org.robovm.apple.imageio.*;
     protected static native @Pointer long createTransientCollectionList(NSArray<PHCollection> collections, String title);
     @Method(selector = "transientCollectionListWithCollectionsFetchResult:title:")
     protected static native @Pointer long createTransientCollectionList(PHFetchResult<PHCollection> fetchResult, String title);
+    @Method(selector = "fetchCollectionsInCollectionList:options:")
+    public static native PHFetchResult<PHCollection> fetchCollectionsInCollectionList(PHCollectionList collectionList, PHFetchOptions options);
+    @Method(selector = "fetchTopLevelUserCollectionsWithOptions:")
+    public static native PHFetchResult<PHCollection> fetchTopLevelUserCollections(PHFetchOptions options);
     /*</methods>*/
 }

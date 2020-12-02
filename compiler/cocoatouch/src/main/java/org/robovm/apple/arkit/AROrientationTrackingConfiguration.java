@@ -70,10 +70,22 @@ import org.robovm.apple.imageio.*;
      */
     @Property(selector = "setAutoFocusEnabled:")
     public native void setAutoFocusEnabled(boolean v);
+    @Property(selector = "isSupported")
+    public static native boolean isSupported();
+    /**
+     * @since Available in iOS 11.3 and later.
+     */
+    @Property(selector = "supportedVideoFormats")
+    public static native NSArray<ARVideoFormat> getSupportedVideoFormats();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "new")
     protected static native @Pointer long create();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "supportsFrameSemantics:")
+    public static native boolean supportsFrameSemantics(ARFrameSemantics frameSemantics);
     /*</methods>*/
 }

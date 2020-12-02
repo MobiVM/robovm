@@ -179,6 +179,13 @@ import org.robovm.apple.imageio.*;
      */
     @Property(selector = "setSceneReconstruction:")
     public native void setSceneReconstruction(ARSceneReconstruction v);
+    @Property(selector = "isSupported")
+    public static native boolean isSupported();
+    /**
+     * @since Available in iOS 11.3 and later.
+     */
+    @Property(selector = "supportedVideoFormats")
+    public static native NSArray<ARVideoFormat> getSupportedVideoFormats();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -189,5 +196,10 @@ import org.robovm.apple.imageio.*;
     public static native boolean supportsSceneReconstruction(ARSceneReconstruction sceneReconstruction);
     @Method(selector = "new")
     protected static native @Pointer long create();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "supportsFrameSemantics:")
+    public static native boolean supportsFrameSemantics(ARFrameSemantics frameSemantics);
     /*</methods>*/
 }

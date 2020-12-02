@@ -85,6 +85,8 @@ import org.robovm.apple.metal.*;
     @Deprecated
     @Property(selector = "setSerializeWeightsAndBiases:")
     public native void setSerializeWeightsAndBiases(boolean v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

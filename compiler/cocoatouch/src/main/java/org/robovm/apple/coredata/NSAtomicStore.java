@@ -93,5 +93,23 @@ import org.robovm.apple.foundation.NSError.NSErrorPtr;
     public native @org.robovm.rt.bro.annotation.Marshaler(NSObject.NoRetainMarshaler.class) NSObject newReferenceObject(NSManagedObject managedObject);
     @Method(selector = "referenceObjectForObjectID:")
     public native NSObject getReferenceObject(NSManagedObjectID objectID);
+    public static NSPersistentStoreMetadata getMetadataForPersistentStore(NSURL url) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       NSPersistentStoreMetadata result = getMetadataForPersistentStore(url, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    @Method(selector = "metadataForPersistentStoreWithURL:error:")
+    private static native NSPersistentStoreMetadata getMetadataForPersistentStore(NSURL url, NSError.NSErrorPtr error);
+    public static boolean setMetadataForPersistentStore(NSPersistentStoreMetadata metadata, NSURL url) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       boolean result = setMetadataForPersistentStore(metadata, url, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    @Method(selector = "setMetadata:forPersistentStoreWithURL:error:")
+    private static native boolean setMetadataForPersistentStore(NSPersistentStoreMetadata metadata, NSURL url, NSError.NSErrorPtr error);
+    @Method(selector = "migrationManagerClass")
+    public static native Class<? extends NSMigrationManager> getMigrationManagerClass();
     /*</methods>*/
 }

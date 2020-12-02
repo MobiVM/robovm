@@ -60,6 +60,8 @@ import org.robovm.apple.coregraphics.*;
     public native NSDictionary<NSString, ?> getNowPlayingInfo();
     @Property(selector = "setNowPlayingInfo:")
     public native void setNowPlayingInfo(NSDictionary<NSString, ?> v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

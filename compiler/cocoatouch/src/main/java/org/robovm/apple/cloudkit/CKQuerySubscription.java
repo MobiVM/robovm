@@ -68,6 +68,8 @@ import org.robovm.apple.fileprovider.*;
     public native void setZoneID(CKRecordZoneID v);
     @Property(selector = "querySubscriptionOptions")
     public native CKQuerySubscriptionOptions getQuerySubscriptionOptions();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

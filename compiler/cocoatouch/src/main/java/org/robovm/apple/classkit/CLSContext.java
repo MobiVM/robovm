@@ -156,6 +156,8 @@ import org.robovm.apple.coregraphics.*;
     public native CLSContext getParent();
     @Property(selector = "currentActivity")
     public native CLSActivity getCurrentActivity();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

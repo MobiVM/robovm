@@ -62,6 +62,8 @@ import org.robovm.apple.uikit.*;
     public native float getRotation();
     @Property(selector = "setRotation:")
     public native void setRotation(float v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

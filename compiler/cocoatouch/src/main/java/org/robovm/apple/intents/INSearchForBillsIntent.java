@@ -64,6 +64,8 @@ import org.robovm.apple.coregraphics.*;
     public native INPaymentStatus getStatus();
     @Property(selector = "dueDateRange")
     public native INDateComponentsRange getDueDateRange();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

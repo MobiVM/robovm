@@ -60,5 +60,11 @@ import org.robovm.apple.coregraphics.*;
     public static native INBooleanResolutionResult success(boolean resolvedValue);
     @Method(selector = "confirmationRequiredWithValueToConfirm:")
     public static native INBooleanResolutionResult confirmationRequired(NSNumber valueToConfirm);
+    @Method(selector = "needsValue")
+    public static native INBooleanResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INBooleanResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INBooleanResolutionResult unsupported();
     /*</methods>*/
 }

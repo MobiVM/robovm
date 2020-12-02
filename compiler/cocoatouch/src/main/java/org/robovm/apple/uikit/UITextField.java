@@ -313,6 +313,9 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     public native boolean clearsOnInsertion();
     @Property(selector = "setClearsOnInsertion:")
     public native void setClearsOnInsertion(boolean v);
+    @WeaklyLinked
+    @Property(selector = "layerClass")
+    public static native Class<? extends CALayer> getLayerClass();
     @Property(selector = "selectedTextRange")
     public native UITextRange getSelectedTextRange();
     @Property(selector = "setSelectedTextRange:")
@@ -490,6 +493,16 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     public native void drawText(@ByVal CGRect rect);
     @Method(selector = "drawPlaceholderInRect:")
     public native void drawPlaceholder(@ByVal CGRect rect);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute attribute);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:relativeToLayoutDirection:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute semanticContentAttribute, UIUserInterfaceLayoutDirection layoutDirection);
     @Method(selector = "textInRange:")
     public native String getText(UITextRange range);
     @Method(selector = "replaceRange:withText:")

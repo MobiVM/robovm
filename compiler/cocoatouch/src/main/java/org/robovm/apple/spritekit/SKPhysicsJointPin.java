@@ -77,6 +77,8 @@ import org.robovm.apple.metal.*;
     public native @MachineSizedFloat double getRotationSpeed();
     @Property(selector = "setRotationSpeed:")
     public native void setRotationSpeed(@MachineSizedFloat double v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

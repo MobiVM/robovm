@@ -65,6 +65,8 @@ import org.robovm.apple.metal.*;
     public native @MachineSizedSInt long getKernelOffsetY();
     @Property(selector = "setKernelOffsetY:")
     public native void setKernelOffsetY(@MachineSizedSInt long v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

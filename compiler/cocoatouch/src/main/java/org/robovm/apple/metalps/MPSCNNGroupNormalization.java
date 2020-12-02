@@ -63,6 +63,8 @@ import org.robovm.apple.metal.*;
     public native void setEpsilon(float v);
     @Property(selector = "dataSource")
     public native MPSCNNGroupNormalizationDataSource getDataSource();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

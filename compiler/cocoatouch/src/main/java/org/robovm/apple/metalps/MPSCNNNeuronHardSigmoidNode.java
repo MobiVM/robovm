@@ -63,5 +63,10 @@ import org.robovm.apple.metal.*;
     protected native @Pointer long init(MPSNNImageNode sourceNode, float a, float b);
     @Method(selector = "initWithSource:")
     protected native @Pointer long init(MPSNNImageNode sourceNode);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "nodeWithSource:descriptor:")
+    public static native MPSCNNNeuronHardSigmoidNode create(MPSNNImageNode sourceNode, MPSNNNeuronDescriptor descriptor);
     /*</methods>*/
 }

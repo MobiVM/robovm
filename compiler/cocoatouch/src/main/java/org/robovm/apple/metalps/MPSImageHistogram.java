@@ -76,6 +76,8 @@ import org.robovm.apple.metal.*;
     public native void setMinPixelThresholdValue(@ByVal VectorFloat4 v);
     @Property(selector = "histogramInfo")
     public native @ByVal MPSImageHistogramInfo getHistogramInfo();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

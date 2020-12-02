@@ -76,6 +76,8 @@ import org.robovm.apple.metal.*;
      */
     @Property(selector = "data")
     public native NSData getData();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -83,6 +83,8 @@ import org.robovm.apple.metal.*;
     public native float getPs();
     @Property(selector = "setPs:")
     public native void setPs(float v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

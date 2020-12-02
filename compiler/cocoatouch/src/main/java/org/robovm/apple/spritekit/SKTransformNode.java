@@ -68,6 +68,8 @@ import org.robovm.apple.metal.*;
     public native @MachineSizedFloat double getYRotation();
     @Property(selector = "setYRotation:")
     public native void setYRotation(@MachineSizedFloat double v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

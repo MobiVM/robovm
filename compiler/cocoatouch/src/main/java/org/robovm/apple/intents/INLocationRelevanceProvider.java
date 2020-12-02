@@ -56,6 +56,8 @@ import org.robovm.apple.coregraphics.*;
     /*<properties>*/
     @Property(selector = "region")
     public native CLRegion getRegion();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

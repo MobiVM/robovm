@@ -75,6 +75,8 @@ import org.robovm.apple.metal.*;
     public native float getNeuronParameterB();
     @Property(selector = "neuronParameterC")
     public native float getNeuronParameterC();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

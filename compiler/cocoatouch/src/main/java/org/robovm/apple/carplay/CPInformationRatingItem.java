@@ -60,6 +60,8 @@ import org.robovm.apple.mapkit.*;
     public native NSNumber getRating();
     @Property(selector = "maximumRating")
     public native NSNumber getMaximumRating();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

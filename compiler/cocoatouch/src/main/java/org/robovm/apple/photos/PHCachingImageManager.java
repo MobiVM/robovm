@@ -67,5 +67,7 @@ import org.robovm.apple.imageio.*;
     public native void stopCachingImagesForAssets(NSArray<PHAsset> assets, @ByVal CGSize targetSize, PHImageContentMode contentMode, PHImageRequestOptions options);
     @Method(selector = "stopCachingImagesForAllAssets")
     public native void stopCachingImagesForAllAssets();
+    @Method(selector = "defaultManager")
+    public static native PHImageManager getDefaultManager();
     /*</methods>*/
 }

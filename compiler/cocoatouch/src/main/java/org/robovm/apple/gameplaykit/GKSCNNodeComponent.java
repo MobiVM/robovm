@@ -56,6 +56,8 @@ import org.robovm.apple.uikit.*;
     /*<properties>*/
     @Property(selector = "node")
     public native SCNNode getNode();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -61,6 +61,7 @@ public enum /*<name>*/CVPixelFormatType/*</name>*/ implements ValuedEnum {
     _32ABGR(1094862674L),
     _32RGBA(1380401729L),
     _64ARGB(1647719521L),
+    _64RGBALE(1815491698L),
     _48RGB(1647589490L),
     _32AlphaGray(1647522401L),
     _16Gray(1647392359L),

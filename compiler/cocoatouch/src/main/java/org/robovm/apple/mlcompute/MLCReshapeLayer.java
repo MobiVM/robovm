@@ -58,5 +58,7 @@ import org.robovm.apple.metalps.*;
     /*<methods>*/
     @Method(selector = "layerWithShape:")
     protected static native @Pointer long create(NSArray<NSNumber> shape);
+    @Method(selector = "supportsDataType:onDevice:")
+    public static native boolean supportsDataType(MLCDataType dataType, MLCDevice device);
     /*</methods>*/
 }

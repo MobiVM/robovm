@@ -69,6 +69,8 @@ import org.robovm.apple.metal.*;
     public native void setSourceMatrixBatchIndex(@MachineSizedUInt long v);
     @Property(selector = "dataLayout")
     public native MPSDataLayout getDataLayout();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

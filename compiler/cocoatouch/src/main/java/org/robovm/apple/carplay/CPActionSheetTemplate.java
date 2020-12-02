@@ -60,6 +60,8 @@ import org.robovm.apple.mapkit.*;
     public native String getMessage();
     @Property(selector = "actions")
     public native NSArray<CPAlertAction> getActions();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

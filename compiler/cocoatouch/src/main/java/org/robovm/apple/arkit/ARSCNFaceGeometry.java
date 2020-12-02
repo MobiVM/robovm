@@ -62,7 +62,8 @@ import org.robovm.apple.imageio.*;
     public ARSCNFaceGeometry(MTLDevice device, boolean fillMesh) { super((Handle) null, create(device, fillMesh)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -72,5 +73,9 @@ import org.robovm.apple.imageio.*;
     protected static native @Pointer long create(MTLDevice device);
     @Method(selector = "faceGeometryWithDevice:fillMesh:")
     protected static native @Pointer long create(MTLDevice device, boolean fillMesh);
+    @Method(selector = "geometry")
+    public static native ARSCNFaceGeometry create();
+    @Method(selector = "geometryWithSources:elements:")
+    public static native ARSCNFaceGeometry create(NSArray<SCNGeometrySource> sources, NSArray<SCNGeometryElement> elements);
     /*</methods>*/
 }

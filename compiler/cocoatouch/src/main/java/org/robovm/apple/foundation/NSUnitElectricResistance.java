@@ -71,9 +71,12 @@ import org.robovm.apple.dispatch.*;
     public static native NSUnitElectricResistance getMilliohms();
     @Property(selector = "microohms")
     public static native NSUnitElectricResistance getMicroohms();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "baseUnit")
+    public static native NSUnitElectricResistance getBaseUnit();
     /*</methods>*/
 }

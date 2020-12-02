@@ -92,11 +92,14 @@ import org.robovm.apple.metal.*;
     public native CAAnimationRotationMode getRotationMode();
     @Property(selector = "setRotationMode:")
     public native void setRotationMode(CAAnimationRotationMode v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     @Method(selector = "animationWithKeyPath:")
     protected static native @Pointer long create(String path);
     /*<methods>*/
-    
+    @Method(selector = "defaultValueForKey:")
+    public static native NSObject getDefaultValue(String key);
     /*</methods>*/
 }

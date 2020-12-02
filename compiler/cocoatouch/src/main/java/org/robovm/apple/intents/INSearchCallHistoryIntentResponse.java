@@ -66,6 +66,8 @@ import org.robovm.apple.coregraphics.*;
      */
     @Property(selector = "setCallRecords:")
     public native void setCallRecords(NSArray<INCallRecord> v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -64,6 +64,8 @@ import org.robovm.apple.metal.*;
     /*<properties>*/
     @Property(selector = "colorTransform")
     public native FloatPtr getColorTransform();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

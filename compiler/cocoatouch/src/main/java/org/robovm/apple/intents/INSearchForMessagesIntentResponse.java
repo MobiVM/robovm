@@ -60,6 +60,8 @@ import org.robovm.apple.coregraphics.*;
     public native NSArray<INMessage> getMessages();
     @Property(selector = "setMessages:")
     public native void setMessages(NSArray<INMessage> v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

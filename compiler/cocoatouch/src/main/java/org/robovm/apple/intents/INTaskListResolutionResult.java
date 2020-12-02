@@ -62,5 +62,11 @@ import org.robovm.apple.coregraphics.*;
     public static native INTaskListResolutionResult disambiguation(NSArray<INTaskList> taskListsToDisambiguate);
     @Method(selector = "confirmationRequiredWithTaskListToConfirm:")
     public static native INTaskListResolutionResult confirmationRequired(INTaskList taskListToConfirm);
+    @Method(selector = "needsValue")
+    public static native INTaskListResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INTaskListResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INTaskListResolutionResult unsupported();
     /*</methods>*/
 }

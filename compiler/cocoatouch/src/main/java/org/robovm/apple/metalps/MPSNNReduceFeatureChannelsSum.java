@@ -61,6 +61,8 @@ import org.robovm.apple.metal.*;
     public native float getWeight();
     @Property(selector = "setWeight:")
     public native void setWeight(float v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -77,6 +77,8 @@ import org.robovm.apple.coregraphics.*;
      */
     @Property(selector = "priority")
     public native INTaskPriority getPriority();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

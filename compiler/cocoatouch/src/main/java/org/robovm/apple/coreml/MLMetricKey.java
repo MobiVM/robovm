@@ -60,6 +60,8 @@ import org.robovm.apple.metal.*;
     public static native MLMetricKey getEpochIndex();
     @Property(selector = "miniBatchIndex")
     public static native MLMetricKey getMiniBatchIndex();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

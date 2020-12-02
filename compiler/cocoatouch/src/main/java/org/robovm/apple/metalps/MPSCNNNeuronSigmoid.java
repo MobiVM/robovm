@@ -67,7 +67,8 @@ import org.robovm.apple.metal.*;
     public MPSCNNNeuronSigmoid(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

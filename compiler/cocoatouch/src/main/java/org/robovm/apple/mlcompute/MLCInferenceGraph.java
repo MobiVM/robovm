@@ -77,5 +77,7 @@ import org.robovm.apple.metalps.*;
     public native boolean execute(NSDictionary<NSString, MLCTensorData> inputsData, NSDictionary<NSString, MLCTensorData> lossLabelsData, NSDictionary<NSString, MLCTensorData> lossLabelWeightsData, NSDictionary<NSString, MLCTensorData> outputsData, @MachineSizedUInt long batchSize, MLCExecutionOptions options, @Block VoidBlock3<MLCTensor, NSError, Double> completionHandler);
     @Method(selector = "graphWithGraphObjects:")
     protected static native @Pointer long create(NSArray<MLCGraph> graphObjects);
+    @Method(selector = "graph")
+    public static native MLCInferenceGraph graph();
     /*</methods>*/
 }

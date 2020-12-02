@@ -63,6 +63,8 @@ import org.robovm.apple.metal.*;
     public native @MachineSizedUInt long getInputFeatureChannels();
     @Property(selector = "outputFeatureChannels")
     public native @MachineSizedUInt long getOutputFeatureChannels();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

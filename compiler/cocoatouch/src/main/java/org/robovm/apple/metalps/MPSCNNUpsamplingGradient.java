@@ -59,6 +59,8 @@ import org.robovm.apple.metal.*;
     public native double getScaleFactorX();
     @Property(selector = "scaleFactorY")
     public native double getScaleFactorY();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -64,5 +64,9 @@ import org.robovm.apple.security.*;
     protected native @Pointer long init(long tag, NSArray<TKTLVRecord> records);
     @Method(selector = "dataForTag:")
     public static native NSData dataForTag(long tag);
+    @Method(selector = "recordFromData:")
+    public static native TKBERTLVRecord recordFromData(NSData data);
+    @Method(selector = "sequenceOfRecordsFromData:")
+    public static native NSArray<TKTLVRecord> sequenceOfRecordsFromData(NSData data);
     /*</methods>*/
 }

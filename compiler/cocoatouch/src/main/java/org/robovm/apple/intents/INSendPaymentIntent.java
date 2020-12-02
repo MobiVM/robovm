@@ -60,6 +60,8 @@ import org.robovm.apple.coregraphics.*;
     public native INCurrencyAmount getCurrencyAmount();
     @Property(selector = "note")
     public native String getNote();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

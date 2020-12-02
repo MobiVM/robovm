@@ -74,5 +74,11 @@ import org.robovm.apple.coregraphics.*;
     @Deprecated
     @Method(selector = "confirmationRequiredWithValueToConfirm:")
     public static native INRelativeReferenceResolutionResult confirmationRequiredForValue(INRelativeReference valueToConfirm);
+    @Method(selector = "needsValue")
+    public static native INRelativeReferenceResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INRelativeReferenceResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INRelativeReferenceResolutionResult unsupported();
     /*</methods>*/
 }

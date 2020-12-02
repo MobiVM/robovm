@@ -68,6 +68,8 @@ import org.robovm.apple.avfoundation.*;
     public native @MachineSizedSInt long getColumnCount();
     @Property(selector = "eccVersion")
     public native CIDataMatrixCodeECCVersion getEccVersion();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -82,6 +82,8 @@ import org.robovm.apple.metal.*;
     public native int getCategoryBitMask();
     @Property(selector = "setCategoryBitMask:")
     public native void setCategoryBitMask(int v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

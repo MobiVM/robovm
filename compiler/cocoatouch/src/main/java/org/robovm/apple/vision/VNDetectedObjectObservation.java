@@ -63,6 +63,8 @@ import org.robovm.apple.imageio.*;
     /*<properties>*/
     @Property(selector = "boundingBox")
     public native @ByVal CGRect getBoundingBox();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

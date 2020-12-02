@@ -68,14 +68,34 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "isAssociatedWithFragmentMinder")
     public native boolean isAssociatedWithFragmentMinder();
+    @Property(selector = "readableTypeIdentifiersForItemProvider")
+    public static native NSArray<NSString> getReadableTypeIdentifiersForItemProvider();
+    @Property(selector = "writableTypeIdentifiersForItemProvider")
+    public static native NSArray<NSString> getWritableTypeIdentifiersForItemProvider0();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    @Method(selector = "audiovisualTypes")
+    public static native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getAudiovisualTypes();
+    @Method(selector = "audiovisualMIMETypes")
+    public static native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getAudiovisualMIMETypes();
+    @Method(selector = "isPlayableExtendedMIMEType:")
+    public static native boolean isPlayableExtendedMIMEType(String extendedMIMEType);
     @Method(selector = "trackWithTrackID:")
     public native AVFragmentedAssetTrack getTrack(int trackID);
     @Method(selector = "tracksWithMediaType:")
     public native NSArray<AVFragmentedAssetTrack> getTracksForMediaType(String mediaType);
     @Method(selector = "tracksWithMediaCharacteristic:")
     public native NSArray<AVFragmentedAssetTrack> getTracksForMediaCharacteristic(String mediaCharacteristic);
+    public static AVFragmentedAsset createProviderDataObject(NSData data, String typeIdentifier) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       AVFragmentedAsset result = createProviderDataObject(data, typeIdentifier, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    @Method(selector = "objectWithItemProviderData:typeIdentifier:error:")
+    private static native AVFragmentedAsset createProviderDataObject(NSData data, String typeIdentifier, NSError.NSErrorPtr outError);
+    @Method(selector = "itemProviderVisibilityForRepresentationWithTypeIdentifier:")
+    public static native NSItemProviderRepresentationVisibility getItemProviderVisibility0(String typeIdentifier);
     /*</methods>*/
 }
