@@ -84,8 +84,8 @@ import org.robovm.apple.avfoundation.*;
     @Method(selector = "shapeWithPath:extrusionDepth:")
     public static native SCNShape create(UIBezierPath path, @MachineSizedFloat double extrusionDepth);
     @Method(selector = "geometry")
-    public static native SCNShape create();
+    public static native SCNShape createGeometry();
     @Method(selector = "geometryWithSources:elements:")
-    public static native SCNShape create(NSArray<SCNGeometrySource> sources, NSArray<SCNGeometryElement> elements);
+    public static native SCNShape createGeometry(NSArray<SCNGeometrySource> sources, NSArray<SCNGeometryElement> elements);
     /*</methods>*/
 }

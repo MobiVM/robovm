@@ -96,8 +96,8 @@ import org.robovm.apple.avfoundation.*;
     @Method(selector = "boxWithWidth:height:length:chamferRadius:")
     public static native SCNBox create(@MachineSizedFloat double width, @MachineSizedFloat double height, @MachineSizedFloat double length, @MachineSizedFloat double chamferRadius);
     @Method(selector = "geometry")
-    public static native SCNBox create();
+    public static native SCNBox createGeometry();
     @Method(selector = "geometryWithSources:elements:")
-    public static native SCNBox create(NSArray<SCNGeometrySource> sources, NSArray<SCNGeometryElement> elements);
+    public static native SCNBox createGeometry(NSArray<SCNGeometrySource> sources, NSArray<SCNGeometryElement> elements);
     /*</methods>*/
 }

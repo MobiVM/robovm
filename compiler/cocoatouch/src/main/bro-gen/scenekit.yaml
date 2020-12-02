@@ -208,9 +208,9 @@ classes:
             '-geometryElementAtIndex:':
                 name: getGeometryElement
             '+geometry':
-                name: create
+                name: createGeometry
             '+geometryWithSources:elements:':
-                name: create
+                name: createGeometry
                 parameters:
                     sources:
                         type: NSArray<SCNGeometrySource>
