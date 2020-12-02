@@ -1,5 +1,5 @@
 package: org.robovm.apple.healthkitui
-include: [foundation, healthkit, uikit, coregraphics]
+include: [foundation, healthkit, uikit, coregraphics, coreanimation]
 library: HealthKitUI
 framework: HealthKitUI
 clang_args: ['-x', 'objective-c']

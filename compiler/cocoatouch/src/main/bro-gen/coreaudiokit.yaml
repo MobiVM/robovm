@@ -1,5 +1,5 @@
 package: org.robovm.apple.coreaudiokit
-include: [foundation.yaml, audiotoolbox.yaml, coreaudio.yaml, uikit.yaml]
+include: [foundation, audiotoolbox, coreaudio, uikit, coreanimation]
 library: CoreAudioKit
 framework: CoreAudioKit
 clang_args: ['-x', 'objective-c']

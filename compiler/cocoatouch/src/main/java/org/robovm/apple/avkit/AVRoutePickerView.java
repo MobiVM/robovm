@@ -32,6 +32,7 @@ import org.robovm.apple.uikit.*;
 import org.robovm.apple.avfoundation.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.iad.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
