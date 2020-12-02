@@ -63,6 +63,8 @@ import org.robovm.apple.coregraphics.*;
     public native INSeat getReservedSeat();
     @Property(selector = "flight")
     public native INFlight getFlight();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

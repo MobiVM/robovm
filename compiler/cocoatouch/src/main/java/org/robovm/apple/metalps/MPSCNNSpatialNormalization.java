@@ -72,6 +72,8 @@ import org.robovm.apple.metal.*;
     public native float getDelta();
     @Property(selector = "setDelta:")
     public native void setDelta(float v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -66,10 +66,23 @@ import org.robovm.apple.dispatch.*;
     public native MKFeatureVisibility getCompassVisibility();
     @Property(selector = "setCompassVisibility:")
     public native void setCompassVisibility(MKFeatureVisibility v);
+    @WeaklyLinked
+    @Property(selector = "layerClass")
+    public static native Class<? extends CALayer> getLayerClass();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "compassButtonWithMapView:")
     protected static native @Pointer long create(MKMapView mapView);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute attribute);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:relativeToLayoutDirection:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute semanticContentAttribute, UIUserInterfaceLayoutDirection layoutDirection);
     /*</methods>*/
 }

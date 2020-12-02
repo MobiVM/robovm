@@ -89,6 +89,8 @@ import org.robovm.apple.coregraphics.*;
      */
     @Property(selector = "mediaSearch")
     public native INMediaSearch getMediaSearch();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -71,6 +71,8 @@ import org.robovm.apple.metal.*;
     public native boolean isSourcesAreTransposed();
     @Property(selector = "destinationsAreTransposed")
     public native boolean isDestinationsAreTransposed();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

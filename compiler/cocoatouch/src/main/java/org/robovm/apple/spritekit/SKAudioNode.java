@@ -81,6 +81,8 @@ import org.robovm.apple.metal.*;
     public native boolean isPositional();
     @Property(selector = "setPositional:")
     public native void setPositional(boolean v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -69,6 +69,9 @@ import org.robovm.apple.dispatch.*;
     @Deprecated
     @Property(selector = "overlay")
     public native MKOverlay getOverlay();
+    @WeaklyLinked
+    @Property(selector = "layerClass")
+    public static native Class<? extends CALayer> getLayerClass();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -126,5 +129,15 @@ import org.robovm.apple.dispatch.*;
     @Deprecated
     @Method(selector = "setNeedsDisplayInMapRect:zoomScale:")
     public native void setNeedsDisplay(@ByVal MKMapRect mapRect, @MachineSizedFloat double zoomScale);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute attribute);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:relativeToLayoutDirection:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute semanticContentAttribute, UIUserInterfaceLayoutDirection layoutDirection);
     /*</methods>*/
 }

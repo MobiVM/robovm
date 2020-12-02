@@ -68,6 +68,8 @@ import org.robovm.apple.mapkit.*;
     public native boolean isAlbumArtistButtonEnabled();
     @Property(selector = "setAlbumArtistButtonEnabled:")
     public native void setAlbumArtistButtonEnabled(boolean v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

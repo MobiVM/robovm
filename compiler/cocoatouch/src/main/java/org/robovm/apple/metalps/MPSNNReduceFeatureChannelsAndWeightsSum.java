@@ -61,6 +61,8 @@ import org.robovm.apple.metal.*;
     /*<properties>*/
     @Property(selector = "doWeightedSumByNonZeroWeights")
     public native boolean isDoWeightedSumByNonZeroWeights();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

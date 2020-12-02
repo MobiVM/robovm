@@ -93,9 +93,12 @@ import org.robovm.apple.dispatch.*;
     public static native NSUnitMass getOuncesTroy();
     @Property(selector = "slugs")
     public static native NSUnitMass getSlugs();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "baseUnit")
+    public static native NSUnitMass getBaseUnit();
     /*</methods>*/
 }

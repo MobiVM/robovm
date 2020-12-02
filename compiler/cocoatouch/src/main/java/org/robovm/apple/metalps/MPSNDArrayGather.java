@@ -61,6 +61,8 @@ import org.robovm.apple.metal.*;
     public native @MachineSizedUInt long getAxis();
     @Property(selector = "setAxis:")
     public native void setAxis(@MachineSizedUInt long v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

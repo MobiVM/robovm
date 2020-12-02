@@ -100,5 +100,15 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Method(selector = "formatForTraitCollection:")
     public static native UIGraphicsImageRendererFormat formatForTraitCollection(UITraitCollection traitCollection);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "defaultFormat")
+    public static native UIGraphicsImageRendererFormat getDefaultFormat();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "preferredFormat")
+    public static native UIGraphicsImageRendererFormat preferredFormat();
     /*</methods>*/
 }

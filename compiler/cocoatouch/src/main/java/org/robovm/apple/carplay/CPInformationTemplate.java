@@ -68,6 +68,8 @@ import org.robovm.apple.mapkit.*;
     public native NSArray<CPTextButton> getActions();
     @Property(selector = "setActions:")
     public native void setActions(NSArray<CPTextButton> v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

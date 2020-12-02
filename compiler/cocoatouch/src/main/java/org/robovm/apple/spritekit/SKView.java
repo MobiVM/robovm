@@ -156,6 +156,9 @@ import org.robovm.apple.metal.*;
     public native void setPreferredFrameRate(float v);
     @Property(selector = "scene")
     public native SKScene getScene();
+    @WeaklyLinked
+    @Property(selector = "layerClass")
+    public static native Class<? extends CALayer> getLayerClass();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -171,5 +174,15 @@ import org.robovm.apple.metal.*;
     public native @ByVal CGPoint convertPointToScene(@ByVal CGPoint point, SKScene scene);
     @Method(selector = "convertPoint:fromScene:")
     public native @ByVal CGPoint convertPointFromScene(@ByVal CGPoint point, SKScene scene);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute attribute);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:relativeToLayoutDirection:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute semanticContentAttribute, UIUserInterfaceLayoutDirection layoutDirection);
     /*</methods>*/
 }

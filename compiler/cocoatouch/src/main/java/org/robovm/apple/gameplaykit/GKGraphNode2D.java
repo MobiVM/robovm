@@ -58,6 +58,8 @@ import org.robovm.apple.uikit.*;
     public native @ByVal VectorFloat2 getPosition();
     @Property(selector = "setPosition:")
     public native void setPosition(@ByVal VectorFloat2 v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

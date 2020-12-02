@@ -62,5 +62,11 @@ import org.robovm.apple.coregraphics.*;
     public static native INDateComponentsRangeResolutionResult disambiguation(NSArray<INDateComponentsRange> dateComponentsRangesToDisambiguate);
     @Method(selector = "confirmationRequiredWithDateComponentsRangeToConfirm:")
     public static native INDateComponentsRangeResolutionResult confirmationRequired(INDateComponentsRange dateComponentsRangeToConfirm);
+    @Method(selector = "needsValue")
+    public static native INDateComponentsRangeResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INDateComponentsRangeResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INDateComponentsRangeResolutionResult unsupported();
     /*</methods>*/
 }

@@ -52,6 +52,8 @@ import org.robovm.apple.foundation.*;
     /*<properties>*/
     @Property(selector = "timeInterval")
     public native double getTimeInterval();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

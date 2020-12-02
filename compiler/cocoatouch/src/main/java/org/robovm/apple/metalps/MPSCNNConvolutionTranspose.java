@@ -86,6 +86,8 @@ import org.robovm.apple.metal.*;
      */
     @Property(selector = "dataSource")
     public native MPSCNNConvolutionDataSource getDataSource();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

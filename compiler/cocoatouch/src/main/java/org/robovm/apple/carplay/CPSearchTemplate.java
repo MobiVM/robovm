@@ -56,6 +56,8 @@ import org.robovm.apple.mapkit.*;
     public native CPSearchTemplateDelegate getDelegate();
     @Property(selector = "setDelegate:", strongRef = true)
     public native void setDelegate(CPSearchTemplateDelegate v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

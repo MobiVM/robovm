@@ -69,6 +69,8 @@ import org.robovm.apple.imageio.*;
     public native @MachineSizedFloat double getEstimatedScaleFactor();
     @Property(selector = "isTracked")
     public native boolean isTracked();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

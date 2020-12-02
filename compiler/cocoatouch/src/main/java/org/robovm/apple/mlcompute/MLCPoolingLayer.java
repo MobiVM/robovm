@@ -59,5 +59,7 @@ import org.robovm.apple.metalps.*;
     /*<methods>*/
     @Method(selector = "layerWithDescriptor:")
     protected static native @Pointer long create(MLCPoolingDescriptor descriptor);
+    @Method(selector = "supportsDataType:onDevice:")
+    public static native boolean supportsDataType(MLCDataType dataType, MLCDevice device);
     /*</methods>*/
 }

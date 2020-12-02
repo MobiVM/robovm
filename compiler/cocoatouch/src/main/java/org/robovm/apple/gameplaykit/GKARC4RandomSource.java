@@ -60,6 +60,8 @@ import org.robovm.apple.uikit.*;
     public native NSData getSeed();
     @Property(selector = "setSeed:")
     public native void setSeed(NSData v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -67,5 +69,7 @@ import org.robovm.apple.uikit.*;
     protected native @Pointer long init(NSData seed);
     @Method(selector = "dropValuesWithCount:")
     public native void dropValues(@MachineSizedUInt long count);
+    @Method(selector = "sharedRandom")
+    public static native GKRandomSource getSharedRandom();
     /*</methods>*/
 }

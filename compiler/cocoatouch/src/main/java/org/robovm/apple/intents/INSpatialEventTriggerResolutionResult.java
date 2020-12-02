@@ -62,5 +62,11 @@ import org.robovm.apple.coregraphics.*;
     public static native INSpatialEventTriggerResolutionResult disambiguation(NSArray<INSpatialEventTrigger> spatialEventTriggersToDisambiguate);
     @Method(selector = "confirmationRequiredWithSpatialEventTriggerToConfirm:")
     public static native INSpatialEventTriggerResolutionResult confirmationRequired(INSpatialEventTrigger spatialEventTriggerToConfirm);
+    @Method(selector = "needsValue")
+    public static native INSpatialEventTriggerResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INSpatialEventTriggerResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INSpatialEventTriggerResolutionResult unsupported();
     /*</methods>*/
 }

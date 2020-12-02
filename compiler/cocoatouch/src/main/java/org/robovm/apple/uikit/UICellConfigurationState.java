@@ -88,6 +88,8 @@ import org.robovm.apple.linkpresentation.*;
     public native UICellConfigurationDropState getCellDropState();
     @Property(selector = "setCellDropState:")
     public native void setCellDropState(UICellConfigurationDropState v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

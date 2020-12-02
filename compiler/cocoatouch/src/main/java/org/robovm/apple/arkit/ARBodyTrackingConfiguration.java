@@ -96,9 +96,20 @@ import org.robovm.apple.imageio.*;
     public native @MachineSizedSInt long getMaximumNumberOfTrackedImages();
     @Property(selector = "setMaximumNumberOfTrackedImages:")
     public native void setMaximumNumberOfTrackedImages(@MachineSizedSInt long v);
+    @Property(selector = "isSupported")
+    public static native boolean isSupported();
+    /**
+     * @since Available in iOS 11.3 and later.
+     */
+    @Property(selector = "supportedVideoFormats")
+    public static native NSArray<ARVideoFormat> getSupportedVideoFormats();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "supportsFrameSemantics:")
+    public static native boolean supportsFrameSemantics(ARFrameSemantics frameSemantics);
     /*</methods>*/
 }

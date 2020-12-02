@@ -67,6 +67,8 @@ import org.robovm.apple.foundation.*;
      */
     @Property(selector = "totalFlightsClimbed")
     public native HKQuantity getTotalFlightsClimbed();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

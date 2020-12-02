@@ -60,6 +60,8 @@ import org.robovm.apple.coregraphics.*;
     public native NSArray<INReservation> getReservations();
     @Property(selector = "setReservations:")
     public native void setReservations(NSArray<INReservation> v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -59,5 +59,7 @@ import org.robovm.apple.metalps.*;
     /*<methods>*/
     @Method(selector = "layerWithScale:")
     protected static native @Pointer long create(float scale);
+    @Method(selector = "supportsDataType:onDevice:")
+    public static native boolean supportsDataType(MLCDataType dataType, MLCDevice device);
     /*</methods>*/
 }

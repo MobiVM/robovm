@@ -282,6 +282,8 @@ import org.robovm.apple.metal.*;
     @Deprecated
     @Property(selector = "setParticleZPositionSpeed:")
     public native void setParticleZPositionSpeed(@MachineSizedFloat double v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

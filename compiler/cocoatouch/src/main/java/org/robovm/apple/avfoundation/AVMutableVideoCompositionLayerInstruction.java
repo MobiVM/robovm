@@ -62,6 +62,8 @@ import org.robovm.apple.audiotoolbox.*;
     public native int getTrackID();
     @Property(selector = "setTrackID:")
     public native void setTrackID(int v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     public void setTransformRamp(AVTimeRamp<CGAffineTransform> ramp) {

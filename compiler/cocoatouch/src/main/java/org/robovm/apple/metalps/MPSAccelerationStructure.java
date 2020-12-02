@@ -71,6 +71,8 @@ import org.robovm.apple.metal.*;
     public native MPSAccelerationStructureUsage getUsage();
     @Property(selector = "setUsage:")
     public native void setUsage(MPSAccelerationStructureUsage v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

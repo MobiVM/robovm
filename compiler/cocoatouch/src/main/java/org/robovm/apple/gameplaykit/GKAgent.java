@@ -80,6 +80,8 @@ import org.robovm.apple.uikit.*;
     public native float getMaxSpeed();
     @Property(selector = "setMaxSpeed:")
     public native void setMaxSpeed(float v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

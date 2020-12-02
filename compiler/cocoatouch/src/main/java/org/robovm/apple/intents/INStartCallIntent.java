@@ -89,6 +89,8 @@ import org.robovm.apple.coregraphics.*;
     @Deprecated
     @Property(selector = "recordTypeForRedialing")
     public native INCallRecordType getRecordTypeForRedialing();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

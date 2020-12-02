@@ -65,6 +65,8 @@ import org.robovm.apple.metal.*;
     public native @MachineSizedUInt long getDilationRateX();
     @Property(selector = "dilationRateY")
     public native @MachineSizedUInt long getDilationRateY();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

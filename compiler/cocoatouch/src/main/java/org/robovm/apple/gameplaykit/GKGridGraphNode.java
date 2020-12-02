@@ -56,6 +56,8 @@ import org.robovm.apple.uikit.*;
     /*<properties>*/
     @Property(selector = "gridPosition")
     public native @ByVal VectorInt2 getGridPosition();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

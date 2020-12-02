@@ -75,6 +75,8 @@ import org.robovm.apple.imageio.*;
     public native MTLTexture getEnvironmentTexture();
     @Property(selector = "extent")
     public native @ByVal VectorFloat3 getExtent();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

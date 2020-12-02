@@ -70,6 +70,9 @@ import org.robovm.apple.linkpresentation.*;
     public native UIVisualEffect getEffect();
     @Property(selector = "setEffect:")
     public native void setEffect(UIVisualEffect v);
+    @WeaklyLinked
+    @Property(selector = "layerClass")
+    public static native Class<? extends CALayer> getLayerClass();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
@@ -79,5 +82,15 @@ import org.robovm.apple.linkpresentation.*;
     protected native @Pointer long init(UIVisualEffect effect);
     @Method(selector = "initWithCoder:")
     protected native @Pointer long init(NSCoder coder);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute attribute);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:relativeToLayoutDirection:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute semanticContentAttribute, UIUserInterfaceLayoutDirection layoutDirection);
     /*</methods>*/
 }

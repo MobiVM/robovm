@@ -86,6 +86,8 @@ import org.robovm.apple.imageio.*;
      */
     @Property(selector = "classification")
     public native ARPlaneClassification getClassification();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

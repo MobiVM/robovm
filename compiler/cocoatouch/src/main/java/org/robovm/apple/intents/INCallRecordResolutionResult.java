@@ -62,5 +62,11 @@ import org.robovm.apple.coregraphics.*;
     public static native INCallRecordResolutionResult createDisambiguation(NSArray<INCallRecord> callRecordsToDisambiguate);
     @Method(selector = "confirmationRequiredWithCallRecordToConfirm:")
     public static native INCallRecordResolutionResult createConfirmationRequired(INCallRecord callRecordToConfirm);
+    @Method(selector = "needsValue")
+    public static native INCallRecordResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INCallRecordResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INCallRecordResolutionResult unsupported();
     /*</methods>*/
 }

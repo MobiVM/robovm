@@ -72,6 +72,8 @@ import org.robovm.apple.avfoundation.*;
     public native void setLoadingPolicy(SCNReferenceLoadingPolicy v);
     @Property(selector = "isLoaded")
     public native boolean isLoaded();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -83,5 +85,9 @@ import org.robovm.apple.avfoundation.*;
     public native void load();
     @Method(selector = "unload")
     public native void unload();
+    @Method(selector = "node")
+    public static native SCNReferenceNode create();
+    @Method(selector = "nodeWithGeometry:")
+    public static native SCNNode create(SCNGeometry geometry);
     /*</methods>*/
 }

@@ -64,6 +64,8 @@ import org.robovm.apple.coregraphics.*;
     public native INDateComponentsRange getTransactionScheduledDate();
     @Property(selector = "transactionNote")
     public native String getTransactionNote();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

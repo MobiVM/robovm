@@ -54,6 +54,7 @@ import org.robovm.apple.dispatch.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "functionDescriptor")
+    public static native MTLFunctionDescriptor functionDescriptor();
     /*</methods>*/
 }

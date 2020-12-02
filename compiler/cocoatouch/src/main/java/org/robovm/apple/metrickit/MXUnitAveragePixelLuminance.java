@@ -55,9 +55,12 @@ import org.robovm.apple.foundation.*;
     /*<properties>*/
     @Property(selector = "apl")
     public static native MXUnitAveragePixelLuminance getApl();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "baseUnit")
+    public static native MXUnitAveragePixelLuminance getBaseUnit();
     /*</methods>*/
 }

@@ -51,7 +51,21 @@ import org.robovm.apple.coregraphics.*;
     protected MPMusicPlayerApplicationController(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "applicationMusicPlayer")
+    public static native MPMusicPlayerController getApplicationMusicPlayer();
+    /**
+     * @since Available in iOS 10.3 and later.
+     */
+    @Property(selector = "applicationQueuePlayer")
+    public static native MPMusicPlayerApplicationController getApplicationQueuePlayer();
+    @Property(selector = "systemMusicPlayer")
+    public static native MPMusicPlayerController getSystemMusicPlayer();
+    /**
+     * @deprecated Deprecated in iOS 8.0. Use systemMusicPlayer
+     */
+    @Deprecated
+    @Property(selector = "iPodMusicPlayer")
+    public static native MPMusicPlayerController getIPodMusicPlayer();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

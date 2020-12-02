@@ -99,5 +99,15 @@ import org.robovm.apple.dispatch.*;
     /*<methods>*/
     @Method(selector = "initWithMapView:")
     protected native @Pointer long init(MKMapView mapView);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "fixedSpaceItemOfWidth:")
+    public static native MKUserTrackingBarButtonItem fixedSpaceItemOfWidth(@MachineSizedFloat double width);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "flexibleSpaceItem")
+    public static native MKUserTrackingBarButtonItem flexibleSpaceItem();
     /*</methods>*/
 }

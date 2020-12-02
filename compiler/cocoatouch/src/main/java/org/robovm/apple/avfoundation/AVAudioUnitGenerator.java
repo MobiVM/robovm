@@ -125,6 +125,11 @@ import org.robovm.apple.audiotoolbox.*;
     /**
      * @since Available in iOS 9.0 and later.
      */
+    @Method(selector = "instantiateWithComponentDescription:options:completionHandler:")
+    public static native void instantiate(@ByVal AudioComponentDescription audioComponentDescription, AudioComponentInstantiationOptions options, @Block VoidBlock2<AVAudioUnit, NSError> completionHandler);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
     @Method(selector = "destinationForMixer:bus:")
     public native AVAudioMixingDestination getDestinationForMixer(AVAudioNode mixer, @MachineSizedUInt long bus);
     /*</methods>*/

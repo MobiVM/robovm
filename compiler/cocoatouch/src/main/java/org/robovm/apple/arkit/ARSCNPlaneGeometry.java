@@ -61,7 +61,8 @@ import org.robovm.apple.imageio.*;
     public ARSCNPlaneGeometry(MTLDevice device) { super((Handle) null, create(device)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -69,5 +70,9 @@ import org.robovm.apple.imageio.*;
     public native void updateFromPlaneGeometry(ARPlaneGeometry planeGeometry);
     @Method(selector = "planeGeometryWithDevice:")
     protected static native @Pointer long create(MTLDevice device);
+    @Method(selector = "geometry")
+    public static native ARSCNPlaneGeometry create();
+    @Method(selector = "geometryWithSources:elements:")
+    public static native ARSCNPlaneGeometry create(NSArray<SCNGeometrySource> sources, NSArray<SCNGeometryElement> elements);
     /*</methods>*/
 }

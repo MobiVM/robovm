@@ -55,6 +55,8 @@ import org.robovm.apple.coregraphics.*;
     public native NSArray<NSURLQueryItem> getAuthorizationOptions();
     @Property(selector = "setAuthorizationOptions:")
     public native void setAuthorizationOptions(NSArray<NSURLQueryItem> v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

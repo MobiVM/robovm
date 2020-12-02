@@ -51,6 +51,8 @@ import org.robovm.apple.foundation.*;
     public native NSNumber getRelativeAltitude();
     @Property(selector = "pressure")
     public native NSNumber getPressure();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

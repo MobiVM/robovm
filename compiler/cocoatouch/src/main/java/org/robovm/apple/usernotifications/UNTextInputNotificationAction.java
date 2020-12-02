@@ -54,6 +54,8 @@ import org.robovm.apple.foundation.*;
     public native String getTextInputButtonTitle();
     @Property(selector = "textInputPlaceholder")
     public native String getTextInputPlaceholder();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

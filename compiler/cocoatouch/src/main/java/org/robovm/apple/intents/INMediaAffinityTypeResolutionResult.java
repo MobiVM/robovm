@@ -60,5 +60,11 @@ import org.robovm.apple.coregraphics.*;
     public static native INMediaAffinityTypeResolutionResult success(INMediaAffinityType resolvedMediaAffinityType);
     @Method(selector = "confirmationRequiredWithMediaAffinityTypeToConfirm:")
     public static native INMediaAffinityTypeResolutionResult confirmationRequired(INMediaAffinityType mediaAffinityTypeToConfirm);
+    @Method(selector = "needsValue")
+    public static native INMediaAffinityTypeResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INMediaAffinityTypeResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INMediaAffinityTypeResolutionResult unsupported();
     /*</methods>*/
 }

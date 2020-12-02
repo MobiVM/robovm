@@ -60,6 +60,8 @@ import org.robovm.apple.coregraphics.*;
     public native INNote getCreatedNote();
     @Property(selector = "setCreatedNote:")
     public native void setCreatedNote(INNote v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -67,9 +67,12 @@ import org.robovm.apple.dispatch.*;
     public static native NSUnitTemperature getCelsius();
     @Property(selector = "fahrenheit")
     public static native NSUnitTemperature getFahrenheit();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "baseUnit")
+    public static native NSUnitTemperature getBaseUnit();
     /*</methods>*/
 }

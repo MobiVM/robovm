@@ -59,10 +59,14 @@ import org.robovm.apple.coregraphics.*;
     public native @MachineSizedUInt long getCount();
     @Property(selector = "mediaTypes")
     public native MPMediaType getMediaTypes();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithItems:")
     protected native @Pointer long init(NSArray<MPMediaItem> items);
+    @Method(selector = "canFilterByProperty:")
+    public static native boolean canFilterByProperty(MPMediaEntityProperty property);
     /*</methods>*/
 }

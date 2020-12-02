@@ -62,5 +62,17 @@ import org.robovm.apple.coregraphics.*;
     protected native @Pointer long init(INCallRecordResolutionResult callRecordResolutionResult);
     @Method(selector = "unsupportedForReason:")
     public static native INStartCallCallRecordToCallBackResolutionResult unsupportedForReason(INStartCallCallRecordToCallBackUnsupportedReason reason);
+    @Method(selector = "successWithResolvedCallRecord:")
+    public static native INStartCallCallRecordToCallBackResolutionResult createSuccess(INCallRecord resolvedCallRecord);
+    @Method(selector = "disambiguationWithCallRecordsToDisambiguate:")
+    public static native INStartCallCallRecordToCallBackResolutionResult createDisambiguation(NSArray<INCallRecord> callRecordsToDisambiguate);
+    @Method(selector = "confirmationRequiredWithCallRecordToConfirm:")
+    public static native INStartCallCallRecordToCallBackResolutionResult createConfirmationRequired(INCallRecord callRecordToConfirm);
+    @Method(selector = "needsValue")
+    public static native INStartCallCallRecordToCallBackResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INStartCallCallRecordToCallBackResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INStartCallCallRecordToCallBackResolutionResult unsupported();
     /*</methods>*/
 }

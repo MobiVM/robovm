@@ -57,6 +57,8 @@ import org.robovm.apple.foundation.*;
     public native MXSignpostIntervalData getSignpostIntervalData();
     @Property(selector = "totalCount")
     public native @MachineSizedUInt long getTotalCount();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -94,6 +94,8 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Property(selector = "sender")
     public native NSObject getSender();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

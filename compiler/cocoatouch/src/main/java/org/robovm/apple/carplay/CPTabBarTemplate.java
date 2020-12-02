@@ -64,6 +64,8 @@ import org.robovm.apple.mapkit.*;
     public native NSArray<CPTemplate> getTemplates();
     @Property(selector = "selectedTemplate")
     public native CPTemplate getSelectedTemplate();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

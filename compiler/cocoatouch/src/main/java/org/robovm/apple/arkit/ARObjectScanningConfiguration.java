@@ -68,10 +68,22 @@ import org.robovm.apple.imageio.*;
     public native ARPlaneDetection getPlaneDetection();
     @Property(selector = "setPlaneDetection:")
     public native void setPlaneDetection(ARPlaneDetection v);
+    @Property(selector = "isSupported")
+    public static native boolean isSupported();
+    /**
+     * @since Available in iOS 11.3 and later.
+     */
+    @Property(selector = "supportedVideoFormats")
+    public static native NSArray<ARVideoFormat> getSupportedVideoFormats();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "new")
     public static native ARObjectScanningConfiguration newConfiguration();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "supportsFrameSemantics:")
+    public static native boolean supportsFrameSemantics(ARFrameSemantics frameSemantics);
     /*</methods>*/
 }

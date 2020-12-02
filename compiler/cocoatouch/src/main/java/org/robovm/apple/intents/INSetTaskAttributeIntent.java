@@ -82,6 +82,8 @@ import org.robovm.apple.coregraphics.*;
     public native INSpatialEventTrigger getSpatialEventTrigger();
     @Property(selector = "temporalEventTrigger")
     public native INTemporalEventTrigger getTemporalEventTrigger();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

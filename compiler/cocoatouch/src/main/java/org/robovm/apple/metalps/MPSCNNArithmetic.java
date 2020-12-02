@@ -83,6 +83,8 @@ import org.robovm.apple.metal.*;
     public native float getMaximumValue();
     @Property(selector = "setMaximumValue:")
     public native void setMaximumValue(float v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -73,6 +73,9 @@ import org.robovm.apple.avkit.*;
     public native String getAdvertisingSection();
     @Property(selector = "setAdvertisingSection:")
     public native void setAdvertisingSection(String v);
+    @WeaklyLinked
+    @Property(selector = "layerClass")
+    public static native Class<? extends CALayer> getLayerClass();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -88,5 +91,15 @@ import org.robovm.apple.avkit.*;
     protected native @Pointer long init(ADAdType type);
     @Method(selector = "cancelBannerViewAction")
     public native void cancelBannerViewAction();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute attribute);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:relativeToLayoutDirection:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute semanticContentAttribute, UIUserInterfaceLayoutDirection layoutDirection);
     /*</methods>*/
 }

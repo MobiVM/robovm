@@ -83,5 +83,14 @@ import org.robovm.apple.imageio.*;
      */
     @Method(selector = "supportsAssetResourceTypes:")
     public static native boolean supportsAssetResourceTypes(@org.robovm.rt.bro.annotation.Marshaler(PHAssetResourceType.AsListMarshaler.class) List<PHAssetResourceType> types);
+    @WeaklyLinked
+    @Method(selector = "creationRequestForAssetFromImage:")
+    public static native PHAssetCreationRequest createImageAssetCreationRequest(UIImage image);
+    @Method(selector = "creationRequestForAssetFromImageAtFileURL:")
+    public static native PHAssetCreationRequest createImageAssetCreationRequest(NSURL fileURL);
+    @Method(selector = "creationRequestForAssetFromVideoAtFileURL:")
+    public static native PHAssetCreationRequest createVideoAssetCreationRequest(NSURL fileURL);
+    @Method(selector = "deleteAssets:")
+    public static native void deleteAssets(NSFastEnumeration assets);
     /*</methods>*/
 }

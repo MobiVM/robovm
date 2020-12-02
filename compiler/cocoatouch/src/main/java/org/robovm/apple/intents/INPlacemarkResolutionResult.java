@@ -62,5 +62,11 @@ import org.robovm.apple.coregraphics.*;
     public static native INPlacemarkResolutionResult disambiguation(NSArray<CLPlacemark> placemarksToDisambiguate);
     @Method(selector = "confirmationRequiredWithPlacemarkToConfirm:")
     public static native INPlacemarkResolutionResult confirmationRequired(CLPlacemark placemarkToConfirm);
+    @Method(selector = "needsValue")
+    public static native INPlacemarkResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INPlacemarkResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INPlacemarkResolutionResult unsupported();
     /*</methods>*/
 }

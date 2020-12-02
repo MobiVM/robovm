@@ -62,5 +62,11 @@ import org.robovm.apple.coregraphics.*;
     public static native INObjectResolutionResult disambiguation(NSArray<INObject> objectsToDisambiguate);
     @Method(selector = "confirmationRequiredWithObjectToConfirm:")
     public static native INObjectResolutionResult confirmationRequired(INObject objectToConfirm);
+    @Method(selector = "needsValue")
+    public static native INObjectResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INObjectResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INObjectResolutionResult unsupported();
     /*</methods>*/
 }

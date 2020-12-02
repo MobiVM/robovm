@@ -102,9 +102,21 @@ import org.robovm.apple.metal.*;
     public native NSArray<NSNumber> getLineDashPattern();
     @Property(selector = "setLineDashPattern:")
     public native void setLineDashPattern(NSArray<NSNumber> v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "defaultValueForKey:")
+    public static native NSObject getDefaultValue(String key);
+    @Method(selector = "needsDisplayForKey:")
+    public static native boolean needsDisplay(String key);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "cornerCurveExpansionFactor:")
+    public static native @MachineSizedFloat double cornerCurveExpansionFactor(CALayerCornerCurve curve);
+    @Method(selector = "defaultActionForKey:")
+    public static native CAAction getDefaultAction(String event);
     /*</methods>*/
 }

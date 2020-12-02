@@ -74,6 +74,8 @@ import org.robovm.apple.linkpresentation.*;
     public native boolean adjustsFontForContentSizeCategory();
     @Property(selector = "setAdjustsFontForContentSizeCategory:")
     public native void setAdjustsFontForContentSizeCategory(boolean v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

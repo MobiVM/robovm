@@ -73,6 +73,8 @@ import org.robovm.apple.metal.*;
     public native @ByVal CGPoint getAnchorPoint();
     @Property(selector = "setAnchorPoint:")
     public native void setAnchorPoint(@ByVal CGPoint v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

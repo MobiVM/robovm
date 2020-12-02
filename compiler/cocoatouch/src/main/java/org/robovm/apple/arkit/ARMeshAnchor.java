@@ -62,6 +62,8 @@ import org.robovm.apple.imageio.*;
     /*<properties>*/
     @Property(selector = "geometry")
     public native ARMeshGeometry getGeometry();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

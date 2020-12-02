@@ -62,6 +62,8 @@ import org.robovm.apple.imageio.*;
     public native @MachineSizedUInt long getElementCount();
     @Property(selector = "data")
     public native NSData getData();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

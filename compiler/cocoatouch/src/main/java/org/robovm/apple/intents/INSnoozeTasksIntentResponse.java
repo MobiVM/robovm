@@ -60,6 +60,8 @@ import org.robovm.apple.coregraphics.*;
     public native NSArray<INTask> getSnoozedTasks();
     @Property(selector = "setSnoozedTasks:")
     public native void setSnoozedTasks(NSArray<INTask> v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

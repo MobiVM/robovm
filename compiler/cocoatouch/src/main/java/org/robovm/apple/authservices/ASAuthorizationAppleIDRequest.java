@@ -55,6 +55,8 @@ import org.robovm.apple.coregraphics.*;
     public native String getUser();
     @Property(selector = "setUser:")
     public native void setUser(String v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

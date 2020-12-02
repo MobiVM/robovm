@@ -66,10 +66,23 @@ import org.robovm.apple.coregraphics.*;
     public native @MachineSizedFloat double getCornerRadius();
     @Property(selector = "setCornerRadius:")
     public native void setCornerRadius(@MachineSizedFloat double v);
+    @WeaklyLinked
+    @Property(selector = "layerClass")
+    public static native Class<? extends CALayer> getLayerClass();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithAuthorizationButtonType:authorizationButtonStyle:")
     protected native @Pointer long init(ASAuthorizationAppleIDButtonType type, ASAuthorizationAppleIDButtonStyle style);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute attribute);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:relativeToLayoutDirection:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute semanticContentAttribute, UIUserInterfaceLayoutDirection layoutDirection);
     /*</methods>*/
 }

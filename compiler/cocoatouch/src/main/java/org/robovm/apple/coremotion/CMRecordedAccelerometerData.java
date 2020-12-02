@@ -53,6 +53,8 @@ import org.robovm.apple.foundation.*;
     public native long getIdentifier();
     @Property(selector = "startDate")
     public native NSDate getStartDate();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

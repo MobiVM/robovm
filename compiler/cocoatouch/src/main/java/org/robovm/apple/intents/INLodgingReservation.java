@@ -67,6 +67,8 @@ import org.robovm.apple.coregraphics.*;
     public native NSNumber getNumberOfAdults();
     @Property(selector = "numberOfChildren")
     public native NSNumber getNumberOfChildren();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

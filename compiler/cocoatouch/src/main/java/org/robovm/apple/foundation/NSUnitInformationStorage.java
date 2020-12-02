@@ -131,9 +131,12 @@ import org.robovm.apple.dispatch.*;
     public static native NSUnitInformationStorage getMebibits();
     @Property(selector = "kibibits")
     public static native NSUnitInformationStorage getKibibits();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "baseUnit")
+    public static native NSUnitInformationStorage getBaseUnit();
     /*</methods>*/
 }

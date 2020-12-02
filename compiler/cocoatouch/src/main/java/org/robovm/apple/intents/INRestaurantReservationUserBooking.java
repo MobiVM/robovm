@@ -80,6 +80,8 @@ import org.robovm.apple.coregraphics.*;
     public native NSDate getDateStatusModified();
     @Property(selector = "setDateStatusModified:")
     public native void setDateStatusModified(NSDate v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

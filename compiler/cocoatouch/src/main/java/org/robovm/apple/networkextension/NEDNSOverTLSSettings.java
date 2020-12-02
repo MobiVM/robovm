@@ -66,6 +66,8 @@ import org.robovm.apple.network.*;
      */
     @Property(selector = "setServerName:")
     public native void setServerName(String v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -57,6 +57,8 @@ import org.robovm.apple.foundation.*;
     public native NSMeasurement<NSUnitDuration> getCumulativeBackgroundAudioTime();
     @Property(selector = "cumulativeBackgroundLocationTime")
     public native NSMeasurement<NSUnitDuration> getCumulativeBackgroundLocationTime();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -81,6 +81,8 @@ import org.robovm.apple.coregraphics.*;
     public native NSDate getLatestBookingDateForResults();
     @Property(selector = "setLatestBookingDateForResults:")
     public native void setLatestBookingDateForResults(NSDate v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

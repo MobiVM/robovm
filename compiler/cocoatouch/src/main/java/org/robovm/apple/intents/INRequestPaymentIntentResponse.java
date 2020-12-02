@@ -60,6 +60,8 @@ import org.robovm.apple.coregraphics.*;
     public native INPaymentRecord getPaymentRecord();
     @Property(selector = "setPaymentRecord:")
     public native void setPaymentRecord(INPaymentRecord v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

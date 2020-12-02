@@ -102,6 +102,8 @@ import org.robovm.apple.metal.*;
     public native SKTexture getTexture();
     @Property(selector = "setTexture:")
     public native void setTexture(SKTexture v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -161,5 +161,29 @@ import org.robovm.apple.metal.*;
     @Deprecated
     @Method(selector = "unarchiveObjectWithFile:device:")
     public static native NSObject unarchiveObject(String path, MTLDevice device);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "unarchivedArrayOfObjectsOfClass:fromData:error:")
+    public static native NSArray<?> unarchivedArray(Class<?> cls, NSData data, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "unarchivedDictionaryWithKeysOfClass:objectsOfClass:fromData:error:")
+    public static native NSDictionary<?, ?> unarchivedDictionary(Class<?> keyCls, Class<?> valueCls, NSData data, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "unarchivedArrayOfObjectsOfClasses:fromData:error:")
+    public static native NSArray<?> unarchivedArray(NSSet<?> classes, NSData data, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "unarchivedDictionaryWithKeysOfClasses:objectsOfClasses:fromData:error:")
+    public static native NSDictionary<?, ?> unarchivedDictionary(NSSet<?> keyClasses, NSSet<?> valueClasses, NSData data, NSError.NSErrorPtr error);
+    @Method(selector = "setClass:forClassName:")
+    public static native void setDefaultClassForClassName(Class<? extends NSObject> cls, String codedName);
+    @Method(selector = "classForClassName:")
+    public static native Class<? extends NSObject> getDefaultClassForClassName(String codedName);
     /*</methods>*/
 }

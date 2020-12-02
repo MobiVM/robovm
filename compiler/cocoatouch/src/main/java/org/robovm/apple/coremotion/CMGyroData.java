@@ -49,6 +49,8 @@ import org.robovm.apple.foundation.*;
     /*<properties>*/
     @Property(selector = "rotationRate")
     public native @ByVal CMRotationRate getRotationRate();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -56,6 +56,8 @@ import org.robovm.apple.mapkit.*;
     /*<properties>*/
     @Property(selector = "image")
     public native UIImage getImage();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -74,6 +74,8 @@ import org.robovm.apple.fileprovider.*;
     @WeaklyLinked
     @Property(selector = "relativeLocation")
     public native CLLocation getRelativeLocation();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

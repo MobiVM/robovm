@@ -67,6 +67,8 @@ import org.robovm.apple.metal.*;
      */
     @Property(selector = "setSearchLimitRadius:")
     public native void setSearchLimitRadius(float v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

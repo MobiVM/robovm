@@ -59,5 +59,10 @@ import org.robovm.apple.corelocation.*;
     /*<methods>*/
     @Method(selector = "initWithFireDateComponents:")
     protected native @Pointer long init(NSDateComponents fireDateComponents);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "isSupportedForHome:")
+    public static native boolean isSupportedForHome(HMHome home);
     /*</methods>*/
 }

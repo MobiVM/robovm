@@ -102,6 +102,9 @@ import org.robovm.apple.imageio.*;
      */
     @Property(selector = "setRendersMotionBlur:")
     public native void setRendersMotionBlur(boolean v);
+    @WeaklyLinked
+    @Property(selector = "layerClass")
+    public static native Class<? extends CALayer> getLayerClass();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -137,5 +140,15 @@ import org.robovm.apple.imageio.*;
      */
     @Method(selector = "raycastQueryFromPoint:allowingTarget:alignment:")
     public native ARRaycastQuery raycastQueryFromPoint(@ByVal CGPoint point, ARRaycastTarget target, ARRaycastTargetAlignment alignment);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute attribute);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:relativeToLayoutDirection:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute semanticContentAttribute, UIUserInterfaceLayoutDirection layoutDirection);
     /*</methods>*/
 }

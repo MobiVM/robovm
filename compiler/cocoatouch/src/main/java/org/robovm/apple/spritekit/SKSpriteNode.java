@@ -135,6 +135,8 @@ import org.robovm.apple.metal.*;
     public native @MachineSizedSInt long getSubdivisionLevels();
     @Property(selector = "setSubdivisionLevels:")
     public native void setSubdivisionLevels(@MachineSizedSInt long v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

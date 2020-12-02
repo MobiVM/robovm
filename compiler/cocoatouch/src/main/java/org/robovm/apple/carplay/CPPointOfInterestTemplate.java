@@ -68,6 +68,8 @@ import org.robovm.apple.mapkit.*;
     public native CPPointOfInterestTemplateDelegate getPointOfInterestDelegate();
     @Property(selector = "setPointOfInterestDelegate:", strongRef = true)
     public native void setPointOfInterestDelegate(CPPointOfInterestTemplateDelegate v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

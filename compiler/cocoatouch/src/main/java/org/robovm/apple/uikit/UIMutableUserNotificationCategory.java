@@ -66,6 +66,8 @@ import org.robovm.apple.linkpresentation.*;
     public native String getIdentifier();
     @Property(selector = "setIdentifier:")
     public native void setIdentifier(String v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

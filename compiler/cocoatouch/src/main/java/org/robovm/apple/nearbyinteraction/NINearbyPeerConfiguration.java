@@ -54,6 +54,8 @@ import org.robovm.apple.dispatch.*;
     /*<properties>*/
     @Property(selector = "peerDiscoveryToken")
     public native NIDiscoveryToken getPeerDiscoveryToken();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

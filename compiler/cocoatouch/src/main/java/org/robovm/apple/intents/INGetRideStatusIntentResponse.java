@@ -60,6 +60,8 @@ import org.robovm.apple.coregraphics.*;
     public native INRideStatus getRideStatus();
     @Property(selector = "setRideStatus:")
     public native void setRideStatus(INRideStatus v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

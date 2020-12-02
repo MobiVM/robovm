@@ -61,5 +61,7 @@ import org.robovm.apple.metalps.*;
     /*<methods>*/
     @Method(selector = "layerWithReductionType:dimension:")
     protected static native @Pointer long create(MLCReductionType reductionType, @MachineSizedUInt long dimension);
+    @Method(selector = "supportsDataType:onDevice:")
+    public static native boolean supportsDataType(MLCDataType dataType, MLCDevice device);
     /*</methods>*/
 }

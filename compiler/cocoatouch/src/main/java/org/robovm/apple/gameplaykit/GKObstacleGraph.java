@@ -62,6 +62,8 @@ import org.robovm.apple.uikit.*;
     public native NSArray<GKPolygonObstacle> getObstacles();
     @Property(selector = "bufferRadius")
     public native float getBufferRadius();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

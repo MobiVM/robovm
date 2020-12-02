@@ -52,7 +52,8 @@ import org.robovm.apple.mapkit.*;
     public CPNowPlayingRepeatButton(@Block VoidBlock1<CPNowPlayingButton> handler) { super(handler); }
     /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

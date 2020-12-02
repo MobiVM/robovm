@@ -122,6 +122,8 @@ import org.robovm.apple.metal.*;
     public native boolean isEnableAutomapping();
     @Property(selector = "setEnableAutomapping:")
     public native void setEnableAutomapping(boolean v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

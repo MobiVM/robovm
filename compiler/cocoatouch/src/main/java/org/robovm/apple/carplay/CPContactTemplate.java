@@ -70,6 +70,8 @@ import org.robovm.apple.mapkit.*;
     public native CPBarButton getBackButton();
     @Property(selector = "setBackButton:")
     public native void setBackButton(CPBarButton v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

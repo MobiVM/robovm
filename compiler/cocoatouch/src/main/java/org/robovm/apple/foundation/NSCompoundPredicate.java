@@ -63,6 +63,8 @@ import org.robovm.apple.dispatch.*;
     public native NSCompoundPredicateType getCompoundPredicateType();
     @Property(selector = "subpredicates")
     public native NSArray<NSPredicate> getSubpredicates();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
