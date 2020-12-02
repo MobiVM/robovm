@@ -1,5 +1,5 @@
 package: org.robovm.apple.photosui
-include: [foundation.yaml, photos.yaml, uikit.yaml]
+include: [foundation, photos, uikit, coreanimation]
 library: PhotosUI
 framework: PhotosUI
 clang_args: ['-x', 'objective-c']

@@ -1,5 +1,5 @@
 package: org.robovm.apple.glkit
-include: [foundation.yaml, corefoundation.yaml, coregraphics.yaml, opengles.yaml, uikit.yaml, dispatch.yaml, modelio.yaml]
+include: [foundation, corefoundation, coregraphics, opengles, uikit, dispatch, modelio, coreanimation]
 library: GLKit
 framework: GLKit
 clang_args: ['-x', 'objective-c']

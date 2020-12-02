@@ -1,5 +1,5 @@
 package: org.robovm.apple.mediaplayer
-include: [foundation.yaml, uikit.yaml, coregraphics.yaml]
+include: [foundation, uikit, coregraphics, coreanimation]
 library: MediaPlayer
 framework: MediaPlayer
 clang_args: ['-x', 'objective-c']

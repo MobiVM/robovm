@@ -31,6 +31,7 @@ import org.robovm.apple.foundation.*;
 import org.robovm.apple.audiotoolbox.*;
 import org.robovm.apple.coreaudio.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/

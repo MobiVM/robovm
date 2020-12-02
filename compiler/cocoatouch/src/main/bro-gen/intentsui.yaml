@@ -1,5 +1,5 @@
 package: org.robovm.apple.intentsui
-include: [foundation, intents, coregraphics, uikit]
+include: [foundation, intents, coregraphics, uikit, coreanimation]
 library: IntentsUI
 framework: IntentsUI
 clang_args: ['-x', 'objective-c']
