@@ -84,8 +84,8 @@ import org.robovm.apple.avfoundation.*;
     @Method(selector = "tubeWithInnerRadius:outerRadius:height:")
     public static native SCNTube create(@MachineSizedFloat double innerRadius, @MachineSizedFloat double outerRadius, @MachineSizedFloat double height);
     @Method(selector = "geometry")
-    public static native SCNTube create();
+    public static native SCNTube createGeometry();
     @Method(selector = "geometryWithSources:elements:")
-    public static native SCNTube create(NSArray<SCNGeometrySource> sources, NSArray<SCNGeometryElement> elements);
+    public static native SCNTube createGeometry(NSArray<SCNGeometrySource> sources, NSArray<SCNGeometryElement> elements);
     /*</methods>*/
 }

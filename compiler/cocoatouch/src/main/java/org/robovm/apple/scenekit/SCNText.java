@@ -104,8 +104,8 @@ import org.robovm.apple.avfoundation.*;
     @Method(selector = "textWithString:extrusionDepth:")
     public static native SCNText create(NSAttributedString string, @MachineSizedFloat double extrusionDepth);
     @Method(selector = "geometry")
-    public static native SCNText create();
+    public static native SCNText createGeometry();
     @Method(selector = "geometryWithSources:elements:")
-    public static native SCNText create(NSArray<SCNGeometrySource> sources, NSArray<SCNGeometryElement> elements);
+    public static native SCNText createGeometry(NSArray<SCNGeometrySource> sources, NSArray<SCNGeometryElement> elements);
     /*</methods>*/
 }

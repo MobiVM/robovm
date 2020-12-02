@@ -80,8 +80,8 @@ import org.robovm.apple.avfoundation.*;
     @Method(selector = "cylinderWithRadius:height:")
     public static native SCNCylinder create(@MachineSizedFloat double radius, @MachineSizedFloat double height);
     @Method(selector = "geometry")
-    public static native SCNCylinder create();
+    public static native SCNCylinder createGeometry();
     @Method(selector = "geometryWithSources:elements:")
-    public static native SCNCylinder create(NSArray<SCNGeometrySource> sources, NSArray<SCNGeometryElement> elements);
+    public static native SCNCylinder createGeometry(NSArray<SCNGeometrySource> sources, NSArray<SCNGeometryElement> elements);
     /*</methods>*/
 }

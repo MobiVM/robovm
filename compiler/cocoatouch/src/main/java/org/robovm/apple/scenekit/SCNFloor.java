@@ -110,8 +110,8 @@ import org.robovm.apple.avfoundation.*;
     @Method(selector = "floor")
     public static native SCNFloor create();
     @Method(selector = "geometry")
-    public static native SCNFloor create();
+    public static native SCNFloor createGeometry();
     @Method(selector = "geometryWithSources:elements:")
-    public static native SCNFloor create(NSArray<SCNGeometrySource> sources, NSArray<SCNGeometryElement> elements);
+    public static native SCNFloor createGeometry(NSArray<SCNGeometrySource> sources, NSArray<SCNGeometryElement> elements);
     /*</methods>*/
 }

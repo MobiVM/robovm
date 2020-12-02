@@ -50,8 +50,6 @@ import org.robovm.apple.uikit.*;
     protected GKCompositeBehavior(SkipInit skipInit) { super(skipInit); }
     public GKCompositeBehavior(NSArray<GKBehavior> behaviors) { super((Handle) null, create0(behaviors)); retain(getHandle()); }
     public GKCompositeBehavior(NSArray<GKBehavior> behaviors, NSArray<NSNumber> weights) { super((Handle) null, create0(behaviors, weights)); retain(getHandle()); }
-    public GKCompositeBehavior(NSArray<GKGoal> goals) { super((Handle) null, create(goals)); retain(getHandle()); }
-    public GKCompositeBehavior(NSArray<GKGoal> goals, NSArray<NSNumber> weights) { super((Handle) null, create(goals, weights)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "behaviorCount")
@@ -78,8 +76,8 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "behaviorWithBehaviors:andWeights:")
     protected static native @Pointer long create0(NSArray<GKBehavior> behaviors, NSArray<NSNumber> weights);
     @Method(selector = "behaviorWithGoals:")
-    protected static native @Pointer long create(NSArray<GKGoal> goals);
+    public static native GKCompositeBehavior createUsingGoals(NSArray<GKGoal> goals);
     @Method(selector = "behaviorWithGoals:andWeights:")
-    protected static native @Pointer long create(NSArray<GKGoal> goals, NSArray<NSNumber> weights);
+    public static native GKCompositeBehavior createUsingGoals(NSArray<GKGoal> goals, NSArray<NSNumber> weights);
     /*</methods>*/
 }

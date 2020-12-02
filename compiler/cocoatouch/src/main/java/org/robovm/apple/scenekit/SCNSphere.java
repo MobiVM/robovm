@@ -76,8 +76,8 @@ import org.robovm.apple.avfoundation.*;
     @Method(selector = "sphereWithRadius:")
     public static native SCNSphere create(@MachineSizedFloat double radius);
     @Method(selector = "geometry")
-    public static native SCNSphere create();
+    public static native SCNSphere createGeometry();
     @Method(selector = "geometryWithSources:elements:")
-    public static native SCNSphere create(NSArray<SCNGeometrySource> sources, NSArray<SCNGeometryElement> elements);
+    public static native SCNSphere createGeometry(NSArray<SCNGeometrySource> sources, NSArray<SCNGeometryElement> elements);
     /*</methods>*/
 }

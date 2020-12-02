@@ -88,8 +88,8 @@ import org.robovm.apple.avfoundation.*;
     @Method(selector = "planeWithWidth:height:")
     public static native SCNPlane create(@MachineSizedFloat double width, @MachineSizedFloat double height);
     @Method(selector = "geometry")
-    public static native SCNPlane create();
+    public static native SCNPlane createGeometry();
     @Method(selector = "geometryWithSources:elements:")
-    public static native SCNPlane create(NSArray<SCNGeometrySource> sources, NSArray<SCNGeometryElement> elements);
+    public static native SCNPlane createGeometry(NSArray<SCNGeometrySource> sources, NSArray<SCNGeometryElement> elements);
     /*</methods>*/
 }

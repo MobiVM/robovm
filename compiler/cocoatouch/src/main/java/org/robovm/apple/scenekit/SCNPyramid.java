@@ -88,8 +88,8 @@ import org.robovm.apple.avfoundation.*;
     @Method(selector = "pyramidWithWidth:height:length:")
     public static native SCNPyramid create(@MachineSizedFloat double width, @MachineSizedFloat double height, @MachineSizedFloat double length);
     @Method(selector = "geometry")
-    public static native SCNPyramid create();
+    public static native SCNPyramid createGeometry();
     @Method(selector = "geometryWithSources:elements:")
-    public static native SCNPyramid create(NSArray<SCNGeometrySource> sources, NSArray<SCNGeometryElement> elements);
+    public static native SCNPyramid createGeometry(NSArray<SCNGeometrySource> sources, NSArray<SCNGeometryElement> elements);
     /*</methods>*/
 }

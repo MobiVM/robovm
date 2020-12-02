@@ -80,8 +80,8 @@ import org.robovm.apple.avfoundation.*;
     @Method(selector = "torusWithRingRadius:pipeRadius:")
     public static native SCNTorus create(@MachineSizedFloat double ringRadius, @MachineSizedFloat double pipeRadius);
     @Method(selector = "geometry")
-    public static native SCNTorus create();
+    public static native SCNTorus createGeometry();
     @Method(selector = "geometryWithSources:elements:")
-    public static native SCNTorus create(NSArray<SCNGeometrySource> sources, NSArray<SCNGeometryElement> elements);
+    public static native SCNTorus createGeometry(NSArray<SCNGeometrySource> sources, NSArray<SCNGeometryElement> elements);
     /*</methods>*/
 }

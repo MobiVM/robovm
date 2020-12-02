@@ -84,8 +84,8 @@ import org.robovm.apple.avfoundation.*;
     @Method(selector = "coneWithTopRadius:bottomRadius:height:")
     public static native SCNCone create(@MachineSizedFloat double topRadius, @MachineSizedFloat double bottomRadius, @MachineSizedFloat double height);
     @Method(selector = "geometry")
-    public static native SCNCone create();
+    public static native SCNCone createGeometry();
     @Method(selector = "geometryWithSources:elements:")
-    public static native SCNCone create(NSArray<SCNGeometrySource> sources, NSArray<SCNGeometryElement> elements);
+    public static native SCNCone createGeometry(NSArray<SCNGeometrySource> sources, NSArray<SCNGeometryElement> elements);
     /*</methods>*/
 }

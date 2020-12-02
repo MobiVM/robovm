@@ -84,8 +84,8 @@ import org.robovm.apple.avfoundation.*;
     @Method(selector = "capsuleWithCapRadius:height:")
     public static native SCNCapsule create(@MachineSizedFloat double capRadius, @MachineSizedFloat double height);
     @Method(selector = "geometry")
-    public static native SCNCapsule create();
+    public static native SCNCapsule createGeometry();
     @Method(selector = "geometryWithSources:elements:")
-    public static native SCNCapsule create(NSArray<SCNGeometrySource> sources, NSArray<SCNGeometryElement> elements);
+    public static native SCNCapsule createGeometry(NSArray<SCNGeometrySource> sources, NSArray<SCNGeometryElement> elements);
     /*</methods>*/
 }
