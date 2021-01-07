@@ -157,7 +157,7 @@ public class SimLauncherProcess extends Process implements Launcher {
                     exitCode = 0;
                 } catch (ExecuteException e) {
                     exitCode = e.getExitValue();
-                    // if process is interrupted Apache Excutor will use this constant, replace with 0 otherwise
+                    // if process is interrupted Apache Executor will use this constant, replace with 0 otherwise
                     // -559038737 looks odd in console output
                     if (exitCode == INVALID_EXITVALUE)
                         exitCode = 0;
