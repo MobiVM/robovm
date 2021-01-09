@@ -1028,8 +1028,13 @@ public abstract class BroMethodCompiler extends AbstractMethodCompiler {
         
         Value result = null;
         if (memberType instanceof StructureType) {
-            // The member is a child struct contained in the current struct
-            result = memberPtr;
+            // memberType is StructureType only in the case of @ByVal annotation
+            // copy value into heap before marshaling otherwise it gets @ByRef behaviour
+            DataLayout dataLayout = config.getDataLayout();
+            Variable structResult = fn.newVariable(I8_PTR);
+            fn.add(new Bitcast(structResult, memberPtr, I8_PTR));
+            result = call(fn, BC_COPY_STRUCT, env, structResult.ref(),
+                    new IntegerConstant(dataLayout.getAllocSize(memberType)));
         } else if (memberType instanceof ArrayType) {
             // The member is an array contained in the current struct
             result = memberPtr;
