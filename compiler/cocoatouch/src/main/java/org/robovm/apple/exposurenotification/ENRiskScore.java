@@ -38,11 +38,11 @@ import org.robovm.apple.dispatch.*;
 public enum /*<name>*/ENRiskScore/*</name>*/ implements ValuedEnum {
     /*<values>*/
     /**
-     * @since Available in iOS 13.5 and later.
+     * @since Available in iOS 12.5 and later.
      */
     in(0L),
     /**
-     * @since Available in iOS 13.5 and later.
+     * @since Available in iOS 12.5 and later.
      */
     ax(255L);
     /*</values>*/

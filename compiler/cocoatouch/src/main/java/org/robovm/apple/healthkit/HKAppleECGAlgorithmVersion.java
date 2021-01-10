@@ -38,7 +38,11 @@ import org.robovm.apple.foundation.*;
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/HKAppleECGAlgorithmVersion/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    _1(1L);
+    Version1(1L),
+    /**
+     * @since Available in iOS 14.3 and later.
+     */
+    Version2(2L);
     /*</values>*/
 
     /*<bind>*/

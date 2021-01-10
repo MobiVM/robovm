@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.robovm.apple.exposurenotification;
+package org.robovm.apple.gamecontroller;
 
 /*<imports>*/
 import java.io.*;
@@ -29,37 +29,33 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.dispatch.*;
+import org.robovm.apple.uikit.*;
+import org.robovm.apple.corehaptic.*;
 /*</imports>*/
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 12.5 and later.
+ * @since Available in iOS 14.3 and later.
  */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-public enum /*<name>*/ENInfectiousness/*</name>*/ implements ValuedEnum {
-    /*<values>*/
-    None(0L),
-    Standard(1L),
-    High(2L);
-    /*</values>*/
+/*<annotations>*/@Library("GameController") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/GCDirectionalGamepad/*</name>*/ 
+    extends /*<extends>*/GCMicroGamepad/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
 
-    /*<bind>*/
-    /*</bind>*/
+    /*<ptr>*/public static class GCDirectionalGamepadPtr extends Ptr<GCDirectionalGamepad, GCDirectionalGamepadPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(GCDirectionalGamepad.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<methods>*//*</methods>*/
-
-    private final long n;
-
-    private /*<name>*/ENInfectiousness/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/ENInfectiousness/*</name>*/ valueOf(long n) {
-        for (/*<name>*/ENInfectiousness/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/ENInfectiousness/*</name>*/.class.getName());
-    }
+    /*<constructors>*/
+    public GCDirectionalGamepad() {}
+    protected GCDirectionalGamepad(Handle h, long handle) { super(h, handle); }
+    protected GCDirectionalGamepad(SkipInit skipInit) { super(skipInit); }
+    /*</constructors>*/
+    /*<properties>*/
+    
+    /*</properties>*/
+    /*<members>*//*</members>*/
+    /*<methods>*/
+    
+    /*</methods>*/
 }

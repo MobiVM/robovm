@@ -73,6 +73,8 @@ values:
 constants:
     EN_FEATURE_GENERAL:
         exclude: true
+    ENDaysSinceOnsetOfSymptomsUnknown:
+        exclude: true
 
     # Make sure we don't miss any constants if new ones are introduced in a later version
     (.*):

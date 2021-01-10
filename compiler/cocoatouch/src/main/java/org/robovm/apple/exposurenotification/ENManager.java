@@ -33,7 +33,7 @@ import org.robovm.apple.dispatch.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 13.5 and later.
+ * @since Available in iOS 12.5 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("ExposureNotification") @NativeClass/*</annotations>*/
@@ -72,14 +72,14 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "invalidate")
     public native void invalidate();
     /**
-     * @since Available in iOS 13.7 and later.
+     * @since Available in iOS 12.5 and later.
      */
     @Method(selector = "getUserTraveledWithCompletionHandler:")
     public native void getUserTraveled(@Block VoidBlock2<Boolean, NSError> completionHandler);
     @Method(selector = "setExposureNotificationEnabled:completionHandler:")
     public native void setExposureNotificationEnabled(boolean enabled, @Block VoidBlock1<NSError> completionHandler);
     /**
-     * @since Available in iOS 13.7 and later.
+     * @since Available in iOS 12.5 and later.
      */
     @Method(selector = "detectExposuresWithConfiguration:completionHandler:")
     public native NSProgress detectExposures(ENExposureConfiguration configuration, @Block VoidBlock2<ENExposureDetectionSummary, NSError> completionHandler);
@@ -93,7 +93,7 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "getExposureInfoFromSummary:userExplanation:completionHandler:")
     public native NSProgress getExposureInfo(ENExposureDetectionSummary summary, String userExplanation, @Block VoidBlock2<NSArray<ENExposureInfo>, NSError> completionHandler);
     /**
-     * @since Available in iOS 13.7 and later.
+     * @since Available in iOS 12.5 and later.
      */
     @Method(selector = "getExposureWindowsFromSummary:completionHandler:")
     public native NSProgress getExposureWindows(ENExposureDetectionSummary summary, @Block VoidBlock2<NSArray<ENExposureWindow>, NSError> completionHandler);

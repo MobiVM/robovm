@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.robovm.apple.exposurenotification;
+package org.robovm.apple.arkit;
 
 /*<imports>*/
 import java.io.*;
@@ -28,20 +28,29 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.avfoundation.*;
+import org.robovm.apple.coregraphics.*;
+import org.robovm.apple.corelocation.*;
+import org.robovm.apple.uikit.*;
+import org.robovm.apple.scenekit.*;
+import org.robovm.apple.corevideo.*;
+import org.robovm.apple.spritekit.*;
+import org.robovm.apple.coremedia.*;
 import org.robovm.apple.dispatch.*;
+import org.robovm.apple.metal.*;
+import org.robovm.apple.imageio.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 12.5 and later.
- */
+
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-public enum /*<name>*/ENInfectiousness/*</name>*/ implements ValuedEnum {
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+public enum /*<name>*/ARAppClipCodeURLDecodingState/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    None(0L),
-    Standard(1L),
-    High(2L);
+    Decoding(0L),
+    Failed(1L),
+    Decoded(2L);
     /*</values>*/
 
     /*<bind>*/
@@ -51,15 +60,15 @@ public enum /*<name>*/ENInfectiousness/*</name>*/ implements ValuedEnum {
 
     private final long n;
 
-    private /*<name>*/ENInfectiousness/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/ARAppClipCodeURLDecodingState/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/ENInfectiousness/*</name>*/ valueOf(long n) {
-        for (/*<name>*/ENInfectiousness/*</name>*/ v : values()) {
+    public static /*<name>*/ARAppClipCodeURLDecodingState/*</name>*/ valueOf(long n) {
+        for (/*<name>*/ARAppClipCodeURLDecodingState/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/ENInfectiousness/*</name>*/.class.getName());
+            + /*<name>*/ARAppClipCodeURLDecodingState/*</name>*/.class.getName());
     }
 }

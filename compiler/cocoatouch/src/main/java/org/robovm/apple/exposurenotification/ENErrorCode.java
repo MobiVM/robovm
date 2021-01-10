@@ -33,7 +33,7 @@ import org.robovm.apple.dispatch.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 13.5 and later.
+ * @since Available in iOS 12.5 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Library("ExposureNotification")/*</annotations>*/
@@ -63,7 +63,7 @@ public enum /*<name>*/ENErrorCode/*</name>*/ implements NSErrorCode {
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @since Available in iOS 13.5 and later.
+     * @since Available in iOS 12.5 and later.
      */
     @GlobalValue(symbol="ENErrorDomain", optional=true)
     public static native String getClassDomain();

@@ -106,6 +106,7 @@ classes:
     GCMouseInput: {} #since 14.0
     GCPhysicalInputProfile: {} #since 14.0
     GCXboxGamepad: {} #since 14.0
+    GCDirectionalGamepad: {} #since 14.3
 protocols:
     GCDevice: {} #since 14.0
 

@@ -200,6 +200,11 @@ import org.robovm.apple.avfoundation.*;
         @GlobalValue(symbol="kCIImageAuxiliarySemanticSegmentationGlassesMatte", optional=true)
         public static native CFString AuxiliarySemanticSegmentationGlassesMatte();
         /**
+         * @since Available in iOS 14.3 and later.
+         */
+        @GlobalValue(symbol="kCIImageAuxiliarySemanticSegmentationSkyMatte", optional=true)
+        public static native CFString AuxiliarySemanticSegmentationSkyMatte();
+        /**
          * @since Available in iOS 9.0 and later.
          */
         @GlobalValue(symbol="kCIImageProviderTileSize", optional=true)

@@ -44,36 +44,36 @@ import org.robovm.apple.coreanimation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 11.3 and later.
+ * @since Available in iOS 14.3 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("ARKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/ARSCNPlaneGeometry/*</name>*/ 
-    extends /*<extends>*/SCNGeometry/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/ARAppClipCodeAnchor/*</name>*/ 
+    extends /*<extends>*/ARAnchor/*</extends>*/ 
+    /*<implements>*/implements ARTrackable/*</implements>*/ {
 
-    /*<ptr>*/public static class ARSCNPlaneGeometryPtr extends Ptr<ARSCNPlaneGeometry, ARSCNPlaneGeometryPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(ARSCNPlaneGeometry.class); }/*</bind>*/
+    /*<ptr>*/public static class ARAppClipCodeAnchorPtr extends Ptr<ARAppClipCodeAnchor, ARAppClipCodeAnchorPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(ARAppClipCodeAnchor.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public ARSCNPlaneGeometry() {}
-    protected ARSCNPlaneGeometry(Handle h, long handle) { super(h, handle); }
-    protected ARSCNPlaneGeometry(SkipInit skipInit) { super(skipInit); }
-    public ARSCNPlaneGeometry(MTLDevice device) { super((Handle) null, create(device)); retain(getHandle()); }
+    protected ARAppClipCodeAnchor() {}
+    protected ARAppClipCodeAnchor(Handle h, long handle) { super(h, handle); }
+    protected ARAppClipCodeAnchor(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    @Property(selector = "url")
+    public native NSURL getUrl();
+    @Property(selector = "urlDecodingState")
+    public native ARAppClipCodeURLDecodingState getUrlDecodingState();
+    @Property(selector = "radius")
+    public native float getRadius();
+    @Property(selector = "isTracked")
+    public native boolean isTracked();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "updateFromPlaneGeometry:")
-    public native void updateFromPlaneGeometry(ARPlaneGeometry planeGeometry);
-    @Method(selector = "planeGeometryWithDevice:")
-    protected static native @Pointer long create(MTLDevice device);
-    @Method(selector = "geometry")
-    public static native ARSCNPlaneGeometry createGeometry();
-    @Method(selector = "geometryWithSources:elements:")
-    public static native ARSCNPlaneGeometry createGeometry(NSArray<SCNGeometrySource> sources, NSArray<SCNGeometryElement> elements);
+    
     /*</methods>*/
 }

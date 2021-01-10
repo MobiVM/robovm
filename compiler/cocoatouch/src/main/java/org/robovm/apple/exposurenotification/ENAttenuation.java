@@ -38,11 +38,11 @@ import org.robovm.apple.dispatch.*;
 public enum /*<name>*/ENAttenuation/*</name>*/ implements ValuedEnum {
     /*<values>*/
     /**
-     * @since Available in iOS 13.5 and later.
+     * @since Available in iOS 12.5 and later.
      */
     Min(0L),
     /**
-     * @since Available in iOS 13.5 and later.
+     * @since Available in iOS 12.5 and later.
      */
     Max(255L);
     /*</values>*/

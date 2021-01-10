@@ -171,6 +171,21 @@ import org.robovm.apple.coreanimation.*;
     @Property(selector = "setUserFaceTrackingEnabled:")
     public native void setUserFaceTrackingEnabled(boolean v);
     /**
+     * @since Available in iOS 14.3 and later.
+     */
+    @Property(selector = "appClipCodeTrackingEnabled")
+    public native boolean isAppClipCodeTrackingEnabled();
+    /**
+     * @since Available in iOS 14.3 and later.
+     */
+    @Property(selector = "setAppClipCodeTrackingEnabled:")
+    public native void setAppClipCodeTrackingEnabled(boolean v);
+    /**
+     * @since Available in iOS 14.3 and later.
+     */
+    @Property(selector = "supportsAppClipCodeTracking")
+    public static native boolean supportsAppClipCodeTracking();
+    /**
      * @since Available in iOS 13.4 and later.
      */
     @Property(selector = "sceneReconstruction")

@@ -33,7 +33,7 @@ import org.robovm.apple.dispatch.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 13.5 and later.
+ * @since Available in iOS 12.5 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("ExposureNotification") @NativeClass/*</annotations>*/
@@ -57,12 +57,12 @@ import org.robovm.apple.dispatch.*;
     @Property(selector = "date")
     public native NSDate getDate();
     /**
-     * @since Available in iOS 13.7 and later.
+     * @since Available in iOS 12.5 and later.
      */
     @Property(selector = "daysSinceOnsetOfSymptoms")
     public native @MachineSizedSInt long getDaysSinceOnsetOfSymptoms();
     /**
-     * @since Available in iOS 13.7 and later.
+     * @since Available in iOS 12.5 and later.
      */
     @Property(selector = "diagnosisReportType")
     public native ENDiagnosisReportType getDiagnosisReportType();

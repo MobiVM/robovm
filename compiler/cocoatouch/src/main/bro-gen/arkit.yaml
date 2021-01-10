@@ -36,7 +36,7 @@ enums:
     ARGeometryPrimitiveType: {}
     ARMeshClassification: {}
     ARAltitudeSource: {}
-
+    ARAppClipCodeURLDecodingState: {}
 typed_enums:
     ARSkeletonJointName:
         enum: ARSkeletonJointName
@@ -241,6 +241,7 @@ classes:
     ARGeometrySource: {} #since 13.4
     ARMeshAnchor: {} #since 13.4
     ARMeshGeometry: {} #since 13.4
+    ARAppClipCodeAnchor: {} #since 14.3
 protocols:
     ARSCNViewDelegate: #since 11.0
         methods:

@@ -92,6 +92,10 @@ import org.robovm.apple.foundation.*;
      */
     public static final CNLabelPhoneNumber iPhone = new CNLabelPhoneNumber("iPhone");
     /**
+     * @since Available in iOS 14.3 and later.
+     */
+    public static final CNLabelPhoneNumber AppleWatch = new CNLabelPhoneNumber("AppleWatch");
+    /**
      * @since Available in iOS 9.0 and later.
      */
     public static final CNLabelPhoneNumber Mobile = new CNLabelPhoneNumber("Mobile");
@@ -117,7 +121,7 @@ import org.robovm.apple.foundation.*;
     public static final CNLabelPhoneNumber Pager = new CNLabelPhoneNumber("Pager");
     /*</constants>*/
     
-    private static /*<name>*/CNLabelPhoneNumber/*</name>*/[] values = new /*<name>*/CNLabelPhoneNumber/*</name>*/[] {/*<value_list>*/iPhone, Mobile, Main, HomeFax, WorkFax, OtherFax, Pager/*</value_list>*/};
+    private static /*<name>*/CNLabelPhoneNumber/*</name>*/[] values = new /*<name>*/CNLabelPhoneNumber/*</name>*/[] {/*<value_list>*/iPhone, AppleWatch, Mobile, Main, HomeFax, WorkFax, OtherFax, Pager/*</value_list>*/};
     
     private CNLabelPhoneNumber(String getterName) {
         super(getterName);
@@ -145,6 +149,11 @@ import org.robovm.apple.foundation.*;
          */
         @GlobalValue(symbol="CNLabelPhoneNumberiPhone", optional=true)
         public static native NSString iPhone();
+        /**
+         * @since Available in iOS 14.3 and later.
+         */
+        @GlobalValue(symbol="CNLabelPhoneNumberAppleWatch", optional=true)
+        public static native NSString AppleWatch();
         /**
          * @since Available in iOS 9.0 and later.
          */

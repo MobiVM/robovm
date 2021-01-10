@@ -75,8 +75,8 @@ import org.robovm.apple.coreanimation.*;
     @Method(selector = "faceGeometryWithDevice:fillMesh:")
     protected static native @Pointer long create(MTLDevice device, boolean fillMesh);
     @Method(selector = "geometry")
-    public static native ARSCNFaceGeometry create();
+    public static native ARSCNFaceGeometry createGeometry();
     @Method(selector = "geometryWithSources:elements:")
-    public static native ARSCNFaceGeometry create(NSArray<SCNGeometrySource> sources, NSArray<SCNGeometryElement> elements);
+    public static native ARSCNFaceGeometry createGeometry(NSArray<SCNGeometrySource> sources, NSArray<SCNGeometryElement> elements);
     /*</methods>*/
 }

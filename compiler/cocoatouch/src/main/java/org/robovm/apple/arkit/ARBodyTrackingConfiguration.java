@@ -97,6 +97,21 @@ import org.robovm.apple.coreanimation.*;
     public native @MachineSizedSInt long getMaximumNumberOfTrackedImages();
     @Property(selector = "setMaximumNumberOfTrackedImages:")
     public native void setMaximumNumberOfTrackedImages(@MachineSizedSInt long v);
+    /**
+     * @since Available in iOS 14.3 and later.
+     */
+    @Property(selector = "appClipCodeTrackingEnabled")
+    public native boolean isAppClipCodeTrackingEnabled();
+    /**
+     * @since Available in iOS 14.3 and later.
+     */
+    @Property(selector = "setAppClipCodeTrackingEnabled:")
+    public native void setAppClipCodeTrackingEnabled(boolean v);
+    /**
+     * @since Available in iOS 14.3 and later.
+     */
+    @Property(selector = "supportsAppClipCodeTracking")
+    public static native boolean supportsAppClipCodeTracking();
     @Property(selector = "isSupported")
     public static native boolean isSupported();
     /**

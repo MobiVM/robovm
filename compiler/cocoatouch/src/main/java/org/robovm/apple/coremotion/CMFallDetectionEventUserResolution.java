@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.robovm.apple.exposurenotification;
+package org.robovm.apple.coremotion;
 
 /*<imports>*/
 import java.io.*;
@@ -28,20 +28,18 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
-import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 12.5 and later.
- */
+
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-public enum /*<name>*/ENInfectiousness/*</name>*/ implements ValuedEnum {
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+public enum /*<name>*/CMFallDetectionEventUserResolution/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    None(0L),
-    Standard(1L),
-    High(2L);
+    Confirmed(0L),
+    Dismissed(1L),
+    Rejected(2L),
+    Unresponsive(3L);
     /*</values>*/
 
     /*<bind>*/
@@ -51,15 +49,15 @@ public enum /*<name>*/ENInfectiousness/*</name>*/ implements ValuedEnum {
 
     private final long n;
 
-    private /*<name>*/ENInfectiousness/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/CMFallDetectionEventUserResolution/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/ENInfectiousness/*</name>*/ valueOf(long n) {
-        for (/*<name>*/ENInfectiousness/*</name>*/ v : values()) {
+    public static /*<name>*/CMFallDetectionEventUserResolution/*</name>*/ valueOf(long n) {
+        for (/*<name>*/CMFallDetectionEventUserResolution/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/ENInfectiousness/*</name>*/.class.getName());
+            + /*<name>*/CMFallDetectionEventUserResolution/*</name>*/.class.getName());
     }
 }
