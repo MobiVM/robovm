@@ -34,8 +34,6 @@ import org.robovm.compiler.log.ConsoleLogger;
 import org.robovm.compiler.log.Logger;
 import org.robovm.compiler.target.ios.IOSTarget;
 
-import static org.apache.commons.exec.Executor.INVALID_EXITVALUE;
-
 /**
  * @author niklas
  *
@@ -156,11 +154,6 @@ public class ToolchainUtil {
             throw new IllegalArgumentException("You must agree to the Xcode/iOS license. "
                     + "Please open Xcode once or run 'sudo xcrun clang' from a Terminal to agree to the terms.");
         }
-        // if process is interrupted Apache Executor will use this -559038737 constant
-        // throw with InterruptedException cause to allow compiler task to properly intercept
-        if (e.getExitValue() == INVALID_EXITVALUE)
-            throw new IllegalArgumentException(e.getMessage(), new InterruptedException());
-
         throw new IllegalArgumentException(e.getMessage());
     }
 
