@@ -109,7 +109,6 @@ classes:
                 name: removeDeliveredNotifications
 protocols:
     UNUserNotificationCenterDelegate:
-        skip_adapter: true
         methods:
             '-userNotificationCenter:willPresentNotification:withCompletionHandler:':
                 name: willPresentNotification
