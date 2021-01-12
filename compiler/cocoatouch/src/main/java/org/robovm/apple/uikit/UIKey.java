@@ -71,6 +71,11 @@ import org.robovm.apple.linkpresentation.*;
     @Property(selector = "keyCode")
     public native UIKeyboardHIDUsage getKeyCode();
     /*</properties>*/
+
+    // manually added method to access keyCodes that are missing in UIKeyboardHIDUsage
+    @Property(selector = "keyCode")
+    public native @MachineSizedSInt long getKeyCodeRaw();
+
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "encodeWithCoder:")
