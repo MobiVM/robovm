@@ -19,7 +19,10 @@ package org.robovm.idea.compilation;
 import java.io.IOException;
 
 import com.intellij.openapi.progress.ProgressIndicator;
+import org.apache.commons.exec.ExecuteException;
 import org.robovm.compiler.AppCompiler;
+
+import static org.apache.commons.exec.Executor.INVALID_EXITVALUE;
 
 /**
  * {@link Thread} which calls AppCompiler#compile() and waits for it
@@ -65,6 +68,11 @@ public class RoboVmCompilerThread extends Thread {
         try {
             doCompile();
         } catch (Throwable t) {
+            if (t instanceof ExecuteException && ((ExecuteException)t).getExitValue() == INVALID_EXITVALUE) {
+                // if process is interrupted Apache Executor will use this constant as exit code
+                // Ignore as interrupted will be recognized by Thread or Progress
+                return;
+            }
             if (t.getCause() instanceof InterruptedException) {
                 // Ignore
                 return;
