@@ -63,6 +63,8 @@ import org.robovm.apple.metal.*;
     public native @ByVal MTLRegion getSecondarySourceClipRect();
     @Property(selector = "setSecondarySourceClipRect:")
     public native void setSecondarySourceClipRect(@ByVal MTLRegion v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

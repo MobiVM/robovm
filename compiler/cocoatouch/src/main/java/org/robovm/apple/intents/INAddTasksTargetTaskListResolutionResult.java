@@ -62,5 +62,17 @@ import org.robovm.apple.coregraphics.*;
     protected native @Pointer long init(INTaskListResolutionResult taskListResolutionResult);
     @Method(selector = "confirmationRequiredWithTaskListToConfirm:forReason:")
     public static native INAddTasksTargetTaskListResolutionResult confirmationRequired(INTaskList taskListToConfirm, INAddTasksTargetTaskListConfirmationReason reason);
+    @Method(selector = "successWithResolvedTaskList:")
+    public static native INAddTasksTargetTaskListResolutionResult success(INTaskList resolvedTaskList);
+    @Method(selector = "disambiguationWithTaskListsToDisambiguate:")
+    public static native INAddTasksTargetTaskListResolutionResult disambiguation(NSArray<INTaskList> taskListsToDisambiguate);
+    @Method(selector = "confirmationRequiredWithTaskListToConfirm:")
+    public static native INAddTasksTargetTaskListResolutionResult confirmationRequired(INTaskList taskListToConfirm);
+    @Method(selector = "needsValue")
+    public static native INAddTasksTargetTaskListResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INAddTasksTargetTaskListResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INAddTasksTargetTaskListResolutionResult unsupported();
     /*</methods>*/
 }

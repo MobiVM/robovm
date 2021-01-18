@@ -70,5 +70,10 @@ import org.robovm.apple.audiotoolbox.*;
     @WeaklyLinked
     @Method(selector = "initWithAudioComponentDescription:")
     protected native @Pointer long init(@ByVal AudioComponentDescription audioComponentDescription);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "instantiateWithComponentDescription:options:completionHandler:")
+    public static native void instantiate(@ByVal AudioComponentDescription audioComponentDescription, AudioComponentInstantiationOptions options, @Block VoidBlock2<AVAudioUnit, NSError> completionHandler);
     /*</methods>*/
 }

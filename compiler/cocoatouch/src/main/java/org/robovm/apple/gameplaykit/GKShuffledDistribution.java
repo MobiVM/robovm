@@ -58,6 +58,11 @@ import org.robovm.apple.uikit.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "distributionForDieWithSideCount:")
+    public static native GKShuffledDistribution die(@MachineSizedSInt long sideCount);
+    @Method(selector = "d6")
+    public static native GKShuffledDistribution d6();
+    @Method(selector = "d20")
+    public static native GKShuffledDistribution d20();
     /*</methods>*/
 }

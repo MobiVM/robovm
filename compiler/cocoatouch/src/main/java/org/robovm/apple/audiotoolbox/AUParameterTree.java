@@ -55,7 +55,8 @@ import org.robovm.apple.uikit.*;
     public AUParameterTree(NSArray<AUParameterNode> children) { super((Handle) null, create(children)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

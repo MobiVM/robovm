@@ -52,7 +52,11 @@ import org.robovm.apple.dispatch.*;
     public NFCISO15693ReaderSession(NFCReaderSessionDelegate delegate, DispatchQueue queue) { super((SkipInit) null); initObject(init(delegate, queue)); }
     /*</constructors>*/
     /*<properties>*/
-    
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "readingAvailable")
+    public static native boolean isReadingAvailable();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

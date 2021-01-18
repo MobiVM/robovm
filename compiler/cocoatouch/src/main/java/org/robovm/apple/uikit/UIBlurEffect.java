@@ -59,7 +59,8 @@ import org.robovm.apple.linkpresentation.*;
     public UIBlurEffect(UIBlurEffectStyle style) { super((Handle) null, create(style)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

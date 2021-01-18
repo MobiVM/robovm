@@ -1,19 +1,19 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.robovm.apple.audiotoolbox;
+package org.robovm.apple.coremotion;
 
 /*<imports>*/
 import java.io.*;
@@ -28,36 +28,36 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
-import org.robovm.apple.corefoundation.*;
-import org.robovm.apple.coreaudio.*;
-import org.robovm.apple.coremidi.*;
-import org.robovm.apple.avfoundation.*;
-import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*/@Packed(1)/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/CAFPeakChunk/*</name>*/ 
-    extends /*<extends>*/Struct<CAFPeakChunk>/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+public enum /*<name>*/CMFallDetectionEventUserResolution/*</name>*/ implements ValuedEnum {
+    /*<values>*/
+    Confirmed(0L),
+    Dismissed(1L),
+    Rejected(2L),
+    Unresponsive(3L);
+    /*</values>*/
 
-    /*<ptr>*/public static class CAFPeakChunkPtr extends Ptr<CAFPeakChunk, CAFPeakChunkPtr> {}/*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*/
-    public CAFPeakChunk() {}
-    public CAFPeakChunk(int editCount) {
-        this.setEditCount(editCount);
-    }
-    /*</constructors>*/
-    /*<properties>*//*</properties>*/
-    /*<members>*/
-    @StructMember(0) public native int getEditCount();
-    @StructMember(0) public native CAFPeakChunk setEditCount(int editCount);
-    /*</members>*/
-    @StructMember(1) public native CAFPositionPeak.CAFPositionPeakPtr getPeaks();
     /*<methods>*//*</methods>*/
+
+    private final long n;
+
+    private /*<name>*/CMFallDetectionEventUserResolution/*</name>*/(long n) { this.n = n; }
+    public long value() { return n; }
+    public static /*<name>*/CMFallDetectionEventUserResolution/*</name>*/ valueOf(long n) {
+        for (/*<name>*/CMFallDetectionEventUserResolution/*</name>*/ v : values()) {
+            if (v.n == n) {
+                return v;
+            }
+        }
+        throw new IllegalArgumentException("No constant with value " + n + " found in " 
+            + /*<name>*/CMFallDetectionEventUserResolution/*</name>*/.class.getName());
+    }
 }

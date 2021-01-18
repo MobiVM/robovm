@@ -60,7 +60,8 @@ import org.robovm.apple.audiotoolbox.*;
     public AVAssetDownloadURLSession(NSURLSessionConfiguration configuration, AVAssetDownloadDelegate delegate, NSOperationQueue delegateQueue) { super((Handle) null, create(configuration, delegate, delegateQueue)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "sharedSession")
+    public static native NSURLSession getSharedSession();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

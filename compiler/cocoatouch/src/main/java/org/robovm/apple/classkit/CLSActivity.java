@@ -64,6 +64,8 @@ import org.robovm.apple.coregraphics.*;
     public native NSArray<CLSActivityItem> getAdditionalActivityItems();
     @Property(selector = "isStarted")
     public native boolean isStarted();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

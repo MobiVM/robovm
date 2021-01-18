@@ -73,6 +73,8 @@ import org.robovm.apple.audiotoolbox.*;
     public native boolean isPostProcessingEnabled();
     @Property(selector = "setEnablePostProcessing:")
     public native void setPostProcessingEnabled(boolean v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

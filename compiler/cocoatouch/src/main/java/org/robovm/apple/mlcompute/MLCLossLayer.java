@@ -100,5 +100,7 @@ import org.robovm.apple.metalps.*;
     public static native MLCLossLayer createCosineDistanceLoss(MLCReductionType reductionType, float weight);
     @Method(selector = "cosineDistanceLossWithReductionType:weights:")
     public static native MLCLossLayer createCosineDistanceLoss(MLCReductionType reductionType, MLCTensor weights);
+    @Method(selector = "supportsDataType:onDevice:")
+    public static native boolean supportsDataType(MLCDataType dataType, MLCDevice device);
     /*</methods>*/
 }

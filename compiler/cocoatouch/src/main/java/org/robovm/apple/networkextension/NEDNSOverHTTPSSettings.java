@@ -66,6 +66,8 @@ import org.robovm.apple.network.*;
      */
     @Property(selector = "setServerURL:")
     public native void setServerURL(NSURL v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

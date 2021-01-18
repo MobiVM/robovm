@@ -60,5 +60,11 @@ import org.robovm.apple.coregraphics.*;
     public static native INEnumResolutionResult success(@MachineSizedSInt long resolvedValue);
     @Method(selector = "confirmationRequiredWithValueToConfirm:")
     public static native INEnumResolutionResult confirmationRequired(@MachineSizedSInt long valueToConfirm);
+    @Method(selector = "needsValue")
+    public static native INEnumResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INEnumResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INEnumResolutionResult unsupported();
     /*</methods>*/
 }

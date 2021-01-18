@@ -56,6 +56,8 @@ import org.robovm.apple.coregraphics.*;
     /*<properties>*/
     @Property(selector = "situation")
     public native INDailyRoutineSituation getSituation();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -58,6 +58,11 @@ import org.robovm.apple.metal.*;
     /*<properties>*/
     @Property(selector = "channelMultiplier")
     public native @MachineSizedUInt long getChannelMultiplier();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

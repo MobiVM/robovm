@@ -68,6 +68,8 @@ import org.robovm.apple.uikit.*;
     public native void setTriangulationMode(GKMeshGraphTriangulationMode v);
     @Property(selector = "triangleCount")
     public native @MachineSizedUInt long getTriangleCount();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -82,9 +82,12 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "framesPerSecond")
     public static native NSUnitFrequency getFramesPerSecond();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "baseUnit")
+    public static native NSUnitFrequency getBaseUnit();
     /*</methods>*/
 }

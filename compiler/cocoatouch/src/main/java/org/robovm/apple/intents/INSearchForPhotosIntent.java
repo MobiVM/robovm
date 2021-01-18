@@ -72,6 +72,8 @@ import org.robovm.apple.coregraphics.*;
     public native NSArray<INPerson> getPeopleInPhoto();
     @Property(selector = "peopleInPhotoOperator")
     public native INConditionalOperator getPeopleInPhotoOperator();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

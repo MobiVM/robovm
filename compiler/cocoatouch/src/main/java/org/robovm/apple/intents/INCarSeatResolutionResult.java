@@ -74,5 +74,11 @@ import org.robovm.apple.coregraphics.*;
     @Deprecated
     @Method(selector = "confirmationRequiredWithValueToConfirm:")
     public static native INCarSeatResolutionResult confirmationRequiredForValue(INCarSeat valueToConfirm);
+    @Method(selector = "needsValue")
+    public static native INCarSeatResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INCarSeatResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INCarSeatResolutionResult unsupported();
     /*</methods>*/
 }

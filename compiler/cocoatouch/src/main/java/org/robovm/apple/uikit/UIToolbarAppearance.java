@@ -74,6 +74,8 @@ import org.robovm.apple.linkpresentation.*;
     public native UIBarButtonItemAppearance getDoneButtonAppearance();
     @Property(selector = "setDoneButtonAppearance:")
     public native void setDoneButtonAppearance(UIBarButtonItemAppearance v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -2985,6 +2985,8 @@ protocols:
                 name: replacementEmbeddedThumbnailPixelBuffer
             '-replacementSemanticSegmentationMatteOfType:forPhoto:':
                 name: replacementSemanticSegmentationMatteOfType
+            '-replacementAppleProRAWCompressionSettingsForPhoto:defaultSettings:maximumBitDepth:':
+                name: replacementAppleProRAWCompressionSettingsForPhoto
     AVAssetWriterDelegate: #since 14.0
         methods:
             '-assetWriter:didOutputSegmentData:segmentType:segmentReport:':

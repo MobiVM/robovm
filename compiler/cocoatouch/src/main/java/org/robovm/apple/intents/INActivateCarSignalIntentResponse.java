@@ -60,6 +60,8 @@ import org.robovm.apple.coregraphics.*;
     public native INCarSignalOptions getSignals();
     @Property(selector = "setSignals:")
     public native void setSignals(INCarSignalOptions v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

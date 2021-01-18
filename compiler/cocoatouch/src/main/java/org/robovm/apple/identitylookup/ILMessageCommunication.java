@@ -52,6 +52,8 @@ import org.robovm.apple.uikit.*;
     /*<properties>*/
     @Property(selector = "messageBody")
     public native String getMessageBody();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

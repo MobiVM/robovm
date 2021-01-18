@@ -60,5 +60,11 @@ import org.robovm.apple.coregraphics.*;
     public static native INPlaybackRepeatModeResolutionResult success(INPlaybackRepeatMode resolvedPlaybackRepeatMode);
     @Method(selector = "confirmationRequiredWithPlaybackRepeatModeToConfirm:")
     public static native INPlaybackRepeatModeResolutionResult confirmationRequired(INPlaybackRepeatMode playbackRepeatModeToConfirm);
+    @Method(selector = "needsValue")
+    public static native INPlaybackRepeatModeResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INPlaybackRepeatModeResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INPlaybackRepeatModeResolutionResult unsupported();
     /*</methods>*/
 }

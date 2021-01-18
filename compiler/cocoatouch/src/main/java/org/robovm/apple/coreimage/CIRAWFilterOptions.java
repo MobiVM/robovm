@@ -245,6 +245,11 @@ import org.robovm.apple.avfoundation.*;
         @GlobalValue(symbol="kCIInputNoiseReductionDetailAmountKey", optional=true)
         public static native NSString NoiseReductionDetailAmount();
         /**
+         * @since Available in iOS 14.3 and later.
+         */
+        @GlobalValue(symbol="kCIInputLocalToneMapAmountKey", optional=true)
+        public static native NSString LocalToneMapAmount();
+        /**
          * @since Available in iOS 10.0 and later.
          */
         @GlobalValue(symbol="kCIInputLinearSpaceFilter", optional=true)

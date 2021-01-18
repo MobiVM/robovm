@@ -72,10 +72,16 @@ import org.robovm.apple.avfoundation.*;
     public native @MachineSizedSInt long getHeightSegmentCount();
     @Property(selector = "setHeightSegmentCount:")
     public native void setHeightSegmentCount(@MachineSizedSInt long v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "cylinderWithRadius:height:")
     public static native SCNCylinder create(@MachineSizedFloat double radius, @MachineSizedFloat double height);
+    @Method(selector = "geometry")
+    public static native SCNCylinder createGeometry();
+    @Method(selector = "geometryWithSources:elements:")
+    public static native SCNCylinder createGeometry(NSArray<SCNGeometrySource> sources, NSArray<SCNGeometryElement> elements);
     /*</methods>*/
 }

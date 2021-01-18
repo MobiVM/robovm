@@ -64,6 +64,8 @@ import org.robovm.apple.coregraphics.*;
     public native NSDateComponents getCancellationFeeThreshold();
     @Property(selector = "setCancellationFeeThreshold:")
     public native void setCancellationFeeThreshold(NSDateComponents v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

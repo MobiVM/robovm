@@ -72,6 +72,8 @@ import org.robovm.apple.metal.*;
     public native float getLaplacianScale();
     @Property(selector = "setLaplacianScale:")
     public native void setLaplacianScale(float v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

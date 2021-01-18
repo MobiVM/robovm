@@ -218,6 +218,8 @@ import org.robovm.apple.coregraphics.*;
      */
     @Property(selector = "setMinimumBatteryCapacity:")
     public native void setMinimumBatteryCapacity(NSMeasurement<NSUnitEnergy> v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

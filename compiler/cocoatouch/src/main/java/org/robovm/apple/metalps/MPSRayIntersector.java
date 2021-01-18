@@ -123,6 +123,8 @@ import org.robovm.apple.metal.*;
      */
     @Property(selector = "setRayMask:")
     public native void setRayMask(int v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

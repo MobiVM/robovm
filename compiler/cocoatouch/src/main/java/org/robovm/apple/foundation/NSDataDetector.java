@@ -66,10 +66,14 @@ import org.robovm.apple.dispatch.*;
     /*<properties>*/
     @Property(selector = "checkingTypes")
     public native NSTextCheckingType getCheckingTypes();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithTypes:error:")
     private native @Pointer long init(long checkingTypes, NSError.NSErrorPtr error);
+    @Method(selector = "escapedPatternForString:")
+    public static native String getEscapedPattern(String string);
     /*</methods>*/
 }

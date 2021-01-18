@@ -63,6 +63,8 @@ import org.robovm.apple.coregraphics.*;
     public native INSeat getReservedSeat();
     @Property(selector = "trainTrip")
     public native INTrainTrip getTrainTrip();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

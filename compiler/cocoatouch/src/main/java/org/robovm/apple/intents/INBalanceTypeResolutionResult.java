@@ -60,5 +60,11 @@ import org.robovm.apple.coregraphics.*;
     public static native INBalanceTypeResolutionResult success(INBalanceType resolvedBalanceType);
     @Method(selector = "confirmationRequiredWithBalanceTypeToConfirm:")
     public static native INBalanceTypeResolutionResult confirmationRequired(INBalanceType balanceTypeToConfirm);
+    @Method(selector = "needsValue")
+    public static native INBalanceTypeResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INBalanceTypeResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INBalanceTypeResolutionResult unsupported();
     /*</methods>*/
 }

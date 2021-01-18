@@ -475,6 +475,10 @@ classes:
             '+behaviorWithBehaviors:andWeights:':
                 name: create0
                 constructor: true
+            '+behaviorWithGoals:':
+                name: createUsingGoals
+            '+behaviorWithGoals:andWeights:':
+                name: createUsingGoals
     GKConstantNoiseSource:
         methods:
             '-initWithValue:':

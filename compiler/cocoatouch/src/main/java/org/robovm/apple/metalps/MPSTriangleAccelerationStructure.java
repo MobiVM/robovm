@@ -65,6 +65,8 @@ import org.robovm.apple.metal.*;
     public native @MachineSizedUInt long getTriangleCount();
     @Property(selector = "setTriangleCount:")
     public native void setTriangleCount(@MachineSizedUInt long v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

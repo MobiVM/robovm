@@ -61,5 +61,10 @@ import org.robovm.apple.corelocation.*;
     /*<methods>*/
     @Method(selector = "initWithPresenceEventType:presenceUserType:")
     protected native @Pointer long init(HMPresenceEventType presenceEventType, HMPresenceEventUserType presenceUserType);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "isSupportedForHome:")
+    public static native boolean isSupportedForHome(HMHome home);
     /*</methods>*/
 }

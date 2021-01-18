@@ -75,6 +75,8 @@ import org.robovm.apple.metal.*;
     public native boolean isUseFastMode();
     @Property(selector = "setUseFastMode:")
     public native void setUseFastMode(boolean v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

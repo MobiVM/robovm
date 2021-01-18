@@ -62,6 +62,8 @@ import org.robovm.apple.metal.*;
     public native @ByVal MTLRegion getClipRectSource();
     @Property(selector = "setClipRectSource:")
     public native void setClipRectSource(@ByVal MTLRegion v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

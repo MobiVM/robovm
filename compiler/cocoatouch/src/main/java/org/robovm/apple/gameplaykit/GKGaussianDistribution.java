@@ -67,5 +67,11 @@ import org.robovm.apple.uikit.*;
     protected native @Pointer long init(GKRandom source, @MachineSizedSInt long lowestInclusive, @MachineSizedSInt long highestInclusive);
     @Method(selector = "initWithRandomSource:mean:deviation:")
     protected native @Pointer long init(GKRandom source, float mean, float deviation);
+    @Method(selector = "distributionForDieWithSideCount:")
+    public static native GKGaussianDistribution die(@MachineSizedSInt long sideCount);
+    @Method(selector = "d6")
+    public static native GKGaussianDistribution d6();
+    @Method(selector = "d20")
+    public static native GKGaussianDistribution d20();
     /*</methods>*/
 }

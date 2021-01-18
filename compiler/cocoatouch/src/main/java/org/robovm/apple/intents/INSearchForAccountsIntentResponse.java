@@ -60,6 +60,8 @@ import org.robovm.apple.coregraphics.*;
     public native NSArray<INPaymentAccount> getAccounts();
     @Property(selector = "setAccounts:")
     public native void setAccounts(NSArray<INPaymentAccount> v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

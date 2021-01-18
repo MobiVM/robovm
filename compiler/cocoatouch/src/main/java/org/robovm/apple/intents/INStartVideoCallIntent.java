@@ -57,6 +57,8 @@ import org.robovm.apple.coregraphics.*;
     /*<properties>*/
     @Property(selector = "contacts")
     public native NSArray<INPerson> getContacts();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

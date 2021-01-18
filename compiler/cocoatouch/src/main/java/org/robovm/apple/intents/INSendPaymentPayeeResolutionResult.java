@@ -62,5 +62,17 @@ import org.robovm.apple.coregraphics.*;
     protected native @Pointer long init(INPersonResolutionResult personResolutionResult);
     @Method(selector = "unsupportedForReason:")
     public static native INSendPaymentPayeeResolutionResult unsupportedForReason(INSendPaymentPayeeUnsupportedReason reason);
+    @Method(selector = "successWithResolvedPerson:")
+    public static native INSendPaymentPayeeResolutionResult success(INPerson resolvedPerson);
+    @Method(selector = "disambiguationWithPeopleToDisambiguate:")
+    public static native INSendPaymentPayeeResolutionResult disambiguation(NSArray<INPerson> peopleToDisambiguate);
+    @Method(selector = "confirmationRequiredWithPersonToConfirm:")
+    public static native INSendPaymentPayeeResolutionResult confirmationRequired(INPerson personToConfirm);
+    @Method(selector = "needsValue")
+    public static native INSendPaymentPayeeResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INSendPaymentPayeeResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INSendPaymentPayeeResolutionResult unsupported();
     /*</methods>*/
 }

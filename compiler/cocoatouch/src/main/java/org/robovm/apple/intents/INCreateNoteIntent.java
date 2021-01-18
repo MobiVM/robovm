@@ -60,6 +60,8 @@ import org.robovm.apple.coregraphics.*;
     public native INNoteContent getContent();
     @Property(selector = "groupName")
     public native INSpeakableString getGroupName();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

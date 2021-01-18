@@ -69,5 +69,7 @@ import org.robovm.apple.metalps.*;
     /*<methods>*/
     @Method(selector = "layerWithDescriptor:weights:biases:attentionBiases:")
     protected static native @Pointer long create(MLCMultiheadAttentionDescriptor descriptor, NSArray<MLCTensor> weights, NSArray<MLCTensor> biases, NSArray<MLCTensor> attentionBiases);
+    @Method(selector = "supportsDataType:onDevice:")
+    public static native boolean supportsDataType(MLCDataType dataType, MLCDevice device);
     /*</methods>*/
 }

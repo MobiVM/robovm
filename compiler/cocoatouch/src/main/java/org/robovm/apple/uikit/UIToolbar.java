@@ -106,6 +106,9 @@ import org.robovm.apple.linkpresentation.*;
     public native UIToolbarDelegate getDelegate();
     @Property(selector = "setDelegate:", strongRef = true)
     public native void setDelegate(UIToolbarDelegate v);
+    @WeaklyLinked
+    @Property(selector = "layerClass")
+    public static native Class<? extends CALayer> getLayerClass();
     @Property(selector = "barPosition")
     public native UIBarPosition getBarPosition();
     /*</properties>*/
@@ -121,5 +124,15 @@ import org.robovm.apple.linkpresentation.*;
     public native void setShadowImage(UIImage shadowImage, UIBarPosition topOrBottom);
     @Method(selector = "shadowImageForToolbarPosition:")
     public native UIImage getShadowImage(UIBarPosition topOrBottom);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute attribute);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:relativeToLayoutDirection:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute semanticContentAttribute, UIUserInterfaceLayoutDirection layoutDirection);
     /*</methods>*/
 }

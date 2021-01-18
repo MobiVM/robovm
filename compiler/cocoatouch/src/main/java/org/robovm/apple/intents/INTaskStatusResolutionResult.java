@@ -60,5 +60,11 @@ import org.robovm.apple.coregraphics.*;
     public static native INTaskStatusResolutionResult success(INTaskStatus resolvedTaskStatus);
     @Method(selector = "confirmationRequiredWithTaskStatusToConfirm:")
     public static native INTaskStatusResolutionResult confirmationRequired(INTaskStatus taskStatusToConfirm);
+    @Method(selector = "needsValue")
+    public static native INTaskStatusResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INTaskStatusResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INTaskStatusResolutionResult unsupported();
     /*</methods>*/
 }

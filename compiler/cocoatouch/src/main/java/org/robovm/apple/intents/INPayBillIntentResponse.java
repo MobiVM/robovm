@@ -76,6 +76,8 @@ import org.robovm.apple.coregraphics.*;
     public native String getTransactionNote();
     @Property(selector = "setTransactionNote:")
     public native void setTransactionNote(String v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -58,6 +58,8 @@ import org.robovm.apple.coregraphics.*;
     public native INNote getTargetNote();
     @Property(selector = "content")
     public native INNoteContent getContent();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

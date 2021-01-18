@@ -94,6 +94,8 @@ import org.robovm.apple.linkpresentation.*;
     public native UIImage getBackIndicatorImage();
     @Property(selector = "backIndicatorTransitionMaskImage")
     public native UIImage getBackIndicatorTransitionMaskImage();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

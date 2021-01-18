@@ -63,5 +63,7 @@ import org.robovm.apple.metalps.*;
     /*<methods>*/
     @Method(selector = "layerWithDescriptor:weights:")
     protected static native @Pointer long create(MLCEmbeddingDescriptor descriptor, MLCTensor weights);
+    @Method(selector = "supportsDataType:onDevice:")
+    public static native boolean supportsDataType(MLCDataType dataType, MLCDevice device);
     /*</methods>*/
 }

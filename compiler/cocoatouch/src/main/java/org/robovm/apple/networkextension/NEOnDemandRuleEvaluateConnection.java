@@ -53,6 +53,8 @@ import org.robovm.apple.network.*;
     public native NSArray<NEEvaluateConnectionRule> getConnectionRules();
     @Property(selector = "setConnectionRules:")
     public native void setConnectionRules(NSArray<NEEvaluateConnectionRule> v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

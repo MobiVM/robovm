@@ -79,6 +79,8 @@ import org.robovm.apple.metal.*;
     public native MPSImageAllocator getDestinationImageAllocator();
     @Property(selector = "setDestinationImageAllocator:")
     public native void setDestinationImageAllocator(MPSImageAllocator v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

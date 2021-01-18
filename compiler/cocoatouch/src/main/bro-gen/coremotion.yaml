@@ -16,7 +16,7 @@ enums:
     CMPedometerEventType: {}
     CMAuthorizationStatus: {} #since 11.0
     CMDeviceMotionSensorLocation: {}
-
+    CMFallDetectionEventUserResolution: {}
 classes:
     CMError:
         extends: NSError

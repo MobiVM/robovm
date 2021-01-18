@@ -157,9 +157,30 @@ import org.robovm.apple.foundation.*;
     public native NSArray<CNLabeledValue<NSDateComponents>> getDates();
     @Property(selector = "setDates:")
     public native void setDates(NSArray<CNLabeledValue<NSDateComponents>> v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
+    @Property(selector = "readableTypeIdentifiersForItemProvider")
+    public static native NSArray<NSString> getReadableTypeIdentifiersForItemProvider();
+    @Property(selector = "writableTypeIdentifiersForItemProvider")
+    public static native NSArray<NSString> getWritableTypeIdentifiersForItemProvider0();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "localizedStringForKey:")
+    public static native String getLocalizedProperty(CNContactPropertyKey key);
+    @Method(selector = "comparatorForNameSortOrder:")
+    public static native @Block Block2<String, String, NSComparisonResult> getNameComparator(CNContactSortOrder sortOrder);
+    @Method(selector = "descriptorForAllComparatorKeys")
+    public static native NSObject getDescriptorForAllComparatorKeys();
+    public static CNMutableContact createProviderDataObject(NSData data, String typeIdentifier) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       CNMutableContact result = createProviderDataObject(data, typeIdentifier, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    @Method(selector = "objectWithItemProviderData:typeIdentifier:error:")
+    private static native CNMutableContact createProviderDataObject(NSData data, String typeIdentifier, NSError.NSErrorPtr outError);
+    @Method(selector = "itemProviderVisibilityForRepresentationWithTypeIdentifier:")
+    public static native NSItemProviderRepresentationVisibility getItemProviderVisibility0(String typeIdentifier);
     /*</methods>*/
 }

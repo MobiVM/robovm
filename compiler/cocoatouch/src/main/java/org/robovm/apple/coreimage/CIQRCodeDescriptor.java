@@ -68,6 +68,8 @@ import org.robovm.apple.avfoundation.*;
     public native byte getMaskPattern();
     @Property(selector = "errorCorrectionLevel")
     public native CIQRCodeErrorCorrectionLevel getErrorCorrectionLevel();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -60,6 +60,8 @@ import org.robovm.apple.coregraphics.*;
     public native NSNumber getNumberOfLibraryItems();
     @Property(selector = "setNumberOfLibraryItems:")
     public native void setNumberOfLibraryItems(NSNumber v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

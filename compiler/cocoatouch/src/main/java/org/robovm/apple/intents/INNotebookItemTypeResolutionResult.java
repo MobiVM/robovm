@@ -62,5 +62,11 @@ import org.robovm.apple.coregraphics.*;
     public static native INNotebookItemTypeResolutionResult disambiguation(NSArray<NSNumber> notebookItemTypesToDisambiguate);
     @Method(selector = "confirmationRequiredWithNotebookItemTypeToConfirm:")
     public static native INNotebookItemTypeResolutionResult confirmationRequired(INNotebookItemType notebookItemTypeToConfirm);
+    @Method(selector = "needsValue")
+    public static native INNotebookItemTypeResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INNotebookItemTypeResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INNotebookItemTypeResolutionResult unsupported();
     /*</methods>*/
 }

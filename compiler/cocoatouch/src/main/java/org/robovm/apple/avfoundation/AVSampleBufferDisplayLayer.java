@@ -119,6 +119,8 @@ import org.robovm.apple.audiotoolbox.*;
     public native void setPreventsDisplaySleepDuringVideoPlayback(boolean v);
     @Property(selector = "timebase")
     public native CMTimebase getTimebase();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -132,6 +134,17 @@ import org.robovm.apple.audiotoolbox.*;
     @GlobalValue(symbol="AVSampleBufferDisplayLayerRequiresFlushToResumeDecodingDidChangeNotification", optional=true)
     public static native NSString RequiresFlushToResumeDecodingDidChangeNotification();
     
+    @Method(selector = "defaultValueForKey:")
+    public static native NSObject getDefaultValue(String key);
+    @Method(selector = "needsDisplayForKey:")
+    public static native boolean needsDisplay(String key);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "cornerCurveExpansionFactor:")
+    public static native @MachineSizedFloat double cornerCurveExpansionFactor(CALayerCornerCurve curve);
+    @Method(selector = "defaultActionForKey:")
+    public static native CAAction getDefaultAction(String event);
     @Method(selector = "enqueueSampleBuffer:")
     public native void enqueueSampleBuffer(CMSampleBuffer sampleBuffer);
     @Method(selector = "flush")

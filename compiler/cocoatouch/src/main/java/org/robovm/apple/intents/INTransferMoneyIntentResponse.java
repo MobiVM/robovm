@@ -80,6 +80,8 @@ import org.robovm.apple.coregraphics.*;
     public native INCurrencyAmount getTransferFee();
     @Property(selector = "setTransferFee:")
     public native void setTransferFee(INCurrencyAmount v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

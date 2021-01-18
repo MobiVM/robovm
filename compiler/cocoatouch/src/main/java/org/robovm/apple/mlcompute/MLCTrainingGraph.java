@@ -105,5 +105,7 @@ import org.robovm.apple.metalps.*;
     public native boolean bindOptimizerData(NSArray<MLCTensorData> data, NSArray<MLCTensorOptimizerDeviceData> deviceData, MLCTensor tensor);
     @Method(selector = "graphWithGraphObjects:lossLayer:optimizer:")
     protected static native @Pointer long create(NSArray<MLCGraph> graphObjects, MLCLayer lossLayer, MLCOptimizer optimizer);
+    @Method(selector = "graph")
+    public static native MLCTrainingGraph graph();
     /*</methods>*/
 }

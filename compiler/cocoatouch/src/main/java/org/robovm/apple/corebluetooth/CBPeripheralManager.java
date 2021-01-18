@@ -61,6 +61,11 @@ import org.robovm.apple.dispatch.*;
     public native void setDelegate(CBPeripheralManagerDelegate v);
     @Property(selector = "isAdvertising")
     public native boolean isAdvertising();
+    /**
+     * @since Available in iOS 13.1 and later.
+     */
+    @Property(selector = "authorization")
+    public static native CBManagerAuthorization authorization();
     /*</properties>*/
     /*<members>*//*</members>*/
     @Property(selector = "state")

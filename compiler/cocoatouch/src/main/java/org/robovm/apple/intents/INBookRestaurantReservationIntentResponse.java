@@ -60,6 +60,8 @@ import org.robovm.apple.coregraphics.*;
     public native INRestaurantReservationUserBooking getUserBooking();
     @Property(selector = "setUserBooking:")
     public native void setUserBooking(INRestaurantReservationUserBooking v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

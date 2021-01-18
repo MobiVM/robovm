@@ -67,9 +67,45 @@ import org.robovm.apple.foundation.*;
      */
     @Property(selector = "minimumAllowedDuration")
     public native double getMinimumAllowedDuration();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "quantityTypeForIdentifier:")
+    public static native HKQuantityType getQuantityType(HKQuantityTypeIdentifier identifier);
+    @Method(selector = "categoryTypeForIdentifier:")
+    public static native HKCategoryType getCategoryType(HKCategoryTypeIdentifier identifier);
+    @Method(selector = "characteristicTypeForIdentifier:")
+    public static native HKCharacteristicType getCharacteristicType(HKCharacteristicTypeIdentifier identifier);
+    @Method(selector = "correlationTypeForIdentifier:")
+    public static native HKCorrelationType getCorrelationType(HKCorrelationTypeIdentifier identifier);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "documentTypeForIdentifier:")
+    public static native HKDocumentType documentTypeForIdentifier(String identifier);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "seriesTypeForIdentifier:")
+    public static native HKSeriesType seriesTypeForIdentifier(String identifier);
+    @Method(selector = "workoutType")
+    public static native HKWorkoutType getWorkoutType();
+    /**
+     * @since Available in iOS 9.3 and later.
+     */
+    @Method(selector = "activitySummaryType")
+    public static native HKActivitySummaryType activitySummaryType();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "audiogramSampleType")
+    public static native HKAudiogramSampleType audiogramSampleType();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "electrocardiogramType")
+    public static native HKElectrocardiogramType electrocardiogramType();
     /*</methods>*/
 }

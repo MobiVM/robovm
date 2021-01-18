@@ -61,6 +61,8 @@ import org.robovm.apple.coregraphics.*;
     public native INRestaurant getRestaurant();
     @Property(selector = "setRestaurant:")
     public native void setRestaurant(INRestaurant v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

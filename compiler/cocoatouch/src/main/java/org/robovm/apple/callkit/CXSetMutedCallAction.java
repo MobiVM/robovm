@@ -59,6 +59,8 @@ import org.robovm.apple.avfoundation.*;
     public native boolean isMuted();
     @Property(selector = "setMuted:")
     public native void setMuted(boolean v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -71,9 +71,12 @@ import org.robovm.apple.dispatch.*;
     public static native NSUnitElectricPotentialDifference getMillivolts();
     @Property(selector = "microvolts")
     public static native NSUnitElectricPotentialDifference getMicrovolts();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "baseUnit")
+    public static native NSUnitElectricPotentialDifference getBaseUnit();
     /*</methods>*/
 }

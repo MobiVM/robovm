@@ -167,6 +167,9 @@ import org.robovm.apple.linkpresentation.*;
     public native UILabel getTitleLabel();
     @Property(selector = "imageView")
     public native UIImageView getImageView();
+    @WeaklyLinked
+    @Property(selector = "layerClass")
+    public static native Class<? extends CALayer> getLayerClass();
     /**
      * @since Available in iOS 11.0 and later.
      */
@@ -252,5 +255,15 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Method(selector = "buttonWithType:primaryAction:")
     protected static native @Pointer long create0(UIButtonType buttonType, UIAction primaryAction);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute attribute);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:relativeToLayoutDirection:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute semanticContentAttribute, UIUserInterfaceLayoutDirection layoutDirection);
     /*</methods>*/
 }

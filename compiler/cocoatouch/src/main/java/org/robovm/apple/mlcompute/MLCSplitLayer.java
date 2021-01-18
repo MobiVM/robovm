@@ -66,5 +66,7 @@ import org.robovm.apple.metalps.*;
     protected static native @Pointer long create(@MachineSizedUInt long splitCount, @MachineSizedUInt long dimension);
     @Method(selector = "layerWithSplitSectionLengths:dimension:")
     protected static native @Pointer long create(NSArray<NSNumber> splitSectionLengths, @MachineSizedUInt long dimension);
+    @Method(selector = "supportsDataType:onDevice:")
+    public static native boolean supportsDataType(MLCDataType dataType, MLCDevice device);
     /*</methods>*/
 }

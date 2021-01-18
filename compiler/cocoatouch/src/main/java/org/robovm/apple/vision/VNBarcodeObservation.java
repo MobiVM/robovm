@@ -62,6 +62,8 @@ import org.robovm.apple.imageio.*;
     public native CIBarcodeDescriptor getBarcodeDescriptor();
     @Property(selector = "payloadStringValue")
     public native String getPayloadStringValue();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

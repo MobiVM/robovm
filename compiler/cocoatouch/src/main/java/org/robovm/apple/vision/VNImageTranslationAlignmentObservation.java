@@ -60,6 +60,8 @@ import org.robovm.apple.imageio.*;
     public native @ByVal CGAffineTransform getAlignmentTransform();
     @Property(selector = "setAlignmentTransform:")
     public native void setAlignmentTransform(@ByVal CGAffineTransform v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

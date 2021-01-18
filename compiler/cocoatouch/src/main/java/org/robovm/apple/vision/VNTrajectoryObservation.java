@@ -62,6 +62,8 @@ import org.robovm.apple.imageio.*;
     public native NSArray<VNPoint> getProjectedPoints();
     @Property(selector = "equationCoefficients")
     public native @ByVal VectorFloat3 getEquationCoefficients();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

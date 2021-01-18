@@ -49,6 +49,8 @@ import org.robovm.apple.foundation.*;
     /*<properties>*/
     @Property(selector = "count")
     public native @MachineSizedUInt long getCount();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

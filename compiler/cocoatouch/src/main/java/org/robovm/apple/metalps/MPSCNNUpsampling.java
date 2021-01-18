@@ -64,6 +64,8 @@ import org.robovm.apple.metal.*;
     public native double getScaleFactorY();
     @Property(selector = "alignCorners")
     public native boolean isAlignCorners();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

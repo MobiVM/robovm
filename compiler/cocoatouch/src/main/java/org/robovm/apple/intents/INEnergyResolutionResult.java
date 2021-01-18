@@ -62,5 +62,11 @@ import org.robovm.apple.coregraphics.*;
     public static native INEnergyResolutionResult disambiguation(NSArray<?> energyToDisambiguate);
     @Method(selector = "confirmationRequiredWithEnergyToConfirm:")
     public static native INEnergyResolutionResult confirmationRequired(NSMeasurement<NSUnitEnergy> energyToConfirm);
+    @Method(selector = "needsValue")
+    public static native INEnergyResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INEnergyResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INEnergyResolutionResult unsupported();
     /*</methods>*/
 }
