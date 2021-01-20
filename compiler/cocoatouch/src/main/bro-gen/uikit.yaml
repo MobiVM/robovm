@@ -4294,7 +4294,11 @@ classes:
     UIToolbarAppearance: {} #since 13.0
     UIWindowScene: {} #since 13.0
     UIWindowSceneDestructionRequestOptions: {} #since 13.0
-    UIKey: {} #since 13.4
+    UIKey:  #since 13.4
+        properties:
+            'keyCode':
+                name: keyCodeRaw
+                type: "@MachineSizedSInt long"
     NSDiffableDataSourceSectionSnapshot: #since 14.0
         methods:
             '-appendItems:intoParentItem:':
