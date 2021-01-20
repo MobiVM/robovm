@@ -69,12 +69,13 @@ import org.robovm.apple.linkpresentation.*;
     @Property(selector = "modifierFlags")
     public native UIKeyModifierFlags getModifierFlags();
     @Property(selector = "keyCode")
-    public native UIKeyboardHIDUsage getKeyCode();
+    public native @MachineSizedSInt long getKeyCodeRaw();
     /*</properties>*/
 
-    // manually added method to access keyCodes that are missing in UIKeyboardHIDUsage
-    @Property(selector = "keyCode")
-    public native @MachineSizedSInt long getKeyCodeRaw();
+    // manually added method, converts raw value into UIKeyboardHIDUsage
+    public UIKeyboardHIDUsage getKeyCode() {
+        return UIKeyboardHIDUsage.valueOf(getKeyCodeRaw());
+    }
 
     /*<members>*//*</members>*/
     /*<methods>*/
