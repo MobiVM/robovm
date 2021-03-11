@@ -44,6 +44,7 @@ import org.robovm.compiler.plugin.lambda.LambdaPlugin;
 import org.robovm.compiler.plugin.objc.InterfaceBuilderClassesPlugin;
 import org.robovm.compiler.plugin.objc.ObjCBlockPlugin;
 import org.robovm.compiler.plugin.objc.ObjCMemberPlugin;
+import org.robovm.compiler.plugin.objc.ObjCProtocolToObjCObjectPlugin;
 import org.robovm.compiler.plugin.objc.ObjCProtocolProxyPlugin;
 import org.robovm.compiler.target.ConsoleTarget;
 import org.robovm.compiler.target.Target;
@@ -246,6 +247,7 @@ public class Config {
         this.plugins.addAll(0, Arrays.asList(
                 new InterfaceBuilderClassesPlugin(),
                 new ObjCProtocolProxyPlugin(),
+                new ObjCProtocolToObjCObjectPlugin(),
                 new ObjCMemberPlugin(),
                 new ObjCBlockPlugin(),
                 new AnnotationImplPlugin(),
