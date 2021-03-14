@@ -5596,16 +5596,16 @@ class AppData {
   public:
     static AppData* create() {
         UniquePtr<AppData> appData(new AppData());
+        if (MUTEX_SETUP(appData.get()->mutex) == -1) {
+            ALOGE("pthread_mutex_init(3) failed: %s", strerror(errno));
+            return NULL;
+        }
         if (pipe(appData.get()->fdsEmergency) == -1) {
             ALOGE("AppData::create pipe(2) failed: %s", strerror(errno));
             return NULL;
         }
         if (!setBlocking(appData.get()->fdsEmergency[0], false)) {
             ALOGE("AppData::create fcntl(2) failed: %s", strerror(errno));
-            return NULL;
-        }
-        if (MUTEX_SETUP(appData.get()->mutex) == -1) {
-            ALOGE("pthread_mutex_init(3) failed: %s", strerror(errno));
             return NULL;
         }
         return appData.release();
