@@ -282,7 +282,7 @@ public class OpenSSLSocketImpl
             }
 
             if (client && alpnProtocols != null) {
-                NativeCrypto.SSL_CTX_set_alpn_protos(sslCtxNativePointer, alpnProtocols);
+                NativeCrypto.SSL_set_alpn_protos(sslNativePointer, alpnProtocols);
             }
 
             // setup server certificates and private keys.

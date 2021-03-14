@@ -6912,30 +6912,30 @@ extern "C" jbyteArray Java_com_android_org_conscrypt_NativeCrypto_SSL_1get_1npn_
     return result;
 }
 
-extern "C" int Java_com_android_org_conscrypt_NativeCrypto_SSL_1CTX_1set_1alpn_1protos(JNIEnv* env, jclass, jlong ssl_ctx_address,
+extern "C" int Java_com_android_org_conscrypt_NativeCrypto_SSL_1set_1alpn_1protos(JNIEnv* env, jclass, jlong ssl_address,
         jbyteArray protos) {
-    SSL_CTX* ssl_ctx = to_SSL_CTX(env, ssl_ctx_address, true);
-    if (ssl_ctx == NULL) {
+    SSL* ssl = to_SSL(env, ssl_address, true);
+    if (ssl == NULL) {
         return 0;
     }
 
-    JNI_TRACE("ssl_ctx=%p SSL_CTX_set_alpn_protos protos=%p", ssl_ctx, protos);
+    JNI_TRACE("ssl=%p SSL_set_alpn_protos protos=%p", ssl, protos);
 
     if (protos == NULL) {
-        JNI_TRACE("ssl_ctx=%p SSL_CTX_set_alpn_protos protos=NULL", ssl_ctx);
+        JNI_TRACE("ssl=%p SSL_set_alpn_protos protos=NULL", ssl);
         return 1;
     }
 
     ScopedByteArrayRO protosBytes(env, protos);
     if (protosBytes.get() == NULL) {
-        JNI_TRACE("ssl_ctx=%p SSL_CTX_set_alpn_protos protos=%p => protosBytes == NULL", ssl_ctx,
+        JNI_TRACE("ssl=%p SSL_set_alpn_protos protos=%p => protosBytes == NULL", ssl,
                 protos);
         return 0;
     }
 
     const unsigned char *tmp = reinterpret_cast<const unsigned char*>(protosBytes.get());
-    int ret = SSL_CTX_set_alpn_protos(ssl_ctx, tmp, protosBytes.size());
-    JNI_TRACE("ssl_ctx=%p SSL_CTX_set_alpn_protos protos=%p => ret=%d", ssl_ctx, protos, ret);
+    int ret = SSL_set_alpn_protos(ssl, tmp, protosBytes.size());
+    JNI_TRACE("ssl=%p SSL_set_alpn_protos protos=%p => ret=%d", ssl, protos, ret);
     return ret;
 }
 
