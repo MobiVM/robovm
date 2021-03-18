@@ -10,6 +10,10 @@ jobs:
   build:
 
     runs-on: macos-latest
+    
+    env:
+      MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
+      MAVEN_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}    
 
     steps:
     - uses: actions/checkout@v2
