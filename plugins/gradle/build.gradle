@@ -29,6 +29,8 @@ compileJava {
 
 ext {
     roboVMVersion = '2.3.13-SNAPSHOT'
+    nexusUsername = System.getenv('NEXUS_USERNAME')
+    nexusPassword = System.getenv('NEXUS_PASSWORD')
 }
 
 repositories {
