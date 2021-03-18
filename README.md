@@ -1,6 +1,6 @@
 # RoboVM 
 
-![Build Status](https://github.com/github/MobiVM/actions/workflows/build.yml/badge.svg)
+![Build Status](https://github.com/MobiVM/robovm/actions/workflows/build.yml/badge.svg)
 
 
 [**Website**](http://robovm.mobidevelop.com) -
