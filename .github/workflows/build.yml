@@ -17,13 +17,16 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.11
-    - name: Install dependencies
-      run: |
-        brew install openssl
-        brew install autoconf
-        brew install automake
-        brew install libtool
-        brew install cmake
-    - name: build
-      run: ./build.sh
-        
+#     - name: Install dependencies
+#       run: |
+#         brew install openssl
+#         brew install autoconf
+#         brew install automake
+#         brew install libtool
+#         brew install cmake
+#     - name: build
+#       run: ./build.sh
+    - name: Maven deploy
+      run: mvn clean deploy
+    - name: Gradle plugin deploy
+      run: cd plugins/gradle && ./gradlew uploadArchives
