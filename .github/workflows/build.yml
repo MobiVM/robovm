@@ -34,7 +34,7 @@ jobs:
 #         brew install cmake
 #     - name: build
 #       run: ./build.sh
-    - name: Maven deploy
-      run: mvn clean deploy
+#     - name: Maven deploy
+#       run: mvn clean deploy
     - name: Gradle plugin deploy
       run: cd plugins/gradle && ./gradlew uploadArchives
