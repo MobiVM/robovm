@@ -16,9 +16,9 @@ Not supported any more due removed `-extdir` in Java9+
 * Open Intellij IDEA CE, setup the IDEA sdk pointing it at your IDEA installation. Add source path to root of repo cloned above. Also add following JARs to SDK from IDEA directory:
    - /Applications/IntelliJ IDEA CE.app/Contents/plugins/maven/lib/maven.jar
    - /Applications/IntelliJ IDEA CE.app/Contents/plugins/gradle/lib/gradle-common.jar
-   - /Applications/IntelliJ IDEA CE.app/Contents/plugins/gradle/lib/gradle-api-?.?.?-sp1.jar
-   - (pre 2019.3) /Applications/IntelliJ IDEA CE.app/Contents/plugins/gradle/lib/gradle-java.jar
-   - (after 2019.3) /Applications/IntelliJ IDEA CE.app/Contents/plugins/gradle-java/lib/gradle-java.jar!/
+   - /Applications/IntelliJ IDEA CE.app/Contents/plugins/gradle-java/lib/gradle-java.jar!/
+   - (before 2021.1) /Applications/IntelliJ IDEA CE.app/Contents/plugins/gradle/lib/gradle-api-?.?.?-sp1.jar
+   - (after 2021.1) /Applications/IntelliJ IDEA CE.app/Contents/plugins/gradle/lib/gradle-lib.jar
 * Open the project by selecting it's POM
 * Open File -> Project Structure, Click on the Project menu entry, and select the IDEA sdk under Project SDK
 * Click OK
