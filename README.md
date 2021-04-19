@@ -1,7 +1,7 @@
 # RoboVM 
 
+![Build Status](https://github.com/MobiVM/robovm/actions/workflows/build.yml/badge.svg)
 
-[![Build Status](https://libgdx.badlogicgames.com/jenkins/buildStatus/icon?job=robovm-oss&.png)](https://libgdx.badlogicgames.com/jenkins/job/robovm-oss/)
 
 [**Website**](http://robovm.mobidevelop.com) -
 [**Developer Guide**](https://github.com/MobiVM/robovm/wiki/Developer-Guide) -

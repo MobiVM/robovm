@@ -1,3 +1,8 @@
+Please use [discussions](https://github.com/MobiVM/robovm/discussions) for all things that are not reportable issues.
+---
+
+
+
 Please ensure you have given all the following requested information in your report.
 
 #### Issue details
