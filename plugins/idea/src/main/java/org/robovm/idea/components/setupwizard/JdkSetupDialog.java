@@ -96,7 +96,7 @@ public class JdkSetupDialog extends JDialog {
 
     private void validateInput() {
         String jdkPath = jdkHome.getText();
-        boolean valid = jdkPath != null && !jdkPath.isEmpty() && JdkUtil.checkForJdk(new File(jdkPath));
+        boolean valid = jdkPath != null && !jdkPath.isEmpty() && JdkUtil.checkForJdk(jdkPath);
         errorLabel.setVisible(!valid);
         nextButton.setEnabled(valid);
     }
