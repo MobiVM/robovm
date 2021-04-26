@@ -81,6 +81,21 @@ import org.robovm.apple.dispatch.*;
     /**
      * @since Available in iOS 14.0 and later.
      */
+    @Property(selector = "supports32BitFloatFiltering")
+    public native boolean supports32BitFloatFiltering();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "supports32BitMSAA")
+    public native boolean supports32BitMSAA();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "supportsQueryTextureLOD")
+    public native boolean supportsQueryTextureLOD();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
     @Property(selector = "supportsPullModelInterpolation")
     public native boolean supportsPullModelInterpolation();
     /**
