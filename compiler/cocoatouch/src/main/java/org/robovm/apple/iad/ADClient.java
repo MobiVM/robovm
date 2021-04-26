@@ -36,9 +36,11 @@ import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @deprecated Deprecated in iOS 14.5. This has been replaced by functionality in AdServices.framework's AAAttribution class.
+ */
 /*</javadoc>*/
-/*<annotations>*/@Library("iAd") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("iAd") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/ADClient/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -56,20 +58,22 @@ import org.robovm.apple.coreanimation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @deprecated Deprecated in iOS 9.0. Use requestAttributionDetailsWithBlock instead.
+     * @deprecated Deprecated in iOS 9.0. This has been replaced by functionality in AdServices.framework's AAAttribution class.
      */
     @Deprecated
     @Method(selector = "determineAppInstallationAttributionWithCompletionHandler:")
     public native void determineAppInstallationAttribution(@Block VoidBooleanBlock completionHandler);
     /**
-     * @deprecated Deprecated in iOS 9.0. Use requestAttributionDetailsWithBlock instead.
+     * @deprecated Deprecated in iOS 9.0. This has been replaced by functionality in AdServices.framework's AAAttribution class.
      */
     @Deprecated
     @Method(selector = "lookupAdConversionDetails:")
     public native void lookupAdConversionDetails(@Block VoidBlock2<NSDate, NSDate> completionHandler);
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 14.5. This has been replaced by functionality in AdServices.framework's AAAttribution class.
      */
+    @Deprecated
     @Method(selector = "requestAttributionDetailsWithBlock:")
     public native void requestAttributionDetails(@Block VoidBlock2<NSDictionary<?, ?>, NSError> completionHandler);
     /**
@@ -78,6 +82,10 @@ import org.robovm.apple.coreanimation.*;
     @Deprecated
     @Method(selector = "addClientToSegments:replaceExisting:")
     public native void addClientToSegments(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> segmentIdentifiers, boolean replaceExisting);
+    /**
+     * @deprecated Deprecated in iOS 14.5. This has been replaced by functionality in AdServices.framework's AAAttribution class.
+     */
+    @Deprecated
     @Method(selector = "sharedClient")
     public static native ADClient getSharedClient();
     /*</methods>*/

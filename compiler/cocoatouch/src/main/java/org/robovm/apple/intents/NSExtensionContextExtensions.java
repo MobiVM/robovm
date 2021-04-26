@@ -34,37 +34,28 @@ import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 13.0 and later.
- */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/INMediaReference/*</name>*/ implements ValuedEnum {
-    /*<values>*/
-    Unknown(0L),
-    CurrentlyPlaying(1L),
-    /**
-     * @since Available in iOS 14.5 and later.
-     */
-    My(2L);
-    /*</values>*/
+/*<annotations>*/@Library("Intents")/*</annotations>*/
+/*<visibility>*/public final/*</visibility>*/ class /*<name>*/NSExtensionContextExtensions/*</name>*/ 
+    extends /*<extends>*/NSExtensions/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
 
-    /*<bind>*/
-    /*</bind>*/
+    /*<ptr>*/
+    /*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(NSExtensionContextExtensions.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<methods>*//*</methods>*/
-
-    private final long n;
-
-    private /*<name>*/INMediaReference/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/INMediaReference/*</name>*/ valueOf(long n) {
-        for (/*<name>*/INMediaReference/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/INMediaReference/*</name>*/.class.getName());
-    }
+    /*<constructors>*/
+    private NSExtensionContextExtensions() {}
+    /*</constructors>*/
+    /*<properties>*/
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "intent")
+    public static native INIntent getIntent(NSExtensionContext thiz);
+    /*</properties>*/
+    /*<members>*//*</members>*/
+    /*<methods>*/
+    
+    /*</methods>*/
 }
