@@ -58,6 +58,16 @@ import org.robovm.apple.coreanimation.*;
     public native String getPassword();
     @Property(selector = "setPassword:")
     public native void setPassword(String v);
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Property(selector = "supportedRadioTechnologies")
+    public native PKRadioTechnology getSupportedRadioTechnologies();
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Property(selector = "setSupportedRadioTechnologies:")
+    public native void setSupportedRadioTechnologies(PKRadioTechnology v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

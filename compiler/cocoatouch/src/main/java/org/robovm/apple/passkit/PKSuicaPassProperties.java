@@ -74,6 +74,11 @@ import org.robovm.apple.coreanimation.*;
     public native boolean isLowBalanceGateNotificationEnabled();
     @Property(selector = "isGreenCarTicketUsed")
     public native boolean isGreenCarTicketUsed();
+    /**
+     * @since Available in iOS 10.1 and later.
+     * @deprecated Deprecated in iOS 14.5. Use isBlocked
+     */
+    @Deprecated
     @Property(selector = "isBlacklisted")
     public native boolean isBlacklisted();
     /*</properties>*/
