@@ -189,6 +189,16 @@ import org.robovm.apple.corehaptic.*;
          */
         @GlobalValue(symbol="GCInputButtonOptions", optional=true)
         public static native String ButtonOptions();
+        /**
+         * @since Available in iOS 14.5 and later.
+         */
+        @GlobalValue(symbol="GCInputDirectionalDpad", optional=true)
+        public static native String DirectionalDpad();
+        /**
+         * @since Available in iOS 14.5 and later.
+         */
+        @GlobalValue(symbol="GCInputDirectionalCardinalDpad", optional=true)
+        public static native String DirectionalCardinalDpad();
     }
 
     @Library("GameController")

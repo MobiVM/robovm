@@ -85,6 +85,16 @@ import org.robovm.apple.corehaptic.*;
      */
     @Property(selector = "current")
     public static native GCController getCurrent();
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Property(selector = "shouldMonitorBackgroundEvents")
+    public static native boolean shouldMonitorBackgroundEvents();
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Property(selector = "setShouldMonitorBackgroundEvents:")
+    public static native void setShouldMonitorBackgroundEvents(boolean v);
     @Property(selector = "isAttachedToDevice")
     public native boolean isAttachedToDevice();
     /**

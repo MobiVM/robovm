@@ -37,7 +37,7 @@ enums:
     GKLeaderboardType: {}
     GKAccessPointLocation: {}
     GKMatchmakingMode: {}
-
+    GKFriendsAuthorizationStatus: {} #since 14.5
 classes:
 
     GKAchievement: # DONE
@@ -281,6 +281,10 @@ classes:
                 parameters:
                     completionHandler:
                         type: '@Block VoidBlock2<NSArray<NSString>, NSError>' # TODO asStringListMarshaler
+            '-loadFriendsWithIdentifiers:completionHandler:':
+                name: loadFriends
+            '-loadFriends:':
+                name: loadFriends2 # FIX: currently slashing with loadFriendsWithCompletionHandler
             '-setDefaultLeaderboardIdentifier:completionHandler:':
                 trim_after_first_colon: true
             '-loadDefaultLeaderboardIdentifierWithCompletionHandler:':

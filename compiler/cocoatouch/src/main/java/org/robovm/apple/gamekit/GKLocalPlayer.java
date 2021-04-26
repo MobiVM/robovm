@@ -102,8 +102,6 @@ import org.robovm.apple.coregraphics.*;
      */
     @Method(selector = "fetchItemsForIdentityVerificationSignature:")
     public native void fetchItemsForIdentityVerificationSignature(@Block VoidBlock5<NSURL, NSData, NSData, Long, NSError> completionHandler);
-    @Method(selector = "loadPlayersForIdentifiers:withCompletionHandler:")
-    public static native void loadPlayers(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> identifiers, @Block VoidBlock2<NSArray<GKPlayer>, NSError> completionHandler);
     /**
      * @since Available in iOS 9.0 and later.
      */
@@ -145,6 +143,21 @@ import org.robovm.apple.coregraphics.*;
     @Deprecated
     @Method(selector = "loadFriendsWithCompletionHandler:")
     public native void loadFriends(@Block VoidBlock2<NSArray<NSString>, NSError> completionHandler);
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Method(selector = "loadFriendsAuthorizationStatus:")
+    public native void loadFriendsAuthorizationStatus(@Block VoidBlock2<GKFriendsAuthorizationStatus, NSError> completionHandler);
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Method(selector = "loadFriends:")
+    public native void loadFriends2(@Block VoidBlock2<NSArray<GKPlayer>, NSError> completionHandler);
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Method(selector = "loadFriendsWithIdentifiers:completionHandler:")
+    public native void loadFriends(NSArray<NSString> identifiers, @Block VoidBlock2<NSArray<GKPlayer>, NSError> completionHandler);
     @Method(selector = "fetchSavedGamesWithCompletionHandler:")
     public native void fetchSavedGames(@Block VoidBlock2<NSArray<GKSavedGame>, NSError> handler);
     @Method(selector = "saveGameData:withName:completionHandler:")

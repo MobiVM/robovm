@@ -101,8 +101,6 @@ import org.robovm.apple.coregraphics.*;
      */
     @Method(selector = "scopedIDsArePersistent")
     public native boolean scopedIDsArePersistent();
-    @Method(selector = "loadPlayersForIdentifiers:withCompletionHandler:")
-    public static native void loadPlayers(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> identifiers, @Block VoidBlock2<NSArray<GKPlayer>, NSError> completionHandler);
     /**
      * @since Available in iOS 9.0 and later.
      */
@@ -110,5 +108,11 @@ import org.robovm.apple.coregraphics.*;
     public static native GKPlayer getAnonymousGuestPlayer(String guestIdentifier);
     @Method(selector = "loadPhotoForSize:withCompletionHandler:")
     public native void loadPhoto(GKPhotoSize size, @Block VoidBlock2<UIImage, NSError> completionHandler);
+    /**
+     * @deprecated Deprecated in iOS 14.5. use GKLocalPlayer.loadFriendsWithIdentifiers to load a friend's GKPlayer object.
+     */
+    @Deprecated
+    @Method(selector = "loadPlayersForIdentifiers:withCompletionHandler:")
+    public static native void loadPlayers(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> identifiers, @Block VoidBlock2<NSArray<GKPlayer>, NSError> completionHandler);
     /*</methods>*/
 }
