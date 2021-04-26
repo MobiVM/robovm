@@ -117,8 +117,18 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "setPreventsDisplaySleepDuringVideoPlayback:")
     public native void setPreventsDisplaySleepDuringVideoPlayback(boolean v);
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Property(selector = "outputObscuredDueToInsufficientExternalProtection")
+    public native boolean isOutputObscuredDueToInsufficientExternalProtection();
     @Property(selector = "timebase")
     public native CMTimebase getTimebase();
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Property(selector = "hasSufficientMediaDataForReliablePlaybackStart")
+    public native boolean hasSufficientMediaDataForReliablePlaybackStart();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
@@ -133,6 +143,11 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @GlobalValue(symbol="AVSampleBufferDisplayLayerRequiresFlushToResumeDecodingDidChangeNotification", optional=true)
     public static native NSString RequiresFlushToResumeDecodingDidChangeNotification();
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @GlobalValue(symbol="AVSampleBufferDisplayLayerOutputObscuredDueToInsufficientExternalProtectionDidChangeNotification", optional=true)
+    public static native NSString OutputObscuredDueToInsufficientExternalProtectionDidChangeNotification();
     
     @Method(selector = "defaultValueForKey:")
     public static native NSObject getDefaultValue(String key);

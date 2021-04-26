@@ -42,39 +42,32 @@ import org.robovm.apple.audiotoolbox.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 11.0 and later.
+ * @since Available in iOS 14.5 and later.
  */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/AVQueuedSampleBufferRendering/*</name>*/ 
-    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
+/*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
+public final class /*<name>*/AVVariantPreferences/*</name>*/ extends Bits</*<name>*/AVVariantPreferences/*</name>*/> {
+    /*<values>*/
+    public static final AVVariantPreferences None = new AVVariantPreferences(0L);
+    public static final AVVariantPreferences ScalabilityToLosslessAudio = new AVVariantPreferences(1L);
+    /*</values>*/
 
-    /*<ptr>*/
-    /*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<properties>*/
-    @Property(selector = "timebase")
-    CMTimebase getTimebase();
-    @Property(selector = "isReadyForMoreMediaData")
-    boolean isReadyForMoreMediaData();
-    /**
-     * @since Available in iOS 14.5 and later.
-     */
-    @Property(selector = "hasSufficientMediaDataForReliablePlaybackStart")
-    boolean hasSufficientMediaDataForReliablePlaybackStart();
-    /*</properties>*/
-    /*<methods>*/
-    @Method(selector = "enqueueSampleBuffer:")
-    void enqueueSampleBuffer(CMSampleBuffer sampleBuffer);
-    @Method(selector = "flush")
-    void flush();
-    @Method(selector = "requestMediaDataWhenReadyOnQueue:usingBlock:")
-    void requestMediaDataWhenReadyOnQueue(DispatchQueue queue, @Block Runnable block);
-    @Method(selector = "stopRequestingMediaData")
-    void stopRequestingMediaData();
-    /*</methods>*/
-    /*<adapter>*/
-    /*</adapter>*/
+    /*<methods>*//*</methods>*/
+
+    private static final /*<name>*/AVVariantPreferences/*</name>*/[] values = _values(/*<name>*/AVVariantPreferences/*</name>*/.class);
+
+    public /*<name>*/AVVariantPreferences/*</name>*/(long value) { super(value); }
+    private /*<name>*/AVVariantPreferences/*</name>*/(long value, long mask) { super(value, mask); }
+    protected /*<name>*/AVVariantPreferences/*</name>*/ wrap(long value, long mask) {
+        return new /*<name>*/AVVariantPreferences/*</name>*/(value, mask);
+    }
+    protected /*<name>*/AVVariantPreferences/*</name>*/[] _values() {
+        return values;
+    }
+    public static /*<name>*/AVVariantPreferences/*</name>*/[] values() {
+        return values.clone();
+    }
 }

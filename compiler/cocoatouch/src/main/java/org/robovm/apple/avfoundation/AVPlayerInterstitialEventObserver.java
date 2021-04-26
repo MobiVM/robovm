@@ -41,38 +41,40 @@ import org.robovm.apple.audiotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
+/**
+ * @since Available in iOS 14.5 and later.
+ */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/AVQueuedSampleBufferRenderingAdapter/*</name>*/ 
+/*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/AVPlayerInterstitialEventObserver/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements AVQueuedSampleBufferRendering/*</implements>*/ {
+    /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/
-    /*</ptr>*/
-    /*<bind>*/
-    /*</bind>*/
+    /*<ptr>*/public static class AVPlayerInterstitialEventObserverPtr extends Ptr<AVPlayerInterstitialEventObserver, AVPlayerInterstitialEventObserverPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(AVPlayerInterstitialEventObserver.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*//*</constructors>*/
+    /*<constructors>*/
+    public AVPlayerInterstitialEventObserver() {}
+    protected AVPlayerInterstitialEventObserver(Handle h, long handle) { super(h, handle); }
+    protected AVPlayerInterstitialEventObserver(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithPrimaryPlayer:")
+    public AVPlayerInterstitialEventObserver(AVPlayer primaryPlayer) { super((SkipInit) null); initObject(init(primaryPlayer)); }
+    /*</constructors>*/
     /*<properties>*/
-    @NotImplemented("timebase")
-    public CMTimebase getTimebase() { return null; }
-    @NotImplemented("isReadyForMoreMediaData")
-    public boolean isReadyForMoreMediaData() { return false; }
-    /**
-     * @since Available in iOS 14.5 and later.
-     */
-    @NotImplemented("hasSufficientMediaDataForReliablePlaybackStart")
-    public boolean hasSufficientMediaDataForReliablePlaybackStart() { return false; }
+    @Property(selector = "primaryPlayer")
+    public native AVPlayer getPrimaryPlayer();
+    @Property(selector = "interstitialPlayer")
+    public native AVQueuePlayer getInterstitialPlayer();
+    @Property(selector = "events")
+    public native NSArray<AVPlayerInterstitialEvent> getEvents();
+    @Property(selector = "interstitialEvents")
+    public native NSArray<AVPlayerInterstitialEvent> getInterstitialEvents();
+    @Property(selector = "currentEvent")
+    public native AVPlayerInterstitialEvent getCurrentEvent();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @NotImplemented("enqueueSampleBuffer:")
-    public void enqueueSampleBuffer(CMSampleBuffer sampleBuffer) {}
-    @NotImplemented("flush")
-    public void flush() {}
-    @NotImplemented("requestMediaDataWhenReadyOnQueue:usingBlock:")
-    public void requestMediaDataWhenReadyOnQueue(DispatchQueue queue, @Block Runnable block) {}
-    @NotImplemented("stopRequestingMediaData")
-    public void stopRequestingMediaData() {}
+    @Method(selector = "initWithPrimaryPlayer:")
+    protected native @Pointer long init(AVPlayer primaryPlayer);
     /*</methods>*/
 }

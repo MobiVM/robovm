@@ -42,39 +42,35 @@ import org.robovm.apple.audiotoolbox.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 11.0 and later.
+ * @since Available in iOS 14.5 and later.
  */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/AVQueuedSampleBufferRendering/*</name>*/ 
-    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
+/*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/AVContentKeySpecifier/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/
-    /*</ptr>*/
-    /*<bind>*/
-    /*</bind>*/
+    /*<ptr>*/public static class AVContentKeySpecifierPtr extends Ptr<AVContentKeySpecifier, AVContentKeySpecifierPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(AVContentKeySpecifier.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
+    /*<constructors>*/
+    public AVContentKeySpecifier() {}
+    protected AVContentKeySpecifier(Handle h, long handle) { super(h, handle); }
+    protected AVContentKeySpecifier(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initForKeySystem:identifier:options:")
+    public AVContentKeySpecifier(String keySystem, NSObject contentKeyIdentifier, NSDictionary<NSString, ?> options) { super((SkipInit) null); initObject(init(keySystem, contentKeyIdentifier, options)); }
+    /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "timebase")
-    CMTimebase getTimebase();
-    @Property(selector = "isReadyForMoreMediaData")
-    boolean isReadyForMoreMediaData();
-    /**
-     * @since Available in iOS 14.5 and later.
-     */
-    @Property(selector = "hasSufficientMediaDataForReliablePlaybackStart")
-    boolean hasSufficientMediaDataForReliablePlaybackStart();
+    @Property(selector = "keySystem")
+    public native String getKeySystem();
+    @Property(selector = "identifier")
+    public native NSObject getIdentifier();
+    @Property(selector = "options")
+    public native NSDictionary<NSString, ?> getOptions();
     /*</properties>*/
+    /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "enqueueSampleBuffer:")
-    void enqueueSampleBuffer(CMSampleBuffer sampleBuffer);
-    @Method(selector = "flush")
-    void flush();
-    @Method(selector = "requestMediaDataWhenReadyOnQueue:usingBlock:")
-    void requestMediaDataWhenReadyOnQueue(DispatchQueue queue, @Block Runnable block);
-    @Method(selector = "stopRequestingMediaData")
-    void stopRequestingMediaData();
+    @Method(selector = "initForKeySystem:identifier:options:")
+    protected native @Pointer long init(String keySystem, NSObject contentKeyIdentifier, NSDictionary<NSString, ?> options);
     /*</methods>*/
-    /*<adapter>*/
-    /*</adapter>*/
 }

@@ -63,6 +63,10 @@ public final class /*<name>*/AVAudioSessionCategoryOptions/*</name>*/ extends Bi
      * @since Available in iOS 10.0 and later.
      */
     public static final AVAudioSessionCategoryOptions AllowAirPlay = new AVAudioSessionCategoryOptions(64L);
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    public static final AVAudioSessionCategoryOptions OverrideMutedMicrophoneInterruption = new AVAudioSessionCategoryOptions(128L);
     /*</values>*/
 
     /*<bind>*/

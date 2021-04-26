@@ -2748,8 +2748,7 @@ classes:
             '-initForKeySystem:identifier:options:':
                 name: init
             '+contentKeySpecifierForKeySystem:identifier:options:':
-                name: create
-                constructor: true
+                exclude: true
     AVPlayerInterstitialEvent: #since 14.5
         methods:
             '+interstitialEventWithPrimaryItem:time:templateItems:restrictions:resumptionOffset:':
@@ -2767,8 +2766,7 @@ classes:
             '-cancelCurrentEventWithResumptionOffset:':
                 name: cancelCurrentEvent
             '+interstitialEventControllerWithPrimaryPlayer:':
-                name: create
-                constructor: true
+                exclude: true
             '+playerInterstitialEventControllerWithPrimaryPlayer:':
                 exclude: true
     AVPlayerInterstitialEventObserver: #since 14.5
@@ -2776,8 +2774,7 @@ classes:
             '-initWithPrimaryPlayer:':
                 name: init
             '+interstitialEventObserverWithPrimaryPlayer:':
-                name: create
-                constructor: true
+                exclude: true
             '+playerInterstitialEventObserverWithPrimaryPlayer:':
                 exclude: true
 protocols:
@@ -3050,6 +3047,10 @@ functions:
     AVMake(RectWithAspectRatioInsideRect):
         class: AVFoundation
         name: 'create#{g[0]}'
+    AVSampleBufferAttachContentKey:
+        class: AVContentKey
+        name: attachToSampleBuffer
+        throws: NSErrorException
 
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (k?AV.*):

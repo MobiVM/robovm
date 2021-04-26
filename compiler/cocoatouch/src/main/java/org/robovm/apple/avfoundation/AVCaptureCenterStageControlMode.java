@@ -42,39 +42,33 @@ import org.robovm.apple.audiotoolbox.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 11.0 and later.
+ * @since Available in iOS 14.5 and later.
  */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/AVQueuedSampleBufferRendering/*</name>*/ 
-    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+public enum /*<name>*/AVCaptureCenterStageControlMode/*</name>*/ implements ValuedEnum {
+    /*<values>*/
+    User(0L),
+    App(1L),
+    Cooperative(2L);
+    /*</values>*/
 
-    /*<ptr>*/
-    /*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<properties>*/
-    @Property(selector = "timebase")
-    CMTimebase getTimebase();
-    @Property(selector = "isReadyForMoreMediaData")
-    boolean isReadyForMoreMediaData();
-    /**
-     * @since Available in iOS 14.5 and later.
-     */
-    @Property(selector = "hasSufficientMediaDataForReliablePlaybackStart")
-    boolean hasSufficientMediaDataForReliablePlaybackStart();
-    /*</properties>*/
-    /*<methods>*/
-    @Method(selector = "enqueueSampleBuffer:")
-    void enqueueSampleBuffer(CMSampleBuffer sampleBuffer);
-    @Method(selector = "flush")
-    void flush();
-    @Method(selector = "requestMediaDataWhenReadyOnQueue:usingBlock:")
-    void requestMediaDataWhenReadyOnQueue(DispatchQueue queue, @Block Runnable block);
-    @Method(selector = "stopRequestingMediaData")
-    void stopRequestingMediaData();
-    /*</methods>*/
-    /*<adapter>*/
-    /*</adapter>*/
+    /*<methods>*//*</methods>*/
+
+    private final long n;
+
+    private /*<name>*/AVCaptureCenterStageControlMode/*</name>*/(long n) { this.n = n; }
+    public long value() { return n; }
+    public static /*<name>*/AVCaptureCenterStageControlMode/*</name>*/ valueOf(long n) {
+        for (/*<name>*/AVCaptureCenterStageControlMode/*</name>*/ v : values()) {
+            if (v.n == n) {
+                return v;
+            }
+        }
+        throw new IllegalArgumentException("No constant with value " + n + " found in " 
+            + /*<name>*/AVCaptureCenterStageControlMode/*</name>*/.class.getName());
+    }
 }

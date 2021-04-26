@@ -107,5 +107,10 @@ import org.robovm.apple.audiotoolbox.*;
     public native NSProgress loadData(String typeIdentifier, @Block VoidBlock2<NSData, NSError> completionHandler);
     @Method(selector = "itemProviderVisibilityForRepresentationWithTypeIdentifier:")
     public static native NSItemProviderRepresentationVisibility getItemProviderVisibility0(String typeIdentifier);
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Method(selector = "contentKeySession:didProvideContentKey:")
+    public native void didProvideContentKey(AVContentKeySession contentKeySession, AVContentKey contentKey);
     /*</methods>*/
 }
