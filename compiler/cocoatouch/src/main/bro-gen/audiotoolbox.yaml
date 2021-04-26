@@ -169,7 +169,7 @@ enums:
     AUSamplerBank: {first: kAUSampler_DefaultPercussionBankMSB}
     MusicDeviceSelector: {first: kMusicDeviceRange, suffix: Select, ignore: kMusicDeviceRange}
     AudioComponentValidationResult: {}
-    AudioComponentInstantiationOptions: {}
+    AudioComponentInstantiationOptions: {prefix: kAudioComponentInstantiation_}
     AUAudioUnitBusType: {}
     AUHostTransportStateFlags: {bits: true}
     AURenderEventType: {}

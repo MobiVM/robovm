@@ -66,6 +66,11 @@ import org.robovm.apple.coreanimation.*;
      */
     @Property(selector = "captureDevicePosition")
     public native AVCaptureDevicePosition getCaptureDevicePosition();
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Property(selector = "captureDeviceType")
+    public native String getCaptureDeviceType();
     @Property(selector = "imageResolution")
     public native @ByVal CGSize getImageResolution();
     @Property(selector = "framesPerSecond")
