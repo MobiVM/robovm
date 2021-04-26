@@ -67,7 +67,9 @@ import org.robovm.apple.coremedia.*;
     public native NSArray<NSString> getAlternativeSubstrings();
     /**
      * @since Available in iOS 13.0 and later.
+     * @deprecated voiceAnalytics is moved to SFSpeechRecognitionMetadata
      */
+    @Deprecated
     @Property(selector = "voiceAnalytics")
     public native SFVoiceAnalytics getVoiceAnalytics();
     @Property(selector = "supportsSecureCoding")

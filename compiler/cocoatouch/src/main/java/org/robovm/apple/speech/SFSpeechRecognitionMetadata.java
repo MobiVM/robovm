@@ -34,36 +34,35 @@ import org.robovm.apple.coremedia.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 10.0 and later.
+ * @since Available in iOS 14.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("Speech") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/SFSpeechRecognitionResult/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/SFSpeechRecognitionMetadata/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
-    /*<ptr>*/public static class SFSpeechRecognitionResultPtr extends Ptr<SFSpeechRecognitionResult, SFSpeechRecognitionResultPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(SFSpeechRecognitionResult.class); }/*</bind>*/
+    /*<ptr>*/public static class SFSpeechRecognitionMetadataPtr extends Ptr<SFSpeechRecognitionMetadata, SFSpeechRecognitionMetadataPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(SFSpeechRecognitionMetadata.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public SFSpeechRecognitionResult() {}
-    protected SFSpeechRecognitionResult(Handle h, long handle) { super(h, handle); }
-    protected SFSpeechRecognitionResult(SkipInit skipInit) { super(skipInit); }
+    public SFSpeechRecognitionMetadata() {}
+    protected SFSpeechRecognitionMetadata(Handle h, long handle) { super(h, handle); }
+    protected SFSpeechRecognitionMetadata(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public SFSpeechRecognitionResult(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
+    public SFSpeechRecognitionMetadata(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "bestTranscription")
-    public native SFTranscription getBestTranscription();
-    @Property(selector = "transcriptions")
-    public native NSArray<SFTranscription> getTranscriptions();
-    @Property(selector = "isFinal")
-    public native boolean isFinal();
-    /**
-     * @since Available in iOS 14.0 and later.
-     */
-    @Property(selector = "speechRecognitionMetadata")
-    public native SFSpeechRecognitionMetadata getSpeechRecognitionMetadata();
+    @Property(selector = "speakingRate")
+    public native double getSpeakingRate();
+    @Property(selector = "averagePauseDuration")
+    public native double getAveragePauseDuration();
+    @Property(selector = "speechStartTimestamp")
+    public native double getSpeechStartTimestamp();
+    @Property(selector = "speechDuration")
+    public native double getSpeechDuration();
+    @Property(selector = "voiceAnalytics")
+    public native SFVoiceAnalytics getVoiceAnalytics();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
