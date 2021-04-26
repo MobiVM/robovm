@@ -99,9 +99,10 @@ import org.robovm.apple.dispatch.*;
     public static final NSProgressFileOperationKind DecompressingAfterDownloading = new NSProgressFileOperationKind("DecompressingAfterDownloading");
     public static final NSProgressFileOperationKind Receiving = new NSProgressFileOperationKind("Receiving");
     public static final NSProgressFileOperationKind Copying = new NSProgressFileOperationKind("Copying");
+    public static final NSProgressFileOperationKind Uploading = new NSProgressFileOperationKind("Uploading");
     /*</constants>*/
     
-    private static /*<name>*/NSProgressFileOperationKind/*</name>*/[] values = new /*<name>*/NSProgressFileOperationKind/*</name>*/[] {/*<value_list>*/Downloading, DecompressingAfterDownloading, Receiving, Copying/*</value_list>*/};
+    private static /*<name>*/NSProgressFileOperationKind/*</name>*/[] values = new /*<name>*/NSProgressFileOperationKind/*</name>*/[] {/*<value_list>*/Downloading, DecompressingAfterDownloading, Receiving, Copying, Uploading/*</value_list>*/};
     
     /*<name>*/NSProgressFileOperationKind/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -132,6 +133,8 @@ import org.robovm.apple.dispatch.*;
         public static native NSString Receiving();
         @GlobalValue(symbol="NSProgressFileOperationKindCopying", optional=true)
         public static native NSString Copying();
+        @GlobalValue(symbol="NSProgressFileOperationKindUploading", optional=true)
+        public static native NSString Uploading();
         /*</values>*/
     }
 }

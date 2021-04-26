@@ -118,6 +118,16 @@ import org.robovm.apple.dispatch.*;
     public native float getPriority();
     @Property(selector = "setPriority:")
     public native void setPriority(float v);
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Property(selector = "prefersIncrementalDelivery")
+    public native boolean prefersIncrementalDelivery();
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Property(selector = "setPrefersIncrementalDelivery:")
+    public native void setPrefersIncrementalDelivery(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
