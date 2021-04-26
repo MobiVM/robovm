@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -35,38 +35,32 @@ import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
 /*</javadoc>*/
-/*<annotations>*/@Library("WebKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/WKNavigationAction/*</name>*/ 
+/*<annotations>*//*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/WKDownloadDelegateAdapter/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements WKDownloadDelegate/*</implements>*/ {
 
-    /*<ptr>*/public static class WKNavigationActionPtr extends Ptr<WKNavigationAction, WKNavigationActionPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(WKNavigationAction.class); }/*</bind>*/
+    /*<ptr>*/
+    /*</ptr>*/
+    /*<bind>*/
+    /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*/
-    public WKNavigationAction() {}
-    protected WKNavigationAction(Handle h, long handle) { super(h, handle); }
-    protected WKNavigationAction(SkipInit skipInit) { super(skipInit); }
-    /*</constructors>*/
+    /*<constructors>*//*</constructors>*/
     /*<properties>*/
-    @Property(selector = "sourceFrame")
-    public native WKFrameInfo getSourceFrame();
-    @Property(selector = "targetFrame")
-    public native WKFrameInfo getTargetFrame();
-    @Property(selector = "navigationType")
-    public native WKNavigationType getNavigationType();
-    @Property(selector = "request")
-    public native NSURLRequest getRequest();
-    /**
-     * @since Available in iOS 14.5 and later.
-     */
-    @Property(selector = "shouldPerformDownload")
-    public native boolean shouldPerformDownload();
+    
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @NotImplemented("download:decideDestinationUsingResponse:suggestedFilename:completionHandler:")
+    public void decideDestinationUsingResponse(WKDownload download, NSURLResponse response, String suggestedFilename, @Block VoidBlock1<NSURL> completionHandler) {}
+    @NotImplemented("download:willPerformHTTPRedirection:newRequest:decisionHandler:")
+    public void willPerformHTTPRedirection(WKDownload download, NSHTTPURLResponse response, NSURLRequest request, @Block VoidBlock1<WKDownloadRedirectPolicy> decisionHandler) {}
+    @NotImplemented("download:didReceiveAuthenticationChallenge:completionHandler:")
+    public void didReceiveAuthenticationChallenge(WKDownload download, NSURLAuthenticationChallenge challenge, @Block VoidBlock2<NSURLSessionAuthChallengeDisposition, NSURLCredential> completionHandler) {}
+    @NotImplemented("downloadDidFinish:")
+    public void didFinish(WKDownload download) {}
+    @NotImplemented("download:didFailWithError:resumeData:")
+    public void didFailWithError(WKDownload download, NSError error, NSData resumeData) {}
     /*</methods>*/
 }

@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -35,38 +35,38 @@ import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 14.5 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("WebKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/WKNavigationAction/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/WKDownload/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSProgressReporting/*</implements>*/ {
 
-    /*<ptr>*/public static class WKNavigationActionPtr extends Ptr<WKNavigationAction, WKNavigationActionPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(WKNavigationAction.class); }/*</bind>*/
+    /*<ptr>*/public static class WKDownloadPtr extends Ptr<WKDownload, WKDownloadPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(WKDownload.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public WKNavigationAction() {}
-    protected WKNavigationAction(Handle h, long handle) { super(h, handle); }
-    protected WKNavigationAction(SkipInit skipInit) { super(skipInit); }
+    public WKDownload() {}
+    protected WKDownload(Handle h, long handle) { super(h, handle); }
+    protected WKDownload(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "sourceFrame")
-    public native WKFrameInfo getSourceFrame();
-    @Property(selector = "targetFrame")
-    public native WKFrameInfo getTargetFrame();
-    @Property(selector = "navigationType")
-    public native WKNavigationType getNavigationType();
-    @Property(selector = "request")
-    public native NSURLRequest getRequest();
-    /**
-     * @since Available in iOS 14.5 and later.
-     */
-    @Property(selector = "shouldPerformDownload")
-    public native boolean shouldPerformDownload();
+    @Property(selector = "originalRequest")
+    public native NSURLRequest getOriginalRequest();
+    @Property(selector = "webView")
+    public native WKWebView getWebView();
+    @Property(selector = "delegate")
+    public native WKDownloadDelegate getDelegate();
+    @Property(selector = "setDelegate:", strongRef = true)
+    public native void setDelegate(WKDownloadDelegate v);
+    @Property(selector = "progress")
+    public native NSProgress getProgress();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "cancel:")
+    public native void cancel(@Block VoidBlock1<NSData> completionHandler);
     /*</methods>*/
 }

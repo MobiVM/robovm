@@ -36,7 +36,7 @@ import org.robovm.apple.coreanimation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 14.0 and later.
+ * @since Available in iOS 13.4 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("WebKit") @NativeClass/*</annotations>*/

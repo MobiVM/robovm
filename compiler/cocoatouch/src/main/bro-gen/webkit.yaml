@@ -21,7 +21,19 @@ enums:
     WKDataDetectorTypes: {}
     WKAudiovisualMediaTypes: {}
     WKContentMode: {} #since 13.0
-
+    WKDownloadRedirectPolicy: {} #since 14.5
+    WKMediaPlaybackState: {} #since 14.5
+categories:
+    NSAttributedString:
+        methods:
+            '+loadFromHTMLWithRequest:options:completionHandler:':
+                name: loadFromHTML
+            '+loadFromHTMLWithFileURL:options:completionHandler:':
+                name: loadFromHTML
+            '+loadFromHTMLWithString:options:completionHandler:':
+                name: loadFromHTML
+            '+loadFromHTMLWithData:options:completionHandler:':
+                name: loadFromHTML
 classes:
     WKError:
         extends: NSError
@@ -164,6 +176,10 @@ classes:
                 name: evaluateJavaScript
             '-callAsyncJavaScript:arguments:inFrame:inContentWorld:completionHandler:':
                 name: callAsyncJavaScript
+            '-startDownloadUsingRequest:completionHandler:':
+                name: startDownload
+            '-resumeDownloadFromResumeData:completionHandler:':
+                name: resumeDownload
     WKPreviewElementInfo: {}
     WKContentRuleList: {} #since 11.0
     WKContentRuleListStore: #since 11.0
@@ -194,6 +210,7 @@ classes:
             '+worldWithName:':
                 name: create
                 constructor: true
+    WKDownload: {} #since 14.5
 protocols:
     WKNavigationDelegate: # DONE
         methods:
@@ -221,6 +238,10 @@ protocols:
                 name: decidePolicyForNavigationAction
             '-webView:authenticationChallenge:shouldAllowDeprecatedTLS:':
                 name: shouldAllowDeprecatedTLS
+            '-webView:navigationAction:didBecomeDownload:':
+                name: didBecomeDownload
+            '-webView:navigationResponse:didBecomeDownload:':
+                name: didBecomeDownload
     WKScriptMessageHandler: # DONE
         methods:
             '-userContentController:didReceiveScriptMessage:':
@@ -267,6 +288,19 @@ protocols:
         methods:
             '-userContentController:didReceiveScriptMessage:replyHandler:':
                 name: didReceiveScriptMessage
+    WKDownloadDelegate:
+        methods:
+            '-download:decideDestinationUsingResponse:suggestedFilename:completionHandler:':
+                name: decideDestinationUsingResponse
+            '-download:willPerformHTTPRedirection:newRequest:decisionHandler:':
+                name: willPerformHTTPRedirection
+            '-download:didReceiveAuthenticationChallenge:completionHandler:':
+                name: didReceiveAuthenticationChallenge
+            '-download:didFailWithError:resumeData:':
+                name: didFailWithError
+            '-downloadDidFinish:':
+                name: didFinish
+functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (k?WK.*):
         class: WebKit
