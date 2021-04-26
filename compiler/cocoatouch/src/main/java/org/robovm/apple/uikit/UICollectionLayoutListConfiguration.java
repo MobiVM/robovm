@@ -68,6 +68,26 @@ import org.robovm.apple.linkpresentation.*;
     public native boolean showsSeparators();
     @Property(selector = "setShowsSeparators:")
     public native void setShowsSeparators(boolean v);
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Property(selector = "separatorConfiguration")
+    public native UIListSeparatorConfiguration getSeparatorConfiguration();
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Property(selector = "setSeparatorConfiguration:")
+    public native void setSeparatorConfiguration(UIListSeparatorConfiguration v);
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Property(selector = "itemSeparatorHandler")
+    public native @Block Block2<NSIndexPath, UIListSeparatorConfiguration, UIListSeparatorConfiguration> getItemSeparatorHandler();
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Property(selector = "setItemSeparatorHandler:")
+    public native void setItemSeparatorHandler(@Block Block2<NSIndexPath, UIListSeparatorConfiguration, UIListSeparatorConfiguration> v);
     @Property(selector = "backgroundColor")
     public native UIColor getBackgroundColor();
     @Property(selector = "setBackgroundColor:")

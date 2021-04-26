@@ -43,37 +43,42 @@ import org.robovm.apple.linkpresentation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 13.0 and later.
+ * @since Available in iOS 14.5 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/UISceneOpenURLOptions/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/UIEventAttributionView/*</name>*/ 
+    extends /*<extends>*/UIView/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class UISceneOpenURLOptionsPtr extends Ptr<UISceneOpenURLOptions, UISceneOpenURLOptionsPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(UISceneOpenURLOptions.class); }/*</bind>*/
+    /*<ptr>*/public static class UIEventAttributionViewPtr extends Ptr<UIEventAttributionView, UIEventAttributionViewPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(UIEventAttributionView.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected UISceneOpenURLOptions() {}
-    protected UISceneOpenURLOptions(Handle h, long handle) { super(h, handle); }
-    protected UISceneOpenURLOptions(SkipInit skipInit) { super(skipInit); }
+    public UIEventAttributionView() {}
+    protected UIEventAttributionView(Handle h, long handle) { super(h, handle); }
+    protected UIEventAttributionView(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithFrame:")
+    public UIEventAttributionView(@ByVal CGRect frame) { super(frame); }
+    @Method(selector = "initWithCoder:")
+    public UIEventAttributionView(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "sourceApplication")
-    public native String getSourceApplication();
-    @Property(selector = "annotation")
-    public native NSObject getAnnotation();
-    @Property(selector = "openInPlace")
-    public native boolean isOpenInPlace();
-    /**
-     * @since Available in iOS 14.5 and later.
-     */
-    @Property(selector = "eventAttribution")
-    public native UIEventAttribution getEventAttribution();
+    @WeaklyLinked
+    @Property(selector = "layerClass")
+    public static native Class<? extends CALayer> getLayerClass();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute attribute);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:relativeToLayoutDirection:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute semanticContentAttribute, UIUserInterfaceLayoutDirection layoutDirection);
     /*</methods>*/
 }

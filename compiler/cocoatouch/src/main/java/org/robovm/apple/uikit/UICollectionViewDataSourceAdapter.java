@@ -77,8 +77,14 @@ import org.robovm.apple.linkpresentation.*;
      */
     @NotImplemented("collectionView:moveItemAtIndexPath:toIndexPath:")
     public void moveItemAt(UICollectionView collectionView, NSIndexPath sourceIndexPath, NSIndexPath destinationIndexPath) {}
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
     @NotImplemented("indexTitlesForCollectionView:")
     public NSArray<NSString> indexTitlesForCollectionView(UICollectionView collectionView) { return null; }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
     @NotImplemented("collectionView:indexPathForIndexTitle:atIndex:")
     public NSIndexPath indexPathForIndexTitle(UICollectionView collectionView, String title, @MachineSizedSInt long index) { return null; }
     /*</methods>*/

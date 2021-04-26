@@ -43,37 +43,49 @@ import org.robovm.apple.linkpresentation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 13.0 and later.
+ * @since Available in iOS 14.5 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/UISceneOpenURLOptions/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/UIPrinterDestination/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
-    /*<ptr>*/public static class UISceneOpenURLOptionsPtr extends Ptr<UISceneOpenURLOptions, UISceneOpenURLOptionsPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(UISceneOpenURLOptions.class); }/*</bind>*/
+    /*<ptr>*/public static class UIPrinterDestinationPtr extends Ptr<UIPrinterDestination, UIPrinterDestinationPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(UIPrinterDestination.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected UISceneOpenURLOptions() {}
-    protected UISceneOpenURLOptions(Handle h, long handle) { super(h, handle); }
-    protected UISceneOpenURLOptions(SkipInit skipInit) { super(skipInit); }
+    public UIPrinterDestination() {}
+    protected UIPrinterDestination(Handle h, long handle) { super(h, handle); }
+    protected UIPrinterDestination(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithURL:")
+    public UIPrinterDestination(NSURL url) { super((SkipInit) null); initObject(init(url)); }
+    @Method(selector = "initWithCoder:")
+    public UIPrinterDestination(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "sourceApplication")
-    public native String getSourceApplication();
-    @Property(selector = "annotation")
-    public native NSObject getAnnotation();
-    @Property(selector = "openInPlace")
-    public native boolean isOpenInPlace();
-    /**
-     * @since Available in iOS 14.5 and later.
-     */
-    @Property(selector = "eventAttribution")
-    public native UIEventAttribution getEventAttribution();
+    @Property(selector = "URL")
+    public native NSURL getURL();
+    @Property(selector = "setURL:")
+    public native void setURL(NSURL v);
+    @Property(selector = "displayName")
+    public native String getDisplayName();
+    @Property(selector = "setDisplayName:")
+    public native void setDisplayName(String v);
+    @Property(selector = "txtRecord")
+    public native NSData getTxtRecord();
+    @Property(selector = "setTxtRecord:")
+    public native void setTxtRecord(NSData v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "initWithURL:")
+    protected native @Pointer long init(NSURL url);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

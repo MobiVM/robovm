@@ -295,6 +295,10 @@ enums:
     NSLineBreakStrategy: {}
     UISegmentedControlStyle: {}
 
+    UISplitViewControllerDisplayModeButtonVisibility: {} #since 14.5
+    UIListSeparatorVisibility: {}
+    UIPrintRenderingQuality: {}
+
 #    EXCLUDE1: {exclude: true, first: NSAttachmentCharacter} -- don't exclude it as value will be picked up as constant
     EXCLUDE3_AS_DEPRECATED: {exclude: true, first: NSControlCharacterZeroAdvancementAction}
 
@@ -4430,6 +4434,20 @@ classes:
                 name: init
             '-initWithCoder:':
                 name: init
+    UIEventAttribution: #since 14.5
+        methods:
+            '-initWithSourceIdentifier:destinationURL:sourceDescription:purchaser:':
+                name: init
+    UIEventAttributionView: {} #since 14.5
+    UIListSeparatorConfiguration: #since 14.5
+        methods:
+            '-initWithListAppearance:':
+                name: init
+    UIPrintServiceExtension: {} #since 14.5
+    UIPrinterDestination: #since 14.5
+        methods:
+            '-initWithURL:':
+                name: init
 protocols:
     NSLayoutManagerDelegate: # DONE
         methods:
@@ -6625,6 +6643,10 @@ values:
         dictionary: UIApplicationOpenURLOptions
         name: '#{g[0]}'
         type: NSString
+    UIApplicationOpenExternalURLOptionsEventAttributionKey:
+        dictionary: UIApplicationOpenURLOptions
+        name: ExternalURLEventAttribution
+        type: NSString
 
     # UICollectionView
     UICollectionElementKind(.*):
@@ -7036,6 +7058,10 @@ values:
         static_class: DetectionPatterns
         type: NSString
         name: '#{g[0]}'
+
+    UIListSeparatorAutomaticInsets:
+        name: getAutomaticInsets
+        class: UIListSeparatorConfiguration
 
     # Make sure we don't miss any values if new ones are introduced in a later UIKit
     (NS.*):

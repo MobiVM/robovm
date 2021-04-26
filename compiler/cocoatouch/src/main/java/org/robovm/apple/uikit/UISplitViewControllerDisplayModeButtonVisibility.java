@@ -43,37 +43,33 @@ import org.robovm.apple.linkpresentation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 13.0 and later.
+ * @since Available in iOS 14.5 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/UISceneOpenURLOptions/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+public enum /*<name>*/UISplitViewControllerDisplayModeButtonVisibility/*</name>*/ implements ValuedEnum {
+    /*<values>*/
+    Automatic(0L),
+    Never(1L),
+    Always(2L);
+    /*</values>*/
 
-    /*<ptr>*/public static class UISceneOpenURLOptionsPtr extends Ptr<UISceneOpenURLOptions, UISceneOpenURLOptionsPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(UISceneOpenURLOptions.class); }/*</bind>*/
+    /*<bind>*/
+    /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*/
-    protected UISceneOpenURLOptions() {}
-    protected UISceneOpenURLOptions(Handle h, long handle) { super(h, handle); }
-    protected UISceneOpenURLOptions(SkipInit skipInit) { super(skipInit); }
-    /*</constructors>*/
-    /*<properties>*/
-    @Property(selector = "sourceApplication")
-    public native String getSourceApplication();
-    @Property(selector = "annotation")
-    public native NSObject getAnnotation();
-    @Property(selector = "openInPlace")
-    public native boolean isOpenInPlace();
-    /**
-     * @since Available in iOS 14.5 and later.
-     */
-    @Property(selector = "eventAttribution")
-    public native UIEventAttribution getEventAttribution();
-    /*</properties>*/
-    /*<members>*//*</members>*/
-    /*<methods>*/
-    
-    /*</methods>*/
+    /*<methods>*//*</methods>*/
+
+    private final long n;
+
+    private /*<name>*/UISplitViewControllerDisplayModeButtonVisibility/*</name>*/(long n) { this.n = n; }
+    public long value() { return n; }
+    public static /*<name>*/UISplitViewControllerDisplayModeButtonVisibility/*</name>*/ valueOf(long n) {
+        for (/*<name>*/UISplitViewControllerDisplayModeButtonVisibility/*</name>*/ v : values()) {
+            if (v.n == n) {
+                return v;
+            }
+        }
+        throw new IllegalArgumentException("No constant with value " + n + " found in " 
+            + /*<name>*/UISplitViewControllerDisplayModeButtonVisibility/*</name>*/.class.getName());
+    }
 }

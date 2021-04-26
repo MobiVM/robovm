@@ -90,7 +90,7 @@ import org.robovm.apple.linkpresentation.*;
     public UIDocumentPickerViewController(NSURL url, UIDocumentPickerMode mode) { super((SkipInit) null); initObject(init(url, mode)); }
     /**
      * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 14.0. use initForExportinitForExportingURLsingURLs:asCopy: or initForExportingURLs: instead
+     * @deprecated Deprecated in iOS 14.0. use initForExportingURLs:asCopy: or initForExportingURLs: instead
      */
     @Deprecated
     @Method(selector = "initWithURLs:inMode:")
@@ -182,7 +182,7 @@ import org.robovm.apple.linkpresentation.*;
     protected native @Pointer long init(NSURL url, UIDocumentPickerMode mode);
     /**
      * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 14.0. use initForExportinitForExportingURLsingURLs:asCopy: or initForExportingURLs: instead
+     * @deprecated Deprecated in iOS 14.0. use initForExportingURLs:asCopy: or initForExportingURLs: instead
      */
     @Deprecated
     @Method(selector = "initWithURLs:inMode:")

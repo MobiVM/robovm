@@ -42,38 +42,32 @@ import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 13.0 and later.
- */
-/*</javadoc>*/
-/*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/UISceneOpenURLOptions/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class UISceneOpenURLOptionsPtr extends Ptr<UISceneOpenURLOptions, UISceneOpenURLOptionsPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(UISceneOpenURLOptions.class); }/*</bind>*/
+/*</javadoc>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+public enum /*<name>*/UIListSeparatorVisibility/*</name>*/ implements ValuedEnum {
+    /*<values>*/
+    Automatic(0L),
+    Visible(1L),
+    Hidden(2L);
+    /*</values>*/
+
+    /*<bind>*/
+    /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*/
-    protected UISceneOpenURLOptions() {}
-    protected UISceneOpenURLOptions(Handle h, long handle) { super(h, handle); }
-    protected UISceneOpenURLOptions(SkipInit skipInit) { super(skipInit); }
-    /*</constructors>*/
-    /*<properties>*/
-    @Property(selector = "sourceApplication")
-    public native String getSourceApplication();
-    @Property(selector = "annotation")
-    public native NSObject getAnnotation();
-    @Property(selector = "openInPlace")
-    public native boolean isOpenInPlace();
-    /**
-     * @since Available in iOS 14.5 and later.
-     */
-    @Property(selector = "eventAttribution")
-    public native UIEventAttribution getEventAttribution();
-    /*</properties>*/
-    /*<members>*//*</members>*/
-    /*<methods>*/
-    
-    /*</methods>*/
+    /*<methods>*//*</methods>*/
+
+    private final long n;
+
+    private /*<name>*/UIListSeparatorVisibility/*</name>*/(long n) { this.n = n; }
+    public long value() { return n; }
+    public static /*<name>*/UIListSeparatorVisibility/*</name>*/ valueOf(long n) {
+        for (/*<name>*/UIListSeparatorVisibility/*</name>*/ v : values()) {
+            if (v.n == n) {
+                return v;
+            }
+        }
+        throw new IllegalArgumentException("No constant with value " + n + " found in " 
+            + /*<name>*/UIListSeparatorVisibility/*</name>*/.class.getName());
+    }
 }

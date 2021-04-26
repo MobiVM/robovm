@@ -43,37 +43,28 @@ import org.robovm.apple.linkpresentation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 13.0 and later.
+ * @since Available in iOS 14.5 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/UISceneOpenURLOptions/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/UIPrintServiceExtension/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class UISceneOpenURLOptionsPtr extends Ptr<UISceneOpenURLOptions, UISceneOpenURLOptionsPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(UISceneOpenURLOptions.class); }/*</bind>*/
+    /*<ptr>*/public static class UIPrintServiceExtensionPtr extends Ptr<UIPrintServiceExtension, UIPrintServiceExtensionPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(UIPrintServiceExtension.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected UISceneOpenURLOptions() {}
-    protected UISceneOpenURLOptions(Handle h, long handle) { super(h, handle); }
-    protected UISceneOpenURLOptions(SkipInit skipInit) { super(skipInit); }
+    public UIPrintServiceExtension() {}
+    protected UIPrintServiceExtension(Handle h, long handle) { super(h, handle); }
+    protected UIPrintServiceExtension(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "sourceApplication")
-    public native String getSourceApplication();
-    @Property(selector = "annotation")
-    public native NSObject getAnnotation();
-    @Property(selector = "openInPlace")
-    public native boolean isOpenInPlace();
-    /**
-     * @since Available in iOS 14.5 and later.
-     */
-    @Property(selector = "eventAttribution")
-    public native UIEventAttribution getEventAttribution();
+    
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "printerDestinationsForPrintInfo:")
+    public native NSArray<UIPrinterDestination> printerDestinationsForPrintInfo(UIPrintInfo printInfo);
     /*</methods>*/
 }

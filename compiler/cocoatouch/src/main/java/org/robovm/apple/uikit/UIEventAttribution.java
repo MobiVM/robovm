@@ -43,37 +43,39 @@ import org.robovm.apple.linkpresentation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 13.0 and later.
+ * @since Available in iOS 14.5 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/UISceneOpenURLOptions/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/UIEventAttribution/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class UISceneOpenURLOptionsPtr extends Ptr<UISceneOpenURLOptions, UISceneOpenURLOptionsPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(UISceneOpenURLOptions.class); }/*</bind>*/
+    /*<ptr>*/public static class UIEventAttributionPtr extends Ptr<UIEventAttribution, UIEventAttributionPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(UIEventAttribution.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected UISceneOpenURLOptions() {}
-    protected UISceneOpenURLOptions(Handle h, long handle) { super(h, handle); }
-    protected UISceneOpenURLOptions(SkipInit skipInit) { super(skipInit); }
+    protected UIEventAttribution() {}
+    protected UIEventAttribution(Handle h, long handle) { super(h, handle); }
+    protected UIEventAttribution(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithSourceIdentifier:destinationURL:sourceDescription:purchaser:")
+    public UIEventAttribution(byte sourceIdentifier, NSURL destinationURL, String sourceDescription, String purchaser) { super((SkipInit) null); initObject(init(sourceIdentifier, destinationURL, sourceDescription, purchaser)); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "sourceApplication")
-    public native String getSourceApplication();
-    @Property(selector = "annotation")
-    public native NSObject getAnnotation();
-    @Property(selector = "openInPlace")
-    public native boolean isOpenInPlace();
-    /**
-     * @since Available in iOS 14.5 and later.
-     */
-    @Property(selector = "eventAttribution")
-    public native UIEventAttribution getEventAttribution();
+    @Property(selector = "sourceIdentifier")
+    public native byte getSourceIdentifier();
+    @Property(selector = "destinationURL")
+    public native NSURL getDestinationURL();
+    @Property(selector = "reportEndpoint")
+    public native NSURL getReportEndpoint();
+    @Property(selector = "sourceDescription")
+    public native String getSourceDescription();
+    @Property(selector = "purchaser")
+    public native String getPurchaser();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "initWithSourceIdentifier:destinationURL:sourceDescription:purchaser:")
+    protected native @Pointer long init(byte sourceIdentifier, NSURL destinationURL, String sourceDescription, String purchaser);
     /*</methods>*/
 }

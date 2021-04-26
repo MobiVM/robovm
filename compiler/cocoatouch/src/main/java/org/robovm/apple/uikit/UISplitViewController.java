@@ -119,6 +119,16 @@ import org.robovm.apple.linkpresentation.*;
     public native UISplitViewControllerDisplayMode getDisplayMode();
     @Property(selector = "displayModeButtonItem")
     public native UIBarButtonItem getDisplayModeButtonItem();
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Property(selector = "displayModeButtonVisibility")
+    public native UISplitViewControllerDisplayModeButtonVisibility getDisplayModeButtonVisibility();
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Property(selector = "setDisplayModeButtonVisibility:")
+    public native void setDisplayModeButtonVisibility(UISplitViewControllerDisplayModeButtonVisibility v);
     @Property(selector = "preferredPrimaryColumnWidthFraction")
     public native @MachineSizedFloat double getPreferredPrimaryColumnWidthFraction();
     @Property(selector = "setPreferredPrimaryColumnWidthFraction:")
