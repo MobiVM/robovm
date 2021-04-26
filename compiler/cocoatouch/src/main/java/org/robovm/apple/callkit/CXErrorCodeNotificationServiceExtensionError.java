@@ -34,42 +34,40 @@ import org.robovm.apple.avfoundation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 10.0 and later.
+ * @since Available in iOS 14.5 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Library("CallKit")/*</annotations>*/
-public enum /*<name>*/CXErrorCodeIncomingCallError/*</name>*/ implements NSErrorCode {
+public enum /*<name>*/CXErrorCodeNotificationServiceExtensionError/*</name>*/ implements NSErrorCode {
     /*<values>*/
     Unknown(0L),
-    Unentitled(1L),
-    CallUUIDAlreadyExists(2L),
-    FilteredByDoNotDisturb(3L),
-    FilteredByBlockList(4L);
+    InvalidClientProcess(1L),
+    MissingNotificationFilteringEntitlement(2L);
     /*</values>*/
 
-    /*<bind>*/static { Bro.bind(CXErrorCodeIncomingCallError.class); }/*</bind>*/
+    /*<bind>*/static { Bro.bind(CXErrorCodeNotificationServiceExtensionError.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @since Available in iOS 10.0 and later.
+     * @since Available in iOS 14.5 and later.
      */
-    @GlobalValue(symbol="CXErrorDomainIncomingCall", optional=true)
+    @GlobalValue(symbol="CXErrorDomainNotificationServiceExtension", optional=true)
     public static native String getClassDomain();
     /*</methods>*/
 
     private final long n;
 
-    private /*<name>*/CXErrorCodeIncomingCallError/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/CXErrorCodeNotificationServiceExtensionError/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/CXErrorCodeIncomingCallError/*</name>*/ valueOf(long n) {
-        for (/*<name>*/CXErrorCodeIncomingCallError/*</name>*/ v : values()) {
+    public static /*<name>*/CXErrorCodeNotificationServiceExtensionError/*</name>*/ valueOf(long n) {
+        for (/*<name>*/CXErrorCodeNotificationServiceExtensionError/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in "
-            + /*<name>*/CXErrorCodeIncomingCallError/*</name>*/.class.getName());
+            + /*<name>*/CXErrorCodeNotificationServiceExtensionError/*</name>*/.class.getName());
     }
 
     // bind wrap to include it in compilation as long as nserror enum is used 
@@ -80,7 +78,7 @@ public enum /*<name>*/CXErrorCodeIncomingCallError/*</name>*/ implements NSError
 
         @Override public NSErrorCode getErrorCode() {
              try {
-                 return  /*<name>*/CXErrorCodeIncomingCallError/*</name>*/.valueOf(getCode());
+                 return  /*<name>*/CXErrorCodeNotificationServiceExtensionError/*</name>*/.valueOf(getCode());
              } catch (IllegalArgumentException e) {
                  return null;
              }
@@ -88,7 +86,7 @@ public enum /*<name>*/CXErrorCodeIncomingCallError/*</name>*/ implements NSError
 
         public static String getClassDomain() {
             /** must be inserted in value section */
-            return /*<name>*/CXErrorCodeIncomingCallError/*</name>*/.getClassDomain();
+            return /*<name>*/CXErrorCodeNotificationServiceExtensionError/*</name>*/.getClassDomain();
         }
     }
 }

@@ -80,5 +80,10 @@ import org.robovm.apple.avfoundation.*;
     public native void invalidate();
     @Method(selector = "pendingCallActionsOfClass:withCallUUID:")
     public native NSArray<CXCallAction> getPendingCallActionsOfClass(Class<?> callActionClass, NSUUID callUUID);
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Method(selector = "reportNewIncomingVoIPPushPayload:completion:")
+    public static native void reportNewIncomingVoIPPushPayload(NSDictionary<?, ?> dictionaryPayload, @Block VoidBlock1<NSError> completion);
     /*</methods>*/
 }

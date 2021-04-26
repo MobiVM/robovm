@@ -77,5 +77,10 @@ import org.robovm.apple.coregraphics.*;
     public native void start();
     @Method(selector = "stop")
     public native void stop();
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Method(selector = "removeAllActivityItems")
+    public native void removeAllActivityItems();
     /*</methods>*/
 }
