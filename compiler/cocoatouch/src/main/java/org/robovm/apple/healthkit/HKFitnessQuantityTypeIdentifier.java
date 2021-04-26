@@ -114,9 +114,53 @@ import org.robovm.apple.foundation.*;
      * @since Available in iOS 10.0 and later.
      */
     public static final HKFitnessQuantityTypeIdentifier SwimmingStrokeCount = new HKFitnessQuantityTypeIdentifier("SwimmingStrokeCount");
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    public static final HKFitnessQuantityTypeIdentifier VO2Max = new HKFitnessQuantityTypeIdentifier("VO2Max");
+    /**
+     * @since Available in iOS 11.2 and later.
+     */
+    public static final HKFitnessQuantityTypeIdentifier DistanceDownhillSnowSports = new HKFitnessQuantityTypeIdentifier("DistanceDownhillSnowSports");
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final HKFitnessQuantityTypeIdentifier AppleStandTime = new HKFitnessQuantityTypeIdentifier("AppleStandTime");
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final HKFitnessQuantityTypeIdentifier WalkingSpeed = new HKFitnessQuantityTypeIdentifier("WalkingSpeed");
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final HKFitnessQuantityTypeIdentifier WalkingDoubleSupportPercentage = new HKFitnessQuantityTypeIdentifier("WalkingDoubleSupportPercentage");
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final HKFitnessQuantityTypeIdentifier WalkingAsymmetryPercentage = new HKFitnessQuantityTypeIdentifier("WalkingAsymmetryPercentage");
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final HKFitnessQuantityTypeIdentifier WalkingStepLength = new HKFitnessQuantityTypeIdentifier("WalkingStepLength");
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final HKFitnessQuantityTypeIdentifier SixMinuteWalkTestDistance = new HKFitnessQuantityTypeIdentifier("SixMinuteWalkTestDistance");
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final HKFitnessQuantityTypeIdentifier StairAscentSpeed = new HKFitnessQuantityTypeIdentifier("StairAscentSpeed");
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final HKFitnessQuantityTypeIdentifier StairDescentSpeed = new HKFitnessQuantityTypeIdentifier("StairDescentSpeed");
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    public static final HKFitnessQuantityTypeIdentifier AppleMoveTime = new HKFitnessQuantityTypeIdentifier("AppleMoveTime");
     /*</constants>*/
     
-    private static /*<name>*/HKFitnessQuantityTypeIdentifier/*</name>*/[] values = new /*<name>*/HKFitnessQuantityTypeIdentifier/*</name>*/[] {/*<value_list>*/StepCount, DistanceWalkingRunning, DistanceCycling, DistanceWheelchair, BasalEnergyBurned, ActiveEnergyBurned, FlightsClimbed, NikeFuel, AppleExerciseTime, PushCount, DistanceSwimming, SwimmingStrokeCount/*</value_list>*/};
+    private static /*<name>*/HKFitnessQuantityTypeIdentifier/*</name>*/[] values = new /*<name>*/HKFitnessQuantityTypeIdentifier/*</name>*/[] {/*<value_list>*/StepCount, DistanceWalkingRunning, DistanceCycling, DistanceWheelchair, BasalEnergyBurned, ActiveEnergyBurned, FlightsClimbed, NikeFuel, AppleExerciseTime, PushCount, DistanceSwimming, SwimmingStrokeCount, VO2Max, DistanceDownhillSnowSports, AppleStandTime, WalkingSpeed, WalkingDoubleSupportPercentage, WalkingAsymmetryPercentage, WalkingStepLength, SixMinuteWalkTestDistance, StairAscentSpeed, StairDescentSpeed, AppleMoveTime/*</value_list>*/};
     
     /*<name>*/HKFitnessQuantityTypeIdentifier/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -178,6 +222,61 @@ import org.robovm.apple.foundation.*;
          */
         @GlobalValue(symbol="HKQuantityTypeIdentifierSwimmingStrokeCount", optional=true)
         public static native NSString SwimmingStrokeCount();
+        /**
+         * @since Available in iOS 11.0 and later.
+         */
+        @GlobalValue(symbol="HKQuantityTypeIdentifierVO2Max", optional=true)
+        public static native NSString VO2Max();
+        /**
+         * @since Available in iOS 11.2 and later.
+         */
+        @GlobalValue(symbol="HKQuantityTypeIdentifierDistanceDownhillSnowSports", optional=true)
+        public static native NSString DistanceDownhillSnowSports();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="HKQuantityTypeIdentifierAppleStandTime", optional=true)
+        public static native NSString AppleStandTime();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="HKQuantityTypeIdentifierWalkingSpeed", optional=true)
+        public static native NSString WalkingSpeed();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="HKQuantityTypeIdentifierWalkingDoubleSupportPercentage", optional=true)
+        public static native NSString WalkingDoubleSupportPercentage();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="HKQuantityTypeIdentifierWalkingAsymmetryPercentage", optional=true)
+        public static native NSString WalkingAsymmetryPercentage();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="HKQuantityTypeIdentifierWalkingStepLength", optional=true)
+        public static native NSString WalkingStepLength();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="HKQuantityTypeIdentifierSixMinuteWalkTestDistance", optional=true)
+        public static native NSString SixMinuteWalkTestDistance();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="HKQuantityTypeIdentifierStairAscentSpeed", optional=true)
+        public static native NSString StairAscentSpeed();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="HKQuantityTypeIdentifierStairDescentSpeed", optional=true)
+        public static native NSString StairDescentSpeed();
+        /**
+         * @since Available in iOS 14.5 and later.
+         */
+        @GlobalValue(symbol="HKQuantityTypeIdentifierAppleMoveTime", optional=true)
+        public static native NSString AppleMoveTime();
         /*</values>*/
     }
 }
