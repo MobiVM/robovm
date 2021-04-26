@@ -50,6 +50,9 @@ import org.robovm.apple.metalps.*;
     protected MLCDevice(Handle h, long handle) { super(h, handle); }
     protected MLCDevice(SkipInit skipInit) { super(skipInit); }
     public MLCDevice(MLCDeviceType type) { super((Handle) null, create(type)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
     public MLCDevice(MLCDeviceType type, boolean selectsMultipleComputeDevices) { super((Handle) null, create(type, selectsMultipleComputeDevices)); retain(getHandle()); }
     public MLCDevice(NSArray<?> gpus) { super((Handle) null, create(gpus)); retain(getHandle()); }
     /*</constructors>*/
@@ -67,6 +70,9 @@ import org.robovm.apple.metalps.*;
     public static native MLCDevice gpuDevice();
     @Method(selector = "deviceWithType:")
     protected static native @Pointer long create(MLCDeviceType type);
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
     @Method(selector = "deviceWithType:selectsMultipleComputeDevices:")
     protected static native @Pointer long create(MLCDeviceType type, boolean selectsMultipleComputeDevices);
     @Method(selector = "deviceWithGPUDevices:")

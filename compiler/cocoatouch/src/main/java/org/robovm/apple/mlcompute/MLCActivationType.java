@@ -57,7 +57,15 @@ public enum /*<name>*/MLCActivationType/*</name>*/ implements ValuedEnum {
     TanhShrink(16L),
     Threshold(17L),
     GELU(18L),
-    Count(19L);
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    HardSwish(19L),
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    Clamp(20L),
+    Count(21L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(MLCActivationType.class); }/*</bind>*/

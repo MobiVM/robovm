@@ -34,38 +34,30 @@ import org.robovm.apple.metalps.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 14.0 and later.
+ * @since Available in iOS 14.5 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("MLCompute") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MLCTensorData/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MLCSelectionLayer/*</name>*/ 
+    extends /*<extends>*/MLCLayer/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class MLCTensorDataPtr extends Ptr<MLCTensorData, MLCTensorDataPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(MLCTensorData.class); }/*</bind>*/
+    /*<ptr>*/public static class MLCSelectionLayerPtr extends Ptr<MLCSelectionLayer, MLCSelectionLayerPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(MLCSelectionLayer.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected MLCTensorData() {}
-    protected MLCTensorData(Handle h, long handle) { super(h, handle); }
-    protected MLCTensorData(SkipInit skipInit) { super(skipInit); }
+    protected MLCSelectionLayer() {}
+    protected MLCSelectionLayer(Handle h, long handle) { super(h, handle); }
+    protected MLCSelectionLayer(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "bytes")
-    public native VoidPtr getBytes();
-    @Property(selector = "length")
-    public native @MachineSizedUInt long getLength();
+    
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "dataWithBytesNoCopy:length:")
-    public static native MLCTensorData createDataNoCopy(VoidPtr bytes, @MachineSizedUInt long length);
-    @Method(selector = "dataWithImmutableBytesNoCopy:length:")
-    public static native MLCTensorData createDataUsingImutableBytesNoCopy(VoidPtr bytes, @MachineSizedUInt long length);
-    /**
-     * @since Available in iOS 14.5 and later.
-     */
-    @Method(selector = "dataWithBytesNoCopy:length:deallocator:")
-    public static native MLCTensorData createDataNoCopy(VoidPtr bytes, @MachineSizedUInt long length, @Block("(,@MachineSizedUInt)") VoidBlock2<VoidPtr, Long> deallocator);
+    @Method(selector = "layer")
+    public static native MLCSelectionLayer layer();
+    @Method(selector = "supportsDataType:onDevice:")
+    public static native boolean supportsDataType(MLCDataType dataType, MLCDevice device);
     /*</methods>*/
 }

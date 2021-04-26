@@ -36,71 +36,44 @@ import org.robovm.apple.metalps.*;
 
 /*</javadoc>*/
 /*<annotations>*/@Library("MLCompute")/*</annotations>*/
-public enum /*<name>*/MLCArithmeticOperation/*</name>*/ implements ValuedEnum {
+public enum /*<name>*/MLCComparisonOperation/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    Add(0L),
-    Subtract(1L),
-    Multiply(2L),
-    Divide(3L),
-    Floor(4L),
-    Round(5L),
-    Ceil(6L),
-    Sqrt(7L),
-    Rsqrt(8L),
-    Sin(9L),
-    Cos(10L),
-    Tan(11L),
-    Asin(12L),
-    Acos(13L),
-    Atan(14L),
-    Sinh(15L),
-    Cosh(16L),
-    Tanh(17L),
-    Asinh(18L),
-    Acosh(19L),
-    Atanh(20L),
-    Pow(21L),
-    Exp(22L),
-    Exp2(23L),
-    Log(24L),
-    Log2(25L),
-    /**
-     * @since Available in iOS 14.5 and later.
-     */
-    MultiplyNoNaN(26L),
-    /**
-     * @since Available in iOS 14.5 and later.
-     */
-    DivideNoNaN(27L),
-    /**
-     * @since Available in iOS 14.5 and later.
-     */
-    Min(28L),
-    /**
-     * @since Available in iOS 14.5 and later.
-     */
-    Max(29L),
-    Count(30L);
+    Equal(0L),
+    NotEqual(1L),
+    Less(2L),
+    Greater(3L),
+    LessOrEqual(4L),
+    GreaterOrEqual(5L),
+    LogicalAND(6L),
+    LogicalOR(7L),
+    LogicalNOT(8L),
+    LogicalNAND(9L),
+    LogicalNOR(10L),
+    LogicalXOR(11L),
+    Count(12L);
     /*</values>*/
 
-    /*<bind>*/static { Bro.bind(MLCArithmeticOperation.class); }/*</bind>*/
+    /*<bind>*/static { Bro.bind(MLCComparisonOperation.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<methods>*/
-    @Bridge(symbol="MLCArithmeticOperationDebugDescription", optional=true)
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Bridge(symbol="MLCComparisonOperationDebugDescription", optional=true)
     public native String getDebugDescription();
     /*</methods>*/
 
     private final long n;
 
-    private /*<name>*/MLCArithmeticOperation/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/MLCComparisonOperation/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/MLCArithmeticOperation/*</name>*/ valueOf(long n) {
-        for (/*<name>*/MLCArithmeticOperation/*</name>*/ v : values()) {
+    public static /*<name>*/MLCComparisonOperation/*</name>*/ valueOf(long n) {
+        for (/*<name>*/MLCComparisonOperation/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/MLCArithmeticOperation/*</name>*/.class.getName());
+            + /*<name>*/MLCComparisonOperation/*</name>*/.class.getName());
     }
 }

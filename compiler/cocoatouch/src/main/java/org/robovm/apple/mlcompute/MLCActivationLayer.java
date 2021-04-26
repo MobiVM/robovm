@@ -88,6 +88,8 @@ import org.robovm.apple.metalps.*;
     public static native MLCActivationLayer getTanhShrinkLayer();
     @Property(selector = "geluLayer")
     public static native MLCActivationLayer getGeluLayer();
+    @Property(selector = "hardSwishLayer")
+    public static native MLCActivationLayer getHardSwishLayer();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -111,6 +113,8 @@ import org.robovm.apple.metalps.*;
     public static native MLCActivationLayer createSoftShrinkLayer(float a);
     @Method(selector = "thresholdLayerWithThreshold:replacement:")
     public static native MLCActivationLayer createThresholdLayer(float threshold, float replacement);
+    @Method(selector = "clampLayerWithMinValue:maxValue:")
+    public static native MLCActivationLayer createClampLayer(float minValue, float maxValue);
     @Method(selector = "supportsDataType:onDevice:")
     public static native boolean supportsDataType(MLCDataType dataType, MLCDevice device);
     /*</methods>*/

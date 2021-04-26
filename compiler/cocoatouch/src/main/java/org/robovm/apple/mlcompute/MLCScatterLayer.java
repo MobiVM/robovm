@@ -34,47 +34,33 @@ import org.robovm.apple.metalps.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 14.0 and later.
+ * @since Available in iOS 14.5 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("MLCompute") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MLCReductionLayer/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MLCScatterLayer/*</name>*/ 
     extends /*<extends>*/MLCLayer/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class MLCReductionLayerPtr extends Ptr<MLCReductionLayer, MLCReductionLayerPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(MLCReductionLayer.class); }/*</bind>*/
+    /*<ptr>*/public static class MLCScatterLayerPtr extends Ptr<MLCScatterLayer, MLCScatterLayerPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(MLCScatterLayer.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected MLCReductionLayer() {}
-    protected MLCReductionLayer(Handle h, long handle) { super(h, handle); }
-    protected MLCReductionLayer(SkipInit skipInit) { super(skipInit); }
-    public MLCReductionLayer(MLCReductionType reductionType, @MachineSizedUInt long dimension) { super((Handle) null, create(reductionType, dimension)); retain(getHandle()); }
-    /**
-     * @since Available in iOS 14.5 and later.
-     */
-    public MLCReductionLayer(MLCReductionType reductionType, NSArray<NSNumber> dimensions) { super((Handle) null, create(reductionType, dimensions)); retain(getHandle()); }
+    protected MLCScatterLayer() {}
+    protected MLCScatterLayer(Handle h, long handle) { super(h, handle); }
+    protected MLCScatterLayer(SkipInit skipInit) { super(skipInit); }
+    public MLCScatterLayer(@MachineSizedUInt long dimension, MLCReductionType reductionType) { super((Handle) null, create(dimension, reductionType)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "reductionType")
-    public native MLCReductionType getReductionType();
     @Property(selector = "dimension")
     public native @MachineSizedUInt long getDimension();
-    /**
-     * @since Available in iOS 14.5 and later.
-     */
-    @Property(selector = "dimensions")
-    public native NSArray<NSNumber> getDimensions();
+    @Property(selector = "reductionType")
+    public native MLCReductionType getReductionType();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "layerWithReductionType:dimension:")
-    protected static native @Pointer long create(MLCReductionType reductionType, @MachineSizedUInt long dimension);
-    /**
-     * @since Available in iOS 14.5 and later.
-     */
-    @Method(selector = "layerWithReductionType:dimensions:")
-    protected static native @Pointer long create(MLCReductionType reductionType, NSArray<NSNumber> dimensions);
+    @Method(selector = "layerWithDimension:reductionType:")
+    protected static native @Pointer long create(@MachineSizedUInt long dimension, MLCReductionType reductionType);
     @Method(selector = "supportsDataType:onDevice:")
     public static native boolean supportsDataType(MLCDataType dataType, MLCDevice device);
     /*</methods>*/

@@ -27,6 +27,7 @@ enums:
     MLCSampleMode: {}
     MLCSoftmaxOperation: {}
     MLCLSTMResultMode: {}
+    MLCComparisonOperation: {}
 
 categories:
 
@@ -66,6 +67,8 @@ classes:
                 name: createHardShrinkLayer
             '+softShrinkLayerWithA:':
                 name: createSoftShrinkLayer
+            '+clampLayerWithMinValue:maxValue:':
+                name: createClampLayer
             '+thresholdLayerWithThreshold:replacement:':
                 name: createThresholdLayer
     MLCAdamOptimizer: #since 14.0
@@ -188,6 +191,12 @@ classes:
                 name: bindAndWriteData
             '-bindAndWriteData:forInputs:toDevice:synchronous:':
                 name: bindAndWriteData
+            '-selectWithSources:condition:':
+                name: select
+            '-scatterWithDimension:source:indices:copyFrom:reductionType:':
+                name: scatter
+            '-gatherWithDimension:source:indices:':
+                name: gather
     MLCGroupNormalizationLayer: #since 14.0
         methods:
             '+layerWithFeatureChannelCount:groupCount:beta:gamma:varianceEpsilon:':
@@ -212,12 +221,17 @@ classes:
             '+graphWithGraphObjects:':
                 name: create
                 constructor: true
+            '-compileWithOptions:device:inputTensors:inputTensorsData:':
+                name: compile
     MLCInstanceNormalizationLayer: #since 14.0
         methods:
             '+layerWithFeatureChannelCount:beta:gamma:varianceEpsilon:':
                 name: create
                 constructor: true
             '+layerWithFeatureChannelCount:beta:gamma:varianceEpsilon:momentum:':
+                name: create
+                constructor: true
+            '+layerWithFeatureChannelCount:mean:variance:beta:gamma:varianceEpsilon:momentum:':
                 name: create
                 constructor: true
     MLCLSTMDescriptor: #since 14.0
@@ -392,6 +406,9 @@ classes:
             '+layerWithReductionType:dimension:':
                 name: create
                 constructor: true
+            '+layerWithReductionType:dimensions:':
+                name: create
+                constructor: true
     MLCReshapeLayer: #since 14.0
         methods:
             '+layerWithShape:':
@@ -499,6 +516,8 @@ classes:
                 name: createDataNoCopy
             '+dataWithImmutableBytesNoCopy:length:':
                 name: createDataUsingImutableBytesNoCopy
+            '+dataWithBytesNoCopy:length:deallocator:':
+                name: createDataNoCopy
     MLCTensorDescriptor: #since 14.0
         methods:
             '+descriptorWithShape:dataType:':
@@ -558,6 +577,8 @@ classes:
                 constructor: true
             '-bindOptimizerData:deviceData:withTensor:':
                 name: bindOptimizerData
+            '-compileWithOptions:device:inputTensors:inputTensorsData:':
+                name: compile
     MLCTransposeLayer: #since 14.0
         methods:
             '+layerWithDimensions:':
@@ -578,6 +599,22 @@ classes:
                 constructor: true
     MLCYOLOLossLayer: {} #since 14.0
     MLCTensorOptimizerDeviceData: {}
+    MLCComparisonLayer: #since 14.5
+        methods:
+            '+layerWithOperation:':
+                constructor: true
+                name: create
+    MLCGatherLayer: #since 14.5
+        methods:
+            '+layerWithDimension:':
+                constructor: true
+                name: create
+    MLCScatterLayer: #since 14.5
+        methods:
+            '+layerWithDimension:reductionType:':
+                constructor: true
+                name: create
+    MLCSelectionLayer: {} #since 14.5
 protocols:
 
 functions:
