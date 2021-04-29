@@ -251,7 +251,10 @@ public abstract class AbstractTarget implements Target {
                         }
                     }
                 } else if (p.endsWith(".dylib") || p.endsWith(".so")) {
-                    libs.add(new File(p).getAbsolutePath());
+                    // dkimitsa: add absolute path only if Config.Lib relative file converter was able to resolve it
+                    //           e.g. lib exists, otherwise use it as it is
+                    File f = new File(p);
+                    libs.add(f.isAbsolute() ? f.getAbsolutePath() : p);
                 } else {
                     // link via -l if suffix is omitted
                     libs.add("-l" + p);
