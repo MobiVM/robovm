@@ -137,20 +137,47 @@ import org.robovm.apple.dispatch.*;
     /**
      * @since Available in iOS 10.0 and later.
      */
+    public static SecKey createRandomKey(NSDictionary parameters) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       SecKey result = createRandomKey(parameters, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
     @Bridge(symbol="SecKeyCreateRandomKey", optional=true)
-    public static native SecKey createRandomKey(NSDictionary parameters, NSError error);
+    private static native SecKey createRandomKey(NSDictionary parameters, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static SecKey createWithData(NSData keyData, NSDictionary attributes) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       SecKey result = createWithData(keyData, attributes, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
     /**
      * @since Available in iOS 10.0 and later.
      */
     @Bridge(symbol="SecKeyCreateWithData", optional=true)
-    public static native SecKey createWithData(NSData keyData, NSDictionary attributes, NSError error);
+    private static native SecKey createWithData(NSData keyData, NSDictionary attributes, NSError.NSErrorPtr error);
     @Bridge(symbol="SecKeyGetBlockSize", optional=true)
     public native @MachineSizedUInt long getBlockSize();
     /**
      * @since Available in iOS 10.0 and later.
      */
+    public NSData copyExternalRepresentation() throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       NSData result = copyExternalRepresentation(ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
     @Bridge(symbol="SecKeyCopyExternalRepresentation", optional=true)
-    public native NSData copyExternalRepresentation(NSError error);
+    private native NSData copyExternalRepresentation(NSError.NSErrorPtr error);
     /**
      * @since Available in iOS 10.0 and later.
      */
@@ -164,28 +191,73 @@ import org.robovm.apple.dispatch.*;
     /**
      * @since Available in iOS 10.0 and later.
      */
+    public NSData createSignature(String algorithm, NSData dataToSign) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       NSData result = createSignature(algorithm, dataToSign, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
     @Bridge(symbol="SecKeyCreateSignature", optional=true)
-    public native NSData createSignature(String algorithm, NSData dataToSign, NSError error);
+    private native NSData createSignature(String algorithm, NSData dataToSign, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public boolean verifySignature(String algorithm, NSData signedData, NSData signature) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       boolean result = verifySignature(algorithm, signedData, signature, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
     /**
      * @since Available in iOS 10.0 and later.
      */
     @Bridge(symbol="SecKeyVerifySignature", optional=true)
-    public native boolean verifySignature(String algorithm, NSData signedData, NSData signature, NSError error);
+    private native boolean verifySignature(String algorithm, NSData signedData, NSData signature, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public NSData createEncryptedData(String algorithm, NSData plaintext) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       NSData result = createEncryptedData(algorithm, plaintext, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
     /**
      * @since Available in iOS 10.0 and later.
      */
     @Bridge(symbol="SecKeyCreateEncryptedData", optional=true)
-    public native NSData createEncryptedData(String algorithm, NSData plaintext, NSError error);
+    private native NSData createEncryptedData(String algorithm, NSData plaintext, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public NSData createDecryptedData(String algorithm, NSData ciphertext) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       NSData result = createDecryptedData(algorithm, ciphertext, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
     /**
      * @since Available in iOS 10.0 and later.
      */
     @Bridge(symbol="SecKeyCreateDecryptedData", optional=true)
-    public native NSData createDecryptedData(String algorithm, NSData ciphertext, NSError error);
+    private native NSData createDecryptedData(String algorithm, NSData ciphertext, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public NSData copyKeyExchangeResult(String algorithm, SecKey publicKey, NSDictionary parameters) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       NSData result = copyKeyExchangeResult(algorithm, publicKey, parameters, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
     /**
      * @since Available in iOS 10.0 and later.
      */
     @Bridge(symbol="SecKeyCopyKeyExchangeResult", optional=true)
-    public native NSData copyKeyExchangeResult(String algorithm, SecKey publicKey, NSDictionary parameters, NSError error);
+    private native NSData copyKeyExchangeResult(String algorithm, SecKey publicKey, NSDictionary parameters, NSError.NSErrorPtr error);
     /**
      * @since Available in iOS 10.0 and later.
      */

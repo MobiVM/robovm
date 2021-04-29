@@ -91,8 +91,17 @@ import org.robovm.apple.dispatch.*;
     /**
      * @since Available in iOS 11.0 and later.
      */
+    public NSData copySerialNumberData() throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       NSData result = copySerialNumberData(ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Bridge(symbol="SecCertificateCopySerialNumberData", optional=true)
-    public native NSData copySerialNumberData(NSError error);
+    private native NSData copySerialNumberData(NSError.NSErrorPtr error);
     /**
      * @since Available in iOS 10.3 and later.
      * @deprecated Deprecated in iOS 11.0. Use SecCertificateCopySerialNumberData
