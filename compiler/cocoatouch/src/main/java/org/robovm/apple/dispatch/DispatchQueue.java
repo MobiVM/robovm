@@ -127,6 +127,12 @@ import org.robovm.rt.bro.ptr.*;
      */
     @Bridge(symbol="dispatch_barrier_async_and_wait", optional=true)
     public native void barrierAsyncAndWait(@Block Runnable block);
+    @Bridge(symbol="dispatch_queue_set_specific", optional=true)
+    public native void setSpecific(VoidPtr key, VoidPtr context, FunctionPtr destructor);
+    @Bridge(symbol="dispatch_queue_get_specific", optional=true)
+    public native VoidPtr getSpecific(VoidPtr key);
+    @Bridge(symbol="dispatch_get_specific", optional=true)
+    public static native VoidPtr getCurrentSpecific(VoidPtr key);
     /**
      * @since Available in iOS 10.0 and later.
      */
