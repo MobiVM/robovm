@@ -43,4 +43,4 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_ACCESS_KEY_SECRET }}
           aws-region: eu-west-3
       - name: Deploy idea plugin
-        run: aws s3 sync ./plugins/idea/build/distributions/idea-*.zip/ s3://${{ secrets.AWS_BUCKET }} --acl public-read --follow-symlinks --delete
+        run: aws s3 sync ./plugins/idea/build/distributions/ s3://${{ secrets.AWS_BUCKET }}/idea --acl public-read --follow-symlinks --delete
