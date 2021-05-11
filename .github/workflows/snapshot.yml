@@ -36,3 +36,11 @@ jobs:
         run: mvn clean deploy
       - name: Gradle plugin deploy
         run: cd plugins/gradle && ./gradlew clean build uploadArchives
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.AWS_ACCESS_KEY_SECRET }}
+          aws-region: eu-west-3
+      - name: Deploy idea plugin
+        run: aws s3 sync ./plugins/idea/build/distributions/idea-*.zip/ s3://${{ secrets.AWS_BUCKET }} --acl public-read --follow-symlinks --delete
