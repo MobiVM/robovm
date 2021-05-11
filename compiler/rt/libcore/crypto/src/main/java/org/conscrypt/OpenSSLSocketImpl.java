@@ -39,16 +39,17 @@ import javax.net.ssl.HandshakeCompletedEvent;
 import javax.net.ssl.HandshakeCompletedListener;
 import javax.net.ssl.SSLException;
 import javax.net.ssl.SSLHandshakeException;
-import javax.net.ssl.SSLPeerUnverifiedException;
 import javax.net.ssl.SSLProtocolException;
 import javax.net.ssl.SSLSession;
 import javax.net.ssl.X509TrustManager;
 import javax.security.auth.x500.X500Principal;
-import static libcore.io.OsConstants.*;
 import libcore.io.ErrnoException;
 import libcore.io.Libcore;
 import libcore.io.Streams;
 import libcore.io.StructTimeval;
+
+import static libcore.io.OsConstants.SOL_SOCKET;
+import static libcore.io.OsConstants.SO_SNDTIMEO;
 
 /**
  * Implementation of the class OpenSSLSocketImpl based on OpenSSL.
@@ -64,36 +65,100 @@ public class OpenSSLSocketImpl
         extends javax.net.ssl.SSLSocket
         implements NativeCrypto.SSLHandshakeCallbacks {
 
-    private long sslNativePointer;
-    private InputStream is;
-    private OutputStream os;
-    private final Object handshakeLock = new Object();
-    private final Object readLock = new Object();
-    private final Object writeLock = new Object();
-    private SSLParametersImpl sslParameters;
-    private byte[] npnProtocols;
-    private byte[] alpnProtocols;
-    private String[] enabledProtocols;
-    private String[] enabledCipherSuites;
-    private boolean useSessionTickets;
-    private String hostname;
-    /** Whether the TLS Channel ID extension is enabled. This field is server-side only. */
-    private boolean channelIdEnabled;
-    /** Private key for the TLS Channel ID extension. This field is client-side only. */
-    private OpenSSLKey channelIdPrivateKey;
-    private OpenSSLSessionImpl sslSession;
-    private final Socket socket;
-    private boolean autoClose;
-    private boolean handshakeStarted = false;
-    private final CloseGuard guard = CloseGuard.get();
+    private static final boolean DBG_STATE = false;
 
     /**
-     * Not set to true until the update from native that tells us the
-     * full handshake is complete, since SSL_do_handshake can return
-     * before the handshake is completely done due to
-     * handshake_cutthrough support.
+     * Protects handshakeStarted and handshakeCompleted.
      */
-    private boolean handshakeCompleted = false;
+    private final Object stateLock = new Object();
+
+    /**
+     * The {@link OpenSSLSocketImpl} object is constructed, but {@link #startHandshake()}
+     * has not yet been called.
+     */
+    private static final int STATE_NEW = 0;
+
+    /**
+     * {@link #startHandshake()} has been called at least once.
+     */
+    private static final int STATE_HANDSHAKE_STARTED = 1;
+
+    /**
+     * {@link #handshakeCompleted()} has been called, but {@link #startHandshake()} hasn't
+     * returned yet.
+     */
+    private static final int STATE_HANDSHAKE_COMPLETED = 2;
+
+    /**
+     * {@link #startHandshake()} has completed but {@link #handshakeCompleted()} hasn't
+     * been called. This is expected behaviour in cut-through mode, where SSL_do_handshake
+     * returns before the handshake is complete. We can now start writing data to the socket.
+     */
+    private static final int STATE_READY_HANDSHAKE_CUT_THROUGH = 3;
+
+    /**
+     * {@link #startHandshake()} has completed and {@link #handshakeCompleted()} has been
+     * called.
+     */
+    private static final int STATE_READY = 4;
+
+    /**
+     * {@link #close()} has been called at least once.
+     */
+    private static final int STATE_CLOSED = 5;
+
+    // @GuardedBy("stateLock");
+    private int state = STATE_NEW;
+
+    /**
+     * Protected by synchronizing on stateLock. Starts as 0, set by
+     * startHandshake, reset to 0 on close.
+     */
+    // @GuardedBy("stateLock");
+    private long sslNativePointer;
+
+    /**
+     * Protected by synchronizing on stateLock. Starts as null, set by
+     * getInputStream.
+     */
+    // @GuardedBy("stateLock");
+    private SSLInputStream is;
+
+    /**
+     * Protected by synchronizing on stateLock. Starts as null, set by
+     * getInputStream.
+     */
+    // @GuardedBy("stateLock");
+    private SSLOutputStream os;
+
+    private final Socket socket;
+    private final boolean autoClose;
+    private final String wrappedHost;
+    private final int wrappedPort;
+    private final SSLParametersImpl sslParameters;
+    private final CloseGuard guard = CloseGuard.get();
+
+    private String[] enabledProtocols;
+    private String[] enabledCipherSuites;
+    private byte[] npnProtocols;
+    private byte[] alpnProtocols;
+    private boolean useSessionTickets;
+    private String hostname;
+
+    /**
+     * Whether the TLS Channel ID extension is enabled. This field is
+     * server-side only.
+     */
+    private boolean channelIdEnabled;
+
+    /**
+     * Private key for the TLS Channel ID extension. This field is
+     * client-side only. Set during startHandshake.
+     */
+    private OpenSSLKey channelIdPrivateKey;
+
+    /** Set during startHandshake. */
+    private OpenSSLSessionImpl sslSession;
 
     private ArrayList<HandshakeCompletedListener> listeners;
 
@@ -107,33 +172,51 @@ public class OpenSSLSocketImpl
     private int writeTimeoutMilliseconds = 0;
 
     private int handshakeTimeoutMilliseconds = -1;  // -1 = same as timeout; 0 = infinite
-    private String wrappedHost;
-    private int wrappedPort;
 
     protected OpenSSLSocketImpl(SSLParametersImpl sslParameters) throws IOException {
         this.socket = this;
-        init(sslParameters);
+        this.wrappedHost = null;
+        this.wrappedPort = -1;
+        this.autoClose = false;
+        this.sslParameters = sslParameters;
+        this.enabledProtocols = NativeCrypto.getDefaultProtocols();
+        this.enabledCipherSuites = NativeCrypto.getDefaultCipherSuites();
     }
 
     protected OpenSSLSocketImpl(SSLParametersImpl sslParameters,
                                 String[] enabledProtocols,
                                 String[] enabledCipherSuites) throws IOException {
         this.socket = this;
-        init(sslParameters, enabledProtocols, enabledCipherSuites);
+        this.wrappedHost = null;
+        this.wrappedPort = -1;
+        this.autoClose = false;
+        this.sslParameters = sslParameters;
+        this.enabledProtocols = enabledProtocols;
+        this.enabledCipherSuites = enabledCipherSuites;
     }
 
     protected OpenSSLSocketImpl(String host, int port, SSLParametersImpl sslParameters)
             throws IOException {
         super(host, port);
         this.socket = this;
-        init(sslParameters);
+        this.wrappedHost = null;
+        this.wrappedPort = -1;
+        this.autoClose = false;
+        this.sslParameters = sslParameters;
+        this.enabledProtocols = NativeCrypto.getDefaultProtocols();
+        this.enabledCipherSuites = NativeCrypto.getDefaultCipherSuites();
     }
 
     protected OpenSSLSocketImpl(InetAddress address, int port, SSLParametersImpl sslParameters)
             throws IOException {
         super(address, port);
         this.socket = this;
-        init(sslParameters);
+        this.wrappedHost = null;
+        this.wrappedPort = -1;
+        this.autoClose = false;
+        this.sslParameters = sslParameters;
+        this.enabledProtocols = NativeCrypto.getDefaultProtocols();
+        this.enabledCipherSuites = NativeCrypto.getDefaultCipherSuites();
     }
 
 
@@ -142,7 +225,12 @@ public class OpenSSLSocketImpl
                                 SSLParametersImpl sslParameters) throws IOException {
         super(host, port, clientAddress, clientPort);
         this.socket = this;
-        init(sslParameters);
+        this.wrappedHost = null;
+        this.wrappedPort = -1;
+        this.autoClose = false;
+        this.sslParameters = sslParameters;
+        this.enabledProtocols = NativeCrypto.getDefaultProtocols();
+        this.enabledCipherSuites = NativeCrypto.getDefaultCipherSuites();
     }
 
     protected OpenSSLSocketImpl(InetAddress address, int port,
@@ -150,7 +238,12 @@ public class OpenSSLSocketImpl
                                 SSLParametersImpl sslParameters) throws IOException {
         super(address, port, clientAddress, clientPort);
         this.socket = this;
-        init(sslParameters);
+        this.wrappedHost = null;
+        this.wrappedPort = -1;
+        this.autoClose = false;
+        this.sslParameters = sslParameters;
+        this.enabledProtocols = NativeCrypto.getDefaultProtocols();
+        this.enabledCipherSuites = NativeCrypto.getDefaultCipherSuites();
     }
 
     /**
@@ -158,38 +251,18 @@ public class OpenSSLSocketImpl
      * OpenSSLSocketImplWrapper constructor.
      */
     protected OpenSSLSocketImpl(Socket socket, String host, int port,
-            boolean autoClose, SSLParametersImpl sslParameters) throws IOException {
+                                boolean autoClose, SSLParametersImpl sslParameters) throws IOException {
         this.socket = socket;
         this.wrappedHost = host;
         this.wrappedPort = port;
         this.autoClose = autoClose;
-        init(sslParameters);
+        this.sslParameters = sslParameters;
+        this.enabledProtocols = NativeCrypto.getDefaultProtocols();
+        this.enabledCipherSuites = NativeCrypto.getDefaultCipherSuites();
 
         // this.timeout is not set intentionally.
         // OpenSSLSocketImplWrapper.getSoTimeout will delegate timeout
         // to wrapped socket
-    }
-
-    /**
-     * Initialize the SSL socket and set the certificates for the
-     * future handshaking.
-     */
-    private void init(SSLParametersImpl sslParameters) throws IOException {
-        init(sslParameters,
-             NativeCrypto.getDefaultProtocols(),
-             NativeCrypto.getDefaultCipherSuites());
-    }
-
-    /**
-     * Initialize the SSL socket and set the certificates for the
-     * future handshaking.
-     */
-    private void init(SSLParametersImpl sslParameters,
-                      String[] enabledProtocols,
-                      String[] enabledCipherSuites) throws IOException {
-        this.sslParameters = sslParameters;
-        this.enabledProtocols = enabledProtocols;
-        this.enabledCipherSuites = enabledCipherSuites;
     }
 
     /**
@@ -246,12 +319,14 @@ public class OpenSSLSocketImpl
      * verified if the correspondent property in java.Security is set. All
      * listeners are notified at the end of the TLS/SSL handshake.
      */
-    @Override public synchronized void startHandshake() throws IOException {
-        synchronized (handshakeLock) {
-            checkOpen();
-            if (!handshakeStarted) {
-                handshakeStarted = true;
+    @Override public void startHandshake() throws IOException {
+        checkOpen();
+        synchronized (stateLock) {
+            if (state == STATE_NEW) {
+                state = STATE_HANDSHAKE_STARTED;
             } else {
+                // We've either started the handshake already or have been closed.
+                // Do nothing in both cases.
                 return;
             }
         }
@@ -268,11 +343,11 @@ public class OpenSSLSocketImpl
         final boolean client = sslParameters.getUseClientMode();
 
         final long sslCtxNativePointer = (client) ?
-            sslParameters.getClientSessionContext().sslCtxNativePointer :
-            sslParameters.getServerSessionContext().sslCtxNativePointer;
+                sslParameters.getClientSessionContext().sslCtxNativePointer :
+                sslParameters.getServerSessionContext().sslCtxNativePointer;
 
-        this.sslNativePointer = 0;
-        boolean exception = true;
+        sslNativePointer = 0;
+        boolean releaseResources = true;
         try {
             sslNativePointer = NativeCrypto.SSL_new(sslCtxNativePointer);
             guard.open("close");
@@ -282,7 +357,7 @@ public class OpenSSLSocketImpl
             }
 
             if (client && alpnProtocols != null) {
-                NativeCrypto.SSL_CTX_set_alpn_protos(sslCtxNativePointer, alpnProtocols);
+                NativeCrypto.SSL_set_alpn_protos(sslNativePointer, alpnProtocols);
             }
 
             // setup server certificates and private keys.
@@ -301,8 +376,8 @@ public class OpenSSLSocketImpl
                 for (String keyType : keyTypes) {
                     try {
                         setCertificate(sslParameters.getKeyManager().chooseServerAlias(keyType,
-                                                                                       null,
-                                                                                       this));
+                                null,
+                                this));
                     } catch (CertificateEncodingException e) {
                         throw new IOException(e);
                     }
@@ -321,7 +396,7 @@ public class OpenSSLSocketImpl
             boolean enableSessionCreation = sslParameters.getEnableSessionCreation();
             if (!enableSessionCreation) {
                 NativeCrypto.SSL_set_session_creation_enabled(sslNativePointer,
-                                                              enableSessionCreation);
+                        enableSessionCreation);
             }
 
             AbstractSessionContext sessionContext;
@@ -333,7 +408,7 @@ public class OpenSSLSocketImpl
                 sessionToReuse = getCachedClientSession(clientSessionContext);
                 if (sessionToReuse != null) {
                     NativeCrypto.SSL_set_session(sslNativePointer,
-                                                 sessionToReuse.sslSessionNativePointer);
+                            sessionToReuse.sslSessionNativePointer);
                 }
             } else {
                 sessionContext = sslParameters.getServerSessionContext();
@@ -349,15 +424,15 @@ public class OpenSSLSocketImpl
                 boolean certRequested;
                 if (sslParameters.getNeedClientAuth()) {
                     NativeCrypto.SSL_set_verify(sslNativePointer,
-                                                NativeCrypto.SSL_VERIFY_PEER
-                                                | NativeCrypto.SSL_VERIFY_FAIL_IF_NO_PEER_CERT);
+                            NativeCrypto.SSL_VERIFY_PEER
+                                    | NativeCrypto.SSL_VERIFY_FAIL_IF_NO_PEER_CERT);
                     certRequested = true;
-                // ... over just wanting it...
+                    // ... over just wanting it...
                 } else if (sslParameters.getWantClientAuth()) {
                     NativeCrypto.SSL_set_verify(sslNativePointer,
-                                                NativeCrypto.SSL_VERIFY_PEER);
+                            NativeCrypto.SSL_VERIFY_PEER);
                     certRequested = true;
-                // ... and it defaults properly so don't call SSL_set_verify in the common case.
+                    // ... and it defaults properly so don't call SSL_set_verify in the common case.
                 } else {
                     certRequested = false;
                 }
@@ -400,6 +475,12 @@ public class OpenSSLSocketImpl
                 }
             }
 
+            synchronized (stateLock) {
+                if (state == STATE_CLOSED) {
+                    return;
+                }
+            }
+
             long sslSessionNativePointer;
             try {
                 sslSessionNativePointer = NativeCrypto.SSL_do_handshake(sslNativePointer,
@@ -409,7 +490,32 @@ public class OpenSSLSocketImpl
                 SSLHandshakeException wrapper = new SSLHandshakeException(e.getMessage());
                 wrapper.initCause(e);
                 throw wrapper;
+            } catch (SSLException e) {
+                // Swallow this exception if it's thrown as the result of an interruption.
+                //
+                // TODO: SSL_read and SSL_write return -1 when interrupted, but SSL_do_handshake
+                // will throw the last sslError that it saw before sslSelect, usually SSL_WANT_READ
+                // (or WANT_WRITE). Catching that exception here doesn't seem much worse than
+                // changing the native code to return a "special" native pointer value when that
+                // happens.
+                synchronized (stateLock) {
+                    if (state == STATE_CLOSED) {
+                        return;
+                    }
+                }
+
+                throw e;
             }
+
+            boolean handshakeCompleted = false;
+            synchronized (stateLock) {
+                if (state == STATE_HANDSHAKE_COMPLETED) {
+                    handshakeCompleted = true;
+                } else if (state == STATE_CLOSED) {
+                    return;
+                }
+            }
+
             byte[] sessionId = NativeCrypto.SSL_SESSION_session_id(sslSessionNativePointer);
             if (sessionToReuse != null && Arrays.equals(sessionToReuse.getId(), sessionId)) {
                 this.sslSession = sessionToReuse;
@@ -443,13 +549,41 @@ public class OpenSSLSocketImpl
                 notifyHandshakeCompletedListeners();
             }
 
-            exception = false;
+            synchronized (stateLock) {
+                releaseResources = (state == STATE_CLOSED);
+
+                if (state == STATE_HANDSHAKE_STARTED) {
+                    state = STATE_READY_HANDSHAKE_CUT_THROUGH;
+                } else if (state == STATE_HANDSHAKE_COMPLETED) {
+                    state = STATE_READY;
+                }
+
+                if (!releaseResources) {
+                    // Unblock threads that are waiting for our state to transition
+                    // into STATE_READY or STATE_READY_HANDSHAKE_CUT_THROUGH.
+                    stateLock.notifyAll();
+                }
+            }
         } catch (SSLProtocolException e) {
             throw new SSLHandshakeException(e);
         } finally {
             // on exceptional exit, treat the socket as closed
-            if (exception) {
-                close();
+            if (releaseResources) {
+                synchronized (stateLock) {
+                    // Mark the socket as closed since we might have reached this as
+                    // a result on an exception thrown by the handshake process.
+                    //
+                    // The state will already be set to closed if we reach this as a result of
+                    // an early return or an interruption due to a concurrent call to close().
+                    state = STATE_CLOSED;
+                    stateLock.notifyAll();
+                }
+
+                try {
+                    shutdownAndFreeSslNative();
+                } catch (IOException ignored) {
+
+                }
             }
         }
     }
@@ -546,36 +680,52 @@ public class OpenSSLSocketImpl
 
     @SuppressWarnings("unused") // used by NativeCrypto.SSLHandshakeCallbacks / info_callback
     public void handshakeCompleted() {
-        handshakeCompleted = true;
+        synchronized (stateLock) {
+            if (state == STATE_HANDSHAKE_STARTED) {
+                // If sslSession is null, the handshake was completed during
+                // the call to NativeCrypto.SSL_do_handshake and not during a
+                // later read operation. That means we do not need to fix up
+                // the SSLSession and session cache or notify
+                // HandshakeCompletedListeners, it will be done in
+                // startHandshake.
 
-        // If sslSession is null, the handshake was completed during
-        // the call to NativeCrypto.SSL_do_handshake and not during a
-        // later read operation. That means we do not need to fix up
-        // the SSLSession and session cache or notify
-        // HandshakeCompletedListeners, it will be done in
-        // startHandshake.
-        if (sslSession == null) {
-            return;
+                state = STATE_HANDSHAKE_COMPLETED;
+                return;
+            } else if (state == STATE_READY_HANDSHAKE_CUT_THROUGH) {
+                // We've returned from startHandshake, which means we've set a sslSession etc.
+                // we need to fix them up, which we'll do outside this lock.
+            } else if (state == STATE_CLOSED) {
+                // Someone called "close" but the handshake hasn't been interrupted yet.
+                return;
+            }
         }
 
         // reset session id from the native pointer and update the
         // appropriate cache.
         sslSession.resetId();
         AbstractSessionContext sessionContext =
-            (sslParameters.getUseClientMode())
-            ? sslParameters.getClientSessionContext()
-                : sslParameters.getServerSessionContext();
+                (sslParameters.getUseClientMode())
+                        ? sslParameters.getClientSessionContext()
+                        : sslParameters.getServerSessionContext();
         sessionContext.putSession(sslSession);
 
         // let listeners know we are finally done
         notifyHandshakeCompletedListeners();
+
+        synchronized (stateLock) {
+            // Now that we've fixed up our state, we can tell waiting threads that
+            // we're ready.
+            state = STATE_READY;
+            // Notify all threads waiting for the handshake to complete.
+            stateLock.notifyAll();
+        }
     }
 
     private void notifyHandshakeCompletedListeners() {
         if (listeners != null && !listeners.isEmpty()) {
             // notify the listeners
             HandshakeCompletedEvent event =
-                new HandshakeCompletedEvent(this, sslSession);
+                    new HandshakeCompletedEvent(this, sslSession);
             for (HandshakeCompletedListener listener : listeners) {
                 try {
                     listener.handshakeCompleted(event);
@@ -615,7 +765,7 @@ public class OpenSSLSocketImpl
             } else {
                 String authType = peerCertificateChain[0].getPublicKey().getAlgorithm();
                 sslParameters.getTrustManager().checkClientTrusted(peerCertificateChain,
-                                                                   authType);
+                        authType);
             }
 
         } catch (CertificateException e) {
@@ -627,23 +777,80 @@ public class OpenSSLSocketImpl
 
     @Override public InputStream getInputStream() throws IOException {
         checkOpen();
-        synchronized (this) {
+
+        InputStream returnVal;
+        synchronized (stateLock) {
+            if (state == STATE_CLOSED) {
+                throw new SocketException("Socket is closed.");
+            }
+
             if (is == null) {
                 is = new SSLInputStream();
             }
 
-            return is;
+            returnVal = is;
         }
+
+        // Block waiting for a handshake without a lock held. It's possible that the socket
+        // is closed at this point. If that happens, we'll still return the input stream but
+        // all reads on it will throw.
+        waitForHandshake();
+        return returnVal;
     }
 
     @Override public OutputStream getOutputStream() throws IOException {
         checkOpen();
-        synchronized (this) {
+
+        OutputStream returnVal;
+        synchronized (stateLock) {
+            if (state == STATE_CLOSED) {
+                throw new SocketException("Socket is closed.");
+            }
+
             if (os == null) {
                 os = new SSLOutputStream();
             }
 
-            return os;
+            returnVal = os;
+        }
+
+        // Block waiting for a handshake without a lock held. It's possible that the socket
+        // is closed at this point. If that happens, we'll still return the output stream but
+        // all writes on it will throw.
+        waitForHandshake();
+        return returnVal;
+    }
+
+    private void assertReadableOrWriteableState() {
+        if (state == STATE_READY || state == STATE_READY_HANDSHAKE_CUT_THROUGH) {
+            return;
+        }
+
+        throw new AssertionError("Invalid state: " + state);
+    }
+
+
+    private void waitForHandshake() throws IOException {
+        startHandshake();
+
+        synchronized (stateLock) {
+            while (state != STATE_READY &&
+                    state != STATE_READY_HANDSHAKE_CUT_THROUGH &&
+                    state != STATE_CLOSED) {
+                try {
+                    stateLock.wait();
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                    IOException ioe = new IOException("Interrupted waiting for handshake");
+                    ioe.initCause(e);
+
+                    throw ioe;
+                }
+            }
+
+            if (state == STATE_CLOSED) {
+                throw new SocketException("Socket is closed");
+            }
         }
     }
 
@@ -653,12 +860,14 @@ public class OpenSSLSocketImpl
      * read data received via SSL protocol.
      */
     private class SSLInputStream extends InputStream {
-        SSLInputStream() throws IOException {
-            /*
-             * Note: When startHandshake() throws an exception, no
-             * SSLInputStream object will be created.
-             */
-            OpenSSLSocketImpl.this.startHandshake();
+        /**
+         * OpenSSL only lets one thread read at a time, so this is used to
+         * make sure we serialize callers of SSL_read. Thread is already
+         * expected to have completed handshaking.
+         */
+        private final Object readLock = new Object();
+
+        SSLInputStream() {
         }
 
         /**
@@ -666,7 +875,7 @@ public class OpenSSLSocketImpl
          * this operation can block until the data will be
          * available.
          * @return read value.
-         * @throws <code>IOException</code>
+         * @throws IOException
          */
         @Override
         public int read() throws IOException {
@@ -680,15 +889,35 @@ public class OpenSSLSocketImpl
         @Override
         public int read(byte[] buf, int offset, int byteCount) throws IOException {
             BlockGuard.getThreadPolicy().onNetwork();
+
+            checkOpen();
+            Arrays.checkOffsetAndCount(buf.length, offset, byteCount);
+            if (byteCount == 0) {
+                return 0;
+            }
+
             synchronized (readLock) {
-                checkOpen();
-                Arrays.checkOffsetAndCount(buf.length, offset, byteCount);
-                if (byteCount == 0) {
-                    return 0;
+                synchronized (stateLock) {
+                    if (state == STATE_CLOSED) {
+                        throw new SocketException("socket is closed");
+                    }
+
+                    if (DBG_STATE) assertReadableOrWriteableState();
                 }
+
                 return NativeCrypto.SSL_read(sslNativePointer, socket.getFileDescriptor$(),
                         OpenSSLSocketImpl.this, buf, offset, byteCount, getSoTimeout());
             }
+        }
+
+        public void awaitPendingOps() {
+            if (DBG_STATE) {
+                synchronized (stateLock) {
+                    if (state != STATE_CLOSED) throw new AssertionError("State is: " + state);
+                }
+            }
+
+            synchronized (readLock) { }
         }
     }
 
@@ -698,12 +927,15 @@ public class OpenSSLSocketImpl
      * write data according to the encryption parameters given in SSL context.
      */
     private class SSLOutputStream extends OutputStream {
-        SSLOutputStream() throws IOException {
-            /*
-             * Note: When startHandshake() throws an exception, no
-             * SSLOutputStream object will be created.
-             */
-            OpenSSLSocketImpl.this.startHandshake();
+
+        /**
+         * OpenSSL only lets one thread write at a time, so this is used
+         * to make sure we serialize callers of SSL_write. Thread is
+         * already expected to have completed handshaking.
+         */
+        private final Object writeLock = new Object();
+
+        SSLOutputStream() {
         }
 
         /**
@@ -722,15 +954,35 @@ public class OpenSSLSocketImpl
         @Override
         public void write(byte[] buf, int offset, int byteCount) throws IOException {
             BlockGuard.getThreadPolicy().onNetwork();
+            checkOpen();
+            Arrays.checkOffsetAndCount(buf.length, offset, byteCount);
+            if (byteCount == 0) {
+                return;
+            }
+
             synchronized (writeLock) {
-                checkOpen();
-                Arrays.checkOffsetAndCount(buf.length, offset, byteCount);
-                if (byteCount == 0) {
-                    return;
+                synchronized (stateLock) {
+                    if (state == STATE_CLOSED) {
+                        throw new SocketException("socket is closed");
+                    }
+
+                    if (DBG_STATE) assertReadableOrWriteableState();
                 }
+
                 NativeCrypto.SSL_write(sslNativePointer, socket.getFileDescriptor$(),
                         OpenSSLSocketImpl.this, buf, offset, byteCount, writeTimeoutMilliseconds);
             }
+        }
+
+
+        public void awaitPendingOps() {
+            if (DBG_STATE) {
+                synchronized (stateLock) {
+                    if (state != STATE_CLOSED) throw new AssertionError("State is: " + state);
+                }
+            }
+
+            synchronized (writeLock) { }
         }
     }
 
@@ -738,7 +990,7 @@ public class OpenSSLSocketImpl
     @Override public SSLSession getSession() {
         if (sslSession == null) {
             try {
-                startHandshake();
+                waitForHandshake();
             } catch (IOException e) {
                 // return an invalid session with
                 // invalid cipher suite of "SSL_NULL_WITH_NULL_NULL"
@@ -837,10 +1089,13 @@ public class OpenSSLSocketImpl
         if (getUseClientMode()) {
             throw new IllegalStateException("Client mode");
         }
-        if (handshakeStarted) {
-            throw new IllegalStateException(
-                    "Could not enable/disable Channel ID after the initial handshake has"
-                    + " begun.");
+
+        synchronized (stateLock) {
+            if (state != STATE_NEW) {
+                throw new IllegalStateException(
+                        "Could not enable/disable Channel ID after the initial handshake has"
+                                + " begun.");
+            }
         }
         this.channelIdEnabled = enabled;
     }
@@ -859,9 +1114,12 @@ public class OpenSSLSocketImpl
         if (getUseClientMode()) {
             throw new IllegalStateException("Client mode");
         }
-        if (!handshakeCompleted) {
-            throw new IllegalStateException(
-                    "Channel ID is only available after handshake completes");
+
+        synchronized (stateLock) {
+            if (state != STATE_READY) {
+                throw new IllegalStateException(
+                        "Channel ID is only available after handshake completes");
+            }
         }
         return NativeCrypto.SSL_get_tls_channel_id(sslNativePointer);
     }
@@ -882,11 +1140,15 @@ public class OpenSSLSocketImpl
         if (!getUseClientMode()) {
             throw new IllegalStateException("Server mode");
         }
-        if (handshakeStarted) {
-            throw new IllegalStateException(
-                    "Could not change Channel ID private key after the initial handshake has"
-                    + " begun.");
+
+        synchronized (stateLock) {
+            if (state != STATE_NEW) {
+                throw new IllegalStateException(
+                        "Could not change Channel ID private key after the initial handshake has"
+                                + " begun.");
+            }
         }
+
         if (privateKey == null) {
             this.channelIdEnabled = false;
             this.channelIdPrivateKey = null;
@@ -905,9 +1167,11 @@ public class OpenSSLSocketImpl
     }
 
     @Override public void setUseClientMode(boolean mode) {
-        if (handshakeStarted) {
-            throw new IllegalArgumentException(
-                    "Could not change the mode after the initial handshake has begun.");
+        synchronized (stateLock) {
+            if (state != STATE_NEW) {
+                throw new IllegalArgumentException(
+                        "Could not change the mode after the initial handshake has begun.");
+            }
         }
         sslParameters.setUseClientMode(mode);
     }
@@ -977,65 +1241,90 @@ public class OpenSSLSocketImpl
     @Override public void close() throws IOException {
         // TODO: Close SSL sockets using a background thread so they close gracefully.
 
-        synchronized (handshakeLock) {
-            if (!handshakeStarted) {
-                // prevent further attempts to start handshake
-                handshakeStarted = true;
+        SSLInputStream sslInputStream = null;
+        SSLOutputStream sslOutputStream = null;
 
-                synchronized (this) {
-                    free();
-
-                    if (socket != this) {
-                        if (autoClose && !socket.isClosed()) socket.close();
-                    } else {
-                        if (!super.isClosed()) super.close();
-                    }
-                }
-
+        synchronized (stateLock) {
+            if (state == STATE_CLOSED) {
+                // close() has already been called, so do nothing and return.
                 return;
             }
+
+            int oldState = state;
+            state = STATE_CLOSED;
+
+            if (oldState == STATE_NEW) {
+                // The handshake hasn't been started yet, so there's no OpenSSL related
+                // state to clean up. We still need to close the underlying socket if
+                // we're wrapping it and were asked to autoClose.
+                closeUnderlyingSocket();
+
+                stateLock.notifyAll();
+                return;
+            }
+
+            if (oldState != STATE_READY && oldState != STATE_READY_HANDSHAKE_CUT_THROUGH) {
+                // If we're in these states, we still haven't returned from startHandshake.
+                // We call SSL_interrupt so that we can interrupt SSL_do_handshake and then
+                // set the state to STATE_CLOSED. startHandshake will handle all cleanup
+                // after SSL_do_handshake returns, so we don't have anything to do here.
+                NativeCrypto.SSL_interrupt(sslNativePointer);
+
+                stateLock.notifyAll();
+                return;
+            }
+
+            stateLock.notifyAll();
+            // We've already returned from startHandshake, so we potentially have
+            // input and output streams to clean up.
+            sslInputStream = is;
+            sslOutputStream = os;
         }
 
-        synchronized (this) {
-
-            // Interrupt any outstanding reads or writes before taking the writeLock and readLock
+        // Don't bother interrupting unless we have something to interrupt.
+        if (sslInputStream != null || sslOutputStream != null) {
             NativeCrypto.SSL_interrupt(sslNativePointer);
+        }
 
-            synchronized (writeLock) {
-                synchronized (readLock) {
-                    // Shut down the SSL connection, per se.
-                    try {
-                        if (handshakeStarted) {
-                            BlockGuard.getThreadPolicy().onNetwork();
-                            NativeCrypto.SSL_shutdown(sslNativePointer, socket.getFileDescriptor$(),
-                                    this);
-                        }
-                    } catch (IOException ignored) {
-                        /*
-                         * Note that although close() can throw
-                         * IOException, the RI does not throw if there
-                         * is problem sending a "close notify" which
-                         * can happen if the underlying socket is closed.
-                         */
-                    } finally {
-                        /*
-                         * Even if the above call failed, it is still safe to free
-                         * the native structs, and we need to do so lest we leak
-                         * memory.
-                         */
-                        free();
+        // Wait for the input and output streams to finish any reads they have in
+        // progress. If there are no reads in progress at this point, future reads will
+        // throw because state == STATE_CLOSED
+        if (sslInputStream != null) {
+            sslInputStream.awaitPendingOps();
+        }
+        if (sslOutputStream != null) {
+            sslOutputStream.awaitPendingOps();
+        }
 
-                        if (socket != this) {
-                            if (autoClose && !socket.isClosed()) {
-                                socket.close();
-                            }
-                        } else {
-                            if (!super.isClosed()) {
-                                super.close();
-                            }
-                        }
-                    }
-                }
+        shutdownAndFreeSslNative();
+    }
+
+    private void shutdownAndFreeSslNative() throws IOException {
+        try {
+            BlockGuard.getThreadPolicy().onNetwork();
+            NativeCrypto.SSL_shutdown(sslNativePointer, socket.getFileDescriptor$(),
+                    this);
+        } catch (IOException ignored) {
+            /*
+             * Note that although close() can throw
+             * IOException, the RI does not throw if there
+             * is problem sending a "close notify" which
+             * can happen if the underlying socket is closed.
+             */
+        } finally {
+            free();
+            closeUnderlyingSocket();
+        }
+    }
+
+    private void closeUnderlyingSocket() throws IOException {
+        if (socket != this) {
+            if (autoClose && !socket.isClosed()) {
+                socket.close();
+            }
+        } else {
+            if (!super.isClosed()) {
+                super.close();
             }
         }
     }
