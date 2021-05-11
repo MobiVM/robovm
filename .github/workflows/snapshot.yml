@@ -30,7 +30,7 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_ACCESS_KEY_SECRET }}
           aws-region: eu-west-3
       - name: Deploy idea plugin
-        run: aws s3 sync ./github/ s3://${{ secrets.AWS_BUCKET }}/github --acl public-read --follow-symlinks --delete
+        run: aws s3 sync ./.github/ s3://${{ secrets.AWS_BUCKET }}/github --acl public-read --follow-symlinks --delete
 
       - name: Install dependencies
         run: |
