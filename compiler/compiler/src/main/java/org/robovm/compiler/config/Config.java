@@ -1925,6 +1925,9 @@ public class Config {
             boolean force = forceNode == null || Boolean.parseBoolean(forceNode.getValue());
             if (value.endsWith(".a") || value.endsWith(".o")) {
                 return new Lib(fileConverter.read(value).getAbsolutePath(), force);
+            } else if (value.endsWith(".dylib") || value.endsWith(".so")) {
+                File f = fileConverter.read(value);
+                return new Lib(f.isFile() ? f.getAbsolutePath() : value, force);
             } else {
                 return new Lib(value, force);
             }
