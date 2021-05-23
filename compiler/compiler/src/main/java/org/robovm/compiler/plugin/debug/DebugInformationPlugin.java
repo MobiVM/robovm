@@ -185,7 +185,7 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
             // kotlin, get line number mapping table from SMAP section
             GenericAttribute smap = (GenericAttribute) clazz.getSootClass().getTag("SourceDebugExtension");
             if (smap != null) {
-                lineNumberMapper = KotlinTools.parseSMAP(smap.getValue(), clazz.getInternalName());
+                lineNumberMapper = KotlinTools.parseSMAP(config, smap.getValue(), clazz.getInternalName());
             }
         }
         // save mapper

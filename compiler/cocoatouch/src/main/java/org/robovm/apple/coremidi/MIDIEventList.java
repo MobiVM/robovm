@@ -56,7 +56,7 @@ import org.robovm.apple.corefoundation.*;
     @StructMember(0) public native MIDIEventList setProtocol(MIDIProtocolID protocol);
     @StructMember(1) public native int getNumPackets();
     @StructMember(1) public native MIDIEventList setNumPackets(int numPackets);
-    @StructMember(2) public native @ByVal MIDIEventPacket getPacket();
+    @StructMember(2) public native @Array({1}) MIDIEventPacket getPacket();
     /*</members>*/
     /*<methods>*//*</methods>*/
 }

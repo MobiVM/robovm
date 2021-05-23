@@ -1,5 +1,6 @@
 package org.robovm.compiler.plugin.debug.kotlin;
 
+import org.robovm.compiler.config.Config;
 import org.robovm.compiler.plugin.debug.DebugInformationPlugin;
 
 import java.util.ArrayList;
@@ -12,10 +13,10 @@ import java.util.List;
 public class KotlinTools {
 
     // VO to keep range information
-    private static class Range {
-        private final int originalIndex;
-        private final int targetIndexStart;
-        private final int targetIndexEnd;
+    static class Range {
+        final int originalIndex;
+        final int targetIndexStart;
+        final int targetIndexEnd;
 
         Range(int originalIndex, int targetIndexStart, int targetIndexEnd) {
             this.originalIndex = originalIndex;
@@ -35,7 +36,7 @@ public class KotlinTools {
      * parsing is based on original kotlin sources:
      * kotlin/compiler/backend/src/org/jetbrains/kotlin/codegen/inline/SMAPParser.kt
      */
-    public static DebugInformationPlugin.LineNumberMapper parseSMAP(byte[] smapData, String internalName) {
+    public static DebugInformationPlugin.LineNumberMapper parseSMAP(Config config, byte[] smapData, String internalName) {
         String mappingInfo = new String(smapData);
         List<Range> lineMappings = new ArrayList<>();
 
@@ -78,33 +79,20 @@ public class KotlinTools {
         int minTargetIndex = Integer.MAX_VALUE;
         int maxTargetIndex = Integer.MIN_VALUE;
         for (String lineMapping : lines) {
-            /*only simple mapping now*/
-            int targetSplit = lineMapping.indexOf(':');
-            String originalPart = lineMapping.substring(0, targetSplit);
-            int rangeSeparator = originalPart.indexOf(',');
-            if (rangeSeparator < 0)
-                rangeSeparator = targetSplit;
+            try {
+                Range range = parseLineMap(ownFileIndex, lineMapping);
 
-            int fileSeparator = lineMapping.indexOf('#');
-            int fileIndex = Integer.parseInt(lineMapping.substring(fileSeparator + 1, rangeSeparator));
-            if (fileIndex != ownFileIndex)
-                continue;
+                // get min/max values for optimization
+                if (range.targetIndexStart < minTargetIndex)
+                    minTargetIndex = range.targetIndexStart;
+                if (range.targetIndexEnd > maxTargetIndex)
+                    maxTargetIndex = range.targetIndexEnd;
 
-            int originalIndex = Integer.parseInt(originalPart.substring(0, fileSeparator));
-            int range;
-            if (rangeSeparator == targetSplit)
-                range = 1;
-            else
-                range = Integer.parseInt(originalPart.substring(rangeSeparator + 1, targetSplit));
-            int targetIndex = Integer.parseInt(lineMapping.substring(targetSplit + 1));
-
-            // get min/max values for optimization
-            if (targetIndex < minTargetIndex)
-                minTargetIndex = targetIndex;
-            if (targetIndex + range - 1 > maxTargetIndex)
-                maxTargetIndex = targetIndex + range - 1;
-
-            lineMappings.add(new Range(originalIndex, targetIndex, targetIndex + range - 1));
+                lineMappings.add(range);
+            } catch (Throwable e) {
+                if (config.getHome().isDev())
+                    config.getLogger().warn(e.getLocalizedMessage());
+            }
         }
 
         if (lineMappings.size() == 1) {
@@ -141,4 +129,55 @@ public class KotlinTools {
         return DebugInformationPlugin.LineNumberMapper.DIRECT;
     }
 
+    static Range parseLineMap(int expectedFileIndex, String lineMapping) {
+        // In KotlinDebug, they use `1#2,3:4` to mean "map lines 4..6 to line 1 of #2", when in reality (and i
+        // the non-debug stratum) this maps lines 4..6 to lines 1..3. The correct syntax is `1#2:4,3`.
+        // multiple options:
+        // case 1: "$source#$fileId:$dest\n"
+        // case 2: "$source#$fileId:$dest,$range"
+        // case 3: "$source#$fileId,$range:$dest"
+        int fileSeparatorIdx = lineMapping.indexOf('#');
+        if (fileSeparatorIdx <= 0)
+            throw new IllegalArgumentException("fileId(#) separator not found in " + lineMapping);
+
+        // get positions of other separators
+        int semicolonIdx = lineMapping.indexOf(':', fileSeparatorIdx + 1);
+        if (semicolonIdx < fileSeparatorIdx + 2)
+            throw new IllegalArgumentException("fileId(:) separator not found or empty in " + lineMapping);
+        int commaIdx = lineMapping.indexOf(',', fileSeparatorIdx + 1);
+        if (commaIdx > 0 && commaIdx < fileSeparatorIdx + 2)
+            throw new IllegalArgumentException("range(,) separator is empty in " + lineMapping);
+
+        // parse values
+        int originalIndex = Integer.parseInt(lineMapping.substring(0, fileSeparatorIdx));
+        int fileIndex;
+        int range;
+        int dest;
+
+        if (commaIdx < 0) {
+            // case 1: "$source#$fileId:$dest\n"
+            fileIndex = Integer.parseInt(lineMapping.substring(fileSeparatorIdx + 1, semicolonIdx));
+            dest = Integer.parseInt(lineMapping.substring(semicolonIdx + 1));
+            range = 1;
+        } else {
+            if (commaIdx > semicolonIdx + 1) {
+                // case 2: "$source#$fileId:$dest,$range"
+                fileIndex = Integer.parseInt(lineMapping.substring(fileSeparatorIdx + 1, semicolonIdx));
+                dest = Integer.parseInt(lineMapping.substring(semicolonIdx + 1, commaIdx));
+                range = Integer.parseInt(lineMapping.substring(commaIdx + 1));
+            } else if (semicolonIdx > commaIdx + 1){
+                // case 3: "$source#$fileId,$range:$dest"
+                fileIndex = Integer.parseInt(lineMapping.substring(fileSeparatorIdx + 1, commaIdx));
+                dest = Integer.parseInt(lineMapping.substring(semicolonIdx + 1));
+                range = Integer.parseInt(lineMapping.substring(commaIdx + 1, semicolonIdx));
+            } else {
+                // comma or semicolon next to each other
+                throw new IllegalArgumentException("Empty range/dest in " + lineMapping);
+            }
+        }
+        if (fileIndex != expectedFileIndex)
+            throw new IllegalArgumentException("fileIndex doesn't match expected " + expectedFileIndex + " in " + lineMapping);
+
+        return new Range(originalIndex, dest, dest + range - 1);
+    }
 }

@@ -47,7 +47,7 @@ import org.robovm.apple.corefoundation.*;
     /*<members>*/
     @StructMember(0) public native int getNumPackets();
     @StructMember(0) public native MIDIPacketList setNumPackets(int numPackets);
-    @StructMember(1) public native @ByVal MIDIPacket getPacket();
+    @StructMember(1) public native @Array({1}) MIDIPacket getPacket();
     /*</members>*/
     /*<methods>*/
     /**
