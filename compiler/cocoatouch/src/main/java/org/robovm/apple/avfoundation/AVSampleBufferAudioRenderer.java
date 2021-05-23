@@ -79,6 +79,11 @@ import org.robovm.apple.audiotoolbox.*;
     public native CMTimebase getTimebase();
     @Property(selector = "isReadyForMoreMediaData")
     public native boolean isReadyForMoreMediaData();
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Property(selector = "hasSufficientMediaDataForReliablePlaybackStart")
+    public native boolean hasSufficientMediaDataForReliablePlaybackStart();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

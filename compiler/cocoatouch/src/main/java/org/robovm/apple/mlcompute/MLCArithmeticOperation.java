@@ -64,7 +64,23 @@ public enum /*<name>*/MLCArithmeticOperation/*</name>*/ implements ValuedEnum {
     Exp2(23L),
     Log(24L),
     Log2(25L),
-    Count(26L);
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    MultiplyNoNaN(26L),
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    DivideNoNaN(27L),
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    Min(28L),
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    Max(29L),
+    Count(30L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(MLCArithmeticOperation.class); }/*</bind>*/

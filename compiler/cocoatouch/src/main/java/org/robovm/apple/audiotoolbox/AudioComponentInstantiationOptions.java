@@ -45,7 +45,8 @@ public final class /*<name>*/AudioComponentInstantiationOptions/*</name>*/ exten
     /**
      * @since Available in iOS 9.0 and later.
      */
-    public static final AudioComponentInstantiationOptions OutOfProcess = new AudioComponentInstantiationOptions(1L);
+    public static final AudioComponentInstantiationOptions LoadOutOfProcess = new AudioComponentInstantiationOptions(1L);
+    public static final AudioComponentInstantiationOptions LoadedRemotely = new AudioComponentInstantiationOptions(2147483648L);
     /*</values>*/
 
     /*<bind>*/

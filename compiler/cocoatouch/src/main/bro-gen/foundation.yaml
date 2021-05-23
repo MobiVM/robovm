@@ -5052,6 +5052,11 @@ values:
         name: '#{g[0]}'
         type: NSString
         extends: NSErrorUserInfoKey
+    NS(MultipleUnderlyingErrors)Key:
+        enum: NSCocoaErrorUserInfoKey
+        name: '#{g[0]}'
+        type: NSString
+        extends: NSErrorUserInfoKey
     NSURLError(FailingURL|FailingURLString|FailingURLPeerTrust)ErrorKey:
         enum: NSURLErrorUserInfoKey
         name: '#{g[0]}'

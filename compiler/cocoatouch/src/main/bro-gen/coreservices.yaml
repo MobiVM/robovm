@@ -4,6 +4,7 @@ library: CFNetwork
 framework: CFNetwork
 clang_args: ['-x', 'objective-c']
 headers:
+    - /System/Library/Frameworks/Foundation.framework/Headers/Foundation.h
     - /System/Library/Frameworks/CFNetwork.framework/Headers/CFNetwork.h
     - /System/Library/Frameworks/CFNetwork.framework/Headers/CFNetworkDefs.h
 typedefs:
@@ -11,16 +12,12 @@ typedefs:
     CFNetDiagnosticStatus: CFNetDiagnosticStatus
 private_typedefs:
     '__CFString *': String
-    '__CFString **': NSString.NSStringPtr
-    '__CFData *': NSData
-    '__CFURL *': NSURL
-    '__CFArray *': NSArray<?>
-    '__CFError *': NSError
-    '__CFReadStream *': NSInputStream
-    '__CFWriteStream *': NSOutputStream
-    'CFReadStreamRef *': NSInputStream.NSInputStreamPtr
-    'CFWriteStreamRef *': NSOutputStream.NSOutputStreamPtr
-    
+    '__CFData': NSData
+    '__CFURL': NSURL
+    '__CFArray': NSArray
+    '__CFError': NSError
+    '__CFReadStream': NSInputStream
+    '__CFWriteStream': NSOutputStream
 enums:
     CFHostInfoType: {}
     CFNetDiagnosticStatusValues: { name: CFNetDiagnosticStatus }

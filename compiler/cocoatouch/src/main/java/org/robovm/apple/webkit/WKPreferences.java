@@ -72,6 +72,16 @@ import org.robovm.apple.coreanimation.*;
     @Property(selector = "setFraudulentWebsiteWarningEnabled:")
     public native void setFraudulentWebsiteWarningEnabled(boolean v);
     /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Property(selector = "textInteractionEnabled")
+    public native boolean isTextInteractionEnabled();
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Property(selector = "setTextInteractionEnabled:")
+    public native void setTextInteractionEnabled(boolean v);
+    /**
      * @deprecated Deprecated in iOS 14.0. Use WKWebPagePreferences.allowsContentJavaScript to disable content JavaScript on a per-navigation basis
      */
     @Deprecated

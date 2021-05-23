@@ -59,6 +59,11 @@ import org.robovm.apple.coremedia.*;
     public native NSArray<SFTranscription> getTranscriptions();
     @Property(selector = "isFinal")
     public native boolean isFinal();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "speechRecognitionMetadata")
+    public native SFSpeechRecognitionMetadata getSpeechRecognitionMetadata();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

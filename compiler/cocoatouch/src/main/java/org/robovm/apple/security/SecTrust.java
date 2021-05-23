@@ -254,8 +254,17 @@ import org.robovm.apple.dispatch.*;
     /**
      * @since Available in iOS 12.0 and later.
      */
+    public boolean evaluateWithError() throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       boolean result = evaluateWithError(ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
     @Bridge(symbol="SecTrustEvaluateWithError", optional=true)
-    public native boolean evaluateWithError(NSError error);
+    private native boolean evaluateWithError(NSError.NSErrorPtr error);
     /**
      * @since Available in iOS 13.0 and later.
      */
@@ -289,6 +298,6 @@ import org.robovm.apple.dispatch.*;
     @Bridge(symbol="SecTrustSetOCSPResponse", optional=true)
     protected native OSStatus setOCSPResponse0(CFType responseData);
     @Bridge(symbol="SecTrustSetSignedCertificateTimestamps", optional=true)
-    public native OSStatus setSignedCertificateTimestamps(NSArray<?> sctArray);
+    public native OSStatus setSignedCertificateTimestamps(NSArray sctArray);
     /*</methods>*/
 }

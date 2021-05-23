@@ -190,6 +190,31 @@ import org.robovm.apple.coreanimation.*;
     @Method(selector = "callAsyncJavaScript:arguments:inFrame:inContentWorld:completionHandler:")
     public native void callAsyncJavaScript(String functionBody, NSDictionary<NSString, ?> arguments, WKFrameInfo frame, WKContentWorld contentWorld, @Block VoidBlock2<NSObject, NSError> completionHandler);
     /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Method(selector = "closeAllMediaPresentations")
+    public native void closeAllMediaPresentations();
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Method(selector = "pauseAllMediaPlayback:")
+    public native void pauseAllMediaPlayback(@Block Runnable completionHandler);
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Method(selector = "suspendAllMediaPlayback:")
+    public native void suspendAllMediaPlayback(@Block Runnable completionHandler);
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Method(selector = "resumeAllMediaPlayback:")
+    public native void resumeAllMediaPlayback(@Block Runnable completionHandler);
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Method(selector = "requestMediaPlaybackState:")
+    public native void requestMediaPlaybackState(@Block VoidBlock1<WKMediaPlaybackState> completionHandler);
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "takeSnapshotWithConfiguration:completionHandler:")
@@ -209,6 +234,16 @@ import org.robovm.apple.coreanimation.*;
      */
     @Method(selector = "findString:withConfiguration:completionHandler:")
     public native void findString(String string, WKFindConfiguration configuration, @Block VoidBlock1<WKFindResult> completionHandler);
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Method(selector = "startDownloadUsingRequest:completionHandler:")
+    public native void startDownload(NSURLRequest request, @Block VoidBlock1<WKDownload> completionHandler);
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Method(selector = "resumeDownloadFromResumeData:completionHandler:")
+    public native void resumeDownload(NSData resumeData, @Block VoidBlock1<WKDownload> completionHandler);
     /**
      * @since Available in iOS 11.0 and later.
      */

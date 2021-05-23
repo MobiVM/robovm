@@ -59,6 +59,11 @@ import org.robovm.apple.coreanimation.*;
     public native WKNavigationType getNavigationType();
     @Property(selector = "request")
     public native NSURLRequest getRequest();
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Property(selector = "shouldPerformDownload")
+    public native boolean shouldPerformDownload();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

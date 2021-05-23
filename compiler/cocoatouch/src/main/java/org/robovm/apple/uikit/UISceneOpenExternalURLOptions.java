@@ -64,6 +64,16 @@ import org.robovm.apple.linkpresentation.*;
     public native boolean isUniversalLinksOnly();
     @Property(selector = "setUniversalLinksOnly:")
     public native void setUniversalLinksOnly(boolean v);
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Property(selector = "eventAttribution")
+    public native UIEventAttribution getEventAttribution();
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Property(selector = "setEventAttribution:")
+    public native void setEventAttribution(UIEventAttribution v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -137,9 +137,13 @@ import org.robovm.apple.coreanimation.*;
      * @since Available in iOS 10.3 and later.
      */
     public static final MPMediaItemProperty PlaybackStoreID = new MPMediaItemProperty("PlaybackStoreID");
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    public static final MPMediaItemProperty IsPreorder = new MPMediaItemProperty("IsPreorder");
     /*</constants>*/
     
-    private static /*<name>*/MPMediaItemProperty/*</name>*/[] values = new /*<name>*/MPMediaItemProperty/*</name>*/[] {/*<value_list>*/ItemPersistentID, MediaType, Title, AlbumTitle, AlbumPersistentID, Artist, ArtistPersistentID, AlbumArtist, AlbumArtistPersistentID, Genre, GenrePersistentID, Composer, ComposerPersistentID, PlaybackDuration, AlbumTrackNumber, AlbumTrackCount, DiscNumber, DiscCount, Artwork, IsExplicit, Lyrics, IsCompilation, ReleaseDate, BeatsPerMinute, Comments, AssetURL, IsCloudItem, HasProtectedAsset, PodcastTitle, PodcastPersistentID, PlayCount, SkipCount, Rating, LastPlayedDate, UserGrouping, BookmarkTime, DateAdded, PlaybackStoreID/*</value_list>*/};
+    private static /*<name>*/MPMediaItemProperty/*</name>*/[] values = new /*<name>*/MPMediaItemProperty/*</name>*/[] {/*<value_list>*/ItemPersistentID, MediaType, Title, AlbumTitle, AlbumPersistentID, Artist, ArtistPersistentID, AlbumArtist, AlbumArtistPersistentID, Genre, GenrePersistentID, Composer, ComposerPersistentID, PlaybackDuration, AlbumTrackNumber, AlbumTrackCount, DiscNumber, DiscCount, Artwork, IsExplicit, Lyrics, IsCompilation, ReleaseDate, BeatsPerMinute, Comments, AssetURL, IsCloudItem, HasProtectedAsset, PodcastTitle, PodcastPersistentID, PlayCount, SkipCount, Rating, LastPlayedDate, UserGrouping, BookmarkTime, DateAdded, PlaybackStoreID, IsPreorder/*</value_list>*/};
     
     /*<name>*/MPMediaItemProperty/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -247,6 +251,11 @@ import org.robovm.apple.coreanimation.*;
          */
         @GlobalValue(symbol="MPMediaItemPropertyPlaybackStoreID", optional=true)
         public static native NSString PlaybackStoreID();
+        /**
+         * @since Available in iOS 14.5 and later.
+         */
+        @GlobalValue(symbol="MPMediaItemPropertyIsPreorder", optional=true)
+        public static native NSString IsPreorder();
         /*</values>*/
     }
 }

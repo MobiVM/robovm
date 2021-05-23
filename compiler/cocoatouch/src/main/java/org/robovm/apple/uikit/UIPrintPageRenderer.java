@@ -83,6 +83,11 @@ import org.robovm.apple.linkpresentation.*;
     public native NSArray<UIPrintFormatter> getPrintFormatters(@MachineSizedSInt long pageIndex);
     @Method(selector = "addPrintFormatter:startingAtPageAtIndex:")
     public native void addPrintFormatter(UIPrintFormatter formatter, @MachineSizedSInt long pageIndex);
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Method(selector = "currentRenderingQualityForRequestedRenderingQuality:")
+    public native UIPrintRenderingQuality currentRenderingQualityForRequestedRenderingQuality(UIPrintRenderingQuality requestedRenderingQuality);
     @Method(selector = "prepareForDrawingPages:")
     public native void prepareForDrawingPages(@ByVal NSRange range);
     @Method(selector = "drawPageAtIndex:inRect:")

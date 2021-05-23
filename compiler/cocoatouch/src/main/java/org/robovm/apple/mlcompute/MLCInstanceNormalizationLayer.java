@@ -51,10 +51,24 @@ import org.robovm.apple.metalps.*;
     protected MLCInstanceNormalizationLayer(SkipInit skipInit) { super(skipInit); }
     public MLCInstanceNormalizationLayer(@MachineSizedUInt long featureChannelCount, MLCTensor beta, MLCTensor gamma, float varianceEpsilon) { super((Handle) null, create(featureChannelCount, beta, gamma, varianceEpsilon)); retain(getHandle()); }
     public MLCInstanceNormalizationLayer(@MachineSizedUInt long featureChannelCount, MLCTensor beta, MLCTensor gamma, float varianceEpsilon, float momentum) { super((Handle) null, create(featureChannelCount, beta, gamma, varianceEpsilon, momentum)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    public MLCInstanceNormalizationLayer(@MachineSizedUInt long featureChannelCount, MLCTensor mean, MLCTensor variance, MLCTensor beta, MLCTensor gamma, float varianceEpsilon, float momentum) { super((Handle) null, create(featureChannelCount, mean, variance, beta, gamma, varianceEpsilon, momentum)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "featureChannelCount")
     public native @MachineSizedUInt long getFeatureChannelCount();
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Property(selector = "mean")
+    public native MLCTensor getMean();
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Property(selector = "variance")
+    public native MLCTensor getVariance();
     @Property(selector = "beta")
     public native MLCTensor getBeta();
     @Property(selector = "gamma")
@@ -74,6 +88,11 @@ import org.robovm.apple.metalps.*;
     protected static native @Pointer long create(@MachineSizedUInt long featureChannelCount, MLCTensor beta, MLCTensor gamma, float varianceEpsilon);
     @Method(selector = "layerWithFeatureChannelCount:beta:gamma:varianceEpsilon:momentum:")
     protected static native @Pointer long create(@MachineSizedUInt long featureChannelCount, MLCTensor beta, MLCTensor gamma, float varianceEpsilon, float momentum);
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Method(selector = "layerWithFeatureChannelCount:mean:variance:beta:gamma:varianceEpsilon:momentum:")
+    protected static native @Pointer long create(@MachineSizedUInt long featureChannelCount, MLCTensor mean, MLCTensor variance, MLCTensor beta, MLCTensor gamma, float varianceEpsilon, float momentum);
     @Method(selector = "supportsDataType:onDevice:")
     public static native boolean supportsDataType(MLCDataType dataType, MLCDevice device);
     /*</methods>*/

@@ -62,5 +62,10 @@ import org.robovm.apple.metalps.*;
     public static native MLCTensorData createDataNoCopy(VoidPtr bytes, @MachineSizedUInt long length);
     @Method(selector = "dataWithImmutableBytesNoCopy:length:")
     public static native MLCTensorData createDataUsingImutableBytesNoCopy(VoidPtr bytes, @MachineSizedUInt long length);
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Method(selector = "dataWithBytesNoCopy:length:deallocator:")
+    public static native MLCTensorData createDataNoCopy(VoidPtr bytes, @MachineSizedUInt long length, @Block("(,@MachineSizedUInt)") VoidBlock2<VoidPtr, Long> deallocator);
     /*</methods>*/
 }

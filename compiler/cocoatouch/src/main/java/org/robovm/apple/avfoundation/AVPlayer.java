@@ -182,6 +182,11 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @GlobalValue(symbol="AVPlayerAvailableHDRModesDidChangeNotification", optional=true)
     public static native String AvailableHDRModesDidChangeNotification();
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @GlobalValue(symbol="AVPlayerWaitingDuringInterstitialEventReason", optional=true)
+    public static native NSString WaitingDuringInterstitialEventReason();
     @Library("AVFoundation")
     public static class Notifications {
         static { Bro.bind(Notifications.class); }
@@ -191,6 +196,16 @@ import org.robovm.apple.audiotoolbox.*;
          */
         @GlobalValue(symbol="AVPlayerEligibleForHDRPlaybackDidChangeNotification", optional=true)
         public static native NSString EligibleForHDRPlaybackDidChange();
+        /**
+         * @since Available in iOS 14.5 and later.
+         */
+        @GlobalValue(symbol="AVPlayerInterstitialEventObserverEventsDidChangeNotification", optional=true)
+        public static native NSString InterstitialEventObserverEventsDidChange();
+        /**
+         * @since Available in iOS 14.5 and later.
+         */
+        @GlobalValue(symbol="AVPlayerInterstitialEventObserverCurrentEventDidChangeNotification", optional=true)
+        public static native NSString InterstitialEventObserverCurrentEventDidChange();
     }
     
     @Method(selector = "initWithURL:")

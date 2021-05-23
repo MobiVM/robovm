@@ -11,6 +11,7 @@ typedefs:
     dispatch_workloop_t: DispatchWorkloop
 enums:
     dispatch_autorelease_frequency_t: {name: AutoreleaseFrequency, prefix: DISPATCH_AUTORELEASE_FREQUENCY_}
+    dispatch_block_flags_t: {name: DispatchBlockFlags, prefix: DISPATCH_BLOCK_, bits: true}
 
 classes:
     timespec:
@@ -30,7 +31,7 @@ classes:
         extends: DispatchQueue
     Dispatch:
         extends: Object
-        
+
 functions:
     dispatch_(barrier_)?a?sync_f:
         exclude: true
@@ -48,21 +49,21 @@ functions:
         exclude: true
     dispatch_set_finalizer_f:
         exclude: true
-    dispatch_queue_(get|set)_specific:
-        exclude: true
-    dispatch_get_specific:
-        exclude: true
-    dispatch_block_.*:
-        exclude: true
     dispatch_(wait|notify|cancel|testcancel):
         exclude: true
+
+    # DispatchBlock
+    dispatch_block_wait:
+        class: DispatchBlock
+        name: blockWait
+    dispatch_block_(.*):
+        class: DispatchBlock
+        name: '#{g[0].camelize}'
 
     # DispatchQueue
     dispatch_queue_attr_make_with_qos_class:
         exclude: true
     dispatch_queue_get_qos_class:
-        exclude: true
-    dispatch_get_current_queue:
         exclude: true
     dispatch_((barrier_)?a?sync.*):
         class: DispatchQueue
@@ -94,6 +95,15 @@ functions:
         name: '#{g[0].camelize}'
     dispatch_barrier_async_and_wait_f:
         exclude: true
+    dispatch_queue_(get|set)_specific:
+        class: DispatchQueue
+        name: '#{g[0].camelize}Specific'
+    dispatch_get_specific:
+        class: DispatchQueue
+        name: 'getCurrentSpecific'
+    dispatch_get_current_queue:
+        class: DispatchQueue
+        name: 'getCurrent'
 
     # DispatchData
     dispatch_data_(.*):

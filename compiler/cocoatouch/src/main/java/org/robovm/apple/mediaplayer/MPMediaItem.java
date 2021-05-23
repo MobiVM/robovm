@@ -138,6 +138,11 @@ import org.robovm.apple.coreanimation.*;
      */
     @Property(selector = "playbackStoreID")
     public native String getPlaybackStoreID();
+    /**
+     * @since Available in iOS 10.3 and later.
+     */
+    @Property(selector = "isPreorder")
+    public native boolean isPreorder();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

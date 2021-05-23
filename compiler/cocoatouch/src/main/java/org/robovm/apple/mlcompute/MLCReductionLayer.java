@@ -50,17 +50,31 @@ import org.robovm.apple.metalps.*;
     protected MLCReductionLayer(Handle h, long handle) { super(h, handle); }
     protected MLCReductionLayer(SkipInit skipInit) { super(skipInit); }
     public MLCReductionLayer(MLCReductionType reductionType, @MachineSizedUInt long dimension) { super((Handle) null, create(reductionType, dimension)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    public MLCReductionLayer(MLCReductionType reductionType, NSArray<NSNumber> dimensions) { super((Handle) null, create(reductionType, dimensions)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "reductionType")
     public native MLCReductionType getReductionType();
     @Property(selector = "dimension")
     public native @MachineSizedUInt long getDimension();
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Property(selector = "dimensions")
+    public native NSArray<NSNumber> getDimensions();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "layerWithReductionType:dimension:")
     protected static native @Pointer long create(MLCReductionType reductionType, @MachineSizedUInt long dimension);
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Method(selector = "layerWithReductionType:dimensions:")
+    protected static native @Pointer long create(MLCReductionType reductionType, NSArray<NSNumber> dimensions);
     @Method(selector = "supportsDataType:onDevice:")
     public static native boolean supportsDataType(MLCDataType dataType, MLCDevice device);
     /*</methods>*/

@@ -139,7 +139,12 @@ classes:
                 trim_after_first_colon: true
             '-fetchStorePromotionOrderWithCompletionHandler:':
                 name: fetchStorePromotionOrder
-    SKAdNetwork: {} #since 11.3
+    SKAdNetwork: #since 11.3
+        methods:
+            '+startImpression:completionHandler:':
+                name: startImpression
+            '+endImpression:completionHandler:':
+                name: endImpression
     SKProductDiscount: {} #since 11.2
     SKProductSubscriptionPeriod: {} #since 11.2
     SKPaymentDiscount: #since 12.2
@@ -171,6 +176,7 @@ classes:
                 name: setAdditionalValue
     SKOverlayConfiguration: {} #since 14.0
     SKOverlayTransitionContext: {} #since 14.0
+    SKAdImpression: {} #since 14.5
 protocols:
     SKCloudServiceSetupViewControllerDelegate:
         methods:

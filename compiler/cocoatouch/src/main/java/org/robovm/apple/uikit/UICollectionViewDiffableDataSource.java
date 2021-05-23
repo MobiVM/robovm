@@ -134,8 +134,14 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Method(selector = "collectionView:moveItemAtIndexPath:toIndexPath:")
     public native void moveItemAt(UICollectionView collectionView, NSIndexPath sourceIndexPath, NSIndexPath destinationIndexPath);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
     @Method(selector = "indexTitlesForCollectionView:")
     public native NSArray<NSString> indexTitlesForCollectionView(UICollectionView collectionView);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
     @Method(selector = "collectionView:indexPathForIndexTitle:atIndex:")
     public native NSIndexPath indexPathForIndexTitle(UICollectionView collectionView, String title, @MachineSizedSInt long index);
     /*</methods>*/

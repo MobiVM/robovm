@@ -162,6 +162,11 @@ import org.robovm.apple.audiotoolbox.*;
     public native AVAudioSessionRecordPermission getRecordPermission();
     @Property(selector = "preferredInput")
     public native AVAudioSessionPortDescription getPreferredInput();
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Property(selector = "prefersNoInterruptionsFromSystemAlerts")
+    public native boolean prefersNoInterruptionsFromSystemAlerts();
     @Property(selector = "preferredSampleRate")
     public native double getPreferredSampleRate();
     @Property(selector = "preferredIOBufferDuration")
@@ -325,6 +330,20 @@ import org.robovm.apple.audiotoolbox.*;
     }
     @Method(selector = "setPreferredInput:error:")
     private native boolean setPreferredInput(AVAudioSessionPortDescription inPort, NSError.NSErrorPtr outError);
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    public boolean setPrefersNoInterruptionsFromSystemAlerts(boolean inValue) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       boolean result = setPrefersNoInterruptionsFromSystemAlerts(inValue, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Method(selector = "setPrefersNoInterruptionsFromSystemAlerts:error:")
+    private native boolean setPrefersNoInterruptionsFromSystemAlerts(boolean inValue, NSError.NSErrorPtr outError);
     @Method(selector = "sharedInstance")
     public static native AVAudioSession getSharedInstance();
     public boolean setActive(boolean active) throws NSErrorException {

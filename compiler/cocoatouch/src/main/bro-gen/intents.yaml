@@ -164,6 +164,7 @@ categories:
         methods:
             '+placemarkWithLocation:name:postalAddress:':
                 name: getPlacemark
+    NSExtensionContext: {}
 classes:
     INAccountTypeResolutionResult: #since 11.0
         methods:
@@ -262,6 +263,12 @@ classes:
             '-initWithIdentifier:dateCreated:caller:callRecordType:callCapability:callDuration:unseen:':
                 name: init
             '-initWithIdentifier:dateCreated:caller:callRecordType:callCapability:callDuration:unseen:numberOfCalls:':
+                name: init
+            '-initWithIdentifier:dateCreated:callRecordType:callCapability:callDuration:unseen:participants:numberOfCalls:isCallerIdBlocked:':
+                name: init
+            '-initWithIdentifier:dateCreated:callRecordType:callCapability:callDuration:unseen:':
+                name: init
+            '-initWithIdentifier:dateCreated:callRecordType:callCapability:callDuration:unseen:numberOfCalls:':
                 name: init
     INCallRecordTypeOptionsResolutionResult: #since 11.0
         methods:
@@ -1689,7 +1696,10 @@ classes:
         methods:
             '-initWithCallRecordResolutionResult:':
                 name: init
-
+    INCallGroup: #since 14.5
+        methods:
+            '-initWithGroupName:groupId:':
+                name: init
 protocols:
     INActivateCarSignalIntentHandling: #since 10.3
         methods:

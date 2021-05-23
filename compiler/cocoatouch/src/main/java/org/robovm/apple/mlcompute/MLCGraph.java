@@ -78,6 +78,21 @@ import org.robovm.apple.metalps.*;
     public native MLCTensor reshape(NSArray<NSNumber> shape, MLCTensor source);
     @Method(selector = "transposeWithDimensions:source:")
     public native MLCTensor transpose(NSArray<NSNumber> dimensions, MLCTensor source);
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Method(selector = "selectWithSources:condition:")
+    public native MLCTensor select(NSArray<MLCTensor> sources, MLCTensor condition);
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Method(selector = "scatterWithDimension:source:indices:copyFrom:reductionType:")
+    public native MLCTensor scatter(@MachineSizedUInt long dimension, MLCTensor source, MLCTensor indices, MLCTensor copyFrom, MLCReductionType reductionType);
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Method(selector = "gatherWithDimension:source:indices:")
+    public native MLCTensor gather(@MachineSizedUInt long dimension, MLCTensor source, MLCTensor indices);
     @Method(selector = "bindAndWriteData:forInputs:toDevice:batchSize:synchronous:")
     public native boolean bindAndWriteData(NSDictionary<NSString, MLCTensorData> inputsData, NSDictionary<NSString, MLCTensor> inputTensors, MLCDevice device, @MachineSizedUInt long batchSize, boolean synchronous);
     @Method(selector = "bindAndWriteData:forInputs:toDevice:synchronous:")

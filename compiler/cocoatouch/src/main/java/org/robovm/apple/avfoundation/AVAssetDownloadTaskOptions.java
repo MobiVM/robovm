@@ -177,6 +177,11 @@ import org.robovm.apple.audiotoolbox.*;
         @GlobalValue(symbol="AVAssetDownloadTaskMediaSelectionPrefersMultichannelKey", optional=true)
         public static native NSString MediaSelectionPrefersMultichannel();
         /**
+         * @since Available in iOS 14.5 and later.
+         */
+        @GlobalValue(symbol="AVAssetDownloadTaskPrefersLosslessAudioKey", optional=true)
+        public static native NSString PrefersLosslessAudio();
+        /**
          * @since Available in iOS 14.0 and later.
          */
         @GlobalValue(symbol="AVAssetDownloadTaskPrefersHDRKey", optional=true)
