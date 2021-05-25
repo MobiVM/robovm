@@ -64,6 +64,8 @@ import org.robovm.apple.metal.*;
     public native float getBias();
     @Property(selector = "setBias:")
     public native void setBias(float v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

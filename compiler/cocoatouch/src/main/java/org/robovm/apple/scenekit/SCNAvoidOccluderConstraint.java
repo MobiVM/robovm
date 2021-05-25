@@ -75,6 +75,8 @@ import org.robovm.apple.avfoundation.*;
     public native @MachineSizedFloat double getBias();
     @Property(selector = "setBias:")
     public native void setBias(@MachineSizedFloat double v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

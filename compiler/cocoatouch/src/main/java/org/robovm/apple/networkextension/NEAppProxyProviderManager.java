@@ -60,5 +60,7 @@ import org.robovm.apple.network.*;
      */
     @Method(selector = "loadAllFromPreferencesWithCompletionHandler:")
     public static native void loadAllProxies(@Block VoidBlock2<NSArray<NEAppProxyProviderManager>, NSError> completionHandler);
+    @Method(selector = "sharedManager")
+    public static native NEVPNManager getSharedManager();
     /*</methods>*/
 }

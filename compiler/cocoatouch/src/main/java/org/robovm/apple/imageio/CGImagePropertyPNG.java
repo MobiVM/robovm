@@ -136,9 +136,13 @@ import org.robovm.apple.coregraphics.*;
      * @since Available in iOS 9.0 and later.
      */
     public static final CGImagePropertyPNG CompressionFilter = new CGImagePropertyPNG("CompressionFilter");
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    public static final CGImagePropertyPNG Transparency = new CGImagePropertyPNG("Transparency");
     /*</constants>*/
     
-    private static /*<name>*/CGImagePropertyPNG/*</name>*/[] values = new /*<name>*/CGImagePropertyPNG/*</name>*/[] {/*<value_list>*/Author, Chromaticities, Comment, Copyright, CreationTime, Description, Disclaimer, Gamma, InterlaceType, ModificationTime, Software, Source, sRGBIntent, Title, Warning, XPixelsPerMeter, YPixelsPerMeter, LoopCount, DelayTime, UnclampedDelayTime, FrameInfoArray, CanvasPixelWidth, CanvasPixelHeight, CompressionFilter/*</value_list>*/};
+    private static /*<name>*/CGImagePropertyPNG/*</name>*/[] values = new /*<name>*/CGImagePropertyPNG/*</name>*/[] {/*<value_list>*/Author, Chromaticities, Comment, Copyright, CreationTime, Description, Disclaimer, Gamma, InterlaceType, ModificationTime, Software, Source, sRGBIntent, Title, Warning, XPixelsPerMeter, YPixelsPerMeter, LoopCount, DelayTime, UnclampedDelayTime, FrameInfoArray, CanvasPixelWidth, CanvasPixelHeight, CompressionFilter, Transparency/*</value_list>*/};
     
     /*<name>*/CGImagePropertyPNG/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -233,6 +237,11 @@ import org.robovm.apple.coregraphics.*;
          */
         @GlobalValue(symbol="kCGImagePropertyPNGCompressionFilter", optional=true)
         public static native CFString CompressionFilter();
+        /**
+         * @since Available in iOS 11.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyPNGTransparency", optional=true)
+        public static native CFString Transparency();
         /*</values>*/
     }
 }

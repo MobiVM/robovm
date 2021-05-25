@@ -51,6 +51,8 @@ import org.robovm.apple.foundation.*;
     /*<properties>*/
     @Property(selector = "documentType")
     public native HKDocumentType getDocumentType();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

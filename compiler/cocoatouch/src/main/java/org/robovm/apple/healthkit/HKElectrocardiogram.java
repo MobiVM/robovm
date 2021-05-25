@@ -59,6 +59,8 @@ import org.robovm.apple.foundation.*;
     public native HKQuantity getAverageHeartRate();
     @Property(selector = "symptomsStatus")
     public native HKElectrocardiogramSymptomsStatus getSymptomsStatus();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -61,5 +61,10 @@ import org.robovm.apple.corelocation.*;
     /*<methods>*/
     @Method(selector = "initWithSignificantEvent:offset:")
     protected native @Pointer long init(String significantEvent, NSDateComponents offset);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "isSupportedForHome:")
+    public static native boolean isSupportedForHome(HMHome home);
     /*</methods>*/
 }

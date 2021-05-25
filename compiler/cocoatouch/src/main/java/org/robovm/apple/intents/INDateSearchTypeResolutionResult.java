@@ -60,5 +60,11 @@ import org.robovm.apple.coregraphics.*;
     public static native INDateSearchTypeResolutionResult success(INDateSearchType resolvedDateSearchType);
     @Method(selector = "confirmationRequiredWithDateSearchTypeToConfirm:")
     public static native INDateSearchTypeResolutionResult confirmationRequired(INDateSearchType dateSearchTypeToConfirm);
+    @Method(selector = "needsValue")
+    public static native INDateSearchTypeResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INDateSearchTypeResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INDateSearchTypeResolutionResult unsupported();
     /*</methods>*/
 }

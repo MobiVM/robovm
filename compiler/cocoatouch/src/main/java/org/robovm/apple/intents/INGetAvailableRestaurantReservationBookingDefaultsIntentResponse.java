@@ -72,6 +72,8 @@ import org.robovm.apple.coregraphics.*;
     public native void setProviderImage(INImage v);
     @Property(selector = "code")
     public native INGetAvailableRestaurantReservationBookingDefaultsIntentResponseCode getCode();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

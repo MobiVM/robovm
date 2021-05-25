@@ -60,6 +60,8 @@ import org.robovm.apple.coregraphics.*;
     public native NSNumber getSearchResultsCount();
     @Property(selector = "setSearchResultsCount:")
     public native void setSearchResultsCount(NSNumber v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

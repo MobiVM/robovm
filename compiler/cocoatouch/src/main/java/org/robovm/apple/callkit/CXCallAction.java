@@ -57,6 +57,8 @@ import org.robovm.apple.avfoundation.*;
     /*<properties>*/
     @Property(selector = "callUUID")
     public native NSUUID getCallUUID();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

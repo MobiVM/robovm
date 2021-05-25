@@ -51,6 +51,8 @@ import org.robovm.apple.foundation.*;
     /*<properties>*/
     @Property(selector = "histogrammedApplicationHangTime")
     public native MXHistogram<NSUnitDuration> getHistogrammedApplicationHangTime();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

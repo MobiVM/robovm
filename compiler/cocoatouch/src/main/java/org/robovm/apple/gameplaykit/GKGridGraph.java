@@ -66,6 +66,8 @@ import org.robovm.apple.uikit.*;
     public native @MachineSizedUInt long getGridHeight();
     @Property(selector = "diagonalsAllowed")
     public native boolean areDiagonalsAllowed();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

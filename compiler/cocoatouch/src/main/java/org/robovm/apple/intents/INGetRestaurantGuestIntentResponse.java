@@ -64,6 +64,8 @@ import org.robovm.apple.coregraphics.*;
     public native void setGuestDisplayPreferences(INRestaurantGuestDisplayPreferences v);
     @Property(selector = "code")
     public native INGetRestaurantGuestIntentResponseCode getCode();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

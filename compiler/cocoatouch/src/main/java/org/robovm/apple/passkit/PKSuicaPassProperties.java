@@ -32,6 +32,7 @@ import org.robovm.apple.uikit.*;
 import org.robovm.apple.addressbook.*;
 import org.robovm.apple.contacts.*;
 import org.robovm.apple.coregraphics.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -73,6 +74,11 @@ import org.robovm.apple.coregraphics.*;
     public native boolean isLowBalanceGateNotificationEnabled();
     @Property(selector = "isGreenCarTicketUsed")
     public native boolean isGreenCarTicketUsed();
+    /**
+     * @since Available in iOS 10.1 and later.
+     * @deprecated Deprecated in iOS 14.5. Use isBlocked
+     */
+    @Deprecated
     @Property(selector = "isBlacklisted")
     public native boolean isBlacklisted();
     /*</properties>*/

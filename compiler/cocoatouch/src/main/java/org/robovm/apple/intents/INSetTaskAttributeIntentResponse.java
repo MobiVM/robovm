@@ -60,6 +60,8 @@ import org.robovm.apple.coregraphics.*;
     public native INTask getModifiedTask();
     @Property(selector = "setModifiedTask:")
     public native void setModifiedTask(INTask v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

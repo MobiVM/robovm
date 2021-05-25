@@ -77,6 +77,8 @@ import org.robovm.apple.imageio.*;
      */
     @Property(selector = "yaw")
     public native NSNumber getYaw();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

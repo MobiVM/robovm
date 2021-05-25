@@ -74,6 +74,8 @@ import org.robovm.apple.avfoundation.*;
     public native @MachineSizedFloat double getDamping();
     @Property(selector = "setDamping:")
     public native void setDamping(@MachineSizedFloat double v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -55,6 +55,8 @@ import org.robovm.apple.foundation.*;
     public native String getDisplayName();
     @Property(selector = "FHIRResource")
     public native HKFHIRResource getFHIRResource();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

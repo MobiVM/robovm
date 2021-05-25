@@ -113,6 +113,8 @@ import org.robovm.apple.coregraphics.*;
     @Deprecated
     @Property(selector = "groupName")
     public native String getGroupName();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -66,6 +66,8 @@ import org.robovm.apple.metal.*;
     public native double getDecay();
     @Property(selector = "epsilon")
     public native float getEpsilon();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

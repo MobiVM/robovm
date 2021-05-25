@@ -60,6 +60,8 @@ import org.robovm.apple.coregraphics.*;
     public native INDateComponentsRange getNextTriggerTime();
     @Property(selector = "all")
     public native NSNumber getAll();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

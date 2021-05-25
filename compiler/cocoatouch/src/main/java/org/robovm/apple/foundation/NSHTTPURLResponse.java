@@ -63,6 +63,8 @@ import org.robovm.apple.dispatch.*;
     public native @MachineSizedSInt long getStatusCode();
     @Property(selector = "allHeaderFields")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSDictionary.AsStringStringMapMarshaler.class) Map<String, String> getAllHeaderFields();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

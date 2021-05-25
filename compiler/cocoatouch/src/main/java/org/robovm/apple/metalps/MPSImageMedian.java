@@ -62,6 +62,8 @@ import org.robovm.apple.metal.*;
     /*<properties>*/
     @Property(selector = "kernelDiameter")
     public native @MachineSizedUInt long getKernelDiameter();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

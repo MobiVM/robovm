@@ -70,6 +70,8 @@ import org.robovm.apple.linkpresentation.*;
     public native @Block Runnable getActionHandler();
     @Property(selector = "setActionHandler:")
     public native void setActionHandler(@Block Runnable v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

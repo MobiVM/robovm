@@ -42,7 +42,11 @@ import org.robovm.apple.coregraphics.*;
 public enum /*<name>*/INMediaReference/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Unknown(0L),
-    CurrentlyPlaying(1L);
+    CurrentlyPlaying(1L),
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    My(2L);
     /*</values>*/
 
     /*<bind>*/

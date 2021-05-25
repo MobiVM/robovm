@@ -14,13 +14,12 @@ typedefs:
     OS_dispatch_source: DispatchSource
 private_typedefs:
     '__CFString *': String
-    '__CFString **': NSString.NSStringPtr
-    '__CFData *': NSData
-    '__CFURL *': NSURL
-    '__CFDictionary *': NSDictionary
-    '__CFArray *': NSArray<?>
-    '__CFRunLoopTimer *': NSTimer
-    '__CFRunLoop *': NSRunLoop
+    '__CFData': NSData
+    '__CFURL': NSURL
+    '__CFDictionary': NSDictionary
+    '__CFArray': NSArray
+    '__CFRunLoopTimer': NSTimer
+    '__CFRunLoop': NSRunLoop
 
 enums:
     CMAttachmentMode: { first: kCMAttachmentMode_ShouldNotPropagate, prefix: kCMAttachmentMode_}

@@ -50,7 +50,11 @@ import org.robovm.apple.corelocation.*;
     protected HMCameraSource(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Property(selector = "aspectRatio")
+    public native double getAspectRatio();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

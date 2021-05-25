@@ -87,6 +87,8 @@ import org.robovm.apple.avfoundation.*;
     public native @ByVal SCNVector3 getScaleOffset();
     @Property(selector = "setScaleOffset:")
     public native void setScaleOffset(@ByVal SCNVector3 v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

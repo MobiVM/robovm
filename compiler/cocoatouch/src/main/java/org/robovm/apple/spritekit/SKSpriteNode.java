@@ -37,6 +37,7 @@ import org.robovm.apple.glkit.*;
 import org.robovm.apple.scenekit.*;
 import org.robovm.apple.gameplaykit.*;
 import org.robovm.apple.metal.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -135,6 +136,8 @@ import org.robovm.apple.metal.*;
     public native @MachineSizedSInt long getSubdivisionLevels();
     @Property(selector = "setSubdivisionLevels:")
     public native void setSubdivisionLevels(@MachineSizedSInt long v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -39,6 +39,7 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.dispatch.*;
 import org.robovm.apple.metal.*;
 import org.robovm.apple.imageio.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -86,6 +87,8 @@ import org.robovm.apple.imageio.*;
      */
     @Property(selector = "classification")
     public native ARPlaneClassification getClassification();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

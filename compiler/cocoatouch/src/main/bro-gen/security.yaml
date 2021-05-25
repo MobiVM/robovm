@@ -10,13 +10,12 @@ typedefs:
     'void (^)(CFErrorRef)': '@Block VoidBlock1<NSError>'
 private_typedefs:
     '__CFString *': String
-    '__CFString **': NSString.NSStringPtr
-    '__CFData *': NSData
-    '__CFURL *': NSURL
-    '__CFDictionary *': NSDictionary
-    '__CFArray *': NSArray<?>
-    '__CFError *': NSError
-    '__CFDate *': NSDate
+    '__CFData': NSData
+    '__CFURL': NSURL
+    '__CFDictionary': NSDictionary
+    '__CFArray': NSArray
+    '__CFError': NSError
+    '__CFDate': NSDate
     dispatch_data_t: DispatchData
 
 enums:
@@ -156,6 +155,10 @@ functions:
         parameters:
             emailAddresses:
                 type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String>'
+    SecCertificate(CopySerialNumberData):
+        class: SecCertificate
+        name: '#{g[0]}'
+        throws: NSErrorException
     SecCertificate(.*):
         class: SecCertificate
         name: '#{g[0]}'
@@ -246,6 +249,10 @@ functions:
         parameters:
             cipherText:
                 type: '@Pointer long'
+    SecKey(CreateRandomKey|CreateWithData|CopyExternalRepresentation|CreateSignature|VerifySignature|CreateEncryptedData|CreateDecryptedData|CopyKeyExchangeResult):
+        class: SecKey
+        name: '#{g[0]}'
+        throws: NSErrorException
     SecKey(.*):
         class: SecKey
         name: '#{g[0]}'
@@ -360,6 +367,10 @@ functions:
         name: '#{g[0]}0'
         visibility: protected
         annotations: ['@WeaklyLinked']
+    SecTrust(EvaluateWithError):
+        class: SecTrust
+        name: '#{g[0]}'
+        throws: NSErrorException
     SecTrust(Evaluate|GetTrustResult|SetOCSPResponse|SetVerifyDate|SetAnchorCertificatesOnly|SetAnchorCertificates|SetNetworkFetchAllowed):
         class: SecTrust
         name: '#{g[0]}0'

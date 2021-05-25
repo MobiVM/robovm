@@ -71,9 +71,12 @@ import org.robovm.apple.dispatch.*;
     public static native NSUnitElectricCurrent getMilliamperes();
     @Property(selector = "microamperes")
     public static native NSUnitElectricCurrent getMicroamperes();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "baseUnit")
+    public static native NSUnitElectricCurrent getBaseUnit();
     /*</methods>*/
 }

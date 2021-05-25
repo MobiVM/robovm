@@ -1,5 +1,5 @@
 package: org.robovm.apple.iad
-include: [foundation.yaml, uikit.yaml, mediaplayer.yaml, coregraphics.yaml, avkit.yaml]
+include: [foundation, uikit, mediaplayer, coregraphics, avkit, coreanimation]
 library: iAd
 framework: iAd
 clang_args: ['-x', 'objective-c']

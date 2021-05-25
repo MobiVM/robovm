@@ -70,6 +70,8 @@ import org.robovm.apple.network.*;
      */
     @Property(selector = "domain")
     public native String getDomain();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

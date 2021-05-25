@@ -9,12 +9,11 @@ typedefs:
     SCNetworkReachabilityRef: SCNetworkReachability
 private_typedefs:
     '__CFString *': String
-    '__CFString **': NSString.NSStringPtr
-    '__CFData *': NSData
-    '__CFURL *': NSURL
-    '__CFDictionary *': NSDictionary
-    '__CFArray *': NSArray<?>
-    '__CFError *': NSError
+    '__CFData': NSData
+    '__CFURL': NSURL
+    '__CFDictionary': NSDictionary
+    '__CFArray': NSArray<?>
+    '__CFError': NSError
     
 enums:
     SCStatusCode: { first: kSCStatusOK }

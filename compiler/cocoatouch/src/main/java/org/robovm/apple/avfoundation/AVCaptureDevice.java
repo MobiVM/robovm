@@ -368,6 +368,31 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "setGeometricDistortionCorrectionEnabled:")
     public native void setGeometricDistortionCorrectionEnabled(boolean v);
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Property(selector = "centerStageControlMode")
+    public static native AVCaptureCenterStageControlMode getCenterStageControlMode();
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Property(selector = "setCenterStageControlMode:")
+    public static native void setCenterStageControlMode(AVCaptureCenterStageControlMode v);
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Property(selector = "isCenterStageEnabled")
+    public static native boolean isCenterStageEnabled();
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Property(selector = "setCenterStageEnabled:")
+    public static native void setCenterStageEnabled(boolean v);
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Property(selector = "isCenterStageActive")
+    public native boolean isCenterStageActive();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

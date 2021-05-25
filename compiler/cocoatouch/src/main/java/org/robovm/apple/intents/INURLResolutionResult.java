@@ -62,5 +62,11 @@ import org.robovm.apple.coregraphics.*;
     public static native INURLResolutionResult disambiguation(NSArray<NSURL> urlsToDisambiguate);
     @Method(selector = "confirmationRequiredWithURLToConfirm:")
     public static native INURLResolutionResult confirmationRequired(NSURL urlToConfirm);
+    @Method(selector = "needsValue")
+    public static native INURLResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INURLResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INURLResolutionResult unsupported();
     /*</methods>*/
 }

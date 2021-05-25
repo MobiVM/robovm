@@ -154,8 +154,15 @@ import org.robovm.apple.coregraphics.*;
     public native boolean isActive();
     @Property(selector = "parent")
     public native CLSContext getParent();
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Property(selector = "navigationChildContexts")
+    public native NSArray<CLSContext> getNavigationChildContexts();
     @Property(selector = "currentActivity")
     public native CLSActivity getCurrentActivity();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -181,6 +188,16 @@ import org.robovm.apple.coregraphics.*;
     public native void addChildContext(CLSContext child);
     @Method(selector = "descendantMatchingIdentifierPath:completion:")
     public native void getDescendantMatchingIdentifierPath(NSArray<NSString> identifierPath, @Block VoidBlock2<CLSContext, NSError> completion);
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Method(selector = "addNavigationChildContext:")
+    public native void addNavigationChildContext(CLSContext child);
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Method(selector = "removeNavigationChildContext:")
+    public native void removeNavigationChildContext(CLSContext child);
     @Method(selector = "createNewActivity")
     public native CLSActivity createNewActivity();
     /*</methods>*/

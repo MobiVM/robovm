@@ -32,6 +32,7 @@ import org.robovm.apple.uikit.*;
 import org.robovm.apple.addressbook.*;
 import org.robovm.apple.contacts.*;
 import org.robovm.apple.coregraphics.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -57,10 +58,20 @@ import org.robovm.apple.coregraphics.*;
     public native NSDecimalNumber getTransitBalance();
     @Property(selector = "transitBalanceCurrencyCode")
     public native String getTransitBalanceCurrencyCode();
-    @Property(selector = "isInStation")
-    public native boolean isInStation();
+    /**
+     * @since Available in iOS 11.3 and later.
+     * @deprecated Deprecated in iOS 14.5. Use isBlocked
+     */
+    @Deprecated
     @Property(selector = "isBlacklisted")
     public native boolean isBlacklisted();
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Property(selector = "isBlocked")
+    public native boolean isBlocked();
+    @Property(selector = "isInStation")
+    public native boolean isInStation();
     @Property(selector = "expirationDate")
     public native NSDate getExpirationDate();
     /*</properties>*/

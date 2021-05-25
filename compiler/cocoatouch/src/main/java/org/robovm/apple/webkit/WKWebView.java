@@ -31,6 +31,7 @@ import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.security.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -133,6 +134,9 @@ import org.robovm.apple.security.*;
      */
     @Property(selector = "setMediaType:")
     public native void setMediaType(String v);
+    @WeaklyLinked
+    @Property(selector = "layerClass")
+    public static native Class<? extends CALayer> getLayerClass();
     /**
      * @since Available in iOS 9.0 and later.
      * @deprecated Deprecated in iOS 10.0. Use serverTrust
@@ -186,6 +190,31 @@ import org.robovm.apple.security.*;
     @Method(selector = "callAsyncJavaScript:arguments:inFrame:inContentWorld:completionHandler:")
     public native void callAsyncJavaScript(String functionBody, NSDictionary<NSString, ?> arguments, WKFrameInfo frame, WKContentWorld contentWorld, @Block VoidBlock2<NSObject, NSError> completionHandler);
     /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Method(selector = "closeAllMediaPresentations")
+    public native void closeAllMediaPresentations();
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Method(selector = "pauseAllMediaPlayback:")
+    public native void pauseAllMediaPlayback(@Block Runnable completionHandler);
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Method(selector = "suspendAllMediaPlayback:")
+    public native void suspendAllMediaPlayback(@Block Runnable completionHandler);
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Method(selector = "resumeAllMediaPlayback:")
+    public native void resumeAllMediaPlayback(@Block Runnable completionHandler);
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Method(selector = "requestMediaPlaybackState:")
+    public native void requestMediaPlaybackState(@Block VoidBlock1<WKMediaPlaybackState> completionHandler);
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "takeSnapshotWithConfiguration:completionHandler:")
@@ -206,9 +235,29 @@ import org.robovm.apple.security.*;
     @Method(selector = "findString:withConfiguration:completionHandler:")
     public native void findString(String string, WKFindConfiguration configuration, @Block VoidBlock1<WKFindResult> completionHandler);
     /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Method(selector = "startDownloadUsingRequest:completionHandler:")
+    public native void startDownload(NSURLRequest request, @Block VoidBlock1<WKDownload> completionHandler);
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Method(selector = "resumeDownloadFromResumeData:completionHandler:")
+    public native void resumeDownload(NSData resumeData, @Block VoidBlock1<WKDownload> completionHandler);
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "handlesURLScheme:")
     public static native boolean handlesURLScheme(String urlScheme);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute attribute);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:relativeToLayoutDirection:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute semanticContentAttribute, UIUserInterfaceLayoutDirection layoutDirection);
     /*</methods>*/
 }

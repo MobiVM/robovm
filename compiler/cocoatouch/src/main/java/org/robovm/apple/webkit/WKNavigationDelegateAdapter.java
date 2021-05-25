@@ -31,6 +31,7 @@ import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.security.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -84,5 +85,15 @@ import org.robovm.apple.security.*;
      */
     @NotImplemented("webView:authenticationChallenge:shouldAllowDeprecatedTLS:")
     public void shouldAllowDeprecatedTLS(WKWebView webView, NSURLAuthenticationChallenge challenge, @Block VoidBooleanBlock decisionHandler) {}
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @NotImplemented("webView:navigationAction:didBecomeDownload:")
+    public void didBecomeDownload(WKWebView webView, WKNavigationAction navigationAction, WKDownload download) {}
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @NotImplemented("webView:navigationResponse:didBecomeDownload:")
+    public void didBecomeDownload(WKWebView webView, WKNavigationResponse navigationResponse, WKDownload download) {}
     /*</methods>*/
 }

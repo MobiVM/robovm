@@ -52,8 +52,7 @@ import org.robovm.apple.uikit.*;
     /*</constructors>*/
     
     public CGRect(double x, double y, double width, double height) {
-        getOrigin().setX(x).setY(y);
-        getSize().setWidth(width).setHeight(height);
+        this(new CGPoint(x, y), new CGSize(width, height));
     }
     
     /*<properties>*//*</properties>*/
@@ -78,11 +77,13 @@ import org.robovm.apple.uikit.*;
 
     @WeaklyLinked
     public CGRect inset(UIEdgeInsets insets) {
-        getOrigin().setX(getOrigin().getX() + insets.getLeft());
-        getOrigin().setY(getOrigin().getY() + insets.getTop());
-        getSize().setWidth(getSize().getWidth() - (insets.getLeft() + insets.getRight()));
-        getSize().setHeight(getSize().getHeight() - (insets.getTop() + insets.getBottom()));
-        return this;
+        CGPoint newOrigin = getOrigin()
+                .setX(getOrigin().getX() + insets.getLeft())
+                .setY(getOrigin().getY() + insets.getTop());
+        CGSize newSize = getSize()
+                .setWidth(getSize().getWidth() - (insets.getLeft() + insets.getRight()))
+                .setHeight(getSize().getHeight() - (insets.getTop() + insets.getBottom()));
+        return this.setOrigin(newOrigin).setSize(newSize);
     }
     
     @Override
@@ -187,22 +188,22 @@ import org.robovm.apple.uikit.*;
     }
 
     public CGRect setX(double x) {
-         this.getOrigin().setX(x);
+         this.setOrigin(this.getOrigin().setX(x));
          return this;
     }
 
     public CGRect setY(double y) {
-        this.getOrigin().setY(y);
+        this.setOrigin(this.getOrigin().setY(y));
         return this;
     }
 
     public CGRect setWidth(double w) {
-        this.getSize().setWidth(w);
+        this.setSize(this.getSize().setWidth(w));
         return this;
     }
 
     public CGRect setHeight(double h) {
-        this.getSize().setHeight(h);
+        this.setSize(this.getSize().setHeight(h));
         return this;
     }
 }

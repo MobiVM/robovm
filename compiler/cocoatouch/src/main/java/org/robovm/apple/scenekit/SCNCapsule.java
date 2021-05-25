@@ -76,10 +76,16 @@ import org.robovm.apple.avfoundation.*;
     public native @MachineSizedSInt long getCapSegmentCount();
     @Property(selector = "setCapSegmentCount:")
     public native void setCapSegmentCount(@MachineSizedSInt long v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "capsuleWithCapRadius:height:")
     public static native SCNCapsule create(@MachineSizedFloat double capRadius, @MachineSizedFloat double height);
+    @Method(selector = "geometry")
+    public static native SCNCapsule createGeometry();
+    @Method(selector = "geometryWithSources:elements:")
+    public static native SCNCapsule createGeometry(NSArray<SCNGeometrySource> sources, NSArray<SCNGeometryElement> elements);
     /*</methods>*/
 }

@@ -71,6 +71,11 @@ import org.robovm.apple.network.*;
      */
     @Property(selector = "remoteHostname")
     public native String getRemoteHostname();
+    /**
+     * @since Available in iOS 14.3 and later.
+     */
+    @Property(selector = "isBound")
+    public native boolean isBound();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

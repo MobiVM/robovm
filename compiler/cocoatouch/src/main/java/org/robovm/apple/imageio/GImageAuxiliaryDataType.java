@@ -150,6 +150,11 @@ import org.robovm.apple.coregraphics.*;
         /**
          * @since Available in iOS 14.1 and later.
          */
+        @GlobalValue(symbol="kCGImageAuxiliaryDataTypeSemanticSegmentationSkyMatte", optional=true)
+        public static native CFString SemanticSegmentationSkyMatte();
+        /**
+         * @since Available in iOS 14.1 and later.
+         */
         @GlobalValue(symbol="kCGImageAuxiliaryDataTypeHDRGainMap", optional=true)
         public static native CFString HDRGainMap();
     }

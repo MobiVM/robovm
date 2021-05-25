@@ -37,6 +37,7 @@ import org.robovm.apple.glkit.*;
 import org.robovm.apple.scenekit.*;
 import org.robovm.apple.gameplaykit.*;
 import org.robovm.apple.metal.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -109,6 +110,8 @@ import org.robovm.apple.metal.*;
     public native @org.robovm.rt.bro.annotation.Marshaler(NSObject.Marshaler.class) SKPhysicsWorld getPhysicsWorld();
     @Property(selector = "view")
     public native SKView getView();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

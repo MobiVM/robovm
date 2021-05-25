@@ -328,6 +328,16 @@ import org.robovm.apple.audiotoolbox.*;
     @Property(selector = "setStartsOnFirstEligibleVariant:")
     public native void setStartsOnFirstEligibleVariant(boolean v);
     /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Property(selector = "variantPreferences")
+    public native AVVariantPreferences getVariantPreferences();
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Property(selector = "setVariantPreferences:")
+    public native void setVariantPreferences(AVVariantPreferences v);
+    /**
      * @since Available in iOS 9.0 and later.
      */
     @Property(selector = "currentMediaSelection")
@@ -339,6 +349,21 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "mediaDataCollectors")
     public native NSArray<AVPlayerItemMediaDataCollector> getMediaDataCollectors();
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Property(selector = "automaticallyHandlesInterstitialEvents")
+    public native boolean automaticallyHandlesInterstitialEvents();
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Property(selector = "setAutomaticallyHandlesInterstitialEvents:")
+    public native void setAutomaticallyHandlesInterstitialEvents(boolean v);
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Property(selector = "templatePlayerItem")
+    public native AVPlayerItem getTemplatePlayerItem();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

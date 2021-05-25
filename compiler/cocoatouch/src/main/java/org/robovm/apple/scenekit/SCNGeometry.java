@@ -140,9 +140,9 @@ import org.robovm.apple.avfoundation.*;
     @Method(selector = "geometryElementAtIndex:")
     public native SCNGeometryElement getGeometryElement(@MachineSizedSInt long elementIndex);
     @Method(selector = "geometry")
-    public static native SCNGeometry create();
+    public static native SCNGeometry createGeometry();
     @Method(selector = "geometryWithSources:elements:")
-    public static native SCNGeometry create(NSArray<SCNGeometrySource> sources, NSArray<SCNGeometryElement> elements);
+    public static native SCNGeometry createGeometry(NSArray<SCNGeometrySource> sources, NSArray<SCNGeometryElement> elements);
     @Method(selector = "addAnimation:forKey:")
     public native void addAnimation(SCNAnimation animation, String key);
     /**

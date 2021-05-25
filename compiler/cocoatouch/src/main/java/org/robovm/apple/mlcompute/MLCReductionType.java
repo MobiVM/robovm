@@ -45,7 +45,19 @@ public enum /*<name>*/MLCReductionType/*</name>*/ implements ValuedEnum {
     Min(4L),
     ArgMax(5L),
     ArgMin(6L),
-    Count(7L);
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    L1Norm(7L),
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    Any(8L),
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    All(9L),
+    Count(10L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(MLCReductionType.class); }/*</bind>*/

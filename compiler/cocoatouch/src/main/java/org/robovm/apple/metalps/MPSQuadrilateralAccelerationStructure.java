@@ -65,6 +65,8 @@ import org.robovm.apple.metal.*;
     public native @MachineSizedUInt long getQuadrilateralCount();
     @Property(selector = "setQuadrilateralCount:")
     public native void setQuadrilateralCount(@MachineSizedUInt long v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

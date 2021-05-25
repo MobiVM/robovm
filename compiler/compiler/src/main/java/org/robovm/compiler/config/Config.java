@@ -44,6 +44,7 @@ import org.robovm.compiler.plugin.lambda.LambdaPlugin;
 import org.robovm.compiler.plugin.objc.InterfaceBuilderClassesPlugin;
 import org.robovm.compiler.plugin.objc.ObjCBlockPlugin;
 import org.robovm.compiler.plugin.objc.ObjCMemberPlugin;
+import org.robovm.compiler.plugin.objc.ObjCProtocolToObjCObjectPlugin;
 import org.robovm.compiler.plugin.objc.ObjCProtocolProxyPlugin;
 import org.robovm.compiler.target.ConsoleTarget;
 import org.robovm.compiler.target.Target;
@@ -155,8 +156,8 @@ public class Config {
     private ArrayList<AppExtension> appExtensions;
     @ElementList(required = false, entry = "path")
     private ArrayList<QualifiedFile> appExtensionPaths;
-    @ElementList(required = false, entry = "path")
-    private ArrayList<File> swiftLibPaths;
+    @Element(required = false)
+    private SwiftSupport swiftSupport = null;
     @ElementList(required = false, entry = "resource")
     private ArrayList<Resource> resources;   
     @ElementList(required = false, entry = "classpathentry")
@@ -246,6 +247,7 @@ public class Config {
         this.plugins.addAll(0, Arrays.asList(
                 new InterfaceBuilderClassesPlugin(),
                 new ObjCProtocolProxyPlugin(),
+                new ObjCProtocolToObjCObjectPlugin(),
                 new ObjCMemberPlugin(),
                 new ObjCBlockPlugin(),
                 new AnnotationImplPlugin(),
@@ -458,9 +460,20 @@ public class Config {
                 .collect(Collectors.collectingAndThen(Collectors.toList(), Collections::unmodifiableList));
     }
 
+    public SwiftSupport getSwiftSupport() {
+        return swiftSupport;
+    }
+
+    public boolean hasSwiftSupport() {
+        return swiftSupport != null;
+    }
+
     public List<File> getSwiftLibPaths() {
-        return swiftLibPaths == null ? Collections.emptyList()
-                : Collections.unmodifiableList(swiftLibPaths);
+        return swiftSupport == null ? Collections.emptyList()
+                : swiftSupport.getSwiftLibPaths().stream()
+                .filter(this::isQualified)
+                .map(f -> f.entry)
+                .collect(Collectors.collectingAndThen(Collectors.toList(), Collections::unmodifiableList));
     }
 
     public List<Resource> getResources() {
@@ -720,7 +733,7 @@ public class Config {
             if (!Arrays.asList(qualified.filterArch()).contains(sliceArch))
                 return false;
         }
-        // TODO: there is no platform variant, just guess it from arch, applies to iOS temporaly
+        // TODO: there is no platform variant, just guess it from arch, applies to iOS temporally
         if (os == OS.ios && qualified.filterPlatformVariants() != null) {
             PlatformVariant variant = sliceArch.isArm() ? PlatformVariant.device : PlatformVariant.simulator;
             if (!Arrays.asList(qualified.filterPlatformVariants()).contains(variant))
@@ -1509,21 +1522,6 @@ public class Config {
             return this;
         }
 
-        public Builder clearSwiftLibPaths() {
-            if (config.swiftLibPaths != null) {
-                config.swiftLibPaths.clear();
-            }
-            return this;
-        }
-
-        public Builder addSwiftLibPath(File path) {
-            if (config.swiftLibPaths == null) {
-                config.swiftLibPaths = new ArrayList<>();
-            }
-            config.swiftLibPaths.add(path);
-            return this;
-        }
-
         public Builder clearResources() {
             if (config.resources != null) {
                 config.resources.clear();
@@ -1927,6 +1925,9 @@ public class Config {
             boolean force = forceNode == null || Boolean.parseBoolean(forceNode.getValue());
             if (value.endsWith(".a") || value.endsWith(".o")) {
                 return new Lib(fileConverter.read(value).getAbsolutePath(), force);
+            } else if (value.endsWith(".dylib") || value.endsWith(".so")) {
+                File f = fileConverter.read(value);
+                return new Lib(f.isFile() ? f.getAbsolutePath() : value, force);
             } else {
                 return new Lib(value, force);
             }

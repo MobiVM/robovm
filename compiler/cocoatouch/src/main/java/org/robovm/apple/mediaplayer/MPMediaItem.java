@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.coregraphics.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -137,6 +138,13 @@ import org.robovm.apple.coregraphics.*;
      */
     @Property(selector = "playbackStoreID")
     public native String getPlaybackStoreID();
+    /**
+     * @since Available in iOS 10.3 and later.
+     */
+    @Property(selector = "isPreorder")
+    public native boolean isPreorder();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     @Override
@@ -418,6 +426,8 @@ import org.robovm.apple.coregraphics.*;
         return 0;
     }
     /*<methods>*/
+    @Method(selector = "canFilterByProperty:")
+    public static native boolean canFilterByProperty(MPMediaEntityProperty property);
     @Method(selector = "persistentIDPropertyForGroupingType:")
     public static native MPMediaEntityProperty getPersistentIDProperty(MPMediaGrouping groupingType);
     @Method(selector = "titlePropertyForGroupingType:")

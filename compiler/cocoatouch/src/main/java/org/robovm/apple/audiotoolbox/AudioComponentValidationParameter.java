@@ -49,6 +49,7 @@ import org.robovm.apple.uikit.*;
     /*<constants>*/
     public static final String TimeOut = "TimeOut";
     public static final String ForceValidation = "ForceValidation";
+    public static final String LoadOutOfProcess = "LoadOutOfProcess";
     /*</constants>*/
     /*<constructors>*//*</constructors>*/
     /*<properties>*//*</properties>*/

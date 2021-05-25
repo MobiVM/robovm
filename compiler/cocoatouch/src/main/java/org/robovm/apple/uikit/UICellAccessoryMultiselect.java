@@ -66,6 +66,8 @@ import org.robovm.apple.linkpresentation.*;
     public native UIColor getBackgroundColor();
     @Property(selector = "setBackgroundColor:")
     public native void setBackgroundColor(UIColor v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

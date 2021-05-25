@@ -1,5 +1,5 @@
 package: org.robovm.apple.replaykit
-include: [foundation.yaml, uikit.yaml, coremedia]
+include: [foundation, uikit, coremedia, coreanimation]
 library: ReplayKit
 framework: ReplayKit
 clang_args: ['-x', 'objective-c']

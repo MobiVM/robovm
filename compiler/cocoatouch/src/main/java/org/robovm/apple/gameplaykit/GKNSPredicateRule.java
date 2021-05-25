@@ -63,5 +63,9 @@ import org.robovm.apple.uikit.*;
     protected native @Pointer long init(NSPredicate predicate);
     @Method(selector = "evaluatePredicateWithSystem:")
     public native boolean evaluatePredicate(GKRuleSystem system);
+    @Method(selector = "ruleWithPredicate:assertingFact:grade:")
+    public static native GKNSPredicateRule createAssertingFact(NSPredicate predicate, NSObject fact, float grade);
+    @Method(selector = "ruleWithPredicate:retractingFact:grade:")
+    public static native GKNSPredicateRule createRetractingFact(NSPredicate predicate, NSObject fact, float grade);
     /*</methods>*/
 }

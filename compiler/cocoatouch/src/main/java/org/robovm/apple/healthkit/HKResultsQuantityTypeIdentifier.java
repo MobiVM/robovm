@@ -93,13 +93,25 @@ import org.robovm.apple.foundation.*;
     public static final HKResultsQuantityTypeIdentifier NumberOfTimesFallen = new HKResultsQuantityTypeIdentifier("NumberOfTimesFallen");
     public static final HKResultsQuantityTypeIdentifier ElectrodermalActivity = new HKResultsQuantityTypeIdentifier("ElectrodermalActivity");
     public static final HKResultsQuantityTypeIdentifier InhalerUsage = new HKResultsQuantityTypeIdentifier("InhalerUsage");
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    public static final HKResultsQuantityTypeIdentifier InsulinDelivery = new HKResultsQuantityTypeIdentifier("InsulinDelivery");
     public static final HKResultsQuantityTypeIdentifier BloodAlcoholContent = new HKResultsQuantityTypeIdentifier("BloodAlcoholContent");
     public static final HKResultsQuantityTypeIdentifier ForcedVitalCapacity = new HKResultsQuantityTypeIdentifier("ForcedVitalCapacity");
     public static final HKResultsQuantityTypeIdentifier ForcedExpiratoryVolume1 = new HKResultsQuantityTypeIdentifier("ForcedExpiratoryVolume1");
     public static final HKResultsQuantityTypeIdentifier PeakExpiratoryFlowRate = new HKResultsQuantityTypeIdentifier("PeakExpiratoryFlowRate");
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final HKResultsQuantityTypeIdentifier EnvironmentalAudioExposure = new HKResultsQuantityTypeIdentifier("EnvironmentalAudioExposure");
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final HKResultsQuantityTypeIdentifier HeadphoneAudioExposure = new HKResultsQuantityTypeIdentifier("HeadphoneAudioExposure");
     /*</constants>*/
     
-    private static /*<name>*/HKResultsQuantityTypeIdentifier/*</name>*/[] values = new /*<name>*/HKResultsQuantityTypeIdentifier/*</name>*/[] {/*<value_list>*/OxygenSaturation, PeripheralPerfusionIndex, BloodGlucose, NumberOfTimesFallen, ElectrodermalActivity, InhalerUsage, BloodAlcoholContent, ForcedVitalCapacity, ForcedExpiratoryVolume1, PeakExpiratoryFlowRate/*</value_list>*/};
+    private static /*<name>*/HKResultsQuantityTypeIdentifier/*</name>*/[] values = new /*<name>*/HKResultsQuantityTypeIdentifier/*</name>*/[] {/*<value_list>*/OxygenSaturation, PeripheralPerfusionIndex, BloodGlucose, NumberOfTimesFallen, ElectrodermalActivity, InhalerUsage, InsulinDelivery, BloodAlcoholContent, ForcedVitalCapacity, ForcedExpiratoryVolume1, PeakExpiratoryFlowRate, EnvironmentalAudioExposure, HeadphoneAudioExposure/*</value_list>*/};
     
     /*<name>*/HKResultsQuantityTypeIdentifier/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -134,6 +146,11 @@ import org.robovm.apple.foundation.*;
         public static native NSString ElectrodermalActivity();
         @GlobalValue(symbol="HKQuantityTypeIdentifierInhalerUsage", optional=true)
         public static native NSString InhalerUsage();
+        /**
+         * @since Available in iOS 11.0 and later.
+         */
+        @GlobalValue(symbol="HKQuantityTypeIdentifierInsulinDelivery", optional=true)
+        public static native NSString InsulinDelivery();
         @GlobalValue(symbol="HKQuantityTypeIdentifierBloodAlcoholContent", optional=true)
         public static native NSString BloodAlcoholContent();
         @GlobalValue(symbol="HKQuantityTypeIdentifierForcedVitalCapacity", optional=true)
@@ -142,6 +159,16 @@ import org.robovm.apple.foundation.*;
         public static native NSString ForcedExpiratoryVolume1();
         @GlobalValue(symbol="HKQuantityTypeIdentifierPeakExpiratoryFlowRate", optional=true)
         public static native NSString PeakExpiratoryFlowRate();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="HKQuantityTypeIdentifierEnvironmentalAudioExposure", optional=true)
+        public static native NSString EnvironmentalAudioExposure();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="HKQuantityTypeIdentifierHeadphoneAudioExposure", optional=true)
+        public static native NSString HeadphoneAudioExposure();
         /*</values>*/
     }
 }

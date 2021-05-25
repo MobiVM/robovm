@@ -62,5 +62,11 @@ import org.robovm.apple.coregraphics.*;
     public static native INMediaDestinationResolutionResult disambiguation(NSArray<INMediaDestination> mediaDestinationsToDisambiguate);
     @Method(selector = "confirmationRequiredWithMediaDestinationToConfirm:")
     public static native INMediaDestinationResolutionResult confirmationRequired(INMediaDestination mediaDestinationToConfirm);
+    @Method(selector = "needsValue")
+    public static native INMediaDestinationResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INMediaDestinationResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INMediaDestinationResolutionResult unsupported();
     /*</methods>*/
 }

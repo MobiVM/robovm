@@ -68,6 +68,8 @@ import org.robovm.apple.imageio.*;
     public native @ByVal CGPoint getBottomLeft();
     @Property(selector = "bottomRight")
     public native @ByVal CGPoint getBottomRight();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

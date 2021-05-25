@@ -66,6 +66,8 @@ import org.robovm.apple.coregraphics.*;
      */
     @Property(selector = "setSentMessage:")
     public native void setSentMessage(INMessage v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -60,5 +60,11 @@ import org.robovm.apple.coregraphics.*;
     public static native INTemporalEventTriggerTypeOptionsResolutionResult successWith(INTemporalEventTriggerTypeOptions resolvedTemporalEventTriggerTypeOptions);
     @Method(selector = "confirmationRequiredWithTemporalEventTriggerTypeOptionsToConfirm:")
     public static native INTemporalEventTriggerTypeOptionsResolutionResult confirmationRequire(INTemporalEventTriggerTypeOptions temporalEventTriggerTypeOptionsToConfirm);
+    @Method(selector = "needsValue")
+    public static native INTemporalEventTriggerTypeOptionsResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INTemporalEventTriggerTypeOptionsResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INTemporalEventTriggerTypeOptionsResolutionResult unsupported();
     /*</methods>*/
 }

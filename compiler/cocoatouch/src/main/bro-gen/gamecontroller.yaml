@@ -15,6 +15,8 @@ enums:
     GCDeviceBatteryState: {}
     GCSystemGestureState: {}
     GCTouchState: {}
+    GCDualSenseAdaptiveTriggerMode: {}
+    GCDualSenseAdaptiveTriggerStatus: {}
 classes:
     # Structs
     GCAcceleration: {}
@@ -106,6 +108,16 @@ classes:
     GCMouseInput: {} #since 14.0
     GCPhysicalInputProfile: {} #since 14.0
     GCXboxGamepad: {} #since 14.0
+    GCDirectionalGamepad: {} #since 14.3
+    GCDualSenseAdaptiveTrigger: #since 14.5
+        methods:
+            '-setModeFeedbackWithStartPosition:resistiveStrength:':
+                name: setModeFeedback
+            '-setModeWeaponWithStartPosition:endPosition:resistiveStrength:':
+                name: setModeWeapon
+            '-setModeVibrationWithStartPosition:amplitude:frequency:':
+                name: setModeVibration
+    GCDualSenseGamepad: {} #since 14.5
 protocols:
     GCDevice: {} #since 14.0
 

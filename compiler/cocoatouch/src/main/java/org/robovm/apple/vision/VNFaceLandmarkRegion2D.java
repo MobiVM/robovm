@@ -63,6 +63,8 @@ import org.robovm.apple.imageio.*;
      */
     @Property(selector = "precisionEstimatesPerPoint")
     public native NSArray<NSNumber> getPrecisionEstimatesPerPoint();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

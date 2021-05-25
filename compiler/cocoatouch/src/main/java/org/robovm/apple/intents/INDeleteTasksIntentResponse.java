@@ -60,6 +60,8 @@ import org.robovm.apple.coregraphics.*;
     public native NSArray<INTask> getDeletedTasks();
     @Property(selector = "setDeletedTasks:")
     public native void setDeletedTasks(NSArray<INTask> v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

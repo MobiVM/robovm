@@ -66,6 +66,8 @@ import org.robovm.apple.metal.*;
     public native MPSAlphaType getSourceAlpha();
     @Property(selector = "destinationAlpha")
     public native MPSAlphaType getDestinationAlpha();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

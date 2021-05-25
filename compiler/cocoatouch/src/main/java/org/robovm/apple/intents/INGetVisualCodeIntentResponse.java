@@ -60,6 +60,8 @@ import org.robovm.apple.coregraphics.*;
     public native INImage getVisualCodeImage();
     @Property(selector = "setVisualCodeImage:")
     public native void setVisualCodeImage(INImage v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

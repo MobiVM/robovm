@@ -60,6 +60,8 @@ import org.robovm.apple.coregraphics.*;
     public native NSArray<INBillDetails> getBills();
     @Property(selector = "setBills:")
     public native void setBills(NSArray<INBillDetails> v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

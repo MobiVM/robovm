@@ -65,6 +65,8 @@ import org.robovm.apple.metal.*;
     public native float getThreshold();
     @Property(selector = "setThreshold:")
     public native void setThreshold(float v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

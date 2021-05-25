@@ -60,6 +60,8 @@ import org.robovm.apple.coregraphics.*;
     public native NSNumber getLocked();
     @Property(selector = "setLocked:")
     public native void setLocked(NSNumber v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -65,6 +65,8 @@ import org.robovm.apple.metal.*;
     public native double getBeta();
     @Property(selector = "setBeta:")
     public native void setBeta(double v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -83,9 +83,12 @@ import org.robovm.apple.dispatch.*;
     public static native NSUnitPower getFemtowatts();
     @Property(selector = "horsepower")
     public static native NSUnitPower getHorsepower();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "baseUnit")
+    public static native NSUnitPower getBaseUnit();
     /*</methods>*/
 }

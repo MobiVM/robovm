@@ -69,6 +69,11 @@ import org.robovm.apple.metalps.*;
     public native boolean stopGradientForTensors(NSArray<MLCTensor> tensors);
     @Method(selector = "compileWithOptions:device:")
     public native boolean compile(MLCGraphCompilationOptions options, MLCDevice device);
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Method(selector = "compileWithOptions:device:inputTensors:inputTensorsData:")
+    public native boolean compile(MLCGraphCompilationOptions options, MLCDevice device, NSDictionary<NSString, MLCTensor> inputTensors, NSDictionary<NSString, MLCTensorData> inputTensorsData);
     @Method(selector = "compileOptimizer:")
     public native boolean compileOptimizer(MLCOptimizer optimizer);
     @Method(selector = "linkWithGraphs:")
@@ -105,5 +110,7 @@ import org.robovm.apple.metalps.*;
     public native boolean bindOptimizerData(NSArray<MLCTensorData> data, NSArray<MLCTensorOptimizerDeviceData> deviceData, MLCTensor tensor);
     @Method(selector = "graphWithGraphObjects:lossLayer:optimizer:")
     protected static native @Pointer long create(NSArray<MLCGraph> graphObjects, MLCLayer lossLayer, MLCOptimizer optimizer);
+    @Method(selector = "graph")
+    public static native MLCTrainingGraph graph();
     /*</methods>*/
 }

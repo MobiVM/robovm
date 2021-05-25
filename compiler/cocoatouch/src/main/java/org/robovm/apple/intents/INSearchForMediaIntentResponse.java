@@ -60,6 +60,8 @@ import org.robovm.apple.coregraphics.*;
     public native NSArray<INMediaItem> getMediaItems();
     @Property(selector = "setMediaItems:")
     public native void setMediaItems(NSArray<INMediaItem> v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

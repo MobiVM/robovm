@@ -62,6 +62,8 @@ import org.robovm.apple.metal.*;
     /*<properties>*/
     @Property(selector = "sigma")
     public native float getSigma();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

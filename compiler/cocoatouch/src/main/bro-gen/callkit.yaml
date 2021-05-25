@@ -11,15 +11,15 @@ private_typedefs:
 typedefs:
 
 enums:
-    CXErrorCode: {} #since 10.0
-    CXErrorCodeIncomingCallError: {} #since 10.0
-    CXErrorCodeRequestTransactionError: {} #since 10.0
-    CXErrorCodeCallDirectoryManagerError: {} #since 10.0
+    CXErrorCode: {nserror: true} #since 10.0
+    CXErrorCodeIncomingCallError: {nserror: true} #since 10.0
+    CXErrorCodeRequestTransactionError: {nserror: true} #since 10.0
+    CXErrorCodeCallDirectoryManagerError: {nserror: true} #since 10.0
     CXHandleType: {} #since 10.0
     CXPlayDTMFCallActionType: {} #since 10.0
     CXCallEndedReason: {} #since 10.0
     CXCallDirectoryEnabledStatus: {} #since 10.0
-
+    CXErrorCodeNotificationServiceExtensionError: {nserror: true} #since 14.5
 typed_enums:
 
 classes:
@@ -103,6 +103,8 @@ classes:
                 name: reportOutgoingStartedCall
             '-reportOutgoingCallWithUUID:connectedAtDate:':
                 name: reportOutgoingConnectedCall
+            '+reportNewIncomingVoIPPushPayload:completion:':
+                name: reportNewIncomingVoIPPushPayload
             '-pendingCallActionsOfClass:withCallUUID:':
                 name: getPendingCallActionsOfClass
     CXProviderConfiguration: #since 10.0
@@ -188,6 +190,9 @@ values:
         name: getClassDomain
     CXErrorDomainCallDirectoryManager:
         class: CXErrorCodeCallDirectoryManagerError
+        name: getClassDomain
+    CXErrorDomainNotificationServiceExtension:
+        class: CXErrorCodeNotificationServiceExtensionError
         name: getClassDomain
 
     # Make sure we don't miss any values if new ones are introduced in a later version

@@ -31,6 +31,7 @@ import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.security.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -40,7 +41,11 @@ import org.robovm.apple.security.*;
 public enum /*<name>*/WKNavigationResponsePolicy/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Cancel(0L),
-    Allow(1L);
+    Allow(1L),
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    Download(2L);
     /*</values>*/
 
     /*<bind>*/

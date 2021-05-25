@@ -70,6 +70,8 @@ import org.robovm.apple.coregraphics.*;
     public native void setTermsAndConditions(INTermsAndConditions v);
     @Property(selector = "availableBookings")
     public native NSArray<INRestaurantReservationBooking> getAvailableBookings();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

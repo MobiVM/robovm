@@ -60,6 +60,11 @@ import org.robovm.apple.metal.*;
     public native @MachineSizedUInt long getSubPixelScaleFactor();
     @Property(selector = "setSubPixelScaleFactor:")
     public native void setSubPixelScaleFactor(@MachineSizedUInt long v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

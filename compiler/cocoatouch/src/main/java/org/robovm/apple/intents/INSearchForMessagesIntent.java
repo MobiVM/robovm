@@ -137,6 +137,8 @@ import org.robovm.apple.coregraphics.*;
     @Deprecated
     @Property(selector = "groupNamesOperator")
     public native INConditionalOperator getGroupNamesOperator();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -32,6 +32,7 @@ import org.robovm.apple.uikit.*;
 import org.robovm.apple.addressbook.*;
 import org.robovm.apple.contacts.*;
 import org.robovm.apple.coregraphics.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -144,6 +145,10 @@ import org.robovm.apple.coregraphics.*;
     public static final PKPaymentNetwork Maestro = new PKPaymentNetwork("Maestro");
     public static final PKPaymentNetwork MasterCard = new PKPaymentNetwork("MasterCard");
     /**
+     * @since Available in iOS 14.5 and later.
+     */
+    public static final PKPaymentNetwork Mir = new PKPaymentNetwork("Mir");
+    /**
      * @since Available in iOS 9.0 and later.
      */
     public static final PKPaymentNetwork PrivateLabel = new PKPaymentNetwork("PrivateLabel");
@@ -170,7 +175,7 @@ import org.robovm.apple.coregraphics.*;
     public static final PKPaymentNetwork Girocard = new PKPaymentNetwork("Girocard");
     /*</constants>*/
     
-    private static /*<name>*/PKPaymentNetwork/*</name>*/[] values = new /*<name>*/PKPaymentNetwork/*</name>*/[] {/*<value_list>*/Amex, CarteBancaire, CarteBancaires, CartesBancaires, ChinaUnionPay, Discover, Eftpos, Electron, Elo, IDCredit, Interac, JCB, Mada, Maestro, MasterCard, PrivateLabel, QuicPay, Suica, Visa, VPay, Barcode, Girocard/*</value_list>*/};
+    private static /*<name>*/PKPaymentNetwork/*</name>*/[] values = new /*<name>*/PKPaymentNetwork/*</name>*/[] {/*<value_list>*/Amex, CarteBancaire, CarteBancaires, CartesBancaires, ChinaUnionPay, Discover, Eftpos, Electron, Elo, IDCredit, Interac, JCB, Mada, Maestro, MasterCard, Mir, PrivateLabel, QuicPay, Suica, Visa, VPay, Barcode, Girocard/*</value_list>*/};
     
     /*<name>*/PKPaymentNetwork/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -260,6 +265,11 @@ import org.robovm.apple.coregraphics.*;
         public static native NSString Maestro();
         @GlobalValue(symbol="PKPaymentNetworkMasterCard", optional=true)
         public static native NSString MasterCard();
+        /**
+         * @since Available in iOS 14.5 and later.
+         */
+        @GlobalValue(symbol="PKPaymentNetworkMir", optional=true)
+        public static native NSString Mir();
         /**
          * @since Available in iOS 9.0 and later.
          */

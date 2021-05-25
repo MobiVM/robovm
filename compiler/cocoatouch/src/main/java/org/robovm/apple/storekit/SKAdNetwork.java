@@ -56,6 +56,16 @@ import org.robovm.apple.coregraphics.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Method(selector = "startImpression:completionHandler:")
+    public static native void startImpression(SKAdImpression impression, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Method(selector = "endImpression:completionHandler:")
+    public static native void endImpression(SKAdImpression impression, @Block VoidBlock1<NSError> completion);
+    /**
      * @since Available in iOS 11.3 and later.
      */
     @Method(selector = "registerAppForAdNetworkAttribution")

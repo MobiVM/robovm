@@ -65,6 +65,11 @@ import org.robovm.apple.metalps.*;
     public native boolean addOutputs(NSDictionary<NSString, MLCTensor> outputs);
     @Method(selector = "compileWithOptions:device:")
     public native boolean compile(MLCGraphCompilationOptions options, MLCDevice device);
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Method(selector = "compileWithOptions:device:inputTensors:inputTensorsData:")
+    public native boolean compile(MLCGraphCompilationOptions options, MLCDevice device, NSDictionary<NSString, MLCTensor> inputTensors, NSDictionary<NSString, MLCTensorData> inputTensorsData);
     @Method(selector = "linkWithGraphs:")
     public native boolean link(NSArray<MLCInferenceGraph> graphs);
     @Method(selector = "executeWithInputsData:batchSize:options:completionHandler:")
@@ -77,5 +82,7 @@ import org.robovm.apple.metalps.*;
     public native boolean execute(NSDictionary<NSString, MLCTensorData> inputsData, NSDictionary<NSString, MLCTensorData> lossLabelsData, NSDictionary<NSString, MLCTensorData> lossLabelWeightsData, NSDictionary<NSString, MLCTensorData> outputsData, @MachineSizedUInt long batchSize, MLCExecutionOptions options, @Block VoidBlock3<MLCTensor, NSError, Double> completionHandler);
     @Method(selector = "graphWithGraphObjects:")
     protected static native @Pointer long create(NSArray<MLCGraph> graphObjects);
+    @Method(selector = "graph")
+    public static native MLCInferenceGraph graph();
     /*</methods>*/
 }

@@ -79,6 +79,8 @@ import org.robovm.apple.coregraphics.*;
      */
     @Property(selector = "scheduledPickupTime")
     public native INDateComponentsRange getScheduledPickupTime();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

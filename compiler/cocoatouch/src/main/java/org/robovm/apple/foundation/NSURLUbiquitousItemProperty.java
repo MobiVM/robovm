@@ -111,12 +111,16 @@ import org.robovm.apple.dispatch.*;
     public static final NSURLUbiquitousItemProperty DownloadRequested = new NSURLUbiquitousItemProperty("DownloadRequested");
     public static final NSURLUbiquitousItemProperty ContainerDisplayName = new NSURLUbiquitousItemProperty("ContainerDisplayName");
     /**
+     * @since Available in iOS 14.5 and later.
+     */
+    public static final NSURLUbiquitousItemProperty IsExcludedFromSync = new NSURLUbiquitousItemProperty("IsExcludedFromSync");
+    /**
      * @since Available in iOS 10.0 and later.
      */
     public static final NSURLUbiquitousItemProperty IsShared = new NSURLUbiquitousItemProperty("IsShared");
     /*</constants>*/
     
-    private static /*<name>*/NSURLUbiquitousItemProperty/*</name>*/[] values = new /*<name>*/NSURLUbiquitousItemProperty/*</name>*/[] {/*<value_list>*/IsUbiquitousItem, HasUnresolvedConflicts, IsDownloaded, IsDownloading, IsUploaded, IsUploading, DownloadingStatus, DownloadingError, UploadingError, DownloadRequested, ContainerDisplayName, IsShared/*</value_list>*/};
+    private static /*<name>*/NSURLUbiquitousItemProperty/*</name>*/[] values = new /*<name>*/NSURLUbiquitousItemProperty/*</name>*/[] {/*<value_list>*/IsUbiquitousItem, HasUnresolvedConflicts, IsDownloaded, IsDownloading, IsUploaded, IsUploading, DownloadingStatus, DownloadingError, UploadingError, DownloadRequested, ContainerDisplayName, IsExcludedFromSync, IsShared/*</value_list>*/};
     
     /*<name>*/NSURLUbiquitousItemProperty/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -165,6 +169,11 @@ import org.robovm.apple.dispatch.*;
         public static native NSString DownloadRequested();
         @GlobalValue(symbol="NSURLUbiquitousItemContainerDisplayNameKey", optional=true)
         public static native NSString ContainerDisplayName();
+        /**
+         * @since Available in iOS 14.5 and later.
+         */
+        @GlobalValue(symbol="NSURLUbiquitousItemIsExcludedFromSyncKey", optional=true)
+        public static native NSString IsExcludedFromSync();
         /**
          * @since Available in iOS 10.0 and later.
          */

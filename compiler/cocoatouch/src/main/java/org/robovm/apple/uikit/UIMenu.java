@@ -74,6 +74,8 @@ import org.robovm.apple.linkpresentation.*;
     public native UIMenuOptions getOptions();
     @Property(selector = "children")
     public native NSArray<UIMenuElement> getChildren();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

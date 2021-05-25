@@ -105,9 +105,12 @@ import org.robovm.apple.dispatch.*;
     public static native NSUnitLength getAstronomicalUnits();
     @Property(selector = "parsecs")
     public static native NSUnitLength getParsecs();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "baseUnit")
+    public static native NSUnitLength getBaseUnit();
     /*</methods>*/
 }

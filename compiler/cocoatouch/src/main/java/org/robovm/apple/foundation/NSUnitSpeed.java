@@ -69,9 +69,12 @@ import org.robovm.apple.dispatch.*;
     public static native NSUnitSpeed getMilesPerHour();
     @Property(selector = "knots")
     public static native NSUnitSpeed getKnots();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "baseUnit")
+    public static native NSUnitSpeed getBaseUnit();
     /*</methods>*/
 }

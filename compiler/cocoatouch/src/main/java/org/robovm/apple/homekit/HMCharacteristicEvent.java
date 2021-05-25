@@ -68,5 +68,10 @@ import org.robovm.apple.corelocation.*;
     @Deprecated
     @Method(selector = "updateTriggerValue:completionHandler:")
     public native void updateTriggerValue(T triggerValue, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "isSupportedForHome:")
+    public static native boolean isSupportedForHome(HMHome home);
     /*</methods>*/
 }

@@ -98,6 +98,8 @@ import org.robovm.apple.coregraphics.*;
     public native String getRating();
     @Property(selector = "phoneNumber")
     public native String getPhoneNumber();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

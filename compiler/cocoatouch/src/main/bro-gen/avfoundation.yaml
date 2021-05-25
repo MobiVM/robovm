@@ -107,6 +107,11 @@ enums:
     AVAudioStereoOrientation: {}
     AVAssetSegmentType: { } #since 14.0
     AVAudioSpatializationFormats: { prefix: AVAudioSpatializationFormat }
+    # ios 14.5
+    AVVariantPreferences: {prefix: AVVariantPreference} #since 14.5
+    AVPlayerInterstitialEventRestrictions: {prefix: AVPlayerInterstitialEventRestriction} #since 14.5
+    AVCaptureCenterStageControlMode: {} #since 14.5
+    AVAudioSessionInterruptionReason: {}
 
 typed_enums:
     AVAssetDownloadedAssetEvictionPriority:
@@ -1045,6 +1050,11 @@ classes:
                 throws: NSErrorException
             '-setPreferredInputOrientation:error:':
                 name: setPreferredInputOrientation
+                throws: NSErrorException
+            '-setRate:time:atHostTime:':
+                name: setRate
+            '-setPrefersNoInterruptionsFromSystemAlerts:error:':
+                name: setPrefersNoInterruptionsFromSystemAlerts
                 throws: NSErrorException
     AVAudioSessionChannelDescription: {} # DONE
     AVAudioSessionDataSourceDescription: # DONE
@@ -2603,6 +2613,8 @@ classes:
         methods:
             '-setRate:time:':
                 trim_after_first_colon: true
+            '-setRate:time:atHostTime:':
+                trim_after_first_colon: true
             '-removeRenderer:atTime:completionHandler:':
                 trim_after_first_colon: true
             '-addPeriodicTimeObserverForInterval:queue:usingBlock:':
@@ -2730,6 +2742,41 @@ classes:
     AVAssetSegmentReport: {} #since 14.0
     AVAssetSegmentReportSampleInformation: {} #since 14.0
     AVAssetSegmentTrackReport: {} #since 14.0
+    AVContentKey: {} #since 14.5
+    AVContentKeySpecifier: #since 14.5
+        methods:
+            '-initForKeySystem:identifier:options:':
+                name: init
+            '+contentKeySpecifierForKeySystem:identifier:options:':
+                exclude: true
+    AVPlayerInterstitialEvent: #since 14.5
+        methods:
+            '+interstitialEventWithPrimaryItem:time:templateItems:restrictions:resumptionOffset:':
+                name: create
+                constructor: true
+            '+interstitialEventWithPrimaryItem:date:templateItems:restrictions:resumptionOffset:':
+                name: create
+                constructor: true
+            '+playerInterstitialEventWithPrimaryItem:time:interstitialTemplateItems:restrictions:resumptionOffset:':
+                exclude: true // COMPATIBILITY SHIM - 72562501
+            '+playerInterstitialEventWithPrimaryItem:date:interstitialTemplateItems:restrictions:resumptionOffset:':
+                exclude: true // COMPATIBILITY SHIM - 72562501
+    AVPlayerInterstitialEventController: #since 14.5
+        methods:
+            '-cancelCurrentEventWithResumptionOffset:':
+                name: cancelCurrentEvent
+            '+interstitialEventControllerWithPrimaryPlayer:':
+                exclude: true
+            '+playerInterstitialEventControllerWithPrimaryPlayer:':
+                exclude: true
+    AVPlayerInterstitialEventObserver: #since 14.5
+        methods:
+            '-initWithPrimaryPlayer:':
+                name: init
+            '+interstitialEventObserverWithPrimaryPlayer:':
+                exclude: true
+            '+playerInterstitialEventObserverWithPrimaryPlayer:':
+                exclude: true
 protocols:
     AVCapturePhotoCaptureDelegate:
         methods:
@@ -2754,6 +2801,9 @@ protocols:
 
     AVContentKeyRecipient:
         skip_adapter: true
+        methods:
+            '-contentKeySession:didProvideContentKey:':
+                name: didProvideContentKey
 
     AVContentKeySessionDelegate:
         methods:
@@ -2985,6 +3035,8 @@ protocols:
                 name: replacementEmbeddedThumbnailPixelBuffer
             '-replacementSemanticSegmentationMatteOfType:forPhoto:':
                 name: replacementSemanticSegmentationMatteOfType
+            '-replacementAppleProRAWCompressionSettingsForPhoto:defaultSettings:maximumBitDepth:':
+                name: replacementAppleProRAWCompressionSettingsForPhoto
     AVAssetWriterDelegate: #since 14.0
         methods:
             '-assetWriter:didOutputSegmentData:segmentType:segmentReport:':
@@ -2995,6 +3047,10 @@ functions:
     AVMake(RectWithAspectRatioInsideRect):
         class: AVFoundation
         name: 'create#{g[0]}'
+    AVSampleBufferAttachContentKey:
+        class: AVContentKey
+        name: attachToSampleBuffer
+        throws: NSErrorException
 
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (k?AV.*):

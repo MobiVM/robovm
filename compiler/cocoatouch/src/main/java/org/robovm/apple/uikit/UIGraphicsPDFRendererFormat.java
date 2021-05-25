@@ -67,6 +67,15 @@ import org.robovm.apple.linkpresentation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "defaultFormat")
+    public static native UIGraphicsPDFRendererFormat getDefaultFormat();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "preferredFormat")
+    public static native UIGraphicsPDFRendererFormat preferredFormat();
     /*</methods>*/
 }

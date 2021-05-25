@@ -31,6 +31,7 @@ import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.mapkit.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -58,6 +59,8 @@ import org.robovm.apple.mapkit.*;
     public native NSArray<CPVoiceControlState> getVoiceControlStates();
     @Property(selector = "activeStateIdentifier")
     public native String getActiveStateIdentifier();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

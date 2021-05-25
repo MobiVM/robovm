@@ -59,7 +59,11 @@ import org.robovm.apple.audiotoolbox.*;
     boolean mayRequireContentKeysForMediaDataProcessing();
     /*</properties>*/
     /*<methods>*/
-    
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Method(selector = "contentKeySession:didProvideContentKey:")
+    void didProvideContentKey(AVContentKeySession contentKeySession, AVContentKey contentKey);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

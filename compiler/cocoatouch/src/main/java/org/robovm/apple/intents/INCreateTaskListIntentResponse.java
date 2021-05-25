@@ -60,6 +60,8 @@ import org.robovm.apple.coregraphics.*;
     public native INTaskList getCreatedTaskList();
     @Property(selector = "setCreatedTaskList:")
     public native void setCreatedTaskList(INTaskList v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

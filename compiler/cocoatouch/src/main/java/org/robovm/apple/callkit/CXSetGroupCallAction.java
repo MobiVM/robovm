@@ -59,6 +59,8 @@ import org.robovm.apple.avfoundation.*;
     public native NSUUID getCallUUIDToGroupWith();
     @Property(selector = "setCallUUIDToGroupWith:")
     public native void setCallUUIDToGroupWith(NSUUID v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

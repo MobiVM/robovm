@@ -74,6 +74,16 @@ import org.robovm.apple.audiotoolbox.*;
     public native NSDictionary<NSString, ?> getOptions();
     @Property(selector = "canProvidePersistableContentKey")
     public native boolean canProvidePersistableContentKey();
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Property(selector = "contentKeySpecifier")
+    public native AVContentKeySpecifier getContentKeySpecifier();
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Property(selector = "contentKey")
+    public native AVContentKey getContentKey();
     @Property(selector = "renewsExpiringResponseData")
     public native boolean isRenewsExpiringResponseData();
     /*</properties>*/

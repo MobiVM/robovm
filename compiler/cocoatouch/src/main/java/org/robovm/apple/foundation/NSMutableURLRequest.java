@@ -103,6 +103,18 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "setAllowsConstrainedNetworkAccess:")
     public native void setAllowsConstrainedNetworkAccess(boolean v);
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Property(selector = "assumesHTTP3Capable")
+    public native boolean isAssumesHTTP3Capable();
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Property(selector = "setAssumesHTTP3Capable:")
+    public native void setAssumesHTTP3Capable(boolean v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     @Property(selector = "HTTPMethod")
     public native String getHTTPMethod();
     @Property(selector = "setHTTPMethod:")

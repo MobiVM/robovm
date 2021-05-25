@@ -60,6 +60,8 @@ import org.robovm.apple.imageio.*;
     public native String getIdentifier();
     @Property(selector = "hasPrecisionRecallCurve")
     public native boolean hasPrecisionRecallCurve();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

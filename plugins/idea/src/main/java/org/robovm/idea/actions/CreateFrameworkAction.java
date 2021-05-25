@@ -17,14 +17,18 @@ package org.robovm.idea.actions;
 
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
-import com.intellij.openapi.compiler.CompileScope;
-import com.intellij.openapi.compiler.CompilerManager;
 import com.intellij.openapi.module.Module;
+import com.intellij.openapi.progress.ProgressIndicator;
+import com.intellij.openapi.progress.ProgressManager;
+import com.intellij.openapi.progress.Task;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.DialogWrapper;
 import com.intellij.openapi.ui.MessageType;
 import com.intellij.openapi.util.Key;
+import com.intellij.task.ProjectTaskManager;
+import org.jetbrains.annotations.NotNull;
 import org.robovm.idea.RoboVmPlugin;
+import org.robovm.idea.compilation.RoboVmCompileTask;
 
 import java.io.File;
 
@@ -43,11 +47,25 @@ public class CreateFrameworkAction extends AnAction {
         if (dialog.getExitCode() == DialogWrapper.OK_EXIT_CODE) {
             // create Framework
             FrameworkConfig frameworkConfig = dialog.getFrameworkConfig();
-            CompileScope scope = CompilerManager.getInstance(project).createModuleCompileScope(frameworkConfig.module, true);
-            scope.putUserData(FRAMEWORK_CONFIG_KEY, frameworkConfig);
-            CompilerManager.getInstance(project).compile(scope, (aborted, errors, warnings, compileContext) ->
-                    RoboVmPlugin.logInfo(project, "Framework creation complete, %d errors, %d warnings", errors, warnings)
-            );
+            ProjectTaskManager.getInstance(project)
+                    .build(frameworkConfig.module)
+                    .onSuccess(r -> {
+                        if (r.hasErrors()) {
+                            RoboVmPlugin.logInfo(project, "Framework creation failed due errors");
+                        } else if (r.isAborted()) {
+                            RoboVmPlugin.logInfo(project, "Framework creation aborted");
+                        } else
+                            ProgressManager.getInstance().run(new Task.Backgroundable(project, "Building IPA ", true) {
+                                @Override
+                                public void run(@NotNull ProgressIndicator progressIndicator) {
+                                    try {
+                                        RoboVmCompileTask.compileForFramework(project, progressIndicator, frameworkConfig);
+                                    } catch (Exception e) {
+                                        RoboVmPlugin.logErrorThrowable(project, "Couldn't create Framework", e, false);
+                                    }
+                                }
+                            });
+                    });
         }
     }
 

@@ -82,19 +82,19 @@ import org.robovm.apple.linkpresentation.*;
     @NotImplemented("collectionView:didEndDisplayingSupplementaryView:forElementOfKind:atIndexPath:")
     public void didEndDisplayingSupplementaryView(UICollectionView collectionView, UICollectionReusableView view, String elementKind, NSIndexPath indexPath) {}
     /**
-     * @deprecated Deprecated in iOS 13.0. Use collectionView:contextMenuConfigurationForRowAtIndexPath:
+     * @deprecated Deprecated in iOS 13.0. Use collectionView:contextMenuConfigurationForItemAtIndexPath:
      */
     @Deprecated
     @NotImplemented("collectionView:shouldShowMenuForItemAtIndexPath:")
     public boolean shouldShowMenuForItem(UICollectionView collectionView, NSIndexPath indexPath) { return false; }
     /**
-     * @deprecated Deprecated in iOS 13.0. Use collectionView:contextMenuConfigurationForRowAtIndexPath:
+     * @deprecated Deprecated in iOS 13.0. Use collectionView:contextMenuConfigurationForItemAtIndexPath:
      */
     @Deprecated
     @NotImplemented("collectionView:canPerformAction:forItemAtIndexPath:withSender:")
     public boolean canPerformAction(UICollectionView collectionView, Selector action, NSIndexPath indexPath, NSObject sender) { return false; }
     /**
-     * @deprecated Deprecated in iOS 13.0. Use collectionView:contextMenuConfigurationForRowAtIndexPath:
+     * @deprecated Deprecated in iOS 13.0. Use collectionView:contextMenuConfigurationForItemAtIndexPath:
      */
     @Deprecated
     @NotImplemented("collectionView:performAction:forItemAtIndexPath:withSender:")

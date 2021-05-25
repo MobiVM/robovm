@@ -81,9 +81,12 @@ import org.robovm.apple.dispatch.*;
     public static native NSUnitPressure getMillimetersOfMercury();
     @Property(selector = "poundsForcePerSquareInch")
     public static native NSUnitPressure getPoundsForcePerSquareInch();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "baseUnit")
+    public static native NSUnitPressure getBaseUnit();
     /*</methods>*/
 }

@@ -52,6 +52,12 @@ import org.robovm.apple.coregraphics.*;
     public MDLNormalMapTexture(MDLTexture sourceTexture, String name, float smoothness, float contrast) { super((SkipInit) null); initObject(init(sourceTexture, name, smoothness, contrast)); }
     @Method(selector = "initWithData:topLeftOrigin:name:dimensions:rowStride:channelCount:channelEncoding:isCube:")
     public MDLNormalMapTexture(NSData pixelData, boolean topLeftOrigin, String name, @ByVal VectorInt2 dimensions, @MachineSizedSInt long rowStride, @MachineSizedUInt long channelCount, MDLTextureChannelEncoding channelEncoding, boolean isCube) { super(pixelData, topLeftOrigin, name, dimensions, rowStride, channelCount, channelEncoding, isCube); }
+    public MDLNormalMapTexture(String name) { super((Handle) null, create(name)); retain(getHandle()); }
+    public MDLNormalMapTexture(String name, NSBundle bundleOrNil) { super((Handle) null, create(name, bundleOrNil)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    public MDLNormalMapTexture(String name, MDLAssetResolver resolver) { super((Handle) null, create(name, resolver)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     
@@ -60,5 +66,22 @@ import org.robovm.apple.coregraphics.*;
     /*<methods>*/
     @Method(selector = "initByGeneratingNormalMapWithTexture:name:smoothness:contrast:")
     protected native @Pointer long init(MDLTexture sourceTexture, String name, float smoothness, float contrast);
+    @Method(selector = "textureNamed:")
+    protected static native @Pointer long create(String name);
+    @Method(selector = "textureNamed:bundle:")
+    protected static native @Pointer long create(String name, NSBundle bundleOrNil);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "textureNamed:assetResolver:")
+    protected static native @Pointer long create(String name, MDLAssetResolver resolver);
+    @Method(selector = "textureCubeWithImagesNamed:")
+    public static native MDLNormalMapTexture newTextureCube(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> names);
+    @Method(selector = "textureCubeWithImagesNamed:bundle:")
+    public static native MDLNormalMapTexture newTextureCube(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> names, NSBundle bundleOrNil);
+    @Method(selector = "irradianceTextureCubeWithTexture:name:dimensions:")
+    public static native MDLNormalMapTexture newIrradianceTextureCube(MDLTexture texture, String name, @ByVal VectorInt2 dimensions);
+    @Method(selector = "irradianceTextureCubeWithTexture:name:dimensions:roughness:")
+    public static native MDLNormalMapTexture newIrradianceTextureCube(MDLTexture texture, String name, @ByVal VectorInt2 dimensions, float roughness);
     /*</methods>*/
 }

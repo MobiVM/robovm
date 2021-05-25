@@ -53,6 +53,8 @@ import org.robovm.apple.foundation.*;
     public native MXCallStackTree getCallStackTree();
     @Property(selector = "hangDuration")
     public native NSMeasurement<NSUnitDuration> getHangDuration();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

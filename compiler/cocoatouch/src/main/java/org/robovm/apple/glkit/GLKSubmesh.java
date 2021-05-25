@@ -34,6 +34,7 @@ import org.robovm.apple.opengles.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.dispatch.*;
 import org.robovm.apple.modelio.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/

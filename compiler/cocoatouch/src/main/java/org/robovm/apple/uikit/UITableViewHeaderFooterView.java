@@ -129,6 +129,9 @@ import org.robovm.apple.linkpresentation.*;
     public native void setBackgroundView(UIView v);
     @Property(selector = "reuseIdentifier")
     public native String getReuseIdentifier();
+    @WeaklyLinked
+    @Property(selector = "layerClass")
+    public static native Class<? extends CALayer> getLayerClass();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -153,5 +156,15 @@ import org.robovm.apple.linkpresentation.*;
     public native UIListContentConfiguration defaultContentConfiguration();
     @Method(selector = "prepareForReuse")
     public native void prepareForReuse();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute attribute);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:relativeToLayoutDirection:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute semanticContentAttribute, UIUserInterfaceLayoutDirection layoutDirection);
     /*</methods>*/
 }

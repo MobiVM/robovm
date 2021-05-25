@@ -58,6 +58,8 @@ import org.robovm.apple.coregraphics.*;
     public native NSArray<NSString> getIdentifiers();
     @Property(selector = "attribute")
     public native INMessageAttribute getAttribute();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -71,5 +71,10 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @NotImplemented("replacementSemanticSegmentationMatteOfType:forPhoto:")
     public AVSemanticSegmentationMatte replacementSemanticSegmentationMatteOfType(AVSemanticSegmentationMatteType semanticSegmentationMatteType, AVCapturePhoto photo) { return null; }
+    /**
+     * @since Available in iOS 14.3 and later.
+     */
+    @NotImplemented("replacementAppleProRAWCompressionSettingsForPhoto:defaultSettings:maximumBitDepth:")
+    public NSDictionary<NSString, ?> replacementAppleProRAWCompressionSettingsForPhoto(AVCapturePhoto photo, NSDictionary<NSString, ?> defaultSettings, @MachineSizedSInt long maximumBitDepth) { return null; }
     /*</methods>*/
 }

@@ -76,6 +76,9 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Property(selector = "setAllowsSelfSizing:")
     public native void setAllowsSelfSizing(boolean v);
+    @WeaklyLinked
+    @Property(selector = "layerClass")
+    public static native Class<? extends CALayer> getLayerClass();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -83,5 +86,15 @@ import org.robovm.apple.linkpresentation.*;
     protected native @Pointer long init(@ByVal CGRect frame, UIInputViewStyle inputViewStyle);
     @Method(selector = "initWithCoder:")
     protected native @Pointer long init(NSCoder coder);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute attribute);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:relativeToLayoutDirection:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute semanticContentAttribute, UIUserInterfaceLayoutDirection layoutDirection);
     /*</methods>*/
 }

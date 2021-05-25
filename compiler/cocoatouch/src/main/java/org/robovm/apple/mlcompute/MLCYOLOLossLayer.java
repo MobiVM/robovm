@@ -59,5 +59,43 @@ import org.robovm.apple.metalps.*;
     /*<methods>*/
     @Method(selector = "layerWithDescriptor:")
     protected static native @Pointer long create(MLCYOLOLossDescriptor lossDescriptor);
+    @Method(selector = "softmaxCrossEntropyLossWithReductionType:labelSmoothing:classCount:weight:")
+    public static native MLCYOLOLossLayer createSoftmaxCrossEntropyLoss(MLCReductionType reductionType, float labelSmoothing, @MachineSizedUInt long classCount, float weight);
+    @Method(selector = "softmaxCrossEntropyLossWithReductionType:labelSmoothing:classCount:weights:")
+    public static native MLCYOLOLossLayer createSoftmaxCrossEntropyLoss(MLCReductionType reductionType, float labelSmoothing, @MachineSizedUInt long classCount, MLCTensor weights);
+    @Method(selector = "categoricalCrossEntropyLossWithReductionType:labelSmoothing:classCount:weight:")
+    public static native MLCYOLOLossLayer createCategoricalCrossEntropyLoss(MLCReductionType reductionType, float labelSmoothing, @MachineSizedUInt long classCount, float weight);
+    @Method(selector = "categoricalCrossEntropyLossWithReductionType:labelSmoothing:classCount:weights:")
+    public static native MLCYOLOLossLayer createCategoricalCrossEntropyLoss(MLCReductionType reductionType, float labelSmoothing, @MachineSizedUInt long classCount, MLCTensor weights);
+    @Method(selector = "sigmoidCrossEntropyLossWithReductionType:labelSmoothing:weight:")
+    public static native MLCYOLOLossLayer createSigmoidCrossEntropyLoss(MLCReductionType reductionType, float labelSmoothing, float weight);
+    @Method(selector = "sigmoidCrossEntropyLossWithReductionType:labelSmoothing:weights:")
+    public static native MLCYOLOLossLayer createSigmoidCrossEntropyLoss(MLCReductionType reductionType, float labelSmoothing, MLCTensor weights);
+    @Method(selector = "logLossWithReductionType:epsilon:weight:")
+    public static native MLCYOLOLossLayer createLogLoss(MLCReductionType reductionType, float epsilon, float weight);
+    @Method(selector = "logLossWithReductionType:epsilon:weights:")
+    public static native MLCYOLOLossLayer createLogLoss(MLCReductionType reductionType, float epsilon, MLCTensor weights);
+    @Method(selector = "huberLossWithReductionType:delta:weight:")
+    public static native MLCYOLOLossLayer createHuberLoss(MLCReductionType reductionType, float delta, float weight);
+    @Method(selector = "huberLossWithReductionType:delta:weights:")
+    public static native MLCYOLOLossLayer createHuberLoss(MLCReductionType reductionType, float delta, MLCTensor weights);
+    @Method(selector = "meanAbsoluteErrorLossWithReductionType:weight:")
+    public static native MLCYOLOLossLayer createMeanAbsoluteErrorLoss(MLCReductionType reductionType, float weight);
+    @Method(selector = "meanAbsoluteErrorLossWithReductionType:weights:")
+    public static native MLCYOLOLossLayer createMeanAbsoluteErrorLoss(MLCReductionType reductionType, MLCTensor weights);
+    @Method(selector = "meanSquaredErrorLossWithReductionType:weight:")
+    public static native MLCYOLOLossLayer createMeanSquaredErrorLoss(MLCReductionType reductionType, float weight);
+    @Method(selector = "meanSquaredErrorLossWithReductionType:weights:")
+    public static native MLCYOLOLossLayer createMeanSquaredErrorLoss(MLCReductionType reductionType, MLCTensor weights);
+    @Method(selector = "hingeLossWithReductionType:weight:")
+    public static native MLCYOLOLossLayer createHingeLoss(MLCReductionType reductionType, float weight);
+    @Method(selector = "hingeLossWithReductionType:weights:")
+    public static native MLCYOLOLossLayer createHingeLoss(MLCReductionType reductionType, MLCTensor weights);
+    @Method(selector = "cosineDistanceLossWithReductionType:weight:")
+    public static native MLCYOLOLossLayer createCosineDistanceLoss(MLCReductionType reductionType, float weight);
+    @Method(selector = "cosineDistanceLossWithReductionType:weights:")
+    public static native MLCYOLOLossLayer createCosineDistanceLoss(MLCReductionType reductionType, MLCTensor weights);
+    @Method(selector = "supportsDataType:onDevice:")
+    public static native boolean supportsDataType(MLCDataType dataType, MLCDevice device);
     /*</methods>*/
 }

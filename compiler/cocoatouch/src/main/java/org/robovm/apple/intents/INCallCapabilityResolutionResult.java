@@ -60,5 +60,11 @@ import org.robovm.apple.coregraphics.*;
     public static native INCallCapabilityResolutionResult success(INCallCapability resolvedCallCapability);
     @Method(selector = "confirmationRequiredWithCallCapabilityToConfirm:")
     public static native INCallCapabilityResolutionResult confirmationRequired(INCallCapability callCapabilityToConfirm);
+    @Method(selector = "needsValue")
+    public static native INCallCapabilityResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INCallCapabilityResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INCallCapabilityResolutionResult unsupported();
     /*</methods>*/
 }

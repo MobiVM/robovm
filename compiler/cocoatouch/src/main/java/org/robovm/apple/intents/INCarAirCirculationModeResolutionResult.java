@@ -74,5 +74,11 @@ import org.robovm.apple.coregraphics.*;
     @Deprecated
     @Method(selector = "confirmationRequiredWithValueToConfirm:")
     public static native INCarAirCirculationModeResolutionResult confirmationRequiredForValue(INCarAirCirculationMode valueToConfirm);
+    @Method(selector = "needsValue")
+    public static native INCarAirCirculationModeResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INCarAirCirculationModeResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INCarAirCirculationModeResolutionResult unsupported();
     /*</methods>*/
 }

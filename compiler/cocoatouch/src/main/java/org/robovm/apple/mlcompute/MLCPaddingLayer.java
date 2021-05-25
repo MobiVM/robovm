@@ -74,5 +74,7 @@ import org.robovm.apple.metalps.*;
     public static native MLCPaddingLayer createLayerWithZeroPadding(NSArray<NSNumber> padding);
     @Method(selector = "layerWithConstantPadding:constantValue:")
     public static native MLCPaddingLayer createLayerWithConstantPadding(NSArray<NSNumber> padding, float constantValue);
+    @Method(selector = "supportsDataType:onDevice:")
+    public static native boolean supportsDataType(MLCDataType dataType, MLCDevice device);
     /*</methods>*/
 }

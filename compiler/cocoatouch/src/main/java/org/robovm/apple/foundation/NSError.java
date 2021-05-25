@@ -134,6 +134,11 @@ import org.robovm.apple.dispatch.*;
     public native NSErrorRecoveryAttempting getRecoveryAttempter();
     @Property(selector = "helpAnchor")
     public native String getHelpAnchor();
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Property(selector = "underlyingErrors")
+    public native NSArray<NSError> getUnderlyingErrors();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

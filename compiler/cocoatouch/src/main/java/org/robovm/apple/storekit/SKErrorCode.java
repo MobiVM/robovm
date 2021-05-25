@@ -100,7 +100,11 @@ public enum /*<name>*/SKErrorCode/*</name>*/ implements NSErrorCode {
     /**
      * @since Available in iOS 14.0 and later.
      */
-    UnsupportedPlatform(19L);
+    UnsupportedPlatform(19L),
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    OverlayPresentedInBackgroundScene(20L);
     /*</values>*/
 
     /*<bind>*/

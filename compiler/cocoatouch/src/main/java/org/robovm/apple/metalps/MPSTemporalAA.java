@@ -61,6 +61,8 @@ import org.robovm.apple.metal.*;
     public native float getBlendFactor();
     @Property(selector = "setBlendFactor:")
     public native void setBlendFactor(float v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -96,10 +96,16 @@ import org.robovm.apple.avfoundation.*;
     public native @MachineSizedFloat double getFlatness();
     @Property(selector = "setFlatness:")
     public native void setFlatness(@MachineSizedFloat double v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "textWithString:extrusionDepth:")
     public static native SCNText create(NSAttributedString string, @MachineSizedFloat double extrusionDepth);
+    @Method(selector = "geometry")
+    public static native SCNText createGeometry();
+    @Method(selector = "geometryWithSources:elements:")
+    public static native SCNText createGeometry(NSArray<SCNGeometrySource> sources, NSArray<SCNGeometryElement> elements);
     /*</methods>*/
 }

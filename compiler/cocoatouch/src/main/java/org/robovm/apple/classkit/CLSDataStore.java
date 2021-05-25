@@ -78,5 +78,10 @@ import org.robovm.apple.coregraphics.*;
     public native void getContextsMatchingIdentifier(NSArray<NSString> identifierPath, @Block VoidBlock2<NSArray<CLSContext>, NSError> completion);
     @Method(selector = "removeContext:")
     public native void removeContext(CLSContext context);
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Method(selector = "fetchActivityForURL:completion:")
+    public native void fetchActivity(NSURL url, @Block VoidBlock2<CLSActivity, NSError> completion);
     /*</methods>*/
 }

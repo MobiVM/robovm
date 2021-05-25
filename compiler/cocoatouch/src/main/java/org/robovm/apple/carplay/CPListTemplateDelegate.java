@@ -31,11 +31,13 @@ import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.mapkit.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
 /**
  * @since Available in iOS 12.0 and later.
+ * @deprecated Deprecated in iOS 14.0. Use -[CPListItem handler]
  */
 /*</javadoc>*/
 /*<annotations>*/@Deprecated/*</annotations>*/

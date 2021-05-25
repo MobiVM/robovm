@@ -66,5 +66,7 @@ import org.robovm.apple.metalps.*;
     protected static native @Pointer long create(NSArray<NSNumber> shape);
     @Method(selector = "layerWithShape:sampleMode:alignsCorners:")
     protected static native @Pointer long create(NSArray<NSNumber> shape, MLCSampleMode sampleMode, boolean alignsCorners);
+    @Method(selector = "supportsDataType:onDevice:")
+    public static native boolean supportsDataType(MLCDataType dataType, MLCDevice device);
     /*</methods>*/
 }

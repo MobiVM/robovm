@@ -92,9 +92,13 @@ import org.robovm.apple.foundation.*;
     public static final HKBodyQuantityTypeIdentifier Height = new HKBodyQuantityTypeIdentifier("Height");
     public static final HKBodyQuantityTypeIdentifier BodyMass = new HKBodyQuantityTypeIdentifier("BodyMass");
     public static final HKBodyQuantityTypeIdentifier LeanBodyMass = new HKBodyQuantityTypeIdentifier("LeanBodyMass");
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    public static final HKBodyQuantityTypeIdentifier WaistCircumference = new HKBodyQuantityTypeIdentifier("WaistCircumference");
     /*</constants>*/
     
-    private static /*<name>*/HKBodyQuantityTypeIdentifier/*</name>*/[] values = new /*<name>*/HKBodyQuantityTypeIdentifier/*</name>*/[] {/*<value_list>*/BodyMassIndex, BodyFatPercentage, Height, BodyMass, LeanBodyMass/*</value_list>*/};
+    private static /*<name>*/HKBodyQuantityTypeIdentifier/*</name>*/[] values = new /*<name>*/HKBodyQuantityTypeIdentifier/*</name>*/[] {/*<value_list>*/BodyMassIndex, BodyFatPercentage, Height, BodyMass, LeanBodyMass, WaistCircumference/*</value_list>*/};
     
     /*<name>*/HKBodyQuantityTypeIdentifier/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -127,6 +131,11 @@ import org.robovm.apple.foundation.*;
         public static native NSString BodyMass();
         @GlobalValue(symbol="HKQuantityTypeIdentifierLeanBodyMass", optional=true)
         public static native NSString LeanBodyMass();
+        /**
+         * @since Available in iOS 11.0 and later.
+         */
+        @GlobalValue(symbol="HKQuantityTypeIdentifierWaistCircumference", optional=true)
+        public static native NSString WaistCircumference();
         /*</values>*/
     }
 }

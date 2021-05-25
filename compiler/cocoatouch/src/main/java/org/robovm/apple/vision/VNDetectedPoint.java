@@ -58,9 +58,21 @@ import org.robovm.apple.imageio.*;
     /*<properties>*/
     @Property(selector = "confidence")
     public native float getConfidence();
+    @Property(selector = "zeroPoint")
+    public static native VNPoint getZeroPoint();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "pointByApplyingVector:toPoint:")
+    public static native VNPoint getPointByApplyingVector(VNVector vector, VNPoint point);
+    /**
+     * @since Available in iOS 14.0 and later.
+     * @deprecated Deprecated in iOS 14.0. use -distanceToPoint:
+     */
+    @Deprecated
+    @Method(selector = "distanceBetweenPoint:point:")
+    public static native double getDistance(VNPoint point1, VNPoint point2);
     /*</methods>*/
 }

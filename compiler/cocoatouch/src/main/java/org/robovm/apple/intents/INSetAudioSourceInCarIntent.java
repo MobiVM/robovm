@@ -58,6 +58,8 @@ import org.robovm.apple.coregraphics.*;
     public native INCarAudioSource getAudioSource();
     @Property(selector = "relativeAudioSourceReference")
     public native INRelativeReference getRelativeAudioSourceReference();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

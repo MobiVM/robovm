@@ -76,6 +76,8 @@ import org.robovm.apple.avfoundation.*;
     public native @ByVal SCNVector3 getAnchorB();
     @Property(selector = "setAnchorB:")
     public native void setAnchorB(@ByVal SCNVector3 v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

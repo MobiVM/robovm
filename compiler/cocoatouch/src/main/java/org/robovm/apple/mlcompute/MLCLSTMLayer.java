@@ -85,5 +85,7 @@ import org.robovm.apple.metalps.*;
     protected static native @Pointer long create(MLCLSTMDescriptor descriptor, NSArray<MLCTensor> inputWeights, NSArray<MLCTensor> hiddenWeights, NSArray<MLCTensor> peepholeWeights, NSArray<MLCTensor> biases);
     @Method(selector = "layerWithDescriptor:inputWeights:hiddenWeights:peepholeWeights:biases:gateActivations:outputResultActivation:")
     protected static native @Pointer long create(MLCLSTMDescriptor descriptor, NSArray<MLCTensor> inputWeights, NSArray<MLCTensor> hiddenWeights, NSArray<MLCTensor> peepholeWeights, NSArray<MLCTensor> biases, NSArray<MLCActivationDescriptor> gateActivations, MLCActivationDescriptor outputResultActivation);
+    @Method(selector = "supportsDataType:onDevice:")
+    public static native boolean supportsDataType(MLCDataType dataType, MLCDevice device);
     /*</methods>*/
 }

@@ -32,6 +32,7 @@ import org.robovm.apple.uikit.*;
 import org.robovm.apple.addressbook.*;
 import org.robovm.apple.contacts.*;
 import org.robovm.apple.coregraphics.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -77,6 +78,9 @@ import org.robovm.apple.coregraphics.*;
      */
     @Property(selector = "setCornerRadius:")
     public native void setCornerRadius(@MachineSizedFloat double v);
+    @WeaklyLinked
+    @Property(selector = "layerClass")
+    public static native Class<? extends CALayer> getLayerClass();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -85,5 +89,25 @@ import org.robovm.apple.coregraphics.*;
      */
     @Method(selector = "initWithPaymentButtonType:paymentButtonStyle:")
     protected native @Pointer long init(PKPaymentButtonType type, PKPaymentButtonStyle style);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "systemButtonWithImage:target:action:")
+    public static native PKPaymentButton getSystemButtonWithImage(UIImage image, NSObject target, Selector action);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "systemButtonWithPrimaryAction:")
+    public static native PKPaymentButton getSystemButtonWithPrimaryAction(UIAction primaryAction);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute attribute);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:relativeToLayoutDirection:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute semanticContentAttribute, UIUserInterfaceLayoutDirection layoutDirection);
     /*</methods>*/
 }

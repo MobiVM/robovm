@@ -61,5 +61,7 @@ import org.robovm.apple.metalps.*;
     public static native MLCConcatenationLayer layer();
     @Method(selector = "layerWithDimension:")
     protected static native @Pointer long create(@MachineSizedUInt long dimension);
+    @Method(selector = "supportsDataType:onDevice:")
+    public static native boolean supportsDataType(MLCDataType dataType, MLCDevice device);
     /*</methods>*/
 }

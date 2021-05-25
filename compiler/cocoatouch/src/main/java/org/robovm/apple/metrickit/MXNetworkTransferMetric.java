@@ -57,6 +57,8 @@ import org.robovm.apple.foundation.*;
     public native NSMeasurement<NSUnitInformationStorage> getCumulativeCellularUpload();
     @Property(selector = "cumulativeCellularDownload")
     public native NSMeasurement<NSUnitInformationStorage> getCumulativeCellularDownload();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

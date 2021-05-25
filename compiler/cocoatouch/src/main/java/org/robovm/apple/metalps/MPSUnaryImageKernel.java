@@ -72,6 +72,8 @@ import org.robovm.apple.metal.*;
     public native MPSImageEdgeMode getEdgeMode();
     @Property(selector = "setEdgeMode:")
     public native void setEdgeMode(MPSImageEdgeMode v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

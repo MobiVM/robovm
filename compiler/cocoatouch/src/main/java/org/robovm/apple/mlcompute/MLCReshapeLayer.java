@@ -52,11 +52,17 @@ import org.robovm.apple.metalps.*;
     public MLCReshapeLayer(NSArray<NSNumber> shape) { super((Handle) null, create(shape)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
-    
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Property(selector = "shape")
+    public native NSArray<NSNumber> getShape();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "layerWithShape:")
     protected static native @Pointer long create(NSArray<NSNumber> shape);
+    @Method(selector = "supportsDataType:onDevice:")
+    public static native boolean supportsDataType(MLCDataType dataType, MLCDevice device);
     /*</methods>*/
 }

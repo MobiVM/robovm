@@ -130,6 +130,8 @@ import org.robovm.apple.contacts.*;
     public native boolean notifiesEntryStateOnDisplay();
     @Property(selector = "setNotifyEntryStateOnDisplay:")
     public native void setNotifiesEntryStateOnDisplay(boolean v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

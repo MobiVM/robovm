@@ -53,6 +53,8 @@ import org.robovm.apple.foundation.*;
     public native NSMeasurement<NSUnitInformationStorage> getPeakMemoryUsage();
     @Property(selector = "averageSuspendedMemory")
     public native MXAverage<NSUnitInformationStorage> getAverageSuspendedMemory();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

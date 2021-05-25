@@ -60,6 +60,8 @@ import org.robovm.apple.coregraphics.*;
     public native NSArray<INRestaurantReservationUserBooking> getUserCurrentBookings();
     @Property(selector = "setUserCurrentBookings:")
     public native void setUserCurrentBookings(NSArray<INRestaurantReservationUserBooking> v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

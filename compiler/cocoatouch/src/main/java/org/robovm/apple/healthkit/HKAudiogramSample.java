@@ -52,6 +52,8 @@ import org.robovm.apple.foundation.*;
     /*<properties>*/
     @Property(selector = "sensitivityPoints")
     public native NSArray<HKAudiogramSensitivityPoint> getSensitivityPoints();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

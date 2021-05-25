@@ -82,6 +82,8 @@ import org.robovm.apple.metal.*;
     public static native MLParameterKey getWeights();
     @Property(selector = "biases")
     public static native MLParameterKey getBiases();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

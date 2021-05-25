@@ -292,6 +292,11 @@ import org.robovm.apple.audiotoolbox.*;
         public static native NSString AllowWideColor();
         @GlobalValue(symbol="AVVideoCompressionPropertiesKey", optional=true)
         public static native NSString CompressionProperties();
+        /**
+         * @since Available in iOS 14.3 and later.
+         */
+        @GlobalValue(symbol="AVVideoAppleProRAWBitDepthKey", optional=true)
+        public static native NSString AppleProRAWBitDepth();
         @GlobalValue(symbol="AVVideoAllowFrameReorderingKey", optional=true)
         public static native NSString AllowFrameReordering();
         @GlobalValue(symbol="AVVideoProfileLevelKey", optional=true)

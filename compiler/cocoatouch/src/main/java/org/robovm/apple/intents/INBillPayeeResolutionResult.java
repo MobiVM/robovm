@@ -62,5 +62,11 @@ import org.robovm.apple.coregraphics.*;
     public static native INBillPayeeResolutionResult disambiguation(NSArray<INBillPayee> billPayeesToDisambiguate);
     @Method(selector = "confirmationRequiredWithBillPayeeToConfirm:")
     public static native INBillPayeeResolutionResult confirmationRequired(INBillPayee billPayeeToConfirm);
+    @Method(selector = "needsValue")
+    public static native INBillPayeeResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INBillPayeeResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INBillPayeeResolutionResult unsupported();
     /*</methods>*/
 }

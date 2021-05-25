@@ -39,6 +39,7 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.dispatch.*;
 import org.robovm.apple.metal.*;
 import org.robovm.apple.imageio.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -75,6 +76,8 @@ import org.robovm.apple.imageio.*;
     public native MTLTexture getEnvironmentTexture();
     @Property(selector = "extent")
     public native @ByVal VectorFloat3 getExtent();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

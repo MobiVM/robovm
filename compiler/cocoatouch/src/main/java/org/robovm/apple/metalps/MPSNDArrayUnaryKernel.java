@@ -92,6 +92,8 @@ import org.robovm.apple.metal.*;
     @Deprecated
     @Property(selector = "dilationRates")
     public native @ByVal MPSNDArraySizes getDilationRates();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

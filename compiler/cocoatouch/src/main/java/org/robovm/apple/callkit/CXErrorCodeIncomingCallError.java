@@ -38,7 +38,7 @@ import org.robovm.apple.avfoundation.*;
  */
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Library("CallKit")/*</annotations>*/
-public enum /*<name>*/CXErrorCodeIncomingCallError/*</name>*/ implements ValuedEnum {
+public enum /*<name>*/CXErrorCodeIncomingCallError/*</name>*/ implements NSErrorCode {
     /*<values>*/
     Unknown(0L),
     Unentitled(1L),
@@ -49,6 +49,7 @@ public enum /*<name>*/CXErrorCodeIncomingCallError/*</name>*/ implements ValuedE
 
     /*<bind>*/static { Bro.bind(CXErrorCodeIncomingCallError.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
+    /*<members>*//*</members>*/
     /*<methods>*/
     /**
      * @since Available in iOS 10.0 and later.
@@ -67,7 +68,27 @@ public enum /*<name>*/CXErrorCodeIncomingCallError/*</name>*/ implements ValuedE
                 return v;
             }
         }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
+        throw new IllegalArgumentException("No constant with value " + n + " found in "
             + /*<name>*/CXErrorCodeIncomingCallError/*</name>*/.class.getName());
+    }
+
+    // bind wrap to include it in compilation as long as nserror enum is used 
+    static { Bro.bind(NSErrorWrap.class); }
+    @StronglyLinked
+    public static class NSErrorWrap extends NSError {
+        protected NSErrorWrap(SkipInit skipInit) {super(skipInit);}
+
+        @Override public NSErrorCode getErrorCode() {
+             try {
+                 return  /*<name>*/CXErrorCodeIncomingCallError/*</name>*/.valueOf(getCode());
+             } catch (IllegalArgumentException e) {
+                 return null;
+             }
+         }
+
+        public static String getClassDomain() {
+            /** must be inserted in value section */
+            return /*<name>*/CXErrorCodeIncomingCallError/*</name>*/.getClassDomain();
+        }
     }
 }

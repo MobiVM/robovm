@@ -51,6 +51,8 @@ import org.robovm.apple.foundation.*;
     /*<properties>*/
     @Property(selector = "userText")
     public native String getUserText();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

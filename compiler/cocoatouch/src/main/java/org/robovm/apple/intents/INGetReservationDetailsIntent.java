@@ -58,6 +58,8 @@ import org.robovm.apple.coregraphics.*;
     public native INSpeakableString getReservationContainerReference();
     @Property(selector = "reservationItemReferences")
     public native NSArray<INSpeakableString> getReservationItemReferences();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -85,6 +85,8 @@ import org.robovm.apple.coregraphics.*;
     public native String getGuestProvidedSpecialRequestText();
     @Property(selector = "setGuestProvidedSpecialRequestText:")
     public native void setGuestProvidedSpecialRequestText(String v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
