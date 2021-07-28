@@ -3,7 +3,7 @@
     <version>${project.version}</version>
     <vendor email="robovm@mobidevelop.com" url="https://github.com/MobiVM/robovm">MobiVM</vendor>
 
-    <depends optional="true" config-file="">org.jetbrains.idea.maven</depends>
+    <depends optional="true" config-file="com.mobidevelop.robovm.intellij-maven.xml">org.jetbrains.idea.maven</depends>
     <depends>org.jetbrains.plugins.gradle</depends>
     <depends>com.intellij.modules.java</depends>
     <idea-version since-build="193.1"/>
