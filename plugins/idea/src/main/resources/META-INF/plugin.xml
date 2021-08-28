@@ -18,10 +18,9 @@
     </description>
     <change-notes>
         <![CDATA[
-            <b>2.3.10</b>
-            <li> iOS 13 API support </li>
-            <li> iOS 14 device support </li>
-            <li> fixes and improvements </li>
+            <b>2.3.14</b>
+            <li> IDEA compatibility </li>
+            <li> Gradle 7 Compatibility </li>
         ]]>
     </change-notes>
 
