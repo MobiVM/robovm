@@ -14,11 +14,10 @@ Not supported any more due removed `-extdir` in Java9+
 * Clone this repo https://github.com/JetBrains/intellij-community.git
 * Checkout the branch that corresponds to the respective IDEA version you installed, e.g. 139 for Idea 14.0.x, see http://www.jetbrains.org/pages/viewpage.action?pageId=983225
 * Open Intellij IDEA CE, setup the IDEA sdk pointing it at your IDEA installation. Add source path to root of repo cloned above. Also add following JARs to SDK from IDEA directory:
-   - /Applications/IntelliJ IDEA CE.app/Contents/plugins/maven/lib/maven.jar
-   - /Applications/IntelliJ IDEA CE.app/Contents/plugins/gradle/lib/gradle-common.jar
-   - /Applications/IntelliJ IDEA CE.app/Contents/plugins/gradle-java/lib/gradle-java.jar!/
-   - (before 2021.1) /Applications/IntelliJ IDEA CE.app/Contents/plugins/gradle/lib/gradle-api-?.?.?-sp1.jar
-   - (after 2021.1) /Applications/IntelliJ IDEA CE.app/Contents/plugins/gradle/lib/gradle-lib.jar
+ - /Applications/IntelliJ IDEA 2021.2 CE EAP.app/Contents/plugins/maven/lib/maven.jar
+ - /Applications/IntelliJ IDEA 2021.2 CE EAP.app/Contents/plugins/gradle/lib/gradle.jar
+ - /Applications/IntelliJ IDEA 2021.2 CE EAP.app/Contents/plugins/gradle/lib/gradle-api-7.1.jar
+ - /Applications/IntelliJ IDEA 2021.2 CE EAP.app/Contents/plugins/gradle-java/lib/gradle-java.jar
 * Open the project by selecting it's POM
 * Open File -> Project Structure, Click on the Project menu entry, and select the IDEA sdk under Project SDK
 * Click OK

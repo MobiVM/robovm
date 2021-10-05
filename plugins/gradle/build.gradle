@@ -18,7 +18,7 @@ apply plugin: 'com.github.johnrengelman.shadow'
 
 group = 'com.mobidevelop.robovm'
 archivesBaseName = 'robovm-gradle-plugin'
-version = '2.3.14-SNAPSHOT'
+version = '2.3.15-SNAPSHOT'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -28,7 +28,7 @@ compileJava {
 }
 
 ext {
-    roboVMVersion = '2.3.14-SNAPSHOT'
+    roboVMVersion = '2.3.15-SNAPSHOT'
     nexusUsername = System.getenv('MAVEN_USERNAME')
     nexusPassword = System.getenv('MAVEN_PASSWORD')
 }
