@@ -28,6 +28,12 @@ public class RoboVmConfigurationFactory extends ConfigurationFactory {
         super(type);
     }
 
+    @Override
+    @NotNull
+    public String getId() {
+        return "RoboVMConfiguration";
+    }
+
     @NotNull
     @Override
     public RunConfiguration createTemplateConfiguration(@NotNull Project project) {
