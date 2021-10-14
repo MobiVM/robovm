@@ -28,8 +28,8 @@ public class RoboVmConfigurationFactory extends ConfigurationFactory {
         super(type);
     }
 
-    @Override
     @NotNull
+    @Override
     public String getId() {
         return "RoboVMConfiguration";
     }
