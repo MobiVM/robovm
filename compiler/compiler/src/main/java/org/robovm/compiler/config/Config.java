@@ -238,6 +238,7 @@ public class Config {
     private transient Config configBeforeBuild;
     private transient DependencyGraph dependencyGraph;
     private transient Arch sliceArch;
+    private transient Environment env =  Environment.Native;
     private transient StripArchivesBuilder stripArchivesBuilder;
 
     protected Config(UUID uuid) {
@@ -307,6 +308,10 @@ public class Config {
     public OS getOs() {
         return os;
     }
+    
+    public Environment getEnv() {
+        return env;
+    }
 
     public Arch getArch() {
         return sliceArch;
@@ -316,13 +321,23 @@ public class Config {
         return archs == null ? Collections.emptyList()
                 : Collections.unmodifiableList(archs);
     }
-    
+
     public String getTriple() {
-        return sliceArch.getLlvmName() + "-unknown-" + os.getLlvmName();
+        return getTriple(os.getMinVersion());
+    }
+
+    public String getTriple(String minVersion) {
+        return sliceArch.getLlvmName() + "-" + os.getVendor() + "-" + os.getLlvmName() + minVersion +
+                env.asLlvmSuffix("-");
     }
 
     public String getClangTriple() {
-        return sliceArch.getClangName() + "-unknown-" + os.getLlvmName();
+        return getClangTriple(os.getMinVersion());
+    }
+
+    public String getClangTriple(String minVersion) {
+        return sliceArch.getClangName() + "-" + os.getVendor() + "-" + os.getLlvmName() + minVersion +
+                env.asLlvmSuffix("-");
     }
 
     public DataLayout getDataLayout() {
@@ -997,7 +1012,7 @@ public class Config {
         dataLayout = new DataLayout(getTriple());
 
         osArchDepLibDir = new File(new File(home.libVmDir, os.toString()),
-                sliceArch.toString());
+                sliceArch.toString() + env.asLlvmSuffix("-"));
 
         if (treeShakerMode != null && treeShakerMode != TreeShakerMode.none 
                 && os.getFamily() == Family.darwin && sliceArch == Arch.x86) {
@@ -1016,7 +1031,9 @@ public class Config {
         this.tmpDir = ramDiskTools.getTmpDir();
 
         File osDir = new File(cacheDir, os.toString());
-        File archDir = new File(osDir, sliceArch.toString());
+        String archName = (env != null && !env.getLlvmName().isEmpty()) ? sliceArch.toString() + "-" + env.getLlvmName() :
+                sliceArch.toString();
+        File archDir = new File(osDir, archName);
         osArchCacheDir = new File(archDir, debug ? "debug" : "release");
         osArchCacheDir.mkdirs();
 
@@ -1231,6 +1248,11 @@ public class Config {
 
         public Builder os(OS os) {
             config.os = os;
+            return this;
+        }
+
+        public Builder env(Environment env) {
+            config.env = env;
             return this;
         }
 
