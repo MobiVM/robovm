@@ -30,9 +30,9 @@ typed_enums:
                 type: double
             EventParameters:
                 type: NSArray<?>
-            KeyParameter:
+            Parameter:
                 type: NSDictionary<?, ?>
-            KeyParameterID:
+            ParameterID:
                 type: CHHapticEventParameterID
             ParameterValue:
                 type: double

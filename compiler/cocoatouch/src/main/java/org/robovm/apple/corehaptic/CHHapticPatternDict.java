@@ -246,6 +246,40 @@ import org.robovm.apple.avfoundation.*;
     /**
      * @since Available in iOS 13.0 and later.
      */
+    public NSDictionary<?, ?> getParameter() {
+        if (has(Keys.Parameter())) {
+            NSDictionary<?, ?> val = (NSDictionary<?, ?>) get(Keys.Parameter());
+            return val;
+        }
+        return null;
+    }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public CHHapticPatternDict setParameter(NSDictionary<?, ?> parameter) {
+        set(Keys.Parameter(), parameter);
+        return this;
+    }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public CHHapticEventParameterID getParameterID() {
+        if (has(Keys.ParameterID())) {
+            NSString val = (NSString) get(Keys.ParameterID());
+            return CHHapticEventParameterID.valueOf(val);
+        }
+        return null;
+    }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public CHHapticPatternDict setParameterID(CHHapticEventParameterID parameterID) {
+        set(Keys.ParameterID(), parameterID.value());
+        return this;
+    }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
     public double getParameterValue() {
         if (has(Keys.ParameterValue())) {
             NSNumber val = (NSNumber) get(Keys.ParameterValue());
