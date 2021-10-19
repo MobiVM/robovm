@@ -25,6 +25,7 @@ import org.robovm.compiler.config.Environment;
 import org.robovm.compiler.config.OS;
 import org.robovm.compiler.target.ios.DeviceType;
 import org.robovm.compiler.target.ios.IOSSimulatorLaunchParameters;
+import org.gradle.api.tasks.Internal;
 
 /**
  *
@@ -85,12 +86,16 @@ public abstract class AbstractSimulatorTask extends AbstractRoboVMTask {
         }
     }
 
+    @Internal
     protected abstract String getTargetType();
 
+    @Internal
     protected abstract OS getOs();
     
+    @Internal
     protected abstract Arch getArch();
 
+    @Internal
     protected DeviceType getDeviceType(DeviceType.DeviceFamily family) {
         String deviceName = (String) project.getProperties().get("robovm.device.name");
         String sdkVersion = (String) project.getProperties().get("robovm.sdk.version");

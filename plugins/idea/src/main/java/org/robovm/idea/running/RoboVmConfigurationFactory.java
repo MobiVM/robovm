@@ -31,6 +31,12 @@ public class RoboVmConfigurationFactory extends ConfigurationFactory {
 
     @NotNull
     @Override
+    public String getId() {
+        return "RoboVMConfiguration";
+    }
+
+    @NotNull
+    @Override
     public RunConfiguration createTemplateConfiguration(@NotNull Project project) {
         return new RoboVmRunConfiguration(getType(), "RoboVM Run Configuration", new RoboVmRunConfigurationSettings(project), this);
     }
