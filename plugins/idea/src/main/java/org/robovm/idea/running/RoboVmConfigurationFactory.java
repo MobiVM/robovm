@@ -31,12 +31,6 @@ public class RoboVmConfigurationFactory extends ConfigurationFactory {
 
     @NotNull
     @Override
-    public String getId() {
-        return "RoboVMConfiguration";
-    }
-
-    @NotNull
-    @Override
     public RunConfiguration createTemplateConfiguration(@NotNull Project project) {
         return new RoboVmRunConfiguration(getType(), "RoboVM Run Configuration", new RoboVmRunConfigurationSettings(project), this);
     }
@@ -56,7 +50,7 @@ public class RoboVmConfigurationFactory extends ConfigurationFactory {
         // The default implementation delegates to 'getName' which may be localized but return value of this method
         // must not depend on current localization.
 
-        // don't have localication so just returning the name as it was before
+        // don't have localization so just returning the name as it was before
         return getName();
     }
 }
