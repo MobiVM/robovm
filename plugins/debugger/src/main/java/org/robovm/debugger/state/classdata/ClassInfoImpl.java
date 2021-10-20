@@ -195,7 +195,7 @@ public class ClassInfoImpl extends ClassInfo {
         // refer: classinfo.c#readFieldInfo
         fields = new FieldInfo[fieldCount];
         for (int idx = 0; idx < fieldCount; idx++) {
-            fields[idx] = new FieldInfo();
+            fields[idx] = new FieldInfo(this);
             fields[idx].readFieldInfo(reader);
             fieldRefIdHolder.addObject(fields[idx]);
         }
