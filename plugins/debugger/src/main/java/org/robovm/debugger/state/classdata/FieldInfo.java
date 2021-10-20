@@ -35,11 +35,16 @@ public class FieldInfo extends BaseModifiersInfo {
     //} FieldInfo;
 
 
+    private final ClassInfo owner;
     private int flags;
     private String name;
     private String signature;
     private int offset;
     private ClassInfo typeInfo;
+
+    public FieldInfo(ClassInfoImpl classInfo) {
+        this.owner = classInfo;
+    }
 
     public void readFieldInfo(DataBufferReader reader) {
         flags = reader.readInt16();
@@ -67,6 +72,10 @@ public class FieldInfo extends BaseModifiersInfo {
             // TODO: skip attributes for now
             reader.skip(reader.pointerSize());
         }
+    }
+
+    public ClassInfo getOwnerClass() {
+        return owner;
     }
 
     public String name() {
