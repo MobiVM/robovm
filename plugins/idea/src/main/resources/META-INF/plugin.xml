@@ -18,9 +18,9 @@
     </description>
     <change-notes>
         <![CDATA[
-            <b>2.3.14</b>
-            <li> IDEA compatibility </li>
-            <li> Gradle 7 Compatibility </li>
+            <b>2.3.15</b>
+            <li> Native m1 support </li>
+            <li> Java 9 string concatenation de-sugaring </li>
         ]]>
     </change-notes>
 
@@ -60,7 +60,7 @@
     </module-components>
 
     <actions>
-        <group id="org.robovm.idea.Menu" text="RoboVM" description="RoboVM Menu">
+        <group id="org.robovm.idea.Menu" text="RoboVM" description="RoboVM menu">
             <add-to-group group-id="MainMenu" anchor="after" relative-to-action="ToolsMenu"/>
 
             <action id="org.robovm.idea.create-ipa" class="org.robovm.idea.actions.CreateIpaAction" text="Create IPA"
@@ -78,7 +78,7 @@
                     description="Deletes as files in ~/.robovm/cache folder"/>
             <separator/>
 
-            <group id="org.robovm.idea.as-fixes-new" class="org.robovm.idea.actions.ASNewGroup" text="New" description="new Project/Module workaround for Android Studio" popup="true">
+            <group id="org.robovm.idea.as-fixes-new" class="org.robovm.idea.actions.ASNewGroup" text="New" description="New project/module workaround for android studio" popup="true">
                 <action id="org.robovm.idea.as-fixes-new-project" class="org.robovm.idea.actions.ASNewProjectAction" text="Project..."/>
                 <action id="org.robovm.idea.as-fixes-new-module" class="org.robovm.idea.actions.ASNewModuleAction" text="Module..."/>
             </group>
