@@ -78,7 +78,7 @@
                     description="Deletes as files in ~/.robovm/cache folder"/>
             <separator/>
 
-            <group id="org.robovm.idea.as-fixes-new" class="org.robovm.idea.actions.ASNewGroup" text="New" description="New project/module workaround for android studio" popup="true">
+            <group id="org.robovm.idea.as-fixes-new" class="org.robovm.idea.actions.ASNewGroup" text="New" description="New project/module workaround for Android Studio" popup="true">
                 <action id="org.robovm.idea.as-fixes-new-project" class="org.robovm.idea.actions.ASNewProjectAction" text="Project..."/>
                 <action id="org.robovm.idea.as-fixes-new-module" class="org.robovm.idea.actions.ASNewModuleAction" text="Module..."/>
             </group>
