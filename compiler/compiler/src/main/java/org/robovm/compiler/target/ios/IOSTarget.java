@@ -639,7 +639,15 @@ public class IOSTarget extends AbstractTarget {
         codesign(identity, entitlementsPList, false, false, true, extensionDir);
     }
 
-    private void codesign(SigningIdentity identity, File entitlementsPList, boolean preserveMetadata, boolean verbose, boolean allocate, File target) throws IOException {
+    private void codesign(SigningIdentity identity, File entitlementsPList, boolean preserveMetadata,
+                          boolean verbose, boolean allocate, File target) throws IOException {
+        // just a wrapper that forces "--generate-entitlement-der" for all kind of signing
+        boolean generateDerEntitlement = true;
+        codesign(identity, entitlementsPList, preserveMetadata, generateDerEntitlement, verbose, allocate, target);
+    }
+
+    private void codesign(SigningIdentity identity, File entitlementsPList, boolean preserveMetadata,
+                          boolean generateDerEntitlement, boolean verbose, boolean allocate, File target) throws IOException {
         List<Object> args = new ArrayList<>();
         args.add("-f");
         args.add("-s");
@@ -650,6 +658,9 @@ public class IOSTarget extends AbstractTarget {
         }
         if (preserveMetadata) {
             args.add("--preserve-metadata=identifier,entitlements");
+        }
+        if (generateDerEntitlement) {
+            args.add("--generate-entitlement-der");
         }
         if (verbose) {
             args.add("--verbose");
