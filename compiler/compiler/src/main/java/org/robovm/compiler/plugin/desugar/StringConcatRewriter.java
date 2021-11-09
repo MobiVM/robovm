@@ -24,7 +24,7 @@ public class StringConcatRewriter {
     }
 
     private void init() {
-        SootClass java_lang_StringBuilder = SootResolver.v().makeClassRef(JAVA_STRINGBUILDER);
+        SootClass java_lang_StringBuilder = SootResolver.v().resolveClass(JAVA_STRINGBUILDER, SootClass.SIGNATURES);
         StringBuilder_init = java_lang_StringBuilder.getMethod(JAVA_STRINGBUILDER_INIT);
         StringBuilder_toString = java_lang_StringBuilder.getMethod(JAVA_STRINGBUILDER_TOSTRING);
 
