@@ -35,7 +35,7 @@ dependencies {
     compileOnly gradleApi()
     compileOnly localGroovy()
     implementation "org.apache.commons:commons-compress:1.5"
-    implementation "com.mobidevelop.robovm:robovm-dist-compiler:${roboVMVersion}"
+    implementation "com.mobidevelop.robovm:robovm-compiler:${roboVMVersion}"
     implementation 'org.sonatype.aether:aether:1.13.1'
     implementation 'org.sonatype.aether:aether-connector-wagon:1.13.1'
     implementation 'org.apache.maven:maven-aether-provider:3.0.4'
@@ -100,7 +100,7 @@ publishing {
 shadowJar {
     classifier = ''
     dependencies {
-        exclude(dependency("com.mobidevelop.robovm:robovm-dist-compiler:${roboVMVersion}"));
+        exclude(dependency("com.mobidevelop.robovm:robovm-compiler:${roboVMVersion}"));
     }
     relocate 'org.apache.http', 'com.mobidevelop.robovm.org.apache.http'
     relocate 'org.apache.commons.io', 'com.mobidevelop.robovm.org.apache.commons.io'
