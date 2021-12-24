@@ -102,6 +102,16 @@ import org.robovm.rt.annotation.WeaklyLinked;
     public native boolean isRemovedOnCompletion();
     @Property(selector = "setRemovedOnCompletion:")
     public native void setRemovedOnCompletion(boolean v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "preferredFrameRateRange")
+    public native @ByVal CAFrameRateRange getPreferredFrameRateRange();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setPreferredFrameRateRange:")
+    public native void setPreferredFrameRateRange(@ByVal CAFrameRateRange v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     @Property(selector = "beginTime")
