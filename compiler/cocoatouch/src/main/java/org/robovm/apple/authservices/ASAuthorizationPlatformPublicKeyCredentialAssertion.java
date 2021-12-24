@@ -35,40 +35,35 @@ import org.robovm.apple.coreanimation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 13.0 and later.
+ * @since Available in iOS 15.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("AuthenticationServices") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/ASAuthorizationSingleSignOnCredential/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/ASAuthorizationPlatformPublicKeyCredentialAssertion/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements ASAuthorizationCredential/*</implements>*/ {
+    /*<implements>*/implements ASAuthorizationPublicKeyCredentialAssertion/*</implements>*/ {
 
-    /*<ptr>*/public static class ASAuthorizationSingleSignOnCredentialPtr extends Ptr<ASAuthorizationSingleSignOnCredential, ASAuthorizationSingleSignOnCredentialPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(ASAuthorizationSingleSignOnCredential.class); }/*</bind>*/
+    /*<ptr>*/public static class ASAuthorizationPlatformPublicKeyCredentialAssertionPtr extends Ptr<ASAuthorizationPlatformPublicKeyCredentialAssertion, ASAuthorizationPlatformPublicKeyCredentialAssertionPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(ASAuthorizationPlatformPublicKeyCredentialAssertion.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected ASAuthorizationSingleSignOnCredential() {}
-    protected ASAuthorizationSingleSignOnCredential(Handle h, long handle) { super(h, handle); }
-    protected ASAuthorizationSingleSignOnCredential(SkipInit skipInit) { super(skipInit); }
+    protected ASAuthorizationPlatformPublicKeyCredentialAssertion() {}
+    protected ASAuthorizationPlatformPublicKeyCredentialAssertion(Handle h, long handle) { super(h, handle); }
+    protected ASAuthorizationPlatformPublicKeyCredentialAssertion(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public ASAuthorizationSingleSignOnCredential(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
+    public ASAuthorizationPlatformPublicKeyCredentialAssertion(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "state")
-    public native String getState();
-    @Property(selector = "accessToken")
-    public native NSData getAccessToken();
-    @Property(selector = "identityToken")
-    public native NSData getIdentityToken();
-    @Property(selector = "authorizedScopes")
-    public native NSArray<NSString> getAuthorizedScopes();
-    @Property(selector = "authenticatedResponse")
-    public native NSHTTPURLResponse getAuthenticatedResponse();
-    /**
-     * @since Available in iOS 15.0 and later.
-     */
-    @Property(selector = "privateKeys")
-    public native NSArray<?> getPrivateKeys();
+    @Property(selector = "rawAuthenticatorData")
+    public native NSData getRawAuthenticatorData();
+    @Property(selector = "userID")
+    public native NSData getUserID();
+    @Property(selector = "signature")
+    public native NSData getSignature();
+    @Property(selector = "rawClientDataJSON")
+    public native NSData getRawClientDataJSON();
+    @Property(selector = "credentialID")
+    public native NSData getCredentialID();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
