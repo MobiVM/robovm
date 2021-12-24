@@ -46,7 +46,8 @@ public enum /*<name>*/MusicDeviceSelector/*</name>*/ implements ValuedEnum {
     PrepareInstrument(259L),
     ReleaseInstrument(260L),
     StartNote(261L),
-    StopNote(262L);
+    StopNote(262L),
+    MIDIEventList(263L);
     /*</values>*/
 
     /*<bind>*/

@@ -114,6 +114,11 @@ import org.robovm.apple.uikit.*;
     @Property(selector = "scheduleMIDIEventBlock")
     public native @Block("(,,@MachineSizedSInt,)") VoidBlock4<AUEventSampleTime, Byte, Long, BytePtr> getScheduleMIDIEventBlock();
     /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "scheduleMIDIEventListBlock")
+    public native @Block Block3<AUEventSampleTime, Byte, MIDIEventList, OSStatus> getScheduleMIDIEventListBlock();
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @Property(selector = "MIDIOutputNames")
@@ -133,6 +138,31 @@ import org.robovm.apple.uikit.*;
      */
     @Property(selector = "setMIDIOutputEventBlock:")
     public native void setMIDIOutputEventBlock(@Block("(,,@MachineSizedSInt,)") Block4<AUEventSampleTime, Byte, Long, BytePtr, OSStatus> v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "MIDIOutputEventListBlock")
+    public native @Block Block3<AUEventSampleTime, Byte, MIDIEventList, OSStatus> getMIDIOutputEventListBlock();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setMIDIOutputEventListBlock:")
+    public native void setMIDIOutputEventListBlock(@Block Block3<AUEventSampleTime, Byte, MIDIEventList, OSStatus> v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "AudioUnitMIDIProtocol")
+    public native MIDIProtocolID getAudioUnitMIDIProtocol();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "hostMIDIProtocol")
+    public native MIDIProtocolID getHostMIDIProtocol();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setHostMIDIProtocol:")
+    public native void setHostMIDIProtocol(MIDIProtocolID v);
     @Property(selector = "fullState")
     public native NSDictionary<NSString, ?> getFullState();
     @Property(selector = "setFullState:")

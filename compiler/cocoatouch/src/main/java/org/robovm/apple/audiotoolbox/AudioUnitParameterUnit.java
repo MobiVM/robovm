@@ -67,7 +67,8 @@ public enum /*<name>*/AudioUnitParameterUnit/*</name>*/ implements ValuedEnum {
     Beats(23L),
     Milliseconds(24L),
     Ratio(25L),
-    CustomUnit(26L);
+    CustomUnit(26L),
+    MIDI2Controller(27L);
     /*</values>*/
 
     /*<bind>*/

@@ -44,7 +44,8 @@ public enum /*<name>*/AURenderEventType/*</name>*/ implements ValuedEnum {
     Parameter(1L),
     ParameterRamp(2L),
     MIDI(8L),
-    MIDISysEx(9L);
+    MIDISysEx(9L),
+    MIDIEventList(10L);
     /*</values>*/
 
     /*<bind>*/
