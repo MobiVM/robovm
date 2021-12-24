@@ -51,7 +51,8 @@ public enum /*<name>*/ARCoachingGoal/*</name>*/ implements ValuedEnum {
     Tracking(0L),
     HorizontalPlane(1L),
     VerticalPlane(2L),
-    AnyPlane(3L);
+    AnyPlane(3L),
+    GeoTracking(4L);
     /*</values>*/
 
     /*<bind>*/
