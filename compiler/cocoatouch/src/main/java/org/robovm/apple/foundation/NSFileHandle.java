@@ -47,7 +47,7 @@ import org.robovm.apple.dispatch.*;
     /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     public static class Notifications {
-        public static NSObject observeReadCompletion(NSFileHandle object, final VoidBlock2<NSFileHandle, NSData> block) {
+        public static NSObjectProtocol observeReadCompletion(NSFileHandle object, final VoidBlock2<NSFileHandle, NSData> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(ReadCompletionNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -60,7 +60,7 @@ import org.robovm.apple.dispatch.*;
                 }
             });
         }
-        public static NSObject observeReadToEndOfFileCompletion(NSFileHandle object, final VoidBlock2<NSFileHandle, NSData> block) {
+        public static NSObjectProtocol observeReadToEndOfFileCompletion(NSFileHandle object, final VoidBlock2<NSFileHandle, NSData> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(ReadToEndOfFileCompletionNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -73,7 +73,7 @@ import org.robovm.apple.dispatch.*;
                 }
             });
         }
-        public static NSObject observeConnectionAccepted(NSFileHandle object, final VoidBlock2<NSFileHandle, NSFileHandle> block) {
+        public static NSObjectProtocol observeConnectionAccepted(NSFileHandle object, final VoidBlock2<NSFileHandle, NSFileHandle> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(ConnectionAcceptedNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -86,7 +86,7 @@ import org.robovm.apple.dispatch.*;
                 }
             });
         }
-        public static NSObject observeDataAvailable(NSFileHandle object, final VoidBlock1<NSFileHandle> block) {
+        public static NSObjectProtocol observeDataAvailable(NSFileHandle object, final VoidBlock1<NSFileHandle> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(DataAvailableNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {

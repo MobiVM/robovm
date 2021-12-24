@@ -42,7 +42,7 @@ import org.robovm.apple.foundation.*;
         /**
          * @since Available in iOS 5.0 and later.
          */
-        public NSObject observeDidChange(final Runnable block) {
+        public NSObjectProtocol observeDidChange(final Runnable block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(DidChangeNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {

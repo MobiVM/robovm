@@ -52,7 +52,7 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     /*<implements>*/implements UITextInput, NSCoding, UIContentSizeCategoryAdjusting, UITextDraggable, UITextDroppable, UITextPasteConfigurationSupporting/*</implements>*/ {
 
     public static class Notifications {
-        public static NSObject observeDidBeginEditing(UITextField object, final VoidBlock1<UITextField> block) {
+        public static NSObjectProtocol observeDidBeginEditing(UITextField object, final VoidBlock1<UITextField> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(DidBeginEditingNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -60,7 +60,7 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
                 }
             });
         }
-        public static NSObject observeDidEndEditing(UITextField object, final VoidBlock1<UITextField> block) {
+        public static NSObjectProtocol observeDidEndEditing(UITextField object, final VoidBlock1<UITextField> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(DidEndEditingNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -68,7 +68,7 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
                 }
             });
         }
-        public static NSObject observeTextDidChange(UITextField object, final VoidBlock1<UITextField> block) {
+        public static NSObjectProtocol observeTextDidChange(UITextField object, final VoidBlock1<UITextField> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(DidChangeNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {

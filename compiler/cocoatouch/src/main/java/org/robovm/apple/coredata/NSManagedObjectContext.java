@@ -45,7 +45,7 @@ import org.robovm.apple.uikit.*;
         /**
          * @since Available in iOS 3.0 and later.
          */
-        public static NSObject observeWillSave(NSManagedObject object, final VoidBlock1<NSManagedObject> block) {
+        public static NSObjectProtocol observeWillSave(NSManagedObject object, final VoidBlock1<NSManagedObject> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(WillSaveNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -56,7 +56,7 @@ import org.robovm.apple.uikit.*;
         /**
          * @since Available in iOS 3.0 and later.
          */
-        public static NSObject observeDidSave(NSManagedObject object, final VoidBlock2<NSManagedObject, NSManagedObjectContextNotification> block) {
+        public static NSObjectProtocol observeDidSave(NSManagedObject object, final VoidBlock2<NSManagedObject, NSManagedObjectContextNotification> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(DidSaveNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -72,7 +72,7 @@ import org.robovm.apple.uikit.*;
         /**
          * @since Available in iOS 3.0 and later.
          */
-        public static NSObject observeObjectsDidChange(NSManagedObject object, final VoidBlock3<NSManagedObject, NSManagedObjectContextNotification, NSNotification> block) {
+        public static NSObjectProtocol observeObjectsDidChange(NSManagedObject object, final VoidBlock3<NSManagedObject, NSManagedObjectContextNotification, NSNotification> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(ObjectsDidChangeNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {

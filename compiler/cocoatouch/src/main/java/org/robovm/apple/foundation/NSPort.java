@@ -47,7 +47,7 @@ import org.robovm.apple.dispatch.*;
     /*<implements>*/implements NSCoding/*</implements>*/ {
 
     public static class Notifications {
-        public static NSObject observeDidBecomeInvalid(NSPort object, final VoidBlock1<NSPort> block) {
+        public static NSObjectProtocol observeDidBecomeInvalid(NSPort object, final VoidBlock1<NSPort> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(DidBecomeInvalidNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {

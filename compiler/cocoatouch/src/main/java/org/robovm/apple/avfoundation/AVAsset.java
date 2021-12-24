@@ -52,7 +52,7 @@ import org.robovm.apple.audiotoolbox.*;
         /**
          * @since Available in iOS 9.0 and later.
          */
-        public static NSObject observeDurationDidChange(AVAsset object, final VoidBlock1<AVAsset> block) {
+        public static NSObjectProtocol observeDurationDidChange(AVAsset object, final VoidBlock1<AVAsset> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(DurationDidChangeNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification notification) {
@@ -63,7 +63,7 @@ import org.robovm.apple.audiotoolbox.*;
         /**
          * @since Available in iOS 9.0 and later.
          */
-        public static NSObject observeChapterMetadataGroupsDidChange(AVAsset object, final VoidBlock1<AVAsset> block) {
+        public static NSObjectProtocol observeChapterMetadataGroupsDidChange(AVAsset object, final VoidBlock1<AVAsset> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(ChapterMetadataGroupsDidChangeNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification notification) {
@@ -74,7 +74,7 @@ import org.robovm.apple.audiotoolbox.*;
         /**
          * @since Available in iOS 9.0 and later.
          */
-        public static NSObject observeMediaSelectionGroupsDidChange(AVAsset object, final VoidBlock1<AVAsset> block) {
+        public static NSObjectProtocol observeMediaSelectionGroupsDidChange(AVAsset object, final VoidBlock1<AVAsset> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(MediaSelectionGroupsDidChangeNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification notification) {

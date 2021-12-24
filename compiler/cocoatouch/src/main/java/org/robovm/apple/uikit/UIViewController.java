@@ -55,7 +55,7 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
         /**
          * @since Available in iOS 8.0 and later.
          */
-        public static NSObject observeDidEnterBackground(UIViewController object, final VoidBlock1<UIViewController> block) {
+        public static NSObjectProtocol observeDidEnterBackground(UIViewController object, final VoidBlock1<UIViewController> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(ShowDetailTargetDidChangeNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {

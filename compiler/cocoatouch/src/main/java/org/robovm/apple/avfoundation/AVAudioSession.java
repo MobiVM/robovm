@@ -52,7 +52,7 @@ import org.robovm.apple.audiotoolbox.*;
         /**
          * @since Available in iOS 6.0 and later.
          */
-        public static NSObject observeInterruption(final VoidBlock1<AVAudioSessionInterruptionNotification> block) {
+        public static NSObjectProtocol observeInterruption(final VoidBlock1<AVAudioSessionInterruptionNotification> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(InterruptionNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -69,7 +69,7 @@ import org.robovm.apple.audiotoolbox.*;
         /**
          * @since Available in iOS 6.0 and later.
          */
-        public static NSObject observeRouteChange(final VoidBlock1<AVAudioSessionRouteChangeNotification> block) {
+        public static NSObjectProtocol observeRouteChange(final VoidBlock1<AVAudioSessionRouteChangeNotification> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(RouteChangeNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -85,7 +85,7 @@ import org.robovm.apple.audiotoolbox.*;
         /**
          * @since Available in iOS 7.0 and later.
          */
-        public static NSObject observeMediaServicesWereLost(final Runnable block) {
+        public static NSObjectProtocol observeMediaServicesWereLost(final Runnable block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(MediaServicesWereLostNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -96,7 +96,7 @@ import org.robovm.apple.audiotoolbox.*;
         /**
          * @since Available in iOS 6.0 and later.
          */
-        public static NSObject observeMediaServicesWereReset(final Runnable block) {
+        public static NSObjectProtocol observeMediaServicesWereReset(final Runnable block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(MediaServicesWereResetNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -107,7 +107,7 @@ import org.robovm.apple.audiotoolbox.*;
         /**
          * @since Available in iOS 8.0 and later.
          */
-        public static NSObject observeSilenceSecondaryAudioHint(final VoidBlock1<AVAudioSessionSilenceSecondaryAudioHintType> block) {
+        public static NSObjectProtocol observeSilenceSecondaryAudioHint(final VoidBlock1<AVAudioSessionSilenceSecondaryAudioHintType> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(SilenceSecondaryAudioHintNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {

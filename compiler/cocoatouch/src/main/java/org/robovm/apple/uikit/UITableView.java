@@ -50,7 +50,7 @@ import org.robovm.apple.linkpresentation.*;
     /*<implements>*/implements NSCoding, UIDataSourceTranslating, UISpringLoadedInteractionSupporting/*</implements>*/ {
 
     public static class Notifications {
-        public static NSObject observeSelectionDidChange(UITableView object, final VoidBlock1<UITableView> block) {
+        public static NSObjectProtocol observeSelectionDidChange(UITableView object, final VoidBlock1<UITableView> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(SelectionDidChangeNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {

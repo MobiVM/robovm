@@ -46,7 +46,7 @@ import org.robovm.apple.uikit.*;
         /**
          * @since Available in iOS 7.0 and later.
          */
-        public static NSObject observeRegistrationsChanged(final Runnable block) {
+        public static NSObjectProtocol observeRegistrationsChanged(final Runnable block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(RegistrationsChangedNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {

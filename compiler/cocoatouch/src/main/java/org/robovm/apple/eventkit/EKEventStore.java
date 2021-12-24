@@ -46,7 +46,7 @@ import org.robovm.apple.mapkit.*;
         /**
          * @since Available in iOS 4.0 and later.
          */
-        public static NSObject observeChanged(EKEventStore object, final VoidBlock1<EKEventStore> block) {
+        public static NSObjectProtocol observeChanged(EKEventStore object, final VoidBlock1<EKEventStore> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(ChangedNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
