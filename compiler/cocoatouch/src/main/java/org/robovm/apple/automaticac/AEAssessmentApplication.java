@@ -32,44 +32,27 @@ import org.robovm.apple.foundation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 13.4 and later.
+ * @since Available in iOS 15.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("AutomaticAssessmentConfiguration") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/AEAssessmentSession/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/AEAssessmentApplication/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class AEAssessmentSessionPtr extends Ptr<AEAssessmentSession, AEAssessmentSessionPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(AEAssessmentSession.class); }/*</bind>*/
+    /*<ptr>*/public static class AEAssessmentApplicationPtr extends Ptr<AEAssessmentApplication, AEAssessmentApplicationPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(AEAssessmentApplication.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected AEAssessmentSession() {}
-    protected AEAssessmentSession(Handle h, long handle) { super(h, handle); }
-    protected AEAssessmentSession(SkipInit skipInit) { super(skipInit); }
-    @Method(selector = "initWithConfiguration:")
-    public AEAssessmentSession(AEAssessmentConfiguration configuration) { super((SkipInit) null); initObject(init(configuration)); }
+    protected AEAssessmentApplication() {}
+    protected AEAssessmentApplication(Handle h, long handle) { super(h, handle); }
+    protected AEAssessmentApplication(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "delegate")
-    public native AEAssessmentSessionDelegate getDelegate();
-    @Property(selector = "setDelegate:", strongRef = true)
-    public native void setDelegate(AEAssessmentSessionDelegate v);
-    /**
-     * @since Available in iOS 15.0 and later.
-     */
-    @Property(selector = "configuration")
-    public native AEAssessmentConfiguration getConfiguration();
-    @Property(selector = "isActive")
-    public native boolean isActive();
+    
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithConfiguration:")
-    protected native @Pointer long init(AEAssessmentConfiguration configuration);
-    @Method(selector = "begin")
-    public native void begin();
-    @Method(selector = "end")
-    public native void end();
+    
     /*</methods>*/
 }

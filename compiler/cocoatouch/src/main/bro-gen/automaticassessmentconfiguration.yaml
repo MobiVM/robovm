@@ -17,6 +17,8 @@ classes:
         methods:
             '-initWithConfiguration:':
                 name: init
+    AEAssessmentApplication: {} #since 15.0
+    AEAssessmentParticipantConfiguration: {} #since 15.0
 protocols:
     AEAssessmentSessionDelegate: #since 13.4
         methods:
