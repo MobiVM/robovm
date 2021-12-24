@@ -56,7 +56,7 @@ import org.robovm.apple.coreanimation.*;
     protected SKEffectNode(Handle h, long handle) { super(h, handle); }
     protected SKEffectNode(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public SKEffectNode(NSCoder decoder) { super(decoder); }
+    public SKEffectNode(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @WeaklyLinked

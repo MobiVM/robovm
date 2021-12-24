@@ -56,7 +56,7 @@ import org.robovm.apple.coreanimation.*;
     protected SKShapeNode(Handle h, long handle) { super(h, handle); }
     protected SKShapeNode(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public SKShapeNode(NSCoder decoder) { super(decoder); }
+    public SKShapeNode(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "path")

@@ -58,7 +58,7 @@ import org.robovm.apple.coreanimation.*;
     protected SKCameraNode(Handle h, long handle) { super(h, handle); }
     protected SKCameraNode(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public SKCameraNode(NSCoder decoder) { super(decoder); }
+    public SKCameraNode(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "supportsSecureCoding")

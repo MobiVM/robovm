@@ -56,7 +56,7 @@ import org.robovm.apple.coreanimation.*;
     protected SKEmitterNode(Handle h, long handle) { super(h, handle); }
     protected SKEmitterNode(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public SKEmitterNode(NSCoder decoder) { super(decoder); }
+    public SKEmitterNode(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "particleTexture")
