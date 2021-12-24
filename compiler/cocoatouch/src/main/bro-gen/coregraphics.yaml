@@ -42,6 +42,7 @@ enums:
     CGImagePixelFormatInfo: {} #since 12.0
     CGImageByteOrderInfo: {prefix: kCGImage} #since 2.0
     CGPDFTagType: {} #since 13.0
+    CGGlyphDeprecatedEnum: {exclude: true}
 
 classes:
     CoreGraphics:
@@ -56,6 +57,7 @@ classes:
     CGRect: {}
     CGSize: {}
     CGVector: {}
+    CGColorDataFormat: {}
 
     # Opaque types
     CGBitmapContext:
@@ -102,6 +104,8 @@ classes:
     CGPDFStream: {}
     CGPDFString: {}
     CGShading:
+        extends: CFType
+    ColorSyncProfile:
         extends: CFType
 
 functions:
@@ -952,6 +956,14 @@ functions:
         return_type: String
         return_marshaler: StringMarshalers.AsUtf8ZMarshaler
 
+    CGConvertColorDataWithFormat:
+        class: CGColorDataFormat
+        name: convertColorData
+
+    CGErrorSetCallback:
+        class: CGErrorCode
+        name: setCallback
+
     (k?CG.*):
         class: CoreGraphics
         name: '#{g[0]}'
@@ -1097,7 +1109,7 @@ typed_enums:
         prefix: kCGPDFTagProperty
 
 constants:
-    (CGFLOAT_IS_DOUBLE|CGFLOAT_DEFINED|CGVECTOR_DEFINED|CGFLOAT_MIN|CGFLOAT_MAX|CG_HDR_BT_2100):
+    (CGFLOAT_EPSILON|CGFLOAT_IS_DOUBLE|CGFLOAT_DEFINED|CGVECTOR_DEFINED|CGFLOAT_MIN|CGFLOAT_MAX|CG_HDR_BT_2100):
         exclude: true
 
     # CGFont
