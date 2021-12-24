@@ -58,6 +58,9 @@ categories:
         properties:
             'animationEvents':
                 type: NSArray<SCNAnimationEvent>
+        methods:
+            '+animationWithSCNAnimation:':
+                name: createCAAnimation
 classes:
     SCNReferenceNode: #since 9.0
         methods:
@@ -861,6 +864,8 @@ protocols:
                 name: removeAnimation
             '-setSpeed:forAnimationKey:':
                 name: setSpeed
+            '-removeAllAnimationsWithBlendOutDuration:':
+                name: removeAllAnimations
     SCNBoundingVolume: # DONE
         methods:
             '-getBoundingBoxMin:max:':

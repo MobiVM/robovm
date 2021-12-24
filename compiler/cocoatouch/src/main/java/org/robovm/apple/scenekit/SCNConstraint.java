@@ -88,7 +88,7 @@ import org.robovm.apple.avfoundation.*;
     @Method(selector = "initWithCoder:")
     protected native @Pointer long init(NSCoder coder);
     @Method(selector = "addAnimation:forKey:")
-    public native void addAnimation(SCNAnimation animation, String key);
+    public native void addAnimation(SCNAnimationProtocol animation, String key);
     /**
      * @since Available in iOS 11.0 and later.
      */
@@ -96,18 +96,23 @@ import org.robovm.apple.avfoundation.*;
     public native void addAnimationPlayer(SCNAnimationPlayer player, String key);
     @Method(selector = "removeAllAnimations")
     public native void removeAllAnimations();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "removeAllAnimationsWithBlendOutDuration:")
+    public native void removeAllAnimations(@MachineSizedFloat double duration);
     @Method(selector = "removeAnimationForKey:")
     public native void removeAnimation(String key);
     /**
      * @since Available in iOS 11.0 and later.
      */
-    @Method(selector = "animationPlayerForKey:")
-    public native SCNAnimationPlayer animationPlayerForKey(String key);
+    @Method(selector = "removeAnimationForKey:blendOutDuration:")
+    public native void removeAnimationForKey(String key, @MachineSizedFloat double duration);
     /**
      * @since Available in iOS 11.0 and later.
      */
-    @Method(selector = "removeAnimationForKey:blendOutDuration:")
-    public native void removeAnimationForKey(String key, @MachineSizedFloat double duration);
+    @Method(selector = "animationPlayerForKey:")
+    public native SCNAnimationPlayer animationPlayerForKey(String key);
     /**
      * @deprecated Deprecated in iOS 11.0. Use -removeAnimationForKey:blendOutDuration:
      */
