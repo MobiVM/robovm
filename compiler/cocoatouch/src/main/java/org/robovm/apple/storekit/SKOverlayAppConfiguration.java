@@ -65,6 +65,26 @@ import org.robovm.apple.coregraphics.*;
     public native String getProviderToken();
     @Property(selector = "setProviderToken:")
     public native void setProviderToken(String v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "customProductPageIdentifier")
+    public native String getCustomProductPageIdentifier();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setCustomProductPageIdentifier:")
+    public native void setCustomProductPageIdentifier(String v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "latestReleaseID")
+    public native String getLatestReleaseID();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setLatestReleaseID:")
+    public native void setLatestReleaseID(String v);
     @Property(selector = "position")
     public native SKOverlayPosition getPosition();
     @Property(selector = "setPosition:")

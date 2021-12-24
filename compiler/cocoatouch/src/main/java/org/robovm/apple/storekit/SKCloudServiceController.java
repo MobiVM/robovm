@@ -107,6 +107,6 @@ import org.robovm.apple.coregraphics.*;
      * @since Available in iOS 9.3 and later.
      */
     @Method(selector = "requestAuthorization:")
-    public static native void requestAuthorization(@Block VoidBlock1<SKCloudServiceAuthorizationStatus> handler);
+    public static native void requestAuthorization(@Block VoidBlock1<SKCloudServiceAuthorizationStatus> completionHandler);
     /*</methods>*/
 }
