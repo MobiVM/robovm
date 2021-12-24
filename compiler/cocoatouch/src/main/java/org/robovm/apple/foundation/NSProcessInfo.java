@@ -145,9 +145,9 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "isOperatingSystemAtLeastVersion:")
     public native boolean isOperatingSystemAtLeastVersion(@ByVal NSOperatingSystemVersion version);
     @Method(selector = "beginActivityWithOptions:reason:")
-    public native NSObject beginActivity(NSActivityOptions options, String reason);
+    public native NSObjectProtocol beginActivity(NSActivityOptions options, String reason);
     @Method(selector = "endActivity:")
-    public native void endActivity(NSObject activity);
+    public native void endActivity(NSObjectProtocol activity);
     @Method(selector = "performActivityWithOptions:reason:usingBlock:")
     public native void performActivity(NSActivityOptions options, String reason, @Block Runnable block);
     /**

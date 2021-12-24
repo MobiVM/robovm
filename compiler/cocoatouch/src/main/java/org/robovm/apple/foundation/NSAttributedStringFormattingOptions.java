@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -42,38 +42,35 @@ import org.robovm.apple.dispatch.*;
 
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
-public final class /*<name>*/NSJSONReadingOptions/*</name>*/ extends Bits</*<name>*/NSJSONReadingOptions/*</name>*/> {
+public final class /*<name>*/NSAttributedStringFormattingOptions/*</name>*/ extends Bits</*<name>*/NSAttributedStringFormattingOptions/*</name>*/> {
     /*<values>*/
-    public static final NSJSONReadingOptions None = new NSJSONReadingOptions(0L);
-    public static final NSJSONReadingOptions MutableContainers = new NSJSONReadingOptions(1L);
-    public static final NSJSONReadingOptions MutableLeaves = new NSJSONReadingOptions(2L);
-    public static final NSJSONReadingOptions FragmentsAllowed = new NSJSONReadingOptions(4L);
+    public static final NSAttributedStringFormattingOptions None = new NSAttributedStringFormattingOptions(0L);
     /**
      * @since Available in iOS 15.0 and later.
      */
-    public static final NSJSONReadingOptions JSON5Allowed = new NSJSONReadingOptions(8L);
+    public static final NSAttributedStringFormattingOptions InsertArgumentAttributesWithoutMerging = new NSAttributedStringFormattingOptions(1L);
     /**
      * @since Available in iOS 15.0 and later.
      */
-    public static final NSJSONReadingOptions TopLevelDictionaryAssumed = new NSJSONReadingOptions(16L);
-    /**
-     * @deprecated Use NSJSONReadingFragmentsAllowed
-     */
-    @Deprecated
-    public static final NSJSONReadingOptions AllowFragments = new NSJSONReadingOptions(4L);
+    public static final NSAttributedStringFormattingOptions ApplyReplacementIndexAttribute = new NSAttributedStringFormattingOptions(2L);
     /*</values>*/
 
-    private static final /*<name>*/NSJSONReadingOptions/*</name>*/[] values = _values(/*<name>*/NSJSONReadingOptions/*</name>*/.class);
+    /*<bind>*/
+    /*</bind>*/
+    /*<constants>*//*</constants>*/
+    /*<methods>*//*</methods>*/
 
-    public /*<name>*/NSJSONReadingOptions/*</name>*/(long value) { super(value); }
-    private /*<name>*/NSJSONReadingOptions/*</name>*/(long value, long mask) { super(value, mask); }
-    protected /*<name>*/NSJSONReadingOptions/*</name>*/ wrap(long value, long mask) {
-        return new /*<name>*/NSJSONReadingOptions/*</name>*/(value, mask);
+    private static final /*<name>*/NSAttributedStringFormattingOptions/*</name>*/[] values = _values(/*<name>*/NSAttributedStringFormattingOptions/*</name>*/.class);
+
+    public /*<name>*/NSAttributedStringFormattingOptions/*</name>*/(long value) { super(value); }
+    private /*<name>*/NSAttributedStringFormattingOptions/*</name>*/(long value, long mask) { super(value, mask); }
+    protected /*<name>*/NSAttributedStringFormattingOptions/*</name>*/ wrap(long value, long mask) {
+        return new /*<name>*/NSAttributedStringFormattingOptions/*</name>*/(value, mask);
     }
-    protected /*<name>*/NSJSONReadingOptions/*</name>*/[] _values() {
+    protected /*<name>*/NSAttributedStringFormattingOptions/*</name>*/[] _values() {
         return values;
     }
-    public static /*<name>*/NSJSONReadingOptions/*</name>*/[] values() {
+    public static /*<name>*/NSAttributedStringFormattingOptions/*</name>*/[] values() {
         return values.clone();
     }
 }

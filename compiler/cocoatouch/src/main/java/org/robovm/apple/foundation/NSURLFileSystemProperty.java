@@ -171,7 +171,7 @@ import org.robovm.apple.dispatch.*;
      */
     public static final NSURLFileSystemProperty IsSparse = new NSURLFileSystemProperty("IsSparse");
     /**
-     * @deprecated Use the QuickLookThumbnailing framework and extension point instead
+     * @deprecated Deprecated in iOS 15.0. Use the QuickLookThumbnailing framework and extension point instead
      */
     @Deprecated
     public static final NSURLFileSystemProperty ThumbnailDictionary = new NSURLFileSystemProperty("ThumbnailDictionary");
@@ -327,7 +327,7 @@ import org.robovm.apple.dispatch.*;
         @GlobalValue(symbol="NSURLIsSparseKey", optional=true)
         public static native NSString IsSparse();
         /**
-         * @deprecated Use the QuickLookThumbnailing framework and extension point instead
+         * @deprecated Deprecated in iOS 15.0. Use the QuickLookThumbnailing framework and extension point instead
          */
         @Deprecated
         @GlobalValue(symbol="NSURLThumbnailDictionaryKey", optional=true)
