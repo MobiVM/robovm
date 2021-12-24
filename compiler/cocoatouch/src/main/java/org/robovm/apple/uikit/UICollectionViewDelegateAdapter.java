@@ -122,10 +122,22 @@ import org.robovm.apple.linkpresentation.*;
     @NotImplemented("indexPathForPreferredFocusedViewInCollectionView:")
     public NSIndexPath getIndexPathForPreferredFocusedView(UICollectionView collectionView) { return null; }
     /**
-     * @since Available in iOS 9.0 and later.
+     * @since Available in iOS 15.0 and later.
      */
+    @NotImplemented("collectionView:selectionFollowsFocusForItemAtIndexPath:")
+    public boolean isSelectionFollowsFocus(UICollectionView collectionView, NSIndexPath indexPath) { return false; }
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @NotImplemented("collectionView:targetIndexPathForMoveOfItemFromOriginalIndexPath:atCurrentIndexPath:toProposedIndexPath:")
+    public NSIndexPath getTargetIndexPathForMoveOfItemFromOriginalIndexPath(UICollectionView collectionView, NSIndexPath originalIndexPath, NSIndexPath currentIndexPath, NSIndexPath proposedIndexPath) { return null; }
+    /**
+     * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 15.0. Use collectionView:targetIndexPathForMoveOfItemFromOriginalIndexPath:atCurrentIndexPath:toProposedIndexPath:
+     */
+    @Deprecated
     @NotImplemented("collectionView:targetIndexPathForMoveFromItemAtIndexPath:toProposedIndexPath:")
-    public NSIndexPath getTargetIndexPathForMoveFromItem(UICollectionView collectionView, NSIndexPath originalIndexPath, NSIndexPath proposedIndexPath) { return null; }
+    public NSIndexPath getTargetIndexPathForMoveFromItem(UICollectionView collectionView, NSIndexPath currentIndexPath, NSIndexPath proposedIndexPath) { return null; }
     /**
      * @since Available in iOS 9.0 and later.
      */
@@ -186,5 +198,10 @@ import org.robovm.apple.linkpresentation.*;
      */
     @NotImplemented("collectionView:willEndContextMenuInteractionWithConfiguration:animator:")
     public void willEndContextMenuInteraction(UICollectionView collectionView, UIContextMenuConfiguration configuration, UIContextMenuInteractionAnimating animator) {}
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @NotImplemented("collectionView:sceneActivationConfigurationForItemAtIndexPath:point:")
+    public UIWindowSceneActivationConfiguration getSceneActivationConfiguration(UICollectionView collectionView, NSIndexPath indexPath, @ByVal CGPoint point) { return null; }
     /*</methods>*/
 }

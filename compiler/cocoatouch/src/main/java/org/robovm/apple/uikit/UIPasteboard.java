@@ -248,6 +248,46 @@ import org.robovm.apple.linkpresentation.*;
          */
         @GlobalValue(symbol="UIPasteboardDetectionPatternNumber", optional=true)
         public static native NSString Number();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="UIPasteboardDetectionPatternLink", optional=true)
+        public static native NSString Link();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="UIPasteboardDetectionPatternPhoneNumber", optional=true)
+        public static native NSString PhoneNumber();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="UIPasteboardDetectionPatternEmailAddress", optional=true)
+        public static native NSString EmailAddress();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="UIPasteboardDetectionPatternPostalAddress", optional=true)
+        public static native NSString PostalAddress();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="UIPasteboardDetectionPatternCalendarEvent", optional=true)
+        public static native NSString CalendarEvent();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="UIPasteboardDetectionPatternShipmentTrackingNumber", optional=true)
+        public static native NSString ShipmentTrackingNumber();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="UIPasteboardDetectionPatternFlightNumber", optional=true)
+        public static native NSString FlightNumber();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="UIPasteboardDetectionPatternMoneyAmount", optional=true)
+        public static native NSString MoneyAmount();
     }
     
     /**

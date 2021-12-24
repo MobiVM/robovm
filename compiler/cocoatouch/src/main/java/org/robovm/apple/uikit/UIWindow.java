@@ -179,6 +179,11 @@ import org.robovm.apple.linkpresentation.*;
     public native void setWindowLevel(@MachineSizedFloat double v);
     @Property(selector = "isKeyWindow")
     public native boolean isKeyWindow();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "canBecomeKeyWindow")
+    public native boolean canBecomeKeyWindow();
     @Property(selector = "rootViewController")
     public native UIViewController getRootViewController();
     @Property(selector = "setRootViewController:")

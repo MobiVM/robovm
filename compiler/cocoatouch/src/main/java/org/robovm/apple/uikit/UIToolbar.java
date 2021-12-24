@@ -102,6 +102,26 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Property(selector = "setCompactAppearance:")
     public native void setCompactAppearance(UIToolbarAppearance v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "scrollEdgeAppearance")
+    public native UIToolbarAppearance getScrollEdgeAppearance();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setScrollEdgeAppearance:")
+    public native void setScrollEdgeAppearance(UIToolbarAppearance v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "compactScrollEdgeAppearance")
+    public native UIToolbarAppearance getCompactScrollEdgeAppearance();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setCompactScrollEdgeAppearance:")
+    public native void setCompactScrollEdgeAppearance(UIToolbarAppearance v);
     @Property(selector = "delegate")
     public native UIToolbarDelegate getDelegate();
     @Property(selector = "setDelegate:", strongRef = true)

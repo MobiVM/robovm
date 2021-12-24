@@ -64,6 +64,11 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Method(selector = "adaptivePresentationStyleForPresentationController:traitCollection:")
     UIModalPresentationStyle getAdaptivePresentationStyle(UIPresentationController controller, UITraitCollection traitCollection);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "presentationController:prepareAdaptivePresentationController:")
+    void prepareAdaptivePresentationController(UIPresentationController presentationController, UIPresentationController adaptivePresentationController);
     @Method(selector = "presentationController:viewControllerForAdaptivePresentationStyle:")
     UIViewController getViewController(UIPresentationController controller, UIModalPresentationStyle style);
     /**

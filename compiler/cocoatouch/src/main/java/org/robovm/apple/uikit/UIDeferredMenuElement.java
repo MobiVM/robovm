@@ -58,7 +58,6 @@ import org.robovm.apple.linkpresentation.*;
     protected UIDeferredMenuElement() {}
     protected UIDeferredMenuElement(Handle h, long handle) { super(h, handle); }
     protected UIDeferredMenuElement(SkipInit skipInit) { super(skipInit); }
-    public UIDeferredMenuElement(@Block("(@Block)") VoidBlock1<VoidBlock1<NSArray<UIMenuElement>>> elementProvider) { super((Handle) null, create(elementProvider)); retain(getHandle()); }
     @Method(selector = "initWithCoder:")
     public UIDeferredMenuElement(NSCoder coder) { super(coder); }
     /*</constructors>*/
@@ -69,6 +68,11 @@ import org.robovm.apple.linkpresentation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "elementWithProvider:")
-    protected static native @Pointer long create(@Block("(@Block)") VoidBlock1<VoidBlock1<NSArray<UIMenuElement>>> elementProvider);
+    public static native UIDeferredMenuElement elementWithProvider(@Block("(@Block)") VoidBlock1<VoidBlock1<NSArray<UIMenuElement>>> elementProvider);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "elementWithUncachedProvider:")
+    public static native UIDeferredMenuElement elementWithUncachedProvider(@Block("(@Block)") VoidBlock1<VoidBlock1<NSArray<UIMenuElement>>> elementProvider);
     /*</methods>*/
 }

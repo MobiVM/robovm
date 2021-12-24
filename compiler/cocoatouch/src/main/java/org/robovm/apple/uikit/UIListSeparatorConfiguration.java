@@ -88,6 +88,16 @@ import org.robovm.apple.linkpresentation.*;
     public native UIColor getMultipleSelectionColor();
     @Property(selector = "setMultipleSelectionColor:")
     public native void setMultipleSelectionColor(UIColor v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "visualEffect")
+    public native UIVisualEffect getVisualEffect();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setVisualEffect:")
+    public native void setVisualEffect(UIVisualEffect v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

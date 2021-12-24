@@ -415,6 +415,26 @@ import org.robovm.apple.linkpresentation.*;
     @Method(selector = "imageWithTintColor:renderingMode:")
     public native UIImage imageWithTintColor(UIColor color, UIImageRenderingMode renderingMode);
     /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "imageByPreparingForDisplay")
+    public native UIImage imageByPreparingForDisplay();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "prepareForDisplayWithCompletionHandler:")
+    public native void prepareForDisplay(@Block VoidBlock1<UIImage> completionHandler);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "imageByPreparingThumbnailOfSize:")
+    public native UIImage imageByPreparingThumbnailOfSize(@ByVal CGSize size);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "prepareThumbnailOfSize:completionHandler:")
+    public native void prepareThumbnail(@ByVal CGSize size, @Block VoidBlock1<UIImage> completionHandler);
+    /**
      * @since Available in iOS 13.0 and later.
      */
     @Method(selector = "systemImageNamed:")

@@ -118,6 +118,16 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Property(selector = "datePickerStyle")
     public native UIDatePickerStyle getDatePickerStyle();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "roundsToMinuteInterval")
+    public native boolean isRoundsToMinuteInterval();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setRoundsToMinuteInterval:")
+    public native void setRoundsToMinuteInterval(boolean v);
     @WeaklyLinked
     @Property(selector = "layerClass")
     public static native Class<? extends CALayer> getLayerClass();

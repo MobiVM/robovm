@@ -108,6 +108,11 @@ import org.robovm.apple.linkpresentation.*;
     public native Class<? extends UIPopoverBackgroundView> getPopoverBackgroundViewClass();
     @Property(selector = "setPopoverBackgroundViewClass:")
     public native void setPopoverBackgroundViewClass(Class<? extends UIPopoverBackgroundView> v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "adaptiveSheetPresentationController")
+    public native UISheetPresentationController getAdaptiveSheetPresentationController();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

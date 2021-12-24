@@ -164,17 +164,23 @@ import org.robovm.apple.linkpresentation.*;
     public native double getCalibratedLatency();
     /**
      * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 15.0. Use -[UIWindowScene focusSystem].focusedItem instead
      */
+    @Deprecated
     @Property(selector = "focusedItem")
     public native UIFocusItem getFocusedItem();
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 15.0. Use -[UIWindowScene focusSystem].focusedItem instead
      */
+    @Deprecated
     @Property(selector = "focusedView")
     public native UIView getFocusedView();
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 15.0. Use -[UIWindowScene focusSystem] != nil instead
      */
+    @Deprecated
     @Property(selector = "supportsFocus")
     public native boolean supportsFocus();
     /**

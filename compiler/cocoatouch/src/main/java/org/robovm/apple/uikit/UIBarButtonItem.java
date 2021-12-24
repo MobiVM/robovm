@@ -221,6 +221,26 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Property(selector = "setMenu:")
     public native void setMenu(UIMenu v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "changesSelectionAsPrimaryAction")
+    public native boolean isChangesSelectionAsPrimaryAction();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setChangesSelectionAsPrimaryAction:")
+    public native void setChangesSelectionAsPrimaryAction(boolean v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "isSelected")
+    public native boolean isSelected();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setSelected:")
+    public native void setSelected(boolean v);
     @Property(selector = "tintColor")
     public native UIColor getTintColor();
     @Property(selector = "setTintColor:")

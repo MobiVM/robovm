@@ -95,6 +95,16 @@ import org.robovm.apple.linkpresentation.*;
     @Property(selector = "setPrefetchDataSource:", strongRef = true)
     public native void setPrefetchDataSource(UITableViewDataSourcePrefetching v);
     /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "isPrefetchingEnabled")
+    public native boolean isPrefetchingEnabled();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setPrefetchingEnabled:")
+    public native void setPrefetchingEnabled(boolean v);
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @Property(selector = "dragDelegate")
@@ -138,6 +148,26 @@ import org.robovm.apple.linkpresentation.*;
     public native @MachineSizedFloat double getEstimatedSectionFooterHeight();
     @Property(selector = "setEstimatedSectionFooterHeight:")
     public native void setEstimatedSectionFooterHeight(@MachineSizedFloat double v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "fillerRowHeight")
+    public native @MachineSizedFloat double getFillerRowHeight();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setFillerRowHeight:")
+    public native void setFillerRowHeight(@MachineSizedFloat double v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "sectionHeaderTopPadding")
+    public native @MachineSizedFloat double getSectionHeaderTopPadding();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setSectionHeaderTopPadding:")
+    public native void setSectionHeaderTopPadding(@MachineSizedFloat double v);
     @Property(selector = "separatorInset")
     public native @ByVal UIEdgeInsets getSeparatorInset();
     @Property(selector = "setSeparatorInset:")
@@ -156,6 +186,11 @@ import org.robovm.apple.linkpresentation.*;
     public native UIView getBackgroundView();
     @Property(selector = "setBackgroundView:")
     public native void setBackgroundView(UIView v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "contextMenuInteraction")
+    public native UIContextMenuInteraction getContextMenuInteraction();
     @Property(selector = "numberOfSections")
     public native @MachineSizedSInt long getNumberOfSections();
     @Property(selector = "visibleCells")
@@ -268,6 +303,26 @@ import org.robovm.apple.linkpresentation.*;
     @Property(selector = "setSelectionFollowsFocus:")
     public native void setSelectionFollowsFocus(boolean v);
     /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "allowsFocus")
+    public native boolean allowsFocus();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setAllowsFocus:")
+    public native void setAllowsFocus(boolean v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "allowsFocusDuringEditing")
+    public native boolean allowsFocusDuringEditing();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setAllowsFocusDuringEditing:")
+    public native void setAllowsFocusDuringEditing(boolean v);
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @Property(selector = "dragInteractionEnabled")
@@ -372,18 +427,23 @@ import org.robovm.apple.linkpresentation.*;
     public native void insertSections(NSIndexSet sections, UITableViewRowAnimation animation);
     @Method(selector = "deleteSections:withRowAnimation:")
     public native void deleteSections(NSIndexSet sections, UITableViewRowAnimation animation);
-    @Method(selector = "reloadSections:withRowAnimation:")
-    public native void reloadSections(NSIndexSet sections, UITableViewRowAnimation animation);
     @Method(selector = "moveSection:toSection:")
     public native void moveSection(@MachineSizedSInt long section, @MachineSizedSInt long newSection);
+    @Method(selector = "reloadSections:withRowAnimation:")
+    public native void reloadSections(NSIndexSet sections, UITableViewRowAnimation animation);
     @Method(selector = "insertRowsAtIndexPaths:withRowAnimation:")
     public native void insertRows(NSArray<NSIndexPath> indexPaths, UITableViewRowAnimation animation);
     @Method(selector = "deleteRowsAtIndexPaths:withRowAnimation:")
     public native void deleteRows(NSArray<NSIndexPath> indexPaths, UITableViewRowAnimation animation);
-    @Method(selector = "reloadRowsAtIndexPaths:withRowAnimation:")
-    public native void reloadRows(NSArray<NSIndexPath> indexPaths, UITableViewRowAnimation animation);
     @Method(selector = "moveRowAtIndexPath:toIndexPath:")
     public native void moveRow(NSIndexPath indexPath, NSIndexPath newIndexPath);
+    @Method(selector = "reloadRowsAtIndexPaths:withRowAnimation:")
+    public native void reloadRows(NSArray<NSIndexPath> indexPaths, UITableViewRowAnimation animation);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "reconfigureRowsAtIndexPaths:")
+    public native void reconfigureRowsAtIndexPaths(NSArray<NSIndexPath> indexPaths);
     @Method(selector = "reloadData")
     public native void reloadData();
     @Method(selector = "reloadSectionIndexTitles")

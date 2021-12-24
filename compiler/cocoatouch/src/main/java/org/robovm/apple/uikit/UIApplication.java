@@ -252,6 +252,10 @@ import org.robovm.apple.linkpresentation.*;
     @Deprecated
     @Property(selector = "keyWindow")
     public native UIWindow getKeyWindow();
+    /**
+     * @deprecated Deprecated in iOS 15.0. Use UIWindowScene.windows on a relevant window scene instead
+     */
+    @Deprecated
     @Property(selector = "windows")
     public native NSArray<UIWindow> getWindows();
     /**

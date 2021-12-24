@@ -62,7 +62,16 @@ import org.robovm.apple.linkpresentation.*;
     public UIPointerStyle(UIPointerShape shape, UIAxis axes) { super((Handle) null, create(shape, axes)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
-    
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "accessories")
+    public native NSArray<UIPointerAccessory> getAccessories();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setAccessories:")
+    public native void setAccessories(NSArray<UIPointerAccessory> v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -72,5 +81,10 @@ import org.robovm.apple.linkpresentation.*;
     protected static native @Pointer long create(UIPointerShape shape, UIAxis axes);
     @Method(selector = "hiddenPointerStyle")
     public static native UIPointerStyle hiddenPointerStyle();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "systemPointerStyle")
+    public static native UIPointerStyle systemPointerStyle();
     /*</methods>*/
 }

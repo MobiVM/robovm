@@ -77,6 +77,26 @@ import org.robovm.apple.linkpresentation.*;
     public native void applySnapshot(NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType> snapshot, boolean animatingDifferences);
     @Method(selector = "applySnapshot:animatingDifferences:completion:")
     public native void applySnapshot(NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType> snapshot, boolean animatingDifferences, @Block Runnable completion);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "applySnapshotUsingReloadData:")
+    public native void applySnapshotUsingReloadData(NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType> snapshot);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "applySnapshotUsingReloadData:completion:")
+    public native void applySnapshot(NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType> snapshot, @Block Runnable completion);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "sectionIdentifierForIndex:")
+    public native SectionIdentifierType sectionIdentifierForIndex(@MachineSizedSInt long index);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "indexForSectionIdentifier:")
+    public native @MachineSizedSInt long indexForSectionIdentifier(SectionIdentifierType identifier);
     @Method(selector = "itemIdentifierForIndexPath:")
     public native ItemIdentifierType itemIdentifierForIndexPath(NSIndexPath indexPath);
     @Method(selector = "indexPathForItemIdentifier:")

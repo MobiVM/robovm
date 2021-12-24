@@ -298,6 +298,16 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     @WeaklyLinked
     @Property(selector = "layerClass")
     public static native Class<? extends CALayer> getLayerClass();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "interactionState")
+    public native NSObject getInteractionState();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setInteractionState:")
+    public native void setInteractionState(NSObject v);
     @Property(selector = "selectedTextRange")
     public native UITextRange getSelectedTextRange();
     @Property(selector = "setSelectedTextRange:")
@@ -438,10 +448,6 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     public native UITextPasteDelegate getPasteDelegate();
     @Property(selector = "setPasteDelegate:", strongRef = true)
     public native void setPasteDelegate(UITextPasteDelegate v);
-    @Property(selector = "pasteConfiguration")
-    public native UIPasteConfiguration getPasteConfiguration();
-    @Property(selector = "setPasteConfiguration:")
-    public native void setPasteConfiguration(UIPasteConfiguration v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -551,9 +557,5 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     public native void insertText(String text);
     @Method(selector = "deleteBackward")
     public native void deleteBackward();
-    @Method(selector = "pasteItemProviders:")
-    public native void pasteItemProviders(NSArray<NSItemProvider> itemProviders);
-    @Method(selector = "canPasteItemProviders:")
-    public native boolean canPasteItemProviders(NSArray<NSItemProvider> itemProviders);
     /*</methods>*/
 }

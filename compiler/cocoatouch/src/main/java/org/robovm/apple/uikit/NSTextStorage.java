@@ -96,6 +96,16 @@ import org.robovm.apple.linkpresentation.*;
     public native void setDelegate(NSTextStorageDelegate v);
     @Property(selector = "fixesAttributesLazily")
     public native boolean fixesAttributesLazily();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "textStorageObserver")
+    public native NSTextStorageObserving getTextStorageObserver();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setTextStorageObserver:", strongRef = true)
+    public native void setTextStorageObserver(NSTextStorageObserving v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

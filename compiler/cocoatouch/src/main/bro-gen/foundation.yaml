@@ -4466,12 +4466,12 @@ protocols:
             '-initWithCoder:':
                 name: init
                 parameters:
-                    aDecoder:
-                        name: decoder
+                    0:
+                        name: coder
             '-encodeWithCoder:':
                 name: encode
                 parameters:
-                    aCoder:
+                    0:
                         name: coder
     NSDecimalNumberBehaviors: # DONE
         methods:
@@ -4891,8 +4891,8 @@ protocols:
             '-URLSession:webSocketTask:didCloseWithCode:reason:':
                 name: didClose
     NSDiscardableContent: {}
-    NSCopying: {exclude: true, skip_implements: true}
-    NSMutableCopying: {exclude: true, skip_implements: true}
+    NSCopying: {exclude: true, skip_implements: true, skip_methods: true}
+    NSMutableCopying: {exclude: true, skip_implements: true, skip_methods: true}
 functions:
     NSAllocateObject:
         exclude: true

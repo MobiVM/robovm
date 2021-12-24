@@ -47,7 +47,7 @@ import org.robovm.apple.linkpresentation.*;
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIResponder/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements UIAccessibility/*</implements>*/ {
+    /*<implements>*/implements UIResponderStandardEditActions, UIUserActivityRestoring, UIPasteConfigurationSupporting, UIActivityItemsConfigurationProviding/*</implements>*/ {
 
     /*<ptr>*/public static class UIResponderPtr extends Ptr<UIResponder, UIResponderPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(UIResponder.class); }/*</bind>*/
@@ -107,128 +107,10 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Property(selector = "setActivityItemsConfiguration:")
     public native void setActivityItemsConfiguration(UIActivityItemsConfigurationReading v);
-    @Property(selector = "isAccessibilityElement")
-    public native boolean isAccessibilityElement();
-    @Property(selector = "setIsAccessibilityElement:")
-    public native void setAccessibilityElement(boolean v);
-    @Property(selector = "accessibilityLabel")
-    public native String getAccessibilityLabel();
-    @Property(selector = "setAccessibilityLabel:")
-    public native void setAccessibilityLabel(String v);
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
-    @Property(selector = "accessibilityAttributedLabel")
-    public native NSAttributedString getAccessibilityAttributedLabel();
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
-    @Property(selector = "setAccessibilityAttributedLabel:")
-    public native void setAccessibilityAttributedLabel(NSAttributedString v);
-    @Property(selector = "accessibilityHint")
-    public native String getAccessibilityHint();
-    @Property(selector = "setAccessibilityHint:")
-    public native void setAccessibilityHint(String v);
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
-    @Property(selector = "accessibilityAttributedHint")
-    public native NSAttributedString getAccessibilityAttributedHint();
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
-    @Property(selector = "setAccessibilityAttributedHint:")
-    public native void setAccessibilityAttributedHint(NSAttributedString v);
-    @Property(selector = "accessibilityValue")
-    public native String getAccessibilityValue();
-    @Property(selector = "setAccessibilityValue:")
-    public native void setAccessibilityValue(String v);
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
-    @Property(selector = "accessibilityAttributedValue")
-    public native NSAttributedString getAccessibilityAttributedValue();
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
-    @Property(selector = "setAccessibilityAttributedValue:")
-    public native void setAccessibilityAttributedValue(NSAttributedString v);
-    @Property(selector = "accessibilityTraits")
-    public native UIAccessibilityTraits getAccessibilityTraits();
-    @Property(selector = "setAccessibilityTraits:")
-    public native void setAccessibilityTraits(UIAccessibilityTraits v);
-    @Property(selector = "accessibilityFrame")
-    public native @ByVal CGRect getAccessibilityFrame();
-    @Property(selector = "setAccessibilityFrame:")
-    public native void setAccessibilityFrame(@ByVal CGRect v);
-    @Property(selector = "accessibilityPath")
-    public native UIBezierPath getAccessibilityPath();
-    @Property(selector = "setAccessibilityPath:")
-    public native void setAccessibilityPath(UIBezierPath v);
-    @Property(selector = "accessibilityActivationPoint")
-    public native @ByVal CGPoint getAccessibilityActivationPoint();
-    @Property(selector = "setAccessibilityActivationPoint:")
-    public native void setAccessibilityActivationPoint(@ByVal CGPoint v);
-    @Property(selector = "accessibilityLanguage")
-    public native String getAccessibilityLanguage();
-    @Property(selector = "setAccessibilityLanguage:")
-    public native void setAccessibilityLanguage(String v);
-    @Property(selector = "accessibilityElementsHidden")
-    public native boolean areAccessibilityElementsHidden();
-    @Property(selector = "setAccessibilityElementsHidden:")
-    public native void setAccessibilityElementsHidden(boolean v);
-    @Property(selector = "accessibilityViewIsModal")
-    public native boolean isAccessibilityViewModal();
-    @Property(selector = "setAccessibilityViewIsModal:")
-    public native void setAccessibilityViewModal(boolean v);
-    @Property(selector = "shouldGroupAccessibilityChildren")
-    public native boolean shouldGroupAccessibilityChildren();
-    @Property(selector = "setShouldGroupAccessibilityChildren:")
-    public native void setShouldGroupAccessibilityChildren(boolean v);
-    @Property(selector = "accessibilityNavigationStyle")
-    public native UIAccessibilityNavigationStyle getAccessibilityNavigationStyle();
-    @Property(selector = "setAccessibilityNavigationStyle:")
-    public native void setAccessibilityNavigationStyle(UIAccessibilityNavigationStyle v);
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @Property(selector = "accessibilityRespondsToUserInteraction")
-    public native boolean isAccessibilityRespondsToUserInteraction();
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @Property(selector = "setAccessibilityRespondsToUserInteraction:")
-    public native void setAccessibilityRespondsToUserInteraction(boolean v);
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @Property(selector = "accessibilityUserInputLabels")
-    public native NSArray<NSString> getAccessibilityUserInputLabels();
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @Property(selector = "setAccessibilityUserInputLabels:")
-    public native void setAccessibilityUserInputLabels(NSArray<NSString> v);
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @Property(selector = "accessibilityAttributedUserInputLabels")
-    public native NSArray<NSAttributedString> getAccessibilityAttributedUserInputLabels();
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @Property(selector = "setAccessibilityAttributedUserInputLabels:")
-    public native void setAccessibilityAttributedUserInputLabels(NSArray<NSAttributedString> v);
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @Property(selector = "accessibilityTextualContext")
-    public native String getAccessibilityTextualContext();
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @Property(selector = "setAccessibilityTextualContext:")
-    public native void setAccessibilityTextualContext(String v);
+    @Property(selector = "pasteConfiguration")
+    public native UIPasteConfiguration getPasteConfiguration();
+    @Property(selector = "setPasteConfiguration:")
+    public native void setPasteConfiguration(UIPasteConfiguration v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -299,5 +181,65 @@ import org.robovm.apple.linkpresentation.*;
     public native void updateUserActivityState(NSUserActivity activity);
     @Method(selector = "restoreUserActivityState:")
     public native void restoreUserActivityState(NSUserActivity activity);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "captureTextFromCamera:")
+    public native void captureTextFromCamera(NSObject sender);
+    @Method(selector = "cut:")
+    public native void cut(NSObject sender);
+    @Method(selector = "copy:")
+    public native void copy(NSObject sender);
+    @Method(selector = "paste:")
+    public native void paste(NSObject sender);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "pasteAndMatchStyle:")
+    public native void pasteAndMatchStyle(NSObject sender);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "pasteAndGo:")
+    public native void pasteAndGo(NSObject sender);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "pasteAndSearch:")
+    public native void pasteAndSearch(NSObject sender);
+    @Method(selector = "select:")
+    public native void select(NSObject sender);
+    @Method(selector = "selectAll:")
+    public native void selectAll(NSObject sender);
+    @Method(selector = "delete:")
+    public native void delete(NSObject sender);
+    @Method(selector = "makeTextWritingDirectionLeftToRight:")
+    public native void makeTextWritingDirectionLeftToRight(NSObject sender);
+    @Method(selector = "makeTextWritingDirectionRightToLeft:")
+    public native void makeTextWritingDirectionRightToLeft(NSObject sender);
+    @Method(selector = "toggleBoldface:")
+    public native void toggleBoldface(NSObject sender);
+    @Method(selector = "toggleItalics:")
+    public native void toggleItalics(NSObject sender);
+    @Method(selector = "toggleUnderline:")
+    public native void toggleUnderline(NSObject sender);
+    @Method(selector = "increaseSize:")
+    public native void increaseSize(NSObject sender);
+    @Method(selector = "decreaseSize:")
+    public native void decreaseSize(NSObject sender);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "updateTextAttributesWithConversionHandler:")
+    public native void updateTextAttributes(@Block Block1<NSDictionary<NSString, ?>, NSDictionary<NSString, ?>> conversionHandler);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "print:")
+    public native void print(NSObject sender);
+    @Method(selector = "pasteItemProviders:")
+    public native void pasteItemProviders(NSArray<NSItemProvider> itemProviders);
+    @Method(selector = "canPasteItemProviders:")
+    public native boolean canPasteItemProviders(NSArray<NSItemProvider> itemProviders);
     /*</methods>*/
 }

@@ -62,7 +62,7 @@ import org.robovm.apple.linkpresentation.*;
      * @since Available in iOS 14.0 and later.
      */
     public UIAction(@Block VoidBlock1<UIAction> handler) { super((Handle) null, create(handler)); retain(getHandle()); }
-    public UIAction(String title, UIImage image, String identifier, @Block VoidBlock1<UIAction> handler) { super((Handle) null, create(title, image, identifier, handler)); retain(getHandle()); }
+    public UIAction(String title, UIImage image, UIActionIdentifier identifier, @Block VoidBlock1<UIAction> handler) { super((Handle) null, create(title, image, identifier, handler)); retain(getHandle()); }
     @Method(selector = "initWithCoder:")
     public UIAction(NSCoder coder) { super(coder); }
     /*</constructors>*/
@@ -80,7 +80,7 @@ import org.robovm.apple.linkpresentation.*;
     @Property(selector = "setDiscoverabilityTitle:")
     public native void setDiscoverabilityTitle(String v);
     @Property(selector = "identifier")
-    public native String getIdentifier();
+    public native UIActionIdentifier getIdentifier();
     @Property(selector = "attributes")
     public native UIMenuElementAttributes getAttributes();
     @Property(selector = "setAttributes:")
@@ -105,6 +105,11 @@ import org.robovm.apple.linkpresentation.*;
     @Method(selector = "actionWithHandler:")
     protected static native @Pointer long create(@Block VoidBlock1<UIAction> handler);
     @Method(selector = "actionWithTitle:image:identifier:handler:")
-    protected static native @Pointer long create(String title, UIImage image, String identifier, @Block VoidBlock1<UIAction> handler);
+    protected static native @Pointer long create(String title, UIImage image, UIActionIdentifier identifier, @Block VoidBlock1<UIAction> handler);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "captureTextFromCameraActionForResponder:identifier:")
+    public static native UIAction captureTextFromCameraActionForResponder(UIResponder responder, UIActionIdentifier identifier);
     /*</methods>*/
 }

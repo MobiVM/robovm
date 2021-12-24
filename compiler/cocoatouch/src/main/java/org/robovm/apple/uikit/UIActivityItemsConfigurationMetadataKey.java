@@ -106,9 +106,13 @@ import org.robovm.apple.linkpresentation.*;
      * @since Available in iOS 13.0 and later.
      */
     public static final UIActivityItemsConfigurationMetadataKey MessageBody = new UIActivityItemsConfigurationMetadataKey("MessageBody");
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    public static final UIActivityItemsConfigurationMetadataKey LinkPresentationMetadata = new UIActivityItemsConfigurationMetadataKey("LinkPresentationMetadata");
     /*</constants>*/
     
-    private static /*<name>*/UIActivityItemsConfigurationMetadataKey/*</name>*/[] values = new /*<name>*/UIActivityItemsConfigurationMetadataKey/*</name>*/[] {/*<value_list>*/Title, MessageBody/*</value_list>*/};
+    private static /*<name>*/UIActivityItemsConfigurationMetadataKey/*</name>*/[] values = new /*<name>*/UIActivityItemsConfigurationMetadataKey/*</name>*/[] {/*<value_list>*/Title, MessageBody, LinkPresentationMetadata/*</value_list>*/};
     
     /*<name>*/UIActivityItemsConfigurationMetadataKey/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -141,6 +145,11 @@ import org.robovm.apple.linkpresentation.*;
          */
         @GlobalValue(symbol="UIActivityItemsConfigurationMetadataKeyMessageBody", optional=true)
         public static native NSString MessageBody();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="UIActivityItemsConfigurationMetadataKeyLinkPresentationMetadata", optional=true)
+        public static native NSString LinkPresentationMetadata();
         /*</values>*/
     }
 }

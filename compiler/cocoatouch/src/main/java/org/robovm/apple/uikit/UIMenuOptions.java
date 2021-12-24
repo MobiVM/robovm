@@ -52,6 +52,10 @@ public final class /*<name>*/UIMenuOptions/*</name>*/ extends Bits</*<name>*/UIM
     public static final UIMenuOptions None = new UIMenuOptions(0L);
     public static final UIMenuOptions DisplayInline = new UIMenuOptions(1L);
     public static final UIMenuOptions Destructive = new UIMenuOptions(2L);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    public static final UIMenuOptions SingleSelection = new UIMenuOptions(32L);
     /*</values>*/
 
     /*<bind>*/

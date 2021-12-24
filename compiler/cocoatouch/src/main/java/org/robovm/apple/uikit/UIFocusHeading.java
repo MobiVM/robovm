@@ -56,6 +56,14 @@ public final class /*<name>*/UIFocusHeading/*</name>*/ extends Bits</*<name>*/UI
     public static final UIFocusHeading Right = new UIFocusHeading(8L);
     public static final UIFocusHeading Next = new UIFocusHeading(16L);
     public static final UIFocusHeading Previous = new UIFocusHeading(32L);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final UIFocusHeading First = new UIFocusHeading(256L);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final UIFocusHeading Last = new UIFocusHeading(512L);
     /*</values>*/
 
     /*<bind>*/

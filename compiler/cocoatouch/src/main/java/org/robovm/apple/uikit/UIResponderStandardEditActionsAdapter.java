@@ -65,6 +65,21 @@ import org.robovm.apple.linkpresentation.*;
     public void copy(NSObject sender) {}
     @NotImplemented("paste:")
     public void paste(NSObject sender) {}
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @NotImplemented("pasteAndMatchStyle:")
+    public void pasteAndMatchStyle(NSObject sender) {}
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @NotImplemented("pasteAndGo:")
+    public void pasteAndGo(NSObject sender) {}
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @NotImplemented("pasteAndSearch:")
+    public void pasteAndSearch(NSObject sender) {}
     @NotImplemented("select:")
     public void select(NSObject sender) {}
     @NotImplemented("selectAll:")
@@ -90,5 +105,10 @@ import org.robovm.apple.linkpresentation.*;
      */
     @NotImplemented("updateTextAttributesWithConversionHandler:")
     public void updateTextAttributes(@Block Block1<NSDictionary<NSString, ?>, NSDictionary<NSString, ?>> conversionHandler) {}
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @NotImplemented("print:")
+    public void print(NSObject sender) {}
     /*</methods>*/
 }
