@@ -56,7 +56,7 @@ import org.robovm.apple.addressbook.*;
     @Method(selector = "initWithNibName:bundle:")
     public ABPeoplePickerNavigationController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
     @Method(selector = "initWithCoder:")
-    public ABPeoplePickerNavigationController(NSCoder decoder) { super(decoder); }
+    public ABPeoplePickerNavigationController(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "peoplePickerDelegate")
