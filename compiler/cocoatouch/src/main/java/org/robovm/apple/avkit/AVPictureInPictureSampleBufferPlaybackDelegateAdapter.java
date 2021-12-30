@@ -39,9 +39,9 @@ import org.robovm.apple.coreanimation.*;
 /*<javadoc>*/
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/AVRoutePickerViewDelegateAdapter/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/AVPictureInPictureSampleBufferPlaybackDelegateAdapter/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements AVRoutePickerViewDelegate/*</implements>*/ {
+    /*<implements>*/implements AVPictureInPictureSampleBufferPlaybackDelegate/*</implements>*/ {
 
     /*<ptr>*/
     /*</ptr>*/
@@ -54,9 +54,17 @@ import org.robovm.apple.coreanimation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @NotImplemented("routePickerViewWillBeginPresentingRoutes:")
-    public void willBeginPresentingRoutes(AVRoutePickerView routePickerView) {}
-    @NotImplemented("routePickerViewDidEndPresentingRoutes:")
-    public void didEndPresentingRoutes(AVRoutePickerView routePickerView) {}
+    @NotImplemented("pictureInPictureController:setPlaying:")
+    public void setPlaying(AVPictureInPictureController pictureInPictureController, boolean playing) {}
+    @NotImplemented("pictureInPictureControllerTimeRangeForPlayback:")
+    public @ByVal CMTimeRange pictureInPictureControllerTimeRangeForPlayback(AVPictureInPictureController pictureInPictureController) { return null; }
+    @NotImplemented("pictureInPictureControllerIsPlaybackPaused:")
+    public boolean pictureInPictureControllerIsPlaybackPaused(AVPictureInPictureController pictureInPictureController) { return false; }
+    @NotImplemented("pictureInPictureController:didTransitionToRenderSize:")
+    public void didTransitionToRenderSize(AVPictureInPictureController pictureInPictureController, @ByVal CMVideoDimensions newRenderSize) {}
+    @NotImplemented("pictureInPictureController:skipByInterval:completionHandler:")
+    public void skipByInterval(AVPictureInPictureController pictureInPictureController, @ByVal CMTime skipInterval, @Block Runnable completionHandler) {}
+    @NotImplemented("pictureInPictureControllerShouldProhibitBackgroundAudioPlayback:")
+    public boolean pictureInPictureControllerShouldProhibitBackgroundAudioPlayback(AVPictureInPictureController pictureInPictureController) { return false; }
     /*</methods>*/
 }

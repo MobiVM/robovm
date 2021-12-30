@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -37,34 +37,32 @@ import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
+/**
+ * @since Available in iOS 15.0 and later.
+ */
 /*</javadoc>*/
-/*<annotations>*/@Library("AVKit") @StronglyLinked/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/AVKitError/*</name>*/ 
-    extends /*<extends>*/NSError/*</extends>*/ 
+/*<annotations>*/@Library("AVKit") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/AVPictureInPictureVideoCallViewController/*</name>*/ 
+    extends /*<extends>*/UIViewController/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    protected AVKitError(SkipInit skipInit) {
-        super(skipInit);
-    }
-    
-    /*<ptr>*/public static class AVKitErrorPtr extends Ptr<AVKitError, AVKitErrorPtr> {}/*</ptr>*/
-    /*<bind>*/static { Bro.bind(AVKitError.class); }/*</bind>*/
+    /*<ptr>*/public static class AVPictureInPictureVideoCallViewControllerPtr extends Ptr<AVPictureInPictureVideoCallViewController, AVPictureInPictureVideoCallViewControllerPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(AVPictureInPictureVideoCallViewController.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<properties>*//*</properties>*/
+    /*<constructors>*/
+    public AVPictureInPictureVideoCallViewController() {}
+    protected AVPictureInPictureVideoCallViewController(Handle h, long handle) { super(h, handle); }
+    protected AVPictureInPictureVideoCallViewController(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithNibName:bundle:")
+    public AVPictureInPictureVideoCallViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
+    @Method(selector = "initWithCoder:")
+    public AVPictureInPictureVideoCallViewController(NSCoder coder) { super(coder); }
+    /*</constructors>*/
+    /*<properties>*/
+    
+    /*</properties>*/
     /*<members>*//*</members>*/
-    @Override
-    public AVKitErrorCode getErrorCode() {
-        try {
-            return AVKitErrorCode.valueOf(getCode());
-        } catch (IllegalArgumentException e) {
-            return null;
-        }
-    }
     /*<methods>*/
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
-    @GlobalValue(symbol="AVKitErrorDomain", optional=true)
-    public static native String getClassDomain();
+    
     /*</methods>*/
 }
