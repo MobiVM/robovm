@@ -55,8 +55,113 @@ import org.robovm.apple.audiotoolbox.*;
     /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @GlobalValue(symbol="AVAudioSessionSpatialAudioEnabledKey", optional=true)
+    public static native String Value__AVAudioSessionSpatialAudioEnabledKey();
     @GlobalValue(symbol="AVCoreAnimationBeginTimeAtZero", optional=true)
     public static native double CoreAnimationBeginTimeAtZero();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @GlobalValue(symbol="AVVideoRangeSDR", optional=true)
+    public static native String Value__AVVideoRangeSDR();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @GlobalValue(symbol="AVVideoRangeHLG", optional=true)
+    public static native String Value__AVVideoRangeHLG();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @GlobalValue(symbol="AVVideoRangePQ", optional=true)
+    public static native String Value__AVVideoRangePQ();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @GlobalValue(symbol="AVMovieShouldSupportAliasDataReferencesKey", optional=true)
+    public static native String Value__AVMovieShouldSupportAliasDataReferencesKey();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @GlobalValue(symbol="AVPlayerRateDidChangeReasonKey", optional=true)
+    public static native String Value__AVPlayerRateDidChangeReasonKey();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @GlobalValue(symbol="AVPlayerRateDidChangeOriginatingParticipantKey", optional=true)
+    public static native String Value__AVPlayerRateDidChangeOriginatingParticipantKey();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @GlobalValue(symbol="AVPlayerRateDidChangeReasonSetRateCalled", optional=true)
+    public static native String Value__AVPlayerRateDidChangeReasonSetRateCalled();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @GlobalValue(symbol="AVPlayerRateDidChangeReasonSetRateFailed", optional=true)
+    public static native String Value__AVPlayerRateDidChangeReasonSetRateFailed();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @GlobalValue(symbol="AVPlayerRateDidChangeReasonAudioSessionInterrupted", optional=true)
+    public static native String Value__AVPlayerRateDidChangeReasonAudioSessionInterrupted();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @GlobalValue(symbol="AVPlayerRateDidChangeReasonAppBackgrounded", optional=true)
+    public static native String Value__AVPlayerRateDidChangeReasonAppBackgrounded();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @GlobalValue(symbol="AVCoordinatedPlaybackSuspensionReasonAudioSessionInterrupted", optional=true)
+    public static native String Value__AVCoordinatedPlaybackSuspensionReasonAudioSessionInterrupted();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @GlobalValue(symbol="AVCoordinatedPlaybackSuspensionReasonStallRecovery", optional=true)
+    public static native String Value__AVCoordinatedPlaybackSuspensionReasonStallRecovery();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @GlobalValue(symbol="AVCoordinatedPlaybackSuspensionReasonPlayingInterstitial", optional=true)
+    public static native String Value__AVCoordinatedPlaybackSuspensionReasonPlayingInterstitial();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @GlobalValue(symbol="AVCoordinatedPlaybackSuspensionReasonCoordinatedPlaybackNotPossible", optional=true)
+    public static native String Value__AVCoordinatedPlaybackSuspensionReasonCoordinatedPlaybackNotPossible();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @GlobalValue(symbol="AVCoordinatedPlaybackSuspensionReasonUserActionRequired", optional=true)
+    public static native String Value__AVCoordinatedPlaybackSuspensionReasonUserActionRequired();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @GlobalValue(symbol="AVCoordinatedPlaybackSuspensionReasonUserIsChangingCurrentTime", optional=true)
+    public static native String Value__AVCoordinatedPlaybackSuspensionReasonUserIsChangingCurrentTime();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @GlobalValue(symbol="AVPlaybackCoordinatorOtherParticipantsDidChangeNotification", optional=true)
+    public static native String Value__AVPlaybackCoordinatorOtherParticipantsDidChangeNotification();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @GlobalValue(symbol="AVPlaybackCoordinatorSuspensionReasonsDidChangeNotification", optional=true)
+    public static native String Value__AVPlaybackCoordinatorSuspensionReasonsDidChangeNotification();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @GlobalValue(symbol="AVPlayerItemTimeJumpedOriginatingParticipantKey", optional=true)
+    public static native String Value__AVPlayerItemTimeJumpedOriginatingParticipantKey();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @GlobalValue(symbol="AVSampleBufferAudioRendererOutputConfigurationDidChangeNotification", optional=true)
+    public static native String Value__AVSampleBufferAudioRendererOutputConfigurationDidChangeNotification();
     
     @Bridge(symbol="AVMakeRectWithAspectRatioInsideRect", optional=true)
     public static native @ByVal CGRect createRectWithAspectRatioInsideRect(@ByVal CGSize aspectRatio, @ByVal CGRect boundingRect);

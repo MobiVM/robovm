@@ -63,14 +63,29 @@ import org.robovm.apple.audiotoolbox.*;
     public native @ByVal CMTime getCompositionTime();
     @Property(selector = "sourceTrackIDs")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getSourceTrackIDs();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "sourceSampleDataTrackIDs")
+    public native NSArray<NSNumber> getSourceSampleDataTrackIDs();
     @Property(selector = "videoCompositionInstruction")
-    public native AVVideoCompositionInstruction getVideoCompositionInstruction();
+    public native AVVideoCompositionInstructionProtocol getVideoCompositionInstruction();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @WeaklyLinked
     @Method(selector = "sourceFrameByTrackID:")
     public native CVPixelBuffer getSourceFrame(int trackID);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "sourceSampleBufferByTrackID:")
+    public native CMSampleBuffer sourceSampleBufferByTrackID(int trackID);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "sourceTimedMetadataByTrackID:")
+    public native AVTimedMetadataGroup sourceTimedMetadataByTrackID(int trackID);
     @WeaklyLinked
     @Method(selector = "finishWithComposedVideoFrame:")
     public native void finish(CVPixelBuffer composedVideoFrame);

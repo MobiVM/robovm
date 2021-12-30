@@ -63,8 +63,8 @@ import org.robovm.apple.audiotoolbox.*;
     @NotImplemented("videoComposition:shouldContinueValidatingAfterFindingEmptyTimeRange:")
     public boolean shouldContinueValidatingAfterFindingEmptyTimeRange(AVVideoComposition videoComposition, @ByVal CMTimeRange timeRange) { return false; }
     @NotImplemented("videoComposition:shouldContinueValidatingAfterFindingInvalidTimeRangeInInstruction:")
-    public boolean shouldContinueValidatingAfterFindingInvalidTimeRange(AVVideoComposition videoComposition, AVVideoCompositionInstruction videoCompositionInstruction) { return false; }
+    public boolean shouldContinueValidatingAfterFindingInvalidTimeRange(AVVideoComposition videoComposition, AVVideoCompositionInstructionProtocol videoCompositionInstruction) { return false; }
     @NotImplemented("videoComposition:shouldContinueValidatingAfterFindingInvalidTrackIDInInstruction:layerInstruction:asset:")
-    public boolean shouldContinueValidatingAfterFindingInvalidTrackID(AVVideoComposition videoComposition, AVVideoCompositionInstruction videoCompositionInstruction, AVVideoCompositionLayerInstruction layerInstruction, AVAsset asset) { return false; }
+    public boolean shouldContinueValidatingAfterFindingInvalidTrackID(AVVideoComposition videoComposition, AVVideoCompositionInstructionProtocol videoCompositionInstruction, AVVideoCompositionLayerInstruction layerInstruction, AVAsset asset) { return false; }
     /*</methods>*/
 }

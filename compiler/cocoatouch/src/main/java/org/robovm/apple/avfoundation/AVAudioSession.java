@@ -230,6 +230,11 @@ import org.robovm.apple.audiotoolbox.*;
     public native NSArray<AVAudioSessionPortDescription> getAvailableInputs();
     @Property(selector = "currentRoute")
     public native AVAudioSessionRouteDescription getCurrentRoute();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "supportsMultichannelContent")
+    public native boolean supportsMultichannelContent();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -243,6 +248,11 @@ import org.robovm.apple.audiotoolbox.*;
     public static native NSString MediaServicesWereResetNotification();
     @GlobalValue(symbol="AVAudioSessionSilenceSecondaryAudioHintNotification", optional=true)
     public static native NSString SilenceSecondaryAudioHintNotification();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @GlobalValue(symbol="AVAudioSessionSpatialPlaybackCapabilitiesChangedNotification", optional=true)
+    public static native NSString SpatialPlaybackCapabilitiesChangedNotification();
     @GlobalValue(symbol="AVAudioSessionSilenceSecondaryAudioHintTypeKey", optional=true)
     protected static native NSString SilenceSecondaryAudioHintTypeKey();
     
@@ -446,5 +456,19 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Method(selector = "setAggregatedIOPreference:error:")
     private native boolean setAggregatedIOPreference(AVAudioSessionIOType inIOType, NSError.NSErrorPtr outError);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    public boolean setSupportsMultichannelContent(boolean inValue) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       boolean result = setSupportsMultichannelContent(inValue, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "setSupportsMultichannelContent:error:")
+    private native boolean setSupportsMultichannelContent(boolean inValue, NSError.NSErrorPtr outError);
     /*</methods>*/
 }

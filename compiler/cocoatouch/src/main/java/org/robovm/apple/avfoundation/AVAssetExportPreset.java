@@ -134,9 +134,17 @@ import org.robovm.apple.audiotoolbox.*;
     public static final AVAssetExportPreset HEVC3840x2160WithAlpha = new AVAssetExportPreset("HEVC3840x2160WithAlpha");
     public static final AVAssetExportPreset AppleM4A = new AVAssetExportPreset("AppleM4A");
     public static final AVAssetExportPreset Passthrough = new AVAssetExportPreset("Passthrough");
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    public static final AVAssetExportPreset AppleProRes422LPCM = new AVAssetExportPreset("AppleProRes422LPCM");
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    public static final AVAssetExportPreset AppleProRes4444LPCM = new AVAssetExportPreset("AppleProRes4444LPCM");
     /*</constants>*/
     
-    private static /*<name>*/AVAssetExportPreset/*</name>*/[] values = new /*<name>*/AVAssetExportPreset/*</name>*/[] {/*<value_list>*/LowQuality, MediumQuality, HighestQuality, HEVCHighestQuality, HEVCHighestQualityWithAlpha, Size640x480, Size960x540, Size1280x720, Size1920x1080, Size3840x2160, HEVC1920x1080, HEVC1920x1080WithAlpha, HEVC3840x2160, HEVC3840x2160WithAlpha, AppleM4A, Passthrough/*</value_list>*/};
+    private static /*<name>*/AVAssetExportPreset/*</name>*/[] values = new /*<name>*/AVAssetExportPreset/*</name>*/[] {/*<value_list>*/LowQuality, MediumQuality, HighestQuality, HEVCHighestQuality, HEVCHighestQualityWithAlpha, Size640x480, Size960x540, Size1280x720, Size1920x1080, Size3840x2160, HEVC1920x1080, HEVC1920x1080WithAlpha, HEVC3840x2160, HEVC3840x2160WithAlpha, AppleM4A, Passthrough, AppleProRes422LPCM, AppleProRes4444LPCM/*</value_list>*/};
     
     /*<name>*/AVAssetExportPreset/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -212,6 +220,16 @@ import org.robovm.apple.audiotoolbox.*;
         public static native NSString AppleM4A();
         @GlobalValue(symbol="AVAssetExportPresetPassthrough", optional=true)
         public static native NSString Passthrough();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="AVAssetExportPresetAppleProRes422LPCM", optional=true)
+        public static native NSString AppleProRes422LPCM();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="AVAssetExportPresetAppleProRes4444LPCM", optional=true)
+        public static native NSString AppleProRes4444LPCM();
         /*</values>*/
     }
 }

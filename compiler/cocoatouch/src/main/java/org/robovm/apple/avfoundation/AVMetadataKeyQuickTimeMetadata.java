@@ -145,9 +145,13 @@ import org.robovm.apple.audiotoolbox.*;
      * @since Available in iOS 14.0 and later.
      */
     public static final AVMetadataKeyQuickTimeMetadata AccessibilityDescription = new AVMetadataKeyQuickTimeMetadata("AccessibilityDescription");
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    public static final AVMetadataKeyQuickTimeMetadata IsMontage = new AVMetadataKeyQuickTimeMetadata("IsMontage");
     /*</constants>*/
     
-    private static /*<name>*/AVMetadataKeyQuickTimeMetadata/*</name>*/[] values = new /*<name>*/AVMetadataKeyQuickTimeMetadata/*</name>*/[] {/*<value_list>*/Author, Comment, Copyright, CreationDate, Director, DisplayName, Information, Keywords, Producer, Publisher, Album, Artist, Artwork, Description, Software, Year, Genre, iXML, LocationISO6709, Make, Model, Arranger, EncodedBy, OriginalArtist, Performer, Composer, Credits, PhonogramRights, CameraIdentifier, CameraFrameReadoutTime, Title, CollectionUser, RatingUser, LocationName, LocationBody, LocationNote, LocationRole, LocationDate, DirectionFacing, DirectionMotion, ContentIdentifier, AccessibilityDescription/*</value_list>*/};
+    private static /*<name>*/AVMetadataKeyQuickTimeMetadata/*</name>*/[] values = new /*<name>*/AVMetadataKeyQuickTimeMetadata/*</name>*/[] {/*<value_list>*/Author, Comment, Copyright, CreationDate, Director, DisplayName, Information, Keywords, Producer, Publisher, Album, Artist, Artwork, Description, Software, Year, Genre, iXML, LocationISO6709, Make, Model, Arranger, EncodedBy, OriginalArtist, Performer, Composer, Credits, PhonogramRights, CameraIdentifier, CameraFrameReadoutTime, Title, CollectionUser, RatingUser, LocationName, LocationBody, LocationNote, LocationRole, LocationDate, DirectionFacing, DirectionMotion, ContentIdentifier, AccessibilityDescription, IsMontage/*</value_list>*/};
     
     /*<name>*/AVMetadataKeyQuickTimeMetadata/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -260,6 +264,11 @@ import org.robovm.apple.audiotoolbox.*;
          */
         @GlobalValue(symbol="AVMetadataQuickTimeMetadataKeyAccessibilityDescription", optional=true)
         public static native NSString AccessibilityDescription();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="AVMetadataQuickTimeMetadataKeyIsMontage", optional=true)
+        public static native NSString IsMontage();
         /*</values>*/
     }
 }

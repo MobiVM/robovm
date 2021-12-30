@@ -156,12 +156,32 @@ import org.robovm.apple.audiotoolbox.*;
     public native boolean hasMediaCharacteristic(AVMediaCharacteristic mediaCharacteristic);
     @Method(selector = "segmentForTrackTime:")
     public native AVAssetTrackSegment getSegment(@ByVal CMTime trackTime);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "loadSegmentForTrackTime:completionHandler:")
+    public native void loadSegmentForTrackTime(@ByVal CMTime trackTime, @Block VoidBlock2<AVAssetTrackSegment, NSError> completionHandler);
     @Method(selector = "samplePresentationTimeForTrackTime:")
     public native @ByVal CMTime getSamplePresentationTime(@ByVal CMTime trackTime);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "loadSamplePresentationTimeForTrackTime:completionHandler:")
+    public native void loadSamplePresentationTimeForTrackTime(@ByVal CMTime trackTime, @Block("(@ByVal,)") VoidBlock2<CMTime, NSError> completionHandler);
     @Method(selector = "metadataForFormat:")
     public native NSArray<AVMetadataItem> getMetadataForFormat(AVMetadataFormat format);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "loadMetadataForFormat:completionHandler:")
+    public native void loadMetadataForFormat(String format, @Block VoidBlock2<NSArray<AVMetadataItem>, NSError> completionHandler);
     @Method(selector = "associatedTracksOfType:")
     public native NSArray<AVAssetTrack> getAssociatedTracksOfType(AVTrackAssociationType trackAssociationType);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "loadAssociatedTracksOfType:completionHandler:")
+    public native void loadAssociatedTracksOfType(String trackAssociationType, @Block VoidBlock2<NSArray<AVAssetTrack>, NSError> completionHandler);
     @Method(selector = "statusOfValueForKey:error:")
     public native AVKeyValueStatus getStatusOfValue(AVMetadataKey key, NSError.NSErrorPtr outError);
     @Method(selector = "loadValuesAsynchronouslyForKeys:completionHandler:")

@@ -101,9 +101,24 @@ import org.robovm.apple.audiotoolbox.*;
     public static native NSArray<NSString> movieTypes();
     @Method(selector = "trackWithTrackID:")
     public native AVFragmentedMovieTrack getTrack(int trackID);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "loadTrackWithTrackID:completionHandler:")
+    public native void loadTrack(int trackID, @Block VoidBlock2<NSArray<?>, NSError> completionHandler);
     @Method(selector = "tracksWithMediaType:")
     public native NSArray<AVAssetTrack> getTracksWithType(AVMediaType mediaType);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "loadTracksWithMediaType:completionHandler:")
+    public native void loadTracksWithMediaType(String mediaType, @Block VoidBlock2<NSArray<?>, NSError> completionHandler);
     @Method(selector = "tracksWithMediaCharacteristic:")
     public native NSArray<AVAssetTrack> getTracksWithCharacteristic(AVMediaCharacteristic mediaCharacteristic);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "loadTracksWithMediaCharacteristic:completionHandler:")
+    public native void loadTracksWithMediaCharacteristic(String mediaCharacteristic, @Block VoidBlock2<NSArray<?>, NSError> completionHandler);
     /*</methods>*/
 }

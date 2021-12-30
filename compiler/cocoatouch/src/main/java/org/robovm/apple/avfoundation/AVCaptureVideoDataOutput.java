@@ -139,7 +139,7 @@ import org.robovm.apple.audiotoolbox.*;
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "recommendedVideoSettingsForVideoCodecType:assetWriterOutputFileType:")
-    public native NSDictionary<?, ?> getRecommendedVideoSettings(AVVideoCodecType videoCodecType, String outputFileType);
+    public native NSDictionary<NSString, ?> getRecommendedVideoSettings(AVVideoCodecType videoCodecType, String outputFileType);
     @Method(selector = "new")
     protected static native @Pointer long create();
     /*</methods>*/

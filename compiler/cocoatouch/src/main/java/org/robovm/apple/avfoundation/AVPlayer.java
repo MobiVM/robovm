@@ -95,10 +95,16 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "setAutomaticallyWaitsToMinimizeStalling:")
     public native void setAutomaticallyWaitsToMinimizeStalling(boolean v);
-    @Property(selector = "masterClock")
-    public native CMClock getMasterClock();
-    @Property(selector = "setMasterClock:")
-    public native void setMasterClock(CMClock v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "sourceClock")
+    public native CMClock getSourceClock();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setSourceClock:")
+    public native void setSourceClock(CMClock v);
     @Property(selector = "volume")
     public native float getVolume();
     @Property(selector = "setVolume:")
@@ -148,6 +154,21 @@ import org.robovm.apple.audiotoolbox.*;
     @Property(selector = "setPreventsDisplaySleepDuringVideoPlayback:")
     public native void setPreventsDisplaySleepDuringVideoPlayback(boolean v);
     /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "audiovisualBackgroundPlaybackPolicy")
+    public native AVPlayerAudiovisualBackgroundPlaybackPolicy getAudiovisualBackgroundPlaybackPolicy();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setAudiovisualBackgroundPlaybackPolicy:")
+    public native void setAudiovisualBackgroundPlaybackPolicy(AVPlayerAudiovisualBackgroundPlaybackPolicy v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "playbackCoordinator")
+    public native AVPlayerPlaybackCoordinator getPlaybackCoordinator();
+    /**
      * @deprecated Deprecated in iOS 11.0. Allow AVPlayer to enable closed captions automatically according to user preferences by ensuring that the value of appliesMediaSelectionCriteriaAutomatically is YES.
      */
     @Deprecated
@@ -159,6 +180,18 @@ import org.robovm.apple.audiotoolbox.*;
     @Deprecated
     @Property(selector = "setClosedCaptionDisplayEnabled:")
     public native void setClosedCaptionDisplayEnabled(boolean v);
+    /**
+     * @deprecated Use sourceClock
+     */
+    @Deprecated
+    @Property(selector = "masterClock")
+    public native CMClock getMasterClock();
+    /**
+     * @deprecated Use sourceClock
+     */
+    @Deprecated
+    @Property(selector = "setMasterClock:")
+    public native void setMasterClock(CMClock v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -178,12 +211,17 @@ import org.robovm.apple.audiotoolbox.*;
     @GlobalValue(symbol="AVPlayerWaitingWithNoItemToPlayReason", optional=true)
     public static native NSString WaitingWithNoItemToPlayReason();
     /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @GlobalValue(symbol="AVPlayerWaitingForCoordinatedPlaybackReason", optional=true)
+    public static native NSString WaitingForCoordinatedPlaybackReason();
+    /**
      * @since Available in iOS 11.2 and later.
      */
     @GlobalValue(symbol="AVPlayerAvailableHDRModesDidChangeNotification", optional=true)
     public static native String AvailableHDRModesDidChangeNotification();
     /**
-     * @since Available in iOS 14.5 and later.
+     * @since Available in iOS 15.0 and later.
      */
     @GlobalValue(symbol="AVPlayerWaitingDuringInterstitialEventReason", optional=true)
     public static native NSString WaitingDuringInterstitialEventReason();
@@ -192,20 +230,25 @@ import org.robovm.apple.audiotoolbox.*;
         static { Bro.bind(Notifications.class); }
 
         /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="AVPlayerRateDidChangeNotification", optional=true)
+        public static native NSString RateDidChange();
+        /**
          * @since Available in iOS 13.4 and later.
          */
         @GlobalValue(symbol="AVPlayerEligibleForHDRPlaybackDidChangeNotification", optional=true)
         public static native NSString EligibleForHDRPlaybackDidChange();
         /**
-         * @since Available in iOS 14.5 and later.
+         * @since Available in iOS 15.0 and later.
          */
-        @GlobalValue(symbol="AVPlayerInterstitialEventObserverEventsDidChangeNotification", optional=true)
-        public static native NSString InterstitialEventObserverEventsDidChange();
+        @GlobalValue(symbol="AVPlayerInterstitialEventMonitorEventsDidChangeNotification", optional=true)
+        public static native NSString InterstitialEventMonitorEventsDidChange();
         /**
-         * @since Available in iOS 14.5 and later.
+         * @since Available in iOS 15.0 and later.
          */
-        @GlobalValue(symbol="AVPlayerInterstitialEventObserverCurrentEventDidChangeNotification", optional=true)
-        public static native NSString InterstitialEventObserverCurrentEventDidChange();
+        @GlobalValue(symbol="AVPlayerInterstitialEventMonitorCurrentEventDidChangeNotification", optional=true)
+        public static native NSString InterstitialEventMonitorCurrentEventDidChange();
     }
     
     @Method(selector = "initWithURL:")

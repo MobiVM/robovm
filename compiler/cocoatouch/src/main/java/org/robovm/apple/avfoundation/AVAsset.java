@@ -221,20 +221,60 @@ import org.robovm.apple.audiotoolbox.*;
     public native void cancelLoading();
     @Method(selector = "trackWithTrackID:")
     public native AVAssetTrack getTrack(int trackID);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "loadTrackWithTrackID:completionHandler:")
+    public native void loadTrack(int trackID, @Block VoidBlock2<NSArray<?>, NSError> completionHandler);
     @Method(selector = "tracksWithMediaType:")
     public native NSArray<AVAssetTrack> getTracksWithType(AVMediaType mediaType);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "loadTracksWithMediaType:completionHandler:")
+    public native void loadTracksWithMediaType(String mediaType, @Block VoidBlock2<NSArray<?>, NSError> completionHandler);
     @Method(selector = "tracksWithMediaCharacteristic:")
     public native NSArray<AVAssetTrack> getTracksWithCharacteristic(AVMediaCharacteristic mediaCharacteristic);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "loadTracksWithMediaCharacteristic:completionHandler:")
+    public native void loadTracksWithMediaCharacteristic(String mediaCharacteristic, @Block VoidBlock2<NSArray<?>, NSError> completionHandler);
     @Method(selector = "metadataForFormat:")
     public native NSArray<AVMetadataItem> getMetadata(AVMetadataFormat format);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "loadMetadataForFormat:completionHandler:")
+    public native void loadMetadataForFormat(String format, @Block VoidBlock2<NSArray<AVMetadataItem>, NSError> completionHandler);
     @Method(selector = "chapterMetadataGroupsWithTitleLocale:containingItemsWithCommonKeys:")
     public native NSArray<AVTimedMetadataGroup> getChapterMetadataGroupsContainingItemsWithCommonKeys(NSLocale locale, @org.robovm.rt.bro.annotation.Marshaler(AVMetadataKey.AsListMarshaler.class) List<AVMetadataKey> commonKeys);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "loadChapterMetadataGroupsWithTitleLocale:containingItemsWithCommonKeys:completionHandler:")
+    public native void loadChapterMetadataGroups(NSLocale locale, NSArray<NSString> commonKeys, @Block VoidBlock2<NSArray<AVTimedMetadataGroup>, NSError> completionHandler);
     @Method(selector = "chapterMetadataGroupsBestMatchingPreferredLanguages:")
     public native NSArray<AVTimedMetadataGroup> getChapterMetadataGroupsBestMatchingPreferredLanguages(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> preferredLanguages);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "loadChapterMetadataGroupsBestMatchingPreferredLanguages:completionHandler:")
+    public native void loadChapterMetadataGroupsBestMatchingPreferredLanguages(NSArray<NSString> preferredLanguages, @Block VoidBlock2<NSArray<AVTimedMetadataGroup>, NSError> completionHandler);
     @Method(selector = "mediaSelectionGroupForMediaCharacteristic:")
     public native AVMediaSelectionGroup getMediaSelectionGroup(AVMediaCharacteristic mediaCharacteristic);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "loadMediaSelectionGroupForMediaCharacteristic:completionHandler:")
+    public native void loadMediaSelectionGroupForMediaCharacteristic(String mediaCharacteristic, @Block VoidBlock2<AVMediaSelectionGroup, NSError> completionHandler);
     @Method(selector = "unusedTrackID")
     public native int getUnusedTrackID();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "findUnusedTrackIDWithCompletionHandler:")
+    public native void findUnusedTrackID(@Block VoidBlock2<Integer, NSError> completionHandler);
     @Method(selector = "statusOfValueForKey:error:")
     public native AVKeyValueStatus getStatusOfValue(AVMetadataKey key, NSError.NSErrorPtr outError);
     @Method(selector = "loadValuesAsynchronouslyForKeys:completionHandler:")

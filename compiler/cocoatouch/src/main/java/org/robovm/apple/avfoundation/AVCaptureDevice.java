@@ -152,6 +152,46 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "virtualDeviceSwitchOverVideoZoomFactors")
     public native NSArray<NSNumber> getVirtualDeviceSwitchOverVideoZoomFactors();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "primaryConstituentDeviceSwitchingBehavior")
+    public native AVCapturePrimaryConstituentDeviceSwitchingBehavior getPrimaryConstituentDeviceSwitchingBehavior();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "primaryConstituentDeviceRestrictedSwitchingBehaviorConditions")
+    public native AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions getPrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "activePrimaryConstituentDeviceSwitchingBehavior")
+    public native AVCapturePrimaryConstituentDeviceSwitchingBehavior getActivePrimaryConstituentDeviceSwitchingBehavior();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "activePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions")
+    public native AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions getActivePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "activePrimaryConstituentDevice")
+    public native AVCaptureDevice getActivePrimaryConstituentDevice();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "supportedFallbackPrimaryConstituentDevices")
+    public native NSArray<AVCaptureDevice> getSupportedFallbackPrimaryConstituentDevices();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "fallbackPrimaryConstituentDevices")
+    public native NSArray<AVCaptureDevice> getFallbackPrimaryConstituentDevices();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setFallbackPrimaryConstituentDevices:")
+    public native void setFallbackPrimaryConstituentDevices(NSArray<AVCaptureDevice> v);
     @Property(selector = "hasFlash")
     public native boolean hasFlash();
     @Property(selector = "isFlashAvailable")
@@ -217,6 +257,11 @@ import org.robovm.apple.audiotoolbox.*;
     public native void setSmoothAutoFocusEnabled(boolean v);
     @Property(selector = "lensPosition")
     public native float getLensPosition();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "minimumFocusDistance")
+    public native @MachineSizedSInt long getMinimumFocusDistance();
     @Property(selector = "exposureMode")
     public native AVCaptureExposureMode getExposureMode();
     @Property(selector = "setExposureMode:")
@@ -393,6 +438,26 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "isCenterStageActive")
     public native boolean isCenterStageActive();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "isPortraitEffectEnabled")
+    public static native boolean isPortraitEffectEnabled();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "isPortraitEffectActive")
+    public native boolean isPortraitEffectActive();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "preferredMicrophoneMode")
+    public static native AVCaptureMicrophoneMode getPreferredMicrophoneMode();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "activeMicrophoneMode")
+    public static native AVCaptureMicrophoneMode getActiveMicrophoneMode();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -451,6 +516,11 @@ import org.robovm.apple.audiotoolbox.*;
     @Method(selector = "defaultDeviceWithDeviceType:mediaType:position:")
     public static native AVCaptureDevice getDefaultDevice(String deviceType, AVMediaType mediaType, AVCaptureDevicePosition position);
     /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "setPrimaryConstituentDeviceSwitchingBehavior:restrictedSwitchingBehaviorConditions:")
+    public native void setPrimaryConstituentDeviceSwitchingBehavior(AVCapturePrimaryConstituentDeviceSwitchingBehavior switchingBehavior, AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions restrictedSwitchingBehaviorConditions);
+    /**
      * @deprecated Deprecated in iOS 10.0. Use AVCapturePhotoOutput's -supportedFlashModes instead.
      */
     @Deprecated
@@ -501,5 +571,10 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Method(selector = "extrinsicMatrixFromDevice:toDevice:")
     public static native NSData getExtrinsicMatrix(AVCaptureDevice fromDevice, AVCaptureDevice toDevice);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "showSystemUserInterface:")
+    public static native void showSystemUserInterface(AVCaptureSystemUserInterface systemUserInterface);
     /*</methods>*/
 }
