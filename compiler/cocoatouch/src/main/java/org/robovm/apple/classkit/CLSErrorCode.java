@@ -48,7 +48,11 @@ public enum /*<name>*/CLSErrorCode/*</name>*/ implements NSErrorCode {
     Limits(6L),
     InvalidCreate(7L),
     InvalidUpdate(8L),
-    PartialFailure(9L);
+    PartialFailure(9L),
+    /**
+     * @since Available in iOS 15.1 and later.
+     */
+    InvalidAccountCredentials(10L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(CLSErrorCode.class); }/*</bind>*/
@@ -70,6 +74,11 @@ public enum /*<name>*/CLSErrorCode/*</name>*/ implements NSErrorCode {
      */
     @GlobalValue(symbol="CLSErrorUnderlyingErrorsKey", optional=true)
     public static native String getUnderlyingErrorsKey();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @GlobalValue(symbol="CLSErrorSuccessfulObjectsKey", optional=true)
+    public static native String getSuccessfulObjectsKey();
     /*</methods>*/
 
     private final long n;
