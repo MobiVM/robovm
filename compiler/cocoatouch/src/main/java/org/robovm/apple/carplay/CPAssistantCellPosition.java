@@ -36,39 +36,32 @@ import org.robovm.apple.coreanimation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 14.0 and later.
+ * @since Available in iOS 15.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/CPListTemplateItem/*</name>*/ 
-    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+public enum /*<name>*/CPAssistantCellPosition/*</name>*/ implements ValuedEnum {
+    /*<values>*/
+    Top(0L),
+    Bottom(1L);
+    /*</values>*/
 
-    /*<ptr>*/
-    /*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<properties>*/
-    @Property(selector = "text")
-    String getText();
-    @Property(selector = "userInfo")
-    NSObject getUserInfo();
-    @Property(selector = "setUserInfo:")
-    void setUserInfo(NSObject v);
-    /**
-     * @since Available in iOS 15.0 and later.
-     */
-    @Property(selector = "isEnabled")
-    boolean isEnabled();
-    /**
-     * @since Available in iOS 15.0 and later.
-     */
-    @Property(selector = "setEnabled:")
-    void setEnabled(boolean v);
-    /*</properties>*/
-    /*<methods>*/
-    
-    /*</methods>*/
-    /*<adapter>*/
-    /*</adapter>*/
+    /*<methods>*//*</methods>*/
+
+    private final long n;
+
+    private /*<name>*/CPAssistantCellPosition/*</name>*/(long n) { this.n = n; }
+    public long value() { return n; }
+    public static /*<name>*/CPAssistantCellPosition/*</name>*/ valueOf(long n) {
+        for (/*<name>*/CPAssistantCellPosition/*</name>*/ v : values()) {
+            if (v.n == n) {
+                return v;
+            }
+        }
+        throw new IllegalArgumentException("No constant with value " + n + " found in " 
+            + /*<name>*/CPAssistantCellPosition/*</name>*/.class.getName());
+    }
 }

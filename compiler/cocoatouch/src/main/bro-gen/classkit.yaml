@@ -84,6 +84,10 @@ values:
         class: CLSErrorCode
         name: getUnderlyingErrorsKey
 
+    CLSErrorSuccessfulObjectsKey:
+        class: CLSErrorCode
+        name: getSuccessfulObjectsKey
+
     CLSContextTopic(.*):
         class: CLSContextTopic
         name: '#{g[0]}'
