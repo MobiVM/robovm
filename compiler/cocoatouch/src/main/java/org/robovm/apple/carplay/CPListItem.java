@@ -70,6 +70,16 @@ import org.robovm.apple.coreanimation.*;
     /*</constructors>*/
     /*<properties>*/
     /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "isEnabled")
+    public native boolean isEnabled();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setEnabled:")
+    public native void setEnabled(boolean v);
+    /**
      * @since Available in iOS 14.0 and later.
      */
     @Property(selector = "accessoryType")
