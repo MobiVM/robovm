@@ -17,7 +17,8 @@ enums:
     SRDeletionReason: {} #since 14.0
     SRWristLocation: {} #since 14.0
     SRCrownOrientation: {} #since 14.0
-
+    SRTextInputSessionType: {} #since 15.0
+    SRKeyboardMetricsSentimentCategory: {} #since 15.0
 categories:
     SensorKit@NSDate:
         methods:
@@ -55,7 +56,7 @@ classes:
     SRVisit: {} #since 14.0
     SRWebUsage: {} #since 14.0
     SRWristDetection: {} #since 14.0
-
+    SRTextInputSession: {} #since 15.0
 protocols:
     SRSensorReaderDelegate: #since 14.0
         methods:

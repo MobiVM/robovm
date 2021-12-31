@@ -12,9 +12,12 @@ typedefs:
 
 enums:
     SNErrorCode: {nserror: true}
-
+    SNTimeDurationConstraintType: {} #since 15.0
 typed_enums:
-
+    SNClassifierIdentifier:
+        enum: SNClassifierIdentifier
+        prefix: SNClassifierIdentifier
+        type: NSString
 classes:
     SNAudioFileAnalyzer: #since 13.0
         methods:
@@ -42,6 +45,15 @@ classes:
             '-initWithMLModel:error:':
                 name: init
                 throws: NSErrorException
+            '-initWithClassifierIdentifier:error:':
+                name: init
+                throws: NSErrorException
+    SNTimeDurationConstraint: #since 15.0
+        methods:
+            '-initWithEnumeratedDurations:':
+                name: init
+            '-initWithDurationRange:':
+                name: init
 
 protocols:
     SNRequest: #since 13.0

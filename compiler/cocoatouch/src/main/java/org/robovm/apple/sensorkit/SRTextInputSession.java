@@ -32,37 +32,27 @@ import org.robovm.apple.foundation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 14.0 and later.
+ * @since Available in iOS 15.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("SensorKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/SRApplicationUsage/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/SRTextInputSession/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class SRApplicationUsagePtr extends Ptr<SRApplicationUsage, SRApplicationUsagePtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(SRApplicationUsage.class); }/*</bind>*/
+    /*<ptr>*/public static class SRTextInputSessionPtr extends Ptr<SRTextInputSession, SRTextInputSessionPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(SRTextInputSession.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public SRApplicationUsage() {}
-    protected SRApplicationUsage(Handle h, long handle) { super(h, handle); }
-    protected SRApplicationUsage(SkipInit skipInit) { super(skipInit); }
+    public SRTextInputSession() {}
+    protected SRTextInputSession(Handle h, long handle) { super(h, handle); }
+    protected SRTextInputSession(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "bundleIdentifier")
-    public native String getBundleIdentifier();
-    @Property(selector = "usageTime")
-    public native double getUsageTime();
-    /**
-     * @since Available in iOS 15.0 and later.
-     */
-    @Property(selector = "reportApplicationIdentifier")
-    public native String getReportApplicationIdentifier();
-    /**
-     * @since Available in iOS 15.0 and later.
-     */
-    @Property(selector = "textInputSessions")
-    public native NSArray<SRTextInputSession> getTextInputSessions();
+    @Property(selector = "duration")
+    public native double getDuration();
+    @Property(selector = "sessionType")
+    public native SRTextInputSessionType getSessionType();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

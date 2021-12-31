@@ -59,6 +59,11 @@ import org.robovm.apple.foundation.*;
     public native NSMeasurement<NSUnitLength> getWidth();
     @Property(selector = "height")
     public native NSMeasurement<NSUnitLength> getHeight();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "inputModes")
+    public native NSArray<NSString> getInputModes();
     @Property(selector = "totalWords")
     public native @MachineSizedSInt long getTotalWords();
     @Property(selector = "totalAlteredWords")
@@ -187,9 +192,22 @@ import org.robovm.apple.foundation.*;
     public native NSArray<?> getLongWordTouchDownDown();
     @Property(selector = "deleteToDeletes")
     public native NSArray<?> getDeleteToDeletes();
+    @Property(selector = "totalPauses")
+    public native @MachineSizedSInt long getTotalPauses();
+    @Property(selector = "totalPathPauses")
+    public native @MachineSizedSInt long getTotalPathPauses();
+    @Property(selector = "typingSpeed")
+    public native double getTypingSpeed();
+    @Property(selector = "pathTypingSpeed")
+    public native double getPathTypingSpeed();
+    @Property(selector = "totalTypingEpisodes")
+    public native @MachineSizedSInt long getTotalTypingEpisodes();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "wordCountForSentimentCategory:")
+    public native @MachineSizedSInt long wordCountForSentimentCategory(SRKeyboardMetricsSentimentCategory category);
+    @Method(selector = "emojiCountForSentimentCategory:")
+    public native @MachineSizedSInt long emojiCountForSentimentCategory(SRKeyboardMetricsSentimentCategory category);
     /*</methods>*/
 }
