@@ -52,7 +52,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     public MPSCNNArithmeticGradient(NSCoder decoder, MTLDevice device) { super(decoder, device); }
     @Method(selector = "initWithCoder:")
-    public MPSCNNArithmeticGradient(NSCoder decoder) { super(decoder); }
+    public MPSCNNArithmeticGradient(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "primaryScale")

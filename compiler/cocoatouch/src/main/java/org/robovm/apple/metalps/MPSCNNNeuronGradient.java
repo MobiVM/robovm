@@ -57,7 +57,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     public MPSCNNNeuronGradient(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
     @Method(selector = "initWithCoder:")
-    public MPSCNNNeuronGradient(NSCoder decoder) { super(decoder); }
+    public MPSCNNNeuronGradient(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "neuronType")

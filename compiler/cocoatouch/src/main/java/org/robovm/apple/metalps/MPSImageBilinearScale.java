@@ -57,7 +57,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     public MPSImageBilinearScale(NSCoder decoder, MTLDevice device) { super((SkipInit) null); initObject(init(decoder, device)); }
     @Method(selector = "initWithCoder:")
-    public MPSImageBilinearScale(NSCoder decoder) { super(decoder); }
+    public MPSImageBilinearScale(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "supportsSecureCoding")

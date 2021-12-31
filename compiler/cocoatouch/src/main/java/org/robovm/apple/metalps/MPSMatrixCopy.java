@@ -60,7 +60,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     public MPSMatrixCopy(NSCoder decoder, MTLDevice device) { super((SkipInit) null); initObject(init(decoder, device)); }
     @Method(selector = "initWithCoder:")
-    public MPSMatrixCopy(NSCoder decoder) { super(decoder); }
+    public MPSMatrixCopy(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "copyRows")

@@ -54,7 +54,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     public MPSNDArrayMultiaryBase(NSCoder coder, MTLDevice device) { super((SkipInit) null); initObject(init(coder, device)); }
     @Method(selector = "initWithCoder:")
-    public MPSNDArrayMultiaryBase(NSCoder decoder) { super(decoder); }
+    public MPSNDArrayMultiaryBase(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "destinationArrayAllocator")

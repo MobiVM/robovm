@@ -57,7 +57,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     public MPSImageThresholdToZeroInverse(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
     @Method(selector = "initWithCoder:")
-    public MPSImageThresholdToZeroInverse(NSCoder decoder) { super(decoder); }
+    public MPSImageThresholdToZeroInverse(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "thresholdValue")

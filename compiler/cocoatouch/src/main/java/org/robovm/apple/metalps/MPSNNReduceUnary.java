@@ -55,13 +55,27 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     public MPSNNReduceUnary(NSCoder decoder, MTLDevice device) { super(decoder, device); }
     @Method(selector = "initWithCoder:")
-    public MPSNNReduceUnary(NSCoder decoder) { super(decoder); }
+    public MPSNNReduceUnary(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "clipRectSource")
     public native @ByVal MTLRegion getClipRectSource();
     @Property(selector = "setClipRectSource:")
     public native void setClipRectSource(@ByVal MTLRegion v);
+    /**
+     * @since Available in iOS 11.3 and later.
+     * @deprecated Deprecated in iOS 13.0. Use Please use clipRectSource property instead
+     */
+    @Deprecated
+    @Property(selector = "offset")
+    public native @ByVal MPSOffset getOffset();
+    /**
+     * @since Available in iOS 11.3 and later.
+     * @deprecated Deprecated in iOS 13.0. Use Please use clipRectSource property instead
+     */
+    @Deprecated
+    @Property(selector = "setOffset:")
+    public native void setOffset(@ByVal MPSOffset v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

@@ -57,7 +57,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     public MPSImageGaussianBlur(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
     @Method(selector = "initWithCoder:")
-    public MPSImageGaussianBlur(NSCoder decoder) { super(decoder); }
+    public MPSImageGaussianBlur(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "sigma")

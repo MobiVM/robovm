@@ -54,7 +54,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     public MPSNDArrayMultiaryKernel(NSCoder coder, MTLDevice device) { super((SkipInit) null); initObject(init(coder, device)); }
     @Method(selector = "initWithCoder:")
-    public MPSNDArrayMultiaryKernel(NSCoder decoder) { super(decoder); }
+    public MPSNDArrayMultiaryKernel(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "supportsSecureCoding")

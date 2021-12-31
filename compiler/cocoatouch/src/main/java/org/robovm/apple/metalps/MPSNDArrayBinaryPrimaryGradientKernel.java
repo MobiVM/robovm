@@ -54,7 +54,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     public MPSNDArrayBinaryPrimaryGradientKernel(NSCoder coder, MTLDevice device) { super((SkipInit) null); initObject(init(coder, device)); }
     @Method(selector = "initWithCoder:")
-    public MPSNDArrayBinaryPrimaryGradientKernel(NSCoder decoder) { super(decoder); }
+    public MPSNDArrayBinaryPrimaryGradientKernel(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "supportsSecureCoding")

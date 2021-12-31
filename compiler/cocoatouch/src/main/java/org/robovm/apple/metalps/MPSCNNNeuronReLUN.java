@@ -64,7 +64,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     public MPSCNNNeuronReLUN(NSCoder decoder, MTLDevice device) { super(decoder, device); }
     @Method(selector = "initWithCoder:")
-    public MPSCNNNeuronReLUN(NSCoder decoder) { super(decoder); }
+    public MPSCNNNeuronReLUN(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "supportsSecureCoding")

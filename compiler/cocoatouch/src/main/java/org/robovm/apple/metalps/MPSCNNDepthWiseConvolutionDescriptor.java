@@ -53,7 +53,7 @@ import org.robovm.apple.metal.*;
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "initWithCoder:")
-    public MPSCNNDepthWiseConvolutionDescriptor(NSCoder decoder) { super(decoder); }
+    public MPSCNNDepthWiseConvolutionDescriptor(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "channelMultiplier")

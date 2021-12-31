@@ -59,7 +59,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithDevice:")
     public MPSImageConvolution(MTLDevice device) { super(device); }
     @Method(selector = "initWithCoder:")
-    public MPSImageConvolution(NSCoder decoder) { super(decoder); }
+    public MPSImageConvolution(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "kernelHeight")

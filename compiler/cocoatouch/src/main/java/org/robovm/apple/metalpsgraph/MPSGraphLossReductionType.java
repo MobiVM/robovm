@@ -45,7 +45,11 @@ public enum /*<name>*/MPSGraphLossReductionType/*</name>*/ implements ValuedEnum
     /**
      * @since Available in iOS 14.0 and later.
      */
-    Sum(1L);
+    Sum(1L),
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    Mean(2L);
     /*</values>*/
 
     /*<bind>*/

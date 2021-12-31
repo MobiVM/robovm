@@ -52,7 +52,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithDevice:")
     public MPSMatrixUnaryKernel(MTLDevice device) { super(device); }
     @Method(selector = "initWithCoder:")
-    public MPSMatrixUnaryKernel(NSCoder decoder) { super(decoder); }
+    public MPSMatrixUnaryKernel(NSCoder coder) { super(coder); }
     /**
      * @since Available in iOS 11.0 and later.
      */

@@ -54,7 +54,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithDevice:")
     public MPSMatrixSolveLU(MTLDevice device) { super(device); }
     @Method(selector = "initWithCoder:")
-    public MPSMatrixSolveLU(NSCoder decoder) { super(decoder); }
+    public MPSMatrixSolveLU(NSCoder coder) { super(coder); }
     /**
      * @since Available in iOS 11.0 and later.
      */

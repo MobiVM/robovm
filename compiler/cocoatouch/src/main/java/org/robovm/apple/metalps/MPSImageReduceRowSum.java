@@ -57,7 +57,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     public MPSImageReduceRowSum(NSCoder decoder, MTLDevice device) { super(decoder, device); }
     @Method(selector = "initWithCoder:")
-    public MPSImageReduceRowSum(NSCoder decoder) { super(decoder); }
+    public MPSImageReduceRowSum(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "supportsSecureCoding")

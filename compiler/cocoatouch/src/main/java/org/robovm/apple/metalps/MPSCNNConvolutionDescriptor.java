@@ -53,7 +53,7 @@ import org.robovm.apple.metal.*;
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "initWithCoder:")
-    public MPSCNNConvolutionDescriptor(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public MPSCNNConvolutionDescriptor(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /**
      * @since Available in iOS 10.0 and later.
      * @deprecated Deprecated in iOS 11.0. Use Please use neuronType, neuronParameterA and neuronParameterB properties instead.
@@ -147,7 +147,7 @@ Please set fusedNeuronDescriptor property instead.
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /**
      * @since Available in iOS 11.0 and later.
      */

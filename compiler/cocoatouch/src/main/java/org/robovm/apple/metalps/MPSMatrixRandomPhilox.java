@@ -58,7 +58,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     public MPSMatrixRandomPhilox(NSCoder decoder, MTLDevice device) { super((SkipInit) null); initObject(init(decoder, device)); }
     @Method(selector = "initWithCoder:")
-    public MPSMatrixRandomPhilox(NSCoder decoder) { super(decoder); }
+    public MPSMatrixRandomPhilox(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "supportsSecureCoding")

@@ -54,7 +54,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     public MPSCNNSubtractGradient(NSCoder decoder, MTLDevice device) { super(decoder, device); }
     @Method(selector = "initWithCoder:")
-    public MPSCNNSubtractGradient(NSCoder decoder) { super(decoder); }
+    public MPSCNNSubtractGradient(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "supportsSecureCoding")

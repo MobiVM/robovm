@@ -56,7 +56,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithDevice:kernelWidth:kernelHeight:")
     public MPSCNNDilatedPoolingMaxGradient(MTLDevice device, @MachineSizedUInt long kernelWidth, @MachineSizedUInt long kernelHeight) { super(device, kernelWidth, kernelHeight); }
     @Method(selector = "initWithCoder:")
-    public MPSCNNDilatedPoolingMaxGradient(NSCoder decoder) { super(decoder); }
+    public MPSCNNDilatedPoolingMaxGradient(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "supportsSecureCoding")

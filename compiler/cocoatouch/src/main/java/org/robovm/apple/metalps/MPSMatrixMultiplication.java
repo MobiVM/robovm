@@ -57,7 +57,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithDevice:resultRows:resultColumns:interiorColumns:")
     public MPSMatrixMultiplication(MTLDevice device, @MachineSizedUInt long resultRows, @MachineSizedUInt long resultColumns, @MachineSizedUInt long interiorColumns) { super((SkipInit) null); initObject(init(device, resultRows, resultColumns, interiorColumns)); }
     @Method(selector = "initWithCoder:")
-    public MPSMatrixMultiplication(NSCoder decoder) { super(decoder); }
+    public MPSMatrixMultiplication(NSCoder coder) { super(coder); }
     /**
      * @since Available in iOS 11.0 and later.
      */

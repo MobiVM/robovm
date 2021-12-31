@@ -59,7 +59,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     public MPSCNNUpsamplingBilinear(NSCoder decoder, MTLDevice device) { super(decoder, device); }
     @Method(selector = "initWithCoder:")
-    public MPSCNNUpsamplingBilinear(NSCoder decoder) { super(decoder); }
+    public MPSCNNUpsamplingBilinear(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "supportsSecureCoding")

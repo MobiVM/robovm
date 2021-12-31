@@ -59,7 +59,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithDevice:")
     public MPSImageHistogramSpecification(MTLDevice device) { super(device); }
     @Method(selector = "initWithCoder:")
-    public MPSImageHistogramSpecification(NSCoder decoder) { super(decoder); }
+    public MPSImageHistogramSpecification(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "histogramInfo")

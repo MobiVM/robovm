@@ -56,7 +56,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithDevice:")
     public MPSImageEDLines(MTLDevice device) { super(device); }
     @Method(selector = "initWithCoder:")
-    public MPSImageEDLines(NSCoder decoder) { super(decoder); }
+    public MPSImageEDLines(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "clipRectSource")

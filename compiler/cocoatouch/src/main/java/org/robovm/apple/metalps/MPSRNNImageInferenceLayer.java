@@ -65,7 +65,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     public MPSRNNImageInferenceLayer(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
     @Method(selector = "initWithCoder:")
-    public MPSRNNImageInferenceLayer(NSCoder decoder) { super(decoder); }
+    public MPSRNNImageInferenceLayer(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "inputFeatureChannels")

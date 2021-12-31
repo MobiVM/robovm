@@ -57,7 +57,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     public MPSImageScale(NSCoder decoder, MTLDevice device) { super((SkipInit) null); initObject(init(decoder, device)); }
     @Method(selector = "initWithCoder:")
-    public MPSImageScale(NSCoder decoder) { super(decoder); }
+    public MPSImageScale(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "scaleTransform")
