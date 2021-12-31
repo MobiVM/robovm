@@ -32,46 +32,34 @@ import org.robovm.apple.foundation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 10.0 and later.
+ * @since Available in iOS 15.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Library("UserNotifications")/*</annotations>*/
-public enum /*<name>*/UNErrorCode/*</name>*/ implements ValuedEnum {
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
+public enum /*<name>*/UNNotificationInterruptionLevel/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    NotificationsNotAllowed(1L),
-    AttachmentInvalidURL(100L),
-    AttachmentUnrecognizedType(101L),
-    AttachmentInvalidFileSize(102L),
-    AttachmentNotInDataStore(103L),
-    AttachmentMoveIntoDataStoreFailed(104L),
-    AttachmentCorrupt(105L),
-    NotificationInvalidNoDate(1400L),
-    NotificationInvalidNoContent(1401L),
-    ContentProvidingObjectNotAllowed(1500L),
-    ContentProvidingInvalid(1501L);
+    Passive(0L),
+    Active(1L),
+    TimeSensitive(2L),
+    Critical(3L);
     /*</values>*/
 
-    /*<bind>*/static { Bro.bind(UNErrorCode.class); }/*</bind>*/
+    /*<bind>*/
+    /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<methods>*/
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
-    @GlobalValue(symbol="UNErrorDomain", optional=true)
-    public static native String getClassDomain();
-    /*</methods>*/
+    /*<methods>*//*</methods>*/
 
     private final long n;
 
-    private /*<name>*/UNErrorCode/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/UNNotificationInterruptionLevel/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/UNErrorCode/*</name>*/ valueOf(long n) {
-        for (/*<name>*/UNErrorCode/*</name>*/ v : values()) {
+    public static /*<name>*/UNNotificationInterruptionLevel/*</name>*/ valueOf(long n) {
+        for (/*<name>*/UNNotificationInterruptionLevel/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/UNErrorCode/*</name>*/.class.getName());
+            + /*<name>*/UNNotificationInterruptionLevel/*</name>*/.class.getName());
     }
 }

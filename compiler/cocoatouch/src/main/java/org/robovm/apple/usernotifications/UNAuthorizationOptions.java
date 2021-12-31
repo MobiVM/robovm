@@ -57,8 +57,16 @@ public final class /*<name>*/UNAuthorizationOptions/*</name>*/ extends Bits</*<n
     public static final UNAuthorizationOptions Provisional = new UNAuthorizationOptions(64L);
     /**
      * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 15.0. Announcement authorization is always included
      */
+    @Deprecated
     public static final UNAuthorizationOptions Announcement = new UNAuthorizationOptions(128L);
+    /**
+     * @since Available in iOS 15.0 and later.
+     * @deprecated Deprecated in iOS 15.0. Use time-sensitive entitlement
+     */
+    @Deprecated
+    public static final UNAuthorizationOptions TimeSensitive = new UNAuthorizationOptions(256L);
     /*</values>*/
 
     /*<bind>*/

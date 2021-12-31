@@ -48,6 +48,10 @@ import org.robovm.apple.foundation.*;
     protected UNNotificationAction(Handle h, long handle) { super(h, handle); }
     protected UNNotificationAction(SkipInit skipInit) { super(skipInit); }
     public UNNotificationAction(String identifier, String title, UNNotificationActionOptions options) { super((Handle) null, create(identifier, title, options)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    public UNNotificationAction(String identifier, String title, UNNotificationActionOptions options, UNNotificationActionIcon icon) { super((Handle) null, create(identifier, title, options, icon)); retain(getHandle()); }
     @Method(selector = "initWithCoder:")
     public UNNotificationAction(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
@@ -58,6 +62,11 @@ import org.robovm.apple.foundation.*;
     public native String getTitle();
     @Property(selector = "options")
     public native UNNotificationActionOptions getOptions();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "icon")
+    public native UNNotificationActionIcon getIcon();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
@@ -65,6 +74,11 @@ import org.robovm.apple.foundation.*;
     /*<methods>*/
     @Method(selector = "actionWithIdentifier:title:options:")
     protected static native @Pointer long create(String identifier, String title, UNNotificationActionOptions options);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "actionWithIdentifier:title:options:icon:")
+    protected static native @Pointer long create(String identifier, String title, UNNotificationActionOptions options, UNNotificationActionIcon icon);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
