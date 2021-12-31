@@ -39,7 +39,7 @@ import org.robovm.apple.fileprovider.*;
 /*<annotations>*/@Library("CloudKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CKRecord/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding, CKRecordKeyValueSetting/*</implements>*/ {
 
     /*<ptr>*/public static class CKRecordPtr extends Ptr<CKRecord, CKRecordPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(CKRecord.class); }/*</bind>*/
@@ -87,6 +87,11 @@ import org.robovm.apple.fileprovider.*;
      */
     @Property(selector = "setParent:")
     public native void setParent(CKReference v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "encryptedValues")
+    public native CKRecordKeyValueSetting getEncryptedValues();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
@@ -146,11 +151,15 @@ import org.robovm.apple.fileprovider.*;
     @Method(selector = "objectForKey:")
     public native NSObject get(String key);
     @Method(selector = "setObject:forKey:")
-    protected native void put(NSObject object, String key);
+    public native void put(NSObject object, String key);
     @Method(selector = "allKeys")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getAllKeys();
     @Method(selector = "allTokens")
-    public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getAllTokens();
+    public native NSArray<NSString> allTokens();
+    @Method(selector = "objectForKeyedSubscript:")
+    public native CKRecordValue objectForKeyedSubscript(String key);
+    @Method(selector = "setObject:forKeyedSubscript:")
+    public native void setObjectForKeyedSubscript(CKRecordValue object, String key);
     @Method(selector = "changedKeys")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getChangedKeys();
     @Method(selector = "encodeSystemFieldsWithCoder:")

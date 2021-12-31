@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -34,37 +34,36 @@ import org.robovm.apple.fileprovider.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 9.0 and later.
+ */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/CKAccountStatus/*</name>*/ implements ValuedEnum {
-    /*<values>*/
-    CouldNotDetermine(0L),
-    Available(1L),
-    Restricted(2L),
-    NoAccount(3L),
-    /**
-     * @since Available in iOS 15.0 and later.
-     */
-    TemporarilyUnavailable(4L);
-    /*</values>*/
+/*<annotations>*//*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ interface /*<name>*/CKRecordKeyValueSetting/*</name>*/ 
+    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
 
+    /*<ptr>*/
+    /*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<methods>*//*</methods>*/
-
-    private final long n;
-
-    private /*<name>*/CKAccountStatus/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/CKAccountStatus/*</name>*/ valueOf(long n) {
-        for (/*<name>*/CKAccountStatus/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/CKAccountStatus/*</name>*/.class.getName());
-    }
+    /*<properties>*/
+    
+    /*</properties>*/
+    /*<methods>*/
+    @Method(selector = "objectForKey:")
+    NSObject get(String key);
+    @Method(selector = "setObject:forKey:")
+    void put(NSObject object, String key);
+    @Method(selector = "objectForKeyedSubscript:")
+    CKRecordValue objectForKeyedSubscript(String key);
+    @Method(selector = "setObject:forKeyedSubscript:")
+    void setObjectForKeyedSubscript(CKRecordValue object, String key);
+    @Method(selector = "allKeys")
+    @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getAllKeys();
+    @Method(selector = "changedKeys")
+    @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getChangedKeys();
+    /*</methods>*/
+    /*<adapter>*/
+    /*</adapter>*/
 }

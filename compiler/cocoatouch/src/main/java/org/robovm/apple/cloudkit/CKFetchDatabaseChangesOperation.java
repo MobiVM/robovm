@@ -84,6 +84,16 @@ import org.robovm.apple.fileprovider.*;
      */
     @Property(selector = "setRecordZoneWithIDWasPurgedBlock:")
     public native void setRecordZoneWithIDWasPurgedBlock(@Block VoidBlock1<CKRecordZoneID> v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "recordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock")
+    public native @Block VoidBlock1<CKRecordZoneID> getRecordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setRecordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock:")
+    public native void setRecordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock(@Block VoidBlock1<CKRecordZoneID> v);
     @Property(selector = "changeTokenUpdatedBlock")
     public native @Block VoidBlock1<CKServerChangeToken> getChangeTokenUpdatedBlock();
     @Property(selector = "setChangeTokenUpdatedBlock:")

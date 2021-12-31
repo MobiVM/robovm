@@ -60,6 +60,26 @@ import org.robovm.apple.fileprovider.*;
     public native NSArray<CKRecordZoneID> getRecordZoneIDsToDelete();
     @Property(selector = "setRecordZoneIDsToDelete:")
     public native void setRecordZoneIDsToDelete(NSArray<CKRecordZoneID> v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "perRecordZoneSaveBlock")
+    public native @Block VoidBlock3<CKRecordZoneID, CKRecordZone, NSError> getPerRecordZoneSaveBlock();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setPerRecordZoneSaveBlock:")
+    public native void setPerRecordZoneSaveBlock(@Block VoidBlock3<CKRecordZoneID, CKRecordZone, NSError> v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "perRecordZoneDeleteBlock")
+    public native @Block VoidBlock2<CKRecordZoneID, NSError> getPerRecordZoneDeleteBlock();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setPerRecordZoneDeleteBlock:")
+    public native void setPerRecordZoneDeleteBlock(@Block VoidBlock2<CKRecordZoneID, NSError> v);
     @Property(selector = "modifyRecordZonesCompletionBlock")
     public native @Block VoidBlock3<NSArray<CKRecordZone>, NSArray<CKRecordZoneID>, NSError> getModifyRecordZonesCompletionBlock();
     @Property(selector = "setModifyRecordZonesCompletionBlock:")
