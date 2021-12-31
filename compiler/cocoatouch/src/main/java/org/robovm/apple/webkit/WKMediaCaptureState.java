@@ -36,16 +36,15 @@ import org.robovm.apple.coreanimation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 14.5 and later.
+ * @since Available in iOS 15.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/WKMediaPlaybackState/*</name>*/ implements ValuedEnum {
+public enum /*<name>*/WKMediaCaptureState/*</name>*/ implements ValuedEnum {
     /*<values>*/
     None(0L),
-    Playing(1L),
-    Paused(2L),
-    Suspended(3L);
+    Active(1L),
+    Muted(2L);
     /*</values>*/
 
     /*<bind>*/
@@ -55,15 +54,15 @@ public enum /*<name>*/WKMediaPlaybackState/*</name>*/ implements ValuedEnum {
 
     private final long n;
 
-    private /*<name>*/WKMediaPlaybackState/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/WKMediaCaptureState/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/WKMediaPlaybackState/*</name>*/ valueOf(long n) {
-        for (/*<name>*/WKMediaPlaybackState/*</name>*/ v : values()) {
+    public static /*<name>*/WKMediaCaptureState/*</name>*/ valueOf(long n) {
+        for (/*<name>*/WKMediaCaptureState/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/WKMediaPlaybackState/*</name>*/.class.getName());
+            + /*<name>*/WKMediaCaptureState/*</name>*/.class.getName());
     }
 }

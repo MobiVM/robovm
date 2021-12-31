@@ -36,16 +36,15 @@ import org.robovm.apple.coreanimation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 14.5 and later.
+ * @since Available in iOS 15.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/WKMediaPlaybackState/*</name>*/ implements ValuedEnum {
+public enum /*<name>*/WKPermissionDecision/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    None(0L),
-    Playing(1L),
-    Paused(2L),
-    Suspended(3L);
+    Prompt(0L),
+    Grant(1L),
+    Deny(2L);
     /*</values>*/
 
     /*<bind>*/
@@ -55,15 +54,15 @@ public enum /*<name>*/WKMediaPlaybackState/*</name>*/ implements ValuedEnum {
 
     private final long n;
 
-    private /*<name>*/WKMediaPlaybackState/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/WKPermissionDecision/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/WKMediaPlaybackState/*</name>*/ valueOf(long n) {
-        for (/*<name>*/WKMediaPlaybackState/*</name>*/ v : values()) {
+    public static /*<name>*/WKPermissionDecision/*</name>*/ valueOf(long n) {
+        for (/*<name>*/WKPermissionDecision/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/WKMediaPlaybackState/*</name>*/.class.getName());
+            + /*<name>*/WKPermissionDecision/*</name>*/.class.getName());
     }
 }

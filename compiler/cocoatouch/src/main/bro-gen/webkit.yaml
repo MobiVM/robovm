@@ -23,6 +23,9 @@ enums:
     WKContentMode: {} #since 13.0
     WKDownloadRedirectPolicy: {} #since 14.5
     WKMediaPlaybackState: {} #since 14.5
+    WKMediaCaptureState: {} #since 15.0
+    WKPermissionDecision: {} #since 15.0
+    WKMediaCaptureType: {} #since 15.0
 categories:
     NSAttributedString:
         methods:
@@ -180,6 +183,32 @@ classes:
                 name: startDownload
             '-resumeDownloadFromResumeData:completionHandler:':
                 name: resumeDownload
+            '-closeAllMediaPresentationsWithCompletionHandler:':
+                name: closeAllMediaPresentations
+            '-pauseAllMediaPlayback:':
+                exclude: true
+            '-pauseAllMediaPlaybackWithCompletionHandler:':
+                name: pauseAllMediaPlayback
+            '-setAllMediaPlaybackSuspended:completionHandler:':
+                name: setAllMediaPlaybackSuspended
+            '-requestMediaPlaybackState:':
+                exclude: true
+            '-requestMediaPlaybackStateWithCompletionHandler:':
+                name: requestMediaPlaybackState
+            '-setCameraCaptureState:completionHandler:':
+                name: setCameraCaptureState
+            '-setMicrophoneCaptureState:completionHandler:':
+                name: setMicrophoneCaptureState
+            '-loadSimulatedRequest:response:responseData:':
+                name: loadSimulatedRequest
+            '-loadSimulatedRequest:withResponse:responseData:':
+                exclude: true
+            '-loadFileRequest:allowingReadAccessToURL:':
+                name: loadFileRequest
+            '-loadSimulatedRequest:responseHTMLString:':
+                name: loadSimulatedRequest
+            '-loadSimulatedRequest:withResponseHTMLString:':
+                name: loadSimulatedReques
     WKPreviewElementInfo: {}
     WKContentRuleList: {} #since 11.0
     WKContentRuleListStore: #since 11.0
@@ -272,6 +301,10 @@ protocols:
                 name: contextMenuWillPresent
             '-webView:contextMenuDidEndForElement:':
                 name: contextMenuDidEnd
+            '-webView:requestMediaCapturePermissionForOrigin:initiatedByFrame:type:decisionHandler:':
+                name: requestMediaCapturePermission
+            '-webView:requestDeviceOrientationAndMotionPermissionForOrigin:initiatedByFrame:decisionHandler:':
+                name: requestDeviceOrientationAndMotionPermission
     WKHTTPCookieStoreObserver: {} #since 11.0
     WKPreviewActionItem: {} #since 10.0
     WKURLSchemeHandler: #since 11.0

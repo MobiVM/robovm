@@ -64,6 +64,16 @@ import org.robovm.apple.coreanimation.*;
     @Method(selector = "webView:runJavaScriptTextInputPanelWithPrompt:defaultText:initiatedByFrame:completionHandler:")
     void runJavaScriptTextInputPanel(WKWebView webView, String prompt, String defaultText, WKFrameInfo frame, @Block VoidBlock1<NSString> completionHandler);
     /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "webView:requestMediaCapturePermissionForOrigin:initiatedByFrame:type:decisionHandler:")
+    void requestMediaCapturePermission(WKWebView webView, WKSecurityOrigin origin, WKFrameInfo frame, WKMediaCaptureType type, @Block VoidBlock1<WKPermissionDecision> decisionHandler);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "webView:requestDeviceOrientationAndMotionPermissionForOrigin:initiatedByFrame:decisionHandler:")
+    void requestDeviceOrientationAndMotionPermission(WKWebView webView, WKSecurityOrigin origin, WKFrameInfo frame, @Block VoidBlock1<WKPermissionDecision> decisionHandler);
+    /**
      * @since Available in iOS 10.0 and later.
      * @deprecated Deprecated in iOS 13.0. Use webView:contextMenuConfigurationForElement:completionHandler:
      */
