@@ -119,9 +119,17 @@ import org.robovm.apple.iosurface.*;
      * @since Available in iOS 11.0 and later.
      */
     public static final CVImageBufferAttribute ContentLightLevelInfo = new CVImageBufferAttribute("ContentLightLevelInfo");
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    public static final CVImageBufferAttribute AmbientViewingEnvironment = new CVImageBufferAttribute("AmbientViewingEnvironment");
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    public static final CVImageBufferAttribute RegionOfInterest = new CVImageBufferAttribute("RegionOfInterest");
     /*</constants>*/
     
-    private static /*<name>*/CVImageBufferAttribute/*</name>*/[] values = new /*<name>*/CVImageBufferAttribute/*</name>*/[] {/*<value_list>*/CGColorSpace, CleanAperture, PreferredCleanAperture, FieldCount, FieldDetail, PixelAspectRatio, DisplayDimensions, GammaLevel, ICCProfile, YCbCrMatrix, ColorPrimaries, TransferFunction, ChromaLocationTopField, ChromaLocationBottomField, ChromaSubsampling, AlphaChannelIsOpaque, AlphaChannelMode, MasteringDisplayColorVolume, ContentLightLevelInfo/*</value_list>*/};
+    private static /*<name>*/CVImageBufferAttribute/*</name>*/[] values = new /*<name>*/CVImageBufferAttribute/*</name>*/[] {/*<value_list>*/CGColorSpace, CleanAperture, PreferredCleanAperture, FieldCount, FieldDetail, PixelAspectRatio, DisplayDimensions, GammaLevel, ICCProfile, YCbCrMatrix, ColorPrimaries, TransferFunction, ChromaLocationTopField, ChromaLocationBottomField, ChromaSubsampling, AlphaChannelIsOpaque, AlphaChannelMode, MasteringDisplayColorVolume, ContentLightLevelInfo, AmbientViewingEnvironment, RegionOfInterest/*</value_list>*/};
     
     /*<name>*/CVImageBufferAttribute/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -194,6 +202,16 @@ import org.robovm.apple.iosurface.*;
          */
         @GlobalValue(symbol="kCVImageBufferContentLightLevelInfoKey", optional=true)
         public static native CFString ContentLightLevelInfo();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="kCVImageBufferAmbientViewingEnvironmentKey", optional=true)
+        public static native CFString AmbientViewingEnvironment();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="kCVImageBufferRegionOfInterestKey", optional=true)
+        public static native CFString RegionOfInterest();
         /*</values>*/
     }
 }

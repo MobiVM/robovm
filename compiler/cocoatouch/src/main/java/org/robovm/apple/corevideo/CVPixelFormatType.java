@@ -38,7 +38,7 @@ import org.robovm.apple.iosurface.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
+/*<annotations>*/@Library("CoreVideo")/*</annotations>*/
 public enum /*<name>*/CVPixelFormatType/*</name>*/ implements ValuedEnum {
     /*<values>*/
     _1Monochrome(1L),
@@ -90,6 +90,8 @@ public enum /*<name>*/CVPixelFormatType/*</name>*/ implements ValuedEnum {
     TwoComponent8(843264056L),
     _30RGBLEPackedWideGamut(1999843442L),
     ARGB2101010LEPacked(1815162994L),
+    _40ARGBLEWideGamut(1999908961L),
+    _40ARGBLEWideGamutPremultiplied(1999908973L),
     OneComponent10(1278226736L),
     OneComponent12(1278226738L),
     OneComponent16(1278226742L),
@@ -116,7 +118,20 @@ public enum /*<name>*/CVPixelFormatType/*</name>*/ implements ValuedEnum {
     _444YpCbCr10BiPlanarFullRange(2019963956L),
     _420YpCbCr8VideoRange_8A_TriPlanar(1982882104L),
     _16VersatileBayer(1651519798L),
-    _64RGBA_DownscaledProResRAW(1651521076L);
+    _64RGBA_DownscaledProResRAW(1651521076L),
+    _422YpCbCr16BiPlanarVideoRange(1937125938L),
+    _444YpCbCr16BiPlanarVideoRange(1937126452L),
+    _444YpCbCr16VideoRange_16A_TriPlanar(1932812659L),
+    Lossless_32BGRA(641877825L),
+    Lossless_420YpCbCr8BiPlanarVideoRange(641234480L),
+    Lossless_420YpCbCr8BiPlanarFullRange(641230384L),
+    Lossless_420YpCbCr10PackedBiPlanarVideoRange(645428784L),
+    Lossless_422YpCbCr10PackedBiPlanarVideoRange(645428786L),
+    Lossy_32BGRA(759318337L),
+    Lossy_420YpCbCr8BiPlanarVideoRange(758674992L),
+    Lossy_420YpCbCr8BiPlanarFullRange(758670896L),
+    Lossy_420YpCbCr10PackedBiPlanarVideoRange(762869296L),
+    Lossy_422YpCbCr10PackedBiPlanarVideoRange(762869298L);
     /*</values>*/
 
     public static class AsListMarshaler {
@@ -146,10 +161,15 @@ public enum /*<name>*/CVPixelFormatType/*</name>*/ implements ValuedEnum {
         }
     }
     
-    /*<bind>*/
-    /*</bind>*/
+    /*<bind>*/static { Bro.bind(CVPixelFormatType.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<methods>*//*</methods>*/
+    /*<methods>*/
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Bridge(symbol="CVIsCompressedPixelFormatAvailable", optional=true)
+    public static native boolean isCompressedFormatAvailable(CVPixelFormatType pixelFormatType);
+    /*</methods>*/
 
     private final long n;
 

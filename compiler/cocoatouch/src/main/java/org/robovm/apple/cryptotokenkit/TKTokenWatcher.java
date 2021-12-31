@@ -76,5 +76,10 @@ import org.robovm.apple.security.*;
     public native void setInsertionHandler(@Block VoidBlock1<NSString> insertionHandler);
     @Method(selector = "addRemovalHandler:forTokenID:")
     public native void addRemovalHandler(@Block VoidBlock1<NSString> removalHandler, String tokenID);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "tokenInfoForTokenID:")
+    public native TKTokenWatcherTokenInfo tokenInfoForTokenID(String tokenID);
     /*</methods>*/
 }
