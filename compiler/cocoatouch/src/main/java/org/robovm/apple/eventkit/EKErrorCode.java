@@ -77,7 +77,8 @@ public enum /*<name>*/EKErrorCode/*</name>*/ implements NSErrorCode {
     SourceMismatch(33L),
     NotificationCollectionMismatch(34L),
     NotificationSavedWithoutCollection(35L),
-    Last(36L);
+    ReminderAlarmContainsEmailOrUrl(36L),
+    Last(37L);
     /*</values>*/
 
     /*<bind>*/

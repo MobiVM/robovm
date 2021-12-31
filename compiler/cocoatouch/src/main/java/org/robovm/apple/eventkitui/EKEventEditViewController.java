@@ -54,7 +54,7 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "initWithNibName:bundle:")
     public EKEventEditViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
     @Method(selector = "initWithCoder:")
-    public EKEventEditViewController(NSCoder decoder) { super(decoder); }
+    public EKEventEditViewController(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "editViewDelegate")
