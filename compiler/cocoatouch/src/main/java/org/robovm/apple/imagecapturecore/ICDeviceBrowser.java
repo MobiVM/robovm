@@ -100,5 +100,15 @@ import org.robovm.apple.uikit.*;
      */
     @Method(selector = "requestControlAuthorizationWithCompletion:")
     public native void requestControlAuthorization(@Block VoidBlock1<ICAuthorizationStatus> completion);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "resetContentsAuthorizationWithCompletion:")
+    public native void resetContentsAuthorization(@Block VoidBlock1<ICAuthorizationStatus> completion);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "resetControlAuthorizationWithCompletion:")
+    public native void resetControlAuthorization(@Block VoidBlock1<ICAuthorizationStatus> completion);
     /*</methods>*/
 }
