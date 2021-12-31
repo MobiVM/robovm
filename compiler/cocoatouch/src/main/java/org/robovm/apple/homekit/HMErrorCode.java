@@ -205,7 +205,11 @@ public enum /*<name>*/HMErrorCode/*</name>*/ implements NSErrorCode {
     /**
      * @since Available in iOS 14.0 and later.
      */
-    FailedToJoinNetwork(102L);
+    FailedToJoinNetwork(102L),
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    AccessoryIsSuspended(103L);
     /*</values>*/
 
     /*<bind>*/

@@ -58,18 +58,6 @@ import org.robovm.apple.coreanimation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @deprecated Deprecated in iOS 9.0. This has been replaced by functionality in AdServices.framework's AAAttribution class.
-     */
-    @Deprecated
-    @Method(selector = "determineAppInstallationAttributionWithCompletionHandler:")
-    public native void determineAppInstallationAttribution(@Block VoidBooleanBlock completionHandler);
-    /**
-     * @deprecated Deprecated in iOS 9.0. This has been replaced by functionality in AdServices.framework's AAAttribution class.
-     */
-    @Deprecated
-    @Method(selector = "lookupAdConversionDetails:")
-    public native void lookupAdConversionDetails(@Block VoidBlock2<NSDate, NSDate> completionHandler);
-    /**
      * @since Available in iOS 9.0 and later.
      * @deprecated Deprecated in iOS 14.5. This has been replaced by functionality in AdServices.framework's AAAttribution class.
      */

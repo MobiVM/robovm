@@ -90,7 +90,6 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*/
     public static final HMServiceType Switch = new HMServiceType("Switch");
     public static final HMServiceType Thermostat = new HMServiceType("Thermostat");
-    public static final HMServiceType AccessoryInformation = new HMServiceType("AccessoryInformation");
     public static final HMServiceType Outlet = new HMServiceType("Outlet");
     public static final HMServiceType LockManagement = new HMServiceType("LockManagement");
     /**
@@ -205,6 +204,7 @@ import org.robovm.apple.corelocation.*;
      * @since Available in iOS 11.2 and later.
      */
     public static final HMServiceType Faucet = new HMServiceType("Faucet");
+    public static final HMServiceType AccessoryInformation = new HMServiceType("AccessoryInformation");
     public static final HMServiceType Fan = new HMServiceType("Fan");
     public static final HMServiceType GarageDoorOpener = new HMServiceType("GarageDoorOpener");
     public static final HMServiceType Lightbulb = new HMServiceType("Lightbulb");
@@ -231,7 +231,7 @@ import org.robovm.apple.corelocation.*;
     public static final HMServiceType Doorbell = new HMServiceType("Doorbell");
     /*</constants>*/
     
-    private static /*<name>*/HMServiceType/*</name>*/[] values = new /*<name>*/HMServiceType/*</name>*/[] {/*<value_list>*/Switch, Thermostat, AccessoryInformation, Outlet, LockManagement, AirQualitySensor, CarbonDioxideSensor, CarbonMonoxideSensor, ContactSensor, Door, HumiditySensor, LeakSensor, LightSensor, MotionSensor, OccupancySensor, SecuritySystem, StatefulProgrammableSwitch, StatelessProgrammableSwitch, SmokeSensor, TemperatureSensor, Window, WindowCovering, CameraRTPStreamManagement, CameraControl, Microphone, Speaker, AirPurifier, FilterMaintenance, Slats, Label, IrrigationSystem, Valve, Faucet, Fan, GarageDoorOpener, Lightbulb, LockMechanism, Battery, VentilationFan, HeaterCooler, HumidifierDehumidifier, Doorbell/*</value_list>*/};
+    private static /*<name>*/HMServiceType/*</name>*/[] values = new /*<name>*/HMServiceType/*</name>*/[] {/*<value_list>*/Switch, Thermostat, Outlet, LockManagement, AirQualitySensor, CarbonDioxideSensor, CarbonMonoxideSensor, ContactSensor, Door, HumiditySensor, LeakSensor, LightSensor, MotionSensor, OccupancySensor, SecuritySystem, StatefulProgrammableSwitch, StatelessProgrammableSwitch, SmokeSensor, TemperatureSensor, Window, WindowCovering, CameraRTPStreamManagement, CameraControl, Microphone, Speaker, AirPurifier, FilterMaintenance, Slats, Label, IrrigationSystem, Valve, Faucet, AccessoryInformation, Fan, GarageDoorOpener, Lightbulb, LockMechanism, Battery, VentilationFan, HeaterCooler, HumidifierDehumidifier, Doorbell/*</value_list>*/};
     
     /*<name>*/HMServiceType/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -258,8 +258,6 @@ import org.robovm.apple.corelocation.*;
         public static native NSString Switch();
         @GlobalValue(symbol="HMServiceTypeThermostat", optional=true)
         public static native NSString Thermostat();
-        @GlobalValue(symbol="HMServiceTypeAccessoryInformation", optional=true)
-        public static native NSString AccessoryInformation();
         @GlobalValue(symbol="HMServiceTypeOutlet", optional=true)
         public static native NSString Outlet();
         @GlobalValue(symbol="HMServiceTypeLockManagement", optional=true)
@@ -404,6 +402,8 @@ import org.robovm.apple.corelocation.*;
          */
         @GlobalValue(symbol="HMServiceTypeFaucet", optional=true)
         public static native NSString Faucet();
+        @GlobalValue(symbol="HMServiceTypeAccessoryInformation", optional=true)
+        public static native NSString AccessoryInformation();
         @GlobalValue(symbol="HMServiceTypeFan", optional=true)
         public static native NSString Fan();
         @GlobalValue(symbol="HMServiceTypeGarageDoorOpener", optional=true)

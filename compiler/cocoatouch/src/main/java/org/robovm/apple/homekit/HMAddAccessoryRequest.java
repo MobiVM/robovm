@@ -32,9 +32,7 @@ import org.robovm.apple.corelocation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 13.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("HomeKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/HMAddAccessoryRequest/*</name>*/ 

@@ -60,6 +60,10 @@ import org.robovm.apple.coreanimation.*;
         }
     }
     /*<methods>*/
+    /**
+     * @deprecated Deprecated in iOS 15.0.
+     */
+    @Deprecated
     @GlobalValue(symbol="ADClientErrorDomain", optional=true)
     public static native String getClassDomain();
     /*</methods>*/
