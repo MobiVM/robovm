@@ -35,35 +35,23 @@ import org.robovm.apple.metalps.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-public enum /*<name>*/MLCDeviceType/*</name>*/ implements ValuedEnum {
-    /*<values>*/
-    CPU(0L),
-    GPU(1L),
-    Any(2L),
+/*<annotations>*/@Library("MLCompute")/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MLCGradientClippingType/*</name>*/ 
+    extends /*<extends>*/CocoaUtility/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
+
+    /*<ptr>*/
+    /*</ptr>*/
+    /*<bind>*/static { Bro.bind(MLCGradientClippingType.class); }/*</bind>*/
+    /*<constants>*//*</constants>*/
+    /*<constructors>*//*</constructors>*/
+    /*<properties>*//*</properties>*/
+    /*<members>*//*</members>*/
+    /*<methods>*/
     /**
      * @since Available in iOS 15.0 and later.
      */
-    ANE(3L),
-    Count(4L);
-    /*</values>*/
-
-    /*<bind>*/
-    /*</bind>*/
-    /*<constants>*//*</constants>*/
-    /*<methods>*//*</methods>*/
-
-    private final long n;
-
-    private /*<name>*/MLCDeviceType/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/MLCDeviceType/*</name>*/ valueOf(long n) {
-        for (/*<name>*/MLCDeviceType/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/MLCDeviceType/*</name>*/.class.getName());
-    }
+    @Bridge(symbol="MLCGradientClippingTypeDebugDescription", optional=true)
+    public native String getDebugDescription();
+    /*</methods>*/
 }

@@ -34,27 +34,23 @@ import org.robovm.apple.metalps.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 14.0 and later.
+ * @since Available in iOS 15.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("MLCompute") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MLCAdamOptimizer/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MLCAdamWOptimizer/*</name>*/ 
     extends /*<extends>*/MLCOptimizer/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class MLCAdamOptimizerPtr extends Ptr<MLCAdamOptimizer, MLCAdamOptimizerPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(MLCAdamOptimizer.class); }/*</bind>*/
+    /*<ptr>*/public static class MLCAdamWOptimizerPtr extends Ptr<MLCAdamWOptimizer, MLCAdamWOptimizerPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(MLCAdamWOptimizer.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected MLCAdamOptimizer() {}
-    protected MLCAdamOptimizer(Handle h, long handle) { super(h, handle); }
-    protected MLCAdamOptimizer(SkipInit skipInit) { super(skipInit); }
-    public MLCAdamOptimizer(MLCOptimizerDescriptor optimizerDescriptor) { super((Handle) null, create(optimizerDescriptor)); retain(getHandle()); }
-    public MLCAdamOptimizer(MLCOptimizerDescriptor optimizerDescriptor, float beta1, float beta2, float epsilon, @MachineSizedUInt long timeStep) { super((Handle) null, create(optimizerDescriptor, beta1, beta2, epsilon, timeStep)); retain(getHandle()); }
-    /**
-     * @since Available in iOS 15.0 and later.
-     */
-    public MLCAdamOptimizer(MLCOptimizerDescriptor optimizerDescriptor, float beta1, float beta2, float epsilon, boolean usesAMSGrad, @MachineSizedUInt long timeStep) { super((Handle) null, create(optimizerDescriptor, beta1, beta2, epsilon, usesAMSGrad, timeStep)); retain(getHandle()); }
+    protected MLCAdamWOptimizer() {}
+    protected MLCAdamWOptimizer(Handle h, long handle) { super(h, handle); }
+    protected MLCAdamWOptimizer(SkipInit skipInit) { super(skipInit); }
+    public MLCAdamWOptimizer(MLCOptimizerDescriptor optimizerDescriptor) { super((Handle) null, create(optimizerDescriptor)); retain(getHandle()); }
+    public MLCAdamWOptimizer(MLCOptimizerDescriptor optimizerDescriptor, float beta1, float beta2, float epsilon, boolean usesAMSGrad, @MachineSizedUInt long timeStep) { super((Handle) null, create(optimizerDescriptor, beta1, beta2, epsilon, usesAMSGrad, timeStep)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "beta1")
@@ -72,11 +68,6 @@ import org.robovm.apple.metalps.*;
     /*<methods>*/
     @Method(selector = "optimizerWithDescriptor:")
     protected static native @Pointer long create(MLCOptimizerDescriptor optimizerDescriptor);
-    @Method(selector = "optimizerWithDescriptor:beta1:beta2:epsilon:timeStep:")
-    protected static native @Pointer long create(MLCOptimizerDescriptor optimizerDescriptor, float beta1, float beta2, float epsilon, @MachineSizedUInt long timeStep);
-    /**
-     * @since Available in iOS 15.0 and later.
-     */
     @Method(selector = "optimizerWithDescriptor:beta1:beta2:epsilon:usesAMSGrad:timeStep:")
     protected static native @Pointer long create(MLCOptimizerDescriptor optimizerDescriptor, float beta1, float beta2, float epsilon, boolean usesAMSGrad, @MachineSizedUInt long timeStep);
     /*</methods>*/

@@ -38,7 +38,8 @@ import org.robovm.apple.coregraphics.*;
 public enum /*<name>*/MDLMeshBufferType/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Vertex(1L),
-    Index(2L);
+    Index(2L),
+    Custom(3L);
     /*</values>*/
 
     public static class AsListMarshaler {

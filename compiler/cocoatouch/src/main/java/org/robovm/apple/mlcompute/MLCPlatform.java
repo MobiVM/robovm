@@ -33,37 +33,31 @@ import org.robovm.apple.metalps.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 15.0 and later.
+ */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-public enum /*<name>*/MLCDeviceType/*</name>*/ implements ValuedEnum {
-    /*<values>*/
-    CPU(0L),
-    GPU(1L),
-    Any(2L),
-    /**
-     * @since Available in iOS 15.0 and later.
-     */
-    ANE(3L),
-    Count(4L);
-    /*</values>*/
+/*<annotations>*/@Library("MLCompute") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MLCPlatform/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
 
-    /*<bind>*/
-    /*</bind>*/
+    /*<ptr>*/public static class MLCPlatformPtr extends Ptr<MLCPlatform, MLCPlatformPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(MLCPlatform.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<methods>*//*</methods>*/
-
-    private final long n;
-
-    private /*<name>*/MLCDeviceType/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/MLCDeviceType/*</name>*/ valueOf(long n) {
-        for (/*<name>*/MLCDeviceType/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/MLCDeviceType/*</name>*/.class.getName());
-    }
+    /*<constructors>*/
+    public MLCPlatform() {}
+    protected MLCPlatform(Handle h, long handle) { super(h, handle); }
+    protected MLCPlatform(SkipInit skipInit) { super(skipInit); }
+    /*</constructors>*/
+    /*<properties>*/
+    
+    /*</properties>*/
+    /*<members>*//*</members>*/
+    /*<methods>*/
+    @Method(selector = "setRNGSeedTo:")
+    public static native void setRNGSeedTo(NSNumber seed);
+    @Method(selector = "getRNGseed")
+    public static native NSNumber getRNGseed();
+    /*</methods>*/
 }
