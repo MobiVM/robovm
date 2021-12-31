@@ -39,7 +39,6 @@ enums:
     GKMatchmakingMode: {}
     GKFriendsAuthorizationStatus: {} #since 14.5
 classes:
-
     GKAchievement: # DONE
         methods:
             '-init.*':
@@ -143,13 +142,13 @@ classes:
                     players:
                         type: NSArray<GKPlayer>
             '-addRecipientsWithPlayerIDs:':
-                trim_after_first_colon: true
+                name: addRecipientsWithPlayerIDs
                 parameters:
                     playerIDs:
                         type: 'List<String>'
                         marshaler: NSArray.AsStringListMarshaler
             '-addRecipientsWithEmailAddresses:':
-                trim_after_first_colon: true
+                name: addRecipientsWithEmailAddresses
                 parameters:
                     emailAddresses:
                         type: 'List<String>'
@@ -321,6 +320,9 @@ classes:
                         type: '@Block VoidBlock2<NSArray<GKSavedGame>, NSError>'
             '-loadChallengableFriendsWithCompletionHandler:':
                 name: loadChallengableFriends
+            '-presentFriendRequestCreatorFromViewController:error:':
+                name: presentFriendRequestCreator
+                throws: NSErrorException
     GKMatch: # DONE
         properties:
             'players':

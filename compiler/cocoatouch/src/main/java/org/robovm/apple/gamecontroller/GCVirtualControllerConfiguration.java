@@ -35,36 +35,27 @@ import org.robovm.apple.corehaptic.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 14.0 and later.
+ * @since Available in iOS 15.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("GameController") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/GCXboxGamepad/*</name>*/ 
-    extends /*<extends>*/GCExtendedGamepad/*</extends>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/GCVirtualControllerConfiguration/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class GCXboxGamepadPtr extends Ptr<GCXboxGamepad, GCXboxGamepadPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(GCXboxGamepad.class); }/*</bind>*/
+    /*<ptr>*/public static class GCVirtualControllerConfigurationPtr extends Ptr<GCVirtualControllerConfiguration, GCVirtualControllerConfigurationPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(GCVirtualControllerConfiguration.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public GCXboxGamepad() {}
-    protected GCXboxGamepad(Handle h, long handle) { super(h, handle); }
-    protected GCXboxGamepad(SkipInit skipInit) { super(skipInit); }
+    public GCVirtualControllerConfiguration() {}
+    protected GCVirtualControllerConfiguration(Handle h, long handle) { super(h, handle); }
+    protected GCVirtualControllerConfiguration(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "paddleButton1")
-    public native GCControllerButtonInput getPaddleButton1();
-    @Property(selector = "paddleButton2")
-    public native GCControllerButtonInput getPaddleButton2();
-    @Property(selector = "paddleButton3")
-    public native GCControllerButtonInput getPaddleButton3();
-    @Property(selector = "paddleButton4")
-    public native GCControllerButtonInput getPaddleButton4();
-    /**
-     * @since Available in iOS 15.0 and later.
-     */
-    @Property(selector = "buttonShare")
-    public native GCControllerButtonInput getButtonShare();
+    @Property(selector = "elements")
+    public native NSSet<NSString> getElements();
+    @Property(selector = "setElements:")
+    public native void setElements(NSSet<NSString> v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

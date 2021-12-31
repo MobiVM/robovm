@@ -54,7 +54,7 @@ import org.robovm.apple.coregraphics.*;
     @Method(selector = "initWithNibName:bundle:")
     public GKTurnBasedMatchmakerViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
     @Method(selector = "initWithCoder:")
-    public GKTurnBasedMatchmakerViewController(NSCoder decoder) { super(decoder); }
+    public GKTurnBasedMatchmakerViewController(NSCoder coder) { super(coder); }
     @Method(selector = "initWithMatchRequest:")
     public GKTurnBasedMatchmakerViewController(GKMatchRequest request) { super((SkipInit) null); initObject(init(request)); }
     /*</constructors>*/
@@ -67,6 +67,16 @@ import org.robovm.apple.coregraphics.*;
     public native boolean showsExistingMatches();
     @Property(selector = "setShowExistingMatches:")
     public native void setShowsExistingMatches(boolean v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "matchmakingMode")
+    public native GKMatchmakingMode getMatchmakingMode();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setMatchmakingMode:")
+    public native void setMatchmakingMode(GKMatchmakingMode v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -58,7 +58,7 @@ import org.robovm.apple.coregraphics.*;
     @Method(selector = "initWithNibName:bundle:")
     public GKMatchmakerViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
     @Method(selector = "initWithCoder:")
-    public GKMatchmakerViewController(NSCoder decoder) { super(decoder); }
+    public GKMatchmakerViewController(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "matchmakerDelegate")
@@ -75,6 +75,16 @@ import org.robovm.apple.coregraphics.*;
     public native GKMatchmakingMode getMatchmakingMode();
     @Property(selector = "setMatchmakingMode:")
     public native void setMatchmakingMode(GKMatchmakingMode v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "canStartWithMinimumPlayers")
+    public native boolean canStartWithMinimumPlayers();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setCanStartWithMinimumPlayers:")
+    public native void setCanStartWithMinimumPlayers(boolean v);
     /**
      * @deprecated Deprecated in iOS 7.0.
      */

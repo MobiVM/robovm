@@ -56,7 +56,7 @@ import org.robovm.apple.coregraphics.*;
     @Method(selector = "initWithNibName:bundle:")
     public GKLeaderboardViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
     @Method(selector = "initWithCoder:")
-    public GKLeaderboardViewController(NSCoder decoder) { super(decoder); }
+    public GKLeaderboardViewController(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "timeScope")

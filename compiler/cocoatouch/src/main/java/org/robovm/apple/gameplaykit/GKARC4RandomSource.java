@@ -53,7 +53,7 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "initWithSeed:")
     public GKARC4RandomSource(NSData seed) { super((SkipInit) null); initObject(init(seed)); }
     @Method(selector = "initWithCoder:")
-    public GKARC4RandomSource(NSCoder decoder) { super(decoder); }
+    public GKARC4RandomSource(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "seed")

@@ -56,7 +56,7 @@ import org.robovm.apple.coregraphics.*;
     @Method(selector = "initWithNibName:bundle:")
     public GKFriendRequestComposeViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
     @Method(selector = "initWithCoder:")
-    public GKFriendRequestComposeViewController(NSCoder decoder) { super(decoder); }
+    public GKFriendRequestComposeViewController(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     /**

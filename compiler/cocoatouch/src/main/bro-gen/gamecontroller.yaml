@@ -118,6 +118,18 @@ classes:
             '-setModeVibrationWithStartPosition:amplitude:frequency:':
                 name: setModeVibration
     GCDualSenseGamepad: {} #since 14.5
+    GCVirtualController: #since 15.0
+        methods:
+            '-initWithConfiguration:':
+                name: init
+            '-connectWithReplyHandler:':
+                name: connect
+            '-updateConfigurationForElement:configuration:':
+                name: updateConfiguration
+            '+virtualControllerWithConfiguration:':
+                name: virtualControllerWithConfiguration$
+    GCVirtualControllerConfiguration: {} #since 15.0
+    GCVirtualControllerElementConfiguration: {} #since 15.0
 protocols:
     GCDevice: {} #since 14.0
 
@@ -202,6 +214,9 @@ values:
 
     GCHapticDuration(Infinite):
         class: GCDeviceHaptics
+        name: '#{g[0]}'
+    GCProductCategory(.*):
+        class: GCProductCategory
         name: '#{g[0]}'
 
     # Make sure we don't miss any values if new ones are introduced in a later version

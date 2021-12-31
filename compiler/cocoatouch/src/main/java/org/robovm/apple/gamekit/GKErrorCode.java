@@ -74,7 +74,8 @@ public enum /*<name>*/GKErrorCode/*</name>*/ implements NSErrorCode {
     APIObsolete(34L),
     FriendListDescriptionMissing(100L),
     FriendListRestricted(101L),
-    FriendListDenied(102L);
+    FriendListDenied(102L),
+    FriendRequestNotAvailable(103L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(GKErrorCode.class); }/*</bind>*/

@@ -35,36 +35,35 @@ import org.robovm.apple.corehaptic.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 14.0 and later.
+ * @since Available in iOS 15.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("GameController") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/GCXboxGamepad/*</name>*/ 
-    extends /*<extends>*/GCExtendedGamepad/*</extends>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/GCVirtualControllerElementConfiguration/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class GCXboxGamepadPtr extends Ptr<GCXboxGamepad, GCXboxGamepadPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(GCXboxGamepad.class); }/*</bind>*/
+    /*<ptr>*/public static class GCVirtualControllerElementConfigurationPtr extends Ptr<GCVirtualControllerElementConfiguration, GCVirtualControllerElementConfigurationPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(GCVirtualControllerElementConfiguration.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public GCXboxGamepad() {}
-    protected GCXboxGamepad(Handle h, long handle) { super(h, handle); }
-    protected GCXboxGamepad(SkipInit skipInit) { super(skipInit); }
+    public GCVirtualControllerElementConfiguration() {}
+    protected GCVirtualControllerElementConfiguration(Handle h, long handle) { super(h, handle); }
+    protected GCVirtualControllerElementConfiguration(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "paddleButton1")
-    public native GCControllerButtonInput getPaddleButton1();
-    @Property(selector = "paddleButton2")
-    public native GCControllerButtonInput getPaddleButton2();
-    @Property(selector = "paddleButton3")
-    public native GCControllerButtonInput getPaddleButton3();
-    @Property(selector = "paddleButton4")
-    public native GCControllerButtonInput getPaddleButton4();
-    /**
-     * @since Available in iOS 15.0 and later.
-     */
-    @Property(selector = "buttonShare")
-    public native GCControllerButtonInput getButtonShare();
+    @Property(selector = "isHidden")
+    public native boolean isHidden();
+    @Property(selector = "setHidden:")
+    public native void setHidden(boolean v);
+    @Property(selector = "path")
+    public native UIBezierPath getPath();
+    @Property(selector = "setPath:")
+    public native void setPath(UIBezierPath v);
+    @Property(selector = "actsAsTouchpad")
+    public native boolean isActsAsTouchpad();
+    @Property(selector = "setActsAsTouchpad:")
+    public native void setActsAsTouchpad(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -57,10 +57,10 @@ import org.robovm.apple.uikit.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "createBranchWithValue:attribute:")
-    public native GKDecisionNode createBranch(NSNumber value, NSObject attribute);
+    public native GKDecisionNode createBranch(NSNumber value, NSObjectProtocol attribute);
     @Method(selector = "createBranchWithPredicate:attribute:")
-    public native GKDecisionNode createBranch(NSPredicate predicate, NSObject attribute);
+    public native GKDecisionNode createBranch(NSPredicate predicate, NSObjectProtocol attribute);
     @Method(selector = "createBranchWithWeight:attribute:")
-    public native GKDecisionNode createBranch(@MachineSizedSInt long weight, NSObject attribute);
+    public native GKDecisionNode createBranch(@MachineSizedSInt long weight, NSObjectProtocol attribute);
     /*</methods>*/
 }
