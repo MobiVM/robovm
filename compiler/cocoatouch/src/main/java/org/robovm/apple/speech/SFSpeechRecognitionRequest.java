@@ -63,8 +63,18 @@ import org.robovm.apple.coremedia.*;
     public native NSArray<NSString> getContextualStrings();
     @Property(selector = "setContextualStrings:")
     public native void setContextualStrings(NSArray<NSString> v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 15.0. Not used anymore
+     */
+    @Deprecated
     @Property(selector = "interactionIdentifier")
     public native String getInteractionIdentifier();
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 15.0. Not used anymore
+     */
+    @Deprecated
     @Property(selector = "setInteractionIdentifier:")
     public native void setInteractionIdentifier(String v);
     /**
