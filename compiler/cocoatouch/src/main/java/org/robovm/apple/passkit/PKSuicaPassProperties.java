@@ -76,7 +76,7 @@ import org.robovm.apple.coreanimation.*;
     public native boolean isGreenCarTicketUsed();
     /**
      * @since Available in iOS 10.1 and later.
-     * @deprecated Deprecated in iOS 14.5. Use isBlocked
+     * @deprecated Deprecated in iOS 15.0. Use isBlocked
      */
     @Deprecated
     @Property(selector = "isBlacklisted")

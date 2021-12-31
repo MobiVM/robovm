@@ -33,6 +33,12 @@ enums:
     PKAddShareablePassConfigurationPrimaryAction: {} #since 14.0
     PKIssuerProvisioningExtensionAuthorizationResult: {} #since 14.0
     PKRadioTechnology: {} #since 14.5
+    PKShippingContactEditingMode: {} #since 15.0
+typed_enums:
+    PKStoredValuePassBalanceType:
+        enum: PKStoredValuePassBalanceType
+        prefix: PKStoredValuePassBalanceType
+        type: NSString
 classes:
     PKPassKitError:
         extends: NSError
@@ -119,6 +125,8 @@ classes:
                 name: activateSecureElementPass
             '-signData:withSecureElementPass:completion:':
                 name: signData
+            '-serviceProviderDataForSecureElementPass:completion:':
+                name: serviceProviderDataForSecureElementPass
     PKPayment: # DONE
         properties:
             'billingAddress':
@@ -163,6 +171,10 @@ classes:
                 name: createPaymentShippingAddressUnserviceableError
             '+paymentBillingAddressInvalidErrorWithKey:localizedDescription:':
                 name: createPaymentBillingAddressInvalidError
+            '+paymentCouponCodeInvalidErrorWithLocalizedDescription:':
+                name: createPaymentCouponCodeInvalidError
+            '+paymentCouponCodeExpiredErrorWithLocalizedDescription:':
+                name: createPaymentCouponCodeExpiredError
     PKPaymentSummaryItem: # DONE
         methods:
             '+summaryItemWithLabel:amount:':
@@ -272,6 +284,20 @@ classes:
         methods:
             '-initWithProvisioningCredentialIdentifier:cardConfigurationIdentifier:sharingInstanceIdentifier:passThumbnailImage:ownerDisplayName:localizedDescription:':
                 name: init
+            '-initWithProvisioningCredentialIdentifier:sharingInstanceIdentifier:passThumbnailImage:ownerDisplayName:localizedDescription:accountHash:templateIdentifier:relyingPartyIdentifier:requiresUnifiedAccessCapableDevice:':
+               name: init
+    PKDateComponentsRange: #since 15.0
+        methods:
+            '-initWithStartDateComponents:endDateComponents:':
+                name: init
+    PKDeferredPaymentSummaryItem: {} #since 15.0
+    PKPaymentRequestCouponCodeUpdate: #since 15.0
+        methods:
+            '-initWithErrors:paymentSummaryItems:shippingMethods:':
+                name: init
+    PKRecurringPaymentSummaryItem: {} #since 15.0
+    PKStoredValuePassBalance: {} #since 15.0
+    PKStoredValuePassProperties: {} #since 15.0
 protocols:
     PKPaymentAuthorizationControllerDelegate:
         methods:
@@ -297,6 +323,8 @@ protocols:
                 name: didSelectPaymentMethod
             '-paymentAuthorizationController:didRequestMerchantSessionUpdate:':
                 name: didRequestMerchantSessionUpdate
+            '-paymentAuthorizationController:didChangeCouponCode:handler:':
+                name: didChangeCouponCode
 
     PKAddPassesViewControllerDelegate: # DONE
         methods:
@@ -351,6 +379,8 @@ protocols:
                 name: didSelectPaymentMethod
             '-paymentAuthorizationViewController:didRequestMerchantSessionUpdate:':
                 name: didRequestMerchantSessionUpdate
+            '-paymentAuthorizationViewController:didChangeCouponCode:handler:':
+                name: didChangeCouponCode
     PKDisbursementAuthorizationControllerDelegate:
         methods:
             '-disbursementAuthorizationController:didAuthorizeWithDisbursementVoucher:':

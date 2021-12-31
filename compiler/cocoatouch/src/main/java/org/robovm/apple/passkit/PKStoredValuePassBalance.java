@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -36,43 +36,36 @@ import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 15.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("PassKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/PKShippingMethod/*</name>*/ 
-    extends /*<extends>*/PKPaymentSummaryItem/*</extends>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/PKStoredValuePassBalance/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class PKShippingMethodPtr extends Ptr<PKShippingMethod, PKShippingMethodPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(PKShippingMethod.class); }/*</bind>*/
+    /*<ptr>*/public static class PKStoredValuePassBalancePtr extends Ptr<PKStoredValuePassBalance, PKStoredValuePassBalancePtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(PKStoredValuePassBalance.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public PKShippingMethod() {}
-    protected PKShippingMethod(Handle h, long handle) { super(h, handle); }
-    protected PKShippingMethod(SkipInit skipInit) { super(skipInit); }
+    protected PKStoredValuePassBalance() {}
+    protected PKStoredValuePassBalance(Handle h, long handle) { super(h, handle); }
+    protected PKStoredValuePassBalance(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "identifier")
-    public native String getIdentifier();
-    @Property(selector = "setIdentifier:")
-    public native void setIdentifier(String v);
-    @Property(selector = "detail")
-    public native String getDetail();
-    @Property(selector = "setDetail:")
-    public native void setDetail(String v);
-    /**
-     * @since Available in iOS 15.0 and later.
-     */
-    @Property(selector = "dateComponentsRange")
-    public native PKDateComponentsRange getDateComponentsRange();
-    /**
-     * @since Available in iOS 15.0 and later.
-     */
-    @Property(selector = "setDateComponentsRange:")
-    public native void setDateComponentsRange(PKDateComponentsRange v);
+    @Property(selector = "amount")
+    public native NSDecimalNumber getAmount();
+    @Property(selector = "currencyCode")
+    public native String getCurrencyCode();
+    @Property(selector = "balanceType")
+    public native PKStoredValuePassBalanceType getBalanceType();
+    @Property(selector = "expiryDate")
+    public native NSDate getExpiryDate();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "isEqualToBalance:")
+    public native boolean isEqualToBalance(PKStoredValuePassBalance balance);
     /*</methods>*/
 }

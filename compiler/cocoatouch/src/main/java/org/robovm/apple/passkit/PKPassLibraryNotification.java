@@ -147,6 +147,11 @@ import org.robovm.apple.coreanimation.*;
         public static native NSString ReplacementPasses();
         @GlobalValue(symbol="PKPassLibraryRemovedPassInfosUserInfoKey", optional=true)
         public static native NSString RemovedPassInfos();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="PKPassLibraryRecoveredPassesUserInfoKey", optional=true)
+        public static native NSString RecoveredPasses();
     }
     /*</keys>*/
 }

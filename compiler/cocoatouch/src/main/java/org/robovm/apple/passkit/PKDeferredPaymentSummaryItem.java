@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -36,40 +36,28 @@ import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 15.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("PassKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/PKShippingMethod/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/PKDeferredPaymentSummaryItem/*</name>*/ 
     extends /*<extends>*/PKPaymentSummaryItem/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class PKShippingMethodPtr extends Ptr<PKShippingMethod, PKShippingMethodPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(PKShippingMethod.class); }/*</bind>*/
+    /*<ptr>*/public static class PKDeferredPaymentSummaryItemPtr extends Ptr<PKDeferredPaymentSummaryItem, PKDeferredPaymentSummaryItemPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(PKDeferredPaymentSummaryItem.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public PKShippingMethod() {}
-    protected PKShippingMethod(Handle h, long handle) { super(h, handle); }
-    protected PKShippingMethod(SkipInit skipInit) { super(skipInit); }
+    public PKDeferredPaymentSummaryItem() {}
+    protected PKDeferredPaymentSummaryItem(Handle h, long handle) { super(h, handle); }
+    protected PKDeferredPaymentSummaryItem(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "identifier")
-    public native String getIdentifier();
-    @Property(selector = "setIdentifier:")
-    public native void setIdentifier(String v);
-    @Property(selector = "detail")
-    public native String getDetail();
-    @Property(selector = "setDetail:")
-    public native void setDetail(String v);
-    /**
-     * @since Available in iOS 15.0 and later.
-     */
-    @Property(selector = "dateComponentsRange")
-    public native PKDateComponentsRange getDateComponentsRange();
-    /**
-     * @since Available in iOS 15.0 and later.
-     */
-    @Property(selector = "setDateComponentsRange:")
-    public native void setDateComponentsRange(PKDateComponentsRange v);
+    @Property(selector = "deferredDate")
+    public native NSDate getDeferredDate();
+    @Property(selector = "setDeferredDate:")
+    public native void setDeferredDate(NSDate v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -46,7 +46,15 @@ public enum /*<name>*/PKPaymentErrorCode/*</name>*/ implements NSErrorCode {
     UnknownError(-1L),
     ShippingContactInvalidError(1L),
     BillingContactInvalidError(2L),
-    ShippingAddressUnserviceableError(3L);
+    ShippingAddressUnserviceableError(3L),
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    CouponCodeInvalidError(4L),
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    CouponCodeExpiredError(5L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(PKPaymentErrorCode.class); }/*</bind>*/

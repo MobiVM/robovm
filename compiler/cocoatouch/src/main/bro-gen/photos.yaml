@@ -373,6 +373,12 @@ classes:
             '-saveLivePhotoToOutput:options:completionHandler:':
                 name: saveLivePhoto
     PHChangeRequest: {} #since 13.0
+    PHCloudIdentifier: #since 15.0
+        methods:
+            '-initWithStringValue:':
+                name: init
+    PHCloudIdentifierMapping: {} #since 15.0
+    PHLocalIdentifierMapping: {} #since 15.0
 protocols:
     PHLivePhotoFrame: {}
 
@@ -442,6 +448,9 @@ values:
     PHPhotosErrorDomain:
         class: PHPhotosError
         name: getClassDomain
+    PHLocalIdentifiersErrorKey:
+        class: PHPhotosError
+        name: getLocalIdentifiersErrorKey
 
     # Make sure we don't miss any values if new ones are introduced in a later version
     (k?PH.*):

@@ -37,18 +37,14 @@ import org.robovm.apple.coreanimation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 9.0 and later.
+ * @since Available in iOS 15.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/PKPaymentMethodType/*</name>*/ implements ValuedEnum {
+public enum /*<name>*/PKShippingContactEditingMode/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    Unknown(0L),
-    Debit(1L),
-    Credit(2L),
-    Prepaid(3L),
-    Store(4L),
-    EMoney(5L);
+    Enabled(1L),
+    StorePickup(2L);
     /*</values>*/
 
     /*<bind>*/
@@ -58,15 +54,15 @@ public enum /*<name>*/PKPaymentMethodType/*</name>*/ implements ValuedEnum {
 
     private final long n;
 
-    private /*<name>*/PKPaymentMethodType/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/PKShippingContactEditingMode/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/PKPaymentMethodType/*</name>*/ valueOf(long n) {
-        for (/*<name>*/PKPaymentMethodType/*</name>*/ v : values()) {
+    public static /*<name>*/PKShippingContactEditingMode/*</name>*/ valueOf(long n) {
+        for (/*<name>*/PKShippingContactEditingMode/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/PKPaymentMethodType/*</name>*/.class.getName());
+            + /*<name>*/PKShippingContactEditingMode/*</name>*/.class.getName());
     }
 }
