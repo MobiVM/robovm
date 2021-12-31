@@ -26,6 +26,11 @@ classes:
         methods:
             '-runWithConfiguration:':
                 name: run
+    NINearbyAccessoryConfiguration: #since 15.0
+        methods:
+            '-initWithData:error:':
+                name: init
+                throws: NSErrorException
 protocols:
     NISessionDelegate: #since 14.0
         methods:
@@ -35,6 +40,8 @@ protocols:
                 name: didRemoveNearbyObjects
             '-session:didInvalidateWithError:':
                 name: didInvalidate
+            '-session:didGenerateShareableConfigurationData:forObject:':
+                name: didGenerateShareableConfigurationData
 functions:
 
     # Make sure we don't miss any functions if new ones are introduced in a later version

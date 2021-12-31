@@ -62,6 +62,16 @@ import org.robovm.apple.network.*;
     @Property(selector = "setMatchSSIDs:")
     public native void setMatchSSIDs(NSArray<NSString> v);
     /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "matchPrivateLTENetworks")
+    public native NSArray<NEPrivateLTENetwork> getMatchPrivateLTENetworks();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setMatchPrivateLTENetworks:")
+    public native void setMatchPrivateLTENetworks(NSArray<NEPrivateLTENetwork> v);
+    /**
      * @since Available in iOS 14.0 and later.
      */
     @Property(selector = "providerConfiguration")

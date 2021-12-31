@@ -237,10 +237,10 @@ import org.robovm.apple.security.*;
     @Bridge(symbol="nw_connection_group_copy_path_for_message", optional=true)
     public static native NWPath groupCopyPathForMessage(NWConnectionGroup group, NWContentContext context);
     /**
-     * @since Available in iOS 14.0 and later.
+     * @since Available in iOS 15.0 and later.
      */
-    @Bridge(symbol="nw_connection_group_reply", optional=true)
-    public static native void groupReply(NWConnectionGroup group, NWContentContext inbound_message, NWContentContext outbound_message, DispatchData content);
+    @Bridge(symbol="nw_connection_group_copy_protocol_metadata_for_message", optional=true)
+    public static native NWProtocolMetadata groupCopyProtocolMetadataForMessage(NWConnectionGroup group, NWContentContext context, NWProtocolDefinition definition);
     /**
      * @since Available in iOS 14.0 and later.
      */
@@ -249,8 +249,33 @@ import org.robovm.apple.security.*;
     /**
      * @since Available in iOS 14.0 and later.
      */
+    @Bridge(symbol="nw_connection_group_reply", optional=true)
+    public static native void groupReply(NWConnectionGroup group, NWContentContext inbound_message, NWContentContext outbound_message, DispatchData content);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Bridge(symbol="nw_connection_group_extract_connection", optional=true)
+    public static native NWConnection groupExtractConnection(NWConnectionGroup group, NWEndpoint endpoint, NWProtocolOptions protocol_options);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Bridge(symbol="nw_connection_group_reinsert_extracted_connection", optional=true)
+    public static native boolean groupReinsertExtractedConnection(NWConnectionGroup group, NWConnection connection);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
     @Bridge(symbol="nw_connection_group_send_message", optional=true)
     public static native void groupSendMessage(NWConnectionGroup group, DispatchData content, NWEndpoint endpoint, NWContentContext context, @Block VoidBlock1<NWError> completion);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Bridge(symbol="nw_connection_group_set_new_connection_handler", optional=true)
+    public static native void groupSetNewConnectionHandler(NWConnectionGroup group, @Block VoidBlock1<NWConnection> new_connection_handler);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Bridge(symbol="nw_connection_group_copy_protocol_metadata", optional=true)
+    public static native NWProtocolMetadata groupCopyProtocolMetadata(NWConnectionGroup group, NWProtocolDefinition definition);
     /**
      * @since Available in iOS 13.0 and later.
      */

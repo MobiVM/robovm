@@ -67,6 +67,11 @@ import org.robovm.apple.security.*;
     @Bridge(symbol="nw_protocol_copy_ip_definition", optional=true)
     public static native NWProtocolDefinition copyIpDefinition();
     /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Bridge(symbol="nw_protocol_copy_quic_definition", optional=true)
+    public static native NWProtocolDefinition copyQuicDefinition();
+    /**
      * @since Available in iOS 12.0 and later.
      */
     @Bridge(symbol="nw_protocol_copy_tcp_definition", optional=true)

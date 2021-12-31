@@ -61,9 +61,16 @@ import org.robovm.apple.network.*;
     /*<methods>*/
     /**
      * @since Available in iOS 14.0 and later.
+     * @deprecated Use start
      */
+    @Deprecated
     @Method(selector = "startWithCompletionHandler:")
     public native void start(@Block VoidBlock1<NSError> completionHandler);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "start")
+    public native void start();
     /**
      * @since Available in iOS 14.0 and later.
      */

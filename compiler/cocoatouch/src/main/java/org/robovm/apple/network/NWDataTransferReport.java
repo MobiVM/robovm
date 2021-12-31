@@ -51,6 +51,9 @@ import org.robovm.apple.security.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
     @GlobalValue(symbol="_nw_data_transfer_report_all_paths", optional=true)
     public static native int allPaths();
     
@@ -139,6 +142,11 @@ import org.robovm.apple.security.*;
      */
     @Bridge(symbol="nw_data_transfer_report_copy_path_interface", optional=true)
     public native NWInterface copyPathInterface(int path_index);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Bridge(symbol="nw_data_transfer_report_get_path_radio_type", optional=true)
+    public native NWInterfaceRadioType getPathRadioType(int path_index);
     
     
     /*</methods>*/

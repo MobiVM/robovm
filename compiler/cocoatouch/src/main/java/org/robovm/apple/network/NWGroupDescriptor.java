@@ -44,6 +44,9 @@ import org.robovm.apple.security.*;
     /*<bind>*/static { ObjCRuntime.bind(NWGroupDescriptor.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
     public NWGroupDescriptor(NWEndpoint multicast_group) { super((Handle) null, createMulticast(multicast_group));  }
     
     
@@ -53,16 +56,39 @@ import org.robovm.apple.security.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Bridge(symbol="nw_group_descriptor_create_multiplex", optional=true)
+    public static native NWGroupDescriptor createMultiplex(NWEndpoint remote_endpoint);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
     @Bridge(symbol="nw_group_descriptor_create_multicast", optional=true)
     private static native @Pointer long createMulticast(NWEndpoint multicast_group);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
     @Bridge(symbol="nw_group_descriptor_add_endpoint", optional=true)
     public native boolean addEndpoint(NWEndpoint endpoint);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
     @Bridge(symbol="nw_group_descriptor_enumerate_endpoints", optional=true)
     public native void enumerateEndpoints(@Block Block1<NWEndpoint, Boolean> enumerate_block);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
     @Bridge(symbol="nw_multicast_group_descriptor_set_specific_source", optional=true)
     public native void setSpecificSource(NWEndpoint source);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
     @Bridge(symbol="nw_multicast_group_descriptor_set_disable_unicast_traffic", optional=true)
     public native void setDisableUnicastTraffic(boolean disable_unicast_traffic);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
     @Bridge(symbol="nw_multicast_group_descriptor_get_disable_unicast_traffic", optional=true)
     public native boolean getDisableUnicastTraffic();
     

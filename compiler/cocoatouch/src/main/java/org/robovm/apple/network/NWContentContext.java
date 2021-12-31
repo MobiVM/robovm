@@ -116,7 +116,7 @@ import org.robovm.apple.security.*;
      * @since Available in iOS 12.0 and later.
      */
     @Bridge(symbol="nw_content_context_set_antecedent", optional=true)
-    public native void setAntecedent(NWContentContext antecendent_context);
+    public native void setAntecedent(NWContentContext antecedent_context);
     /**
      * @since Available in iOS 12.0 and later.
      */
