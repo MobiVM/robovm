@@ -50,31 +50,36 @@ import org.robovm.apple.dispatch.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @NotImplemented("buildAccelerationStructure:descriptor:scratchBuffer:scratchBufferOffset:")
-    public void buildAccelerationStructure$descriptor$scratchBuffer$scratchBufferOffset$(MTLAccelerationStructure accelerationStructure, MTLAccelerationStructureDescriptor descriptor, MTLBuffer scratchBuffer, @MachineSizedUInt long scratchBufferOffset) {}
+    public void buildAccelerationStructure(MTLAccelerationStructure accelerationStructure, MTLAccelerationStructureDescriptor descriptor, MTLBuffer scratchBuffer, @MachineSizedUInt long scratchBufferOffset) {}
     @NotImplemented("refitAccelerationStructure:descriptor:destination:scratchBuffer:scratchBufferOffset:")
-    public void refitAccelerationStructure$descriptor$destination$scratchBuffer$scratchBufferOffset$(MTLAccelerationStructure sourceAccelerationStructure, MTLAccelerationStructureDescriptor descriptor, MTLAccelerationStructure destinationAccelerationStructure, MTLBuffer scratchBuffer, @MachineSizedUInt long scratchBufferOffset) {}
+    public void refitAccelerationStructure(MTLAccelerationStructure sourceAccelerationStructure, MTLAccelerationStructureDescriptor descriptor, MTLAccelerationStructure destinationAccelerationStructure, MTLBuffer scratchBuffer, @MachineSizedUInt long scratchBufferOffset) {}
     @NotImplemented("copyAccelerationStructure:toAccelerationStructure:")
-    public void copyAccelerationStructure$toAccelerationStructure$(MTLAccelerationStructure sourceAccelerationStructure, MTLAccelerationStructure destinationAccelerationStructure) {}
+    public void copyAccelerationStructure(MTLAccelerationStructure sourceAccelerationStructure, MTLAccelerationStructure destinationAccelerationStructure) {}
     @NotImplemented("writeCompactedAccelerationStructureSize:toBuffer:offset:")
-    public void writeCompactedAccelerationStructureSize$toBuffer$offset$(MTLAccelerationStructure accelerationStructure, MTLBuffer buffer, @MachineSizedUInt long offset) {}
+    public void writeCompactedAccelerationStructure(MTLAccelerationStructure accelerationStructure, MTLBuffer buffer, @MachineSizedUInt long offset) {}
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @NotImplemented("writeCompactedAccelerationStructureSize:toBuffer:offset:sizeDataType:")
+    public void writeCompactedAccelerationStructure(MTLAccelerationStructure accelerationStructure, MTLBuffer buffer, @MachineSizedUInt long offset, MTLDataType sizeDataType) {}
     @NotImplemented("copyAndCompactAccelerationStructure:toAccelerationStructure:")
-    public void copyAndCompactAccelerationStructure$toAccelerationStructure$(MTLAccelerationStructure sourceAccelerationStructure, MTLAccelerationStructure destinationAccelerationStructure) {}
+    public void copyAndCompactAccelerationStructure(MTLAccelerationStructure sourceAccelerationStructure, MTLAccelerationStructure destinationAccelerationStructure) {}
     @NotImplemented("updateFence:")
     public void updateFence(MTLFence fence) {}
     @NotImplemented("waitForFence:")
     public void waitForFence(MTLFence fence) {}
     @NotImplemented("useResource:usage:")
-    public void useResource$usage$(MTLResource resource, MTLResourceUsage usage) {}
+    public void useResource(MTLResource resource, MTLResourceUsage usage) {}
     @NotImplemented("useResources:count:usage:")
-    public void useResources$count$usage$(MTLResource resources, @MachineSizedUInt long count, MTLResourceUsage usage) {}
+    public void useResources(MTLResource resources, @MachineSizedUInt long count, MTLResourceUsage usage) {}
     @NotImplemented("useHeap:")
     public void useHeap(MTLHeap heap) {}
     @NotImplemented("useHeaps:count:")
-    public void useHeaps$count$(MTLHeap heaps, @MachineSizedUInt long count) {}
+    public void useHeaps(MTLHeap heaps, @MachineSizedUInt long count) {}
     /**
      * @since Available in iOS 14.0 and later.
      */
     @NotImplemented("sampleCountersInBuffer:atSampleIndex:withBarrier:")
-    public void sampleCountersInBuffer$atSampleIndex$withBarrier$(MTLCounterSampleBuffer sampleBuffer, @MachineSizedUInt long sampleIndex, boolean barrier) {}
+    public void sampleCountersInBuffer(MTLCounterSampleBuffer sampleBuffer, @MachineSizedUInt long sampleIndex, boolean barrier) {}
     /*</methods>*/
 }

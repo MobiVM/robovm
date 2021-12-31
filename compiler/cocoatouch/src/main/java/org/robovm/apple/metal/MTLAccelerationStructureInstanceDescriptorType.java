@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -32,29 +32,16 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 15.0 and later.
+ */
 /*</javadoc>*/
-@ForceLinkClass(MTLCommandBufferError.class)
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/MTLCommandBufferErrorCode/*</name>*/ implements NSErrorCode {
+public enum /*<name>*/MTLAccelerationStructureInstanceDescriptorType/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    None(0L),
-    Internal(1L),
-    Timeout(2L),
-    PageFault(3L),
-    Blacklisted(4L),
-    AccessRevoked(4L),
-    NotPermitted(7L),
-    OutOfMemory(8L),
-    InvalidResource(9L),
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
-    Memoryless(10L),
-    /**
-     * @since Available in iOS 15.0 and later.
-     */
-    StackOverflow(12L);
+    Default(0L),
+    UserID(1L),
+    Motion(2L);
     /*</values>*/
 
     /*<bind>*/
@@ -64,15 +51,15 @@ public enum /*<name>*/MTLCommandBufferErrorCode/*</name>*/ implements NSErrorCod
 
     private final long n;
 
-    private /*<name>*/MTLCommandBufferErrorCode/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/MTLAccelerationStructureInstanceDescriptorType/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/MTLCommandBufferErrorCode/*</name>*/ valueOf(long n) {
-        for (/*<name>*/MTLCommandBufferErrorCode/*</name>*/ v : values()) {
+    public static /*<name>*/MTLAccelerationStructureInstanceDescriptorType/*</name>*/ valueOf(long n) {
+        for (/*<name>*/MTLAccelerationStructureInstanceDescriptorType/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/MTLCommandBufferErrorCode/*</name>*/.class.getName());
+            + /*<name>*/MTLAccelerationStructureInstanceDescriptorType/*</name>*/.class.getName());
     }
 }

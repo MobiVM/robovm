@@ -66,6 +66,16 @@ import org.robovm.apple.dispatch.*;
     public native MTLFunctionOptions getOptions();
     @Property(selector = "setOptions:")
     public native void setOptions(MTLFunctionOptions v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "binaryArchives")
+    public native NSArray<?> getBinaryArchives();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setBinaryArchives:")
+    public native void setBinaryArchives(NSArray<?> v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

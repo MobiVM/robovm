@@ -33,49 +33,34 @@ import org.robovm.apple.dispatch.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 14.0 and later.
+ * @since Available in iOS 15.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MTLLinkedFunctions/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MTLStitchedLibraryDescriptor/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class MTLLinkedFunctionsPtr extends Ptr<MTLLinkedFunctions, MTLLinkedFunctionsPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(MTLLinkedFunctions.class); }/*</bind>*/
+    /*<ptr>*/public static class MTLStitchedLibraryDescriptorPtr extends Ptr<MTLStitchedLibraryDescriptor, MTLStitchedLibraryDescriptorPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(MTLStitchedLibraryDescriptor.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MTLLinkedFunctions() {}
-    protected MTLLinkedFunctions(Handle h, long handle) { super(h, handle); }
-    protected MTLLinkedFunctions(SkipInit skipInit) { super(skipInit); }
+    public MTLStitchedLibraryDescriptor() {}
+    protected MTLStitchedLibraryDescriptor(Handle h, long handle) { super(h, handle); }
+    protected MTLStitchedLibraryDescriptor(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    @Property(selector = "functionGraphs")
+    public native NSArray<MTLFunctionStitchingGraph> getFunctionGraphs();
+    @Property(selector = "setFunctionGraphs:")
+    public native void setFunctionGraphs(NSArray<MTLFunctionStitchingGraph> v);
     @Property(selector = "functions")
     public native NSArray<?> getFunctions();
     @Property(selector = "setFunctions:")
     public native void setFunctions(NSArray<?> v);
-    @Property(selector = "binaryFunctions")
-    public native NSArray<?> getBinaryFunctions();
-    @Property(selector = "setBinaryFunctions:")
-    public native void setBinaryFunctions(NSArray<?> v);
-    @Property(selector = "groups")
-    public native NSDictionary<?, ?> getGroups();
-    @Property(selector = "setGroups:")
-    public native void setGroups(NSDictionary<?, ?> v);
-    /**
-     * @since Available in iOS 15.0 and later.
-     */
-    @Property(selector = "privateFunctions")
-    public native NSArray<?> getPrivateFunctions();
-    /**
-     * @since Available in iOS 15.0 and later.
-     */
-    @Property(selector = "setPrivateFunctions:")
-    public native void setPrivateFunctions(NSArray<?> v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "linkedFunctions")
-    public static native MTLLinkedFunctions linkedFunctions();
+    
     /*</methods>*/
 }

@@ -73,7 +73,7 @@ import org.robovm.apple.messages.*;
     @Method(selector = "initWithNibName:bundle:")
     public MFMessageComposeViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
     @Method(selector = "initWithCoder:")
-    public MFMessageComposeViewController(NSCoder decoder) { super(decoder); }
+    public MFMessageComposeViewController(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "messageComposeDelegate")

@@ -32,46 +32,23 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 13.0 and later.
- */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/MTLGPUFamily/*</name>*/ implements ValuedEnum {
-    /*<values>*/
-    Apple1(1001L),
-    Apple2(1002L),
-    Apple3(1003L),
-    Apple4(1004L),
-    Apple5(1005L),
-    Apple6(1006L),
-    Apple7(1007L),
-    Apple8(1008L),
-    Mac1(2001L),
-    Mac2(2002L),
-    Common1(3001L),
-    Common2(3002L),
-    Common3(3003L),
-    MacCatalyst1(4001L),
-    MacCatalyst2(4002L);
-    /*</values>*/
+/*<annotations>*//*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MTLFunctionStitchingNodeAdapter/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
+    /*<implements>*/implements MTLFunctionStitchingNode/*</implements>*/ {
 
+    /*<ptr>*/
+    /*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<methods>*//*</methods>*/
-
-    private final long n;
-
-    private /*<name>*/MTLGPUFamily/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/MTLGPUFamily/*</name>*/ valueOf(long n) {
-        for (/*<name>*/MTLGPUFamily/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/MTLGPUFamily/*</name>*/.class.getName());
-    }
+    /*<constructors>*//*</constructors>*/
+    /*<properties>*/
+    
+    /*</properties>*/
+    /*<members>*//*</members>*/
+    /*<methods>*/
+    
+    /*</methods>*/
 }

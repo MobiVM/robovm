@@ -42,6 +42,10 @@ public final class /*<name>*/MTLAccelerationStructureUsage/*</name>*/ extends Bi
     public static final MTLAccelerationStructureUsage None = new MTLAccelerationStructureUsage(0L);
     public static final MTLAccelerationStructureUsage Refit = new MTLAccelerationStructureUsage(1L);
     public static final MTLAccelerationStructureUsage PreferFastBuild = new MTLAccelerationStructureUsage(2L);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    public static final MTLAccelerationStructureUsage ExtendedLimits = new MTLAccelerationStructureUsage(4L);
     /*</values>*/
 
     /*<bind>*/

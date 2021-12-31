@@ -42,6 +42,10 @@ public final class /*<name>*/MTLRenderStages/*</name>*/ extends Bits</*<name>*/M
     public static final MTLRenderStages None = new MTLRenderStages(0L);
     public static final MTLRenderStages Vertex = new MTLRenderStages(1L);
     public static final MTLRenderStages Fragment = new MTLRenderStages(2L);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    public static final MTLRenderStages Tile = new MTLRenderStages(4L);
     /*</values>*/
 
     /*<bind>*/

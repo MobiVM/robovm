@@ -54,6 +54,56 @@ import org.robovm.apple.dispatch.*;
     public native NSArray<MTLAccelerationStructureGeometryDescriptor> getGeometryDescriptors();
     @Property(selector = "setGeometryDescriptors:")
     public native void setGeometryDescriptors(NSArray<MTLAccelerationStructureGeometryDescriptor> v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "motionStartBorderMode")
+    public native MTLMotionBorderMode getMotionStartBorderMode();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setMotionStartBorderMode:")
+    public native void setMotionStartBorderMode(MTLMotionBorderMode v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "motionEndBorderMode")
+    public native MTLMotionBorderMode getMotionEndBorderMode();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setMotionEndBorderMode:")
+    public native void setMotionEndBorderMode(MTLMotionBorderMode v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "motionStartTime")
+    public native float getMotionStartTime();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setMotionStartTime:")
+    public native void setMotionStartTime(float v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "motionEndTime")
+    public native float getMotionEndTime();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setMotionEndTime:")
+    public native void setMotionEndTime(float v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "motionKeyframeCount")
+    public native @MachineSizedUInt long getMotionKeyframeCount();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setMotionKeyframeCount:")
+    public native void setMotionKeyframeCount(@MachineSizedUInt long v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -214,6 +214,86 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "setBinaryArchives:")
     public native void setBinaryArchives(NSArray<?> v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "vertexPreloadedLibraries")
+    public native NSArray<?> getVertexPreloadedLibraries();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setVertexPreloadedLibraries:")
+    public native void setVertexPreloadedLibraries(NSArray<?> v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "fragmentPreloadedLibraries")
+    public native NSArray<?> getFragmentPreloadedLibraries();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setFragmentPreloadedLibraries:")
+    public native void setFragmentPreloadedLibraries(NSArray<?> v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "vertexLinkedFunctions")
+    public native MTLLinkedFunctions getVertexLinkedFunctions();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setVertexLinkedFunctions:")
+    public native void setVertexLinkedFunctions(MTLLinkedFunctions v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "fragmentLinkedFunctions")
+    public native MTLLinkedFunctions getFragmentLinkedFunctions();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setFragmentLinkedFunctions:")
+    public native void setFragmentLinkedFunctions(MTLLinkedFunctions v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "supportAddingVertexBinaryFunctions")
+    public native boolean isSupportAddingVertexBinaryFunctions();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setSupportAddingVertexBinaryFunctions:")
+    public native void setSupportAddingVertexBinaryFunctions(boolean v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "supportAddingFragmentBinaryFunctions")
+    public native boolean isSupportAddingFragmentBinaryFunctions();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setSupportAddingFragmentBinaryFunctions:")
+    public native void setSupportAddingFragmentBinaryFunctions(boolean v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "maxVertexCallStackDepth")
+    public native @MachineSizedUInt long getMaxVertexCallStackDepth();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setMaxVertexCallStackDepth:")
+    public native void setMaxVertexCallStackDepth(@MachineSizedUInt long v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "maxFragmentCallStackDepth")
+    public native @MachineSizedUInt long getMaxFragmentCallStackDepth();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setMaxFragmentCallStackDepth:")
+    public native void setMaxFragmentCallStackDepth(@MachineSizedUInt long v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -158,6 +158,31 @@ import org.robovm.apple.dispatch.*;
     public native void setVertexSamplerState(MTLSamplerState sampler, float lodMinClamp, float lodMaxClamp, @MachineSizedUInt long index);
     @Method(selector = "setVertexSamplerStates:lodMinClamps:lodMaxClamps:withRange:")
     protected native void setVertexSamplerStates(MTLSamplerState.MTLSamplerStatePtr samplers, FloatPtr lodMinClamps, FloatPtr lodMaxClamps, @ByVal NSRange range);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "setVertexVisibleFunctionTable:atBufferIndex:")
+    public native void setVertexVisibleFunctionTable(MTLVisibleFunctionTable functionTable, @MachineSizedUInt long bufferIndex);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "setVertexVisibleFunctionTables:withBufferRange:")
+    public native void setVertexVisibleFunctionTables(MTLVisibleFunctionTable functionTables, @ByVal NSRange range);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "setVertexIntersectionFunctionTable:atBufferIndex:")
+    public native void setVertexIntersectionFunctionTable(MTLIntersectionFunctionTable intersectionFunctionTable, @MachineSizedUInt long bufferIndex);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "setVertexIntersectionFunctionTables:withBufferRange:")
+    public native void setVertexIntersectionFunctionTables(MTLIntersectionFunctionTable intersectionFunctionTable, @ByVal NSRange range);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "setVertexAccelerationStructure:atBufferIndex:")
+    public native void setVertexAccelerationStructure(MTLAccelerationStructure accelerationStructure, @MachineSizedUInt long bufferIndex);
     @Method(selector = "setViewport:")
     public native void setViewport(@ByVal MTLViewport viewport);
     /**
@@ -216,6 +241,31 @@ import org.robovm.apple.dispatch.*;
     public native void setFragmentSamplerState(MTLSamplerState sampler, float lodMinClamp, float lodMaxClamp, @MachineSizedUInt long index);
     @Method(selector = "setFragmentSamplerStates:lodMinClamps:lodMaxClamps:withRange:")
     protected native void setFragmentSamplerStates(MTLSamplerState.MTLSamplerStatePtr samplers, FloatPtr lodMinClamps, FloatPtr lodMaxClamps, @ByVal NSRange range);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "setFragmentVisibleFunctionTable:atBufferIndex:")
+    public native void setFragmentVisibleFunctionTable(MTLVisibleFunctionTable functionTable, @MachineSizedUInt long bufferIndex);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "setFragmentVisibleFunctionTables:withBufferRange:")
+    public native void setFragmentVisibleFunctionTables(MTLVisibleFunctionTable functionTables, @ByVal NSRange range);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "setFragmentIntersectionFunctionTable:atBufferIndex:")
+    public native void setFragmentIntersectionFunctionTable(MTLIntersectionFunctionTable intersectionFunctionTable, @MachineSizedUInt long bufferIndex);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "setFragmentIntersectionFunctionTables:withBufferRange:")
+    public native void setFragmentIntersectionFunctionTables(MTLIntersectionFunctionTable intersectionFunctionTable, @ByVal NSRange range);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "setFragmentAccelerationStructure:atBufferIndex:")
+    public native void setFragmentAccelerationStructure(MTLAccelerationStructure accelerationStructure, @MachineSizedUInt long bufferIndex);
     @Method(selector = "setBlendColorRed:green:blue:alpha:")
     public native void setBlendColor(float red, float green, float blue, float alpha);
     @Method(selector = "setDepthStencilState:")
@@ -377,8 +427,39 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "setTileSamplerStates:lodMinClamps:lodMaxClamps:withRange:")
     public native void setTileSamplerStates(MTLSamplerState samplers, FloatPtr lodMinClamps, FloatPtr lodMaxClamps, @ByVal NSRange range);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "setTileVisibleFunctionTable:atBufferIndex:")
+    public native void setTileVisibleFunctionTable(MTLVisibleFunctionTable functionTable, @MachineSizedUInt long bufferIndex);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "setTileVisibleFunctionTables:withBufferRange:")
+    public native void setTileVisibleFunctionTables(MTLVisibleFunctionTable functionTables, @ByVal NSRange range);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "setTileIntersectionFunctionTable:atBufferIndex:")
+    public native void setTileIntersectionFunctionTable(MTLIntersectionFunctionTable intersectionFunctionTable, @MachineSizedUInt long bufferIndex);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "setTileIntersectionFunctionTables:withBufferRange:")
+    public native void setTileIntersectionFunctionTables(MTLIntersectionFunctionTable intersectionFunctionTable, @ByVal NSRange range);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "setTileAccelerationStructure:atBufferIndex:")
+    public native void setTileAccelerationStructure(MTLAccelerationStructure accelerationStructure, @MachineSizedUInt long bufferIndex);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Method(selector = "dispatchThreadsPerTile:")
     public native void dispatchThreadsPerTile(@ByVal MTLSize threadsPerTile);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Method(selector = "setThreadgroupMemoryLength:offset:atIndex:")
     public native void setThreadgroupMemoryLength(@MachineSizedUInt long length, @MachineSizedUInt long offset, @MachineSizedUInt long index);
     /**
