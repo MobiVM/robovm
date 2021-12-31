@@ -11,7 +11,8 @@ typedefs:
 enums:
     NSFileProviderItemCapabilities: {}
     NSFileProviderErrorCode: {nserror: true, prefix: NSFileProviderError} #since 11.0
-
+    NSFileProviderFileSystemFlags: {prefix: NSFileProviderFileSystem}
+    NSFileProviderDomainTestingModes: {prefix: NSFileProviderDomainTestingMode}
 classes:
     NSFileProviderDomain: #since 11.0
         methods:
@@ -114,8 +115,7 @@ values:
     NSFileProviderErrorDomain:
         name: getClassDomain
         class: NSFileProviderErrorCode
-
-    NSFileProvider(ErrorCollidingItemKey|ErrorNonExistentItemIdentifierKey):
+    NSFileProvider(ErrorCollidingItemKey|ErrorNonExistentItemIdentifierKey|ErrorItemKey):
         class: NSFileProviderManager
         name: 'get#{g[0]}'
         type: NSString

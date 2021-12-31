@@ -59,7 +59,7 @@ import org.robovm.apple.uniformtypeid.*;
     public UTType getContentType() { return null; }
     /**
      * @since Available in iOS 11.0 and later.
-     * @deprecated Use contentType
+     * @deprecated Deprecated in iOS 15.0. Use contentType
      */
     @Deprecated
     @NotImplemented("typeIdentifier")
@@ -78,8 +78,14 @@ import org.robovm.apple.uniformtypeid.*;
     public NSDate getLastUsedDate() { return null; }
     @NotImplemented("tagData")
     public NSData getTagData() { return null; }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @NotImplemented("favoriteRank")
     public NSNumber getFavoriteRank() { return null; }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @NotImplemented("isTrashed")
     public boolean isTrashed() { return false; }
     @NotImplemented("isUploaded")
@@ -104,6 +110,9 @@ import org.robovm.apple.uniformtypeid.*;
     public NSPersonNameComponents getOwnerNameComponents() { return null; }
     @NotImplemented("mostRecentEditorNameComponents")
     public NSPersonNameComponents getMostRecentEditorNameComponents() { return null; }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @NotImplemented("versionIdentifier")
     public NSData getVersionIdentifier() { return null; }
     @NotImplemented("userInfo")
