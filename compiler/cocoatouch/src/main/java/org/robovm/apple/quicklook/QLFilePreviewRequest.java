@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -35,26 +35,29 @@ import org.robovm.apple.pdfkit.*;
 /*</imports>*/
 
 /*<javadoc>*/
+/**
+ * @since Available in iOS 15.0 and later.
+ */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/QLPreviewControllerDataSourceAdapter/*</name>*/ 
+/*<annotations>*/@Library("QuickLook") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/QLFilePreviewRequest/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements QLPreviewControllerDataSource/*</implements>*/ {
+    /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/
-    /*</ptr>*/
-    /*<bind>*/
-    /*</bind>*/
+    /*<ptr>*/public static class QLFilePreviewRequestPtr extends Ptr<QLFilePreviewRequest, QLFilePreviewRequestPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(QLFilePreviewRequest.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*//*</constructors>*/
+    /*<constructors>*/
+    public QLFilePreviewRequest() {}
+    protected QLFilePreviewRequest(Handle h, long handle) { super(h, handle); }
+    protected QLFilePreviewRequest(SkipInit skipInit) { super(skipInit); }
+    /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "fileURL")
+    public native NSURL getFileURL();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @NotImplemented("numberOfPreviewItemsInPreviewController:")
-    public @MachineSizedSInt long getNumberOfPreviewItems(QLPreviewController controller) { return 0; }
-    @NotImplemented("previewController:previewItemAtIndex:")
-    public QLPreviewItem getPreviewItem(QLPreviewController controller, @MachineSizedSInt long index) { return null; }
+    
     /*</methods>*/
 }

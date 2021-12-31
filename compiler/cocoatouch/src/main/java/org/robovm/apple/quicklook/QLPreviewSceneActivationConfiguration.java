@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -35,26 +35,31 @@ import org.robovm.apple.pdfkit.*;
 /*</imports>*/
 
 /*<javadoc>*/
+/**
+ * @since Available in iOS 15.0 and later.
+ */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/QLPreviewControllerDataSourceAdapter/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements QLPreviewControllerDataSource/*</implements>*/ {
+/*<annotations>*/@Library("QuickLook") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/QLPreviewSceneActivationConfiguration/*</name>*/ 
+    extends /*<extends>*/UIWindowSceneActivationConfiguration/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/
-    /*</ptr>*/
-    /*<bind>*/
-    /*</bind>*/
+    /*<ptr>*/public static class QLPreviewSceneActivationConfigurationPtr extends Ptr<QLPreviewSceneActivationConfiguration, QLPreviewSceneActivationConfigurationPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(QLPreviewSceneActivationConfiguration.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*//*</constructors>*/
+    /*<constructors>*/
+    protected QLPreviewSceneActivationConfiguration() {}
+    protected QLPreviewSceneActivationConfiguration(Handle h, long handle) { super(h, handle); }
+    protected QLPreviewSceneActivationConfiguration(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithItemsAtURLs:options:")
+    public QLPreviewSceneActivationConfiguration(NSArray<NSURL> urls, QLPreviewSceneOptions options) { super((SkipInit) null); initObject(init(urls, options)); }
+    /*</constructors>*/
     /*<properties>*/
     
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @NotImplemented("numberOfPreviewItemsInPreviewController:")
-    public @MachineSizedSInt long getNumberOfPreviewItems(QLPreviewController controller) { return 0; }
-    @NotImplemented("previewController:previewItemAtIndex:")
-    public QLPreviewItem getPreviewItem(QLPreviewController controller, @MachineSizedSInt long index) { return null; }
+    @Method(selector = "initWithItemsAtURLs:options:")
+    protected native @Pointer long init(NSArray<NSURL> urls, QLPreviewSceneOptions options);
     /*</methods>*/
 }
