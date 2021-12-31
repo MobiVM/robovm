@@ -92,10 +92,22 @@ import org.robovm.apple.coretext.*;
     /*<methods>*/
     @Bridge(symbol="CFStreamCreateBoundPair", optional=true)
     protected static native void create(CFAllocator alloc, CFReadStream.CFReadStreamPtr readStream, CFWriteStream.CFWriteStreamPtr writeStream, @MachineSizedSInt long transferBufferSize);
+    /**
+     * @deprecated Use nw_connection_t in Network framework instead
+     */
+    @Deprecated
     @Bridge(symbol="CFStreamCreatePairWithSocket", optional=true)
     protected static native void create(CFAllocator alloc, int sock, CFReadStream.CFReadStreamPtr readStream, CFWriteStream.CFWriteStreamPtr writeStream);
+    /**
+     * @deprecated Use nw_connection_t in Network framework instead
+     */
+    @Deprecated
     @Bridge(symbol="CFStreamCreatePairWithSocketToHost", optional=true)
     protected static native void create(CFAllocator alloc, String host, int port, CFReadStream.CFReadStreamPtr readStream, CFWriteStream.CFWriteStreamPtr writeStream);
+    /**
+     * @deprecated Use nw_connection_t in Network framework instead
+     */
+    @Deprecated
     @Bridge(symbol="CFStreamCreatePairWithPeerSocketSignature", optional=true)
     protected static native void create(CFAllocator alloc, CFSocketSignature signature, CFReadStream.CFReadStreamPtr readStream, CFWriteStream.CFWriteStreamPtr writeStream);
     /*</methods>*/
