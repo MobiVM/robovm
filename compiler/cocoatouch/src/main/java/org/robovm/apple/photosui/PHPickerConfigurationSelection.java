@@ -35,38 +35,38 @@ import org.robovm.apple.coreanimation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 9.1 and later.
+ * @since Available in iOS 15.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/PHLivePhotoViewDelegate/*</name>*/ 
-    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+public enum /*<name>*/PHPickerConfigurationSelection/*</name>*/ implements ValuedEnum {
+    /*<values>*/
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    Default(0L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    Ordered(1L);
+    /*</values>*/
 
-    /*<ptr>*/
-    /*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<properties>*/
-    
-    /*</properties>*/
-    /*<methods>*/
-    /**
-     * @since Available in iOS 9.1 and later.
-     */
-    @Method(selector = "livePhotoView:canBeginPlaybackWithStyle:")
-    boolean canBeginPlayback(PHLivePhotoView livePhotoView, PHLivePhotoViewPlaybackStyle playbackStyle);
-    /**
-     * @since Available in iOS 9.1 and later.
-     */
-    @Method(selector = "livePhotoView:willBeginPlaybackWithStyle:")
-    void willBeginPlayback(PHLivePhotoView livePhotoView, PHLivePhotoViewPlaybackStyle playbackStyle);
-    /**
-     * @since Available in iOS 9.1 and later.
-     */
-    @Method(selector = "livePhotoView:didEndPlaybackWithStyle:")
-    void didEndPlayback(PHLivePhotoView livePhotoView, PHLivePhotoViewPlaybackStyle playbackStyle);
-    /*</methods>*/
-    /*<adapter>*/
-    /*</adapter>*/
+    /*<methods>*//*</methods>*/
+
+    private final long n;
+
+    private /*<name>*/PHPickerConfigurationSelection/*</name>*/(long n) { this.n = n; }
+    public long value() { return n; }
+    public static /*<name>*/PHPickerConfigurationSelection/*</name>*/ valueOf(long n) {
+        for (/*<name>*/PHPickerConfigurationSelection/*</name>*/ v : values()) {
+            if (v.n == n) {
+                return v;
+            }
+        }
+        throw new IllegalArgumentException("No constant with value " + n + " found in " 
+            + /*<name>*/PHPickerConfigurationSelection/*</name>*/.class.getName());
+    }
 }
