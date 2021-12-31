@@ -228,58 +228,58 @@ import org.robovm.apple.audiotoolbox.*;
     
     @Bridge(symbol="CMTimebaseGetTypeID", optional=true)
     public static native @MachineSizedUInt long getClassTypeID();
-    @Bridge(symbol="CMTimebaseCreateWithMasterClock", optional=true)
-    protected static native OSStatus create0(CFAllocator allocator, CMClock masterClock, CMTimebase.CMTimebasePtr timebaseOut);
-    @Bridge(symbol="CMTimebaseCreateWithMasterTimebase", optional=true)
-    protected static native OSStatus create0(CFAllocator allocator, CMTimebase masterTimebase, CMTimebase.CMTimebasePtr timebaseOut);
+    @Bridge(symbol="CMTimebaseCreateWithSourceClock", optional=true)
+    protected static native OSStatus create0(CFAllocator allocator, CMClock sourceClock, CMTimebase.CMTimebasePtr timebaseOut);
+    @Bridge(symbol="CMTimebaseCreateWithSourceTimebase", optional=true)
+    protected static native OSStatus create0(CFAllocator allocator, CMTimebase sourceTimebase, CMTimebase.CMTimebasePtr timebaseOut);
     /**
      * @since Available in iOS 9.0 and later.
      */
-    @Bridge(symbol="CMTimebaseCopyMasterTimebase", optional=true)
-    protected native CMTimebase copyMasterTimebase0();
+    @Bridge(symbol="CMTimebaseCopySourceTimebase", optional=true)
+    protected native CMTimebase copySourceTimebase0();
     /**
      * @since Available in iOS 9.0 and later.
      */
-    @Bridge(symbol="CMTimebaseCopyMasterClock", optional=true)
-    protected native CMClock copyMasterClock0();
+    @Bridge(symbol="CMTimebaseCopySourceClock", optional=true)
+    protected native CMClock copySourceClock0();
     /**
      * @since Available in iOS 9.0 and later.
      */
-    @Bridge(symbol="CMTimebaseCopyMaster", optional=true)
-    protected native CFType copyMaster0();
+    @Bridge(symbol="CMTimebaseCopySource", optional=true)
+    protected native CFType copySource0();
     /**
      * @since Available in iOS 9.0 and later.
      */
-    @Bridge(symbol="CMTimebaseCopyUltimateMasterClock", optional=true)
-    protected native CMClock copyUltimateMasterClock0();
+    @Bridge(symbol="CMTimebaseCopyUltimateSourceClock", optional=true)
+    protected native CMClock copyUltimateSourceClock0();
     /**
-     * @deprecated Deprecated in iOS 9.0. Use CMTimebaseCopyMasterTimebase
+     * @deprecated Deprecated in iOS 9.0. Use CMTimebaseCopySourceTimebase
      */
     @Deprecated
     @Bridge(symbol="CMTimebaseGetMasterTimebase", optional=true)
     public native CMTimebase getMasterTimebase();
     /**
-     * @deprecated Deprecated in iOS 9.0. Use CMTimebaseCopyMasterClock
+     * @deprecated Deprecated in iOS 9.0. Use CMTimebaseCopySourceClock
      */
     @Deprecated
     @Bridge(symbol="CMTimebaseGetMasterClock", optional=true)
     public native CMClock getMasterClock();
     /**
-     * @deprecated Deprecated in iOS 9.0. Use CMTimebaseCopyMaster
+     * @deprecated Deprecated in iOS 9.0. Use CMTimebaseCopySource
      */
     @Deprecated
     @Bridge(symbol="CMTimebaseGetMaster", optional=true)
     public native CMTimebase getMaster();
     /**
-     * @deprecated Deprecated in iOS 9.0. Use CMTimebaseCopyUltimateMasterClock
+     * @deprecated Deprecated in iOS 9.0. Use CMTimebaseCopyUltimateSourceClock
      */
     @Deprecated
     @Bridge(symbol="CMTimebaseGetUltimateMasterClock", optional=true)
     public native CMClock getUltimateMasterClock();
-    @Bridge(symbol="CMTimebaseSetMasterClock", optional=true)
-    protected native OSStatus setMasterClock0(CMClock newMasterClock);
-    @Bridge(symbol="CMTimebaseSetMasterTimebase", optional=true)
-    protected native OSStatus setMasterTimebase0(CMTimebase newMasterTimebase);
+    @Bridge(symbol="CMTimebaseSetSourceClock", optional=true)
+    protected native OSStatus setSourceClock0(CMClock newSourceClock);
+    @Bridge(symbol="CMTimebaseSetSourceTimebase", optional=true)
+    protected native OSStatus setSourceTimebase0(CMTimebase newSourceTimebase);
     @Bridge(symbol="CMTimebaseGetTime", optional=true)
     public native @ByVal CMTime getTime();
     @Bridge(symbol="CMTimebaseGetTimeWithTimeScale", optional=true)
@@ -287,13 +287,13 @@ import org.robovm.apple.audiotoolbox.*;
     @Bridge(symbol="CMTimebaseSetTime", optional=true)
     protected native OSStatus setTime0(@ByVal CMTime time);
     @Bridge(symbol="CMTimebaseSetAnchorTime", optional=true)
-    protected native OSStatus setAnchorTime0(@ByVal CMTime timebaseTime, @ByVal CMTime immediateMasterTime);
+    protected native OSStatus setAnchorTime0(@ByVal CMTime timebaseTime, @ByVal CMTime immediateSourceTime);
     @Bridge(symbol="CMTimebaseGetRate", optional=true)
     public native double getRate();
     @Bridge(symbol="CMTimebaseSetRate", optional=true)
     protected native OSStatus setRate0(double rate);
     @Bridge(symbol="CMTimebaseSetRateAndAnchorTime", optional=true)
-    protected native OSStatus setRateAndAnchorTime0(double rate, @ByVal CMTime timebaseTime, @ByVal CMTime immediateMasterTime);
+    protected native OSStatus setRateAndAnchorTime0(double rate, @ByVal CMTime timebaseTime, @ByVal CMTime immediateSourceTime);
     @Bridge(symbol="CMTimebaseGetEffectiveRate", optional=true)
     public native double getEffectiveRate();
     @Bridge(symbol="CMTimebaseAddTimer", optional=true)

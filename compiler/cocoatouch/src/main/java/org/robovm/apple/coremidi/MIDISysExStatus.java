@@ -40,7 +40,9 @@ public enum /*<name>*/MIDISysExStatus/*</name>*/ implements ValuedEnum {
     Complete(0L),
     Start(1L),
     Continue(2L),
-    End(3L);
+    End(3L),
+    MixedDataSetHeader(8L),
+    MixedDataSetPayload(9L);
     /*</values>*/
 
     /*<bind>*/

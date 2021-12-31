@@ -54,8 +54,18 @@ import org.robovm.apple.metal.*;
     protected MLPredictionOptions(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 15.0. Use -[MLModelConfiguration computeUnits] instead.
+     */
+    @Deprecated
     @Property(selector = "usesCPUOnly")
     public native boolean usesCPUOnly();
+    /**
+     * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 15.0. Use -[MLModelConfiguration computeUnits] instead.
+     */
+    @Deprecated
     @Property(selector = "setUsesCPUOnly:")
     public native void setUsesCPUOnly(boolean v);
     /*</properties>*/

@@ -433,6 +433,21 @@ import org.robovm.apple.audiotoolbox.*;
          */
         @GlobalValue(symbol="kCMFormatDescriptionExtension_ContainsAlphaChannel", optional=true)
         public static native CFString ContainsAlphaChannel();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="kCMFormatDescriptionExtension_BitsPerComponent", optional=true)
+        public static native CFString BitsPerComponent();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="kCMFormatDescriptionExtension_HorizontalFieldOfView", optional=true)
+        public static native CFString HorizontalFieldOfView();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="kCMFormatDescriptionExtension_AmbientViewingEnvironment", optional=true)
+        public static native CFString AmbientViewingEnvironment();
     }
     /*</keys>*/
 }
