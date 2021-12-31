@@ -59,7 +59,7 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "initWithHealthStore:device:startDate:")
     protected native @Pointer long init(HKHealthStore healthStore, HKDevice device, NSDate startDate);
     @Method(selector = "addHeartbeatWithTimeIntervalSinceSeriesStartDate:precededByGap:completion:")
-    public native void addHeartbeat(double timeInterval, boolean precededByGap, @Block VoidBlock2<Boolean, NSError> completion);
+    public native void addHeartbeat(double timeIntervalSinceStart, boolean precededByGap, @Block VoidBlock2<Boolean, NSError> completion);
     @Method(selector = "addMetadata:completion:")
     public native void addMetadata(NSDictionary<NSString, ?> metadata, @Block VoidBlock2<Boolean, NSError> completion);
     @Method(selector = "finishSeriesWithCompletion:")

@@ -152,5 +152,10 @@ import org.robovm.apple.foundation.*;
      */
     @Method(selector = "predicateForElectrocardiogramsWithSymptomsStatus:")
     public static native NSPredicate predicateForElectrocardiogramsWithSymptomsStatus(HKElectrocardiogramSymptomsStatus symptomsStatus);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "predicateForVerifiableClinicalRecordsWithRelevantDateWithinDateInterval:")
+    public static native NSPredicate predicateForVerifiableClinicalRecords(NSDateInterval dateInterval);
     /*</methods>*/
 }

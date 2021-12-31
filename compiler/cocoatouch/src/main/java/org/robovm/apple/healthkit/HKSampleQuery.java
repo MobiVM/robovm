@@ -49,6 +49,16 @@ import org.robovm.apple.foundation.*;
     protected HKSampleQuery(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithSampleType:predicate:limit:sortDescriptors:resultsHandler:")
     public HKSampleQuery(HKSampleType sampleType, NSPredicate predicate, @MachineSizedUInt long limit, NSArray<NSSortDescriptor> sortDescriptors, @Block VoidBlock3<HKSampleQuery, NSArray<HKSample>, NSError> resultsHandler) { super((SkipInit) null); initObject(init(sampleType, predicate, limit, sortDescriptors, resultsHandler)); }
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "initWithQueryDescriptors:limit:resultsHandler:")
+    public HKSampleQuery(NSArray<HKQueryDescriptor> queryDescriptors, @MachineSizedSInt long limit, @Block VoidBlock3<HKSampleQuery, NSArray<HKSample>, NSError> resultsHandler) { super((SkipInit) null); initObject(init(queryDescriptors, limit, resultsHandler)); }
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "initWithQueryDescriptors:limit:sortDescriptors:resultsHandler:")
+    public HKSampleQuery(NSArray<HKQueryDescriptor> queryDescriptors, @MachineSizedSInt long limit, NSArray<NSSortDescriptor> sortDescriptors, @Block VoidBlock3<HKSampleQuery, NSArray<HKSample>, NSError> resultsHandler) { super((SkipInit) null); initObject(init(queryDescriptors, limit, sortDescriptors, resultsHandler)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "limit")
@@ -60,5 +70,15 @@ import org.robovm.apple.foundation.*;
     /*<methods>*/
     @Method(selector = "initWithSampleType:predicate:limit:sortDescriptors:resultsHandler:")
     protected native @Pointer long init(HKSampleType sampleType, NSPredicate predicate, @MachineSizedUInt long limit, NSArray<NSSortDescriptor> sortDescriptors, @Block VoidBlock3<HKSampleQuery, NSArray<HKSample>, NSError> resultsHandler);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "initWithQueryDescriptors:limit:resultsHandler:")
+    protected native @Pointer long init(NSArray<HKQueryDescriptor> queryDescriptors, @MachineSizedSInt long limit, @Block VoidBlock3<HKSampleQuery, NSArray<HKSample>, NSError> resultsHandler);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "initWithQueryDescriptors:limit:sortDescriptors:resultsHandler:")
+    protected native @Pointer long init(NSArray<HKQueryDescriptor> queryDescriptors, @MachineSizedSInt long limit, NSArray<NSSortDescriptor> sortDescriptors, @Block VoidBlock3<HKSampleQuery, NSArray<HKSample>, NSError> resultsHandler);
     /*</methods>*/
 }

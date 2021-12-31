@@ -221,5 +221,10 @@ import org.robovm.apple.foundation.*;
      */
     @Method(selector = "preferredUnitsForQuantityTypes:completion:")
     public native void getPreferredUnitsForQuantityTypes(NSSet<HKQuantityType> quantityTypes, @Block VoidBlock2<NSDictionary<HKQuantityType, HKUnit>, NSError> completion);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "recalibrateEstimatesForSampleType:atDate:completion:")
+    public native void recalibrateEstimates(HKSampleType sampleType, NSDate date, @Block VoidBlock2<Boolean, NSError> completion);
     /*</methods>*/
 }
