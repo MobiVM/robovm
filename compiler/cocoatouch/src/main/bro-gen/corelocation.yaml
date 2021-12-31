@@ -15,6 +15,7 @@ enums:
     CLProximity: {}
     CLRegionState: {}
     CLAccuracyAuthorization: {}
+    CLLocationPushServiceError: { nserror: true } #since 15.0
 classes:
     CLError:
         extends: NSError
@@ -99,6 +100,8 @@ classes:
                 name: init
             '-initWithCoordinate:altitude:horizontalAccuracy:verticalAccuracy:course:courseAccuracy:speed:speedAccuracy:timestamp:':
                 name: init
+            '-initWithCoordinate:altitude:horizontalAccuracy:verticalAccuracy:course:courseAccuracy:speed:speedAccuracy:timestamp:sourceInfo:':
+                name: init
             '-getDistanceFrom:':
                 exclude: true
             '-distanceFromLocation:':
@@ -153,6 +156,8 @@ classes:
                 name: requestTemporaryFullAccuracyAuthorization
             '-requestTemporaryFullAccuracyAuthorizationWithPurposeKey:':
                 name: requestTemporaryFullAccuracyAuthorization
+            '-startMonitoringLocationPushesWithCompletion:':
+                name: startMonitoringLocationPushes
     CLPlacemark: # DONE
         properties:
             'areasOfInterest':
@@ -183,6 +188,10 @@ classes:
             '-initWithUUID:major:':
                 name: init
             '-initWithUUID:major:minor:':
+                name: init
+    CLLocationSourceInformation: #since 15.0
+        methods:
+            '-initWithSoftwareSimulationState:andExternalAccessoryState:':
                 name: init
 protocols:
     CLLocationManagerDelegate: # DONE
@@ -228,6 +237,10 @@ protocols:
                 name: didRangeBeacons
             '-locationManager:didFailRangingBeaconsForConstraint:error:':
                 name: didFailRangingBeacons
+    CLLocationPushServiceExtension: #since 15.0
+        methods:
+            '-didReceiveLocationPushPayload:completion:':
+                name: didReceiveLocationPushPayload
 functions:
     CLLocationCoordinate2DMake:
         exclude: true
@@ -246,6 +259,9 @@ functions:
 values:
     kCLErrorDomain:
         class: CLError
+        name: getClassDomain
+    CLLocationPushServiceErrorDomain:
+        class: CLLocationPushServiceError
         name: getClassDomain
     kCLErrorUserInfo(.*)Key:
         enum: CLErrorUserInfoKey
