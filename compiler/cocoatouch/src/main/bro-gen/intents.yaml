@@ -152,7 +152,8 @@ enums:
     INListCarsIntentResponseCode: {} #since 14.0
     INDayOfWeekOptions: {prefix: INDayOfWeekOption} #since 14.0
     INStartCallCallRecordToCallBackUnsupportedReason: {} #since 14.0
-
+    INShareFocusStatusIntentResponseCode: {} #since 15.0
+    INFocusStatusAuthorizationStatus: {} #since 15.0
 typed_enums:
     INCarChargingConnectorType:
         enum: INCarChargingConnectorType
@@ -665,6 +666,12 @@ classes:
             'handle':
                 name: handle0
         methods:
+            '-initWithPersonHandle:nameComponents:displayName:image:contactIdentifier:customIdentifier:isMe:suggestionType:':
+                static_constructor_name: createForMe # conflicts with another init by signature
+                name: initWithPersonHandleNameComponentsDisplayNameImageContactIdentifierCustomIdentifierIsMeSuggestionType
+            '-initWithPersonHandle:nameComponents:displayName:image:contactIdentifier:customIdentifier:isContactSuggestion:suggestionType:':
+                static_constructor_name: createForContactSuggestion # conflicts with another init by signature
+                name: initWithPersonHandleNameComponentsDisplayNameImageContactIdentifierCustomIdentifierIsContactSuggestionSuggestionType
             '-init.*':
                 name: init
     INPersonHandle: #since 10.0
@@ -1700,6 +1707,24 @@ classes:
         methods:
             '-initWithGroupName:groupId:':
                 name: init
+    INFocusStatus: #since 15.0
+        methods:
+            '-initWithIsFocused:':
+                name: init
+    INFocusStatusCenter: #since 15.0
+        methods:
+            '-requestAuthorizationWithCompletionHandler:':
+                name: requestAuthorization
+    INIntentDonationMetadata: {} #since 15.0
+    INSendMessageIntentDonationMetadata: {} #since 15.0
+    INShareFocusStatusIntent: #since 15.0
+        methods:
+            '-initWithFocusStatus:':
+                name: init
+    INShareFocusStatusIntentResponse: #since 15.0
+        methods:
+            '-initWithCode:userActivity:':
+                name: init
 protocols:
     INActivateCarSignalIntentHandling: #since 10.3
         methods:
@@ -2412,6 +2437,12 @@ protocols:
                 name: handleListCars
             '-confirmListCars:completion:':
                 name: confirmListCars
+    INShareFocusStatusIntentHandling: #since 15.0
+        methods:
+            '-handleShareFocusStatus:completion:':
+                name: handleShareFocusStatus
+            '-confirmShareFocusStatus:completion:':
+                name: confirmShareFocusStatus
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (IN.*):

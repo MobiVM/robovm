@@ -36,9 +36,10 @@ import org.robovm.apple.coregraphics.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 10.0 and later.
+ * @deprecated Deprecated in iOS 15.0. INPhotoAttributeOptions is deprecated. There is no replacement.
  */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
+/*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class) @Deprecated/*</annotations>*/
 public final class /*<name>*/INPhotoAttributeOptions/*</name>*/ extends Bits</*<name>*/INPhotoAttributeOptions/*</name>*/> {
     /*<values>*/
     public static final INPhotoAttributeOptions None = new INPhotoAttributeOptions(0L);

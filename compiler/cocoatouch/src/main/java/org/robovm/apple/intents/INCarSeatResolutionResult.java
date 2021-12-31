@@ -36,9 +36,10 @@ import org.robovm.apple.coregraphics.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 10.0 and later.
+ * @deprecated Deprecated in iOS 15.0. INCarSeatResolutionResult is deprecated. There is no replacement.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Intents") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("Intents") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/INCarSeatResolutionResult/*</name>*/ 
     extends /*<extends>*/INIntentResolutionResult/*</extends>*/ 
     /*<implements>*//*</implements>*/ {

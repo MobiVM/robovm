@@ -68,13 +68,6 @@ import org.robovm.apple.coregraphics.*;
     public native NSArray<INReservationAction> getActions();
     /**
      * @since Available in iOS 14.0 and later.
-     * @deprecated Deprecated in iOS 14.0. Use URL instead
-     */
-    @Deprecated
-    @Property(selector = "url")
-    public native NSURL getUrl();
-    /**
-     * @since Available in iOS 14.0 and later.
      */
     @Property(selector = "URL")
     public native NSURL getURL();

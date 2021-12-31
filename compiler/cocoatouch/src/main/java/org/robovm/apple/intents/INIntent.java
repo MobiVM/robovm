@@ -81,6 +81,16 @@ import org.robovm.apple.coregraphics.*;
      */
     @Property(selector = "setShortcutAvailability:")
     public native void setShortcutAvailability(INShortcutAvailabilityOptions v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "donationMetadata")
+    public native INIntentDonationMetadata getDonationMetadata();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setDonationMetadata:")
+    public native void setDonationMetadata(INIntentDonationMetadata v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

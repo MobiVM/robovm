@@ -36,9 +36,10 @@ import org.robovm.apple.coregraphics.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 10.3 and later.
+ * @deprecated Deprecated in iOS 15.0. INSearchForBillsIntentHandling is deprecated. There is no replacement.
  */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
+/*<annotations>*/@Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ interface /*<name>*/INSearchForBillsIntentHandling/*</name>*/ 
     /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
 
