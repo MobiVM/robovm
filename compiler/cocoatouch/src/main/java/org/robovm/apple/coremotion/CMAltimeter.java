@@ -55,6 +55,16 @@ import org.robovm.apple.foundation.*;
     public native void startRelativeAltitudeUpdates(NSOperationQueue queue, @Block VoidBlock2<CMAltitudeData, NSError> handler);
     @Method(selector = "stopRelativeAltitudeUpdates")
     public native void stopRelativeAltitudeUpdates();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "startAbsoluteAltitudeUpdatesToQueue:withHandler:")
+    public native void startAbsoluteAltitudeUpdates(NSOperationQueue queue, @Block VoidBlock2<CMAbsoluteAltitudeData, NSError> handler);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "stopAbsoluteAltitudeUpdates")
+    public native void stopAbsoluteAltitudeUpdates();
     @Method(selector = "isRelativeAltitudeAvailable")
     public static native boolean isRelativeAltitudeAvailable();
     /**
@@ -62,5 +72,10 @@ import org.robovm.apple.foundation.*;
      */
     @Method(selector = "authorizationStatus")
     public static native CMAuthorizationStatus authorizationStatus();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "isAbsoluteAltitudeAvailable")
+    public static native boolean isAbsoluteAltitudeAvailable();
     /*</methods>*/
 }

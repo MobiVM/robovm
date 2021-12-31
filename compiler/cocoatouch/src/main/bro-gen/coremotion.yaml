@@ -31,6 +31,8 @@ classes:
                 parameters:
                     handler:
                         type: '@Block VoidBlock2<CMAltitudeData, NSError>'
+            '-startAbsoluteAltitudeUpdatesToQueue:withHandler:':
+                name: startAbsoluteAltitudeUpdates
     CMAltitudeData: {} # DONE
     CMAttitude: # DONE
         methods:
@@ -142,7 +144,7 @@ classes:
                 name: startDeviceMotionUpdates
     CMRecordedRotationRateData: {} #since 14.0
     CMRotationRateData: {} #since 14.0
-
+    CMAbsoluteAltitudeData: {} #since 15.0
 protocols:
     CMHeadphoneMotionManagerDelegate: {} #since 14.0
 

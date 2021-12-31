@@ -101,37 +101,81 @@ import org.robovm.apple.corefoundation.*;
         unscheduleFromRunLoop(runLoop, runLoopMode.value().toString());
     }
     /*<methods>*/
+    /**
+     * @deprecated Use nw_browser_t or nw_listener_t in Network framework instead
+     */
+    @Deprecated
     @Bridge(symbol="CFNetServiceBrowserGetTypeID", optional=true)
     public static native @MachineSizedUInt long getClassTypeID();
+    /**
+     * @deprecated Use nw_browser_t or nw_listener_t in Network framework instead
+     */
+    @Deprecated
     @Bridge(symbol="CFNetServiceBrowserCreate", optional=true)
     private static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CFNetServiceBrowser create(CFAllocator alloc, FunctionPtr clientCB, CFNetServiceClientContext clientContext);
+    /**
+     * @deprecated Use nw_browser_t or nw_listener_t in Network framework instead
+     */
+    @Deprecated
     @Bridge(symbol="CFNetServiceBrowserInvalidate", optional=true)
     public native void invalidate();
+    /**
+     * @deprecated Use nw_browser_t or nw_listener_t in Network framework instead
+     */
+    @Deprecated
     public boolean searchForDomains(boolean registrationDomains) throws CFStreamErrorException {
        CFStreamError.CFStreamErrorPtr ptr = new CFStreamError.CFStreamErrorPtr();
        boolean result = searchForDomains(registrationDomains, ptr);
        if (ptr.get() != null) { throw new CFStreamErrorException(ptr.get()); }
        return result;
     }
+    /**
+     * @deprecated Use nw_browser_t or nw_listener_t in Network framework instead
+     */
+    @Deprecated
     @Bridge(symbol="CFNetServiceBrowserSearchForDomains", optional=true)
     private native boolean searchForDomains(boolean registrationDomains, CFStreamError.CFStreamErrorPtr error);
+    /**
+     * @deprecated Use nw_browser_t or nw_listener_t in Network framework instead
+     */
+    @Deprecated
     public boolean searchForServices(String domain, String serviceType) throws CFStreamErrorException {
        CFStreamError.CFStreamErrorPtr ptr = new CFStreamError.CFStreamErrorPtr();
        boolean result = searchForServices(domain, serviceType, ptr);
        if (ptr.get() != null) { throw new CFStreamErrorException(ptr.get()); }
        return result;
     }
+    /**
+     * @deprecated Use nw_browser_t or nw_listener_t in Network framework instead
+     */
+    @Deprecated
     @Bridge(symbol="CFNetServiceBrowserSearchForServices", optional=true)
     private native boolean searchForServices(String domain, String serviceType, CFStreamError.CFStreamErrorPtr error);
+    /**
+     * @deprecated Use nw_browser_t or nw_listener_t in Network framework instead
+     */
+    @Deprecated
     public void stopSearch() throws CFStreamErrorException {
        CFStreamError.CFStreamErrorPtr ptr = new CFStreamError.CFStreamErrorPtr();
        stopSearch(ptr);
        if (ptr.get() != null) { throw new CFStreamErrorException(ptr.get()); }
     }
+    /**
+     * @deprecated Use nw_browser_t or nw_listener_t in Network framework instead
+     */
+    @Deprecated
     @Bridge(symbol="CFNetServiceBrowserStopSearch", optional=true)
     private native void stopSearch(CFStreamError.CFStreamErrorPtr error);
+    /**
+     * @deprecated Use nw_browser_t or nw_listener_t in Network framework instead
+     */
+    @Deprecated
     @Bridge(symbol="CFNetServiceBrowserScheduleWithRunLoop", optional=true)
     public native void scheduleInRunLoop(CFRunLoop runLoop, String runLoopMode);
+    /**
+     * @deprecated Use nw_browser_t or nw_listener_t in Network framework instead
+     */
+    @Deprecated
     @Bridge(symbol="CFNetServiceBrowserUnscheduleFromRunLoop", optional=true)
     public native void unscheduleFromRunLoop(CFRunLoop runLoop, String runLoopMode);
     /*</methods>*/
