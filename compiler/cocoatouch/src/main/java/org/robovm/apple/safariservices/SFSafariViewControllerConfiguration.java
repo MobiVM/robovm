@@ -58,6 +58,26 @@ import org.robovm.apple.uikit.*;
     public native boolean isBarCollapsingEnabled();
     @Property(selector = "setBarCollapsingEnabled:")
     public native void setBarCollapsingEnabled(boolean v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "activityButton")
+    public native SFSafariViewControllerActivityButton getActivityButton();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setActivityButton:")
+    public native void setActivityButton(SFSafariViewControllerActivityButton v);
+    /**
+     * @since Available in iOS 15.2 and later.
+     */
+    @Property(selector = "eventAttribution")
+    public native UIEventAttribution getEventAttribution();
+    /**
+     * @since Available in iOS 15.2 and later.
+     */
+    @Property(selector = "setEventAttribution:")
+    public native void setEventAttribution(UIEventAttribution v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

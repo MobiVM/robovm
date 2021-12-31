@@ -52,6 +52,11 @@ classes:
             '-initWithURL:callbackURLScheme:completionHandler:':
                 name: init
     SFSafariViewControllerConfiguration: {} #since 11.0
+    SFSafariViewControllerActivityButton: #since 15.0
+        methods:
+            '-initWithTemplateImage:extensionIdentifier:':
+                name: init
+    SFSafariViewControllerPrewarmingToken: {} #since 15.0
 protocols:
     SFSafariViewControllerDelegate: # DONE
         methods:
@@ -88,6 +93,9 @@ values:
     SFAuthenticationErrorDomain:
         class: SFAuthenticationError
         name: getClassDomain
+    SFExtensionMessageKey:
+        class: SFSafariViewController
+        name: getExtensionMessageKey
 
     # Make sure we don't miss any values if new ones are introduced in a later version
     (k?SS.*):

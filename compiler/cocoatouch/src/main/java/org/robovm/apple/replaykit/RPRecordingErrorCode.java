@@ -76,6 +76,7 @@ public enum /*<name>*/RPRecordingErrorCode/*</name>*/ implements NSErrorCode {
     FailedToStartCaptureStack(-5833L),
     InvalidParameter(-5834L),
     FilePermissions(-5835L),
+    ExportClipToURLInProgress(-5836L),
     CodeSuccessful(0L);
     /*</values>*/
 
