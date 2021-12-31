@@ -69,6 +69,20 @@ import org.robovm.apple.avfoundation.*;
     @Method(selector = "kernelsWithString:")
     public static native NSArray<CIKernel> createKernels(String string);
     /**
+     * @since Available in iOS 15.0 and later.
+     */
+    public static NSArray<CIKernel> kernelsWithMetalString(String source) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       NSArray<CIKernel> result = kernelsWithMetalString(source, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "kernelsWithMetalString:error:")
+    private static native NSArray<CIKernel> kernelsWithMetalString(String source, NSError.NSErrorPtr error);
+    /**
      * @since Available in iOS 11.0 and later.
      */
     public static CIWarpKernel create(String name, NSData data) throws NSErrorException {

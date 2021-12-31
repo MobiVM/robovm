@@ -121,149 +121,221 @@ import org.robovm.apple.avfoundation.*;
         static { Bro.bind(Keys.class); }
         /**
          * @since Available in iOS 10.0 and later.
+         * @deprecated Use new CIRAWFilter class instead.
          */
+        @Deprecated
         @GlobalValue(symbol="kCIInputAllowDraftModeKey", optional=true)
         public static native NSString AllowDraftMode();
         /**
          * @since Available in iOS 10.0 and later.
+         * @deprecated Use new CIRAWFilter class instead.
          */
+        @Deprecated
         @GlobalValue(symbol="kCIInputDecoderVersionKey", optional=true)
         public static native NSString DecoderVersion();
         /**
          * @since Available in iOS 10.0 and later.
+         * @deprecated Use new CIRAWFilter class instead.
          */
+        @Deprecated
         @GlobalValue(symbol="kCISupportedDecoderVersionsKey", optional=true)
         public static native NSString kCISupportedDecoderVersions();
         /**
          * @since Available in iOS 10.0 and later.
+         * @deprecated Use new CIRAWFilter class instead.
          */
+        @Deprecated
         @GlobalValue(symbol="kCIInputBaselineExposureKey", optional=true)
         public static native NSString BaselineExposure();
         /**
          * @since Available in iOS 10.0 and later.
+         * @deprecated Use new CIRAWFilter class instead.
          */
+        @Deprecated
         @GlobalValue(symbol="kCIInputBoostKey", optional=true)
         public static native NSString Boost();
         /**
          * @since Available in iOS 10.0 and later.
+         * @deprecated Use new CIRAWFilter class instead.
          */
+        @Deprecated
         @GlobalValue(symbol="kCIInputBoostShadowAmountKey", optional=true)
         public static native NSString BoostShadowAmount();
         /**
          * @since Available in iOS 10.0 and later.
+         * @deprecated Use new CIRAWFilter class instead.
          */
+        @Deprecated
         @GlobalValue(symbol="kCIInputDisableGamutMapKey", optional=true)
         public static native NSString DisableGamutMap();
         /**
          * @since Available in iOS 10.0 and later.
+         * @deprecated Use new CIRAWFilter class instead.
          */
+        @Deprecated
         @GlobalValue(symbol="kCIInputNeutralChromaticityXKey", optional=true)
         public static native NSString NeutralChromaticityX();
         /**
          * @since Available in iOS 10.0 and later.
+         * @deprecated Use new CIRAWFilter class instead.
          */
+        @Deprecated
         @GlobalValue(symbol="kCIInputNeutralChromaticityYKey", optional=true)
         public static native NSString NeutralChromaticityY();
         /**
          * @since Available in iOS 10.0 and later.
+         * @deprecated Use new CIRAWFilter class instead.
          */
+        @Deprecated
         @GlobalValue(symbol="kCIInputNeutralTemperatureKey", optional=true)
         public static native NSString NeutralTemperature();
         /**
          * @since Available in iOS 10.0 and later.
+         * @deprecated Use new CIRAWFilter class instead.
          */
+        @Deprecated
         @GlobalValue(symbol="kCIInputNeutralTintKey", optional=true)
         public static native NSString NeutralTint();
         /**
          * @since Available in iOS 10.0 and later.
+         * @deprecated Use new CIRAWFilter class instead.
          */
+        @Deprecated
         @GlobalValue(symbol="kCIInputNeutralLocationKey", optional=true)
         public static native NSString NeutralLocation();
         /**
          * @since Available in iOS 10.0 and later.
+         * @deprecated Use new CIRAWFilter class instead.
          */
+        @Deprecated
         @GlobalValue(symbol="kCIInputScaleFactorKey", optional=true)
         public static native NSString ScaleFactor();
         /**
          * @since Available in iOS 10.0 and later.
+         * @deprecated Use new CIRAWFilter class instead.
          */
+        @Deprecated
         @GlobalValue(symbol="kCIInputIgnoreImageOrientationKey", optional=true)
         public static native NSString IgnoreImageOrientation();
         /**
          * @since Available in iOS 10.0 and later.
+         * @deprecated Use new CIRAWFilter class instead.
          */
+        @Deprecated
         @GlobalValue(symbol="kCIInputImageOrientationKey", optional=true)
         public static native NSString ImageOrientation();
         /**
          * @since Available in iOS 10.0 and later.
+         * @deprecated Use new CIRAWFilter class instead.
          */
+        @Deprecated
         @GlobalValue(symbol="kCIInputEnableSharpeningKey", optional=true)
         public static native NSString EnableSharpening();
         /**
          * @since Available in iOS 10.0 and later.
+         * @deprecated Use new CIRAWFilter class instead.
          */
+        @Deprecated
         @GlobalValue(symbol="kCIInputEnableChromaticNoiseTrackingKey", optional=true)
         public static native NSString EnableChromaticNoiseTracking();
         /**
          * @since Available in iOS 10.0 and later.
+         * @deprecated Use new CIRAWFilter class instead.
          */
+        @Deprecated
         @GlobalValue(symbol="kCIInputNoiseReductionAmountKey", optional=true)
         public static native NSString NoiseReductionAmount();
         /**
          * @since Available in iOS 11.0 and later.
+         * @deprecated Use new CIRAWFilter class instead.
          */
+        @Deprecated
         @GlobalValue(symbol="kCIInputMoireAmountKey", optional=true)
         public static native NSString MoireAmount();
         /**
          * @since Available in iOS 10.0 and later.
+         * @deprecated Use new CIRAWFilter class instead.
          */
+        @Deprecated
         @GlobalValue(symbol="kCIInputEnableVendorLensCorrectionKey", optional=true)
         public static native NSString EnableVendorLensCorrection();
         /**
          * @since Available in iOS 10.0 and later.
+         * @deprecated Use new CIRAWFilter class instead.
          */
+        @Deprecated
         @GlobalValue(symbol="kCIInputLuminanceNoiseReductionAmountKey", optional=true)
         public static native NSString LuminanceNoiseReductionAmount();
         /**
          * @since Available in iOS 10.0 and later.
+         * @deprecated Use new CIRAWFilter class instead.
          */
+        @Deprecated
         @GlobalValue(symbol="kCIInputColorNoiseReductionAmountKey", optional=true)
         public static native NSString ColorNoiseReductionAmount();
         /**
          * @since Available in iOS 10.0 and later.
+         * @deprecated Use new CIRAWFilter class instead.
          */
+        @Deprecated
         @GlobalValue(symbol="kCIInputNoiseReductionSharpnessAmountKey", optional=true)
         public static native NSString NoiseReductionSharpnessAmount();
         /**
          * @since Available in iOS 10.0 and later.
+         * @deprecated Use new CIRAWFilter class instead.
          */
+        @Deprecated
         @GlobalValue(symbol="kCIInputNoiseReductionContrastAmountKey", optional=true)
         public static native NSString NoiseReductionContrastAmount();
         /**
          * @since Available in iOS 10.0 and later.
+         * @deprecated Use new CIRAWFilter class instead.
          */
+        @Deprecated
         @GlobalValue(symbol="kCIInputNoiseReductionDetailAmountKey", optional=true)
         public static native NSString NoiseReductionDetailAmount();
         /**
-         * @since Available in iOS 14.3 and later.
+         * @since Available in iOS 12.0 and later.
+         * @deprecated Use new CIRAWFilter class instead.
          */
+        @Deprecated
+        @GlobalValue(symbol="kCIInputEnableEDRModeKey", optional=true)
+        public static native NSString EnableEDRMode();
+        /**
+         * @since Available in iOS 14.3 and later.
+         * @deprecated Use new CIRAWFilter class instead.
+         */
+        @Deprecated
         @GlobalValue(symbol="kCIInputLocalToneMapAmountKey", optional=true)
         public static native NSString LocalToneMapAmount();
         /**
          * @since Available in iOS 10.0 and later.
+         * @deprecated Use new CIRAWFilter class instead.
          */
+        @Deprecated
         @GlobalValue(symbol="kCIInputLinearSpaceFilter", optional=true)
         public static native NSString LinearSpaceFilter();
         /**
          * @since Available in iOS 10.0 and later.
+         * @deprecated Use new CIRAWFilter class instead.
          */
+        @Deprecated
         @GlobalValue(symbol="kCIOutputNativeSizeKey", optional=true)
         public static native NSString kCIOutputNativeSize();
         /**
          * @since Available in iOS 10.0 and later.
+         * @deprecated Use new CIRAWFilter class instead.
          */
+        @Deprecated
         @GlobalValue(symbol="kCIActiveKeys", optional=true)
         public static native NSString kCIActiveKeys();
+        /**
+         * @since Available in iOS 15.0 and later.
+         * @deprecated Use new CIRAWFilter class instead.
+         */
+        @Deprecated
+        @GlobalValue(symbol="kCIPropertiesKey", optional=true)
+        public static native NSString kCIProperties();
     }
     /*</keys>*/
 }

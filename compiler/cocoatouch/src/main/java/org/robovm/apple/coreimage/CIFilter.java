@@ -57,15 +57,21 @@ import org.robovm.apple.avfoundation.*;
     public CIFilter(String name, CIFilterInputParameters params) { super((Handle) null, create(name, params)); retain(getHandle()); }
     /**
      * @since Available in iOS 10.0 and later.
+     * @deprecated Use new CIRAWFilter class instead.
      */
+    @Deprecated
     public CIFilter(NSURL url, CIRAWFilterOptions options) { super((Handle) null, create(url, options)); retain(getHandle()); }
     /**
      * @since Available in iOS 10.0 and later.
+     * @deprecated Use new CIRAWFilter class instead.
      */
+    @Deprecated
     public CIFilter(NSData data, CIRAWFilterOptions options) { super((Handle) null, create(data, options)); retain(getHandle()); }
     /**
      * @since Available in iOS 10.0 and later.
+     * @deprecated Use new CIRAWFilter class instead.
      */
+    @Deprecated
     public CIFilter(CVPixelBuffer pixelBuffer, NSDictionary<?, ?> properties, CIRAWFilterOptions options) { super((Handle) null, create(pixelBuffer, properties, options)); retain(getHandle()); }
     @Method(selector = "initWithCoder:")
     public CIFilter(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
@@ -209,22 +215,30 @@ import org.robovm.apple.avfoundation.*;
     private static native NSArray<CIFilter> deserializeFromXMP(NSData xmpData, @ByVal CGRect extent, NSError.NSErrorPtr outError);
     /**
      * @since Available in iOS 10.0 and later.
+     * @deprecated Use new CIRAWFilter class instead.
      */
+    @Deprecated
     @Method(selector = "filterWithImageURL:options:")
     protected static native @Pointer long create(NSURL url, CIRAWFilterOptions options);
     /**
      * @since Available in iOS 10.0 and later.
+     * @deprecated Use new CIRAWFilter class instead.
      */
+    @Deprecated
     @Method(selector = "filterWithImageData:options:")
     protected static native @Pointer long create(NSData data, CIRAWFilterOptions options);
     /**
      * @since Available in iOS 10.0 and later.
+     * @deprecated Use new CIRAWFilter class instead.
      */
+    @Deprecated
     @Method(selector = "filterWithCVPixelBuffer:properties:options:")
     protected static native @Pointer long create(CVPixelBuffer pixelBuffer, NSDictionary<?, ?> properties, CIRAWFilterOptions options);
     /**
      * @since Available in iOS 13.0 and later.
+     * @deprecated Use new CIRAWFilter class instead.
      */
+    @Deprecated
     @Method(selector = "supportedRawCameraModels")
     public static native NSArray<NSString> supportedRawCameraModels();
     @Method(selector = "encodeWithCoder:")
