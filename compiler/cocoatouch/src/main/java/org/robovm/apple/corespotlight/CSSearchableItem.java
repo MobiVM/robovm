@@ -86,6 +86,11 @@ import org.robovm.apple.uniformtypeid.*;
     @GlobalValue(symbol="CSSearchableItemActivityIdentifier", optional=true)
     public static native String CSSearchableItemActivityIdentifier();
     /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @GlobalValue(symbol="CSActionIdentifier", optional=true)
+    public static native String getActionIdentifier();
+    /**
      * @since Available in iOS 10.0 and later.
      */
     @GlobalValue(symbol="CSQueryContinuationActionType", optional=true)

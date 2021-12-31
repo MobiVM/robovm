@@ -100,11 +100,11 @@ import org.robovm.apple.corefoundation.*;
     public static final CTRadioAccessTechnology eHRPD = new CTRadioAccessTechnology("eHRPD");
     public static final CTRadioAccessTechnology LTE = new CTRadioAccessTechnology("LTE");
     /**
-     * @since Available in iOS 14.0 and later.
+     * @since Available in iOS 14.1 and later.
      */
     public static final CTRadioAccessTechnology NRNSA = new CTRadioAccessTechnology("NRNSA");
     /**
-     * @since Available in iOS 14.0 and later.
+     * @since Available in iOS 14.1 and later.
      */
     public static final CTRadioAccessTechnology NR = new CTRadioAccessTechnology("NR");
     /*</constants>*/
@@ -155,12 +155,12 @@ import org.robovm.apple.corefoundation.*;
         @GlobalValue(symbol="CTRadioAccessTechnologyLTE", optional=true)
         public static native NSString LTE();
         /**
-         * @since Available in iOS 14.0 and later.
+         * @since Available in iOS 14.1 and later.
          */
         @GlobalValue(symbol="CTRadioAccessTechnologyNRNSA", optional=true)
         public static native NSString NRNSA();
         /**
-         * @since Available in iOS 14.0 and later.
+         * @since Available in iOS 14.1 and later.
          */
         @GlobalValue(symbol="CTRadioAccessTechnologyNR", optional=true)
         public static native NSString NR();

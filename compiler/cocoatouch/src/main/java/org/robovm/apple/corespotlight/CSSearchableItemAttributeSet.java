@@ -88,6 +88,10 @@ import org.robovm.apple.uniformtypeid.*;
     public native NSData getThumbnailData();
     @Property(selector = "setThumbnailData:")
     public native void setThumbnailData(NSData v);
+    @Property(selector = "darkThumbnailURL")
+    public native NSURL getDarkThumbnailURL();
+    @Property(selector = "setDarkThumbnailURL:")
+    public native void setDarkThumbnailURL(NSURL v);
     @Property(selector = "relatedUniqueIdentifier")
     public native String getRelatedUniqueIdentifier();
     @Property(selector = "setRelatedUniqueIdentifier:")
@@ -184,6 +188,26 @@ import org.robovm.apple.uniformtypeid.*;
     public native NSNumber getSupportsNavigation();
     @Property(selector = "setSupportsNavigation:")
     public native void setSupportsNavigation(NSNumber v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "actionIdentifiers")
+    public native NSArray<NSString> getActionIdentifiers();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setActionIdentifiers:")
+    public native void setActionIdentifiers(NSArray<NSString> v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "sharedItemContentType")
+    public native UTType getSharedItemContentType();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setSharedItemContentType:")
+    public native void setSharedItemContentType(UTType v);
     @Property(selector = "containerTitle")
     public native String getContainerTitle();
     @Property(selector = "setContainerTitle:")

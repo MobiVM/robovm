@@ -35,7 +35,9 @@ import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 12.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
 public final class /*<name>*/CTFontCollectionCopyOptions/*</name>*/ extends Bits</*<name>*/CTFontCollectionCopyOptions/*</name>*/> {
