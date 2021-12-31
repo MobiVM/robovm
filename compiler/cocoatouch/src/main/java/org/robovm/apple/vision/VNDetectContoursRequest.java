@@ -64,20 +64,30 @@ import org.robovm.apple.imageio.*;
     public native float getContrastAdjustment();
     @Property(selector = "setContrastAdjustment:")
     public native void setContrastAdjustment(float v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "contrastPivot")
+    public native NSNumber getContrastPivot();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setContrastPivot:")
+    public native void setContrastPivot(NSNumber v);
     @Property(selector = "detectsDarkOnLight")
     public native boolean isDetectsDarkOnLight();
     @Property(selector = "setDetectsDarkOnLight:")
     public native void setDetectsDarkOnLight(boolean v);
     /**
      * @since Available in iOS 14.0 and later.
-     * @deprecated Deprecated in iOS 14.0. use detectsDarkOnLight
+     * @deprecated Deprecated in iOS 14.0. Use -detectsDarkOnLight
      */
     @Deprecated
     @Property(selector = "detectDarkOnLight")
     public native boolean isDetectDarkOnLight();
     /**
      * @since Available in iOS 14.0 and later.
-     * @deprecated Deprecated in iOS 14.0. use detectsDarkOnLight
+     * @deprecated Deprecated in iOS 14.0. Use -detectsDarkOnLight
      */
     @Deprecated
     @Property(selector = "setDetectDarkOnLight:")
@@ -86,6 +96,8 @@ import org.robovm.apple.imageio.*;
     public native @MachineSizedUInt long getMaximumImageDimension();
     @Property(selector = "setMaximumImageDimension:")
     public native void setMaximumImageDimension(@MachineSizedUInt long v);
+    @Property(selector = "results")
+    public native NSArray<VNContoursObservation> getResults();
     /**
      * @since Available in iOS 12.0 and later.
      */

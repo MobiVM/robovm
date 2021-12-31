@@ -60,6 +60,8 @@ import org.robovm.apple.imageio.*;
     public VNClassifyImageRequest(@Block VoidBlock2<VNRequest, NSError> completionHandler) { super(completionHandler); }
     /*</constructors>*/
     /*<properties>*/
+    @Property(selector = "results")
+    public native NSArray<VNClassificationObservation> getResults();
     /**
      * @since Available in iOS 12.0 and later.
      */
@@ -78,12 +80,27 @@ import org.robovm.apple.imageio.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "supportedIdentifiersAndReturnError:")
+    public native NSArray<NSString> supportedIdentifiersAndReturnError(NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 15.0. Use -supportedIdentifiersAndReturnError:
+     */
+    @Deprecated
     public static NSArray<?> getKnownClassificationsForRevision(@MachineSizedUInt long requestRevision) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        NSArray<?> result = getKnownClassificationsForRevision(requestRevision, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        return result;
     }
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 15.0. Use -supportedIdentifiersAndReturnError:
+     */
+    @Deprecated
     @Method(selector = "knownClassificationsForRevision:error:")
     private static native NSArray<?> getKnownClassificationsForRevision(@MachineSizedUInt long requestRevision, NSError.NSErrorPtr error);
     /*</methods>*/

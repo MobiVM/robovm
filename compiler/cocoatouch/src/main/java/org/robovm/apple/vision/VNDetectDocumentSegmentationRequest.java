@@ -39,41 +39,27 @@ import org.robovm.apple.imageio.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 11.0 and later.
+ * @since Available in iOS 15.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("Vision") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/VNDetectFaceLandmarksRequest/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/VNDetectDocumentSegmentationRequest/*</name>*/ 
     extends /*<extends>*/VNImageBasedRequest/*</extends>*/ 
-    /*<implements>*/implements VNFaceObservationAccepting/*</implements>*/ {
+    /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class VNDetectFaceLandmarksRequestPtr extends Ptr<VNDetectFaceLandmarksRequest, VNDetectFaceLandmarksRequestPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(VNDetectFaceLandmarksRequest.class); }/*</bind>*/
-    /*<constants>*/
-    public static final int Revision1 = 1;
-    public static final int Revision2 = 2;
-    public static final int Revision3 = 3;
-    /*</constants>*/
+    /*<ptr>*/public static class VNDetectDocumentSegmentationRequestPtr extends Ptr<VNDetectDocumentSegmentationRequest, VNDetectDocumentSegmentationRequestPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(VNDetectDocumentSegmentationRequest.class); }/*</bind>*/
+    /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public VNDetectFaceLandmarksRequest() {}
-    protected VNDetectFaceLandmarksRequest(Handle h, long handle) { super(h, handle); }
-    protected VNDetectFaceLandmarksRequest(SkipInit skipInit) { super(skipInit); }
+    public VNDetectDocumentSegmentationRequest() {}
+    protected VNDetectDocumentSegmentationRequest(Handle h, long handle) { super(h, handle); }
+    protected VNDetectDocumentSegmentationRequest(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCompletionHandler:")
-    public VNDetectFaceLandmarksRequest(@Block VoidBlock2<VNRequest, NSError> completionHandler) { super(completionHandler); }
+    public VNDetectDocumentSegmentationRequest(@Block VoidBlock2<VNRequest, NSError> completionHandler) { super(completionHandler); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @Property(selector = "constellation")
-    public native VNRequestFaceLandmarksConstellation getConstellation();
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @Property(selector = "setConstellation:")
-    public native void setConstellation(VNRequestFaceLandmarksConstellation v);
     @Property(selector = "results")
-    public native NSArray<VNFaceObservation> getResults();
+    public native NSArray<VNRectangleObservation> getResults();
     /**
      * @since Available in iOS 12.0 and later.
      */
@@ -89,14 +75,9 @@ import org.robovm.apple.imageio.*;
      */
     @Property(selector = "currentRevision")
     public static native @MachineSizedUInt long getCurrentRevision();
-    @Property(selector = "inputFaceObservations")
-    public native NSArray<VNFaceObservation> getInputFaceObservations();
-    @Property(selector = "setInputFaceObservations:")
-    public native void setInputFaceObservations(NSArray<VNFaceObservation> v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "revision:supportsConstellation:")
-    public static native boolean revision(@MachineSizedUInt long requestRevision, VNRequestFaceLandmarksConstellation constellation);
+    
     /*</methods>*/
 }

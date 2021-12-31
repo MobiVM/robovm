@@ -38,31 +38,32 @@ import org.robovm.apple.imageio.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 11.0 and later.
- */
-/*</javadoc>*/
-/*<annotations>*/@Library("Vision") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/VNImageHomographicAlignmentObservation/*</name>*/ 
-    extends /*<extends>*/VNImageAlignmentObservation/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class VNImageHomographicAlignmentObservationPtr extends Ptr<VNImageHomographicAlignmentObservation, VNImageHomographicAlignmentObservationPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(VNImageHomographicAlignmentObservation.class); }/*</bind>*/
+/*</javadoc>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
+public enum /*<name>*/VNGeneratePersonSegmentationRequestQualityLevel/*</name>*/ implements ValuedEnum {
+    /*<values>*/
+    Accurate(0L),
+    Balanced(1L),
+    Fast(2L);
+    /*</values>*/
+
+    /*<bind>*/
+    /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*/
-    public VNImageHomographicAlignmentObservation() {}
-    protected VNImageHomographicAlignmentObservation(Handle h, long handle) { super(h, handle); }
-    protected VNImageHomographicAlignmentObservation(SkipInit skipInit) { super(skipInit); }
-    /*</constructors>*/
-    /*<properties>*/
-    @Property(selector = "warpTransform")
-    public native @ByVal MatrixFloat3x4 getWarpTransform();
-    @Property(selector = "supportsSecureCoding")
-    public static native boolean supportsSecureCoding();
-    /*</properties>*/
-    /*<members>*//*</members>*/
-    /*<methods>*/
-    
-    /*</methods>*/
+    /*<methods>*//*</methods>*/
+
+    private final long n;
+
+    private /*<name>*/VNGeneratePersonSegmentationRequestQualityLevel/*</name>*/(long n) { this.n = n; }
+    public long value() { return n; }
+    public static /*<name>*/VNGeneratePersonSegmentationRequestQualityLevel/*</name>*/ valueOf(long n) {
+        for (/*<name>*/VNGeneratePersonSegmentationRequestQualityLevel/*</name>*/ v : values()) {
+            if (v.n == n) {
+                return v;
+            }
+        }
+        throw new IllegalArgumentException("No constant with value " + n + " found in " 
+            + /*<name>*/VNGeneratePersonSegmentationRequestQualityLevel/*</name>*/.class.getName());
+    }
 }

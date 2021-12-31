@@ -118,6 +118,8 @@ import org.robovm.apple.imageio.*;
     public VNHomographicImageRegistrationRequest(CMSampleBuffer sampleBuffer, CGImagePropertyOrientation orientation, VNImageOption options, @Block VoidBlock2<VNRequest, NSError> completionHandler) { super(sampleBuffer, orientation, options, completionHandler); }
     /*</constructors>*/
     /*<properties>*/
+    @Property(selector = "results")
+    public native NSArray<VNImageHomographicAlignmentObservation> getResults();
     /**
      * @since Available in iOS 12.0 and later.
      */

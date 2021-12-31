@@ -69,7 +69,7 @@ import org.robovm.apple.imageio.*;
     public static native VNPoint getPointByApplyingVector(VNVector vector, VNPoint point);
     /**
      * @since Available in iOS 14.0 and later.
-     * @deprecated Deprecated in iOS 14.0. use -distanceToPoint:
+     * @deprecated Deprecated in iOS 14.0. Use -distanceToPoint:
      */
     @Deprecated
     @Method(selector = "distanceBetweenPoint:point:")

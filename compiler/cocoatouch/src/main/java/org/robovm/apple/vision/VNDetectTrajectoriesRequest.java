@@ -68,14 +68,14 @@ import org.robovm.apple.imageio.*;
     public native void setObjectMinimumNormalizedRadius(float v);
     /**
      * @since Available in iOS 14.0 and later.
-     * @deprecated Deprecated in iOS 14.0. use objectMinimumNormalizedRadius
+     * @deprecated Deprecated in iOS 14.0. Use -objectMinimumNormalizedRadius
      */
     @Deprecated
     @Property(selector = "minimumObjectSize")
     public native float getMinimumObjectSize();
     /**
      * @since Available in iOS 14.0 and later.
-     * @deprecated Deprecated in iOS 14.0. use objectMinimumNormalizedRadius
+     * @deprecated Deprecated in iOS 14.0. Use -objectMinimumNormalizedRadius
      */
     @Deprecated
     @Property(selector = "setMinimumObjectSize:")
@@ -86,18 +86,28 @@ import org.robovm.apple.imageio.*;
     public native void setObjectMaximumNormalizedRadius(float v);
     /**
      * @since Available in iOS 14.0 and later.
-     * @deprecated Deprecated in iOS 14.0. use objectMaximumNormalizedRadius
+     * @deprecated Deprecated in iOS 14.0. Use -objectMaximumNormalizedRadius
      */
     @Deprecated
     @Property(selector = "maximumObjectSize")
     public native float getMaximumObjectSize();
     /**
      * @since Available in iOS 14.0 and later.
-     * @deprecated Deprecated in iOS 14.0. use objectMaximumNormalizedRadius
+     * @deprecated Deprecated in iOS 14.0. Use -objectMaximumNormalizedRadius
      */
     @Deprecated
     @Property(selector = "setMaximumObjectSize:")
     public native void setMaximumObjectSize(float v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "targetFrameTime")
+    public native @ByVal CMTime getTargetFrameTime();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setTargetFrameTime:")
+    public native void setTargetFrameTime(@ByVal CMTime v);
     @Property(selector = "results")
     public native NSArray<VNTrajectoryObservation> getResults();
     /**

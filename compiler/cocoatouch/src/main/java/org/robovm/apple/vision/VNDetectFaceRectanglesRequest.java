@@ -52,6 +52,7 @@ import org.robovm.apple.imageio.*;
     /*<constants>*/
     public static final int Revision1 = 1;
     public static final int Revision2 = 2;
+    public static final int Revision3 = 3;
     /*</constants>*/
     /*<constructors>*/
     public VNDetectFaceRectanglesRequest() {}
@@ -61,6 +62,8 @@ import org.robovm.apple.imageio.*;
     public VNDetectFaceRectanglesRequest(@Block VoidBlock2<VNRequest, NSError> completionHandler) { super(completionHandler); }
     /*</constructors>*/
     /*<properties>*/
+    @Property(selector = "results")
+    public native NSArray<VNFaceObservation> getResults();
     /**
      * @since Available in iOS 12.0 and later.
      */

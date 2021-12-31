@@ -38,31 +38,23 @@ import org.robovm.apple.imageio.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 11.0 and later.
- */
 /*</javadoc>*/
-/*<annotations>*/@Library("Vision") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/VNImageHomographicAlignmentObservation/*</name>*/ 
-    extends /*<extends>*/VNImageAlignmentObservation/*</extends>*/ 
+/*<annotations>*//*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/Vision/*</name>*/ 
+    extends /*<extends>*/CocoaUtility/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class VNImageHomographicAlignmentObservationPtr extends Ptr<VNImageHomographicAlignmentObservation, VNImageHomographicAlignmentObservationPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(VNImageHomographicAlignmentObservation.class); }/*</bind>*/
-    /*<constants>*//*</constants>*/
-    /*<constructors>*/
-    public VNImageHomographicAlignmentObservation() {}
-    protected VNImageHomographicAlignmentObservation(Handle h, long handle) { super(h, handle); }
-    protected VNImageHomographicAlignmentObservation(SkipInit skipInit) { super(skipInit); }
-    /*</constructors>*/
-    /*<properties>*/
-    @Property(selector = "warpTransform")
-    public native @ByVal MatrixFloat3x4 getWarpTransform();
-    @Property(selector = "supportsSecureCoding")
-    public static native boolean supportsSecureCoding();
-    /*</properties>*/
+    /*<ptr>*/
+    /*</ptr>*/
+    /*<bind>*/
+    /*</bind>*/
+    /*<constants>*/
+    public static final int Constant__VNDetectBarcodesRequestRevision2 = 2;
+    public static final int Constant__VNGeneratePersonSegmentationRequestRevision1 = 1;
+    public static final int Constant__VNDetectDocumentSegmentationRequestRevision1 = 1;
+    /*</constants>*/
+    /*<constructors>*//*</constructors>*/
+    /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
-    /*<methods>*/
-    
-    /*</methods>*/
+    /*<methods>*//*</methods>*/
 }

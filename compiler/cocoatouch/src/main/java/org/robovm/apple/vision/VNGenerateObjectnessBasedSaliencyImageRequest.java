@@ -60,6 +60,8 @@ import org.robovm.apple.imageio.*;
     public VNGenerateObjectnessBasedSaliencyImageRequest(@Block VoidBlock2<VNRequest, NSError> completionHandler) { super(completionHandler); }
     /*</constructors>*/
     /*<properties>*/
+    @Property(selector = "results")
+    public native NSArray<VNSaliencyImageObservation> getResults();
     /**
      * @since Available in iOS 12.0 and later.
      */

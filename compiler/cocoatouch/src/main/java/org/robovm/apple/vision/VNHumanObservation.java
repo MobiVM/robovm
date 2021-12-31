@@ -39,25 +39,28 @@ import org.robovm.apple.imageio.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 11.0 and later.
+ * @since Available in iOS 15.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("Vision") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/VNImageHomographicAlignmentObservation/*</name>*/ 
-    extends /*<extends>*/VNImageAlignmentObservation/*</extends>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/VNHumanObservation/*</name>*/ 
+    extends /*<extends>*/VNDetectedObjectObservation/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class VNImageHomographicAlignmentObservationPtr extends Ptr<VNImageHomographicAlignmentObservation, VNImageHomographicAlignmentObservationPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(VNImageHomographicAlignmentObservation.class); }/*</bind>*/
+    /*<ptr>*/public static class VNHumanObservationPtr extends Ptr<VNHumanObservation, VNHumanObservationPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(VNHumanObservation.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public VNImageHomographicAlignmentObservation() {}
-    protected VNImageHomographicAlignmentObservation(Handle h, long handle) { super(h, handle); }
-    protected VNImageHomographicAlignmentObservation(SkipInit skipInit) { super(skipInit); }
+    public VNHumanObservation() {}
+    protected VNHumanObservation(Handle h, long handle) { super(h, handle); }
+    protected VNHumanObservation(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "warpTransform")
-    public native @ByVal MatrixFloat3x4 getWarpTransform();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "upperBodyOnly")
+    public native boolean isUpperBodyOnly();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

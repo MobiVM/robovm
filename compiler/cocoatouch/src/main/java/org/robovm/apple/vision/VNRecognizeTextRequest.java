@@ -81,6 +81,8 @@ import org.robovm.apple.imageio.*;
     public native float getMinimumTextHeight();
     @Property(selector = "setMinimumTextHeight:")
     public native void setMinimumTextHeight(float v);
+    @Property(selector = "results")
+    public native NSArray<VNRecognizedTextObservation> getResults();
     /**
      * @since Available in iOS 12.0 and later.
      */
@@ -105,12 +107,27 @@ import org.robovm.apple.imageio.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "supportedRecognitionLanguagesAndReturnError:")
+    public native NSArray<NSString> supportedRecognitionLanguagesAndReturnError(NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 15.0. Use -supportedRecognitionLanguagesAndReturnError:
+     */
+    @Deprecated
     public static NSArray<NSString> getSupportedRecognitionLanguagesForTextRecognitionLevel(VNRequestTextRecognitionLevel recognitionLevel, @MachineSizedUInt long requestRevision) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        NSArray<NSString> result = getSupportedRecognitionLanguagesForTextRecognitionLevel(recognitionLevel, requestRevision, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        return result;
     }
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 15.0. Use -supportedRecognitionLanguagesAndReturnError:
+     */
+    @Deprecated
     @Method(selector = "supportedRecognitionLanguagesForTextRecognitionLevel:revision:error:")
     private static native NSArray<NSString> getSupportedRecognitionLanguagesForTextRecognitionLevel(VNRequestTextRecognitionLevel recognitionLevel, @MachineSizedUInt long requestRevision, NSError.NSErrorPtr error);
     /*</methods>*/

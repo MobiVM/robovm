@@ -162,9 +162,33 @@ import org.robovm.apple.imageio.*;
      * @since Available in iOS 11.0 and later.
      */
     public static final VNBarcodeSymbology UPCE = new VNBarcodeSymbology("UPCE");
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    public static final VNBarcodeSymbology Codabar = new VNBarcodeSymbology("Codabar");
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    public static final VNBarcodeSymbology GS1DataBar = new VNBarcodeSymbology("GS1DataBar");
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    public static final VNBarcodeSymbology GS1DataBarExpanded = new VNBarcodeSymbology("GS1DataBarExpanded");
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    public static final VNBarcodeSymbology GS1DataBarLimited = new VNBarcodeSymbology("GS1DataBarLimited");
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    public static final VNBarcodeSymbology MicroPDF417 = new VNBarcodeSymbology("MicroPDF417");
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    public static final VNBarcodeSymbology MicroQR = new VNBarcodeSymbology("MicroQR");
     /*</constants>*/
     
-    private static /*<name>*/VNBarcodeSymbology/*</name>*/[] values = new /*<name>*/VNBarcodeSymbology/*</name>*/[] {/*<value_list>*/Aztec, Code39, Code39Checksum, Code39FullASCII, Code39FullASCIIChecksum, Code93, Code93i, Code128, DataMatrix, EAN8, EAN13, I2of5, I2of5Checksum, ITF14, PDF417, QR, UPCE/*</value_list>*/};
+    private static /*<name>*/VNBarcodeSymbology/*</name>*/[] values = new /*<name>*/VNBarcodeSymbology/*</name>*/[] {/*<value_list>*/Aztec, Code39, Code39Checksum, Code39FullASCII, Code39FullASCIIChecksum, Code93, Code93i, Code128, DataMatrix, EAN8, EAN13, I2of5, I2of5Checksum, ITF14, PDF417, QR, UPCE, Codabar, GS1DataBar, GS1DataBarExpanded, GS1DataBarLimited, MicroPDF417, MicroQR/*</value_list>*/};
     
     /*<name>*/VNBarcodeSymbology/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -272,6 +296,36 @@ import org.robovm.apple.imageio.*;
          */
         @GlobalValue(symbol="VNBarcodeSymbologyUPCE", optional=true)
         public static native NSString UPCE();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="VNBarcodeSymbologyCodabar", optional=true)
+        public static native NSString Codabar();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="VNBarcodeSymbologyGS1DataBar", optional=true)
+        public static native NSString GS1DataBar();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="VNBarcodeSymbologyGS1DataBarExpanded", optional=true)
+        public static native NSString GS1DataBarExpanded();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="VNBarcodeSymbologyGS1DataBarLimited", optional=true)
+        public static native NSString GS1DataBarLimited();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="VNBarcodeSymbologyMicroPDF417", optional=true)
+        public static native NSString MicroPDF417();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="VNBarcodeSymbologyMicroQR", optional=true)
+        public static native NSString MicroQR();
         /*</values>*/
     }
 }

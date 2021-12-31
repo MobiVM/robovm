@@ -38,31 +38,32 @@ import org.robovm.apple.imageio.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 11.0 and later.
- */
-/*</javadoc>*/
-/*<annotations>*/@Library("Vision") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/VNImageHomographicAlignmentObservation/*</name>*/ 
-    extends /*<extends>*/VNImageAlignmentObservation/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class VNImageHomographicAlignmentObservationPtr extends Ptr<VNImageHomographicAlignmentObservation, VNImageHomographicAlignmentObservationPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(VNImageHomographicAlignmentObservation.class); }/*</bind>*/
+/*</javadoc>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+public enum /*<name>*/VNChirality/*</name>*/ implements ValuedEnum {
+    /*<values>*/
+    Unknown(0L),
+    Left(-1L),
+    Right(1L);
+    /*</values>*/
+
+    /*<bind>*/
+    /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*/
-    public VNImageHomographicAlignmentObservation() {}
-    protected VNImageHomographicAlignmentObservation(Handle h, long handle) { super(h, handle); }
-    protected VNImageHomographicAlignmentObservation(SkipInit skipInit) { super(skipInit); }
-    /*</constructors>*/
-    /*<properties>*/
-    @Property(selector = "warpTransform")
-    public native @ByVal MatrixFloat3x4 getWarpTransform();
-    @Property(selector = "supportsSecureCoding")
-    public static native boolean supportsSecureCoding();
-    /*</properties>*/
-    /*<members>*//*</members>*/
-    /*<methods>*/
-    
-    /*</methods>*/
+    /*<methods>*//*</methods>*/
+
+    private final long n;
+
+    private /*<name>*/VNChirality/*</name>*/(long n) { this.n = n; }
+    public long value() { return n; }
+    public static /*<name>*/VNChirality/*</name>*/ valueOf(long n) {
+        for (/*<name>*/VNChirality/*</name>*/ v : values()) {
+            if (v.n == n) {
+                return v;
+            }
+        }
+        throw new IllegalArgumentException("No constant with value " + n + " found in " 
+            + /*<name>*/VNChirality/*</name>*/.class.getName());
+    }
 }
