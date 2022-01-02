@@ -754,11 +754,9 @@ public class Config {
             if (!Arrays.asList(qualified.filterArch()).contains(sliceArch))
                 return false;
         }
-        // TODO: there is no platform variant, just guess it from arch, applies to iOS temporally
-        if (os == OS.ios && qualified.filterPlatformVariants() != null) {
-            PlatformVariant variant = sliceArch.isArm() ? PlatformVariant.device : PlatformVariant.simulator;
-            if (!Arrays.asList(qualified.filterPlatformVariants()).contains(variant))
-                return false;
+        if (qualified.filterPlatformVariants() != null) {
+            PlatformVariant variant = (env == Environment.Native) ? PlatformVariant.device : PlatformVariant.simulator;
+            return Arrays.asList(qualified.filterPlatformVariants()).contains(variant);
         }
 
         return true;
