@@ -177,27 +177,12 @@ public class DebuggerLaunchPlugin extends LaunchPlugin {
         }
     }
 
-    private String argumentValue(Map<String, String> arguments, String key, String defaultValue) {
-        String v = arguments.get(key);
-        return v != null ? v : defaultValue;
-    }
-
-    private int argumentValue(Map<String, String> arguments, String key, int defaultValue) {
-        String v = arguments.get(key);
-        return v != null ? Integer.parseInt(v) : defaultValue;
-    }
-
     private int argumentIntValue(Map<String, String> arguments, String key) {
         String v = arguments.get(key);
         if (v == null)
             throw new CompilerException("Missing required debugger argument " + key);
 
         return Integer.parseInt(v);
-    }
-
-    private boolean argumentValue(Map<String, String> arguments, String key, boolean defaultValue) {
-        String v = arguments.get(key);
-        return v != null ? Boolean.parseBoolean(v) : defaultValue;
     }
 
     boolean argumentBoolValue(Map<String, String> arguments, String key) {
