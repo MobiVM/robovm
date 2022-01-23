@@ -19,8 +19,12 @@
     <change-notes>
         <![CDATA[
             <b>2.3.15</b>
-            <li> Native m1 support </li>
-            <li> Java 9 string concatenation de-sugaring </li>
+            <li> Mac M1 support</li>
+            <li> Improved XCFramework support </li>
+            <li> Bug fixes in StringConcat plugin </li>
+            <li> Debugger fixes </li>
+            <li> Java 9 support in Stringconcat plugin </li>
+            <li> Tree shaking fixes </li>
         ]]>
     </change-notes>
 
