@@ -34,6 +34,18 @@
         </resources>
         <plugins>
             <plugin>
+                <groupId>org.eclipse.tycho</groupId>
+                <artifactId>tycho-compiler-plugin</artifactId>
+                <configuration>
+                    <compilerArgs>
+                        <arg>--module-path</arg>
+                        <arg>${java.home}/jmods</arg>
+                        <arg>--add-modules</arg>
+                        <arg>jdk.jdi</arg>
+                    </compilerArgs>
+                </configuration>
+            </plugin>
+            <plugin>
                 <artifactId>maven-clean-plugin</artifactId>
                 <configuration>
                     <filesets>

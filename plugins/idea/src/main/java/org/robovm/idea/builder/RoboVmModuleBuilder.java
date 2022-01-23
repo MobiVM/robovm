@@ -240,13 +240,10 @@ public class RoboVmModuleBuilder extends JavaModuleBuilder {
                 // force java8
                 LanguageLevelProjectExtension projectLangModel = LanguageLevelProjectExtension.getInstance(project);
                 projectLangModel.setLanguageLevel(LanguageLevel.JDK_1_8);
-                LanguageLevelModuleExtensionImpl moduleLangModel = LanguageLevelModuleExtensionImpl.getInstance(module);
-                moduleLangModel.setLanguageLevel(LanguageLevel.JDK_1_8);
+                rootModel.getModuleExtension(LanguageLevelModuleExtension.class).setLanguageLevel(LanguageLevel.JDK_1_8);
 
                 FileDocumentManager.getInstance().saveAllDocuments();
                 ImportSpecBuilder builder = new ImportSpecBuilder(rootModel.getProject(), GradleConstants.SYSTEM_ID);
-                builder.forceWhenUptodate(true);
-
                 ExternalSystemUtil.refreshProjects(builder);
             }
         } else {

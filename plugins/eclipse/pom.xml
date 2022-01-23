@@ -29,8 +29,8 @@
 
     <properties>
         <robovm.version>2.3.16-SNAPSHOT</robovm.version>
-        <tycho.version>1.5.1</tycho.version>
-        <eclipse-site>https://download.eclipse.org/releases/photon</eclipse-site>
+        <tycho.version>2.5.0</tycho.version>
+        <eclipse-site>https://download.eclipse.org/releases/2021-09/</eclipse-site>
     </properties>
 
     <repositories>
