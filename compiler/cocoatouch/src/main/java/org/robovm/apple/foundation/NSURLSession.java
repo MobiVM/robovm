@@ -114,7 +114,9 @@ import org.robovm.apple.dispatch.*;
     public native NSURLSessionStreamTask newStreamTask(String hostname, @MachineSizedSInt long port);
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Use nw_connection_t in Network framework instead
      */
+    @Deprecated
     @Method(selector = "streamTaskWithNetService:")
     public native NSURLSessionStreamTask newStreamTask(NSNetService service);
     /**

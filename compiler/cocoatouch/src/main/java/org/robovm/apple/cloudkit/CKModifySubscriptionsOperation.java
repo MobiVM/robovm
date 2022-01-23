@@ -60,6 +60,26 @@ import org.robovm.apple.fileprovider.*;
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getSubscriptionIDsToDelete();
     @Property(selector = "setSubscriptionIDsToDelete:")
     public native void setSubscriptionIDsToDelete(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "perSubscriptionSaveBlock")
+    public native @Block VoidBlock3<String, CKSubscription, NSError> getPerSubscriptionSaveBlock();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setPerSubscriptionSaveBlock:")
+    public native void setPerSubscriptionSaveBlock(@Block VoidBlock3<String, CKSubscription, NSError> v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "perSubscriptionDeleteBlock")
+    public native @Block VoidBlock2<String, NSError> getPerSubscriptionDeleteBlock();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setPerSubscriptionDeleteBlock:")
+    public native void setPerSubscriptionDeleteBlock(@Block VoidBlock2<String, NSError> v);
     @Property(selector = "modifySubscriptionsCompletionBlock")
     public native @Block VoidBlock3<NSArray<CKSubscription>, NSArray<NSString>, NSError> getModifySubscriptionsCompletionBlock();
     @Property(selector = "setModifySubscriptionsCompletionBlock:")

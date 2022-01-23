@@ -113,6 +113,16 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "setAssumesHTTP3Capable:")
     public native void setAssumesHTTP3Capable(boolean v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "attribution")
+    public native NSURLRequestAttribution getAttribution();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setAttribution:")
+    public native void setAttribution(NSURLRequestAttribution v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     @Property(selector = "HTTPMethod")

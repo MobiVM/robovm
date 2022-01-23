@@ -20,6 +20,7 @@ import org.robovm.apple.foundation.NSArray;
 import org.robovm.apple.foundation.NSIndexPath;
 import org.robovm.apple.foundation.NSObject;
 import org.robovm.objc.Selector;
+import org.robovm.objc.annotation.Method;
 import org.robovm.objc.annotation.NotImplemented;
 import org.robovm.rt.bro.annotation.ByVal;
 import org.robovm.rt.bro.annotation.MachineSizedFloat;
@@ -249,4 +250,12 @@ public class UITableViewModel extends UIScrollViewDelegateAdapter implements UIT
      */
     @Override
     public void willEndContextMenuInteraction(UITableView tableView, UIContextMenuConfiguration configuration, UIContextMenuInteractionAnimating animator) {}
+
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Override
+    public boolean isSelectionFollowsFocus(UITableView tableView, NSIndexPath indexPath) {
+        return false;
+    }
 }

@@ -62,6 +62,16 @@ import org.robovm.apple.dispatch.*;
     public native boolean isAllowDuplicateIntersectionFunctionInvocation();
     @Property(selector = "setAllowDuplicateIntersectionFunctionInvocation:")
     public native void setAllowDuplicateIntersectionFunctionInvocation(boolean v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "label")
+    public native String getLabel();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setLabel:")
+    public native void setLabel(String v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

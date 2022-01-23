@@ -47,7 +47,8 @@ public enum /*<name>*/PKPaymentMethodType/*</name>*/ implements ValuedEnum {
     Debit(1L),
     Credit(2L),
     Prepaid(3L),
-    Store(4L);
+    Store(4L),
+    EMoney(5L);
     /*</values>*/
 
     /*<bind>*/

@@ -83,10 +83,25 @@ import org.robovm.apple.audiotoolbox.*;
     public static native boolean isPlayableExtendedMIMEType(String extendedMIMEType);
     @Method(selector = "trackWithTrackID:")
     public native AVFragmentedAssetTrack getTrack(int trackID);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "loadTrackWithTrackID:completionHandler:")
+    public native void loadTrack(int trackID, @Block VoidBlock2<NSArray<?>, NSError> completionHandler);
     @Method(selector = "tracksWithMediaType:")
     public native NSArray<AVFragmentedAssetTrack> getTracksForMediaType(String mediaType);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "loadTracksWithMediaType:completionHandler:")
+    public native void loadTracksWithMediaType(String mediaType, @Block VoidBlock2<NSArray<?>, NSError> completionHandler);
     @Method(selector = "tracksWithMediaCharacteristic:")
     public native NSArray<AVFragmentedAssetTrack> getTracksForMediaCharacteristic(String mediaCharacteristic);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "loadTracksWithMediaCharacteristic:completionHandler:")
+    public native void loadTracksWithMediaCharacteristic(String mediaCharacteristic, @Block VoidBlock2<NSArray<?>, NSError> completionHandler);
     public static AVFragmentedAsset createProviderDataObject(NSData data, String typeIdentifier) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        AVFragmentedAsset result = createProviderDataObject(data, typeIdentifier, ptr);

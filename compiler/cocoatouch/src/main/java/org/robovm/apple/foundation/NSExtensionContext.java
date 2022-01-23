@@ -50,7 +50,7 @@ import org.robovm.apple.dispatch.*;
         /**
          * @since Available in iOS 8.2 and later.
          */
-        public static NSObject observeHostWillEnterForeground(NSExtensionContext object, final VoidBlock1<NSExtensionContext> block) {
+        public static NSObjectProtocol observeHostWillEnterForeground(NSExtensionContext object, final VoidBlock1<NSExtensionContext> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(HostWillEnterForegroundNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -61,7 +61,7 @@ import org.robovm.apple.dispatch.*;
         /**
          * @since Available in iOS 8.2 and later.
          */
-        public static NSObject observeHostDidEnterBackground(NSExtensionContext object, final VoidBlock1<NSExtensionContext> block) {
+        public static NSObjectProtocol observeHostDidEnterBackground(NSExtensionContext object, final VoidBlock1<NSExtensionContext> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(HostDidEnterBackgroundNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -72,7 +72,7 @@ import org.robovm.apple.dispatch.*;
         /**
          * @since Available in iOS 8.2 and later.
          */
-        public static NSObject observeHostWillResignActive(NSExtensionContext object, final VoidBlock1<NSExtensionContext> block) {
+        public static NSObjectProtocol observeHostWillResignActive(NSExtensionContext object, final VoidBlock1<NSExtensionContext> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(HostWillResignActiveNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -83,7 +83,7 @@ import org.robovm.apple.dispatch.*;
         /**
          * @since Available in iOS 8.2 and later.
          */
-        public static NSObject observeHostDidBecomeActive(NSExtensionContext object, final VoidBlock1<NSExtensionContext> block) {
+        public static NSObjectProtocol observeHostDidBecomeActive(NSExtensionContext object, final VoidBlock1<NSExtensionContext> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(HostDidBecomeActiveNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {

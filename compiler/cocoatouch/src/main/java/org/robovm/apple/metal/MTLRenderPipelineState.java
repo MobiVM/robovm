@@ -78,5 +78,25 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "imageblockMemoryLengthForDimensions:")
     public native @MachineSizedUInt long imageblockMemoryLengthForDimensions(@ByVal MTLSize imageblockDimensions);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "functionHandleWithFunction:stage:")
+    public native MTLFunctionHandle functionHandle(MTLFunction function, MTLRenderStages stage);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "newVisibleFunctionTableWithDescriptor:stage:")
+    public native MTLVisibleFunctionTable newVisibleFunctionTable(MTLVisibleFunctionTableDescriptor descriptor, MTLRenderStages stage);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "newIntersectionFunctionTableWithDescriptor:stage:")
+    public native MTLIntersectionFunctionTable newIntersectionFunctionTable(MTLIntersectionFunctionTableDescriptor descriptor, MTLRenderStages stage);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "newRenderPipelineStateWithAdditionalBinaryFunctions:error:")
+    public native MTLRenderPipelineState newRenderPipelineState(MTLRenderPipelineFunctionsDescriptor additionalBinaryFunctions, NSError.NSErrorPtr error);
     /*</methods>*/
 }

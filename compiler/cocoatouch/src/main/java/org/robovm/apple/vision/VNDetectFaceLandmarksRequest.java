@@ -72,6 +72,8 @@ import org.robovm.apple.imageio.*;
      */
     @Property(selector = "setConstellation:")
     public native void setConstellation(VNRequestFaceLandmarksConstellation v);
+    @Property(selector = "results")
+    public native NSArray<VNFaceObservation> getResults();
     /**
      * @since Available in iOS 12.0 and later.
      */

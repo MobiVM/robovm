@@ -54,6 +54,11 @@ import org.robovm.apple.coreanimation.*;
     protected PKShareablePassMetadata(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithProvisioningCredentialIdentifier:cardConfigurationIdentifier:sharingInstanceIdentifier:passThumbnailImage:ownerDisplayName:localizedDescription:")
     public PKShareablePassMetadata(String credentialIdentifier, String cardConfigurationIdentifier, String sharingInstanceIdentifier, CGImage passThumbnailImage, String ownerDisplayName, String localizedDescription) { super((SkipInit) null); initObject(init(credentialIdentifier, cardConfigurationIdentifier, sharingInstanceIdentifier, passThumbnailImage, ownerDisplayName, localizedDescription)); }
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "initWithProvisioningCredentialIdentifier:sharingInstanceIdentifier:passThumbnailImage:ownerDisplayName:localizedDescription:accountHash:templateIdentifier:relyingPartyIdentifier:requiresUnifiedAccessCapableDevice:")
+    public PKShareablePassMetadata(String credentialIdentifier, String sharingInstanceIdentifier, CGImage passThumbnailImage, String ownerDisplayName, String localizedDescription, String accountHash, String templateIdentifier, String relyingPartyIdentifier, boolean requiresUnifiedAccessCapableDevice) { super((SkipInit) null); initObject(init(credentialIdentifier, sharingInstanceIdentifier, passThumbnailImage, ownerDisplayName, localizedDescription, accountHash, templateIdentifier, relyingPartyIdentifier, requiresUnifiedAccessCapableDevice)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "credentialIdentifier")
@@ -62,6 +67,23 @@ import org.robovm.apple.coreanimation.*;
     public native String getCardConfigurationIdentifier();
     @Property(selector = "sharingInstanceIdentifier")
     public native String getSharingInstanceIdentifier();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "accountHash")
+    public native String getAccountHash();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "templateIdentifier")
+    public native String getTemplateIdentifier();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "relyingPartyIdentifier")
+    public native String getRelyingPartyIdentifier();
+    @Property(selector = "requiresUnifiedAccessCapableDevice")
+    public native boolean requiresUnifiedAccessCapableDevice();
     @Property(selector = "passThumbnailImage")
     public native CGImage getPassThumbnailImage();
     @Property(selector = "localizedDescription")
@@ -73,5 +95,10 @@ import org.robovm.apple.coreanimation.*;
     /*<methods>*/
     @Method(selector = "initWithProvisioningCredentialIdentifier:cardConfigurationIdentifier:sharingInstanceIdentifier:passThumbnailImage:ownerDisplayName:localizedDescription:")
     protected native @Pointer long init(String credentialIdentifier, String cardConfigurationIdentifier, String sharingInstanceIdentifier, CGImage passThumbnailImage, String ownerDisplayName, String localizedDescription);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "initWithProvisioningCredentialIdentifier:sharingInstanceIdentifier:passThumbnailImage:ownerDisplayName:localizedDescription:accountHash:templateIdentifier:relyingPartyIdentifier:requiresUnifiedAccessCapableDevice:")
+    protected native @Pointer long init(String credentialIdentifier, String sharingInstanceIdentifier, CGImage passThumbnailImage, String ownerDisplayName, String localizedDescription, String accountHash, String templateIdentifier, String relyingPartyIdentifier, boolean requiresUnifiedAccessCapableDevice);
     /*</methods>*/
 }

@@ -64,6 +64,11 @@ classes:
                 name: init
             '-setValue:forCustomKey:':
                 name: setValue
+    CSImportExtension: #since 15.0
+        methods:
+            '-updateAttributes:forFileAtURL:error:':
+                name: updateAttributes
+                throws: NSErrorException
 protocols:
     CSSearchableIndexDelegate: #since 9.0
         methods:
@@ -99,6 +104,9 @@ values:
     CS(Mailbox.*):
         class: CSSearchableItemAttributeSet
         name: '#{g[0]}'
+    CSActionIdentifier:
+        class: CSSearchableItem
+        name: getActionIdentifier
 
 
     # Make sure we don't miss any values if new ones are introduced in a later version

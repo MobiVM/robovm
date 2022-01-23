@@ -160,10 +160,22 @@ import org.robovm.apple.linkpresentation.*;
     @Method(selector = "indexPathForPreferredFocusedViewInCollectionView:")
     public native NSIndexPath getIndexPathForPreferredFocusedView(UICollectionView collectionView);
     /**
-     * @since Available in iOS 9.0 and later.
+     * @since Available in iOS 15.0 and later.
      */
+    @Method(selector = "collectionView:selectionFollowsFocusForItemAtIndexPath:")
+    public native boolean isSelectionFollowsFocus(UICollectionView collectionView, NSIndexPath indexPath);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "collectionView:targetIndexPathForMoveOfItemFromOriginalIndexPath:atCurrentIndexPath:toProposedIndexPath:")
+    public native NSIndexPath getTargetIndexPathForMoveOfItemFromOriginalIndexPath(UICollectionView collectionView, NSIndexPath originalIndexPath, NSIndexPath currentIndexPath, NSIndexPath proposedIndexPath);
+    /**
+     * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 15.0. Use collectionView:targetIndexPathForMoveOfItemFromOriginalIndexPath:atCurrentIndexPath:toProposedIndexPath:
+     */
+    @Deprecated
     @Method(selector = "collectionView:targetIndexPathForMoveFromItemAtIndexPath:toProposedIndexPath:")
-    public native NSIndexPath getTargetIndexPathForMoveFromItem(UICollectionView collectionView, NSIndexPath originalIndexPath, NSIndexPath proposedIndexPath);
+    public native NSIndexPath getTargetIndexPathForMoveFromItem(UICollectionView collectionView, NSIndexPath currentIndexPath, NSIndexPath proposedIndexPath);
     /**
      * @since Available in iOS 9.0 and later.
      */
@@ -224,6 +236,11 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Method(selector = "collectionView:willEndContextMenuInteractionWithConfiguration:animator:")
     public native void willEndContextMenuInteraction(UICollectionView collectionView, UIContextMenuConfiguration configuration, UIContextMenuInteractionAnimating animator);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "collectionView:sceneActivationConfigurationForItemAtIndexPath:point:")
+    public native UIWindowSceneActivationConfiguration getSceneActivationConfiguration(UICollectionView collectionView, NSIndexPath indexPath, @ByVal CGPoint point);
     @Method(selector = "scrollViewDidScroll:")
     public native void didScroll(UIScrollView scrollView);
     @Method(selector = "scrollViewDidZoom:")

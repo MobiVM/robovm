@@ -59,6 +59,11 @@ import org.robovm.apple.foundation.*;
     public native MXAverage<NSUnitInformationStorage> getAverageMemory();
     @Property(selector = "cumulativeLogicalWrites")
     public native NSMeasurement<NSUnitInformationStorage> getCumulativeLogicalWrites();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "cumulativeHitchTimeRatio")
+    public native NSMeasurement<NSUnit> getCumulativeHitchTimeRatio();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

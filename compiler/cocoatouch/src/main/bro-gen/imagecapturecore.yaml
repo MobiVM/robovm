@@ -97,6 +97,11 @@ classes:
                 name: requestContentsAuthorization
             '-requestControlAuthorizationWithCompletion:':
                 name: requestControlAuthorization
+            '-resetContentsAuthorizationWithCompletion:':
+                name: resetContentsAuthorization
+            '-resetControlAuthorizationWithCompletion:':
+                name: resetControlAuthorization
+
 protocols:
     ICCameraDeviceDelegate:
         methods:

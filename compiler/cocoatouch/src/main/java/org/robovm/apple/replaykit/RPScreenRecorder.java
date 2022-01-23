@@ -120,6 +120,21 @@ import org.robovm.apple.coreanimation.*;
      */
     @Method(selector = "stopCaptureWithHandler:")
     public native void stopCapture(@Block VoidBlock1<NSError> handler);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "startClipBufferingWithCompletionHandler:")
+    public native void startClipBuffering(@Block VoidBlock1<NSError> completionHandler);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "stopClipBufferingWithCompletionHandler:")
+    public native void stopClipBuffering(@Block VoidBlock1<NSError> completionHandler);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "exportClipToURL:duration:completionHandler:")
+    public native void exportClipToURL(NSURL url, double duration, @Block VoidBlock1<NSError> completionHandler);
     @Method(selector = "sharedRecorder")
     public static native RPScreenRecorder getSharedRecorder();
     /*</methods>*/

@@ -52,7 +52,7 @@ import org.robovm.apple.audiotoolbox.*;
         /**
          * @since Available in iOS 5.0 and later.
          */
-        public static NSObject observeTimeJumped(AVPlayerItem object, final VoidBlock1<AVPlayerItem> block) {
+        public static NSObjectProtocol observeTimeJumped(AVPlayerItem object, final VoidBlock1<AVPlayerItem> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(TimeJumpedNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification notification) {
@@ -63,7 +63,7 @@ import org.robovm.apple.audiotoolbox.*;
         /**
          * @since Available in iOS 4.0 and later.
          */
-        public static NSObject observeDidPlayToEndTime(AVPlayerItem object, final VoidBlock1<AVPlayerItem> block) {
+        public static NSObjectProtocol observeDidPlayToEndTime(AVPlayerItem object, final VoidBlock1<AVPlayerItem> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(DidPlayToEndTimeNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification notification) {
@@ -74,7 +74,7 @@ import org.robovm.apple.audiotoolbox.*;
         /**
          * @since Available in iOS 4.3 and later.
          */
-        public static NSObject observeFailedToPlayToEndTime(AVPlayerItem object, final VoidBlock2<AVPlayerItem, NSError> block) {
+        public static NSObjectProtocol observeFailedToPlayToEndTime(AVPlayerItem object, final VoidBlock2<AVPlayerItem, NSError> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(FailedToPlayToEndTimeNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification notification) {
@@ -90,7 +90,7 @@ import org.robovm.apple.audiotoolbox.*;
         /**
          * @since Available in iOS 6.0 and later.
          */
-        public static NSObject observePlaybackStalled(AVPlayerItem object, final VoidBlock1<AVPlayerItem> block) {
+        public static NSObjectProtocol observePlaybackStalled(AVPlayerItem object, final VoidBlock1<AVPlayerItem> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(PlaybackStalledNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification notification) {
@@ -101,7 +101,7 @@ import org.robovm.apple.audiotoolbox.*;
         /**
          * @since Available in iOS 6.0 and later.
          */
-        public static NSObject observeNewAccessLogEntry(AVPlayerItem object, final VoidBlock1<AVPlayerItem> block) {
+        public static NSObjectProtocol observeNewAccessLogEntry(AVPlayerItem object, final VoidBlock1<AVPlayerItem> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(NewAccessLogEntryNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification notification) {
@@ -112,7 +112,7 @@ import org.robovm.apple.audiotoolbox.*;
         /**
          * @since Available in iOS 6.0 and later.
          */
-        public static NSObject observeNewErrorLogEntry(AVPlayerItem object, final VoidBlock1<AVPlayerItem> block) {
+        public static NSObjectProtocol observeNewErrorLogEntry(AVPlayerItem object, final VoidBlock1<AVPlayerItem> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(NewErrorLogEntryNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification notification) {
@@ -308,6 +308,16 @@ import org.robovm.apple.audiotoolbox.*;
     @Property(selector = "setPreferredPeakBitRate:")
     public native void setPreferredPeakBitRate(double v);
     /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "preferredPeakBitRateForExpensiveNetworks")
+    public native double getPreferredPeakBitRateForExpensiveNetworks();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setPreferredPeakBitRateForExpensiveNetworks:")
+    public native void setPreferredPeakBitRateForExpensiveNetworks(double v);
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @Property(selector = "preferredMaximumResolution")
@@ -317,6 +327,16 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "setPreferredMaximumResolution:")
     public native void setPreferredMaximumResolution(@ByVal CGSize v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "preferredMaximumResolutionForExpensiveNetworks")
+    public native @ByVal CGSize getPreferredMaximumResolutionForExpensiveNetworks();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setPreferredMaximumResolutionForExpensiveNetworks:")
+    public native void setPreferredMaximumResolutionForExpensiveNetworks(@ByVal CGSize v);
     /**
      * @since Available in iOS 14.0 and later.
      */
@@ -350,17 +370,17 @@ import org.robovm.apple.audiotoolbox.*;
     @Property(selector = "mediaDataCollectors")
     public native NSArray<AVPlayerItemMediaDataCollector> getMediaDataCollectors();
     /**
-     * @since Available in iOS 14.5 and later.
+     * @since Available in iOS 15.0 and later.
      */
     @Property(selector = "automaticallyHandlesInterstitialEvents")
     public native boolean automaticallyHandlesInterstitialEvents();
     /**
-     * @since Available in iOS 14.5 and later.
+     * @since Available in iOS 15.0 and later.
      */
     @Property(selector = "setAutomaticallyHandlesInterstitialEvents:")
     public native void setAutomaticallyHandlesInterstitialEvents(boolean v);
     /**
-     * @since Available in iOS 14.5 and later.
+     * @since Available in iOS 15.0 and later.
      */
     @Property(selector = "templatePlayerItem")
     public native AVPlayerItem getTemplatePlayerItem();
@@ -398,6 +418,10 @@ import org.robovm.apple.audiotoolbox.*;
     protected native @Pointer long init(AVAsset asset);
     @Method(selector = "initWithAsset:automaticallyLoadedAssetKeys:")
     protected native @Pointer long init(AVAsset asset, @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> automaticallyLoadedAssetKeys);
+    @Method(selector = "copyWithZone:")
+    public native NSObject copyWithZone(NSZone zone);
+    @Method(selector = "copy")
+    public native NSObject copy();
     @Method(selector = "currentTime")
     public native @ByVal CMTime getCurrentTime();
     @Method(selector = "seekToTime:completionHandler:")

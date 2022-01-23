@@ -172,6 +172,11 @@ import org.robovm.apple.linkpresentation.*;
     @NotImplemented("indexPathForPreferredFocusedViewInTableView:")
     public NSIndexPath getIndexPathForPreferredFocusedView(UITableView tableView) { return null; }
     /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @NotImplemented("tableView:selectionFollowsFocusForRowAtIndexPath:")
+    public boolean isSelectionFollowsFocus(UITableView tableView, NSIndexPath indexPath) { return false; }
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @NotImplemented("tableView:shouldSpringLoadRowAtIndexPath:withContext:")

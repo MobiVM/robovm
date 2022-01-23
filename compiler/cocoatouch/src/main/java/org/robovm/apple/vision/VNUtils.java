@@ -74,20 +74,40 @@ import org.robovm.apple.imageio.*;
     @Bridge(symbol="VNImagePointForNormalizedPoint", optional=true)
     public static native @ByVal CGPoint getImagePointForNormalizedPoint(@ByVal CGPoint normalizedPoint, @MachineSizedUInt long imageWidth, @MachineSizedUInt long imageHeight);
     /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Bridge(symbol="VNImagePointForNormalizedPointUsingRegionOfInterest", optional=true)
+    public static native @ByVal CGPoint getImagePointForNormalizedPointUsingRegionOfInterest(@ByVal CGPoint normalizedPoint, @MachineSizedUInt long imageWidth, @MachineSizedUInt long imageHeight, @ByVal CGRect roi);
+    /**
      * @since Available in iOS 14.0 and later.
      */
     @Bridge(symbol="VNNormalizedPointForImagePoint", optional=true)
     public static native @ByVal CGPoint getNormalizedPointForImagePoint(@ByVal CGPoint imagePoint, @MachineSizedUInt long imageWidth, @MachineSizedUInt long imageHeight);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Bridge(symbol="VNNormalizedPointForImagePointUsingRegionOfInterest", optional=true)
+    public static native @ByVal CGPoint getNormalizedPointForImagePointUsingRegionOfInterest(@ByVal CGPoint imagePoint, @MachineSizedUInt long imageWidth, @MachineSizedUInt long imageHeight, @ByVal CGRect roi);
     /**
      * @since Available in iOS 11.0 and later.
      */
     @Bridge(symbol="VNImageRectForNormalizedRect", optional=true)
     public static native @ByVal CGRect getImageRectForNormalizedRect(@ByVal CGRect normalizedRect, @MachineSizedUInt long imageWidth, @MachineSizedUInt long imageHeight);
     /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Bridge(symbol="VNImageRectForNormalizedRectUsingRegionOfInterest", optional=true)
+    public static native @ByVal CGRect getImageRectForNormalizedRectUsingRegionOfInterest(@ByVal CGRect normalizedRect, @MachineSizedUInt long imageWidth, @MachineSizedUInt long imageHeight, @ByVal CGRect roi);
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @Bridge(symbol="VNNormalizedRectForImageRect", optional=true)
     public static native @ByVal CGRect getNormalizedRectForImageRect(@ByVal CGRect imageRect, @MachineSizedUInt long imageWidth, @MachineSizedUInt long imageHeight);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Bridge(symbol="VNNormalizedRectForImageRectUsingRegionOfInterest", optional=true)
+    public static native @ByVal CGRect getNormalizedRectForImageRectUsingRegionOfInterest(@ByVal CGRect imageRect, @MachineSizedUInt long imageWidth, @MachineSizedUInt long imageHeight, @ByVal CGRect roi);
     /**
      * @since Available in iOS 11.0 and later.
      */

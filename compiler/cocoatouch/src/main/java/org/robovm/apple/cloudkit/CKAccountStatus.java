@@ -42,7 +42,11 @@ public enum /*<name>*/CKAccountStatus/*</name>*/ implements ValuedEnum {
     CouldNotDetermine(0L),
     Available(1L),
     Restricted(2L),
-    NoAccount(3L);
+    NoAccount(3L),
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    TemporarilyUnavailable(4L);
     /*</values>*/
 
     /*<bind>*/

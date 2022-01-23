@@ -36,9 +36,11 @@ import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @deprecated Use MKMarkerAnnotationView
+ */
 /*</javadoc>*/
-/*<annotations>*/@Library("MapKit") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MapKit") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MKPinAnnotationView/*</name>*/ 
     extends /*<extends>*/MKAnnotationView/*</extends>*/ 
     /*<implements>*//*</implements>*/ {

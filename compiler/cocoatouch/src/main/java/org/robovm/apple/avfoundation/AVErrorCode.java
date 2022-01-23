@@ -183,7 +183,15 @@ public enum /*<name>*/AVErrorCode/*</name>*/ implements NSErrorCode {
     /**
      * @since Available in iOS 14.0 and later.
      */
-    RosettaNotInstalled(-11877L);
+    RosettaNotInstalled(-11877L),
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    OperationCancelled(-11878L),
+    /**
+     * @since Available in iOS 14.6 and later.
+     */
+    ContentKeyRequestCancelled(-11879L);
     /*</values>*/
 
     /*<bind>*/

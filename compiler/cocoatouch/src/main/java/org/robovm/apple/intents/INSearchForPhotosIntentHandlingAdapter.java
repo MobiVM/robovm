@@ -63,7 +63,9 @@ import org.robovm.apple.coregraphics.*;
     public void resolveAlbumNameForSearchForPhotos(INSearchForPhotosIntent intent, @Block VoidBlock1<INStringResolutionResult> completion) {}
     /**
      * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 15.0.
      */
+    @Deprecated
     @NotImplemented("resolveSearchTermsForSearchForPhotos:withCompletion:")
     public void resolveSearchTermsForSearchForPhotos(INSearchForPhotosIntent intent, @Block VoidBlock1<NSArray<INStringResolutionResult>> completion) {}
     @NotImplemented("resolvePeopleInPhotoForSearchForPhotos:withCompletion:")

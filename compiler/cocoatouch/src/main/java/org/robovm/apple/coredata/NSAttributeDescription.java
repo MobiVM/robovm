@@ -82,6 +82,16 @@ import org.robovm.apple.uikit.*;
      */
     @Property(selector = "setPreservesValueInHistoryOnDeletion:")
     public native void setPreservesValueInHistoryOnDeletion(boolean v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "allowsCloudEncryption")
+    public native boolean allowsCloudEncryption();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setAllowsCloudEncryption:")
+    public native void setAllowsCloudEncryption(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

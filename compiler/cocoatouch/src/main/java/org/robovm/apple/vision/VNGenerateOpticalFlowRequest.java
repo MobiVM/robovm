@@ -126,6 +126,8 @@ import org.robovm.apple.imageio.*;
     public native int getOutputPixelFormat();
     @Property(selector = "setOutputPixelFormat:")
     public native void setOutputPixelFormat(int v);
+    @Property(selector = "results")
+    public native NSArray<VNPixelBufferObservation> getResults();
     /**
      * @since Available in iOS 12.0 and later.
      */

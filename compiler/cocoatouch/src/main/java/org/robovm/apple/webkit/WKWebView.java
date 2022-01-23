@@ -88,6 +88,16 @@ import org.robovm.apple.coreanimation.*;
     public native boolean canGoBack();
     @Property(selector = "canGoForward")
     public native boolean canGoForward();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "cameraCaptureState")
+    public native WKMediaCaptureState getCameraCaptureState();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "microphoneCaptureState")
+    public native WKMediaCaptureState getMicrophoneCaptureState();
     @Property(selector = "allowsBackForwardNavigationGestures")
     public native boolean allowsBackForwardNavigationGestures();
     @Property(selector = "setAllowsBackForwardNavigationGestures:")
@@ -134,6 +144,31 @@ import org.robovm.apple.coreanimation.*;
      */
     @Property(selector = "setMediaType:")
     public native void setMediaType(String v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "interactionState")
+    public native NSObject getInteractionState();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setInteractionState:")
+    public native void setInteractionState(NSObject v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "themeColor")
+    public native UIColor getThemeColor();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "underPageBackgroundColor")
+    public native UIColor getUnderPageBackgroundColor();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setUnderPageBackgroundColor:")
+    public native void setUnderPageBackgroundColor(UIColor v);
     @WeaklyLinked
     @Property(selector = "layerClass")
     public static native Class<? extends CALayer> getLayerClass();
@@ -190,30 +225,56 @@ import org.robovm.apple.coreanimation.*;
     @Method(selector = "callAsyncJavaScript:arguments:inFrame:inContentWorld:completionHandler:")
     public native void callAsyncJavaScript(String functionBody, NSDictionary<NSString, ?> arguments, WKFrameInfo frame, WKContentWorld contentWorld, @Block VoidBlock2<NSObject, NSError> completionHandler);
     /**
-     * @since Available in iOS 14.5 and later.
+     * @since Available in iOS 15.0 and later.
      */
+    @Method(selector = "closeAllMediaPresentationsWithCompletionHandler:")
+    public native void closeAllMediaPresentations(@Block Runnable completionHandler);
+    /**
+     * @since Available in iOS 14.5 and later.
+     * @deprecated Deprecated in iOS 15.0. Use closeAllMediaPresentationsWithCompletionHandler:
+     */
+    @Deprecated
     @Method(selector = "closeAllMediaPresentations")
     public native void closeAllMediaPresentations();
     /**
-     * @since Available in iOS 14.5 and later.
+     * @since Available in iOS 15.0 and later.
      */
-    @Method(selector = "pauseAllMediaPlayback:")
+    @Method(selector = "pauseAllMediaPlaybackWithCompletionHandler:")
     public native void pauseAllMediaPlayback(@Block Runnable completionHandler);
     /**
-     * @since Available in iOS 14.5 and later.
+     * @since Available in iOS 15.0 and later.
      */
-    @Method(selector = "suspendAllMediaPlayback:")
-    public native void suspendAllMediaPlayback(@Block Runnable completionHandler);
+    @Method(selector = "setAllMediaPlaybackSuspended:completionHandler:")
+    public native void setAllMediaPlaybackSuspended(boolean suspended, @Block Runnable completionHandler);
     /**
      * @since Available in iOS 14.5 and later.
+     * @deprecated Deprecated in iOS 15.0. Use setAllMediaPlaybackSuspended:completionHandler:
      */
+    @Deprecated
     @Method(selector = "resumeAllMediaPlayback:")
     public native void resumeAllMediaPlayback(@Block Runnable completionHandler);
     /**
      * @since Available in iOS 14.5 and later.
+     * @deprecated Deprecated in iOS 15.0. Use setAllMediaPlaybackSuspended:completionHandler:
      */
-    @Method(selector = "requestMediaPlaybackState:")
+    @Deprecated
+    @Method(selector = "suspendAllMediaPlayback:")
+    public native void suspendAllMediaPlayback(@Block Runnable completionHandler);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "requestMediaPlaybackStateWithCompletionHandler:")
     public native void requestMediaPlaybackState(@Block VoidBlock1<WKMediaPlaybackState> completionHandler);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "setCameraCaptureState:completionHandler:")
+    public native void setCameraCaptureState(WKMediaCaptureState state, @Block Runnable completionHandler);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "setMicrophoneCaptureState:completionHandler:")
+    public native void setMicrophoneCaptureState(WKMediaCaptureState state, @Block Runnable completionHandler);
     /**
      * @since Available in iOS 11.0 and later.
      */
@@ -244,6 +305,28 @@ import org.robovm.apple.coreanimation.*;
      */
     @Method(selector = "resumeDownloadFromResumeData:completionHandler:")
     public native void resumeDownload(NSData resumeData, @Block VoidBlock1<WKDownload> completionHandler);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "loadSimulatedRequest:response:responseData:")
+    public native WKNavigation loadSimulatedRequest(NSURLRequest request, NSURLResponse response, NSData data);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "loadFileRequest:allowingReadAccessToURL:")
+    public native WKNavigation loadFileRequest(NSURLRequest request, NSURL readAccessURL);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "loadSimulatedRequest:responseHTMLString:")
+    public native WKNavigation loadSimulatedRequest(NSURLRequest request, String string);
+    /**
+     * @since Available in iOS 15.0 and later.
+     * @deprecated Deprecated in iOS 15.0. Use loadSimulatedRequest:responseHTMLString:
+     */
+    @Deprecated
+    @Method(selector = "loadSimulatedRequest:withResponseHTMLString:")
+    public native WKNavigation loadSimulatedReques(NSURLRequest request, String string);
     /**
      * @since Available in iOS 11.0 and later.
      */

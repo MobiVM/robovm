@@ -110,5 +110,15 @@ import org.robovm.apple.imageio.*;
     @Deprecated
     @Method(selector = "requestAuthorization:")
     public static native void requestAuthorization(@Block VoidBlock1<PHAuthorizationStatus> handler);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "localIdentifierMappingsForCloudIdentifiers:")
+    public native NSDictionary<PHCloudIdentifier, PHLocalIdentifierMapping> localIdentifierMappingsForCloudIdentifiers(NSArray<PHCloudIdentifier> cloudIdentifiers);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "cloudIdentifierMappingsForLocalIdentifiers:")
+    public native NSDictionary<NSString, PHCloudIdentifierMapping> cloudIdentifierMappingsForLocalIdentifiers(NSArray<NSString> localIdentifiers);
     /*</methods>*/
 }

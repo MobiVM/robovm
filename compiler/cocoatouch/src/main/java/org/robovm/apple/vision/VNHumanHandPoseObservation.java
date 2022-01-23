@@ -60,6 +60,11 @@ import org.robovm.apple.imageio.*;
     public native NSArray<NSString> getAvailableJointNames();
     @Property(selector = "availableJointsGroupNames")
     public native NSArray<NSString> getAvailableJointsGroupNames();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "chirality")
+    public native VNChirality getChirality();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

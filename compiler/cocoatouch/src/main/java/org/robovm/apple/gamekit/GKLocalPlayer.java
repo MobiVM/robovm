@@ -80,6 +80,11 @@ import org.robovm.apple.coregraphics.*;
     public native @Block VoidBlock2<UIViewController, NSError> getAuthenticateHandler();
     @Property(selector = "setAuthenticateHandler:")
     public native void setAuthenticateHandler(@Block VoidBlock2<UIViewController, NSError> v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "isPresentingFriendRequestViewController")
+    public native boolean isPresentingFriendRequestViewController();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -158,6 +163,20 @@ import org.robovm.apple.coregraphics.*;
      */
     @Method(selector = "loadFriendsWithIdentifiers:completionHandler:")
     public native void loadFriends(NSArray<NSString> identifiers, @Block VoidBlock2<NSArray<GKPlayer>, NSError> completionHandler);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    public boolean presentFriendRequestCreator(UIViewController viewController) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       boolean result = presentFriendRequestCreator(viewController, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "presentFriendRequestCreatorFromViewController:error:")
+    private native boolean presentFriendRequestCreator(UIViewController viewController, NSError.NSErrorPtr error);
     @Method(selector = "fetchSavedGamesWithCompletionHandler:")
     public native void fetchSavedGames(@Block VoidBlock2<NSArray<GKSavedGame>, NSError> handler);
     @Method(selector = "saveGameData:withName:completionHandler:")

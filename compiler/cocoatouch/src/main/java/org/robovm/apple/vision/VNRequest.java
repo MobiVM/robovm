@@ -69,7 +69,7 @@ import org.robovm.apple.imageio.*;
     @Property(selector = "setUsesCPUOnly:")
     public native void setUsesCPUOnly(boolean v);
     @Property(selector = "results")
-    public native NSArray<?> getResults();
+    public native NSArray<? extends VNObservation> getResults();
     @Property(selector = "completionHandler")
     public native @Block VoidBlock2<VNRequest, NSError> getCompletionHandler();
     /**

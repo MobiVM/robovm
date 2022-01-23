@@ -59,7 +59,7 @@ import org.robovm.apple.linkpresentation.*;
     protected UICollectionLayoutListConfiguration(Handle h, long handle) { super(h, handle); }
     protected UICollectionLayoutListConfiguration(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithAppearance:")
-    public UICollectionLayoutListConfiguration(UICollectionLayoutListAppearance appearance) { super((SkipInit) null); initObject(initWithAppearance$(appearance)); }
+    public UICollectionLayoutListConfiguration(UICollectionLayoutListAppearance appearance) { super((SkipInit) null); initObject(initWithAppearance(appearance)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "appearance")
@@ -108,10 +108,20 @@ import org.robovm.apple.linkpresentation.*;
     public native UICollectionLayoutListFooterMode getFooterMode();
     @Property(selector = "setFooterMode:")
     public native void setFooterMode(UICollectionLayoutListFooterMode v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "headerTopPadding")
+    public native @MachineSizedFloat double getHeaderTopPadding();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setHeaderTopPadding:")
+    public native void setHeaderTopPadding(@MachineSizedFloat double v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithAppearance:")
-    protected native @Pointer long initWithAppearance$(UICollectionLayoutListAppearance appearance);
+    protected native @Pointer long initWithAppearance(UICollectionLayoutListAppearance appearance);
     /*</methods>*/
 }

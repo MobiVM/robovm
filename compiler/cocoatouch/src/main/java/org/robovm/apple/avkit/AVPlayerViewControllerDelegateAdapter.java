@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.avfoundation.*;
+import org.robovm.apple.coremedia.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.iad.*;
 import org.robovm.apple.coreanimation.*;
@@ -63,6 +64,11 @@ import org.robovm.apple.coreanimation.*;
      */
     @NotImplemented("playerViewController:willEndFullScreenPresentationWithAnimationCoordinator:")
     public void willEndFullScreenPresentation(AVPlayerViewController playerViewController, UIViewControllerTransitionCoordinator coordinator) {}
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @NotImplemented("playerViewController:restoreUserInterfaceForFullScreenExitWithCompletionHandler:")
+    public void restoreUserInterfaceForFullScreenExit(AVPlayerViewController playerViewController, @Block VoidBooleanBlock completionHandler) {}
     @NotImplemented("playerViewControllerWillStartPictureInPicture:")
     public void willStartPictureInPicture(AVPlayerViewController playerViewController) {}
     @NotImplemented("playerViewControllerDidStartPictureInPicture:")

@@ -148,36 +148,92 @@ import org.robovm.apple.coremedia.CMTime;
         return ptr.get();
     }
     /*<methods>*/
+    /**
+     * @deprecated Use Network framework instead, see deprecation notice in <CFNetwork/CFHost.h>
+     */
+    @Deprecated
     @Bridge(symbol="CFHostGetTypeID", optional=true)
     public static native @MachineSizedUInt long getClassTypeID();
+    /**
+     * @deprecated Use Network framework instead, see deprecation notice in <CFNetwork/CFHost.h>
+     */
+    @Deprecated
     @Bridge(symbol="CFHostCreateWithName", optional=true)
     protected static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CFHost create(CFAllocator allocator, String hostname);
+    /**
+     * @deprecated Use Network framework instead, see deprecation notice in <CFNetwork/CFHost.h>
+     */
+    @Deprecated
     @Bridge(symbol="CFHostCreateWithAddress", optional=true)
     protected static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CFHost create(CFAllocator allocator, NSData addr);
+    /**
+     * @deprecated Use Network framework instead, see deprecation notice in <CFNetwork/CFHost.h>
+     */
+    @Deprecated
     @Bridge(symbol="CFHostCreateCopy", optional=true)
     protected static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CFHost createCopy(CFAllocator alloc, CFHost host);
+    /**
+     * @deprecated Use Network framework instead, see deprecation notice in <CFNetwork/CFHost.h>
+     */
+    @Deprecated
     public boolean startInfoResolution(CFHostInfoType info) throws CFStreamErrorException {
        CFStreamError.CFStreamErrorPtr ptr = new CFStreamError.CFStreamErrorPtr();
        boolean result = startInfoResolution(info, ptr);
        if (ptr.get() != null) { throw new CFStreamErrorException(ptr.get()); }
        return result;
     }
+    /**
+     * @deprecated Use Network framework instead, see deprecation notice in <CFNetwork/CFHost.h>
+     */
+    @Deprecated
     @Bridge(symbol="CFHostStartInfoResolution", optional=true)
     private native boolean startInfoResolution(CFHostInfoType info, CFStreamError.CFStreamErrorPtr error);
+    /**
+     * @deprecated Use Network framework instead, see deprecation notice in <CFNetwork/CFHost.h>
+     */
+    @Deprecated
     @Bridge(symbol="CFHostGetAddressing", optional=true)
     public native NSArray<NSData> getAddressing(BooleanPtr hasBeenResolved);
+    /**
+     * @deprecated Use Network framework instead, see deprecation notice in <CFNetwork/CFHost.h>
+     */
+    @Deprecated
     @Bridge(symbol="CFHostGetNames", optional=true)
     public native @org.robovm.rt.bro.annotation.Marshaler(CFArray.AsStringListMarshaler.class) List<String> getNames(BooleanPtr hasBeenResolved);
+    /**
+     * @deprecated Use Network framework instead, see deprecation notice in <CFNetwork/CFHost.h>
+     */
+    @Deprecated
     @Bridge(symbol="CFHostGetReachability", optional=true)
     public native NSData getReachability(BooleanPtr hasBeenResolved);
+    /**
+     * @deprecated Use Network framework instead, see deprecation notice in <CFNetwork/CFHost.h>
+     */
+    @Deprecated
     @Bridge(symbol="CFHostCancelInfoResolution", optional=true)
     public native void cancelInfoResolution(CFHostInfoType info);
+    /**
+     * @deprecated Use Network framework instead, see deprecation notice in <CFNetwork/CFHost.h>
+     */
+    @Deprecated
     @Bridge(symbol="CFHostSetClient", optional=true)
     private native boolean setCallback(FunctionPtr clientCB, CFHostClientContext clientContext);
+    /**
+     * @deprecated Use Network framework instead, see deprecation notice in <CFNetwork/CFHost.h>
+     */
+    @Deprecated
     @Bridge(symbol="CFHostScheduleWithRunLoop", optional=true)
     public native void scheduleInRunLoop(CFRunLoop runLoop, String runLoopMode);
+    /**
+     * @deprecated Use Network framework instead, see deprecation notice in <CFNetwork/CFHost.h>
+     */
+    @Deprecated
     @Bridge(symbol="CFHostUnscheduleFromRunLoop", optional=true)
     public native void unscheduleFromRunLoop(CFRunLoop runLoop, String runLoopMode);
+    /**
+     * @deprecated Use Network framework instead
+     */
+    @Deprecated
     @Bridge(symbol="CFStreamCreatePairWithSocketToCFHost", optional=true)
     private static native void createSocketStreamPair(CFAllocator alloc, CFHost host, int port, NSInputStream.NSInputStreamPtr readStream, NSOutputStream.NSOutputStreamPtr writeStream);
     /*</methods>*/

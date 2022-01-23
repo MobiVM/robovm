@@ -96,6 +96,11 @@ import org.robovm.apple.coreanimation.*;
     public native void complete(NSDictionary<NSString, NSString> httpAuthorizationHeaders);
     @Method(selector = "completeWithHTTPResponse:httpBody:")
     public native void complete(NSHTTPURLResponse httpResponse, NSData httpBody);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "completeWithAuthorizationResult:")
+    public native void complete(ASAuthorizationProviderExtensionAuthorizationResult authorizationResult);
     @Method(selector = "completeWithError:")
     public native void complete(NSError error);
     @Method(selector = "presentAuthorizationViewControllerWithCompletion:")

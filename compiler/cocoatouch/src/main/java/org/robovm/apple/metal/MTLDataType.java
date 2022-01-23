@@ -185,6 +185,38 @@ public enum /*<name>*/MTLDataType/*</name>*/ implements ValuedEnum {
     /**
      * @since Available in iOS 14.0 and later.
      */
+    Long(81L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    Long2(82L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    Long3(83L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    Long4(84L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    ULong(85L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    ULong2(86L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    ULong3(87L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    ULong4(88L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
     VisibleFunctionTable(115L),
     /**
      * @since Available in iOS 14.0 and later.

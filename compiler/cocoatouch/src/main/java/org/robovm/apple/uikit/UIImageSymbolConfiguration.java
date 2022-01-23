@@ -95,5 +95,20 @@ import org.robovm.apple.linkpresentation.*;
     public static native UIImageSymbolConfiguration getConfigurationWithFont(UIFont font);
     @Method(selector = "configurationWithFont:scale:")
     public static native UIImageSymbolConfiguration getConfigurationWithFontScale(UIFont font, UIImageSymbolScale scale);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "configurationWithHierarchicalColor:")
+    public static native UIImageSymbolConfiguration getConfigurationWithHierarchicalColor(UIColor hierarchicalColor);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "configurationWithPaletteColors:")
+    public static native UIImageSymbolConfiguration getConfigurationWithPaletteColors(NSArray<UIColor> paletteColors);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "configurationPreferringMulticolor")
+    public static native UIImageSymbolConfiguration configurationPreferringMulticolor();
     /*</methods>*/
 }

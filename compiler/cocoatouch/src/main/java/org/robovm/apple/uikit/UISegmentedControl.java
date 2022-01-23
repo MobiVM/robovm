@@ -224,7 +224,7 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
      * @since Available in iOS 14.0 and later.
      */
     @Method(selector = "segmentIndexForActionIdentifier:")
-    public native @MachineSizedSInt long segmentIndexForActionIdentifier(String actionIdentifier);
+    public native @MachineSizedSInt long segmentIndexForActionIdentifier(UIActionIdentifier actionIdentifier);
     @Method(selector = "insertSegmentWithTitle:atIndex:animated:")
     public native void insertSegment(String title, @MachineSizedUInt long segment, boolean animated);
     @Method(selector = "insertSegmentWithImage:atIndex:animated:")

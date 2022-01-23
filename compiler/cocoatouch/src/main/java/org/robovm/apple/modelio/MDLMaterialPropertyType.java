@@ -46,7 +46,8 @@ public enum /*<name>*/MDLMaterialPropertyType/*</name>*/ implements ValuedEnum {
     Float2(6L),
     Float3(7L),
     Float4(8L),
-    Matrix44(9L);
+    Matrix44(9L),
+    Buffer(10L);
     /*</values>*/
 
     /*<bind>*/

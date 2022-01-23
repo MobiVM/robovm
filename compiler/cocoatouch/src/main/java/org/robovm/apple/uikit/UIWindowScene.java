@@ -78,6 +78,26 @@ import org.robovm.apple.linkpresentation.*;
     @Property(selector = "windows")
     public native NSArray<UIWindow> getWindows();
     /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "keyWindow")
+    public native UIWindow getKeyWindow();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "activityItemsConfigurationSource")
+    public native UIActivityItemsConfigurationProviding getActivityItemsConfigurationSource();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setActivityItemsConfigurationSource:", strongRef = true)
+    public native void setActivityItemsConfigurationSource(UIActivityItemsConfigurationProviding v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "focusSystem")
+    public native UIFocusSystem getFocusSystem();
+    /**
      * @since Available in iOS 13.0 and later.
      */
     @Property(selector = "statusBarManager")

@@ -43,6 +43,18 @@ public final class /*<name>*/MTLIntersectionFunctionSignature/*</name>*/ extends
     public static final MTLIntersectionFunctionSignature Instancing = new MTLIntersectionFunctionSignature(1L);
     public static final MTLIntersectionFunctionSignature TriangleData = new MTLIntersectionFunctionSignature(2L);
     public static final MTLIntersectionFunctionSignature WorldSpaceData = new MTLIntersectionFunctionSignature(4L);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    public static final MTLIntersectionFunctionSignature InstanceMotion = new MTLIntersectionFunctionSignature(8L);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    public static final MTLIntersectionFunctionSignature PrimitiveMotion = new MTLIntersectionFunctionSignature(16L);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    public static final MTLIntersectionFunctionSignature ExtendedLimits = new MTLIntersectionFunctionSignature(32L);
     /*</values>*/
 
     /*<bind>*/

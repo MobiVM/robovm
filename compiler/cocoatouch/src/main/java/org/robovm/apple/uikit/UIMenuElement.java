@@ -64,6 +64,16 @@ import org.robovm.apple.linkpresentation.*;
     /*<properties>*/
     @Property(selector = "title")
     public native String getTitle();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "subtitle")
+    public native String getSubtitle();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setSubtitle:")
+    public native void setSubtitle(String v);
     @Property(selector = "image")
     public native UIImage getImage();
     @Property(selector = "supportsSecureCoding")

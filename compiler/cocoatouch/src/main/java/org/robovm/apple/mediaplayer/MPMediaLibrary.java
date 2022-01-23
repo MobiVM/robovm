@@ -42,7 +42,7 @@ import org.robovm.apple.coreanimation.*;
     /*<implements>*/implements NSSecureCoding/*</implements>*/ {
     
     public static class Notifications {
-        public static NSObject observeDidChange(final Runnable block) {
+        public static NSObjectProtocol observeDidChange(final Runnable block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(DidChangeNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke (NSNotification a) {
@@ -98,7 +98,7 @@ import org.robovm.apple.coreanimation.*;
      * @since Available in iOS 9.3 and later.
      */
     @Method(selector = "requestAuthorization:")
-    public static native void requestAuthorization(@Block VoidBlock1<MPMediaLibraryAuthorizationStatus> handler);
+    public static native void requestAuthorization(@Block VoidBlock1<MPMediaLibraryAuthorizationStatus> completionHandler);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

@@ -38,10 +38,25 @@ import org.robovm.apple.dispatch.*;
 /*<annotations>*/@Marshaler(ValuedEnum.AsUnsignedShortMarshaler.class)/*</annotations>*/
 public enum /*<name>*/TlsProtocolVersion/*</name>*/ implements ValuedEnum {
     /*<values>*/
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 15.0. Use tls_protocol_version_TLSv12 or tls_protocol_version_TLSv13 instead.
+     */
+    @Deprecated
     TLSv10(769L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 15.0. Use tls_protocol_version_TLSv12 or tls_protocol_version_TLSv13 instead.
+     */
+    @Deprecated
     TLSv11(770L),
     TLSv12(771L),
     TLSv13(772L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 15.0. Use tls_protocol_version_DTLSv12 instead.
+     */
+    @Deprecated
     DTLSv10(65279L),
     DTLSv12(65277L);
     /*</values>*/

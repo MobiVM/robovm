@@ -42,7 +42,7 @@ import org.robovm.apple.audiotoolbox.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 14.5 and later.
+ * @since Available in iOS 15.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
@@ -57,30 +57,34 @@ import org.robovm.apple.audiotoolbox.*;
     protected AVPlayerInterstitialEvent() {}
     protected AVPlayerInterstitialEvent(Handle h, long handle) { super(h, handle); }
     protected AVPlayerInterstitialEvent(SkipInit skipInit) { super(skipInit); }
-    public AVPlayerInterstitialEvent(AVPlayerItem primaryItem, @ByVal CMTime time, NSArray<AVPlayerItem> templateItems, AVPlayerInterstitialEventRestrictions restrictions, @ByVal CMTime resumptionOffset) { super((Handle) null, create(primaryItem, time, templateItems, restrictions, resumptionOffset)); retain(getHandle()); }
-    public AVPlayerInterstitialEvent(AVPlayerItem primaryItem, NSDate date, NSArray<AVPlayerItem> templateItems, AVPlayerInterstitialEventRestrictions restrictions, @ByVal CMTime resumptionOffset) { super((Handle) null, create(primaryItem, date, templateItems, restrictions, resumptionOffset)); retain(getHandle()); }
+    public AVPlayerInterstitialEvent(AVPlayerItem primaryItem, String identifier, @ByVal CMTime time, NSArray<AVPlayerItem> templateItems, AVPlayerInterstitialEventRestrictions restrictions, @ByVal CMTime resumptionOffset, @ByVal CMTime playoutLimit, NSDictionary<?, ?> userDefinedAttributes) { super((Handle) null, create(primaryItem, identifier, time, templateItems, restrictions, resumptionOffset, playoutLimit, userDefinedAttributes)); retain(getHandle()); }
+    public AVPlayerInterstitialEvent(AVPlayerItem primaryItem, String identifier, NSDate date, NSArray<AVPlayerItem> templateItems, AVPlayerInterstitialEventRestrictions restrictions, @ByVal CMTime resumptionOffset, @ByVal CMTime playoutLimit, NSDictionary<?, ?> userDefinedAttributes) { super((Handle) null, create(primaryItem, identifier, date, templateItems, restrictions, resumptionOffset, playoutLimit, userDefinedAttributes)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "primaryItem")
     public native AVPlayerItem getPrimaryItem();
+    @Property(selector = "identifier")
+    public native String getIdentifier();
     @Property(selector = "time")
     public native @ByVal CMTime getTime();
     @Property(selector = "date")
     public native NSDate getDate();
     @Property(selector = "templateItems")
     public native NSArray<AVPlayerItem> getTemplateItems();
-    @Property(selector = "interstitialTemplateItems")
-    public native NSArray<AVPlayerItem> getInterstitialTemplateItems();
     @Property(selector = "restrictions")
     public native AVPlayerInterstitialEventRestrictions getRestrictions();
     @Property(selector = "resumptionOffset")
     public native @ByVal CMTime getResumptionOffset();
+    @Property(selector = "playoutLimit")
+    public native @ByVal CMTime getPlayoutLimit();
+    @Property(selector = "userDefinedAttributes")
+    public native NSDictionary<?, ?> getUserDefinedAttributes();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "interstitialEventWithPrimaryItem:time:templateItems:restrictions:resumptionOffset:")
-    protected static native @Pointer long create(AVPlayerItem primaryItem, @ByVal CMTime time, NSArray<AVPlayerItem> templateItems, AVPlayerInterstitialEventRestrictions restrictions, @ByVal CMTime resumptionOffset);
-    @Method(selector = "interstitialEventWithPrimaryItem:date:templateItems:restrictions:resumptionOffset:")
-    protected static native @Pointer long create(AVPlayerItem primaryItem, NSDate date, NSArray<AVPlayerItem> templateItems, AVPlayerInterstitialEventRestrictions restrictions, @ByVal CMTime resumptionOffset);
+    @Method(selector = "interstitialEventWithPrimaryItem:identifier:time:templateItems:restrictions:resumptionOffset:playoutLimit:userDefinedAttributes:")
+    protected static native @Pointer long create(AVPlayerItem primaryItem, String identifier, @ByVal CMTime time, NSArray<AVPlayerItem> templateItems, AVPlayerInterstitialEventRestrictions restrictions, @ByVal CMTime resumptionOffset, @ByVal CMTime playoutLimit, NSDictionary<?, ?> userDefinedAttributes);
+    @Method(selector = "interstitialEventWithPrimaryItem:identifier:date:templateItems:restrictions:resumptionOffset:playoutLimit:userDefinedAttributes:")
+    protected static native @Pointer long create(AVPlayerItem primaryItem, String identifier, NSDate date, NSArray<AVPlayerItem> templateItems, AVPlayerInterstitialEventRestrictions restrictions, @ByVal CMTime resumptionOffset, @ByVal CMTime playoutLimit, NSDictionary<?, ?> userDefinedAttributes);
     /*</methods>*/
 }

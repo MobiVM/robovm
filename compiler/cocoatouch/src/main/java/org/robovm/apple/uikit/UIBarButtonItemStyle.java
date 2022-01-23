@@ -49,7 +49,7 @@ public enum /*<name>*/UIBarButtonItemStyle/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Plain(0L),
     /**
-     * @deprecated Deprecated in iOS 8.0. Use UIBarButtonItemStylePlain when minimum deployment target is iOS7 or later
+     * @deprecated Deprecated in iOS 8.0. Use UIBarButtonItemStylePlain
      */
     @Deprecated
     Bordered(1L),

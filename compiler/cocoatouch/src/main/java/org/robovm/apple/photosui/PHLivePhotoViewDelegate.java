@@ -54,6 +54,11 @@ import org.robovm.apple.coreanimation.*;
     /**
      * @since Available in iOS 9.1 and later.
      */
+    @Method(selector = "livePhotoView:canBeginPlaybackWithStyle:")
+    boolean canBeginPlayback(PHLivePhotoView livePhotoView, PHLivePhotoViewPlaybackStyle playbackStyle);
+    /**
+     * @since Available in iOS 9.1 and later.
+     */
     @Method(selector = "livePhotoView:willBeginPlaybackWithStyle:")
     void willBeginPlayback(PHLivePhotoView livePhotoView, PHLivePhotoViewPlaybackStyle playbackStyle);
     /**

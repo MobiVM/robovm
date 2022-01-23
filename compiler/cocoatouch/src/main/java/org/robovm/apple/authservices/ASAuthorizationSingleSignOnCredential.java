@@ -64,6 +64,11 @@ import org.robovm.apple.coreanimation.*;
     public native NSArray<NSString> getAuthorizedScopes();
     @Property(selector = "authenticatedResponse")
     public native NSHTTPURLResponse getAuthenticatedResponse();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "privateKeys")
+    public native NSArray<?> getPrivateKeys();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

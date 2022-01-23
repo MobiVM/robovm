@@ -87,17 +87,27 @@ import org.robovm.apple.audiotoolbox.*;
     public native void finishLoading();
     @Method(selector = "finishLoadingWithError:")
     public native void finishLoading(NSError error);
+    /**
+     * @deprecated Use -[AVContentKeyRequest makeStreamingContentKeyRequestDataForApp:contentIdentifier:options:completionHandler:]
+     */
+    @Deprecated
     public NSData getStreamingContentKeyRequestData(NSData appIdentifier, NSData contentIdentifier, AVAssetResourceLoadingRequestOptions options) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        NSData result = getStreamingContentKeyRequestData(appIdentifier, contentIdentifier, options, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        return result;
     }
+    /**
+     * @deprecated Use -[AVContentKeyRequest makeStreamingContentKeyRequestDataForApp:contentIdentifier:options:completionHandler:]
+     */
+    @Deprecated
     @Method(selector = "streamingContentKeyRequestDataForApp:contentIdentifier:options:error:")
     private native NSData getStreamingContentKeyRequestData(NSData appIdentifier, NSData contentIdentifier, AVAssetResourceLoadingRequestOptions options, NSError.NSErrorPtr outError);
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Use -[AVPersistableContentKeyRequest persistableContentKeyFromKeyVendorResponse:options:error:]
      */
+    @Deprecated
     public NSData getPersistentContentKey(NSData keyVendorResponse, AVAssetResourceLoadingRequestOptions options) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        NSData result = getPersistentContentKey(keyVendorResponse, options, ptr);
@@ -106,11 +116,13 @@ import org.robovm.apple.audiotoolbox.*;
     }
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Use -[AVPersistableContentKeyRequest persistableContentKeyFromKeyVendorResponse:options:error:]
      */
+    @Deprecated
     @Method(selector = "persistentContentKeyFromKeyVendorResponse:options:error:")
     private native NSData getPersistentContentKey(NSData keyVendorResponse, AVAssetResourceLoadingRequestOptions options, NSError.NSErrorPtr outError);
     /**
-     * @deprecated Deprecated in iOS 7.0. No longer supported
+     * @deprecated Deprecated in iOS 7.0. Use -[AVAssetResourceLoadingRequest setResponse:], -[AVAssetResourceLoadingRequest setRedirect:], -[AVAssetResourceLoadingDataRequest respondWithData:], -[AVAssetResourceLoadingRequest finishLoading]
      */
     @Deprecated
     @Method(selector = "finishLoadingWithResponse:data:redirect:")

@@ -51,6 +51,10 @@ import org.robovm.apple.metalps.*;
     protected MLCOptimizerDescriptor(SkipInit skipInit) { super(skipInit); }
     public MLCOptimizerDescriptor(float learningRate, float gradientRescale, MLCRegularizationType regularizationType, float regularizationScale) { super((Handle) null, create(learningRate, gradientRescale, regularizationType, regularizationScale)); retain(getHandle()); }
     public MLCOptimizerDescriptor(float learningRate, float gradientRescale, boolean appliesGradientClipping, float gradientClipMax, float gradientClipMin, MLCRegularizationType regularizationType, float regularizationScale) { super((Handle) null, create(learningRate, gradientRescale, appliesGradientClipping, gradientClipMax, gradientClipMin, regularizationType, regularizationScale)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    public MLCOptimizerDescriptor(float learningRate, float gradientRescale, boolean appliesGradientClipping, MLCGradientClippingType gradientClippingType, float gradientClipMax, float gradientClipMin, float maximumClippingNorm, float customGlobalNorm, MLCRegularizationType regularizationType, float regularizationScale) { super((Handle) null, create(learningRate, gradientRescale, appliesGradientClipping, gradientClippingType, gradientClipMax, gradientClipMin, maximumClippingNorm, customGlobalNorm, regularizationType, regularizationScale)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "learningRate")
@@ -67,6 +71,21 @@ import org.robovm.apple.metalps.*;
     public native float getRegularizationScale();
     @Property(selector = "regularizationType")
     public native MLCRegularizationType getRegularizationType();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "gradientClippingType")
+    public native MLCGradientClippingType getGradientClippingType();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "maximumClippingNorm")
+    public native float getMaximumClippingNorm();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "customGlobalNorm")
+    public native float getCustomGlobalNorm();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -74,5 +93,10 @@ import org.robovm.apple.metalps.*;
     protected static native @Pointer long create(float learningRate, float gradientRescale, MLCRegularizationType regularizationType, float regularizationScale);
     @Method(selector = "descriptorWithLearningRate:gradientRescale:appliesGradientClipping:gradientClipMax:gradientClipMin:regularizationType:regularizationScale:")
     protected static native @Pointer long create(float learningRate, float gradientRescale, boolean appliesGradientClipping, float gradientClipMax, float gradientClipMin, MLCRegularizationType regularizationType, float regularizationScale);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "descriptorWithLearningRate:gradientRescale:appliesGradientClipping:gradientClippingType:gradientClipMax:gradientClipMin:maximumClippingNorm:customGlobalNorm:regularizationType:regularizationScale:")
+    protected static native @Pointer long create(float learningRate, float gradientRescale, boolean appliesGradientClipping, MLCGradientClippingType gradientClippingType, float gradientClipMax, float gradientClipMin, float maximumClippingNorm, float customGlobalNorm, MLCRegularizationType regularizationType, float regularizationScale);
     /*</methods>*/
 }

@@ -109,9 +109,13 @@ import org.robovm.apple.foundation.*;
      * @since Available in iOS 13.0 and later.
      */
     public static final HKResultsQuantityTypeIdentifier HeadphoneAudioExposure = new HKResultsQuantityTypeIdentifier("HeadphoneAudioExposure");
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    public static final HKResultsQuantityTypeIdentifier NumberOfAlcoholicBeverages = new HKResultsQuantityTypeIdentifier("NumberOfAlcoholicBeverages");
     /*</constants>*/
     
-    private static /*<name>*/HKResultsQuantityTypeIdentifier/*</name>*/[] values = new /*<name>*/HKResultsQuantityTypeIdentifier/*</name>*/[] {/*<value_list>*/OxygenSaturation, PeripheralPerfusionIndex, BloodGlucose, NumberOfTimesFallen, ElectrodermalActivity, InhalerUsage, InsulinDelivery, BloodAlcoholContent, ForcedVitalCapacity, ForcedExpiratoryVolume1, PeakExpiratoryFlowRate, EnvironmentalAudioExposure, HeadphoneAudioExposure/*</value_list>*/};
+    private static /*<name>*/HKResultsQuantityTypeIdentifier/*</name>*/[] values = new /*<name>*/HKResultsQuantityTypeIdentifier/*</name>*/[] {/*<value_list>*/OxygenSaturation, PeripheralPerfusionIndex, BloodGlucose, NumberOfTimesFallen, ElectrodermalActivity, InhalerUsage, InsulinDelivery, BloodAlcoholContent, ForcedVitalCapacity, ForcedExpiratoryVolume1, PeakExpiratoryFlowRate, EnvironmentalAudioExposure, HeadphoneAudioExposure, NumberOfAlcoholicBeverages/*</value_list>*/};
     
     /*<name>*/HKResultsQuantityTypeIdentifier/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -169,6 +173,11 @@ import org.robovm.apple.foundation.*;
          */
         @GlobalValue(symbol="HKQuantityTypeIdentifierHeadphoneAudioExposure", optional=true)
         public static native NSString HeadphoneAudioExposure();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="HKQuantityTypeIdentifierNumberOfAlcoholicBeverages", optional=true)
+        public static native NSString NumberOfAlcoholicBeverages();
         /*</values>*/
     }
 }

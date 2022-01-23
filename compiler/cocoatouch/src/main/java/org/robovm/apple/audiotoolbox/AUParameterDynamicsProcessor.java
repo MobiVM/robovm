@@ -47,7 +47,7 @@ public enum /*<name>*/AUParameterDynamicsProcessor/*</name>*/ implements AUParam
     ExpansionThreshold(3L),
     AttackTime(4L),
     ReleaseTime(5L),
-    MasterGain(6L),
+    OverallGain(6L),
     CompressionAmount(1000L),
     InputAmplitude(2000L),
     OutputAmplitude(3000L);

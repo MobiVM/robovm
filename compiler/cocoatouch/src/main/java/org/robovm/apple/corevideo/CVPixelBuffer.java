@@ -181,6 +181,11 @@ import org.robovm.apple.iosurface.*;
     protected native void getExtendedPixels(MachineSizedUIntPtr extraColumnsOnLeft, MachineSizedUIntPtr extraColumnsOnRight, MachineSizedUIntPtr extraRowsOnTop, MachineSizedUIntPtr extraRowsOnBottom);
     @Bridge(symbol="CVPixelBufferFillExtendedPixels", optional=true)
     public native CVReturn fillExtendedPixels();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Bridge(symbol="CVPixelBufferCopyCreationAttributes", optional=true)
+    public native CFDictionary copyCreationAttributes();
     @Bridge(symbol="CVPixelBufferGetIOSurface", optional=true)
     public native IOSurface getIOSurface();
     @Bridge(symbol="CVPixelBufferCreateWithIOSurface", optional=true)

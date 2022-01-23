@@ -97,6 +97,116 @@ import org.robovm.apple.security.*;
     @Bridge(symbol="nw_ip_options_set_disable_multicast_loopback", optional=true)
     public native void setIpDisableMulticastLoopback(boolean disable_multicast_loopback);
     /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Bridge(symbol="nw_quic_create_options", optional=true)
+    public static native NWProtocolOptions createQuicOptions();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Bridge(symbol="nw_protocol_options_is_quic", optional=true)
+    public native boolean isQuic();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Bridge(symbol="nw_quic_add_tls_application_protocol", optional=true)
+    public native void addQuicTlsApplicationProtocol(BytePtr application_protocol);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Bridge(symbol="nw_quic_copy_sec_protocol_options", optional=true)
+    public native SecArcProtocolOptions copyQuicSecProtocolOptions();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Bridge(symbol="nw_quic_get_stream_is_unidirectional", optional=true)
+    public native boolean getQuicStreamIsUnidirectional();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Bridge(symbol="nw_quic_set_stream_is_unidirectional", optional=true)
+    public native void setQuicStreamIsUnidirectional(boolean is_unidirectional);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Bridge(symbol="nw_quic_get_initial_max_data", optional=true)
+    public native long getQuicInitialMaxData();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Bridge(symbol="nw_quic_set_initial_max_data", optional=true)
+    public native void setQuicInitialMaxData(long initial_max_data);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Bridge(symbol="nw_quic_get_max_udp_payload_size", optional=true)
+    public native short getQuicMaxUdpPayloadSize();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Bridge(symbol="nw_quic_set_max_udp_payload_size", optional=true)
+    public native void setQuicMaxUdpPayloadSize(short max_udp_payload_size);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Bridge(symbol="nw_quic_get_idle_timeout", optional=true)
+    public native int getQuicIdleTimeout();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Bridge(symbol="nw_quic_set_idle_timeout", optional=true)
+    public native void setQuicIdleTimeout(int idle_timeout);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Bridge(symbol="nw_quic_get_initial_max_streams_bidirectional", optional=true)
+    public native long getQuicInitialMaxStreamsBidirectional();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Bridge(symbol="nw_quic_set_initial_max_streams_bidirectional", optional=true)
+    public native void setQuicInitialMaxStreamsBidirectional(long initial_max_streams_bidirectional);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Bridge(symbol="nw_quic_get_initial_max_streams_unidirectional", optional=true)
+    public native long getQuicInitialMaxStreamsUnidirectional();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Bridge(symbol="nw_quic_set_initial_max_streams_unidirectional", optional=true)
+    public native void setQuicInitialMaxStreamsUnidirectional(long initial_max_streams_unidirectional);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Bridge(symbol="nw_quic_get_initial_max_stream_data_bidirectional_local", optional=true)
+    public native long getQuicInitialMaxStreamDataBidirectionalLocal();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Bridge(symbol="nw_quic_set_initial_max_stream_data_bidirectional_local", optional=true)
+    public native void setQuicInitialMaxStreamDataBidirectionalLocal(long initial_max_stream_data_bidirectional_local);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Bridge(symbol="nw_quic_get_initial_max_stream_data_bidirectional_remote", optional=true)
+    public native long getQuicInitialMaxStreamDataBidirectionalRemote();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Bridge(symbol="nw_quic_set_initial_max_stream_data_bidirectional_remote", optional=true)
+    public native void setQuicInitialMaxStreamDataBidirectionalRemote(long initial_max_stream_data_bidirectional_remote);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Bridge(symbol="nw_quic_get_initial_max_stream_data_unidirectional", optional=true)
+    public native long getQuicInitialMaxStreamDataUnidirectional();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Bridge(symbol="nw_quic_set_initial_max_stream_data_unidirectional", optional=true)
+    public native void setQuicInitialMaxStreamDataUnidirectional(long initial_max_stream_data_unidirectional);
+    /**
      * @since Available in iOS 12.0 and later.
      */
     @Bridge(symbol="nw_tcp_create_options", optional=true)
@@ -176,6 +286,11 @@ import org.robovm.apple.security.*;
      */
     @Bridge(symbol="nw_tcp_options_set_disable_ecn", optional=true)
     public native void setTcpDisableEcn(boolean disable_ecn);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Bridge(symbol="nw_tcp_options_set_multipath_force_version", optional=true)
+    public native void setTcpMultipathForceVersion(NWMultipathVersion multipath_force_version);
     /**
      * @since Available in iOS 12.0 and later.
      */

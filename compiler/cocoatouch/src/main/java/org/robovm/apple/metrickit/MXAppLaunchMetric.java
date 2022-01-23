@@ -53,6 +53,11 @@ import org.robovm.apple.foundation.*;
     public native MXHistogram<NSUnitDuration> getHistogrammedTimeToFirstDraw();
     @Property(selector = "histogrammedApplicationResumeTime")
     public native MXHistogram<NSUnitDuration> getHistogrammedApplicationResumeTime();
+    /**
+     * @since Available in iOS 15.2 and later.
+     */
+    @Property(selector = "histogrammedOptimizedTimeToFirstDraw")
+    public native MXHistogram<NSUnitDuration> getHistogrammedOptimizedTimeToFirstDraw();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

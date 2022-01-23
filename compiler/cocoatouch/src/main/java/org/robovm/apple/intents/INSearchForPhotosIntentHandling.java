@@ -36,9 +36,10 @@ import org.robovm.apple.coregraphics.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 10.0 and later.
+ * @deprecated Deprecated in iOS 15.0. INSearchForPhotosIntentHandling is deprecated. There is no replacement.
  */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
+/*<annotations>*/@Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ interface /*<name>*/INSearchForPhotosIntentHandling/*</name>*/ 
     /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
 
@@ -63,7 +64,9 @@ import org.robovm.apple.coregraphics.*;
     void resolveAlbumNameForSearchForPhotos(INSearchForPhotosIntent intent, @Block VoidBlock1<INStringResolutionResult> completion);
     /**
      * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 15.0.
      */
+    @Deprecated
     @Method(selector = "resolveSearchTermsForSearchForPhotos:withCompletion:")
     void resolveSearchTermsForSearchForPhotos(INSearchForPhotosIntent intent, @Block VoidBlock1<NSArray<INStringResolutionResult>> completion);
     @Method(selector = "resolvePeopleInPhotoForSearchForPhotos:withCompletion:")

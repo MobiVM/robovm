@@ -52,7 +52,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithDevice:")
     public MPSKernel(MTLDevice device) { super((SkipInit) null); initObject(init(device)); }
     @Method(selector = "initWithCoder:")
-    public MPSKernel(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public MPSKernel(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /**
      * @since Available in iOS 11.0 and later.
      */
@@ -80,7 +80,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "copyWithZone:device:")
     public native MPSKernel copy(NSZone zone, MTLDevice device);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     /**
      * @since Available in iOS 11.0 and later.
      */

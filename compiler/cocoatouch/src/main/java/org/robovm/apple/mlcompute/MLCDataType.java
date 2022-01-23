@@ -40,10 +40,22 @@ public enum /*<name>*/MLCDataType/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Invalid(0L),
     Float32(1L),
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    Float16(3L),
     Boolean(4L),
     Int64(5L),
     Int32(7L),
-    Count(8L);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    Int8(8L),
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    UInt8(9L),
+    Count(10L);
     /*</values>*/
 
     /*<bind>*/

@@ -151,12 +151,16 @@ import org.robovm.apple.iosurface.*;
      * @since Available in iOS 14.0 and later.
      */
     public static final CVPixelBufferAttribute RawRecommendedCrop = new CVPixelBufferAttribute("RawRecommendedCrop");
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    public static final CVPixelBufferAttribute RawMetadataExtension = new CVPixelBufferAttribute("RawMetadataExtension");
     public static final CVPixelBufferAttribute IOSurfaceCoreAnimationCompatibility = new CVPixelBufferAttribute("IOSurfaceCoreAnimationCompatibility");
     public static final CVPixelBufferAttribute IOSurfaceOpenGLESTextureCompatibility = new CVPixelBufferAttribute("IOSurfaceOpenGLESTextureCompatibility");
     public static final CVPixelBufferAttribute IOSurfaceOpenGLESFBOCompatibility = new CVPixelBufferAttribute("IOSurfaceOpenGLESFBOCompatibility");
     /*</constants>*/
     
-    private static /*<name>*/CVPixelBufferAttribute/*</name>*/[] values = new /*<name>*/CVPixelBufferAttribute/*</name>*/[] {/*<value_list>*/PixelFormatType, MemoryAllocator, Width, Height, ExtendedPixelsLeft, ExtendedPixelsTop, ExtendedPixelsRight, ExtendedPixelsBottom, BytesPerRowAlignment, CGBitmapContextCompatibility, CGImageCompatibility, OpenGLCompatibility, PlaneAlignment, IOSurfaceProperties, OpenGLESCompatibility, MetalCompatibility, OpenGLESTextureCacheCompatibility, VersatileBayerKey, RawSenselSitingOffsets, RawBlackLevel, RawWhiteLevel, RawWhiteBalanceCCT, RawWhiteBalanceRedFactor, RawWhiteBalanceBlueFactor, RawColorMatrix, RawGainFactor, RawRecommendedCrop, IOSurfaceCoreAnimationCompatibility, IOSurfaceOpenGLESTextureCompatibility, IOSurfaceOpenGLESFBOCompatibility/*</value_list>*/};
+    private static /*<name>*/CVPixelBufferAttribute/*</name>*/[] values = new /*<name>*/CVPixelBufferAttribute/*</name>*/[] {/*<value_list>*/PixelFormatType, MemoryAllocator, Width, Height, ExtendedPixelsLeft, ExtendedPixelsTop, ExtendedPixelsRight, ExtendedPixelsBottom, BytesPerRowAlignment, CGBitmapContextCompatibility, CGImageCompatibility, OpenGLCompatibility, PlaneAlignment, IOSurfaceProperties, OpenGLESCompatibility, MetalCompatibility, OpenGLESTextureCacheCompatibility, VersatileBayerKey, RawSenselSitingOffsets, RawBlackLevel, RawWhiteLevel, RawWhiteBalanceCCT, RawWhiteBalanceRedFactor, RawWhiteBalanceBlueFactor, RawColorMatrix, RawGainFactor, RawRecommendedCrop, RawMetadataExtension, IOSurfaceCoreAnimationCompatibility, IOSurfaceOpenGLESTextureCompatibility, IOSurfaceOpenGLESFBOCompatibility/*</value_list>*/};
     
     /*<name>*/CVPixelBufferAttribute/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -266,6 +270,11 @@ import org.robovm.apple.iosurface.*;
          */
         @GlobalValue(symbol="kCVPixelBufferProResRAWKey_RecommendedCrop", optional=true)
         public static native CFString RawRecommendedCrop();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="kCVPixelBufferProResRAWKey_MetadataExtension", optional=true)
+        public static native CFString RawMetadataExtension();
         @GlobalValue(symbol="kCVPixelBufferIOSurfaceCoreAnimationCompatibilityKey", optional=true)
         public static native CFString IOSurfaceCoreAnimationCompatibility();
         @GlobalValue(symbol="kCVPixelBufferIOSurfaceOpenGLESTextureCompatibilityKey", optional=true)

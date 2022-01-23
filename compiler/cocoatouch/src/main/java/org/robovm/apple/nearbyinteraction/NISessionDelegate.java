@@ -59,6 +59,11 @@ import org.robovm.apple.dispatch.*;
     void sessionSuspensionEnded(NISession session);
     @Method(selector = "session:didInvalidateWithError:")
     void didInvalidate(NISession session, NSError error);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "session:didGenerateShareableConfigurationData:forObject:")
+    void didGenerateShareableConfigurationData(NISession session, NSData shareableConfigurationData, NINearbyObject object);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

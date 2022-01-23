@@ -64,7 +64,7 @@ import org.robovm.apple.coreanimation.*;
     @Method(selector = "initWithTileSet:columns:rows:tileSize:tileGroupLayout:")
     public SKTileMapNode(SKTileSet tileSet, @MachineSizedUInt long columns, @MachineSizedUInt long rows, @ByVal CGSize tileSize, NSArray<SKTileGroup> tileGroupLayout) { super((SkipInit) null); initObject(init(tileSet, columns, rows, tileSize, tileGroupLayout)); }
     @Method(selector = "initWithCoder:")
-    public SKTileMapNode(NSCoder decoder) { super(decoder); }
+    public SKTileMapNode(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "numberOfColumns")

@@ -54,7 +54,7 @@ import org.robovm.apple.audiotoolbox.*;
         /**
          * @since Available in iOS 9.0 and later.
          */
-        public static NSObject observeTagsDidChange(AVAudioUnitComponent object, final VoidBlock1<AVAudioUnitComponent> block) {
+        public static NSObjectProtocol observeTagsDidChange(AVAudioUnitComponent object, final VoidBlock1<AVAudioUnitComponent> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(TagsDidChangeNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification notification) {

@@ -58,7 +58,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:group:")
     public MPSTriangleAccelerationStructure(NSCoder aDecoder, MPSAccelerationStructureGroup group) { super(aDecoder, group); }
     @Method(selector = "initWithCoder:")
-    public MPSTriangleAccelerationStructure(NSCoder decoder) { super(decoder); }
+    public MPSTriangleAccelerationStructure(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "triangleCount")

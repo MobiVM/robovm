@@ -24,6 +24,7 @@ categories:
 classes:
     # Structs
     CATransform3D: {}
+    CAFrameRateRange: {}
 
     CAAnimation: # DONE
         skip_handle_constructor: false
@@ -373,6 +374,14 @@ functions:
         class: CAAnimation
         name: 'get#{g[0]}'
 
+    CAFrameRateRangeMake:
+        class: CAFrameRateRange
+        name: make
+
+    CAFrameRateRangeIsEqualToRange:
+        class: CAFrameRateRange
+        name: isEqualToRange
+
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (k?CA.*):
         class: CoreAnimation
@@ -487,6 +496,10 @@ values:
         name: '#{g[0]}'
         type: NSString
 
+    CAFrameRateRangeDefault:
+        class: CAFrameRateRange
+        name: getDefault
+
     k?CA(.*):
         class: CoreAnimation
         name: '#{g[0]}'
@@ -513,7 +526,6 @@ typed_enums:
         type: NSString
         kCACornerCurve(.*):
             name: '#{g[0]}'
-
 constants:
     CA_TEST:
         exclude: true

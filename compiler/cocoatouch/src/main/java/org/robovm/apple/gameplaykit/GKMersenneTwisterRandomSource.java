@@ -53,7 +53,7 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "initWithSeed:")
     public GKMersenneTwisterRandomSource(long seed) { super((SkipInit) null); initObject(init(seed)); }
     @Method(selector = "initWithCoder:")
-    public GKMersenneTwisterRandomSource(NSCoder decoder) { super(decoder); }
+    public GKMersenneTwisterRandomSource(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "seed")

@@ -88,13 +88,13 @@ import org.robovm.apple.linkpresentation.*;
     @Method(selector = "setTranslatesReferenceBoundsIntoBoundaryWithInsets:")
     public native void setTranslatesReferenceBoundsIntoBoundary(@ByVal UIEdgeInsets insets);
     @Method(selector = "addBoundaryWithIdentifier:forPath:")
-    public native void addBoundary(NSObject identifier, UIBezierPath bezierPath);
+    public native void addBoundary(NSObjectProtocol identifier, UIBezierPath bezierPath);
     @Method(selector = "addBoundaryWithIdentifier:fromPoint:toPoint:")
-    public native void addBoundary(NSObject identifier, @ByVal CGPoint p1, @ByVal CGPoint p2);
+    public native void addBoundary(NSObjectProtocol identifier, @ByVal CGPoint p1, @ByVal CGPoint p2);
     @Method(selector = "boundaryWithIdentifier:")
-    public native UIBezierPath getBoundary(NSObject identifier);
+    public native UIBezierPath getBoundary(NSObjectProtocol identifier);
     @Method(selector = "removeBoundaryWithIdentifier:")
-    public native void removeBoundary(NSObject identifier);
+    public native void removeBoundary(NSObjectProtocol identifier);
     @Method(selector = "removeAllBoundaries")
     public native void removeAllBoundaries();
     /*</methods>*/

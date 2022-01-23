@@ -70,7 +70,11 @@ public enum /*<name>*/VNErrorCode/*</name>*/ implements NSErrorCode {
     /**
      * @since Available in iOS 14.0 and later.
      */
-    TimeStampNotFound(18L);
+    TimeStampNotFound(18L),
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    UnsupportedRequest(19L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(VNErrorCode.class); }/*</bind>*/

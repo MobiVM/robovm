@@ -59,6 +59,11 @@ import org.robovm.apple.metalps.*;
     /*<properties>*/
     @Property(selector = "type")
     public native MLCDeviceType getType();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "actualDeviceType")
+    public native MLCDeviceType getActualDeviceType();
     @Property(selector = "gpuDevices")
     public native NSArray<?> getGpuDevices();
     /*</properties>*/
@@ -68,6 +73,11 @@ import org.robovm.apple.metalps.*;
     public static native MLCDevice cpuDevice();
     @Method(selector = "gpuDevice")
     public static native MLCDevice gpuDevice();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "aneDevice")
+    public static native MLCDevice aneDevice();
     @Method(selector = "deviceWithType:")
     protected static native @Pointer long create(MLCDeviceType type);
     /**

@@ -34,7 +34,7 @@ import org.robovm.apple.coremedia.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 14.0 and later.
+ * @since Available in iOS 14.5 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("Speech") @NativeClass/*</annotations>*/

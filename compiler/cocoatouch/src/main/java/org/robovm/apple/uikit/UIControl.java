@@ -125,6 +125,21 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Property(selector = "setShowsMenuAsPrimaryAction:")
     public native void setShowsMenuAsPrimaryAction(boolean v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "toolTip")
+    public native String getToolTip();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setToolTip:")
+    public native void setToolTip(String v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "toolTipInteraction")
+    public native UIToolTipInteraction getToolTipInteraction();
     @WeaklyLinked
     @Property(selector = "layerClass")
     public static native Class<? extends CALayer> getLayerClass();
@@ -357,7 +372,7 @@ import org.robovm.apple.linkpresentation.*;
      * @since Available in iOS 14.0 and later.
      */
     @Method(selector = "removeActionForIdentifier:forControlEvents:")
-    public native void removeAction(String actionIdentifier, UIControlEvents controlEvents);
+    public native void removeAction(UIActionIdentifier actionIdentifier, UIControlEvents controlEvents);
     @Method(selector = "actionsForTarget:forControlEvent:")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getActions(NSObject target, UIControlEvents controlEvent);
     /**

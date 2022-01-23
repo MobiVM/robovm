@@ -66,6 +66,11 @@ import org.robovm.apple.linkpresentation.*;
      */
     @NotImplemented("adaptivePresentationStyleForPresentationController:traitCollection:")
     public UIModalPresentationStyle getAdaptivePresentationStyle(UIPresentationController controller, UITraitCollection traitCollection) { return null; }
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @NotImplemented("presentationController:prepareAdaptivePresentationController:")
+    public void prepareAdaptivePresentationController(UIPresentationController presentationController, UIPresentationController adaptivePresentationController) {}
     @NotImplemented("presentationController:viewControllerForAdaptivePresentationStyle:")
     public UIViewController getViewController(UIPresentationController controller, UIModalPresentationStyle style) { return null; }
     /**

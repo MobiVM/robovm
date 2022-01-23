@@ -55,6 +55,7 @@ import org.robovm.apple.metalps.*;
     public MLCTensor(MLCTensorDescriptor tensorDescriptor, MLCTensorData data) { super((Handle) null, create(tensorDescriptor, data)); retain(getHandle()); }
     public MLCTensor(NSArray<NSNumber> shape) { super((Handle) null, create(shape)); retain(getHandle()); }
     public MLCTensor(NSArray<NSNumber> shape, MLCRandomInitializerType randomInitializerType) { super((Handle) null, create(shape, randomInitializerType)); retain(getHandle()); }
+    public MLCTensor(NSArray<NSNumber> shape, MLCRandomInitializerType randomInitializerType, MLCDataType dataType) { super((Handle) null, create(shape, randomInitializerType, dataType)); retain(getHandle()); }
     public MLCTensor(NSArray<NSNumber> shape, MLCDataType dataType) { super((Handle) null, create(shape, dataType)); retain(getHandle()); }
     public MLCTensor(NSArray<NSNumber> shape, MLCTensorData data, MLCDataType dataType) { super((Handle) null, create(shape, data, dataType)); retain(getHandle()); }
     public MLCTensor(NSArray<NSNumber> shape, NSNumber fillData, MLCDataType dataType) { super((Handle) null, create(shape, fillData, dataType)); retain(getHandle()); }
@@ -101,6 +102,26 @@ import org.robovm.apple.metalps.*;
     public native boolean bindAndWriteData(MLCTensorData data, MLCDevice device);
     @Method(selector = "bindOptimizerData:deviceData:")
     public native boolean bindOptimizerData(NSArray<MLCTensorData> data, NSArray<MLCTensorOptimizerDeviceData> deviceData);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "tensorByQuantizingToType:scale:bias:")
+    public native MLCTensor tensorByQuantizingToType(MLCDataType type, float scale, @MachineSizedSInt long bias);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "tensorByQuantizingToType:scale:bias:axis:")
+    public native MLCTensor tensorByQuantizingToType(MLCDataType type, MLCTensor scale, MLCTensor bias, @MachineSizedSInt long axis);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "tensorByDequantizingToType:scale:bias:")
+    public native MLCTensor tensorByDequantizingToType(MLCDataType type, MLCTensor scale, MLCTensor bias);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "tensorByDequantizingToType:scale:bias:axis:")
+    public native MLCTensor tensorByDequantizingToType(MLCDataType type, MLCTensor scale, MLCTensor bias, @MachineSizedSInt long axis);
     @Method(selector = "tensorWithDescriptor:")
     protected static native @Pointer long create(MLCTensorDescriptor tensorDescriptor);
     @Method(selector = "tensorWithDescriptor:randomInitializerType:")
@@ -113,6 +134,8 @@ import org.robovm.apple.metalps.*;
     protected static native @Pointer long create(NSArray<NSNumber> shape);
     @Method(selector = "tensorWithShape:randomInitializerType:")
     protected static native @Pointer long create(NSArray<NSNumber> shape, MLCRandomInitializerType randomInitializerType);
+    @Method(selector = "tensorWithShape:randomInitializerType:dataType:")
+    protected static native @Pointer long create(NSArray<NSNumber> shape, MLCRandomInitializerType randomInitializerType, MLCDataType dataType);
     @Method(selector = "tensorWithShape:dataType:")
     protected static native @Pointer long create(NSArray<NSNumber> shape, MLCDataType dataType);
     @Method(selector = "tensorWithShape:data:dataType:")

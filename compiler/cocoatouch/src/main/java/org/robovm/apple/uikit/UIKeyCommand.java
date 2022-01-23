@@ -135,6 +135,36 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Property(selector = "alternates")
     public native NSArray<UICommandAlternate> getAlternates();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "wantsPriorityOverSystemBehavior")
+    public native boolean wantsPriorityOverSystemBehavior();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setWantsPriorityOverSystemBehavior:")
+    public native void setWantsPriorityOverSystemBehavior(boolean v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "allowsAutomaticLocalization")
+    public native boolean allowsAutomaticLocalization();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setAllowsAutomaticLocalization:")
+    public native void setAllowsAutomaticLocalization(boolean v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "allowsAutomaticMirroring")
+    public native boolean allowsAutomaticMirroring();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setAllowsAutomaticMirroring:")
+    public native void setAllowsAutomaticMirroring(boolean v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
@@ -224,6 +254,11 @@ import org.robovm.apple.linkpresentation.*;
      */
     @GlobalValue(symbol="UIKeyInputF12", optional=true)
     public static native String F12();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @GlobalValue(symbol="UIKeyInputDelete", optional=true)
+    public static native String Delete();
     
     @Method(selector = "initWithCoder:")
     protected native @Pointer long init(NSCoder coder);

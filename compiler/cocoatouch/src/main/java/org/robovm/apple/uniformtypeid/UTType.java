@@ -347,6 +347,11 @@ import org.robovm.apple.uikit.*;
         @GlobalValue(symbol="UTTypePHPScript", optional=true)
         public static native UTType PHPScript();
         /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="UTTypeMakefile", optional=true)
+        public static native UTType Makefile();
+        /**
          * @since Available in iOS 14.0 and later.
          */
         @GlobalValue(symbol="UTTypeJSON", optional=true)

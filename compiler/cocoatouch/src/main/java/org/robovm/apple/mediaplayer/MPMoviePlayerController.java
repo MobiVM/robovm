@@ -48,7 +48,7 @@ import org.robovm.rt.annotation.WeaklyLinked;
         /**
          * @since Available in iOS 3.2 and later.
          */
-        public static NSObject observeIsPreparedToPlayDidChange(MPMoviePlayerController object, final VoidBlock1<MPMediaPlayback> block) {
+        public static NSObjectProtocol observeIsPreparedToPlayDidChange(MPMoviePlayerController object, final VoidBlock1<MPMediaPlayback> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(IsPreparedToPlayDidChangeNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke (NSNotification a) {
@@ -59,7 +59,7 @@ import org.robovm.rt.annotation.WeaklyLinked;
         /**
          * @since Available in iOS 3.2 and later.
          */
-        public static NSObject observeDurationAvailable(MPMoviePlayerController object, final VoidBlock1<MPMoviePlayerController> block) {
+        public static NSObjectProtocol observeDurationAvailable(MPMoviePlayerController object, final VoidBlock1<MPMoviePlayerController> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(DurationAvailableNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke (NSNotification a) {
@@ -70,7 +70,7 @@ import org.robovm.rt.annotation.WeaklyLinked;
         /**
          * @since Available in iOS 3.2 and later.
          */
-        public static NSObject observeMediaTypesAvailable(MPMoviePlayerController object, final VoidBlock1<MPMoviePlayerController> block) {
+        public static NSObjectProtocol observeMediaTypesAvailable(MPMoviePlayerController object, final VoidBlock1<MPMoviePlayerController> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(MediaTypesAvailableNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke (NSNotification a) {
@@ -81,7 +81,7 @@ import org.robovm.rt.annotation.WeaklyLinked;
         /**
          * @since Available in iOS 3.2 and later.
          */
-        public static NSObject observeNaturalSizeAvailable(MPMoviePlayerController object, final VoidBlock1<MPMoviePlayerController> block) {
+        public static NSObjectProtocol observeNaturalSizeAvailable(MPMoviePlayerController object, final VoidBlock1<MPMoviePlayerController> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(NaturalSizeAvailableNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke (NSNotification a) {
@@ -92,7 +92,7 @@ import org.robovm.rt.annotation.WeaklyLinked;
         /**
          * @since Available in iOS 3.2 and later.
          */
-        public static NSObject observeDidEnterFullscreen(MPMoviePlayerController object, final VoidBlock1<MPMoviePlayerController> block) {
+        public static NSObjectProtocol observeDidEnterFullscreen(MPMoviePlayerController object, final VoidBlock1<MPMoviePlayerController> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(DidEnterFullscreenNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke (NSNotification a) {
@@ -103,7 +103,7 @@ import org.robovm.rt.annotation.WeaklyLinked;
         /**
          * @since Available in iOS 3.2 and later.
          */
-        public static NSObject observeDidExitFullscreen(MPMoviePlayerController object, final VoidBlock1<MPMoviePlayerController> block) {
+        public static NSObjectProtocol observeDidExitFullscreen(MPMoviePlayerController object, final VoidBlock1<MPMoviePlayerController> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(DidExitFullscreenNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke (NSNotification a) {
@@ -114,7 +114,7 @@ import org.robovm.rt.annotation.WeaklyLinked;
         /**
          * @since Available in iOS 5.0 and later.
          */
-        public static NSObject observeIsAirPlayVideoActiveDidChange(MPMoviePlayerController object, final VoidBlock1<MPMoviePlayerController> block) {
+        public static NSObjectProtocol observeIsAirPlayVideoActiveDidChange(MPMoviePlayerController object, final VoidBlock1<MPMoviePlayerController> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(IsAirPlayVideoActiveDidChangeNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke (NSNotification a) {
@@ -125,7 +125,7 @@ import org.robovm.rt.annotation.WeaklyLinked;
         /**
          * @since Available in iOS 3.2 and later.
          */
-        public static NSObject observeLoadStateDidChange(MPMoviePlayerController object, final VoidBlock1<MPMoviePlayerController> block) {
+        public static NSObjectProtocol observeLoadStateDidChange(MPMoviePlayerController object, final VoidBlock1<MPMoviePlayerController> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(LoadStateDidChangeNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke (NSNotification a) {
@@ -136,7 +136,7 @@ import org.robovm.rt.annotation.WeaklyLinked;
         /**
          * @since Available in iOS 3.2 and later.
          */
-        public static NSObject observeNowPlayingMovieDidChange(MPMoviePlayerController object, final VoidBlock1<MPMoviePlayerController> block) {
+        public static NSObjectProtocol observeNowPlayingMovieDidChange(MPMoviePlayerController object, final VoidBlock1<MPMoviePlayerController> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(NowPlayingMovieDidChangeNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke (NSNotification a) {
@@ -144,7 +144,7 @@ import org.robovm.rt.annotation.WeaklyLinked;
                 }
             });
         }
-        public static NSObject observePlaybackDidFinish(MPMoviePlayerController object, final VoidBlock3<MPMoviePlayerController, MPMovieFinishReason, NSError> block) {
+        public static NSObjectProtocol observePlaybackDidFinish(MPMoviePlayerController object, final VoidBlock3<MPMoviePlayerController, MPMovieFinishReason, NSError> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(PlaybackDidFinishNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke (NSNotification a) {
@@ -158,7 +158,7 @@ import org.robovm.rt.annotation.WeaklyLinked;
         /**
          * @since Available in iOS 3.2 and later.
          */
-        public static NSObject observePlaybackStateDidChange(MPMoviePlayerController object, final VoidBlock1<MPMoviePlayerController> block) {
+        public static NSObjectProtocol observePlaybackStateDidChange(MPMoviePlayerController object, final VoidBlock1<MPMoviePlayerController> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(PlaybackStateDidChangeNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke (NSNotification a) {
@@ -169,7 +169,7 @@ import org.robovm.rt.annotation.WeaklyLinked;
         /**
          * @since Available in iOS 3.2 and later.
          */
-        public static NSObject observeScalingModeDidChange(MPMoviePlayerController object, final VoidBlock1<MPMoviePlayerController> block) {
+        public static NSObjectProtocol observeScalingModeDidChange(MPMoviePlayerController object, final VoidBlock1<MPMoviePlayerController> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(ScalingModeDidChangeNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke (NSNotification a) {
@@ -180,7 +180,7 @@ import org.robovm.rt.annotation.WeaklyLinked;
         /**
          * @since Available in iOS 3.2 and later.
          */
-        public static NSObject observeThumbnailImageRequestDidFinish(MPMoviePlayerController object, final VoidBlock2<MPMoviePlayerController, MPMoviePlayerThumbnailRequest> block) {
+        public static NSObjectProtocol observeThumbnailImageRequestDidFinish(MPMoviePlayerController object, final VoidBlock2<MPMoviePlayerController, MPMoviePlayerThumbnailRequest> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(ThumbnailImageRequestDidFinishNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke (NSNotification a) {
@@ -191,7 +191,7 @@ import org.robovm.rt.annotation.WeaklyLinked;
         /**
          * @since Available in iOS 3.2 and later.
          */
-        public static NSObject observeWillEnterFullscreen(MPMoviePlayerController object, final VoidBlock2<MPMoviePlayerController, MPMoviePlayerFullscreenAnimation> block) {
+        public static NSObjectProtocol observeWillEnterFullscreen(MPMoviePlayerController object, final VoidBlock2<MPMoviePlayerController, MPMoviePlayerFullscreenAnimation> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(WillEnterFullscreenNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke (NSNotification a) {
@@ -202,7 +202,7 @@ import org.robovm.rt.annotation.WeaklyLinked;
         /**
          * @since Available in iOS 3.2 and later.
          */
-        public static NSObject observeWillExitFullscreen(MPMoviePlayerController object, final VoidBlock2<MPMoviePlayerController, MPMoviePlayerFullscreenAnimation> block) {
+        public static NSObjectProtocol observeWillExitFullscreen(MPMoviePlayerController object, final VoidBlock2<MPMoviePlayerController, MPMoviePlayerFullscreenAnimation> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(WillExitFullscreenNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke (NSNotification a) {
@@ -213,7 +213,7 @@ import org.robovm.rt.annotation.WeaklyLinked;
         /**
          * @since Available in iOS 3.2 and later.
          */
-        public static NSObject observeNewSourceTypeAvailable(MPMoviePlayerController object, final VoidBlock1<MPMoviePlayerController> block) {
+        public static NSObjectProtocol observeNewSourceTypeAvailable(MPMoviePlayerController object, final VoidBlock1<MPMoviePlayerController> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(SourceTypeAvailableNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke (NSNotification a) {
@@ -224,7 +224,7 @@ import org.robovm.rt.annotation.WeaklyLinked;
         /**
          * @since Available in iOS 6.0 and later.
          */
-        public static NSObject observeReadyForDisplayDidChange(MPMoviePlayerController object, final VoidBlock1<MPMoviePlayerController> block) {
+        public static NSObjectProtocol observeReadyForDisplayDidChange(MPMoviePlayerController object, final VoidBlock1<MPMoviePlayerController> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(ReadyForDisplayDidChangeNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke (NSNotification a) {
@@ -235,7 +235,7 @@ import org.robovm.rt.annotation.WeaklyLinked;
         /**
          * @since Available in iOS 4.0 and later.
          */
-        public static NSObject observeTimedMetadataUpdated(MPMoviePlayerController object, final VoidBlock2<MPMoviePlayerController, NSArray<MPTimedMetadata>> block) {
+        public static NSObjectProtocol observeTimedMetadataUpdated(MPMoviePlayerController object, final VoidBlock2<MPMoviePlayerController, NSArray<MPTimedMetadata>> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(TimedMetadataUpdatedNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @SuppressWarnings("unchecked")
                 @Override

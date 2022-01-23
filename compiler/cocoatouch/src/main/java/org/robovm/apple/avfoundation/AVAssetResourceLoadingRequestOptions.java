@@ -118,7 +118,9 @@ import org.robovm.apple.audiotoolbox.*;
 
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Use -[AVPersistableContentKeyRequest persistableContentKeyFromKeyVendorResponse:options:error:]
      */
+    @Deprecated
     public boolean requiresPersistentKey() {
         if (has(Keys.StreamingContentKeyRequestRequiresPersistentKey())) {
             NSNumber val = (NSNumber) get(Keys.StreamingContentKeyRequestRequiresPersistentKey());
@@ -128,7 +130,9 @@ import org.robovm.apple.audiotoolbox.*;
     }
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Use -[AVPersistableContentKeyRequest persistableContentKeyFromKeyVendorResponse:options:error:]
      */
+    @Deprecated
     public AVAssetResourceLoadingRequestOptions setRequiresPersistentKey(boolean requiresPersistentKey) {
         set(Keys.StreamingContentKeyRequestRequiresPersistentKey(), NSNumber.valueOf(requiresPersistentKey));
         return this;
@@ -141,7 +145,9 @@ import org.robovm.apple.audiotoolbox.*;
         static { Bro.bind(Keys.class); }
         /**
          * @since Available in iOS 9.0 and later.
+         * @deprecated Use -[AVPersistableContentKeyRequest persistableContentKeyFromKeyVendorResponse:options:error:]
          */
+        @Deprecated
         @GlobalValue(symbol="AVAssetResourceLoadingRequestStreamingContentKeyRequestRequiresPersistentKey", optional=true)
         public static native NSString StreamingContentKeyRequestRequiresPersistentKey();
     }

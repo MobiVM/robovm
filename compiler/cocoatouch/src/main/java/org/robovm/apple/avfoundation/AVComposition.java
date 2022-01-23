@@ -44,7 +44,7 @@ import org.robovm.apple.audiotoolbox.*;
 
 /*</javadoc>*/
 /*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/AVComposition/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/AVComposition/*</name>*/
     extends /*<extends>*/AVAsset/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
@@ -72,9 +72,24 @@ import org.robovm.apple.audiotoolbox.*;
     /*<methods>*/
     @Method(selector = "trackWithTrackID:")
     public native AVCompositionTrack getTrack(int trackID);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "loadTrackWithTrackID:completionHandler:")
+    public native void loadTrack(int trackID, @Block VoidBlock2<NSArray<?>, NSError> completionHandler);
     @Method(selector = "tracksWithMediaType:")
     public native NSArray<AVCompositionTrack> getTracksForMediaType(AVMediaType mediaType);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "loadTracksWithMediaType:completionHandler:")
+    public native void loadTracksWithMediaType(String mediaType, @Block VoidBlock2<NSArray<?>, NSError> completionHandler);
     @Method(selector = "tracksWithMediaCharacteristic:")
     public native NSArray<AVCompositionTrack> getTracksForMediaCharacteristic(AVMediaCharacteristic mediaCharacteristic);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "loadTracksWithMediaCharacteristic:completionHandler:")
+    public native void loadTracksWithMediaCharacteristic(String mediaCharacteristic, @Block VoidBlock2<NSArray<?>, NSError> completionHandler);
     /*</methods>*/
 }

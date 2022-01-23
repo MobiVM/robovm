@@ -46,7 +46,7 @@ import org.robovm.apple.iosurface.*;
         /**
          * @since Available in iOS 4.0 and later.
          */
-        public static NSObject observeFreeBuffer(CVPixelBufferPool object, final VoidBlock1<CVPixelBufferPool> block) {
+        public static NSObjectProtocol observeFreeBuffer(CVPixelBufferPool object, final VoidBlock1<CVPixelBufferPool> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(FreeBufferNotification(), object.as(NSObject.class), NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke (NSNotification a) {

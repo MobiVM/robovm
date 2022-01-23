@@ -100,6 +100,16 @@ import org.robovm.apple.coreanimation.*;
     @Property(selector = "setAllowsAirPlayForMediaPlayback:")
     public native void setAllowsAirPlayForMediaPlayback(boolean v);
     /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Property(selector = "upgradeKnownHostsToHTTPS")
+    public native boolean isUpgradeKnownHostsToHTTPS();
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Property(selector = "setUpgradeKnownHostsToHTTPS:")
+    public native void setUpgradeKnownHostsToHTTPS(boolean v);
+    /**
      * @since Available in iOS 10.0 and later.
      */
     @Property(selector = "mediaTypesRequiringUserActionForPlayback")

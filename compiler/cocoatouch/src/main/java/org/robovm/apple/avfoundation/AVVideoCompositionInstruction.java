@@ -71,6 +71,11 @@ import org.robovm.apple.audiotoolbox.*;
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsIntegerListMarshaler.class) List<Integer> getRequiredSourceTrackIDs();
     @Property(selector = "passthroughTrackID")
     public native int getPassthroughTrackID();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "requiredSourceSampleDataTrackIDs")
+    public native NSArray<NSNumber> getRequiredSourceSampleDataTrackIDs();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     @Property(selector = "containsTweening")

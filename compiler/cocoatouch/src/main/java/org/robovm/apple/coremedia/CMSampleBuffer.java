@@ -47,7 +47,7 @@ import org.robovm.apple.audiotoolbox.*;
         /**
          * @since Available in iOS 4.0 and later.
          */
-        public static NSObject observeDataBecameReady(CMSampleBuffer object, final VoidBlock1<CMSampleBuffer> block) {
+        public static NSObjectProtocol observeDataBecameReady(CMSampleBuffer object, final VoidBlock1<CMSampleBuffer> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(DataBecameReadyNotification(), object.as(NSObject.class), NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -58,7 +58,7 @@ import org.robovm.apple.audiotoolbox.*;
         /**
          * @since Available in iOS 8.0 and later.
          */
-        public static NSObject observeDataFailed(CMSampleBuffer object, final VoidBlock2<CMSampleBuffer, OSStatus> block) {
+        public static NSObjectProtocol observeDataFailed(CMSampleBuffer object, final VoidBlock2<CMSampleBuffer, OSStatus> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(DataFailedNotification(), object.as(NSObject.class), NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -72,7 +72,7 @@ import org.robovm.apple.audiotoolbox.*;
         /**
          * @since Available in iOS 4.0 and later.
          */
-        public static NSObject observeInhibitOutputUntil(CMSampleBuffer object, final VoidBlock2<CMSampleBuffer, Long> block) {
+        public static NSObjectProtocol observeInhibitOutputUntil(CMSampleBuffer object, final VoidBlock2<CMSampleBuffer, Long> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(InhibitOutputUntilConduitNotification(), object.as(NSObject.class), NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -86,7 +86,7 @@ import org.robovm.apple.audiotoolbox.*;
         /**
          * @since Available in iOS 4.0 and later.
          */
-        public static NSObject observeResetOutput(CMSampleBuffer object, final VoidBlock1<CMSampleBuffer> block) {
+        public static NSObjectProtocol observeResetOutput(CMSampleBuffer object, final VoidBlock1<CMSampleBuffer> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(ResetOutputConduitNotification(), object.as(NSObject.class), NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -97,7 +97,7 @@ import org.robovm.apple.audiotoolbox.*;
         /**
          * @since Available in iOS 4.3 and later.
          */
-        public static NSObject observeUpcomingOutputPTSRangeChanged(CMSampleBuffer object, final VoidBlock4<CMSampleBuffer, Boolean, CMTime, CMTime> block) {
+        public static NSObjectProtocol observeUpcomingOutputPTSRangeChanged(CMSampleBuffer object, final VoidBlock4<CMSampleBuffer, Boolean, CMTime, CMTime> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(UpcomingOutputPTSRangeChangedConduitNotification(), object.as(NSObject.class), NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -115,7 +115,7 @@ import org.robovm.apple.audiotoolbox.*;
         /**
          * @since Available in iOS 4.0 and later.
          */
-        public static NSObject observeBufferConsumed(CMSampleBuffer object, final VoidBlock2<CMSampleBuffer, NSDictionary<?, ?>> block) {
+        public static NSObjectProtocol observeBufferConsumed(CMSampleBuffer object, final VoidBlock2<CMSampleBuffer, NSDictionary<?, ?>> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(BufferConsumedConsumerNotification(), object.as(NSObject.class), NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {

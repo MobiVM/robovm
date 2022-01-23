@@ -63,7 +63,7 @@ import org.robovm.apple.linkpresentation.*;
     @Method(selector = "initWithNibName:bundle:")
     public UIImagePickerController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
     @Method(selector = "initWithCoder:")
-    public UIImagePickerController(NSCoder decoder) { super(decoder); }
+    public UIImagePickerController(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "delegate")

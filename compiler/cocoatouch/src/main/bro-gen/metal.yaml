@@ -93,6 +93,10 @@ enums:
     MTLDynamicLibraryError: {nserror: true} #since 14.0
     MTLBinaryArchiveError: {nserror: true} #since 14.0
     MTLIntersectionFunctionSignature: {} #since 14.0
+
+    MTLTextureCompressionType: {} #since 15.0
+    MTLMotionBorderMode: {} #since 15.0
+    MTLAccelerationStructureInstanceDescriptorType: {} #since 15.0
 classes:
     MTLAttribute: {}
     MTLFunctionConstant: {}
@@ -152,6 +156,8 @@ classes:
     MTLPackedFloat4x3: {}
     MTLAxisAlignedBoundingBox: {}
     MTLAccelerationStructureInstanceDescriptor: {}
+    MTLAccelerationStructureUserIDInstanceDescriptor: {} #since 15.0
+    MTLAccelerationStructureMotionInstanceDescriptor: {} #since 15.0
 
     MTLArgument: {} # DONE
     MTLArrayType: # DONE
@@ -363,6 +369,24 @@ classes:
             '-setObject:atIndexedSubscript:':
                 name: setObject
     MTLVisibleFunctionTableDescriptor: { } #since 14.0
+    MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor: {} #since 15.0
+    MTLAccelerationStructureMotionTriangleGeometryDescriptor: {} #since 15.0
+    MTLFunctionStitchingAttributeAlwaysInline: {} #since 15.0
+    MTLFunctionStitchingFunctionNode: #since 15.0
+        methods:
+            '-initWithName:arguments:controlDependencies:':
+                name: init
+    MTLFunctionStitchingGraph: #since 15.0
+        methods:
+            '-initWithFunctionName:nodes:outputNode:attributes:':
+                name: init
+    MTLFunctionStitchingInputNode: #since 15.0
+        methods:
+            '-initWithArgumentIndex:':
+                name: init
+    MTLMotionKeyframeData: {} #since 15.0
+    MTLRenderPipelineFunctionsDescriptor: {} #since 15.0
+    MTLStitchedLibraryDescriptor: {} #since 15.0
 protocols:
     MTLHeap:
         methods:
@@ -702,6 +726,10 @@ protocols:
                 name: newAccelerationStructure
             '-newAccelerationStructureWithDescriptor:':
                 name: newAccelerationStructure
+            '-newLibraryWithStitchedDescriptor:error:':
+                name: newLibrary
+            '-newLibraryWithStitchedDescriptor:completionHandler:':
+                name: newLibrary
     MTLDrawable: # DONE
         methods:
             '-presentAtTime:':
@@ -928,10 +956,49 @@ protocols:
                 trim_after_first_colon: true
             '-sampleCountersInBuffer:atSampleIndex:withBarrier:':
                 name: sampleCountersInBuffer
+            '-setVertexVisibleFunctionTable:atBufferIndex:':
+                name: setVertexVisibleFunctionTable
+            '-setVertexVisibleFunctionTables:withBufferRange:':
+                name: setVertexVisibleFunctionTables
+            '-setVertexIntersectionFunctionTable:atBufferIndex:':
+                name: setVertexIntersectionFunctionTable
+            '-setVertexIntersectionFunctionTables:withBufferRange:':
+                name: setVertexIntersectionFunctionTables
+            '-setVertexAccelerationStructure:atBufferIndex:':
+                name: setVertexAccelerationStructure
+            '-setFragmentVisibleFunctionTable:atBufferIndex:':
+                name: setFragmentVisibleFunctionTable
+            '-setFragmentVisibleFunctionTables:withBufferRange:':
+                name: setFragmentVisibleFunctionTables
+            '-setFragmentIntersectionFunctionTable:atBufferIndex:':
+                name: setFragmentIntersectionFunctionTable
+            '-setFragmentIntersectionFunctionTables:withBufferRange:':
+                name: setFragmentIntersectionFunctionTables
+            '-setFragmentAccelerationStructure:atBufferIndex:':
+                name: setFragmentAccelerationStructure
+            '-setTileVisibleFunctionTable:atBufferIndex:':
+                name: setTileVisibleFunctionTable
+            '-setTileVisibleFunctionTables:withBufferRange:':
+                name: setTileVisibleFunctionTables
+            '-setTileIntersectionFunctionTable:atBufferIndex:':
+                name: setTileIntersectionFunctionTable
+            '-setTileIntersectionFunctionTables:withBufferRange:':
+                name: setTileIntersectionFunctionTables
+            '-setTileAccelerationStructure:atBufferIndex:':
+                name: setTileAccelerationStructure
     MTLRenderPipelineState: # DONE
         class: true
         annotations: ['@NativeProtocolProxy']
         visibility: 'public final'
+        methods:
+            '-functionHandleWithFunction:stage:':
+                name: functionHandle
+            '-newVisibleFunctionTableWithDescriptor:stage:':
+                name: newVisibleFunctionTable
+            '-newIntersectionFunctionTableWithDescriptor:stage:':
+                name: newIntersectionFunctionTable
+            '-newRenderPipelineStateWithAdditionalBinaryFunctions:error:':
+                name: newRenderPipelineState
     MTLResource: # DONE
         methods:
             '-setPurgeableState:':
@@ -1069,32 +1136,25 @@ protocols:
     MTLAccelerationStructureCommandEncoder: #since 14.0
         methods:
             '-buildAccelerationStructure:descriptor:scratchBuffer:scratchBufferOffset:':
-                #trim_after_first_colon: true
-                name: buildAccelerationStructure$descriptor$scratchBuffer$scratchBufferOffset$
+                name: buildAccelerationStructure
             '-refitAccelerationStructure:descriptor:destination:scratchBuffer:scratchBufferOffset:':
-                #trim_after_first_colon: true
-                name: refitAccelerationStructure$descriptor$destination$scratchBuffer$scratchBufferOffset$
+                name: refitAccelerationStructure
             '-copyAccelerationStructure:toAccelerationStructure:':
-                #trim_after_first_colon: true
-                name: copyAccelerationStructure$toAccelerationStructure$
+                name: copyAccelerationStructure
             '-writeCompactedAccelerationStructureSize:toBuffer:offset:':
-                #trim_after_first_colon: true
-                name: writeCompactedAccelerationStructureSize$toBuffer$offset$
+                name: writeCompactedAccelerationStructure
             '-copyAndCompactAccelerationStructure:toAccelerationStructure:':
-                #trim_after_first_colon: true
-                name: copyAndCompactAccelerationStructure$toAccelerationStructure$
+                name: copyAndCompactAccelerationStructure
             '-useResource:usage:':
-                #trim_after_first_colon: true
-                name: useResource$usage$
+                name: useResource
             '-useResources:count:usage:':
-                #trim_after_first_colon: true
-                name: useResources$count$usage$
+                name: useResources
             '-useHeaps:count:':
-                #trim_after_first_colon: true
-                name: useHeaps$count$
+                name: useHeaps
             '-sampleCountersInBuffer:atSampleIndex:withBarrier:':
-                #trim_after_first_colon: true
-                name: sampleCountersInBuffer$atSampleIndex$withBarrier$
+                name: sampleCountersInBuffer
+            '-writeCompactedAccelerationStructureSize:toBuffer:offset:sizeDataType:':
+                name: writeCompactedAccelerationStructure
     MTLBinaryArchive: #since 14.0
         methods:
             '-addComputePipelineFunctionsWithDescriptor:error:':
@@ -1106,6 +1166,8 @@ protocols:
             '-serializeToURL:error:':
                 name: serializeToURL
                 throws: NSErrorException
+            '-addFunctionWithDescriptor:library:error:':
+                name: addFunction
     MTLCommandBufferEncoderInfo: {} #since 14.0
     MTLCounter: {} #since 14.0
     MTLCounterSampleBuffer: {} #since 14.0
@@ -1143,6 +1205,8 @@ protocols:
                 name: setFunction
             '-setFunctions:withRange:':
                 name: setFunctions
+    MTLFunctionStitchingAttribute: {} #since 15.0
+    MTLFunctionStitchingNode: {} #since 15.0
 functions:
     MTLClearColorMake:
         exclude: true # use constructor instead

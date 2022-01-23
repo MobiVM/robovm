@@ -84,6 +84,8 @@ import org.robovm.apple.imageio.*;
     public native @MachineSizedUInt long getMaximumObservations();
     @Property(selector = "setMaximumObservations:")
     public native void setMaximumObservations(@MachineSizedUInt long v);
+    @Property(selector = "results")
+    public native NSArray<VNRectangleObservation> getResults();
     /**
      * @since Available in iOS 12.0 and later.
      */

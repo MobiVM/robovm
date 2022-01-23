@@ -62,6 +62,11 @@ import org.robovm.apple.dispatch.*;
     boolean addTileRenderPipelineFunctions(MTLTileRenderPipelineDescriptor descriptor, NSError.NSErrorPtr error);
     @Method(selector = "serializeToURL:error:")
     boolean serializeToURL(NSURL url, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "addFunctionWithDescriptor:library:error:")
+    boolean addFunction(MTLFunctionDescriptor descriptor, MTLLibrary library, NSError.NSErrorPtr error);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

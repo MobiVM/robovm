@@ -58,7 +58,7 @@ import org.robovm.apple.coreanimation.*;
     protected SKTransformNode(Handle h, long handle) { super(h, handle); }
     protected SKTransformNode(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public SKTransformNode(NSCoder decoder) { super(decoder); }
+    public SKTransformNode(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "xRotation")

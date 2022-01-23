@@ -53,6 +53,11 @@ import org.robovm.apple.coreanimation.*;
     protected CPListTemplate(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithTitle:sections:")
     public CPListTemplate(String title, NSArray<CPListSection> sections) { super((SkipInit) null); initObject(init(title, sections)); }
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "initWithTitle:sections:assistantCellConfiguration:")
+    public CPListTemplate(String title, NSArray<CPListSection> sections, CPAssistantCellConfiguration assistantCellConfiguration) { super((SkipInit) null); initObject(init(title, sections, assistantCellConfiguration)); }
     /*</constructors>*/
     /*<properties>*/
     /**
@@ -113,6 +118,16 @@ import org.robovm.apple.coreanimation.*;
      */
     @Property(selector = "setEmptyViewSubtitleVariants:")
     public native void setEmptyViewSubtitleVariants(NSArray<NSString> v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "assistantCellConfiguration")
+    public native CPAssistantCellConfiguration getAssistantCellConfiguration();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setAssistantCellConfiguration:")
+    public native void setAssistantCellConfiguration(CPAssistantCellConfiguration v);
     @Property(selector = "leadingNavigationBarButtons")
     public native NSArray<CPBarButton> getLeadingNavigationBarButtons();
     @Property(selector = "setLeadingNavigationBarButtons:")
@@ -132,6 +147,11 @@ import org.robovm.apple.coreanimation.*;
     /*<methods>*/
     @Method(selector = "initWithTitle:sections:")
     protected native @Pointer long init(String title, NSArray<CPListSection> sections);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "initWithTitle:sections:assistantCellConfiguration:")
+    protected native @Pointer long init(String title, NSArray<CPListSection> sections, CPAssistantCellConfiguration assistantCellConfiguration);
     @Method(selector = "updateSections:")
     public native void updateSections(NSArray<CPListSection> sections);
     /**

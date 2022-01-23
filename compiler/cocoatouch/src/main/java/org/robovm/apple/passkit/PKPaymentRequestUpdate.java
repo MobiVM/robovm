@@ -64,6 +64,16 @@ import org.robovm.apple.coreanimation.*;
     public native NSArray<PKPaymentSummaryItem> getPaymentSummaryItems();
     @Property(selector = "setPaymentSummaryItems:")
     public native void setPaymentSummaryItems(NSArray<PKPaymentSummaryItem> v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "shippingMethods")
+    public native NSArray<PKShippingMethod> getShippingMethods();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setShippingMethods:")
+    public native void setShippingMethods(NSArray<PKShippingMethod> v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

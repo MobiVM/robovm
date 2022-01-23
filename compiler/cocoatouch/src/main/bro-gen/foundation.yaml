@@ -234,9 +234,23 @@ enums:
     NSURLSessionWebSocketMessageType: {} #since 13.0
     NSURLSessionWebSocketCloseCode: {} #since 13.0
     NSURLSessionTaskMetricsDomainResolutionProtocol: {} #since 14.0
+    NSTextCheckingTypes: {prefix: NSTextChecking, name: NSTextCheckingTypes}
+
+    NSInlinePresentationIntent: { } #since 15.0
+    NSAttributedStringMarkdownParsingFailurePolicy: { prefix: NSAttributedStringMarkdownParsingFailureReturn } #since 15.0
+    NSAttributedStringMarkdownInterpretedSyntax: { } #since 15.0
+    NSAttributedStringFormattingOptions: { prefix: NSAttributedStringFormatting }
+    NSPresentationIntentKind: { } #since 15.0
+    NSPresentationIntentTableColumnAlignment: { } #since 15.0
+    NSGrammaticalGender: { } #since 15.0
+    NSGrammaticalPartOfSpeech: { } #since 15.0
+    NSGrammaticalNumber: { } #since 15.0
+    NSURLRequestAttribution: { } #since 15.0
+
     IGNORED1: {first: NS_UnknownByteOrder, exclude: true}  # ignored same as constants
     IGNORED2: {first: NSWrapCalendarComponents, exclude: true} # deprecated
-    NSTextCheckingTypes: {prefix: NSTextChecking, name: NSTextCheckingTypes}
+    IGNORED3: {first: NSDateComponentUndefined, exclude: true} # ignored as seems to be constant only
+    IGNORED4: {first: NSTextCheckingAllSystemTypes, exclude: true}
 categories:
     NSErrorRecoveryAttempting@NSObject: {protocol: true}
 
@@ -353,6 +367,19 @@ classes:
             'length':
                 omit_prefix: true
         methods:
+            '-initWithString:':
+                name: init
+            '-initWithAttributedString:':
+                name: init
+            '-initWithContentsOfMarkdownFileAtURL:options:baseURL:error:':
+                name: init
+                throws: NSErrorException
+            '-initWithMarkdown:options:baseURL:error:':
+                name: init
+                throws: NSErrorException
+            '-initWithMarkdownString:options:baseURL:error:':
+                name: init
+                throws: NSErrorException
             '-attribute:atIndex:effectiveRange:':
                 name: getAttribute
                 parameters:
@@ -376,8 +403,6 @@ classes:
                 parameters:
                     attrs:
                         type: 'NSDictionary<NSString, ?>'
-            '-init.*':
-                name: init
             '-enumerateAttributesInRange:options:usingBlock:':
                 name: enumerateAttributes
             '-enumerateAttribute:inRange:options:usingBlock:':
@@ -3929,8 +3954,6 @@ classes:
         methods:
             '-init.*':
                 name: init
-            '+canInitWithRequest:':
-                trim_after_first_colon: true
             '+canonicalRequestForRequest:':
                 name: newCanonicalRequest
             '+requestIsCacheEquivalent:toRequest:':
@@ -3953,7 +3976,9 @@ classes:
                     protocolClass:
                         type: 'Class<? extends NSURLProtocol>'
             '+canInitWithTask:':
-                trim_after_first_colon: true
+                name: canInitWithTask
+            '+canInitWithRequest:':
+                name: canInitWithRequest
     NSURLRequest: # DONE
         properties:
             'allHTTPHeaderFields':
@@ -4392,7 +4417,43 @@ classes:
     NSSimpleCString: {exclude: true}
     NSXPCCoder: {exclude: true}
     NSSecureUnarchiveFromDataTransformer: {exclude: true} #since 12.0
-
+    NSAttributedStringMarkdownParsingOptions: {} #since 15.0
+    NSInflectionRule: {} #since 15.0
+    NSInflectionRuleExplicit: #since 15.0
+        methods:
+            '-initWithMorphology:':
+                name: init
+    NSMorphology: #since 15.0
+        methods:
+            '-setCustomPronoun:forLanguage:error:':
+                name: setCustomPronoun
+    NSMorphologyCustomPronoun: {} #since 15.0
+    NSPresentationIntent: #since 15.0
+        methods:
+            '+paragraphIntentWithIdentity:nestedInsideIntent:':
+                name: createParagraphIntent
+            '+headerIntentWithIdentity:level:nestedInsideIntent:':
+                name: createHeaderIntent
+            '+codeBlockIntentWithIdentity:languageHint:nestedInsideIntent:':
+                name: createCodeBlockIntent
+            '+thematicBreakIntentWithIdentity:nestedInsideIntent:':
+                name: createThematicBreakIntent
+            '+orderedListIntentWithIdentity:nestedInsideIntent:':
+                name: createOrderedListIntent
+            '+unorderedListIntentWithIdentity:nestedInsideIntent:':
+                name: createUnorderedListIntent
+            '+listItemIntentWithIdentity:ordinal:nestedInsideIntent:':
+                name: createListItemIntent
+            '+blockQuoteIntentWithIdentity:nestedInsideIntent:':
+                name: createBlockQuoteIntent
+            '+tableIntentWithIdentity:columnCount:alignments:nestedInsideIntent:':
+                name: createTableIntent
+            '+tableHeaderRowIntentWithIdentity:nestedInsideIntent:':
+                name: createTableHeaderRowIntent
+            '+tableRowIntentWithIdentity:row:nestedInsideIntent:':
+                name: createTableRowIntent
+            '+tableCellIntentWithIdentity:column:nestedInsideIntent:':
+                name: createTableCellIntent
 
 
 protocols:
@@ -4405,12 +4466,12 @@ protocols:
             '-initWithCoder:':
                 name: init
                 parameters:
-                    aDecoder:
-                        name: decoder
+                    0:
+                        name: coder
             '-encodeWithCoder:':
                 name: encode
                 parameters:
-                    aCoder:
+                    0:
                         name: coder
     NSDecimalNumberBehaviors: # DONE
         methods:
@@ -4829,6 +4890,9 @@ protocols:
                 name: didOpen
             '-URLSession:webSocketTask:didCloseWithCode:reason:':
                 name: didClose
+    NSDiscardableContent: {}
+    NSCopying: {exclude: true, skip_implements: true, skip_methods: true}
+    NSMutableCopying: {exclude: true, skip_implements: true, skip_methods: true}
 functions:
     NSAllocateObject:
         exclude: true
@@ -5766,6 +5830,16 @@ values:
         enum: NSValueTransformerName
         name: '#{g[0]}'
         type: NSString
+
+    # NSAttributedStringKey
+    NS(InlinePresentationIntent|AlternateDescription|ImageURL|LanguageIdentifier)AttributeName:
+        class: NSAttributedString
+        static_class: KeysNSBundle
+        name: '#{g[0]}'
+    NS(ReplacementIndex|Morphology|InflectionRule|InflectionAlternative|PresentationIntent)AttributeName:
+        class: NSAttributedString
+        static_class: Keys
+        name: '#{g[0]}'
 
     # Foundation
     NSFoundationVersionNumber:

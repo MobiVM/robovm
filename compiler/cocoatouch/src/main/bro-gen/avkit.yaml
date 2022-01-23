@@ -1,5 +1,5 @@
 package: org.robovm.apple.avkit
-include: [foundation, uikit, avfoundation, coregraphics, iad, coreanimation]
+include: [foundation, uikit, avfoundation, coremedia, coregraphics, iad, coreanimation]
 library: AVKit
 framework: AVKit
 clang_args: ['-x', 'objective-c']
@@ -20,6 +20,8 @@ classes:
         methods:
             '-initWithPlayerLayer:':
                 name: init
+            '-initWithContentSource:':
+                name: init
             '+pictureInPictureButtonStartImageCompatibleWithTraitCollection:':
                 name: getPictureInPictureButtonStartImage
             '+pictureInPictureButtonStopImageCompatibleWithTraitCollection:':
@@ -29,6 +31,15 @@ classes:
             'videoGravity':
                 type: AVLayerVideoGravity
     AVRoutePickerView: {} #since 11.0
+    AVPictureInPictureControllerContentSource: #since 15.0
+        methods:
+            '-initWithPlayerLayer:':
+                name: init
+            '-initWithSampleBufferDisplayLayer:playbackDelegate:':
+                name: init
+            '-initWithActiveVideoCallSourceView:contentViewController:':
+                name: init
+    AVPictureInPictureVideoCallViewController: {} #since 15.0
 
 protocols:
     AVPictureInPictureControllerDelegate: # DONE
@@ -65,13 +76,22 @@ protocols:
                 name: willBeginFullScreenPresentation
             '-playerViewController:willEndFullScreenPresentationWithAnimationCoordinator:':
                 name: willEndFullScreenPresentation
+            '-playerViewController:restoreUserInterfaceForFullScreenExitWithCompletionHandler:':
+                name: restoreUserInterfaceForFullScreenExit
     AVRoutePickerViewDelegate:
         methods:
             '-routePickerViewWillBeginPresentingRoutes:':
                 name: willBeginPresentingRoutes
             '-routePickerViewDidEndPresentingRoutes:':
                 name: didEndPresentingRoutes
-
+    AVPictureInPictureSampleBufferPlaybackDelegate: #since 15.0
+        methods:
+            '-pictureInPictureController:setPlaying:':
+                name: setPlaying
+            '-pictureInPictureController:didTransitionToRenderSize:':
+                name: didTransitionToRenderSize
+            '-pictureInPictureController:skipByInterval:completionHandler:':
+                name: skipByInterval
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (k?AV.*):

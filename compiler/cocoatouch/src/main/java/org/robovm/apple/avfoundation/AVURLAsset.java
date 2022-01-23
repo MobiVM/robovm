@@ -70,6 +70,11 @@ import org.robovm.apple.audiotoolbox.*;
     @Property(selector = "assetCache")
     public native AVAssetCache getAssetCache();
     /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "variants")
+    public native NSArray<AVAssetVariant> getVariants();
+    /**
      * @since Available in iOS 10.3 and later.
      */
     @Property(selector = "mayRequireContentKeysForMediaDataProcessing")
@@ -93,6 +98,11 @@ import org.robovm.apple.audiotoolbox.*;
     public static native boolean isPlayableExtendedMIMEType(String extendedMIMEType);
     @Method(selector = "compatibleTrackForCompositionTrack:")
     public native AVAssetTrack getCompatibleTrack(AVCompositionTrack compositionTrack);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "findCompatibleTrackForCompositionTrack:completionHandler:")
+    public native void findCompatibleTrackForCompositionTrack(AVCompositionTrack compositionTrack, @Block VoidBlock2<AVAssetTrack, NSError> completionHandler);
     public static AVURLAsset createProviderDataObject(NSData data, String typeIdentifier) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        AVURLAsset result = createProviderDataObject(data, typeIdentifier, ptr);

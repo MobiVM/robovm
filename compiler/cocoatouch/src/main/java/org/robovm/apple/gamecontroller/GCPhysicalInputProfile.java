@@ -63,6 +63,11 @@ import org.robovm.apple.corehaptic.*;
     @Property(selector = "lastEventTimestamp")
     public native double getLastEventTimestamp();
     /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "hasRemappedElements")
+    public native boolean hasRemappedElements();
+    /**
      * @since Available in iOS 14.0 and later.
      */
     @Property(selector = "elements")
@@ -85,6 +90,11 @@ import org.robovm.apple.corehaptic.*;
     /**
      * @since Available in iOS 14.0 and later.
      */
+    @Property(selector = "touchpads")
+    public native NSDictionary<NSString, GCControllerTouchpad> getTouchpads();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
     @Property(selector = "allElements")
     public native NSSet<GCControllerElement> getAllElements();
     /**
@@ -102,6 +112,11 @@ import org.robovm.apple.corehaptic.*;
      */
     @Property(selector = "allDpads")
     public native NSSet<GCControllerDirectionPad> getAllDpads();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "allTouchpads")
+    public native NSSet<GCControllerTouchpad> getAllTouchpads();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -190,15 +205,50 @@ import org.robovm.apple.corehaptic.*;
         @GlobalValue(symbol="GCInputButtonOptions", optional=true)
         public static native String ButtonOptions();
         /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="GCInputButtonShare", optional=true)
+        public static native String ButtonShare();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="GCInputMicroGamepadDpad", optional=true)
+        public static native String MicroGamepadDpad();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="GCInputMicroGamepadButtonA", optional=true)
+        public static native String MicroGamepadButtonA();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="GCInputMicroGamepadButtonX", optional=true)
+        public static native String MicroGamepadButtonX();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="GCInputMicroGamepadButtonMenu", optional=true)
+        public static native String MicroGamepadButtonMenu();
+        /**
          * @since Available in iOS 14.5 and later.
          */
         @GlobalValue(symbol="GCInputDirectionalDpad", optional=true)
         public static native String DirectionalDpad();
         /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="GCInputDirectionalTouchSurfaceButton", optional=true)
+        public static native String DirectionalTouchSurfaceButton();
+        /**
          * @since Available in iOS 14.5 and later.
          */
         @GlobalValue(symbol="GCInputDirectionalCardinalDpad", optional=true)
         public static native String DirectionalCardinalDpad();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="GCInputDirectionalCenterButton", optional=true)
+        public static native String DirectionalCenterButton();
     }
 
     @Library("GameController")
@@ -263,5 +313,15 @@ import org.robovm.apple.corehaptic.*;
      */
     @Method(selector = "setStateFromPhysicalInput:")
     public native void setStateFromPhysicalInput(GCPhysicalInputProfile physicalInput);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "mappedElementAliasForPhysicalInputName:")
+    public native String mappedElementAliasForPhysicalInputName(String inputName);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "mappedPhysicalInputNamesForElementAlias:")
+    public native NSSet<NSString> mappedPhysicalInputNamesForElementAlias(String elementAlias);
     /*</methods>*/
 }

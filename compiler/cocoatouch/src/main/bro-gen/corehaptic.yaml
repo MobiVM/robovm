@@ -159,6 +159,12 @@ functions:
         name: 'Function__#{g[0]}'
 
 values:
+    CHHapticAudioResourceKey(.*):
+        readonly: true
+        class: CHHapticEngine
+        static_class: AudioResourceKeys
+        name: '#{g[0]}'
+
     # Make sure we don't miss any values if new ones are introduced in a later version
     (k?CH.*):
         class: !!!FixMe

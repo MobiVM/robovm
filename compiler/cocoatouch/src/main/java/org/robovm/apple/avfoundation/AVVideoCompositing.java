@@ -69,6 +69,11 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "supportsHDRSourceFrames")
     boolean supportsHDRSourceFrames();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "canConformColorOfSourceFrames")
+    boolean canConformColorOfSourceFrames();
     /*</properties>*/
     /*<methods>*/
     @Method(selector = "renderContextChanged:")

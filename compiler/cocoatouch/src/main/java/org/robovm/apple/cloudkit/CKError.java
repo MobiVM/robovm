@@ -112,5 +112,10 @@ import org.robovm.apple.fileprovider.*;
     /*<methods>*/
     @GlobalValue(symbol="CKErrorDomain", optional=true)
     public static native String getClassDomain();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @GlobalValue(symbol="CKErrorUserDidResetEncryptedDataKey", optional=true)
+    public static native String getUserDidResetEncryptedDataKey();
     /*</methods>*/
 }

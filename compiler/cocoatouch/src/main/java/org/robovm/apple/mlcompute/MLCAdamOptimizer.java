@@ -51,6 +51,10 @@ import org.robovm.apple.metalps.*;
     protected MLCAdamOptimizer(SkipInit skipInit) { super(skipInit); }
     public MLCAdamOptimizer(MLCOptimizerDescriptor optimizerDescriptor) { super((Handle) null, create(optimizerDescriptor)); retain(getHandle()); }
     public MLCAdamOptimizer(MLCOptimizerDescriptor optimizerDescriptor, float beta1, float beta2, float epsilon, @MachineSizedUInt long timeStep) { super((Handle) null, create(optimizerDescriptor, beta1, beta2, epsilon, timeStep)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    public MLCAdamOptimizer(MLCOptimizerDescriptor optimizerDescriptor, float beta1, float beta2, float epsilon, boolean usesAMSGrad, @MachineSizedUInt long timeStep) { super((Handle) null, create(optimizerDescriptor, beta1, beta2, epsilon, usesAMSGrad, timeStep)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "beta1")
@@ -59,6 +63,8 @@ import org.robovm.apple.metalps.*;
     public native float getBeta2();
     @Property(selector = "epsilon")
     public native float getEpsilon();
+    @Property(selector = "usesAMSGrad")
+    public native boolean usesAMSGrad();
     @Property(selector = "timeStep")
     public native @MachineSizedUInt long getTimeStep();
     /*</properties>*/
@@ -68,5 +74,10 @@ import org.robovm.apple.metalps.*;
     protected static native @Pointer long create(MLCOptimizerDescriptor optimizerDescriptor);
     @Method(selector = "optimizerWithDescriptor:beta1:beta2:epsilon:timeStep:")
     protected static native @Pointer long create(MLCOptimizerDescriptor optimizerDescriptor, float beta1, float beta2, float epsilon, @MachineSizedUInt long timeStep);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "optimizerWithDescriptor:beta1:beta2:epsilon:usesAMSGrad:timeStep:")
+    protected static native @Pointer long create(MLCOptimizerDescriptor optimizerDescriptor, float beta1, float beta2, float epsilon, boolean usesAMSGrad, @MachineSizedUInt long timeStep);
     /*</methods>*/
 }

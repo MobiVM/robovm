@@ -56,7 +56,7 @@ import org.robovm.apple.coreanimation.*;
     protected SKLightNode(Handle h, long handle) { super(h, handle); }
     protected SKLightNode(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public SKLightNode(NSCoder decoder) { super(decoder); }
+    public SKLightNode(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "isEnabled")

@@ -57,7 +57,7 @@ import org.robovm.apple.coreanimation.*;
     protected SKNode(Handle h, long handle) { super(h, handle); }
     protected SKNode(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public SKNode(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public SKNode(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     public SKNode(String filename) { super((Handle) null, create(filename)); retain(getHandle()); }
     /**
      * @since Available in iOS 12.0 and later.
@@ -171,6 +171,21 @@ import org.robovm.apple.coreanimation.*;
     public static native boolean supportsSecureCoding();
     @Property(selector = "canBecomeFocused")
     public native boolean canBecomeFocused();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "focusEffect")
+    public native UIFocusEffect getFocusEffect();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "focusGroupPriority")
+    public native @MachineSizedSInt long getFocusGroupPriority();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "isTransparentFocusItem")
+    public native boolean isTransparentFocusItem();
     @Property(selector = "preferredFocusEnvironments")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsListMarshaler.class) List<UIFocusEnvironment> getPreferredFocusEnvironments();
     /**
@@ -199,7 +214,7 @@ import org.robovm.apple.coreanimation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     @Method(selector = "calculateAccumulatedFrame")
     public native @ByVal CGRect calculateAccumulatedFrame();
     /**

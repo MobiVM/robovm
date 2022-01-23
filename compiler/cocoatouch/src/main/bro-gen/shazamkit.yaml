@@ -1,0 +1,96 @@
+package: org.robovm.apple.shazamkit
+include: [foundation, avfoundation]
+library: ShazamKit
+framework: ShazamKit
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/ShazamKit.framework/Headers/ShazamKit.h
+
+typedefs:
+    
+enums:
+    SHErrorCode: {nserror: true}
+
+typed_enums:
+    SHMediaItemProperty:
+        enum: SHMediaItemProperty
+        prefix: SHMediaItem
+        type: NSString
+
+categories:
+
+classes:
+    SHCatalog: {} #since 15.0
+    SHCustomCatalog: #since 15.0
+        methods:
+            '-addReferenceSignature:representingMediaItems:error:':
+                name: addReferenceSignature
+                throws: NSErrorException
+            '-addCustomCatalogFromURL:error:':
+                name: addCustomCatalogFromURL
+                throws: NSErrorException
+            '-writeToURL:error:':
+                name: writeToURL
+                throws: NSErrorException
+            '+new':
+                exclude: true
+    SHMatch: {} #since 15.0
+    SHMatchedMediaItem: {} #since 15.0
+    SHMediaItem: #since 15.0
+        methods:
+            '+mediaItemWithProperties:':
+                name: create
+                constructor: true
+            '+fetchMediaItemWithShazamID:completionHandler:':
+                name: fetchMediaItem
+    SHMediaLibrary: #since 15.0
+        methods:
+            '-addMediaItems:completionHandler:':
+                name: addMediaItems
+    SHSession: #since 15.0
+        methods:
+            '-initWithCatalog:':
+                name: init
+            '-matchStreamingBuffer:atTime:':
+                name: matchStreamingBuffer
+    SHSignature: #since 15.0
+        methods:
+            '-initWithDataRepresentation:error:':
+                name: init
+            '+signatureWithDataRepresentation:error:':
+                exclude: true
+    SHSignatureGenerator: #since 15.0
+        methods:
+            '-appendBuffer:atTime:error:':
+                name: appendBuffer
+                throws: NSErrorException
+
+protocols:
+    SHSessionDelegate: #since 15.0
+        methods:
+            '-session:didFindMatch:':
+                name: didFindMatch
+            '-session:didNotFindMatchForSignature:error:':
+                name: didNotFindMatchForSignature
+functions:
+
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (k?SH.*):
+        class: FIXME
+        name: 'Function__#{g[0]}'
+
+values:
+    SHErrorDomain:
+        class: SHErrorCode
+        name: getClassDomain
+
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (k?SH.*):
+        class: FIXME
+        name: 'Value__#{g[0]}'
+
+constants:
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (k?SH.*):
+        class: FIXME
+        name: 'Constant__#{g[0]}'

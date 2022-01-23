@@ -59,7 +59,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithDevice:")
     public MPSImageNormalizedHistogram(MTLDevice device) { super(device); }
     @Method(selector = "initWithCoder:")
-    public MPSImageNormalizedHistogram(NSCoder decoder) { super(decoder); }
+    public MPSImageNormalizedHistogram(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "clipRectSource")

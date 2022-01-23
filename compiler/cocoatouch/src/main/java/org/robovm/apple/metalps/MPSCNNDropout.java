@@ -54,7 +54,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithDevice:keepProbability:seed:maskStrideInPixels:")
     public MPSCNNDropout(MTLDevice device, float keepProbability, @MachineSizedUInt long seed, @ByVal MTLSize maskStrideInPixels) { super((SkipInit) null); initObject(init(device, keepProbability, seed, maskStrideInPixels)); }
     @Method(selector = "initWithCoder:")
-    public MPSCNNDropout(NSCoder decoder) { super(decoder); }
+    public MPSCNNDropout(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "keepProbability")

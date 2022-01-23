@@ -36,9 +36,10 @@ import org.robovm.apple.coregraphics.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 11.0 and later.
+ * @deprecated Deprecated in iOS 15.0. INTransferMoneyIntentResponse is deprecated. There is no replacement.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Intents") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("Intents") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/INTransferMoneyIntentResponse/*</name>*/ 
     extends /*<extends>*/INIntentResponse/*</extends>*/ 
     /*<implements>*//*</implements>*/ {

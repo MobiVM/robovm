@@ -94,6 +94,17 @@ import org.robovm.apple.avfoundation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    @Library("CoreHaptics")
+    public static class AudioResourceKeys {
+        static { Bro.bind(AudioResourceKeys.class); }
+
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="CHHapticAudioResourceKeyUseVolumeEnvelope", optional=true)
+        public static native String UseVolumeEnvelope();
+    }
+    
     @Method(selector = "initAndReturnError:")
     private native @Pointer long init(NSError.NSErrorPtr error);
     @Method(selector = "initWithAudioSession:error:")

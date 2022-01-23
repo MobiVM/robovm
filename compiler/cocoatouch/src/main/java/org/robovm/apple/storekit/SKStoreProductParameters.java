@@ -206,6 +206,11 @@ import org.robovm.apple.coregraphics.*;
          */
         @GlobalValue(symbol="SKStoreProductParameterProductIdentifier", optional=true)
         public static native NSString ProductIdentifier();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="SKStoreProductParameterCustomProductPageIdentifier", optional=true)
+        public static native NSString CustomProductPageIdentifier();
         @GlobalValue(symbol="SKStoreProductParameterAffiliateToken", optional=true)
         public static native NSString AffiliateToken();
         @GlobalValue(symbol="SKStoreProductParameterCampaignToken", optional=true)

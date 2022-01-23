@@ -73,6 +73,11 @@ import org.robovm.apple.coreanimation.*;
     @Method(selector = "paymentAuthorizationController:didRequestMerchantSessionUpdate:")
     void didRequestMerchantSessionUpdate(PKPaymentAuthorizationController controller, @Block VoidBlock1<PKPaymentRequestMerchantSessionUpdate> handler);
     /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "paymentAuthorizationController:didChangeCouponCode:handler:")
+    void didChangeCouponCode(PKPaymentAuthorizationController controller, String couponCode, @Block VoidBlock1<PKPaymentRequestCouponCodeUpdate> completion);
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "paymentAuthorizationController:didSelectShippingMethod:handler:")

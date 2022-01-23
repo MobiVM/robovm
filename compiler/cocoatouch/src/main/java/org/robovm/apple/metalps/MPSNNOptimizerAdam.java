@@ -54,7 +54,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithDevice:beta1:beta2:epsilon:timeStep:optimizerDescriptor:")
     public MPSNNOptimizerAdam(MTLDevice device, double beta1, double beta2, float epsilon, @MachineSizedUInt long timeStep, MPSNNOptimizerDescriptor optimizerDescriptor) { super((SkipInit) null); initObject(init(device, beta1, beta2, epsilon, timeStep, optimizerDescriptor)); }
     @Method(selector = "initWithCoder:")
-    public MPSNNOptimizerAdam(NSCoder decoder) { super(decoder); }
+    public MPSNNOptimizerAdam(NSCoder coder) { super(coder); }
     /**
      * @since Available in iOS 11.0 and later.
      */

@@ -1367,6 +1367,8 @@ constants:
         exclude: true
     CMITEMCOUNT_MAX:
         exclude: true
+    CMTIMEBASE_USE_SOURCE_TERMINOLOGY:
+        exclude: true
 
     # Make sure we don't miss any constants if new ones are introduced in a later version
     (k?CM.*):

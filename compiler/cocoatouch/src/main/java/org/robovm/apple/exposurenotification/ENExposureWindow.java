@@ -60,6 +60,11 @@ import org.robovm.apple.dispatch.*;
     public native ENInfectiousness getInfectiousness();
     @Property(selector = "scanInstances")
     public native NSArray<ENScanInstance> getScanInstances();
+    /**
+     * @since Available in iOS 15.2 and later.
+     */
+    @Property(selector = "variantOfConcernType")
+    public native ENVariantOfConcernType getVariantOfConcernType();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

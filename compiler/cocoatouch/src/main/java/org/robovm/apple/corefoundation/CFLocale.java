@@ -43,7 +43,7 @@ import org.robovm.apple.coretext.*;
     /*<implements>*//*</implements>*/ {
 
     public static class Notifications {
-        public static NSObject observeCurrentLocaleDidChange(final Runnable block) {
+        public static NSObjectProtocol observeCurrentLocaleDidChange(final Runnable block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(CurrentLocaleDidChangeNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {

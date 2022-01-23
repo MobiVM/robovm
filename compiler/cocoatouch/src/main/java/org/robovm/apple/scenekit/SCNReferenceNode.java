@@ -59,7 +59,7 @@ import org.robovm.apple.avfoundation.*;
     @Method(selector = "initWithURL:")
     public SCNReferenceNode(NSURL referenceURL) { super((SkipInit) null); initObject(init(referenceURL)); }
     @Method(selector = "initWithCoder:")
-    public SCNReferenceNode(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public SCNReferenceNode(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "referenceURL")
@@ -80,7 +80,7 @@ import org.robovm.apple.avfoundation.*;
     @Method(selector = "initWithURL:")
     protected native @Pointer long init(NSURL referenceURL);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     @Method(selector = "load")
     public native void load();
     @Method(selector = "unload")

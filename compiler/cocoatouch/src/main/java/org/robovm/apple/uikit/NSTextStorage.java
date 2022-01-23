@@ -53,7 +53,7 @@ import org.robovm.apple.linkpresentation.*;
         /**
          * @since Available in iOS 7.0 and later.
          */
-        public static NSObject observeWillProcessEditing(NSTextStorage object, final VoidBlock1<NSTextStorage> block) {
+        public static NSObjectProtocol observeWillProcessEditing(NSTextStorage object, final VoidBlock1<NSTextStorage> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(WillProcessEditingNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -64,7 +64,7 @@ import org.robovm.apple.linkpresentation.*;
         /**
          * @since Available in iOS 7.0 and later.
          */
-        public static NSObject observeDidProcessEditing(NSTextStorage object, final VoidBlock1<NSTextStorage> block) {
+        public static NSObjectProtocol observeDidProcessEditing(NSTextStorage object, final VoidBlock1<NSTextStorage> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(DidProcessEditingNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -96,6 +96,16 @@ import org.robovm.apple.linkpresentation.*;
     public native void setDelegate(NSTextStorageDelegate v);
     @Property(selector = "fixesAttributesLazily")
     public native boolean fixesAttributesLazily();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "textStorageObserver")
+    public native NSTextStorageObserving getTextStorageObserver();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setTextStorageObserver:", strongRef = true)
+    public native void setTextStorageObserver(NSTextStorageObserving v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

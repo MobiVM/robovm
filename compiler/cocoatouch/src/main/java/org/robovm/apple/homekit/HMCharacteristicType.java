@@ -89,22 +89,6 @@ import org.robovm.apple.corelocation.*;
 
     /*<constants>*/
     public static final HMCharacteristicType TargetRelativeHumidity = new HMCharacteristicType("TargetRelativeHumidity");
-    /**
-     * @deprecated Deprecated in iOS 11.0. Use -[HMAccessory manufacturer] instead
-     */
-    @Deprecated
-    public static final HMCharacteristicType Manufacturer = new HMCharacteristicType("Manufacturer");
-    /**
-     * @deprecated Deprecated in iOS 11.0. Use -[HMAccessory model] instead
-     */
-    @Deprecated
-    public static final HMCharacteristicType Model = new HMCharacteristicType("Model");
-    /**
-     * @deprecated Deprecated in iOS 11.0. No longer supported
-     */
-    @Deprecated
-    public static final HMCharacteristicType SerialNumber = new HMCharacteristicType("SerialNumber");
-    public static final HMCharacteristicType Identify = new HMCharacteristicType("Identify");
     public static final HMCharacteristicType OutletInUse = new HMCharacteristicType("OutletInUse");
     public static final HMCharacteristicType Logs = new HMCharacteristicType("Logs");
     public static final HMCharacteristicType AudioFeedback = new HMCharacteristicType("AudioFeedback");
@@ -174,15 +158,6 @@ import org.robovm.apple.corelocation.*;
      */
     public static final HMCharacteristicType CurrentVerticalTilt = new HMCharacteristicType("CurrentVerticalTilt");
     /**
-     * @deprecated Deprecated in iOS 11.0. Use -[HMAccessory firmwareVersion] instead
-     */
-    @Deprecated
-    public static final HMCharacteristicType FirmwareVersion = new HMCharacteristicType("FirmwareVersion");
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
-    public static final HMCharacteristicType HardwareVersion = new HMCharacteristicType("HardwareVersion");
-    /**
      * @since Available in iOS 9.0 and later.
      */
     public static final HMCharacteristicType HoldPosition = new HMCharacteristicType("HoldPosition");
@@ -202,10 +177,6 @@ import org.robovm.apple.corelocation.*;
      * @since Available in iOS 9.0 and later.
      */
     public static final HMCharacteristicType PositionState = new HMCharacteristicType("PositionState");
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
-    public static final HMCharacteristicType SoftwareVersion = new HMCharacteristicType("SoftwareVersion");
     /**
      * @since Available in iOS 9.0 and later.
      */
@@ -370,19 +341,45 @@ import org.robovm.apple.corelocation.*;
     public static final HMCharacteristicType CurrentTemperature = new HMCharacteristicType("CurrentTemperature");
     public static final HMCharacteristicType HeatingThreshold = new HMCharacteristicType("HeatingThreshold");
     public static final HMCharacteristicType Hue = new HMCharacteristicType("Hue");
+    public static final HMCharacteristicType Identify = new HMCharacteristicType("Identify");
     public static final HMCharacteristicType CurrentLockMechanismState = new HMCharacteristicType("CurrentLockMechanismState");
     public static final HMCharacteristicType TargetLockMechanismState = new HMCharacteristicType("TargetLockMechanismState");
+    /**
+     * @deprecated Deprecated in iOS 11.0. Use -[HMAccessory manufacturer] instead
+     */
+    @Deprecated
+    public static final HMCharacteristicType Manufacturer = new HMCharacteristicType("Manufacturer");
+    /**
+     * @deprecated Deprecated in iOS 11.0. Use -[HMAccessory model] instead
+     */
+    @Deprecated
+    public static final HMCharacteristicType Model = new HMCharacteristicType("Model");
     public static final HMCharacteristicType Name = new HMCharacteristicType("Name");
     public static final HMCharacteristicType ObstructionDetected = new HMCharacteristicType("ObstructionDetected");
     public static final HMCharacteristicType PowerState = new HMCharacteristicType("PowerState");
     public static final HMCharacteristicType RotationDirection = new HMCharacteristicType("RotationDirection");
     public static final HMCharacteristicType RotationSpeed = new HMCharacteristicType("RotationSpeed");
     public static final HMCharacteristicType Saturation = new HMCharacteristicType("Saturation");
+    /**
+     * @deprecated Deprecated in iOS 11.0. No longer supported
+     */
+    @Deprecated
+    public static final HMCharacteristicType SerialNumber = new HMCharacteristicType("SerialNumber");
     public static final HMCharacteristicType TargetDoorState = new HMCharacteristicType("TargetDoorState");
     public static final HMCharacteristicType TargetHeatingCooling = new HMCharacteristicType("TargetHeatingCooling");
     public static final HMCharacteristicType TargetTemperature = new HMCharacteristicType("TargetTemperature");
     public static final HMCharacteristicType TemperatureUnits = new HMCharacteristicType("TemperatureUnits");
     public static final HMCharacteristicType Version = new HMCharacteristicType("Version");
+    /**
+     * @deprecated Deprecated in iOS 11.0. Use -[HMAccessory firmwareVersion] instead
+     */
+    @Deprecated
+    public static final HMCharacteristicType FirmwareVersion = new HMCharacteristicType("FirmwareVersion");
+    public static final HMCharacteristicType HardwareVersion = new HMCharacteristicType("HardwareVersion");
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    public static final HMCharacteristicType SoftwareVersion = new HMCharacteristicType("SoftwareVersion");
     /**
      * @since Available in iOS 9.0 and later.
      */
@@ -481,7 +478,7 @@ import org.robovm.apple.corelocation.*;
     public static final HMCharacteristicType NightVision = new HMCharacteristicType("NightVision");
     /*</constants>*/
     
-    private static /*<name>*/HMCharacteristicType/*</name>*/[] values = new /*<name>*/HMCharacteristicType/*</name>*/[] {/*<value_list>*/TargetRelativeHumidity, Manufacturer, Model, SerialNumber, Identify, OutletInUse, Logs, AudioFeedback, AdminOnlyAccess, SecuritySystemAlarmType, MotionDetected, LockMechanismLastKnownAction, LockManagementControlPoint, LockManagementAutoSecureTimeout, AirParticulateDensity, AirParticulateSize, AirQuality, CarbonDioxideDetected, CarbonDioxideLevel, CarbonDioxidePeakLevel, CarbonMonoxideDetected, CarbonMonoxideLevel, CarbonMonoxidePeakLevel, ContactState, CurrentHorizontalTilt, CurrentPosition, CurrentSecuritySystemState, CurrentVerticalTilt, FirmwareVersion, HardwareVersion, HoldPosition, LeakDetected, OccupancyDetected, OutputState, PositionState, SoftwareVersion, StatusActive, StatusFault, StatusJammed, StatusTampered, TargetHorizontalTilt, TargetSecuritySystemState, TargetPosition, TargetVerticalTilt, StreamingStatus, SetupStreamEndpoint, SupportedVideoStreamConfiguration, SupportedRTPConfiguration, SelectedStreamConfiguration, OpticalZoom, DigitalZoom, ImageRotation, ImageMirroring, LabelNamespace, LabelIndex, CurrentAirPurifierState, TargetAirPurifierState, CurrentSlatState, FilterChangeIndication, FilterLifeLevel, FilterResetChangeIndication, SlatType, CurrentTilt, TargetTilt, OzoneDensity, NitrogenDioxideDensity, SulphurDioxideDensity, PM2_5Density, PM10Density, VolatileOrganicCompoundDensity, ProgramMode, InUse, SetDuration, RemainingDuration, ValveType, Brightness, CoolingThreshold, CurrentDoorState, CurrentHeatingCooling, CurrentRelativeHumidity, CurrentTemperature, HeatingThreshold, Hue, CurrentLockMechanismState, TargetLockMechanismState, Name, ObstructionDetected, PowerState, RotationDirection, RotationSpeed, Saturation, TargetDoorState, TargetHeatingCooling, TargetTemperature, TemperatureUnits, Version, BatteryLevel, CurrentLightLevel, InputEvent, SmokeDetected, StatusLowBattery, ChargingState, LockPhysicalControls, CurrentFanState, Active, CurrentHeaterCoolerState, TargetHeaterCoolerState, CurrentHumidifierDehumidifierState, TargetHumidifierDehumidifierState, WaterLevel, SwingMode, TargetFanState, DehumidifierThreshold, HumidifierThreshold, ColorTemperature, IsConfigured, SupportedAudioStreamConfiguration, Volume, Mute, NightVision/*</value_list>*/};
+    private static /*<name>*/HMCharacteristicType/*</name>*/[] values = new /*<name>*/HMCharacteristicType/*</name>*/[] {/*<value_list>*/TargetRelativeHumidity, OutletInUse, Logs, AudioFeedback, AdminOnlyAccess, SecuritySystemAlarmType, MotionDetected, LockMechanismLastKnownAction, LockManagementControlPoint, LockManagementAutoSecureTimeout, AirParticulateDensity, AirParticulateSize, AirQuality, CarbonDioxideDetected, CarbonDioxideLevel, CarbonDioxidePeakLevel, CarbonMonoxideDetected, CarbonMonoxideLevel, CarbonMonoxidePeakLevel, ContactState, CurrentHorizontalTilt, CurrentPosition, CurrentSecuritySystemState, CurrentVerticalTilt, HoldPosition, LeakDetected, OccupancyDetected, OutputState, PositionState, StatusActive, StatusFault, StatusJammed, StatusTampered, TargetHorizontalTilt, TargetSecuritySystemState, TargetPosition, TargetVerticalTilt, StreamingStatus, SetupStreamEndpoint, SupportedVideoStreamConfiguration, SupportedRTPConfiguration, SelectedStreamConfiguration, OpticalZoom, DigitalZoom, ImageRotation, ImageMirroring, LabelNamespace, LabelIndex, CurrentAirPurifierState, TargetAirPurifierState, CurrentSlatState, FilterChangeIndication, FilterLifeLevel, FilterResetChangeIndication, SlatType, CurrentTilt, TargetTilt, OzoneDensity, NitrogenDioxideDensity, SulphurDioxideDensity, PM2_5Density, PM10Density, VolatileOrganicCompoundDensity, ProgramMode, InUse, SetDuration, RemainingDuration, ValveType, Brightness, CoolingThreshold, CurrentDoorState, CurrentHeatingCooling, CurrentRelativeHumidity, CurrentTemperature, HeatingThreshold, Hue, Identify, CurrentLockMechanismState, TargetLockMechanismState, Manufacturer, Model, Name, ObstructionDetected, PowerState, RotationDirection, RotationSpeed, Saturation, SerialNumber, TargetDoorState, TargetHeatingCooling, TargetTemperature, TemperatureUnits, Version, FirmwareVersion, HardwareVersion, SoftwareVersion, BatteryLevel, CurrentLightLevel, InputEvent, SmokeDetected, StatusLowBattery, ChargingState, LockPhysicalControls, CurrentFanState, Active, CurrentHeaterCoolerState, TargetHeaterCoolerState, CurrentHumidifierDehumidifierState, TargetHumidifierDehumidifierState, WaterLevel, SwingMode, TargetFanState, DehumidifierThreshold, HumidifierThreshold, ColorTemperature, IsConfigured, SupportedAudioStreamConfiguration, Volume, Mute, NightVision/*</value_list>*/};
     
     /*<name>*/HMCharacteristicType/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -506,26 +503,6 @@ import org.robovm.apple.corelocation.*;
         /*<values>*/
         @GlobalValue(symbol="HMCharacteristicTypeTargetRelativeHumidity", optional=true)
         public static native NSString TargetRelativeHumidity();
-        /**
-         * @deprecated Deprecated in iOS 11.0. Use -[HMAccessory manufacturer] instead
-         */
-        @Deprecated
-        @GlobalValue(symbol="HMCharacteristicTypeManufacturer", optional=true)
-        public static native NSString Manufacturer();
-        /**
-         * @deprecated Deprecated in iOS 11.0. Use -[HMAccessory model] instead
-         */
-        @Deprecated
-        @GlobalValue(symbol="HMCharacteristicTypeModel", optional=true)
-        public static native NSString Model();
-        /**
-         * @deprecated Deprecated in iOS 11.0. No longer supported
-         */
-        @Deprecated
-        @GlobalValue(symbol="HMCharacteristicTypeSerialNumber", optional=true)
-        public static native NSString SerialNumber();
-        @GlobalValue(symbol="HMCharacteristicTypeIdentify", optional=true)
-        public static native NSString Identify();
         @GlobalValue(symbol="HMCharacteristicTypeOutletInUse", optional=true)
         public static native NSString OutletInUse();
         @GlobalValue(symbol="HMCharacteristicTypeLogs", optional=true)
@@ -618,17 +595,6 @@ import org.robovm.apple.corelocation.*;
         @GlobalValue(symbol="HMCharacteristicTypeCurrentVerticalTilt", optional=true)
         public static native NSString CurrentVerticalTilt();
         /**
-         * @deprecated Deprecated in iOS 11.0. Use -[HMAccessory firmwareVersion] instead
-         */
-        @Deprecated
-        @GlobalValue(symbol="HMCharacteristicTypeFirmwareVersion", optional=true)
-        public static native NSString FirmwareVersion();
-        /**
-         * @since Available in iOS 9.0 and later.
-         */
-        @GlobalValue(symbol="HMCharacteristicTypeHardwareVersion", optional=true)
-        public static native NSString HardwareVersion();
-        /**
          * @since Available in iOS 9.0 and later.
          */
         @GlobalValue(symbol="HMCharacteristicTypeHoldPosition", optional=true)
@@ -653,11 +619,6 @@ import org.robovm.apple.corelocation.*;
          */
         @GlobalValue(symbol="HMCharacteristicTypePositionState", optional=true)
         public static native NSString PositionState();
-        /**
-         * @since Available in iOS 9.0 and later.
-         */
-        @GlobalValue(symbol="HMCharacteristicTypeSoftwareVersion", optional=true)
-        public static native NSString SoftwareVersion();
         /**
          * @since Available in iOS 9.0 and later.
          */
@@ -869,10 +830,24 @@ import org.robovm.apple.corelocation.*;
         public static native NSString HeatingThreshold();
         @GlobalValue(symbol="HMCharacteristicTypeHue", optional=true)
         public static native NSString Hue();
+        @GlobalValue(symbol="HMCharacteristicTypeIdentify", optional=true)
+        public static native NSString Identify();
         @GlobalValue(symbol="HMCharacteristicTypeCurrentLockMechanismState", optional=true)
         public static native NSString CurrentLockMechanismState();
         @GlobalValue(symbol="HMCharacteristicTypeTargetLockMechanismState", optional=true)
         public static native NSString TargetLockMechanismState();
+        /**
+         * @deprecated Deprecated in iOS 11.0. Use -[HMAccessory manufacturer] instead
+         */
+        @Deprecated
+        @GlobalValue(symbol="HMCharacteristicTypeManufacturer", optional=true)
+        public static native NSString Manufacturer();
+        /**
+         * @deprecated Deprecated in iOS 11.0. Use -[HMAccessory model] instead
+         */
+        @Deprecated
+        @GlobalValue(symbol="HMCharacteristicTypeModel", optional=true)
+        public static native NSString Model();
         @GlobalValue(symbol="HMCharacteristicTypeName", optional=true)
         public static native NSString Name();
         @GlobalValue(symbol="HMCharacteristicTypeObstructionDetected", optional=true)
@@ -885,6 +860,12 @@ import org.robovm.apple.corelocation.*;
         public static native NSString RotationSpeed();
         @GlobalValue(symbol="HMCharacteristicTypeSaturation", optional=true)
         public static native NSString Saturation();
+        /**
+         * @deprecated Deprecated in iOS 11.0. No longer supported
+         */
+        @Deprecated
+        @GlobalValue(symbol="HMCharacteristicTypeSerialNumber", optional=true)
+        public static native NSString SerialNumber();
         @GlobalValue(symbol="HMCharacteristicTypeTargetDoorState", optional=true)
         public static native NSString TargetDoorState();
         @GlobalValue(symbol="HMCharacteristicTypeTargetHeatingCooling", optional=true)
@@ -895,6 +876,19 @@ import org.robovm.apple.corelocation.*;
         public static native NSString TemperatureUnits();
         @GlobalValue(symbol="HMCharacteristicTypeVersion", optional=true)
         public static native NSString Version();
+        /**
+         * @deprecated Deprecated in iOS 11.0. Use -[HMAccessory firmwareVersion] instead
+         */
+        @Deprecated
+        @GlobalValue(symbol="HMCharacteristicTypeFirmwareVersion", optional=true)
+        public static native NSString FirmwareVersion();
+        @GlobalValue(symbol="HMCharacteristicTypeHardwareVersion", optional=true)
+        public static native NSString HardwareVersion();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="HMCharacteristicTypeSoftwareVersion", optional=true)
+        public static native NSString SoftwareVersion();
         /**
          * @since Available in iOS 9.0 and later.
          */

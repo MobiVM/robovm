@@ -36,9 +36,10 @@ import org.robovm.apple.coregraphics.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 10.0 and later.
+ * @deprecated Deprecated in iOS 15.0. INSetAudioSourceInCarIntentHandling is deprecated. There is no replacement.
  */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
+/*<annotations>*/@Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ interface /*<name>*/INSetAudioSourceInCarIntentHandling/*</name>*/ 
     /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
 

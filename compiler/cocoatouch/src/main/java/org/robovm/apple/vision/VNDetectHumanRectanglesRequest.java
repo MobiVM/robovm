@@ -51,6 +51,7 @@ import org.robovm.apple.imageio.*;
     /*<bind>*/static { ObjCRuntime.bind(VNDetectHumanRectanglesRequest.class); }/*</bind>*/
     /*<constants>*/
     public static final int Revision1 = 1;
+    public static final int Revision2 = 2;
     /*</constants>*/
     /*<constructors>*/
     public VNDetectHumanRectanglesRequest() {}
@@ -60,6 +61,18 @@ import org.robovm.apple.imageio.*;
     public VNDetectHumanRectanglesRequest(@Block VoidBlock2<VNRequest, NSError> completionHandler) { super(completionHandler); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "upperBodyOnly")
+    public native boolean isUpperBodyOnly();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setUpperBodyOnly:")
+    public native void setUpperBodyOnly(boolean v);
+    @Property(selector = "results")
+    public native NSArray<VNHumanObservation> getResults();
     /**
      * @since Available in iOS 12.0 and later.
      */

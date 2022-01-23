@@ -15,6 +15,8 @@ enums:
     VNRequestFaceLandmarksConstellation: {}
     VNRequestTextRecognitionLevel: {}
     VNGenerateOpticalFlowRequestComputationAccuracy: {}
+    VNChirality: {}
+    VNGeneratePersonSegmentationRequestQualityLevel: {}
 classes:
     VNBarcodeObservation: {} #since 11.0
     VNClassificationObservation: #since 11.0
@@ -63,6 +65,9 @@ classes:
             '+faceObservationWithRequestRevision:boundingBox:roll:yaw:':
                 name: create
                 constructor: true
+            '+faceObservationWithRequestRevision:boundingBox:roll:yaw:pitch:':
+                name: create
+                constructor: true
     VNHomographicImageRegistrationRequest: {} #since 11.0
     VNHorizonObservation: {} #since 11.0
     VNImageAlignmentObservation: {} #since 11.0
@@ -85,6 +90,9 @@ classes:
                 name: create
                 constructor: true
     VNRequest: #since 11.0
+        properties:
+            'results':
+                type: 'NSArray<? extends VNObservation>'
         methods:
             '-initWithCompletionHandler:':
                 name: init
@@ -354,7 +362,11 @@ classes:
         methods:
             '-initWithTimeInterval:':
                 name: init
-
+    VNDetectDocumentSegmentationRequest: {} #since 15.0
+    VNGeneratePersonSegmentationRequest:  #since 15.0
+        methods:
+            '+new': { exclude: true }
+    VNHumanObservation: {} #since 15.0
 protocols:
     VNFaceObservationAccepting: {} #since 11.0
     VNRequestRevisionProviding: {} #since 12.0
@@ -393,6 +405,19 @@ functions:
     VNElementTypeSize:
         class: VNElementType
         name: getSize
+
+    VNImagePointForNormalizedPointUsingRegionOfInterest:
+        class: VNUtils
+        name: getImagePointForNormalizedPointUsingRegionOfInterest
+    VNNormalizedPointForImagePointUsingRegionOfInterest:
+        class: VNUtils
+        name: getNormalizedPointForImagePointUsingRegionOfInterest
+    VNImageRectForNormalizedRectUsingRegionOfInterest:
+        class: VNUtils
+        name: getImageRectForNormalizedRectUsingRegionOfInterest
+    VNNormalizedRectForImageRectUsingRegionOfInterest:
+        class: VNUtils
+        name: getNormalizedRectForImageRectUsingRegionOfInterest
 
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (VN.*):

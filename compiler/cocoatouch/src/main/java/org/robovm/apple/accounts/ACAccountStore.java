@@ -31,9 +31,11 @@ import org.robovm.apple.foundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @deprecated Deprecated in iOS 15.0. Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead
+ */
 /*</javadoc>*/
-/*<annotations>*/@Library("Accounts") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("Accounts") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/ACAccountStore/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -42,7 +44,7 @@ import org.robovm.apple.foundation.*;
         /**
          * @since Available in iOS 5.0 and later.
          */
-        public NSObject observeDidChange(final Runnable block) {
+        public NSObjectProtocol observeDidChange(final Runnable block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(DidChangeNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {

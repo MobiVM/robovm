@@ -40,7 +40,8 @@ public enum /*<name>*/IOSurfaceComponentType/*</name>*/ implements ValuedEnum {
     Unknown(0L),
     UnsignedInteger(1L),
     SignedInteger(2L),
-    Float(3L);
+    Float(3L),
+    SignedNormalized(4L);
     /*</values>*/
 
     /*<bind>*/

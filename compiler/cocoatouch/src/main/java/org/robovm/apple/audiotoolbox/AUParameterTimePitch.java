@@ -41,7 +41,9 @@ import org.robovm.apple.uikit.*;
 /*<annotations>*//*</annotations>*/
 public enum /*<name>*/AUParameterTimePitch/*</name>*/ implements AUParameterType {
     /*<values>*/
-    Rate(0L);
+    Rate(0L),
+    Pitch(1L),
+    EffectBlend(2L);
     /*</values>*/
 
     /*<bind>*/

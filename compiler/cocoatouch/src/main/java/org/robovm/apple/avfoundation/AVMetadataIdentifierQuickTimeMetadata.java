@@ -171,6 +171,10 @@ import org.robovm.apple.audiotoolbox.*;
      */
     public static final AVMetadataIdentifierQuickTimeMetadata AccessibilityDescription = new AVMetadataIdentifierQuickTimeMetadata("AccessibilityDescription");
     /**
+     * @since Available in iOS 15.0 and later.
+     */
+    public static final AVMetadataIdentifierQuickTimeMetadata IsMontage = new AVMetadataIdentifierQuickTimeMetadata("IsMontage");
+    /**
      * @since Available in iOS 13.0 and later.
      */
     public static final AVMetadataIdentifierQuickTimeMetadata AutoLivePhoto = new AVMetadataIdentifierQuickTimeMetadata("AutoLivePhoto");
@@ -196,7 +200,7 @@ import org.robovm.apple.audiotoolbox.*;
     public static final AVMetadataIdentifierQuickTimeMetadata LocationHorizontalAccuracyInMeters = new AVMetadataIdentifierQuickTimeMetadata("LocationHorizontalAccuracyInMeters");
     /*</constants>*/
     
-    private static /*<name>*/AVMetadataIdentifierQuickTimeMetadata/*</name>*/[] values = new /*<name>*/AVMetadataIdentifierQuickTimeMetadata/*</name>*/[] {/*<value_list>*/Author, Comment, Copyright, CreationDate, Director, DisplayName, Information, Keywords, Producer, Publisher, Album, Artist, Artwork, Description, Software, Year, Genre, iXML, LocationISO6709, Make, Model, Arranger, EncodedBy, OriginalArtist, Performer, Composer, Credits, PhonogramRights, CameraIdentifier, CameraFrameReadoutTime, Title, CollectionUser, RatingUser, LocationName, LocationBody, LocationNote, LocationRole, LocationDate, DirectionFacing, DirectionMotion, PreferredAffineTransform, DetectedFace, DetectedHumanBody, DetectedCatBody, DetectedDogBody, DetectedSalientObject, VideoOrientation, ContentIdentifier, AccessibilityDescription, AutoLivePhoto, LivePhotoVitalityScore, LivePhotoVitalityScoringVersion, SpatialOverCaptureQualityScore, SpatialOverCaptureQualityScoringVersion, LocationHorizontalAccuracyInMeters/*</value_list>*/};
+    private static /*<name>*/AVMetadataIdentifierQuickTimeMetadata/*</name>*/[] values = new /*<name>*/AVMetadataIdentifierQuickTimeMetadata/*</name>*/[] {/*<value_list>*/Author, Comment, Copyright, CreationDate, Director, DisplayName, Information, Keywords, Producer, Publisher, Album, Artist, Artwork, Description, Software, Year, Genre, iXML, LocationISO6709, Make, Model, Arranger, EncodedBy, OriginalArtist, Performer, Composer, Credits, PhonogramRights, CameraIdentifier, CameraFrameReadoutTime, Title, CollectionUser, RatingUser, LocationName, LocationBody, LocationNote, LocationRole, LocationDate, DirectionFacing, DirectionMotion, PreferredAffineTransform, DetectedFace, DetectedHumanBody, DetectedCatBody, DetectedDogBody, DetectedSalientObject, VideoOrientation, ContentIdentifier, AccessibilityDescription, IsMontage, AutoLivePhoto, LivePhotoVitalityScore, LivePhotoVitalityScoringVersion, SpatialOverCaptureQualityScore, SpatialOverCaptureQualityScoringVersion, LocationHorizontalAccuracyInMeters/*</value_list>*/};
     
     /*<name>*/AVMetadataIdentifierQuickTimeMetadata/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -341,6 +345,11 @@ import org.robovm.apple.audiotoolbox.*;
          */
         @GlobalValue(symbol="AVMetadataIdentifierQuickTimeMetadataAccessibilityDescription", optional=true)
         public static native NSString AccessibilityDescription();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="AVMetadataIdentifierQuickTimeMetadataIsMontage", optional=true)
+        public static native NSString IsMontage();
         /**
          * @since Available in iOS 13.0 and later.
          */

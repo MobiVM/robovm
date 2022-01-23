@@ -124,14 +124,34 @@ import org.robovm.apple.dispatch.*;
     /*<methods>*/
     @Bridge(symbol="SecKeyGetTypeID", optional=true)
     public static native @MachineSizedUInt long getClassTypeID();
+    /**
+     * @deprecated Deprecated in iOS 15.0. Use SecKeyCreateRandomKey
+     */
+    @Deprecated
     @Bridge(symbol="SecKeyGeneratePair", optional=true)
     protected static native OSStatus generatePair0(SecKeyParameters parameters, SecKey.SecKeyPtr publicKey, SecKey.SecKeyPtr privateKey);
+    /**
+     * @deprecated Deprecated in iOS 15.0. Use SecKeyCreateSignature
+     */
+    @Deprecated
     @Bridge(symbol="SecKeyRawSign", optional=true)
     protected native OSStatus rawSign0(SecPadding padding, @Pointer long dataToSign, @MachineSizedUInt long dataToSignLen, BytePtr sig, MachineSizedUIntPtr sigLen);
+    /**
+     * @deprecated Deprecated in iOS 15.0. Use SecKeyVerifySignature
+     */
+    @Deprecated
     @Bridge(symbol="SecKeyRawVerify", optional=true)
     protected native OSStatus rawVerify0(SecPadding padding, @Pointer long signedData, @MachineSizedUInt long signedDataLen, @Pointer long sig, @MachineSizedUInt long sigLen);
+    /**
+     * @deprecated Deprecated in iOS 15.0. Use SecKeyCreateEncryptedData
+     */
+    @Deprecated
     @Bridge(symbol="SecKeyEncrypt", optional=true)
     protected native OSStatus encrypt0(SecPadding padding, @Pointer long plainText, @MachineSizedUInt long plainTextLen, BytePtr cipherText, MachineSizedUIntPtr cipherTextLen);
+    /**
+     * @deprecated Deprecated in iOS 15.0. Use SecKeyCreateDecryptedData
+     */
+    @Deprecated
     @Bridge(symbol="SecKeyDecrypt", optional=true)
     protected native OSStatus decrypt0(SecPadding padding, @Pointer long cipherText, @MachineSizedUInt long cipherTextLen, BytePtr plainText, MachineSizedUIntPtr plainTextLen);
     /**

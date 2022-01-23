@@ -87,6 +87,21 @@ import org.robovm.apple.foundation.*;
      */
     @Property(selector = "announcementSetting")
     public native UNNotificationSetting getAnnouncementSetting();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "timeSensitiveSetting")
+    public native UNNotificationSetting getTimeSensitiveSetting();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "scheduledDeliverySetting")
+    public native UNNotificationSetting getScheduledDeliverySetting();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "directMessagesSetting")
+    public native UNNotificationSetting getDirectMessagesSetting();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

@@ -324,6 +324,16 @@ import org.robovm.apple.avfoundation.*;
     public native @MachineSizedFloat double getFresnelExponent();
     @Property(selector = "setFresnelExponent:")
     public native void setFresnelExponent(@MachineSizedFloat double v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "writesToDepthBuffer")
+    public native boolean writesToDepthBuffer();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setWritesToDepthBuffer:")
+    public native void setWritesToDepthBuffer(boolean v);
     @Property(selector = "propertyControllers")
     public native @org.robovm.rt.bro.annotation.Marshaler(SCNParticleProperty.AsPropertyControllerMapMarshaler.class) Map<SCNParticleProperty, SCNParticlePropertyController> getPropertyControllers();
     @Property(selector = "setPropertyControllers:")
@@ -354,7 +364,7 @@ import org.robovm.apple.avfoundation.*;
     @Method(selector = "initWithCoder:")
     protected native @Pointer long init(NSCoder coder);
     @Method(selector = "addAnimation:forKey:")
-    public native void addAnimation(SCNAnimation animation, String key);
+    public native void addAnimation(SCNAnimationProtocol animation, String key);
     /**
      * @since Available in iOS 11.0 and later.
      */
@@ -362,18 +372,23 @@ import org.robovm.apple.avfoundation.*;
     public native void addAnimationPlayer(SCNAnimationPlayer player, String key);
     @Method(selector = "removeAllAnimations")
     public native void removeAllAnimations();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "removeAllAnimationsWithBlendOutDuration:")
+    public native void removeAllAnimations(@MachineSizedFloat double duration);
     @Method(selector = "removeAnimationForKey:")
     public native void removeAnimation(String key);
     /**
      * @since Available in iOS 11.0 and later.
      */
-    @Method(selector = "animationPlayerForKey:")
-    public native SCNAnimationPlayer animationPlayerForKey(String key);
+    @Method(selector = "removeAnimationForKey:blendOutDuration:")
+    public native void removeAnimationForKey(String key, @MachineSizedFloat double duration);
     /**
      * @since Available in iOS 11.0 and later.
      */
-    @Method(selector = "removeAnimationForKey:blendOutDuration:")
-    public native void removeAnimationForKey(String key, @MachineSizedFloat double duration);
+    @Method(selector = "animationPlayerForKey:")
+    public native SCNAnimationPlayer animationPlayerForKey(String key);
     /**
      * @deprecated Deprecated in iOS 11.0. Use -removeAnimationForKey:blendOutDuration:
      */

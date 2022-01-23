@@ -49,6 +49,14 @@ public final class /*<name>*/NSJSONReadingOptions/*</name>*/ extends Bits</*<nam
     public static final NSJSONReadingOptions MutableLeaves = new NSJSONReadingOptions(2L);
     public static final NSJSONReadingOptions FragmentsAllowed = new NSJSONReadingOptions(4L);
     /**
+     * @since Available in iOS 15.0 and later.
+     */
+    public static final NSJSONReadingOptions JSON5Allowed = new NSJSONReadingOptions(8L);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    public static final NSJSONReadingOptions TopLevelDictionaryAssumed = new NSJSONReadingOptions(16L);
+    /**
      * @deprecated Use NSJSONReadingFragmentsAllowed
      */
     @Deprecated

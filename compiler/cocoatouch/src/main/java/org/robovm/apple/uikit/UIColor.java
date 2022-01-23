@@ -129,6 +129,21 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Property(selector = "systemIndigoColor")
     public static native UIColor systemIndigo();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "systemBrownColor")
+    public static native UIColor systemBrown();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "systemMintColor")
+    public static native UIColor systemMint();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "systemCyanColor")
+    public static native UIColor systemCyan();
     @Property(selector = "systemGrayColor")
     public static native UIColor systemGray();
     /**
@@ -156,6 +171,11 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Property(selector = "systemGray6Color")
     public static native UIColor systemGray6();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "tintColor")
+    public static native UIColor tint();
     /**
      * @since Available in iOS 13.0 and later.
      */

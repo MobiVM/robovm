@@ -84,6 +84,16 @@ import org.robovm.apple.linkpresentation.*;
     public native boolean isFocused();
     @Property(selector = "setFocused:")
     public native void setFocused(boolean v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "isPinned")
+    public native boolean isPinned();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setPinned:")
+    public native void setPinned(boolean v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

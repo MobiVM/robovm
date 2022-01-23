@@ -100,7 +100,11 @@ public enum /*<name>*/PKPaymentButtonType/*</name>*/ implements ValuedEnum {
     /**
      * @since Available in iOS 14.0 and later.
      */
-    Tip(15L);
+    Tip(15L),
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    Continue(16L);
     /*</values>*/
 
     /*<bind>*/

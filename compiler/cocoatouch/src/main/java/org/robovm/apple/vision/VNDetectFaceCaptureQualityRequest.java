@@ -61,6 +61,8 @@ import org.robovm.apple.imageio.*;
     public VNDetectFaceCaptureQualityRequest(@Block VoidBlock2<VNRequest, NSError> completionHandler) { super(completionHandler); }
     /*</constructors>*/
     /*<properties>*/
+    @Property(selector = "results")
+    public native NSArray<VNFaceObservation> getResults();
     /**
      * @since Available in iOS 12.0 and later.
      */

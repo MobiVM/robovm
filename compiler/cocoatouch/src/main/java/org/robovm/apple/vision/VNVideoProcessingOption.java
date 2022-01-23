@@ -96,13 +96,13 @@ import org.robovm.apple.imageio.*;
     /*<constants>*/
     /**
      * @since Available in iOS 14.0 and later.
-     * @deprecated Deprecated in iOS 14.0. use VNVideoProcessorRequestProcessingOptions
+     * @deprecated Deprecated in iOS 14.0. Use VNVideoProcessorRequestProcessingOptions
      */
     @Deprecated
     public static final VNVideoProcessingOption FrameCadence = new VNVideoProcessingOption("FrameCadence");
     /**
      * @since Available in iOS 14.0 and later.
-     * @deprecated Deprecated in iOS 14.0. use VNVideoProcessorRequestProcessingOptions
+     * @deprecated Deprecated in iOS 14.0. Use VNVideoProcessorRequestProcessingOptions
      */
     @Deprecated
     public static final VNVideoProcessingOption TimeInterval = new VNVideoProcessingOption("TimeInterval");
@@ -133,14 +133,14 @@ import org.robovm.apple.imageio.*;
         /*<values>*/
         /**
          * @since Available in iOS 14.0 and later.
-         * @deprecated Deprecated in iOS 14.0. use VNVideoProcessorRequestProcessingOptions
+         * @deprecated Deprecated in iOS 14.0. Use VNVideoProcessorRequestProcessingOptions
          */
         @Deprecated
         @GlobalValue(symbol="VNVideoProcessingOptionFrameCadence", optional=true)
         public static native NSString FrameCadence();
         /**
          * @since Available in iOS 14.0 and later.
-         * @deprecated Deprecated in iOS 14.0. use VNVideoProcessorRequestProcessingOptions
+         * @deprecated Deprecated in iOS 14.0. Use VNVideoProcessorRequestProcessingOptions
          */
         @Deprecated
         @GlobalValue(symbol="VNVideoProcessingOptionTimeInterval", optional=true)

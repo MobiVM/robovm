@@ -67,6 +67,11 @@ import org.robovm.apple.foundation.*;
      */
     @Property(selector = "minimumAllowedDuration")
     public native double getMinimumAllowedDuration();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "allowsRecalibrationForEstimates")
+    public native boolean allowsRecalibrationForEstimates();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

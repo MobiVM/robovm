@@ -193,5 +193,15 @@ import org.robovm.apple.corefoundation.*;
      */
     @GlobalValue(symbol="kIOSurfaceSubsampling", optional=true)
     public static native CFString Subsampling();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @GlobalValue(symbol="kIOSurfaceColorSpace", optional=true)
+    public static native CFString ColorSpace();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @GlobalValue(symbol="kIOSurfaceICCProfile", optional=true)
+    public static native CFString ICCProfile();
     /*</methods>*/
 }

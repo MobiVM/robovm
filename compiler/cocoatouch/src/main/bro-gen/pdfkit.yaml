@@ -1,0 +1,173 @@
+package: org.robovm.apple.pdfkit
+include: [foundation, uikit, coregraphics, coreanimation]
+library: PDFKit
+framework: PDFKit
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/PDFKit.framework/Headers/PDFKit.h
+
+typedefs:
+    
+enums:
+    PDFActionNamedName: {prefix: kPDFActionNamed}
+    PDFDisplayBox: {prefix: kPDFDisplayBox}
+    PDFLineStyle: {prefix: kPDFLineStyle}
+    PDFTextAnnotationIconType: {prefix: kPDFTextAnnotationIcon}
+    PDFMarkupType: {prefix: kPDFMarkupType}
+    PDFWidgetControlType: {prefix: kPDFWidget}
+    PDFWidgetCellState: {prefix: kPDFWidget}
+    PDFBorderStyle: {prefix: kPDFBorderStyle}
+    PDFDocumentPermissions: {prefix: kPDFDocumentPermissions}
+    PDFAccessPermissions: {prefix: PDFAllows}
+    PDFThumbnailLayoutMode: {}
+    PDFDisplayMode: {prefix: kPDFDisplay}
+    PDFDisplayDirection: {prefix: kPDFDisplayDirection}
+    PDFAreaOfInterest: {prefix: kPDF}
+    PDFInterpolationQuality: {prefix: kPDFInterpolationQuality}
+categories:
+
+classes:
+    PDFAction: {} #since 11.0
+    PDFActionGoTo: #since 11.0
+        methods:
+            '-initWithDestination:':
+                name: init
+    PDFActionNamed: #since 11.0
+        methods:
+            '-initWithName:':
+                name: init
+    PDFActionRemoteGoTo: #since 11.0
+        methods:
+            '-initWithPageIndex:atPoint:fileURL:':
+                name: init
+    PDFActionResetForm: {} #since 11.0
+    PDFActionURL: #since 11.0
+        methods:
+            '-initWithURL:':
+                name: init
+    PDFAnnotation: #since 11.0
+        methods:
+            '-initWithBounds:forType:withProperties:':
+                name: init
+            '-drawWithBox:inContext:':
+                name: draw
+            '-setValue:forAnnotationKey:':
+                name: setValue
+            '-setBoolean:forAnnotationKey:':
+                name: setBoolean
+            '-setRect:forAnnotationKey:':
+                name: setRect
+    PDFAppearanceCharacteristics: {} #since 11.0
+    PDFBorder: {} #since 11.0
+    PDFDestination: #since 11.0
+        methods:
+            '-initWithPage:atPoint:':
+                name: init
+    PDFDocument: #since 11.0
+        methods:
+            '-initWithURL:':
+                name: init
+            '-initWithData:':
+                name: init
+            '-unlockWithPassword:':
+                name: unlock
+            '-dataRepresentationWithOptions:':
+                name: dataRepresentation
+            '-writeToFile:withOptions:':
+                name: writeToFile
+            '-writeToURL:withOptions:':
+                name: writeToURL
+            '-insertPage:atIndex:':
+                name: insertPage
+            '-exchangePageAtIndex:withPageAtIndex:':
+                name: exchangePage
+            '-findString:withOptions:':
+                name: findString
+            '-beginFindString:withOptions:':
+                name: beginFindString
+            '-beginFindStrings:withOptions:':
+                name: beginFindStrings
+            '-findString:fromSelection:withOptions:':
+                name: findString
+            '-selectionFromPage:atPoint:toPage:atPoint:':
+                name: selection
+            '-selectionFromPage:atCharacterIndex:toPage:atCharacterIndex:':
+                name: selection
+    PDFOutline: #since 11.0
+        methods:
+            '-insertChild:atIndex:':
+                name: insertChild
+    PDFPage: #since 11.0
+        methods:
+            '-initWithImage:':
+                name: init
+            '-setBounds:forBox:':
+                name: setBounds
+            '-drawWithBox:toContext:':
+                name: draw
+            '-transformContext:forBox:':
+                name: transformContext
+            '-thumbnailOfSize:forBox:':
+                name: thumbnail
+            '-selectionFromPoint:toPoint:':
+                name: selection
+    PDFSelection: #since 11.0
+        methods:
+            '-initWithDocument:':
+                name: init
+            '-rangeAtIndex:onPage:':
+                name: range
+            '-drawForPage:active:':
+                name: draw
+            '-drawForPage:withBox:active:':
+                name: draw
+    PDFThumbnailView: {} #since 11.0
+    PDFView: #since 11.0
+        methods:
+            '-goToRect:onPage:':
+                name: goToRect
+            '-usePageViewController:withViewOptions:':
+                name: usePageViewController
+            '-setCurrentSelection:animate:':
+                name: setCurrentSelection
+            '-drawPage:toContext:':
+                name: drawPage
+            '-drawPagePost:toContext:':
+                name: drawPagePost
+            '-pageForPoint:nearest:':
+                name: pageForPoint
+            '-convertPoint:toPage:':
+                name: convertPointToPage
+            '-convertRect:toPage:':
+                name: convertRectToPage
+            '-convertPoint:fromPage:':
+                name: convertPointFromPage
+            '-convertRect:fromPage:':
+                name: convertRectFromPage
+protocols:
+    PDFDocumentDelegate: {}
+    PDFViewDelegate:
+        methods:
+            '-PDFViewWillClickOnLink:withURL:':
+                name: willClickOnLink
+            '-PDFViewOpenPDF:forRemoteGoToAction:':
+                name: openPDF
+functions:
+
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (k?WG.*):
+        class: FIXME
+        name: 'Function__#{g[0]}'
+
+values:
+
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (k?WG.*):
+        class: FIXME
+        name: 'Value__#{g[0]}'
+
+constants:
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (k?WG.*):
+        class: FIXME
+        name: 'Constant__#{g[0]}'

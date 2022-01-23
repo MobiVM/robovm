@@ -175,6 +175,16 @@ import org.robovm.apple.contacts.*;
     public native void startMonitoringSignificantLocationChanges();
     @Method(selector = "stopMonitoringSignificantLocationChanges")
     public native void stopMonitoringSignificantLocationChanges();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "startMonitoringLocationPushesWithCompletion:")
+    public native void startMonitoringLocationPushes(@Block VoidBlock2<NSData, NSError> completion);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "stopMonitoringLocationPushes")
+    public native void stopMonitoringLocationPushes();
     @Method(selector = "stopMonitoringForRegion:")
     public native void stopMonitoring(CLRegion region);
     @Method(selector = "startMonitoringForRegion:")

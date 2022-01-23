@@ -43,7 +43,8 @@ public enum /*<name>*/GKGameCenterViewControllerState/*</name>*/ implements Valu
     Achievements(1L),
     Challenges(2L),
     LocalPlayerProfile(3L),
-    Dashboard(4L);
+    Dashboard(4L),
+    LocalPlayerFriendsList(5L);
     /*</values>*/
 
     /*<bind>*/

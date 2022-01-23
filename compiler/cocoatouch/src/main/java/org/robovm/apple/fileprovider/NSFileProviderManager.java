@@ -53,8 +53,14 @@ import org.robovm.apple.uniformtypeid.*;
     /*<properties>*/
     @Property(selector = "defaultManager")
     public static native NSFileProviderManager getDefaultManager();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Property(selector = "providerIdentifier")
     public native String getProviderIdentifier();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Property(selector = "documentStorageURL")
     public native NSURL getDocumentStorageURL();
     /*</properties>*/
@@ -92,6 +98,11 @@ import org.robovm.apple.uniformtypeid.*;
     @GlobalValue(symbol="NSFileProviderErrorCollidingItemKey", optional=true)
     public static native NSString getErrorCollidingItemKey();
     /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @GlobalValue(symbol="NSFileProviderErrorItemKey", optional=true)
+    public static native NSString getErrorItemKey();
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @GlobalValue(symbol="NSFileProviderErrorNonExistentItemIdentifierKey", optional=true)
@@ -103,8 +114,14 @@ import org.robovm.apple.uniformtypeid.*;
     public native void registerURLSessionTask(NSURLSessionTask task, NSString identifier, @Block VoidBlock1<NSError> completion);
     @Method(selector = "managerForDomain:")
     public static native NSFileProviderManager managerForDomain(NSFileProviderDomain domain);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Method(selector = "writePlaceholderAtURL:withMetadata:error:")
     public static native boolean writePlaceholderAtURL(NSURL placeholderURL, NSFileProviderItem metadata, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Method(selector = "placeholderURLForURL:")
     public static native NSURL placeholderURLForURL(NSURL url);
     @Method(selector = "addDomain:completionHandler:")

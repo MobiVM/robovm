@@ -51,6 +51,7 @@ import org.robovm.apple.imageio.*;
     /*<bind>*/static { ObjCRuntime.bind(VNRecognizeAnimalsRequest.class); }/*</bind>*/
     /*<constants>*/
     public static final int Revision1 = 1;
+    public static final int Revision2 = 2;
     /*</constants>*/
     /*<constructors>*/
     public VNRecognizeAnimalsRequest() {}
@@ -60,6 +61,8 @@ import org.robovm.apple.imageio.*;
     public VNRecognizeAnimalsRequest(@Block VoidBlock2<VNRequest, NSError> completionHandler) { super(completionHandler); }
     /*</constructors>*/
     /*<properties>*/
+    @Property(selector = "results")
+    public native NSArray<VNRecognizedObjectObservation> getResults();
     /**
      * @since Available in iOS 12.0 and later.
      */
@@ -78,12 +81,27 @@ import org.robovm.apple.imageio.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "supportedIdentifiersAndReturnError:")
+    public native NSArray<NSString> supportedIdentifiersAndReturnError(NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 15.0. Use -supportedIdentifiersAndReturnError:
+     */
+    @Deprecated
     public static NSArray<NSString> getKnownAnimalIdentifiersForRevision(@MachineSizedUInt long requestRevision) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        NSArray<NSString> result = getKnownAnimalIdentifiersForRevision(requestRevision, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        return result;
     }
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 15.0. Use -supportedIdentifiersAndReturnError:
+     */
+    @Deprecated
     @Method(selector = "knownAnimalIdentifiersForRevision:error:")
     private static native NSArray<NSString> getKnownAnimalIdentifiersForRevision(@MachineSizedUInt long requestRevision, NSError.NSErrorPtr error);
     /*</methods>*/

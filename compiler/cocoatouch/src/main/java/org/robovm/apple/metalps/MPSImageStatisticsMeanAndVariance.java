@@ -54,7 +54,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     public MPSImageStatisticsMeanAndVariance(NSCoder decoder, MTLDevice device) { super((SkipInit) null); initObject(init(decoder, device)); }
     @Method(selector = "initWithCoder:")
-    public MPSImageStatisticsMeanAndVariance(NSCoder decoder) { super(decoder); }
+    public MPSImageStatisticsMeanAndVariance(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "clipRectSource")

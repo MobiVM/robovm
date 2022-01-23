@@ -144,6 +144,10 @@ import org.robovm.apple.linkpresentation.*;
     public native @MachineSizedFloat double getPreferredMaxLayoutWidth();
     @Property(selector = "setPreferredMaxLayoutWidth:")
     public native void setPreferredMaxLayoutWidth(@MachineSizedFloat double v);
+    @Property(selector = "showsExpansionTextWhenTruncated")
+    public native boolean showsExpansionTextWhenTruncated();
+    @Property(selector = "setShowsExpansionTextWhenTruncated:")
+    public native void setShowsExpansionTextWhenTruncated(boolean v);
     /**
      * @deprecated Deprecated in iOS 7.0.
      */

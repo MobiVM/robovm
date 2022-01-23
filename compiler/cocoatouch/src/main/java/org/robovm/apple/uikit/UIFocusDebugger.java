@@ -72,5 +72,7 @@ import org.robovm.apple.linkpresentation.*;
     public static native UIFocusDebuggerOutput checkFocusabilityForItem(UIFocusItem item);
     @Method(selector = "simulateFocusUpdateRequestFromEnvironment:")
     public static native UIFocusDebuggerOutput simulateFocusUpdateRequestFromEnvironment(UIFocusEnvironment environment);
+    @Method(selector = "checkFocusGroupTreeForEnvironment:")
+    public static native String checkFocusGroupTreeForEnvironment(UIFocusEnvironment environment);
     /*</methods>*/
 }

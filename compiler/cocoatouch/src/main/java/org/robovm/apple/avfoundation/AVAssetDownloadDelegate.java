@@ -88,6 +88,11 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Method(selector = "URLSession:aggregateAssetDownloadTask:didLoadTimeRange:totalTimeRangesLoaded:timeRangeExpectedToLoad:forMediaSelection:")
     void didLoadTimeRange(NSURLSession session, AVAggregateAssetDownloadTask aggregateAssetDownloadTask, @ByVal CMTimeRange timeRange, NSArray<NSValue> loadedTimeRanges, @ByVal CMTimeRange timeRangeExpectedToLoad, AVMediaSelection mediaSelection);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "URLSession:assetDownloadTask:willDownloadVariants:")
+    void assetDownloadTask(NSURLSession session, AVAssetDownloadTask assetDownloadTask, NSArray<AVAssetVariant> variants);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

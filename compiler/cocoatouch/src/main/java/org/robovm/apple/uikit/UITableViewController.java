@@ -198,6 +198,11 @@ import org.robovm.apple.linkpresentation.*;
     @Method(selector = "indexPathForPreferredFocusedViewInTableView:")
     public native NSIndexPath getIndexPathForPreferredFocusedView(UITableView tableView);
     /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "tableView:selectionFollowsFocusForRowAtIndexPath:")
+    public native boolean isSelectionFollowsFocus(UITableView tableView, NSIndexPath indexPath);
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "tableView:shouldSpringLoadRowAtIndexPath:withContext:")

@@ -73,7 +73,7 @@ public enum /*<name>*/CBErrorCode/*</name>*/ implements NSErrorCode {
      */
     PeerRemovedPairingInformation(14L),
     /**
-     * @since Available in iOS 13.3 and later.
+     * @since Available in iOS 13.4 and later.
      */
     EncryptionTimedOut(15L),
     /**

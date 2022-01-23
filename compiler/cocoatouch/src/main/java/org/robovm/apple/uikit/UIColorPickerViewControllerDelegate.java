@@ -59,8 +59,18 @@ import org.robovm.apple.linkpresentation.*;
     
     /*</properties>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 14.0 and later.
+     * @deprecated Deprecated in iOS 15.0. Use colorPickerViewController:didSelectColor:continuously:
+     */
+    @Deprecated
     @Method(selector = "colorPickerViewControllerDidSelectColor:")
     void didSelectColor(UIColorPickerViewController viewController);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "colorPickerViewController:didSelectColor:continuously:")
+    void didSelectColor(UIColorPickerViewController viewController, UIColor color, boolean continuously);
     @Method(selector = "colorPickerViewControllerDidFinish:")
     void didFinish(UIColorPickerViewController viewController);
     /*</methods>*/

@@ -74,10 +74,28 @@ import org.robovm.apple.fileprovider.*;
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getDesiredKeys();
     @Property(selector = "setDesiredKeys:")
     public native void setDesiredKeys(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> v);
+    /**
+     * @deprecated Deprecated in iOS 15.0. Use recordMatchedBlock instead, which surfaces per-record errors
+     */
+    @Deprecated
     @Property(selector = "recordFetchedBlock")
     public native @Block VoidBlock1<CKRecord> getRecordFetchedBlock();
+    /**
+     * @deprecated Deprecated in iOS 15.0. Use recordMatchedBlock instead, which surfaces per-record errors
+     */
+    @Deprecated
     @Property(selector = "setRecordFetchedBlock:")
     public native void setRecordFetchedBlock(@Block VoidBlock1<CKRecord> v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "recordMatchedBlock")
+    public native @Block VoidBlock3<CKRecordID, CKRecord, NSError> getRecordMatchedBlock();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setRecordMatchedBlock:")
+    public native void setRecordMatchedBlock(@Block VoidBlock3<CKRecordID, CKRecord, NSError> v);
     @Property(selector = "queryCompletionBlock")
     public native @Block VoidBlock2<CKQueryCursor, NSError> getQueryCompletionBlock();
     @Property(selector = "setQueryCompletionBlock:")

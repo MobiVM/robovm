@@ -503,6 +503,9 @@ functions:
         class: MIDIThruConnection
         name: "#{g[0]}"
         return_type: MIDIError
+    MIDIEventListForEachEvent:
+        class: MIDIEventList
+        name: forEachEvent
 
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (MIDI.*):

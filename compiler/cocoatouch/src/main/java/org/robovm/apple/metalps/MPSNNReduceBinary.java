@@ -52,7 +52,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     public MPSNNReduceBinary(NSCoder decoder, MTLDevice device) { super(decoder, device); }
     @Method(selector = "initWithCoder:")
-    public MPSNNReduceBinary(NSCoder decoder) { super(decoder); }
+    public MPSNNReduceBinary(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "primarySourceClipRect")
@@ -63,6 +63,34 @@ import org.robovm.apple.metal.*;
     public native @ByVal MTLRegion getSecondarySourceClipRect();
     @Property(selector = "setSecondarySourceClipRect:")
     public native void setSecondarySourceClipRect(@ByVal MTLRegion v);
+    /**
+     * @since Available in iOS 11.3 and later.
+     * @deprecated Deprecated in iOS 13.0. Use Please use primarySourceClipRect property instead
+     */
+    @Deprecated
+    @Property(selector = "primaryOffset")
+    public native @ByVal MPSOffset getPrimaryOffset();
+    /**
+     * @since Available in iOS 11.3 and later.
+     * @deprecated Deprecated in iOS 13.0. Use Please use primarySourceClipRect property instead
+     */
+    @Deprecated
+    @Property(selector = "setPrimaryOffset:")
+    public native void setPrimaryOffset(@ByVal MPSOffset v);
+    /**
+     * @since Available in iOS 11.3 and later.
+     * @deprecated Deprecated in iOS 13.0. Use Please use secondarySourceClipRect property instead
+     */
+    @Deprecated
+    @Property(selector = "secondaryOffset")
+    public native @ByVal MPSOffset getSecondaryOffset();
+    /**
+     * @since Available in iOS 11.3 and later.
+     * @deprecated Deprecated in iOS 13.0. Use Please use secondarySourceClipRect property instead
+     */
+    @Deprecated
+    @Property(selector = "setSecondaryOffset:")
+    public native void setSecondaryOffset(@ByVal MPSOffset v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

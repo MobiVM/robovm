@@ -41,7 +41,11 @@ public enum /*<name>*/MLCDeviceType/*</name>*/ implements ValuedEnum {
     CPU(0L),
     GPU(1L),
     Any(2L),
-    Count(3L);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    ANE(3L),
+    Count(4L);
     /*</values>*/
 
     /*<bind>*/

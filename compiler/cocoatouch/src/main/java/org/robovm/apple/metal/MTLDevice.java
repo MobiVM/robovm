@@ -149,6 +149,11 @@ import org.robovm.apple.dispatch.*;
     @Property(selector = "supportsDynamicLibraries")
     public native boolean supportsDynamicLibraries();
     /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "supportsRenderDynamicLibraries")
+    public native boolean supportsRenderDynamicLibraries();
+    /**
      * @since Available in iOS 14.0 and later.
      */
     @Property(selector = "supportsRaytracing")
@@ -158,6 +163,21 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "supportsFunctionPointers")
     public native boolean supportsFunctionPointers();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "supportsFunctionPointersFromRender")
+    public native boolean supportsFunctionPointersFromRender();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "supportsRaytracingFromRender")
+    public native boolean supportsRaytracingFromRender();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "supportsPrimitiveMotionBlur")
+    public native boolean supportsPrimitiveMotionBlur();
     /*</properties>*/
     /*<members>*//*</members>*/
     public MTLBuffer newBuffer(byte[] bytes, MTLResourceOptions options) {
@@ -286,6 +306,16 @@ import org.robovm.apple.dispatch.*;
     private native MTLLibrary newLibraryWithSource(String source, MTLCompileOptions options, NSError.NSErrorPtr error);
     @Method(selector = "newLibraryWithSource:options:completionHandler:")
     public native void newLibraryWithSource(String source, MTLCompileOptions options, @Block VoidBlock2<MTLLibrary, NSError> completionHandler);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "newLibraryWithStitchedDescriptor:error:")
+    public native MTLLibrary newLibrary(MTLStitchedLibraryDescriptor descriptor, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "newLibraryWithStitchedDescriptor:completionHandler:")
+    public native void newLibrary(MTLStitchedLibraryDescriptor descriptor, @Block VoidBlock2<MTLLibrary, NSError> completionHandler);
     public MTLRenderPipelineState newRenderPipelineState(MTLRenderPipelineDescriptor descriptor) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        MTLRenderPipelineState result = newRenderPipelineState(descriptor, ptr);

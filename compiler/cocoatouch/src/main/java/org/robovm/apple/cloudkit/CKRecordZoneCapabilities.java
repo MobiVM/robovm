@@ -46,6 +46,10 @@ public final class /*<name>*/CKRecordZoneCapabilities/*</name>*/ extends Bits</*
      * @since Available in iOS 10.0 and later.
      */
     public static final CKRecordZoneCapabilities Sharing = new CKRecordZoneCapabilities(4L);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    public static final CKRecordZoneCapabilities ZoneWideSharing = new CKRecordZoneCapabilities(8L);
     /*</values>*/
 
     /*<bind>*/

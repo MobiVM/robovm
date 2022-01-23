@@ -42,7 +42,7 @@ import org.robovm.apple.coreanimation.*;
 /*</javadoc>*/
 /*<annotations>*/@Library("PassKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/PKTransitPassProperties/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
+    extends /*<extends>*/PKStoredValuePassProperties/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class PKTransitPassPropertiesPtr extends Ptr<PKTransitPassProperties, PKTransitPassPropertiesPtr> {}/*</ptr>*/
@@ -54,17 +54,32 @@ import org.robovm.apple.coreanimation.*;
     protected PKTransitPassProperties(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 11.3 and later.
+     * @deprecated Deprecated in iOS 15.0. Use balances
+     */
+    @Deprecated
     @Property(selector = "transitBalance")
     public native NSDecimalNumber getTransitBalance();
+    /**
+     * @since Available in iOS 11.3 and later.
+     * @deprecated Deprecated in iOS 15.0. Use balances
+     */
+    @Deprecated
     @Property(selector = "transitBalanceCurrencyCode")
     public native String getTransitBalanceCurrencyCode();
     /**
      * @since Available in iOS 11.3 and later.
-     * @deprecated Deprecated in iOS 14.5. Use isBlocked
+     * @deprecated Deprecated in iOS 15.0. Use isBlocked
      */
     @Deprecated
     @Property(selector = "isBlacklisted")
     public native boolean isBlacklisted();
+    /**
+     * @since Available in iOS 11.3 and later.
+     */
+    @Property(selector = "expirationDate")
+    public native NSDate getExpirationDate();
     /**
      * @since Available in iOS 14.5 and later.
      */
@@ -72,8 +87,6 @@ import org.robovm.apple.coreanimation.*;
     public native boolean isBlocked();
     @Property(selector = "isInStation")
     public native boolean isInStation();
-    @Property(selector = "expirationDate")
-    public native NSDate getExpirationDate();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

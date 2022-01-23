@@ -33,14 +33,15 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 13.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
 public final class /*<name>*/CBCentralManagerFeature/*</name>*/ extends Bits</*<name>*/CBCentralManagerFeature/*</name>*/> {
     /*<values>*/
     public static final CBCentralManagerFeature None = new CBCentralManagerFeature(0L);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
     public static final CBCentralManagerFeature ExtendedScanAndConnect = new CBCentralManagerFeature(1L);
     /*</values>*/
 

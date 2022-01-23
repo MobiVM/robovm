@@ -62,9 +62,9 @@ import org.robovm.apple.linkpresentation.*;
     @Method(selector = "collisionBehavior:endedContactForItem:withItem:")
     void endedContact(UICollisionBehavior behavior, UIDynamicItem item1, UIDynamicItem item2);
     @Method(selector = "collisionBehavior:beganContactForItem:withBoundaryIdentifier:atPoint:")
-    void beganBoundaryContact(UICollisionBehavior behavior, UIDynamicItem item, NSObject identifier, @ByVal CGPoint p);
+    void beganBoundaryContact(UICollisionBehavior behavior, UIDynamicItem item, NSObjectProtocol identifier, @ByVal CGPoint p);
     @Method(selector = "collisionBehavior:endedContactForItem:withBoundaryIdentifier:")
-    void endedBoundaryContact(UICollisionBehavior behavior, UIDynamicItem item, NSObject identifier);
+    void endedBoundaryContact(UICollisionBehavior behavior, UIDynamicItem item, NSObjectProtocol identifier);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

@@ -103,7 +103,7 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "highlightPropertyWithKey:identifier:")
     public native void highlightProperty(CNContactPropertyKey key, String identifier);
     @Method(selector = "descriptorForRequiredKeys")
-    public static native NSObject getDescriptorForRequiredKeys();
+    public static native NSObjectProtocol getDescriptorForRequiredKeys();
     @Method(selector = "viewControllerForContact:")
     public static native CNContactViewController createForContact(CNContact contact);
     @Method(selector = "viewControllerForUnknownContact:")

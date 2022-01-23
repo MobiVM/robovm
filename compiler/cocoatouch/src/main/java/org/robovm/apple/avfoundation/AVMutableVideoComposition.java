@@ -101,6 +101,16 @@ import org.robovm.apple.audiotoolbox.*;
     @Property(selector = "setAnimationTool:")
     public native void setAnimationTool(AVVideoCompositionCoreAnimationTool v);
     /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "sourceSampleDataTrackIDs")
+    public native NSArray<NSNumber> getSourceSampleDataTrackIDs();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setSourceSampleDataTrackIDs:")
+    public native void setSourceSampleDataTrackIDs(NSArray<NSNumber> v);
+    /**
      * @since Available in iOS 10.0 and later.
      */
     @Property(selector = "colorPrimaries")

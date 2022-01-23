@@ -51,7 +51,9 @@ public final class /*<name>*/UNNotificationCategoryOptions/*</name>*/ extends Bi
     public static final UNNotificationCategoryOptions HiddenPreviewsShowSubtitle = new UNNotificationCategoryOptions(8L);
     /**
      * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 15.0. Announcement option is ignored
      */
+    @Deprecated
     public static final UNNotificationCategoryOptions AllowAnnouncement = new UNNotificationCategoryOptions(16L);
     /*</values>*/
 

@@ -65,6 +65,11 @@ import org.robovm.apple.coreanimation.*;
     /*<methods>*/
     @Method(selector = "startFetchingMetadataForURL:completionHandler:")
     public native void startFetchingMetadata(NSURL URL, @Block VoidBlock2<LPLinkMetadata, NSError> completionHandler);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "startFetchingMetadataForRequest:completionHandler:")
+    public native void startFetchingMetadata(NSURLRequest request, @Block VoidBlock2<LPLinkMetadata, NSError> completionHandler);
     @Method(selector = "cancel")
     public native void cancel();
     /*</methods>*/

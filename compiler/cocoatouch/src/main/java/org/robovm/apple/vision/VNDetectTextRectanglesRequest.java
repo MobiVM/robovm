@@ -64,6 +64,8 @@ import org.robovm.apple.imageio.*;
     public native boolean isReportCharacterBoxes();
     @Property(selector = "setReportCharacterBoxes:")
     public native void setReportCharacterBoxes(boolean v);
+    @Property(selector = "results")
+    public native NSArray<VNTextObservation> getResults();
     /**
      * @since Available in iOS 12.0 and later.
      */

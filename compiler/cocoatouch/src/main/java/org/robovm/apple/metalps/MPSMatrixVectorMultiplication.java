@@ -54,7 +54,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithDevice:rows:columns:")
     public MPSMatrixVectorMultiplication(MTLDevice device, @MachineSizedUInt long rows, @MachineSizedUInt long columns) { super((SkipInit) null); initObject(init(device, rows, columns)); }
     @Method(selector = "initWithCoder:")
-    public MPSMatrixVectorMultiplication(NSCoder decoder) { super(decoder); }
+    public MPSMatrixVectorMultiplication(NSCoder coder) { super(coder); }
     /**
      * @since Available in iOS 11.0 and later.
      */

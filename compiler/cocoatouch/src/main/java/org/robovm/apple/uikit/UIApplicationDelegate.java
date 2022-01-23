@@ -265,6 +265,11 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Method(selector = "application:didDiscardSceneSessions:")
     void didDiscardSceneSessions(UIApplication application, NSSet<UISceneSession> sceneSessions);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "applicationShouldAutomaticallyLocalizeKeyCommands:")
+    boolean applicationShouldAutomaticallyLocalizeKeyCommands(UIApplication application);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

@@ -206,9 +206,21 @@ import org.robovm.apple.linkpresentation.*;
      * @since Available in iOS 12.0 and later.
      */
     public static final UITextContentType OneTimeCode = new UITextContentType("OneTimeCode");
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    public static final UITextContentType ShipmentTrackingNumber = new UITextContentType("ShipmentTrackingNumber");
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    public static final UITextContentType FlightNumber = new UITextContentType("FlightNumber");
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    public static final UITextContentType DateTime = new UITextContentType("DateTime");
     /*</constants>*/
     
-    private static /*<name>*/UITextContentType/*</name>*/[] values = new /*<name>*/UITextContentType/*</name>*/[] {/*<value_list>*/Name, NamePrefix, GivenName, MiddleName, FamilyName, NameSuffix, Nickname, JobTitle, OrganizationName, Location, FullStreetAddress, StreetAddressLine1, StreetAddressLine2, AddressCity, AddressState, AddressCityAndState, Sublocality, CountryName, PostalCode, TelephoneNumber, EmailAddress, URL, CreditCardNumber, Username, Password, NewPassword, OneTimeCode/*</value_list>*/};
+    private static /*<name>*/UITextContentType/*</name>*/[] values = new /*<name>*/UITextContentType/*</name>*/[] {/*<value_list>*/Name, NamePrefix, GivenName, MiddleName, FamilyName, NameSuffix, Nickname, JobTitle, OrganizationName, Location, FullStreetAddress, StreetAddressLine1, StreetAddressLine2, AddressCity, AddressState, AddressCityAndState, Sublocality, CountryName, PostalCode, TelephoneNumber, EmailAddress, URL, CreditCardNumber, Username, Password, NewPassword, OneTimeCode, ShipmentTrackingNumber, FlightNumber, DateTime/*</value_list>*/};
     
     /*<name>*/UITextContentType/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -366,6 +378,21 @@ import org.robovm.apple.linkpresentation.*;
          */
         @GlobalValue(symbol="UITextContentTypeOneTimeCode", optional=true)
         public static native NSString OneTimeCode();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="UITextContentTypeShipmentTrackingNumber", optional=true)
+        public static native NSString ShipmentTrackingNumber();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="UITextContentTypeFlightNumber", optional=true)
+        public static native NSString FlightNumber();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="UITextContentTypeDateTime", optional=true)
+        public static native NSString DateTime();
         /*</values>*/
     }
 }

@@ -16,7 +16,11 @@ enums:
     MPSGraphOptions: {}
     MPSGraphLossReductionType: {}
     MPSGraphResizeMode: {prefix: MPSGraphResize}
-
+    MPSGraphReductionMode: {}
+    MPSGraphSparseStorageType: {prefix: MPSGraphSparseStorage}
+    MPSGraphRandomDistribution: {}
+    MPSGraphRandomNormalSamplingMethod: {prefix: MPSGraphRandomNormalSampling}
+    MPSGraphScatterMode: {}
 categories:
 
 classes:
@@ -301,6 +305,158 @@ classes:
                 name: padTensor
             '-padGradientWithIncomingGradientTensor:sourceTensor:paddingMode:leftPadding:rightPadding:name:':
                 name: padGradient
+            '-compileWithDevice:feeds:targetTensors:targetOperations:compilationDescriptor:':
+                name: compile
+            '-leakyReLUWithTensor:alpha:name:':
+                name: leakyReLU
+            '-leakyReLUWithTensor:alphaTensor:name:':
+                name: leakyReLU
+            '-leakyReLUGradientWithIncomingGradient:sourceTensor:alphaTensor:name:':
+                name: leakyReLU
+            '-minimumWithNaNPropagationWithPrimaryTensor:secondaryTensor:name:':
+                name: minimumWithNaNPropagation
+            '-maximumWithNaNPropagationWithPrimaryTensor:secondaryTensor:name:':
+                name: maximumWithNaNPropagation
+            '-convolution2DDataGradientWithIncomingGradientTensor:weightsTensor:outputShapeTensor:forwardConvolutionDescriptor:name:':
+                name: convolution2DDataGradient
+            '-convolution2DWeightsGradientWithIncomingGradientTensor:sourceTensor:outputShapeTensor:forwardConvolutionDescriptor:name:':
+                name: convolution2DWeightsGradient
+            '-convolutionTranspose2DWithSourceTensor:weightsTensor:outputShapeTensor:descriptor:name:':
+                name: convolutionTranspose2D
+            '-convolutionTranspose2DDataGradientWithIncomingGradientTensor:weightsTensor:outputShapeTensor:forwardConvolutionDescriptor:name:':
+                name: convolutionTranspose2DDataGradient
+            '-convolutionTranspose2DWeightsGradientWithIncomingGradientTensor:sourceTensor:outputShapeTensor:forwardConvolutionDescriptor:name:':
+                name: convolutionTranspose2DWeightsGradient
+            '-controlDependencyWithOperations:dependentBlock:name:':
+                name: controlDependency
+            '-ifWithPredicateTensor:thenBlock:elseBlock:name:':
+                name: doIf
+            '-whileWithInitialInputs:before:after:name:':
+                name: whileLoop
+            '-forLoopWithLowerBound:upperBound:step:initialBodyArguments:body:name:':
+                name: forLoop
+            '-forLoopWithNumberOfIterations:initialBodyArguments:body:name:':
+                name: forLoop
+            '-depthwiseConvolution3DWithSourceTensor:weightsTensor:descriptor:name:':
+                name: depthwiseConvolution3D
+            '-depthwiseConvolution3DDataGradientWithIncomingGradientTensor:weightsTensor:outputShape:descriptor:name:':
+                name: depthwiseConvolution3DDataGradient
+            '-depthwiseConvolution3DWeightsGradientWithIncomingGradientTensor:sourceTensor:outputShape:descriptor:name:':
+                name: depthwiseConvolution3DWeightsGradient
+            '-sparseTensorWithType:tensors:shape:dataType:name:':
+                name: sparseTensor
+            '-sparseTensorWithDescriptor:tensors:shape:name:':
+                name: sparseTensor
+            '-maxPooling4DWithSourceTensor:descriptor:name:':
+                name: maxPooling4D
+            '-maxPooling4DGradientWithGradientTensor:sourceTensor:descriptor:name:':
+                name: maxPooling4DGradient
+            '-avgPooling4DWithSourceTensor:descriptor:name:':
+                name: avgPooling4D
+            '-avgPooling4DGradientWithGradientTensor:sourceTensor:descriptor:name:':
+                name: avgPooling4DGradient
+            '-L2NormPooling4DWithSourceTensor:descriptor:name:':
+                name: L2NormPooling4D
+            '-L2NormPooling4DGradientWithGradientTensor:sourceTensor:descriptor:name:':
+                name: L2NormPooling4DGradient
+            '-randomPhiloxStateTensorWithSeed:name:':
+                name: randomPhiloxStateTensor
+            '-randomPhiloxStateTensorWithCounterLow:counterHigh:key:name:':
+                name: randomPhiloxStateTensor
+            '-randomTensorWithShape:descriptor:name:':
+                name: randomTensor
+            '-randomTensorWithShapeTensor:descriptor:name:':
+                name: randomTensor
+            '-randomTensorWithShape:descriptor:seed:name:':
+                name: randomTensor
+            '-randomTensorWithShapeTensor:descriptor:seed:name:':
+                name: randomTensor
+            '-randomTensorWithShape:descriptor:stateTensor:name:':
+                name: randomTensor
+            '-randomTensorWithShapeTensor:descriptor:stateTensor:name:':
+                name: randomTensor
+            '-randomUniformTensorWithShape:name:':
+                name: randomUniformTensor
+            '-randomUniformTensorWithShapeTensor:name:':
+                name: randomUniformTensor
+            '-randomUniformTensorWithShape:seed:name:':
+                name: randomUniformTensor
+            '-randomUniformTensorWithShapeTensor:seed:name:':
+                name: randomUniformTensor
+            '-randomUniformTensorWithShape:stateTensor:name:':
+                name: randomUniformTensor
+            '-randomUniformTensorWithShapeTensor:stateTensor:name:':
+                name: randomUniformTensor
+            '-reductionMaximumPropagateNaNWithTensor:axis:name:':
+                name: reductionMaximumPropagateNaN
+            '-reductionMaximumPropagateNaNWithTensor:axes:name:':
+                name: reductionMaximumPropagateNaN
+            '-reductionMinimumPropagateNaNWithTensor:axis:name:':
+                name: reductionMinimumPropagateNa
+            '-reductionMinimumPropagateNaNWithTensor:axes:name:':
+                name: reductionMinimumPropagateNaN
+            '-reductionArgMaximumWithTensor:axis:name:':
+                name: reductionArgMaximum
+            '-reductionArgMinimumWithTensor:axis:name:':
+                name: reductionArgMinimum
+            '-resizeTensor:sizeTensor:mode:centerResult:alignCorners:layout:name:':
+                name: resizeTensor
+            '-scatterNDWithUpdatesTensor:indicesTensor:shape:batchDimensions:mode:name:':
+                name: scatterND
+            '-scatterNDWithDataTensor:updatesTensor:indicesTensor:batchDimensions:mode:name:':
+                name: scatterND
+            '-scatterWithUpdatesTensor:indicesTensor:shape:axis:mode:name:':
+                name: scatter
+            '-scatterWithDataTensor:updatesTensor:indicesTensor:axis:mode:name:':
+                name: scatter
+            '-stencilWithSourceTensor:weightsTensor:descriptor:name:':
+                name: stencil
+            '-reshapeTensor:withShapeTensor:name:':
+                name: reshapeTensor
+            '-sliceTensor:starts:ends:strides:name:':
+                name: sliceTensor
+            '-sliceTensor:starts:ends:strides:startMask:endMask:squeezeMask:name:':
+                name: sliceTensor
+            '-sliceGradientTensor:fwdInShapeTensor:starts:ends:strides:name:':
+                name: sliceGradientTensor
+            '-sliceGradientTensor:fwdInShapeTensor:starts:ends:strides:startMask:endMask:squeezeMask:name:':
+                name: sliceGradientTensor
+            '-concatTensors:dimension:interleave:name:':
+                name: concatTensors
+            '-spaceToDepth2DTensor:widthAxisTensor:heightAxisTensor:depthAxisTensor:blockSize:usePixelShuffleOrder:name:':
+                name: spaceToDepth2DTensor
+            '-depthToSpace2DTensor:widthAxisTensor:heightAxisTensor:depthAxisTensor:blockSize:usePixelShuffleOrder:name:':
+                name: depthToSpace2DTensor
+            '-spaceToDepth2DTensor:widthAxis:heightAxis:depthAxis:blockSize:usePixelShuffleOrder:name:':
+                name: spaceToDepth2DTensor
+            '-depthToSpace2DTensor:widthAxis:heightAxis:depthAxis:blockSize:usePixelShuffleOrder:name:':
+                name: depthToSpace2DTensor
+            '-reverseTensor:axesTensor:name:':
+                name: reverseTensor
+            '-reverseTensor:axes:name:':
+                name: reverseTensor
+            '-reverseTensor:name:':
+                name: reverseTensor
+            '-flatten2DTensor:axis:name:':
+                name: flatten2DTensor
+            '-flatten2DTensor:axisTensor:name:':
+                name: flatten2DTensor
+            '-broadcastTensor:toShape:name:':
+                name: broadcastTensor
+            '-broadcastTensor:toShapeTensor:name:':
+                name: broadcastTensor
+            '-shapeOfTensor:name:':
+                name: shapeOfTensor
+            '-castTensor:toType:name:':
+                name: castTensor
+            '-topKWithSourceTensor:k:name:':
+                name: topK
+            '-topKWithSourceTensor:kTensor:name:':
+                name: topK
+            '-topKWithGradientTensor:source:k:name:':
+                name: topK
+            '-topKWithGradientTensor:source:kTensor:name:':
+                name: topK
             '+new':
                 exclude: true
     MPSGraphConvolution2DOpDescriptor:
@@ -364,7 +520,59 @@ classes:
             '-initWithMPSImageBatch:':
                 name: init
     MPSGraphVariableOp: {}
-
+    MPSGraphCompilationDescriptor: {} #since 15.0
+    MPSGraphCreateSparseOpDescriptor: #since 15.0
+        methods:
+            '+descriptorWithStorageType:dataType:':
+                name: create
+                constructor: true
+    MPSGraphDepthwiseConvolution3DOpDescriptor: #since 15.0
+        methods:
+            '+descriptorWithStrides:dilationRates:paddingValues:paddingStyle:':
+                name: create
+                constructor: true
+            '+descriptorWithPaddingStyle:':
+                name: create
+                constructor: true
+    MPSGraphExecutable: #since 15.0
+        methods:
+            '-specializeWithDevice:inputTypes:compilationDescriptor:':
+                name: specialize
+            '-runWithMTLCommandQueue:inputsArray:resultsArray:executionDescriptor:':
+                name: run
+            '-runAsyncWithMTLCommandQueue:inputsArray:resultsArray:executionDescriptor:':
+                name: runAsync
+            '-encodeToCommandBuffer:inputsArray:resultsArray:executionDescriptor:':
+                name: encodeToCommandBuffer
+    MPSGraphExecutableExecutionDescriptor: {} #since 15.0
+    MPSGraphPooling4DOpDescriptor: #since 15.0
+        methods:
+            '+descriptorWithKernelSizes:strides:dilationRates:paddingValues:paddingStyle:':
+                name: create
+                constructor: true
+            '+descriptorWithKernelSizes:paddingStyle:':
+                name: create
+                constructor: true
+    MPSGraphRandomOpDescriptor:
+        methods:
+            '+descriptorWithDistribution:dataType:':
+                name: create
+                constructor: true
+    MPSGraphStencilOpDescriptor: #since 15.0
+        methods:
+            '+descriptorWithReductionMode:offsets:strides:dilationRates:explicitPadding:boundaryMode:paddingStyle:paddingConstant:':
+                name: create
+                constructor: true
+            '+descriptorWithOffsets:explicitPadding:':
+                name: create
+                constructor: true
+            '+descriptorWithExplicitPadding:':
+                name: create
+                constructor: true
+            '+descriptorWithPaddingStyle:':
+                name: create
+                constructor: true
+    MPSGraphType: {} #since 15.0
 protocols:
 
 functions:

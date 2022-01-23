@@ -45,7 +45,7 @@ import org.robovm.apple.uikit.*;
         /**
          * @since Available in iOS 7.0 and later.
          */
-        public static NSObject observeRegisteredFontsChanged(final Runnable block) {
+        public static NSObjectProtocol observeRegisteredFontsChanged(final Runnable block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(RegisteredFontsChangedNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke (NSNotification a) {

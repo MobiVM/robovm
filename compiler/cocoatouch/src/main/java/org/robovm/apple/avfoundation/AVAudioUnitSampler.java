@@ -64,8 +64,26 @@ import org.robovm.apple.audiotoolbox.*;
     public native float getStereoPan();
     @Property(selector = "setStereoPan:")
     public native void setStereoPan(float v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "overallGain")
+    public native float getOverallGain();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setOverallGain:")
+    public native void setOverallGain(float v);
+    /**
+     * @deprecated Deprecated in iOS 15.0. Use overallGain
+     */
+    @Deprecated
     @Property(selector = "masterGain")
     public native float getMasterGain();
+    /**
+     * @deprecated Deprecated in iOS 15.0. Use overallGain
+     */
+    @Deprecated
     @Property(selector = "setMasterGain:")
     public native void setMasterGain(float v);
     @Property(selector = "globalTuning")

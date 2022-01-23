@@ -65,6 +65,16 @@ import org.robovm.apple.dispatch.*;
     public native boolean isPhonetic();
     @Property(selector = "setPhonetic:")
     public native void setPhonetic(boolean v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "locale")
+    public native NSLocale getLocale();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setLocale:")
+    public native void setLocale(NSLocale v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

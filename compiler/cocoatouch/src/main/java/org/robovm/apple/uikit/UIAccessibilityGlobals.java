@@ -168,7 +168,7 @@ import org.robovm.apple.linkpresentation.*;
     @Bridge(symbol="UIAccessibilityFocusedElement", optional=true)
     public static native NSObject getFocusedElement(String assistiveTechnologyIdentifier);
     @Bridge(symbol="UIAccessibilityPostNotification", optional=true)
-    protected static native void postNotification(int notification, NSObject argument);
+    public static native void postNotification(int notification, NSObject argument);
     @Bridge(symbol="UIAccessibilityIsVoiceOverRunning", optional=true)
     public static native boolean isVoiceOverRunning();
     @Bridge(symbol="UIAccessibilityIsMonoAudioEnabled", optional=true)

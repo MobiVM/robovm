@@ -49,6 +49,7 @@ public enum /*<name>*/CHHapticErrorCode/*</name>*/ implements NSErrorCode {
     InvalidPatternData(-4813L),
     InvalidPatternDictionary(-4814L),
     InvalidAudioSession(-4815L),
+    InvalidEngineParameter(-4816L),
     InvalidParameterType(-4820L),
     InvalidEventType(-4821L),
     InvalidEventTime(-4822L),
@@ -58,6 +59,8 @@ public enum /*<name>*/CHHapticErrorCode/*</name>*/ implements NSErrorCode {
     BadEventEntry(-4830L),
     BadParameterEntry(-4831L),
     InvalidTime(-4840L),
+    FileNotFound(-4851L),
+    InsufficientPower(-4897L),
     UnknownError(-4898L),
     MemoryError(-4899L);
     /*</values>*/

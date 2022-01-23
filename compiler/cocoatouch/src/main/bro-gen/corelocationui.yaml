@@ -1,0 +1,38 @@
+package: org.robovm.apple.corelocationui
+include: [foundation, uikit, coregraphics, coreanimation]
+library: CoreLocationUI
+framework: CoreLocationUI
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/CoreLocationUI.framework/Headers/CoreLocationUI.h
+
+typedefs:
+    
+enums:
+    CLLocationButtonIcon: {}
+    CLLocationButtonLabel: {}
+categories:
+
+classes:
+    CLLocationButton: {} #since 15.0
+protocols:
+
+functions:
+
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (k?CL.*):
+        class: FIXME
+        name: 'Function__#{g[0]}'
+
+values:
+
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (k?CL.*):
+        class: FIXME
+        name: 'Value__#{g[0]}'
+
+constants:
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (k?CL.*):
+        class: FIXME
+        name: 'Constant__#{g[0]}'

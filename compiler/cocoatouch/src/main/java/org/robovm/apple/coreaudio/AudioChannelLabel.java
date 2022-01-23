@@ -130,6 +130,8 @@ public enum /*<name>*/AudioChannelLabel/*</name>*/ implements ValuedEnum {
     HOA_ACN_14(131086L),
     HOA_ACN_15(131087L),
     HOA_ACN_65024(196096L),
+    HOA_SN3D(131072L),
+    HOA_N3D(196608L),
     BeginReserved(4026531840L),
     EndReserved(4294967294L);
     /*</values>*/

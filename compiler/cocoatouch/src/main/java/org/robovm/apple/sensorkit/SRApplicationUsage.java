@@ -53,6 +53,16 @@ import org.robovm.apple.foundation.*;
     public native String getBundleIdentifier();
     @Property(selector = "usageTime")
     public native double getUsageTime();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "reportApplicationIdentifier")
+    public native String getReportApplicationIdentifier();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "textInputSessions")
+    public native NSArray<SRTextInputSession> getTextInputSessions();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

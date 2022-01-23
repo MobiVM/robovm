@@ -10,6 +10,10 @@ typedefs:
     
 enums:
     AXCustomContentImportance: {} #since 14.0
+    AXNumericDataAxisDescriptorScale: { prefix: AXScaleType }
+    AXChartDescriptorContentDirection: { prefix: AXChartContentDirection }
+    AXHearingDeviceEar: { } #since 15.0
+
 classes:
     AXCustomContent: #since 14.0
         methods:
@@ -19,12 +23,73 @@ classes:
             '+customContentWithAttributedLabel:attributedValue:':
                 constructor: true
                 name: customContent
+    AXBrailleMap: #since 15.2
+        methods:
+            '-setHeight:atPoint:':
+                name: setHeight
+    AXCategoricalDataAxisDescriptor: #since 15.0
+        methods:
+            '-initWithTitle:categoryOrder:':
+                name: init
+            '-initWithAttributedTitle:categoryOrder:':
+                name: init
+    AXChartDescriptor: #since 15.0
+        methods:
+            '-initWithTitle:summary:xAxisDescriptor:yAxisDescriptor:series:':
+                name: init
+            '-initWithAttributedTitle:summary:xAxisDescriptor:yAxisDescriptor:series:':
+                name: init
+            '-initWithTitle:summary:xAxisDescriptor:yAxisDescriptor:additionalAxes:series:':
+                name: init
+            '-initWithAttributedTitle:summary:xAxisDescriptor:yAxisDescriptor:additionalAxes:series:':
+                name: init
+    AXDataPoint: #since 15.0
+        methods:
+            '-initWithX:y:':
+                name: init
+            '-initWithX:y:additionalValues:':
+                name: init
+            '-initWithX:y:additionalValues:label:':
+                name: init
+    AXDataPointValue: #since 15.0
+        methods:
+            '+valueWithNumber:':
+                name: create
+                constructor: true
+            '+valueWithCategory:':
+                name: create
+                constructor: true
+    AXDataSeriesDescriptor: #since 15.0
+        methods:
+            '-initWithName:isContinuous:dataPoints:':
+                name: init
+            '-initWithAttributedName:isContinuous:dataPoints:':
+                name: init
+    AXLiveAudioGraph: {} #since 15.0
+    AXNumericDataAxisDescriptor: #since 15.0
+        methods:
+            '-initWithTitle:lowerBound:upperBound:gridlinePositions:valueDescriptionProvider:':
+                name: init
+            '-initWithAttributedTitle:lowerBound:upperBound:gridlinePositions:valueDescriptionProvider:':
+                name: init
 protocols:
     AXCustomContentProvider: {} #since 14.0
+    AXBrailleMapRenderer: {}
+    AXChart: {} #since 15.0
+    AXDataAxisDescriptor: {} #since 15.0
 functions:
     AXNameFromColor:
         class: AXUtils
         name: nameFromColor
+    AXMFiHearingDeviceStreamingEar:
+        class: AXHearingUtilities
+        name: getMFiHearingDeviceStreamingEar
+    AXSupportsBidirectionalAXMFiHearingDeviceStreaming:
+        class: AXHearingUtilities
+        name: supportsBidirectionalAXMFiHearingDeviceStreaming
+    AXMFiHearingDevicePairedUUIDs:
+        class: AXHearingUtilities
+        name: getMFiHearingDevicePairedUUIDs
 
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (k?AX.*):
@@ -32,6 +97,15 @@ functions:
         name: 'Function__#{g[0]}'
 
 values:
+    AXMFiHearingDeviceStreamingEarDidChangeNotification:
+        class: AXHearingUtilities
+        static_class: Notifications
+        name: MFiHearingDeviceStreamingEarDidChange
+    AXMFiHearingDevicePairedUUIDsDidChangeNotification:
+        class: AXHearingUtilities
+        static_class: Notifications
+        name: MFiHearingDevicePairedUUIDsDidChange
+
     # Make sure we don't miss any values if new ones are introduced in a later version
     (k?AX.*):
         class: FIXME

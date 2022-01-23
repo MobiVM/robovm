@@ -55,7 +55,7 @@ import org.robovm.apple.dispatch.*;
      * @since Available in iOS 11.0 and later.
      */
     @Property(selector = "session")
-    NFCReaderSession getSession();
+    NFCReaderSessionProtocol getSession();
     /**
      * @since Available in iOS 11.0 and later.
      */
