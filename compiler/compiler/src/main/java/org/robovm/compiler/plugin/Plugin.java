@@ -50,4 +50,29 @@ public abstract class Plugin {
         }
         return args;
     }
+
+    /**
+     * String type argument accessor
+     */
+    protected String argumentValue(Map<String, String> arguments, String key, String defaultValue) {
+        String v = arguments.get(key);
+        return v != null ? v : defaultValue;
+    }
+
+    /**
+     * Int type argument accessor
+     */
+    protected int argumentValue(Map<String, String> arguments, String key, int defaultValue) {
+        String v = arguments.get(key);
+        return v != null ? Integer.parseInt(v) : defaultValue;
+    }
+
+    /**
+     * Boolean type argument accessor
+     */
+    protected boolean argumentValue(Map<String, String> arguments, String key, boolean defaultValue) {
+        String v = arguments.get(key);
+        return v != null ? Boolean.parseBoolean(v) : defaultValue;
+    }
+
 }

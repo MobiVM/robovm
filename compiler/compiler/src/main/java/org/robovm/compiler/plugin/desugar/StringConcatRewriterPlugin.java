@@ -4,21 +4,29 @@ import org.robovm.compiler.ModuleBuilder;
 import org.robovm.compiler.clazz.Clazz;
 import org.robovm.compiler.config.Config;
 import org.robovm.compiler.plugin.AbstractCompilerPlugin;
+import org.robovm.compiler.plugin.PluginArgument;
+import org.robovm.compiler.plugin.PluginArguments;
 import soot.*;
 import soot.jimple.DefinitionStmt;
 import soot.jimple.DynamicInvokeExpr;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 /**
  * This plugin adds support for Java 9+ String concatenation by replacing dynamicInvoke instructions
  * to {@code java.lang.invoke.StringConcatFactory} with StringBuilder appends.
+ *
+ * plugin argument to control: 'desugar:enableJava9StringConcat=false'
+ *
  * @author CoderBaron
  */
 public class StringConcatRewriterPlugin extends AbstractCompilerPlugin {
     private StringConcatRewriter rewriter;
+    private static final String ARG_KEY_ENABLE_PLUGIN = "enableJava9StringConcat";
+    private Boolean enabled;
 
     private void init() {
         if (rewriter == null) {
@@ -37,13 +45,38 @@ public class StringConcatRewriterPlugin extends AbstractCompilerPlugin {
     }
 
     @Override
+    public PluginArguments getArguments() {
+        // list of arguments as these passed by idea, check idea/compilation/RoboVMCompileTask
+        List<PluginArgument> args = new ArrayList<>();
+        args.add(new PluginArgument(ARG_KEY_ENABLE_PLUGIN, "false", "Flag: disables String concatenation " +
+                "by replacing dynamicInvoke instructions"));
+        return new PluginArguments("desugar", args);
+    }
+
+    private boolean isEnabled(Config config) {
+        if (enabled == null) {
+            enabled = argumentValue(parseArguments(config), ARG_KEY_ENABLE_PLUGIN, true);
+        }
+        return enabled;
+    }
+
+    @Override
+    public void beforeConfig(Config.Builder builder, Config config) throws IOException {
+        super.beforeConfig(builder, config);
+        // config to be built, reset enabled flag
+        enabled = null;
+    }
+
+    @Override
     public void beforeClass(Config config, Clazz clazz, ModuleBuilder moduleBuilder) throws IOException {
-        init();
+        if (isEnabled(config)) {
+            init();
 
-        SootClass sootClass = clazz.getSootClass();
+            SootClass sootClass = clazz.getSootClass();
 
-        for (SootMethod method : sootClass.getMethods()) {
-            transformStringConcats(method);
+            for (SootMethod method : sootClass.getMethods()) {
+                transformStringConcats(method);
+            }
         }
     }
 

@@ -149,6 +149,13 @@ public class VTable {
             cache.put(clazz.getName(), vtable);
             return vtable;
         }
+
+        /**
+         * Removes clazz from cache in case it was changed (during compilation)
+         */
+        public void remove(SootClass clazz) {
+            cache.remove(clazz.getName());
+        }
     }
     
     public static class Entry {
