@@ -78,6 +78,9 @@ public class ByteBufferJava9ApiPlugin extends AbstractCompilerPlugin {
             injectMethod(sootClass, "rewind", false);
             injectMethod(sootClass, "position", true);
             injectMethod(sootClass, "limit", true);
+
+            // remove this class from vtable cache as it has to be rebuilt to include new methods
+            config.getVTableCache().remove(sootClass);
         }
     }
 
