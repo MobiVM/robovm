@@ -54,7 +54,7 @@ import org.robovm.apple.coregraphics.*;
     @Method(selector = "initWithNibName:bundle:")
     public GKGameCenterViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
     @Method(selector = "initWithCoder:")
-    public GKGameCenterViewController(NSCoder decoder) { super(decoder); }
+    public GKGameCenterViewController(NSCoder coder) { super(coder); }
     /**
      * @since Available in iOS 14.0 and later.
      */

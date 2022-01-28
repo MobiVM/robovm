@@ -55,6 +55,16 @@ import org.robovm.apple.coreanimation.*;
     NSObject getUserInfo();
     @Property(selector = "setUserInfo:")
     void setUserInfo(NSObject v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "isEnabled")
+    boolean isEnabled();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setEnabled:")
+    void setEnabled(boolean v);
     /*</properties>*/
     /*<methods>*/
     

@@ -50,7 +50,7 @@ import org.robovm.apple.linkpresentation.*;
     /*<implements>*//*</implements>*/ {
 
     public static class Notifications {
-        public static NSObject observeWillShowMenu(final Runnable block) {
+        public static NSObjectProtocol observeWillShowMenu(final Runnable block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(WillShowMenuNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -58,7 +58,7 @@ import org.robovm.apple.linkpresentation.*;
                 }
             });
         }
-        public static NSObject observeDidShowMenu(final Runnable block) {
+        public static NSObjectProtocol observeDidShowMenu(final Runnable block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(DidShowMenuNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -66,7 +66,7 @@ import org.robovm.apple.linkpresentation.*;
                 }
             });
         }
-        public static NSObject observeWillHideMenu(final Runnable block) {
+        public static NSObjectProtocol observeWillHideMenu(final Runnable block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(WillHideMenuNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -74,7 +74,7 @@ import org.robovm.apple.linkpresentation.*;
                 }
             });
         }
-        public static NSObject observeDidHideMenu(final Runnable block) {
+        public static NSObjectProtocol observeDidHideMenu(final Runnable block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(DidHideMenuNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -82,7 +82,7 @@ import org.robovm.apple.linkpresentation.*;
                 }
             });
         }
-        public static NSObject observeMenuFrameDidChange(final Runnable block) {
+        public static NSObjectProtocol observeMenuFrameDidChange(final Runnable block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(MenuFrameDidChangeNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {

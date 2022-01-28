@@ -79,6 +79,12 @@ classes:
                 name: stopCapture
             '-stopRecordingWithOutputURL:completionHandler:':
                 name: stopRecording
+            '-startClipBufferingWithCompletionHandler:':
+                name: startClipBuffering
+            '-stopClipBufferingWithCompletionHandler:':
+                name: stopClipBuffering
+            '-exportClipToURL:duration:completionHandler:':
+                name: exportClipToURL
     RPSystemBroadcastPickerView: {} #since 12.0
 
 protocols:

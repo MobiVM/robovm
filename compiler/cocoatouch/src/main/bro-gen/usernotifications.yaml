@@ -16,6 +16,7 @@ enums:
     UNNotificationPresentationOptions: {}
     UNNotificationSetting: {}
     UNShowPreviewsSetting: {} #since 11.0
+    UNNotificationInterruptionLevel: {} #since 15.0
 
 classes:
     UNCalendarNotificationTrigger:
@@ -41,6 +42,9 @@ classes:
             '+actionWithIdentifier:title:options:':
                 name: create
                 constructor: true
+            '+actionWithIdentifier:title:options:icon:':
+                name: create
+                constructor: true
     UNNotificationAttachment:
         methods:
             '+attachmentWithIdentifier:URL:options:error:':
@@ -58,7 +62,10 @@ classes:
             '+categoryWithIdentifier:actions:intentIdentifiers:hiddenPreviewsBodyPlaceholder:categorySummaryFormat:options:':
                 name: create
                 constructor: true
-    UNNotificationContent: {}
+    UNNotificationContent: #since 10.0
+        methods:
+            '-contentByUpdatingWithProvider:error:':
+                name: contentByUpdating
     UNNotificationRequest:
         methods:
             '+requestWithIdentifier:content:trigger:':
@@ -81,6 +88,9 @@ classes:
     UNTextInputNotificationAction:
         methods:
             '+actionWithIdentifier:title:options:textInputButtonTitle:textInputPlaceholder:':
+                name: create
+                constructor: true
+            '+actionWithIdentifier:title:options:icon:textInputButtonTitle:textInputPlaceholder:':
                 name: create
                 constructor: true
     UNTextInputNotificationResponse: {}
@@ -107,6 +117,12 @@ classes:
                 name: getDeliveredNotifications
             '-removeDeliveredNotificationsWithIdentifiers:':
                 name: removeDeliveredNotifications
+    UNNotificationActionIcon: #since 15.0
+        methods:
+            '+iconWithTemplateImageName:':
+                name: createWithTemplateImageName
+            '+iconWithSystemImageName:':
+                name: createWithSystemImageName
 protocols:
     UNUserNotificationCenterDelegate:
         methods:
@@ -116,7 +132,7 @@ protocols:
                 name: didReceiveNotificationResponse
             '-userNotificationCenter:openSettingsForNotification:':
                 name: openSettings
-
+    UNNotificationContentProviding: {} #since 15.0
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (k?UN.*):

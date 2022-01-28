@@ -64,6 +64,24 @@ import org.robovm.apple.coregraphics.*;
      */
     @Method(selector = "initWithPersonHandle:nameComponents:displayName:image:contactIdentifier:customIdentifier:isMe:")
     public INRestaurantGuest(INPersonHandle personHandle, NSPersonNameComponents nameComponents, String displayName, INImage image, String contactIdentifier, String customIdentifier, boolean isMe) { super(personHandle, nameComponents, displayName, image, contactIdentifier, customIdentifier, isMe); }
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "initWithPersonHandle:nameComponents:displayName:image:contactIdentifier:customIdentifier:isMe:suggestionType:")
+    public static  INRestaurantGuest createForMe(INPersonHandle personHandle, NSPersonNameComponents nameComponents, String displayName, INImage image, String contactIdentifier, String customIdentifier, boolean isMe, INPersonSuggestionType suggestionType) {
+       INRestaurantGuest res = new INRestaurantGuest((SkipInit) null);
+       res.initObject(res.initWithPersonHandleNameComponentsDisplayNameImageContactIdentifierCustomIdentifierIsMeSuggestionType(personHandle, nameComponents, displayName, image, contactIdentifier, customIdentifier, isMe, suggestionType));
+       return res;
+    }
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "initWithPersonHandle:nameComponents:displayName:image:contactIdentifier:customIdentifier:isContactSuggestion:suggestionType:")
+    public static  INRestaurantGuest createForContactSuggestion(INPersonHandle personHandle, NSPersonNameComponents nameComponents, String displayName, INImage image, String contactIdentifier, String customIdentifier, boolean isContactSuggestion, INPersonSuggestionType suggestionType) {
+       INRestaurantGuest res = new INRestaurantGuest((SkipInit) null);
+       res.initObject(res.initWithPersonHandleNameComponentsDisplayNameImageContactIdentifierCustomIdentifierIsContactSuggestionSuggestionType(personHandle, nameComponents, displayName, image, contactIdentifier, customIdentifier, isContactSuggestion, suggestionType));
+       return res;
+    }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "phoneNumber")

@@ -131,6 +131,16 @@ import org.robovm.apple.linkpresentation.*;
     public static native UIListContentConfiguration groupedHeaderConfiguration();
     @Method(selector = "groupedFooterConfiguration")
     public static native UIListContentConfiguration groupedFooterConfiguration();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "prominentInsetGroupedHeaderConfiguration")
+    public static native UIListContentConfiguration prominentInsetGroupedHeaderConfiguration();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "extraProminentInsetGroupedHeaderConfiguration")
+    public static native UIListContentConfiguration extraProminentInsetGroupedHeaderConfiguration();
     @Method(selector = "sidebarCellConfiguration")
     public static native UIListContentConfiguration sidebarCellConfiguration();
     @Method(selector = "sidebarSubtitleCellConfiguration")

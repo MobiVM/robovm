@@ -49,7 +49,23 @@ public enum /*<name>*/MPSGraphPaddingMode/*</name>*/ implements ValuedEnum {
     /**
      * @since Available in iOS 14.0 and later.
      */
-    Symmetric(2L);
+    Symmetric(2L),
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    ClampToEdge(3L),
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    Zero(4L),
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    Periodic(5L),
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    AntiPeriodic(6L);
     /*</values>*/
 
     /*<bind>*/

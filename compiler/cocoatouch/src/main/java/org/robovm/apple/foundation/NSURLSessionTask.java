@@ -64,6 +64,16 @@ import org.robovm.apple.dispatch.*;
     @Property(selector = "response")
     public native NSURLResponse getResponse();
     /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "delegate")
+    public native NSURLSessionTaskDelegate getDelegate();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setDelegate:")
+    public native void setDelegate(NSURLSessionTaskDelegate v);
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @Property(selector = "progress")
@@ -98,10 +108,10 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "setCountOfBytesClientExpectsToReceive:")
     public native void setCountOfBytesClientExpectsToReceive(long v);
-    @Property(selector = "countOfBytesReceived")
-    public native long getCountOfBytesReceived();
     @Property(selector = "countOfBytesSent")
     public native long getCountOfBytesSent();
+    @Property(selector = "countOfBytesReceived")
+    public native long getCountOfBytesReceived();
     @Property(selector = "countOfBytesExpectedToSend")
     public native long getCountOfBytesExpectedToSend();
     @Property(selector = "countOfBytesExpectedToReceive")

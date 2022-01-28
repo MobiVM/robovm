@@ -54,14 +54,14 @@ import org.robovm.apple.security.*;
     public native void setLocalizedFallbackTitle(String v);
     /**
      * @since Available in iOS 8.3 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. No longer supported
      */
     @Deprecated
     @Property(selector = "maxBiometryFailures")
     public native NSNumber getMaxBiometryFailures();
     /**
      * @since Available in iOS 8.3 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. No longer supported
      */
     @Deprecated
     @Property(selector = "setMaxBiometryFailures:")

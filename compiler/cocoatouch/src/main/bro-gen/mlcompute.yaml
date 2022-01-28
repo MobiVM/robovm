@@ -28,7 +28,7 @@ enums:
     MLCSoftmaxOperation: {}
     MLCLSTMResultMode: {}
     MLCComparisonOperation: {}
-
+    MLCGradientClippingType: {}
 categories:
 
 classes:
@@ -79,6 +79,9 @@ classes:
             '+optimizerWithDescriptor:beta1:beta2:epsilon:timeStep:':
                 name: create
                 constructor: true
+            '+optimizerWithDescriptor:beta1:beta2:epsilon:usesAMSGrad:timeStep:':
+                constructor: true
+                name: create
     MLCArithmeticLayer: #since 14.0
         methods:
             '+layerWithOperation:':
@@ -361,6 +364,9 @@ classes:
             '+descriptorWithLearningRate:gradientRescale:appliesGradientClipping:gradientClipMax:gradientClipMin:regularizationType:regularizationScale:':
                 name: create
                 constructor: true
+            '+descriptorWithLearningRate:gradientRescale:appliesGradientClipping:gradientClippingType:gradientClipMax:gradientClipMin:maximumClippingNorm:customGlobalNorm:regularizationType:regularizationScale:':
+                constructor: true
+                name: create
     MLCPaddingLayer: #since 14.0
         methods:
             '+layerWithReflectionPadding:':
@@ -510,6 +516,17 @@ classes:
             '+tensorWithSequenceLengths:sortedSequences:featureChannelCount:batchSize:data:':
                 name: create
                 constructor: true
+            '-tensorByQuantizingToType:scale:bias:':
+                name: tensorByQuantizingToType
+            '-tensorByQuantizingToType:scale:bias:axis:':
+                name: tensorByQuantizingToType
+            '-tensorByDequantizingToType:scale:bias:':
+                name: tensorByDequantizingToType
+            '-tensorByDequantizingToType:scale:bias:axis:':
+                name: tensorByDequantizingToType
+            '+tensorWithShape:randomInitializerType:dataType:':
+                constructor: true
+                name: create
     MLCTensorData: #since 14.0
         methods:
             '+dataWithBytesNoCopy:length:':
@@ -615,6 +632,15 @@ classes:
                 constructor: true
                 name: create
     MLCSelectionLayer: {} #since 14.5
+    MLCAdamWOptimizer: #since 15.0
+        methods:
+            '+optimizerWithDescriptor:':
+                constructor: true
+                name: create
+            '+optimizerWithDescriptor:beta1:beta2:epsilon:usesAMSGrad:timeStep:':
+                constructor: true
+                name: create
+    MLCPlatform: {} #since 15.0
 protocols:
 
 functions:

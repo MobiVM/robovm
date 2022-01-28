@@ -70,6 +70,16 @@ import org.robovm.apple.linkpresentation.*;
     @Property(selector = "configurationState")
     public native UIViewConfigurationState getConfigurationState();
     /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "configurationUpdateHandler")
+    public native @Block VoidBlock2<UITableViewHeaderFooterView, UIViewConfigurationState> getConfigurationUpdateHandler();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setConfigurationUpdateHandler:")
+    public native void setConfigurationUpdateHandler(@Block VoidBlock2<UITableViewHeaderFooterView, UIViewConfigurationState> v);
+    /**
      * @since Available in iOS 14.0 and later.
      */
     @Property(selector = "contentConfiguration")

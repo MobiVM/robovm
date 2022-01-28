@@ -63,7 +63,7 @@ import org.robovm.apple.linkpresentation.*;
     @Method(selector = "menuForIdentifier:")
     UIMenu menuForIdentifier(UIMenuIdentifier identifier);
     @Method(selector = "actionForIdentifier:")
-    UIAction actionForIdentifier(String identifier);
+    UIAction actionForIdentifier(UIActionIdentifier identifier);
     @Method(selector = "commandForAction:propertyList:")
     UICommand getCommand(Selector action, NSObject propertyList);
     @Method(selector = "replaceMenuForIdentifier:withMenu:")

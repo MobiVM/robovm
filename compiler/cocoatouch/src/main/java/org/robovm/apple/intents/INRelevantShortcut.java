@@ -47,7 +47,7 @@ import org.robovm.apple.coregraphics.*;
     /*<bind>*/static { ObjCRuntime.bind(INRelevantShortcut.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected INRelevantShortcut() {}
+    public INRelevantShortcut() {}
     protected INRelevantShortcut(Handle h, long handle) { super(h, handle); }
     protected INRelevantShortcut(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithShortcut:")
@@ -64,6 +64,16 @@ import org.robovm.apple.coregraphics.*;
     public native INDefaultCardTemplate getWatchTemplate();
     @Property(selector = "setWatchTemplate:")
     public native void setWatchTemplate(INDefaultCardTemplate v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "widgetKind")
+    public native String getWidgetKind();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setWidgetKind:")
+    public native void setWidgetKind(String v);
     @Property(selector = "shortcutRole")
     public native INRelevantShortcutRole getShortcutRole();
     @Property(selector = "setShortcutRole:")

@@ -41,7 +41,10 @@ enums:
     nw_connection_group_state_t: {prefix: nw_connection_group_state_, name: NWConnectionGroupState}
     nw_report_resolution_protocol_t: {prefix: nw_report_resolution_protocol_, name: NWReportResolutionProtocol}
     nw_path_unsatisfied_reason_t: {prefix: nw_path_unsatisfied_reason_, name: NWPathUnsatisfiedReason}
-
+    nw_interface_radio_type_t: {prefix: nw_interface_radio_type_, name: NWInterfaceRadioType }
+    nw_parameters_attribution_t: {prefix: nw_parameters_attribution_, name: NWParametersAttribution}
+    nw_quic_stream_type_t: {prefix: nw_quic_stream_type_, name: NWQuicStreamType}
+    nw_multipath_version_t: {prefix: nw_multipath_version_, name: NWMultipathVersion}
 classes:
     NWFramerMessage:
         extends: NWProtocolMetadata
@@ -637,6 +640,24 @@ functions:
     nw_resolution_report_(.*):
         class: NWResolutionReport
         name: '#{g[0].downcase_first_camelize}'
+
+    # iOS15
+    nw_quic_(add|copy|get|set)_(tls_application_protocol|sec_protocol_options|stream_is_unidirectional|initial_max_data|max_udp_payload_size):
+        class: NWProtocolOptions
+        name: '#{g[0]}Quic#{g[1].upcase_first_camelize}'
+    nw_quic_(add|copy|get|set)_(idle_timeout|initial_max_streams_bidirectional|initial_max_streams_unidirectional|initial_max_stream_data_bidirectional_local|initial_max_stream_data_bidirectional_remote):
+        class: NWProtocolOptions
+        name: '#{g[0]}Quic#{g[1].upcase_first_camelize}'
+    nw_quic_(add|copy|get|set)_(initial_max_stream_data_unidirectional):
+        class: NWProtocolOptions
+        name: '#{g[0]}Quic#{g[1].upcase_first_camelize}'
+
+    nw_quic_(add|copy|get|set)_(sec_protocol_metadata|stream_id|stream_application_error|local_max_streams_bidirectional|local_max_streams_unidirectional):
+        class: NWProtocolMetadata
+        name: '#{g[0]}Quic#{g[1].upcase_first_camelize}'
+    nw_quic_(add|copy|get|set)_(remote_max_streams_bidirectional|remote_max_streams_unidirectional|application_error|application_error_reason|keepalive_interval|remote_idle_timeout):
+        class: NWProtocolMetadata
+        name: '#{g[0]}Quic#{g[1].upcase_first_camelize}'
 
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (k?nw_.*):

@@ -56,7 +56,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithDevice:")
     public MPSCNNLocalContrastNormalizationGradient(MTLDevice device) { super(device); }
     @Method(selector = "initWithCoder:")
-    public MPSCNNLocalContrastNormalizationGradient(NSCoder decoder) { super(decoder); }
+    public MPSCNNLocalContrastNormalizationGradient(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "alpha")

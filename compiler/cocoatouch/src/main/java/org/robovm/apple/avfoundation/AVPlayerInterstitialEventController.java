@@ -42,12 +42,12 @@ import org.robovm.apple.audiotoolbox.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 14.5 and later.
+ * @since Available in iOS 15.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVPlayerInterstitialEventController/*</name>*/ 
-    extends /*<extends>*/AVPlayerInterstitialEventObserver/*</extends>*/ 
+    extends /*<extends>*/AVPlayerInterstitialEventMonitor/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class AVPlayerInterstitialEventControllerPtr extends Ptr<AVPlayerInterstitialEventController, AVPlayerInterstitialEventControllerPtr> {}/*</ptr>*/
@@ -65,10 +65,6 @@ import org.robovm.apple.audiotoolbox.*;
     public native NSArray<AVPlayerInterstitialEvent> getEvents();
     @Property(selector = "setEvents:")
     public native void setEvents(NSArray<AVPlayerInterstitialEvent> v);
-    @Property(selector = "interstitialEvents")
-    public native NSArray<AVPlayerInterstitialEvent> getInterstitialEvents();
-    @Property(selector = "setInterstitialEvents:")
-    public native void setInterstitialEvents(NSArray<AVPlayerInterstitialEvent> v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

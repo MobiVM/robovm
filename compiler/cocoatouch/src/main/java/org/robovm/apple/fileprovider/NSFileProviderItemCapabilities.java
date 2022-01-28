@@ -47,6 +47,11 @@ public final class /*<name>*/NSFileProviderItemCapabilities/*</name>*/ extends B
     public static final NSFileProviderItemCapabilities AllowsDeleting = new NSFileProviderItemCapabilities(32L);
     public static final NSFileProviderItemCapabilities AllowsAddingSubItems = new NSFileProviderItemCapabilities(2L);
     public static final NSFileProviderItemCapabilities AllowsContentEnumerating = new NSFileProviderItemCapabilities(1L);
+    /**
+     * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 15.0. This capability is no longer supported, and does not contain all capabilities. Please migrate to directly specifying each of the individual capabilities that should be allowed for the item.
+     */
+    @Deprecated
     public static final NSFileProviderItemCapabilities AllowsAll = new NSFileProviderItemCapabilities(63L);
     /*</values>*/
 

@@ -48,6 +48,7 @@ public enum /*<name>*/MIDISystemStatus/*</name>*/ implements ValuedEnum {
     Continue(251L),
     Stop(252L),
     ActiveSending(254L),
+    ActiveSensing(254L),
     SystemReset(255L);
     /*</values>*/
 

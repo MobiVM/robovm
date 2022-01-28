@@ -379,6 +379,46 @@ import org.robovm.apple.corehaptic.*;
     @GlobalValue(symbol="GCKeyCodeF12", optional=true)
     public static native @MachineSizedSInt long F12();
     /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @GlobalValue(symbol="GCKeyCodeF13", optional=true)
+    public static native @MachineSizedSInt long F13();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @GlobalValue(symbol="GCKeyCodeF14", optional=true)
+    public static native @MachineSizedSInt long F14();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @GlobalValue(symbol="GCKeyCodeF15", optional=true)
+    public static native @MachineSizedSInt long F15();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @GlobalValue(symbol="GCKeyCodeF16", optional=true)
+    public static native @MachineSizedSInt long F16();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @GlobalValue(symbol="GCKeyCodeF17", optional=true)
+    public static native @MachineSizedSInt long F17();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @GlobalValue(symbol="GCKeyCodeF18", optional=true)
+    public static native @MachineSizedSInt long F18();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @GlobalValue(symbol="GCKeyCodeF19", optional=true)
+    public static native @MachineSizedSInt long F19();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @GlobalValue(symbol="GCKeyCodeF20", optional=true)
+    public static native @MachineSizedSInt long F20();
+    /**
      * @since Available in iOS 14.0 and later.
      */
     @GlobalValue(symbol="GCKeyCodePrintScreen", optional=true)

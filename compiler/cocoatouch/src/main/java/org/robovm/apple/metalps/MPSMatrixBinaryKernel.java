@@ -52,7 +52,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithDevice:")
     public MPSMatrixBinaryKernel(MTLDevice device) { super(device); }
     @Method(selector = "initWithCoder:")
-    public MPSMatrixBinaryKernel(NSCoder decoder) { super(decoder); }
+    public MPSMatrixBinaryKernel(NSCoder coder) { super(coder); }
     /**
      * @since Available in iOS 11.0 and later.
      */

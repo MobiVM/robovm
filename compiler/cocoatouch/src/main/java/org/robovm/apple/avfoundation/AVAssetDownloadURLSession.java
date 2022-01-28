@@ -67,7 +67,7 @@ import org.robovm.apple.audiotoolbox.*;
     /*<methods>*/
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Deprecated in iOS 10.0. No longer supported
+     * @deprecated Deprecated in iOS 10.0. Use assetDownloadTaskWithURLAsset:assetTitle:assetArtworkData:options: instead
      */
     @Deprecated
     @Method(selector = "assetDownloadTaskWithURLAsset:destinationURL:options:")
@@ -82,6 +82,11 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Method(selector = "aggregateAssetDownloadTaskWithURLAsset:mediaSelections:assetTitle:assetArtworkData:options:")
     public native AVAggregateAssetDownloadTask aggregateAssetDownloadTaskWithURLAsset(AVURLAsset URLAsset, NSArray<AVMediaSelection> mediaSelections, String title, NSData artworkData, NSDictionary<NSString, ?> options);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "assetDownloadTaskWithConfiguration:")
+    public native AVAssetDownloadTask assetDownloadTask(AVAssetDownloadConfiguration downloadConfiguration);
     @Method(selector = "sessionWithConfiguration:assetDownloadDelegate:delegateQueue:")
     protected static native @Pointer long create(NSURLSessionConfiguration configuration, AVAssetDownloadDelegate delegate, NSOperationQueue delegateQueue);
     /*</methods>*/

@@ -74,6 +74,11 @@ import org.robovm.apple.linkpresentation.*;
     public native UIMenuOptions getOptions();
     @Property(selector = "children")
     public native NSArray<UIMenuElement> getChildren();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "selectedElements")
+    public native NSArray<UIMenuElement> getSelectedElements();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

@@ -651,6 +651,66 @@ import org.robovm.apple.coregraphics.*;
          */
         @GlobalValue(symbol="kCGImagePropertyAuxiliaryDataType", optional=true)
         public static native CFString AuxiliaryDataType();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyImageIndex", optional=true)
+        public static native CFString ImageIndex();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyGroups", optional=true)
+        public static native CFString Groups();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyGroupIndex", optional=true)
+        public static native CFString GroupIndex();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyGroupType", optional=true)
+        public static native CFString GroupType();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyGroupTypeStereoPair", optional=true)
+        public static native CFString GroupTypeStereoPair();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyGroupTypeAlternate", optional=true)
+        public static native CFString GroupTypeAlternate();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyGroupImagesAlternate", optional=true)
+        public static native CFString GroupImagesAlternate();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyGroupImageIndexLeft", optional=true)
+        public static native CFString GroupImageIndexLeft();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyGroupImageIndexRight", optional=true)
+        public static native CFString GroupImageIndexRight();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyGroupImageIsLeftImage", optional=true)
+        public static native CFString GroupImageIsLeftImage();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyGroupImageIsRightImage", optional=true)
+        public static native CFString GroupImageIsRightImage();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyGroupImageIsAlternateImage", optional=true)
+        public static native CFString GroupImageIsAlternateImage();
     }
     /*</keys>*/
 }

@@ -91,6 +91,8 @@ classes:
                 name: complete
             '-presentAuthorizationViewControllerWithCompletion:':
                 name: presentAuthorizationViewController
+            '-completeWithAuthorizationResult:':
+                name: complete
     ASAuthorizationRequest: {} #since 13.0
     ASAuthorizationSingleSignOnCredential: {} #since 13.0
     ASAuthorizationSingleSignOnProvider: #since 13.0
@@ -127,7 +129,48 @@ classes:
                 name: changePasswordWithoutUserInteraction
             '-prepareInterfaceToChangePasswordForServiceIdentifier:existingCredential:newPassword:userInfo:':
                 name: prepareInterfaceToChangePassword
-
+    ASAuthorizationPlatformPublicKeyCredentialAssertion: {} #since 15.0
+    ASAuthorizationPlatformPublicKeyCredentialAssertionRequest: {} #since 15.0
+    ASAuthorizationPlatformPublicKeyCredentialDescriptor: #since 15.0
+        methods:
+            '-initWithCredentialID:':
+                name: init
+    ASAuthorizationPlatformPublicKeyCredentialProvider: #since 15.0
+        methods:
+            '-initWithRelyingPartyIdentifier:':
+                name: init
+            '-createCredentialRegistrationRequestWithChallenge:name:userID:':
+                name: createCredentialRegistrationRequest
+            '-createCredentialAssertionRequestWithChallenge:':
+                name: createCredentialAssertionRequest
+    ASAuthorizationPlatformPublicKeyCredentialRegistration: {} #since 15.0
+    ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest: {} #since 15.0
+    ASAuthorizationProviderExtensionAuthorizationResult: #since 15.0
+        methods:
+            '-initWithHTTPAuthorizationHeaders:':
+                name: init
+            '-initWithHTTPResponse:httpBody:':
+                name: init
+    ASAuthorizationPublicKeyCredentialParameters: #since 15.0
+        methods:
+            '-initWithAlgorithm:':
+                name: init
+    ASAuthorizationSecurityKeyPublicKeyCredentialAssertion: {} #since 15.0
+    ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest: {} #since 15.0
+    ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor: #since 15.0
+        methods:
+            '-initWithCredentialID:transports:':
+                name: init
+    ASAuthorizationSecurityKeyPublicKeyCredentialProvider: #since 15.0
+        methods:
+            '-initWithRelyingPartyIdentifier:':
+                name: init
+            '-createCredentialRegistrationRequestWithChallenge:displayName:name:userID:':
+                name: createCredentialRegistrationRequest
+            '-createCredentialAssertionRequestWithChallenge:':
+                name: createCredentialAssertionRequest
+    ASAuthorizationSecurityKeyPublicKeyCredentialRegistration: {} #since 15.0
+    ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest: {} #since 15.0
 protocols:
     ASAuthorizationControllerDelegate: #since 13.0
         methods:
@@ -155,6 +198,16 @@ protocols:
         methods:
             '-presentationAnchorForAccountAuthenticationModificationController:':
                 name: getPresentationAnchor
+    ASAuthorizationPublicKeyCredentialAssertion: {} #since 15.0
+    ASAuthorizationPublicKeyCredentialAssertionRequest: #since 15.0
+        skip_adapter: true
+        properties:
+            allowedCredentials:
+                type: NSArray<T>
+    ASAuthorizationPublicKeyCredentialDescriptor: {} #since 15.0
+    ASAuthorizationPublicKeyCredentialRegistration: {} #since 15.0
+    ASAuthorizationPublicKeyCredentialRegistrationRequest: {} #since 15.0
+    ASPublicKeyCredential: {} #since 15.0
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (k?ASC.*):
@@ -175,6 +228,10 @@ values:
         name: 'Value__#{g[0]}'
 
 constants:
+    ASCOSE(AlgorithmIdentifierES256|EllipticCurveIdentifierP256):
+        class: ASCOSEConstants
+        name: '#{g[0]}'
+
     # Make sure we don't miss any constants if new ones are introduced in a later version
     (k?ASC.*):
         class: !!!AuthServicesFixMe

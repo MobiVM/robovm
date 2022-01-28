@@ -63,6 +63,11 @@ import org.robovm.apple.audiotoolbox.*;
     @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsIntegerListMarshaler.class) List<Integer> getRequiredSourceTrackIDs();
     @Property(selector = "passthroughTrackID")
     int getPassthroughTrackID();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "requiredSourceSampleDataTrackIDs")
+    NSArray<NSNumber> getRequiredSourceSampleDataTrackIDs();
     /*</properties>*/
     /*<methods>*/
     

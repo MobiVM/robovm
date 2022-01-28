@@ -64,6 +64,8 @@ import org.robovm.apple.imageio.*;
     public native VNImageCropAndScaleOption getImageCropAndScaleOption();
     @Property(selector = "setImageCropAndScaleOption:")
     public native void setImageCropAndScaleOption(VNImageCropAndScaleOption v);
+    @Property(selector = "results")
+    public native NSArray<VNFeaturePrintObservation> getResults();
     /**
      * @since Available in iOS 12.0 and later.
      */

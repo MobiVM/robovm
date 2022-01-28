@@ -21,6 +21,8 @@ classes:
         methods:
             '-startFetchingMetadataForURL:completionHandler:':
                 name: startFetchingMetadata
+            '-startFetchingMetadataForRequest:completionHandler:':
+                name: startFetchingMetadata
 protocols:
 
 functions:

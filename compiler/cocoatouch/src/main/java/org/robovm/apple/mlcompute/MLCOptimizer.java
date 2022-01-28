@@ -69,6 +69,21 @@ import org.robovm.apple.metalps.*;
     public native float getRegularizationScale();
     @Property(selector = "regularizationType")
     public native MLCRegularizationType getRegularizationType();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "gradientClippingType")
+    public native MLCGradientClippingType getGradientClippingType();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "maximumClippingNorm")
+    public native float getMaximumClippingNorm();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "customGlobalNorm")
+    public native float getCustomGlobalNorm();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

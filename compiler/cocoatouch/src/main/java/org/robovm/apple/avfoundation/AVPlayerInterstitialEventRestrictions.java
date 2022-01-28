@@ -42,7 +42,7 @@ import org.robovm.apple.audiotoolbox.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 14.5 and later.
+ * @since Available in iOS 15.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/

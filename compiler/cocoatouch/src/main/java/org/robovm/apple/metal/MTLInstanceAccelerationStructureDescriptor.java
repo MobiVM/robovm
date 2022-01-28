@@ -70,6 +70,46 @@ import org.robovm.apple.dispatch.*;
     public native NSArray<?> getInstancedAccelerationStructures();
     @Property(selector = "setInstancedAccelerationStructures:")
     public native void setInstancedAccelerationStructures(NSArray<?> v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "instanceDescriptorType")
+    public native MTLAccelerationStructureInstanceDescriptorType getInstanceDescriptorType();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setInstanceDescriptorType:")
+    public native void setInstanceDescriptorType(MTLAccelerationStructureInstanceDescriptorType v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "motionTransformBuffer")
+    public native MTLBuffer getMotionTransformBuffer();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setMotionTransformBuffer:")
+    public native void setMotionTransformBuffer(MTLBuffer v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "motionTransformBufferOffset")
+    public native @MachineSizedUInt long getMotionTransformBufferOffset();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setMotionTransformBufferOffset:")
+    public native void setMotionTransformBufferOffset(@MachineSizedUInt long v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "motionTransformCount")
+    public native @MachineSizedUInt long getMotionTransformCount();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setMotionTransformCount:")
+    public native void setMotionTransformCount(@MachineSizedUInt long v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

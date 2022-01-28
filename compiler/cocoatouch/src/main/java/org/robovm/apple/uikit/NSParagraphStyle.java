@@ -88,6 +88,11 @@ import org.robovm.apple.linkpresentation.*;
     public native @MachineSizedFloat double getParagraphSpacingBefore();
     @Property(selector = "hyphenationFactor")
     public native float getHyphenationFactor();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "usesDefaultHyphenation")
+    public native boolean usesDefaultHyphenation();
     @Property(selector = "tabStops")
     public native NSArray<NSTextTab> getTabStops();
     @Property(selector = "defaultTabInterval")

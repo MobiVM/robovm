@@ -91,22 +91,30 @@ import org.robovm.apple.foundation.*;
     public native void setUserInfo(NSDictionary<?, ?> v);
     /**
      * @since Available in iOS 12.0 and later.
+     * @deprecated Deprecated in iOS 15.0. summaryArgument is ignored
      */
+    @Deprecated
     @Property(selector = "summaryArgument")
     public native String getSummaryArgument();
     /**
      * @since Available in iOS 12.0 and later.
+     * @deprecated Deprecated in iOS 15.0. summaryArgument is ignored
      */
+    @Deprecated
     @Property(selector = "setSummaryArgument:")
     public native void setSummaryArgument(String v);
     /**
      * @since Available in iOS 12.0 and later.
+     * @deprecated Deprecated in iOS 15.0. summaryArgumentCount is ignored
      */
+    @Deprecated
     @Property(selector = "summaryArgumentCount")
     public native @MachineSizedUInt long getSummaryArgumentCount();
     /**
      * @since Available in iOS 12.0 and later.
+     * @deprecated Deprecated in iOS 15.0. summaryArgumentCount is ignored
      */
+    @Deprecated
     @Property(selector = "setSummaryArgumentCount:")
     public native void setSummaryArgumentCount(@MachineSizedUInt long v);
     /**
@@ -119,6 +127,26 @@ import org.robovm.apple.foundation.*;
      */
     @Property(selector = "setTargetContentIdentifier:")
     public native void setTargetContentIdentifier(String v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "interruptionLevel")
+    public native UNNotificationInterruptionLevel getInterruptionLevel();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setInterruptionLevel:")
+    public native void setInterruptionLevel(UNNotificationInterruptionLevel v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "relevanceScore")
+    public native double getRelevanceScore();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setRelevanceScore:")
+    public native void setRelevanceScore(double v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

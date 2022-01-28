@@ -54,7 +54,16 @@ import org.robovm.apple.uikit.*;
     public QLThumbnailReply(NSURL fileURL) { super((Handle) null, create(fileURL)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
-    
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "extensionBadge")
+    public native String getExtensionBadge();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setExtensionBadge:")
+    public native void setExtensionBadge(String v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

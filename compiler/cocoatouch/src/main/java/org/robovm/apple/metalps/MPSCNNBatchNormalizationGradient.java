@@ -59,7 +59,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithDevice:")
     public MPSCNNBatchNormalizationGradient(MTLDevice device) { super(device); }
     @Method(selector = "initWithCoder:")
-    public MPSCNNBatchNormalizationGradient(NSCoder decoder) { super(decoder); }
+    public MPSCNNBatchNormalizationGradient(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "supportsSecureCoding")

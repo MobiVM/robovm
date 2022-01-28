@@ -36,9 +36,10 @@ import org.robovm.apple.coregraphics.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 13.0 and later.
+ * @deprecated Deprecated in iOS 15.0. INDeleteTasksIntent is deprecated. There is no replacement.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Intents") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("Intents") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/INDeleteTasksIntent/*</name>*/ 
     extends /*<extends>*/INIntent/*</extends>*/ 
     /*<implements>*//*</implements>*/ {

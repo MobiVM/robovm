@@ -122,6 +122,16 @@ import org.robovm.apple.avfoundation.*;
     public native @org.robovm.rt.bro.annotation.Marshaler(SCNShaderModifierEntryPoint.AsStringMapMarshaler.class) Map<SCNShaderModifierEntryPoint, String> getShaderModifiers();
     @Property(selector = "setShaderModifiers:")
     public native void setShaderModifiers(@org.robovm.rt.bro.annotation.Marshaler(SCNShaderModifierEntryPoint.AsStringMapMarshaler.class) Map<SCNShaderModifierEntryPoint, String> v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "minimumLanguageVersion")
+    public native NSNumber getMinimumLanguageVersion();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setMinimumLanguageVersion:")
+    public native void setMinimumLanguageVersion(NSNumber v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
@@ -144,7 +154,7 @@ import org.robovm.apple.avfoundation.*;
     @Method(selector = "geometryWithSources:elements:")
     public static native SCNGeometry createGeometry(NSArray<SCNGeometrySource> sources, NSArray<SCNGeometryElement> elements);
     @Method(selector = "addAnimation:forKey:")
-    public native void addAnimation(SCNAnimation animation, String key);
+    public native void addAnimation(SCNAnimationProtocol animation, String key);
     /**
      * @since Available in iOS 11.0 and later.
      */
@@ -152,18 +162,23 @@ import org.robovm.apple.avfoundation.*;
     public native void addAnimationPlayer(SCNAnimationPlayer player, String key);
     @Method(selector = "removeAllAnimations")
     public native void removeAllAnimations();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "removeAllAnimationsWithBlendOutDuration:")
+    public native void removeAllAnimations(@MachineSizedFloat double duration);
     @Method(selector = "removeAnimationForKey:")
     public native void removeAnimation(String key);
     /**
      * @since Available in iOS 11.0 and later.
      */
-    @Method(selector = "animationPlayerForKey:")
-    public native SCNAnimationPlayer animationPlayerForKey(String key);
+    @Method(selector = "removeAnimationForKey:blendOutDuration:")
+    public native void removeAnimationForKey(String key, @MachineSizedFloat double duration);
     /**
      * @since Available in iOS 11.0 and later.
      */
-    @Method(selector = "removeAnimationForKey:blendOutDuration:")
-    public native void removeAnimationForKey(String key, @MachineSizedFloat double duration);
+    @Method(selector = "animationPlayerForKey:")
+    public native SCNAnimationPlayer animationPlayerForKey(String key);
     /**
      * @deprecated Deprecated in iOS 11.0. Use -removeAnimationForKey:blendOutDuration:
      */

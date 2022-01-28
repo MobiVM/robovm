@@ -99,14 +99,28 @@ import org.robovm.apple.dispatch.*;
     public native void setSupportIndirectCommandBuffers(boolean v);
     /**
      * @since Available in iOS 14.0 and later.
+     * @deprecated Deprecated in iOS 15.0. Use preloadedLibraries instead.
      */
+    @Deprecated
     @Property(selector = "insertLibraries")
     public native NSArray<?> getInsertLibraries();
     /**
      * @since Available in iOS 14.0 and later.
+     * @deprecated Deprecated in iOS 15.0. Use preloadedLibraries instead.
      */
+    @Deprecated
     @Property(selector = "setInsertLibraries:")
     public native void setInsertLibraries(NSArray<?> v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "preloadedLibraries")
+    public native NSArray<?> getPreloadedLibraries();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setPreloadedLibraries:")
+    public native void setPreloadedLibraries(NSArray<?> v);
     /**
      * @since Available in iOS 14.0 and later.
      */

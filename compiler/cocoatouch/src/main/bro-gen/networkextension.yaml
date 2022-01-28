@@ -46,6 +46,7 @@ enums:
     NEDNSProtocol: {} #since 14.0
     NEDNSSettingsManagerError: {nserror: true} #since 14.0
     NEAppPushManagerError: {nserror: true} #since 14.0
+    NEHotspotNetworkSecurityType: {} #since 15.0
 classes:
     NEProvider:
         methods:
@@ -401,6 +402,7 @@ classes:
                 name: removeFromPreferences
             '-saveToPreferencesWithCompletionHandler:':
                 name: saveToPreferences
+    NEPrivateLTENetwork: {} #since 15.0
 protocols:
     NWTCPConnectionAuthenticationDelegate:
         methods:

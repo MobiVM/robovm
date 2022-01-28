@@ -97,6 +97,91 @@ import org.robovm.apple.security.*;
     @Bridge(symbol="nw_ip_metadata_get_receive_time", optional=true)
     public native long getIpReceiveTime();
     /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Bridge(symbol="nw_protocol_metadata_is_quic", optional=true)
+    public native boolean isQuic();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Bridge(symbol="nw_quic_copy_sec_protocol_metadata", optional=true)
+    public native SecArcProtocolMetadata copyQuicSecProtocolMetadata();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Bridge(symbol="nw_quic_get_stream_id", optional=true)
+    public native long getQuicStreamId();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Bridge(symbol="nw_quic_get_stream_application_error", optional=true)
+    public native long getQuicStreamApplicationError();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Bridge(symbol="nw_quic_set_stream_application_error", optional=true)
+    public native void setQuicStreamApplicationError(long application_error);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Bridge(symbol="nw_quic_get_local_max_streams_bidirectional", optional=true)
+    public native long getQuicLocalMaxStreamsBidirectional();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Bridge(symbol="nw_quic_set_local_max_streams_bidirectional", optional=true)
+    public native void setQuicLocalMaxStreamsBidirectional(long max_streams_bidirectional);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Bridge(symbol="nw_quic_get_local_max_streams_unidirectional", optional=true)
+    public native long getQuicLocalMaxStreamsUnidirectional();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Bridge(symbol="nw_quic_set_local_max_streams_unidirectional", optional=true)
+    public native void setQuicLocalMaxStreamsUnidirectional(long max_streams_unidirectional);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Bridge(symbol="nw_quic_get_remote_max_streams_bidirectional", optional=true)
+    public native long getQuicRemoteMaxStreamsBidirectional();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Bridge(symbol="nw_quic_get_remote_max_streams_unidirectional", optional=true)
+    public native long getQuicRemoteMaxStreamsUnidirectional();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Bridge(symbol="nw_quic_get_application_error", optional=true)
+    public native long getQuicApplicationError();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Bridge(symbol="nw_quic_get_application_error_reason", optional=true)
+    public native BytePtr getQuicApplicationErrorReason();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Bridge(symbol="nw_quic_set_application_error", optional=true)
+    public native void setQuicApplicationError(long application_error, BytePtr reason);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Bridge(symbol="nw_quic_get_keepalive_interval", optional=true)
+    public native short getQuicKeepaliveInterval();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Bridge(symbol="nw_quic_set_keepalive_interval", optional=true)
+    public native void setQuicKeepaliveInterval(short keepalive_interval);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Bridge(symbol="nw_quic_get_remote_idle_timeout", optional=true)
+    public native long getQuicRemoteIdleTimeout();
+    /**
      * @since Available in iOS 12.0 and later.
      */
     @Bridge(symbol="nw_protocol_metadata_is_tcp", optional=true)

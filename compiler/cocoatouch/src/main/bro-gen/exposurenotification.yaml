@@ -23,6 +23,8 @@ enums:
     ENRiskLevelValue: { prefix: ENRiskLevelValue, first: ENRiskLevelValueMin, marshaler: ValuedEnum.AsUnsignedByteMarshaler }
     ENRiskScore: { prefix: ENRiskScoreM, first: ENRiskScoreMin, marshaler: ValuedEnum.AsUnsignedByteMarshaler }
     ENRiskWeight: { prefix: ENRiskWeight, first: ENRiskWeightDefault }
+    ENVariantOfConcernType: {} #since 15.2
+    ENActivityFlags: {} #since 12.5
 classes:
     ENExposureConfiguration: {} #since 13.5
     ENExposureDetectionSummary: {} #since 13.5
@@ -47,6 +49,10 @@ classes:
                 name: detectExposures
             '-getExposureWindowsFromSummary:completionHandler:':
                 name: getExposureWindows
+            '-preAuthorizeDiagnosisKeysWithCompletionHandler:':
+                name: preAuthorizeDiagnosisKeys
+            '-requestPreAuthorizedDiagnosisKeysWithCompletionHandler:':
+                name: requestPreAuthorizedDiagnosisKeys
     ENTemporaryExposureKey: {} #since 13.5
     ENExposureDaySummary: {} #since 14.0
     ENExposureSummaryItem: {} #since 14.0

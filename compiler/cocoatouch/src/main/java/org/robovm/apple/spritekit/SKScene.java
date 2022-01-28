@@ -58,7 +58,7 @@ import org.robovm.apple.coreanimation.*;
     @Method(selector = "initWithSize:")
     public SKScene(@ByVal CGSize size) { super((SkipInit) null); initObject(init(size)); }
     @Method(selector = "initWithCoder:")
-    public SKScene(NSCoder decoder) { super(decoder); }
+    public SKScene(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "size")

@@ -115,7 +115,7 @@ import org.robovm.apple.dispatch.*;
     
 
     /**
-     * @deprecated Use the QuickLookThumbnailing framework and extension point instead
+     * @deprecated Deprecated in iOS 15.0. Use the QuickLookThumbnailing framework and extension point instead
      */
     @Deprecated
     @WeaklyLinked
@@ -127,7 +127,7 @@ import org.robovm.apple.dispatch.*;
         return null;
     }
     /**
-     * @deprecated Use the QuickLookThumbnailing framework and extension point instead
+     * @deprecated Deprecated in iOS 15.0. Use the QuickLookThumbnailing framework and extension point instead
      */
     @Deprecated
     @WeaklyLinked
@@ -142,7 +142,7 @@ import org.robovm.apple.dispatch.*;
     public static class Keys {
         static { Bro.bind(Keys.class); }
         /**
-         * @deprecated Use the QuickLookThumbnailing framework and extension point instead
+         * @deprecated Deprecated in iOS 15.0. Use the QuickLookThumbnailing framework and extension point instead
          */
         @Deprecated
         @GlobalValue(symbol="NSThumbnail1024x1024SizeKey", optional=true)

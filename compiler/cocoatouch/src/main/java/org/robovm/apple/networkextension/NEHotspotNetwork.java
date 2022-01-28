@@ -62,6 +62,11 @@ import org.robovm.apple.network.*;
     @Property(selector = "BSSID")
     public native String getBSSID();
     /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "securityType")
+    public native NEHotspotNetworkSecurityType getSecurityType();
+    /**
      * @since Available in iOS 9.0 and later.
      */
     @Property(selector = "signalStrength")

@@ -54,6 +54,16 @@ import org.robovm.apple.coreanimation.*;
     public NSObject getUserInfo() { return null; }
     @NotImplemented("setUserInfo:")
     public void setUserInfo(NSObject v) {}
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @NotImplemented("isEnabled")
+    public boolean isEnabled() { return false; }
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @NotImplemented("setEnabled:")
+    public void setEnabled(boolean v) {}
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

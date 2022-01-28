@@ -61,7 +61,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     public MPSImageLaplacianPyramidSubtract(NSCoder decoder, MTLDevice device) { super(decoder, device); }
     @Method(selector = "initWithCoder:")
-    public MPSImageLaplacianPyramidSubtract(NSCoder decoder) { super(decoder); }
+    public MPSImageLaplacianPyramidSubtract(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "supportsSecureCoding")

@@ -102,5 +102,15 @@ import org.robovm.apple.uikit.*;
      */
     @Bridge(symbol="CTFontCollectionCreateMatchingFontDescriptorsWithOptions", optional=true)
     public native CFArray createMatchingFontDescriptorsWithOptions(NSDictionary options);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Bridge(symbol="CTFontCollectionCopyFontAttribute", optional=true)
+    public native CFArray copyFontAttribute(String attributeName, CTFontCollectionCopyOptions options);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Bridge(symbol="CTFontCollectionCopyFontAttributes", optional=true)
+    public native CFArray copyFontAttributes(CFSet attributeNames, CTFontCollectionCopyOptions options);
     /*</methods>*/
 }

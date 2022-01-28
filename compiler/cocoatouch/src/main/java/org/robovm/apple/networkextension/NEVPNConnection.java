@@ -44,7 +44,7 @@ import org.robovm.apple.network.*;
         /**
          * @since Available in iOS 8.0 and later.
          */
-        public static NSObject overseStatusDidChange(NEVPNConnection object, final VoidBlock1<NEVPNConnection> block) {
+        public static NSObjectProtocol observeStatusDidChange(NEVPNConnection object, final VoidBlock1<NEVPNConnection> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(StatusDidChangeNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {

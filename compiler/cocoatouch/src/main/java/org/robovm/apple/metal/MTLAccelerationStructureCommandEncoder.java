@@ -50,32 +50,37 @@ import org.robovm.apple.dispatch.*;
     /*</properties>*/
     /*<methods>*/
     @Method(selector = "buildAccelerationStructure:descriptor:scratchBuffer:scratchBufferOffset:")
-    void buildAccelerationStructure$descriptor$scratchBuffer$scratchBufferOffset$(MTLAccelerationStructure accelerationStructure, MTLAccelerationStructureDescriptor descriptor, MTLBuffer scratchBuffer, @MachineSizedUInt long scratchBufferOffset);
+    void buildAccelerationStructure(MTLAccelerationStructure accelerationStructure, MTLAccelerationStructureDescriptor descriptor, MTLBuffer scratchBuffer, @MachineSizedUInt long scratchBufferOffset);
     @Method(selector = "refitAccelerationStructure:descriptor:destination:scratchBuffer:scratchBufferOffset:")
-    void refitAccelerationStructure$descriptor$destination$scratchBuffer$scratchBufferOffset$(MTLAccelerationStructure sourceAccelerationStructure, MTLAccelerationStructureDescriptor descriptor, MTLAccelerationStructure destinationAccelerationStructure, MTLBuffer scratchBuffer, @MachineSizedUInt long scratchBufferOffset);
+    void refitAccelerationStructure(MTLAccelerationStructure sourceAccelerationStructure, MTLAccelerationStructureDescriptor descriptor, MTLAccelerationStructure destinationAccelerationStructure, MTLBuffer scratchBuffer, @MachineSizedUInt long scratchBufferOffset);
     @Method(selector = "copyAccelerationStructure:toAccelerationStructure:")
-    void copyAccelerationStructure$toAccelerationStructure$(MTLAccelerationStructure sourceAccelerationStructure, MTLAccelerationStructure destinationAccelerationStructure);
+    void copyAccelerationStructure(MTLAccelerationStructure sourceAccelerationStructure, MTLAccelerationStructure destinationAccelerationStructure);
     @Method(selector = "writeCompactedAccelerationStructureSize:toBuffer:offset:")
-    void writeCompactedAccelerationStructureSize$toBuffer$offset$(MTLAccelerationStructure accelerationStructure, MTLBuffer buffer, @MachineSizedUInt long offset);
+    void writeCompactedAccelerationStructure(MTLAccelerationStructure accelerationStructure, MTLBuffer buffer, @MachineSizedUInt long offset);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "writeCompactedAccelerationStructureSize:toBuffer:offset:sizeDataType:")
+    void writeCompactedAccelerationStructure(MTLAccelerationStructure accelerationStructure, MTLBuffer buffer, @MachineSizedUInt long offset, MTLDataType sizeDataType);
     @Method(selector = "copyAndCompactAccelerationStructure:toAccelerationStructure:")
-    void copyAndCompactAccelerationStructure$toAccelerationStructure$(MTLAccelerationStructure sourceAccelerationStructure, MTLAccelerationStructure destinationAccelerationStructure);
+    void copyAndCompactAccelerationStructure(MTLAccelerationStructure sourceAccelerationStructure, MTLAccelerationStructure destinationAccelerationStructure);
     @Method(selector = "updateFence:")
     void updateFence(MTLFence fence);
     @Method(selector = "waitForFence:")
     void waitForFence(MTLFence fence);
     @Method(selector = "useResource:usage:")
-    void useResource$usage$(MTLResource resource, MTLResourceUsage usage);
+    void useResource(MTLResource resource, MTLResourceUsage usage);
     @Method(selector = "useResources:count:usage:")
-    void useResources$count$usage$(MTLResource resources, @MachineSizedUInt long count, MTLResourceUsage usage);
+    void useResources(MTLResource resources, @MachineSizedUInt long count, MTLResourceUsage usage);
     @Method(selector = "useHeap:")
     void useHeap(MTLHeap heap);
     @Method(selector = "useHeaps:count:")
-    void useHeaps$count$(MTLHeap heaps, @MachineSizedUInt long count);
+    void useHeaps(MTLHeap heaps, @MachineSizedUInt long count);
     /**
      * @since Available in iOS 14.0 and later.
      */
     @Method(selector = "sampleCountersInBuffer:atSampleIndex:withBarrier:")
-    void sampleCountersInBuffer$atSampleIndex$withBarrier$(MTLCounterSampleBuffer sampleBuffer, @MachineSizedUInt long sampleIndex, boolean barrier);
+    void sampleCountersInBuffer(MTLCounterSampleBuffer sampleBuffer, @MachineSizedUInt long sampleIndex, boolean barrier);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

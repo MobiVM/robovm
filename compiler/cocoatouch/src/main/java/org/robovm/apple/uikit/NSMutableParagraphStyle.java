@@ -110,6 +110,16 @@ import org.robovm.apple.linkpresentation.*;
     public native float getHyphenationFactor();
     @Property(selector = "setHyphenationFactor:")
     public native void setHyphenationFactor(float v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "usesDefaultHyphenation")
+    public native boolean usesDefaultHyphenation();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setUsesDefaultHyphenation:")
+    public native void setUsesDefaultHyphenation(boolean v);
     @Property(selector = "tabStops")
     public native NSArray<NSTextTab> getTabStops();
     @Property(selector = "setTabStops:")

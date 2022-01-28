@@ -782,6 +782,10 @@ classes:
                 name: reindexAllSearchableItems
             '-searchableIndex:reindexSearchableItemsWithIdentifiers:acknowledgementHandler:':
                 name: reindexSearchableItems
+            '-initForStoreWithDescription:coordinator:':
+                name: init
+            '-deleteSpotlightIndexWithCompletionHandler:':
+                name: deleteSpotlightIndex
     NSFetchIndexDescription: #since 11.0
         methods:
             '-initWithName:elements:':
@@ -1113,6 +1117,10 @@ values:
                 type: NSSet<NSManagedObjectID>
             InvalidatedObjectIDs:
                 type: NSSet<NSManagedObjectID>
+    NSCoreDataCoreSpotlightDelegateIndexDidUpdateNotification:
+        class: NSCoreDataCoreSpotlightDelegate
+        name: getIndexDidUpdateNotificationName
+
     # Make sure we don't miss any values if new ones are introduced in a later version
     (k?NS.*):
         class: CoreData

@@ -62,6 +62,16 @@ import org.robovm.apple.dispatch.*;
     public native NSDictionary<?, ?> getGroups();
     @Property(selector = "setGroups:")
     public native void setGroups(NSDictionary<?, ?> v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "privateFunctions")
+    public native NSArray<?> getPrivateFunctions();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setPrivateFunctions:")
+    public native void setPrivateFunctions(NSArray<?> v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

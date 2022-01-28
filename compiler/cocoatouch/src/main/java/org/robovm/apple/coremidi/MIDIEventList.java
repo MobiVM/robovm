@@ -34,14 +34,13 @@ import org.robovm.apple.corefoundation.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
+/*<annotations>*/@Library("CoreMIDI")/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MIDIEventList/*</name>*/ 
     extends /*<extends>*/Struct<MIDIEventList>/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class MIDIEventListPtr extends Ptr<MIDIEventList, MIDIEventListPtr> {}/*</ptr>*/
-    /*<bind>*/
-    /*</bind>*/
+    /*<bind>*/static { Bro.bind(MIDIEventList.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MIDIEventList() {}
@@ -58,5 +57,11 @@ import org.robovm.apple.corefoundation.*;
     @StructMember(1) public native MIDIEventList setNumPackets(int numPackets);
     @StructMember(2) public native @Array({1}) MIDIEventPacket getPacket();
     /*</members>*/
-    /*<methods>*//*</methods>*/
+    /*<methods>*/
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Bridge(symbol="MIDIEventListForEachEvent", optional=true)
+    public native void forEachEvent(FunctionPtr visitor, VoidPtr visitorContext);
+    /*</methods>*/
 }

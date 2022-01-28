@@ -73,6 +73,16 @@ import org.robovm.apple.audiotoolbox.*;
     public native boolean isPostProcessingEnabled();
     @Property(selector = "setEnablePostProcessing:")
     public native void setPostProcessingEnabled(boolean v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "requiredSourceSampleDataTrackIDs")
+    public native NSArray<NSNumber> getRequiredSourceSampleDataTrackIDs();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setRequiredSourceSampleDataTrackIDs:")
+    public native void setRequiredSourceSampleDataTrackIDs(NSArray<NSNumber> v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

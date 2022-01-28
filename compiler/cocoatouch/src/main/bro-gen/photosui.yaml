@@ -15,6 +15,7 @@ enums:
     PHLivePhotoBadgeOptions: {}
     PHLivePhotoViewPlaybackStyle: {}
     PHPickerConfigurationAssetRepresentationMode: {} #since 14.0
+    PHPickerConfigurationSelection: {} #since 15.0
 classes:
     PHLivePhotoView: #since 9.1
         methods:
@@ -40,6 +41,8 @@ protocols:
                 name: willBeginPlayback
             '-livePhotoView:didEndPlaybackWithStyle:':
                 name: didEndPlayback
+            '-livePhotoView:canBeginPlaybackWithStyle:':
+                name: canBeginPlayback
     PHContentEditingController: # DONE
         properties:
             'shouldShowCancelConfirmation':

@@ -78,6 +78,7 @@ public enum /*<name>*/CNErrorCode/*</name>*/ implements NSErrorCode {
     ClientIdentifierCollision(602L),
     ChangeHistoryExpired(603L),
     ChangeHistoryInvalidAnchor(604L),
+    ChangeHistoryInvalidFetchRequest(605L),
     /**
      * @since Available in iOS 11.0 and later.
      */

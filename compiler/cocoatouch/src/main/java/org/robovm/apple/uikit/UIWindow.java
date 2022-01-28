@@ -50,7 +50,7 @@ import org.robovm.apple.linkpresentation.*;
     /*<implements>*//*</implements>*/ {
 
     public static class Notifications {
-        public static NSObject observeDidBecomeVisible(final VoidBlock1<UIWindow> block) {
+        public static NSObjectProtocol observeDidBecomeVisible(final VoidBlock1<UIWindow> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(DidBecomeVisibleNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -58,7 +58,7 @@ import org.robovm.apple.linkpresentation.*;
                 }
             });
         }
-        public static NSObject observeDidBecomeHidden(final VoidBlock1<UIWindow> block) {
+        public static NSObjectProtocol observeDidBecomeHidden(final VoidBlock1<UIWindow> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(DidBecomeHiddenNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -66,7 +66,7 @@ import org.robovm.apple.linkpresentation.*;
                 }
             });
         }
-        public static NSObject observeDidBecomeKey(final VoidBlock1<UIWindow> block) {
+        public static NSObjectProtocol observeDidBecomeKey(final VoidBlock1<UIWindow> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(DidBecomeKeyNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -74,7 +74,7 @@ import org.robovm.apple.linkpresentation.*;
                 }
             });
         }
-        public static NSObject observeDidResignKey(final VoidBlock1<UIWindow> block) {
+        public static NSObjectProtocol observeDidResignKey(final VoidBlock1<UIWindow> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(DidResignKeyNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -82,7 +82,7 @@ import org.robovm.apple.linkpresentation.*;
                 }
             });
         }
-        public static NSObject observeKeyboardWillShow(final VoidBlock1<UIKeyboardAnimation> block) {
+        public static NSObjectProtocol observeKeyboardWillShow(final VoidBlock1<UIKeyboardAnimation> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(KeyboardWillShowNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -90,7 +90,7 @@ import org.robovm.apple.linkpresentation.*;
                 }
             });
         }
-        public static NSObject observeKeyboardDidShow(final VoidBlock1<UIKeyboardAnimation> block) {
+        public static NSObjectProtocol observeKeyboardDidShow(final VoidBlock1<UIKeyboardAnimation> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(KeyboardDidShowNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -98,7 +98,7 @@ import org.robovm.apple.linkpresentation.*;
                 }
             });
         }
-        public static NSObject observeKeyboardWillHide(final VoidBlock1<UIKeyboardAnimation> block) {
+        public static NSObjectProtocol observeKeyboardWillHide(final VoidBlock1<UIKeyboardAnimation> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(KeyboardWillHideNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -106,7 +106,7 @@ import org.robovm.apple.linkpresentation.*;
                 }
             });
         }
-        public static NSObject observeKeyboardDidHide(final VoidBlock1<UIKeyboardAnimation> block) {
+        public static NSObjectProtocol observeKeyboardDidHide(final VoidBlock1<UIKeyboardAnimation> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(KeyboardDidHideNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -117,7 +117,7 @@ import org.robovm.apple.linkpresentation.*;
         /**
          * @since Available in iOS 5.0 and later.
          */
-        public static NSObject observeKeyboardWillChangeFrame(final VoidBlock1<UIKeyboardAnimation> block) {
+        public static NSObjectProtocol observeKeyboardWillChangeFrame(final VoidBlock1<UIKeyboardAnimation> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(KeyboardWillChangeFrameNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -128,7 +128,7 @@ import org.robovm.apple.linkpresentation.*;
         /**
          * @since Available in iOS 5.0 and later.
          */
-        public static NSObject observeKeyboardDidChangeFrame(final VoidBlock1<UIKeyboardAnimation> block) {
+        public static NSObjectProtocol observeKeyboardDidChangeFrame(final VoidBlock1<UIKeyboardAnimation> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(KeyboardDidChangeFrameNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -179,6 +179,11 @@ import org.robovm.apple.linkpresentation.*;
     public native void setWindowLevel(@MachineSizedFloat double v);
     @Property(selector = "isKeyWindow")
     public native boolean isKeyWindow();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "canBecomeKeyWindow")
+    public native boolean canBecomeKeyWindow();
     @Property(selector = "rootViewController")
     public native UIViewController getRootViewController();
     @Property(selector = "setRootViewController:")

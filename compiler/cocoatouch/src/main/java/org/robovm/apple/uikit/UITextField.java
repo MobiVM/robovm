@@ -52,7 +52,7 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     /*<implements>*/implements UITextInput, NSCoding, UIContentSizeCategoryAdjusting, UITextDraggable, UITextDroppable, UITextPasteConfigurationSupporting/*</implements>*/ {
 
     public static class Notifications {
-        public static NSObject observeDidBeginEditing(UITextField object, final VoidBlock1<UITextField> block) {
+        public static NSObjectProtocol observeDidBeginEditing(UITextField object, final VoidBlock1<UITextField> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(DidBeginEditingNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -60,7 +60,7 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
                 }
             });
         }
-        public static NSObject observeDidEndEditing(UITextField object, final VoidBlock1<UITextField> block) {
+        public static NSObjectProtocol observeDidEndEditing(UITextField object, final VoidBlock1<UITextField> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(DidEndEditingNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -68,7 +68,7 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
                 }
             });
         }
-        public static NSObject observeTextDidChange(UITextField object, final VoidBlock1<UITextField> block) {
+        public static NSObjectProtocol observeTextDidChange(UITextField object, final VoidBlock1<UITextField> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(DidChangeNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -316,6 +316,16 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     @WeaklyLinked
     @Property(selector = "layerClass")
     public static native Class<? extends CALayer> getLayerClass();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "interactionState")
+    public native NSObject getInteractionState();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setInteractionState:")
+    public native void setInteractionState(NSObject v);
     @Property(selector = "selectedTextRange")
     public native UITextRange getSelectedTextRange();
     @Property(selector = "setSelectedTextRange:")
@@ -456,10 +466,6 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     public native UITextPasteDelegate getPasteDelegate();
     @Property(selector = "setPasteDelegate:", strongRef = true)
     public native void setPasteDelegate(UITextPasteDelegate v);
-    @Property(selector = "pasteConfiguration")
-    public native UIPasteConfiguration getPasteConfiguration();
-    @Property(selector = "setPasteConfiguration:")
-    public native void setPasteConfiguration(UIPasteConfiguration v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -489,6 +495,10 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     public native @ByVal CGRect getLeftViewRect(@ByVal CGRect bounds);
     @Method(selector = "rightViewRectForBounds:")
     public native @ByVal CGRect getRightViewRect(@ByVal CGRect bounds);
+    /**
+     * @deprecated Deprecated in iOS 15.0. This method is no longer called.
+     */
+    @Deprecated
     @Method(selector = "drawTextInRect:")
     public native void drawText(@ByVal CGRect rect);
     @Method(selector = "drawPlaceholderInRect:")
@@ -586,9 +596,5 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     public native void insertText(String text);
     @Method(selector = "deleteBackward")
     public native void deleteBackward();
-    @Method(selector = "pasteItemProviders:")
-    public native void pasteItemProviders(NSArray<NSItemProvider> itemProviders);
-    @Method(selector = "canPasteItemProviders:")
-    public native boolean canPasteItemProviders(NSArray<NSItemProvider> itemProviders);
     /*</methods>*/
 }

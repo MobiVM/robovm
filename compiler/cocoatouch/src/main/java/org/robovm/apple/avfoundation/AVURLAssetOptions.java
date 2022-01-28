@@ -176,6 +176,11 @@ import org.robovm.apple.audiotoolbox.*;
          */
         @GlobalValue(symbol="AVURLAssetAllowsConstrainedNetworkAccessKey", optional=true)
         public static native NSString AllowsConstrainedNetworkAccess();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="AVURLAssetURLRequestAttributionKey", optional=true)
+        public static native NSString URLRequestAttribution();
     }
     /*</keys>*/
 }

@@ -56,7 +56,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithDevice:kernelWidth:kernelHeight:")
     public MPSCNNPoolingL2NormGradient(MTLDevice device, @MachineSizedUInt long kernelWidth, @MachineSizedUInt long kernelHeight) { super(device, kernelWidth, kernelHeight); }
     @Method(selector = "initWithCoder:")
-    public MPSCNNPoolingL2NormGradient(NSCoder decoder) { super(decoder); }
+    public MPSCNNPoolingL2NormGradient(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "supportsSecureCoding")

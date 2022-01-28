@@ -68,6 +68,16 @@ import org.robovm.apple.coreanimation.*;
     @Property(selector = "setPreferredAssetRepresentationMode:")
     public native void setPreferredAssetRepresentationMode(PHPickerConfigurationAssetRepresentationMode v);
     /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "selection")
+    public native PHPickerConfigurationSelection getSelection();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setSelection:")
+    public native void setSelection(PHPickerConfigurationSelection v);
+    /**
      * @since Available in iOS 14.0 and later.
      */
     @Property(selector = "selectionLimit")
@@ -87,6 +97,16 @@ import org.robovm.apple.coreanimation.*;
      */
     @Property(selector = "setFilter:")
     public native void setFilter(PHPickerFilter v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "preselectedAssetIdentifiers")
+    public native NSArray<NSString> getPreselectedAssetIdentifiers();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setPreselectedAssetIdentifiers:")
+    public native void setPreselectedAssetIdentifiers(NSArray<NSString> v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

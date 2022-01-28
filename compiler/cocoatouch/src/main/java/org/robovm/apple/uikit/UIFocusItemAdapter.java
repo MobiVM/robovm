@@ -62,6 +62,21 @@ import org.robovm.apple.linkpresentation.*;
      */
     @NotImplemented("frame")
     public @ByVal CGRect getFrame() { return null; }
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @NotImplemented("focusEffect")
+    public UIFocusEffect getFocusEffect() { return null; }
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @NotImplemented("focusGroupPriority")
+    public @MachineSizedSInt long getFocusGroupPriority() { return 0; }
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @NotImplemented("isTransparentFocusItem")
+    public boolean isTransparentFocusItem() { return false; }
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

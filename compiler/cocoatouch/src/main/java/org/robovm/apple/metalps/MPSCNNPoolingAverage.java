@@ -59,7 +59,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithDevice:kernelWidth:kernelHeight:")
     public MPSCNNPoolingAverage(MTLDevice device, @MachineSizedUInt long kernelWidth, @MachineSizedUInt long kernelHeight) { super(device, kernelWidth, kernelHeight); }
     @Method(selector = "initWithCoder:")
-    public MPSCNNPoolingAverage(NSCoder decoder) { super(decoder); }
+    public MPSCNNPoolingAverage(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "zeroPadSizeX")

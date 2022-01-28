@@ -311,10 +311,20 @@ import org.robovm.apple.uikit.*;
     @GlobalValue(symbol="kCGColorSpaceITUR_709", optional=true)
     public static native String ITUR_709();
     /**
+     * @since Available in iOS 15.1 and later.
+     */
+    @GlobalValue(symbol="kCGColorSpaceITUR_709_PQ", optional=true)
+    public static native String ITUR_709_PQ();
+    /**
      * @since Available in iOS 9.0 and later.
      */
     @GlobalValue(symbol="kCGColorSpaceITUR_2020", optional=true)
     public static native String ITUR_2020();
+    /**
+     * @since Available in iOS 15.1 and later.
+     */
+    @GlobalValue(symbol="kCGColorSpaceITUR_2020_sRGBGamma", optional=true)
+    public static native String ITUR_2020_sRGBGamma();
     /**
      * @since Available in iOS 9.0 and later.
      */
@@ -326,6 +336,11 @@ import org.robovm.apple.uikit.*;
     @GlobalValue(symbol="kCGColorSpaceDCIP3", optional=true)
     public static native String DCIP3();
     /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @GlobalValue(symbol="kCGColorSpaceLinearITUR_2020", optional=true)
+    public static native String LinearITUR_2020();
+    /**
      * @since Available in iOS 14.0 and later.
      */
     @GlobalValue(symbol="kCGColorSpaceExtendedITUR_2020", optional=true)
@@ -335,6 +350,11 @@ import org.robovm.apple.uikit.*;
      */
     @GlobalValue(symbol="kCGColorSpaceExtendedLinearITUR_2020", optional=true)
     public static native String ExtendedLinearITUR_2020();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @GlobalValue(symbol="kCGColorSpaceLinearDisplayP3", optional=true)
+    public static native String LinearDisplayP3();
     /**
      * @since Available in iOS 14.0 and later.
      */
@@ -423,6 +443,8 @@ import org.robovm.apple.uikit.*;
      */
     @GlobalValue(symbol="kCGColorSpaceExtendedLinearGray", optional=true)
     public static native String ExtendedLinearGray();
+    @GlobalValue(symbol="kCGColorSpaceExtendedRange", optional=true)
+    public static native String ExtendedRange();
     
     @Bridge(symbol="CGColorSpaceCreateDeviceGray", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGColorSpace createDeviceGray();
@@ -447,6 +469,11 @@ import org.robovm.apple.uikit.*;
     private static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGColorSpace createIndexed(CGColorSpace baseSpace, @MachineSizedUInt long lastIndex, @Pointer long colorTable);
     @Bridge(symbol="CGColorSpaceCreatePattern", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGColorSpace createPattern(CGColorSpace baseSpace);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Bridge(symbol="CGColorSpaceCreateWithColorSyncProfile", optional=true)
+    public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGColorSpace createWithColorSyncProfile(ColorSyncProfile p0, NSDictionary options);
     @Bridge(symbol="CGColorSpaceCreateWithName", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGColorSpace create(String name);
     /**
@@ -493,6 +520,16 @@ import org.robovm.apple.uikit.*;
      */
     @Bridge(symbol="CGColorSpaceUsesITUR_2100TF", optional=true)
     public native boolean usesITUR_2100TF();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Bridge(symbol="CGColorSpaceIsPQBased", optional=true)
+    public native boolean isPQBased();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Bridge(symbol="CGColorSpaceIsHLGBased", optional=true)
+    public native boolean isHLGBased();
     /**
      * @since Available in iOS 10.0 and later.
      */

@@ -139,7 +139,7 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "comparatorForNameSortOrder:")
     public static native @Block Block2<String, String, NSComparisonResult> getNameComparator(CNContactSortOrder sortOrder);
     @Method(selector = "descriptorForAllComparatorKeys")
-    public static native NSObject getDescriptorForAllComparatorKeys();
+    public static native NSObjectProtocol getDescriptorForAllComparatorKeys();
     @Method(selector = "predicateForContactsMatchingName:")
     public static native NSPredicate getPredicateForContacts(String name);
     /**

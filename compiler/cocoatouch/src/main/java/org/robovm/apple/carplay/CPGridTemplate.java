@@ -76,7 +76,23 @@ import org.robovm.apple.coreanimation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @GlobalValue(symbol="CPGridTemplateMaximumItems", optional=true)
+    public static native @MachineSizedUInt long getMaximumItems();
+    
     @Method(selector = "initWithTitle:gridButtons:")
     protected native @Pointer long init(String title, NSArray<CPGridButton> gridButtons);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "updateGridButtons:")
+    public native void updateGridButtons(NSArray<CPGridButton> gridButtons);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "updateTitle:")
+    public native void updateTitle(String title);
     /*</methods>*/
 }

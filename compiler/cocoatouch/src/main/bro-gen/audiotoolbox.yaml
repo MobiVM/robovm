@@ -98,6 +98,7 @@ enums:
     AUTypeMusicDevice: {first: kAudioUnitSubType_Sampler}
     AUTypeConverter: {first: kAudioUnitSubType_AUConverter}
     AUTypeConverter2: {first: kAudioUnitSubType_AUiPodTime, prefix: kAudioUnitSubType_, merge_with: AUTypeConverter}
+    AUTypeConverter3: {first: kAudioUnitSubType_TimePitch, prefix: kAudioUnitSubType_, merge_with: AUTypeConverter}
     AUTypeEffect: {first: kAudioUnitSubType_PeakLimiter}
     AUTypeEffect2: {first: kAudioUnitSubType_Reverb2, merge_with: AUTypeEffect}
     AUTypeEffect3: {prefix: kAudioUnitSubType_, first: kAudioUnitSubType_AUiPodEQ, merge_with: AUTypeEffect}
@@ -252,6 +253,8 @@ classes:
     MusicTrack: {}
 
     # Structs
+    AUMIDIEventList:
+        annotations: ['@Packed(4)']
     AURecordedParameterEvent: {}
     AUMIDIEvent:
         annotations: ['@Packed(4)']

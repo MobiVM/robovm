@@ -43,13 +43,18 @@ public enum /*<name>*/MTLCommandBufferErrorCode/*</name>*/ implements NSErrorCod
     Timeout(2L),
     PageFault(3L),
     Blacklisted(4L),
+    AccessRevoked(4L),
     NotPermitted(7L),
     OutOfMemory(8L),
     InvalidResource(9L),
     /**
      * @since Available in iOS 10.0 and later.
      */
-    Memoryless(10L);
+    Memoryless(10L),
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    StackOverflow(12L);
     /*</values>*/
 
     /*<bind>*/

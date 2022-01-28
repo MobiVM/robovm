@@ -158,9 +158,13 @@ import org.robovm.apple.foundation.*;
      * @since Available in iOS 14.5 and later.
      */
     public static final HKFitnessQuantityTypeIdentifier AppleMoveTime = new HKFitnessQuantityTypeIdentifier("AppleMoveTime");
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    public static final HKFitnessQuantityTypeIdentifier AppleWalkingSteadiness = new HKFitnessQuantityTypeIdentifier("AppleWalkingSteadiness");
     /*</constants>*/
     
-    private static /*<name>*/HKFitnessQuantityTypeIdentifier/*</name>*/[] values = new /*<name>*/HKFitnessQuantityTypeIdentifier/*</name>*/[] {/*<value_list>*/StepCount, DistanceWalkingRunning, DistanceCycling, DistanceWheelchair, BasalEnergyBurned, ActiveEnergyBurned, FlightsClimbed, NikeFuel, AppleExerciseTime, PushCount, DistanceSwimming, SwimmingStrokeCount, VO2Max, DistanceDownhillSnowSports, AppleStandTime, WalkingSpeed, WalkingDoubleSupportPercentage, WalkingAsymmetryPercentage, WalkingStepLength, SixMinuteWalkTestDistance, StairAscentSpeed, StairDescentSpeed, AppleMoveTime/*</value_list>*/};
+    private static /*<name>*/HKFitnessQuantityTypeIdentifier/*</name>*/[] values = new /*<name>*/HKFitnessQuantityTypeIdentifier/*</name>*/[] {/*<value_list>*/StepCount, DistanceWalkingRunning, DistanceCycling, DistanceWheelchair, BasalEnergyBurned, ActiveEnergyBurned, FlightsClimbed, NikeFuel, AppleExerciseTime, PushCount, DistanceSwimming, SwimmingStrokeCount, VO2Max, DistanceDownhillSnowSports, AppleStandTime, WalkingSpeed, WalkingDoubleSupportPercentage, WalkingAsymmetryPercentage, WalkingStepLength, SixMinuteWalkTestDistance, StairAscentSpeed, StairDescentSpeed, AppleMoveTime, AppleWalkingSteadiness/*</value_list>*/};
     
     /*<name>*/HKFitnessQuantityTypeIdentifier/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -277,6 +281,11 @@ import org.robovm.apple.foundation.*;
          */
         @GlobalValue(symbol="HKQuantityTypeIdentifierAppleMoveTime", optional=true)
         public static native NSString AppleMoveTime();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="HKQuantityTypeIdentifierAppleWalkingSteadiness", optional=true)
+        public static native NSString AppleWalkingSteadiness();
         /*</values>*/
     }
 }

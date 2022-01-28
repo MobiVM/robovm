@@ -74,7 +74,7 @@ import org.robovm.apple.coreanimation.*;
     /**
      * @since Available in iOS 14.5 and later.
      */
-    @Property(selector = "textInteractionEnabled")
+    @Property(selector = "isTextInteractionEnabled")
     public native boolean isTextInteractionEnabled();
     /**
      * @since Available in iOS 14.5 and later.

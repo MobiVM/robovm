@@ -60,6 +60,11 @@ import org.robovm.apple.corehaptic.*;
     public native GCControllerButtonInput getPaddleButton3();
     @Property(selector = "paddleButton4")
     public native GCControllerButtonInput getPaddleButton4();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "buttonShare")
+    public native GCControllerButtonInput getButtonShare();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

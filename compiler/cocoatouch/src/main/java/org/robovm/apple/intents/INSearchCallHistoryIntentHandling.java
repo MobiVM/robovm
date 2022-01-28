@@ -36,9 +36,10 @@ import org.robovm.apple.coregraphics.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 10.0 and later.
+ * @deprecated Deprecated in iOS 15.0. INSearchCallHistoryIntentHandling is deprecated. There is no replacement.
  */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
+/*<annotations>*/@Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ interface /*<name>*/INSearchCallHistoryIntentHandling/*</name>*/ 
     /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
 
@@ -55,11 +56,6 @@ import org.robovm.apple.coregraphics.*;
     void handleSearchCallHistory(INSearchCallHistoryIntent intent, @Block VoidBlock1<INSearchCallHistoryIntentResponse> completion);
     @Method(selector = "confirmSearchCallHistory:completion:")
     void confirmSearchCallHistory(INSearchCallHistoryIntent intent, @Block VoidBlock1<INSearchCallHistoryIntentResponse> completion);
-    /**
-     * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0. resolveCallTypeForSearchCallHistory:withCompletion: is deprecated. Use resolveCallTypesForSearchCallHistory:withCompletion: instead
-     */
-    @Deprecated
     @Method(selector = "resolveCallTypeForSearchCallHistory:withCompletion:")
     void resolveCallTypeForSearchCallHistory(INSearchCallHistoryIntent intent, @Block VoidBlock1<INCallRecordTypeResolutionResult> completion);
     @Method(selector = "resolveDateCreatedForSearchCallHistory:withCompletion:")

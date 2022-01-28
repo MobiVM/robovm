@@ -42,7 +42,8 @@ public enum /*<name>*/MIDIMessageType/*</name>*/ implements ValuedEnum {
     ChannelVoice1(2L),
     SysEx(3L),
     ChannelVoice2(4L),
-    Data128(5L);
+    Data128(5L),
+    UnknownF(15L);
     /*</values>*/
 
     /*<bind>*/

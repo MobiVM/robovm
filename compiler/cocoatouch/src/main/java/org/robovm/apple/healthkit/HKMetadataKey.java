@@ -234,9 +234,17 @@ import org.robovm.apple.foundation.*;
      * @since Available in iOS 14.3 and later.
      */
     public static final HKMetadataKey LowCardioFitnessEventThreshold = new HKMetadataKey("LowCardioFitnessEventThreshold");
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    public static final HKMetadataKey DateOfEarliestDataUsedForEstimate = new HKMetadataKey("DateOfEarliestDataUsedForEstimate");
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    public static final HKMetadataKey AlgorithmVersion = new HKMetadataKey("AlgorithmVersion");
     /*</constants>*/
     
-    private static /*<name>*/HKMetadataKey/*</name>*/[] values = new /*<name>*/HKMetadataKey/*</name>*/[] {/*<value_list>*/DeviceSerialNumber, BodyTemperatureSensorLocation, HeartRateSensorLocation, HeartRateMotionContext, FoodType, UDIDeviceIdentifier, UDIProductionIdentifier, DigitalSignature, ExternalUUID, SyncIdentifier, SyncVersion, TimeZone, DeviceName, DeviceManufacturerName, WasTakenInLab, ReferenceRangeLowerLimit, ReferenceRangeUpperLimit, WasUserEntered, WorkoutBrandName, GroupFitness, IndoorWorkout, CoachedWorkout, WeatherCondition, WeatherTemperature, WeatherHumidity, SexualActivityProtectionUsed, MenstrualCycleStart, LapLength, SwimmingLocationType, SwimmingStrokeStyle, InsulinDeliveryReason, BloodGlucoseMealTime, VO2MaxTestType, AverageSpeed, MaximumSpeed, AlpineSlopeGrade, ElevationAscended, ElevationDescended, FitnessMachineDuration, IndoorBikeDistance, CrossTrainerDistance, HeartRateEventThreshold, AverageMETs, AudioExposureLevel, AudioExposureDuration, AppleECGAlgorithmVersion, DevicePlacementSide, BarometricPressure, AppleDeviceCalibrated, VO2MaxValue, LowCardioFitnessEventThreshold/*</value_list>*/};
+    private static /*<name>*/HKMetadataKey/*</name>*/[] values = new /*<name>*/HKMetadataKey/*</name>*/[] {/*<value_list>*/DeviceSerialNumber, BodyTemperatureSensorLocation, HeartRateSensorLocation, HeartRateMotionContext, FoodType, UDIDeviceIdentifier, UDIProductionIdentifier, DigitalSignature, ExternalUUID, SyncIdentifier, SyncVersion, TimeZone, DeviceName, DeviceManufacturerName, WasTakenInLab, ReferenceRangeLowerLimit, ReferenceRangeUpperLimit, WasUserEntered, WorkoutBrandName, GroupFitness, IndoorWorkout, CoachedWorkout, WeatherCondition, WeatherTemperature, WeatherHumidity, SexualActivityProtectionUsed, MenstrualCycleStart, LapLength, SwimmingLocationType, SwimmingStrokeStyle, InsulinDeliveryReason, BloodGlucoseMealTime, VO2MaxTestType, AverageSpeed, MaximumSpeed, AlpineSlopeGrade, ElevationAscended, ElevationDescended, FitnessMachineDuration, IndoorBikeDistance, CrossTrainerDistance, HeartRateEventThreshold, AverageMETs, AudioExposureLevel, AudioExposureDuration, AppleECGAlgorithmVersion, DevicePlacementSide, BarometricPressure, AppleDeviceCalibrated, VO2MaxValue, LowCardioFitnessEventThreshold, DateOfEarliestDataUsedForEstimate, AlgorithmVersion/*</value_list>*/};
     
     /*<name>*/HKMetadataKey/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -457,6 +465,16 @@ import org.robovm.apple.foundation.*;
          */
         @GlobalValue(symbol="HKMetadataKeyLowCardioFitnessEventThreshold", optional=true)
         public static native NSString LowCardioFitnessEventThreshold();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="HKMetadataKeyDateOfEarliestDataUsedForEstimate", optional=true)
+        public static native NSString DateOfEarliestDataUsedForEstimate();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="HKMetadataKeyAlgorithmVersion", optional=true)
+        public static native NSString AlgorithmVersion();
         /*</values>*/
     }
 }

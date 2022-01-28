@@ -44,7 +44,23 @@ public enum /*<name>*/MPSIntersectionDataType/*</name>*/ implements ValuedEnum {
     DistancePrimitiveIndex(1L),
     DistancePrimitiveIndexCoordinates(2L),
     DistancePrimitiveIndexInstanceIndex(3L),
-    DistancePrimitiveIndexInstanceIndexCoordinates(4L);
+    DistancePrimitiveIndexInstanceIndexCoordinates(4L),
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    DistancePrimitiveIndexBufferIndex(5L),
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    DistancePrimitiveIndexBufferIndexCoordinates(6L),
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    DistancePrimitiveIndexBufferIndexInstanceIndex(7L),
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    DistancePrimitiveIndexBufferIndexInstanceIndexCoordinates(8L);
     /*</values>*/
 
     /*<bind>*/

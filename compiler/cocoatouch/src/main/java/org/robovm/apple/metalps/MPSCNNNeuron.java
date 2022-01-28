@@ -57,7 +57,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     public MPSCNNNeuron(NSCoder decoder, MTLDevice device) { super((SkipInit) null); initObject(init(decoder, device)); }
     @Method(selector = "initWithCoder:")
-    public MPSCNNNeuron(NSCoder decoder) { super(decoder); }
+    public MPSCNNNeuron(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     /**

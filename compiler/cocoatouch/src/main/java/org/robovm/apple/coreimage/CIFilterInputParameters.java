@@ -263,11 +263,6 @@ import org.robovm.apple.avfoundation.*;
         public static native NSString Extent();
         @GlobalValue(symbol="kCIInputVersionKey", optional=true)
         public static native NSString Version();
-        /**
-         * @since Available in iOS 12.0 and later.
-         */
-        @GlobalValue(symbol="kCIInputEnableEDRModeKey", optional=true)
-        public static native NSString EnableEDRMode();
     }
     /*</keys>*/
 }

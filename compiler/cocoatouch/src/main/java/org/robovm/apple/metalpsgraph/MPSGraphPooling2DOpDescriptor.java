@@ -101,6 +101,26 @@ import org.robovm.apple.metalps.*;
     public native MPSGraphTensorNamedDataLayout getDataLayout();
     @Property(selector = "setDataLayout:")
     public native void setDataLayout(MPSGraphTensorNamedDataLayout v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "ceilMode")
+    public native boolean isCeilMode();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setCeilMode:")
+    public native void setCeilMode(boolean v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "includeZeroPadToAverage")
+    public native boolean isIncludeZeroPadToAverage();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setIncludeZeroPadToAverage:")
+    public native void setIncludeZeroPadToAverage(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -48,7 +48,7 @@ public enum /*<name>*/PHPhotosError/*</name>*/ implements NSErrorCode {
     /**
      * @since Available in iOS 13.0 and later.
      */
-    Invalid(-1L),
+    InternalError(-1L),
     /**
      * @since Available in iOS 13.0 and later.
      */
@@ -68,7 +68,53 @@ public enum /*<name>*/PHPhotosError/*</name>*/ implements NSErrorCode {
     /**
      * @since Available in iOS 14.0 and later.
      */
-    NetworkAccessRequired(3164L);
+    NetworkAccessRequired(3164L),
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    IdentifierNotFound(3201L),
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    MultipleIdentifiersFound(3202L),
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    ChangeNotSupported(3300L),
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    OperationInterrupted(3301L),
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    InvalidResource(3302L),
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    MissingResource(3303L),
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    NotEnoughSpace(3305L),
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    RequestNotSupportedForAsset(3306L),
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    AccessRestricted(3310L),
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    AccessUserDenied(3311L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 15.0. Use PHPhotosErrorInternalError
+     */
+    @Deprecated
+    Invalid(-1L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(PHPhotosError.class); }/*</bind>*/
@@ -80,6 +126,11 @@ public enum /*<name>*/PHPhotosError/*</name>*/ implements NSErrorCode {
      */
     @GlobalValue(symbol="PHPhotosErrorDomain", optional=true)
     public static native String getClassDomain();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @GlobalValue(symbol="PHLocalIdentifiersErrorKey", optional=true)
+    public static native String getLocalIdentifiersErrorKey();
     /*</methods>*/
 
     private final long n;

@@ -52,7 +52,7 @@ import org.robovm.apple.audiotoolbox.*;
         /**
          * @since Available in iOS 8.0 and later.
          */
-        public static NSObject observeFailedToDecode(AVSampleBufferDisplayLayer object, final VoidBlock2<AVSampleBufferDisplayLayer, NSError> block) {
+        public static NSObjectProtocol observeFailedToDecode(AVSampleBufferDisplayLayer object, final VoidBlock2<AVSampleBufferDisplayLayer, NSError> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(FailedToDecodeNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {

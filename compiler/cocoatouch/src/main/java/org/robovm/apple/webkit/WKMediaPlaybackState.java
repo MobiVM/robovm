@@ -39,13 +39,13 @@ import org.robovm.apple.coreanimation.*;
  * @since Available in iOS 14.5 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/WKMediaPlaybackState/*</name>*/ implements ValuedEnum {
     /*<values>*/
     None(0L),
-    Paused(1L),
-    Suspended(2L),
-    Playing(3L);
+    Playing(1L),
+    Paused(2L),
+    Suspended(3L);
     /*</values>*/
 
     /*<bind>*/

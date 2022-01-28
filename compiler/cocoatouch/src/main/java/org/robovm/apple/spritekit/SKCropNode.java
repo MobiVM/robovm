@@ -56,7 +56,7 @@ import org.robovm.apple.coreanimation.*;
     protected SKCropNode(Handle h, long handle) { super(h, handle); }
     protected SKCropNode(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public SKCropNode(NSCoder decoder) { super(decoder); }
+    public SKCropNode(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "maskNode")

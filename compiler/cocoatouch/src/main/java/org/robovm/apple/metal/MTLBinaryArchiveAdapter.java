@@ -62,5 +62,10 @@ import org.robovm.apple.dispatch.*;
     public boolean addTileRenderPipelineFunctions(MTLTileRenderPipelineDescriptor descriptor, NSError.NSErrorPtr error) { return false; }
     @NotImplemented("serializeToURL:error:")
     public boolean serializeToURL(NSURL url, NSError.NSErrorPtr error) { return false; }
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @NotImplemented("addFunctionWithDescriptor:library:error:")
+    public boolean addFunction(MTLFunctionDescriptor descriptor, MTLLibrary library, NSError.NSErrorPtr error) { return false; }
     /*</methods>*/
 }

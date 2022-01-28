@@ -61,7 +61,7 @@ import org.robovm.apple.coreanimation.*;
      */
     public SKLabelNode(NSAttributedString attributedText) { super((Handle) null, create(attributedText)); retain(getHandle()); }
     @Method(selector = "initWithCoder:")
-    public SKLabelNode(NSCoder decoder) { super(decoder); }
+    public SKLabelNode(NSCoder coder) { super(coder); }
     /*</constructors>*/
     public SKLabelNode(String text, String fontName) {
         this(text);

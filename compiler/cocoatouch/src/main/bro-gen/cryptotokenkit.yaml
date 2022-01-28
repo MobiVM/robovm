@@ -136,7 +136,7 @@ classes:
                 name: init
             '-addRemovalHandler:forTokenID:':
                 name: addRemovalHandler
-
+    TKTokenWatcherTokenInfo: {} #since 15.0
 protocols:
     TKSmartCardTokenDriverDelegate:
         methods:

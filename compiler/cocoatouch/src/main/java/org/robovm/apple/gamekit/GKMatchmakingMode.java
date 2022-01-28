@@ -40,7 +40,11 @@ public enum /*<name>*/GKMatchmakingMode/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Default(0L),
     NearbyOnly(1L),
-    AutomatchOnly(2L);
+    AutomatchOnly(2L),
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    InviteOnly(3L);
     /*</values>*/
 
     /*<bind>*/

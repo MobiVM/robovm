@@ -95,6 +95,11 @@ import org.robovm.apple.security.*;
     @Bridge(symbol="nw_listener_set_new_connection_handler", optional=true)
     public native void setNewConnectionHandler(@Block VoidBlock1<NWConnection> handler);
     /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Bridge(symbol="nw_listener_set_new_connection_group_handler", optional=true)
+    public native void setNewConnectionGroupHandler(@Block VoidBlock1<NWConnectionGroup> handler);
+    /**
      * @since Available in iOS 12.0 and later.
      */
     @Bridge(symbol="nw_listener_get_new_connection_limit", optional=true)

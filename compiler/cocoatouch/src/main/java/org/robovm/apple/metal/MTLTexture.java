@@ -138,6 +138,11 @@ import org.robovm.apple.dispatch.*;
     @Property(selector = "allowGPUOptimizedContents")
     public native boolean isAllowGPUOptimizedContents();
     /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "compressionType")
+    public native MTLTextureCompressionType getCompressionType();
+    /**
      * @since Available in iOS 13.0 and later.
      */
     @Property(selector = "swizzle")

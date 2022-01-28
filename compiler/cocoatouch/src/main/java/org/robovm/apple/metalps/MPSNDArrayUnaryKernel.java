@@ -54,7 +54,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     public MPSNDArrayUnaryKernel(NSCoder coder, MTLDevice device) { super((SkipInit) null); initObject(init(coder, device)); }
     @Method(selector = "initWithCoder:")
-    public MPSNDArrayUnaryKernel(NSCoder decoder) { super(decoder); }
+    public MPSNDArrayUnaryKernel(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     /**

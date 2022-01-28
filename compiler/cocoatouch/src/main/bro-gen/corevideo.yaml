@@ -27,6 +27,8 @@ enums:
     CVTimeStampFlags: { bits: true }
     CVAttachmentMode: { }
     CVPixelFormatType: { first: kCVPixelFormatType_1Monochrome }
+    CVPixelFormatType2: { prefix: kCVPixelFormatType_, first: kCVPixelFormatType_Lossless_32BGRA, merge_with: CVPixelFormatType}
+    CVPixelFormatType3: { prefix: kCVPixelFormatType_, first: kCVPixelFormatType_Lossy_32BGRA, merge_with: CVPixelFormatType }
     CVPixelBufferLockFlags: { prefix: kCVPixelBufferLock_, bits: true }
     CVPixelBufferPoolFlushFlags: { bits: false, prefix: kCVPixelBufferPoolFlush}
     CVReturn: { first: kCVReturnSuccess }
@@ -310,6 +312,11 @@ functions:
     (.*)GetStringForIntegerCodePoint:
         class: CVImageBuffer
         name: 'intCodePointToString#{g[0]}'
+    CVIsCompressedPixelFormatAvailable:
+        class: CVPixelFormatType
+        name: isCompressedFormatAvailable
+        parameters:
+            0: { type: CVPixelFormatType }
 
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (k?CV.*):

@@ -74,19 +74,19 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "removeAllRules")
     public native void removeAllRules();
     @Method(selector = "gradeForFact:")
-    public native float getGradeForFact(NSObject fact);
+    public native float getGradeForFact(NSObjectProtocol fact);
     @Method(selector = "minimumGradeForFacts:")
     public native float getMinimumGradeForFacts(NSArray<?> facts);
     @Method(selector = "maximumGradeForFacts:")
     public native float getMaximumGradeForFacts(NSArray<?> facts);
     @Method(selector = "assertFact:")
-    public native void assertFact(NSObject fact);
+    public native void assertFact(NSObjectProtocol fact);
     @Method(selector = "assertFact:grade:")
-    public native void assertFact(NSObject fact, float grade);
+    public native void assertFact(NSObjectProtocol fact, float grade);
     @Method(selector = "retractFact:")
-    public native void retractFact(NSObject fact);
+    public native void retractFact(NSObjectProtocol fact);
     @Method(selector = "retractFact:grade:")
-    public native void retractFact(NSObject fact, float grade);
+    public native void retractFact(NSObjectProtocol fact, float grade);
     @Method(selector = "reset")
     public native void reset();
     /*</methods>*/

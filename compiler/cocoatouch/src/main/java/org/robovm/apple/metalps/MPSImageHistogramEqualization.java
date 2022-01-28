@@ -59,7 +59,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithDevice:")
     public MPSImageHistogramEqualization(MTLDevice device) { super(device); }
     @Method(selector = "initWithCoder:")
-    public MPSImageHistogramEqualization(NSCoder decoder) { super(decoder); }
+    public MPSImageHistogramEqualization(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "histogramInfo")

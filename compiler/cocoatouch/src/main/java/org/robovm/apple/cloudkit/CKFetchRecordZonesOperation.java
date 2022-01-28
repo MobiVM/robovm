@@ -56,6 +56,16 @@ import org.robovm.apple.fileprovider.*;
     public native NSArray<CKRecordZoneID> getRecordZoneIDs();
     @Property(selector = "setRecordZoneIDs:")
     public native void setRecordZoneIDs(NSArray<CKRecordZoneID> v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "perRecordZoneCompletionBlock")
+    public native @Block VoidBlock3<CKRecordZoneID, CKRecordZone, NSError> getPerRecordZoneCompletionBlock();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setPerRecordZoneCompletionBlock:")
+    public native void setPerRecordZoneCompletionBlock(@Block VoidBlock3<CKRecordZoneID, CKRecordZone, NSError> v);
     @Property(selector = "fetchRecordZonesCompletionBlock")
     public native @Block VoidBlock2<NSDictionary<CKRecordZoneID, CKRecordZone>, NSError> getFetchRecordZonesCompletionBlock();
     @Property(selector = "setFetchRecordZonesCompletionBlock:")

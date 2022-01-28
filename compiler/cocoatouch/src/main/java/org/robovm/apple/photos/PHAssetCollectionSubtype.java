@@ -88,6 +88,10 @@ public enum /*<name>*/PHAssetCollectionSubtype/*</name>*/ implements ValuedEnum 
      * @since Available in iOS 13.0 and later.
      */
     SmartAlbumUnableToUpload(216L),
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    SmartAlbumRAW(217L),
     Any(Bro.IS_32BIT ? Integer.MAX_VALUE : Long.MAX_VALUE);
     /*</values>*/
 

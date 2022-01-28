@@ -62,6 +62,11 @@ import org.robovm.apple.imageio.*;
     public native NSArray<VNPoint> getProjectedPoints();
     @Property(selector = "equationCoefficients")
     public native @ByVal VectorFloat3 getEquationCoefficients();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "movingAverageRadius")
+    public native @MachineSizedFloat double getMovingAverageRadius();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

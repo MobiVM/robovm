@@ -75,6 +75,20 @@ import org.robovm.apple.avfoundation.*;
     @Method(selector = "kernelsWithString:")
     public static native NSArray<CIKernel> createKernels(String string);
     /**
+     * @since Available in iOS 15.0 and later.
+     */
+    public static NSArray<CIKernel> kernelsWithMetalString(String source) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       NSArray<CIKernel> result = kernelsWithMetalString(source, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "kernelsWithMetalString:error:")
+    private static native NSArray<CIKernel> kernelsWithMetalString(String source, NSError.NSErrorPtr error);
+    /**
      * @deprecated Deprecated in iOS 12.0. Core Image Kernel Language API deprecated. (Define CI_SILENCE_GL_DEPRECATION to silence these warnings)
      */
     @Deprecated

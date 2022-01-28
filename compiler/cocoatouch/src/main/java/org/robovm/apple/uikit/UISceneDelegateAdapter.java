@@ -75,6 +75,8 @@ import org.robovm.apple.linkpresentation.*;
     public void openURLContexts(UIScene scene, NSSet<UIOpenURLContext> URLContexts) {}
     @NotImplemented("stateRestorationActivityForScene:")
     public NSUserActivity stateRestorationActivityForScene(UIScene scene) { return null; }
+    @NotImplemented("scene:restoreInteractionStateWithUserActivity:")
+    public void restoreInteractionState(UIScene scene, NSUserActivity stateRestorationActivity) {}
     @NotImplemented("scene:willContinueUserActivityWithType:")
     public void willContinueUserActivity(UIScene scene, String userActivityType) {}
     @NotImplemented("scene:continueUserActivity:")

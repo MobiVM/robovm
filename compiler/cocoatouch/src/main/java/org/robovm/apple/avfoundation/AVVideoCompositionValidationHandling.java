@@ -61,9 +61,9 @@ import org.robovm.apple.audiotoolbox.*;
     @Method(selector = "videoComposition:shouldContinueValidatingAfterFindingEmptyTimeRange:")
     boolean shouldContinueValidatingAfterFindingEmptyTimeRange(AVVideoComposition videoComposition, @ByVal CMTimeRange timeRange);
     @Method(selector = "videoComposition:shouldContinueValidatingAfterFindingInvalidTimeRangeInInstruction:")
-    boolean shouldContinueValidatingAfterFindingInvalidTimeRange(AVVideoComposition videoComposition, AVVideoCompositionInstruction videoCompositionInstruction);
+    boolean shouldContinueValidatingAfterFindingInvalidTimeRange(AVVideoComposition videoComposition, AVVideoCompositionInstructionProtocol videoCompositionInstruction);
     @Method(selector = "videoComposition:shouldContinueValidatingAfterFindingInvalidTrackIDInInstruction:layerInstruction:asset:")
-    boolean shouldContinueValidatingAfterFindingInvalidTrackID(AVVideoComposition videoComposition, AVVideoCompositionInstruction videoCompositionInstruction, AVVideoCompositionLayerInstruction layerInstruction, AVAsset asset);
+    boolean shouldContinueValidatingAfterFindingInvalidTrackID(AVVideoComposition videoComposition, AVVideoCompositionInstructionProtocol videoCompositionInstruction, AVVideoCompositionLayerInstruction layerInstruction, AVAsset asset);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

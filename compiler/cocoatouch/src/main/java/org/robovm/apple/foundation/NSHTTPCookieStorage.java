@@ -47,7 +47,7 @@ import org.robovm.apple.dispatch.*;
     /*<implements>*//*</implements>*/ {
 
     public static class Notifications {
-        public static NSObject observeAcceptPolicyChanged(NSHTTPCookieStorage object, final VoidBlock1<NSHTTPCookieStorage> block) {
+        public static NSObjectProtocol observeAcceptPolicyChanged(NSHTTPCookieStorage object, final VoidBlock1<NSHTTPCookieStorage> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(AcceptPolicyChangedNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -55,7 +55,7 @@ import org.robovm.apple.dispatch.*;
                 }
             });
         }
-        public static NSObject observeCookiesChanged(NSHTTPCookieStorage object, final VoidBlock1<NSHTTPCookieStorage> block) {
+        public static NSObjectProtocol observeCookiesChanged(NSHTTPCookieStorage object, final VoidBlock1<NSHTTPCookieStorage> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(CookiesChangedNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {

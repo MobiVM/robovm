@@ -43,6 +43,10 @@ public final class /*<name>*/MLCExecutionOptions/*</name>*/ extends Bits</*<name
     public static final MLCExecutionOptions Synchronous = new MLCExecutionOptions(2L);
     public static final MLCExecutionOptions Profiling = new MLCExecutionOptions(4L);
     public static final MLCExecutionOptions ForwardForInference = new MLCExecutionOptions(8L);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    public static final MLCExecutionOptions PerLayerProfiling = new MLCExecutionOptions(16L);
     /*</values>*/
 
     /*<bind>*/

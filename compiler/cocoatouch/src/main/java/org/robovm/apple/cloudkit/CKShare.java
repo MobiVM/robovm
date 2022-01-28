@@ -54,6 +54,11 @@ import org.robovm.apple.fileprovider.*;
     public CKShare(CKRecord rootRecord) { super((SkipInit) null); initObject(init(rootRecord)); }
     @Method(selector = "initWithRootRecord:shareID:")
     public CKShare(CKRecord rootRecord, CKRecordID shareID) { super((SkipInit) null); initObject(init(rootRecord, shareID)); }
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "initWithRecordZoneID:")
+    public CKShare(CKRecordZoneID recordZoneID) { super((SkipInit) null); initObject(init(recordZoneID)); }
     @Method(selector = "initWithCoder:")
     public CKShare(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
@@ -76,6 +81,11 @@ import org.robovm.apple.fileprovider.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @GlobalValue(symbol="CKRecordNameZoneWideShare", optional=true)
+    public static native String getRecordNameZoneWideShare();
+    /**
      * @since Available in iOS 10.0 and later.
      */
     @GlobalValue(symbol="CKShareTitleKey", optional=true)
@@ -95,6 +105,11 @@ import org.robovm.apple.fileprovider.*;
     protected native @Pointer long init(CKRecord rootRecord);
     @Method(selector = "initWithRootRecord:shareID:")
     protected native @Pointer long init(CKRecord rootRecord, CKRecordID shareID);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "initWithRecordZoneID:")
+    protected native @Pointer long init(CKRecordZoneID recordZoneID);
     @Method(selector = "initWithCoder:")
     protected native @Pointer long init(NSCoder aDecoder);
     @Method(selector = "addParticipant:")

@@ -92,6 +92,16 @@ import org.robovm.apple.linkpresentation.*;
     public native boolean showsPaperSelectionForLoadedPapers();
     @Property(selector = "setShowsPaperSelectionForLoadedPapers:")
     public native void setShowsPaperSelectionForLoadedPapers(boolean v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "showsPaperOrientation")
+    public native boolean showsPaperOrientation();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setShowsPaperOrientation:")
+    public native void setShowsPaperOrientation(boolean v);
     @Property(selector = "printPaper")
     public native UIPrintPaper getPrintPaper();
     @Property(selector = "printPageRenderer")

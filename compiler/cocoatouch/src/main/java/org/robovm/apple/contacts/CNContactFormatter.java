@@ -53,9 +53,9 @@ import org.robovm.apple.coretext.CTAttributedStringAttributes;
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "descriptorForRequiredKeysForNameOrder")
-    public static native NSObject getDescriptorForRequiredKeysForNameOrder();
+    public static native NSObjectProtocol getDescriptorForRequiredKeysForNameOrder();
     @Property(selector = "descriptorForRequiredKeysForDelimiter")
-    public static native NSObject getDescriptorForRequiredKeysForDelimiter();
+    public static native NSObjectProtocol getDescriptorForRequiredKeysForDelimiter();
     @Property(selector = "style")
     public native CNContactFormatterStyle getStyle();
     @Property(selector = "setStyle:")
@@ -91,7 +91,7 @@ import org.robovm.apple.coretext.CTAttributedStringAttributes;
     @Method(selector = "attributedStringFromContact:defaultAttributes:")
     public native NSAttributedString format(CNContact contact, NSDictionary<?, ?> attributes);
     @Method(selector = "descriptorForRequiredKeysForStyle:")
-    public static native NSObject getDescriptorForRequiredKeys(CNContactFormatterStyle style);
+    public static native NSObjectProtocol getDescriptorForRequiredKeys(CNContactFormatterStyle style);
     @Method(selector = "stringFromContact:style:")
     public static native String format(CNContact contact, CNContactFormatterStyle style);
     @Method(selector = "attributedStringFromContact:style:defaultAttributes:")

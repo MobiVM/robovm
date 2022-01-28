@@ -60,6 +60,16 @@ import org.robovm.apple.avfoundation.*;
     @org.robovm.rt.bro.annotation.Marshaler(SCNShaderModifierEntryPoint.AsStringMapMarshaler.class) Map<SCNShaderModifierEntryPoint, String> getShaderModifiers();
     @Property(selector = "setShaderModifiers:")
     void setShaderModifiers(@org.robovm.rt.bro.annotation.Marshaler(SCNShaderModifierEntryPoint.AsStringMapMarshaler.class) Map<SCNShaderModifierEntryPoint, String> v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "minimumLanguageVersion")
+    NSNumber getMinimumLanguageVersion();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setMinimumLanguageVersion:")
+    void setMinimumLanguageVersion(NSNumber v);
     /*</properties>*/
     /*<methods>*/
     @Method(selector = "handleBindingOfSymbol:usingBlock:")

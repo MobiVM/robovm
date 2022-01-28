@@ -63,7 +63,7 @@ import org.robovm.apple.linkpresentation.*;
     @Method(selector = "initWithNibName:bundle:")
     public UINavigationController(String nibNameOrNil, NSBundle nibBundleOrNil) { super((SkipInit) null); initObject(init(nibNameOrNil, nibBundleOrNil)); }
     @Method(selector = "initWithCoder:")
-    public UINavigationController(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public UINavigationController(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "topViewController")
@@ -125,7 +125,7 @@ import org.robovm.apple.linkpresentation.*;
     @Method(selector = "initWithNibName:bundle:")
     protected native @Pointer long init(String nibNameOrNil, NSBundle nibBundleOrNil);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     @Method(selector = "pushViewController:animated:")
     public native void pushViewController(UIViewController viewController, boolean animated);
     @Method(selector = "popViewControllerAnimated:")

@@ -52,7 +52,19 @@ public enum /*<name>*/INCallRecordType/*</name>*/ implements ValuedEnum {
     /**
      * @since Available in iOS 11.0 and later.
      */
-    Voicemail(5L);
+    Voicemail(5L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    Ringing(6L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    InProgress(7L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    OnHold(8L);
     /*</values>*/
 
     /*<bind>*/

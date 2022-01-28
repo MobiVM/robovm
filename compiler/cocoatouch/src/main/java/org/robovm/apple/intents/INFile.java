@@ -66,6 +66,16 @@ import org.robovm.apple.coregraphics.*;
     public native String getTypeIdentifier();
     @Property(selector = "fileURL")
     public native NSURL getFileURL();
+    /**
+     * @since Available in iOS 15.1 and later.
+     */
+    @Property(selector = "removedOnCompletion")
+    public native boolean isRemovedOnCompletion();
+    /**
+     * @since Available in iOS 15.1 and later.
+     */
+    @Property(selector = "setRemovedOnCompletion:")
+    public native void setRemovedOnCompletion(boolean v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

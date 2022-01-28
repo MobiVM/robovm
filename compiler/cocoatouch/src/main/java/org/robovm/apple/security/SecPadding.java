@@ -33,9 +33,11 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @deprecated Deprecated in iOS 15.0. Replaced with SecKeyAlgorithm
+ */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
+/*<annotations>*/@Deprecated/*</annotations>*/
 public final class /*<name>*/SecPadding/*</name>*/ extends Bits</*<name>*/SecPadding/*</name>*/> {
     /*<values>*/
     public static final SecPadding None = new SecPadding(0L);

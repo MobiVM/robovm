@@ -56,7 +56,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithDevice:")
     public MPSCNNCrossChannelNormalizationGradient(MTLDevice device) { super(device); }
     @Method(selector = "initWithCoder:")
-    public MPSCNNCrossChannelNormalizationGradient(NSCoder decoder) { super(decoder); }
+    public MPSCNNCrossChannelNormalizationGradient(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "alpha")

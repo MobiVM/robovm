@@ -63,6 +63,21 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Property(selector = "frame")
     @ByVal CGRect getFrame();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "focusEffect")
+    UIFocusEffect getFocusEffect();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "focusGroupPriority")
+    @MachineSizedSInt long getFocusGroupPriority();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "isTransparentFocusItem")
+    boolean isTransparentFocusItem();
     /*</properties>*/
     /*<methods>*/
     /**

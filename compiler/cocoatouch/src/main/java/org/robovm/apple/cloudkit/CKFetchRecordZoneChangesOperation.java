@@ -50,6 +50,9 @@ import org.robovm.apple.fileprovider.*;
     public CKFetchRecordZoneChangesOperation() {}
     protected CKFetchRecordZoneChangesOperation(Handle h, long handle) { super(h, handle); }
     protected CKFetchRecordZoneChangesOperation(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
     @Method(selector = "initWithRecordZoneIDs:configurationsByRecordZoneID:")
     public static  CKFetchRecordZoneChangesOperation create(NSArray<CKRecordZoneID> recordZoneIDs, NSDictionary<CKRecordZoneID, CKFetchRecordZoneChangesConfiguration> configurationsByRecordZoneID) {
        CKFetchRecordZoneChangesOperation res = new CKFetchRecordZoneChangesOperation((SkipInit) null);
@@ -69,18 +72,44 @@ import org.robovm.apple.fileprovider.*;
     public native NSArray<CKRecordZoneID> getRecordZoneIDs();
     @Property(selector = "setRecordZoneIDs:")
     public native void setRecordZoneIDs(NSArray<CKRecordZoneID> v);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
     @Property(selector = "configurationsByRecordZoneID")
     public native NSDictionary<CKRecordZoneID, CKFetchRecordZoneChangesConfiguration> getConfigurationsByRecordZoneID();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
     @Property(selector = "setConfigurationsByRecordZoneID:")
     public native void setConfigurationsByRecordZoneID(NSDictionary<CKRecordZoneID, CKFetchRecordZoneChangesConfiguration> v);
     @Property(selector = "fetchAllChanges")
     public native boolean isFetchAllChanges();
     @Property(selector = "setFetchAllChanges:")
     public native void setFetchAllChanges(boolean v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 15.0. Use recordWasChangedBlock instead, which surfaces per-record errors
+     */
+    @Deprecated
     @Property(selector = "recordChangedBlock")
     public native @Block VoidBlock1<CKRecord> getRecordChangedBlock();
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 15.0. Use recordWasChangedBlock instead, which surfaces per-record errors
+     */
+    @Deprecated
     @Property(selector = "setRecordChangedBlock:")
     public native void setRecordChangedBlock(@Block VoidBlock1<CKRecord> v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "recordWasChangedBlock")
+    public native @Block VoidBlock3<CKRecordID, CKRecord, NSError> getRecordWasChangedBlock();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setRecordWasChangedBlock:")
+    public native void setRecordWasChangedBlock(@Block VoidBlock3<CKRecordID, CKRecord, NSError> v);
     @Property(selector = "recordWithIDWasDeletedBlock")
     public native @Block VoidBlock2<CKRecordID, String> getRecordWithIDWasDeletedBlock();
     @Property(selector = "setRecordWithIDWasDeletedBlock:")
@@ -114,6 +143,9 @@ import org.robovm.apple.fileprovider.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
     @Method(selector = "initWithRecordZoneIDs:configurationsByRecordZoneID:")
     protected native @Pointer long init0(NSArray<CKRecordZoneID> recordZoneIDs, NSDictionary<CKRecordZoneID, CKFetchRecordZoneChangesConfiguration> configurationsByRecordZoneID);
     /**

@@ -63,7 +63,7 @@ import org.robovm.apple.audiotoolbox.*;
     public native AVURLAsset getURLAsset();
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Deprecated in iOS 10.0. No longer supported
+     * @deprecated Deprecated in iOS 10.0. Use the URL property of URLAsset instead
      */
     @Deprecated
     @Property(selector = "destinationURL")

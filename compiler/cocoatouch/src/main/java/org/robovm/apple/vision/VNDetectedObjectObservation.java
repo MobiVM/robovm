@@ -63,6 +63,11 @@ import org.robovm.apple.imageio.*;
     /*<properties>*/
     @Property(selector = "boundingBox")
     public native @ByVal CGRect getBoundingBox();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "globalSegmentationMask")
+    public native VNPixelBufferObservation getGlobalSegmentationMask();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

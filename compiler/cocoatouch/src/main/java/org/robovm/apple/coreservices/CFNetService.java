@@ -143,56 +143,144 @@ import org.robovm.apple.corefoundation.*;
         scheduleInRunLoop(runLoop, runLoopMode.value().toString());
     }
     /*<methods>*/
+    /**
+     * @deprecated Use nw_browser_t or nw_listener_t in Network framework instead
+     */
+    @Deprecated
     @Bridge(symbol="CFNetServiceGetTypeID", optional=true)
     public static native @MachineSizedUInt long getClassTypeID();
+    /**
+     * @deprecated Use nw_browser_t or nw_listener_t in Network framework instead
+     */
+    @Deprecated
     @Bridge(symbol="CFNetServiceCreate", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CFNetService create(CFAllocator alloc, String domain, String serviceType, String name, int port);
+    /**
+     * @deprecated Use nw_browser_t or nw_listener_t in Network framework instead
+     */
+    @Deprecated
     @Bridge(symbol="CFNetServiceCreateCopy", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CFNetService createCopy(CFAllocator alloc, CFNetService service);
+    /**
+     * @deprecated Use nw_browser_t or nw_listener_t in Network framework instead
+     */
+    @Deprecated
     @Bridge(symbol="CFNetServiceGetDomain", optional=true)
     public native String getDomain();
+    /**
+     * @deprecated Use nw_browser_t or nw_listener_t in Network framework instead
+     */
+    @Deprecated
     @Bridge(symbol="CFNetServiceGetType", optional=true)
     public native String getType();
+    /**
+     * @deprecated Use nw_browser_t or nw_listener_t in Network framework instead
+     */
+    @Deprecated
     @Bridge(symbol="CFNetServiceGetName", optional=true)
     public native String getName();
+    /**
+     * @deprecated Use nw_browser_t or nw_listener_t in Network framework instead
+     */
+    @Deprecated
     public boolean register(CFNetServiceOptions options) throws CFStreamErrorException {
        CFStreamError.CFStreamErrorPtr ptr = new CFStreamError.CFStreamErrorPtr();
        boolean result = register(options, ptr);
        if (ptr.get() != null) { throw new CFStreamErrorException(ptr.get()); }
        return result;
     }
+    /**
+     * @deprecated Use nw_browser_t or nw_listener_t in Network framework instead
+     */
+    @Deprecated
     @Bridge(symbol="CFNetServiceRegisterWithOptions", optional=true)
     private native boolean register(CFNetServiceOptions options, CFStreamError.CFStreamErrorPtr error);
+    /**
+     * @deprecated Use nw_browser_t or nw_listener_t in Network framework instead
+     */
+    @Deprecated
     public boolean resolve(double timeout) throws CFStreamErrorException {
        CFStreamError.CFStreamErrorPtr ptr = new CFStreamError.CFStreamErrorPtr();
        boolean result = resolve(timeout, ptr);
        if (ptr.get() != null) { throw new CFStreamErrorException(ptr.get()); }
        return result;
     }
+    /**
+     * @deprecated Use nw_browser_t or nw_listener_t in Network framework instead
+     */
+    @Deprecated
     @Bridge(symbol="CFNetServiceResolveWithTimeout", optional=true)
     private native boolean resolve(double timeout, CFStreamError.CFStreamErrorPtr error);
+    /**
+     * @deprecated Use nw_browser_t or nw_listener_t in Network framework instead
+     */
+    @Deprecated
     @Bridge(symbol="CFNetServiceCancel", optional=true)
     public native void cancel();
+    /**
+     * @deprecated Use nw_browser_t or nw_listener_t in Network framework instead
+     */
+    @Deprecated
     @Bridge(symbol="CFNetServiceGetTargetHost", optional=true)
     public native String getTargetHost();
+    /**
+     * @deprecated Use nw_browser_t or nw_listener_t in Network framework instead
+     */
+    @Deprecated
     @Bridge(symbol="CFNetServiceGetPortNumber", optional=true)
     public native int getPortNumber();
+    /**
+     * @deprecated Use nw_browser_t or nw_listener_t in Network framework instead
+     */
+    @Deprecated
     @Bridge(symbol="CFNetServiceGetAddressing", optional=true)
     public native NSArray<NSData> getAddressing();
+    /**
+     * @deprecated Use nw_browser_t or nw_listener_t in Network framework instead
+     */
+    @Deprecated
     @Bridge(symbol="CFNetServiceGetTXTData", optional=true)
     public native NSData getTXTData();
+    /**
+     * @deprecated Use nw_browser_t or nw_listener_t in Network framework instead
+     */
+    @Deprecated
     @Bridge(symbol="CFNetServiceSetTXTData", optional=true)
     public native boolean setTXTData(NSData txtRecord);
+    /**
+     * @deprecated Use nw_browser_t or nw_listener_t in Network framework instead
+     */
+    @Deprecated
     @Bridge(symbol="CFNetServiceCreateDictionaryWithTXTData", optional=true)
     protected static native NSDictionary<NSString, NSData> parseTXTData(CFAllocator alloc, NSData txtRecord);
+    /**
+     * @deprecated Use nw_browser_t or nw_listener_t in Network framework instead
+     */
+    @Deprecated
     @Bridge(symbol="CFNetServiceCreateTXTDataWithDictionary", optional=true)
     protected static native @org.robovm.rt.bro.annotation.Marshaler(NSObject.NoRetainMarshaler.class) NSData createTXTData(CFAllocator alloc, NSDictionary<NSString, NSData> keyValuePairs);
+    /**
+     * @deprecated Use nw_browser_t or nw_listener_t in Network framework instead
+     */
+    @Deprecated
     @Bridge(symbol="CFNetServiceSetClient", optional=true)
     private native boolean setCallback(FunctionPtr clientCB, CFNetServiceClientContext clientContext);
+    /**
+     * @deprecated Use nw_browser_t or nw_listener_t in Network framework instead
+     */
+    @Deprecated
     @Bridge(symbol="CFNetServiceScheduleWithRunLoop", optional=true)
     public native void scheduleInRunLoop(CFRunLoop runLoop, String runLoopMode);
+    /**
+     * @deprecated Use nw_browser_t or nw_listener_t in Network framework instead
+     */
+    @Deprecated
     @Bridge(symbol="CFNetServiceUnscheduleFromRunLoop", optional=true)
     public native void unscheduleFromRunLoop(CFRunLoop runLoop, String runLoopMode);
+    /**
+     * @deprecated Use Network framework instead
+     */
+    @Deprecated
     @Bridge(symbol="CFStreamCreatePairWithSocketToNetService", optional=true)
     private static native void createSocketStreamPair(CFAllocator alloc, CFNetService service, NSInputStream.NSInputStreamPtr readStream, NSOutputStream.NSOutputStreamPtr writeStream);
     /*</methods>*/

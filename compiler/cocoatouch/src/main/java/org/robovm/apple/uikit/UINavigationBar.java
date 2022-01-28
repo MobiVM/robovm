@@ -216,6 +216,16 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
      */
     @Property(selector = "setScrollEdgeAppearance:")
     public native void setScrollEdgeAppearance(UINavigationBarAppearance v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "compactScrollEdgeAppearance")
+    public native UINavigationBarAppearance getCompactScrollEdgeAppearance();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setCompactScrollEdgeAppearance:")
+    public native void setCompactScrollEdgeAppearance(UINavigationBarAppearance v);
     @WeaklyLinked
     @Property(selector = "layerClass")
     public static native Class<? extends CALayer> getLayerClass();

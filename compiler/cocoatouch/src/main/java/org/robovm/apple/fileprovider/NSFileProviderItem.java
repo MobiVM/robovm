@@ -33,7 +33,9 @@ import org.robovm.apple.uniformtypeid.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 11.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ interface /*<name>*/NSFileProviderItem/*</name>*/ 
@@ -58,7 +60,7 @@ import org.robovm.apple.uniformtypeid.*;
     UTType getContentType();
     /**
      * @since Available in iOS 11.0 and later.
-     * @deprecated Use contentType
+     * @deprecated Deprecated in iOS 15.0. Use contentType
      */
     @Deprecated
     @Property(selector = "typeIdentifier")
@@ -77,8 +79,14 @@ import org.robovm.apple.uniformtypeid.*;
     NSDate getLastUsedDate();
     @Property(selector = "tagData")
     NSData getTagData();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Property(selector = "favoriteRank")
     NSNumber getFavoriteRank();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Property(selector = "isTrashed")
     boolean isTrashed();
     @Property(selector = "isUploaded")
@@ -103,6 +111,9 @@ import org.robovm.apple.uniformtypeid.*;
     NSPersonNameComponents getOwnerNameComponents();
     @Property(selector = "mostRecentEditorNameComponents")
     NSPersonNameComponents getMostRecentEditorNameComponents();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Property(selector = "versionIdentifier")
     NSData getVersionIdentifier();
     @Property(selector = "userInfo")

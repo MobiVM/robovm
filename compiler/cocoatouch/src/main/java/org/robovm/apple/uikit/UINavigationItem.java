@@ -182,6 +182,16 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Property(selector = "setScrollEdgeAppearance:")
     public native void setScrollEdgeAppearance(UINavigationBarAppearance v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "compactScrollEdgeAppearance")
+    public native UINavigationBarAppearance getCompactScrollEdgeAppearance();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setCompactScrollEdgeAppearance:")
+    public native void setCompactScrollEdgeAppearance(UINavigationBarAppearance v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

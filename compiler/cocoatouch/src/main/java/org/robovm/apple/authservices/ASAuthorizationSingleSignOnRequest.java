@@ -56,6 +56,16 @@ import org.robovm.apple.coreanimation.*;
     public native NSArray<NSURLQueryItem> getAuthorizationOptions();
     @Property(selector = "setAuthorizationOptions:")
     public native void setAuthorizationOptions(NSArray<NSURLQueryItem> v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "isUserInterfaceEnabled")
+    public native boolean isUserInterfaceEnabled();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setUserInterfaceEnabled:")
+    public native void setUserInterfaceEnabled(boolean v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

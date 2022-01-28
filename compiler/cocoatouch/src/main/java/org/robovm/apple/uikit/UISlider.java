@@ -112,6 +112,21 @@ import org.robovm.apple.linkpresentation.*;
     @WeaklyLinked
     @Property(selector = "layerClass")
     public static native Class<? extends CALayer> getLayerClass();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "behavioralStyle")
+    public native UIBehavioralStyle getBehavioralStyle();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "preferredBehavioralStyle")
+    public native UIBehavioralStyle getPreferredBehavioralStyle();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setPreferredBehavioralStyle:")
+    public native void setPreferredBehavioralStyle(UIBehavioralStyle v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -60,6 +60,16 @@ import org.robovm.apple.coreanimation.*;
     public native String getDetail();
     @Property(selector = "setDetail:")
     public native void setDetail(String v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "dateComponentsRange")
+    public native PKDateComponentsRange getDateComponentsRange();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setDateComponentsRange:")
+    public native void setDateComponentsRange(PKDateComponentsRange v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

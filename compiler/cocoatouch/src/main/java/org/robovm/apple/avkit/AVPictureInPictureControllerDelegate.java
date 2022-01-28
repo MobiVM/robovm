@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.avfoundation.*;
+import org.robovm.apple.coremedia.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.iad.*;
 import org.robovm.apple.coreanimation.*;

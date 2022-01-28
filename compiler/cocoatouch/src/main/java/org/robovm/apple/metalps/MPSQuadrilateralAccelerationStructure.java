@@ -58,7 +58,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:group:")
     public MPSQuadrilateralAccelerationStructure(NSCoder aDecoder, MPSAccelerationStructureGroup group) { super(aDecoder, group); }
     @Method(selector = "initWithCoder:")
-    public MPSQuadrilateralAccelerationStructure(NSCoder decoder) { super(decoder); }
+    public MPSQuadrilateralAccelerationStructure(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "quadrilateralCount")

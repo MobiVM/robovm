@@ -106,10 +106,30 @@ import org.robovm.apple.coregraphics.*;
     public native MDLVertexDescriptor getVertexDescriptor();
     @Property(selector = "count")
     public native @MachineSizedUInt long getCount();
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 15.0. Use originals
+     */
+    @Deprecated
     @Property(selector = "masters")
     public native MDLObjectContainerComponent getMasters();
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 15.0. Use originals
+     */
+    @Deprecated
     @Property(selector = "setMasters:")
     public native void setMasters(MDLObjectContainerComponent v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "originals")
+    public native MDLObjectContainerComponent getOriginals();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setOriginals:")
+    public native void setOriginals(MDLObjectContainerComponent v);
     /**
      * @since Available in iOS 11.0 and later.
      */

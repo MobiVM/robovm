@@ -75,6 +75,11 @@ import org.robovm.apple.coreanimation.*;
     @NotImplemented("paymentAuthorizationController:didRequestMerchantSessionUpdate:")
     public void didRequestMerchantSessionUpdate(PKPaymentAuthorizationController controller, @Block VoidBlock1<PKPaymentRequestMerchantSessionUpdate> handler) {}
     /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @NotImplemented("paymentAuthorizationController:didChangeCouponCode:handler:")
+    public void didChangeCouponCode(PKPaymentAuthorizationController controller, String couponCode, @Block VoidBlock1<PKPaymentRequestCouponCodeUpdate> completion) {}
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @NotImplemented("paymentAuthorizationController:didSelectShippingMethod:handler:")

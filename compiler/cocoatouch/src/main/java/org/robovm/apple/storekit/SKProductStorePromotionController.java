@@ -74,7 +74,7 @@ import org.robovm.apple.coregraphics.*;
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "updateStorePromotionOrder:completionHandler:")
-    public native void updateStorePromotionOrder(NSArray<SKProduct> storePromotionOrder, @Block VoidBlock1<NSError> completionHandler);
+    public native void updateStorePromotionOrder(NSArray<SKProduct> promotionOrder, @Block VoidBlock1<NSError> completionHandler);
     /**
      * @since Available in iOS 11.0 and later.
      */

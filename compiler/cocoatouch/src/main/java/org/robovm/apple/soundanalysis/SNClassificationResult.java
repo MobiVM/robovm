@@ -59,6 +59,10 @@ import org.robovm.apple.coreml.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "classificationForIdentifier:")
+    public native SNClassification classificationForIdentifier(String identifier);
     /*</methods>*/
 }

@@ -177,4 +177,28 @@ public class UICollectionViewModel extends UIScrollViewDelegateAdapter implement
      */
     @Override
     public void willEndContextMenuInteraction(UICollectionView collectionView, UIContextMenuConfiguration configuration, UIContextMenuInteractionAnimating animator) {}
+
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Override
+    public boolean isSelectionFollowsFocus(UICollectionView collectionView, NSIndexPath indexPath) {
+        return false;
+    }
+
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Override
+    public NSIndexPath getTargetIndexPathForMoveOfItemFromOriginalIndexPath(UICollectionView collectionView, NSIndexPath originalIndexPath, NSIndexPath currentIndexPath, NSIndexPath proposedIndexPath) {
+        return null;
+    }
+
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Override
+    public UIWindowSceneActivationConfiguration getSceneActivationConfiguration(UICollectionView collectionView, NSIndexPath indexPath, CGPoint point) {
+        return null;
+    }
 }

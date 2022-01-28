@@ -74,6 +74,16 @@ import org.robovm.apple.linkpresentation.*;
     public native String getTitle();
     @Property(selector = "setTitle:")
     public native void setTitle(String v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "subtitle")
+    public native String getSubtitle();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setSubtitle:")
+    public native void setSubtitle(String v);
     @Property(selector = "activationConditions")
     public native UISceneActivationConditions getActivationConditions();
     @Property(selector = "setActivationConditions:")
@@ -90,5 +100,9 @@ import org.robovm.apple.linkpresentation.*;
     protected native @Pointer long init(UISceneSession session, UISceneConnectionOptions connectionOptions);
     @Method(selector = "openURL:options:completionHandler:")
     public native void openURL(NSURL url, UISceneOpenExternalURLOptions options, @Block VoidBooleanBlock completion);
+    @Method(selector = "extendStateRestoration")
+    public native void extendStateRestoration();
+    @Method(selector = "completeStateRestoration")
+    public native void completeStateRestoration();
     /*</methods>*/
 }

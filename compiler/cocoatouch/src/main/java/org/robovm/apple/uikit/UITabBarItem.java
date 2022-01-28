@@ -99,6 +99,16 @@ import org.robovm.apple.linkpresentation.*;
     @Property(selector = "setStandardAppearance:")
     public native void setStandardAppearance(UITabBarAppearance v);
     /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "scrollEdgeAppearance")
+    public native UITabBarAppearance getScrollEdgeAppearance();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setScrollEdgeAppearance:")
+    public native void setScrollEdgeAppearance(UITabBarAppearance v);
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @Property(selector = "isSpringLoaded")

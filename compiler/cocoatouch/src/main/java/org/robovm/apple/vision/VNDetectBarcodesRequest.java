@@ -60,12 +60,19 @@ import org.robovm.apple.imageio.*;
     public VNDetectBarcodesRequest(@Block VoidBlock2<VNRequest, NSError> completionHandler) { super(completionHandler); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 15.0. Use -supportedSymbologiesAndReturnError:
+     */
+    @Deprecated
     @Property(selector = "supportedSymbologies")
     public static native NSArray<NSString> getSupportedSymbologies();
     @Property(selector = "symbologies")
     public native NSArray<NSString> getSymbologies();
     @Property(selector = "setSymbologies:")
     public native void setSymbologies(NSArray<NSString> v);
+    @Property(selector = "results")
+    public native NSArray<VNBarcodeObservation> getResults();
     /**
      * @since Available in iOS 12.0 and later.
      */
@@ -84,6 +91,10 @@ import org.robovm.apple.imageio.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "supportedSymbologiesAndReturnError:")
+    public native NSArray<NSString> supportedSymbologiesAndReturnError(NSError.NSErrorPtr error);
     /*</methods>*/
 }

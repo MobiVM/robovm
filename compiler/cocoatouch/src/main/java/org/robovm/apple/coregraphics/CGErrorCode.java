@@ -35,7 +35,7 @@ import org.robovm.apple.uikit.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
+/*<annotations>*/@Library("CoreGraphics")/*</annotations>*/
 public enum /*<name>*/CGErrorCode/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Success(0L),
@@ -51,10 +51,12 @@ public enum /*<name>*/CGErrorCode/*</name>*/ implements ValuedEnum {
     NoneAvailable(1011L);
     /*</values>*/
 
-    /*<bind>*/
-    /*</bind>*/
+    /*<bind>*/static { Bro.bind(CGErrorCode.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<methods>*//*</methods>*/
+    /*<methods>*/
+    @Bridge(symbol="CGErrorSetCallback", optional=true)
+    public static native void setCallback(FunctionPtr callback);
+    /*</methods>*/
 
     private final long n;
 

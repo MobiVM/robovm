@@ -188,25 +188,8 @@ classes:
                 exclude: true
             '-init.*':
                 name: init
-            '-objectForKey:':
-                name: get
-                return_type: NSObject
-            '-setObject:forKey:':
-                name: put
-                visibility: protected # We provide overloaded methods for each allowed type
-                parameters:
-                    object:
-                        type: NSObject # We don't use CKRecordValue here because we don't want to make several Foundation objects implement the CKRecordValue interface.
-            '-(allKeys|allTokens|changedKeys)':
-                property: true
-                return_type: List<String>
-                return_marshaler: NSArray.AsStringListMarshaler
             '-encodeSystemFieldsWithCoder:':
                 name: encodeSystemFields
-            '-objectForKeyedSubscript:':
-                exclude: true
-            '-setObject:forKeyedSubscript:':
-                exclude: true
     CKRecordID: # DONE
         methods:
             '-init':
@@ -489,13 +472,11 @@ protocols:
         adapter: false
     # dkimitsa: that is very special configuration for this protocol
     # * exclude -- affects only if this protocol to be exported to java file or not. Doesn't affect it usage
-    # * introduced `skip_implements` -- this protocol will not be declated in 'implemens' sections
+    # * introduced `skip_implements` -- this protocol will not be declared in 'implements' sections
     #   but all its method will be included in class (sometime this is needed like in CKRecord case
     #   when some methods of protocol have to be protected)
     CKRecordKeyValueSetting: #since 9.0
-        exclude: true
         skip_adapter: true
-        skip_implements: true
         methods:
             '-objectForKey:':
                 name: get
@@ -507,10 +488,10 @@ protocols:
                         type: NSObject # We don't use CKRecordValue here because we don't want to make several Foundation objects implement the CKRecordValue interface.
             '-setObject:forKeyedSubscript:':
                 name: setObjectForKeyedSubscript
-                visibility: protected # We provide overloaded methods for each allowed type
-            '-(allKeys|allTokens|changedKeys)':
+            '-(allKeys|changedKeys)':
                 property: true
                 return_type: List<String>
+                return_marshaler: NSArray.AsStringListMarshaler
 
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version
@@ -581,12 +562,24 @@ values:
         class: CKShare
         name: '#{g[0]}Key'
 
+    CKErrorUserDidResetEncryptedDataKey:
+        class: CKError
+        name: getUserDidResetEncryptedDataKey
+    CKRecordNameZoneWideShare:
+        class: CKShare
+        name: getRecordNameZoneWideShare
+
     # Make sure we don't miss any values if new ones are introduced in a later version
     (k?CK.*):
         class: CloudKit
         name: 'Value__#{g[0]}'
 
 constants:
+    CK_SWIFT_AVAILABILITY:
+        exclude: true
+    CK_SWIFT_DEPRECATED:
+        exclude: true
+
     # Make sure we don't miss any constants if new ones are introduced in a later version
     (k?CK.*):
         class: CloudKit

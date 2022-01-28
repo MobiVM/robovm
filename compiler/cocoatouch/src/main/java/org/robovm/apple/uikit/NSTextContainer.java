@@ -66,6 +66,11 @@ import org.robovm.apple.linkpresentation.*;
     public native NSLayoutManager getLayoutManager();
     @Property(selector = "setLayoutManager:", strongRef = true)
     public native void setLayoutManager(NSLayoutManager v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "textLayoutManager")
+    public native NSTextLayoutManager getTextLayoutManager();
     @Property(selector = "size")
     public native @ByVal CGSize getSize();
     @Property(selector = "setSize:")

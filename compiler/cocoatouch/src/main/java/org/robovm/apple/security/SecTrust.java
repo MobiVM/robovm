@@ -285,12 +285,20 @@ import org.robovm.apple.dispatch.*;
     public native SecKey copyKey();
     @Bridge(symbol="SecTrustGetCertificateCount", optional=true)
     public native @MachineSizedSInt long getCertificateCount();
+    /**
+     * @deprecated Deprecated in iOS 15.0. Use SecTrustCopyCertificateChain
+     */
+    @Deprecated
     @Bridge(symbol="SecTrustGetCertificateAtIndex", optional=true)
     public native SecCertificate getCertificate(@MachineSizedSInt long ix);
     @Bridge(symbol="SecTrustCopyExceptions", optional=true)
     public native @org.robovm.rt.bro.annotation.Marshaler(NSObject.NoRetainMarshaler.class) NSData getExceptions();
     @Bridge(symbol="SecTrustSetExceptions", optional=true)
     public native boolean setExceptions(NSData exceptions);
+    /**
+     * @deprecated Deprecated in iOS 15.0. Use SecTrustEvaluateWithError
+     */
+    @Deprecated
     @Bridge(symbol="SecTrustCopyProperties", optional=true)
     public native SecTrustProperties getProperties();
     @Bridge(symbol="SecTrustCopyResult", optional=true)
@@ -299,5 +307,10 @@ import org.robovm.apple.dispatch.*;
     protected native OSStatus setOCSPResponse0(CFType responseData);
     @Bridge(symbol="SecTrustSetSignedCertificateTimestamps", optional=true)
     public native OSStatus setSignedCertificateTimestamps(NSArray sctArray);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Bridge(symbol="SecTrustCopyCertificateChain", optional=true)
+    public native NSArray copyCertificateChain();
     /*</methods>*/
 }

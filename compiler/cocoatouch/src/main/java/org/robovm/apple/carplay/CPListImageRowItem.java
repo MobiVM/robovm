@@ -73,6 +73,16 @@ import org.robovm.apple.coreanimation.*;
      */
     @Property(selector = "setHandler:")
     public native void setHandler(@Block("(,@Block)") VoidBlock2<CPSelectableListItem, Runnable> v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "isEnabled")
+    public native boolean isEnabled();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setEnabled:")
+    public native void setEnabled(boolean v);
     @Property(selector = "gridImages")
     public native NSArray<UIImage> getGridImages();
     @Property(selector = "listImageRowHandler")

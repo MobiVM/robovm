@@ -55,6 +55,11 @@ enums:
     HKCategoryValueHeadphoneAudioExposureEvent: {} #since 14.2
     HKCategoryValueContraceptive: {} #since 14.3
     HKCategoryValueLowCardioFitnessEvent: {} #since 14.3
+    HKCategoryValuePregnancyTestResult: {} #since 15.0
+    HKCategoryValueProgesteroneTestResult: {} #since 15.0
+    HKCategoryValueAppleWalkingSteadinessEvent: {} #since 15.0
+    HKAppleWalkingSteadinessClassification: {} #since 15.0
+
 typed_enums:
     HKFHIRResourceType:
         enum: HKFHIRResourceType
@@ -157,6 +162,8 @@ classes:
                 throws: NSErrorException
             '-activityMoveModeWithError:':
                 name: getActivityMoveMode
+            '-recalibrateEstimatesForSampleType:atDate:completion:':
+                name: recalibrateEstimates
     HKObject: # DONE
         properties:
             'metadata':
@@ -380,6 +387,8 @@ classes:
                 name: predicateForElectrocardiogramsWithClassification
             '+predicateForElectrocardiogramsWithSymptomsStatus:':
                 name: predicateForElectrocardiogramsWithSymptomsStatus
+            '+predicateForVerifiableClinicalRecordsWithRelevantDateWithinDateInterval:':
+                name: predicateForVerifiableClinicalRecords
     HKAnchoredObjectQuery: # DONE
         methods:
             '-initWithType:predicate:anchor:limit:completionHandler:':
@@ -408,6 +417,8 @@ classes:
                 parameters:
                     updateHandler:
                         type: '@Block("(,@Block,)") VoidBlock3<HKObserverQuery, Runnable, NSError>'
+            '-initWithQueryDescriptors:updateHandler:':
+                name: init
     HKSampleQuery: # DONE
         properties:
             'sortDescriptors':
@@ -420,6 +431,10 @@ classes:
                         type: NSArray<NSSortDescriptor>
                     resultsHandler:
                         type: '@Block VoidBlock3<HKSampleQuery, NSArray<HKSample>, NSError>'
+            '-initWithQueryDescriptors:limit:resultsHandler:':
+                name: init
+            '-initWithQueryDescriptors:limit:sortDescriptors:resultsHandler:':
+                name: init
     HKSourceQuery: # DONE
         methods:
             '-initWithSampleType:samplePredicate:completionHandler:':
@@ -649,10 +664,28 @@ classes:
                 name: create
                 throws: NSErrorException
     HKActivityMoveModeObject: {} #since 14.0
+    HKQueryDescriptor: #since 15.0
+        methods:
+            '-initWithSampleType:predicate:':
+                name: init
+    HKVerifiableClinicalRecord: {} #since 15.0
+    HKVerifiableClinicalRecordQuery: #since 15.0
+        methods:
+            '-initWithRecordTypes:predicate:resultsHandler:':
+                name: init
+    HKVerifiableClinicalRecordSubject: {} #since 15.0
 protocols:
     HKWorkoutSessionDelegate: {}
 
 functions:
+    HKAppleWalkingSteadinessClassificationForQuantity:
+        class: HKAppleWalkingSteadinessClassification
+        name: classificationForQuantity
+        throws: NSErrorException
+    HKAppleWalkingSteadiness(MinimumQuantityForClassification|MaximumQuantityForClassification):
+        class: HKAppleWalkingSteadinessClassification
+        name: '#{g[0]}'
+
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (HK.*):
         class: HealthKit
@@ -673,7 +706,7 @@ values:
         name: '#{g[0]}'
         type: NSString
         extends: HKQuantityTypeIdentifier
-    HKQuantityTypeIdentifier(StepCount|DistanceWalkingRunning|DistanceCycling|DistanceWheelchair|BasalEnergyBurned|ActiveEnergyBurned|FlightsClimbed|NikeFuel|AppleExerciseTime|PushCount|DistanceSwimming|SwimmingStrokeCount|VO2Max|DistanceDownhillSnowSports|AppleStandTime|WalkingSpeed|WalkingDoubleSupportPercentage|WalkingAsymmetryPercentage|WalkingStepLength|SixMinuteWalkTestDistance|StairAscentSpeed|StairDescentSpeed|AppleMoveTime):
+    HKQuantityTypeIdentifier(AppleWalkingSteadiness|StepCount|DistanceWalkingRunning|DistanceCycling|DistanceWheelchair|BasalEnergyBurned|ActiveEnergyBurned|FlightsClimbed|NikeFuel|AppleExerciseTime|PushCount|DistanceSwimming|SwimmingStrokeCount|VO2Max|DistanceDownhillSnowSports|AppleStandTime|WalkingSpeed|WalkingDoubleSupportPercentage|WalkingAsymmetryPercentage|WalkingStepLength|SixMinuteWalkTestDistance|StairAscentSpeed|StairDescentSpeed|AppleMoveTime):
         enum: HKFitnessQuantityTypeIdentifier
         name: '#{g[0]}'
         type: NSString
@@ -683,7 +716,7 @@ values:
         name: '#{g[0]}'
         type: NSString
         extends: HKQuantityTypeIdentifier
-    HKQuantityTypeIdentifier(OxygenSaturation|PeripheralPerfusionIndex|BloodGlucose|NumberOfTimesFallen|ElectrodermalActivity|InhalerUsage|InsulinDelivery):
+    HKQuantityTypeIdentifier(NumberOfAlcoholicBeverages|OxygenSaturation|PeripheralPerfusionIndex|BloodGlucose|NumberOfTimesFallen|ElectrodermalActivity|InhalerUsage|InsulinDelivery):
         enum: HKResultsQuantityTypeIdentifier
         name: '#{g[0]}'
         type: NSString

@@ -61,7 +61,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     public MPSImageLaplacianPyramid(NSCoder decoder, MTLDevice device) { super(decoder, device); }
     @Method(selector = "initWithCoder:")
-    public MPSImageLaplacianPyramid(NSCoder decoder) { super(decoder); }
+    public MPSImageLaplacianPyramid(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "getLaplacianBias ")

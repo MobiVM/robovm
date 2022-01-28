@@ -436,6 +436,30 @@ classes:
             '-payloadWithURL:ownershipToken:':
                 name: getPayload
     HMNetworkConfigurationProfile: {} #since 13.0
+    HMAccessorySetupManager: #since 15.0
+        methods:
+            '-addAndSetUpAccessoriesForTopology:completionHandler:':
+                name: addAndSetUpAccessories
+    HMMatterHome: #since 15.0
+        methods:
+            '-initWithUUID:name:':
+                name: init
+    HMMatterRequestHandler: #since 15.0
+        methods:
+            '-fetchRoomsInHome:completion:':
+                name: fetchRooms
+            '-pairAccessoryInHome:onboardingPayload:completion:':
+                name: pairAccessory
+            '-configureAccessoryWithName:room:completion:':
+                name: configureAccessory
+    HMMatterRoom: #since 15.0
+        methods:
+            '-initWithUUID:name:':
+                name: init
+    HMMatterTopology: #since 15.0
+        methods:
+            '-initWithHomes:':
+                name: init
 protocols:
     HMAccessoryBrowserDelegate: # DONE
         methods:

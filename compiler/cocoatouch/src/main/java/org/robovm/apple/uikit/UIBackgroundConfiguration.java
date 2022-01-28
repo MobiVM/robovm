@@ -90,6 +90,26 @@ import org.robovm.apple.linkpresentation.*;
     public native UIVisualEffect getVisualEffect();
     @Property(selector = "setVisualEffect:")
     public native void setVisualEffect(UIVisualEffect v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "image")
+    public native UIImage getImage();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setImage:")
+    public native void setImage(UIImage v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "imageContentMode")
+    public native UIViewContentMode getImageContentMode();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setImageContentMode:")
+    public native void setImageContentMode(UIViewContentMode v);
     @Property(selector = "strokeColor")
     public native UIColor getStrokeColor();
     @Property(selector = "setStrokeColor:")

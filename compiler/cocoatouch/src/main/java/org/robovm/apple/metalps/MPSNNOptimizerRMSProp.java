@@ -54,7 +54,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithDevice:decay:epsilon:optimizerDescriptor:")
     public MPSNNOptimizerRMSProp(MTLDevice device, double decay, float epsilon, MPSNNOptimizerDescriptor optimizerDescriptor) { super((SkipInit) null); initObject(init(device, decay, epsilon, optimizerDescriptor)); }
     @Method(selector = "initWithCoder:")
-    public MPSNNOptimizerRMSProp(NSCoder decoder) { super(decoder); }
+    public MPSNNOptimizerRMSProp(NSCoder coder) { super(coder); }
     /**
      * @since Available in iOS 11.0 and later.
      */

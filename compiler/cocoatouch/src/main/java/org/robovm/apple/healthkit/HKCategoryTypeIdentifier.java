@@ -101,6 +101,14 @@ import org.robovm.apple.foundation.*;
      */
     public static final HKCategoryTypeIdentifier OvulationTestResult = new HKCategoryTypeIdentifier("OvulationTestResult");
     /**
+     * @since Available in iOS 15.0 and later.
+     */
+    public static final HKCategoryTypeIdentifier PregnancyTestResult = new HKCategoryTypeIdentifier("PregnancyTestResult");
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    public static final HKCategoryTypeIdentifier ProgesteroneTestResult = new HKCategoryTypeIdentifier("ProgesteroneTestResult");
+    /**
      * @since Available in iOS 9.0 and later.
      */
     public static final HKCategoryTypeIdentifier MenstrualFlow = new HKCategoryTypeIdentifier("MenstrualFlow");
@@ -166,6 +174,10 @@ import org.robovm.apple.foundation.*;
      * @since Available in iOS 14.3 and later.
      */
     public static final HKCategoryTypeIdentifier LowCardioFitnessEvent = new HKCategoryTypeIdentifier("LowCardioFitnessEvent");
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    public static final HKCategoryTypeIdentifier AppleWalkingSteadinessEvent = new HKCategoryTypeIdentifier("AppleWalkingSteadinessEvent");
     /**
      * @since Available in iOS 13.6 and later.
      */
@@ -324,7 +336,7 @@ import org.robovm.apple.foundation.*;
     public static final HKCategoryTypeIdentifier Wheezing = new HKCategoryTypeIdentifier("Wheezing");
     /*</constants>*/
     
-    private static /*<name>*/HKCategoryTypeIdentifier/*</name>*/[] values = new /*<name>*/HKCategoryTypeIdentifier/*</name>*/[] {/*<value_list>*/SleepAnalysis, AppleStandHour, CervicalMucusQuality, OvulationTestResult, MenstrualFlow, IntermenstrualBleeding, SexualActivity, MindfulSession, HighHeartRateEvent, LowHeartRateEvent, IrregularHeartRhythmEvent, AudioExposureEvent, ToothbrushingEvent, Pregnancy, Lactation, Contraceptive, EnvironmentalAudioExposureEvent, HeadphoneAudioExposureEvent, HandwashingEvent, LowCardioFitnessEvent, AbdominalCramps, Acne, AppetiteChanges, BladderIncontinence, Bloating, BreastPain, ChestTightnessOrPain, Chills, Constipation, Coughing, Diarrhea, Dizziness, DrySkin, Fainting, Fatigue, Fever, GeneralizedBodyAche, HairLoss, Headache, Heartburn, HotFlashes, LossOfSmell, LossOfTaste, LowerBackPain, MemoryLapse, MoodChanges, Nausea, NightSweats, PelvicPain, RapidPoundingOrFlutteringHeartbeat, RunnyNose, ShortnessOfBreath, SinusCongestion, SkippedHeartbeat, SleepChanges, SoreThroat, VaginalDryness, Vomiting, Wheezing/*</value_list>*/};
+    private static /*<name>*/HKCategoryTypeIdentifier/*</name>*/[] values = new /*<name>*/HKCategoryTypeIdentifier/*</name>*/[] {/*<value_list>*/SleepAnalysis, AppleStandHour, CervicalMucusQuality, OvulationTestResult, PregnancyTestResult, ProgesteroneTestResult, MenstrualFlow, IntermenstrualBleeding, SexualActivity, MindfulSession, HighHeartRateEvent, LowHeartRateEvent, IrregularHeartRhythmEvent, AudioExposureEvent, ToothbrushingEvent, Pregnancy, Lactation, Contraceptive, EnvironmentalAudioExposureEvent, HeadphoneAudioExposureEvent, HandwashingEvent, LowCardioFitnessEvent, AppleWalkingSteadinessEvent, AbdominalCramps, Acne, AppetiteChanges, BladderIncontinence, Bloating, BreastPain, ChestTightnessOrPain, Chills, Constipation, Coughing, Diarrhea, Dizziness, DrySkin, Fainting, Fatigue, Fever, GeneralizedBodyAche, HairLoss, Headache, Heartburn, HotFlashes, LossOfSmell, LossOfTaste, LowerBackPain, MemoryLapse, MoodChanges, Nausea, NightSweats, PelvicPain, RapidPoundingOrFlutteringHeartbeat, RunnyNose, ShortnessOfBreath, SinusCongestion, SkippedHeartbeat, SleepChanges, SoreThroat, VaginalDryness, Vomiting, Wheezing/*</value_list>*/};
     
     /*<name>*/HKCategoryTypeIdentifier/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -364,6 +376,16 @@ import org.robovm.apple.foundation.*;
          */
         @GlobalValue(symbol="HKCategoryTypeIdentifierOvulationTestResult", optional=true)
         public static native NSString OvulationTestResult();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="HKCategoryTypeIdentifierPregnancyTestResult", optional=true)
+        public static native NSString PregnancyTestResult();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="HKCategoryTypeIdentifierProgesteroneTestResult", optional=true)
+        public static native NSString ProgesteroneTestResult();
         /**
          * @since Available in iOS 9.0 and later.
          */
@@ -446,6 +468,11 @@ import org.robovm.apple.foundation.*;
          */
         @GlobalValue(symbol="HKCategoryTypeIdentifierLowCardioFitnessEvent", optional=true)
         public static native NSString LowCardioFitnessEvent();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="HKCategoryTypeIdentifierAppleWalkingSteadinessEvent", optional=true)
+        public static native NSString AppleWalkingSteadinessEvent();
         /**
          * @since Available in iOS 13.6 and later.
          */

@@ -58,7 +58,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:group:")
     public MPSAccelerationStructure(NSCoder aDecoder, MPSAccelerationStructureGroup group) { super((SkipInit) null); initObject(init(aDecoder, group)); }
     @Method(selector = "initWithCoder:")
-    public MPSAccelerationStructure(NSCoder decoder) { super(decoder); }
+    public MPSAccelerationStructure(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "group")

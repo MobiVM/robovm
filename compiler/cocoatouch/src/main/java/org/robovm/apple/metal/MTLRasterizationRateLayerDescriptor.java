@@ -54,8 +54,16 @@ import org.robovm.apple.dispatch.*;
     public MTLRasterizationRateLayerDescriptor(@ByVal MTLSize sampleCount, FloatPtr horizontal, FloatPtr vertical) { super((SkipInit) null); initObject(init(sampleCount, horizontal, vertical)); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
     @Property(selector = "sampleCount")
     public native @ByVal MTLSize getSampleCount();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "maxSampleCount")
+    public native @ByVal MTLSize getMaxSampleCount();
     @Property(selector = "horizontalSampleStorage")
     public native FloatPtr getHorizontalSampleStorage();
     @Property(selector = "verticalSampleStorage")
@@ -64,6 +72,11 @@ import org.robovm.apple.dispatch.*;
     public native MTLRasterizationRateSampleArray getHorizontal();
     @Property(selector = "vertical")
     public native MTLRasterizationRateSampleArray getVertical();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setSampleCount:")
+    public native void setSampleCount(@ByVal MTLSize v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

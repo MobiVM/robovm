@@ -61,6 +61,11 @@ import org.robovm.apple.metalps.*;
     public native boolean isDebuggingEnabled();
     @Property(selector = "setIsDebuggingEnabled:")
     public native void setIsDebuggingEnabled(boolean v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "deviceType")
+    public native MLCDeviceType getDeviceType();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

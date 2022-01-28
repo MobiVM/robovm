@@ -78,6 +78,11 @@ import org.robovm.apple.security.*;
     @Bridge(symbol="nw_parameters_create_secure_udp", optional=true)
     public static native NWParameters createSecureUdp(@Block VoidBlock1<NWProtocolOptions> configure_dtls, @Block VoidBlock1<NWProtocolOptions> configure_udp);
     /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Bridge(symbol="nw_parameters_create_quic", optional=true)
+    public static native NWParameters createQuic(@Block VoidBlock1<NWProtocolOptions> configure_quic);
+    /**
      * @since Available in iOS 12.0 and later.
      */
     @Bridge(symbol="nw_parameters_create", optional=true)
@@ -92,6 +97,16 @@ import org.robovm.apple.security.*;
      */
     @Bridge(symbol="nw_parameters_set_privacy_context", optional=true)
     public native void setPrivacyContext(NWPrivacyContext privacy_context);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Bridge(symbol="nw_parameters_set_attribution", optional=true)
+    public native void setAttribution(NWParametersAttribution attribution);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Bridge(symbol="nw_parameters_get_attribution", optional=true)
+    public native NWParametersAttribution getAttribution();
     /**
      * @since Available in iOS 12.0 and later.
      */

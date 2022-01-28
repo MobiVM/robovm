@@ -106,6 +106,11 @@ import org.robovm.apple.uikit.*;
     protected static native OSStatus midiEvent0(AudioComponentInstance inUnit, int status, int data1, int data2, int offsetSampleFrame);
     @Bridge(symbol="MusicDeviceSysEx", optional=true)
     protected static native OSStatus sysEx0(AudioComponentInstance inUnit, @Pointer long data, int length);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Bridge(symbol="MusicDeviceMIDIEventList", optional=true)
+    protected static native OSStatus mIDIEventList0(AudioComponentInstance inUnit, int inOffsetSampleFrame, MIDIEventList evtList);
     @Bridge(symbol="MusicDeviceStartNote", optional=true)
     protected static native OSStatus startNote0(AudioComponentInstance inUnit, int inInstrument, int inGroupID, IntPtr outNoteInstanceID, int inOffsetSampleFrame, MusicDeviceNoteParams inParams);
     @Bridge(symbol="MusicDeviceStopNote", optional=true)

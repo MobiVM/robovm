@@ -58,20 +58,16 @@ import org.robovm.apple.fileprovider.*;
     public native String getContainerIdentifier();
     @Property(selector = "share")
     public native CKShare getShare();
-    @Property(selector = "rootRecordID")
-    public native CKRecordID getRootRecordID();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "hierarchicalRootRecordID")
+    public native CKRecordID getHierarchicalRootRecordID();
     /**
      * @since Available in iOS 12.0 and later.
      */
     @Property(selector = "participantRole")
     public native CKShareParticipantRole getParticipantRole();
-    /**
-     * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 12.0. Use participantRole
-     */
-    @Deprecated
-    @Property(selector = "participantType")
-    public native CKShareParticipantType getParticipantType();
     @Property(selector = "participantStatus")
     public native CKShareParticipantAcceptanceStatus getParticipantStatus();
     @Property(selector = "participantPermission")
@@ -80,6 +76,20 @@ import org.robovm.apple.fileprovider.*;
     public native CKUserIdentity getOwnerIdentity();
     @Property(selector = "rootRecord")
     public native CKRecord getRootRecord();
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 12.0. Use participantRole
+     */
+    @Deprecated
+    @Property(selector = "participantType")
+    public native CKShareParticipantType getParticipantType();
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Use hierarchicalRootRecordID
+     */
+    @Deprecated
+    @Property(selector = "rootRecordID")
+    public native CKRecordID getRootRecordID();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

@@ -299,6 +299,27 @@ enums:
     UIListSeparatorVisibility: {}
     UIPrintRenderingQuality: {}
 
+    UIButtonConfigurationSize: {} #since 15.0
+    UIButtonConfigurationTitleAlignment: {} #since 15.0
+    UIButtonConfigurationCornerStyle: {} #since 15.0
+    UIButtonConfigurationMacIdiomStyle: {} #since 15.0
+    UIBandSelectionInteractionState: {} #since 15.0
+    UIBehavioralStyle: {}
+    UIWindowScenePresentationStyle: {}
+    UIFocusHaloEffectPosition: {} #since 15.0
+    NSTextSelectionGranularity: {} #since 15.0
+    NSTextSelectionAffinity: {} #since 15.0
+    NSTextSelectionNavigationDirection: {} #since 15.0
+    NSTextSelectionNavigationDestination: {} #since 15.0
+    NSTextSelectionNavigationModifier: {} #since 15.0
+    NSTextSelectionNavigationWritingDirection: {} #since 15.0
+    NSTextSelectionNavigationLayoutOrientation: {} #since 15.0
+    NSTextContentManagerEnumerationOptions: {} #since 15.0
+    NSTextLayoutFragmentEnumerationOptions: {} #since 15.0
+    NSTextLayoutFragmentState: {} #since 15.0
+    NSTextLayoutManagerSegmentType: {} #since 15.0
+    NSTextLayoutManagerSegmentOptions: {} #since 15.0
+
 #    EXCLUDE1: {exclude: true, first: NSAttachmentCharacter} -- don't exclude it as value will be picked up as constant
     EXCLUDE3_AS_DEPRECATED: {exclude: true, first: NSControlCharacterZeroAdvancementAction}
 
@@ -472,6 +493,7 @@ classes:
     UIOffset:
         annotations: [ '@Marshaler(NSString.AsStringMarshaler.class)' ]
     NSDirectionalEdgeInsets: {} # since 11.0
+    UIPointerAccessoryPosition: {} #since 15.0
 
     NSDataAsset: # DONE
         methods:
@@ -780,6 +802,8 @@ classes:
             '+textAttachmentWithImage:':
                 constructor: true
                 name: create
+            '+registerTextAttachmentViewProviderClass:forFileType:':
+                name: registerTextAttachmentViewProviderClass
     NSTextContainer: # DONE
         properties:
             'exclusionPaths':
@@ -1185,6 +1209,9 @@ classes:
             '+buttonWithType:primaryAction:':
                 name: create0
                 constructor: true
+            '+buttonWithConfiguration:primaryAction:':
+                constructor: true
+                name: create
     UICollectionReusableView: # DONE
         methods:
             '-didTransitionFromLayout:toLayout:':
@@ -2090,6 +2117,10 @@ classes:
                 name: imageWithTintColor
             '-init.*':
                 name: init
+            '-prepareForDisplayWithCompletionHandler:':
+                name: prepareForDisplay
+            '-prepareThumbnailOfSize:completionHandler:':
+                name: prepareThumbnail
 
     UIImageAsset: # DONE
         methods:
@@ -2740,7 +2771,6 @@ classes:
                 trim_after_first_colon: true
     UIResponder: # DONE
         skip_handle_constructor: false
-        protocols: [UIAccessibility]
         properties:
             'keyCommands':
                 type: NSArray<UIKeyCommand>
@@ -3487,8 +3517,6 @@ classes:
                 trim_after_first_colon: true
             '+setAnimationTransition:forView:cache:':
                 trim_after_first_colon: true
-            '+performWithoutAnimation:':
-                trim_after_first_colon: true
             '-convertPoint:fromView:':
                 name: convertPointFromView
             '-convertPoint:toView:':
@@ -3614,6 +3642,8 @@ classes:
                 trim_after_first_colon: true
             '+modifyAnimationsWithRepeatCount:autoreverses:animations:':
                 name: modifyAnimations
+            '+performWithoutAnimation:':
+                name: performWithoutAnimation
     UIViewController: # DONE
         skip_handle_constructor: false
         properties:
@@ -3742,6 +3772,8 @@ classes:
                 name: unregisterForPreviewing
             '-canPerformUnwindSegueAction:fromViewController:sender:':
                 name: canPerformUnwindSegueAction
+            '-setContentScrollView:forEdge:':
+                name: setContentScrollView
     UIViewPrintFormatter: {} # DONE
     UIViewPropertyAnimator: # DONE
         methods:
@@ -4057,6 +4089,8 @@ classes:
                 name: moveSectionAfterSection
             '-reloadSectionsWithIdentifiers:':
                 name: reloadSections
+            '-reconfigureItemsWithIdentifiers:':
+                name: reconfigureItems
     UIAction: #since 13.0
         methods:
             '+actionWithTitle:image:identifier:handler:':
@@ -4065,6 +4099,8 @@ classes:
             '+actionWithHandler:':
                 constructor: true
                 name: create
+            '+captureTextFromCameraActionForResponder:identifier:':
+                name: captureTextFromCameraActionForResponder
     UIActivityItemsConfiguration: #since 13.0
         methods:
             '-initWithObjects:':
@@ -4123,6 +4159,8 @@ classes:
             '-applySnapshot:toSection:animatingDifferences:':
                 name: applySnapshot
             '-applySnapshot:toSection:animatingDifferences:completion:':
+                name: applySnapshot
+            '-applySnapshotUsingReloadData:completion:':
                 name: applySnapshot
     UICommand: #since 13.0
         methods:
@@ -4189,6 +4227,10 @@ classes:
                 name: getConfigurationWithFont
             '+configurationWithFont:scale:':
                 name: getConfigurationWithFontScale
+            '+configurationWithHierarchicalColor:':
+                name: getConfigurationWithHierarchicalColor
+            '+configurationWithPaletteColors:':
+                name: getConfigurationWithPaletteColors
     UILargeContentViewerInteraction: #since 13.0
         methods:
             '-initWithDelegate:':
@@ -4277,6 +4319,8 @@ classes:
                 name: applySnapshot
             '-applySnapshot:animatingDifferences:completion:':
                 name: applySnapshot
+            '-applySnapshotUsingReloadData:completion:':
+                name: applySnapshot
     UITargetedPreview: #since 13.0
         methods:
             '-initWithView:parameters:target:':
@@ -4345,7 +4389,7 @@ classes:
     UICollectionLayoutListConfiguration: #since 14.0
         methods:
             '-initWithAppearance:':
-                name: initWithAppearance$
+                name: initWithAppearance
     UICollectionViewCellRegistration: #since 14.0
         methods:
             '+registrationWithCellClass:configurationHandler:':
@@ -4370,8 +4414,9 @@ classes:
     UIDeferredMenuElement: #since 14.0
         methods:
             '+elementWithProvider:':
-                name: create
-                constructor: true
+                name: elementWithProvider
+            '+elementWithUncachedProvider:':
+                name: elementWithUncachedProvider
     UIIndirectScribbleInteraction: #since 14.0
         methods:
             '-initWithDelegate:':
@@ -4432,8 +4477,6 @@ classes:
         methods:
             '-initWithTraitCollection:':
                 name: init
-            '-initWithCoder:':
-                name: init
     UIEventAttribution: #since 14.5
         methods:
             '-initWithSourceIdentifier:destinationURL:sourceDescription:purchaser:':
@@ -4448,6 +4491,169 @@ classes:
         methods:
             '-initWithURL:':
                 name: init
+    NSTextAttachmentViewProvider: #since 15.0
+        methods:
+            '-initWithTextAttachment:parentView:textLayoutManager:location:':
+                name: init
+            '-attachmentBoundsForAttributes:location:textContainer:proposedLineFragment:position:':
+                name: attachmentBoundsForAttributes
+    NSTextContentManager: #since 15.0
+        methods:
+            '-recordEditActionInRange:newTextRange:':
+                name: recordEditAction
+    NSTextContentStorage: #since 15.0
+        methods:
+            '-locationFromLocation:withOffset:':
+                name: locationFromLocation
+            '-offsetFromLocation:toLocation:':
+                name: offsetFromLocation
+            '-adjustedRangeFromRange:forEditingTextSelection:':
+                name: adjustedRangeFromRange
+    NSTextElement: #since 15.0
+        methods:
+            '-initWithTextContentManager:':
+                name: init
+    NSTextLayoutFragment: #since 15.0
+        methods:
+            '-initWithTextElement:range:':
+                name: init
+            '-drawAtPoint:inContext:':
+                name: drawAtPoint
+    NSTextLayoutManager: #since 15.0
+        methods:
+            '-enumerateTextLayoutFragmentsFromLocation:options:usingBlock:':
+                name: enumerateTextLayoutFragments
+            '-enumerateRenderingAttributesFromLocation:reverse:usingBlock:':
+                name: enumerateRenderingAttributes
+            '-setRenderingAttributes:forTextRange:':
+                name: setRenderingAttributes
+            '-addRenderingAttribute:value:forTextRange:':
+                name: addRenderingAttribute
+            '-removeRenderingAttribute:forTextRange:':
+                name: removeRenderingAttribute
+            '-renderingAttributesForLink:atLocation:':
+                name: renderingAttributesForLink
+            '-enumerateTextSegmentsInRange:type:options:usingBlock:':
+                name: enumerateTextSegmentsInRange
+            '-replaceContentsInRange:withTextElements:':
+                name: replaceContentsInRange
+            '-replaceContentsInRange:withAttributedString:':
+                name: replaceContentsInRange
+    NSTextLineFragment: #since 15.0
+        methods:
+            '-initWithAttributedString:range:':
+                name: init
+            '-initWithString:attributes:range:':
+                name: init
+            '-drawAtPoint:inContext:':
+                name: drawAtPoint
+    NSTextParagraph: #since 15.0
+        methods:
+            '-initWithAttributedString:':
+                name: init
+    NSTextRange: #since 15.0
+        methods:
+            '-initWithLocation:endLocation:':
+                name: init
+            '-initWithLocation:':
+                name: init
+            '-intersectsWithTextRange:':
+                name: intersects
+            '-textRangeByIntersectingWithTextRange:':
+                name: textRangeByIntersectingWithTextRange
+            '-textRangeByFormingUnionWithTextRange:':
+                name: textRangeByFormingUnionWithTextRange
+    NSTextSelection: #since 15.0
+        methods:
+            '-initWithRanges:affinity:granularity:':
+                name: init
+            '-initWithRange:affinity:granularity:':
+                name: init
+            '-initWithLocation:affinity:':
+                name: init
+            '-textSelectionWithTextRanges:':
+                name: textSelection
+    NSTextSelectionNavigation: #since 15.0
+        methods:
+            '-initWithDataSource:':
+                name: init
+            '-destinationSelectionForTextSelection:direction:destination:extending:confined:':
+                name: destinationSelectionForTextSelection
+            '-textSelectionsInteractingAtPoint:inContainerAtLocation:anchors:modifiers:selecting:bounds:':
+                name: textSelectionsInteractingAtPoint
+            '-textSelectionForSelectionGranularity:enclosingTextSelection:':
+                name: textSelectionForSelectionGranularity
+            '-textSelectionForSelectionGranularity:enclosingPoint:inContainerAtLocation:':
+                name: textSelectionForSelectionGranularity
+            '-resolvedInsertionLocationForTextSelection:writingDirection:':
+                name: resolvedInsertionLocationForTextSelection
+            '-deletionRangesForTextSelection:direction:destination:allowsDecomposition:':
+                name: deletionRangesForTextSelection
+    NSTextViewportLayoutController: #since 15.0
+        methods:
+            '-initWithTextLayoutManager:':
+                name: init
+    UIBandSelectionInteraction: #since 15.0
+        methods:
+            '-initWithSelectionHandler:':
+                name: init
+    UIButtonConfiguration: {} #since 15.0
+    UIFocusEffect: {} #since 15.0
+    UIFocusHaloEffect: #since 15.0
+        methods:
+            '+effectWithRect:':
+                constructor: true
+                name: create
+            '+effectWithRoundedRect:cornerRadius:curve:':
+                constructor: true
+                name: create
+            '+effectWithPath:':
+                constructor: true
+                name: create
+    UIKeyboardLayoutGuide: {} #since 15.0
+    UIPointerAccessory: #since 15.0
+        methods:
+            '+accessoryWithShape:position:':
+                constructor: true
+                name: create
+            '+arrowAccessoryWithPosition:':
+                constructor: true
+                name: create
+    UISheetPresentationController: {} #since 15.0
+    UISheetPresentationControllerDetent: {} #since 15.0
+    UIToolTipConfiguration: #since 15.0
+        methods:
+            '+configurationWithToolTip:':
+                constructor: true
+                name: create
+            '+configurationWithToolTip:inRect:':
+                constructor: true
+                name: create
+    UIToolTipInteraction: #since 15.0
+        methods:
+            '-initWithDefaultToolTip:':
+                name: init
+    UITrackingLayoutGuide: #since 15.0
+        methods:
+            '-setConstraints:activeWhenNearEdge:':
+                name: setConstraintsActiveWhenNearEdge
+            '-setConstraints:activeWhenAwayFromEdge:':
+                name: setConstraintsActiveWhenAwayFromEdge
+    UIWindowSceneActivationAction: #since 15.0
+        methods:
+            '+actionWithIdentifier:alternateAction:configurationProvider:':
+                constructor: true
+                name: create
+    UIWindowSceneActivationConfiguration: #since 15.0
+        methods:
+            '-initWithUserActivity:':
+                name: init
+    UIWindowSceneActivationInteraction: #since 15.0
+        methods:
+            '-initWithConfigurationProvider:errorHandler:':
+                name: init
+    UIWindowSceneActivationRequestOptions: {} #since 15.0
+
 protocols:
     NSLayoutManagerDelegate: # DONE
         methods:
@@ -4525,6 +4731,8 @@ protocols:
                 name: getViewController
             '-presentationController:willPresentWithAdaptiveStyle:transitionCoordinator:':
                 name: willPresent
+            '-presentationController:prepareAdaptivePresentationController:':
+                name: prepareAdaptivePresentationController
     UIAlertViewDelegate: # DONE
         methods:
             '-alertView:clickedButtonAtIndex:':
@@ -4783,6 +4991,12 @@ protocols:
                 name: willDisplayContextMenu
             '-collectionView:willEndContextMenuInteractionWithConfiguration:animator:':
                 name: willEndContextMenuInteraction
+            '-collectionView:selectionFollowsFocusForItemAtIndexPath:':
+                name: isSelectionFollowsFocus
+            '-collectionView:targetIndexPathForMoveOfItemFromOriginalIndexPath:atCurrentIndexPath:toProposedIndexPath:':
+                name: getTargetIndexPathForMoveOfItemFromOriginalIndexPath
+            '-collectionView:sceneActivationConfigurationForItemAtIndexPath:point:':
+                name: getSceneActivationConfiguration
     UICollectionViewDelegateFlowLayout: # DONE
         methods:
             '-collectionView:layout:insetForSectionAtIndex:':
@@ -5430,6 +5644,8 @@ protocols:
                 name: willDisplayContextMenu
             '-tableView:willEndContextMenuInteractionWithConfiguration:animator:':
                 name: willEndContextMenuInteraction
+            '-tableView:selectionFollowsFocusForRowAtIndexPath:':
+                name: isSelectionFollowsFocus
 
     UITextDocumentProxy: # DONE
         methods:
@@ -6115,6 +6331,8 @@ protocols:
                 name: didFailToContinueUserActivity
             '-scene:didUpdateUserActivity:':
                 name: didUpdateUserActivity
+            '-scene:restoreInteractionStateWithUserActivity:':
+                name: restoreInteractionState
     UIScreenshotServiceDelegate:
         methods:
             '-screenshotService:generatePDFRepresentationWithCompletion:':
@@ -6148,6 +6366,8 @@ protocols:
                 name: didSelectColor
             '-colorPickerViewControllerDidFinish:':
                 name: didFinish
+            '-colorPickerViewController:didSelectColor:continuously:':
+                name: didSelectColor
     UIConfigurationState: #since 14.0
         methods:
             '-initWithTraitCollection:':
@@ -6196,6 +6416,78 @@ protocols:
             '-scribbleInteractionDidFinishWriting:':
                 name: didFinishWriting
 
+    NSTextAttachmentLayout:
+        methods:
+            '-imageForBounds:attributes:location:textContainer:':
+                name: imageForBounds
+            '-attachmentBoundsForAttributes:location:textContainer:proposedLineFragment:position:':
+                name: attachmentBoundsForAttributes
+            '-viewProviderForParentView:location:textContainer:':
+                name: viewProviderForParentView
+    NSTextContentManagerDelegate: #since 15.0
+        methods:
+            '-textContentManager:textElementAtLocation:':
+                name: getTextElementAtLocation
+            '-textContentManager:shouldEnumerateTextElement:options:':
+                name: shouldEnumerateTextElement
+    NSTextContentStorageDelegate: #since 15.0
+        methods:
+            '-textContentStorage:textParagraphWithRange:':
+                name: getTextParagraph
+    NSTextElementProvider: #since 15.0
+        methods:
+            '-enumerateTextElementsFromLocation:options:usingBlock:':
+                name: enumerateTextElements
+            '-replaceContentsInRange:withTextElements:':
+                name: replaceContents
+            '-locationFromLocation:withOffset:':
+                name: getLocationFromLocation
+            '-offsetFromLocation:toLocation:':
+                name: getOffsetFromLocation
+            '-adjustedRangeFromRange:forEditingTextSelection:':
+                name: adjustedRange
+    NSTextLayoutManagerDelegate: #since 15.0
+        methods:
+            '-textLayoutManager:textLayoutFragmentForLocation:inTextElement:':
+                name: getTextLayoutFragmentForLocation
+            '-textLayoutManager:shouldBreakLineBeforeLocation:hyphenating:':
+                name: shouldBreakLineBeforeLocation
+            '-textLayoutManager:renderingAttributesForLink:atLocation:defaultAttributes:':
+                name: renderingAttributesForLink
+    NSTextLocation: {} #since 15.0
+    NSTextSelectionDataSource: #since 15.0
+        methods:
+            '-enumerateSubstringsFromLocation:options:usingBlock:':
+                name: enumerateSubstringsFromLocation
+            '-textRangeForSelectionGranularity:enclosingLocation:':
+                name: getTextRangeForSelectionGranularity
+            '-locationFromLocation:withOffset:':
+                name: getLocationFromLocation
+            '-offsetFromLocation:toLocation:':
+                name: getOffsetFromLocation
+            '-enumerateCaretOffsetsInLineFragmentAtLocation:usingBlock:':
+                name: enumerateCaretOffsetsInLineFragmentAtLocation
+            '-lineFragmentRangeForPoint:inContainerAtLocation:':
+                name: getLineFragmentRangeForPoint
+            '-enumerateContainerBoundariesFromLocation:reverse:usingBlock:':
+                name: enumerateContainerBoundariesFromLocation
+    NSTextStorageObserving: #since 15.0
+        methods:
+            '-processEditingForTextStorage:edited:range:changeInLength:invalidatedRange:':
+                name: processEditingForTextStorage
+            '-performEditingTransactionForTextStorage:usingBlock:':
+                name: performEditingTransactionForTextStorage
+    NSTextViewportLayoutControllerDelegate: #since 15.0
+        methods:
+            '-textViewportLayoutController:configureRenderingSurfaceForTextLayoutFragment:':
+                name: configureRenderingSurfaceForTextLayoutFragment
+    UIActivityItemsConfigurationProviding: {} #since 15.0
+    UISheetPresentationControllerDelegate: {} #since 15.0
+    UIToolTipInteractionDelegate: #since 15.0
+        methods:
+            '-toolTipInteraction:configurationAtPoint:':
+                name: getConfigurationAtPoint
+
     # skipped
     UIAppearance: {exclude: true, skip_implements: true, skip_methods: true} # as functionality is implemented in UIAppearance
 
@@ -6207,7 +6499,7 @@ functions:
         exclude: true 
 
     # UIAccessibility
-    UIAccessibility(PostNotification):
+    UIAccessibility(PostNotificatзion):
         class: UIAccessibilityGlobals
         name: '#{g[0]}'
         visibility: protected
@@ -7063,6 +7355,23 @@ values:
         name: getAutomaticInsets
         class: UIListSeparatorConfiguration
 
+    UIPointerAccessoryPosition(.+):
+        name: '#{g[0]}'
+        static_class: Positions
+        class: UIPointerAccessory
+
+    UISheetPresentationControllerAutomaticDimension:
+        class: UISheetPresentationController
+        name: AutomaticDimension
+    UICollectionViewLayoutAutomaticDimension:
+        class: UICollectionViewLayout
+        name: AutomaticDimension
+    NSTextContentStorageUnsupportedAttributeAddedNotification:
+        class: NSTextContentStorage
+        readonly: true
+        static_class: Notifications
+        name: UnsupportedAttributeAdded
+
     # Make sure we don't miss any values if new ones are introduced in a later UIKit
     (NS.*):
         class: FIXME
@@ -7107,6 +7416,18 @@ typed_enums:
         UIWindowSceneSessionRole(.*):
             name: '#{g[0]}'
 
+    UIActionIdentifier:
+        enum: UIActionIdentifier
+        type: NSString
+        UIAction(.*):
+            name: '#{g[0]}'
+
+    UISheetPresentationControllerDetentIdentifier:
+        enum: UISheetPresentationControllerDetentIdentifier
+        type: NSString
+        UISheetPresentationControllerDetentIdentifier(.*):
+            name: '#{g[0]}'
+
 constants:
     NS(AttachmentCharacter):
         class: NSTextAttachment
@@ -7117,11 +7438,17 @@ constants:
         class: UILayoutPriority
         name: '#{g[0]}'
 
+    UIFocusGroupPriority(.*):
+        class: UIFocusGroupPriority
+        name: '#{g[0]}'
+
     UIKIT_DEFINE_AS_PROPERTIES:
         exclude: true
     UIKIT_REMOVE_ZERO_FROM_SWIFT:
         exclude: true
     UIKIT_STRING_ENUMS:
+        exclude: true
+    UIKIT_HAS_UIFOUNDATION_SYMBOLS:
         exclude: true
 
     # Make sure we don't miss any constants if new ones are introduced in a later UIKit
