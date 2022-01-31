@@ -218,9 +218,6 @@ import org.robovm.apple.linkpresentation.*;
         }
     }
     
-    /* Used to preserve the key window from being released. */
-    private static UIWindow KEY_WINDOW = null;
-    
     /*<ptr>*/public static class UIApplicationPtr extends Ptr<UIApplication, UIApplicationPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(UIApplication.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
@@ -426,20 +423,6 @@ import org.robovm.apple.linkpresentation.*;
                 System.setOut(new FoundationLogPrintStream());
             }
         }
-        
-        // Observe the key UIWindow and keep a strong reference to it.
-        NSNotificationCenter.getDefaultCenter().addObserver(UIWindow.DidBecomeKeyNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
-            @Override
-            public void invoke(NSNotification a) {
-                KEY_WINDOW = (UIWindow) a.getObject();
-            }
-        });
-        NSNotificationCenter.getDefaultCenter().addObserver(UIWindow.DidResignKeyNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
-            @Override
-            public void invoke(NSNotification a) {
-                if (a.getObject() == KEY_WINDOW) KEY_WINDOW = null;
-            }
-        });
         
         try {
             preloadClasses();
