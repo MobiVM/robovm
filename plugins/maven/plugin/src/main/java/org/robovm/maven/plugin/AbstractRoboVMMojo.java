@@ -337,15 +337,15 @@ public abstract class AbstractRoboVMMojo extends AbstractMojo {
         return builder;
     }
 
-    protected AppCompiler build(OS os, Arch arch, Environment env, String targetType)
+    protected AppCompiler build(OS os, Arch arch, String targetType)
             throws MojoExecutionException {
 
-        getLog().info("Building RoboVM app for: " + os + " (" + arch + env.asLlvmSuffix("-") + ")");
+        getLog().info("Building RoboVM app for: " + os + " (" + arch + ")");
 
         Config.Builder builder;
         builder = new Config.Builder();
 
-        configure(builder).os(os).arch(arch).env(env).targetType(targetType);
+        configure(builder).os(os).arch(arch).targetType(targetType);
 
         // execute the RoboVM build
 

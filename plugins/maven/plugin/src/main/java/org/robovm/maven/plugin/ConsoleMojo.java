@@ -40,13 +40,12 @@ public class ConsoleMojo extends AbstractRoboVMMojo {
     public void execute() throws MojoExecutionException, MojoFailureException {
 
         try {
-
             Arch arch = Arch.getDefaultArch();
             if (super.arch != null) {
-                arch = Arch.valueOf(super.arch);
+                arch = Arch.parse(super.arch);
             }
 
-            AppCompiler compiler = build(OS.getDefaultOS(), arch, Environment.Native, ConsoleTarget.TYPE);
+            AppCompiler compiler = build(OS.getDefaultOS(), arch, ConsoleTarget.TYPE);
             Config config = compiler.getConfig();
             LaunchParameters launchParameters = config.getTarget()
                     .createLaunchParameters();
