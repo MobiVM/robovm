@@ -34,7 +34,7 @@ jobs:
       - name: Maven deploy
         run: mvn clean deploy
       - name: Gradle plugin deploy
-        run: cd plugins/gradle && ./gradlew clean build uploadArchives
+        run: cd plugins/gradle && ./gradlew clean build publish
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
