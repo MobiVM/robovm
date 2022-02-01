@@ -1,6 +1,6 @@
 plugins {
     id 'java'
-    id "org.jetbrains.intellij" version "0.4.20"
+    id "org.jetbrains.intellij" version "1.2.0"
 }
 
 ext {
@@ -21,18 +21,16 @@ configurations {
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
-
-    compile ("com.mobidevelop.robovm:robovm-dist-compiler:${roboVMVersion}") {
+    implementation ("com.mobidevelop.robovm:robovm-dist-compiler:${roboVMVersion}") {
         exclude group: 'com.mobidevelop.robovm', module: 'robovm-rt'
         exclude group: 'com.mobidevelop.robovm', module: 'robovm-objc'
         exclude group: 'com.mobidevelop.robovm', module: 'robovm-cocoatouch'
         exclude group: 'com.mobidevelop.robovm', module: 'robovm-cacerts-full'
     }
-    compile ("com.mobidevelop.robovm:robovm-ibxcode:${roboVMVersion}") {
+    implementation ("com.mobidevelop.robovm:robovm-ibxcode:${roboVMVersion}") {
         exclude group: 'com.mobidevelop.robovm', module: 'robovm-compiler'
     }
-    compile ("com.mobidevelop.robovm:robovm-templater:${roboVMVersion}") {
+    implementation ("com.mobidevelop.robovm:robovm-templater:${roboVMVersion}") {
         exclude group: 'com.mobidevelop.robovm', module: 'robovm-templates-ios-single-view-no-ib'
         exclude group: 'com.mobidevelop.robovm', module: 'robovm-templates-ios-framework'
         exclude group: 'com.mobidevelop.robovm', module: 'robovm-templates-console'
@@ -44,10 +42,6 @@ intellij {
     version '2020.1'   // we are compiles against this API version
     plugins = ['java', 'maven', 'gradle']
     updateSinceUntilBuild = false
-}
-
-publishPlugin {
-    distributionFile "org.robovm.idea-${roboVMVersion}-plugin-dist.jar"
 }
 
 task copyRoboVmDist(type: Copy) {
