@@ -18,7 +18,14 @@ public enum Environment {
         return llvmName;
     }
 
-    public String asLlvmSuffix(String prefix) {
-        return  (llvmName != null && !llvmName.isEmpty()) ? (prefix + llvmName) : "";
+    public String asLlvmSuffix(String delimiter) {
+        return (llvmName != null && !llvmName.isEmpty()) ? (delimiter + llvmName) : "";
+    }
+
+    public static Environment parse(String s) {
+        for (Environment e: values())
+            if (e.llvmName.equals(s))
+                return e;
+        throw new IllegalArgumentException("Failed to parse Environment with llvmName="+s);
     }
 }

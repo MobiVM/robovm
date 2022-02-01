@@ -16,6 +16,8 @@
 package org.robovm.gradle.tasks;
 
 import org.robovm.compiler.config.Arch;
+import org.robovm.compiler.config.CpuArch;
+import org.robovm.compiler.config.Environment;
 import org.robovm.compiler.config.OS;
 import org.robovm.compiler.target.ios.DeviceType;
 import org.robovm.compiler.target.ios.IOSTarget;
@@ -37,16 +39,14 @@ public abstract class AbstractIOSSimulatorTask extends AbstractSimulatorTask {
     
     @Override
     protected Arch getArch() {
-        Arch arch = DeviceType.DEFAULT_HOST_ARCH;
+        CpuArch cpuArch = DeviceType.DEFAULT_HOST_ARCH;
         String extArchName = extension.getArch();
         if (extArchName != null) {
-            if (extArchName.equals(Arch.x86_64.toString()))
-                arch = Arch.x86_64;
-            else if (extArchName.equals(Arch.arm64.toString()))
-                arch = Arch.arm64;
-            else if (extArchName.equals(Arch.x86.toString()))
-                arch = Arch.x86;
+            Arch arch = Arch.parse(extArchName);
+            cpuArch = arch.getCpuArch();
+            if (cpuArch != CpuArch.arm64 && cpuArch != CpuArch.x86_64 && cpuArch != CpuArch.x86)
+                throw new IllegalArgumentException("Unsupported iOS Simulator arch " + extArchName);
         }
-        return arch;
+        return new Arch(cpuArch, Environment.Simulator);
     }
 }

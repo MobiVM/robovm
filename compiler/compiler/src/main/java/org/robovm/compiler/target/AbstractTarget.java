@@ -43,6 +43,7 @@ import org.robovm.compiler.clazz.Path;
 import org.robovm.compiler.config.AppExtension;
 import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.config.Config;
+import org.robovm.compiler.config.CpuArch;
 import org.robovm.compiler.config.OS;
 import org.robovm.compiler.config.Resource;
 import org.robovm.compiler.config.Resource.Walker;
@@ -680,11 +681,11 @@ public abstract class AbstractTarget implements Target {
         List<String> archesToRemove = new ArrayList<>();
 
         // simulator ones
-        if(archs.contains(Arch.x86.getClangName())) {
-            archesToRemove.add(Arch.x86.getClangName());
+        if(archs.contains(CpuArch.x86.getClangName())) {
+            archesToRemove.add(CpuArch.x86.getClangName());
         }
-        if(archs.contains(Arch.x86_64.getClangName())) {
-            archesToRemove.add(Arch.x86_64.getClangName());
+        if(archs.contains(CpuArch.x86_64.getClangName())) {
+            archesToRemove.add(CpuArch.x86_64.getClangName());
         }
         // also arm64e has to be removed since Xcode10.1
         if (archs.contains("arm64e")) {

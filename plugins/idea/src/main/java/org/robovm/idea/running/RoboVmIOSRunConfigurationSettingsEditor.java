@@ -22,6 +22,7 @@ import com.intellij.openapi.options.SettingsEditor;
 import org.jetbrains.annotations.NotNull;
 import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.config.Config;
+import org.robovm.compiler.config.CpuArch;
 import org.robovm.compiler.target.ios.DeviceType;
 import org.robovm.compiler.target.ios.IOSTarget;
 import org.robovm.compiler.target.ios.ProvisioningProfile;
@@ -39,8 +40,8 @@ import static org.robovm.idea.running.RoboVmRunConfiguration.AUTO_PROVISIONING_P
 import static org.robovm.idea.running.RoboVmRunConfiguration.AUTO_SIGNING_IDENTITY;
 
 public class RoboVmIOSRunConfigurationSettingsEditor extends SettingsEditor<RoboVmRunConfiguration> {
-    private static final Arch[] DEVICE_ARCHS = {Arch.arm64, Arch.thumbv7};
-    private static final Arch[] SIMULATOR_ARCHS = {Arch.x86_64, Arch.x86, Arch.arm64};
+    private static final CpuArch[] DEVICE_ARCHS = {CpuArch.arm64, CpuArch.thumbv7};
+    private static final CpuArch[] SIMULATOR_ARCHS = {CpuArch.x86_64, CpuArch.x86, CpuArch.arm64};
 
     public static final String AUTO_SIMULATOR_IPHONE_TITLE = "Auto (prefers '" + DeviceType.PREFERRED_IPHONE_SIM_NAME + "')";
     public static final String AUTO_SIMULATOR_IPAD_TITLE = "Auto (prefers '" + DeviceType.PREFERRED_IPAD_SIM_NAME + "')";
@@ -54,8 +55,8 @@ public class RoboVmIOSRunConfigurationSettingsEditor extends SettingsEditor<Robo
     private JComboBox<SimTypeDecorator> simType;
     private JComboBox<SigningIdentityDecorator> signingIdentity;
     private JComboBox<ProvisioningProfileDecorator> provisioningProfile;
-    private JComboBox<Arch> simArch;
-    private JComboBox<Arch> deviceArch;
+    private JComboBox<CpuArch> simArch;
+    private JComboBox<CpuArch> deviceArch;
     private JTextArea args;
     private JCheckBox pairedWatch;
 
@@ -135,13 +136,13 @@ public class RoboVmIOSRunConfigurationSettingsEditor extends SettingsEditor<Robo
         config.setModuleName(Decorator.from(module).name);
         config.setTargetType(attachedDeviceRadioButton.isSelected() ? RoboVmRunConfiguration.TargetType.Device : RoboVmRunConfiguration.TargetType.Simulator);
         // device related
-        config.setDeviceArch((Arch) deviceArch.getSelectedItem());
+        config.setDeviceArch((CpuArch) deviceArch.getSelectedItem());
         config.setSigningIdentityType(Decorator.from(signingIdentity).entryType);
         config.setSigningIdentity(Decorator.from(signingIdentity).id);
         config.setProvisioningProfileType(Decorator.from(provisioningProfile).entryType);
         config.setProvisioningProfile(Decorator.from(provisioningProfile).id);
         // simulator related
-        config.setSimulatorArch((Arch) simArch.getSelectedItem());
+        config.setSimulatorArch((CpuArch) simArch.getSelectedItem());
         config.setSimulatorType(Decorator.from(simType).entryType);
         config.setSimulator(Decorator.from(simType).id);
         config.setSimulatorSdk(-1); // legacy, will not be used
@@ -149,8 +150,8 @@ public class RoboVmIOSRunConfigurationSettingsEditor extends SettingsEditor<Robo
         config.setSimulatorLaunchWatch(pairedWatch.isSelected());
     }
 
-    private Arch populateSimulatorArch(SimTypeDecorator simulator, Arch arch) {
-        Arch result = null;
+    private CpuArch populateSimulatorArch(SimTypeDecorator simulator, CpuArch arch) {
+        CpuArch result = null;
         simArch.removeAllItems();
         if (simulator != null) {
             if (simulator == simulatorAutoIPad || simulator == simulatorAutoIPhone){
@@ -159,7 +160,7 @@ public class RoboVmIOSRunConfigurationSettingsEditor extends SettingsEditor<Robo
                 result = DeviceType.DEFAULT_HOST_ARCH;
             } else {
                 Set<Arch> simArches = simulator.data.getArchs();
-                for (Arch a : SIMULATOR_ARCHS) {
+                for (CpuArch a : SIMULATOR_ARCHS) {
                     if (simArches.contains(a)) {
                         simArch.addItem(a);
                         if (a == arch)
@@ -174,7 +175,7 @@ public class RoboVmIOSRunConfigurationSettingsEditor extends SettingsEditor<Robo
 
     private void populateDeviceArch() {
         deviceArch.removeAllItems();
-        for (Arch arch : DEVICE_ARCHS)
+        for (CpuArch arch : DEVICE_ARCHS)
             deviceArch.addItem(arch);
     }
 
@@ -325,7 +326,7 @@ public class RoboVmIOSRunConfigurationSettingsEditor extends SettingsEditor<Robo
     }
 
     private void updateSimArchs(SimTypeDecorator simulator) {
-        Arch arch = populateSimulatorArch(simulator, (Arch) simArch.getSelectedItem());
+        CpuArch arch = populateSimulatorArch(simulator, (CpuArch) simArch.getSelectedItem());
         if (arch == null && simArch.getItemCount() > 0)
             arch = simArch.getItemAt(0);
         simArch.setSelectedItem(arch);

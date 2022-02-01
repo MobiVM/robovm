@@ -101,7 +101,7 @@ public class DebuggerLaunchPlugin extends LaunchPlugin {
         builder.setJdwpClienMode(jdwpClientMode);
         builder.setLogToConsole(logConsole);
         builder.setLogDir(new File(logDir));
-        builder.setArch(DebuggerConfig.Arch.valueOf(target.getArch().name()));
+        builder.setArch(DebuggerConfig.Arch.valueOf(target.getArch().getCpuArch().name()));
 
         // make list of arguments for target
         if (ConsoleTarget.TYPE.equals(target.getType())) {
@@ -121,7 +121,7 @@ public class DebuggerLaunchPlugin extends LaunchPlugin {
             File appDir = new File(config.isSkipInstall() ? config.getTmpDir() : config.getInstallDir(), config.getExecutableName() + ".app");
             builder.setAppfile(new File(appDir, config.getExecutableName()));
 
-            if (IOSTarget.isSimulatorArch(config.getArch(), config.getEnv())) {
+            if (IOSTarget.isSimulatorArch(config.getArch())) {
                 // launching on simulator, it can write down port number to file on local system
                 File hooksPortFile;
                 try {

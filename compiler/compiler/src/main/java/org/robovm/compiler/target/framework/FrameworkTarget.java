@@ -7,6 +7,7 @@ import org.apache.commons.io.FileUtils;
 import org.robovm.compiler.clazz.Path;
 import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.config.Config;
+import org.robovm.compiler.config.CpuArch;
 import org.robovm.compiler.config.Environment;
 import org.robovm.compiler.config.OS;
 import org.robovm.compiler.target.AbstractTarget;
@@ -50,18 +51,13 @@ public class FrameworkTarget extends AbstractTarget {
 		return arch;
 	}
 
-	@Override
-	public Environment getEnv() {
-		return env;
-	}
-
     @Override
 	public boolean canLaunch() {
 		return false;
 	}
 
     public List<SDK> getSDKs() {
-        if (isSimulatorArch(arch, env)) {
+        if (isSimulatorArch(arch)) {
             return SDK.listSimulatorSDKs();
         } else {
             return SDK.listDeviceSDKs();
@@ -77,9 +73,7 @@ public class FrameworkTarget extends AbstractTarget {
 
         arch = config.getArch();
         if (arch == null)
-            arch = Arch.getDefaultArch();
-
-		env = config.getEnv();
+            arch = new Arch(CpuArch.getDefaultArch(), Environment.Native);
 
 		if (os.getFamily() != OS.Family.darwin)
 			throw new IllegalArgumentException("Frameworks can only be built for Darwin platforms");
@@ -93,7 +87,7 @@ public class FrameworkTarget extends AbstractTarget {
 		List<SDK> sdks = getSDKs();
         if (sdkVersion == null) {
             if (sdks.isEmpty()) {
-                throw new IllegalArgumentException("No " + (isDeviceArch(arch, env) ? "device" : "simulator")
+                throw new IllegalArgumentException("No " + (isDeviceArch(arch) ? "device" : "simulator")
                         + " SDKs installed");
             }
             Collections.sort(sdks);
@@ -137,7 +131,7 @@ public class FrameworkTarget extends AbstractTarget {
 
 		ccArgs.add("--target=" + config.getClangTriple(getMinimumOSVersion()));
 
-		if (isDeviceArch(arch, env) && config.isEnableBitcode()) {
+		if (isDeviceArch(arch) && config.isEnableBitcode()) {
 			// tells clang to keep bitcode while linking
 			ccArgs.add("-fembed-bitcode");
 		}
@@ -151,8 +145,8 @@ public class FrameworkTarget extends AbstractTarget {
 		ccArgs.add("1");
 		ccArgs.add("-current_version");
 		ccArgs.add("1");
-		
-		if (this.config.getArch() == Arch.x86) {
+
+		if (this.config.getArch().getCpuArch() == CpuArch.x86) {
 			ccArgs.add("-read_only_relocs");
 			ccArgs.add("suppress");
 		}

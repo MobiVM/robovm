@@ -34,7 +34,7 @@ public abstract class AbstractSimulatorTask extends AbstractRoboVMTask {
 
     protected void launch(DeviceType type) {
         try {
-            AppCompiler compiler = build(getOs(), getArch(), Environment.Simulator, getTargetType());
+            AppCompiler compiler = build(getOs(), getArch(), getTargetType());
 
             if (extension.isSkipLaunch()) {
                 return;

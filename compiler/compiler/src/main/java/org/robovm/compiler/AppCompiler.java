@@ -747,15 +747,12 @@ public class AppCompiler {
                 } else if ("-arch".equals(args[i])) {
                     String s = args[++i];
                     if (!"auto".equals(s)) {
-                        archs.add(Arch.valueOf(s));
+                        archs.add(Arch.parse(s));
                     }
-                } else if ("-env".equals(args[i])) {
-                    String s = args[++i];
-                    builder.env(Environment.valueOf(s));
                 } else if ("-archs".equals(args[i])) {
                     for (String s : args[++i].split(":")) {
                         if (!"auto".equals(s)) {
-                            archs.add(Arch.valueOf(s));
+                            archs.add(Arch.parse(s));
                         }
                     }
                 } else if ("-target".equals(args[i])) {
@@ -835,7 +832,7 @@ public class AppCompiler {
                 } else if ("-ipaarchs".equals(args[i])) {
                     for (String s : args[++i].split(":")) {
                         if (!"auto".equals(s)) {
-                            archs.add(Arch.valueOf(s));
+                            archs.add(Arch.parse(s));
                         }
                     }
                 } else if (args[i].startsWith("-D")) {

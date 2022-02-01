@@ -16,17 +16,10 @@
  */
 package org.robovm.compiler.util.io;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.FileStore;
-import java.nio.file.Files;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.List;
-
+import com.dd.plist.NSDictionary;
+import com.dd.plist.NSNumber;
+import com.dd.plist.NSObject;
+import com.dd.plist.PropertyListParser;
 import org.apache.commons.io.FileUtils;
 import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.config.Config;
@@ -34,10 +27,15 @@ import org.robovm.compiler.config.OS;
 import org.robovm.compiler.log.Logger;
 import org.robovm.compiler.util.Executor;
 
-import com.dd.plist.NSDictionary;
-import com.dd.plist.NSNumber;
-import com.dd.plist.NSObject;
-import com.dd.plist.PropertyListParser;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.FileStore;
+import java.nio.file.Files;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.List;
 
 /**
  * Will modify cache and tmpdir paths given a {@link Config#builder()} and prun
@@ -179,10 +177,10 @@ public class RamDiskTools {
 
         // Enumerate all directories that are not our current cache
         // dir
-        List<CacheDir> cacheDirs = new ArrayList<CacheDir>();
+        List<CacheDir> cacheDirs = new ArrayList<>();
         for (OS os : OS.values()) {
-            for (Arch arch : Arch.values()) {
-                for (boolean isDebug : new boolean[] { false, true }) {
+            for (Arch arch : Arch.supported(os)) {
+                for (boolean isDebug : new boolean[]{false, true}) {
                     CacheDir cacheDir = constructCacheDir(volume, os, arch, isDebug);
                     if (cacheDir != null && (currCacheDir == null || !cacheDir.directory.equals(currCacheDir.directory))) {
                         cacheDirs.add(cacheDir);
@@ -229,14 +227,9 @@ public class RamDiskTools {
                 + (isDebug ? "debug" : "release"));
         if (!dir.exists())
             return null;
-        List<File> objFiles = new ArrayList<File>((Collection<File>) FileUtils.listFiles(dir, new String[] { "o" },
+        List<File> objFiles = new ArrayList<>(FileUtils.listFiles(dir, new String[]{"o"},
                 true));
-        Collections.sort(objFiles, new Comparator<File>() {
-            @Override
-            public int compare(File f1, File f2) {
-                return new Date(f2.lastModified()).compareTo(new Date(f1.lastModified()));
-            }
-        });
+        objFiles.sort((f1, f2) -> new Date(f2.lastModified()).compareTo(new Date(f1.lastModified())));
         long lastModified = 0;
         for (File file : objFiles) {
             lastModified = Math.max(lastModified, file.lastModified());

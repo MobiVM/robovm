@@ -87,13 +87,13 @@ abstract public class AbstractRoboVMTask extends DefaultTask {
         setGroup("MobiVM");
     }
 
-    public AppCompiler build(OS os, Arch arch, Environment env, String targetType) {
-        getLogger().info("Building RoboVM app for: " + os + " (" + arch + env.asLlvmSuffix("-")+ ")");
+    public AppCompiler build(OS os, Arch arch, String targetType) {
+        getLogger().info("Building RoboVM app for: " + os + " (" + arch + ")");
 
         Config.Builder builder;
         builder = new Config.Builder();
 
-        configure(builder).os(os).arch(arch).env(env).targetType(targetType);
+        configure(builder).os(os).arch(arch).targetType(targetType);
 
         // execute the RoboVM build
         Config config;

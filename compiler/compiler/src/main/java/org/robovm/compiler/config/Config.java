@@ -241,7 +241,6 @@ public class Config {
     private transient Config configBeforeBuild;
     private transient DependencyGraph dependencyGraph;
     private transient Arch sliceArch;
-    private transient Environment env =  Environment.Native;
     private transient StripArchivesBuilder stripArchivesBuilder;
 
     protected Config(UUID uuid) {
@@ -313,10 +312,6 @@ public class Config {
         return os;
     }
 
-    public Environment getEnv() {
-        return env;
-    }
-
     public Arch getArch() {
         return sliceArch;
     }
@@ -331,8 +326,8 @@ public class Config {
     }
 
     public String getTriple(String minVersion) {
-        return sliceArch.getLlvmName() + "-" + os.getVendor() + "-" + os.getLlvmName() + minVersion +
-                env.asLlvmSuffix("-");
+        return sliceArch.getCpuArch().getLlvmName() + "-" + os.getVendor() + "-" + os.getLlvmName() + minVersion +
+                sliceArch.getEnv().asLlvmSuffix("-");
     }
 
     public String getClangTriple() {
@@ -340,8 +335,8 @@ public class Config {
     }
 
     public String getClangTriple(String minVersion) {
-        return sliceArch.getClangName() + "-" + os.getVendor() + "-" + os.getLlvmName() + minVersion +
-                env.asLlvmSuffix("-");
+        return sliceArch.getCpuArch().getClangName() + "-" + os.getVendor() + "-" + os.getLlvmName() + minVersion +
+                sliceArch.getEnv().asLlvmSuffix("-");
     }
 
     public DataLayout getDataLayout() {
@@ -640,7 +635,8 @@ public class Config {
         // emit bitcode to object file even if it is not enabled.
         // as currently only `__LLVM,__asm` is being added
         // but build should match criteria
-        return !debug && os == OS.ios && (sliceArch == Arch.arm64 || sliceArch == Arch.thumbv7);
+        return !debug && os == OS.ios && sliceArch.getEnv() == Environment.Native &&
+                (sliceArch.getCpuArch() == CpuArch.arm64 || sliceArch.getCpuArch() == CpuArch.thumbv7);
     }
 
     public Tools getTools() {
@@ -757,7 +753,7 @@ public class Config {
                 return false;
         }
         if (qualified.filterPlatformVariants() != null) {
-            PlatformVariant variant = (env == Environment.Native) ? PlatformVariant.device : PlatformVariant.simulator;
+            PlatformVariant variant = (sliceArch.getEnv() == Environment.Native) ? PlatformVariant.device : PlatformVariant.simulator;
             return Arrays.asList(qualified.filterPlatformVariants()).contains(variant);
         }
 
@@ -961,6 +957,13 @@ public class Config {
             imageName = executableName;
         }
 
+        // promote environment of arch if it is not ambigious (e.g. x86_64 or iOS exists only
+        // in simulator environment)
+        if (archs != null) {
+            for (int idx = 0; idx < archs.size(); idx++)
+                archs.set(idx, archs.get(idx).promoteTo(os));
+        }
+
         List<File> realBootclasspath = bootclasspath == null ? new ArrayList<>() : bootclasspath;
         if (!isSkipRuntimeLib()) {
             realBootclasspath = new ArrayList<>(bootclasspath);
@@ -1015,11 +1018,10 @@ public class Config {
         sliceArch = target.getArch();
         dataLayout = new DataLayout(getTriple());
 
-        osArchDepLibDir = new File(new File(home.libVmDir, os.toString()),
-                sliceArch.toString() + env.asLlvmSuffix("-"));
+        osArchDepLibDir = new File(new File(home.libVmDir, os.toString()), sliceArch.toString());
 
         if (treeShakerMode != null && treeShakerMode != TreeShakerMode.none
-                && os.getFamily() == Family.darwin && sliceArch == Arch.x86) {
+                && os.getFamily() == Family.darwin && sliceArch.getCpuArch() == CpuArch.x86) {
 
             logger.warn("Tree shaking is not supported when building "
                     + "for OS X/iOS x86 32-bit due to a bug in Xcode's linker. No tree "
@@ -1035,8 +1037,7 @@ public class Config {
         this.tmpDir = ramDiskTools.getTmpDir();
 
         File osDir = new File(cacheDir, os.toString());
-        String archName = (env != null && !env.getLlvmName().isEmpty()) ? sliceArch.toString() + "-" + env.getLlvmName() :
-                sliceArch.toString();
+        String archName = sliceArch.toString();
         File archDir = new File(osDir, archName);
         osArchCacheDir = new File(archDir, debug ? "debug" : "release");
         osArchCacheDir.mkdirs();
@@ -1252,11 +1253,6 @@ public class Config {
 
         public Builder os(OS os) {
             config.os = os;
-            return this;
-        }
-
-        public Builder env(Environment env) {
-            config.env = env;
             return this;
         }
 
@@ -1833,9 +1829,10 @@ public class Config {
             // adding file converter to matcher, as it fails to pick it from registry when writing
             // tag text of custom object (such as QualifiedFile)
             matcher.bind(File.class, fileConverter);
+            matcher.bind(Arch.class, new ArchTransformer());
             matcher.bind(Lib.PathWrap.class, new RelativeLibPathTransformer(fileConverter));
             matcher.bind(OS[].class, new EnumArrayConverter<>(OS.class));
-            matcher.bind(Arch[].class, new EnumArrayConverter<>(Arch.class));
+            matcher.bind(Arch[].class, new ArchArrayConverter());
             matcher.bind(PlatformVariant[].class, new EnumArrayConverter<>(PlatformVariant.class));
 
             return serializer;
@@ -1995,6 +1992,43 @@ public class Config {
                     return value;
                 }
             } else return null;
+        }
+    }
+
+    private static final class ArchTransformer implements Transform<Arch> {
+        @Override
+        public Arch read(String value) throws Exception {
+            if (value == null) {
+                return null;
+            }
+            return Arch.parse(value);
+        }
+
+        @Override
+        public String write(Arch s) throws Exception {
+            if (s != null) {
+                return s.toString();
+            } else return null;
+        }
+    }
+
+    private static final class ArchArrayConverter implements Transform<Arch[]> {
+        @Override
+        public Arch[] read(String s) {
+            s = s.trim();
+            if (s.isEmpty())
+                return null;
+
+            String[] tokens = s.split(",");
+            Arch[] res = new Arch[tokens.length];
+            for (int idx = 0; idx < tokens.length; idx++)
+                res[idx] = Arch.parse(tokens[idx].trim());
+            return res;
+        }
+
+        @Override
+        public String write(Arch[] ts) {
+            return Arrays.stream(ts).map(Arch::toString).collect(Collectors.joining());
         }
     }
 

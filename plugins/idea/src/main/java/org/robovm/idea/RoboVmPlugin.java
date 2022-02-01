@@ -50,7 +50,6 @@ import org.jetbrains.annotations.NotNull;
 import org.robovm.compiler.Version;
 import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.config.Config;
-import org.robovm.compiler.config.Environment;
 import org.robovm.compiler.config.Resource;
 import org.robovm.compiler.log.Logger;
 import org.robovm.idea.compilation.RoboVmCompileTask;
@@ -515,9 +514,8 @@ public class RoboVmPlugin {
         return buildDir;
     }
 
-    public static File getModuleBuildDir(Module module, String runConfigName, org.robovm.compiler.config.OS os, Arch arch, Environment env) {
-        File buildDir = new File(getModuleBaseDir(module), "robovm-build/tmp/" + runConfigName + "/" + os + "/" + arch +
-                env.asLlvmSuffix("-"));
+    public static File getModuleBuildDir(Module module, String runConfigName, org.robovm.compiler.config.OS os, Arch arch) {
+        File buildDir = new File(getModuleBaseDir(module), "robovm-build/tmp/" + runConfigName + "/" + os + "/" + arch);
         if (!buildDir.exists()) {
             if (!buildDir.mkdirs()) {
                 throw new RuntimeException("Couldn't create build dir '" + buildDir.getAbsolutePath() + "'");

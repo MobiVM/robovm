@@ -24,7 +24,7 @@ import com.intellij.openapi.options.ConfigurationException;
 import com.intellij.openapi.options.SettingsEditor;
 import com.intellij.openapi.vfs.VirtualFile;
 import org.jetbrains.annotations.NotNull;
-import org.robovm.compiler.config.Arch;
+import org.robovm.compiler.config.CpuArch;
 import org.robovm.compiler.target.ConsoleTarget;
 import org.robovm.compiler.target.ios.DeviceType;
 import org.robovm.idea.RoboVmPlugin;
@@ -39,7 +39,7 @@ public class RoboVmConsoleRunConfigurationSettingsEditor extends SettingsEditor<
     private JTextArea args;
     private JTextField workingDir;
     private JButton browseButton;
-    private JComboBox<Arch> deviceArch;
+    private JComboBox<CpuArch> deviceArch;
 
     @Override
     protected void resetEditorFrom(@NotNull RoboVmRunConfiguration config) {
@@ -53,7 +53,7 @@ public class RoboVmConsoleRunConfigurationSettingsEditor extends SettingsEditor<
         if (deviceArch.getSelectedItem() == null)
             throw buildConfigurationException("Device architecture is not specified!", () -> deviceArch.setSelectedItem(DeviceType.DEFAULT_HOST_ARCH));
         config.setModuleName(module.getSelectedItem().toString());
-        config.setDeviceArch((Arch)deviceArch.getSelectedItem());
+        config.setDeviceArch((CpuArch)deviceArch.getSelectedItem());
         config.setTargetType(RoboVmRunConfiguration.TargetType.Console);
         config.setArguments(args.getText());
         config.setWorkingDir(workingDir.getText());
@@ -79,10 +79,10 @@ public class RoboVmConsoleRunConfigurationSettingsEditor extends SettingsEditor<
 
         // populate arch
         deviceArch.removeAllItems();
-        if (DeviceType.DEFAULT_HOST_ARCH == Arch.arm64)
-            deviceArch.addItem(Arch.arm64);
-        deviceArch.addItem(Arch.x86_64);
-        if (config.getDeviceArch() == Arch.x86_64 || config.getDeviceArch() == DeviceType.DEFAULT_HOST_ARCH)
+        if (DeviceType.DEFAULT_HOST_ARCH == CpuArch.arm64)
+            deviceArch.addItem(CpuArch.arm64);
+        deviceArch.addItem(CpuArch.x86_64);
+        if (config.getDeviceArch() == CpuArch.x86_64 || config.getDeviceArch() == DeviceType.DEFAULT_HOST_ARCH)
             deviceArch.setSelectedItem(config.getDeviceArch());
 
         this.args.setText(config.getArguments());
