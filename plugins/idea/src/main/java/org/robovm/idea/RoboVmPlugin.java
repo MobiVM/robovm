@@ -71,6 +71,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.function.Predicate;
 import java.util.zip.GZIPInputStream;
 
 /**
@@ -421,10 +422,14 @@ public class RoboVmPlugin {
     }
 
     public static List<Module> getRoboVmModules(Project project) {
-        return getRoboVmModules(project, null);
+        return getRoboVmModules(project, (Predicate<String>)null);
     }
 
     public static List<Module> getRoboVmModules(Project project, String targetType) {
+        return getRoboVmModules(project, t -> t.equals(targetType));
+    }
+
+    public static List<Module> getRoboVmModules(Project project, Predicate<String> predicate) {
         List<Module> validModules = new ArrayList<>();
         for (Module module : ModuleManager.getInstance(project).getModules()) {
             if (!isRoboVmModule(module))
@@ -432,11 +437,11 @@ public class RoboVmPlugin {
 
             // dkimitsa: if target type is specified return only matching modules. E.g. don't allow to run Framework
             // target in Console runner
-            if (targetType != null) {
+            if (predicate != null) {
                 Config config = loadRawModuleConfig(module);
                 if (config == null)
                     continue;
-                if (!targetType.equals(config.getTargetType()))
+                if (!predicate.test(config.getTargetType()))
                     continue;
             }
             validModules.add(module);

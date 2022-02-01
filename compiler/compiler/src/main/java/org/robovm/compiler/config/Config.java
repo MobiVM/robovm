@@ -986,8 +986,8 @@ public class Config {
                 target = new ConsoleTarget();
             } else if (IOSTarget.TYPE.equals(targetType)) {
                 target = new IOSTarget();
-            } else if (FrameworkTarget.TYPE.equals(targetType)) {
-                target = new FrameworkTarget();
+            } else if (FrameworkTarget.matches(targetType)) {
+                target = new FrameworkTarget(targetType);
             } else {
                 for (TargetPlugin plugin : getTargetPlugins()) {
                     if (plugin.getTarget().getType().equals(targetType)) {
