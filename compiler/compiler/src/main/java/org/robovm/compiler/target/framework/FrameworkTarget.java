@@ -208,7 +208,6 @@ public class FrameworkTarget extends AbstractTarget {
 
 	private Arch[][] getXCFrameworkArches() {
 		if (xcFrameworkArches == null) {
-			Map<Environment, List<Map.Entry<Arch, File>>> fatBinaries = new HashMap<>();
 			List<Arch> configArches = config.getArchs();
 			if (configArches.size() == 1) {
 				xcFrameworkArches = new Arch[][]{{configArches.get(0)}};
@@ -302,11 +301,17 @@ public class FrameworkTarget extends AbstractTarget {
 				}
 				File frameworkArchDir = new File(xcFrameworkDir, identifier);
 				File frameworkDir = new File(frameworkArchDir, image + ".framework");
-				File dsymDir = new File(frameworkArchDir, "dSYMs/" + image + ".dSYM");
-				File executable = new File(new File(config.getTmpDir(), identifier), getExecutable());
-				config.getLogger().info("Creating " + identifier + "framework slice: %s", frameworkDir);
+				File dsymDir = new File(frameworkArchDir, "dSYMs/" + image + ".dSYM");;
+				File executable;
+				if (config.getArchs().size() == 1) {
+					// single arch framework. it was build without invoking buildFat() so binary is not copied
+					// to arch-specific location and to be picked from build tmp folder
+					executable = new File(config.getTmpDir(), getExecutable());
+				} else {
+					executable = new File(new File(config.getTmpDir(), identifier), getExecutable());
+				}
+				config.getLogger().info("Installing " + identifier + "framework slice: %s", frameworkDir);
 				installFramework(frameworkDir, dsymDir, executable, image);
-
 
 				XCFrameworkPlist.Library library = new XCFrameworkPlist.Library(identifier,
 						image + ".framework", config.getOs(),
@@ -321,7 +326,7 @@ public class FrameworkTarget extends AbstractTarget {
 			plist.writeTo(infoPlist);
 		} else {
 			// classic framework
-			File executable = new File(new File(config.getTmpDir(), getExecutable()), image);
+			File executable = new File(config.getTmpDir(), getExecutable());
 			File frameworkDir = new File(installDir, image + ".framework");
 			File dsymDir = new File(installDir, image + ".dSYM");
 			config.getLogger().info("Creating framework: %s", frameworkDir);
@@ -329,10 +334,17 @@ public class FrameworkTarget extends AbstractTarget {
 		}
 	}
 
-	private void installFramework(File frameworkDir, File dsymDir, File executable, String image) throws IOException {
+	private void installFramework(File frameworkDir, File dsymDir, File binary, String image) throws IOException {
 		if (frameworkDir.exists())
 			FileUtils.deleteDirectory(frameworkDir);
 		frameworkDir.mkdirs();
+
+		// copy executable if required
+		File executable = new File(frameworkDir, image);
+		if (!binary.equals(executable)) {
+			FileUtils.copyFile(binary, executable);
+			executable.setExecutable(true, false);
+		}
 
 		File bundleDir = new File(frameworkDir, image + ".bundle");
 		bundleDir.mkdirs();
