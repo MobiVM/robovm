@@ -22,6 +22,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
@@ -44,6 +45,8 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.robovm.compiler.AppCompiler;
 import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.config.Config;
+import org.robovm.compiler.config.CpuArch;
+import org.robovm.compiler.config.Environment;
 import org.robovm.compiler.config.OS;
 import org.robovm.compiler.target.ios.ProvisioningProfile;
 import org.robovm.compiler.target.ios.SigningIdentity;
@@ -83,7 +86,7 @@ public class CreateIPAAction implements IObjectActionDelegate {
         final String destDir = dialog.getDestinationDir();
         final String signingIdentity = dialog.getSigningIdentity();
         final String provisioningProfile = dialog.getProvisioningProfile();
-        final List<Arch> archs = dialog.getArchs();
+        final List<Arch> archs = dialog.getArchs().stream().map(a -> new Arch(a, Environment.Native)).collect(Collectors.toList());
 
         new Job("Package for App Store/Ad-Hoc distribution") {
 

@@ -22,6 +22,8 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.config.Config;
+import org.robovm.compiler.config.CpuArch;
+import org.robovm.compiler.config.Environment;
 import org.robovm.compiler.config.OS;
 import org.robovm.compiler.target.LaunchParameters;
 import org.robovm.compiler.target.ios.DeviceType;
@@ -39,16 +41,16 @@ public class IOSSimulatorLaunchConfigurationDelegate extends AbstractLaunchConfi
     public static final String TYPE_NAME = "iOS Simulator App";
     public static final String ATTR_IOS_SIM_DEVICE_TYPE = RoboVMPlugin.PLUGIN_ID + ".IOS_SIM_DEVICE_TYPE";
     public static final String ATTR_IOS_SIM_ARCH = RoboVMPlugin.PLUGIN_ID + ".IOS_SIM_ARCH";
-    public static final Arch DEFAULT_ARCH = Arch.x86;
+    public static final CpuArch DEFAULT_ARCH = CpuArch.x86_64;
 
     @Override
     protected Arch getArch(ILaunchConfiguration configuration, String mode) throws CoreException {
-        Arch arch = DEFAULT_ARCH;
+    	CpuArch arch = DEFAULT_ARCH;
         try {
-            arch = Arch.valueOf(configuration.getAttribute(ATTR_IOS_SIM_ARCH, DEFAULT_ARCH.toString()));
+            arch = CpuArch.valueOf(configuration.getAttribute(ATTR_IOS_SIM_ARCH, DEFAULT_ARCH.toString()));
         } catch (Throwable t) {
         }
-        return arch;
+        return new Arch(arch, Environment.Simulator);
     }
 
     @Override

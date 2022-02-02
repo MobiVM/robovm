@@ -38,6 +38,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.robovm.compiler.config.Arch;
+import org.robovm.compiler.config.CpuArch;
 import org.robovm.compiler.target.ios.DeviceType;
 import org.robovm.eclipse.RoboVMPlugin;
 
@@ -60,7 +61,7 @@ public class IOSSimulatorLaunchConfigurationTabGroup extends AbstractLaunchConfi
     }
 
     public static class SimulatorTab extends RoboVMTab {
-        private static final Arch[] POSSIBLE_ARCH_VALUES = RoboVMPlugin.IOS_SIM_ARCH_VALUES;
+        private static final CpuArch[] POSSIBLE_ARCH_VALUES = RoboVMPlugin.IOS_SIM_ARCH_VALUES;
         private static final String[] POSSIBLE_ARCH_NAMES = RoboVMPlugin.IOS_SIM_ARCH_NAMES;
         
         private final boolean showProject;
@@ -142,11 +143,11 @@ public class IOSSimulatorLaunchConfigurationTabGroup extends AbstractLaunchConfi
             List<String> availableArchs = new ArrayList<String>();
             int prefArchIndex = 0;
             for(int i = 0; i < RoboVMPlugin.IOS_SIM_ARCH_VALUES.length; i++) {
-                Arch arch = RoboVMPlugin.IOS_SIM_ARCH_VALUES[i];
+                CpuArch arch = RoboVMPlugin.IOS_SIM_ARCH_VALUES[i];
                 for(Arch simArch: type.getArchs()) {
-                    if(arch == simArch) {
+                    if(arch == simArch.getCpuArch()) {
                         availableArchs.add(POSSIBLE_ARCH_NAMES[i]);
-                        if(simArch == IOSSimulatorLaunchConfigurationDelegate.DEFAULT_ARCH) {
+                        if(simArch.getCpuArch() == IOSSimulatorLaunchConfigurationDelegate.DEFAULT_ARCH) {
                             prefArchIndex = availableArchs.size() - 1;
                         }
                         break;
@@ -180,7 +181,7 @@ public class IOSSimulatorLaunchConfigurationTabGroup extends AbstractLaunchConfi
             }
             
             try {
-                Arch v = Arch.valueOf(config.getAttribute(IOSSimulatorLaunchConfigurationDelegate.ATTR_IOS_SIM_ARCH,
+                CpuArch v = CpuArch.valueOf(config.getAttribute(IOSSimulatorLaunchConfigurationDelegate.ATTR_IOS_SIM_ARCH,
                         IOSSimulatorLaunchConfigurationDelegate.DEFAULT_ARCH.toString()));
                 int idx = Arrays.asList(POSSIBLE_ARCH_VALUES).indexOf(v);
                 if (idx != -1) {
@@ -197,7 +198,7 @@ public class IOSSimulatorLaunchConfigurationTabGroup extends AbstractLaunchConfi
             super.performApply(wc);
             String selection = deviceTypeCombo.getItem(deviceTypeCombo.getSelectionIndex());
             wc.setAttribute(IOSSimulatorLaunchConfigurationDelegate.ATTR_IOS_SIM_DEVICE_TYPE, selection);
-            Arch arch = POSSIBLE_ARCH_VALUES[archCombo.getSelectionIndex()];
+            CpuArch arch = POSSIBLE_ARCH_VALUES[archCombo.getSelectionIndex()];
             wc.setAttribute(IOSSimulatorLaunchConfigurationDelegate.ATTR_IOS_SIM_ARCH, arch.toString());
         }
 

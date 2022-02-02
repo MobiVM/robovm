@@ -22,6 +22,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.config.Config;
+import org.robovm.compiler.config.Environment;
 import org.robovm.compiler.config.OS;
 import org.robovm.compiler.target.ConsoleTarget;
 import org.robovm.eclipse.RoboVMPlugin;
@@ -35,7 +36,7 @@ public class ConsoleJUnitLaunchConfigurationDelegate extends AbstractJUnitLaunch
 
     @Override
     protected Arch getArch(ILaunchConfiguration configuration, String mode) {
-        return RoboVMPlugin.getDefaultArch();
+        return new Arch(RoboVMPlugin.getDefaultArch(), Environment.Native);
     }
 
     @Override

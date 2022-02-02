@@ -22,6 +22,8 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.config.Config;
+import org.robovm.compiler.config.CpuArch;
+import org.robovm.compiler.config.Environment;
 import org.robovm.compiler.config.OS;
 import org.robovm.compiler.target.ios.IOSTarget;
 import org.robovm.compiler.target.ios.ProvisioningProfile;
@@ -45,16 +47,16 @@ public class IOSDeviceLaunchConfigurationDelegate extends AbstractLaunchConfigur
 
     public static final String SIGNING_ID_SKIP_SIGNING = "SkipSigning";
 
-    public static final Arch DEFAULT_ARCH = Arch.thumbv7;
+    public static final CpuArch DEFAULT_ARCH = CpuArch.arm64;
 
     @Override
     protected Arch getArch(ILaunchConfiguration configuration, String mode) throws CoreException {
-        Arch arch = DEFAULT_ARCH;
+    	CpuArch arch = DEFAULT_ARCH;
         try {
-            arch = Arch.valueOf(configuration.getAttribute(ATTR_IOS_DEVICE_ARCH, DEFAULT_ARCH.toString()));
+            arch = CpuArch.valueOf(configuration.getAttribute(ATTR_IOS_DEVICE_ARCH, DEFAULT_ARCH.toString()));
         } catch (Throwable t) {
         }
-        return arch;
+        return new Arch(arch, Environment.Native);
     }
 
     @Override

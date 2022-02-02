@@ -38,6 +38,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.robovm.compiler.config.Arch;
+import org.robovm.compiler.config.CpuArch;
 import org.robovm.compiler.target.ios.ProvisioningProfile;
 import org.robovm.compiler.target.ios.SigningIdentity;
 import org.robovm.eclipse.RoboVMPlugin;
@@ -61,7 +62,7 @@ public class IOSDeviceLaunchConfigurationTabGroup extends AbstractLaunchConfigur
     }
 
     public static class DeviceTab extends RoboVMTab {
-        private static final Arch[] POSSIBLE_ARCH_VALUES = RoboVMPlugin.IOS_DEVICE_ARCH_VALUES;
+        private static final CpuArch[] POSSIBLE_ARCH_VALUES = RoboVMPlugin.IOS_DEVICE_ARCH_VALUES;
         private static final String[] POSSIBLE_ARCH_NAMES = RoboVMPlugin.IOS_DEVICE_ARCH_NAMES;
 
         private List<SigningIdentity> signingIdentities;
@@ -202,7 +203,7 @@ public class IOSDeviceLaunchConfigurationTabGroup extends AbstractLaunchConfigur
             }
             
             try {
-                Arch v = Arch.valueOf(config.getAttribute(IOSDeviceLaunchConfigurationDelegate.ATTR_IOS_DEVICE_ARCH,
+            	CpuArch v = CpuArch.valueOf(config.getAttribute(IOSDeviceLaunchConfigurationDelegate.ATTR_IOS_DEVICE_ARCH,
                         IOSDeviceLaunchConfigurationDelegate.DEFAULT_ARCH.toString()));
                 int idx = Arrays.asList(POSSIBLE_ARCH_VALUES).indexOf(v);
                 if (idx != -1) {
@@ -233,7 +234,7 @@ public class IOSDeviceLaunchConfigurationTabGroup extends AbstractLaunchConfigur
             wc.setAttribute(IOSDeviceLaunchConfigurationDelegate.ATTR_IOS_DEVICE_PROVISIONING_PROFILE, 
                     profile != null ? profile.getUuid() : null);
 
-            Arch arch = POSSIBLE_ARCH_VALUES[archCombo.getSelectionIndex()];
+            CpuArch arch = POSSIBLE_ARCH_VALUES[archCombo.getSelectionIndex()];
             wc.setAttribute(IOSDeviceLaunchConfigurationDelegate.ATTR_IOS_DEVICE_ARCH, arch.toString());
         }
 
