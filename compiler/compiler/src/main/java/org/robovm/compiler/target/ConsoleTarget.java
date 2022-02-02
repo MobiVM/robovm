@@ -25,6 +25,7 @@ import java.util.Map;
 
 import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.config.Config;
+import org.robovm.compiler.config.CpuArch;
 import org.robovm.compiler.config.OS;
 import org.robovm.compiler.util.Executor;
 import org.robovm.compiler.util.io.OpenOnWriteFileOutputStream;
@@ -105,7 +106,7 @@ public class ConsoleTarget extends AbstractTarget {
 
         if (config.getOs() == OS.macosx) {
             ccArgs.add("--target=" + config.getClangTriple());
-            if (config.getArch() == Arch.x86 || config.isDebug()) {
+            if (config.getArch().getCpuArch() == CpuArch.x86 || config.isDebug()) {
                 ccArgs.add("-Wl,-no_pie");
             }
         }

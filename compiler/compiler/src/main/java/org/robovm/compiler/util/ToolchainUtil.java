@@ -17,23 +17,22 @@
  */
 package org.robovm.compiler.util;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 import org.apache.commons.exec.ExecuteException;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
-import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.config.Config;
-import org.robovm.compiler.config.Environment;
+import org.robovm.compiler.config.CpuArch;
 import org.robovm.compiler.config.OS;
 import org.robovm.compiler.config.tools.TextureAtlas;
 import org.robovm.compiler.log.ConsoleLogger;
 import org.robovm.compiler.log.Logger;
 import org.robovm.compiler.target.ios.IOSTarget;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * @author niklas
@@ -256,9 +255,9 @@ public class ToolchainUtil {
         }
 
         opts.add("--platform");
-        if (IOSTarget.isDeviceArch(config.getArch(), config.getEnv())) {
+        if (IOSTarget.isDeviceArch(config.getArch())) {
             opts.add("iphoneos");
-        } else if (IOSTarget.isSimulatorArch(config.getArch(), config.getEnv())) {
+        } else if (IOSTarget.isSimulatorArch(config.getArch())) {
             opts.add("iphonesimulator");
         }
 
@@ -415,7 +414,7 @@ public class ToolchainUtil {
         if (config.getCcBinPath() != null) {
             ccPath = config.getCcBinPath().getAbsolutePath();
         } else if (config.getOs() == OS.ios) {
-            if (config.getArch() == Arch.x86) {
+            if (config.getArch().getCpuArch() == CpuArch.x86) {
                 ccPath = getIOSSimClang();
             } else {
                 ccPath = getIOSDevClang();

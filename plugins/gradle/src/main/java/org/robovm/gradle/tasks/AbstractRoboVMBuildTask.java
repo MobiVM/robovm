@@ -40,7 +40,7 @@ public abstract class AbstractRoboVMBuildTask extends AbstractRoboVMTask {
             if (extension.getArchs() != null) {
                 List<Arch> archs = new ArrayList<>();
                 for (String s : extension.getArchs().trim().split(":")) {
-                    archs.add(Arch.valueOf(s));
+                    archs.add(Arch.parse(s));
                 }
                 builder.archs(archs);
             }

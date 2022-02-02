@@ -2003,7 +2003,7 @@ public class ObjCMemberPlugin extends AbstractCompilerPlugin {
     }
 
     private void preloadClassesForFramework(Config config, Linker linker, Set<Clazz> classes) {
-        if (FrameworkTarget.TYPE.equals(config.getTargetType())) {
+        if (FrameworkTarget.matches(config.getTargetType())) {
             // for framework target it is required to make list of @CustomClasses to be preloaded
             // once framework is loaded
             // generate byte array of zero terminated string for frameworksupport.m class

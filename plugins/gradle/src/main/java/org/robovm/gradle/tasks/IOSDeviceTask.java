@@ -39,7 +39,7 @@ public class IOSDeviceTask extends AbstractRoboVMTask {
                 arch = Arch.thumbv7;
             }
 
-            AppCompiler compiler = build(OS.ios, arch, Environment.Native, IOSTarget.TYPE);
+            AppCompiler compiler = build(OS.ios, arch, IOSTarget.TYPE);
             if (extension.isSkipLaunch()) {
                 return;
             }

@@ -37,6 +37,7 @@ import org.jetbrains.annotations.Nullable;
 import org.robovm.compiler.AppCompiler;
 import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.config.Config;
+import org.robovm.compiler.config.CpuArch;
 import org.robovm.compiler.target.ios.DeviceType;
 import org.robovm.idea.RoboVmPlugin;
 
@@ -63,12 +64,12 @@ public class RoboVmRunConfiguration extends ModuleBasedConfiguration<RoboVmRunCo
     }
 
     private TargetType targetType;
-    private Arch deviceArch;
+    private CpuArch deviceArch;
     private EntryType signingIdentityType;
     private String signingIdentity;
     private EntryType provisioningProfileType;
     private String provisioningProfile;
-    private Arch simulatorArch;
+    private CpuArch simulatorArch;
     private EntryType simulatorType;
     private String simulator;
     private int simulatorSdk;
@@ -95,7 +96,7 @@ public class RoboVmRunConfiguration extends ModuleBasedConfiguration<RoboVmRunCo
     private void setDefaultValues() {
         if (type instanceof RoboVmIOSConfigurationType) {
             targetType = TargetType.Device;
-            deviceArch = Arch.arm64;
+            deviceArch = CpuArch.arm64;
             signingIdentityType = EntryType.AUTO;
             provisioningProfileType = EntryType.AUTO;
             simulatorType = EntryType.AUTO;
@@ -133,14 +134,14 @@ public class RoboVmRunConfiguration extends ModuleBasedConfiguration<RoboVmRunCo
         super.readExternal(element);
 
         targetType = valueOf(TargetType.class, JDOMExternalizerUtil.readField(element, "targetType"));
-        deviceArch = valueOf(Arch.class, JDOMExternalizerUtil.readField(element, "deviceArch"));
+        deviceArch = valueOf(CpuArch.class, JDOMExternalizerUtil.readField(element, "deviceArch"));
         signingIdentityType = valueOf(EntryType.class, JDOMExternalizerUtil.readField(element, "signingIdentityType"));
         signingIdentity = JDOMExternalizerUtil.readField(element, "signingIdentity");
         provisioningProfileType = valueOf(EntryType.class, JDOMExternalizerUtil.readField(element, "provisioningProfileType"));
         provisioningProfile = JDOMExternalizerUtil.readField(element, "provisioningProfile");
         simulatorType = valueOf(EntryType.class, JDOMExternalizerUtil.readField(element, "simulatorType"));
         simulator = JDOMExternalizerUtil.readField(element, "simulatorName");
-        simulatorArch = valueOf(Arch.class, JDOMExternalizerUtil.readField(element, "simArch"));
+        simulatorArch = valueOf(CpuArch.class, JDOMExternalizerUtil.readField(element, "simArch"));
         simulatorSdk = parseInt(JDOMExternalizerUtil.readField(element, "simulatorSdk"), -1);
         simulatorLaunchWatch = parseInt(JDOMExternalizerUtil.readField(element, "simulatorLaunchPair"), -1)  > 0;
         arguments = JDOMExternalizerUtil.readField(element, "arguments", "");
@@ -168,11 +169,11 @@ public class RoboVmRunConfiguration extends ModuleBasedConfiguration<RoboVmRunCo
         JDOMExternalizerUtil.writeField(element, "workingDir", workingDir);
     }
 
-    public void setDeviceArch(Arch deviceArch) {
+    public void setDeviceArch(CpuArch deviceArch) {
         this.deviceArch = deviceArch;
     }
 
-    public Arch getDeviceArch() {
+    public CpuArch getDeviceArch() {
         return deviceArch;
     }
 
@@ -208,11 +209,11 @@ public class RoboVmRunConfiguration extends ModuleBasedConfiguration<RoboVmRunCo
         return provisioningProfile;
     }
 
-    public void setSimulatorArch(Arch simulatorArch) {
+    public void setSimulatorArch(CpuArch simulatorArch) {
         this.simulatorArch = simulatorArch;
     }
 
-    public Arch getSimulatorArch() {
+    public CpuArch getSimulatorArch() {
         return simulatorArch;
     }
 
@@ -332,7 +333,7 @@ public class RoboVmRunConfiguration extends ModuleBasedConfiguration<RoboVmRunCo
                 simulator = AUTO_SIGNING_IDENTITY;
         } else if (type instanceof RoboVmConsoleConfigurationType) {
             // MacOsX console target
-            if (deviceArch != Arch.x86_64 && deviceArch != DeviceType.DEFAULT_HOST_ARCH)
+            if (deviceArch != CpuArch.x86_64 && deviceArch != DeviceType.DEFAULT_HOST_ARCH)
                 deviceArch = DeviceType.DEFAULT_HOST_ARCH;
             targetType = TargetType.Console;
         }

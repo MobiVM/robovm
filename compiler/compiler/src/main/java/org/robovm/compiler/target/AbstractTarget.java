@@ -43,6 +43,7 @@ import org.robovm.compiler.clazz.Path;
 import org.robovm.compiler.config.AppExtension;
 import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.config.Config;
+import org.robovm.compiler.config.CpuArch;
 import org.robovm.compiler.config.OS;
 import org.robovm.compiler.config.Resource;
 import org.robovm.compiler.config.Resource.Walker;
@@ -680,11 +681,11 @@ public abstract class AbstractTarget implements Target {
         List<String> archesToRemove = new ArrayList<>();
 
         // simulator ones
-        if(archs.contains(Arch.x86.getClangName())) {
-            archesToRemove.add(Arch.x86.getClangName());
+        if(archs.contains(CpuArch.x86.getClangName())) {
+            archesToRemove.add(CpuArch.x86.getClangName());
         }
-        if(archs.contains(Arch.x86_64.getClangName())) {
-            archesToRemove.add(Arch.x86_64.getClangName());
+        if(archs.contains(CpuArch.x86_64.getClangName())) {
+            archesToRemove.add(CpuArch.x86_64.getClangName());
         }
         // also arm64e has to be removed since Xcode10.1
         if (archs.contains("arm64e")) {
@@ -744,14 +745,16 @@ public abstract class AbstractTarget implements Target {
     }
 
     protected void doInstall(File installDir, String image, File resourcesDir) throws IOException {
-        File executable;
-        if (!config.getTmpDir().equals(installDir) || !image.equals(config.getExecutableName())) {
-            executable = new File(installDir, image);
-            FileUtils.copyFile(new File(config.getTmpDir(), config.getExecutableName()), executable);
+        File executable = new File(installDir, image);;
+        File f = new File(config.getTmpDir(), config.getExecutableName());
+        if (!f.equals(executable)) {
+            FileUtils.copyFile(f, executable);
             executable.setExecutable(true, false);
-        } else {
-            executable = new File(config.getTmpDir(), config.getExecutableName());
         }
+        doInstall(installDir, executable, resourcesDir);
+    }
+
+    protected void doInstall(File installDir, File executable, File resourcesDir) throws IOException {
         for (File f : config.getOsArchDepLibDir().listFiles()) {
             if (f.getName().matches(".*\\.(so|dylib)(\\.1)?")) {
                 FileUtils.copyFileToDirectory(f, installDir);

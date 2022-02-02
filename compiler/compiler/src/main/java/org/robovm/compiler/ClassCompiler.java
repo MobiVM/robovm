@@ -295,10 +295,9 @@ public class ClassCompiler {
         
         Arch arch = config.getArch();
         OS os = config.getOs();
-        Environment env = config.getEnv();
 
         try {
-            config.getLogger().info("Compiling %s (%s %s%s %s)", clazz, os, arch, env.asLlvmSuffix("-"),
+            config.getLogger().info("Compiling %s (%s %s %s)", clazz, os, arch,
                     config.isDebug() ? "debug" : "release");
             output.reset();
             compile(clazz, output);
@@ -815,7 +814,7 @@ public class ClassCompiler {
             sootClass.addMethod(offset);
         }
         
-        mb.addInclude(getClass().getClassLoader().getResource(String.format("header-%s-%s.ll", config.getOs().getFamily(), config.getArch())));
+        mb.addInclude(getClass().getClassLoader().getResource(String.format("header-%s-%s.ll", config.getOs().getFamily(), config.getArch().getCpuArch())));
         mb.addInclude(getClass().getClassLoader().getResource("header.ll"));
 
         mb.addFunction(createLdcClass());

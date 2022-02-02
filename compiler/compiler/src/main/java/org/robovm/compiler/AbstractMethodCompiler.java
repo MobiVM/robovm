@@ -23,8 +23,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.robovm.compiler.clazz.Clazz;
-import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.config.Config;
+import org.robovm.compiler.config.CpuArch;
 import org.robovm.compiler.config.OS.Family;
 import org.robovm.compiler.llvm.BasicBlockRef;
 import org.robovm.compiler.llvm.Function;
@@ -91,7 +91,7 @@ public abstract class AbstractMethodCompiler {
          * strong and we behave as if tree shaking was disabled.
          */
         return FunctionBuilder.method(method,
-                !(config.getOs().getFamily() == Family.darwin && config.getArch() == Arch.x86));
+                !(config.getOs().getFamily() == Family.darwin && config.getArch().getCpuArch() == CpuArch.x86));
     }
 
     private void compileSynchronizedWrapper(ModuleBuilder moduleBuilder, SootMethod method) {

@@ -58,15 +58,6 @@ public interface Target {
     Arch getArch();
 
     /**
-     * @return the {@link Environment} this {@link Target} will build for. Used
-     * to differ target with same {@link Arch}.
-     * For ex. Arm64 iOS device and Arm64 m1 iOS simulator
-     */
-    default Environment getEnv() {
-        return Environment.Native;
-    }
-
-    /**
      * Returns a list of the default archs to build for if no archs have been
      * specified in the {@link Config}. Returns an empty list if there are no
      * defaults.

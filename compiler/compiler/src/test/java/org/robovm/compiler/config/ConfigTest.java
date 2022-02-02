@@ -176,7 +176,7 @@ public class ConfigTest {
         Config.Lib lib1 = new Config.Lib("ios_arm64", true, new OS[]{OS.ios},
                 new PlatformVariant[]{PlatformVariant.device}, new Arch[]{Arch.arm64} );
         Config.Lib lib2 = new Config.Lib("iossim_arm64", true, new OS[]{OS.ios},
-                new PlatformVariant[]{PlatformVariant.simulator}, new Arch[]{Arch.arm64} );
+                new PlatformVariant[]{PlatformVariant.simulator}, new Arch[]{Arch.arm64.copy(Environment.Simulator)} );
         Config.Lib lib3 = new Config.Lib("mac_arm64", true, new OS[]{OS.macosx},
                 new PlatformVariant[]{PlatformVariant.device}, new Arch[]{Arch.arm64} );
         builder.addLib(lib1);
@@ -186,21 +186,18 @@ public class ConfigTest {
         // case 1
         builder.os(OS.ios);
         builder.archs(Arch.arm64);
-        builder.env(Environment.Native);
         Config config = builder.build();
         assertEquals(Collections.singletonList(lib1), config.getLibs());
 
         // case 2
         builder.os(OS.ios);
-        builder.archs(Arch.arm64);
-        builder.env(Environment.Simulator);
+        builder.archs(Arch.arm64.copy(Environment.Simulator));
         config = builder.build();
         assertEquals(Collections.singletonList(lib2), config.getLibs());
 
         // case 3
         builder.os(OS.macosx);
         builder.archs(Arch.arm64);
-        builder.env(Environment.Native);
         config = builder.build();
         assertEquals(Collections.singletonList(lib3), config.getLibs());
     }
@@ -208,7 +205,7 @@ public class ConfigTest {
     private File createMergeConfig(File tmpDir, String dir, String id, OS os, Arch arch, boolean jar) throws Exception {
         File p = new File(tmpDir, dir);
         for (OS os2 : OS.values()) {
-            for (Arch arch2 : Arch.values()) {
+            for (Arch arch2 : Arch.supported(os2)) {
                 File root = new File(p, "META-INF/robovm/" + os2 + "/" + arch2);
                 root.mkdirs();
                 if (!new File(root, "robovm.xml").exists()) {

@@ -57,7 +57,7 @@ public abstract class AbstractRoboVMBuildMojo extends AbstractRoboVMMojo {
             if (getArchs() != null) {
                 List<Arch> archs = new ArrayList<>();
                 for (String s : getArchs().trim().split(":")) {
-                    archs.add(Arch.valueOf(s));
+                    archs.add(Arch.parse(s));
                 }
                 builder.archs(archs);
             }

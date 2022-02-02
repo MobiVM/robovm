@@ -52,17 +52,14 @@ public abstract class AbstractIOSSimulatorMojo extends AbstractRoboVMMojo {
 
     public void execute() throws MojoExecutionException, MojoFailureException {
         try {
-            Arch arch = DeviceType.DEFAULT_HOST_ARCH;
+            Arch arch = new Arch(DeviceType.DEFAULT_HOST_ARCH, Environment.Simulator);
             if (super.arch != null) {
-                if (super.arch.equals(Arch.x86.toString()))
-                    arch = Arch.x86;
-                if (super.arch.equals(Arch.x86_64.toString()))
-                    arch = Arch.x86_64;
-                else if (super.arch.equals(Arch.arm64.toString()))
-                    arch = Arch.arm64;
+                arch = Arch.parse(super.arch).promoteTo(OS.ios);
+                if (arch.getEnv() != Environment.Simulator)
+                    throw new MojoExecutionException("Not simulator arch specified " + arch);
             }
 
-            AppCompiler compiler = build(OS.ios, arch, Environment.Simulator, IOSTarget.TYPE);
+            AppCompiler compiler = build(OS.ios, arch, IOSTarget.TYPE);
             Config config = compiler.getConfig();
             IOSSimulatorLaunchParameters launchParameters = (IOSSimulatorLaunchParameters)
                 config.getTarget().createLaunchParameters();

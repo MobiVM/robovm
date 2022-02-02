@@ -34,10 +34,10 @@ public class ConsoleTask extends AbstractRoboVMTask {
         try {
             Arch arch = Arch.getDefaultArch();
             if (extension.getArch() != null) {
-                arch = Arch.valueOf(extension.getArch());
+                arch = Arch.parse(extension.getArch());
             }
 
-            AppCompiler compiler = build(OS.getDefaultOS(), arch, Environment.Native, ConsoleTarget.TYPE);
+            AppCompiler compiler = build(OS.getDefaultOS(), arch, ConsoleTarget.TYPE);
             Config config = compiler.getConfig();
             LaunchParameters launchParameters = config.getTarget().createLaunchParameters();
             compiler.launch(launchParameters);

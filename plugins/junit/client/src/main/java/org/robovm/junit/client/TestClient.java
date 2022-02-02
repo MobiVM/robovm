@@ -234,7 +234,7 @@ public class TestClient extends LaunchPlugin {
                 int port = serverPortReader.port;
 
                 try {
-                    if (config.getTarget() instanceof IOSTarget && IOSTarget.isDeviceArch(config.getArch(), config.getEnv())) {
+                    if (config.getTarget() instanceof IOSTarget && IOSTarget.isDeviceArch(config.getArch())) {
                         // iOS device launch. Use libimobiledevice to set up the
                         // connection.
                         IDevice device = ((IOSTarget) config.getTarget()).getDevice();

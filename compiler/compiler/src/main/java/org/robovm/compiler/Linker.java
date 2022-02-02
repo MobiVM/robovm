@@ -206,7 +206,7 @@ public class Linker {
                 os, arch, config.isDebug() ? "debug" : "release");
 
         ModuleBuilder mb = new ModuleBuilder();
-        mb.addInclude(getClass().getClassLoader().getResource(String.format("header-%s-%s.ll", os.getFamily(), arch)));
+        mb.addInclude(getClass().getClassLoader().getResource(String.format("header-%s-%s.ll", os.getFamily(), arch.getCpuArch())));
         mb.addInclude(getClass().getClassLoader().getResource("header.ll"));
 
         mb.addGlobal(new Global("_bcRuntimeData", runtimeDataToBytes()));
@@ -300,7 +300,7 @@ public class Linker {
         for (int i = 1; i < mbs.length; i++) {
             mbs[i] = new ModuleBuilder();
             mbs[i].addInclude(getClass().getClassLoader().getResource(
-                    String.format("header-%s-%s.ll", os.getFamily(), arch)));
+                    String.format("header-%s-%s.ll", os.getFamily(), arch.getCpuArch())));
             mbs[i].addInclude(getClass().getClassLoader().getResource("header.ll"));
 
             Function fn = new FunctionBuilder("_stripped_method" + i, new FunctionType(VOID, ENV_PTR))

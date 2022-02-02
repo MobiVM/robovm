@@ -208,21 +208,18 @@ public class RoboVmCompileTask {
             // set OS and arch
             OS os;
             Arch arch;
-            Environment env = Environment.Native;
             if (runConfig.getTargetType() == RoboVmRunConfiguration.TargetType.Device) {
                 os = OS.ios;
-                arch = runConfig.getDeviceArch();
+                arch = new Arch(runConfig.getDeviceArch());
             } else if (runConfig.getTargetType() == RoboVmRunConfiguration.TargetType.Simulator) {
                 os = OS.ios;
-                arch = runConfig.getSimulatorArch();
-                env = Environment.Simulator;
+                arch = new Arch(runConfig.getSimulatorArch(), Environment.Simulator);
             } else {
                 os = OS.getDefaultOS();
-                arch = runConfig.getDeviceArch();;
+                arch = new Arch(runConfig.getDeviceArch());
             }
             builder.os(os);
             builder.arch(arch);
-            builder.env(env);
 
             // set the plugin args
             List<String> args = splitArgs(runConfig.getArguments());
@@ -231,7 +228,7 @@ public class RoboVmCompileTask {
             // set build dir and install dir, pattern
             // module-basedir/robovm-build/tmp/module-name/runconfig-name/os/arch.
             // module-basedir/robovm-build/app/module-name/runconfig-name/os/arch.
-            File buildDir = RoboVmPlugin.getModuleBuildDir(module, runConfig.getName(), os, arch, env);
+            File buildDir = RoboVmPlugin.getModuleBuildDir(module, runConfig.getName(), os, arch);
             builder.tmpDir(buildDir);
             builder.skipInstall(true);
             RoboVmPlugin.logInfo(project, "Building executable in %s", buildDir.getAbsolutePath());

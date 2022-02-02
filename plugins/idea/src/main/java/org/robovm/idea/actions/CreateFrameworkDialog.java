@@ -58,7 +58,7 @@ public class CreateFrameworkDialog extends DialogWrapper {
         String configModule = properties.getValue(MODULE_NAME, "");
         String configDestDir = properties.getValue(DESTINATION_DIR, "");
 
-        for(Module module: RoboVmPlugin.getRoboVmModules(project, FrameworkTarget.TYPE)) {
+        for(Module module: RoboVmPlugin.getRoboVmModules(project, FrameworkTarget::matches)) {
             this.module.addItem(module.getName());
             if(module.getName().equals(configModule)) {
                 this.module.setSelectedIndex(this.module.getItemCount()-1);
