@@ -80,17 +80,15 @@ public enum CpuArch {
     }
 
     public static CpuArch getDefaultArch() {
-        String hostTriple = Target.getHostTriple();
-        if (hostTriple.matches("^(x86.64|amd64).*")) {
+        String archProp = System.getProperty("os.arch").toLowerCase();
+        if (archProp.matches("amd64|x86[-_]64")) {
             return CpuArch.x86_64;
-        }
-        if (hostTriple.matches("^(x86|i\\d86).*")) {
+        } else if (archProp.matches("i386|x86")) {
             return CpuArch.x86;
-        }
-        if (hostTriple.matches("^(arm-apple-darwin).*")) {
+        } else if (archProp.matches("aarch64|arm64")) {
             // MacOSX m1 CPU
             return CpuArch.arm64;
         }
-        throw new CompilerException("Unrecognized arch in host triple: " + hostTriple);
+        throw new CompilerException("Unrecognized arch in os.arch: " + archProp);
     }
 }
