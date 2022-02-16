@@ -140,7 +140,7 @@ public class TrampolineCompiler {
                 alias(t, fnRef.getName());
             } else {
                 String fnName = Symbols.checkcastSymbol(t.getTarget());
-                weakAlias(t, fnName);
+                alias(t, fnName);
             }
         } else if (t instanceof LdcClass) {
             if (isArray(t.getTarget())) {
@@ -148,7 +148,7 @@ public class TrampolineCompiler {
                 alias(t, fnRef.getName());
             } else {
                 String fnName = Symbols.ldcExternalSymbol(t.getTarget());
-                weakAlias(t, fnName);
+                alias(t, fnName);
             }
         } else if (t instanceof Anewarray) {
             FunctionRef fnRef = createAnewarray((Anewarray) t);
@@ -243,29 +243,6 @@ public class TrampolineCompiler {
         if (!mb.hasSymbol(fnName)) {
             mb.addFunctionDeclaration(new FunctionDeclaration(aliasee));
         }
-        Function fn = new FunctionBuilder(t).linkage(aliasLinkage()).attribs(shouldInline(), optsize).build();
-        Value result = call(fn, aliasee, fn.getParameterRefs());
-        fn.add(new Ret(result));
-        mb.addFunction(fn);
-    }
-
-    /**
-     * Similar to alias but creates weak stub that will be replaced with expected strong during linking.
-     * Its a workaround for aggressive tree shaking case, when method to be dropped referencing external [ldcext]
-     * but last one is not included as class is opted out as well.
-     */
-    private void weakAlias(Trampoline t, String fnName) {
-        FunctionRef aliasee = new FunctionRef(fnName, t.getFunctionType());
-        if (!mb.hasSymbol(fnName)) {
-            Function fn = new FunctionBuilder(fnName, t.getFunctionType())
-                    .attrib(noinline)
-                    .linkage(weak).build();
-            call(fn, BC_THROW_NO_SUCH_METHOD_ERROR, fn.getParameterRef(0),
-                    mb.getString("Internal Error: trampoline missing"));
-            fn.add(new Unreachable());
-            mb.addFunction(fn);
-        }
-
         Function fn = new FunctionBuilder(t).linkage(aliasLinkage()).attribs(shouldInline(), optsize).build();
         Value result = call(fn, aliasee, fn.getParameterRefs());
         fn.add(new Ret(result));
