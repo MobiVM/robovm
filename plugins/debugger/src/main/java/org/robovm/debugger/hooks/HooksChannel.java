@@ -20,6 +20,7 @@ import org.robovm.debugger.hooks.payloads.HooksCallStackEntry;
 import org.robovm.debugger.hooks.payloads.HooksClassLoadedEventPayload;
 import org.robovm.debugger.hooks.payloads.HooksCmdResponse;
 import org.robovm.debugger.hooks.payloads.HooksEventPayload;
+import org.robovm.debugger.hooks.payloads.HooksSuspendThreadPayload;
 import org.robovm.debugger.hooks.payloads.HooksThreadEventPayload;
 import org.robovm.debugger.hooks.payloads.HooksThreadStoppedEventPayload;
 import org.robovm.debugger.utils.DbgLogger;
@@ -139,7 +140,7 @@ public class HooksChannel implements IHooksApi {
                     if (holder == null)
                         throw new DebuggerException("Unexpected response id " + reqId + ", cmd = " + cmd);
 
-                    // notify thread that there is an result
+                    // notify thread that there is a result
                     HooksCmdResponse response = createCmdPayloadObject(cmd, buffer);
                     holder.setResponse(response);
                     holder.release();
@@ -264,10 +265,10 @@ public class HooksChannel implements IHooksApi {
     }
 
     @Override
-    public void threadSuspend(long thread) {
+    public HooksCmdResponse threadSuspend(long thread) {
         DataBufferReaderWriter packet = new DataByteBufferWriter();
         packet.writeLong(thread);
-        sendCommand(HookConsts.commands.THREAD_SUSPEND, packet);
+        return sendCommand(HookConsts.commands.THREAD_SUSPEND, packet);
     }
 
     @Override
@@ -378,11 +379,18 @@ public class HooksChannel implements IHooksApi {
                 res = new HooksCmdResponse(reader.readLong());
                 break;
 
+            case HookConsts.commands.THREAD_SUSPEND: {
+                int threadStatus = reader.readInt32();
+                int suspendStatus = reader.readInt32();
+                HooksCallStackEntry[] callStack = readCallStack(reader);
+                res = new HooksCmdResponse(new HooksSuspendThreadPayload(callStack, threadStatus, suspendStatus));
+                break;
+            }
+
             case HookConsts.commands.WRITE_MEMORY:
             case HookConsts.commands.WRITE_AND_BITS:
             case HookConsts.commands.WRITE_OR_BITS:
             case HookConsts.commands.FREE:
-            case HookConsts.commands.THREAD_SUSPEND:
             case HookConsts.commands.THREAD_RESUME:
             case HookConsts.commands.THREAD_STEP:
             case HookConsts.commands.CLASS_FILTER:
@@ -431,18 +439,20 @@ public class HooksChannel implements IHooksApi {
             case HookConsts.events.BREAKPOINT: {
                 long threadObj = reader.readLong();
                 long thread = reader.readLong();
+                int threadStatus = reader.readInt32();
                 HooksCallStackEntry[] callStack = readCallStack(reader);
-                res = new HooksThreadStoppedEventPayload(event, threadObj, thread, callStack);
+                res = new HooksThreadStoppedEventPayload(event, threadObj, thread, threadStatus, callStack);
                 break;
             }
 
             case HookConsts.events.EXCEPTION: {
                 long threadObj = reader.readLong();
                 long thread = reader.readLong();
+                int threadStatus = reader.readInt32();
                 long throwable = reader.readLong();
                 boolean isCaught = reader.readByte() != 0;
                 HooksCallStackEntry[] callStack = readCallStack(reader);
-                res = new HooksThreadStoppedEventPayload(event, threadObj, thread, throwable, isCaught, callStack);
+                res = new HooksThreadStoppedEventPayload(event, threadObj, thread, throwable, isCaught, threadStatus, callStack);
                 break;
             }
 
@@ -465,18 +475,23 @@ public class HooksChannel implements IHooksApi {
     }
 
     private HooksCallStackEntry[] readCallStack(DataBufferReader reader) {
-        int count = reader.readInt32();
-        HooksCallStackEntry[] res = new HooksCallStackEntry[count];
-        for (int idx = 0; idx < count; idx++) {
-            long impl = reader.readLong();
-            int lineNumber = reader.readInt32();
-            long fp = reader.readLong();
-            long pc = reader.readLong();
-            int clazzNameLen = reader.readInt32();
-            String clazzName = reader.readString(clazzNameLen);
-            res[idx] = new HooksCallStackEntry(clazzName, impl, lineNumber, fp, pc);
+        HooksCallStackEntry[] res;
+        if (reader.hasRemaining()) {
+            int count = reader.readInt32();
+            res = new HooksCallStackEntry[count];
+            for (int idx = 0; idx < count; idx++) {
+                long impl = reader.readLong();
+                int lineNumber = reader.readInt32();
+                long fp = reader.readLong();
+                long pc = reader.readLong();
+                int clazzNameLen = reader.readInt32();
+                String clazzName = reader.readString(clazzNameLen);
+                res[idx] = new HooksCallStackEntry(clazzName, impl, lineNumber, fp, pc);
+            }
+        } else {
+            res = new HooksCallStackEntry[0]; 
         }
-
+        
         return res;
     }
 
