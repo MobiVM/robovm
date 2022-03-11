@@ -63,7 +63,9 @@ public class RoboVmSdkUpdateComponent implements ModuleComponent {
         ApplicationManager.getApplication().invokeLater(() -> ApplicationManager.getApplication().runWriteAction(() -> {
             // module might already have been disposed, need to fetch it
             // by name
-            Module module = ModuleManager.getInstance(project).findModuleByName(moduleToUpdate.getName());
+            Module module = (!project.isDisposed() && !moduleToUpdate.isDisposed())
+                    ? ModuleManager.getInstance(project).findModuleByName(moduleToUpdate.getName())
+                    : null;
             if (module != null) {
                 ModuleRootManager manager = ModuleRootManager.getInstance(module);
                 ModifiableRootModel model = manager.getModifiableModel();
