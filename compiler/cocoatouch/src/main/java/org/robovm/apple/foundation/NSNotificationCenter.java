@@ -103,6 +103,6 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "removeObserver:name:object:")
     public native void removeObserver(NSObject observer, NSString name, NSObject anObject);
     @Method(selector = "addObserverForName:object:queue:usingBlock:")
-    public native NSObjectProtocol addObserver(NSString name, NSObject obj, NSOperationQueue queue, @Block VoidBlock1<NSNotification> block);
+    public native NSObject addObserver(NSString name, NSObject obj, NSOperationQueue queue, @Block VoidBlock1<NSNotification> block);
     /*</methods>*/
 }

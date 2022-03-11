@@ -57,7 +57,7 @@ import org.robovm.apple.imageio.*;
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "labels")
-    public native NSArray<?> getLabels();
+    public native NSArray<VNClassificationObservation> getLabels();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

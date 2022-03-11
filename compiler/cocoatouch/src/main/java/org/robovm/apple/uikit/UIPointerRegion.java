@@ -58,13 +58,13 @@ import org.robovm.apple.linkpresentation.*;
     protected UIPointerRegion() {}
     protected UIPointerRegion(Handle h, long handle) { super(h, handle); }
     protected UIPointerRegion(SkipInit skipInit) { super(skipInit); }
-    public UIPointerRegion(@ByVal CGRect rect, NSObjectProtocol identifier) { super((Handle) null, create(rect, identifier)); retain(getHandle()); }
+    public UIPointerRegion(@ByVal CGRect rect, NSObject identifier) { super((Handle) null, create(rect, identifier)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "rect")
     public native @ByVal CGRect getRect();
     @Property(selector = "identifier")
-    public native NSObjectProtocol getIdentifier();
+    public native NSObject getIdentifier();
     @Property(selector = "latchingAxes")
     public native UIAxis getLatchingAxes();
     @Property(selector = "setLatchingAxes:")
@@ -73,6 +73,6 @@ import org.robovm.apple.linkpresentation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "regionWithRect:identifier:")
-    protected static native @Pointer long create(@ByVal CGRect rect, NSObjectProtocol identifier);
+    protected static native @Pointer long create(@ByVal CGRect rect, NSObject identifier);
     /*</methods>*/
 }

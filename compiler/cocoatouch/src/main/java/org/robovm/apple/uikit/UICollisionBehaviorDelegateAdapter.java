@@ -64,8 +64,8 @@ import org.robovm.apple.linkpresentation.*;
     @NotImplemented("collisionBehavior:endedContactForItem:withItem:")
     public void endedContact(UICollisionBehavior behavior, UIDynamicItem item1, UIDynamicItem item2) {}
     @NotImplemented("collisionBehavior:beganContactForItem:withBoundaryIdentifier:atPoint:")
-    public void beganBoundaryContact(UICollisionBehavior behavior, UIDynamicItem item, NSObjectProtocol identifier, @ByVal CGPoint p) {}
+    public void beganBoundaryContact(UICollisionBehavior behavior, UIDynamicItem item, NSObject identifier, @ByVal CGPoint p) {}
     @NotImplemented("collisionBehavior:endedContactForItem:withBoundaryIdentifier:")
-    public void endedBoundaryContact(UICollisionBehavior behavior, UIDynamicItem item, NSObjectProtocol identifier) {}
+    public void endedBoundaryContact(UICollisionBehavior behavior, UIDynamicItem item, NSObject identifier) {}
     /*</methods>*/
 }
