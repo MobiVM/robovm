@@ -58,15 +58,15 @@ import org.robovm.apple.linkpresentation.*;
     public UIContextMenuConfiguration() {}
     protected UIContextMenuConfiguration(Handle h, long handle) { super(h, handle); }
     protected UIContextMenuConfiguration(SkipInit skipInit) { super(skipInit); }
-    public UIContextMenuConfiguration(NSObjectProtocol identifier, @Block Block0<UIViewController> previewProvider, @Block Block1<NSArray<UIMenuElement>, UIMenu> actionProvider) { super((Handle) null, create(identifier, previewProvider, actionProvider)); retain(getHandle()); }
+    public UIContextMenuConfiguration(NSObject identifier, @Block Block0<UIViewController> previewProvider, @Block Block1<NSArray<UIMenuElement>, UIMenu> actionProvider) { super((Handle) null, create(identifier, previewProvider, actionProvider)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "identifier")
-    public native NSObjectProtocol getIdentifier();
+    public native NSObject getIdentifier();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "configurationWithIdentifier:previewProvider:actionProvider:")
-    protected static native @Pointer long create(NSObjectProtocol identifier, @Block Block0<UIViewController> previewProvider, @Block Block1<NSArray<UIMenuElement>, UIMenu> actionProvider);
+    protected static native @Pointer long create(NSObject identifier, @Block Block0<UIViewController> previewProvider, @Block Block1<NSArray<UIMenuElement>, UIMenu> actionProvider);
     /*</methods>*/
 }

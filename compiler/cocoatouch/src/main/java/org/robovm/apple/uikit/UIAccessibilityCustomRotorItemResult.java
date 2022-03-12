@@ -59,13 +59,13 @@ import org.robovm.apple.linkpresentation.*;
     protected UIAccessibilityCustomRotorItemResult(Handle h, long handle) { super(h, handle); }
     protected UIAccessibilityCustomRotorItemResult(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithTargetElement:targetRange:")
-    public UIAccessibilityCustomRotorItemResult(NSObjectProtocol targetElement, UITextRange targetRange) { super((SkipInit) null); initObject(init(targetElement, targetRange)); }
+    public UIAccessibilityCustomRotorItemResult(NSObject targetElement, UITextRange targetRange) { super((SkipInit) null); initObject(init(targetElement, targetRange)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "targetElement")
-    public native NSObjectProtocol getTargetElement();
+    public native NSObject getTargetElement();
     @Property(selector = "setTargetElement:", strongRef = true)
-    public native void setTargetElement(NSObjectProtocol v);
+    public native void setTargetElement(NSObject v);
     @Property(selector = "targetRange")
     public native UITextRange getTargetRange();
     @Property(selector = "setTargetRange:")
@@ -74,6 +74,6 @@ import org.robovm.apple.linkpresentation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithTargetElement:targetRange:")
-    protected native @Pointer long init(NSObjectProtocol targetElement, UITextRange targetRange);
+    protected native @Pointer long init(NSObject targetElement, UITextRange targetRange);
     /*</methods>*/
 }

@@ -171,7 +171,7 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "comparatorForNameSortOrder:")
     public static native @Block Block2<String, String, NSComparisonResult> getNameComparator(CNContactSortOrder sortOrder);
     @Method(selector = "descriptorForAllComparatorKeys")
-    public static native NSObjectProtocol getDescriptorForAllComparatorKeys();
+    public static native NSObject getDescriptorForAllComparatorKeys();
     public static CNMutableContact createProviderDataObject(NSData data, String typeIdentifier) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        CNMutableContact result = createProviderDataObject(data, typeIdentifier, ptr);

@@ -88,7 +88,7 @@ import org.robovm.apple.avfoundation.*;
      * @since Available in iOS 9.0 and later.
      */
     @Method(selector = "setObject:forKeyedSubscript:")
-    public native void setObjectForKeyedSubscript(NSObject obj, NSObjectProtocol key);
+    public native void setObjectForKeyedSubscript(NSObject obj, NSObject key);
     @Method(selector = "techniqueWithDictionary:")
     public static native SCNTechnique create(NSDictionary<NSString, ?> dictionary);
     @Method(selector = "techniqueBySequencingTechniques:")

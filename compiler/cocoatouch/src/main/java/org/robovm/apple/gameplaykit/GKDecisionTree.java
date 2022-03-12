@@ -51,7 +51,7 @@ import org.robovm.apple.uikit.*;
     protected GKDecisionTree(Handle h, long handle) { super(h, handle); }
     protected GKDecisionTree(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithAttribute:")
-    public GKDecisionTree(NSObjectProtocol attribute) { super((SkipInit) null); initObject(init(attribute)); }
+    public GKDecisionTree(NSObject attribute) { super((SkipInit) null); initObject(init(attribute)); }
     @Method(selector = "initWithExamples:actions:attributes:")
     public GKDecisionTree(NSArray<?> examples, NSArray<?> actions, NSArray<?> attributes) { super((SkipInit) null); initObject(init(examples, actions, attributes)); }
     @Method(selector = "initWithURL:error:")
@@ -72,7 +72,7 @@ import org.robovm.apple.uikit.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithAttribute:")
-    protected native @Pointer long init(NSObjectProtocol attribute);
+    protected native @Pointer long init(NSObject attribute);
     @Method(selector = "initWithExamples:actions:attributes:")
     protected native @Pointer long init(NSArray<?> examples, NSArray<?> actions, NSArray<?> attributes);
     @Method(selector = "initWithURL:error:")
@@ -80,7 +80,7 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "exportToURL:error:")
     public native boolean exportToURL(NSURL url, NSError error);
     @Method(selector = "findActionForAnswers:")
-    public native NSObjectProtocol findActionForAnswers(NSDictionary<?, ?> answers);
+    public native NSObject findActionForAnswers(NSDictionary<?, ?> answers);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
