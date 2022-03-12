@@ -457,7 +457,7 @@ public class RoboVmPlugin {
         }
 
         // check if there's any RoboVM RT libs in the classpath
-        OrderEnumerator classes = ModuleRootManager.getInstance(module).orderEntries().recursively().withoutSdk().compileOnly();
+        OrderEnumerator classes = ModuleRootManager.getInstance(module).orderEntries().withoutSdk().compileOnly();
         for (String path : classes.getPathsList().getPathList()) {
             if (isSdkLibrary(path)) {
                 return true;
