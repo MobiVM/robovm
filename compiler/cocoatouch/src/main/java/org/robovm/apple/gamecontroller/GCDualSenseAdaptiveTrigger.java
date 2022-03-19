@@ -45,7 +45,9 @@ import org.robovm.apple.corehaptic.*;
 
     /*<ptr>*/public static class GCDualSenseAdaptiveTriggerPtr extends Ptr<GCDualSenseAdaptiveTrigger, GCDualSenseAdaptiveTriggerPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(GCDualSenseAdaptiveTrigger.class); }/*</bind>*/
-    /*<constants>*//*</constants>*/
+    /*<constants>*/
+    public static final int DiscretePositionCount = 10;
+    /*</constants>*/
     /*<constructors>*/
     public GCDualSenseAdaptiveTrigger() {}
     protected GCDualSenseAdaptiveTrigger(Handle h, long handle) { super(h, handle); }
@@ -61,12 +63,27 @@ import org.robovm.apple.corehaptic.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Method(selector = "setModeSlopeFeedbackWithStartPosition:endPosition:startStrength:endStrength:")
+    public native void setModeSlopeFeedback(float startPosition, float endPosition, float startStrength, float endStrength);
     @Method(selector = "setModeFeedbackWithStartPosition:resistiveStrength:")
     public native void setModeFeedback(float startPosition, float resistiveStrength);
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Method(selector = "setModeFeedbackWithResistiveStrengths:")
+    public native void setModeFeedback(@ByVal GCDualSenseAdaptiveTriggerPositionalResistiveStrengths positionalResistiveStrengths);
     @Method(selector = "setModeWeaponWithStartPosition:endPosition:resistiveStrength:")
     public native void setModeWeapon(float startPosition, float endPosition, float resistiveStrength);
     @Method(selector = "setModeVibrationWithStartPosition:amplitude:frequency:")
     public native void setModeVibration(float startPosition, float amplitude, float frequency);
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Method(selector = "setModeVibrationWithAmplitudes:frequency:")
+    public native void setModeVibration(@ByVal GCDualSenseAdaptiveTriggerPositionalAmplitudes positionalAmplitudes, float frequency);
     @Method(selector = "setModeOff")
     public native void setModeOff();
     /*</methods>*/

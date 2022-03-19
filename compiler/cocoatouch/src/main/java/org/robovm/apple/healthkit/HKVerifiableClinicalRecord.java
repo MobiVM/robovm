@@ -63,6 +63,21 @@ import org.robovm.apple.foundation.*;
     public native NSDate getExpirationDate();
     @Property(selector = "itemNames")
     public native NSArray<NSString> getItemNames();
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Property(selector = "sourceType")
+    public native HKVerifiableClinicalRecordSourceType getSourceType();
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Property(selector = "dataRepresentation")
+    public native NSData getDataRepresentation();
+    /**
+     * @since Available in iOS 15.0 and later.
+     * @deprecated Deprecated in iOS 15.4. Use dataRepresentation
+     */
+    @Deprecated
     @Property(selector = "JWSRepresentation")
     public native NSData getJWSRepresentation();
     @Property(selector = "supportsSecureCoding")

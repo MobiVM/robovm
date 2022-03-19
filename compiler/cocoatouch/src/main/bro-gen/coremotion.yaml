@@ -145,6 +145,8 @@ classes:
     CMRecordedRotationRateData: {} #since 14.0
     CMRotationRateData: {} #since 14.0
     CMAbsoluteAltitudeData: {} #since 15.0
+    CMAmbientPressureData: {} #since 10.0
+    CMRecordedPressureData: {} #since 12.0
 protocols:
     CMHeadphoneMotionManagerDelegate: {} #since 14.0
 

@@ -169,6 +169,11 @@ import org.robovm.apple.coreanimation.*;
      */
     @Property(selector = "setUnderPageBackgroundColor:")
     public native void setUnderPageBackgroundColor(UIColor v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "fullscreenState")
+    public native WKFullscreenState getFullscreenState();
     @WeaklyLinked
     @Property(selector = "layerClass")
     public static native Class<? extends CALayer> getLayerClass();

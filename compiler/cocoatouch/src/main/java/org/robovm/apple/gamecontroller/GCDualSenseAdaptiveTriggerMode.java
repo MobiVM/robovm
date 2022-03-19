@@ -34,7 +34,9 @@ import org.robovm.apple.corehaptic.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 14.5 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/GCDualSenseAdaptiveTriggerMode/*</name>*/ implements ValuedEnum {
@@ -42,7 +44,11 @@ public enum /*<name>*/GCDualSenseAdaptiveTriggerMode/*</name>*/ implements Value
     Off(0L),
     Feedback(1L),
     Weapon(2L),
-    Vibration(3L);
+    Vibration(3L),
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    SlopeFeedback(4L);
     /*</values>*/
 
     /*<bind>*/

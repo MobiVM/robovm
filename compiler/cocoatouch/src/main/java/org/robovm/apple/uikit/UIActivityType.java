@@ -94,5 +94,10 @@ import org.robovm.apple.linkpresentation.*;
      */
     @GlobalValue(symbol="UIActivityTypeMarkupAsPDF", optional=true)
     public static native String MarkupAsPDF();
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @GlobalValue(symbol="UIActivityTypeSharePlay", optional=true)
+    public static native String SharePlay();
     /*</methods>*/
 }

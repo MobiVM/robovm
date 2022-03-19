@@ -531,6 +531,11 @@ import org.robovm.apple.linkpresentation.*;
     public static native NSString ProtectedDataDidBecomeAvailableNotification();
     @GlobalValue(symbol="UIApplicationOpenSettingsURLString", optional=true)
     public static native String getOpenSettingsURLString();
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @GlobalValue(symbol="UIApplicationOpenNotificationSettingsURLString", optional=true)
+    public static native String getOpenNotificationSettingsURLString();
     @GlobalValue(symbol="UIApplicationUserDidTakeScreenshotNotification", optional=true)
     public static native NSString UserDidTakeScreenshotNotification();
     

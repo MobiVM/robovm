@@ -4653,7 +4653,7 @@ classes:
             '-initWithConfigurationProvider:errorHandler:':
                 name: init
     UIWindowSceneActivationRequestOptions: {} #since 15.0
-
+    UICellAccessoryDetail: {} #since 15.4
 protocols:
     NSLayoutManagerDelegate: # DONE
         methods:
@@ -6910,7 +6910,7 @@ values:
     UI(MinimumKeepAliveTimeout):
         class: UIApplication
         name: 'get#{g[0]}'
-    UIApplication(OpenSettingsURLString):
+    UIApplication(OpenSettingsURLString|OpenNotificationSettingsURLString):
         class: UIApplication
         name: 'get#{g[0]}'
     UIApplication(.*)ExtensionPointIdentifier:

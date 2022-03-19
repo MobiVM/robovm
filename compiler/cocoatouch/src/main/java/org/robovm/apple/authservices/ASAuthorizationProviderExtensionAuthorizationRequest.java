@@ -83,6 +83,11 @@ import org.robovm.apple.coreanimation.*;
      */
     @Property(selector = "localizedCallerDisplayName")
     public native String getLocalizedCallerDisplayName();
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Property(selector = "isUserInterfaceEnabled")
+    public native boolean isUserInterfaceEnabled();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
