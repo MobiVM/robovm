@@ -1086,7 +1086,7 @@ public class Config {
             this.rtPath = rtPath;
             cacertsPath = new HashMap<>();
             cacertsPath.put(Cacerts.full, new File(devDir,
-                    "cacerts/full/target/robovm-cacerts-full-" + Version.getVersion() + ".jar"));
+                    "cacerts/full/target/robovm-cacerts-full-" + Version.getCompilerVersion() + ".jar"));
             this.dev = true;
         }
 
@@ -1178,7 +1178,7 @@ public class Config {
             // Compare the version of this compiler with the version of the
             // robovm-rt.jar in the home dir. They have to match.
             try {
-                String thisVersion = Version.getVersion();
+                String thisVersion = Version.getCompilerVersion();
                 String thatVersion = getImplementationVersion(rtJarFile);
                 if (thisVersion == null || !thisVersion.equals(thatVersion)) {
                     throw new IllegalArgumentException(error + "version mismatch (expected: "
@@ -1210,7 +1210,7 @@ public class Config {
                 throw new IllegalArgumentException(error + "bin/ missing or invalid");
             }
 
-            String rtJarName = "robovm-rt-" + Version.getVersion() + ".jar";
+            String rtJarName = "robovm-rt-" + Version.getCompilerVersion() + ".jar";
             File rtJar = new File(dir, "rt/target/" + rtJarName);
             File rtClasses = new File(dir, "rt/target/classes/");
             File rtSource = rtJar;

@@ -275,7 +275,7 @@ public class RoboVMSurefireProvider extends AbstractProvider {
             home = Home.find();
         } catch (Throwable t) {}
         if (home == null || !home.isDev()) {
-            home = new Home(roboVMResolver.resolveAndUnpackRoboVMDistArtifact(Version.getVersion()));
+            home = new Home(roboVMResolver.resolveAndUnpackRoboVMDistArtifact(Version.getCompilerVersion()));
         }
         configBuilder.home(home);
         if (home.isDev()) {
@@ -341,11 +341,11 @@ public class RoboVMSurefireProvider extends AbstractProvider {
         // Ignore any classpath entries in the loaded robovm.xml file.
         configBuilder.clearClasspathEntries();
         
-        configBuilder.addClasspathEntry(roboVMResolver.resolveArtifact("com.mobidevelop.robovm:robovm-junit-server:" + Version.getVersion()).asFile());
+        configBuilder.addClasspathEntry(roboVMResolver.resolveArtifact("com.mobidevelop.robovm:robovm-junit-server:" + Version.getCompilerVersion()).asFile());
         if(isIOS()) {
-            configBuilder.addClasspathEntry(roboVMResolver.resolveArtifact("com.mobidevelop.robovm:robovm-rt:" + Version.getVersion()).asFile());
-            configBuilder.addClasspathEntry(roboVMResolver.resolveArtifact("com.mobidevelop.robovm:robovm-objc:" + Version.getVersion()).asFile());
-            configBuilder.addClasspathEntry(roboVMResolver.resolveArtifact("com.mobidevelop.robovm:robovm-cocoatouch:" + Version.getVersion()).asFile());
+            configBuilder.addClasspathEntry(roboVMResolver.resolveArtifact("com.mobidevelop.robovm:robovm-rt:" + Version.getCompilerVersion()).asFile());
+            configBuilder.addClasspathEntry(roboVMResolver.resolveArtifact("com.mobidevelop.robovm:robovm-objc:" + Version.getCompilerVersion()).asFile());
+            configBuilder.addClasspathEntry(roboVMResolver.resolveArtifact("com.mobidevelop.robovm:robovm-cocoatouch:" + Version.getCompilerVersion()).asFile());
         }
         for (String p : System.getProperty("java.class.path").split(File.pathSeparator)) {
             configBuilder.addClasspathEntry(new File(p));

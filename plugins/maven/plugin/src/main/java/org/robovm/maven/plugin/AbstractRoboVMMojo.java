@@ -365,7 +365,7 @@ public abstract class AbstractRoboVMMojo extends AbstractMojo {
     }
 
     protected String getRoboVMVersion() {
-        return Version.getVersion();
+        return Version.getCompilerVersion();
     }
 
     protected File unpackRoboVMDist() throws MojoExecutionException {
