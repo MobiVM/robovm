@@ -310,10 +310,12 @@ public class IOSTarget extends AbstractTarget {
         libArgs.add(sdk.getVersion());
 
         // add runtime path to swift libs first to support swift-5 libs location
-        libArgs.add("-Xlinker");
-        libArgs.add("-rpath");
-        libArgs.add("-Xlinker");
-        libArgs.add("/usr/lib/swift");
+        if (config.hasSwiftSupport()) {
+            libArgs.add("-Xlinker");
+            libArgs.add("-rpath");
+            libArgs.add("-Xlinker");
+            libArgs.add("/usr/lib/swift");
+        }
         // specify dynamic library loading path
         libArgs.add("-Xlinker");
         libArgs.add("-rpath");
@@ -842,7 +844,7 @@ public class IOSTarget extends AbstractTarget {
                 .exec();
 
         File frameworksDir = new File(appDir, "Frameworks");
-        if (frameworksDir.exists()){
+        if (frameworksDir.exists() && config.hasSwiftSupport() && config.getSwiftSupport().shouldCopySwiftLibs()){
             String[] swiftLibs = frameworksDir.list(new AndFileFilter(
                     new PrefixFileFilter("libswift"),
                     new SuffixFileFilter(".dylib")));
