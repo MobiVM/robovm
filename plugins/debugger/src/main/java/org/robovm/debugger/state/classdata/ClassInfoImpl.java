@@ -119,10 +119,10 @@ public class ClassInfoImpl extends ClassInfo {
         // save position to continue once loadData is called
         endOfHeaderPos = reader.position();
 
-        // read little bit more to get super class name
+        // read a bit more to get super class name
         if (!isInterface()) {
             reader.skip(2 + 2 + 2); // interfaceCount +  fieldCount +  methodCount
-            long superNamePtr = reader.readPointer();
+            long superNamePtr = reader.readPointer(true);
             if (superNamePtr != 0) {
                 superclassName = reader.readStringZ(superNamePtr);
                 superclassSignature = "L" + superclassName + ";";
@@ -151,18 +151,18 @@ public class ClassInfoImpl extends ClassInfo {
 
         if (!isInterface()) {
             // skip super name as already has been read
-            reader.skip(reader.pointerSize());
+            reader.readPointer(true);
         }
 
         if ((flags & ClassDataConsts.classinfo.ATTRIBUTES) != 0) {
             // TODO: skip attributes for now
-            reader.skip(reader.pointerSize());
+            reader.readPointer(true);
         }
 
         // reading interfaces
         interfaces = new ClassInfo[interfaceCount];
         for (int idx = 0; idx < interfaceCount; idx++) {
-            long ptr = reader.readPointer();
+            long ptr = reader.readPointer(true);
             String interfaceSignature = "L" + reader.readStringZ(ptr) + ";";
             interfaces[idx] = loader.classInfoBySignature(interfaceSignature);
             if (interfaces[idx] == null)

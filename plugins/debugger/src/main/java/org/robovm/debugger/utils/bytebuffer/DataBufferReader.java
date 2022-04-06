@@ -66,6 +66,16 @@ public interface DataBufferReader extends DataBuffer {
 
     int readInt32();
 
+    default int readInt32(boolean aligned) {
+        if (aligned) {
+            long savedPosition = position();
+            long alignedPosition = DataUtils.align(savedPosition, 4);
+            if (savedPosition != alignedPosition)
+                setPosition(alignedPosition);
+        }
+        return readInt32();
+    }
+
     default long readUnsignedInt32() {
         return Integer.toUnsignedLong(readInt32());
     }
