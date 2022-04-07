@@ -16,41 +16,25 @@
  */
 package org.robovm.compiler.target;
 
-import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipFile;
-import java.util.zip.ZipOutputStream;
-
 import com.dd.plist.NSDictionary;
 import com.dd.plist.PropertyListParser;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.robovm.compiler.Version;
 import org.robovm.compiler.clazz.Path;
-import org.robovm.compiler.config.AppExtension;
-import org.robovm.compiler.config.Arch;
-import org.robovm.compiler.config.Config;
-import org.robovm.compiler.config.CpuArch;
-import org.robovm.compiler.config.OS;
-import org.robovm.compiler.config.Resource;
+import org.robovm.compiler.config.*;
 import org.robovm.compiler.config.Resource.Walker;
-import org.robovm.compiler.config.StripArchivesConfig;
-import org.robovm.compiler.config.WatchKitApp;
 import org.robovm.compiler.util.ToolchainUtil;
 import org.simpleframework.xml.Transient;
+
+import java.io.*;
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
+import java.util.zip.ZipOutputStream;
 
 /**
  * @author niklas
@@ -400,23 +384,25 @@ public abstract class AbstractTarget implements Target {
             }
         }
 
-        // find swift libraries that might be referenced in executable due static linking
-        getSwiftDependencies(appExecutable, swiftLibraries);
+        if (config.hasSwiftSupport() && config.getSwiftSupport().shouldCopySwiftLibs()) {
+            // find swift libraries that might be referenced in executable due static linking
+            getSwiftDependencies(appExecutable, swiftLibraries);
 
-        // workaround: check if libs contain reference to swift lib
-        // if project links against static swift library it requires
-        // dynamic swift libraries to be included. and these are not automatically
-        // resolved yet, allow user to specify them in library list
-        for (Config.Lib lib : config.getLibs()) {
-            String p = lib.getValue();
-            if (p.startsWith("libswift") && p.endsWith(".dylib") && !new File(p).exists()) {
-                swiftLibraries.add(p);
+            // workaround: check if libs contain reference to swift lib
+            // if project links against static swift library it requires
+            // dynamic swift libraries to be included. and these are not automatically
+            // resolved yet, allow user to specify them in library list
+            for (Config.Lib lib : config.getLibs()) {
+                String p = lib.getValue();
+                if (p.startsWith("libswift") && p.endsWith(".dylib") && !new File(p).exists()) {
+                    swiftLibraries.add(p);
+                }
             }
-        }
 
-        // copy Swift libraries if required
-        if (!swiftLibraries.isEmpty()) {
-            copySwiftLibs(swiftLibraries, frameworksDir, true);
+            // copy Swift libraries if required
+            if (!swiftLibraries.isEmpty()) {
+                copySwiftLibs(swiftLibraries, frameworksDir, true);
+            }
         }
     }
 
@@ -583,10 +569,8 @@ public abstract class AbstractTarget implements Target {
         List<File> configPaths = config.getSwiftLibPaths();
         if (!configPaths.isEmpty()) {
             // swift lib locations are provided in config,
-            String system = getSwiftSystemName(config);
-            List<File> candidates = new ArrayList<>();
-            for (File path : configPaths)
-                candidates.add(new File(path, system));
+            // paths in swiftSupport have to be qualified, no need to extend them with platform suffix
+            List<File> candidates = new ArrayList<>(configPaths);
             return candidates.toArray(new File[0]);
         } else {
             return getDefaultSwiftDirs(config);
@@ -613,25 +597,46 @@ public abstract class AbstractTarget implements Target {
         return getDefaultSwiftDirs(system);
     }
 
+    private void validateAndAddSwiftDir(List<File> dest, String xcodePath, String version, String system) {
+        File candidate = new File(xcodePath, "Toolchains/XcodeDefault.xctoolchain/usr/lib/" + version + "/" + system);
+        if (candidate.exists() && candidate.isDirectory())
+            dest.add(candidate);
+    }
+
     private File[] getDefaultSwiftDirs(String system) throws IOException {
-        // FIXME: dkimitsa: its a temporal for finding location of swift libraries
-        // FIXME: as in XCode 11 these are not under swift subdir anymore (but in swift-5.0).
-        // FIXME: while its a workaround and hardcode for specific swift version and proper way of
-        // FIXME: finding swift library location to be used
-        String[] versions = new String[]{"swift-5.0", "swift"};
+        List<File> swiftDirs = new ArrayList<>();
         String xcodePath = ToolchainUtil.findXcodePath();
-        List<File> candidates = new ArrayList<>();
-        for (String v: versions) {
-            File candidate = new File(xcodePath, "Toolchains/XcodeDefault.xctoolchain/usr/lib/" + v + "/" + system);
-            if (candidate.exists())
-                candidates.add(candidate);
+
+        // keep runtime location of swift libs. these will be checked against
+        // SDK root for .tbd files
+        swiftDirs.add(new File("/usr/lib/swift"));
+        // add "swift" dir if it exists
+        validateAndAddSwiftDir(swiftDirs, xcodePath, "swift", system);
+
+        // find all versioned dirs and sort them descending by version
+        File rootDir = new File(xcodePath, "Toolchains/XcodeDefault.xctoolchain/usr/lib/");
+        final String swiftDirPrefix = "swift-";
+        String[] dirNames = rootDir.list((dir, name) -> name.startsWith(swiftDirPrefix));
+        if (dirNames != null && dirNames.length > 0) {
+            Map<String, Version> swiftVersions = new HashMap<>();
+            for (String dirName: dirNames) {
+                Version v = Version.parseOrNull(dirName.substring(swiftDirPrefix.length()));
+                if (v != null) {
+                    swiftVersions.put(dirName, v);
+                } else config.getLogger().warn("Failed to parse swift version: " + dirName);
+            }
+
+
+            // descending sort by version number
+            swiftVersions.entrySet().stream()
+                    .sorted((o1, o2) -> o2.getValue().compareTo(o1.getValue()))
+                    .forEach(e -> {
+                        String version = e.getKey();
+                        validateAndAddSwiftDir(swiftDirs, xcodePath, version, system);
+                    });
         }
 
-        // also add runtime location of swift libs. these will be checked against
-        // SDK root for .tbd files
-        candidates.add(new File("/usr/lib/swift"));
-
-        return candidates.toArray(new File[0]);
+        return swiftDirs.toArray(new File[0]);
     }
 
 	protected void copySwiftLibs(Collection<String> swiftLibraries, File targetDir, boolean strip) throws IOException {

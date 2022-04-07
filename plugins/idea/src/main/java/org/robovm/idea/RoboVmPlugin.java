@@ -302,7 +302,7 @@ public class RoboVmPlugin {
     }
 
     public static File getSdkHome() {
-        return new File(getSdkHomeBase(), "robovm-" + Version.getVersion());
+        return new File(getSdkHomeBase(), "robovm-" + Version.getCompilerVersion());
     }
 
     public static File getSdkHomeBase() {
@@ -346,7 +346,7 @@ public class RoboVmPlugin {
                     filesWereUpdated = true;
                 }
             }
-            logInfo(null, "Installed RoboVM SDK %s to %s", Version.getVersion(), dest.getAbsolutePath());
+            logInfo(null, "Installed RoboVM SDK %s to %s", Version.getCompilerVersion(), dest.getAbsolutePath());
 
             if (filesWereUpdated) {
                 File cacheLog = new File(System.getProperty("user.home"), ".robovm/cache");
@@ -376,13 +376,13 @@ public class RoboVmPlugin {
         if (home.isDev()) {
             // ROBOVM_DEV_ROOT has been set (rtPath points to $ROBOVM_DEV_ROOT/rt/target/robovm-rt-<version>.jar).
             File rootDir = home.getRtPath().getParentFile().getParentFile().getParentFile();
-            libs.add(new File(rootDir, "objc/target/robovm-objc-" + Version.getVersion() + ".jar"));
-            libs.add(new File(rootDir, "objc/target/robovm-objc-" + Version.getVersion() + "-sources.jar"));
-            libs.add(new File(rootDir, "cocoatouch/target/robovm-cocoatouch-" + Version.getVersion() + ".jar"));
-            libs.add(new File(rootDir, "cocoatouch/target/robovm-cocoatouch-" + Version.getVersion() + "-sources.jar"));
-            libs.add(new File(rootDir, "rt/target/robovm-rt-" + Version.getVersion() + ".jar"));
-            libs.add(new File(rootDir, "rt/target/robovm-rt-" + Version.getVersion() + "-sources.jar"));
-            libs.add(new File(rootDir, "cacerts/full/target/robovm-cacerts-full-" + Version.getVersion() + ".jar"));
+            libs.add(new File(rootDir, "objc/target/robovm-objc-" + Version.getCompilerVersion() + ".jar"));
+            libs.add(new File(rootDir, "objc/target/robovm-objc-" + Version.getCompilerVersion() + "-sources.jar"));
+            libs.add(new File(rootDir, "cocoatouch/target/robovm-cocoatouch-" + Version.getCompilerVersion() + ".jar"));
+            libs.add(new File(rootDir, "cocoatouch/target/robovm-cocoatouch-" + Version.getCompilerVersion() + "-sources.jar"));
+            libs.add(new File(rootDir, "rt/target/robovm-rt-" + Version.getCompilerVersion() + ".jar"));
+            libs.add(new File(rootDir, "rt/target/robovm-rt-" + Version.getCompilerVersion() + "-sources.jar"));
+            libs.add(new File(rootDir, "cacerts/full/target/robovm-cacerts-full-" + Version.getCompilerVersion() + ".jar"));
         } else {
             // normal run
             File libsDir = new File(getSdkHome(), "lib");

@@ -85,7 +85,7 @@ public class TestClientTest {
 
     private Config.Builder createConfig() throws IOException, ClassNotFoundException {
         RoboVMResolver roboVMResolver = new RoboVMResolver();
-        Home home = new Home(roboVMResolver.resolveAndUnpackRoboVMDistArtifact(Version.getVersion()));
+        Home home = new Home(roboVMResolver.resolveAndUnpackRoboVMDistArtifact(Version.getCompilerVersion()));
 
         Config.Builder config = new Config.Builder();
 
