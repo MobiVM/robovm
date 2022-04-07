@@ -255,6 +255,26 @@ import org.robovm.apple.audiotoolbox.*;
     public native boolean isSmoothAutoFocusEnabled();
     @Property(selector = "setSmoothAutoFocusEnabled:")
     public native void setSmoothAutoFocusEnabled(boolean v);
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Property(selector = "automaticallyAdjustsFaceDrivenAutoFocusEnabled")
+    public native boolean automaticallyAdjustsFaceDrivenAutoFocusEnabled();
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Property(selector = "setAutomaticallyAdjustsFaceDrivenAutoFocusEnabled:")
+    public native void setAutomaticallyAdjustsFaceDrivenAutoFocusEnabled(boolean v);
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Property(selector = "isFaceDrivenAutoFocusEnabled")
+    public native boolean isFaceDrivenAutoFocusEnabled();
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Property(selector = "setFaceDrivenAutoFocusEnabled:")
+    public native void setFaceDrivenAutoFocusEnabled(boolean v);
     @Property(selector = "lensPosition")
     public native float getLensPosition();
     /**
@@ -272,6 +292,26 @@ import org.robovm.apple.audiotoolbox.*;
     public native @ByVal CGPoint getExposurePointOfInterest();
     @Property(selector = "setExposurePointOfInterest:")
     public native void setExposurePointOfInterest(@ByVal CGPoint v);
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Property(selector = "automaticallyAdjustsFaceDrivenAutoExposureEnabled")
+    public native boolean automaticallyAdjustsFaceDrivenAutoExposureEnabled();
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Property(selector = "setAutomaticallyAdjustsFaceDrivenAutoExposureEnabled:")
+    public native void setAutomaticallyAdjustsFaceDrivenAutoExposureEnabled(boolean v);
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Property(selector = "isFaceDrivenAutoExposureEnabled")
+    public native boolean isFaceDrivenAutoExposureEnabled();
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Property(selector = "setFaceDrivenAutoExposureEnabled:")
+    public native void setFaceDrivenAutoExposureEnabled(boolean v);
     /**
      * @since Available in iOS 12.0 and later.
      */

@@ -110,6 +110,10 @@ public enum /*<name>*/PHPhotosError/*</name>*/ implements NSErrorCode {
      */
     AccessUserDenied(3311L),
     /**
+     * @since Available in iOS 15.4 and later.
+     */
+    LibraryInFileProviderSyncRoot(5423L),
+    /**
      * @since Available in iOS 13.0 and later.
      * @deprecated Deprecated in iOS 15.0. Use PHPhotosErrorInternalError
      */

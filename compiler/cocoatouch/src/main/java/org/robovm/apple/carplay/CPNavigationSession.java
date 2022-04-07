@@ -64,6 +64,11 @@ import org.robovm.apple.coreanimation.*;
     /*<methods>*/
     @Method(selector = "pauseTripForReason:description:")
     public native void pauseTrip(CPTripPauseReason reason, String description);
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Method(selector = "pauseTripForReason:description:turnCardColor:")
+    public native void pauseTripForReason(CPTripPauseReason reason, String description, UIColor turnCardColor);
     @Method(selector = "finishTrip")
     public native void finishTrip();
     @Method(selector = "cancelTrip")

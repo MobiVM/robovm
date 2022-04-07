@@ -60,5 +60,10 @@ import org.robovm.apple.audiotoolbox.*;
     /*<methods>*/
     @NotImplemented("playbackCoordinator:identifierForPlayerItem:")
     public String identifierForPlayerItem(AVPlayerPlaybackCoordinator coordinator, AVPlayerItem playerItem) { return null; }
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @NotImplemented("playbackCoordinator:interstitialTimeRangesForPlayerItem:")
+    public NSArray<NSValue> interstitialTimeRangesForPlayerItem(AVPlayerPlaybackCoordinator coordinator, AVPlayerItem playerItem) { return null; }
     /*</methods>*/
 }

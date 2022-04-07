@@ -51,7 +51,26 @@ import org.robovm.apple.metalps.*;
     protected MPSGraphCompilationDescriptor(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Property(selector = "optimizationLevel")
+    public native MPSGraphOptimization getOptimizationLevel();
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Property(selector = "setOptimizationLevel:")
+    public native void setOptimizationLevel(MPSGraphOptimization v);
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Property(selector = "optimizationProfile")
+    public native MPSGraphOptimizationProfile getOptimizationProfile();
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Property(selector = "setOptimizationProfile:")
+    public native void setOptimizationProfile(MPSGraphOptimizationProfile v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

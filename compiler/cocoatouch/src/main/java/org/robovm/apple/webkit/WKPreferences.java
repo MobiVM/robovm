@@ -82,6 +82,26 @@ import org.robovm.apple.coreanimation.*;
     @Property(selector = "setTextInteractionEnabled:")
     public native void setTextInteractionEnabled(boolean v);
     /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "isSiteSpecificQuirksModeEnabled")
+    public native boolean isSiteSpecificQuirksModeEnabled();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setSiteSpecificQuirksModeEnabled:")
+    public native void setSiteSpecificQuirksModeEnabled(boolean v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "isElementFullscreenEnabled")
+    public native boolean isElementFullscreenEnabled();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setElementFullscreenEnabled:")
+    public native void setElementFullscreenEnabled(boolean v);
+    /**
      * @deprecated Deprecated in iOS 14.0. Use WKWebPagePreferences.allowsContentJavaScript to disable content JavaScript on a per-navigation basis
      */
     @Deprecated

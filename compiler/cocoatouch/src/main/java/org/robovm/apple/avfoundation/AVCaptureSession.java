@@ -163,6 +163,15 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "setAutomaticallyConfiguresCaptureDeviceForWideColor:")
     public native void setAutomaticallyConfiguresCaptureDeviceForWideColor(boolean v);
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Property(selector = "synchronizationClock")
+    public native CMClock getSynchronizationClock();
+    /**
+     * @deprecated Deprecated in iOS 15.4. Use synchronizationClock
+     */
+    @Deprecated
     @Property(selector = "masterClock")
     public native CMClock getMasterClock();
     /*</properties>*/

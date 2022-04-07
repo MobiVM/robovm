@@ -18,6 +18,7 @@ enums:
     SKProductDiscountPaymentMode: {}
     SKProductDiscountType: {} #since 12.2
     SKOverlayPosition: {} #since 14.0
+    SKANError: { nserror: true } #since 15.4
 classes:
     SKCloudServiceController: #since 9.3
         methods:
@@ -145,6 +146,8 @@ classes:
                 name: startImpression
             '+endImpression:completionHandler:':
                 name: endImpression
+            '+updatePostbackConversionValue:completionHandler:':
+                name: updatePostbackConversionValue
     SKProductDiscount: {} #since 11.2
     SKProductSubscriptionPeriod: {} #since 11.2
     SKPaymentDiscount: #since 12.2
@@ -305,6 +308,10 @@ values:
         dictionary: SKCloudServiceSetupOptions
         name: '#{g[0]}'
         type: NSString
+
+    SKANErrorDomain:
+        class: SKANError
+        name: getClassDomain
 
     # Make sure we don't miss any values if new ones are introduced in a later version
     (k?SK.*):

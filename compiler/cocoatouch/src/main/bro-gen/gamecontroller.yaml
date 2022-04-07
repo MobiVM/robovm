@@ -29,6 +29,8 @@ classes:
         annotations: ['@Packed(1)']
     GCMicroGamepadSnapshotData:
         annotations: ['@Packed(1)']
+    GCDualSenseAdaptiveTriggerPositionalAmplitudes: {} #since 15.4
+    GCDualSenseAdaptiveTriggerPositionalResistiveStrengths: {} #since 15.4
 
     GCController: # DONE
         methods:
@@ -116,6 +118,12 @@ classes:
             '-setModeWeaponWithStartPosition:endPosition:resistiveStrength:':
                 name: setModeWeapon
             '-setModeVibrationWithStartPosition:amplitude:frequency:':
+                name: setModeVibration
+            '-setModeSlopeFeedbackWithStartPosition:endPosition:startStrength:endStrength:':
+                name: setModeSlopeFeedback
+            '-setModeFeedbackWithResistiveStrengths:':
+                name: setModeFeedback
+            '-setModeVibrationWithAmplitudes:frequency:':
                 name: setModeVibration
     GCDualSenseGamepad: {} #since 14.5
     GCVirtualController: #since 15.0
@@ -235,6 +243,10 @@ constants:
     GCControllerPlayerIndexUnset:
         class: GCController
         name: UnsetPlayerIndex
+
+    GCDualSenseAdaptiveTriggerDiscretePositionCount:
+        class: GCDualSenseAdaptiveTrigger
+        name: DiscretePositionCount
 
     # Make sure we don't miss any constants if new ones are introduced in a later version
     (k?GC.*):

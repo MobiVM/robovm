@@ -46,10 +46,7 @@ public enum /*<name>*/NSFileProviderErrorCode/*</name>*/ implements NSErrorCode 
     PageExpired(-1002L),
     InsufficientQuota(-1003L),
     ServerUnreachable(-1004L),
-    NoSuchItem(-1005L),
-    NonEvictableChildren(-2006L),
-    UnsyncedEdits(-2007L),
-    NonEvictable(-2008L);
+    NoSuchItem(-1005L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(NSFileProviderErrorCode.class); }/*</bind>*/

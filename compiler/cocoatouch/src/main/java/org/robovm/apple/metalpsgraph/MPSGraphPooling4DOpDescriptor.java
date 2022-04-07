@@ -81,6 +81,26 @@ import org.robovm.apple.metalps.*;
     public native boolean isIncludeZeroPadToAverage();
     @Property(selector = "setIncludeZeroPadToAverage:")
     public native void setIncludeZeroPadToAverage(boolean v);
+    /**
+     * @since Available in iOS 15.3 and later.
+     */
+    @Property(selector = "returnIndicesMode")
+    public native MPSGraphPoolingReturnIndicesMode getReturnIndicesMode();
+    /**
+     * @since Available in iOS 15.3 and later.
+     */
+    @Property(selector = "setReturnIndicesMode:")
+    public native void setReturnIndicesMode(MPSGraphPoolingReturnIndicesMode v);
+    /**
+     * @since Available in iOS 15.3 and later.
+     */
+    @Property(selector = "returnIndicesDataType")
+    public native MPSDataType getReturnIndicesDataType();
+    /**
+     * @since Available in iOS 15.3 and later.
+     */
+    @Property(selector = "setReturnIndicesDataType:")
+    public native void setReturnIndicesDataType(MPSDataType v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

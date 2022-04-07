@@ -73,6 +73,15 @@ typed_enums:
         enum: HKFHIRRelease
         prefix: HKFHIRRelease
         type: NSString
+    HKVerifiableClinicalRecordSourceType:
+        enum: HKVerifiableClinicalRecordSourceType
+        prefix: HKVerifiableClinicalRecordSourceType
+        type: NSString
+    HKVerifiableClinicalRecordCredentialType:
+        enum: HKVerifiableClinicalRecordCredentialType
+        prefix: HKVerifiableClinicalRecordCredentialType
+        type: NSString
+
 classes:
     HKError:
         extends: NSError
@@ -672,6 +681,8 @@ classes:
     HKVerifiableClinicalRecordQuery: #since 15.0
         methods:
             '-initWithRecordTypes:predicate:resultsHandler:':
+                name: init
+            '-initWithRecordTypes:sourceTypes:predicate:resultsHandler:':
                 name: init
     HKVerifiableClinicalRecordSubject: {} #since 15.0
 protocols:

@@ -440,6 +440,10 @@ classes:
         methods:
             '-addAndSetUpAccessoriesForTopology:completionHandler:':
                 name: addAndSetUpAccessories
+            '-performAccessorySetupUsingRequest:completionHandler:':
+                name: performAccessorySetupUsingRequest
+            '-performMatterEcosystemAccessorySetupUsingRequest:topology:completionHandler:':
+                name: performMatterEcosystemAccessorySetupUsingRequest
     HMMatterHome: #since 15.0
         methods:
             '-initWithUUID:name:':
@@ -460,6 +464,8 @@ classes:
         methods:
             '-initWithHomes:':
                 name: init
+    HMAccessorySetupRequest: {} #since 15.4
+    HMAccessorySetupResult: {} #since 15.4
 protocols:
     HMAccessoryBrowserDelegate: # DONE
         methods:

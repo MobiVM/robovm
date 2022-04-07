@@ -63,6 +63,16 @@ import org.robovm.apple.metalps.*;
     public native boolean isWaitUntilCompleted();
     @Property(selector = "setWaitUntilCompleted:")
     public native void setWaitUntilCompleted(boolean v);
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Property(selector = "compilationDescriptor")
+    public native MPSGraphCompilationDescriptor getCompilationDescriptor();
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Property(selector = "setCompilationDescriptor:")
+    public native void setCompilationDescriptor(MPSGraphCompilationDescriptor v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

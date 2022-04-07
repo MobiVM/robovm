@@ -69,6 +69,16 @@ import org.robovm.apple.coreanimation.*;
     @Deprecated
     @Property(selector = "setSymbolSet:")
     public native void setSymbolSet(CPImageSet v);
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Property(selector = "cardBackgroundColor")
+    public native UIColor getCardBackgroundColor();
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Property(selector = "setCardBackgroundColor:")
+    public native void setCardBackgroundColor(UIColor v);
     @Property(selector = "symbolImage")
     public native UIImage getSymbolImage();
     @Property(selector = "setSymbolImage:")

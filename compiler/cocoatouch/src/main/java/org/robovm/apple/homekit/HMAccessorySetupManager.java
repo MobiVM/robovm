@@ -54,6 +54,21 @@ import org.robovm.apple.corelocation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Method(selector = "performAccessorySetupUsingRequest:completionHandler:")
+    public native void performAccessorySetupUsingRequest(HMAccessorySetupRequest request, @Block VoidBlock2<HMAccessorySetupResult, NSError> completion);
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Method(selector = "performMatterEcosystemAccessorySetupUsingRequest:topology:completionHandler:")
+    public native void performMatterEcosystemAccessorySetupUsingRequest(HMAccessorySetupRequest request, HMMatterTopology topology, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 15.0 and later.
+     * @deprecated Deprecated in iOS 15.4. Use -[HMAccessorySetupManager performAccessorySetupUsingRequest:topology:completionHandler:] instead
+     */
+    @Deprecated
     @Method(selector = "addAndSetUpAccessoriesForTopology:completionHandler:")
     public native void addAndSetUpAccessories(HMMatterTopology topology, @Block VoidBlock1<NSError> completion);
     /*</methods>*/

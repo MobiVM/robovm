@@ -135,9 +135,13 @@ import org.robovm.apple.foundation.*;
      * @since Available in iOS 15.0 and later.
      */
     public static final SRSensor TelephonySpeechMetrics = new SRSensor("TelephonySpeechMetrics");
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    public static final SRSensor AmbientPressure = new SRSensor("AmbientPressure");
     /*</constants>*/
     
-    private static /*<name>*/SRSensor/*</name>*/[] values = new /*<name>*/SRSensor/*</name>*/[] {/*<value_list>*/AmbientLightSensor, Accelerometer, RotationRate, Visits, PedometerData, DeviceUsageReport, MessagesUsageReport, PhoneUsageReport, OnWristState, KeyboardMetrics, SiriSpeechMetrics, TelephonySpeechMetrics/*</value_list>*/};
+    private static /*<name>*/SRSensor/*</name>*/[] values = new /*<name>*/SRSensor/*</name>*/[] {/*<value_list>*/AmbientLightSensor, Accelerometer, RotationRate, Visits, PedometerData, DeviceUsageReport, MessagesUsageReport, PhoneUsageReport, OnWristState, KeyboardMetrics, SiriSpeechMetrics, TelephonySpeechMetrics, AmbientPressure/*</value_list>*/};
     
     /*<name>*/SRSensor/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -220,6 +224,11 @@ import org.robovm.apple.foundation.*;
          */
         @GlobalValue(symbol="SRSensorTelephonySpeechMetrics", optional=true)
         public static native NSString TelephonySpeechMetrics();
+        /**
+         * @since Available in iOS 15.4 and later.
+         */
+        @GlobalValue(symbol="SRSensorAmbientPressure", optional=true)
+        public static native NSString AmbientPressure();
         /*</values>*/
     }
 }
