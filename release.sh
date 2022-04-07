@@ -75,12 +75,12 @@ cd ../gradle
 # Set release version
 sed "s/^version *=.*/version = '$RELEASE_VERSION'/" build.gradle | sed "s/roboVMVersion *=.*/roboVMVersion = '$RELEASE_VERSION'/" > build.gradle.tmp
 mv build.gradle.tmp build.gradle
-./gradlew clean build install
+./gradlew clean build
 git commit -am "Set release version of Gradle plugin, $RELEASE_VERSION"
 git push
 
 # Release
-./gradlew uploadArchives
+./gradlew publish
 
 # Set development version
 sed "s/^version *=.*/version = '$DEVELOPMENT_VERSION-SNAPSHOT'/" build.gradle | sed "s/roboVMVersion *=.*/roboVMVersion = '$DEVELOPMENT_VERSION-SNAPSHOT'/" > build.gradle.tmp
