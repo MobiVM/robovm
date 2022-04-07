@@ -159,7 +159,9 @@ public class RoboVmIOSRunConfigurationSettingsEditor extends SettingsEditor<Robo
                 simArch.addItem(DeviceType.DEFAULT_HOST_ARCH);
                 result = DeviceType.DEFAULT_HOST_ARCH;
             } else {
-                Set<Arch> simArches = simulator.data.getArchs();
+                Set<CpuArch> simArches = simulator.data.getArchs().stream()
+                        .map(Arch::getCpuArch)
+                        .collect(Collectors.toSet());
                 for (CpuArch a : SIMULATOR_ARCHS) {
                     if (simArches.contains(a)) {
                         simArch.addItem(a);
