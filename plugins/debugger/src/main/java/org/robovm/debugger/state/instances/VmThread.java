@@ -15,6 +15,8 @@
  */
 package org.robovm.debugger.state.instances;
 
+import org.robovm.debugger.hooks.HookConsts;
+import org.robovm.debugger.jdwp.JdwpConsts;
 import org.robovm.debugger.state.classdata.ClassInfo;
 
 /**
@@ -22,11 +24,6 @@ import org.robovm.debugger.state.classdata.ClassInfo;
  * Represend thread object received from target
  */
 public class VmThread extends VmInstance {
-
-    public enum Status {
-        SUSPENDED,
-        RUNNING
-    }
 
     /** native (not java) thread object pointer */
     private long threadPtr;
@@ -37,7 +34,8 @@ public class VmThread extends VmInstance {
     /** thread group */
     private final VmThreadGroup threadGroup;
 
-    private Status status;
+    private int jdwpThreadStatus;
+    private int hookSuspendStatus;
     private int suspendCount;
     private VmStackTrace[] stack;
 
@@ -47,7 +45,8 @@ public class VmThread extends VmInstance {
         this.threadPtr = threadPtr;
         this.name = name;
         this.threadGroup = threadGroup;
-        status = Status.RUNNING;
+        jdwpThreadStatus = JdwpConsts.ThreadStatus.RUNNING;
+        hookSuspendStatus = HookConsts.threadSuspendStatus.RUNNING;
     }
 
     public int suspendCount() {
@@ -93,12 +92,20 @@ public class VmThread extends VmInstance {
         this.stack = stack;
     }
 
-    public Status status() {
-        return status;
+    public int getJdwpThreadStatus() {
+        return jdwpThreadStatus;
     }
 
-    public void setStatus(Status status) {
-        this.status = status;
+    public void setJdwpThreadStatus(int jdwpThreadStatus) {
+        this.jdwpThreadStatus = jdwpThreadStatus;
+    }
+
+    public int getHookSuspendStatus() {
+        return hookSuspendStatus;
+    }
+
+    public void setHookSuspendStatus(int hookSuspendStatus) {
+        this.hookSuspendStatus = hookSuspendStatus;
     }
 
     @Override
