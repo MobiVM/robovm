@@ -90,9 +90,9 @@ import org.robovm.apple.imageio.*;
      * @deprecated Deprecated in iOS 15.0. Use -supportedIdentifiersAndReturnError:
      */
     @Deprecated
-    public static NSArray<?> getKnownClassificationsForRevision(@MachineSizedUInt long requestRevision) throws NSErrorException {
+    public static NSArray<VNClassificationObservation> getKnownClassificationsForRevision(@MachineSizedUInt long requestRevision) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
-       NSArray<?> result = getKnownClassificationsForRevision(requestRevision, ptr);
+       NSArray<VNClassificationObservation> result = getKnownClassificationsForRevision(requestRevision, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        return result;
     }
@@ -102,6 +102,6 @@ import org.robovm.apple.imageio.*;
      */
     @Deprecated
     @Method(selector = "knownClassificationsForRevision:error:")
-    private static native NSArray<?> getKnownClassificationsForRevision(@MachineSizedUInt long requestRevision, NSError.NSErrorPtr error);
+    private static native NSArray<VNClassificationObservation> getKnownClassificationsForRevision(@MachineSizedUInt long requestRevision, NSError.NSErrorPtr error);
     /*</methods>*/
 }

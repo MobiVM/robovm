@@ -1,10 +1,10 @@
 plugins {
     id 'java'
-    id "org.jetbrains.intellij" version "1.2.0"
+    id "org.jetbrains.intellij" version "1.5.2"
 }
 
 ext {
-    roboVMVersion = '2.3.16-SNAPSHOT'
+    roboVMVersion = '2.3.17-SNAPSHOT'
 }
 
 group 'com.mobidevelop.robovm'
@@ -39,7 +39,7 @@ dependencies {
 }
 
 intellij {
-    version '2020.1'   // we are compiles against this API version
+    version = '2021.1'   // we are compiles against this API version
     plugins = ['java', 'maven', 'gradle']
     updateSinceUntilBuild = false
 }

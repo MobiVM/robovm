@@ -51,7 +51,7 @@ import org.robovm.apple.security.*;
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "driverConfigurations")
-    public static native NSDictionary<?, ?> getDriverConfigurations();
+    public static native NSDictionary<NSString, TKTokenDriverConfiguration> getDriverConfigurations();
     @Property(selector = "classID")
     public native String getClassID();
     @Property(selector = "tokenConfigurations")
