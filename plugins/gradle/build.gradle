@@ -97,6 +97,11 @@ publishing {
     }
 }
 
+java {
+    withSourcesJar()
+    withJavadocJar()
+}
+
 shadowJar {
     classifier = ''
     dependencies {
