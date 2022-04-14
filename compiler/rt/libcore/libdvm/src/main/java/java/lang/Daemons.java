@@ -34,6 +34,7 @@ public final class Daemons {
     private static final int NANOS_PER_MILLI = 1000 * 1000;
     private static final int NANOS_PER_SECOND = NANOS_PER_MILLI * 1000;
     private static final long MAX_FINALIZE_NANOS = 10L * NANOS_PER_SECOND;
+    private static final long MAX_FINALIZE_NANOS_HALF = (MAX_FINALIZE_NANOS / 2);
 
     public static void start() {
         ReferenceQueueDaemon.INSTANCE.start();
@@ -236,26 +237,25 @@ public final class Daemons {
             }
         }
 
-        private void sleepFor(long startNanos, long durationNanos) {
-            while (true) {
-                long elapsedNanos = System.nanoTime() - startNanos;
-                long sleepNanos = durationNanos - elapsedNanos;
-                long sleepMills = sleepNanos / NANOS_PER_MILLI;
-                if (sleepMills <= 0) {
-                    return;
-                }
-                try {
-                    Thread.sleep(sleepMills);
-                } catch (InterruptedException e) {
-                    if (!isRunning()) {
-                        return;
-                    }
-                }
+        private void sleepFor(long sleepNanos) {
+            long sleepMills = sleepNanos / NANOS_PER_MILLI;
+            try {
+                Thread.sleep(sleepMills);
+            } catch (InterruptedException ignored) {
             }
         }
 
         private boolean waitForFinalization(Object object) {
-            sleepFor(FinalizerDaemon.INSTANCE.finalizingStartedNanos, MAX_FINALIZE_NANOS);
+            // on minimize iOS will put application to background and suspend all threads.
+            // if background time is longer than MAX_FINALIZE_NANOS and watchdog was
+            // waiting on object -- sleep will exit before finalizer and will cause
+            // `$classname`.finalize() timed out after 10 seconds
+            // to workaround this case split wait interval into two. This will allow
+            // to survive this case
+            sleepFor(MAX_FINALIZE_NANOS_HALF);
+            if (object != FinalizerDaemon.INSTANCE.finalizingObject)
+                return true;
+            sleepFor(MAX_FINALIZE_NANOS_HALF);
             return object != FinalizerDaemon.INSTANCE.finalizingObject;
         }
 
