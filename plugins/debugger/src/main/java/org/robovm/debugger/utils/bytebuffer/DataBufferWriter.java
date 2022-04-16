@@ -34,7 +34,7 @@ public interface DataBufferWriter extends DataBuffer {
     DataBufferWriter writeInt32(int i);
 
     default DataBufferWriter writeUnsignedInt32(long l) {
-        int i = (int) (l & 0xFFFFFFFF);
+        int i = (int) (l & 0xFFFFFFFFL);
         return writeInt32(i);
     }
 
@@ -127,11 +127,40 @@ public interface DataBufferWriter extends DataBuffer {
         return this;
     }
 
+    //
+    // Overloadable API
+    //
+
     /**
-     * resets writer part, in case both reader and writer are implemented
+     * sets new position of buffer
      */
-    default DataBufferWriter resetWriter() {
-        reset();
-        return this;
+    DataBufferWriter setPosition(long position);
+
+    /**
+     * makes a slice at specific position and specific size,
+     * new slices receives new bottom limit
+     */
+    DataBufferWriter sliceAt(long pos, int size, long newBottomLimit, boolean as64bit);
+
+    default DataBufferWriter sliceAt(long pos, int size, boolean as64bit) {
+        return sliceAt(pos, size, 0L, as64bit);
+    }
+
+    default DataBufferWriter sliceAt(long pos, int size) {
+        return sliceAt(pos, size, is64bit());
+    }
+
+    /**
+     * makes a slice from current position and specific size
+     */
+    default DataBufferWriter slice(int size) {
+        return sliceAt(position(), size);
+    }
+
+    /**
+     * slices all remain bytes
+     */
+    default DataBufferWriter slice() {
+        return sliceAt(position(), remaining());
     }
 }

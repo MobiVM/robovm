@@ -45,9 +45,6 @@ public interface DataBufferReader extends DataBuffer {
             throw new BufferUnderflowException();
     }
 
-    // redeclare for proper return type
-    DataBufferReader setPosition(long position);
-
     byte readByte();
 
     default boolean readBoolean() {
@@ -269,6 +266,38 @@ public interface DataBufferReader extends DataBuffer {
             }
         }
     }
+
+    /**
+     * @return ULEB128 packed data
+     */
+    default long readUleb128() {
+        byte b = readByte();
+        if ((b & 0x80) == 0)
+            return b;
+
+        long result = 0;
+        int bit = 0;
+        for(;;) {
+            long slice = b & 0x7f;
+            if ( bit > 63 )
+                throw new IllegalArgumentException("uleb128 too big for uint64");
+
+            result |= (slice << bit);
+            if ((b & 0x80) == 0)
+                return result;
+            bit += 7;
+            b = readByte();
+        }
+    }
+
+    //
+    // Overloadable API
+    //
+
+    /**
+     * sets new position of buffer
+     */
+    DataBufferReader setPosition(long position);
 
     /**
      * makes a slice at specific position and specific size,

@@ -15,16 +15,18 @@
  */
 package org.robovm.debugger.utils.macho;
 
-import org.robovm.debugger.utils.bytebuffer.CompositeDataBufferReader;
-import org.robovm.debugger.utils.bytebuffer.DataBufferArrayReader;
-import org.robovm.debugger.utils.bytebuffer.DataBufferReader;
-import org.robovm.debugger.utils.bytebuffer.DataByteBufferReader;
-import org.robovm.debugger.utils.bytebuffer.NullDataBufferReader;
+import org.robovm.debugger.utils.Pair;
+import org.robovm.debugger.utils.bytebuffer.*;
+import org.robovm.debugger.utils.macho.tools.ChainedFixup;
+import org.robovm.debugger.utils.macho.structs.DyLdChainedFixups;
+import org.robovm.debugger.utils.macho.cmds.LinkeditDataCommand;
 import org.robovm.debugger.utils.macho.cmds.SegmentCommand;
 import org.robovm.debugger.utils.macho.cmds.SymtabCommand;
 import org.robovm.debugger.utils.macho.structs.MachHeader;
-import org.robovm.debugger.utils.macho.structs.NList;
 import org.robovm.debugger.utils.macho.structs.Section;
+import org.robovm.debugger.utils.macho.tools.ExportedSymbolsParser;
+import org.robovm.debugger.utils.macho.tools.ExportedSymbolsParser.ResolvedSymbol;
+import org.robovm.debugger.utils.macho.tools.RegionSquasher;
 
 import java.io.File;
 import java.io.IOException;
@@ -32,10 +34,8 @@ import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.channels.FileChannel;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.function.*;
 
 /**
  * @author Demyan Kimitsa
@@ -43,21 +43,22 @@ import java.util.Map;
  */
 public class MachOLoader {
     private final DataBufferReader rootReader;
+    private final DataBufferReaderWriter rootReaderWriter;
     private final MachHeader machOHeader;
     private final int machOCpuType;
     private final List<SegmentCommand> segments = new ArrayList<>();
     private final Map<String, Long> symTable = new HashMap<>();
-    private SegmentCommand dataSegment;
 
 
     public MachOLoader(File executable, int cpuType) throws MachOException {
         ByteBuffer bb;
         try {
-            bb = new RandomAccessFile(executable, "r").getChannel().map(FileChannel.MapMode.READ_ONLY, 0, executable.length());
+            bb = new RandomAccessFile(executable, "rw").getChannel().map(FileChannel.MapMode.PRIVATE, 0, executable.length());
         } catch (IOException e) {
             throw new MachOException("Failed to open mach-o file", e);
         }
-        rootReader = new DataByteBufferReader(bb);
+        rootReaderWriter = new DataByteBufferWriter(bb);
+        rootReader = rootReaderWriter;
         rootReader.setByteOrder(ByteOrder.LITTLE_ENDIAN);
 
         // read architectures
@@ -85,6 +86,10 @@ public class MachOLoader {
     }
 
     private void readCommandData(DataBufferReader reader, MachHeader header) {
+        List<LinkeditDataCommand> dyldChainedFixups = null;
+        Map<String, ResolvedSymbol> exportedSymbols = new HashMap<>();
+        long imageBaseAddress = 0;
+
         int sectionIdx = 1;
         // read all commands
         for (int idx = 0; idx < header.ncmds(); idx++) {
@@ -98,55 +103,64 @@ public class MachOLoader {
                 segments.add(segCmd);
                 sectionIdx += segCmd.sections().length;
 
-                // save data segment
-                if ("__DATA".equals(segCmd.segname()))
-                    dataSegment = segCmd;
+                // update image base address
+                if ("__TEXT".equals(segCmd.segname()))
+                    imageBaseAddress = segCmd.vmaddr();
             } else if (cmd == MachOConsts.commands.LC_SYMTAB) {
                 SymtabCommand symtabCommand = new SymtabCommand(reader);
-                DataBufferReader stringReader;
-                if (symtabCommand.strsize < 8 * 1024 * 1024) {
-                    // read entire data to byte array and wrap to byte buffer
-                    // to enable array based optimizations
-                    byte[] symtabBytes = reader.setPosition(symtabCommand.stroff).readBytes((int) symtabCommand.strsize);
-                    stringReader = DataBufferReader.wrap(symtabBytes);
-                } else {
-                    stringReader = reader.sliceAt(symtabCommand.stroff, (int) symtabCommand.strsize);
-                }
-                DataBufferReader nlistReader = reader.sliceAt(symtabCommand.symoff, (int) (symtabCommand.nsyms * NList.ITEM_SIZE(header.is64b())));
-                DataBufferArrayReader<NList> arrayReader = new DataBufferArrayReader<>(nlistReader,
-                        NList.ITEM_SIZE(header.is64b()), NList.OBJECT_READER(header.is64b()));
-                for (NList nlist : arrayReader) {
-                    if (nlist.isTypeStab()) {
-                        if (!nlist.isTypeStabGlobalSymb())
-                            continue;
-                    } else {
-                        // do some filtering
-                        if (nlist.isTypeUndfined())
-                            continue;
-                        if (nlist.isTypePreboundUndefined())
-                            continue;
-                    }
-                    if (nlist.n_sect() == 0)
-                        continue;
+                ExportedSymbolsParser.parseSymtabCommand(exportedSymbols, reader, symtabCommand, header.is64b());
+            } else if (cmd == MachOConsts.commands.LC_DYLD_EXPORTS_TRIE) {
+                // read linkedit_data_command
+                LinkeditDataCommand dyldExportTrie = new LinkeditDataCommand(reader);
+                ExportedSymbolsParser.parseExportTrie(exportedSymbols, reader.sliceAt(dyldExportTrie.getDataoff(),
+                        dyldExportTrie.getDatasize()));
+            } else if (cmd == MachOConsts.commands.LC_DYLD_CHAINED_FIXUPS) {
+                // read linkedit_data_command
+                LinkeditDataCommand linkedit = new LinkeditDataCommand(reader);
 
-                    // save offset to NList as there is too much of symbols
-                    String sym = stringReader.readStringZ(nlist.n_strx());
-                    if (isUsableDebuggerSym(sym))
-                        symTable.put(sym, nlist.n_value());
-                }
+                if (dyldChainedFixups == null)
+                    dyldChainedFixups = new ArrayList<>();
+                dyldChainedFixups.add(linkedit);
             }
 
             reader.setPosition(pos + cmdsize);
         }
+
+        // Apply chained fixups
+        if (dyldChainedFixups != null) {
+            fixupAllChainedFixups(imageBaseAddress, dyldChainedFixups, exportedSymbols);
+        }
+
+        // build symbol table
+        for (Map.Entry<String, ResolvedSymbol> e: exportedSymbols.entrySet()) {
+            symTable.put(e.getKey(), e.getValue().target);
+        }
     }
 
-    private boolean isUsableDebuggerSym(String sym) {
-        return sym.endsWith("[debuginfo]") ||
-                sym.endsWith("[bptable]") ||
-                sym.startsWith("_prim_") ||
-                sym.equals("__bcBootClassesHash") ||
-                sym.equals("__bcClassesHash") ||
-                sym.equals("_robovmBaseSymbol");
+    private void fixupAllChainedFixups(long imageBaseAddress, List<LinkeditDataCommand> fixups, Map<String, ResolvedSymbol> exportedSymbols) {
+        // going to write over mapped file as it mapped in Private mode (copy on write)
+        // prepare composite writer over all usable segments
+        List<DataBufferReaderWriter> regions = new ArrayList<>();
+
+        // all segments that have virtual addresses are subject for reader
+        for (SegmentCommand segment : segments) {
+            if (segment.vmaddr() != 0 && segment.vmsize() > 0 && !"__LINKEDIT".equals(segment.segname())) {
+                DataBufferReaderWriter writer = rootReaderWriter.sliceAt(segment.fileoff(), (int) segment.filesize(), segment.vmaddr(), isPatform64Bit());
+                regions.add(writer);
+            }
+        }
+        CompositeDataBufferWriter compositeWriter = new CompositeDataBufferWriter(regions.toArray(new DataBufferReaderWriter[0]));
+
+        // code is not loaded at any different point so its actual location matches imageBaseAddress and slides from
+        // it only at zero bytes
+        long slide = 0;
+        for (LinkeditDataCommand linkedit: fixups) {
+            // process chained LC_DYLD_CHAINED_FIXUPS
+            DyLdChainedFixups.Header fixupsHeader = new DyLdChainedFixups.Header(rootReader.sliceAt(linkedit.getDataoff(),
+                    linkedit.getDatasize()), exportedSymbols);
+            ChainedFixup mapper = new ChainedFixup(imageBaseAddress, compositeWriter);
+            mapper.fixupAllChainedFixups(fixupsHeader.startsInSegment, slide, fixupsHeader.imports);
+        }
     }
 
     public static int cpuTypeFromString(String cpuString) {
@@ -196,37 +210,61 @@ public class MachOLoader {
     }
 
     public DataBufferReader memoryReader() {
-        // after test it clear that some data is read from __TEXT section (consts) so need to pick proper sections into
-        // list
         List<DataBufferReader> regions = new ArrayList<>();
-        for (SegmentCommand segCmd : segments) {
-            boolean isText = "__TEXT".equals(segCmd.segname());
-            boolean isData = "__DATA".equals(segCmd.segname());
-            if (!isText && !isData)
-                continue;
-            for (Section sec : segCmd.sections()) {
-                DataBufferReader region = null;
-                if (isText) {
-                    // spFpOffset is in text section
-                    if (!"__const".equals(sec.sectname()) && !"__text".equals(sec.sectname()))
-                        continue;
-                } else {
-                    // data
-                    if ("__bss".equals(sec.sectname()) || "__common".equals(sec.sectname())) {
-                        // zero initialized zeros data goes to __bss(static)/__common(global) so have to read it as well
-                        region = new NullDataBufferReader(sec.addr(), (int) sec.size(), isPatform64Bit());
-                    } else if (!"__const".equals(sec.sectname()) && !"__data".equals(sec.sectname()))
-                        continue;
-                }
 
-                if (region == null)
-                    region = rootReader.sliceAt(sec.offset(), (int) sec.size(), sec.addr(), isPatform64Bit());
-                regions.add(region);
+        // all segments that have virtual addresses are subject for reader
+        List<Pair<SegmentCommand, Section>> sections = new ArrayList<>();
+        for (SegmentCommand segment : segments) {
+            if (segment.vmaddr() != 0 && segment.vmsize() > 0 && !"__LINKEDIT".equals(segment.segname())) {
+                for (Section section : segment.sections()) {
+                    sections.add(new Pair<>(segment, section));
+                }
             }
         }
-        // not likely to happen but data segment is required
-        if (dataSegment == null)
-            return null;
+
+        Predicate<Pair<SegmentCommand, Section>> uninitialized = (p) -> {
+            Section section = p.right;
+            return "__DATA".equals(section.segname()) && ("__bss".equals(section.sectname()) || "__common".equals(section.sectname()));
+        };
+
+        // in memory section can be fill memory pages but on disk it might take smaller amount of bytes
+        // to join two sections together its important to know if address space corresponds disk space
+        ToLongFunction<Pair<SegmentCommand, Section>> rightMarginOnDisk = (p) ->
+                Math.min(p.right.addr() + p.right.size(), p.left.vmaddr() + p.left.filesize());
+
+        BiPredicate<Pair<SegmentCommand, Section>, Pair<SegmentCommand, Section>> canSquash = (first, last) -> {
+            // can squash if both are uninitialized (both are not)
+            // and start of last one matches end of first one (allow some gap due alignments)
+            boolean zeroSection = uninitialized.test(first);
+            if (zeroSection != uninitialized.test(last))
+                return false;
+            if (zeroSection) {
+                return (last.right.addr() - (first.right.addr() + first.right.size())) < 64;
+            } else {
+                return last.right.addr() - rightMarginOnDisk.applyAsLong(first) < 64;
+            }
+        };
+
+        // sort by section addresses
+        sections.sort(Comparator.comparingLong(p -> p.right.addr()));
+
+        // squasher
+        BiConsumer<Pair<SegmentCommand, Section>, Pair<SegmentCommand, Section>> squasher = (p1, p2) -> {
+            Section first = p1.right;
+            Section last = p2.right;
+            DataBufferReader reader;
+            if (uninitialized.test(p1)) {
+                long size = last.addr() + last.size() - first.addr();
+                reader = new NullDataBufferReader(first.addr(), size, isPatform64Bit());
+            } else {
+                long size = rightMarginOnDisk.applyAsLong(p2) - first.addr();
+                reader = rootReader.sliceAt(first.offset(), (int) size, first.addr(), isPatform64Bit());
+            }
+            regions.add(reader);
+        };
+
+        // squash sections
+        RegionSquasher.squash(sections, canSquash, squasher);
 
         return new CompositeDataBufferReader(regions.toArray(new DataBufferReader[0]));
     }
@@ -237,18 +275,18 @@ public class MachOLoader {
             MachOLoader loader = new MachOLoader(new File(argv[0]), cpuTypeFromString(argv[1]));
             // dump info
             System.out.println("Segments:");
-            System.out.println(String.format("  %-30s | %10s | %16s | %16s", "", "size", "file_offs", "vm_addr"));
+            System.out.printf("  %-30s | %10s | %16s | %16s%n", "", "size", "file_offs", "vm_addr");
             for (SegmentCommand segment : loader.segments) {
-                System.out.println(String.format("  %-30s | %10X | %16X | %16X", segment.segname(),
-                        segment.filesize(), segment.fileoff(), segment.vmaddr()));
+                System.out.printf("  %-30s | %10X | %16X | %16X%n", segment.segname(),
+                        segment.filesize(), segment.fileoff(), segment.vmaddr());
                 int idx = 0;
                 for (Section section : segment.sections()) {
-                    System.out.println(String.format("  %4d:%-25s | %10X | %16X | %16X",
-                            segment.firstSectionIdx() + idx, section.sectname(), section.size(), section.offset(), section.addr()));
+                    System.out.printf("  %4d:%-25s | %10X | %16X | %16X%n",
+                            segment.firstSectionIdx() + idx, section.sectname(), section.size(), section.offset(), section.addr());
                     idx++;
                 }
             }
-            System.out.println(String.format("Symbols(%d):", loader.symTable.size()));
+            System.out.printf("Symbols(%d):%n", loader.symTable.size());
             for (Map.Entry<String, Long> e : loader.symTable.entrySet()) {
                 System.out.println("  " + e.getKey());
             }
