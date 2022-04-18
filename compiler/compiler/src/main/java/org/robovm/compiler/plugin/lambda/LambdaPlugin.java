@@ -163,7 +163,6 @@ public class LambdaPlugin extends AbstractCompilerPlugin {
                                         samMethodType.getReturnType());
                                 for (SootMethod targetTypeMethod : targetType.getMethods()) {
                                     boolean isBridgeMethod = targetTypeMethod.getName().equals(invokedName);
-                                    isBridgeMethod &= targetTypeMethod.getName().equals(invokedName);
                                     isBridgeMethod &= targetTypeMethod.getParameterCount() == samMethodType.getParameterTypes().size();
                                     isBridgeMethod &= ((targetTypeMethod.getModifiers() & BRIDGE) != 0);
                                     isBridgeMethod &= ((targetTypeMethod.getModifiers() & SYNTHETIC) != 0);

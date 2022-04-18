@@ -16,29 +16,22 @@
  */
 package org.robovm.compiler.plugin.lambda;
 
-import static org.objectweb.asm.Opcodes.*;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.commons.GeneratorAdapter;
 import org.robovm.compiler.CompilerException;
 import org.robovm.compiler.Types;
+import soot.*;
+import soot.jimple.InvokeExpr;
+import soot.jimple.Jimple;
+import soot.jimple.Stmt;
 
-import soot.DoubleType;
-import soot.FloatType;
-import soot.LongType;
-import soot.PrimType;
-import soot.RefType;
-import soot.SootClass;
-import soot.SootMethodHandle;
-import soot.SootMethodRef;
-import soot.SootMethodType;
-import soot.Type;
-import soot.VoidType;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
+import static org.objectweb.asm.Opcodes.*;
 
 public class LambdaClassGenerator {
     private static int CLASS_VERSION = 51;
@@ -49,10 +42,11 @@ public class LambdaClassGenerator {
             List<Type> markerInterfaces, List<SootMethodType> bridgeMethods) {
         ClassWriter cw = new ClassWriter(ClassWriter.COMPUTE_MAXS | ClassWriter.COMPUTE_FRAMES);
 
-        String lambdaClassName = caller.getName().replace('.', '/') + "$$Lambda$" + (counter++);
+        int lambdaIndex = counter++;
+        String lambdaClassName = caller.getName().replace('.', '/') + "$$Lambda$" + lambdaIndex;
         String functionalInterface = invokedType.returnType().toString().replace('.', '/');
 
-        List<String> interfaces = new ArrayList<String>();
+        List<String> interfaces = new ArrayList<>();
         interfaces.add(functionalInterface);
         for (Type markerInterface : markerInterfaces) {
             interfaces.add(markerInterface.toString().replace('.', '/'));
@@ -75,15 +69,19 @@ public class LambdaClassGenerator {
                     instantiatedMethodType);
         }
 
+        // create a trampoline to private member if required
+        SootMethodHandle methodHandle = createTrampolineForProtectedTarget(caller, implMethod,
+                invokedType.parameterTypes(), invokedName, lambdaIndex);
+
         // forward the lambda method
         createForwardingMethod(caller, lambdaClassName, cw, invokedName, samMethodType.getParameterTypes(),
-                samMethodType.getReturnType(), invokedType.parameterTypes(), samMethodType, implMethod,
+                samMethodType.getReturnType(), invokedType.parameterTypes(), samMethodType, methodHandle,
                 instantiatedMethodType, false);
 
         // create any bridge methods necessary
         for (SootMethodType bridgeMethod : bridgeMethods) {
             createForwardingMethod(caller, lambdaClassName, cw, invokedName, bridgeMethod.getParameterTypes(),
-                    bridgeMethod.getReturnType(), invokedType.parameterTypes(), samMethodType, implMethod,
+                    bridgeMethod.getReturnType(), invokedType.parameterTypes(), samMethodType, methodHandle,
                     instantiatedMethodType, true);
         }
         cw.visitEnd();
@@ -92,11 +90,112 @@ public class LambdaClassGenerator {
                 invokedType.returnType());
     }
 
+    /**
+     * Creates a trampoline that replaces a lambda destination to inherited protected member to a wrapper
+     * in calling class which will perform original call. for a case when inherited member and lambda are
+     * located in different packages
+     *
+     * Problem sample:
+     * package a;
+     * public class A {
+     *     protected foo(){};
+     * }
+     *
+     * package b;
+     * import a.A;
+     * public class B extends A{
+     *     public void test() {
+     *         Runnable r = ::foo;
+     *         r.run();
+     *     }
+     * }
+     * produces: java.lang.IllegalAccessError: Attempt to access method a.A.foo()V from class b.B$$Lambda$1
+     *
+     * @return new SootMethodHandle to trampoline method or existing if trampoline is not required
+     */
+    private SootMethodHandle createTrampolineForProtectedTarget(SootClass caller, SootMethodHandle methodHandle,
+                                                                List<Type> invokedParameters,
+                                                                String name, int lambdaIndex) {
+        // trampoline to be created in case target method is protected and target member's class is not accessible
+        // from caller package
+        int refKind = methodHandle.getReferenceKind();
+        if ((refKind == SootMethodHandle.REF_invokeVirtual || refKind == SootMethodHandle.REF_invokeStatic) &&
+            !caller.getJavaPackageName().equals(methodHandle.getMethodRef().declaringClass().getPackageName()))
+        {
+            boolean isInstanceMethod = refKind == SootMethodHandle.REF_invokeVirtual;
+
+            // try to resolve method and if fails do nothing
+            SootMethod targetMethod = null;
+            try {
+                // can't invoke here targetMethod = methodHandle.getMethodRef().resolve() as it will fail
+                // with exception in checkStatic() as methodHandle.methodRef marked as static even for
+                // virtualInvoke()
+                // TODO: FIXME: probably a soot bug!
+                SootMethodRef methodRef = methodHandle.getMethodRef();
+                targetMethod = methodRef.declaringClass().getMethod(methodRef.getSubSignature());
+            } catch (Exception ignored) {
+            }
+
+            if (targetMethod != null && targetMethod.isProtected()) {
+                List<Type> trampolineParameters = new ArrayList<>(methodHandle.getMethodType().getParameterTypes());
+                if (isInstanceMethod) {
+                    // it is important to replace methodType arg with type of argument otherwise it will produce
+                    // IllegalAccessError while invoking `packageA.A.method()` from `packageB.B` class. Just call it
+                    // as `packageB.B.method()`
+                    trampolineParameters.set(0, invokedParameters.get(0));
+                }
+
+                SootMethod trampoline = new SootMethod("robovm$lambda$" + name + "$" + lambdaIndex,
+                        trampolineParameters, methodHandle.getMethodType().getReturnType(),
+                        Modifier.PRIVATE | Modifier.STATIC |  0x1000 /*ACC_SYNTHETIC*/);
+                Jimple j = Jimple.v();
+                Body body = j.newBody(trampoline);
+                PatchingChain<Unit> units = body.getUnits();
+                Local receiver = null;
+                if (isInstanceMethod) {
+                    receiver = j.newLocal("$this", trampoline.getParameterType(0));
+                    body.getLocals().add(receiver);
+                    units.add(j.newIdentityStmt(receiver, j.newParameterRef(receiver.getType(), 0)));
+                }
+
+                LinkedList<Value> args = new LinkedList<>();
+                for (int i = receiver != null ? 1 : 0; i < trampoline.getParameterCount(); i++) {
+                    Type t = trampoline.getParameterType(i);
+                    Local p = j.newLocal("$p" + i, t);
+                    body.getLocals().add(p);
+                    units.add(j.newIdentityStmt(p, j.newParameterRef(t, i)));
+                    args.add(p);
+                }
+
+                Local ret = null;
+                if (trampoline.getReturnType() != VoidType.v()) {
+                    ret = j.newLocal("$ret", trampoline.getReturnType());
+                    body.getLocals().add(ret);
+                }
+
+                InvokeExpr invokeExpr;
+                if (receiver != null) invokeExpr = j.newVirtualInvokeExpr(receiver, targetMethod.makeRef(), args);
+                else invokeExpr = j.newStaticInvokeExpr(targetMethod.makeRef(), args);
+
+                Stmt invokeStmt = ret == null ? j.newInvokeStmt(invokeExpr) : j.newAssignStmt(ret, invokeExpr);
+                units.add(invokeStmt);
+                units.add(ret != null ? j.newReturnStmt(ret) : j.newReturnVoidStmt());
+                trampoline.setActiveBody(body);
+                caller.addMethod(trampoline);
+
+                // replace lambda method handle
+                methodHandle = j.newMethodHandle(SootMethodHandle.REF_invokeStatic, trampoline.makeRef());
+            }
+        }
+
+        return methodHandle;
+    }
+
     private void createForwardingMethod(SootClass caller, String lambdaClassName, ClassWriter cw, String name,
             List<Type> parameters, Type returnType, List<Type> invokedParameters, SootMethodType samMethodType,
-            SootMethodHandle implMethod, SootMethodType instantiatedMethodType, boolean isBridgeMethod) {
+            SootMethodHandle methodHandle, SootMethodType instantiatedMethodType, boolean isBridgeMethod) {
         String descriptor = Types.getDescriptor(parameters, returnType);
-        String implClassName = implMethod.getMethodRef().declaringClass().getName().replace('.', '/');
+        String implClassName = methodHandle.getMethodRef().declaringClass().getName().replace('.', '/');
         int accessFlags = ACC_PUBLIC | (isBridgeMethod ? ACC_BRIDGE : 0);
         MethodVisitor mv = cw.visitMethod(accessFlags, name, descriptor, null, null);
         mv.visitCode();
@@ -105,7 +204,7 @@ public class LambdaClassGenerator {
         // as well as if it's an instance method.
         int invokeOpCode = INVOKESTATIC;
         boolean isInstanceMethod = false;
-        switch (implMethod.getReferenceKind()) {
+        switch (methodHandle.getReferenceKind()) {
         case SootMethodHandle.REF_invokeInterface:
             invokeOpCode = INVOKEINTERFACE;
             isInstanceMethod = true;
@@ -125,13 +224,13 @@ public class LambdaClassGenerator {
             isInstanceMethod = true;
             break;
         default:
-            throw new CompilerException("Unknown invoke type: " + implMethod.getReferenceKind());
+            throw new CompilerException("Unknown invoke type: " + methodHandle.getReferenceKind());
         }
 
         GeneratorAdapter caster = new GeneratorAdapter(mv, accessFlags, name, descriptor);
 
         // push the arguments
-        pushArguments(caller, lambdaClassName, mv, caster, parameters, invokedParameters, implMethod,
+        pushArguments(caller, lambdaClassName, mv, caster, parameters, invokedParameters, methodHandle,
                 instantiatedMethodType, isInstanceMethod);
 
         // generate a descriptor for the lambda implementation
@@ -140,17 +239,17 @@ public class LambdaClassGenerator {
         // parameter for the descriptor generation as it's
         // not part of the method signature.
         String implDescriptor = null;
-        List<Type> paramTypes = new ArrayList<Type>(implMethod.getMethodType().getParameterTypes());
+        List<Type> paramTypes = new ArrayList<>(methodHandle.getMethodType().getParameterTypes());
         if (isInstanceMethod)
             paramTypes.remove(0);
-        implDescriptor = Types.getDescriptor(paramTypes, implMethod.getMethodType().getReturnType());
+        implDescriptor = Types.getDescriptor(paramTypes, methodHandle.getMethodType().getReturnType());
 
         // call the lambda implementation
-        mv.visitMethodInsn(invokeOpCode, implClassName, implMethod.getMethodRef().name(), implDescriptor,
+        mv.visitMethodInsn(invokeOpCode, implClassName, methodHandle.getMethodRef().name(), implDescriptor,
                 invokeOpCode == INVOKEINTERFACE);
 
         // emit the return instruction based on the return type
-        createForwardingMethodReturn(mv, caster, returnType, samMethodType, implMethod, instantiatedMethodType);
+        createForwardingMethodReturn(mv, caster, returnType, samMethodType, methodHandle, instantiatedMethodType);
 
         mv.visitMaxs(-1, -1);
         mv.visitEnd();
@@ -175,28 +274,11 @@ public class LambdaClassGenerator {
             mv.visitFieldInsn(GETFIELD, lambdaClassName, "arg$" + (i + 1), Types.getDescriptor(captureType));
         }
 
-        // push the functional interface parameters
-        // first check if the parameters include the received, e.g.
-        // "hello"::contains
-        // would be called on "hello" and not on the class containing the
-        // invoke dynamic call. We need to handle that parameter separately as
-        // it's not part of the method signature of the implementation
-        boolean paramsContainReceiver = isInstanceMethod
-//                && !caller.getName().equals(implMethod.getMethodRef().declaringClass().getName())
-                && parameters.size() > implMethod.getMethodRef().parameterTypes().size();
         int paramsIndex = 0;
         int localIndex = 1; // we start at slot index 1, because this occupies
                             // slot 0
-        if (paramsContainReceiver && !parameters.isEmpty()) {
-            Type param = parameters.get(0);
-            mv.visitVarInsn(loadOpcodeForType(param), localIndex);
-            castOrWiden(mv, caster, param, implMethod.getMethodRef().declaringClass().getType());
-            localIndex += slotsForType(param);
-            paramsIndex++;
-        }
 
-        int samParamsOffset = implMethod.getMethodRef().parameterTypes().size() - parameters.size()
-                + (paramsContainReceiver ? 1 : 0);
+        int samParamsOffset = implMethod.getMethodRef().parameterTypes().size() - parameters.size();
         for (int i = 0; paramsIndex < parameters.size(); paramsIndex++, i++) {
             Type param = parameters.get(paramsIndex);
             mv.visitVarInsn(loadOpcodeForType(param), localIndex);
