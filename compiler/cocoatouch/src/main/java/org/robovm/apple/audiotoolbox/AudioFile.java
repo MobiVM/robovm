@@ -74,7 +74,32 @@ import org.robovm.apple.uikit.*;
     }
     
     /*<bind>*/static { Bro.bind(AudioFile.class); }/*</bind>*/
-    /*<constants>*//*</constants>*/
+    /*<constants>*/
+    public static class InfoDictionaryKeys {
+        public static final String Album = "album";
+        public static final String ApproximateDurationInSeconds = "approximate duration in seconds";
+        public static final String Artist = "artist";
+        public static final String ChannelLayout = "channel layout";
+        public static final String Comments = "comments";
+        public static final String Composer = "composer";
+        public static final String Copyright = "copyright";
+        public static final String EncodingApplication = "encoding application";
+        public static final String Genre = "genre";
+        public static final String ISRC = "ISRC";
+        public static final String KeySignature = "key signature";
+        public static final String Lyricist = "lyricist";
+        public static final String NominalBitRate = "nominal bit rate";
+        public static final String RecordedDate = "recorded date";
+        public static final String SourceBitDepth = "source bit depth";
+        public static final String SourceEncoder = "source encoder";
+        public static final String SubTitle = "subtitle";
+        public static final String Tempo = "tempo";
+        public static final String TimeSignature = "time signature";
+        public static final String Title = "title";
+        public static final String TrackNumber = "track number";
+        public static final String Year = "year";
+    }
+    /*</constants>*/
     /*<constructors>*/
     protected AudioFile() {}
     /*</constructors>*/

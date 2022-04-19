@@ -19,8 +19,19 @@ public class SwiftSupport {
     @ElementList(required = false, entry = "path")
     private ArrayList<Config.QualifiedFile> swiftLibPaths;
 
+    /**
+     * specifies if swift runtime libraries to be copied
+     */
+    @Element(required = false)
+    private Boolean copySwiftLibs = true;
+
+
     public List<Config.QualifiedFile> getSwiftLibPaths() {
         return swiftLibPaths == null ? Collections.emptyList()
                 : Collections.unmodifiableList(swiftLibPaths);
+    }
+
+    public boolean shouldCopySwiftLibs() {
+        return copySwiftLibs != null ? copySwiftLibs : true;
     }
 }

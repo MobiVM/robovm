@@ -53,6 +53,11 @@ import org.robovm.apple.metalps.*;
     public MPSGraphTensorData(MPSGraphDevice device, NSData data, NSArray<NSNumber> shape, MPSDataType dataType) { super((SkipInit) null); initObject(init(device, data, shape, dataType)); }
     @Method(selector = "initWithMTLBuffer:shape:dataType:")
     public MPSGraphTensorData(MTLBuffer buffer, NSArray<NSNumber> shape, MPSDataType dataType) { super((SkipInit) null); initObject(init(buffer, shape, dataType)); }
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Method(selector = "initWithMTLBuffer:shape:dataType:rowBytes:")
+    public MPSGraphTensorData(MTLBuffer buffer, NSArray<NSNumber> shape, MPSDataType dataType, @MachineSizedUInt long rowBytes) { super((SkipInit) null); initObject(init(buffer, shape, dataType, rowBytes)); }
     @Method(selector = "initWithMPSMatrix:")
     public MPSGraphTensorData(MPSMatrix matrix) { super((SkipInit) null); initObject(init(matrix)); }
     @Method(selector = "initWithMPSMatrix:rank:")
@@ -80,6 +85,11 @@ import org.robovm.apple.metalps.*;
     protected native @Pointer long init(MPSGraphDevice device, NSData data, NSArray<NSNumber> shape, MPSDataType dataType);
     @Method(selector = "initWithMTLBuffer:shape:dataType:")
     protected native @Pointer long init(MTLBuffer buffer, NSArray<NSNumber> shape, MPSDataType dataType);
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Method(selector = "initWithMTLBuffer:shape:dataType:rowBytes:")
+    protected native @Pointer long init(MTLBuffer buffer, NSArray<NSNumber> shape, MPSDataType dataType, @MachineSizedUInt long rowBytes);
     @Method(selector = "initWithMPSMatrix:")
     protected native @Pointer long init(MPSMatrix matrix);
     @Method(selector = "initWithMPSMatrix:rank:")

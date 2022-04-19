@@ -127,9 +127,33 @@ import org.robovm.apple.audiotoolbox.*;
     public static final AVMetadataObjectType Interleaved2of5Code = new AVMetadataObjectType("Interleaved2of5Code");
     public static final AVMetadataObjectType ITF14Code = new AVMetadataObjectType("ITF14Code");
     public static final AVMetadataObjectType DataMatrixCode = new AVMetadataObjectType("DataMatrixCode");
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    public static final AVMetadataObjectType CodabarCode = new AVMetadataObjectType("CodabarCode");
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    public static final AVMetadataObjectType GS1DataBarCode = new AVMetadataObjectType("GS1DataBarCode");
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    public static final AVMetadataObjectType GS1DataBarExpandedCode = new AVMetadataObjectType("GS1DataBarExpandedCode");
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    public static final AVMetadataObjectType GS1DataBarLimitedCode = new AVMetadataObjectType("GS1DataBarLimitedCode");
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    public static final AVMetadataObjectType MicroQRCode = new AVMetadataObjectType("MicroQRCode");
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    public static final AVMetadataObjectType MicroPDF417Code = new AVMetadataObjectType("MicroPDF417Code");
     /*</constants>*/
     
-    private static /*<name>*/AVMetadataObjectType/*</name>*/[] values = new /*<name>*/AVMetadataObjectType/*</name>*/[] {/*<value_list>*/HumanBody, CatBody, DogBody, SalientObject, Face, UPCECode, Code39Code, Code39Mod43Code, EAN13Code, EAN8Code, Code93Code, Code128Code, PDF417Code, QRCode, AztecCode, Interleaved2of5Code, ITF14Code, DataMatrixCode/*</value_list>*/};
+    private static /*<name>*/AVMetadataObjectType/*</name>*/[] values = new /*<name>*/AVMetadataObjectType/*</name>*/[] {/*<value_list>*/HumanBody, CatBody, DogBody, SalientObject, Face, UPCECode, Code39Code, Code39Mod43Code, EAN13Code, EAN8Code, Code93Code, Code128Code, PDF417Code, QRCode, AztecCode, Interleaved2of5Code, ITF14Code, DataMatrixCode, CodabarCode, GS1DataBarCode, GS1DataBarExpandedCode, GS1DataBarLimitedCode, MicroQRCode, MicroPDF417Code/*</value_list>*/};
 
     /*<name>*/AVMetadataObjectType/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -209,6 +233,36 @@ import org.robovm.apple.audiotoolbox.*;
         public static native NSString ITF14Code();
         @GlobalValue(symbol="AVMetadataObjectTypeDataMatrixCode", optional=true)
         public static native NSString DataMatrixCode();
+        /**
+         * @since Available in iOS 15.4 and later.
+         */
+        @GlobalValue(symbol="AVMetadataObjectTypeCodabarCode", optional=true)
+        public static native NSString CodabarCode();
+        /**
+         * @since Available in iOS 15.4 and later.
+         */
+        @GlobalValue(symbol="AVMetadataObjectTypeGS1DataBarCode", optional=true)
+        public static native NSString GS1DataBarCode();
+        /**
+         * @since Available in iOS 15.4 and later.
+         */
+        @GlobalValue(symbol="AVMetadataObjectTypeGS1DataBarExpandedCode", optional=true)
+        public static native NSString GS1DataBarExpandedCode();
+        /**
+         * @since Available in iOS 15.4 and later.
+         */
+        @GlobalValue(symbol="AVMetadataObjectTypeGS1DataBarLimitedCode", optional=true)
+        public static native NSString GS1DataBarLimitedCode();
+        /**
+         * @since Available in iOS 15.4 and later.
+         */
+        @GlobalValue(symbol="AVMetadataObjectTypeMicroQRCode", optional=true)
+        public static native NSString MicroQRCode();
+        /**
+         * @since Available in iOS 15.4 and later.
+         */
+        @GlobalValue(symbol="AVMetadataObjectTypeMicroPDF417Code", optional=true)
+        public static native NSString MicroPDF417Code();
         /*</values>*/
     }
 }

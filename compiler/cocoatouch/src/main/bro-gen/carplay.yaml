@@ -28,6 +28,7 @@ enums:
     CPAssistantCellActionType: {} #since 15.0
     CPAssistantCellVisibility: {} #since 15.0
     CPAssistantCellPosition: {} #since 15.0
+    CPInstrumentClusterSetting: {} #since 15.4
 classes:
     CPActionSheetTemplate: #since 12.0
         methods:
@@ -144,6 +145,8 @@ classes:
                 name: pauseTrip
             '-updateTravelEstimates:forManeuver:':
                 trim_after_first_colon: true
+            '-pauseTripForReason:description:turnCardColor:':
+                name: pauseTripForReason
     CPRouteChoice: #since 12.0
         methods:
             '-initWithSummaryVariants:additionalInformationVariants:selectionSummaryVariants:':
@@ -283,6 +286,8 @@ classes:
         methods:
             '-initWithPosition:visibility:assistantAction:':
                 name: init
+    CPInstrumentClusterController: {} #since 15.4
+    CPTemplateApplicationInstrumentClusterScene: {} #since 15.4
 protocols:
     CPApplicationDelegate: #since 12.0
         methods:
@@ -391,6 +396,18 @@ protocols:
         methods:
             '-tabBarTemplate:didSelectTemplate:':
                 name: didSelectTemplate
+    CPInstrumentClusterControllerDelegate: #since 15.4
+        methods:
+            '-instrumentClusterController:didChangeCompassSetting:':
+                name: didChangeCompassSetting
+            '-instrumentClusterController:didChangeSpeedLimitSetting:':
+                name: didChangeSpeedLimitSetting
+    CPTemplateApplicationInstrumentClusterSceneDelegate: #since 15.4
+        methods:
+            '-templateApplicationInstrumentClusterScene:didConnectInstrumentClusterController:':
+                name: didConnectInstrumentClusterController
+            '-templateApplicationInstrumentClusterScene:didDisconnectInstrumentClusterController:':
+                name: didDisconnectInstrumentClusterController
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (k?CP.*):
@@ -425,6 +442,10 @@ values:
     CPMaximumListSectionImageSize:
         class: CPListSection
         name: getMaximumListSectionImageSize
+    CPTemplateApplicationInstrumentClusterSceneSessionRoleApplication:
+        class: CPTemplateApplicationInstrumentClusterScene
+        name: getSceneSessionRole
+
     # Make sure we don't miss any values if new ones are introduced in a later version
     (k?CP.*):
         class: FixMe

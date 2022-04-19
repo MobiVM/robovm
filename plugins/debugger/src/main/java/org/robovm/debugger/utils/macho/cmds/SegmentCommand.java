@@ -162,4 +162,12 @@ public class SegmentCommand {
     public boolean is64b() {
         return is64b;
     }
+
+    @Override
+    public String toString() {
+        return "SegmentCommand{" +
+                "segname='" + segname + '\'' +
+                (vmaddr != 0L ? (", vmaddr=" + Long.toHexString(vmaddr) + "..." + Long.toHexString(vmaddr + vmsize - 1)) : "") +
+                '}';
+    }
 }

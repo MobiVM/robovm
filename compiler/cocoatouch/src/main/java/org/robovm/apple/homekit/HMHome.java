@@ -110,12 +110,16 @@ import org.robovm.apple.corelocation.*;
     public native void unblockAccessory(HMAccessory accessory, @Block VoidBlock1<NSError> completion);
     /**
      * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 15.4. Use -[HMAccessorySetupManager performAccessorySetupUsingRequest:completionHandler:] instead
      */
+    @Deprecated
     @Method(selector = "addAndSetupAccessoriesWithCompletionHandler:")
     public native void addAndSetupAccessories(@Block VoidBlock1<NSError> completion);
     /**
      * @since Available in iOS 11.3 and later.
+     * @deprecated Deprecated in iOS 15.0. Use -[HMAccessorySetupManager performAccessorySetupUsingRequest:completionHandler:] instead
      */
+    @Deprecated
     @Method(selector = "addAndSetupAccessoriesWithPayload:completionHandler:")
     public native void addAndSetupAccessories(HMAccessorySetupPayload payload, @Block VoidBlock2<NSArray<HMAccessory>, NSError> completion);
     /**

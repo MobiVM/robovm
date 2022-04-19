@@ -16,6 +16,7 @@
 package org.robovm.debugger.delegates;
 
 import org.robovm.debugger.DebuggerException;
+import org.robovm.debugger.hooks.HookConsts;
 import org.robovm.debugger.hooks.payloads.HooksCmdResponse;
 import org.robovm.debugger.jdwp.JdwpConsts;
 import org.robovm.debugger.runtime.ValueManipulator;
@@ -514,6 +515,8 @@ public class InstanceUtils {
         if (thread == null)
             throw new DebuggerException(JdwpConsts.Error.INVALID_THREAD);
         if (thread.suspendCount() == 0)
+            throw new DebuggerException(JdwpConsts.Error.THREAD_NOT_SUSPENDED);
+        if (thread.getHookSuspendStatus() != HookConsts.threadSuspendStatus.SUSPENDED_SOFT)
             throw new DebuggerException(JdwpConsts.Error.THREAD_NOT_SUSPENDED);
 
         // get method

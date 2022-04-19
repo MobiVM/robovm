@@ -272,7 +272,7 @@ public class RoboVMPlugin extends AbstractUIPlugin implements IStartup {
             if (System.getenv("ROBOVM_DEV_ROOT") != null) {
                 roboVMHome = Config.Home.find();
             } else {
-                String version = Version.getVersion();
+                String version = Version.getCompilerVersion();
                 File homeDir = new File(getMetadataDir(), "robovm-" + version);
                 File distFile = new File(getMetadataDir(), "robovm-dist-" + version + ".tar.gz");
                 URL distUrl = RoboVMPlugin.class.getResource("/lib/robovm-dist.tar.gz");

@@ -103,6 +103,16 @@ import org.robovm.apple.linkpresentation.*;
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getExcludedActivityTypes();
     @Property(selector = "setExcludedActivityTypes:")
     public native void setExcludedActivityTypes(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> v);
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Property(selector = "allowsProminentActivity")
+    public native boolean allowsProminentActivity();
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Property(selector = "setAllowsProminentActivity:")
+    public native void setAllowsProminentActivity(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

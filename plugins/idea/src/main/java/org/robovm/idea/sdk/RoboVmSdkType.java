@@ -33,7 +33,6 @@ import org.robovm.idea.RoboVmPlugin;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.projectRoots.*;
 import com.intellij.openapi.roots.OrderRootType;
-import com.intellij.openapi.vfs.JarFileSystem;
 import com.intellij.openapi.vfs.VirtualFile;
 
 public class RoboVmSdkType extends SdkType implements JavaSdkType {
@@ -73,7 +72,7 @@ public class RoboVmSdkType extends SdkType implements JavaSdkType {
     @NotNull
     @Override
     public String suggestSdkName(String currentSdkName, String sdkHome) {
-        return SDK_NAME + " " + Version.getVersion();
+        return SDK_NAME + " " + Version.getCompilerVersion();
     }
 
     @Nullable

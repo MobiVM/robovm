@@ -491,7 +491,7 @@ typedef struct {
     void* pchigh2;
     Mutex suspendMutex;
     pthread_cond_t suspendCond;
-    jboolean suspended;
+    volatile jbyte suspendStatus;
     jboolean stepping;
     jboolean ignoreExceptions;
 

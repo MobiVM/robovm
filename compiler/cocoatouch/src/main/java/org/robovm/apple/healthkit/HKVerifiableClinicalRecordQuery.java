@@ -49,14 +49,29 @@ import org.robovm.apple.foundation.*;
     protected HKVerifiableClinicalRecordQuery(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithRecordTypes:predicate:resultsHandler:")
     public HKVerifiableClinicalRecordQuery(NSArray<NSString> recordTypes, NSPredicate predicate, @Block VoidBlock3<HKVerifiableClinicalRecordQuery, NSArray<HKVerifiableClinicalRecord>, NSError> resultsHandler) { super((SkipInit) null); initObject(init(recordTypes, predicate, resultsHandler)); }
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Method(selector = "initWithRecordTypes:sourceTypes:predicate:resultsHandler:")
+    public HKVerifiableClinicalRecordQuery(NSArray<NSString> recordTypes, NSArray<NSString> sourceTypes, NSPredicate predicate, @Block VoidBlock3<HKVerifiableClinicalRecordQuery, NSArray<HKVerifiableClinicalRecord>, NSError> resultsHandler) { super((SkipInit) null); initObject(init(recordTypes, sourceTypes, predicate, resultsHandler)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "recordTypes")
     public native NSArray<NSString> getRecordTypes();
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Property(selector = "sourceTypes")
+    public native NSArray<NSString> getSourceTypes();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithRecordTypes:predicate:resultsHandler:")
     protected native @Pointer long init(NSArray<NSString> recordTypes, NSPredicate predicate, @Block VoidBlock3<HKVerifiableClinicalRecordQuery, NSArray<HKVerifiableClinicalRecord>, NSError> resultsHandler);
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Method(selector = "initWithRecordTypes:sourceTypes:predicate:resultsHandler:")
+    protected native @Pointer long init(NSArray<NSString> recordTypes, NSArray<NSString> sourceTypes, NSPredicate predicate, @Block VoidBlock3<HKVerifiableClinicalRecordQuery, NSArray<HKVerifiableClinicalRecord>, NSError> resultsHandler);
     /*</methods>*/
 }

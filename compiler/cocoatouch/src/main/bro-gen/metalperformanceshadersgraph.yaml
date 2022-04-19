@@ -21,6 +21,9 @@ enums:
     MPSGraphRandomDistribution: {}
     MPSGraphRandomNormalSamplingMethod: {prefix: MPSGraphRandomNormalSampling}
     MPSGraphScatterMode: {}
+    MPSGraphOptimization: {}
+    MPSGraphOptimizationProfile: {}
+    MPSGraphPoolingReturnIndicesMode: {prefix: MPSGraphPoolingReturnIndices}
 categories:
 
 classes:
@@ -459,6 +462,64 @@ classes:
                 name: topK
             '+new':
                 exclude: true
+            '-gatherAlongAxis:withUpdatesTensor:indicesTensor:name:':
+                name: gatherAlongAxis
+            '-gatherAlongAxisTensor:withUpdatesTensor:indicesTensor:name:':
+                name: gatherAlongAxisTensor
+            '-bandPartWithTensor:numLower:numUpper:name:':
+                name: bandPart
+            '-bandPartWithTensor:numLowerTensor:numUpperTensor:name:':
+                name: bandPart
+            '-maxPooling2DReturnIndicesWithSourceTensor:descriptor:name:':
+                name: maxPooling2DReturnIndices
+            '-maxPooling4DReturnIndicesWithSourceTensor:descriptor:name:':
+                name: maxPooling4DReturnIndices
+            '-reductionAndWithTensor:axis:name:':
+                name: reductionAnd
+            '-reductionAndWithTensor:axes:name:':
+                name: reductionAnd
+            '-reductionOrWithTensor:axis:name:':
+                name: reductionOr
+            '-reductionOrWithTensor:axes:name:':
+                name: reductionOr
+            '-scatterAlongAxis:withUpdatesTensor:indicesTensor:shape:mode:name:':
+                name: scatterAlongAxis
+            '-scatterAlongAxisTensor:withUpdatesTensor:indicesTensor:shape:mode:name:':
+                name: scatterAlongAxisTensor
+            '-scatterAlongAxis:withDataTensor:updatesTensor:indicesTensor:mode:name:':
+                name: scatterAlongAxis
+            '-scatterAlongAxisTensor:withDataTensor:updatesTensor:indicesTensor:mode:name:':
+                name: scatterAlongAxisTensor
+            '-stackTensors:axis:name:':
+                name: stackTensors
+            '-splitTensor:splitSizes:axis:name:':
+                name: splitTensor
+            '-splitTensor:splitSizesTensor:axis:name:':
+                name: splitTensor
+            '-splitTensor:numSplits:axis:name:':
+                name: splitTensor
+            '-squeezeTensor:name:':
+                name: squeezeTensor
+            '-squeezeTensor:axis:name:':
+                name: squeezeTensor
+            '-squeezeTensor:axes:name:':
+                name: squeezeTensor
+            '-squeezeTensor:axesTensor:name:':
+                name: squeezeTensor
+            '-expandDimsOfTensor:axis:name:':
+                name: expandDimsOfTensor
+            '-expandDimsOfTensor:axes:name:':
+                name: expandDimsOfTensor
+            '-expandDimsOfTensor:axesTensor:name:':
+                name: expandDimsOfTensor
+            '-coordinateAlongAxis:withShape:name:':
+                name: coordinateAlongAxis
+            '-coordinateAlongAxisTensor:withShape:name:':
+                name: coordinateAlongAxisTensor
+            '-coordinateAlongAxis:withShapeTensor:name:':
+                name: coordinateAlongAxis
+            '-coordinateAlongAxisTensor:withShapeTensor:name:':
+                name: coordinateAlongAxisTensor
     MPSGraphConvolution2DOpDescriptor:
         methods:
             '-setExplicitPaddingWithPaddingLeft:paddingRight:paddingTop:paddingBottom:':
@@ -518,6 +579,8 @@ classes:
             '-initWithMPSNDArray:':
                 name: init
             '-initWithMPSImageBatch:':
+                name: init
+            '-initWithMTLBuffer:shape:dataType:rowBytes:':
                 name: init
     MPSGraphVariableOp: {}
     MPSGraphCompilationDescriptor: {} #since 15.0

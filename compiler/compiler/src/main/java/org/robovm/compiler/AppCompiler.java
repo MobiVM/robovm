@@ -43,8 +43,6 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
-import java.util.*;
-import java.util.concurrent.*;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -53,9 +51,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.net.URL;
-import java.net.URLConnection;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -1043,7 +1038,7 @@ public class AppCompiler {
     }
 
     private static void printVersionAndExit() {
-        System.err.println(Version.getVersion());
+        System.err.println(Version.getCompilerVersion());
         System.exit(0);
     }
 
@@ -1283,7 +1278,7 @@ public class AppCompiler {
             String osVersion = System.getProperty("os.version", "Unknown");
             UpdateChecker t = new UpdateChecker("http://robovm.mobidevelop.com/version?"
                     + "uuid=" + URLEncoder.encode(uuid, "UTF-8") + "&"
-                    + "version=" + URLEncoder.encode(Version.getVersion(), "UTF-8") + "&"
+                    + "version=" + URLEncoder.encode(Version.getCompilerVersion(), "UTF-8") + "&"
                     + "osName=" + URLEncoder.encode(osName, "UTF-8") + "&"
                     + "osArch=" + URLEncoder.encode(osArch, "UTF-8") + "&"
                     + "osVersion=" + URLEncoder.encode(osVersion, "UTF-8"));
@@ -1292,9 +1287,9 @@ public class AppCompiler {
             JSONObject result = t.result;
             if (result != null) {
                 String version = (String) result.get("version");
-                if (version != null && Version.isOlderThan(version)) {
+                if (version != null && Version.isOlderThan(Version.getCompilerVersion(), version)) {
                     config.getLogger().info("A new version of RoboVM is available. "
-                            + "Current version: %s. New version: %s.", Version.getVersion(), version);
+                            + "Current version: %s. New version: %s.", Version.getCompilerVersion(), version);
                 }
             }
         } catch (Throwable t) {

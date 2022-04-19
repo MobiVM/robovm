@@ -62,6 +62,11 @@ import org.robovm.apple.security.*;
     @Bridge(symbol="nw_framer_create_options", optional=true)
     public static native NWProtocolOptions createFramerOptions(NWProtocolDefinition framer_definition);
     /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Bridge(symbol="nw_framer_options_set_object_value", optional=true)
+    public native void setFramerObjectValue(BytePtr key, NSObject value);
+    /**
      * @since Available in iOS 12.0 and later.
      */
     @Bridge(symbol="nw_ip_options_set_version", optional=true)

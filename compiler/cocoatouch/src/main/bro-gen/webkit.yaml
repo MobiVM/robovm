@@ -26,6 +26,7 @@ enums:
     WKMediaCaptureState: {} #since 15.0
     WKPermissionDecision: {} #since 15.0
     WKMediaCaptureType: {} #since 15.0
+    WKFullscreenState: {} #since 15.0
 categories:
     NSAttributedString:
         methods:

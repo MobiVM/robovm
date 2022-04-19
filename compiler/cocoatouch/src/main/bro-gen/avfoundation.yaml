@@ -3204,6 +3204,8 @@ protocols:
         methods:
             '-playbackCoordinator:identifierForPlayerItem:':
                 name: identifierForPlayerItem
+            '-playbackCoordinator:interstitialTimeRangesForPlayerItem:':
+                name: interstitialTimeRangesForPlayerItem
 functions:
     AVMake(RectWithAspectRatioInsideRect):
         class: AVFoundation

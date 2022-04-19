@@ -147,6 +147,7 @@ enums:
     AUVoiceIOProperty: {first: kAUVoiceIOProperty_BypassVoiceProcessing}
     AUVoiceIOProperty2: {first: kAUVoiceIOProperty_DuckNonVoiceAudio, prefix: kAUVoiceIOProperty_, merge_with: AUVoiceIOProperty}
     AUVoiceIOProperty3: {first: kAUVoiceIOProperty_VoiceProcessingQuality, prefix: kAUVoiceIOProperty_, merge_with: AUVoiceIOProperty}
+    AUVoiceIOProperty4: {first: kAUVoiceIOProperty_MutedSpeechActivityEventListener, prefix: kAUVoiceIOProperty_, merge_with: AUVoiceIOProperty}
     AUNBandEQProperty: {first: kAUNBandEQProperty_NumberOfBands}
     AUMIDISynthProperty: {first: kAUMIDISynthProperty_EnablePreload, prefix: kAUMIDISynthProperty_}
     AUSamplerProperty: {first: kAUSamplerProperty_LoadInstrument}
@@ -178,6 +179,7 @@ enums:
     AUErrors: {first: kAudioUnitErr_IllegalInstrument, prefix: kAudioUnitErr_}
     AudioFileStreamParseFlags: {prefix: kAudioFileStreamParseFlag_}
     AudioFileStreamSeekFlags: {prefix: kAudioFileStreamSeekFlag_}
+    ExtAudioFilePacketTableInfoOverride: {prefix: kExtAudioFilePacketTableInfoOverride_UseFileValue, first: kExtAudioFilePacketTableInfoOverride_UseFileValue}
     # ios13 activities
     AudioCodecGlobalProperty: {prefix: kAudioCodecProperty, first: kAudioCodecPropertySupportedInputFormats}
     AudioCodecInstanceProperty: {prefix: kAudioCodecProperty, first: kAudioCodecPropertyInputBufferSize}
@@ -199,6 +201,11 @@ enums:
     AudioCodecOutputPrecedence: {prefix: kAudioCodecOutputPrecedence, first: kAudioCodecOutputPrecedenceNone}
     AudioCodecSettingsHint: {prefix: kHint, first: kHintBasic}
     ExtAudioFileError: {prefix: kExtAudioFileError_, first: kExtAudioFileError_InvalidProperty}
+    AUVoiceIOSpeechActivityEvent: { prefix: kAUVoiceIOSpeechActivity }
+    AUSpatialMixerSourceMode: {prefix: kSpatialMixerSourceMode_}
+    AUSpatialMixerOutputType: {prefix: kSpatialMixerOutputType_}
+    AUSpatialMixerPointSourceInHeadMode: {prefix: kSpatialMixerPointSourceInHeadMode_}
+
     # excludes as either deprecated or not to be used
     Excluded2: {prefix: kNumberOfResponseFrequencies, first: kNumberOfResponseFrequencies, exclude: true}
     # Excluded3: {prefix: kAudioUnitParameterName_Full, first: kAudioUnitParameterName_Full, exclude: true} -- will convert to constant
@@ -1580,7 +1587,29 @@ constants:
         class: AUParameterNameInfo
         name: FullNameLength
 
+    kSampleDelayParam_DelayFrames:
+        exclude: true
+
+    kAUPreset(.*):
+        class: AudioToolbox
+        static_class: Presets
+        name: '#{g[0]}'
+
+    kInstrumentInfoKey_(.*):
+        class: AudioToolbox
+        static_class: InstrumentInfoKeys
+        name: '#{g[0]}'
+
+    kAFInfoDictionary_(.*):
+        class: AudioFile
+        static_class: InfoDictionaryKeys
+        name: '#{g[0]}'
+
+    kMusicTimeStamp_EndOfTrack:
+        class: AudioToolbox
+        name: EndOfTrackTimeStamp
+
     # Make sure we don't miss any constants if new ones are introduced in a later version
-    (k?Audio.*):
+    (k.*):
         class: AudioToolbox
         name: 'Constant__#{g[0]}'
