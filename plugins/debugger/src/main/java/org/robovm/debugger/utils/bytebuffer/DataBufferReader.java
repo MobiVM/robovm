@@ -48,6 +48,13 @@ public interface DataBufferReader extends DataBuffer {
     // redeclare for proper return type
     DataBufferReader setPosition(long position);
 
+    default void alignPosition(int boundary) {
+        long savedPosition = position();
+        long alignedPosition = DataUtils.align(savedPosition, boundary);
+        if (savedPosition != alignedPosition)
+            setPosition(alignedPosition);
+    }
+
     byte readByte();
 
     default boolean readBoolean() {
@@ -55,6 +62,11 @@ public interface DataBufferReader extends DataBuffer {
     }
 
     short readInt16();
+
+    default int readInt16(boolean aligned) {
+        if (aligned) alignPosition(2);
+        return readInt16();
+    }
 
     default int readUnsignedInt16() {
         return Short.toUnsignedInt(readInt16());
@@ -67,12 +79,7 @@ public interface DataBufferReader extends DataBuffer {
     int readInt32();
 
     default int readInt32(boolean aligned) {
-        if (aligned) {
-            long savedPosition = position();
-            long alignedPosition = DataUtils.align(savedPosition, 4);
-            if (savedPosition != alignedPosition)
-                setPosition(alignedPosition);
-        }
+        if (aligned) alignPosition(4);
         return readInt32();
     }
 
@@ -212,22 +219,17 @@ public interface DataBufferReader extends DataBuffer {
      * reads un-aligned pointer
      */
     default long readPointer() {
-        return readPointer(false);
+        return is64bit() ? readLong() : readUnsignedInt32();
     }
 
     /**
      * reads optionally aligned pointer to pointer size boundary (
      *
-     * @param aligned true if pointer has to be alligned
+     * @param aligned true if pointer has to be aligned
      */
     default long readPointer(boolean aligned) {
-        if (aligned) {
-            long savedPosition = position();
-            long alignedPosition = DataUtils.align(savedPosition, pointerSize());
-            if (savedPosition != alignedPosition)
-                setPosition(alignedPosition);
-        }
-        return is64bit() ? readLong() : readUnsignedInt32();
+        if (aligned) alignPosition(pointerSize());
+        return readPointer();
     }
 
     /**

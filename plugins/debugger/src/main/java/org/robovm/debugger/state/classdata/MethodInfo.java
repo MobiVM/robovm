@@ -54,9 +54,9 @@ public class MethodInfo extends BaseModifiersInfo {
     private CallSpec callspec;
 
     public void readMethodInfo(DataBufferReader reader) {
-        flags = reader.readInt16();
+        flags = reader.readInt16(true);
 
-        int vtableIndex = reader.readInt16();
+        int vtableIndex = reader.readInt16(true);
         name = reader.readStringZ(reader.readPointer(true));
 
         if ((flags & ClassDataConsts.methodinfo.COMPACT_DESC) != 0) {

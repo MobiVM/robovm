@@ -47,7 +47,7 @@ public class FieldInfo extends BaseModifiersInfo {
     }
 
     public void readFieldInfo(DataBufferReader reader) {
-        flags = reader.readInt16();
+        flags = reader.readInt16(true);
 
         name = reader.readStringZ(reader.readPointer(true));
 
