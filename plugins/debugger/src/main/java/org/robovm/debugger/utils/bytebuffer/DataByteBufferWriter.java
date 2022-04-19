@@ -28,6 +28,10 @@ public class DataByteBufferWriter extends DataByteBufferReader implements DataBu
         this(DEFAULT_CAPACITY, false);
     }
 
+    public DataByteBufferWriter(ByteBuffer bb) {
+        super(bb);
+    }
+
     public DataByteBufferWriter(boolean is64Bit) {
         this(DEFAULT_CAPACITY, is64Bit);
     }
@@ -35,6 +39,10 @@ public class DataByteBufferWriter extends DataByteBufferReader implements DataBu
     public DataByteBufferWriter(int capacity, boolean is64Bit) {
         super(ByteBuffer.allocate(capacity), is64Bit);
         reset();
+    }
+
+    public DataByteBufferWriter(ByteBuffer sliced, long newBottomLimit, boolean as64bit) {
+        super(sliced, newBottomLimit, as64bit);
     }
 
     @Override
@@ -123,6 +131,25 @@ public class DataByteBufferWriter extends DataByteBufferReader implements DataBu
     public DataByteBufferWriter writeBytes(byte[] bytes, int offset, int length) {
         wants(length);
         byteBuffer.put(bytes, offset, length);
+        return this;
+    }
+
+    @Override
+    public DataByteBufferWriter sliceAt(long pos, int size, long newBottomLimit, boolean as64bit) {
+        long savedPosition = position();
+        setPosition(pos);
+        expects(size);
+        ByteBuffer sliced = byteBuffer.slice();
+        sliced.limit(size);
+        sliced.order(byteBuffer.order());
+        setPosition(savedPosition);
+
+        return new DataByteBufferWriter(sliced, newBottomLimit, as64bit);
+    }
+
+    @Override
+    public DataByteBufferWriter setPosition(long position) {
+        super.setPosition(position);
         return this;
     }
 }

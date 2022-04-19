@@ -165,4 +165,9 @@ public class DataByteBufferReader implements DataBufferReader {
         byteBuffer.order(order);
         return this;
     }
+
+    @Override
+    public String toString() {
+        return "DataByteBufferReader{" +  Long.toHexString(bottomLimit) + " ... " + Long.toHexString(limit() - 1) + '}';
+    }
 }

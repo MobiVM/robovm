@@ -150,4 +150,9 @@ public class Section {
         return is64b ? (16 + 16 + 8 + 8 + 4 * 8) : (16 + 16 + 4 * 9);
     }
 
+    @Override
+    public String toString() {
+        return "Section{" + segname + ',' + sectname +
+                Long.toHexString(addr) + "..." + Long.toHexString(addr + size - 1) + " }";
+    }
 }

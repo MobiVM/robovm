@@ -20,4 +20,37 @@ package org.robovm.debugger.utils.bytebuffer;
  * @author Demyan Kimitsa
  */
 public interface DataBufferReaderWriter extends DataBufferReader, DataBufferWriter {
+    //
+    // Overloaded api
+    //
+
+    DataBufferReaderWriter setPosition(long position);
+
+    /**
+     * makes a slice at specific position and specific size,
+     * new slices receives new bottom limit
+     */
+    DataBufferReaderWriter sliceAt(long pos, int size, long newBottomLimit, boolean as64bit);
+
+    default DataBufferReaderWriter sliceAt(long pos, int size, boolean as64bit) {
+        return sliceAt(pos, size, 0L, as64bit);
+    }
+
+    default DataBufferReaderWriter sliceAt(long pos, int size) {
+        return sliceAt(pos, size, is64bit());
+    }
+
+    /**
+     * makes a slice from current position and specific size
+     */
+    default DataBufferReaderWriter slice(int size) {
+        return sliceAt(position(), size);
+    }
+
+    /**
+     * slices all remain bytes
+     */
+    default DataBufferReaderWriter slice() {
+        return sliceAt(position(), remaining());
+    }
 }
