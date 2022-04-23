@@ -138,7 +138,7 @@ public abstract class CompositeDataBuffer<T extends DataBufferReader> implements
 
     @Override
     public long readLong() {
-        return activeRegion.readInt32();
+        return activeRegion.readLong();
     }
 
     @Override
