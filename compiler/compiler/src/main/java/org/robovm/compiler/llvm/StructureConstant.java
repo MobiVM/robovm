@@ -19,6 +19,9 @@ package org.robovm.compiler.llvm;
 import java.io.IOException;
 import java.io.Writer;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @version $Id$
@@ -35,6 +38,31 @@ public class StructureConstant extends Constant {
     @Override
     public StructureType getType() {
         return type;
+    }
+
+
+
+    // flatten all contained structs in way removing struct and inserting struct members
+    private static void flattenInto(List<Value> dest, StructureConstant struct) {
+        for (Value v: struct.values) {
+            if (v instanceof StructureConstant)
+                flattenInto(dest, (StructureConstant)v);
+            else
+                dest.add(v);
+        }
+    }
+
+    public StructureConstant flatten() {
+        List<Value> flattenValues = new ArrayList<>();
+        flattenInto(flattenValues, this);
+
+        Type[] types = new Type[flattenValues.size()];
+        int i = 0;
+        for (Value v : flattenValues) {
+            types[i++] = v.getType();
+        }
+
+        return new StructureConstant(new StructureType(types), flattenValues.toArray(new Value[0]));
     }
 
     @Override
