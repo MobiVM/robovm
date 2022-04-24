@@ -25,7 +25,6 @@ import org.robovm.compiler.clazz.Dependency;
 import org.robovm.compiler.clazz.MethodInfo;
 import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.config.Config;
-import org.robovm.compiler.config.Environment;
 import org.robovm.compiler.config.OS;
 import org.robovm.compiler.llvm.Alias;
 import org.robovm.compiler.llvm.AliasRef;
@@ -330,6 +329,10 @@ public class ClassCompiler {
                 } catch (Throwable t) {
                     listener.failure(clazz, t);
                 }
+
+                // remove all soot structures that are not
+                // required anymore but consume memory
+                clazz.shrinkSoot();
             }
         };
         

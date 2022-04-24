@@ -404,6 +404,8 @@ public class Config {
     }
 
     public DependencyGraph getDependencyGraph() {
+        if (dependencyGraph == null)
+            throw new IllegalStateException(".dependencyGraph has been disposed!");
         return dependencyGraph;
     }
 
@@ -504,14 +506,29 @@ public class Config {
     }
 
     public Clazzes getClazzes() {
+        if (clazzes == null)
+            throw new IllegalStateException(".clazzes has been disposed!");
         return clazzes;
     }
 
+    public void disposeBuildData() {
+        // not null clazzes as some data like allPath is required post-build (e.g. to stripArchives)
+        clazzes.disposeData();
+        dependencyGraph = null;
+        vtableCache = null;
+        itableCache = null;
+        marshalerLookup = null;
+    }
+
     public VTable.Cache getVTableCache() {
+        if (vtableCache == null)
+            throw new IllegalStateException(".vtableCache has been disposed!");
         return vtableCache;
     }
 
     public ITable.Cache getITableCache() {
+        if (itableCache == null)
+            throw new IllegalStateException(".itableCache has been disposed!");
         return itableCache;
     }
 

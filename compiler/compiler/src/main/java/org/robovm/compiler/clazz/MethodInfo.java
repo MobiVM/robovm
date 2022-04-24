@@ -204,6 +204,10 @@ public class MethodInfo implements Serializable {
         return true;
     }
 
+    public void dropDependencyData() {
+        dependencies = null;
+    }
+
     @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this);
