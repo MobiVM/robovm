@@ -288,26 +288,17 @@ public class IOSTarget extends AbstractTarget {
         ccArgs.add("--target=" + config.getClangTriple(getMinimumOSVersion()));
 
         if (isDeviceArch(arch)) {
-            if (config.isDebug()) {
-                ccArgs.add("-Wl,-no_pie");
-            }
             if (config.isEnableBitcode()) {
                 // tells clang to keep bitcode while linking
                 ccArgs.add("-fembed-bitcode");
             }
         } else {
-            if (config.getArch().getCpuArch() == CpuArch.x86 || config.isDebug()) {
+            if (config.getArch().getCpuArch() == CpuArch.x86) {
                 ccArgs.add("-Wl,-no_pie");
             }
         }
         ccArgs.add("-isysroot");
         ccArgs.add(sdk.getRoot().getAbsolutePath());
-
-        // specify sdk version for linker
-        libArgs.add("-Xlinker");
-        libArgs.add("-sdk_version");
-        libArgs.add("-Xlinker");
-        libArgs.add(sdk.getVersion());
 
         // add runtime path to swift libs first to support swift-5 libs location
         if (config.hasSwiftSupport()) {

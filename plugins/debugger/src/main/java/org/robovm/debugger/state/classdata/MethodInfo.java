@@ -54,10 +54,10 @@ public class MethodInfo extends BaseModifiersInfo {
     private CallSpec callspec;
 
     public void readMethodInfo(DataBufferReader reader) {
-        flags = reader.readInt16();
+        flags = reader.readInt16(true);
 
-        int vtableIndex = reader.readInt16();
-        name = reader.readStringZ(reader.readPointer());
+        int vtableIndex = reader.readInt16(true);
+        name = reader.readStringZ(reader.readPointer(true));
 
         if ((flags & ClassDataConsts.methodinfo.COMPACT_DESC) != 0) {
             switch (reader.readByte()) {
@@ -90,31 +90,31 @@ public class MethodInfo extends BaseModifiersInfo {
                     break;
             }
         } else {
-            desc = reader.readStringZ(reader.readPointer());
+            desc = reader.readStringZ(reader.readPointer(true));
         }
 
         if ((flags & ClassDataConsts.methodinfo.ATTRIBUTES) != 0) {
             // TODO: skip attributes
-            reader.skip(reader.pointerSize());
+            reader.readPointer(true);
         }
 
         long synchronizedImpl = 0;
         long linetable = 0;
         if (!isAbstract()) {
-            implPtr = reader.readPointer();
-            methodCodeSize = reader.readInt32();
+            implPtr = reader.readPointer(true);
+            methodCodeSize = reader.readInt32(true);
             if (isSynchronized())
-                synchronizedImpl = reader.readPointer();
+                synchronizedImpl = reader.readPointer(true);
             if (!isNative()) {
-                linetable = reader.readPointer();
+                linetable = reader.readPointer(true);
             }
         }
         long targetFnPtr = 0;
         if (isBroBridge())
-            targetFnPtr = reader.readPointer();
+            targetFnPtr = reader.readPointer(true);
         long callbackImpl = 0;
         if (isBroCallback())
-            callbackImpl = reader.readPointer();
+            callbackImpl = reader.readPointer(true);
     }
 
     public String name() {

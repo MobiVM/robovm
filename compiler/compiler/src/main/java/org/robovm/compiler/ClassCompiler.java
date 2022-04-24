@@ -51,7 +51,6 @@ import org.robovm.compiler.llvm.Linkage;
 import org.robovm.compiler.llvm.Load;
 import org.robovm.compiler.llvm.NullConstant;
 import org.robovm.compiler.llvm.Ordering;
-import org.robovm.compiler.llvm.PackedStructureConstantBuilder;
 import org.robovm.compiler.llvm.PointerType;
 import org.robovm.compiler.llvm.Ret;
 import org.robovm.compiler.llvm.Store;
@@ -1307,7 +1306,7 @@ public class ClassCompiler {
         header.add(new IntegerConstant((short) countReferences(classFields)));
         header.add(new IntegerConstant((short) countReferences(instanceFields)));
 
-        PackedStructureConstantBuilder body = new PackedStructureConstantBuilder();
+        StructureConstantBuilder body = new StructureConstantBuilder();
         body.add(new IntegerConstant((short) sootClass.getInterfaceCount()));
         body.add(new IntegerConstant((short) sootClass.getFieldCount()));
         body.add(new IntegerConstant((short) sootClass.getMethodCount()));
