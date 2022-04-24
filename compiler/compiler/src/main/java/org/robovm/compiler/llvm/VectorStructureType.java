@@ -17,6 +17,8 @@
 package org.robovm.compiler.llvm;
 
 
+import java.io.IOException;
+import java.io.Writer;
 
 /**
  *
@@ -47,13 +49,26 @@ public class VectorStructureType extends StructureType {
 
 
     @Override
-    public String getDefinition() {
+    public void writeDefinition(Writer writer) throws IOException {
         if (types[0] instanceof StructureType) {
             // return as struct that contains array
             StructureType st = (StructureType) types[0];
-            return "{ [" + types.length + " x " + st.getDefinition() + "] }";
+            writer.write("{ [");
+            writer.write(Integer.toString(types.length));
+            writer.write(" x ");
+            st.writeDefinition(writer);
+            writer.write("] }");
         } else {
-            return "<" + types.length + " x " + types[0].toString() + ">";
+            writer.write("<");
+            writer.write(Integer.toString(types.length));
+            writer.write(" x ");
+            types[0].write(writer);
+            writer.write(">");
         }
+    }
+
+    @Override
+    public String getDefinition() {
+        return toString(this::writeDefinition);
     }
 }

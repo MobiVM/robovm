@@ -16,11 +16,14 @@
  */
 package org.robovm.compiler.llvm;
 
+import java.io.IOException;
+import java.io.Writer;
+
 /**
  *
  * @version $Id$
  */
-public abstract class UserType extends Type {
+public abstract class UserType extends Type implements Writable{
     protected final String alias;
     
     UserType() {
@@ -40,7 +43,9 @@ public abstract class UserType extends Type {
     }
     
     public abstract String getDefinition();
-    
+
+    public abstract void writeDefinition(Writer writer) throws IOException;
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -72,7 +77,12 @@ public abstract class UserType extends Type {
     }
 
     @Override
+    public void write(Writer writer) throws IOException {
+        if (alias != null) writer.write(alias); else writeDefinition(writer);
+    }
+
+    @Override
     public String toString() {
-        return alias != null ? alias : getDefinition();
+        return toString(this::write);
     }
 }

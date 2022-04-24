@@ -16,6 +16,9 @@
  */
 package org.robovm.compiler.llvm;
 
+import java.io.IOException;
+import java.io.Writer;
+
 /**
  * {@link Metadata} used to attach debug info to instructions.
  */
@@ -27,8 +30,13 @@ public class DebugMetadata extends Metadata {
     }
 
     @Override
-    public String toString() {
-        return "!dbg " + value;
+    public void write(Writer writer) throws IOException {
+        writer.write( "!dbg ");
+        value.write(writer);
     }
-    
+
+    @Override
+    public String toString() {
+        return toString(this::write);
+    }
 }

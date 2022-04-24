@@ -16,6 +16,8 @@
  */
 package org.robovm.compiler.llvm;
 
+import java.io.IOException;
+import java.io.Writer;
 import java.util.Collections;
 import java.util.Set;
 
@@ -43,10 +45,19 @@ public class Ret extends Instruction {
     }
     
     @Override
-    public String toString() {
+    public void write(Writer writer) throws IOException {
         if (value != null) {
-            return "ret " + value.getType() + " " + value;
+            writer.write("ret ");
+            value.getType().write(writer);
+            writer.write(' ');
+            value.write(writer);
+        } else {
+            writer.write("ret void");
         }
-        return "ret void";
+    }
+
+    @Override
+    public String toString() {
+        return toString(this::write);
     }
 }

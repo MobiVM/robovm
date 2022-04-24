@@ -16,6 +16,9 @@
  */
 package org.robovm.compiler.llvm;
 
+import java.io.IOException;
+import java.io.Writer;
+
 /**
  *
  * @version $Id$
@@ -48,17 +51,20 @@ public class ConstantGetelementptr extends Constant {
     }
 
     @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("getelementptr (");
-        sb.append(cst.getType());
-        sb.append(' ');
-        sb.append(cst);
-        for (int i = 0; i < idx.length; i++) {
-            sb.append(", i32 ");
-            sb.append(idx[i]);
+    public void write(Writer writer) throws IOException {
+        writer.write("getelementptr (");
+        cst.getType().write(writer);
+        writer.write(' ');
+        cst.write(writer);
+        for (int j : idx) {
+            writer.write(", i32 ");
+            writer.write(Integer.toString(j));
         }
-        sb.append(")");
-        return sb.toString();
+        writer.write(')');
+    }
+
+    @Override
+    public String toString() {
+        return toString(this::write);
     }
 }

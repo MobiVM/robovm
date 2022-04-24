@@ -16,6 +16,8 @@
  */
 package org.robovm.compiler.llvm;
 
+import java.io.IOException;
+import java.io.Writer;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
@@ -54,23 +56,26 @@ public class Phi extends Instruction {
     }
     
     @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(result.toString());
-        sb.append(" = phi ");
-        sb.append(result.getType().toString());
+    public void write(Writer writer) throws IOException {
+        writer.write(result.toString());
+        writer.write(" = phi ");
+        result.getType().write(writer);
         for (int i = 0; i < vars.length; i++) {
             if (i > 0) {
-                sb.append(", ");                
+                writer.write(", ");
             }
-            sb.append("[ ");
-            sb.append(vars[i].toString());
-            sb.append(", ");
+            writer.write("[ ");
+            writer.write(vars[i].toString());
+            writer.write(", ");
             BasicBlock bb = basicBlock.getFunction().getDefinedIn(vars[i]);
-            sb.append('%');
-            sb.append(bb.getName());
-            sb.append(" ]");
+            writer.write('%');
+            writer.write(bb.getName());
+            writer.write(" ]");
         }
-        return sb.toString();
+    }
+
+    @Override
+    public String toString() {
+        return toString(this::write);
     }
 }

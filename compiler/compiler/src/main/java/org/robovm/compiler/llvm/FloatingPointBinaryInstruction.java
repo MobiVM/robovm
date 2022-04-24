@@ -17,6 +17,9 @@
 package org.robovm.compiler.llvm;
 
 
+import java.io.IOException;
+import java.io.Writer;
+
 /**
  *
  * @version $Id$
@@ -34,9 +37,19 @@ public abstract class FloatingPointBinaryInstruction extends BinaryOpInstruction
         }
         this.name = name;
     }
-    
+
+    @Override
+    public void write(Writer writer) throws IOException {
+        writer.append(result.toString()).append(" = ").append(name).append(' ');
+        op1.getType().write(writer);
+        writer.write(' ');
+        op1.write(writer);
+        writer.write(", ");
+        op2.write(writer);
+    }
+
     @Override
     public String toString() {
-        return result + " = " + name + " " + op1.getType() + " " + op1 + ", " + op2;
+        return toString(this::write);
     }
 }

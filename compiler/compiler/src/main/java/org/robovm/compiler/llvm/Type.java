@@ -20,7 +20,7 @@ package org.robovm.compiler.llvm;
  *
  * @version $Id$
  */
-public abstract class Type {
+public abstract class Type implements Writable{
     public static final IntegerType I1 = new IntegerType(1);
     public static final IntegerType I8 = new IntegerType(8);
     public static final IntegerType I16 = new IntegerType(16);

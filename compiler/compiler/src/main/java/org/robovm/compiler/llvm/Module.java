@@ -29,7 +29,7 @@ import org.apache.commons.io.IOUtils;
  *
  * @version $Id$
  */
-public class Module {
+public class Module implements Writable{
     private final Collection<URL> includes;
     private final Collection<Global> globals;
     private final Collection<Alias> aliases;    
@@ -57,6 +57,7 @@ public class Module {
         this.unnamedMetadata = unnamedMetadata;
     }
 
+    @Override
     public void write(Writer writer) throws IOException {
         for (URL g : includes) {
             InputStream in = null;
@@ -80,49 +81,43 @@ public class Module {
         for (UserType type : types) {
             writer.write(type.getAlias());
             writer.write(" = type ");
-            writer.write(type.getDefinition());
+            type.writeDefinition(writer);
             writer.write("\n");
         }
         writer.write("\n");
         for (FunctionDeclaration fd : functionDeclarations) {
-            writer.write(fd.toString());
+            fd.write(writer);
             writer.write("\n");
         }
         writer.write("\n");
         for (Global g : globals) {
-            writer.write(g.getDefinition());
+            g.writeDefinition(writer);
             writer.write("\n");
         }
         writer.write("\n");
         for (Alias a : aliases) {
-            writer.write(a.getDefinition());
+            a.writeDefinition(writer);
             writer.write("\n");
         }
         writer.write("\n");
         for (Function f : functions) {
-            writer.write(f.toString());
+            f.write(writer);
             writer.write("\n");
         }
         writer.write("\n");
         for (NamedMetadata md : namedMetadata) {
-            writer.write(md.toString());
+            md.write(writer);
             writer.write("\n");
         }
         writer.write("\n");
         for (UnnamedMetadata md : unnamedMetadata) {
-            writer.write(md.getDefinition());
+            md.writeDefinition(writer);
             writer.write("\n");
         }
     }
 
     @Override
     public String toString() {
-        StringWriter sw = new StringWriter();
-        try {
-            write(sw);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        return sw.toString();
+        return toString(this::write);
     }
 }

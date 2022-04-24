@@ -16,6 +16,9 @@
  */
 package org.robovm.compiler.llvm;
 
+import java.io.IOException;
+import java.io.Writer;
+
 /**
  *
  * @version $Id$
@@ -29,9 +32,19 @@ public abstract class ConversionInstruction extends UnaryOpInstruction {
         this.name = name;
         this.type = type;
     }
-    
+
+    @Override
+    public void write(Writer writer) throws IOException {
+        writer.append(result.toString()).append(" = ").append(name).append(' ');
+        op.getType().write(writer);
+        writer.write(' ');
+        op.write(writer);
+        writer.write(" to ");
+        type.write(writer);
+    }
+
     @Override
     public String toString() {
-        return result + " = " + name + " " + op.getType() + " " + op + " to " + type;
+        return toString(this::write);
     }
 }

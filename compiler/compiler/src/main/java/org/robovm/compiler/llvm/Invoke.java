@@ -17,6 +17,9 @@
 package org.robovm.compiler.llvm;
 
 
+import java.io.IOException;
+import java.io.Writer;
+
 /**
  *
  * @version $Id$
@@ -89,8 +92,13 @@ public class Invoke extends FunctionCallInstruction {
     }
     
     @Override
+    public void write(Writer writer) throws IOException {
+        super.write(writer);
+        writer.append(" to label %").append(to.toString()).append(" unwind label %").append(unwind.toString());
+    }
+
+    @Override
     public String toString() {
-        String s = super.toString();
-        return s + " to label %" + to + " unwind label %" + unwind;
+        return toString(this::write);
     }
 }

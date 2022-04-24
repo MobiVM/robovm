@@ -16,6 +16,9 @@
  */
 package org.robovm.compiler.llvm;
 
+import java.io.IOException;
+import java.io.Writer;
+
 /**
  *
  * @version $Id$
@@ -39,5 +42,10 @@ public class BooleanConstant extends Constant {
     @Override
     public String toString() {
         return String.valueOf(value);
+    }
+
+    @Override
+    public void write(Writer writer) throws IOException {
+        writer.write(toString());
     }
 }

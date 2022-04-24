@@ -17,6 +17,8 @@
 package org.robovm.compiler.llvm;
 
 
+import java.io.IOException;
+import java.io.Writer;
 
 /**
  *
@@ -42,8 +44,15 @@ public class PackedStructureType extends StructureType {
     }
 
     @Override
+    public void writeDefinition(Writer writer) throws IOException {
+        writer.write('<');
+        super.writeDefinition(writer);
+        writer.write('>');
+    }
+
+    @Override
     public String getDefinition() {
-        return "<" + super.getDefinition() + ">";
+        return toString(this::writeDefinition);
     }
 
     public int getAlign() {

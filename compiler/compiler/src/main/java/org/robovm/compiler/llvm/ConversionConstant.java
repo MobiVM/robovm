@@ -16,6 +16,9 @@
  */
 package org.robovm.compiler.llvm;
 
+import java.io.IOException;
+import java.io.Writer;
+
 /**
  *
  * @version $Id$
@@ -37,7 +40,19 @@ public abstract class ConversionConstant extends Constant {
     }
 
     @Override
+    public void write(Writer writer) throws IOException {
+        writer.write(name);
+        writer.write(" (");
+        cst.getType().write(writer);
+        writer.write(' ');
+        cst.write(writer);
+        writer.write(" to ");
+        type.write(writer);
+        writer.write(')');
+    }
+
+    @Override
     public String toString() {
-        return name + " (" + cst.getType() + " " + cst + " to " + type + ")";
+        return toString(this::write);
     }
 }

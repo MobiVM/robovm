@@ -15,9 +15,10 @@
  */
 package org.robovm.compiler.llvm.debug.dwarf;
 
-import org.apache.commons.lang3.StringUtils;
 import org.robovm.compiler.llvm.Metadata;
 
+import java.io.IOException;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,8 +49,19 @@ public class DIHeader extends Metadata{
     }
 
     @Override
+    public void write(Writer writer) throws IOException {
+        writer.write("!\"");
+        for (int i = 0; i < values.size(); i++) {
+            if (i > 0)
+                writer.write("\\00");
+            writer.write(values.get(i));
+        }
+        writer.write("\"");
+    }
+
+    @Override
     public String toString() {
-        return "!\"" + StringUtils.join(values, "\\00") + "\"";
+        return toString(this::write);
     }
 
 

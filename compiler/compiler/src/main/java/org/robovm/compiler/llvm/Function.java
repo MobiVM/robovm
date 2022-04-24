@@ -28,7 +28,7 @@ import java.util.Map;
  *
  * @version $Id$
  */
-public class Function {
+public class Function implements Writable {
     private final String name;
     private final Linkage linkage;
     private final FunctionAttribute[] attributes;
@@ -178,6 +178,7 @@ public class Function {
         return sig;
     }
     
+    @Override
     public void write(Writer writer) throws IOException {
         Type returnType = type.getReturnType();
         Type[] parameterTypes = type.getParameterTypes();
@@ -186,7 +187,7 @@ public class Function {
             writer.write(linkage.toString());
             writer.write(' ');
         }
-        writer.write(returnType.toString());
+        returnType.write(writer);
         writer.write(" @\"");
         writer.write(name);
         writer.write("\"(");
@@ -194,7 +195,7 @@ public class Function {
             if (i > 0) {
                 writer.write(", ");
             }
-            writer.write(parameterTypes[i].toString());
+            parameterTypes[i].write(writer);
             if (parameterAttributes[i] != null) {
                 for (ParameterAttribute attrib : parameterAttributes[i]) {
                     writer.write(' ');
@@ -221,19 +222,13 @@ public class Function {
         }
         writer.write(" {\n");
         for (BasicBlock bb : basicBlockList) {
-            writer.write(bb.toString());
+            bb.write(writer);
         }
         writer.write("}\n");
     }
 
     @Override
     public String toString() {
-        StringWriter sw = new StringWriter();
-        try {
-            write(sw);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        return sw.toString();
+        return toString(this::write);
     }
 }
