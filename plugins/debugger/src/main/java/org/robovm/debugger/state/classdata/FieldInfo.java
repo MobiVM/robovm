@@ -47,9 +47,9 @@ public class FieldInfo extends BaseModifiersInfo {
     }
 
     public void readFieldInfo(DataBufferReader reader) {
-        flags = reader.readInt16();
+        flags = reader.readInt16(true);
 
-        name = reader.readStringZ(reader.readPointer());
+        name = reader.readStringZ(reader.readPointer(true));
 
         if ((flags >> 12) != 0) {
             switch ((flags >> 12) & 0xf) {
@@ -63,14 +63,14 @@ public class FieldInfo extends BaseModifiersInfo {
                 case ClassDataConsts.desc.Z: signature = "Z"; break;
             }
         } else {
-            signature = reader.readStringZ(reader.readPointer());
+            signature = reader.readStringZ(reader.readPointer(true));
         }
 
-        offset = reader.readInt32();
+        offset = reader.readInt32(true);
 
         if ((flags & ClassDataConsts.fieldinfo.ATTRIBUTES) != 0) {
             // TODO: skip attributes for now
-            reader.skip(reader.pointerSize());
+            reader.readPointer(true);
         }
     }
 
